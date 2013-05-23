@@ -198,125 +198,23 @@
   <data name="editby" xml:space="preserve">
     <value>Edit By</value>
   </data>
-  <data name="editmultbingo" xml:space="preserve">
-    <value>Edit Multiple Bingo</value>
-  </data>
-  <data name="editmultcs" xml:space="preserve">
-    <value>Edit Multiple Casino</value>
-  </data>
-  <data name="editmultfinance" xml:space="preserve">
-    <value>Edit Multiple Finance's PT</value>
-  </data>
-  <data name="editmulthr" xml:space="preserve">
-    <value>Edit Multiple Racing</value>
-  </data>
-  <data name="editmultsportbook" xml:space="preserve">
-    <value>Edit Multiple Sportsbook</value>
-  </data>
-  <data name="editsubacc" xml:space="preserve">
-    <value>Edit Sub Account</value>
-  </data>
-  <data name="email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="emailnotvalid" xml:space="preserve">
-    <value>Email is not valid!</value>
-  </data>
-  <data name="enable" xml:space="preserve">
-    <value>Enable</value>
-  </data>
-  <data name="enablehr" xml:space="preserve">
-    <value>Enable HR</value>
-  </data>
-  <data name="enablesatote" xml:space="preserve">
-    <value>Enable SA Tote</value>
-  </data>
-  <data name="enableuktote" xml:space="preserve">
-    <value>Enable UK Tote</value>
-  </data>
   <data name="entered" xml:space="preserve">
     <value>Entered</value>
-  </data>
-  <data name="entertainment" xml:space="preserve">
-    <value>Entertainment</value>
   </data>
   <data name="enterusername" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="equestrian" xml:space="preserve">
-    <value>Equestrian</value>
-  </data>
-  <data name="errChooseItemTransfer" xml:space="preserve">
-    <value>You must choose at least one item to transfer</value>
-  </data>
-  <data name="errInvalidCaptcha" xml:space="preserve">
-    <value>You inputted an invalid code.</value>
-  </data>
-  <data name="errorinputnumber" xml:space="preserve">
-    <value>Please input a value number !</value>
-  </data>
-  <data name="errorupdategametype" xml:space="preserve">
-    <value>Error when updating gametype:</value>
-  </data>
-  <data name="errRequireValidationCode" xml:space="preserve">
-    <value>You must input validation code.</value>
-  </data>
-  <data name="even" xml:space="preserve">
-    <value>Even</value>
-  </data>
-  <data name="eventdate" xml:space="preserve">
-    <value>Event Date</value>
-  </data>
   <data name="events" xml:space="preserve">
     <value>Event</value>
-  </data>
-  <data name="exitCSConfirmMsg" xml:space="preserve">
-    <value>Are you sure you want to exit without saving your casino setting?</value>
   </data>
   <data name="exporttoexcel" xml:space="preserve">
     <value>Export to Excel</value>
   </data>
-  <data name="feb" xml:space="preserve">
-    <value>Feb</value>
-  </data>
-  <data name="February" xml:space="preserve">
-    <value>February</value>
-  </data>
-  <data name="FG" xml:space="preserve">
-    <value>FG</value>
-  </data>
   <data name="fglg" xml:space="preserve">
     <value>FG/LG</value>
   </data>
-  <data name="fieldhockey" xml:space="preserve">
-    <value>Field Hockey</value>
-  </data>
-  <data name="filterfi" xml:space="preserve">
-    <value>Filtered data for Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhr" xml:space="preserve">
-    <value>Filtered data for Horse Racing product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhrandfi" xml:space="preserve">
-    <value>Filtered data for Horse Racing and Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="fiminpt" xml:space="preserve">
-    <value>Finance's Min PT</value>
-  </data>
-  <data name="fiminpt1" xml:space="preserve">
-    <value>FI's Min PT</value>
-  </data>
   <data name="finalscore" xml:space="preserve">
     <value>Final Score</value>
-  </data>
-  <data name="Financial" xml:space="preserve">
-    <value>Finance</value>
-  </data>
-  <data name="financialComm" xml:space="preserve">
-    <value>Finance Comm</value>
-  </data>
-  <data name="first" xml:space="preserve">
-    <value>First</value>
   </data>
   <data name="firstgoal" xml:space="preserve">
     <value>First Goal</value>
@@ -324,38 +222,8 @@
   <data name="firsthalfscore" xml:space="preserve">
     <value>First Half Score</value>
   </data>
-  <data name="firstlastoddeven" xml:space="preserve">
-    <value>1st/Last O/E</value>
-  </data>
-  <data name="firstlastoverunder" xml:space="preserve">
-    <value>1st/Last O/U</value>
-  </data>
-  <data name="firstname" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="FiveMin" xml:space="preserve">
-    <value>5 Minutes</value>
-  </data>
-  <data name="fixodd" xml:space="preserve">
-    <value>Fixed Odds</value>
-  </data>
-  <data name="focomm" xml:space="preserve">
-    <value>Fixed Odds Comm</value>
-  </data>
-  <data name="focommforagent" xml:space="preserve">
-    <value>Fixed Odds Comm for Agent</value>
-  </data>
-  <data name="focommformaster" xml:space="preserve">
-    <value>Fixed Odds Comm for Master</value>
-  </data>
-  <data name="focommformember" xml:space="preserve">
-    <value>Fixed Odds Comm for Member</value>
-  </data>
   <data name="Football" xml:space="preserve">
     <value>Football</value>
-  </data>
-  <data name="forcechangepwd" xml:space="preserve">
-    <value>You are forced to change your password at first logon</value>
   </data>
   <data name="forecastaway" xml:space="preserve">
     <value>Forecast Away</value>
@@ -363,41 +231,11 @@
   <data name="forecasthome" xml:space="preserve">
     <value>Forecast Home</value>
   </data>
-  <data name="freeSpin" xml:space="preserve">
-    <value>Free Spin</value>
-  </data>
-  <data name="fri" xml:space="preserve">
-    <value>Fri</value>
-  </data>
-  <data name="friday" xml:space="preserve">
-    <value>Friday</value>
-  </data>
   <data name="from" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="fromdate" xml:space="preserve">
-    <value>From date</value>
-  </data>
-  <data name="FromStake" xml:space="preserve">
-    <value>From Stake</value>
-  </data>
-  <data name="ft" xml:space="preserve">
-    <value>FT</value>
-  </data>
-  <data name="fullmode" xml:space="preserve">
-    <value>Full Mode</value>
-  </data>
-  <data name="fullSite" xml:space="preserve">
-    <value>Full Site</value>
-  </data>
   <data name="fulltime" xml:space="preserve">
     <value>Full Time</value>
-  </data>
-  <data name="fullversion" xml:space="preserve">
-    <value>Full Mode.</value>
-  </data>
-  <data name="game" xml:space="preserve">
-    <value>Game</value>
   </data>
   <data name="getall" xml:space="preserve">
     <value>Get All</value>
@@ -2715,9 +2553,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="lblUnderEven" xml:space="preserve">
     <value>Under Even</value>
   </data>
-  <data name="eventstatus" xml:space="preserve">
-    <value>Event/Status</value>
-  </data>
   <data name="lblCombMixParlay" xml:space="preserve">
     <value>Combination Parlay</value>
   </data>
@@ -2745,9 +2580,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="privateGames" xml:space="preserve">
     <value>Private Games</value>
   </data>
-  <data name="editP2P" xml:space="preserve">
-    <value>Edit Poker</value>
-  </data>
   <data name="lblOverEven" xml:space="preserve">
     <value>Over Even</value>
   </data>
@@ -2759,9 +2591,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="lblSP" xml:space="preserve">
     <value>SP</value>
-  </data>
-  <data name="editmultp2p" xml:space="preserve">
-    <value>Edit Multiple Poker</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
     <value>System Parlay</value>
@@ -2795,9 +2624,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="saveCommission" xml:space="preserve">
     <value>Save Commission</value>
-  </data>
-  <data name="FilterOptions" xml:space="preserve">
-    <value>Filter Options</value>
   </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
@@ -2877,9 +2703,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="preview" xml:space="preserve">
     <value>Preview</value>
   </data>
-  <data name="EnterMemberInfo" xml:space="preserve">
-    <value>Enter Information</value>
-  </data>
   <data name="PreviewMemberSetting" xml:space="preserve">
     <value>Preview Settings</value>
   </data>
@@ -2903,12 +2726,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="SavePositionTakingCommission" xml:space="preserve">
     <value>Save Share/Commission</value>
-  </data>
-  <data name="EditLiveCasino" xml:space="preserve">
-    <value>Edit Live Casino</value>
-  </data>
-  <data name="EditLiveCasinoMultiple" xml:space="preserve">
-    <value>Edit Multiple Live Casino</value>
   </data>
   <data name="gameTypeAndTableNumber" xml:space="preserve">
     <value>Game Type - Table Number</value>
@@ -2945,9 +2762,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="gameSettingErrMsgStake" xml:space="preserve">
     <value>Synchronize failed because of your betting limit was changed by upline, please refresh the page!</value>
-  </data>
-  <data name="FullControl" xml:space="preserve">
-    <value>Full Control</value>
   </data>
   <data name="infoClickSkip" xml:space="preserve">
     <value>Click Skip to proceed without previewing settings.</value>
@@ -3096,9 +2910,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="VirtualSoccer" xml:space="preserve">
     <value>Virtual Soccer</value>
   </data>
-  <data name="EditVirtualSports" xml:space="preserve">
-    <value>Edit Virtual Sports</value>
-  </data>
   <data name="strConfirmDisableVirtualSports" xml:space="preserve">
     <value>WARNING!!!\n\nAre you sure you want to disable Virtual Sports on this customer and all downlines?</value>
   </data>
@@ -3122,9 +2933,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="noValueschanged" xml:space="preserve">
     <value>You didn't change any values</value>
-  </data>
-  <data name="editMultipleVirtualSports" xml:space="preserve">
-    <value>Edit Multiple Virtual Sports</value>
   </data>
   <data name="savePositionTaking" xml:space="preserve">
     <value>Save Share</value>
@@ -3168,9 +2976,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="LCSWinLimit" xml:space="preserve">
     <value>LC Win %</value>
   </data>
-  <data name="editDoubleCommission" xml:space="preserve">
-    <value>Edit Double Commission</value>
-  </data>
   <data name="strConfirmDisableDoubleCommMember" xml:space="preserve">
     <value>Are you sure you want to turn OFF Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
   </data>
@@ -3179,9 +2984,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="strConfirmEnableDoubleCommMember" xml:space="preserve">
     <value>Are you sure you want to turn ON Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
-  </data>
-  <data name="editMultipleDoubleComm" xml:space="preserve">
-    <value>Edit Multiple Double Comm</value>
   </data>
   <data name="lblDComNotAuthorized" xml:space="preserve">
     <value>Cannot update Double Commission Losing status on this customer because the upline is not allowed.</value>

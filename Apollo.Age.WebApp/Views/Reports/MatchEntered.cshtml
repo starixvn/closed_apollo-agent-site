@@ -46,10 +46,10 @@
 				@Apollo.Age.Resources.Lang.Sports
 			</td>
 			<td colspan="2">
-				@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+				@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))
 			</td>
 			<td colspan="2">
-				@Formater.ShortDateFormat(DateTime.Now)
+				@Formater.FormatShortDateNoZeroLeading(DateTime.Now)
 			</td>
 		</tr>
 		<tr>
