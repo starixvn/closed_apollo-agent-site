@@ -237,41 +237,11 @@
   <data name="fulltime" xml:space="preserve">
     <value>Full Time</value>
   </data>
-  <data name="getall" xml:space="preserve">
-    <value>Get All</value>
-  </data>
-  <data name="givencredit" xml:space="preserve">
-    <value>Given Credit</value>
-  </data>
-  <data name="go" xml:space="preserve">
-    <value>Go</value>
-  </data>
-  <data name="goal" xml:space="preserve">
-    <value>Goal</value>
-  </data>
-  <data name="goalHistory" xml:space="preserve">
-    <value>Goal history</value>
-  </data>
   <data name="Golf" xml:space="preserve">
     <value>Golf</value>
   </data>
-  <data name="gotopage" xml:space="preserve">
-    <value>Go to Page</value>
-  </data>
-  <data name="grandTotal" xml:space="preserve">
-    <value>Grand Total</value>
-  </data>
-  <data name="greyHound" xml:space="preserve">
-    <value>Greyhound</value>
-  </data>
-  <data name="grosscomm" xml:space="preserve">
-    <value>Gross Comm</value>
-  </data>
   <data name="group" xml:space="preserve">
     <value>Group</value>
-  </data>
-  <data name="gymnastics" xml:space="preserve">
-    <value>Gymnastics</value>
   </data>
   <data name="h" xml:space="preserve">
     <value>H</value>
@@ -2562,9 +2532,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="stakeLevel" xml:space="preserve">
     <value>Stake Level</value>
   </data>
-  <data name="gameSetting" xml:space="preserve">
-    <value>Game Setting</value>
-  </data>
   <data name="playForFun" xml:space="preserve">
     <value>Play for Fun</value>
   </data>
@@ -2573,9 +2540,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="vip" xml:space="preserve">
     <value>VIP</value>
-  </data>
-  <data name="games" xml:space="preserve">
-    <value>Games</value>
   </data>
   <data name="privateGames" xml:space="preserve">
     <value>Private Games</value>
@@ -2727,9 +2691,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="SavePositionTakingCommission" xml:space="preserve">
     <value>Save Share/Commission</value>
   </data>
-  <data name="gameTypeAndTableNumber" xml:space="preserve">
-    <value>Game Type - Table Number</value>
-  </data>
   <data name="noChangeToUpdate" xml:space="preserve">
     <value>There is no change to update</value>
   </data>
@@ -2754,14 +2715,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="settingOf" xml:space="preserve">
     <value>'s setting</value>
   </data>
-  <data name="gameSettingErrMsg" xml:space="preserve">
-    <value>Synchronize failed because of PT/Commission error</value>
-  </data>
   <data name="validateErrMsg" xml:space="preserve">
     <value>Your max commission was changed by upline, please refresh the page!</value>
-  </data>
-  <data name="gameSettingErrMsgStake" xml:space="preserve">
-    <value>Synchronize failed because of your betting limit was changed by upline, please refresh the page!</value>
   </data>
   <data name="infoClickSkip" xml:space="preserve">
     <value>Click Skip to proceed without previewing settings.</value>
@@ -2792,9 +2747,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="updateFailed" xml:space="preserve">
     <value>Updated unsuccessfully because Live Casino status has been disabled at upline</value>
-  </data>
-  <data name="generalInformation" xml:space="preserve">
-    <value>General Information</value>
   </data>
   <data name="invalid" xml:space="preserve">
     <value>Invalid {0}</value>
@@ -2964,9 +2916,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="Unlimited" xml:space="preserve">
     <value>Unlimited</value>
   </data>
-  <data name="GamesDetails" xml:space="preserve">
-    <value>Games Details</value>
-  </data>
   <data name="OneXTwoCommission" xml:space="preserve">
     <value>1X2 Commission</value>
   </data>
@@ -3005,9 +2954,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="OldValue" xml:space="preserve">
     <value>Old value</value>
-  </data>
-  <data name="Gaming" xml:space="preserve">
-    <value>Gaming</value>
   </data>
   <data name="VirtualTennis" xml:space="preserve">
     <value>Virtual Tennis</value>

@@ -592,101 +592,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Games.
-        /// </summary>
-        public static string games {
-            get {
-                return ResourceManager.GetString("games", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Games Details.
-        /// </summary>
-        public static string GamesDetails {
-            get {
-                return ResourceManager.GetString("GamesDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Setting.
-        /// </summary>
-        public static string gameSetting {
-            get {
-                return ResourceManager.GetString("gameSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synchronize failed because of PT/Commission error.
-        /// </summary>
-        public static string gameSettingErrMsg {
-            get {
-                return ResourceManager.GetString("gameSettingErrMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synchronize failed because of your betting limit was changed by upline, please refresh the page!.
-        /// </summary>
-        public static string gameSettingErrMsgStake {
-            get {
-                return ResourceManager.GetString("gameSettingErrMsgStake", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Type - Table Number.
-        /// </summary>
-        public static string gameTypeAndTableNumber {
-            get {
-                return ResourceManager.GetString("gameTypeAndTableNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gaming.
-        /// </summary>
-        public static string Gaming {
-            get {
-                return ResourceManager.GetString("Gaming", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General Information.
-        /// </summary>
-        public static string generalInformation {
-            get {
-                return ResourceManager.GetString("generalInformation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string Generate {
             get {
                 return ResourceManager.GetString("Generate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Get All.
-        /// </summary>
-        public static string getall {
-            get {
-                return ResourceManager.GetString("getall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Given Credit.
-        /// </summary>
-        public static string givencredit {
-            get {
-                return ResourceManager.GetString("givencredit", resourceCulture);
             }
         }
         
@@ -700,33 +610,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go.
-        /// </summary>
-        public static string go {
-            get {
-                return ResourceManager.GetString("go", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal.
-        /// </summary>
-        public static string goal {
-            get {
-                return ResourceManager.GetString("goal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal history.
-        /// </summary>
-        public static string goalHistory {
-            get {
-                return ResourceManager.GetString("goalHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Golf.
         /// </summary>
         public static string Golf {
@@ -736,47 +619,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to Page.
-        /// </summary>
-        public static string gotopage {
-            get {
-                return ResourceManager.GetString("gotopage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Go to top.
         /// </summary>
         public static string GoToTop {
             get {
                 return ResourceManager.GetString("GoToTop", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Grand Total.
-        /// </summary>
-        public static string grandTotal {
-            get {
-                return ResourceManager.GetString("grandTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Greyhound.
-        /// </summary>
-        public static string greyHound {
-            get {
-                return ResourceManager.GetString("greyHound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gross Comm.
-        /// </summary>
-        public static string grosscomm {
-            get {
-                return ResourceManager.GetString("grosscomm", resourceCulture);
             }
         }
         
@@ -795,15 +642,6 @@ namespace Apollo.Age.Resources {
         public static string group {
             get {
                 return ResourceManager.GetString("group", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gymnastics.
-        /// </summary>
-        public static string gymnastics {
-            get {
-                return ResourceManager.GetString("gymnastics", resourceCulture);
             }
         }
         

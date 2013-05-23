@@ -416,7 +416,9 @@
     <Content Include="App_Data\Log.txt" />
     <Content Include="App_Data\SpNames.xml" />
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
-    <Content Include="CustSettingEngine\PTGrid.xml" />
+    <Content Include="CustSettingEngine\PTGrid.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-2.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
