@@ -165,5 +165,66 @@ namespace Apollo.Age.Services.Impl
 
             return user;
         }
+
+
+        public int InternalCheckIn(int adminId, string netSessionId, string ip)
+        {
+            Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
+            try
+            {
+                var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria { 
+                    UserId = adminId,
+                    OnUserId = 0,
+                    NetSessionId = netSessionId,
+                    Ip = ip
+                });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);  
+            }
+            return 0;
+        }
+
+        public bool InternalReCheckIn(int onUserId)
+        {
+            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            try
+            {
+                var result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
+                {
+                    OnUserId = onUserId,
+                    IsKickedOut = 0
+                });
+
+                return Convert.ToBoolean(result);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return false;
+        }
+
+        public int InternalLogout(int onUserId)
+        {
+            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            try
+            {
+                var result = _userRepository.InternalLogout(new InternalLogoutCriteria
+                {
+                    OnUserId = onUserId
+                });
+
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return 0;
+        }
     }
 }

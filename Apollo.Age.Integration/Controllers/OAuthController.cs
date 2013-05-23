@@ -30,6 +30,7 @@ namespace Apollo.Age.Integration.Controllers
         private readonly AuthenticationService _authService;
         private readonly UserService _userService;
         private const int SERVERID = 1;
+
         public OAuthController()
             : this(null)
         {
@@ -76,7 +77,7 @@ namespace Apollo.Age.Integration.Controllers
                             if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
                                 authModel.ErrorCode = string.Empty;
-                                SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, false, language);
+                                SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
                                 // writes SSO logs
@@ -91,8 +92,8 @@ namespace Apollo.Age.Integration.Controllers
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
                                 // ActionID: 7002 -> SSO login fail.
-                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).", 
-                                                authModel.Username, 
+                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).",
+                                                authModel.Username,
                                                 Resources.Lang.AgentNotFound);
                                 WriteLoginLog(0, 0, 7002, 0, doing);
                             }
@@ -140,7 +141,7 @@ namespace Apollo.Age.Integration.Controllers
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
             Task.Factory.StartNew(() =>
-            {               
+            {
                 DeviceService deviceService = new DeviceService(Request);
                 _userService.WriteLogInternalLogin(
                     agentId,

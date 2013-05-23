@@ -135,6 +135,20 @@ namespace Apollo.Age.Web
             return View(model);
         }
 
+        [HttpPost]
+        public JsonResult ReCheckIn()
+        {
+            var result = false;
+            if(SessionManager.CurrentSession != null)
+            {
+                result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+            }
+
+            return Json(new { 
+                isKickout = result
+            });
+        }
+
         [HttpGet]
         public ActionResult SelectAccount()
         {
@@ -157,6 +171,10 @@ namespace Apollo.Age.Web
 
                 if (user != null) // continue sign-in process
                 {
+
+                    var onUserId = _userService.InternalCheckIn(model.AdminId, HttpContext.Session.SessionID, Request.ServerVariables["REMOTE_ADDR"].ToString());
+                    if (onUserId == 0)
+                        return SignOut();
                     // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
                     // may be removed in future
                     user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
@@ -166,6 +184,7 @@ namespace Apollo.Age.Web
                         user: user,
                         adminId: model.AdminId,
                         adminName: model.AdminName,
+                        onUserId : onUserId,                        
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
 
@@ -266,41 +285,29 @@ namespace Apollo.Age.Web
 
         #endregion SignIn
 
-        public ActionResult SignOut(bool isForce = false)
+        public ActionResult SignOut()
         {
-            bool isInternalSignIn = SessionManager.CurrentSession != null
-                && SessionManager.CurrentSession.IsInternalSignIn;
-
-            if (!isForce)
-            {
-                if (isInternalSignIn)
-                {
-                    #region removes cache once user logout
-
-                    var cacheKey = string.Format("{0}_{1}",
-                        SessionManager.CurrentSession.AdminId,
-                        SessionManager.CurrentSession.AgentId);
-                    CachingService.Remove(cacheKey);
-
-                    #endregion removes cache once user logout
-
-                    // Write log once user logout
-                    // ActionId: 702 - Logout successful
-                    string doing = string.Format("Admin [{0}] via Agent [{1}] signed out successfully",
-                        SessionManager.CurrentSession.AdminName,
-                        SessionManager.CurrentSession.Username);
-                    WriteLoginLog(SessionManager.CurrentSession.AgentId,
-                        SessionManager.CurrentSession.AdminId, 702, doing);
-                }
+            var onUserId = 0;
+            bool isInternalSignIn = false;
+            if (SessionManager.CurrentSession != null)
+            { 
+                isInternalSignIn = SessionManager.CurrentSession.IsInternalSignIn;
+                onUserId = SessionManager.CurrentSession.OnUserId;
             }
-
+                                            
+            
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
 
             if (isInternalSignIn)
             {
-                return Redirect(ApoURLs.URLs.InternalSignIn);
+               var result = _userService.InternalLogout(onUserId);
+               if (result == 0)
+               {
+                   return Redirect(ApoURLs.URLs.InternalSignIn);
+               }
+               
             }
             
             return Redirect(FormsAuthentication.LoginUrl);

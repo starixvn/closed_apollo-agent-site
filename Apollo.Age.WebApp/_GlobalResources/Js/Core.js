@@ -5,10 +5,6 @@ if (typeof jQuery != 'undefined') {
     APOLLO = function ($) {
         return {
             showBlockLoading: function () {
-                //                var blockLoading = '<div class="block-loading"></div>',
-                //                    mainFrame = parent.document.getElementById('main').contentWindow;
-
-                //                mainFrame.$('#content_main').prepend(blockLoading);
                 $.blockUI();
             },
             hidePopupBlockLoading: function () {
@@ -35,26 +31,34 @@ if (typeof jQuery != 'undefined') {
                 return APOLLO.currentOpenDialog;
             },
             openDialogFrame: function (url, title, options, singleFrame) {
-                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>';
+                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
+                    accessClass = "";
 
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
                 if (singleFrame) { // only one instance of dialog can be opened
                     var frame = $("#apo-dialog-frame");
-                    var fc1x2Class = "";
+
+                    // check FC1X2 popup
                     if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
-                        fc1x2Class = "fc1x2";
+                        accessClass = "fc1x2";
                     }
+
                     if (frame.length > 0) {
                         frame.html(frameHtml);
                     } else {
-                        var blockLoading = '<div class="block-loading ' + fc1x2Class + '"></div>';
+                        var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
-
                     return APOLLO.openDialog(frame, title, options);
                 }
-                var blockLoading = '<div class="block-loading"></div>';
+
+                // check scoremap popup
+                if (url.substring(1, 18).toLowerCase() == 'forecast/scoremap') {
+                    accessClass = "loading-scoremap";
+                }
+                var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
+
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
             },
