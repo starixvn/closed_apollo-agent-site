@@ -24,6 +24,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
+    using System.Threading.Tasks;
 
     public class InternalController : Controller
     {
@@ -196,39 +197,27 @@ namespace Apollo.Age.Web
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
-            //Task.Factory.StartNew(() =>
-            //{
-            //    throw new Exception(Resources.Lang.HttpError_Default);
-            //}, TaskCreationOptions.None).ContinueWith((Task previous) =>
-            //{
-            //    previous.Wait();
-            //    DeviceService deviceService = new DeviceService(Request);
-            //    _userService.WriteLogInternalLogin(
-            //        agentId,
-            //        agentUserId,
-            //        SERVERID,
-            //        actionId,
-            //        doing,
-            //        deviceService.ClientIp,
-            //        deviceService.DomainName,
-            //        deviceService.BrowserName,
-            //        deviceService.Platform,
-            //        deviceService.CountryCode
-            //        );
-            //});
-            DeviceService deviceService = new DeviceService(Request);
-            _userService.WriteLogInternalLogin(
-                agentId,
-                agentUserId,
-                SERVERID,
-                actionId,
-                doing,
-                deviceService.ClientIp,
-                deviceService.DomainName,
-                deviceService.BrowserName,
-                deviceService.Platform,
-                deviceService.CountryCode
-            );
+            Task.Factory.StartNew(() =>
+            {
+                throw new Exception(Resources.Lang.HttpError_Default);
+            }, TaskCreationOptions.None).ContinueWith((Task previous) =>
+            {
+                previous.Wait();
+                DeviceService deviceService = new DeviceService(Request);
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    SERVERID,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
+            });
+           
         }
 
         public ActionResult CaptchaImage(bool noisy = true)

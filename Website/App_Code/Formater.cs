@@ -296,7 +296,61 @@ using System.Web;
         {
             return FullDateFormat2Ln(obj);
         }
-
+        /// <summary>
+        /// format short date with no zero leading
+        /// 5/23/2013
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string FormatShortDateNoZeroLeading(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            return string.Format(cult, "{0:M/d/yyyy}", dt);
+        }
+        /// <summary>
+        /// format long date with no zero leading
+        /// 5/23/2013 11:10:20
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string FormatDateTimeNoZeroLeading(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            return string.Format(cult, "{0:M/d/yyyy hh:mm:ss}", dt);
+        }
+        /// <summary>
+        /// format long date time with no zero leading
+        /// 5/23/2013 11:10:20 AM
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string FormatLongDateTimeNoZeroLeading(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            return string.Format(cult, "{0:M/d/yyyy hh:mm:ss tt}", dt);
+        }
+        /// <summary>
+        /// format long time
+        /// 11:10:20 AM
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string FormatLongTime(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            return string.Format(cult, "{0:hh:mm:ss tt}", dt);
+        }
+        /// <summary>
+        /// format short time
+        /// 11:10:20
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string FormatShortTime(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            return string.Format(cult, "{0:hh:mm:ss}", dt);
+        }
         /// <summary>
         /// Format datetime with only month/day hour:minute
         /// </summary>
