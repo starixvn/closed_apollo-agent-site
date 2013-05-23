@@ -33,20 +33,23 @@ if (typeof jQuery != 'undefined') {
 				if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
 				if (singleFrame) { // only one instance of dialog can be opened
-					var frame = $("#apo-dialog-frame");
+				    var frame = $("#apo-dialog-frame");
+				    var fc1x2Class = "";
+				    if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
+				        fc1x2Class = "fc1x2";
+				    }
+				    if (frame.length > 0) {
+				        frame.html(frameHtml);
+				    } else {
+				        var blockLoading = '<div class="block-loading ' + fc1x2Class + '"></div>';
+				        frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+				    }
 
-					if (frame.length > 0) {
-						frame.html(frameHtml);
-					} else {
-		                var blockLoading = '<div class="block-loading"></div>';
-		                frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
-					}
-
-					return APOLLO.openDialog(frame, title, options);
+				    return APOLLO.openDialog(frame, title, options);
 				}
-
+				var blockLoading = '<div class="block-loading"></div>';
 				// multiple instances of dialog can be opened
-				return APOLLO.openDialog('<div>' + frameHtml + '</div>', title, options);
+				return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
 			},
 			closeDialog: function (target) {
 				target.dialog("close");

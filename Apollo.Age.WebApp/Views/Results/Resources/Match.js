@@ -23,7 +23,7 @@ var Match = (function () {
                 Match.showResult();
             });
 
-            btnToday.bind('click', function () {
+            btnToday.bind('click', function () {    
                 $("#EventDate").val($("#todayValue").val());
             });
 
