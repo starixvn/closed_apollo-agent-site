@@ -38,9 +38,9 @@ var MENU = function ($) {
                 location.href = APOLLO.resolveUrl(url);
             });
 
+            // add loading image
             $('.submenu a[target=main]').on('click', function () {
                 parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
-                //parent.document.getElementById('main').contentWindow.;
             });
         }
     };

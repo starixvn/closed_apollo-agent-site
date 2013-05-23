@@ -5,10 +5,6 @@ if (typeof jQuery != 'undefined') {
     APOLLO = function ($) {
         return {
             showBlockLoading: function () {
-                //                var blockLoading = '<div class="block-loading"></div>',
-                //                    mainFrame = parent.document.getElementById('main').contentWindow;
-
-                //                mainFrame.$('#content_main').prepend(blockLoading);
                 $.blockUI();
             },
             hidePopupBlockLoading: function () {
