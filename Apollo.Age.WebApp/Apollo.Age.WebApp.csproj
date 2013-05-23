@@ -1051,10 +1051,6 @@
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>Apollo.Age.Account</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Admin\Apollo.Age.Admin.csproj">
-      <Project>{6149E074-7B05-4556-AF53-E97D7199F2BF}</Project>
-      <Name>Apollo.Age.Admin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
       <Name>Apollo.Age.BetList</Name>
