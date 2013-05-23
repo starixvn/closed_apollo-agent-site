@@ -47,7 +47,7 @@ if (typeof jQuery != 'undefined') {
                             url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                         }
 
-                        APOLLO.openDialog(url, DEFAULT_LAYOUT.betListString, {
+                        APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                             width: 930,
                             height: 700,
                             position: { my: "top+30", at: "center top", of: window },

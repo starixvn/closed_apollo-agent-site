@@ -19,7 +19,12 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     var header = document.createElement("DIV");
     header.innerHTML = this.name;
     header.title = this.title;
+    //ja-JP
     header.className = "bet-type-header";
+    if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'ja-JP'
+    && this.id == 8 && this.sportId == 1) {
+        header.className += " minimize-fontsize";
+    }
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
@@ -245,6 +250,10 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     header.innerHTML = this.name;
     header.title = this.title;
     header.className = "bet-type-header";
+    if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'ja-JP'
+    && this.id == 8 && this.sportId == 1) {
+        header.className += " minimize-fontsize";
+    }
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
@@ -312,6 +321,10 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     header.innerHTML = this.name;
     header.title = this.title;
     header.className = "bet-type-header";
+    if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'ja-JP'
+    && this.id == 8 && this.sportId == 1) {
+        header.className += " minimize-fontsize";
+    }
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
