@@ -24,14 +24,14 @@
 				<div class="editor">
 					<input id="btnSubmit" value="@Apollo.Age.Resources.Lang.Generate" type="submit" class="btn" />
 					<input id="btnToday" value="@Apollo.Age.Resources.Lang.today" type="submit" 
-						class="btn" title="@Formater.ShortDateFormat(DateTime.Now)"/>
+						class="btn" title="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)"/>
 					<input id="btnYesterday" value="@Apollo.Age.Resources.Lang.yesterday" type="submit" 
-						class="btn" title="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))"/>
+						class="btn" title="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))"/>
 
 					<input type="hidden" name="todayValue" id="todayValue"
-						value="@Formater.ShortDateFormat(DateTime.Now)">
+						value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)">
 					<input type="hidden" name="yesterdayValue" id="yesterdayValue"
-						value="@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))">
+						value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">
 				</div>
 			</div>
 		</div>

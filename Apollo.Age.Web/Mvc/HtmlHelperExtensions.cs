@@ -188,7 +188,7 @@ namespace Apollo.Age.Web.Mvc
            DateTime? date,
            DateTime? minDate = null,
            DateTime? maxDate = null,
-           string formatDate = "MM/dd/yyyy",
+           string formatDate = "M/d/yyyy",
            IEnumerable<DateTime> unavailDates = null)
         {
             if (string.IsNullOrWhiteSpace(formatDate))
@@ -197,14 +197,14 @@ namespace Apollo.Age.Web.Mvc
             }
 
             string disabledDate = (unavailDates != null && unavailDates.Count() > 0)
-                ? string.Join(",", unavailDates.Select(d => d.ToString("MM/dd/yyyy")))
+                ? string.Join(",", unavailDates.Select(d => d.ToString("M/d/yyyy")))
                 : string.Empty;
 
             var htmlAttribute = new
             {
                 @class = "datepicker",
-                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("MM/dd/yyyy") : "null",
-                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("MM/dd/yyyy") : "null",
+                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("M/d/yyyy") : "null",
+                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("M/d/yyyy") : "null",
                 disabledDate = disabledDate
             };
 
