@@ -37,6 +37,11 @@ var MENU = function ($) {
 
                 location.href = APOLLO.resolveUrl(url);
             });
+
+            $('.submenu a[target=main]').on('click', function () {
+                parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+                //parent.document.getElementById('main').contentWindow.;
+            });
         }
     };
 } (jQuery);

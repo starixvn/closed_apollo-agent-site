@@ -36,29 +36,15 @@ function showMP(transid) {
 	if (divEvent.style.display == 'none') {
 		if (divEvent.innerHTML == "") {
 			ajax.Request(APOLLO.resolveUrl("~/_BetList/MixParlay/MixParlay.aspx"), { method: 'get', parameters: 'transid=' + transid,
-				onComplete: function (data) {
-					divEvent.innerHTML = data.responseText;
-					divEvent.style.display = '';
-				}
-			})
-		}
-		else {
-			divEvent.style.display = '';
-		}
-	}
-	else {
-		divEvent.style.display = 'none';
-	}
-}
-
-function showCombMP(transid, orderID) {
-	var divEvent = document.getElementById('divEvent_' + transid + orderID);
-	if (divEvent.style.display == 'none') {
-		if (divEvent.innerHTML == "") {
-			ajax.Request(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlay.aspx"), { method: 'get', parameters: 'transid=' + transid,
-				onComplete: function (data) {
-					divEvent.innerHTML = data.responseText;
-					divEvent.style.display = '';
+				onSuccess: function (data) {
+					if (data.errCode == 500) {
+						divEvent.innerHTML = data.errMsg;
+						divEvent.style.display = '';
+					}
+					else {
+						divEvent.innerHTML = data.responseText;
+						divEvent.style.display = '';
+					}
 				}
 			})
 		}
@@ -188,22 +174,17 @@ if (typeof jQuery != "undefined") {
 					fromDate = fromDate,
 					toDate = toDate,
 					type = type,
-					url = APOLLO.resolveUrl("~/BetList/ViewDetail"),
-					ajaxParams = "?transid=" + transId +
+					params = "?transid=" + transId +
 						"&fromdate=" + fromDate +
 						"&toDate=" + toDate +
 						"&type=" + type;
 
 				var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
 
-				ajax.Request(url, {
-					asynchronous: true,
-					parameters: ajaxParams,
-					onComplete: function (data) {
-						BETLIST.dialogDetails.html(data.responseText);
-						APOLLO.openDialog(BETLIST.dialogDetails, title, { modal: false, width: 450, height: 450 });
-					}
-				});
+				var width = 450, height = 450;
+				APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params)
+										, title, { width: width, height: height });
+
 			});
 		}
 

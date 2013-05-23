@@ -273,77 +273,6 @@
   <data name="HttpError_Default" xml:space="preserve">
     <value>Oops... you are here because of a system error, please notify the administrators</value>
   </data>
-  <data name="includeTodayWL" xml:space="preserve">
-    <value>Include today's Win/Loss</value>
-  </data>
-  <data name="indexname" xml:space="preserve">
-    <value>Index Name</value>
-  </data>
-  <data name="insertCS" xml:space="preserve">
-    <value>Insert Casino Setting</value>
-  </data>
-  <data name="Internal" xml:space="preserve">
-    <value>Internal</value>
-  </data>
-  <data name="internalerror" xml:space="preserve">
-    <value>Internal server error</value>
-  </data>
-  <data name="introNickname" xml:space="preserve">
-    <value>&lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
-&lt;div&gt;... more secure and personalized.&lt;/div&gt;</value>
-  </data>
-  <data name="invalidamount" xml:space="preserve">
-    <value>Invalid Amount</value>
-  </data>
-  <data name="invalidDateMessage" xml:space="preserve">
-    <value>The &amp;quot;From&amp;quot; Date cannot be greater than the &amp;quot;To&amp;quot; Date</value>
-  </data>
-  <data name="invalidLogin" xml:space="preserve">
-    <value>Wrong username or password</value>
-  </data>
-  <data name="invalidsession" xml:space="preserve">
-    <value>Invalid Session!</value>
-  </data>
-  <data name="invalidupdatedownlineparam" xml:space="preserve">
-    <value>Invalid UpdateDownline Params!</value>
-  </data>
-  <data name="invalidvalue" xml:space="preserve">
-    <value>Invalid value</value>
-  </data>
-  <data name="ip" xml:space="preserve">
-    <value>IP</value>
-  </data>
-  <data name="ipinfo" xml:space="preserve">
-    <value>IP Info</value>
-  </data>
-  <data name="ipnote" xml:space="preserve">
-    <value>Additional info at DNSstuff:&lt;a href="{0}" target="_blank"&gt; click here&lt;/a&gt;.
-Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
-  </data>
-  <data name="IsNeutral" xml:space="preserve">
-    <value> (N)</value>
-  </data>
-  <data name="jan" xml:space="preserve">
-    <value>Jan</value>
-  </data>
-  <data name="January" xml:space="preserve">
-    <value>January</value>
-  </data>
-  <data name="jul" xml:space="preserve">
-    <value>Jul</value>
-  </data>
-  <data name="July" xml:space="preserve">
-    <value>July</value>
-  </data>
-  <data name="jun" xml:space="preserve">
-    <value>Jun</value>
-  </data>
-  <data name="June" xml:space="preserve">
-    <value>June</value>
-  </data>
-  <data name="jungleWildMode" xml:space="preserve">
-    <value>Jungle Wild Mode</value>
-  </data>
   <data name="kickofftime" xml:space="preserve">
     <value>Kick Off. Time</value>
   </data>
@@ -2610,15 +2539,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="onlythispage" xml:space="preserve">
     <value>Only this page</value>
   </data>
-  <data name="InfoAllSetting" xml:space="preserve">
-    <value>All settings will be copied from username entered.</value>
-  </data>
-  <data name="InfoClickNext" xml:space="preserve">
-    <value>Click Next to create new member</value>
-  </data>
-  <data name="InfoClickPreview" xml:space="preserve">
-    <value>Click Preview to have quick look at settings (only some will be displayed for reference purpose).</value>
-  </data>
   <data name="preview" xml:space="preserve">
     <value>Preview</value>
   </data>
@@ -2673,12 +2593,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="validateErrMsg" xml:space="preserve">
     <value>Your max commission was changed by upline, please refresh the page!</value>
   </data>
-  <data name="infoClickSkip" xml:space="preserve">
-    <value>Click Skip to proceed without previewing settings.</value>
-  </data>
-  <data name="isAuto" xml:space="preserve">
-    <value>is Auto</value>
-  </data>
   <data name="LastOU" xml:space="preserve">
     <value>1st/Last/O/U</value>
   </data>
@@ -2703,9 +2617,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="updateFailed" xml:space="preserve">
     <value>Updated unsuccessfully because Live Casino status has been disabled at upline</value>
   </data>
-  <data name="invalid" xml:space="preserve">
-    <value>Invalid {0}</value>
-  </data>
   <data name="msgContraintData" xml:space="preserve">
     <value>The settings of this member have exceeded current allocated Position Taking. Therefore the effective ones will be applied for new member.</value>
   </data>
@@ -2717,15 +2628,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="titleConfirmEditMaster" xml:space="preserve">
     <value>You have changed this master not to take auto position taking</value>
-  </data>
-  <data name="infoSearchAndCopyMaster" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new master.</value>
-  </data>
-  <data name="infoSearchAndCopyAgent" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new agent.</value>
-  </data>
-  <data name="infoSearchAndCopyMember" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new member.</value>
   </data>
   <data name="lblNoDraw" xml:space="preserve">
     <value>No Draw</value>
@@ -3248,5 +3150,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="GoToTop" xml:space="preserve">
     <value>Go to top</value>
+  </data>
+  <data name="gotopage" xml:space="preserve">
+    <value>Go to Page</value>
   </data>
 </root>

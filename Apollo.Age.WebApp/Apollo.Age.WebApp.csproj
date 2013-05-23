@@ -38,15 +38,6 @@
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoLibrary">
-      <HintPath>..\Dependencies\CasinoLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoSetting">
-      <HintPath>..\Dependencies\CasinoSetting.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoUtility">
-      <HintPath>..\Dependencies\CasinoUtility.dll</HintPath>
-    </Reference>
     <Reference Include="DNAide">
       <HintPath>..\Dependencies\DNAide.dll</HintPath>
     </Reference>
@@ -59,13 +50,15 @@
     <Reference Include="Enyim.Caching">
       <HintPath>..\Dependencies\Enyim.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Age">
+    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=1.0.4883.26344, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.17936, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching">
@@ -110,9 +103,6 @@
     <Reference Include="FluentValidation.resources">
       <HintPath>..\Dependencies\FluentValidation.resources.dll</HintPath>
     </Reference>
-    <Reference Include="FPS.Client">
-      <HintPath>..\Dependencies\FPS.Client.dll</HintPath>
-    </Reference>
     <Reference Include="GotDotNet.ApplicationBlocks.Data">
       <HintPath>..\Dependencies\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
@@ -149,9 +139,6 @@
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\Dependencies\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="LVAPIDBLibrary">
       <HintPath>..\Dependencies\LVAPIDBLibrary.dll</HintPath>
     </Reference>
@@ -161,22 +148,7 @@
     <Reference Include="Membase">
       <HintPath>..\Dependencies\Membase.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.Data">
-      <HintPath>..\Dependencies\Microsoft.ApplicationBlocks.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Owin">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\Dependencies\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
       <HintPath>..\Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
@@ -683,6 +655,7 @@
     <Content Include="_GlobalResources\Images\icon_close.jpg" />
     <Content Include="_GlobalResources\Images\lastGoal.gif" />
     <Content Include="_GlobalResources\Images\letter_icoconts.png" />
+    <Content Include="_GlobalResources\Images\loader.gif" />
     <Content Include="_GlobalResources\Images\loader3.gif" />
     <Content Include="_GlobalResources\Images\more.gif" />
     <Content Include="_GlobalResources\Images\sticky-arrow.png" />
@@ -1050,10 +1023,6 @@
     <ProjectReference Include="..\Apollo.Age.Account\Apollo.Age.Account.csproj">
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>Apollo.Age.Account</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Admin\Apollo.Age.Admin.csproj">
-      <Project>{6149E074-7B05-4556-AF53-E97D7199F2BF}</Project>
-      <Name>Apollo.Age.Admin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
