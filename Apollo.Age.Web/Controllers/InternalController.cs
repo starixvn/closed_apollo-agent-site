@@ -198,11 +198,7 @@ namespace Apollo.Age.Web
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task.Factory.StartNew(() =>
-            {
-                throw new Exception(Resources.Lang.HttpError_Default);
-            }, TaskCreationOptions.None).ContinueWith((Task previous) =>
-            {
-                previous.Wait();
+            {               
                 DeviceService deviceService = new DeviceService(Request);
                 _userService.WriteLogInternalLogin(
                     agentId,
