@@ -132,7 +132,7 @@ namespace Apollo.Age.Account.Services
                 }
             }
 
-            SportList = sportList;
+            // SportList = sportList;
             return sportList;
         }
 
@@ -145,9 +145,7 @@ namespace Apollo.Age.Account.Services
                 GetAllSportType();
             }
 
-            var sport = isMixSportParlay
-                ? SportList.Where(t => (t.Id == sportId && t.Name == MIX_SPORT_PARLAY)).SingleOrDefault()
-                : SportList.Where(t => (t.Id == sportId && t.Name != MIX_SPORT_PARLAY)).SingleOrDefault();
+            var sport = SportList.Where(t => (t.Id == sportId && t.IsMixSportParlay == isMixSportParlay)).SingleOrDefault();
 
             if (sport != null)
             {

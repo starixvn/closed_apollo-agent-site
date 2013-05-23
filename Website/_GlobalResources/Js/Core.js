@@ -3,7 +3,10 @@
 if (typeof jQuery != 'undefined') {
 	// Functions in this namespace require jquery and jquery-ui
 	APOLLO = function ($) {
-		return {
+	    return {
+	        hideBlockLoading: function () {
+	            $("iframe").siblings('.block-loading').hide();
+	        },
 			dialogOpt: {
 				position: { my: "top+20%", at: "center top", of: window },
 				modal: true,
@@ -16,7 +19,13 @@ if (typeof jQuery != 'undefined') {
 
 				if (target instanceof jQuery == false) target = $(target);
 
-				return APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
+				APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
+
+				target.find('iframe').get(0).contentWindow.onload = function () {
+				    APOLLO.hideBlockLoading();
+				};
+
+				return APOLLO.currentOpenDialog;
 			},
 			openDialogFrame: function (url, title, options, singleFrame) {
 				var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>';
@@ -29,7 +38,8 @@ if (typeof jQuery != 'undefined') {
 					if (frame.length > 0) {
 						frame.html(frameHtml);
 					} else {
-						frame = '<div id="apo-dialog-frame">' + frameHtml + '</div>';
+		                var blockLoading = '<div class="block-loading"></div>';
+		                frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
 					}
 
 					return APOLLO.openDialog(frame, title, options);
@@ -175,12 +185,12 @@ if (typeof jQuery != 'undefined') {
 				});
 			},
 
-			signOut: function (isForce) {
-				isForce = isForce || false;
+			signOut: function () {
+			
 
 				try {
 					if (parent.IsApoRoot) {
-						parent.location = APOLLO.resolveUrl('~/Internal/SignOut?isForce=' + isForce);
+						parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
 					}
 				} catch (err) {
 					APOLLO.console.warn(err);

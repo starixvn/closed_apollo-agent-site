@@ -33,7 +33,7 @@
                         @if (Model.IsMember)
                         {
                             <td class="agent-lbl">
-                                @Apollo.Age.Resources.Lang.lblMember:
+                                @Apollo.Age.Resources.Lang.member:
                             </td>
                         }
                         else
@@ -116,7 +116,7 @@
             @if (Model.IsMember)
             {
                 <a class="lnk-betlist" target="main" href="~/_BetList/BetListOnMember.aspx?custId=@Model.CustId&username=@Model.Username&type=accountinfo">
-                    @Apollo.Age.Resources.Lang.BetList
+                    @Apollo.Age.Resources.Lang.lblBetLists
                 </a>
             }
         </div>
@@ -131,7 +131,7 @@
                     if (Model.Level > Constants.ShareHolderLevel)
                     {
                     <li id="membersTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
-                        <span>@Apollo.Age.Resources.Lang.lblMembers</span> </a></li>
+                        <span>@Apollo.Age.Resources.Lang.memberList</span> </a></li>
                     }
                 }
             </ul>
@@ -231,7 +231,7 @@
         {
     @Html.DropDownList("IsMember", new List<SelectListItem> {
             new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
+            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
         }, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"
@@ -241,7 +241,7 @@
         {
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
             new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
+            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
         }, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"

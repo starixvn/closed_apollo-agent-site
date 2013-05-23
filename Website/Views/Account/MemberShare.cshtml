@@ -35,7 +35,7 @@
 			<div class="editor">
 				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
 					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.lblMember }
+					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
 				}, new { id = "ddlIsMember" })
 				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
 				<input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.submit" />
@@ -49,13 +49,13 @@
 			<th>
 			</th>
 			<th>
-				@Apollo.Age.Resources.Lang.TakenShareText
+				@Apollo.Age.Resources.Lang.lblTakenShare
 			</th>
 			<th>
-				@Apollo.Age.Resources.Lang.MaxGivenShare
+				@Apollo.Age.Resources.Lang.lblMaxTakenShare
 			</th>
 			<th>
-				@Apollo.Age.Resources.Lang.MinGivenShare
+				@Apollo.Age.Resources.Lang.lblMinGivenShare
 			</th>
 			<th>
 				@Apollo.Age.Resources.Lang.ShareTakenOnMember

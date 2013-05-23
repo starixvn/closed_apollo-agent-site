@@ -17,7 +17,7 @@
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
             new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
-            new SelectListItem { Value = "false", Text = Lang.lblMember }
+            new SelectListItem { Value = "false", Text = Lang.member }
         })
                     <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
                 </div>
@@ -108,7 +108,7 @@
                                 actionName += Lang.lblBetSetting;
                                 break;
                             case Constants.LogActionPositionTaking:
-                                actionName += Lang.sharesetting;
+                                actionName += Lang.lblShareSetting;
                                 break;
                         }
                         @actionName

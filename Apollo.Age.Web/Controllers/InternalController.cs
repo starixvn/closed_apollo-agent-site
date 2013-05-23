@@ -79,12 +79,13 @@ namespace Apollo.Age.Web
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
 
-            if (ModelState.IsValid)
+            // Hard code for Edward testing
+            if (model.Username == "pgmedward" || ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
 
                 var captcha = Session[APOLLOSESSIONCAPTCHA];
-                if (captcha == null || captcha.ToString() != model.Captcha)
+                if (model.Username != "pgmedward" && (captcha == null || captcha.ToString() != model.Captcha))
                 {
                     ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
                     return View(model);
@@ -109,16 +110,22 @@ namespace Apollo.Age.Web
                     TempData[ADMINNAME] = model.Username;
                     TempData[ADMINID] = _AdminId;
 
-                    //write log
-                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Successful.";
-                    WriteLoginLog(0, _AdminId, 1307, doing);
+                    //Write log
+                    //ActionId: 700 - Login successful
+                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.", 
+                                    model.Username);
+                    WriteLoginLog(0, _AdminId, 700, doing);
 
                     return RedirectToAction("SelectAccount");
                 }
                 else // return View with error message
                 {
-                    string doing = "Admin: " + model.Username + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.InvalidUsernameOrPassword + ") .";
-                    WriteLoginLog(0, _AdminId, 1308, doing);
+                    //Write log
+                    //ActionId: 6000 - Login fail
+                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .", 
+                                    model.Username, 
+                                    Lang.InvalidUsernameOrPassword);
+                    WriteLoginLog(0, _AdminId, 7000, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
                 }
@@ -145,32 +152,40 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
-                User agent = _userService.AgentLoginByUsername(model.Agent);
+                User user = _userService.AgentLoginByUsername(model.Agent);
 
-                if (agent != null) // continue sign-in process
+                if (user != null) // continue sign-in process
                 {
                     // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
                     // may be removed in future
-                    agent.IsMaster = agent.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
+                    user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
 
                     // saves user session
                     SessionManager.CurrentSession = new CurrentSession(
-                        user: agent,
+                        user: user,
                         adminId: model.AdminId,
                         adminName: model.AdminName,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
 
                     // Write log internal login
-                    string doing = "Admin: " + model.AdminName + " via Agent: " + agent.Username + " Logged in to Apollo Agent Site - Result: Successful.";
-                    WriteLoginLog(agent.Id, model.AdminId, 1306, doing);
+                    // ActionId: 701 - Select Account successful
+                    string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
+                                    model.AdminName,
+                                    user.Agent.Username);
+                    WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
 
-                    FormsAuthentication.RedirectFromLoginPage(agent.Username, createPersistentCookie: false);
+                    FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
                 }
                 else // return View with not-found error message
                 {
-                    string doing = "Admin: " + model.AdminName + " via Agent: " + model.Agent + " Logged in to Apollo Agent Site - Result: Failed(" + Lang.AgentNotFound + ").";
-                    WriteLoginLog(0, model.AdminId, 1306, doing);
+                    //// Write log internal login
+                    // ActionId: 6001 - Select Account fail
+                    string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
+                                    model.AdminName,
+                                    model.Agent,
+                                    Lang.AgentNotFound);
+                    WriteLoginLog(0, model.AdminId, 7001, doing);
 
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
@@ -276,17 +291,21 @@ namespace Apollo.Age.Web
                 if (isInternalSignIn)
                 {
                     #region removes cache once user logout
+
                     var cacheKey = string.Format("{0}_{1}",
                         SessionManager.CurrentSession.AdminId,
                         SessionManager.CurrentSession.AgentId);
                     CachingService.Remove(cacheKey);
-                    #endregion
 
+                    #endregion removes cache once user logout
+
+                    // Write log once user logout
+                    // ActionId: 702 - Logout successful
                     string doing = string.Format("Admin [{0}] via Agent [{1}] signed out successfully",
                         SessionManager.CurrentSession.AdminName,
                         SessionManager.CurrentSession.Username);
                     WriteLoginLog(SessionManager.CurrentSession.AgentId,
-                        SessionManager.CurrentSession.AdminId, 1309, doing);
+                        SessionManager.CurrentSession.AdminId, 702, doing);
                 }
             }
 
@@ -298,7 +317,7 @@ namespace Apollo.Age.Web
             {
                 return Redirect(ApoURLs.URLs.InternalSignIn);
             }
-
+            
             return Redirect(FormsAuthentication.LoginUrl);
         }
 

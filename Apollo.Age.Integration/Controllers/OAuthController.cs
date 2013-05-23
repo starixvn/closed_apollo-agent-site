@@ -80,8 +80,9 @@ namespace Apollo.Age.Integration.Controllers
                                 FormsAuthentication.SetAuthCookie(user.Username, true);
 
                                 // writes SSO logs
-                                string doing = string.Format("SSO logged in via agent [{0}] - Result: Successful", user.Username);
-                                WriteLoginLog(user.Id, 0, 1400, 0, doing);
+                                // ActionID: 703 -> SSO login successful.
+                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
+                                WriteLoginLog(user.Id, 0, 703, 0, doing);
                             }
                             else
                             {
@@ -89,9 +90,11 @@ namespace Apollo.Age.Integration.Controllers
                                     authModel.Username, user.Username));
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
-                                string doing = string.Format("SSO logged in via agent [{0}] - Result: Failed (User not found)",
-                                    user.Username);
-                                WriteLoginLog(0, 0, 1401, 0, doing);
+                                // ActionID: 7002 -> SSO login fail.
+                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).", 
+                                                authModel.Username, 
+                                                Resources.Lang.AgentNotFound);
+                                WriteLoginLog(0, 0, 7002, 0, doing);
                             }
                         }
                         else
@@ -124,8 +127,10 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public void SignOut()
         {
-            string doing = "SSO log out via Agent: " + SessionManager.CurrentSession.Username + " - Result: Successful.";
-            WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 1402, 0, doing);
+            //write log
+            // ActionId: 704 - sso logout successful
+            string doing = string.Format("SSO log out via Agent: [{0}] - Result: Successful.", SessionManager.CurrentSession.Username);
+            WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, 0, doing);
 
             Session.Abandon();
             Response.Cookies.Clear();
@@ -134,23 +139,38 @@ namespace Apollo.Age.Integration.Controllers
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
-            Task.Factory.StartNew(() =>
-            {
-                var deviceService = new DeviceService(Request);
+            //Task.Factory.StartNew(() =>
+            //{
+            //    var deviceService = new DeviceService(Request);
 
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    serverId,
-                    actionId,
-                    doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
-                );
-            });
+            //    _userService.WriteLogInternalLogin(
+            //        agentId,
+            //        agentUserId,
+            //        serverId,
+            //        actionId,
+            //        doing,
+            //        deviceService.ClientIp,
+            //        deviceService.DomainName,
+            //        deviceService.BrowserName,
+            //        deviceService.Platform,
+            //        deviceService.CountryCode
+            //    );
+            //});
+
+            var deviceService = new DeviceService(Request);
+
+            _userService.WriteLogInternalLogin(
+                agentId,
+                agentUserId,
+                serverId,
+                actionId,
+                doing,
+                deviceService.ClientIp,
+                deviceService.DomainName,
+                deviceService.BrowserName,
+                deviceService.Platform,
+                deviceService.CountryCode
+            );
         }
     }
 }
