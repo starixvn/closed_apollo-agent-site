@@ -210,47 +210,11 @@
   <data name="exporttoexcel" xml:space="preserve">
     <value>Export to Excel</value>
   </data>
-  <data name="feb" xml:space="preserve">
-    <value>Feb</value>
-  </data>
-  <data name="February" xml:space="preserve">
-    <value>February</value>
-  </data>
-  <data name="FG" xml:space="preserve">
-    <value>FG</value>
-  </data>
   <data name="fglg" xml:space="preserve">
     <value>FG/LG</value>
   </data>
-  <data name="fieldhockey" xml:space="preserve">
-    <value>Field Hockey</value>
-  </data>
-  <data name="filterfi" xml:space="preserve">
-    <value>Filtered data for Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhr" xml:space="preserve">
-    <value>Filtered data for Horse Racing product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhrandfi" xml:space="preserve">
-    <value>Filtered data for Horse Racing and Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="fiminpt" xml:space="preserve">
-    <value>Finance's Min PT</value>
-  </data>
-  <data name="fiminpt1" xml:space="preserve">
-    <value>FI's Min PT</value>
-  </data>
   <data name="finalscore" xml:space="preserve">
     <value>Final Score</value>
-  </data>
-  <data name="Financial" xml:space="preserve">
-    <value>Finance</value>
-  </data>
-  <data name="financialComm" xml:space="preserve">
-    <value>Finance Comm</value>
-  </data>
-  <data name="first" xml:space="preserve">
-    <value>First</value>
   </data>
   <data name="firstgoal" xml:space="preserve">
     <value>First Goal</value>
@@ -258,38 +222,8 @@
   <data name="firsthalfscore" xml:space="preserve">
     <value>First Half Score</value>
   </data>
-  <data name="firstlastoddeven" xml:space="preserve">
-    <value>1st/Last O/E</value>
-  </data>
-  <data name="firstlastoverunder" xml:space="preserve">
-    <value>1st/Last O/U</value>
-  </data>
-  <data name="firstname" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="FiveMin" xml:space="preserve">
-    <value>5 Minutes</value>
-  </data>
-  <data name="fixodd" xml:space="preserve">
-    <value>Fixed Odds</value>
-  </data>
-  <data name="focomm" xml:space="preserve">
-    <value>Fixed Odds Comm</value>
-  </data>
-  <data name="focommforagent" xml:space="preserve">
-    <value>Fixed Odds Comm for Agent</value>
-  </data>
-  <data name="focommformaster" xml:space="preserve">
-    <value>Fixed Odds Comm for Master</value>
-  </data>
-  <data name="focommformember" xml:space="preserve">
-    <value>Fixed Odds Comm for Member</value>
-  </data>
   <data name="Football" xml:space="preserve">
     <value>Football</value>
-  </data>
-  <data name="forcechangepwd" xml:space="preserve">
-    <value>You are forced to change your password at first logon</value>
   </data>
   <data name="forecastaway" xml:space="preserve">
     <value>Forecast Away</value>
@@ -297,80 +231,17 @@
   <data name="forecasthome" xml:space="preserve">
     <value>Forecast Home</value>
   </data>
-  <data name="freeSpin" xml:space="preserve">
-    <value>Free Spin</value>
-  </data>
-  <data name="fri" xml:space="preserve">
-    <value>Fri</value>
-  </data>
-  <data name="friday" xml:space="preserve">
-    <value>Friday</value>
-  </data>
   <data name="from" xml:space="preserve">
     <value>From</value>
-  </data>
-  <data name="fromdate" xml:space="preserve">
-    <value>From date</value>
-  </data>
-  <data name="FromStake" xml:space="preserve">
-    <value>From Stake</value>
-  </data>
-  <data name="ft" xml:space="preserve">
-    <value>FT</value>
-  </data>
-  <data name="fullmode" xml:space="preserve">
-    <value>Full Mode</value>
-  </data>
-  <data name="fullSite" xml:space="preserve">
-    <value>Full Site</value>
   </data>
   <data name="fulltime" xml:space="preserve">
     <value>Full Time</value>
   </data>
-  <data name="fullversion" xml:space="preserve">
-    <value>Full Mode.</value>
-  </data>
-  <data name="game" xml:space="preserve">
-    <value>Game</value>
-  </data>
-  <data name="getall" xml:space="preserve">
-    <value>Get All</value>
-  </data>
-  <data name="givencredit" xml:space="preserve">
-    <value>Given Credit</value>
-  </data>
-  <data name="go" xml:space="preserve">
-    <value>Go</value>
-  </data>
-  <data name="goal" xml:space="preserve">
-    <value>Goal</value>
-  </data>
-  <data name="goalHistory" xml:space="preserve">
-    <value>Goal history</value>
-  </data>
   <data name="Golf" xml:space="preserve">
     <value>Golf</value>
   </data>
-  <data name="gotopage" xml:space="preserve">
-    <value>Go to Page</value>
-  </data>
-  <data name="grandTotal" xml:space="preserve">
-    <value>Grand Total</value>
-  </data>
-  <data name="greyHound" xml:space="preserve">
-    <value>Greyhound</value>
-  </data>
-  <data name="grosscomm" xml:space="preserve">
-    <value>Gross Comm</value>
-  </data>
   <data name="group" xml:space="preserve">
     <value>Group</value>
-  </data>
-  <data name="gymnastics" xml:space="preserve">
-    <value>Gymnastics</value>
-  </data>
-  <data name="h" xml:space="preserve">
-    <value>H</value>
   </data>
   <data name="ha" xml:space="preserve">
     <value>HA</value>
@@ -378,53 +249,17 @@
   <data name="halftime" xml:space="preserve">
     <value>Half Time</value>
   </data>
-  <data name="handball" xml:space="preserve">
-    <value>Handball</value>
-  </data>
-  <data name="handhistorydetail" xml:space="preserve">
-    <value>Hand History Detail</value>
-  </data>
-  <data name="harness" xml:space="preserve">
-    <value>Harness</value>
-  </data>
   <data name="hd" xml:space="preserve">
     <value>HD</value>
   </data>
-  <data name="hdp" xml:space="preserve">
-    <value>HDP</value>
-  </data>
   <data name="hh" xml:space="preserve">
     <value>HH</value>
-  </data>
-  <data name="hideLeague" xml:space="preserve">
-    <value>Hide League</value>
-  </data>
-  <data name="high" xml:space="preserve">
-    <value>High</value>
-  </data>
-  <data name="highestturnoverofthemonth" xml:space="preserve">
-    <value>Highest turnover members of the month</value>
-  </data>
-  <data name="highlow" xml:space="preserve">
-    <value>High/Low</value>
-  </data>
-  <data name="historicalMessage18months" xml:space="preserve">
-    <value>This report supports viewing historical data up to 18 months</value>
-  </data>
-  <data name="Hockey" xml:space="preserve">
-    <value>Ice Hockey</value>
   </data>
   <data name="home" xml:space="preserve">
     <value>Home</value>
   </data>
   <data name="homeaway" xml:space="preserve">
     <value>Home/Away</value>
-  </data>
-  <data name="HotLevel" xml:space="preserve">
-    <value>Hot Level</value>
-  </data>
-  <data name="ht" xml:space="preserve">
-    <value>HT</value>
   </data>
   <data name="htft" xml:space="preserve">
     <value>HT/FT</value>
@@ -437,80 +272,6 @@
   </data>
   <data name="HttpError_Default" xml:space="preserve">
     <value>Oops... you are here because of a system error, please notify the administrators</value>
-  </data>
-  <data name="ImgLogOut" xml:space="preserve">
-    <value>Log Out</value>
-  </data>
-  <data name="includeTodayWL" xml:space="preserve">
-    <value>Include today's Win/Loss</value>
-  </data>
-  <data name="indexname" xml:space="preserve">
-    <value>Index Name</value>
-  </data>
-  <data name="insertCS" xml:space="preserve">
-    <value>Insert Casino Setting</value>
-  </data>
-  <data name="Internal" xml:space="preserve">
-    <value>Internal</value>
-  </data>
-  <data name="internalerror" xml:space="preserve">
-    <value>Internal server error</value>
-  </data>
-  <data name="introNickname" xml:space="preserve">
-    <value>&lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
-&lt;div&gt;... more secure and personalized.&lt;/div&gt;</value>
-  </data>
-  <data name="invalidamount" xml:space="preserve">
-    <value>Invalid Amount</value>
-  </data>
-  <data name="invalidDateMessage" xml:space="preserve">
-    <value>The &amp;quot;From&amp;quot; Date cannot be greater than the &amp;quot;To&amp;quot; Date</value>
-  </data>
-  <data name="invalidLogin" xml:space="preserve">
-    <value>Wrong username or password</value>
-  </data>
-  <data name="invalidsession" xml:space="preserve">
-    <value>Invalid Session!</value>
-  </data>
-  <data name="invalidupdatedownlineparam" xml:space="preserve">
-    <value>Invalid UpdateDownline Params!</value>
-  </data>
-  <data name="invalidvalue" xml:space="preserve">
-    <value>Invalid value</value>
-  </data>
-  <data name="ip" xml:space="preserve">
-    <value>IP</value>
-  </data>
-  <data name="ipinfo" xml:space="preserve">
-    <value>IP Info</value>
-  </data>
-  <data name="ipnote" xml:space="preserve">
-    <value>Additional info at DNSstuff:&lt;a href="{0}" target="_blank"&gt; click here&lt;/a&gt;.
-Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
-  </data>
-  <data name="IsNeutral" xml:space="preserve">
-    <value> (N)</value>
-  </data>
-  <data name="jan" xml:space="preserve">
-    <value>Jan</value>
-  </data>
-  <data name="January" xml:space="preserve">
-    <value>January</value>
-  </data>
-  <data name="jul" xml:space="preserve">
-    <value>Jul</value>
-  </data>
-  <data name="July" xml:space="preserve">
-    <value>July</value>
-  </data>
-  <data name="jun" xml:space="preserve">
-    <value>Jun</value>
-  </data>
-  <data name="June" xml:space="preserve">
-    <value>June</value>
-  </data>
-  <data name="jungleWildMode" xml:space="preserve">
-    <value>Jungle Wild Mode</value>
   </data>
   <data name="kickofftime" xml:space="preserve">
     <value>Kick Off. Time</value>
@@ -2658,9 +2419,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="stakeLevel" xml:space="preserve">
     <value>Stake Level</value>
   </data>
-  <data name="gameSetting" xml:space="preserve">
-    <value>Game Setting</value>
-  </data>
   <data name="playForFun" xml:space="preserve">
     <value>Play for Fun</value>
   </data>
@@ -2669,9 +2427,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="vip" xml:space="preserve">
     <value>VIP</value>
-  </data>
-  <data name="games" xml:space="preserve">
-    <value>Games</value>
   </data>
   <data name="privateGames" xml:space="preserve">
     <value>Private Games</value>
@@ -2721,14 +2476,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="saveCommission" xml:space="preserve">
     <value>Save Commission</value>
   </data>
-  <data name="FilterOptions" xml:space="preserve">
-    <value>Filter Options</value>
-  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
-  </data>
-  <data name="hideMatch" xml:space="preserve">
-    <value>Hide Match</value>
   </data>
   <data name="PlsWait" xml:space="preserve">
     <value>Please wait</value>
@@ -2790,15 +2539,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="onlythispage" xml:space="preserve">
     <value>Only this page</value>
   </data>
-  <data name="InfoAllSetting" xml:space="preserve">
-    <value>All settings will be copied from username entered.</value>
-  </data>
-  <data name="InfoClickNext" xml:space="preserve">
-    <value>Click Next to create new member</value>
-  </data>
-  <data name="InfoClickPreview" xml:space="preserve">
-    <value>Click Preview to have quick look at settings (only some will be displayed for reference purpose).</value>
-  </data>
   <data name="preview" xml:space="preserve">
     <value>Preview</value>
   </data>
@@ -2826,9 +2566,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="SavePositionTakingCommission" xml:space="preserve">
     <value>Save Share/Commission</value>
   </data>
-  <data name="gameTypeAndTableNumber" xml:space="preserve">
-    <value>Game Type - Table Number</value>
-  </data>
   <data name="noChangeToUpdate" xml:space="preserve">
     <value>There is no change to update</value>
   </data>
@@ -2853,23 +2590,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="settingOf" xml:space="preserve">
     <value>'s setting</value>
   </data>
-  <data name="gameSettingErrMsg" xml:space="preserve">
-    <value>Synchronize failed because of PT/Commission error</value>
-  </data>
   <data name="validateErrMsg" xml:space="preserve">
     <value>Your max commission was changed by upline, please refresh the page!</value>
-  </data>
-  <data name="gameSettingErrMsgStake" xml:space="preserve">
-    <value>Synchronize failed because of your betting limit was changed by upline, please refresh the page!</value>
-  </data>
-  <data name="FullControl" xml:space="preserve">
-    <value>Full Control</value>
-  </data>
-  <data name="infoClickSkip" xml:space="preserve">
-    <value>Click Skip to proceed without previewing settings.</value>
-  </data>
-  <data name="isAuto" xml:space="preserve">
-    <value>is Auto</value>
   </data>
   <data name="LastOU" xml:space="preserve">
     <value>1st/Last/O/U</value>
@@ -2895,12 +2617,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="updateFailed" xml:space="preserve">
     <value>Updated unsuccessfully because Live Casino status has been disabled at upline</value>
   </data>
-  <data name="generalInformation" xml:space="preserve">
-    <value>General Information</value>
-  </data>
-  <data name="invalid" xml:space="preserve">
-    <value>Invalid {0}</value>
-  </data>
   <data name="msgContraintData" xml:space="preserve">
     <value>The settings of this member have exceeded current allocated Position Taking. Therefore the effective ones will be applied for new member.</value>
   </data>
@@ -2912,15 +2628,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="titleConfirmEditMaster" xml:space="preserve">
     <value>You have changed this master not to take auto position taking</value>
-  </data>
-  <data name="infoSearchAndCopyMaster" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new master.</value>
-  </data>
-  <data name="infoSearchAndCopyAgent" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new agent.</value>
-  </data>
-  <data name="infoSearchAndCopyMember" xml:space="preserve">
-    <value>Products without preview such as Live Casino will also be offered to new member.</value>
   </data>
   <data name="lblNoDraw" xml:space="preserve">
     <value>No Draw</value>
@@ -2945,9 +2652,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
-  </data>
-  <data name="HNB" xml:space="preserve">
-    <value>HNB</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
     <value>Copy all below bet settings from {0}</value>
@@ -3066,9 +2770,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="Unlimited" xml:space="preserve">
     <value>Unlimited</value>
   </data>
-  <data name="GamesDetails" xml:space="preserve">
-    <value>Games Details</value>
-  </data>
   <data name="OneXTwoCommission" xml:space="preserve">
     <value>1X2 Commission</value>
   </data>
@@ -3107,9 +2808,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="OldValue" xml:space="preserve">
     <value>Old value</value>
-  </data>
-  <data name="Gaming" xml:space="preserve">
-    <value>Gaming</value>
   </data>
   <data name="VirtualTennis" xml:space="preserve">
     <value>Virtual Tennis</value>
@@ -3452,5 +3150,8 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="GoToTop" xml:space="preserve">
     <value>Go to top</value>
+  </data>
+  <data name="gotopage" xml:space="preserve">
+    <value>Go to Page</value>
   </data>
 </root>
