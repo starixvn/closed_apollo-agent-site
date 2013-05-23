@@ -66,6 +66,7 @@
             "~/_GlobalResources/Js/head.js",
             "~/_GlobalResources/Js/jquery.js",
             "~/_GlobalResources/Js/jquery-ui.js",
+            "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
             "~/_GlobalResources/Js/RefreshCountDown.js",
             "~/_GlobalResources/Js/Core.js",
             "~/Views/TotalBets/Resources/TotalBets.js"));
