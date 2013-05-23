@@ -210,47 +210,11 @@
   <data name="exporttoexcel" xml:space="preserve">
     <value>Export to Excel</value>
   </data>
-  <data name="feb" xml:space="preserve">
-    <value>Feb</value>
-  </data>
-  <data name="February" xml:space="preserve">
-    <value>February</value>
-  </data>
-  <data name="FG" xml:space="preserve">
-    <value>FG</value>
-  </data>
   <data name="fglg" xml:space="preserve">
     <value>FG/LG</value>
   </data>
-  <data name="fieldhockey" xml:space="preserve">
-    <value>Field Hockey</value>
-  </data>
-  <data name="filterfi" xml:space="preserve">
-    <value>Filtered data for Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhr" xml:space="preserve">
-    <value>Filtered data for Horse Racing product are only available from june 15th 2009</value>
-  </data>
-  <data name="filterhrandfi" xml:space="preserve">
-    <value>Filtered data for Horse Racing and Financial product are only available from june 15th 2009</value>
-  </data>
-  <data name="fiminpt" xml:space="preserve">
-    <value>Finance's Min PT</value>
-  </data>
-  <data name="fiminpt1" xml:space="preserve">
-    <value>FI's Min PT</value>
-  </data>
   <data name="finalscore" xml:space="preserve">
     <value>Final Score</value>
-  </data>
-  <data name="Financial" xml:space="preserve">
-    <value>Finance</value>
-  </data>
-  <data name="financialComm" xml:space="preserve">
-    <value>Finance Comm</value>
-  </data>
-  <data name="first" xml:space="preserve">
-    <value>First</value>
   </data>
   <data name="firstgoal" xml:space="preserve">
     <value>First Goal</value>
@@ -258,38 +222,8 @@
   <data name="firsthalfscore" xml:space="preserve">
     <value>First Half Score</value>
   </data>
-  <data name="firstlastoddeven" xml:space="preserve">
-    <value>1st/Last O/E</value>
-  </data>
-  <data name="firstlastoverunder" xml:space="preserve">
-    <value>1st/Last O/U</value>
-  </data>
-  <data name="firstname" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="FiveMin" xml:space="preserve">
-    <value>5 Minutes</value>
-  </data>
-  <data name="fixodd" xml:space="preserve">
-    <value>Fixed Odds</value>
-  </data>
-  <data name="focomm" xml:space="preserve">
-    <value>Fixed Odds Comm</value>
-  </data>
-  <data name="focommforagent" xml:space="preserve">
-    <value>Fixed Odds Comm for Agent</value>
-  </data>
-  <data name="focommformaster" xml:space="preserve">
-    <value>Fixed Odds Comm for Master</value>
-  </data>
-  <data name="focommformember" xml:space="preserve">
-    <value>Fixed Odds Comm for Member</value>
-  </data>
   <data name="Football" xml:space="preserve">
     <value>Football</value>
-  </data>
-  <data name="forcechangepwd" xml:space="preserve">
-    <value>You are forced to change your password at first logon</value>
   </data>
   <data name="forecastaway" xml:space="preserve">
     <value>Forecast Away</value>
@@ -297,41 +231,11 @@
   <data name="forecasthome" xml:space="preserve">
     <value>Forecast Home</value>
   </data>
-  <data name="freeSpin" xml:space="preserve">
-    <value>Free Spin</value>
-  </data>
-  <data name="fri" xml:space="preserve">
-    <value>Fri</value>
-  </data>
-  <data name="friday" xml:space="preserve">
-    <value>Friday</value>
-  </data>
   <data name="from" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="fromdate" xml:space="preserve">
-    <value>From date</value>
-  </data>
-  <data name="FromStake" xml:space="preserve">
-    <value>From Stake</value>
-  </data>
-  <data name="ft" xml:space="preserve">
-    <value>FT</value>
-  </data>
-  <data name="fullmode" xml:space="preserve">
-    <value>Full Mode</value>
-  </data>
-  <data name="fullSite" xml:space="preserve">
-    <value>Full Site</value>
-  </data>
   <data name="fulltime" xml:space="preserve">
     <value>Full Time</value>
-  </data>
-  <data name="fullversion" xml:space="preserve">
-    <value>Full Mode.</value>
-  </data>
-  <data name="game" xml:space="preserve">
-    <value>Game</value>
   </data>
   <data name="getall" xml:space="preserve">
     <value>Get All</value>
@@ -2721,9 +2625,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="saveCommission" xml:space="preserve">
     <value>Save Commission</value>
   </data>
-  <data name="FilterOptions" xml:space="preserve">
-    <value>Filter Options</value>
-  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
   </data>
@@ -2861,9 +2762,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   </data>
   <data name="gameSettingErrMsgStake" xml:space="preserve">
     <value>Synchronize failed because of your betting limit was changed by upline, please refresh the page!</value>
-  </data>
-  <data name="FullControl" xml:space="preserve">
-    <value>Full Control</value>
   </data>
   <data name="infoClickSkip" xml:space="preserve">
     <value>Click Skip to proceed without previewing settings.</value>
