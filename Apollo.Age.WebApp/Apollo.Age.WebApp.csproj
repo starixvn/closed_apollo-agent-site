@@ -418,23 +418,6 @@
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
     <Content Include="CustSettingEngine\PTGrid.xml" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery-2.0.0-vsdoc.js" />
-    <Content Include="Scripts\jquery-2.0.0.js" />
-    <Content Include="Scripts\jquery-2.0.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.10.3.js" />
-    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.2.1.debug.js" />
-    <Content Include="Scripts\knockout-2.2.1.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Views\Account\Resources\AccountInfo.js" />
     <Content Include="Views\Account\Resources\AccountList.js" />
     <Content Include="Views\Account\Resources\AgentList.js" />
@@ -800,9 +783,7 @@
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -812,7 +793,6 @@
     <Content Include="App_Browsers\ie.browser" />
     <Content Include="App_Browsers\firefox.browser" />
     <Content Include="App_Code\RazorHelper.cshtml" />
-    <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Views\Account\AccountInfo.cshtml" />
     <Content Include="Views\Account\AgentList.cshtml" />
     <Content Include="Views\Account\AgentShare.cshtml" />
@@ -1129,8 +1109,8 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54789</DevelopmentServerPort>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>7878</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
