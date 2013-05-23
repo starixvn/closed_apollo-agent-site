@@ -2,252 +2,255 @@
 
 if (typeof jQuery != 'undefined') {
 	// Functions in this namespace require jquery and jquery-ui
-	APOLLO = function ($) {
-	    return {
-	        hideBlockLoading: function () {
-	            $("iframe").siblings('.block-loading').hide();
-	        },
-			dialogOpt: {
-				position: { my: "top+20%", at: "center top", of: window },
-				modal: true,
-				width: 'auto'
-			},
-			currentOpenDialog: null,
-			openDialog: function (target, title, options) {
-				options = options || {};
-				if (title) options.title = title;
+    APOLLO = function ($) {
+        return {
+            hideBlockLoading: function () {
+                $("iframe").siblings('.block-loading').hide();
+            },
+            dialogOpt: {
+                position: { my: "top+20%", at: "center top", of: window },
+                modal: true,
+                width: 'auto'
+            },
+            currentOpenDialog: null,
+            openDialog: function (target, title, options) {
+                options = options || {};
+                if (title) options.title = title;
 
-				if (target instanceof jQuery == false) target = $(target);
+                if (target instanceof jQuery == false) target = $(target);
 
-				APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
+                APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
-				target.find('iframe').get(0).contentWindow.onload = function () {
-				    APOLLO.hideBlockLoading();
-				};
+                target.find('iframe').get(0).contentWindow.onload = function () {
+                    APOLLO.hideBlockLoading();
+                };
 
-				return APOLLO.currentOpenDialog;
-			},
-			openDialogFrame: function (url, title, options, singleFrame) {
-				var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>';
+                return APOLLO.currentOpenDialog;
+            },
+            openDialogFrame: function (url, title, options, singleFrame) {
+                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>';
 
-				if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
+                if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
-				if (singleFrame) { // only one instance of dialog can be opened
-					var frame = $("#apo-dialog-frame");
+                if (singleFrame) { // only one instance of dialog can be opened
+                    var frame = $("#apo-dialog-frame");
+                    var fc1x2Class = "";
+                    if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
+                        fc1x2Class = "fc1x2";
+                    }
+                    if (frame.length > 0) {
+                        frame.html(frameHtml);
+                    } else {
+                        var blockLoading = '<div class="block-loading ' + fc1x2Class + '"></div>';
+                        frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+                    }
 
-					if (frame.length > 0) {
-						frame.html(frameHtml);
-					} else {
-		                var blockLoading = '<div class="block-loading"></div>';
-		                frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
-					}
+                    return APOLLO.openDialog(frame, title, options);
+                }
+                var blockLoading = '<div class="block-loading"></div>';
+                // multiple instances of dialog can be opened
+                return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
+            },
+            closeDialog: function (target) {
+                target.dialog("close");
+            },
+            resizeDialog: function (width, height) {
+                if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
+                    APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
+                }
+            },
+            setDialogHeight: function (target, height) {
+                target.dialog("option", "height", height);
+            },
+            resolveUrl: function (url) {
+                var apoRoot = $('#ApoRoot');
 
-					return APOLLO.openDialog(frame, title, options);
-				}
+                if (apoRoot.length == 0) {
+                    APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
+                } else {
+                    if (url.substr(0, 2) == '~/') {
+                        url = url.substr(2);
+                    } else if (url.substr(0, 1) == '/') {
+                        url = url.substr(1);
+                    }
 
-				// multiple instances of dialog can be opened
-				return APOLLO.openDialog('<div>' + frameHtml + '</div>', title, options);
-			},
-			closeDialog: function (target) {
-				target.dialog("close");
-			},
-			resizeDialog: function (width, height) {
-				if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
-					APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
-				}
-			},
-			setDialogHeight: function (target, height) {
-				target.dialog("option", "height", height);
-			},
-			resolveUrl: function (url) {
-				var apoRoot = $('#ApoRoot');
+                    return apoRoot.val() + url;
+                }
+            },
 
-				if (apoRoot.length == 0) {
-					APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-				} else {
-					if (url.substr(0, 2) == '~/') {
-						url = url.substr(2);
-					} else if (url.substr(0, 1) == '/') {
-						url = url.substr(1);
-					}
+            generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
+            alertGeneralError: function () {
+                alert(generalErrorMsg);
+            },
+            handleAjaxError: function (jqXHR, textStatus, errorThrown) {
+                APOLLO.alertGeneralError();
+            },
 
-					return apoRoot.val() + url;
-				}
-			},
+            console: {
+                write: function (msg, consoleFunc) {
+                    if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
+                        consoleFunc(msg);
+                    }
+                },
+                log: function (msg) { APOLLO.console.write(msg, console.log) },
+                info: function (msg) { APOLLO.console.write(msg, console.info) },
+                warn: function (msg) { APOLLO.console.write(msg, console.warn) },
+                error: function (msg) { APOLLO.console.write(msg, console.error) }
+            },
 
-			generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
-			alertGeneralError: function () {
-				alert(generalErrorMsg);
-			},
-			handleAjaxError: function (jqXHR, textStatus, errorThrown) {
-				APOLLO.alertGeneralError();
-			},
+            parseJSON: function (value) {
+                return $.parseJSON(value.replaceAll("'", "\""));
+            },
 
-			console: {
-				write: function (msg, consoleFunc) {
-					if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
-						consoleFunc(msg);
-					}
-				},
-				log: function (msg) { APOLLO.console.write(msg, console.log) },
-				info: function (msg) { APOLLO.console.write(msg, console.info) },
-				warn: function (msg) { APOLLO.console.write(msg, console.warn) },
-				error: function (msg) { APOLLO.console.write(msg, console.error) }
-			},
+            initDatePicker: function () {
+                var datePickers = $('.datepicker');
 
-			parseJSON: function (value) {
-				return $.parseJSON(value.replaceAll("'", "\""));
-			},
+                if (datePickers.length > 0) {
+                    //get minDate, maxDate, disabledDates
 
-			initDatePicker: function () {
-				var datePickers = $('.datepicker');
-
-				if (datePickers.length > 0) {
-					//get minDate, maxDate, disabledDates
-
-					datePickers.each(function () {
-						var $this = $(this),
+                    datePickers.each(function () {
+                        var $this = $(this),
 							limitDate = function (limit) { // limit: mindate/maxdate
-								var _limit = $this.attr(limit);
+							    var _limit = $this.attr(limit);
 
-								if (_limit) { // if limit attribute exists
-									_limit = _limit.split("/");
+							    if (_limit) { // if limit attribute exists
+							        _limit = _limit.split("/");
 
-									var year = _limit[2],
+							        var year = _limit[2],
 										month = _limit[0],
 										day = _limit[1];
 
-									return new Date(year, month - 1, day);
-								}
+							        return new Date(year, month - 1, day);
+							    }
 
-								return null;
+							    return null;
 							},
 							shiftDate = function (increment) {
-								var currDate = $this.datepicker('getDate'),
+							    var currDate = $this.datepicker('getDate'),
 									d = currDate.getDate() + increment,
 									m = currDate.getMonth(),
 									y = currDate.getFullYear();
 
-								$this.datepicker('setDate', new Date(y, m, d));
+							    $this.datepicker('setDate', new Date(y, m, d));
 							};
 
-						$this.datepicker({
-							defaultDate: new Date($this.val()),
-							dateFormat: "mm/dd/yy",
-							minDate: limitDate("mindate"),
-							maxDate: limitDate("maxdate"),
-							beforeShow: function (input, inst) {
-								inst.dpDiv.css({ marginTop: '2px' });
-							}
-						}).keydown(function (e) {
-							var arrow = { left: 37, up: 38, right: 39, down: 40 };
+                        $this.datepicker({
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "mm/dd/yy",
+                            minDate: limitDate("mindate"),
+                            maxDate: limitDate("maxdate"),
+                            beforeShow: function (input, inst) {
+                                inst.dpDiv.css({ marginTop: '2px' });
+                            }
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
 
-							switch (e.keyCode) {
-								case arrow.up:
-									shiftDate(1);
-									break;
-								case arrow.down:
-									shiftDate(-1);
-									break;
-							}
-						});
-					});
-				}
-			},
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate(1);
+                                    break;
+                                case arrow.down:
+                                    shiftDate(-1);
+                                    break;
+                            }
+                        });
+                    });
+                }
+            },
 
-			initPageInfo: function () {
-				var infos = $('.infos');
+            initPageInfo: function () {
+                var infos = $('.infos');
 
-				infos.each(function () {
-					var $this = $(this),
+                infos.each(function () {
+                    var $this = $(this),
 						thisId = $this.attr('id'),
 						title = $this.attr('title'),
 						tipTitle = $this.attr('tip-title'),
 						trigger;
 
-					trigger = thisId == 'page-info'
+                    trigger = thisId == 'page-info'
 						? $('<div class="page-info" />').appendTo('#header_main')
 						: $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
 
-					if (trigger.length > 0) {
-						trigger.attr('title', tipTitle ? tipTitle : title)
+                    if (trigger.length > 0) {
+                        trigger.attr('title', tipTitle ? tipTitle : title)
 						.tooltip({
-							position: { my: "right-10 center", at: "center center+5" },
-							show: null,
-							hide: null
+						    position: { my: "right-10 center", at: "center center+5" },
+						    show: null,
+						    hide: null
 						})
 						.click(function () {
-							APOLLO.openDialog($this, title, { modal: false });
-							$('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
-							$('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
+						    APOLLO.openDialog($this, title, { modal: false });
+						    $('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
+						    $('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
 						});
-					}
-				});
-			},
+                    }
+                });
+            },
 
-			signOut: function () {
-			
+            signOut: function () {
 
-				try {
-					if (parent.IsApoRoot) {
-						parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
-					}
-				} catch (err) {
-					APOLLO.console.warn(err);
-				}
-			},
 
-			detectBrowser: function () {
-				var matchedBrowser, browserDectect;
+                try {
+                    if (parent.IsApoRoot) {
+                        parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
+                    }
+                } catch (err) {
+                    APOLLO.console.warn(err);
+                }
+            },
 
-				// Use of jQuery.browser is frowned upon.
-				// More details: http://api.jquery.com/jQuery.browser
-				// jQuery.uaMatch maintained for back-compat
-				function ubMatch(ua) {
-					ua = ua.toLowerCase();
+            detectBrowser: function () {
+                var matchedBrowser, browserDectect;
 
-					var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+                // Use of jQuery.browser is frowned upon.
+                // More details: http://api.jquery.com/jQuery.browser
+                // jQuery.uaMatch maintained for back-compat
+                function ubMatch(ua) {
+                    ua = ua.toLowerCase();
+
+                    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
 								/(webkit)[ \/]([\w.]+)/.exec(ua) ||
 								/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
 								/(msie) ([\w.]+)/.exec(ua) ||
 								ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
 								[];
 
-					return {
-						browserDectect: match[1] || "",
-						version: match[2] || "0"
-					};
-				};
+                    return {
+                        browserDectect: match[1] || "",
+                        version: match[2] || "0"
+                    };
+                };
 
-				matchedBrowser = ubMatch(navigator.userAgent);
-				browserDectect = {};
+                matchedBrowser = ubMatch(navigator.userAgent);
+                browserDectect = {};
 
-				if (matchedBrowser.browserDectect) {
-					browserDectect[matchedBrowser.browserDectect] = true;
-					browserDectect.version = matchedBrowser.version;
-				}
+                if (matchedBrowser.browserDectect) {
+                    browserDectect[matchedBrowser.browserDectect] = true;
+                    browserDectect.version = matchedBrowser.version;
+                }
 
-				// Chrome is Webkit, but Webkit is also Safari.
-				if (browserDectect.chrome) {
-					browserDectect.webkit = true;
-				} else if (browserDectect.webkit) {
-					browserDectect.safari = true;
-				}
-				return browserDectect;
-			},
+                // Chrome is Webkit, but Webkit is also Safari.
+                if (browserDectect.chrome) {
+                    browserDectect.webkit = true;
+                } else if (browserDectect.webkit) {
+                    browserDectect.safari = true;
+                }
+                return browserDectect;
+            },
 
-			htmlEncode: function (str) {
-				return $('<div/>').text(str).html();
-			},
-			htmlDecode: function (str) {
-				return $('<div/>').html(str).text();
-			},
+            htmlEncode: function (str) {
+                return $('<div/>').text(str).html();
+            },
+            htmlDecode: function (str) {
+                return $('<div/>').html(str).text();
+            },
 
-			init: function () {
-				APOLLO.initDatePicker();
-			}
-		};
-	} (jQuery);
+            init: function () {
+                APOLLO.initDatePicker();
+            }
+        };
+    } (jQuery);
 	APOLLO.browser = APOLLO.detectBrowser();
 	$(document).ready(function () {
 		APOLLO.init();
