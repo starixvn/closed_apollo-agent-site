@@ -592,78 +592,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Games.
-        /// </summary>
-        public static string games {
-            get {
-                return ResourceManager.GetString("games", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Games Details.
-        /// </summary>
-        public static string GamesDetails {
-            get {
-                return ResourceManager.GetString("GamesDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Setting.
-        /// </summary>
-        public static string gameSetting {
-            get {
-                return ResourceManager.GetString("gameSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synchronize failed because of PT/Commission error.
-        /// </summary>
-        public static string gameSettingErrMsg {
-            get {
-                return ResourceManager.GetString("gameSettingErrMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Synchronize failed because of your betting limit was changed by upline, please refresh the page!.
-        /// </summary>
-        public static string gameSettingErrMsgStake {
-            get {
-                return ResourceManager.GetString("gameSettingErrMsgStake", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Type - Table Number.
-        /// </summary>
-        public static string gameTypeAndTableNumber {
-            get {
-                return ResourceManager.GetString("gameTypeAndTableNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gaming.
-        /// </summary>
-        public static string Gaming {
-            get {
-                return ResourceManager.GetString("Gaming", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General Information.
-        /// </summary>
-        public static string generalInformation {
-            get {
-                return ResourceManager.GetString("generalInformation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string Generate {
@@ -673,56 +601,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get All.
-        /// </summary>
-        public static string getall {
-            get {
-                return ResourceManager.GetString("getall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Given Credit.
-        /// </summary>
-        public static string givencredit {
-            get {
-                return ResourceManager.GetString("givencredit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Given Share.
         /// </summary>
         public static string givenshare {
             get {
                 return ResourceManager.GetString("givenshare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Go.
-        /// </summary>
-        public static string go {
-            get {
-                return ResourceManager.GetString("go", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal.
-        /// </summary>
-        public static string goal {
-            get {
-                return ResourceManager.GetString("goal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal history.
-        /// </summary>
-        public static string goalHistory {
-            get {
-                return ResourceManager.GetString("goalHistory", resourceCulture);
             }
         }
         
@@ -754,33 +637,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grand Total.
-        /// </summary>
-        public static string grandTotal {
-            get {
-                return ResourceManager.GetString("grandTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Greyhound.
-        /// </summary>
-        public static string greyHound {
-            get {
-                return ResourceManager.GetString("greyHound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gross Comm.
-        /// </summary>
-        public static string grosscomm {
-            get {
-                return ResourceManager.GetString("grosscomm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gross Total.
         /// </summary>
         public static string GrossTotal {
@@ -795,24 +651,6 @@ namespace Apollo.Age.Resources {
         public static string group {
             get {
                 return ResourceManager.GetString("group", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gymnastics.
-        /// </summary>
-        public static string gymnastics {
-            get {
-                return ResourceManager.GetString("gymnastics", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to H.
-        /// </summary>
-        public static string h {
-            get {
-                return ResourceManager.GetString("h", resourceCulture);
             }
         }
         
@@ -835,33 +673,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handball.
-        /// </summary>
-        public static string handball {
-            get {
-                return ResourceManager.GetString("handball", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hand History Detail.
-        /// </summary>
-        public static string handhistorydetail {
-            get {
-                return ResourceManager.GetString("handhistorydetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Harness.
-        /// </summary>
-        public static string harness {
-            get {
-                return ResourceManager.GetString("harness", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HD.
         /// </summary>
         public static string hd {
@@ -871,92 +682,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HDP.
-        /// </summary>
-        public static string hdp {
-            get {
-                return ResourceManager.GetString("hdp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HH.
         /// </summary>
         public static string hh {
             get {
                 return ResourceManager.GetString("hh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide League.
-        /// </summary>
-        public static string hideLeague {
-            get {
-                return ResourceManager.GetString("hideLeague", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide Match.
-        /// </summary>
-        public static string hideMatch {
-            get {
-                return ResourceManager.GetString("hideMatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to High.
-        /// </summary>
-        public static string high {
-            get {
-                return ResourceManager.GetString("high", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Highest turnover members of the month.
-        /// </summary>
-        public static string highestturnoverofthemonth {
-            get {
-                return ResourceManager.GetString("highestturnoverofthemonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to High/Low.
-        /// </summary>
-        public static string highlow {
-            get {
-                return ResourceManager.GetString("highlow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This report supports viewing historical data up to 18 months.
-        /// </summary>
-        public static string historicalMessage18months {
-            get {
-                return ResourceManager.GetString("historicalMessage18months", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HNB.
-        /// </summary>
-        public static string HNB {
-            get {
-                return ResourceManager.GetString("HNB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ice Hockey.
-        /// </summary>
-        public static string Hockey {
-            get {
-                return ResourceManager.GetString("Hockey", resourceCulture);
             }
         }
         
@@ -975,24 +705,6 @@ namespace Apollo.Age.Resources {
         public static string homeaway {
             get {
                 return ResourceManager.GetString("homeaway", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hot Level.
-        /// </summary>
-        public static string HotLevel {
-            get {
-                return ResourceManager.GetString("HotLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HT.
-        /// </summary>
-        public static string ht {
-            get {
-                return ResourceManager.GetString("ht", resourceCulture);
             }
         }
         
@@ -1033,192 +745,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log Out.
-        /// </summary>
-        public static string ImgLogOut {
-            get {
-                return ResourceManager.GetString("ImgLogOut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include today&apos;s Win/Loss.
-        /// </summary>
-        public static string includeTodayWL {
-            get {
-                return ResourceManager.GetString("includeTodayWL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You have entered an incorrect answer for CAPTCHA..
         /// </summary>
         public static string IncorrectCaptchaMsg {
             get {
                 return ResourceManager.GetString("IncorrectCaptchaMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Index Name.
-        /// </summary>
-        public static string indexname {
-            get {
-                return ResourceManager.GetString("indexname", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All settings will be copied from username entered..
-        /// </summary>
-        public static string InfoAllSetting {
-            get {
-                return ResourceManager.GetString("InfoAllSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click Next to create new member.
-        /// </summary>
-        public static string InfoClickNext {
-            get {
-                return ResourceManager.GetString("InfoClickNext", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click Preview to have quick look at settings (only some will be displayed for reference purpose)..
-        /// </summary>
-        public static string InfoClickPreview {
-            get {
-                return ResourceManager.GetString("InfoClickPreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click Skip to proceed without previewing settings..
-        /// </summary>
-        public static string infoClickSkip {
-            get {
-                return ResourceManager.GetString("infoClickSkip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Products without preview such as Live Casino will also be offered to new agent..
-        /// </summary>
-        public static string infoSearchAndCopyAgent {
-            get {
-                return ResourceManager.GetString("infoSearchAndCopyAgent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Products without preview such as Live Casino will also be offered to new master..
-        /// </summary>
-        public static string infoSearchAndCopyMaster {
-            get {
-                return ResourceManager.GetString("infoSearchAndCopyMaster", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Products without preview such as Live Casino will also be offered to new member..
-        /// </summary>
-        public static string infoSearchAndCopyMember {
-            get {
-                return ResourceManager.GetString("infoSearchAndCopyMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert Casino Setting.
-        /// </summary>
-        public static string insertCS {
-            get {
-                return ResourceManager.GetString("insertCS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Internal.
-        /// </summary>
-        public static string Internal {
-            get {
-                return ResourceManager.GetString("Internal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Internal server error.
-        /// </summary>
-        public static string internalerror {
-            get {
-                return ResourceManager.GetString("internalerror", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
-        ///&lt;div&gt;... more secure and personalized.&lt;/div&gt;.
-        /// </summary>
-        public static string introNickname {
-            get {
-                return ResourceManager.GetString("introNickname", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid {0}.
-        /// </summary>
-        public static string invalid {
-            get {
-                return ResourceManager.GetString("invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Amount.
-        /// </summary>
-        public static string invalidamount {
-            get {
-                return ResourceManager.GetString("invalidamount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The &amp;quot;From&amp;quot; Date cannot be greater than the &amp;quot;To&amp;quot; Date.
-        /// </summary>
-        public static string invalidDateMessage {
-            get {
-                return ResourceManager.GetString("invalidDateMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrong username or password.
-        /// </summary>
-        public static string invalidLogin {
-            get {
-                return ResourceManager.GetString("invalidLogin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Session!.
-        /// </summary>
-        public static string invalidsession {
-            get {
-                return ResourceManager.GetString("invalidsession", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid UpdateDownline Params!.
-        /// </summary>
-        public static string invalidupdatedownlineparam {
-            get {
-                return ResourceManager.GetString("invalidupdatedownlineparam", resourceCulture);
             }
         }
         
@@ -1232,129 +763,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value.
-        /// </summary>
-        public static string invalidvalue {
-            get {
-                return ResourceManager.GetString("invalidvalue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IP.
-        /// </summary>
-        public static string ip {
-            get {
-                return ResourceManager.GetString("ip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IP Info.
-        /// </summary>
-        public static string ipinfo {
-            get {
-                return ResourceManager.GetString("ipinfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Additional info at DNSstuff:&lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt; click here&lt;/a&gt;.
-        ///Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required..
-        /// </summary>
-        public static string ipnote {
-            get {
-                return ResourceManager.GetString("ipnote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is Auto.
-        /// </summary>
-        public static string isAuto {
-            get {
-                return ResourceManager.GetString("isAuto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  (N).
-        /// </summary>
-        public static string IsNeutral {
-            get {
-                return ResourceManager.GetString("IsNeutral", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to items(s).
         /// </summary>
         public static string Items {
             get {
                 return ResourceManager.GetString("Items", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jan.
-        /// </summary>
-        public static string jan {
-            get {
-                return ResourceManager.GetString("jan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to January.
-        /// </summary>
-        public static string January {
-            get {
-                return ResourceManager.GetString("January", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jul.
-        /// </summary>
-        public static string jul {
-            get {
-                return ResourceManager.GetString("jul", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to July.
-        /// </summary>
-        public static string July {
-            get {
-                return ResourceManager.GetString("July", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jun.
-        /// </summary>
-        public static string jun {
-            get {
-                return ResourceManager.GetString("jun", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to June.
-        /// </summary>
-        public static string June {
-            get {
-                return ResourceManager.GetString("June", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jungle Wild Mode.
-        /// </summary>
-        public static string jungleWildMode {
-            get {
-                return ResourceManager.GetString("jungleWildMode", resourceCulture);
             }
         }
         
