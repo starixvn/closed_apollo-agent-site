@@ -59,8 +59,9 @@
     <Reference Include="Enyim.Caching">
       <HintPath>..\Dependencies\Enyim.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Age">
-      <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
+    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Fanex.BetList.Age\bin\Debug\Fanex.BetList.Age.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=1.0.4883.26344, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>

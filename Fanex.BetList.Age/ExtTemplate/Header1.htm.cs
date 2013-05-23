@@ -96,7 +96,7 @@ namespace Fanex.BetList.Age
 
 		public class Header1_Winloss_Block: Block
 		{
-			protected static string s15 = "<th style=\"width: 50px;\">";
+			protected static string s15 = "<th style=\"width: 55px;\">";
 			protected static string s16{get{return Apollo.Age.Resources.BetList.winloss;}}
 			protected static string s17 = "</th>";
 			public override void ToString(ref StringBuilder bd)
@@ -114,7 +114,7 @@ namespace Fanex.BetList.Age
 
 		public class Header1_Status_Block: Block
 		{
-			protected static string s18 = "<th style=\"width: 75px;\">";
+			protected static string s18 = "<th style=\"width: 70px;\">";
 			protected static string s19{get{return Apollo.Age.Resources.BetList.status;}}
 			protected static string s20 = "</th>";
 			public override void ToString(ref StringBuilder bd)
@@ -134,7 +134,7 @@ namespace Fanex.BetList.Age
 		{
 			protected static string s21 = "<th style=\"width: 85px;\">";
 			protected static string s22{get{return Apollo.Age.Resources.BetList.agentPT;}}
-			protected static string s23 = "</th><th>";
+			protected static string s23 = "</th><th style=\"width: 80px;\">";
 			protected static string s24{get{return Apollo.Age.Resources.BetList.agentComm;}}
 			protected static string s25 = "</th>";
 			public override void ToString(ref StringBuilder bd)
