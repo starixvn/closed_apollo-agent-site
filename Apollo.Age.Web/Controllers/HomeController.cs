@@ -70,6 +70,7 @@ namespace Apollo.Age.Web
         /// This action is for testing ONLY
         /// </summary>
         /// <returns></returns>
+        [NonAction]
         public ActionResult Index2()
         {
             try
