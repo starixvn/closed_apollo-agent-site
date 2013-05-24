@@ -258,8 +258,7 @@ function HideTooltipIntroNickname() {
 
 // Start up
 function InitHeader() {
-    timeoutId1 = setTimeout(GetMessages, 100);
-    setTimeout(HEADER.init(), 200);       
+    setTimeout(function () { GetMessages(); HEADER.init(); }, 100);    
 }
 
 
@@ -326,7 +325,9 @@ function SelectTopMenu(url) {
 var HEADER = function ($) {
     return {
         init: function () {
-           setInterval("HEADER.reCheckIn()",20000);
+            if (DEFAULTS.IsInternalLogin) {
+                setInterval("HEADER.reCheckIn()", 30000);
+            }
         },
         reCheckIn: function () {
             $.ajax({

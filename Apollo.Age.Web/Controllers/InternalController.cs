@@ -141,7 +141,10 @@ namespace Apollo.Age.Web
             var result = false;
             if(SessionManager.CurrentSession != null)
             {
-                result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+                if (AppSettings.MultipleSignOn)
+                {
+                    result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+                }
             }
 
             return Json(new { 
