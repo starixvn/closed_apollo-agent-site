@@ -687,7 +687,19 @@ table {
 	}
 }
 
+.floatingHeader 
+{
+	z-index: 20;
+	position: fixed;
+	top: 0;
+	border-bottom: 1px solid #b7c7cf;
+}
+
 /* FIX IE */
+.eq-ie8 .floatingHeader {
+	top: -10px;
+	left: 11px !important;
+}
 
 .eq-ie7 {
 	#box_header .editor, .box_header .editor {
@@ -701,4 +713,15 @@ table {
 			padding-top: 1px;
 		}
 	}
+
+	thead.floatingHeader {
+		display: none;
+	}
+
+	#content_main {
+		padding-bottom: 40px;
+	}
 }
+
+
+
