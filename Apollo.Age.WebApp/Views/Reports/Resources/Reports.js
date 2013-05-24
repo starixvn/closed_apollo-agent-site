@@ -1,7 +1,7 @@
 ﻿var REPORTS = function ($) {
     return {
         init: function () {
-            $("#MemberOutstanding").unbind('click').bind('click', function () {
+            $("#MemberOutstanding").on('click', function () {
                 var $this = $(this);
 
                 $.ajax({
@@ -21,15 +21,16 @@
                 return false;
             });
 
-            $("[name='navigation']").unbind('click').bind('click', function () {
+            $("[name='navigation']").on('click', function () {
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
             });
 
-            $("[name='viewagent']").unbind('click').bind('click', function () {
+            $("[name='viewagent']").on('click', function () {
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
             });
 
             $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
+            REPORTS.innitFreeHeader();
         },
 
         // View betlist page from report Outstanding
@@ -37,7 +38,7 @@
             var username = $(this).closest('tr').children('td:first').text();
             location.href = APOLLO.resolveUrl("_BetList/BetListOnMember.aspx?custId=" + $(this).attr("data-custid") + "&username=" + username + "&mainShareHolderId=" + $(this).attr("mainShareHolderId") + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername"));
         },
-
+               
         initGrid: function (outstandingData) {
             var bodyData = [];
             var footerData = [];
@@ -105,5 +106,5 @@
 } (jQuery);
 
 $(document).ready(function () {
-    REPORTS.init();
+    REPORTS.init();    
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

@@ -9,10 +9,10 @@
 //
 // </history>
 
-namespace Apollo.Age.Web.Services
+namespace Apollo.Age.Web
 {
     using System.Web;
-    public class DeviceService
+    public class DeviceDetection
     {
         public string DomainName { get; set; }
 
@@ -24,7 +24,7 @@ namespace Apollo.Age.Web.Services
 
         public string ClientIp { get; set; }
 
-        public DeviceService(HttpRequestBase request)
+        public DeviceDetection(HttpRequestBase request)
         {
             DomainName = request.ServerVariables["SERVER_NAME"] as string;
             if (request.Browser.IsMobileDevice || request.UserAgent.ToLower().Contains("android"))

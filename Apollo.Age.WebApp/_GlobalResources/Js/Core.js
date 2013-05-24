@@ -257,8 +257,66 @@ if (typeof jQuery != 'undefined') {
                 return $('<div/>').html(str).text();
             },
 
+            innitFreeHeader: function () {
+                //APOLLO.browser
+                if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                    return;
+                }
+                var clonedHeaderRow;
+                $(".persist-area").each(function () {
+                    clonedHeaderRow = $(".persist-header", this);
+                    clonedHeaderRow
+                     .before(clonedHeaderRow.clone())
+                     .css({ "width": clonedHeaderRow.width() })
+                     .addClass("floatingHeader")
+                     .removeClass("persist-header");
+                });
+
+                $(window)
+                .scroll(APOLLO.updateTableHeaders)
+                .trigger("scroll");
+                $(window).resize(function () {
+                    APOLLO.updateTableHeaders();
+                });
+
+            },
+
+            updateTableHeaders: function () {
+                if ($(".persist-area").val() != undefined) {
+                    var widthspace = $(".persist-area").width();
+
+                    $('.floatingHeader').width(widthspace);
+                    var left = $('table thead tr:first').position()["left"];
+                    $(".persist-area").each(function () {
+                        var el = $(this),
+                        offset = el.offset(),
+                        scrollTop = $(window).scrollTop(),
+                        floatingHeader = $(".floatingHeader", this);
+                        if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
+                            floatingHeader.css({
+                                "visibility": "visible",
+                                "left": (left - $(window).scrollLeft()),
+                                "z-index": "34"
+                            });
+                        } else {
+                            floatingHeader.css({
+                                "visibility": "hidden"
+                            });
+                        };
+                    });
+
+                    var i = 0;
+                    $("table .persist-header td").each(function () {
+                        var x = $(this).width();
+                        $($("table .floatingHeader td")[i]).width(x);
+                        i++;
+                    });
+                }
+            },
+
             init: function () {
                 APOLLO.initDatePicker();
+                APOLLO.innitFreeHeader();
             }
         };
     } (jQuery);
