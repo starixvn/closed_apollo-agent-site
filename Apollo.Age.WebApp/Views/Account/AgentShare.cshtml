@@ -12,7 +12,7 @@
 		{
 			<div class="cell">
 				<div class="label">
-					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Apollo.Age.Resources.Lang.SportType)</label>
+					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Apollo.Age.Resources.Lang.sport)</label>
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
@@ -43,7 +43,7 @@
 		</div>
 	</div>
 </div>
-<table class="tbl-cust-setting no-border-bottom">
+<table class="tbl-cust-setting no-border-bottom" id="tableShare">
 	<thead>
 		<tr>
 			<th>

@@ -13,7 +13,7 @@ namespace Fanex.BetList.Age
 	{
 		public class Header1_Template : Template
 		{
-			protected static string s0 = "<thead><tr>";
+			protected static string s0 = "<thead class=\"persist-header\"><tr>";
 			public Header1_No_Block No = new Header1_No_Block();
 			public Header1_Member_Block Member = new Header1_Member_Block();
 			protected static string s1 = "<th style=\"width: 120px;\">";
