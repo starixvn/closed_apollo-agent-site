@@ -131,51 +131,51 @@ body
 
 .emsg_1_1
 {
-	background: url(../Images/emsg_1_1.gif) no-repeat right bottom;
+	background: url(../images/emsg_1_1.gif) no-repeat right bottom;
 	height: 9px;
 	width: 11px;
 }
 
 .emsg_1_2
 {
-	background: url(../Images/emsg_1_2.gif) repeat-x left bottom;
+	background: url(../images/emsg_1_2.gif) repeat-x left bottom;
 }
 
 .emsg_1_3
 {
-	background: url(../Images/emsg_1_3.gif) no-repeat left bottom;
+	background: url(../images/emsg_1_3.gif) no-repeat left bottom;
 	width: 9px;
 }
 
 .emsg_2_1
 {
-	background: url(../Images/emsg_2_1.gif) repeat-y right top;
+	background: url(../images/emsg_2_1.gif) repeat-y right top;
 }
 
 .emsg_2_2
 {
-	background: url(../Images/emsg_2_2.gif) repeat-y left top;
+	background: url(../images/emsg_2_2.gif) repeat-y left top;
 }
 
 .emsg_3_1
 {
-	background: url(../Images/emsg_3_1.gif) no-repeat right top;
+	background: url(../images/emsg_3_1.gif) no-repeat right top;
 	height: 8px;
 }
 
 .emsg_3_2
 {
-	background: url(../Images/emsg_3_2.gif) repeat-x left top;
+	background: url(../images/emsg_3_2.gif) repeat-x left top;
 }
 
 .emsg_3_3
 {
-	background: url(../Images/emsg_3_3.gif) no-repeat left top;
+	background: url(../images/emsg_3_3.gif) no-repeat left top;
 }
 
 .msgerr
 {
-	background: url(../Images/error-icon.gif) no-repeat left top;
+	background: url(../images/error-icon.gif) no-repeat left top;
 	color: #df2267;
 	height: 24px;
 	list-style: none;
@@ -187,7 +187,7 @@ body
 
 .msgscc
 {
-	background: url(../Images/Success.gif) no-repeat left top;
+	background: url(../images/Success.gif) no-repeat left top;
 	color: #2d9d3b;
 	height: 24px;
 	list-style: none;
@@ -262,7 +262,7 @@ td
 
 .btn
 {
-	background: url(../Images/bg_buttonsite.jpg) repeat-x top;
+	background: url(../images/bg_buttonsite.jpg) repeat-x top;
 	border: 1px #4d4d4d solid;
 	cursor: pointer;
 	height: 19px;
@@ -271,7 +271,7 @@ td
 
 .btn:hover
 {
-	background: url(../Images/bg_buttonsiteOV.jpg) repeat-x top;
+	background: url(../images/bg_buttonsiteOV.jpg) repeat-x top;
 	border: 1px #dc871a solid;
 }
 
@@ -282,46 +282,46 @@ td
 
 .succ_1_1
 {
-	background: url(../Images/succ_1_1.gif) no-repeat right bottom;
+	background: url(../images/succ_1_1.gif) no-repeat right bottom;
 	height: 9px;
 	width: 11px;
 }
 
 .succ_1_2
 {
-	background: url(../Images/succ_1_2.gif) repeat-x left bottom;
+	background: url(../images/succ_1_2.gif) repeat-x left bottom;
 }
 
 .succ_1_3
 {
-	background: url(../Images/succ_1_3.gif) no-repeat left bottom;
+	background: url(../images/succ_1_3.gif) no-repeat left bottom;
 	width: 9px;
 }
 
 .succ_2_1
 {
-	background: url(../Images/succ_2_1.gif) repeat-y right top;
+	background: url(../images/succ_2_1.gif) repeat-y right top;
 }
 
 .succ_2_2
 {
-	background: url(../Images/succ_2_2.gif) repeat-y left top;
+	background: url(../images/succ_2_2.gif) repeat-y left top;
 }
 
 .succ_3_1
 {
-	background: url(../Images/succ_3_1.gif) no-repeat right top;
+	background: url(../images/succ_3_1.gif) no-repeat right top;
 	height: 8px;
 }
 
 .succ_3_2
 {
-	background: url(../Images/succ_3_2.gif) repeat-x left top;
+	background: url(../images/succ_3_2.gif) repeat-x left top;
 }
 
 .succ_3_3
 {
-	background: url(../Images/succ_3_3.gif) no-repeat left top;
+	background: url(../images/succ_3_3.gif) no-repeat left top;
 }
 
 input
@@ -344,7 +344,7 @@ table.tblPop td
 
 .RptHeader
 {
-	background: #8C897E url(../Images/bg_header02.jpg) repeat-x scroll center top;
+	background: #8C897E url(../images/bg_header02.jpg) repeat-x scroll center top;
 	color: #FFF;
 	font-size: 12px;
 	height: 22px;
@@ -442,7 +442,7 @@ table.tblRpt td
 
 .LastGoal
 {
-	background: url(../Images/lastGoal.gif) no-repeat center center;
+	background: url(../images/lastGoal.gif) no-repeat center center;
 	display: inline;
 	height: 10px;
 	padding: 0 4px;
@@ -451,7 +451,7 @@ table.tblRpt td
 
 .FirstGoal
 {
-	background: url(../Images/firstGoal.gif) no-repeat center center;
+	background: url(../images/firstGoal.gif) no-repeat center center;
 	display: inline;
 	height: 10px;
 	padding: 0 4px;
@@ -491,7 +491,7 @@ table.tblRpt td
 
 .b_add a
 {
-	background: url(../Images/b_left.gif) no-repeat left top;
+	background: url(../images/b_left.gif) no-repeat left top;
 	float: left;
 	font-size: 12px;
 	margin-right: 2px;
@@ -502,7 +502,7 @@ table.tblRpt td
 
 .b_add a span
 {
-	background: url(../Images/b_right.gif) no-repeat right top;
+	background: url(../images/b_right.gif) no-repeat right top;
 	color: #333;
 	display: block;
 	float: left;
@@ -526,7 +526,7 @@ table.tblRpt td
 
 .b_add2
 {
-	background: transparent url(../Images/b_addall.jpg) no-repeat scroll center top;
+	background: transparent url(../images/b_addall.jpg) no-repeat scroll center top;
 	color: #333 !important;
 	display: block;
 	float: left;
@@ -541,7 +541,7 @@ table.tblRpt td
 
 .b_add2:hover
 {
-	background: transparent url(../Images/b_addallOV.jpg) no-repeat scroll center top;
+	background: transparent url(../images/b_addallOV.jpg) no-repeat scroll center top;
 }
 
 .b_mixLeague
@@ -552,7 +552,7 @@ table.tblRpt td
 
 .b_mix_headPopup
 {
-	background: url(../Images/bg_popup2.jpg) repeat-x top #dfdddc;
+	background: url(../images/bg_popup2.jpg) repeat-x top #dfdddc;
 	color: #000;
 	height: 18px !important;
 	text-align: center;
@@ -560,7 +560,7 @@ table.tblRpt td
 
 .EnrichScc
 {
-	background: url(../Images/infoMsg.gif) no-repeat left top;
+	background: url(../images/infoMsg.gif) no-repeat left top;
 	color: #2d9d3b;
 	height: 30px;
 	padding-left: 40px;
@@ -571,7 +571,7 @@ table.tblRpt td
 
 .Enrich
 {
-	background: url(../Images/infoMsg.gif) no-repeat left top;
+	background: url(../images/infoMsg.gif) no-repeat left top;
 	color: #df2267;
 	height: 30px;
 	padding-left: 40px;
@@ -582,7 +582,7 @@ table.tblRpt td
 
 .EnrichErrmsg
 {
-	background: url(../Images/cross.png) no-repeat left top;
+	background: url(../images/cross.png) no-repeat left top;
 	color: #df2267;
 	height: 16px;
 	padding-left: 20px;
@@ -591,7 +591,7 @@ table.tblRpt td
 
 .EnrichSuccmsg
 {
-	background: url(../Images/tick.png) no-repeat left top;
+	background: url(../images/tick.png) no-repeat left top;
 	color: #2d9d3b;
 	height: 16px;
 	padding-left: 20px;
@@ -608,7 +608,7 @@ table.tblRpt td
 
 .btnInfo
 {
-	background: url(../../_GlobalResources/Images/icon_add.jpg) no-repeat scroll center top transparent;
+	background: url(../../_globalResources/images/icon_add.jpg) no-repeat scroll center top transparent;
 	display: block;
 	float: right;
 	height: 16px;
@@ -627,7 +627,7 @@ table.tblRpt td
 
 .header_popup, #header_popup
 {
-	background: url(../Images/icon_pop.jpg) no-repeat left;
+	background: url(../images/icon_pop.jpg) no-repeat left;
 	color: #862626;
 	font-size: 11px;
 	font-weight: 700;
