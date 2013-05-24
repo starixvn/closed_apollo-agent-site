@@ -77,7 +77,7 @@
     <Compile Include="Filters\InternalCheckingAttribute.cs" />
     <Compile Include="ICurrentSession.cs" />
     <Compile Include="Controllers\InstructionController.cs" />
-    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="DeviceDetection.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />

@@ -13,34 +13,34 @@
             </tr> 
         }
         <tr class="RptHeader">
-            <td columnname="kickofftime">
+            <td columnname="kickofftime" class="width-80">
                 @Apollo.Age.Resources.Lang.kickofftime
             </td>
             <td>
                 @Apollo.Age.Resources.Lang.match
             </td>
-            <td style="width: 50px;">
+            <td style="width: 20px;">
                 @Apollo.Age.Resources.Lang.S1
             </td>
-            <td style="width: 50px;">
+            <td style="width: 20px;">
                 @Apollo.Age.Resources.Lang.S2
             </td>
-            <td style="width: 50px;">
+            <td style="width: 20px;">
                 @Apollo.Age.Resources.Lang.S3
             </td>
-            <td style="width: 50px;">
+            <td style="width: 20px;">
                 @Apollo.Age.Resources.Lang.S4
             </td>
-            <td style="width: 50px;">
+            <td style="width: 20px;">
                 @Apollo.Age.Resources.Lang.S5
             </td>
             <td style="width: 50px;">
                 @Apollo.Age.Resources.Lang.totalpoint
             </td>
-            <td class="nowrap" style="width: 70px;">
+            <td class="nowrap" style="width: 50px;">
                 @Apollo.Age.Resources.Lang.totalset
             </td>
-            <td class="nowrap" style="width: 60px;">
+            <td class="nowrap">
                 @Apollo.Age.Resources.Lang.status
             </td>
         </tr>
@@ -113,7 +113,7 @@
                 <td rowspan="2" class="width-80">
                     @RazorHelper.RenderDatetimeFormated2line(item.KickoffTime)
                 </td>
-                <td class="l">
+                <td class="l width-215">
                     @if (item.FinalHomeScore > item.FinalAwayScore)
                     {
                         <b>@Html.Raw(item.HomeTeam)</b>

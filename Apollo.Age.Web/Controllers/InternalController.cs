@@ -220,8 +220,8 @@ namespace Apollo.Age.Web
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task.Factory.StartNew(() =>
-            {               
-                DeviceService deviceService = new DeviceService(Request);
+            {
+                DeviceDetection deviceService = new DeviceDetection(Request);
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,

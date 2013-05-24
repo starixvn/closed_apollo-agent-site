@@ -142,7 +142,7 @@ namespace Apollo.Age.Integration.Controllers
         {
             Task.Factory.StartNew(() =>
             {
-                DeviceService deviceService = new DeviceService(Request);
+                DeviceDetection deviceService = new DeviceDetection(Request);
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
