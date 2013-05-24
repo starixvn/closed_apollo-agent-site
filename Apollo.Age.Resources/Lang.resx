@@ -511,53 +511,14 @@
   <data name="maxperball" xml:space="preserve">
     <value>Max Per Ball</value>
   </data>
-  <data name="maxTransferInvalid" xml:space="preserve">
-    <value>Max Transfer must be an integer value</value>
-  </data>
-  <data name="mcomm1" xml:space="preserve">
-    <value>M Comm 1</value>
-  </data>
-  <data name="mcomm2" xml:space="preserve">
-    <value>M Comm 2</value>
-  </data>
   <data name="member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="membercomm" xml:space="preserve">
     <value>Member Comm</value>
   </data>
-  <data name="membergivencredit" xml:space="preserve">
-    <value>Member given credit</value>
-  </data>
-  <data name="memberinfo" xml:space="preserve">
-    <value>Member information</value>
-  </data>
-  <data name="memberRealTimeBingoWinloss" xml:space="preserve">
-    <value>Member Real Time Bingo Winloss</value>
-  </data>
-  <data name="memberRealTimeWinloss" xml:space="preserve">
-    <value>Member Real Time Casino Winloss</value>
-  </data>
-  <data name="membertotal" xml:space="preserve">
-    <value>Member Total</value>
-  </data>
-  <data name="memberturnover" xml:space="preserve">
-    <value>Member Turnover</value>
-  </data>
-  <data name="memberwin" xml:space="preserve">
-    <value>Member Win</value>
-  </data>
-  <data name="memberwinlossdetail" xml:space="preserve">
-    <value>Member Win Loss Detail</value>
-  </data>
-  <data name="memberwinlossolddetail" xml:space="preserve">
-    <value>Member Win Loss Old Detail</value>
-  </data>
   <data name="messageIDHeader" xml:space="preserve">
     <value>ID</value>
-  </data>
-  <data name="minposition" xml:space="preserve">
-    <value>Min-PT</value>
   </data>
   <data name="MinPTSuper" xml:space="preserve">
     <value>Super Min PT</value>
@@ -565,70 +526,14 @@
   <data name="mixsports" xml:space="preserve">
     <value>Mix Sports Parlay</value>
   </data>
-  <data name="mobile" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="modifiedBettingLimitValue" xml:space="preserve">
-    <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
-  </data>
-  <data name="modifiedMinPTBettingLimitValue" xml:space="preserve">
-    <value>Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
-  </data>
-  <data name="modifiedMinPTValueText" xml:space="preserve">
-    <value>Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
-  </data>
-  <data name="mon" xml:space="preserve">
-    <value>Mon</value>
-  </data>
-  <data name="monday" xml:space="preserve">
-    <value>Monday</value>
-  </data>
   <data name="moneyline" xml:space="preserve">
     <value>Money Line</value>
-  </data>
-  <data name="monthly" xml:space="preserve">
-    <value>Monthly</value>
-  </data>
-  <data name="monthlyconsolidatedreport" xml:space="preserve">
-    <value>Monthly Consolidated Report</value>
-  </data>
-  <data name="monthlywinlossanalysisreport" xml:space="preserve">
-    <value>Monthly Winloss Analysis</value>
   </data>
   <data name="more" xml:space="preserve">
     <value>More</value>
   </data>
-  <data name="MotorSport2" xml:space="preserve">
-    <value>Motor</value>
-  </data>
   <data name="MotorSports" xml:space="preserve">
     <value>Motor Sports</value>
-  </data>
-  <data name="msgErrPassWord" xml:space="preserve">
-    <value>Password is not empty</value>
-  </data>
-  <data name="msgErrUsername" xml:space="preserve">
-    <value>Username is not empty</value>
-  </data>
-  <data name="msgErrUsernamePassWord" xml:space="preserve">
-    <value>Please input username and password</value>
-  </data>
-  <data name="msgNicknameOnly" xml:space="preserve">
-    <value>&lt;div class='mt3'&gt;- You are not allowed to change your nickname afterward.&lt;/div&gt;
-&lt;div class='mt3'&gt;- Your nickname will not be disclosed to any person.&lt;/div&gt;
-&lt;div class='mt3'&gt;- This feature is not offered for sub-account.&lt;/div&gt;</value>
-  </data>
-  <data name="msgValidNickName" xml:space="preserve">
-    <value>Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters.</value>
-  </data>
-  <data name="multiple" xml:space="preserve">
-    <value>Multiple</value>
-  </data>
-  <data name="multipletransfer" xml:space="preserve">
-    <value>Multiple Transfer Type:</value>
-  </data>
-  <data name="multiplier" xml:space="preserve">
-    <value>Multiplier</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>Name</value>
@@ -1578,9 +1483,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="playForFun" xml:space="preserve">
     <value>Play for Fun</value>
   </data>
-  <data name="medium" xml:space="preserve">
-    <value>Medium</value>
-  </data>
   <data name="vip" xml:space="preserve">
     <value>VIP</value>
   </data>
@@ -1653,9 +1555,6 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="showhidecolumnAd" xml:space="preserve">
     <value>Right-click on the header to show/hide columns</value>
   </data>
-  <data name="monthlyWinlossChart" xml:space="preserve">
-    <value>Monthly Winloss Chart</value>
-  </data>
   <data name="product" xml:space="preserve">
     <value>Product</value>
   </data>
@@ -1719,29 +1618,14 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="validateErrMsg" xml:space="preserve">
     <value>Your max commission was changed by upline, please refresh the page!</value>
   </data>
-  <data name="miniBaccarat" xml:space="preserve">
-    <value>Mini Baccarat</value>
-  </data>
-  <data name="minPT" xml:space="preserve">
-    <value>Minimum Position Taking</value>
-  </data>
   <data name="searchExistingAgent" xml:space="preserve">
     <value>Search Existing Agent</value>
   </data>
   <data name="searchExistingMaster" xml:space="preserve">
     <value>Search Existing Master</value>
   </data>
-  <data name="memberMaxCreditInvalid" xml:space="preserve">
-    <value>Member Given Credit must be between {0} and {1}</value>
-  </data>
   <data name="updateFailed" xml:space="preserve">
     <value>Updated unsuccessfully because Live Casino status has been disabled at upline</value>
-  </data>
-  <data name="msgContraintData" xml:space="preserve">
-    <value>The settings of this member have exceeded current allocated Position Taking. Therefore the effective ones will be applied for new member.</value>
-  </data>
-  <data name="msgUpdateAllMember" xml:space="preserve">
-    <value>Do you want to update all member's position taking to:</value>
   </data>
   <data name="titleConfirmEditAgent" xml:space="preserve">
     <value>You have changed this agent not to take auto position taking</value>
@@ -1866,17 +1750,11 @@ Now, gross commission = (your commission percentage) * turnover (excluding Draw 
   <data name="titleSuperGetAutoPTWarning" xml:space="preserve">
     <value>Super must get Auto PT on this member!</value>
   </data>
-  <data name="MaximumWin" xml:space="preserve">
-    <value>Maximum Win</value>
-  </data>
   <data name="OnGivenCredit" xml:space="preserve">
     <value>on given credit</value>
   </data>
   <data name="SaveMemberWinLimit" xml:space="preserve">
     <value>Save Member Win Limit</value>
-  </data>
-  <data name="MemberWinLimit" xml:space="preserve">
-    <value>Member Win Limit</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>Unlimited</value>

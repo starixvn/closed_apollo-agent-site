@@ -2230,33 +2230,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mini Baccarat.
-        /// </summary>
-        public static string miniBaccarat {
-            get {
-                return ResourceManager.GetString("miniBaccarat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min-PT.
-        /// </summary>
-        public static string minposition {
-            get {
-                return ResourceManager.GetString("minposition", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minimum Position Taking.
-        /// </summary>
-        public static string minPT {
-            get {
-                return ResourceManager.GetString("minPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Super Min PT.
         /// </summary>
         public static string MinPTSuper {
@@ -2275,101 +2248,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile.
-        /// </summary>
-        public static string mobile {
-            get {
-                return ResourceManager.GetString("mobile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines..
-        /// </summary>
-        public static string modifiedBettingLimitValue {
-            get {
-                return ResourceManager.GetString("modifiedBettingLimitValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines..
-        /// </summary>
-        public static string modifiedMinPTBettingLimitValue {
-            get {
-                return ResourceManager.GetString("modifiedMinPTBettingLimitValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines..
-        /// </summary>
-        public static string modifiedMinPTValueText {
-            get {
-                return ResourceManager.GetString("modifiedMinPTValueText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mon.
-        /// </summary>
-        public static string mon {
-            get {
-                return ResourceManager.GetString("mon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monday.
-        /// </summary>
-        public static string monday {
-            get {
-                return ResourceManager.GetString("monday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Money Line.
         /// </summary>
         public static string moneyline {
             get {
                 return ResourceManager.GetString("moneyline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monthly.
-        /// </summary>
-        public static string monthly {
-            get {
-                return ResourceManager.GetString("monthly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monthly Consolidated Report.
-        /// </summary>
-        public static string monthlyconsolidatedreport {
-            get {
-                return ResourceManager.GetString("monthlyconsolidatedreport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monthly Winloss Analysis.
-        /// </summary>
-        public static string monthlywinlossanalysisreport {
-            get {
-                return ResourceManager.GetString("monthlywinlossanalysisreport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monthly Winloss Chart.
-        /// </summary>
-        public static string monthlyWinlossChart {
-            get {
-                return ResourceManager.GetString("monthlyWinlossChart", resourceCulture);
             }
         }
         
@@ -2383,121 +2266,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Motor.
-        /// </summary>
-        public static string MotorSport2 {
-            get {
-                return ResourceManager.GetString("MotorSport2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Motor Sports.
         /// </summary>
         public static string MotorSports {
             get {
                 return ResourceManager.GetString("MotorSports", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The settings of this member have exceeded current allocated Position Taking. Therefore the effective ones will be applied for new member..
-        /// </summary>
-        public static string msgContraintData {
-            get {
-                return ResourceManager.GetString("msgContraintData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password is not empty.
-        /// </summary>
-        public static string msgErrPassWord {
-            get {
-                return ResourceManager.GetString("msgErrPassWord", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Username is not empty.
-        /// </summary>
-        public static string msgErrUsername {
-            get {
-                return ResourceManager.GetString("msgErrUsername", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please input username and password.
-        /// </summary>
-        public static string msgErrUsernamePassWord {
-            get {
-                return ResourceManager.GetString("msgErrUsernamePassWord", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&apos;mt3&apos;&gt;- You are not allowed to change your nickname afterward.&lt;/div&gt;
-        ///&lt;div class=&apos;mt3&apos;&gt;- Your nickname will not be disclosed to any person.&lt;/div&gt;
-        ///&lt;div class=&apos;mt3&apos;&gt;- This feature is not offered for sub-account.&lt;/div&gt;.
-        /// </summary>
-        public static string msgNicknameOnly {
-            get {
-                return ResourceManager.GetString("msgNicknameOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to update all member&apos;s position taking to:.
-        /// </summary>
-        public static string msgUpdateAllMember {
-            get {
-                return ResourceManager.GetString("msgUpdateAllMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters..
-        /// </summary>
-        public static string msgValidNickName {
-            get {
-                return ResourceManager.GetString("msgValidNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiple.
-        /// </summary>
-        public static string multiple {
-            get {
-                return ResourceManager.GetString("multiple", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiple Transfer Type:.
-        /// </summary>
-        public static string multipletransfer {
-            get {
-                return ResourceManager.GetString("multipletransfer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiplier.
-        /// </summary>
-        public static string multiplier {
-            get {
-                return ResourceManager.GetString("multiplier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        public static string name {
-            get {
-                return ResourceManager.GetString("name", resourceCulture);
             }
         }
         
