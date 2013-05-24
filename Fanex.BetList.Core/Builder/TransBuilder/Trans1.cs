@@ -33,7 +33,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// <returns></returns>
         public virtual Trans_Template Render(ITicket ticket)
         {
-            Template.transTime = ticket.TransDate.ToString("MM/dd/yyyy");
+            Template.transTime = ticket.TransDate.ToString();
 
             // For Mixparlay (Trans9) to reuse
             Template.TransTime.refNo = ticket.TransId.ToString();
