@@ -219,22 +219,29 @@ namespace Apollo.Age.Web
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
-            Task.Factory.StartNew(() =>
+            try
             {
-                DeviceDetection deviceService = new DeviceDetection(Request);
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    SERVERID,
-                    actionId,
-                    doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
-                    );
-            });
+                Task.Factory.StartNew(() =>
+                    {
+                        DeviceDetection deviceService = new DeviceDetection(Request);
+                        _userService.WriteLogInternalLogin(
+                            agentId,
+                            agentUserId,
+                            SERVERID,
+                            actionId,
+                            doing,
+                            deviceService.ClientIp,
+                            deviceService.DomainName,
+                            deviceService.BrowserName,
+                            deviceService.Platform,
+                            deviceService.CountryCode
+                            );
+                    });
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
            
         }
 
