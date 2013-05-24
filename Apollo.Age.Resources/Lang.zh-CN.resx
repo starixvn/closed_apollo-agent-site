@@ -1944,7 +1944,7 @@
     <value>必须输入会员账号或昵称！</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>用户名或名/姓</value>
+    <value>使用者姓名</value>
   </data>
   <data name="setting" xml:space="preserve">
     <value>设定</value>

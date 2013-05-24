@@ -1943,7 +1943,7 @@
     <value>必須輸入會員賬號或暱稱！</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>用戶名或名/姓</value>
+    <value>使用者姓名</value>
   </data>
   <data name="setting" xml:space="preserve">
     <value>設定</value>
