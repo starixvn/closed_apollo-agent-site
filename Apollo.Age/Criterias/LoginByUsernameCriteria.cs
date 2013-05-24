@@ -24,7 +24,7 @@ namespace Apollo.Age.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Agent_LoginByUserName";
+            return "Age_Agent_GetByUserName";
         }
 
         public override bool IsValid()

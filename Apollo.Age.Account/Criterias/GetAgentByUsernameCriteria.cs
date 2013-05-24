@@ -26,7 +26,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Agent_GetByUsername";
+            return "Age_Agent_SuggestByUsername";
         }
     }
 }

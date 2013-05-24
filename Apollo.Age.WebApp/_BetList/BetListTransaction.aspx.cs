@@ -33,6 +33,7 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.TicketHelper;
     using Apollo.Age.WebApp._BetList;
     using Fanex.Age.UI;
+    using Apollo.Age.WebApp;
 
     public partial class BetListTransaction : TplPage
     {

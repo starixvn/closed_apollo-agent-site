@@ -21,6 +21,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Fanex.Age.UI;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
+    using Apollo.Age.WebApp;
     using Apollo.Age.WebApp._BetList.MixParlay;
 
     public partial class CombinationMixParlayDetail_Page : TplPage

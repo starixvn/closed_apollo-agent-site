@@ -138,11 +138,11 @@ namespace Apollo.Age.Integration.Services
         /// <summary>
         ///  Convert language code returned from OAuth service to Apollo agent language code
         /// </summary>
-        /// <param name="langOfSungame"></param>
+        /// <param name="sungameLanguage"></param>
         /// <returns></returns>
-        public string ConvertToApolloLanguage(string langOfSungame)
+        public string ConvertToApolloLanguage(string sungameLanguage)
         {
-            switch (langOfSungame)
+            switch (sungameLanguage)
             {
                 case "zh_TW":
                     return "zh-TW";
