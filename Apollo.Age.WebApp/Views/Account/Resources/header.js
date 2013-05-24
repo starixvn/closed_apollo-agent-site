@@ -326,7 +326,7 @@ function SelectTopMenu(url) {
 var HEADER = function ($) {
     return {
         init: function () {
-           // setInterval(HEADER.reCheckIn(),30000);
+           setInterval("HEADER.reCheckIn()",20000);
         },
         reCheckIn: function () {
             $.ajax({
