@@ -306,23 +306,19 @@ if (typeof jQuery != 'undefined') {
                     });
 
                     var i = 0;
-                    var persistheader = null;
-                    var floatingheader = null;
-                    if ($("table .persist-header td")) {
-                        objectheader = $("table .persist-header td");
-                    }
-                    else {
-                        objectheader = $("table .persist-header th");
+                                        
+                    var persistheader = $("table.persist-area thead.persist-header tr td");
+                    var floatingheader = $("table.persist-area thead.floatingHeader tr td");
+
+                    if (persistheader.length <= 0) {
+                        persistheader = $("table.persist-area thead.persist-header tr th");
                     }
 
-                    if ($("table .floatingHeader td")) {
-                        floatingheader = $("table .floatingHeader td");
-                    }
-                    else {
-                        floatingheader = $("table .floatingHeader th");
+                    if (floatingheader.length <= 0) {                      
+                        floatingheader = $("table.persist-area thead.floatingHeader tr th");
                     }
 
-                    objectheader.each(function () {
+                    persistheader.each(function () {
                         var x = $(this).width();
                         $(floatingheader[i]).width(x);
                         i++;
