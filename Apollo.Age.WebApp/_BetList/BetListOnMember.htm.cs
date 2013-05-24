@@ -26,7 +26,7 @@ namespace Apollo.Age.WebApp
 			public string Navigation = "{Navigation}";
 			protected static string s7 = " ";
 			public string content = "{content}";
-			protected static string s8 = "<div id=\"dialog-details\"></div></div>";
+			protected static string s8 = "</div>";
 			public BetListOnMember_HiddenFields_Block HiddenFields = new BetListOnMember_HiddenFields_Block();
 			protected static string s9 = "</div></form><script src=\"";
 			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}

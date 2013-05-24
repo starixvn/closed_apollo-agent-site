@@ -23,9 +23,9 @@ namespace Fanex.BetList.Age
 			public string title = "{title}";
 			protected static string s7 = "</div><div id=\"content_main\">";
 			public BetList_MainShareHolder_Block MainShareHolder = new BetList_MainShareHolder_Block();
-			protected static string s8 = "<table id=\"betlist\" class=\"tblRpt\">";
+			protected static string s8 = "<table id=\"betlist\" class=\"tblRpt persist-area\">";
 			public string content = "{content}";
-			protected static string s9 = "</table><div id=\"dialog-details\"></div></div></div>";
+			protected static string s9 = "</table></div></div>";
 			public BetList_HiddenFields_Block HiddenFields = new BetList_HiddenFields_Block();
 			protected static string s10 = "<script src=\"";
 			protected static string s11{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
