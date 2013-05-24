@@ -1,6 +1,6 @@
 ﻿
 // --------------------------------------------------------------------------
-// <copyright file="DeviceService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DeviceDetection.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -26,7 +26,7 @@ namespace Apollo.Age.Web
 
         public DeviceDetection(HttpRequestBase request)
         {
-            DomainName = request.ServerVariables["SERVER_NAME"] as string;
+            DomainName = request.ServerVariables["SERVER_NAME"] != null ? request.ServerVariables["SERVER_NAME"].ToString() : string.Empty;
             if (request.Browser.IsMobileDevice || request.UserAgent.ToLower().Contains("android"))
             {
                 BrowserName = request.Browser.Browser + " " + request.Browser.MajorVersion;
