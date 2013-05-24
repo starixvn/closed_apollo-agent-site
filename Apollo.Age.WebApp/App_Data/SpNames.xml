@@ -3,15 +3,14 @@
 
   <Function Name="Apollo-Login">
     <Setting Key="Agent_Login" SpName="Agent_Login" DbName="CUSTDB" Plain="0" />
-    <Setting Key="Agent_GetByUserName" SpName="Agent_GetByUserName" DbName="CUSTDB" Plain="0" >
+    <Setting Key="Age_AgentUser_GetByUsername" SpName="Age_AgentUser_GetByUsername" DbName="CUSTDB" Plain="0" >
       <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
       <Mapping DataField="Username" ObjectProperty="Username"/>
       <Mapping DataField="AgentId" ObjectProperty="Id"/>
       <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
       <Mapping DataField="AgentName" ObjectProperty="Username"/>
       <Mapping DataField="Currency" ObjectProperty="Currency"/>
-      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
-      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>      
     </Setting>   
     <Setting Key="Age_Agent_LoginByUserName" SpName="Age_Agent_LoginByUserName" DbName="CUSTDB" Plain="0" >
       <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
@@ -20,8 +19,7 @@
       <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
       <Mapping DataField="AgentName" ObjectProperty="Username"/>
       <Mapping DataField="Currency" ObjectProperty="Currency"/>
-      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
-      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>      
     </Setting>
     <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="Nap" />
     <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="ONUSER" Plain="0" />

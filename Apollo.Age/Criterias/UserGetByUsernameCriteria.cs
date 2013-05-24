@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Anders.Le" date="2013.3.19">Created</change>
+//   <change who="Anders.Le" date="2013.5.24">Change setting key to Age_AgentUser_GetByUsername</change>
 // </history>
 
 namespace Apollo.Age.Criterias
@@ -24,7 +25,7 @@ namespace Apollo.Age.Criterias
 
         public override string GetSettingKey()
         {
-            return "Agent_GetByUserName";
+            return "Age_AgentUser_GetByUsername";
         }
 
         public override bool IsValid()
