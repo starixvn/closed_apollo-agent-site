@@ -14,6 +14,7 @@ namespace Apollo.Age.Web
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
     using System.IO;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
     using Apollo.Age.Configurations;
@@ -22,9 +23,8 @@ namespace Apollo.Age.Web
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
-    using System.Threading.Tasks;
+    using Fanex.Logging;
 
     public class InternalController : Controller
     {
@@ -113,7 +113,7 @@ namespace Apollo.Age.Web
 
                     //Write log
                     //ActionId: 700 - Login successful
-                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.", 
+                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.",
                                     model.Username);
                     WriteLoginLog(0, _AdminId, 700, doing);
 
@@ -123,8 +123,8 @@ namespace Apollo.Age.Web
                 {
                     //Write log
                     //ActionId: 6000 - Login fail
-                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .", 
-                                    model.Username, 
+                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .",
+                                    model.Username,
                                     Lang.InvalidUsernameOrPassword);
                     WriteLoginLog(0, _AdminId, 7000, doing);
 
@@ -139,7 +139,7 @@ namespace Apollo.Age.Web
         public JsonResult ReCheckIn()
         {
             var result = false;
-            if(SessionManager.CurrentSession != null)
+            if (SessionManager.CurrentSession != null)
             {
                 if (AppSettings.MultipleSignOn)
                 {
@@ -147,7 +147,8 @@ namespace Apollo.Age.Web
                 }
             }
 
-            return Json(new { 
+            return Json(new
+            {
                 isKickout = result
             });
         }
@@ -174,7 +175,6 @@ namespace Apollo.Age.Web
 
                 if (user != null) // continue sign-in process
                 {
-
                     var onUserId = _userService.InternalCheckIn(model.AdminId, HttpContext.Session.SessionID, Request.ServerVariables["REMOTE_ADDR"].ToString());
                     if (onUserId == 0)
                         return SignOut();
@@ -187,7 +187,7 @@ namespace Apollo.Age.Web
                         user: user,
                         adminId: model.AdminId,
                         adminName: model.AdminName,
-                        onUserId : onUserId,                        
+                        onUserId: onUserId,
                         isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
                         language: model.Language);
 
@@ -219,30 +219,31 @@ namespace Apollo.Age.Web
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
+            Task task = Task.Factory.StartNew(() =>
+            {
+                DeviceDetection deviceService = new DeviceDetection(Request);
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    SERVERID,
+                    actionId,
+                    doing,
+                    deviceService.ClientIp,
+                    deviceService.DomainName,
+                    deviceService.BrowserName,
+                    deviceService.Platform,
+                    deviceService.CountryCode
+                    );
+            });
             try
             {
-                Task.Factory.StartNew(() =>
-                    {
-                        DeviceDetection deviceService = new DeviceDetection(Request);
-                        _userService.WriteLogInternalLogin(
-                            agentId,
-                            agentUserId,
-                            SERVERID,
-                            actionId,
-                            doing,
-                            deviceService.ClientIp,
-                            deviceService.DomainName,
-                            deviceService.BrowserName,
-                            deviceService.Platform,
-                            deviceService.CountryCode
-                            );
-                    });
+                task.Wait();
             }
-            catch (Exception ex)
-            {                
-                throw ex;
+            catch (AggregateException ex)
+            {
+                LogService.Error(ex.Message);
+                throw ex.Flatten();
             }
-           
         }
 
         public ActionResult CaptchaImage(bool noisy = true)
@@ -300,26 +301,24 @@ namespace Apollo.Age.Web
             var onUserId = 0;
             bool isInternalSignIn = false;
             if (SessionManager.CurrentSession != null)
-            { 
+            {
                 isInternalSignIn = SessionManager.CurrentSession.IsInternalSignIn;
                 onUserId = SessionManager.CurrentSession.OnUserId;
             }
-                                            
-            
+
             Session.Abandon();
             Response.Cookies.Clear();
             FormsAuthentication.SignOut();
 
             if (isInternalSignIn)
             {
-               var result = _userService.InternalLogout(onUserId);
-               if (result == 0)
-               {
-                   return Redirect(ApoURLs.URLs.InternalSignIn);
-               }
-               
+                var result = _userService.InternalLogout(onUserId);
+                if (result == 0)
+                {
+                    return Redirect(ApoURLs.URLs.InternalSignIn);
+                }
             }
-            
+
             return Redirect(FormsAuthentication.LoginUrl);
         }
 

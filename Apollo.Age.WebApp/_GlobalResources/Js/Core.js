@@ -306,9 +306,25 @@ if (typeof jQuery != 'undefined') {
                     });
 
                     var i = 0;
-                    $("table .persist-header td").each(function () {
+                    var persistheader = null;
+                    var floatingheader = null;
+                    if ($("table .persist-header td")) {
+                        objectheader = $("table .persist-header td");
+                    }
+                    else {
+                        objectheader = $("table .persist-header th");
+                    }
+
+                    if ($("table .floatingHeader td")) {
+                        floatingheader = $("table .floatingHeader td");
+                    }
+                    else {
+                        floatingheader = $("table .floatingHeader th");
+                    }
+
+                    objectheader.each(function () {
                         var x = $(this).width();
-                        $($("table .floatingHeader td")[i]).width(x);
+                        $(floatingheader[i]).width(x);
                         i++;
                     });
                 }

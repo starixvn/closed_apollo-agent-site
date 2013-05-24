@@ -29,8 +29,7 @@
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
             });
 
-            $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
-            REPORTS.innitFreeHeader();
+            $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);            
         },
 
         // View betlist page from report Outstanding
