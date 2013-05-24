@@ -190,6 +190,12 @@ namespace Apollo.Age.Account.Controllers
             var live = isLive.HasValue ? isLive.Value : false;
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
 
+            if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
+            {
+                userName = this.CurrentSession.AgentName;
+                agentId = this.CurrentSession.AgentId;
+            }
+
             var sportList = _sportService.GetAllSportType();
             foreach (var sportItem in sportList)
             {
@@ -207,8 +213,6 @@ namespace Apollo.Age.Account.Controllers
                 betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
             }
 
-            
-
             var agentShareViewModel = new AgentShareViewModel()
             {
                 IsMember = false,
@@ -220,25 +224,18 @@ namespace Apollo.Age.Account.Controllers
                 BetTypeList = betTypeList
             };
 
-            if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
+            AgentShareCriteria criteria = new AgentShareCriteria()
             {
-                agentShareViewModel.AgentShareModelList = null;
-            }
-            else
-            {
-                AgentShareCriteria criteria = new AgentShareCriteria()
-                {
-                    ActorAgentId = this.CurrentSession.AgentId,
-                    AgentId = agentId.HasValue ? agentId.Value : -1,
-                    Username = userName,
-                    SportType = Math.Abs(sportId),
-                    BetType = betTypeId,
-                    IsLive = live
-                };
+                ActorAgentId = this.CurrentSession.AgentId,
+                AgentId = agentId.Value,
+                Username = userName,
+                SportType = sportId,
+                BetType = betTypeId,
+                IsLive = live
+            };
 
-                var agentShareModelList = _accountService.GetAgentShare(criteria);
-                agentShareViewModel.AgentShareModelList = agentShareModelList;
-            }
+            var agentShareModelList = _accountService.GetAgentShare(criteria);
+            agentShareViewModel.AgentShareModelList = agentShareModelList;
 
             return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
         }
@@ -272,7 +269,7 @@ namespace Apollo.Age.Account.Controllers
                 ActorAgentId = this.CurrentSession.AgentId,
                 CustId = memberId.HasValue ? memberId.Value : -1,
                 Username = userName,
-                SportType = Math.Abs(sportId),
+                SportType = sportId,
                 BetType = betTypeId,
                 IsLive = live
             };
