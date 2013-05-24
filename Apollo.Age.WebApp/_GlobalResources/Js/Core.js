@@ -257,7 +257,7 @@ if (typeof jQuery != 'undefined') {
                 return $('<div/>').html(str).text();
             },
 
-            innitFreeHeader: function () {
+            initFreeHeader: function () {
                 //APOLLO.browser
                 if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
                     return;
@@ -316,7 +316,7 @@ if (typeof jQuery != 'undefined') {
 
             init: function () {
                 APOLLO.initDatePicker();
-                APOLLO.innitFreeHeader();
+                APOLLO.initFreeHeader();
             }
         };
     } (jQuery);
