@@ -98,11 +98,19 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="isMember">indicates whether the customer is agent or member</param>
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
-            if (!string.IsNullOrWhiteSpace(model.Username))
+            if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
             {
-                model.Id = -1; // force search by username only
+                model.Id = this.CurrentSession.AgentId;
+                model.Username = this.CurrentSession.AgentName;
             }
-
+            else
+            {
+                if (model.Id == 0 && !string.IsNullOrWhiteSpace(model.Username))
+                {
+                    model.Id = -1; // force search by username only
+                }
+            }
+            
             CustomerInfoModel customerInfo = model.IsMember
                 ? _accountService.GetMemberInfo(new GetMemberInfoCriteria
                 {
