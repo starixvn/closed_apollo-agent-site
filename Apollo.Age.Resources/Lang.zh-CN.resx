@@ -564,7 +564,7 @@
     <value>上半场大小盘</value>
   </data>
   <data name="lbl1x2" xml:space="preserve">
-    <value>1 X 2</value>
+    <value>标准盘</value>
   </data>
   <data name="lbl1x2_1st" xml:space="preserve">
     <value>上半场1 X 2</value>
@@ -2740,7 +2740,7 @@
     <value>更新游戏样式出现错误</value>
   </data>
   <data name="sec" xml:space="preserve">
-    <value> sec</value>
+    <value>秒</value>
   </data>
   <data name="resetMaxTransferMsg" xml:space="preserve">
     <value>累计转帐金额已重置成功</value>
@@ -3540,7 +3540,7 @@
     <value>Show/hide columns</value>
   </data>
   <data name="plsChooseMatch" xml:space="preserve">
-    <value>Please choose a match!</value>
+    <value>请选择一个场次!</value>
   </data>
   <data name="lblTotalP2PTransfer" xml:space="preserve">
     <value>转到扑克的账额</value>
@@ -3645,7 +3645,7 @@
     <value>百家乐</value>
   </data>
   <data name="noChangeToUpdate" xml:space="preserve">
-    <value>There is no change to update</value>
+    <value>没有需要更新</value>
   </data>
   <data name="proceedWithThisSetting" xml:space="preserve">
     <value>根据此设定继续</value>
@@ -3756,13 +3756,13 @@
     <value>信用额度数值不正确</value>
   </data>
   <data name="OE1x2DND" xml:space="preserve">
-    <value>Odd/Even + 1x2 + DND</value>
+    <value>单/双 + 标准盘 + DND</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
-    <value>Live Game</value>
+    <value>滚球游戏</value>
   </data>
   <data name="PreGame" xml:space="preserve">
-    <value>Pre Game</value>
+    <value>早盤</value>
   </data>
   <data name="HNB" xml:space="preserve">
     <value>HNB</value>
@@ -3855,7 +3855,7 @@
     <value>确定启用虚拟运动于此账号?</value>
   </data>
   <data name="Roulette" xml:space="preserve">
-    <value>Roulette</value>
+    <value>轮盘赌</value>
   </data>
   <data name="agentMaxPT" xml:space="preserve">
     <value>代理最高占成数</value>
@@ -4005,7 +4005,7 @@
     <value>New value</value>
   </data>
   <data name="OldValue" xml:space="preserve">
-    <value>Old value</value>
+    <value>旧的資訊</value>
   </data>
   <data name="statuslog" xml:space="preserve">
     <value>Status</value>
@@ -4014,19 +4014,19 @@
     <value>1st CS</value>
   </data>
   <data name="lblHomeDrawAwayNoBet" xml:space="preserve">
-    <value>Home/Draw/Away No Bet</value>
+    <value>主场/ 和局/ 客场 无下注</value>
   </data>
   <data name="lblAwayNoBet" xml:space="preserve">
-    <value>Away No Bet</value>
+    <value>无客场下注</value>
   </data>
   <data name="lblDrawNoBet" xml:space="preserve">
-    <value>Draw No Bet</value>
+    <value>无和局下注</value>
   </data>
   <data name="lblHomeNoBet" xml:space="preserve">
-    <value>Home No Bet</value>
+    <value>无主场下注</value>
   </data>
   <data name="lblNoDraw" xml:space="preserve">
-    <value>No Draw</value>
+    <value>无和局</value>
   </data>
   <data name="at" xml:space="preserve">
     <value>at</value>
@@ -4086,46 +4086,46 @@
     <value>Confirm Update Members\'s PT</value>
   </data>
   <data name="lblEditAgentSetting" xml:space="preserve">
-    <value>Edit Agent Setting - {0}</value>
+    <value>编辑代理商设定 - {0}</value>
   </data>
   <data name="lblEditMemberSetting" xml:space="preserve">
-    <value>Edit Member Setting - {0}</value>
+    <value>编辑会员设定 - {0}</value>
   </data>
   <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>Invalid Value Range, Input must in [{0} - {1}].</value>
+    <value>无效的資訊范围, 输入必须在 [{0} - {1}].</value>
   </data>
   <data name="lblViewAgentSetting" xml:space="preserve">
-    <value>View Agent Setting - {0}</value>
+    <value>查看代理商设定 - {0}</value>
   </data>
   <data name="lblViewMemberSetting" xml:space="preserve">
-    <value>View Member Setting - {0}</value>
+    <value>查看会员设定 - {0}</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
-    <value>不被允许登入</value>
+    <value>拒绝进入</value>
   </data>
   <data name="lblInvalidRequest" xml:space="preserve">
     <value>Invalid Request</value>
   </data>
   <data name="lblServerError" xml:space="preserve">
-    <value>Server Error</value>
+    <value>服务器错误</value>
   </data>
   <data name="lblTemporarilyUnavailable" xml:space="preserve">
-    <value>Temporarily Unavailable</value>
+    <value>暂时无法使用</value>
   </data>
   <data name="lblUnauthorizedClient" xml:space="preserve">
     <value>Unauthorized Client</value>
   </data>
   <data name="lblUnsupportedResponseType" xml:space="preserve">
-    <value>Unsupported Response Type</value>
+    <value>不支持回应类型</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>Cancelled Tickets</value>
+    <value>取消投注</value>
   </data>
   <data name="lblPleaseCheckConstrainMaxMin" xml:space="preserve">
-    <value>Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it</value>
+    <value>给予占成数資訊低于最小给予占成数資訊, 请使用高阶模式确认</value>
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
-    <value>Share Setting Instructions</value>
+    <value>佔成设定说明</value>
   </data>
   <data name="lblPhone2" xml:space="preserve">
     <value>(63) 91542 22222</value>
@@ -4485,27 +4485,57 @@
     <value>您的连线已被终止或者尚未授权</value>
   </data>
   <data name="UnderMaintenance" xml:space="preserve">
-    <value>Under Maintenance</value>
+    <value>维护中</value>
   </data>
   <data name="lblaction" xml:space="preserve">
-    <value>Action:</value>
+    <value>行動:</value>
   </data>
   <data name="lblbrowser" xml:space="preserve">
-    <value>Browser:</value>
+    <value>浏览器:</value>
   </data>
   <data name="lbldomain" xml:space="preserve">
-    <value>Domain:</value>
+    <value>网域:</value>
   </data>
   <data name="lblip" xml:space="preserve">
     <value>Ip:</value>
   </data>
   <data name="lblplatform" xml:space="preserve">
-    <value>Platform:</value>
+    <value>平台</value>
   </data>
   <data name="lblaccesstime" xml:space="preserve">
-    <value>Access Time:</value>
+    <value>造访时间:</value>
   </data>
   <data name="lbllastaccessed" xml:space="preserve">
-    <value>Last Accessed:</value>
+    <value>最后造访:</value>
+  </data>
+  <data name="lblCLock" xml:space="preserve">
+    <value>C.上锁</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>扩大</value>
+  </data>
+  <data name="InvalidUsernameOrPassword" xml:space="preserve">
+    <value>无效的用户名称或密码</value>
+  </data>
+  <data name="lblcurrentsession" xml:space="preserve">
+    <value>现今连线</value>
+  </data>
+  <data name="allowupdates" xml:space="preserve">
+    <value>允许更新</value>
+  </data>
+  <data name="lblInvalidInputDecimals" xml:space="preserve">
+    <value>只允许输入小数点后两位数</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="AgentNotFound" xml:space="preserve">
+    <value>无法找到代理商</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>塌下</value>
+  </data>
+  <data name="Displaying" xml:space="preserve">
+    <value>显示</value>
   </data>
 </root>
