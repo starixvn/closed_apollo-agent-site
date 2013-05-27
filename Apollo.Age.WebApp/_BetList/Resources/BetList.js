@@ -97,7 +97,12 @@ function InitExcelFunction() {
 
 function InitBetList() {
 	if (parent.APOLLO.currentOpenDialog) {
-		parent.APOLLO.resizeDialog(900, 720);
+	    var heightPopup = 720;
+	    if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
+	        $('#content_main').css({ 'padding-bottom': '130px' });
+	        heightPopup = 650;
+	    }
+	    parent.APOLLO.resizeDialog(900, heightPopup);
 	}
 
 	if (document.getElementById("exporttoexcel") != null) {
