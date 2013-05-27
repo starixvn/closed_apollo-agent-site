@@ -34,5 +34,18 @@
 			width: 215px;
 			white-space: normal;
 		}
+
+		&.border-right {
+			border-right: 1px solid #999;
+		}
+	}
+}
+
+/* FIX IE7 */
+.eq-ie7 {
+	.tblRpt {
+		tbody td.border-right {
+			border-right: none;
+		}
 	}
 }
