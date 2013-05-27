@@ -96,10 +96,17 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-	if (parent.APOLLO.currentOpenDialog) {
-		parent.APOLLO.resizeDialog(900, 720);
+    if (parent.APOLLO.currentOpenDialog) {
+        var heightPopup = 720;
+	    if (APOLLO.browser.msie) {
+            heightPopup = 650;
+            if(parseInt(APOLLO.browser.version, 10) == 7) {
+	            $('#content_main').css({ 'padding-bottom': '130px' });
+	        }
+        }
+	    parent.APOLLO.resizeDialog(900, heightPopup);
 	}
-
+	
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
 	}

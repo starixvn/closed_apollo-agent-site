@@ -509,7 +509,9 @@
     <Content Include="Views\Results\Resources\Match.js" />
     <Content Include="Views\Results\Resources\Outright.js" />
     <Content Include="Views\TotalBets\Resources\TotalBets.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1002,6 +1004,8 @@
     <Content Include="_Components\AGEWnd\web.config" />
     <Content Include="_GlobalResources\Css\Agent.less" />
     <Content Include="_GlobalResources\Css\calendar.less" />
+    <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSettingAdv.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

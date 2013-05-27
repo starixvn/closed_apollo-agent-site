@@ -24,24 +24,28 @@ if (typeof jQuery != 'undefined') {
 
                 APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
-                target.find('iframe').get(0).contentWindow.onload = function () {
-                    APOLLO.hidePopupBlockLoading();
-                };
+                var iframeLoading = target.find('iframe').get(0);
+                if (iframeLoading) {
+                    iframeLoading.contentWindow.onload = function () {
+                        APOLLO.hidePopupBlockLoading();
+                    };
+                }
 
                 return APOLLO.currentOpenDialog;
             },
             openDialogFrame: function (url, title, options, singleFrame) {
                 var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
                     accessClass = "";
-
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
                 if (singleFrame) { // only one instance of dialog can be opened
                     var frame = $("#apo-dialog-frame");
 
                     // check FC1X2 popup
-                    if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
-                        accessClass = "fc1x2";
+                    if (typeof (url) != 'object') {
+                        if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
+                            accessClass = "fc1x2";
+                        }
                     }
 
                     if (frame.length > 0) {
@@ -54,8 +58,10 @@ if (typeof jQuery != 'undefined') {
                 }
 
                 // check scoremap popup
-                if (url.substring(1, 18).toLowerCase() == 'forecast/scoremap') {
-                    accessClass = "loading-scoremap";
+                if (typeof (url) != 'object') {
+                    if (url.substring(1, 18).toLowerCase() == 'forecast/scoremap') {
+                        accessClass = "loading-scoremap";
+                    }
                 }
                 var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
 
@@ -306,7 +312,7 @@ if (typeof jQuery != 'undefined') {
                     });
 
                     var i = 0;
-                                        
+
                     var persistheader = $("table.persist-area thead.persist-header tr td");
                     var floatingheader = $("table.persist-area thead.floatingHeader tr td");
 
@@ -314,7 +320,7 @@ if (typeof jQuery != 'undefined') {
                         persistheader = $("table.persist-area thead.persist-header tr th");
                     }
 
-                    if (floatingheader.length <= 0) {                      
+                    if (floatingheader.length <= 0) {
                         floatingheader = $("table.persist-area thead.floatingHeader tr th");
                     }
 
