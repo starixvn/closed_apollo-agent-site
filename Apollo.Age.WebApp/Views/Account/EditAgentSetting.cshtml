@@ -82,6 +82,20 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
+@Html.Action("Index", "Instruction", new {
+    key = "MainShareHolderCommissionSetting",
+    trigger = "mainshareholder-commission-info-button",
+    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "MainShareHolderCommissionSettingAdv",
+    trigger = "mainshareholder-commission-info-button-adv",
+    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
 @section scripts
 {
     <script type="text/javascript">
