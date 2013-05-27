@@ -99,13 +99,13 @@ namespace Apollo.Age.Web
                     string key = entry.Key.ToString();
                     string value = entry.Value.ToString();
 
-                    //var otherValue = anotherResourceSet.GetString(key);
+                    var otherValue = anotherResourceSet1.GetString(key);
                     //var otherValue1 = anotherResourceSet1.GetString(key);
 
-                    //if (string.IsNullOrWhiteSpace(otherValue))
-                    //{
-                    //    notTransResources.Add(key, value);
-                    //}
+                    if (!string.IsNullOrWhiteSpace(otherValue))
+                    {
+                        notTransResources.Add(key, otherValue);
+                    }
                     //else
                     //{
                     //    if (value.Equals(otherValue1) && !value.Equals(otherValue))
@@ -114,10 +114,10 @@ namespace Apollo.Age.Web
                     //    }
                     //}
 
-                    hasKeybutNotTransResources.Add(key, value);
+                    //hasKeybutNotTransResources.Add(key, value);
                 }
 
-                return View(hasKeybutNotTransResources);
+                return View(notTransResources);
             }
             catch 
             {
