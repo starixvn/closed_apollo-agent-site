@@ -130,7 +130,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	// Check IE7
 	var heightPopup = 605;
 	if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
-	    heightPopup = 585;
+		heightPopup = 585;
 	}
 	wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: heightPopup }, singleFrame);
 }
@@ -155,38 +155,37 @@ if (typeof jQuery != "undefined") {
 
 		var viewDetailsLinks = $(".view-detail");
 		var submit = $(".act-submit");
-		if (viewDetailsLinks.length > 0) {
-			viewDetailsLinks.click(function () {
-				var fromDate = toDate = type = "";
 
-				if (typeof ($("#fromDate").val()) !== 'undefined') {
-					fromDate = $("#fromDate").val();
-				}
-				if (typeof ($("#toDate").val()) !== 'undefined') {
-					toDate = $("#toDate").val();
-				}
-				if (typeof ($("#type").val()) !== 'undefined') {
-					type = $("#type").val();
-				}
+		viewDetailsLinks.click(function () {
+			var fromDate = toDate = type = "";
 
-				var $this = $(this),
-					transId = $this.attr("tid"),
-					fromDate = fromDate,
-					toDate = toDate,
-					type = type,
-					params = "?transid=" + transId +
-						"&fromdate=" + fromDate +
-						"&toDate=" + toDate +
-						"&type=" + type;
+			if (typeof ($("#fromDate").val()) !== 'undefined') {
+				fromDate = $("#fromDate").val();
+			}
+			if (typeof ($("#toDate").val()) !== 'undefined') {
+				toDate = $("#toDate").val();
+			}
+			if (typeof ($("#type").val()) !== 'undefined') {
+				type = $("#type").val();
+			}
 
-				var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
+			var $this = $(this),
+				transId = $this.attr("tid"),
+				fromDate = fromDate,
+				toDate = toDate,
+				type = type,
+				params = "?transid=" + transId +
+					"&fromdate=" + fromDate +
+					"&toDate=" + toDate +
+					"&type=" + type;
 
-				var width = 450, height = 450;
-				APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params)
-										, title, { width: width, height: height });
+			var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
 
-			});
-		}
+			APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
+				title, { width: 450, height: 450, modal: false });
+
+			return false;
+		});
 
 		if (submit.length > 0) {
 			submit.click(function () {
@@ -251,7 +250,7 @@ if (typeof jQuery != "undefined") {
 
 			if (type == "report") {
 				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
-                    + '&fromDate=' + fromDate + "&toDate=" + toDate);
+					+ '&fromDate=' + fromDate + "&toDate=" + toDate);
 				location.href = url;
 			}
 			else {
