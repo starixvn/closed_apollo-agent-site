@@ -29,7 +29,7 @@
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
             });
 
-            $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);            
+            $("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
         },
 
         // View betlist page from report Outstanding
@@ -37,7 +37,7 @@
             var username = $(this).closest('tr').children('td:first').text();
             location.href = APOLLO.resolveUrl("_BetList/BetListOnMember.aspx?custId=" + $(this).attr("data-custid") + "&username=" + username + "&mainShareHolderId=" + $(this).attr("mainShareHolderId") + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername"));
         },
-               
+
         initGrid: function (outstandingData) {
             var bodyData = [];
             var footerData = [];
@@ -100,6 +100,8 @@
             };
             $("#agentOutstanding").hide();
             $("#gridId").fanexGrid(gridOption);
+            $("#navigationAgent").hide();
+            $("#navigationMember").show();
         }
     };
 } (jQuery);
