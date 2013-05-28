@@ -61,6 +61,22 @@ namespace Apollo.Age.Web
             base.OnActionExecuting(filterContext);
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+
+            try
+            {               
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {               
+               Response.Redirect(ApoURLs.URLs.Error + "?err=404");              
+            }
+           
+        }
+
+
+
         private void SetCulture(string language)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
