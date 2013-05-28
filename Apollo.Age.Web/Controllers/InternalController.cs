@@ -168,7 +168,7 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
-                User user = _userService.AgentLoginByUsername(model.Agent);
+                User user = _userService.InternalGetAgentByUsername(model.Agent);
 
                 if (user != null) // continue sign-in process
                 {
