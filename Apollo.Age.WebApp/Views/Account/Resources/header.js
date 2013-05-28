@@ -61,7 +61,6 @@ AGE.prototype.Scrolling = function () {
 var timeOutId;
 
 function PrivateMsgLink(url) {
-
     var open = "(",
         close = ")";
     var countText = document.getElementById('privateMsgLnk').innerHTML;
@@ -88,7 +87,6 @@ function UpdateCountPrivateMsg() {
         dataType: 'JSON',
         success: completeCountPrivateMsg,
         error: function (xhr, status, err) {
-
         }
     });
 }
@@ -104,7 +102,6 @@ function GetMessages() {
         // unread_private_messages:'0'
         //}
         try {
-
             var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
             var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
             var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
@@ -160,7 +157,6 @@ function GetMessages() {
         dataType: 'JSON',
         success: completedGetMessages,
         error: function (xhr, status, err) {
-
         }
     });
 }
@@ -258,10 +254,8 @@ function HideTooltipIntroNickname() {
 
 // Start up
 function InitHeader() {
-    setTimeout(function () { GetMessages(); HEADER.init(); }, 100);    
+    setTimeout(function () { GetMessages(); HEADER.init(); }, 100);
 }
-
-
 
 // Change to message page
 function Change2Menu(url) {
@@ -326,7 +320,7 @@ var HEADER = function ($) {
     return {
         init: function () {
             if (DEFAULTS.IsInternalLogin) {
-                setInterval("HEADER.reCheckIn()", 30000);
+                setTimeout(function () { HEADER.reCheckIn(); }, 30000);
             }
         },
         reCheckIn: function () {
@@ -342,6 +336,9 @@ var HEADER = function ($) {
                     if (result.isKickout) {
                         alert(LANGUAGES.AlerSignonMessage);
                         APOLLO.signOut();
+                    }
+                    else {
+                        setTimeout(function () { HEADER.reCheckIn(); }, 30000);
                     }
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
