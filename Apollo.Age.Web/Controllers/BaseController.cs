@@ -9,6 +9,7 @@
 //   <change who="Lewis" date="2013.4.10">Added RequestIP property</change>
 //   <change who="Anders.Le" date="2013.5.2">Modify Current Session, change it to readonly</change>
 //   <change who="Anders.Le" date="2013.5.2">Check whether request is authenticated</change>
+//   <change who="Terry.Nguyen" date="2013.5.28">Handle unknow action</change>
 // </history>
 
 namespace Apollo.Age.Web
@@ -60,6 +61,22 @@ namespace Apollo.Age.Web
 
             base.OnActionExecuting(filterContext);
         }
+
+        protected override void HandleUnknownAction(string actionName)
+        {
+
+            try
+            {               
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {               
+               Response.Redirect(ApoURLs.URLs.Error + "?err=404");              
+            }
+           
+        }
+
+
 
         private void SetCulture(string language)
         {

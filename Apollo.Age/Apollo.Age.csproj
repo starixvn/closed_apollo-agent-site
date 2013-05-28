@@ -63,7 +63,7 @@
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalLogoutCriteria.cs" />
     <Compile Include="Criterias\InternalReCheckinCriteria.cs" />
-    <Compile Include="Criterias\LoginByUsernameCriteria.cs" />
+    <Compile Include="Criterias\InternalGetAgentByUsernameCriteria.cs" />
     <Compile Include="Criterias\InternalLogLoginCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />

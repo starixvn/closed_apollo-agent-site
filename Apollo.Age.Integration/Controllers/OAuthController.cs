@@ -140,7 +140,7 @@ namespace Apollo.Age.Integration.Controllers
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
-            Task.Factory.StartNew(() =>
+            Task task = Task.Factory.StartNew(() =>
             {
                 DeviceDetection deviceService = new DeviceDetection(Request);
                 _userService.WriteLogInternalLogin(
@@ -156,6 +156,15 @@ namespace Apollo.Age.Integration.Controllers
                     deviceService.CountryCode
                     );
             });
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                LogService.Error(ex.Message);
+                throw ex.Flatten();            
+            }
         }
     }
 }

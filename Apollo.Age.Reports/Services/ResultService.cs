@@ -31,7 +31,8 @@ namespace Apollo.Age.Reports.Services
         {
             var sports = GetData<Sport>(new ResultGetSportCriteria
              {
-                 EventDate = date
+                 EventDate = date,
+                 BalanceUpDay = GetBalanceUpDay()
              });
 
             return sports;
@@ -43,7 +44,8 @@ namespace Apollo.Age.Reports.Services
             {
                 EventDate = eventDate,
                 SportType = sportType,
-                IsShowAll = isSowTestData
+                IsShowAll = isSowTestData,
+                BalanceUpDay = GetBalanceUpDay()
             });
 
             return leagues;
@@ -56,7 +58,8 @@ namespace Apollo.Age.Reports.Services
                         EventDate = date,
                         SportId = sportType,
                         LeagueId = leagueId,
-                        Language = language
+                        Language = language,
+                        BalanceUpDay = GetBalanceUpDay()
                     };
 
             var matchResult = GetData<MatchResultModel>(criteria);
@@ -70,10 +73,17 @@ namespace Apollo.Age.Reports.Services
             {
                 FromDate = fromDate,
                 ToDate = toDate,
-                IsShowAll = true
+                IsShowAll = true,
+                BalanceUpDay = GetBalanceUpDay()  
             };
+            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), toDate.ToString("yyyyMMdd"));
+            var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
-            var result = GetData<OutrightResultModel>(criteria);
+            if (result == null)
+            {
+                result =  GetData<OutrightResultModel>(criteria);
+                CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
+            }           
 
             return result;
         }

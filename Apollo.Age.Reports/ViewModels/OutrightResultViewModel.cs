@@ -31,6 +31,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public byte SportId { get; set; }
 
+        public IEnumerable<OutrightResultModel> OutrightResult { get; set; }
+
         public IEnumerable<Sport> SportList
         {
             get
@@ -67,9 +69,7 @@ namespace Apollo.Age.Reports.ViewModels
 
                 return listLeague;
             }
-        }
-
-        public IEnumerable<OutrightResultModel> OutrightResult { get; set; }
+        }               
 
         public IEnumerable<SelectListItem> SportSelectListItem
         {
