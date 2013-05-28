@@ -146,14 +146,14 @@ namespace Apollo.Age.Services.Impl
         }
 
 
-        public User AgentLoginByUsername(string username)
+        public User InternalGetAgentByUsername(string username)
         {
             User user = null;
             Check.Argument.IsNotNull(username, "username");
 
             try
             {
-                user = _userRepository.Get(new LoginByUsernameCriteria
+                user = _userRepository.Get(new InternalGetAgentByUsernameCriteria
                 {
                     Username = username
                 });

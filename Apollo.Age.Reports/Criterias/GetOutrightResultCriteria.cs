@@ -11,13 +11,16 @@ namespace Apollo.Age.Reports.Criterias
 {
     using System;
     using Fanex.NAP.Framework.Data;
+    using Fanex.NAP.Framework;
 
     public class GetOutrightResultCriteria : CriteriaBase
     {
-        public DateTime FromDate { get; set; }
-
+        public DateTime FromDate { get; set; }                
         public DateTime ToDate { get; set; }
 
+        [SpParam(Ignored=true)]
+        public DateTime BalanceUpDay { get; set; }
+       
         public bool IsShowAll { get; set; }
 
         public override string GetSettingKey()
@@ -27,7 +30,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return this.FromDate <= ToDate;
+            return (FromDate <= DateTime.Now && FromDate >= BalanceUpDay) && (ToDate <= DateTime.Now && ToDate >= BalanceUpDay) && (FromDate <= ToDate);
         }
     }
 }
