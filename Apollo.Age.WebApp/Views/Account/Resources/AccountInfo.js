@@ -146,6 +146,11 @@ var ACCOUNT = function ($) {
                     ACCOUNT.ddlAgents.fadeOut('fast');
                 }
             });
+
+            // add loading image
+            $('.lnk-setting').on('click', function () {
+                parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+            });
         },
 
         showSectionTab: function (tabId, agentId) {
