@@ -21,7 +21,7 @@ namespace Apollo.Age.Services.Interface
         
         User GetUserByUsername(string username);
 
-        User AgentLoginByUsername(string username);
+        User InternalGetAgentByUsername(string username);
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database

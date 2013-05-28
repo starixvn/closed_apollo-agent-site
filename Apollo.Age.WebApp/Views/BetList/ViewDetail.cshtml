@@ -24,7 +24,7 @@
                 </th>
             </tr>
         </thead>
-        @if (tickets.Count > 0)
+        @if (tickets != null && tickets.Any())
         {
             <tbody>
                 @foreach (var ticket in tickets)

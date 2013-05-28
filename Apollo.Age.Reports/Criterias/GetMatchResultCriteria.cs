@@ -30,6 +30,9 @@ namespace Apollo.Age.Reports.Criterias
         [SpParam(SqlParamName = "IsShowAll")]
         public bool IsTest { get; set; }
 
+        [SpParam(Ignored=true)]
+        public DateTime BalanceUpDay { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Result_MatchSelByLeague";
@@ -37,7 +40,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return this.EventDate <= DateTime.Now;
+            return this.EventDate <= DateTime.Now && this.EventDate >= BalanceUpDay;
         }
     }
 }

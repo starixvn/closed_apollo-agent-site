@@ -18,7 +18,7 @@ namespace Apollo.Age.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LoginByUsernameCriteria : CriteriaBase
+    public class InternalGetAgentByUsernameCriteria : CriteriaBase
     {
         public string Username { get; set; }
 

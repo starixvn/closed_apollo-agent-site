@@ -141,10 +141,7 @@ namespace Apollo.Age.Web
             var result = false;
             if (SessionManager.CurrentSession != null)
             {
-                if (AppSettings.MultipleSignOn)
-                {
-                    result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
-                }
+                result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
             }
 
             return Json(new
@@ -171,7 +168,7 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
-                User user = _userService.AgentLoginByUsername(model.Agent);
+                User user = _userService.InternalGetAgentByUsername(model.Agent);
 
                 if (user != null) // continue sign-in process
                 {
