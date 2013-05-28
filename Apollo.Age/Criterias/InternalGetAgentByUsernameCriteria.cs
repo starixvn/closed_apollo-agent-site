@@ -1,14 +1,13 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentGetStatusCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="LoginByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.5.22">Created</change>
 // </history>
 
-
-namespace Apollo.Age.Criterias.Accounts
+namespace Apollo.Age.Criterias
 {
     using System;
     using System.Collections.Generic;
@@ -19,20 +18,18 @@ namespace Apollo.Age.Criterias.Accounts
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class AgentGetStatusCriteria : CriteriaBase
+    public class InternalGetAgentByUsernameCriteria : CriteriaBase
     {
-        public int AgentId { get; set; }
-
-        public int AgentUserId { get; set; }
-
-        public override bool IsValid()
-        {
-            return true;
-        }
+        public string Username { get; set; }
 
         public override string GetSettingKey()
         {
-            return "AgentAdmin_Age_Agent_GetStatus";
+            return "Age_Agent_GetByUserName";
+        }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrWhiteSpace(Username);
         }
     }
 }

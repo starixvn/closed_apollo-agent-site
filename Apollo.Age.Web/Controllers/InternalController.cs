@@ -30,12 +30,12 @@ namespace Apollo.Age.Web
     {
         #region Const
 
-        private const string APOLLOSESSIONCAPTCHA = "ApolloCaptcha";
-        private const string ALLOWUPDATE = "AllowUpdate";
-        private const string LANGUAGE = "Language";
-        private const string ADMINNAME = "AdminName";
-        private const string ADMINID = "AdminId";
-        private const int SERVERID = 2;
+        private const string ApolloSessionCaptcha = "ApolloCaptcha";
+        private const string AllowUpdate = "AllowUpdate";
+        private const string Language = "Language";
+        private const string AdminName = "AdminName";
+        private const string AdminId = "AdminId";
+        private const int ServerId = 2;
 
         #endregion Const
 
@@ -85,7 +85,7 @@ namespace Apollo.Age.Web
             {
                 #region if captcha is null or incorrect then return View with captcha error message
 
-                var captcha = Session[APOLLOSESSIONCAPTCHA];
+                var captcha = Session[ApolloSessionCaptcha];
                 if (model.Username != "pgmedward" && (captcha == null || captcha.ToString() != model.Captcha))
                 {
                     ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
@@ -107,9 +107,9 @@ namespace Apollo.Age.Web
 
                 if (napUserIsValid) // redirect to SelectAccount page
                 {
-                    TempData[LANGUAGE] = model.Language;
-                    TempData[ADMINNAME] = model.Username;
-                    TempData[ADMINID] = _AdminId;
+                    TempData[Language] = model.Language;
+                    TempData[AdminName] = model.Username;
+                    TempData[AdminId] = _AdminId;
 
                     //Write log
                     //ActionId: 700 - Login successful
@@ -154,12 +154,12 @@ namespace Apollo.Age.Web
         public ActionResult SelectAccount()
         {
             // admin name must exist to continue the sign-in process
-            if (TempData[ADMINNAME] == null)
+            if (TempData[AdminName] == null)
             {
                 return Redirect(FormsAuthentication.LoginUrl);
             }
 
-            return View(new SelectAccountViewModel { Language = TempData[LANGUAGE].ToString(), AdminId = Convert.ToInt32(TempData[ADMINID]), AdminName = TempData[ADMINNAME].ToString() });
+            return View(new SelectAccountViewModel { Language = TempData[Language].ToString(), AdminId = Convert.ToInt32(TempData[AdminId]), AdminName = TempData[AdminName].ToString() });
         }
 
         [HttpPost]
@@ -168,7 +168,7 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
-                User user = _userService.AgentLoginByUsername(model.Agent);
+                User user = _userService.InternalGetAgentByUsername(model.Agent);
 
                 if (user != null) // continue sign-in process
                 {
@@ -222,7 +222,7 @@ namespace Apollo.Age.Web
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
-                    SERVERID,
+                    ServerId,
                     actionId,
                     doing,
                     deviceService.ClientIp,
@@ -249,7 +249,7 @@ namespace Apollo.Age.Web
             int captcha = rand.Next(1000, 9999);
 
             // saves answer
-            Session[APOLLOSESSIONCAPTCHA] = captcha.ToString();
+            Session[ApolloSessionCaptcha] = captcha.ToString();
 
             FileContentResult img = null; // image stream
 

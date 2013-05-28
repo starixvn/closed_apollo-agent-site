@@ -71,7 +71,7 @@ var Log = function ($) {
                 }
 
             });
-           
+
             // go to the top
             Log.btnGoTop.click(function () {
                 $("html, body").animate({ scrollTop: 0 }, 100);
@@ -142,4 +142,7 @@ $(document).ready(function () {
     $('.monpickr-selected-month').width(60);
     $('.daypickr-selected-day').width(20);
     $('.monpickr-dropdown').width(105);
+    $('#dSubmit').on('click', function () {
+        $.blockUI();       
+    });
 });

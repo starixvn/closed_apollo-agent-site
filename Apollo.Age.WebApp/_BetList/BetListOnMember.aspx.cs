@@ -26,6 +26,7 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
+    using Apollo.Age.WebApp._BetList;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
@@ -35,7 +36,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Apollo.Age.WebApp._BetList;
 
     public partial class BetListOnMember : TplPage
     {
@@ -46,11 +46,11 @@ namespace Sunplus.Agent.UI._BetList
 
         private int custid;
         private string username = string.Empty;
-        private DateTime fromDate, toDate, balanceUpDay, moveBetsDay;
+        private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
         private string mainShareHolderId, mainShareHolderUsername;
-
+        ReportService reportService = new ReportService();
         #endregion Variables
 
         #region Override
@@ -172,7 +172,6 @@ namespace Sunplus.Agent.UI._BetList
         public override void ProcessRequest(ref System.Collections.Hashtable hash)
         {
             pageType = GetStringRequest("type", string.Empty).ToLower();
-
             if (pageType.Equals("accountinfo"))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
@@ -203,11 +202,11 @@ namespace Sunplus.Agent.UI._BetList
             }
 
             int.TryParse(Request["custid"], out custid);
-            var reportService = new ReportService();
+
 
             username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
-            moveBetsDay = reportService.MoveBetsDay();
+            moveBetsDay = minDate = reportService.MoveBetsDay();
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
@@ -244,10 +243,16 @@ namespace Sunplus.Agent.UI._BetList
 
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
+            var maxDate = DateTime.Now;
             if (string.IsNullOrEmpty(Request["custid"]) && string.IsNullOrEmpty(Request["username"]))
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
+            if (pageType.Equals("accountinfo") && (fromDate < minDate || toDate < minDate || toDate > maxDate))
+            {
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
+            }
+
             return null;
         }
 

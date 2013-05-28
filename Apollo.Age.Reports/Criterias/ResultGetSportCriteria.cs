@@ -19,6 +19,9 @@ namespace Apollo.Age.Reports.Criterias
     {
         public DateTime EventDate { get; set; }
 
+        [SpParam(Ignored=true)]
+        public DateTime BalanceUpDay { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Result_SportSelByDate";
@@ -26,7 +29,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return EventDate <= DateTime.Now;
+            return EventDate <= DateTime.Now && EventDate >= BalanceUpDay;
         }
     }
 }

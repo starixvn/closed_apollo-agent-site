@@ -22,7 +22,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return true;
+            return RefNo > 0;
         }
     }
 }

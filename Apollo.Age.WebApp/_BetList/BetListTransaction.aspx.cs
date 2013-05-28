@@ -23,6 +23,9 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
+    using Apollo.Age.WebApp;
+    using Apollo.Age.WebApp._BetList;
+    using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
     using Fanex.BetList.Age.BetListHTMLBuilderExt;
     using Fanex.BetList.Age.Definition;
@@ -31,9 +34,6 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Apollo.Age.WebApp._BetList;
-    using Fanex.Age.UI;
-    using Apollo.Age.WebApp;
 
     public partial class BetListTransaction : TplPage
     {
@@ -282,8 +282,8 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-            fromDate = GetDateTimeRequest("fromDate", DateTime.Now);
-            toDate = GetDateTimeRequest("toDate", DateTime.Now);
+            fromDate = GetDateTimeRequest("fromDate", maxDate);
+            toDate = GetDateTimeRequest("toDate", maxDate);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
             userType = GetBooleanRequest("userType", true);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);
@@ -299,6 +299,12 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
+
+            if (fromDate < minDate || toDate < minDate || toDate > maxDate)
+            {
+                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
+            }
+
             return null;
         }
 
