@@ -72,8 +72,14 @@ namespace Apollo.Age.Reports.Services
                 ToDate = toDate,
                 IsShowAll = true
             };
+            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), toDate.ToString("yyyyMMdd"));
+            var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
-            var result = GetData<OutrightResultModel>(criteria);
+            if (result == null)
+            {
+                result =  GetData<OutrightResultModel>(criteria);
+                CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
+            }           
 
             return result;
         }
