@@ -69,12 +69,6 @@
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
-    <Compile Include="DTO\Accounts\AgentStatus.cs" />
-    <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
-    <Compile Include="DTO\Admin\ExchangeRate\ExchRate.cs" />
-    <Compile Include="DTO\Reports\OutStandingReportDTO.cs" />
-    <Compile Include="DTO\Reports\WinlossAgentDTO.cs" />
-    <Compile Include="DTO\Reports\WinLossByBetTypeDTO.cs" />
     <Compile Include="Entities\Agent.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\EntityBase.cs" />
