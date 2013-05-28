@@ -118,6 +118,8 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Error/Resources/Unauthorized.js"));
+
+            bundles.FileSetOrderList.Clear();
         }
     }
 }

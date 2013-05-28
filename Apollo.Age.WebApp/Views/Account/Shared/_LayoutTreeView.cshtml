@@ -10,6 +10,7 @@
     
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
+	@Html.Partial("_ApoRes")
     @Scripts.Render("~/scripts/treeviewjs")
     @RenderSection("foot", required: false)
 </body>

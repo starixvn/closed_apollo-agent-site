@@ -790,10 +790,8 @@
     <Content Include="Views\Account\Resources\ViewSetting.less" />
     <Content Include="Views\Account\Shared\_CustSettingLayout.cshtml" />
     <Content Include="Views\Account\Shared\_Layout.cshtml" />
-    <None Include="Views\Account\Shared\_Layout.cshtml.orig" />
     <Content Include="Views\Account\Shared\_LayoutAccountList.cshtml" />
     <Content Include="Views\Account\Shared\_LayoutLogLogin.cshtml" />
-    <None Include="Views\Account\Shared\_LayoutLogLogin.cshtml.orig" />
     <Content Include="Views\Account\Shared\_LayoutTreeView.cshtml" />
     <Content Include="Views\Account\Shared\_ViewSettingLayout.cshtml" />
     <Content Include="Views\Account\TopBar.cshtml" />
@@ -1006,6 +1004,7 @@
     <Content Include="_GlobalResources\Css\calendar.less" />
     <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Shared\_ApoRes.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

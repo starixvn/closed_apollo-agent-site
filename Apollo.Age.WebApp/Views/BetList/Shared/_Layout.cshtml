@@ -13,6 +13,7 @@
 <body>
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
+	@Html.Partial("_ApoRes")
     @RenderSection("scripts", required: false)
 </body>
 </html>

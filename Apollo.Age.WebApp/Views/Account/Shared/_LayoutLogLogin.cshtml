@@ -15,6 +15,7 @@
         </div>
     </div>   
     @Html.Hidden("ApoRoot", Url.Content("~/"))
+	@Html.Partial("_ApoRes")
     @Scripts.Render("~/scripts/logloginjs")
     @RenderSection("foot", required: false)
 </body>

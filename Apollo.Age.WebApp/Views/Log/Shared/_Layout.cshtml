@@ -17,7 +17,8 @@
             @RenderBody()
         </div>
     </div>
-    @Html.Hidden("ApoRoot", Url.Content("~/"))   
+    @Html.Hidden("ApoRoot", Url.Content("~/")) 
+	@Html.Partial("_ApoRes")  
     @Scripts.Render("~/scripts/logjs")
     @RenderSection("foot", required: false)
 </body>

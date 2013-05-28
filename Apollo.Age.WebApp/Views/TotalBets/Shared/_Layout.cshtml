@@ -26,9 +26,8 @@
 		</div>
 	</div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	
-	@Scripts.Render("~/scripts/totalbetsjs")
-	
+	@Html.Partial("_ApoRes")
+	@Scripts.Render("~/scripts/totalbetsjs")	
 	<script type="text/javascript">
 		var DEFAULT_LAYOUT = function(){
 			return {

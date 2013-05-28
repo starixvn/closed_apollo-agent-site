@@ -17,6 +17,7 @@
 		</div>
 	</div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
+	@Html.Partial("_ApoRes")
 	@Scripts.Render("~/scripts/messagejs")
 	@RenderSection("foot", required: false)
 </body>
