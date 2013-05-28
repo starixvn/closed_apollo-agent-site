@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="Criterias\Accounts\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalLogoutCriteria.cs" />
     <Compile Include="Criterias\InternalReCheckinCriteria.cs" />
@@ -68,10 +68,6 @@
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
-    <Compile Include="Criterias\Reports\AgentWinlossCriteria.cs" />
-    <Compile Include="Criterias\Reports\OutStandings\AgentOutStandingCriteria.cs" />
-    <Compile Include="Criterias\Reports\OutStandings\MemberOutStandingCriteria.cs" />
-    <Compile Include="Criterias\Reports\OutStandings\OutStandingCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="DTO\Accounts\AgentStatus.cs" />
     <Compile Include="DTO\Accounts\TreeViewNodeDTO.cs" />
