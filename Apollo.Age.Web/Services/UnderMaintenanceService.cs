@@ -22,8 +22,7 @@ namespace Apollo.Age.Web.Services
     using Sunplus.UMControllerLibrary;
 
     public class UnderMaintenanceService : ServiceBase
-    {
-        private const int CacheTimeOut = 1; // 1 minute
+    {        
         private const int WaitInterval = 1000; // 1 second
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
 
@@ -40,7 +39,7 @@ namespace Apollo.Age.Web.Services
         {
             get
             {
-                var maintenanceInfo = this.cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);
+                var maintenanceInfo = CachingService.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);                    
                 if (maintenanceInfo == null)
                 {
                     if (mutext.WaitOne(WaitInterval))
@@ -48,7 +47,7 @@ namespace Apollo.Age.Web.Services
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            this.cacheManager.Set(MaintenanceCacheKey, maintenanceInfo, DateTime.Now.AddMinutes(CacheTimeOut));
+                            CachingService.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));                                
                         }
                         catch
                         {

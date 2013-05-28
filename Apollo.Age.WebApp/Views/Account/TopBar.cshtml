@@ -47,7 +47,8 @@
         <script src="~/views/account/resources/header.js" type="text/javascript"></script>
         <script type="text/javascript">
 		     var DEFAULTS = {
-		         IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower()   
+		         IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
+                 IsMultipleSignOn: @Apollo.Age.Configurations.AppSettings.MultipleSignOn.ToString().ToLower()
                          
              };
 			 var LANGUAGES = {

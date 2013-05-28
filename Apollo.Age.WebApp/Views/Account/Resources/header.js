@@ -319,7 +319,7 @@ function SelectTopMenu(url) {
 var HEADER = function ($) {
     return {
         init: function () {
-            if (DEFAULTS.IsInternalLogin) {
+            if (DEFAULTS.IsInternalLogin && DEFAULTS.IsMultipleSignOn) {
                 setTimeout(function () { HEADER.reCheckIn(); }, 30000);
             }
         },
