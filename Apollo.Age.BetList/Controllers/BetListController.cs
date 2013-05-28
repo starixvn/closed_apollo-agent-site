@@ -58,6 +58,7 @@ namespace Apollo.Age.BetList.Controllers
             var betListService = new BetListService();
             var balanceUpDay = this.reportService.GetBalanceUpDay();
             var moveBetsDay = this.reportService.MoveBetsDay();
+            var viewModel = new BetListViewModel();
 
             var criteria = new BetListCriteria
             {
@@ -68,20 +69,20 @@ namespace Apollo.Age.BetList.Controllers
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
+            if (criteria.IsValid())
+            {
+                if (type.ToLower().Equals("report"))
+                {
+                    listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
+                }
+                else
+                {
+                    listAgentComm = betListService.GetDetailAgentComm(criteria);
+                }
 
-            if (type.ToLower().Equals("report"))
-            {
-                listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
-            }
-            else
-            {
-                listAgentComm = betListService.GetDetailAgentComm(criteria);
+                viewModel.ListAgentComm = this.Ticket(listAgentComm);
             }
 
-            var viewModel = new BetListViewModel()
-            {
-                ListAgentComm = this.Ticket(listAgentComm)
-            };
             return this.View(viewModel);
         }
 
