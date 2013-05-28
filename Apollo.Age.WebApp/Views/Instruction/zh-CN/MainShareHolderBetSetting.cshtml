@@ -1,16 +1,16 @@
-@{
+﻿@{
 	Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
 }
 <div class="instruction-content">
 	<p>
-		Min Bet, Max Bet and Max Per Match for each product (Sport type) are defined here. In Simple mode, settings applied to Soccer will be applied to other products as well.
+		在此定义每一种运动类型的最小下注金额, 最大下注金额和每场球赛最大投注金额.在简易的模式下, 足球的设定应用将被应用到其他运动.
 	</p>
 	<ul>
-		<li>Min Bet: the minimum stake allowed on a bet.</li>
-		<li>Max Bet: the maximum stake allowed on a bet.</li>
-		<li>Max Per Match: the maximum stake allowed on a match.</li>
+		<li>最小下注额: 允许一注的最小赌金.">= X" 表示输入必须大于X.</li>
+		<li>最大下注额: 允许一注的最大赌金. "<= X"表示输入必须小于X.</li>
+		<li>每场最大投注额: 允许一场的最大赌金. "<= X"表示输入必须小于X.</li>
 	</ul>
 	<p>
-		<span class="note">Note:</span> decimal numbers are not allowed. For instance, 100.25 is an invalid input.
+		<span class="note">批注:</span> 不允许有小数点. 例如,100.25是一个无效的输入.
 	</p>
 </div>
