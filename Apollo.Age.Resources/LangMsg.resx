@@ -178,6 +178,6 @@
     <value>Aust Harness Bet Setting is updated successfully</value>
   </data>
   <data name="ValidateFromToDate" xml:space="preserve">
-    <value>The From date must be greater than the To date</value>
+    <value>The From date must be less than the To date</value>
   </data>
 </root>
