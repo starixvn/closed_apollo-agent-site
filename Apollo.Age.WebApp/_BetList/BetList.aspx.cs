@@ -228,7 +228,10 @@ namespace Sunplus.Agent.UI._BetList
                 mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
                 if (mainShareHolderId == 0)
                 {
-                    mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                    if (mainShareHolders != null && mainShareHolders.Any())
+                    {
+                        mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                    }
                 }
                 else
                 {
