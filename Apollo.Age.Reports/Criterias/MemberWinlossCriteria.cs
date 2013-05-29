@@ -29,7 +29,8 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return (FromDate <= DateTime.Now && ToDate <= DateTime.Now && FromDate <= ToDate && ToDate.AddMonths(-3) < FromDate);
+            var minDate = DateTime.Now.Date.AddMonths(-3);
+            return (FromDate <= DateTime.Now && ToDate <= DateTime.Now && FromDate <= ToDate && minDate <= FromDate);
         }
     }
 }
