@@ -153,6 +153,41 @@
       <DependentUpon>LangMsg.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewlog.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.ko-KR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.th-TH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.th-TH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.vi-VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.vi-VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewlog.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viewlog.zh-TW.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BetList.ja-JP.resx">
@@ -252,13 +287,34 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Viewlog.ja-JP.resx.exclude" />
-    <None Include="Viewlog.ko-KR.resx.exclude" />
-    <None Include="Viewlog.resx.exclude" />
-    <None Include="Viewlog.th-TH.resx.exclude" />
-    <None Include="Viewlog.vi-VN.resx.exclude" />
-    <None Include="Viewlog.zh-CN.resx.exclude" />
-    <None Include="Viewlog.zh-TW.resx.exclude" />
+    <EmbeddedResource Include="Viewlog.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewlog.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Viewlog.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
