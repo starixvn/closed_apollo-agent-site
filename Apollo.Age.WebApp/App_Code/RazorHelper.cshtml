@@ -141,13 +141,14 @@
     <div id="main-shareholder-box" class="box-header">
         <div class="row">
             <div class="cell">
+             @{
+                        if (mainShareHolders != null && mainShareHolders.Any())
+                        {
                 <div class="label">
                     <label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder</label>
                 </div>
                 <div class="editor">
-                    @{
-                        if (mainShareHolders != null && mainShareHolders.Any())
-                        {
+                   
                         <select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
                             @{
                             var selectedString = string.Empty;
@@ -165,9 +166,11 @@
                             }
                             }
                         </select>
-                        }
-                    }
+                        
+                    
                 </div>
+                 }
+                 }
             </div>
         </div>
     </div>
