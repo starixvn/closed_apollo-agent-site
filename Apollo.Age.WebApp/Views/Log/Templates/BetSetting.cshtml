@@ -4,8 +4,7 @@
 @using System.Resources
 @model Dictionary<string, BetSettingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
-{
-    var isShowOld = (bool)ViewBag.IsShowOldValue;
+{   
     var xmlBetSetting = (XDocument)ViewBag.Template;
 
     var itemBetSetting = xmlBetSetting.Descendants("Name");
@@ -36,16 +35,16 @@
             var item = Model[key];
             <tr>
                 <td class="colW">
-                    @GetResource(resourcekey)
+                    @Html.Resource(resourcekey)
                 </td>
                 <td class="colW2">
-                    @ToString(isShowOld, item.OldMinBet, item.MinBet)
+                    @ToString(item.OldMinBet, item.MinBet)
                 </td>
                 <td class="colW2">
-                    @ToString(isShowOld, item.OldMaxBet, item.MaxBet)
+                    @ToString(item.OldMaxBet, item.MaxBet)
                 </td>
                 <td class="colW2">
-                    @ToString(isShowOld, item.OldMaxPerMatch, item.MaxPerMatch)
+                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
                 <td class="colW2">
                 </td>
@@ -55,24 +54,18 @@
         }
     </table>
 }
-@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+@helper ToString(decimal oldValue, decimal newValue)
     {
         string strOld = Math.Round(oldValue, 0).ToString("#,#");
         string strNew = Math.Round(newValue, 0).ToString("#,#");
 
         if (oldValue != newValue)
-        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
-            if (isShowOld)
-            {
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>
     <span>| </span><span class="valueold">@strOld</span>
-            }
+            
         }
         else
         { <span class="valueold">@strOld</span>
         }            
-}
-@helper GetResource(string key)
-    {
-        string str = (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);   
-    @str  
 }

@@ -52,7 +52,6 @@
                     <input type="submit" class="btn" id="dSubmit" value="@Lang.submit"/>
                 </div>
             </div>
-            
         </div>
     </div>
     <div class="show-old-value">
@@ -99,21 +98,16 @@
                         <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
-                        @switch (itemLog.ActionTypeId)
-                        {
-                            case Constants.LogActionDiscount:
-                                actionName += Lang.lblCommission;
-                                break;
-                            case Constants.LogActionBetSetting:
-                                actionName += Lang.lblBetSetting;
-                                break;
-                            case Constants.LogActionPositionTaking:
-                                actionName += Lang.lblShareSetting;
-                                break;
-                        }
-                        @actionName
+                        @Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))
                     </td>
-                    <td class="message_content">@Html.Raw(itemLog.GetContent(Model.ShowOldValue, agentLevel, Model.IsAgent))
+                    <td class="message_content">
+                        @{Html.RenderPartial(itemLog.ActionTypeId.ToString(), new
+                   {
+                       OldData = itemLog.OldData,
+                       Data = itemLog.Data,
+                       AgentLevel = agentLevel,
+                       IsAgent = Model.IsAgent
+                   });}
                     </td>
                 </tr>
         }
@@ -125,7 +119,8 @@
             }
         </tbody>
     </table>
-    <div id="btn-go-top" class="top-link"><a href="#">@Lang.GoToTop</a></div>
+    <div id="btn-go-top" class="top-link">
+        <a href="#">@Lang.GoToTop</a></div>
 }
 @Html.Hidden("ToDayLable", Lang.to)
 @Html.Hidden("FromDayLable", Lang.from)

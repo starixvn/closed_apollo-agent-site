@@ -1,0 +1,276 @@
+﻿@using System.Xml.Linq
+@using Apollo.Age.Resources
+@{   
+    var oldData = Model.OldData;
+    var data = Model.Data;
+    var oldGroup = string.Empty;
+    var group = string.Empty;
+
+    var list = new List<DiscountModel>();
+
+    if (!string.IsNullOrWhiteSpace(oldData))
+    {
+        var xmlData = XDocument.Parse(oldData);
+        var groupXml = xmlData.Descendants("r");
+
+        foreach (var itemGroup in groupXml)
+        {
+            var discountXml = itemGroup.Descendants("z");
+
+            if (!ReferenceEquals(itemGroup.Attribute("g"), null))
+            {
+                oldGroup = itemGroup.Attribute("g").Value.ToString();
+
+                foreach (var itemDiscount in discountXml)
+                {
+                    var model = new DiscountModel
+                    {
+                        SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
+                        BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
+                        GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value),
+                        OldGroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
+                    };
+
+                    list.Add(model);
+                }
+            }
+            else
+            {
+                foreach (var itemDiscount in discountXml)
+                {
+                    var model = new DiscountModel
+                    {
+                        SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
+                        BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
+                        GroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
+                        OldGroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
+                        GroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
+                        OldGroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
+                        GroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
+                        OldGroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
+                        GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value),
+                        OldGroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
+                    };
+
+                    list.Add(model);
+                }
+            }
+        }
+    }
+
+    if (!string.IsNullOrWhiteSpace(data))
+    {
+        var xmlData = XDocument.Parse(data);
+        var groupXml = xmlData.Descendants("r");
+
+        foreach (var itemGroup in groupXml)
+        {
+            var discountXml = itemGroup.Descendants("z");
+
+            if (!ReferenceEquals(itemGroup.Attribute("g"), null))
+            {
+                group = itemGroup.Attribute("g").Value.ToString();
+
+                foreach (var itemDiscount in discountXml)
+                {
+                    var model = new DiscountModel
+                    {
+                        SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
+                        BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
+                        GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
+                    };
+
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var itemOld = list[i];
+                        if (itemOld.SportType == model.SportType
+                            && itemOld.BetType == model.BetType)
+                        {
+                            list[i].GroupA = model.GroupA;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (var itemDiscount in discountXml)
+                {
+                    var model = new DiscountModel
+                    {
+                        SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
+                        BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
+                        GroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
+                        GroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
+                        GroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
+                        GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
+                    };
+
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var itemOld = list[i];
+                        if (itemOld.SportType == model.SportType
+                            && itemOld.BetType == model.BetType)
+                        {
+                            list[i].GroupA = model.GroupA;
+                            list[i].GroupB = model.GroupB;
+                            list[i].GroupC = model.GroupC;
+                            list[i].GroupD = model.GroupD;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@if (!ReferenceEquals(list, null) && list.Any())
+{
+    if (!string.IsNullOrWhiteSpace(oldGroup) || !string.IsNullOrWhiteSpace(group))
+    {
+    <table class="tblRpt">
+        <tr class="colW bg-gray">
+            <td>
+                @Lang.group
+            </td>
+            <td colspan="2">
+                @Lang.membercomm
+            </td>
+        </tr>
+        <tr>
+            <td class="colW2" rowspan="3">
+                @if (oldGroup != group)
+                { 
+                    <span class="valuechanged">@group</span>
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldGroup</span>
+                  
+                }
+                else
+                { 
+                    <span class="valueold">@oldGroup</span>
+                }
+            </td>
+            <td class="colW">
+                @Lang.lblAsianHDC_OU_OE (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in list)
+                {
+                    if (item.BetType == (int)BetTypes.Handicap)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW">
+                @Lang.lbl1x2Comm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in list)
+                {
+                    if (item.BetType == (int)BetTypes.FT_1X2)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW">
+                @Lang.lblOtherComm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in list)
+                {
+                    if (item.BetType == (int)BetTypes.Correct_Score)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+
+        var groupNormal = new DiscountModel();
+        var group1x2 = new DiscountModel();
+        var groupOthers = new DiscountModel();
+
+        foreach (var item in list)
+        {
+            switch (item.BetType)
+            {
+                case (int)BetTypes.Handicap:
+                    groupNormal = item;
+                    break;
+                case (int)BetTypes.Correct_Score:
+                    groupOthers = item;
+                    break;
+                case (int)BetTypes.FT_1X2:
+                    group1x2 = item;
+                    break;
+            }
+        }
+    
+    <table class="tblRpt">
+        <tr class="no-border-top">
+            <td class="colW">
+                @Lang.lblGroupa (%)
+            </td>
+            <td class="colW2">
+                @ToString(groupNormal.OldGroupA, groupNormal.GroupA)
+            </td>
+            <td class="colW3 left-text">
+                @Lang.lblGroupc (%)
+            </td>
+            <td class="colW2">
+                @ToString(groupNormal.OldGroupC, groupNormal.GroupC)
+            </td>
+            <td class="colW2 left-text">
+                @Lang.lbl1x2Comm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @ToString(group1x2.OldGroupA, group1x2.GroupA)
+            </td>
+        </tr>
+        <tr class="have-border-bottom">
+            <td class="colW3 left-text">
+                @Lang.lblGroupb (%)
+            </td>
+            <td class="colW2">
+                @ToString(groupNormal.OldGroupB, groupNormal.GroupB)
+            </td>
+            <td class="colW3 left-text">
+                @Lang.lblGroupd (%)
+            </td>
+            <td class="colW2">
+                @ToString(groupNormal.OldGroupD, groupNormal.GroupD)
+            </td>
+            <td class="colW2 left-text">
+                @Lang.lblOtherComm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @ToString(groupOthers.OldGroupA, groupOthers.GroupA)
+            </td>
+        </tr>
+    </table>
+    }
+}
+@helper ToString(decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue * 100, 2).ToString();
+        string strNew = Math.Round(newValue * 100, 2).ToString();
+
+        if (oldValue != newValue)
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>           
+    <span>| </span><span class="valueold">@strOld</span>           
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }
+}
