@@ -339,8 +339,8 @@
   <ItemGroup>
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>

@@ -142,7 +142,7 @@ namespace Sunplus.Agent.UI._BetList
             tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
 
-            if (CurrentSession.IsSuper && !isForecast)
+            if (CurrentSession.IsSuper && !isForecast && mainShareHolders.Count() > 0)
             {
                 this.BoxMainShareholder();
             }
@@ -226,12 +226,9 @@ namespace Sunplus.Agent.UI._BetList
             if (CurrentSession.IsSuper)
             {
                 mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
-                if (mainShareHolderId == 0)
+                if (mainShareHolderId == 0 && mainShareHolders.Count() > 0)
                 {
-                    if (mainShareHolders != null && mainShareHolders.Any())
-                    {
-                        mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
-                    }
+                    mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
                 }
                 else
                 {
