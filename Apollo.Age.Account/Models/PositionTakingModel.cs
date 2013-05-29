@@ -10,38 +10,13 @@
 namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Resources;
-    using Apollo.Age.Enumerations;
-    using Apollo.Age.Resources;
-    using Apollo.Age.Services;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class PositionTakingModel
     {
-        public int SportType { get; set; }
+        public int SportType { get; set; }       
 
-        public string SportName
-        {
-            get
-            {
-                if (this.SportType == (int)SportTypes.OtherSports && this.BetType == (int)BetTypes.Mix_Parlay)
-                {
-                    return (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString("mixsports");
-                }
-
-                return CacheRef.GetSportName(this.SportType);
-            }
-        }
-
-        public int BetType { get; set; }
-
-        public string BetName
-        {
-            get
-            {
-                return CacheRef.GetBettype(this.BetType);
-            }
-        }
+        public int BetType { get; set; }       
 
         public bool IsLive { get; set; }
 

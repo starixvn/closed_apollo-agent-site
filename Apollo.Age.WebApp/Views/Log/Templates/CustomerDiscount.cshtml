@@ -4,7 +4,6 @@
 @model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
-    var isShowOld = (bool)ViewBag.IsShowOldValue;
     var oldGroup = (string)ViewBag.OldGroup;
     var group = (string)ViewBag.Group;
     
@@ -21,13 +20,11 @@
             <td class="colW2" rowspan="3">
                 @if (oldGroup != group)
                 { 
-                    <span class="valuechanged">@group</span>                        
-                    if (isShowOld)
-                    {
+                    <span class="valuechanged">@group</span>
                     <div class="line">
                     </div>
                     <span class="valueold">@oldGroup</span>
-                    }
+                  
                 }
                 else
                 { 
@@ -42,7 +39,7 @@
                 {
                     if (item.BetType == (int)BetTypes.Handicap)
                     {
-                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
+                    @ToString(item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
@@ -56,7 +53,7 @@
                 {
                     if (item.BetType == (int)BetTypes.FT_1X2)
                     {
-                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
+                    @ToString(item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
@@ -70,24 +67,22 @@
                 {
                     if (item.BetType == (int)BetTypes.Correct_Score)
                     {
-                    @ToString(isShowOld, item.OldGroupA, item.GroupA);
+                    @ToString(item.OldGroupA, item.GroupA);
                     }
                 }
             </td>
         </tr>
     </table>
 }
-@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+@helper ToString(decimal oldValue, decimal newValue)
     {
         string strOld = Math.Round(oldValue * 100, 2).ToString();
         string strNew = Math.Round(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
-            if (isShowOld)
-            {
-   <span>| </span><span class="valueold">@strOld</span>
-            }
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>            
+    <span>| </span><span class="valueold">@strOld</span>           
         }
         else
         { <span class="valueold">@strOld</span>

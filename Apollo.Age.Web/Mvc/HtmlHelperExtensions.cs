@@ -307,7 +307,6 @@ namespace Apollo.Age.Web.Mvc
 
             return resMgr.GetString(key);
         }
-
         #endregion
     }
 }

@@ -50,7 +50,7 @@ namespace Apollo.Age.Account.Controllers
             int pageIndex = 1)
         {
             IEnumerable<LogRunSpModel> list;
-            List<LogRunSpModel> results = new List<LogRunSpModel>();
+            List<LogRunSpModel> results = new List<LogRunSpModel>();                   
 
             var criteria = new GetLogCustSettingCriteria
             {
@@ -91,5 +91,6 @@ namespace Apollo.Age.Account.Controllers
 
             return View(criteria);
         }
+        
     }
 }

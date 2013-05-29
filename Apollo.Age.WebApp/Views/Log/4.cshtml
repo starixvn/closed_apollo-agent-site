@@ -1,0 +1,285 @@
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
+@using System.Linq
+@using System.Xml.Linq
+@using System.Resources
+@using Fanex.CustSetting.Core
+@{
+    var oldData = Model.OldData;
+    var data = Model.Data;
+    var template = _Configuration.PositionTakingGridConfig;
+    var agentLevel = (int)Model.AgentLevel;
+    var isAgent = (bool)Model.IsAgent;
+
+    var list = new Dictionary<string, PositionTakingModel>();
+
+    if (!string.IsNullOrWhiteSpace(oldData))
+    {
+        var xmlData = XDocument.Parse(oldData);
+        var positionTaking = xmlData.Descendants("z");
+
+        foreach (var item in positionTaking)
+        {
+            if (isAgent)
+            {
+                var model = new PositionTakingModel
+                {
+                    SportType = Convert.ToInt32(item.Attribute("s").Value),
+                    BetType = Convert.ToInt32(item.Attribute("b").Value),
+                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
+                    OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
+                    MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
+                    OldMaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
+                    MinGiven = Convert.ToDecimal(item.Attribute("mi").Value),
+                    OldMinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
+                };
+
+                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                list.Add(key, model);
+            }
+            else
+            {
+                var model = new PositionTakingModel
+                {
+                    SportType = Convert.ToInt32(item.Attribute("s").Value),
+                    BetType = Convert.ToInt32(item.Attribute("b").Value),
+                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
+                    OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
+                };
+
+                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                list.Add(key, model);
+            }
+        }
+    }
+
+    if (!string.IsNullOrWhiteSpace(data))
+    {
+        var xmlData = XDocument.Parse(data);
+        var positionTaking = xmlData.Descendants("z");
+
+        foreach (var item in positionTaking)
+        {
+            if (isAgent)
+            {
+                var model = new PositionTakingModel
+                {
+                    SportType = Convert.ToInt32(item.Attribute("s").Value),
+                    BetType = Convert.ToInt32(item.Attribute("b").Value),
+                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
+                    MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
+                    MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
+                };
+
+                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                if (list.ContainsKey(key))
+                {
+                    list[key].MaxUpper = model.MaxUpper;
+                    list[key].MaxGiven = model.MaxGiven;
+                    list[key].MinGiven = model.MinGiven;
+                }
+            }
+            else
+            {
+                var model = new PositionTakingModel
+                {
+                    SportType = Convert.ToInt32(item.Attribute("s").Value),
+                    BetType = Convert.ToInt32(item.Attribute("b").Value),
+                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
+                };
+
+                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+
+                if (list.ContainsKey(key))
+                {
+                    list[key].MaxUpper = model.MaxUpper;
+                    list[key].MaxGiven = model.MaxGiven;
+                    list[key].MinGiven = model.MinGiven;
+                }
+            }
+        }
+    }    
+}
+@if (!ReferenceEquals(list, null) && list.Any())
+{
+    var itemMixSport = new PositionTakingModel();
+    var xmlSportType = template.Descendants("SportType");
+    var count = 0;
+    
+    <table class="tblRpt">
+        @foreach (var itemSportType in xmlSportType)
+        {
+            var sportId = itemSportType.Attribute("id").Value;
+            var isLive = itemSportType.Attribute("isLive").Value;
+            var resoureKey = itemSportType.Attribute("resourcekey").Value;
+            <tr class="sub-title">
+                <td colspan="6">
+                    @if (sportId == ((int)SportTypes.Soccer).ToString())
+                    {
+                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball;            
+                  
+                        @GetResource(resoureKey, " " + strLive)                    
+                    }
+                    else
+                    {
+                        @GetResource(resoureKey)                
+                    }
+                </td>
+            </tr>   
+                    var xmlBetGroup = itemSportType.Descendants("BetTypeGroup");
+
+                    foreach (var itemBetGroup in xmlBetGroup)
+                    {
+                        var xmlBetType = itemBetGroup.Descendants("BetType");
+            <tr>
+                <td class="colW1">
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    var betResourceKey = itemBet.Attribute("resourcekey").Value;                   
+                    <td class="colW1 @noborder">
+                        @GetResource(betResourceKey)
+                    </td>                            
+                    count++;
+                }
+                @GenerateEmptyColumn(count, "colW1")
+                @{
+                count = 0;
+                }
+            </tr>
+                if (isAgent)
+                {
+            <tr>
+                <td class="colW">
+                    @Lang.lblMaxGivenShare
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = list.ContainsKey(key) ? list[key] : null;
+                    
+                    <td class="colW2 @noborder">
+                        @if (!ReferenceEquals(model, null))
+                        { 
+                            @ToString(model.OldMaxGiven, model.MaxGiven)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
+                }
+            </tr>
+                }
+
+                if (agentLevel != 1)
+                { 
+
+            <tr>
+                <td class="colW">
+                    @if (isAgent)
+                    { 
+                        @Lang.lblMaxTakenShare
+                    }
+                    else
+                    {
+                        @Lang.lblTakenShare
+                    }
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = list.ContainsKey(key) ? list[key] : null;           
+                    <td class="colW2 @noborder">
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            @ToString(model.OldMaxUpper, model.MaxUpper)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
+                }
+            </tr>
+                }
+                if (isAgent)
+                { 
+
+            <tr>
+                <td class="colW">
+                    @Lang.lblMinGivenShare
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = list.ContainsKey(key) ? list[key] : null;           
+                    <td class="colW2 @noborder">
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            @ToString(model.OldMinGiven, model.MinGiven)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
+                }
+            </tr>
+                }
+                    }
+        }
+    </table>
+}
+@helper ToString(decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue / 100, 2).ToString("N");
+        string strNew = Math.Round(newValue / 100, 2).ToString("N");
+
+        if (oldValue != newValue)
+        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
+                     
+    <span>| </span><span class="valueold">@strOld</span>
+           
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
+}
+@helper GetResource(string key, string isLive = "")
+    {
+        string str = Html.Resource(key);    
+    @str @isLive    
+}
+@helper GenerateEmptyColumn(int count, string className = "colW2")
+    {
+        if (count <= 4)
+        {
+            for (int i = count; i < 4; i++)
+            {
+    <td class="@className">
+    </td>
+            }
+    <td class="@className no-border-right">
+    </td>
+        }
+}
