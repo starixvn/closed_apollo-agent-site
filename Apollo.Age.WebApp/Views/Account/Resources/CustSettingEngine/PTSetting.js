@@ -856,6 +856,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         else {
                             informationButton.id = "agent-";
                         }
+                        if (currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                            informationButton.id = "view-" + informationButton.id;
+                        }
                         informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
                         header.appendChild(informationButton);
                         box.appendChild(header);
@@ -1004,6 +1007,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     }
                     else {
                         informationButton.id = "agent-";
+                    }
+                    if (currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                        informationButton.id = "view-" + informationButton.id;
                     }
                     informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
                     header.appendChild(informationButton);
