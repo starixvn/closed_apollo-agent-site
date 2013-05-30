@@ -330,13 +330,19 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         header.className = "pt-grid-header";
         var saveButton = document.createElement("SPAN");
         saveButton.className = "section-info";
+
         if (context.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
             saveButton.id = "member-commission-info-button";
         } else if (context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+            
             saveButton.id = "mainshareholder-commission-info-button";
         }
         else {
             saveButton.id = "agent-commission-info-button";
+        }
+
+        if (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+            saveButton.id = "view-" + saveButton.id;
         }
         saveButton.id += (context.IsSimpleMode ? "" : "-adv");
         header.appendChild(saveButton);
