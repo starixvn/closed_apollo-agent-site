@@ -193,6 +193,7 @@
     <EmbeddedResource Include="BetList.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetList.ja-JP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BetList.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -201,6 +202,7 @@
     <EmbeddedResource Include="BetList.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetList.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BetList.th-TH.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -209,6 +211,7 @@
     <EmbeddedResource Include="BetList.vi-VN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetList.vi-VN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BetList.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

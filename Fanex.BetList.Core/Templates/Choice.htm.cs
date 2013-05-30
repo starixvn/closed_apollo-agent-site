@@ -82,7 +82,9 @@ namespace Fanex.BetList.Core
 			public string liveindicator = "{liveindicator}";
 			protected static string s10 = ",";
 			public string custId = "{custId}";
-			protected static string s11 = ")\"title=\"Score Map\"></a>";
+			protected static string s11 = ")\"title=\"";
+			protected static string s12{get{return Apollo.Age.Resources.BetList.scoreMap;}}
+			protected static string s13 = "\"></a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -97,6 +99,8 @@ namespace Fanex.BetList.Core
 					bd.Append(s10);
 					bd.Append(custId);
 					bd.Append(s11);
+					bd.Append(s12);
+					bd.Append(s13);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -104,28 +108,9 @@ namespace Fanex.BetList.Core
 
 		public class Choice_Handicap_Block: Block
 		{
-			protected static string s12 = "<span class='handicap'>&nbsp;";
+			protected static string s14 = "<span class='handicap'>&nbsp;";
 			public string handicap = "{handicap}";
 			public Choice_Handicap_Odds_Block Odds = new Choice_Handicap_Odds_Block();
-			protected static string s13 = "</span>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s12);
-					bd.Append(handicap);
-					if(null != Odds) Odds.ToString(ref bd);
-					bd.Append(s13);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class Choice_Handicap_Odds_Block: Block
-		{
-			protected static string s14 = "<span class=\"odds\"> @ ";
-			public string odds = "{odds}";
 			protected static string s15 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -133,8 +118,27 @@ namespace Fanex.BetList.Core
 				if(RenderChild)
 				{
 					bd.Append(s14);
-					bd.Append(odds);
+					bd.Append(handicap);
+					if(null != Odds) Odds.ToString(ref bd);
 					bd.Append(s15);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class Choice_Handicap_Odds_Block: Block
+		{
+			protected static string s16 = "<span class=\"odds\"> @ ";
+			public string odds = "{odds}";
+			protected static string s17 = "</span>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s16);
+					bd.Append(odds);
+					bd.Append(s17);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -150,25 +154,25 @@ namespace Fanex.BetList.Core
 
 		public class Choice_Score_Block: Block
 		{
-			protected static string s16 = "<span class=\"";
+			protected static string s18 = "<span class=\"";
 			public string scoreClassName = "favorite";
-			protected static string s17 = "\">&nbsp;[";
+			protected static string s19 = "\">&nbsp;[";
 			public string homeScore = "{homeScore}";
-			protected static string s18 = "-";
+			protected static string s20 = "-";
 			public string awayScore = "{awayScore}";
-			protected static string s19 = "]</span>";
+			protected static string s21 = "]</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s16);
-					bd.Append(scoreClassName);
-					bd.Append(s17);
-					bd.Append(homeScore);
 					bd.Append(s18);
-					bd.Append(awayScore);
+					bd.Append(scoreClassName);
 					bd.Append(s19);
+					bd.Append(homeScore);
+					bd.Append(s20);
+					bd.Append(awayScore);
+					bd.Append(s21);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -176,13 +180,13 @@ namespace Fanex.BetList.Core
 
 		public class Choice_VS_Block: Block
 		{
-			protected static string s20 = "&nbsp;-vs-&nbsp;";
+			protected static string s22 = "&nbsp;-vs-&nbsp;";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s20);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -190,14 +194,14 @@ namespace Fanex.BetList.Core
 
 		public class Choice_LeagueName_Block: Block
 		{
-			protected static string s21 = "&nbsp;";
+			protected static string s23 = "&nbsp;";
 			public string leagueName = "{leagueName}";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s21);
+					bd.Append(s23);
 					bd.Append(leagueName);
 				}
 				if(IsAssigned){bd.Append(Value);}

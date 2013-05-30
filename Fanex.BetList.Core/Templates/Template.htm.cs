@@ -90,7 +90,9 @@ namespace Fanex.BetList.Core
 			public string betTypeId = "{betTypeId}";
 			protected static string s13 = ",";
 			public string liveindicator = "{liveindicator}";
-			protected static string s14 = ");\"title=\"Score Map\"><div class='iconScoreMap'></div></a></span>";
+			protected static string s14 = ");\"title=\"";
+			protected static string s15{get{return Apollo.Age.Resources.BetList.scoreMap;}}
+			protected static string s16 = "\"><div class='iconScoreMap'></div></a></span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -103,6 +105,8 @@ namespace Fanex.BetList.Core
 					bd.Append(s13);
 					bd.Append(liveindicator);
 					bd.Append(s14);
+					bd.Append(s15);
+					bd.Append(s16);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -110,17 +114,17 @@ namespace Fanex.BetList.Core
 
 		public class Template_Handicap_Block: Block
 		{
-			protected static string s15 = "<span class='colorHandicap'>";
+			protected static string s17 = "<span class='colorHandicap'>";
 			public string handicap = "{handicap}";
-			protected static string s16 = " </span>";
+			protected static string s18 = " </span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s15);
+					bd.Append(s17);
 					bd.Append(handicap);
-					bd.Append(s16);
+					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -136,25 +140,25 @@ namespace Fanex.BetList.Core
 
 		public class Template_Score_Block: Block
 		{
-			protected static string s17 = "&nbsp;<span class=\"";
+			protected static string s19 = "&nbsp;<span class=\"";
 			public string scoreClassName = "{scoreClassName}";
-			protected static string s18 = "\">[";
+			protected static string s20 = "\">[";
 			public string homeScore = "{homeScore}";
-			protected static string s19 = "-";
+			protected static string s21 = "-";
 			public string awayScore = "{awayScore}";
-			protected static string s20 = "]</span>";
+			protected static string s22 = "]</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s17);
-					bd.Append(scoreClassName);
-					bd.Append(s18);
-					bd.Append(homeScore);
 					bd.Append(s19);
-					bd.Append(awayScore);
+					bd.Append(scoreClassName);
 					bd.Append(s20);
+					bd.Append(homeScore);
+					bd.Append(s21);
+					bd.Append(awayScore);
+					bd.Append(s22);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -162,13 +166,13 @@ namespace Fanex.BetList.Core
 
 		public class Template_VS_Block: Block
 		{
-			protected static string s21 = "- vs -&nbsp;";
+			protected static string s23 = "- vs -&nbsp;";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s21);
+					bd.Append(s23);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
