@@ -7,7 +7,6 @@
 @model Dictionary<string, PositionTakingModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
-    var isShowOld = (bool)ViewBag.IsShowOldValue;
     var agentLevel = (int)ViewBag.AgentLevel;
     var isAgent = (bool)ViewBag.IsAgent;
     var itemMixSport = new PositionTakingModel();
@@ -74,7 +73,7 @@
                     <td class="colW2 @noborder">
                         @if (!ReferenceEquals(model, null))
                         { 
-                            @ToString(isShowOld, model.OldMaxGiven, model.MaxGiven)
+                            @ToString(model.OldMaxGiven, model.MaxGiven)
                         }
                     </td>                            
                         count++;
@@ -93,11 +92,11 @@
                 <td class="colW">
                     @if (isAgent)
                     { 
- @Lang.lblMaxTakenShare
+                        @Lang.lblMaxTakenShare
                     }
                     else
                     {
- @Lang.lblTakenShare
+                        @Lang.lblTakenShare
                     }
                 </td>
                 @foreach (var itemBet in xmlBetType)
@@ -109,7 +108,7 @@
                     <td class="colW2 @noborder">
                         @if (!ReferenceEquals(model, null))
                         {
-                            @ToString(isShowOld, model.OldMaxUpper, model.MaxUpper)
+                            @ToString(model.OldMaxUpper, model.MaxUpper)
                         }
                     </td>                            
                         count++;
@@ -136,7 +135,7 @@
                     <td class="colW2 @noborder">
                         @if (!ReferenceEquals(model, null))
                         {
-                            @ToString(isShowOld, model.OldMinGiven, model.MinGiven)
+                            @ToString(model.OldMinGiven, model.MinGiven)
                         }
                     </td>                            
                         count++;
@@ -151,17 +150,16 @@
         }
     </table>
 }
-@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+@helper ToString(decimal oldValue, decimal newValue)
     {
         string strOld = Math.Round(oldValue / 100, 2).ToString("N");
         string strNew = Math.Round(newValue / 100, 2).ToString("N");
 
         if (oldValue != newValue)
         { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
-            if (isShowOld)
-            {                
+                     
     <span>| </span><span class="valueold">@strOld</span>
-            }
+           
         }
         else
         { <span class="valueold">@strOld</span>
@@ -169,7 +167,7 @@
 }
 @helper GetResource(string key, string isLive = "")
     {
-        string str = (new ResourceManager(typeof(Lang)) { IgnoreCase = true }).GetString(key);    
+        string str = Html.Resource(key);    
     @str @isLive    
 }
 @helper GenerateEmptyColumn(int count, string className = "colW2")

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Afterthought</id>
+    <version>1.0.8</version>
+    <title>Afterthought</title>
+    <authors>Jamie Thomas,  VC3</authors>
+    <owners>Jamie Thomas,  VC3</owners>
+    <licenseUrl>http://github.com/vc3/Afterthought/blob/master/License.txt</licenseUrl>
+    <projectUrl>http://github.com/vc3/Afterthought</projectUrl>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/Afterthought.1.0.8.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Afterthought allows developers to post-process .NET assemblies to add code that either cannot be added to the original source or is not convenient/efficient to do so. Afterthought runs as a post-build step to process one or more assemblies. It discovers and processes amendments that you create or borrow from others. The amendments allow you to add or modify the behavior of constructors, properties, methods, or events, and add new fields and attributes. Amendments can also modify types to implement new interfaces. The modified assembly just includes simple static calls into existing code that you write in a natural and strongly-typed way when writing amendments. Assembly amendments support using Afterthought to modify an assembly without introducing a runtime dependency on Afterthought.</description>
+    <summary>Afterthought allows developers to post-process .NET assemblies to add code that either cannot be added to the original source or is not convenient/efficient to do so. Afterthought runs as a post-build step to process one or more assemblies. It discovers and processes amendments that you create or borrow from others. The amendments allow you to add or modify the behavior of constructors, properties, methods, or events, and add new fields and attributes. Amendments can also modify types to implement new interfaces. The modified assembly just includes simple static calls into existing code that you write in a natural and strongly-typed way when writing amendments. Assembly amendments support using Afterthought to modify an assembly without introducing a runtime dependency on Afterthought.</summary>
+    <releaseNotes />
+    <copyright>Copyright © VC3 2011</copyright>
+    <language />
+    <tags>aop ioc di aspect postsharp assembly il postcompile injection weaving interception</tags>
+  </metadata>
+</package>

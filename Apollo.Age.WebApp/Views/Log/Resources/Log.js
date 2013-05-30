@@ -56,6 +56,7 @@ var Log = function ($) {
             });
 
             $('#ShowOldValue').change(function () {
+                $.blockUI();
                 var valuechanged = $('.valuechanged');
                 var line = valuechanged.next();
                 var valueOld = line.next();
@@ -69,7 +70,7 @@ var Log = function ($) {
                     line.hide();
                     valueOld.hide();
                 }
-
+                $.unblockUI();
             });
 
             // go to the top

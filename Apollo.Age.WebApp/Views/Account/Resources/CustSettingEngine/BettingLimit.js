@@ -256,6 +256,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         else {
             informationButton.id = "agent-";
         }
+        if (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+            informationButton.id = "view-" + informationButton.id;
+        }
         informationButton.id += "bet-limit-info-button" + (context.IsSimpleMode ? "" : "-adv");
 
         header.appendChild(informationButton);

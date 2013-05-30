@@ -4,8 +4,6 @@
 @model List<DiscountModel>
 @if (!ReferenceEquals(Model, null) && Model.Any())
 {
-    var isShowOld = (bool)ViewBag.IsShowOldValue;
-
     var group = new DiscountModel();
     var group1x2 = new DiscountModel();
     var groupOthers = new DiscountModel();
@@ -32,19 +30,19 @@
                 @Lang.lblGroupa (%)
             </td>
             <td class="colW2">
-                @ToString(isShowOld, group.OldGroupA, group.GroupA)
+                @ToString(group.OldGroupA, group.GroupA)
             </td>
             <td class="colW3 left-text">
                 @Lang.lblGroupc (%)
             </td>
             <td class="colW2">
-                @ToString(isShowOld, group.OldGroupC, group.GroupC)
+                @ToString(group.OldGroupC, group.GroupC)
             </td>
             <td class="colW2 left-text">
                 @Lang.lbl1x2Comm (%)
             </td>
             <td class="colW2 no-border-right">
-                @ToString(isShowOld, group1x2.OldGroupA, group1x2.GroupA)
+                @ToString(group1x2.OldGroupA, group1x2.GroupA)
             </td>
         </tr>
         <tr class="have-border-bottom">
@@ -52,34 +50,32 @@
                 @Lang.lblGroupb (%)
             </td>
             <td class="colW2">
-                @ToString(isShowOld, group.OldGroupB, group.GroupB)
+                @ToString(group.OldGroupB, group.GroupB)
             </td>
             <td class="colW3 left-text">
                 @Lang.lblGroupd (%)
             </td>
             <td class="colW2">
-                @ToString(isShowOld, group.OldGroupD, group.GroupD)
+                @ToString(group.OldGroupD, group.GroupD)
             </td>
             <td class="colW2 left-text">
                 @Lang.lblOtherComm (%)
             </td>
             <td class="colW2 no-border-right">
-                @ToString(isShowOld, groupOthers.OldGroupA, groupOthers.GroupA)
+                @ToString(groupOthers.OldGroupA, groupOthers.GroupA)
             </td>
         </tr>
     </table>
 }
-@helper ToString(bool isShowOld, decimal oldValue, decimal newValue)
+@helper ToString(decimal oldValue, decimal newValue)
     {
         string strOld = Math.Round(oldValue * 100, 2).ToString();
         string strNew = Math.Round(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
-            if (isShowOld)
-            {
-    <span>| </span><span class="valueold">@strOld</span>
-            }
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>           
+    <span>| </span><span class="valueold">@strOld</span>           
         }
         else
         { <span class="valueold">@strOld</span>

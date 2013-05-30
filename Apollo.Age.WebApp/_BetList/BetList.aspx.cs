@@ -43,8 +43,6 @@ namespace Sunplus.Agent.UI._BetList
         private string title = string.Empty;
         private int matchId, live;
         private string bettype, betTeam;
-        private DateTime dateFrom = DateTime.Now;
-        private DateTime dateTo = DateTime.Now;
         private string mainShareHolderUsername;
         private BetListTemplate tpl = new BetListTemplate();
         private TotalBetsService totalBetsService = new TotalBetsService();
@@ -258,14 +256,6 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
                 }
-            }
-
-            DateTime minDate = new DateTime(2000, 1, 1);
-            DateTime maxDate = DateTime.Now.AddDays(30);
-
-            if (dateFrom < minDate || dateTo < minDate || dateTo > maxDate)
-            {
-                return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
 
             return null;
