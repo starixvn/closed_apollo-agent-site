@@ -300,7 +300,9 @@ namespace Sunplus.Agent.UI._BetList
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
 
-            if (fromDate < minDate || toDate < minDate || toDate > maxDate)
+            if (Formater.ResetStartDate(fromDate) < Formater.ResetStartDate(minDate)
+                || Formater.ResetStartDate(toDate) < Formater.ResetStartDate(minDate)
+                || Formater.ResetStartDate(toDate) > Formater.ResetStartDate(maxDate))
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }

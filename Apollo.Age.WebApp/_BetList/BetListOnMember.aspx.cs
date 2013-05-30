@@ -51,6 +51,7 @@ namespace Sunplus.Agent.UI._BetList
         private string pageType = string.Empty;
         private string mainShareHolderId, mainShareHolderUsername;
         ReportService reportService = new ReportService();
+
         #endregion Variables
 
         #region Override
@@ -203,7 +204,6 @@ namespace Sunplus.Agent.UI._BetList
 
             int.TryParse(Request["custid"], out custid);
 
-
             username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = minDate = reportService.MoveBetsDay();
@@ -248,7 +248,9 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
-            if (pageType.Equals("accountinfo") && (fromDate < minDate || toDate < minDate || toDate > maxDate))
+            if (pageType.Equals("accountinfo") && (Formater.ResetStartDate(fromDate) < Formater.ResetStartDate(minDate)
+                || Formater.ResetStartDate(toDate) < Formater.ResetStartDate(minDate)
+                || Formater.ResetStartDate(toDate) > Formater.ResetStartDate(maxDate)))
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
