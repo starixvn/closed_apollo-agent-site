@@ -261,7 +261,9 @@
 
 .block-loading {
 	&.loading-scoremap {
-		margin-top: 245px;
+		left: 460px;
+		position: fixed;
+		top: 277px;
 	}
 }
 
@@ -271,5 +273,16 @@
 	 #dialog-details .tblRpt {
 		width: 394px;
 		margin: 10px 0 10px 15px;
+	}
+	
+}
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 205px;
+		}
 	}
 }
