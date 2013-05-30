@@ -101,13 +101,13 @@
                         @Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))
                     </td>
                     <td class="message_content">
-                        @{Html.RenderPartial(itemLog.ActionTypeId.ToString(), new
+                        @Html.Action("LogActionType" + itemLog.ActionTypeId.ToString(), "Log", new
                    {
-                       OldData = itemLog.OldData,
-                       Data = itemLog.Data,
-                       AgentLevel = agentLevel,
-                       IsAgent = Model.IsAgent
-                   });}
+                       oldData = itemLog.OldData,
+                       data = itemLog.Data,
+                       agentLevel = agentLevel,
+                       isAgent = Model.IsAgent
+                   })
                     </td>
                 </tr>
         }

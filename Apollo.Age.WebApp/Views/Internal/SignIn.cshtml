@@ -41,22 +41,27 @@
 @section scripts {
 	<script type="text/javascript">
 
-		window.onload = function () {
-			var txtUsername = document.getElementById('Username');
-			var txtPassword = document.getElementById('Password');
-			var captcha = document.getElementById('Captcha');
+	    window.onload = function () {
+	        var txtUsername = document.getElementById('Username');
+	        var txtPassword = document.getElementById('Password');
+	        var captcha = document.getElementById('Captcha');
 
-			if (txtUsername.value.length == 0) {
-				txtUsername.focus();
-			} else {
-				txtPassword.focus();
-			}
+	        if (txtUsername.value.length == 0) {
+	            txtUsername.focus();
+	        } else {
+	            txtPassword.focus();
+	        }
 
-			captcha.value = '';
-			document.getElementById('img-captcha').onclick = function () {
-				window.location.reload();
-			};
-		};
+	        captcha.value = '';
+	        document.getElementById('img-captcha').onclick = function () {
+	            window.location.reload();
+	        };
+
+            // delete cookies
+	        document.cookie = 'searching-id' + '="-1";-1; path=/';
+	        document.cookie = 'searching-name' + '="";-1; path=/';
+	        document.cookie = 'searching-ismember' + '="false";-1; path=/';
+	    };
 
 	</script>
 }

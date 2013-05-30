@@ -125,6 +125,7 @@ namespace Apollo.Age.Account.Controllers
             return View(memberList.ToPagedList(currentPageIndex, PageSize, totalPage * PageSize));
         }
 
+        [ValidateInput(false)]
         public ActionResult AgentInfo(string username, int agentId)
         {
             var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
@@ -156,6 +157,7 @@ namespace Apollo.Age.Account.Controllers
             return View("AccountInfo", agentInfo);
         }
 
+        [ValidateInput(false)]
         public ActionResult MemberInfo(string username, int custId)
         {
             var memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria

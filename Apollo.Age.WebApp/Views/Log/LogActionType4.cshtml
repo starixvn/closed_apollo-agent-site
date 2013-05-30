@@ -1,112 +1,12 @@
 ﻿@using Apollo.Age.Enumerations
 @using Apollo.Age.Account.Models
 @using Apollo.Age.Resources
-@using System.Linq
-@using System.Xml.Linq
-@using System.Resources
 @using Fanex.CustSetting.Core
-@{
-    var oldData = Model.OldData;
-    var data = Model.Data;
+@{    
     var template = _Configuration.PositionTakingGridConfig;
-    var agentLevel = (int)Model.AgentLevel;
-    var isAgent = (bool)Model.IsAgent;
-
-    var list = new Dictionary<string, PositionTakingModel>();
-
-    if (!string.IsNullOrWhiteSpace(oldData))
-    {
-        var xmlData = XDocument.Parse(oldData);
-        var positionTaking = xmlData.Descendants("z");
-
-        foreach (var item in positionTaking)
-        {
-            if (isAgent)
-            {
-                var model = new PositionTakingModel
-                {
-                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                    OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                    MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                    OldMaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                    MinGiven = Convert.ToDecimal(item.Attribute("mi").Value),
-                    OldMinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
-                };
-
-                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
-
-                list.Add(key, model);
-            }
-            else
-            {
-                var model = new PositionTakingModel
-                {
-                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                    OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
-                };
-
-                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
-
-                list.Add(key, model);
-            }
-        }
-    }
-
-    if (!string.IsNullOrWhiteSpace(data))
-    {
-        var xmlData = XDocument.Parse(data);
-        var positionTaking = xmlData.Descendants("z");
-
-        foreach (var item in positionTaking)
-        {
-            if (isAgent)
-            {
-                var model = new PositionTakingModel
-                {
-                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                    MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                    MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
-                };
-
-                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
-
-                if (list.ContainsKey(key))
-                {
-                    list[key].MaxUpper = model.MaxUpper;
-                    list[key].MaxGiven = model.MaxGiven;
-                    list[key].MinGiven = model.MinGiven;
-                }
-            }
-            else
-            {
-                var model = new PositionTakingModel
-                {
-                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
-                };
-
-                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
-
-                if (list.ContainsKey(key))
-                {
-                    list[key].MaxUpper = model.MaxUpper;
-                    list[key].MaxGiven = model.MaxGiven;
-                    list[key].MinGiven = model.MinGiven;
-                }
-            }
-        }
-    }    
+    var agentLevel = (int)ViewBag.AgentLevel;
+    var isAgent = (bool)ViewBag.IsAgent;
+    var list = (Dictionary<string, PositionTakingModel>)Model;   
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {
