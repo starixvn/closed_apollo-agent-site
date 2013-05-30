@@ -938,9 +938,9 @@
     <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSettingAdv.cshtml" />
     <Content Include="Views\Shared\_ApoRes.cshtml" />
-    <Content Include="Views\Log\2.cshtml" />
-    <Content Include="Views\Log\4.cshtml" />
-    <Content Include="Views\Log\3.cshtml" />
+    <Content Include="Views\Log\LogActionType2.cshtml" />
+    <Content Include="Views\Log\LogActionType4.cshtml" />
+    <Content Include="Views\Log\LogActionType3.cshtml" />
     <Content Include="Views\Instruction\en-US\ViewAgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\ViewMainShareHolderShareSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\ViewAgentBetSettingAdv.cshtml" />
