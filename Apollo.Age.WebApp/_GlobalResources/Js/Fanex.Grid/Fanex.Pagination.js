@@ -147,7 +147,7 @@
                 // Generate ending points
                 if (interval[1] < np && opts.numEdgeEntries > 0) {
                     if (np - opts.numEdgeEntries > interval[1] && opts.ellipseText) {
-                        $('<li><span class="lnk go-to-page" title="Go To Page">' + opts.ellipseText + '</span></li>').appendTo(numberList);
+                        $('<li><span class="lnk go-to-page" title="' + (LANGUAGES.GoToPage || 'Go To Page') + '">' + opts.ellipseText + '</span></li>').appendTo(numberList);
                     }
                     var begin = Math.max(np - opts.numEdgeEntries, interval[1]);
                     for (var i = begin; i < np; i++) {
