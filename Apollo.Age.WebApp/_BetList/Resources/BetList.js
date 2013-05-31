@@ -139,7 +139,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
         || parseInt(APOLLO.browser.version, 10) == 8)) {
 	    wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 610, position: { my: "center", at: "center", of: window} }, singleFrame);
 	} else {
-	    wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 605 }, singleFrame);
+	    wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 625 }, singleFrame);
 	}  
 }
 
