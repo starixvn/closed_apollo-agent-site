@@ -757,6 +757,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     var count = items.length;
                     for (var i = 0; i < count; i++) {
                         if (!items[i].Validate()) {
+                            items[i].Toggle(true);
+                            items[i].Validate();
                             return false;
                         }
                     };

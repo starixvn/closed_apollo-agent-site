@@ -20,7 +20,7 @@ namespace Apollo.Age.Web
     using System.Net;
     using Apollo.Age.Resources;
 
-    public class ErrorController : Controller
+    public class ErrorController : BaseController
     {
         private readonly UnderMaintenanceService maintenanceService;
 
@@ -34,13 +34,13 @@ namespace Apollo.Age.Web
             switch (err)
             {
                 case "403":
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_403;
+                    ViewBag.ErrorMessage = Lang.HttpError_403;
                     break;
                 case "404":
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_404;
+                    ViewBag.ErrorMessage = Lang.HttpError_404;
                     break;
                 default:
-                    ViewBag.ErrorMessage = Apollo.Age.Resources.Lang.HttpError_Default;
+                    ViewBag.ErrorMessage = Lang.HttpError_Default;
                     break;
             }
 
