@@ -68,5 +68,22 @@ a {
 	&.fc1x2 {
 		margin-top: 225px;
 	}
+
+	&.loading-scoremap {
+		left: 460px;
+		position: fixed;
+		top: 277px;
+	}
 }
 
+/* FIX IE */
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
+	}
+}
