@@ -304,7 +304,7 @@
     <value>输的注单总计</value>
   </data>
   <data name="details" xml:space="preserve">
-    <value>详细信息</value>
+    <value>细项</value>
   </data>
   <data name="scoreMap" xml:space="preserve">
     <value>盈利预测图</value>
