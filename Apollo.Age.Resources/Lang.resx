@@ -1256,4 +1256,7 @@
   <data name="InvalidDate" xml:space="preserve">
     <value>Invalid Date</value>
   </data>
+  <data name="lblLoading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
 </root>
