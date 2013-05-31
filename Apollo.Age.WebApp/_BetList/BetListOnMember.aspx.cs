@@ -8,6 +8,7 @@
 //     <change who="Kaden.Trinh" date="2013.04.10">Implement betlist Outstanding</change>
 //     <change who="Kaden.Trinh" date="2013.04.16">Implement betlist Account Info</change>
 //     <change who="Kaden.Trinh" date="2013.05.20">Implement Navigation bar</change>
+//     <change who="Kaden.Trinh" date="2013.05.31">Change rule: we have to get date from after movebetday 1 day</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -206,7 +207,7 @@ namespace Sunplus.Agent.UI._BetList
 
             username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
-            moveBetsDay = minDate = reportService.MoveBetsDay();
+            moveBetsDay = minDate = reportService.MoveBetsDay().AddDays(1);
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);

@@ -28,19 +28,23 @@ namespace Apollo.Age.WebApp
 			public string content = "{content}";
 			protected static string s8 = "</div>";
 			public BetListOnMember_HiddenFields_Block HiddenFields = new BetListOnMember_HiddenFields_Block();
-			protected static string s9 = "</div></form><script src=\"";
-			protected static string s10{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
-			protected static string s11 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s12{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
-			protected static string s13 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/BlockUI/jquery.blockUI.js", TplSettings.Question);}}
+			protected static string s9 = "</div></form><script type=\"text/javascript\">ApoRes = {InvalidDate: '";
+			protected static string s10{get{return Apollo.Age.Resources.Lang.InvalidDate;}}
+			protected static string s11 = "',DateIsOutOfRange: '";
+			protected static string s12{get{return Apollo.Age.Resources.Lang.DateIsOutOfRange;}}
+			protected static string s13 = "'};</script><script src=\"";
+			protected static string s14{get{return AbsoluteUrl("_GlobalResources/Js/jquery.js", TplSettings.Question);}}
 			protected static string s15 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s16{get{return AbsoluteUrl("_GlobalResources/Js/jquery-ui.js", TplSettings.Question);}}
 			protected static string s17 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s18{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s18{get{return AbsoluteUrl("_GlobalResources/Js/BlockUI/jquery.blockUI.js", TplSettings.Question);}}
 			protected static string s19 = "\" type=\"text/javascript\"></script><script src=\"";
-			protected static string s20{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
-			protected static string s21 = "\" type=\"text/javascript\"></script></body></html>";
+			protected static string s20{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s21 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s22{get{return AbsoluteUrl("_Components/AGEWnd/AGEWnd.js", TplSettings.Question);}}
+			protected static string s23 = "\" type=\"text/javascript\"></script><script src=\"";
+			protected static string s24{get{return AbsoluteUrl("_BetList/Resources/BetList.js", TplSettings.Question);}}
+			protected static string s25 = "\" type=\"text/javascript\"></script></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -74,6 +78,10 @@ namespace Apollo.Age.WebApp
 					bd.Append(s19);
 					bd.Append(s20);
 					bd.Append(s21);
+					bd.Append(s22);
+					bd.Append(s23);
+					bd.Append(s24);
+					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -88,49 +96,49 @@ namespace Apollo.Age.WebApp
 
 		public class BetListOnMember_Filter_Block: Block
 		{
-			protected static string s22 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
-			protected static string s23{get{return Apollo.Age.Resources.Lang.from;}}
-			protected static string s24 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
+			protected static string s26 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s27{get{return Apollo.Age.Resources.Lang.from;}}
+			protected static string s28 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s25 = "\"mindate=\"";
+			protected static string s29 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
-			protected static string s26 = "\" maxdate=\"";
+			protected static string s30 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s27 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
-			protected static string s28{get{return Apollo.Age.Resources.Lang.to;}}
-			protected static string s29 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s31 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s32{get{return Apollo.Age.Resources.Lang.to;}}
+			protected static string s33 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s30 = "\"mindate=\"";
+			protected static string s34 = "\"mindate=\"";
 			protected string t1_valueMinDate;
-			protected static string s31 = "\" maxdate=\"";
+			protected static string s35 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s32 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s33{get{return Apollo.Age.Resources.Lang.Generate;}}
-			protected static string s34 = "\"></div></div></div></div>";
+			protected static string s36 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
+			protected static string s37{get{return Apollo.Age.Resources.Lang.Generate;}}
+			protected static string s38 = "\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(valueFromDate);
-					bd.Append(s25);
-					bd.Append(valueMinDate);
 					bd.Append(s26);
-					bd.Append(valueMaxDate);
 					bd.Append(s27);
 					bd.Append(s28);
+					bd.Append(valueFromDate);
 					bd.Append(s29);
-					bd.Append(valueToDate);
-					bd.Append(s30);
 					bd.Append(valueMinDate);
-					bd.Append(s31);
+					bd.Append(s30);
 					bd.Append(valueMaxDate);
+					bd.Append(s31);
 					bd.Append(s32);
 					bd.Append(s33);
+					bd.Append(valueToDate);
 					bd.Append(s34);
+					bd.Append(valueMinDate);
+					bd.Append(s35);
+					bd.Append(valueMaxDate);
+					bd.Append(s36);
+					bd.Append(s37);
+					bd.Append(s38);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -139,38 +147,38 @@ namespace Apollo.Age.WebApp
 		public class BetListOnMember_HiddenFields_Block: Block
 		{
 			public BetListOnMember_HiddenFields_DateTime_Block DateTime = new BetListOnMember_HiddenFields_DateTime_Block();
-			protected static string s35 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s39 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s36 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			protected static string s40 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s37 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			protected static string s41 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
 			public string MainShareHolderUsername = "{MainShareHolderUsername}";
-			protected static string s38 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s42 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s39 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
+			protected static string s43 = "\" /><input type=\"hidden\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s40 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
+			protected static string s44 = "\" /><input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"";
 			public string custId = "{custId}";
-			protected static string s41 = "\" />";
+			protected static string s45 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					if(null != DateTime) DateTime.ToString(ref bd);
-					bd.Append(s35);
-					bd.Append(ApoRoot);
-					bd.Append(s36);
-					bd.Append(MainShareHolderId);
-					bd.Append(s37);
-					bd.Append(MainShareHolderUsername);
-					bd.Append(s38);
-					bd.Append(pageType);
 					bd.Append(s39);
-					bd.Append(username);
+					bd.Append(ApoRoot);
 					bd.Append(s40);
-					bd.Append(custId);
+					bd.Append(MainShareHolderId);
 					bd.Append(s41);
+					bd.Append(MainShareHolderUsername);
+					bd.Append(s42);
+					bd.Append(pageType);
+					bd.Append(s43);
+					bd.Append(username);
+					bd.Append(s44);
+					bd.Append(custId);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -178,21 +186,21 @@ namespace Apollo.Age.WebApp
 
 		public class BetListOnMember_HiddenFields_DateTime_Block: Block
 		{
-			protected static string s42 = "<input type=\"hidden\" id=\"fromDate\" value=\"";
+			protected static string s46 = "<input type=\"hidden\" id=\"fromDate\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
-			protected static string s43 = "\" /><input type=\"hidden\" id=\"toDate\" value=\"";
+			protected static string s47 = "\" /><input type=\"hidden\" id=\"toDate\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s44 = "\" />";
+			protected static string s48 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s42);
+					bd.Append(s46);
 					bd.Append(valueFromDate);
-					bd.Append(s43);
+					bd.Append(s47);
 					bd.Append(valueToDate);
-					bd.Append(s44);
+					bd.Append(s48);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

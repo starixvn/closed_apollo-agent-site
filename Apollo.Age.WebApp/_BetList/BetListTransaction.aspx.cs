@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------------------
 // <history>
 //     <change who="Kaden.Trinh" date="2013.01.12">Create</change>
+//     <change who="Kaden.Trinh" date="2013.05.31">Change rule: we have to get date from after movebetday 1 day</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -252,7 +253,6 @@ namespace Sunplus.Agent.UI._BetList
         public override void ProcessRequest(ref Hashtable hash)
         {
             var reportService = new ReportService();
-            moveBetsDay = reportService.MoveBetsDay();
 
             pageType = GetStringRequest("type", string.Empty).ToLower();
 
@@ -261,6 +261,7 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
                 maxDate = DateTime.Now;
+                moveBetsDay = reportService.MoveBetsDay().AddDays(1);
                 minDate = moveBetsDay;
 
                 statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
@@ -270,7 +271,8 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.title = Apollo.Age.Resources.Lang.transaction;
                 isShowWinLost = true;
                 maxDate = DateTime.Now;
-                minDate = maxDate.AddMonths(-3);
+                moveBetsDay = reportService.GetBalanceUpDay();
+                minDate = moveBetsDay;
 
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
