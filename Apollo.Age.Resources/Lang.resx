@@ -1259,4 +1259,7 @@
   <data name="lblLoading" xml:space="preserve">
     <value>Loading</value>
   </data>
+  <data name="lblAccountWasLocked" xml:space="preserve">
+    <value>Your Account was locked!</value>
+  </data>
 </root>

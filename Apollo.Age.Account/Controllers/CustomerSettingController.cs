@@ -211,7 +211,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             if (SportSettingService.SportList == null)
-            {
+            {   
                 SportSettingService.SportList = sportList;
             }
 

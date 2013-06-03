@@ -25,19 +25,22 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Interface;
+    using Apollo.Age.Enumerations;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
-        private readonly IUserService _userService;
-        private static readonly CultureInfo usCulture = CultureInfo.CreateSpecificCulture("en-US");
-        private ResourceManager _resourceManagerLang;
+        private readonly IUserService _userService;       
+        private LanguageManager _langManager;
+       
 
         public BaseController()
         {
-            _userService = new UserService();
-            _resourceManagerLang = new ResourceManager(typeof(Lang)) { IgnoreCase = true };
+            _userService = new UserService();           
+            _langManager = new LanguageManager();           
+
         }
+
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -51,12 +54,13 @@ namespace Apollo.Age.Web
             {
                 CheckAuthentication();
                 CheckValidDownline();
-                CheckKickOut(filterContext);
+                CheckKickOut(filterContext);    
             }
 
             if (CurrentSession != null)
             {
-                SetCulture(CurrentSession.Language);
+                _langManager.SetCulture(CurrentSession.Language);
+                
             }
 
             base.OnActionExecuting(filterContext);
@@ -74,18 +78,7 @@ namespace Apollo.Age.Web
                Response.Redirect(ApoURLs.URLs.Error + "?err=404");              
             }
            
-        }
-
-
-
-        private void SetCulture(string language)
-        {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = usCulture.DateTimeFormat;
-            Thread.CurrentThread.CurrentCulture.NumberFormat = usCulture.NumberFormat;
-        }
+        }              
 
         #region Auth
 
@@ -106,15 +99,15 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                var isKickOut = _userService.IsKickOut(CurrentSession.AgentId, CurrentSession.UserId);
+                var kickOut = _userService.KickOut(CurrentSession.AgentId, CurrentSession.UserId);
 
-                if (isKickOut)
+                if (kickOut ==(int)CustomerStatus.Active)
                 {
                     if (Request.IsAjaxRequest())
                     {
                         Response.Buffer = true;
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        Response.Write(GetResourceData("lblAccountWasStopped"));
+                        Response.Write(_langManager.GetResourceData("lblAccountWasStopped"));
                         Response.Flush();
                         Response.Close();
                         Response.End();
@@ -134,47 +127,11 @@ namespace Apollo.Age.Web
             get { return SessionManager.CurrentSession; }
         }
 
-        protected string RequestIP
-        {
-            get
-            {
-                string IP = string.Empty;
-                string userHostAddress = System.Web.HttpContext.Current.Request.UserHostAddress;
-
-                foreach (IPAddress itemIPA in Dns.GetHostAddresses(userHostAddress))
-                {
-                    if (itemIPA.AddressFamily.ToString().Equals("InterNetwork"))
-                    {
-                        IP = itemIPA.ToString();
-                        break;
-                    }
-                }
-
-                if (!string.IsNullOrWhiteSpace(IP))
-                {
-                    return IP;
-                }
-
-                foreach (IPAddress itemIPA in Dns.GetHostAddresses(Dns.GetHostName()))
-                {
-                    if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.OrdinalIgnoreCase))
-                    {
-                        IP = itemIPA.ToString();
-                        break;
-                    }
-                }
-
-                return IP.Trim();
-            }
-        }
+       
 
         protected string GetResourceData(string key)
         {
-            if (!ReferenceEquals(_resourceManagerLang, null))
-            {
-                return _resourceManagerLang.GetString(key);
-            }
-            return string.Empty;
+            return _langManager.GetResourceData(key); 
         }
     }
 }

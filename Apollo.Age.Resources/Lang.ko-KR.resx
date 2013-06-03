@@ -4152,4 +4152,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="lbllastaccessed" xml:space="preserve">
     <value>Last Accessed:</value>
   </data>
+  <data name="lblAccountWasLocked" xml:space="preserve">
+    <value>Your Account was locked!</value>
+  </data>
 </root>

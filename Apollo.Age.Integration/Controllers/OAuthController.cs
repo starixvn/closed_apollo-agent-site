@@ -30,7 +30,7 @@ namespace Apollo.Age.Integration.Controllers
         private readonly AuthenticationService _authService;
         private readonly UserService _userService;
         private const int SERVERID = 1;
-
+        private DeviceDetection _deviceService;
         public OAuthController()
             : this(null)
         {
@@ -40,6 +40,7 @@ namespace Apollo.Age.Integration.Controllers
         {
             _authService = authService ?? new AuthenticationService();
             _userService = userService ?? new UserService();
+            _deviceService = new DeviceDetection();
         }
 
         [AllowAnonymous]
@@ -142,18 +143,18 @@ namespace Apollo.Age.Integration.Controllers
         {
             Task task = Task.Factory.StartNew(() =>
             {
-                DeviceDetection deviceService = new DeviceDetection(Request);
+               
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
                     SERVERID,
                     actionId,
                     doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
+                    _deviceService.ClientIp,
+                    _deviceService.DomainName,
+                    _deviceService.BrowserName,
+                    _deviceService.Platform,
+                    _deviceService.CountryCode
                     );
             });
             try

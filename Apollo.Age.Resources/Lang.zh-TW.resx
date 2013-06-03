@@ -1236,4 +1236,7 @@
   <data name="status" xml:space="preserve">
     <value>狀態</value>
   </data>
+  <data name="lblAccountWasLocked" xml:space="preserve">
+    <value>Your Account was locked!</value>
+  </data>
 </root>

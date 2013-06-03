@@ -1006,6 +1006,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Account was locked!.
+        /// </summary>
+        public static string lblAccountWasLocked {
+            get {
+                return ResourceManager.GetString("lblAccountWasLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Account was stopped!.
         /// </summary>
         public static string lblAccountWasStopped {

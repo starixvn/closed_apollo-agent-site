@@ -28,7 +28,7 @@ namespace Apollo.Age.Services.Interface
         /// </summary>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId);
 
-        bool IsKickOut(int agentId, int agentUserId);
+        int KickOut(int agentId, int agentUserId);
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
 

@@ -72,7 +72,7 @@ namespace Apollo.Age.Services.Impl
         /// <param name="agentId"></param>
         /// <param name="agentUserId"></param>
         /// <returns></returns>
-        public bool IsKickOut(int agentId, int agentUserId)
+        public int KickOut(int agentId, int agentUserId)
         {
             try
             {
@@ -82,16 +82,13 @@ namespace Apollo.Age.Services.Impl
                     AgentUserId = agentUserId
                 });
 
-                if (currentStatus >= (int)CustomerStatus.Stopped)
-                {
-                    return true;
-                }
+                return currentStatus;
             }
             catch (Exception ex)
             {
                 Logger.Log.Error(ex.Message, ex);
             }
-            return false;
+            return -1;
         }
 
         /// <summary>

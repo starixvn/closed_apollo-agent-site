@@ -4463,4 +4463,7 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="lbllastaccessed" xml:space="preserve">
     <value>Last Accessed:</value>
   </data>
+  <data name="lblAccountWasLocked" xml:space="preserve">
+    <value>Your Account was locked!</value>
+  </data>
 </root>

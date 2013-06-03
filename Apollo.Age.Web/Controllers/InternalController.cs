@@ -25,6 +25,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
     using Fanex.Logging;
+    using Apollo.Age.Enumerations;
 
     public class InternalController : Controller
     {
@@ -42,7 +43,7 @@ namespace Apollo.Age.Web
         #region Services
 
         private readonly IUserService _userService;
-
+        private DeviceDetection _deviceService;
         #endregion Services
 
         #region Ctors
@@ -50,6 +51,7 @@ namespace Apollo.Age.Web
         public InternalController()
         {
             _userService = new UserService();
+            _deviceService = new DeviceDetection();            
         }
 
         #endregion Ctors
@@ -175,30 +177,50 @@ namespace Apollo.Age.Web
 
                 if (user != null) // continue sign-in process
                 {
-                    var onUserId = _userService.InternalCheckIn(model.AdminId, HttpContext.Session.SessionID, Request.ServerVariables["REMOTE_ADDR"].ToString());
-                    if (onUserId == 0)
-                        return SignOut();
-                    // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
-                    // may be removed in future
-                    user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
 
-                    // saves user session
-                    SessionManager.CurrentSession = new CurrentSession(
-                        user: user,
-                        adminId: model.AdminId,
-                        adminName: model.AdminName,
-                        onUserId: onUserId,
-                        isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
-                        language: model.Language);
+                    var kickOut = _userService.KickOut(user.Agent.Id, user.Id);
+                    switch (kickOut)
+                    {
+                        case (int)CustomerStatus.Active:
+                            {
+                                var onUserId = _userService.InternalCheckIn(model.AdminId,
+                                HttpContext.Session.SessionID, _deviceService.ClientIp);
+                                if (onUserId == 0)
+                                    return SignOut();
+                                // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
+                                // may be removed in future
+                                user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
 
-                    // Write log internal login
-                    // ActionId: 701 - Select Account successful
-                    string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
-                                    model.AdminName,
-                                    user.Agent.Username);
-                    WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
+                                // saves user session
+                                SessionManager.CurrentSession = new CurrentSession(
+                                    user: user,
+                                    adminId: model.AdminId,
+                                    adminName: model.AdminName,
+                                    onUserId: onUserId,
+                                    isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
+                                    language: model.Language);
 
-                    FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
+                                // Write log internal login
+                                // ActionId: 701 - Select Account successful
+                                string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
+                                                model.AdminName,
+                                                user.Agent.Username);
+                                WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
+
+                                FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
+                                break;
+                            }
+                        case (int)CustomerStatus.Locked:
+                            {
+                                ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
+                                break;
+                            }
+                        default:
+                            {
+                                ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
+                                break;
+                            }
+                    }                   
                 }
                 else // return View with not-found error message
                 {
@@ -220,19 +242,18 @@ namespace Apollo.Age.Web
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
-            {
-                DeviceDetection deviceService = new DeviceDetection(Request);
+            {               
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
                     ServerId,
                     actionId,
                     doing,
-                    deviceService.ClientIp,
-                    deviceService.DomainName,
-                    deviceService.BrowserName,
-                    deviceService.Platform,
-                    deviceService.CountryCode
+                    _deviceService.ClientIp,
+                    _deviceService.DomainName,
+                    _deviceService.BrowserName,
+                    _deviceService.Platform,
+                    _deviceService.CountryCode
                     );
             });
             try

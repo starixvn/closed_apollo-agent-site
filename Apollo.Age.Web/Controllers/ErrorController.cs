@@ -19,14 +19,22 @@ namespace Apollo.Age.Web
     using Apollo.Age.Web.Services;
     using System.Net;
     using Apollo.Age.Resources;
+    using System.Threading;
 
-    public class ErrorController : BaseController
+    public class ErrorController : Controller
     {
         private readonly UnderMaintenanceService maintenanceService;
-
+        private LanguageManager _langManager;
+     
         public ErrorController()
         {
             maintenanceService = new UnderMaintenanceService();
+            if (SessionManager.CurrentSession != null)
+            {
+                _langManager = new LanguageManager();
+                _langManager.SetCulture(SessionManager.CurrentSession.Language);
+            }            
+            
         }
 
         public ActionResult Index(string err)
@@ -77,8 +85,8 @@ namespace Apollo.Age.Web
         }
 
         public ActionResult AccountStopped()
-        {
+        {            
             return View();
-        }
+        }      
     }
 }
