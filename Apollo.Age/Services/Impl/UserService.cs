@@ -72,7 +72,7 @@ namespace Apollo.Age.Services.Impl
         /// <param name="agentId"></param>
         /// <param name="agentUserId"></param>
         /// <returns></returns>
-        public int KickOut(int agentId, int agentUserId)
+        public int GetUserStatus(int agentId, int agentUserId)
         {
             try
             {

@@ -178,8 +178,8 @@ namespace Apollo.Age.Web
                 if (user != null) // continue sign-in process
                 {
 
-                    var kickOut = _userService.KickOut(user.Agent.Id, user.Id);
-                    switch (kickOut)
+                    var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+                    switch (userStatus)
                     {
                         case (int)CustomerStatus.Active:
                             {

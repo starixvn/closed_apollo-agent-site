@@ -99,9 +99,9 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                var kickOut = _userService.KickOut(CurrentSession.AgentId, CurrentSession.UserId);
+                var userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
 
-                if (kickOut >=(int)CustomerStatus.Locked)
+                if (userStatus >= (int)CustomerStatus.Locked)
                 {
                     if (Request.IsAjaxRequest())
                     {
