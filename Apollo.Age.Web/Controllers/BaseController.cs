@@ -101,7 +101,7 @@ namespace Apollo.Age.Web
             {
                 var userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
 
-                if (userStatus >= (int)CustomerStatus.Locked)
+                if (userStatus >= (int)CustomerStatus.Stopped)
                 {
                     if (Request.IsAjaxRequest())
                     {
