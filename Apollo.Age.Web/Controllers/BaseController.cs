@@ -105,16 +105,19 @@ namespace Apollo.Age.Web
                 {
                     if (Request.IsAjaxRequest())
                     {
-                        Response.Buffer = true;
+                        
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         Response.Write(_langManager.GetResourceData("lblAccountWasStopped"));
+                        Response.Buffer = false;
+                        Response.ClearContent();
+                        Response.ClearHeaders();
                         Response.Flush();
                         Response.Close();
                         Response.End();
                     }
                     else
                     {
-                        Response.Redirect(ApoURLs.URLs.AccountStopped);
+                        Response.Redirect(ApoURLs.URLs.AccountStopped, false);
                     }
                 }
             }

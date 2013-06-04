@@ -308,11 +308,12 @@ namespace Apollo.Age.Web
                 gfx.DrawString(captcha.ToString(), new Font("Tahoma", 13), Brushes.White, 5, 2);
 
                 // render as JPEG
-                bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
-                img = this.File(mem.GetBuffer(), "image/Jpeg");
+                bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
+                img = this.File(mem.GetBuffer(), "image/png");
             }
 
-            return img;
+           return img;
+
         }
 
         #endregion SignIn
