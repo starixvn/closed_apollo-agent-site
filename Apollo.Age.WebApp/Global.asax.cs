@@ -84,7 +84,8 @@ namespace Apollo.Age.WebApp
 
                     if (maintenanceInfo.IsDownTime)
                     {
-                        Response.Redirect(ApoURLs.URLs.UnderMaintenance);
+                        Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
+                       
                     }
                 }
             }

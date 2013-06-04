@@ -27,8 +27,7 @@ namespace Apollo.Age.Web.Services
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
 
         private readonly UMBusiness umService;
-        private static readonly Mutex mutext = new Mutex();
-        private readonly ICache cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+        private static readonly Mutex mutext = new Mutex();        
 
         public UnderMaintenanceService()
         {
