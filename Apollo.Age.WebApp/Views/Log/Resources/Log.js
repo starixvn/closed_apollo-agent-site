@@ -40,6 +40,8 @@ var Log = function ($) {
             Log.btnGoTop = $("#btn-go-top");
 
             Log.monthDateTime.monPickr({
+                shortMonthsInYear: LogOpts.MonthsInYear,
+                longMonthsInYear: LogOpts.MonthsInYear,
                 fromDayLabel: Log.fromDayLable.val(),
                 toDayLabel: Log.toDayLable.val(),
                 month: Log.fromDate.val(),
