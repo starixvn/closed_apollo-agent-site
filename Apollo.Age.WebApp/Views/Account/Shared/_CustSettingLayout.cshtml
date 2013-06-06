@@ -51,6 +51,9 @@
 			}
 		</div>
 	</div>
+    <div id="forgery-token-div" style="display:none;">
+        @Html.AntiForgeryToken()
+    </div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
 	@Html.Partial("_ApoRes")
 	@Scripts.Render("~/scripts/custsettingjs")

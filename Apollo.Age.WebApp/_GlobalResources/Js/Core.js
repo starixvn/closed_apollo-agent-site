@@ -384,6 +384,11 @@ if (typeof jQuery != 'undefined') {
 				}
 			},
 
+            addAntiForgeryToken: function(data){
+                data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
+                return data;
+            },
+
 			init: function () {
 				APOLLO.initDatePicker();
 				APOLLO.initFreeHeader();
