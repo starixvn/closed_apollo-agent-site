@@ -20,12 +20,12 @@ namespace Apollo.Age.Web
     using Apollo.Age.Configurations;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
     using Fanex.Logging;
-    using Apollo.Age.Enumerations;
 
     public class InternalController : Controller
     {
@@ -44,6 +44,7 @@ namespace Apollo.Age.Web
 
         private readonly IUserService _userService;
         private DeviceDetection _deviceService;
+
         #endregion Services
 
         #region Ctors
@@ -51,7 +52,7 @@ namespace Apollo.Age.Web
         public InternalController()
         {
             _userService = new UserService();
-            _deviceService = new DeviceDetection();            
+            _deviceService = new DeviceDetection();
         }
 
         #endregion Ctors
@@ -159,12 +160,35 @@ namespace Apollo.Age.Web
         public ActionResult SelectAccount()
         {
             // admin name must exist to continue the sign-in process
-            if (TempData[AdminName] == null)
+            if (TempData[AdminName] == null && SessionManager.CurrentSession == null)
             {
                 return Redirect(FormsAuthentication.LoginUrl);
             }
+            else
+            {
+                if (SessionManager.CurrentSession != null)
+                {
+                    //return View(new SelectAccountViewModel
+                    //{
+                    //    Language = SessionManager.CurrentSession.Language,
+                    //    AdminId = SessionManager.CurrentSession.AdminId,
+                    //    AdminName = SessionManager.CurrentSession.AdminName
+                    //}); 
+                    FormsAuthentication.RedirectFromLoginPage(SessionManager.CurrentSession.Username, createPersistentCookie: false);
 
-            return View(new SelectAccountViewModel { Language = TempData[Language].ToString(), AdminId = Convert.ToInt32(TempData[AdminId]), AdminName = TempData[AdminName].ToString() });
+                }
+                else
+                {
+                    return View(new SelectAccountViewModel
+                    {
+                        Language = TempData[Language].ToString(),
+                        AdminId = Convert.ToInt32(TempData[AdminId]),
+                        AdminName = TempData[AdminName].ToString()
+                    });    
+                }
+            }
+            return View();
+            
         }
 
         [HttpPost]
@@ -177,7 +201,6 @@ namespace Apollo.Age.Web
 
                 if (user != null) // continue sign-in process
                 {
-
                     var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
                     switch (userStatus)
                     {
@@ -220,7 +243,7 @@ namespace Apollo.Age.Web
                                 ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
                                 break;
                             }
-                    }                   
+                    }
                 }
                 else // return View with not-found error message
                 {
@@ -242,7 +265,7 @@ namespace Apollo.Age.Web
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
-            {               
+            {
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
@@ -312,8 +335,7 @@ namespace Apollo.Age.Web
                 img = this.File(mem.GetBuffer(), "image/png");
             }
 
-           return img;
-
+            return img;
         }
 
         #endregion SignIn
