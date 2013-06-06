@@ -168,12 +168,6 @@ namespace Apollo.Age.Web
             {
                 if (SessionManager.CurrentSession != null)
                 {
-                    //return View(new SelectAccountViewModel
-                    //{
-                    //    Language = SessionManager.CurrentSession.Language,
-                    //    AdminId = SessionManager.CurrentSession.AdminId,
-                    //    AdminName = SessionManager.CurrentSession.AdminName
-                    //}); 
                     FormsAuthentication.RedirectFromLoginPage(SessionManager.CurrentSession.Username, createPersistentCookie: false);
 
                 }
@@ -184,11 +178,12 @@ namespace Apollo.Age.Web
                         Language = TempData[Language].ToString(),
                         AdminId = Convert.ToInt32(TempData[AdminId]),
                         AdminName = TempData[AdminName].ToString()
-                    });    
+                    });
                 }
             }
             return View();
-            
+
+           
         }
 
         [HttpPost]

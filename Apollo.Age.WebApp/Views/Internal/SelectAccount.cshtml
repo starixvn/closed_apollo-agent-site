@@ -41,9 +41,15 @@
 
 @section scripts {
 	<script type="text/javascript">
-
-	    window.onload = function () {
+	    function preventBack() {
 	        window.history.forward();
+	    }
+
+	    setTimeout("preventBack()", 0);
+
+	    window.onunload = function () { null };
+
+	    window.onload = function () {	    
 	        document.getElementById('Agent').focus();
 	    };
 

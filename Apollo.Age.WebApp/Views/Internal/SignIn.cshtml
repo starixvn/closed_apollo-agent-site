@@ -41,8 +41,17 @@
 	}
 </div>
 @section scripts {
-	<script type="text/javascript">        
-        window.onload = function () {
+	<script type="text/javascript">
+	    function preventBack() {
+	        window.history.forward();
+	    }
+
+	    setTimeout("preventBack()", 0);
+
+	    window.onunload = function () { null };
+
+	    window.onload = function () {	       
+
             var txtUsername = document.getElementById('Username');
             var txtPassword = document.getElementById('Password');
             var captcha = document.getElementById('Captcha');
