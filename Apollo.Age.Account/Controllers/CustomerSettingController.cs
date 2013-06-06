@@ -360,7 +360,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        [BelongChecking()]
+       // [BelongChecking()]
         public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.MemberId = memberId;
@@ -376,7 +376,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        [BelongChecking()]
+        //[BelongChecking()]
         public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.AgentId = agentId;
@@ -403,13 +403,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(jsString);
         }
 
-        [BelongChecking(), HttpPost, CustomValidateAntiForgeryToken]
+        [HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
         }
 
-        [BelongChecking(), HttpPost, CustomValidateAntiForgeryToken]
+        [HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);

@@ -26,6 +26,9 @@ namespace Apollo.Age.Web
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Web.Filters;
+    using Fanex.Logging;
+    using Fanex.Common;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
@@ -41,7 +44,7 @@ namespace Apollo.Age.Web
 
         }
 
-
+        
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
@@ -54,7 +57,8 @@ namespace Apollo.Age.Web
             {
                 CheckAuthentication();
                 CheckValidDownline();
-                CheckKickOut(filterContext);    
+                CheckKickOut(filterContext);
+                CheckBelonging(filterContext);
             }
 
             if (CurrentSession != null)
@@ -120,6 +124,51 @@ namespace Apollo.Age.Web
                         Response.Redirect(ApoURLs.URLs.AccountStopped, false);
                     }
                 }
+            }
+        }
+
+        private void CheckBelonging(ActionExecutingContext filterContext)
+        {
+            try
+            {
+                var currentSession = SessionManager.CurrentSession;
+                int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"]) : 0;
+                int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
+                if (memberId > 0)
+                {
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                    {
+                        DoUnAuthorized(filterContext);
+                    }
+                }
+                else if (agentId > 0)
+                {
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                    {
+                        DoUnAuthorized(filterContext);
+                    }
+                }               
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+        }
+
+        private void DoUnAuthorized(ActionExecutingContext filterContext)
+        {
+            var response = filterContext.HttpContext.Response;
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                response.Clear();
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                response.StatusDescription = string.Empty;
+                response.Write(Resources.Lang.UnauthorizedMsg);
+                response.End();
+            }
+            else
+            {
+                response.Redirect(ApoURLs.URLs.AccessDenied);
             }
         }
 
