@@ -403,15 +403,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(jsString);
         }
 
-        [HttpPost]
-        [BelongChecking()]
+        [BelongChecking(), HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
         }
 
-        [HttpPost]
-        [BelongChecking()]
+        [BelongChecking(), HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);

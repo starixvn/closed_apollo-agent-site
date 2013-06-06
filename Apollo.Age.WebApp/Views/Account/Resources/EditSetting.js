@@ -77,10 +77,10 @@ if (typeof jQuery != 'undefined') {
                 && EDITSETTING.betLimitElement.Validate()
                 && EDITSETTING.positionTakingElement.Validate()) {
                     var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
-//                    if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
-//                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
-//                        return;
-//                    }
+                    //                    if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
+                    //                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
+                    //                        return;
+                    //                    }
 
                     var postionTakingValue = EDITSETTING.positionTakingElement.Save();
                     if (postionTakingValue == null) {
@@ -124,7 +124,8 @@ if (typeof jQuery != 'undefined') {
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        data: JSON.stringify(dataObject)
+                        data: JSON.stringify(dataObject),
+                        headers: APOLLO.addAntiForgeryToken({})
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
                             noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
@@ -134,6 +135,7 @@ if (typeof jQuery != 'undefined') {
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
                         $("#btnSubmitFooter").removeAttr("disabled");
                     });

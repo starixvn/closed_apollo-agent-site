@@ -97,7 +97,7 @@ if (typeof jQuery != 'undefined') {
 
 			generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
 			alertGeneralError: function () {
-				alert(generalErrorMsg);
+			    alert(APOLLO.generalErrorMsg);
 			},
 			handleAjaxError: function (jqXHR, textStatus, errorThrown) {
 				APOLLO.alertGeneralError();
@@ -383,6 +383,11 @@ if (typeof jQuery != 'undefined') {
 					});
 				}
 			},
+
+            addAntiForgeryToken: function(data){
+                data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
+                return data;
+            },
 
 			init: function () {
 				APOLLO.initDatePicker();
