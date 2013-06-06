@@ -99,22 +99,25 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                var kickOut = _userService.KickOut(CurrentSession.AgentId, CurrentSession.UserId);
+                var userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
 
-                if (kickOut >=(int)CustomerStatus.Locked)
+                if (userStatus >= (int)CustomerStatus.Stopped)
                 {
                     if (Request.IsAjaxRequest())
                     {
-                        Response.Buffer = true;
+                        
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         Response.Write(_langManager.GetResourceData("lblAccountWasStopped"));
+                        Response.Buffer = false;
+                        Response.ClearContent();
+                        Response.ClearHeaders();
                         Response.Flush();
                         Response.Close();
                         Response.End();
                     }
                     else
                     {
-                        Response.Redirect(ApoURLs.URLs.AccountStopped);
+                        Response.Redirect(ApoURLs.URLs.AccountStopped, false);
                     }
                 }
             }

@@ -277,7 +277,7 @@
     <value>维护中</value>
   </data>
   <data name="UnderMaintenanceMsg" xml:space="preserve">
-    <value>我们正在服务器维护，网站将被从（0）至（1）无法使用。不便之处，敬请原谅！</value>
+    <value>我们正在服务器维护，网站将被从 {0} 至 {1} 无法使用。不便之处，敬请原谅！</value>
   </data>
   <data name="Basketball" xml:space="preserve">
     <value>篮球</value>

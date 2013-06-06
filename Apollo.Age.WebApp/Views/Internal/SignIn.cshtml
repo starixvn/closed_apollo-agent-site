@@ -20,7 +20,9 @@
 		</p>
 		<p>
 			@Html.LabelFor(m => m.Captcha)
-			<img src="@Url.Action("CaptchaImage")" id="img-captcha" alt="Captcha" />
+            <span id="captcha">
+                <img src="@Url.Action("CaptchaImage")" id="img-captcha" alt="Captcha" />
+			</span>
 			@Html.TextBoxFor(m => m.Captcha, new { @class = "input-captcha", autocomplete = "off" })
 			<label></label>
 			<em>@Apollo.Age.Resources.Lang.CaptchaInstruction</em>
@@ -39,29 +41,30 @@
 	}
 </div>
 @section scripts {
-	<script type="text/javascript">
+	<script type="text/javascript">        
+        window.onload = function () {
+            var txtUsername = document.getElementById('Username');
+            var txtPassword = document.getElementById('Password');
+            var captcha = document.getElementById('Captcha');
 
-	    window.onload = function () {
-	        var txtUsername = document.getElementById('Username');
-	        var txtPassword = document.getElementById('Password');
-	        var captcha = document.getElementById('Captcha');
+            if (txtUsername.value.length == 0) {
+                txtUsername.focus();
+            } else {
+                txtPassword.focus();
+            }
 
-	        if (txtUsername.value.length == 0) {
-	            txtUsername.focus();
-	        } else {
-	            txtPassword.focus();
-	        }
-
-	        captcha.value = '';
-	        document.getElementById('img-captcha').onclick = function () {
-	            window.location.reload();
-	        };
-
+            captcha.value = '';           
+            $('#captcha').click(function () {
+                var $this = $(this);
+                $('#img-captcha').attr('src', '@Url.Action("CaptchaImage")' + "?" +  Date.now());
+            });
             // delete cookies
-	        document.cookie = 'searching-id' + '="-1";-1; path=/';
-	        document.cookie = 'searching-name' + '="";-1; path=/';
-	        document.cookie = 'searching-ismember' + '="false";-1; path=/';
-	    };
-
+            document.cookie = 'searching-id' + '="-1";-1; path=/';
+            document.cookie = 'searching-name' + '="";-1; path=/';
+            document.cookie = 'searching-ismember' + '="false";-1; path=/';
+        };
 	</script>
+    <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+    <script src="~/_GlobalResources/Js/Core.js" type="text/javascript"></script>
+
 }
