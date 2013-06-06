@@ -124,10 +124,8 @@ if (typeof jQuery != 'undefined') {
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        data: JSON.stringify(APOLLO.addAntiForgeryToken(dataObject)),
-                        headers: {
-                            __RequestVerificationToken: $('#forgery-token-div input[name=__RequestVerificationToken]').val()
-                        }
+                        data: JSON.stringify(dataObject),
+                        headers: APOLLO.addAntiForgeryToken({})
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
                             noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
