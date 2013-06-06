@@ -135,9 +135,9 @@ if (typeof jQuery != 'undefined') {
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
                         $("#btnSubmitFooter").removeAttr("disabled");
-                        try { $.unblockUI(); } catch (e) { };
                     });
                 }
             },
