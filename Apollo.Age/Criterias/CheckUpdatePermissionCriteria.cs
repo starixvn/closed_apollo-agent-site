@@ -36,7 +36,7 @@ namespace Apollo.Age.Criterias
 
         public override bool IsValid()
         {
-            return this.ActorAgentId >= 0 && this.ObjectId > 0;
+            return this.ActorAgentId >= 0 || this.ObjectId >= 0;
         }
     }
 }

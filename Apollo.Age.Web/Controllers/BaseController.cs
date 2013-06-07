@@ -56,9 +56,8 @@ namespace Apollo.Age.Web
             if (!skipAuth)
             {
                 CheckAuthentication();
-                CheckValidDownline();
-                CheckKickOut(filterContext);
-                CheckBelonging(filterContext);
+                CheckValidDownline(filterContext);
+                CheckKickOut(filterContext);               
             }
 
             if (CurrentSession != null)
@@ -94,9 +93,40 @@ namespace Apollo.Age.Web
             }
         }
 
-        private void CheckValidDownline()
+        private void CheckValidDownline(ActionExecutingContext filterContext)
         {
+            try
+            {
+                if (SessionManager.CurrentSession != null)
+                {                  
+                    var currentSession = SessionManager.CurrentSession;
 
+                    int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
+                    int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
+                    if (memberId >= 0 && memberId != currentSession.AgentId)
+                    {
+                        if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                        {
+                            DoUnAuthorized(filterContext);
+                        }
+                    }
+                    else if (agentId >= 0 && agentId != currentSession.AgentId)
+                    {
+                        if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                        {
+                            DoUnAuthorized(filterContext);
+                        }
+                    }
+                }
+                else
+                {
+                    DoUnAuthorized(filterContext);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
         }
 
         private void CheckKickOut(ActionExecutingContext filterContext)
@@ -126,34 +156,7 @@ namespace Apollo.Age.Web
                 }
             }
         }
-
-        private void CheckBelonging(ActionExecutingContext filterContext)
-        {
-            try
-            {
-                var currentSession = SessionManager.CurrentSession;
-                int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"]) : 0;
-                int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
-                if (memberId > 0)
-                {
-                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
-                    {
-                        DoUnAuthorized(filterContext);
-                    }
-                }
-                else if (agentId > 0)
-                {
-                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
-                    {
-                        DoUnAuthorized(filterContext);
-                    }
-                }               
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-        }
+              
 
         private void DoUnAuthorized(ActionExecutingContext filterContext)
         {
