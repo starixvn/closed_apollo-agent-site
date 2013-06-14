@@ -1,4 +1,13 @@
-﻿namespace Apollo.Age.Configurations
+﻿// --------------------------------------------------------------------------
+// <copyright file="AppSettings.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.6.12">Created</change>
+//   <change who="Anders.Le" date="2013.6.12">Change IsMultipleSignOn to IsAllowMultipleSignIn</change>
+// </history>
+namespace Apollo.Age.Configurations
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +19,7 @@
     {
         public static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key];
+            return ConfigurationManager.AppSettings[key].ToLower();
         }
 
         public static string UnderMaintenanceUrl
@@ -52,11 +61,11 @@
                 return GetValue("AllowInternalUpdate") == "1";
             }
         }
-        public static bool MultipleSignOn
+        public static bool AllowMultipleSignIn
         {
             get
             {
-                return GetValue("MultipleSignOn") == "1";
+                return GetValue("AllowMultipleSignIn") == "1";
             }
         }
     }

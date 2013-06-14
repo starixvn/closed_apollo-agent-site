@@ -318,15 +318,6 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.CurrentSession;
             }
-        }
-
-        private string GetStringRequest(string name, string defaultValue)
-        {
-            if (Request[name] == null)
-            {
-                return defaultValue;
-            }
-            return Request[name];
-        }
+        }       
     }
 }

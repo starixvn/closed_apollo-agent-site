@@ -12,8 +12,8 @@ namespace Apollo.Age.Reports.Core
     public class Constants
     {
         public const string NA = "N/A";
-        public const string REFUND_HT = "Refund HT";
-        public const string REFUND_FT = "Refund FT";
-        public const string REFUND = "Refund";
+        public const string RefundHT = "Refund HT";
+        public const string RefundFT = "Refund FT";
+        public const string Refund = "Refund";
     }
 }

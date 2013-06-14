@@ -105,9 +105,9 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                var list = this.GetData<MessageModel>(criteria);
+                var privateMessages = this.GetData<MessageModel>(criteria);
 
-                return list != null && list.Count() > 0;
+                return privateMessages != null && privateMessages.Any() ;
             }
 
             return false;
@@ -130,22 +130,37 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                string key = messageType.ToString() + "_" + siteId;
+                //string key = messageType.ToString() + "_" + siteId;
+                MessageModel message = new MessageModel();
+                string key = string.Join("_", messageType.ToString(), siteId);
 
-                if (_cache.Contains(key)
-                    && _cache.Get<MessageModel>(key) != null)
+                message = _cache.Get<MessageModel>(key);
+
+                if (message == null)
                 {
-                    return _cache.Get<MessageModel>(key);
+                    var messageList = this.GetData<MessageModel>(criteria);
+
+                    if (messageList != null && messageList.Any())
+                    {
+                        message = messageList.FirstOrDefault();
+                        _cache.Set<MessageModel>(key, message);
+                    }
                 }
 
-                var message = this.GetData<MessageModel>(criteria).FirstOrDefault();
+                //if (_cache.Contains(key)
+                //    && _cache.Get<MessageModel>(key) != null)
+                //{
+                //    return _cache.Get<MessageModel>(key);
+                //}
 
-                _cache.Set<MessageModel>(key, message);
+                //message = this.GetData<MessageModel>(criteria).FirstOrDefault();
+
+                //_cache.Set<MessageModel>(key, message);
 
                 return message;
             }
 
-            return null;
+            return new MessageModel(); 
         }
 
         public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true)
@@ -166,7 +181,7 @@ namespace Apollo.Age.Account.Services
                 }
             }
 
-            return null;
+            return new MessageModel();
         }
 
         public string GetParentSitesID(string siteId)
@@ -209,7 +224,7 @@ namespace Apollo.Age.Account.Services
                 return this.GetData<MessageModel>(criteria);
             }
 
-            return null;
+            return new List<MessageModel>();
         }
 
         public static object GetValue(object obj, string propertyName)
@@ -219,6 +234,7 @@ namespace Apollo.Age.Account.Services
             {
                 return propertyInfo.GetValue(obj, null);
             }
+
             return null;
         }
 
@@ -231,15 +247,21 @@ namespace Apollo.Age.Account.Services
                     return propertyInfo;
                 }
             }
+
             return null;
         }
 
         public static bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
-            if (propertyInfo != null)
-                return true;
-            return false;
+            //if (propertyInfo != null)
+            //{
+            //    return true;
+            //}
+
+            //return false;
+
+            return !ReferenceEquals(propertyInfo, null);
         }
     }
 }

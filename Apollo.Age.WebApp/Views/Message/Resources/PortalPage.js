@@ -11,14 +11,14 @@ var MessagePortalPage = function ($) {
         imagePath: null,
 
         init: function () {
-            MessagePortalPage.imagePath = APOLLO.resolveUrl('Views/Message/Images/loading_2.gif');
+            MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
         },
 
         loadAnnouncement: function () {
 
             var lastPostTime = getCookie("lastPostTime");
 
-            var url = APOLLO.resolveUrl("Message/Announcement?lastPostTime=" + lastPostTime);
+            var url = APOLLO.resolveUrl("~/Message/Announcement?lastPostTime=" + lastPostTime);
 
             $.ajax({
                 url: url,
@@ -26,7 +26,7 @@ var MessagePortalPage = function ($) {
                 dataType: 'HTML',
                 success: function (res) {
                     var divMore = $('#divMore');
-                    if (divMore != null) {
+                    if (divMore.length > 0) {
                         $('.divMoreRemove').remove();
                         $('#divAnnouncement').append(res);
                     }
@@ -35,12 +35,14 @@ var MessagePortalPage = function ($) {
                     }
 
                     var divAnnouncement = document.getElementById("divAnnouncement");
-                    divAnnouncement.scrollTop = divAnnouncement.scrollHeight;
+                    if (divAnnouncement != undefined) {
+                        divAnnouncement.scrollTop = divAnnouncement.scrollHeight;
+                    }
 
                     var moreIsVisible = getCookie('moreIsVisible');
                     if (moreIsVisible == 'False') {
-                        var divMore = $('#divMore');
-                        if (divMore != null) {
+                        // var divMore = $('#divMore');
+                        if (divMore.length > 0) {
                             divMore.hide();
                         }
                     }
@@ -51,40 +53,43 @@ var MessagePortalPage = function ($) {
         },
 
         openMsg: function () {
-            var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
-            window.location.href = APOLLO.resolveUrl('Message/NewMessage?pageQuery=normal');
+            //var baseURL = parent.location.href.substring(0, parent.location.href.lastIndexOf('/') + 1);
+            window.location.href = APOLLO.resolveUrl('~/Message/NewMessage?pageQuery=normal');
         },
 
         toggleAnnouncementContent: function (elementId) {
             var e = $('#' + elementId);
-            var icon = e.find('.toogleIcon');
-            var smallContent = e.find('.small');
-            var fullContent = e.find('.full');
 
-            if (fullContent.hasClass('text_exposed_show')) {
-                if (e.hasClass('expanding')) {
-                    e.removeClass('expanding');
-                };
-                smallContent.attr('class', 'text_exposed_show small');
-                fullContent.attr('class', 'text_exposed_hide full');
+            if (e.length > 0) {
+                var icon = e.find('.toogleIcon');
+                var smallContent = e.find('.small');
+                var fullContent = e.find('.full');
 
-                icon.attr('style', 'background-position: 0px 0px;');
-            }
-            else {
-                e.addClass('expanding');
-                smallContent.attr('class', 'text_exposed_hide small');
-                fullContent.attr('class', 'text_exposed_show full');
-                icon.attr('style', 'background-position: 0px -9px;');
-                var isRead = e.attr('isRead');
-                if (isRead == '0') {
-                    MessagePortalPage.setReadPriMsg(elementId);
+                if (fullContent.hasClass('text_exposed_show')) {
+                    if (e.hasClass('expanding')) {
+                        e.removeClass('expanding');
+                    };
+                    smallContent.attr('class', 'text_exposed_show small');
+                    fullContent.attr('class', 'text_exposed_hide full');
+
+                    icon.attr('style', 'background-position: 0px 0px;');
+                }
+                else {
+                    e.addClass('expanding');
+                    smallContent.attr('class', 'text_exposed_hide small');
+                    fullContent.attr('class', 'text_exposed_show full');
+                    icon.attr('style', 'background-position: 0px -9px;');
+                    var isRead = e.attr('isRead');
+                    if (isRead == '0') {
+                        MessagePortalPage.setReadPriMsg(elementId);
+                    }
                 }
             }
         },
 
         setReadPriMsg: function (messageId) {
 
-            var url = APOLLO.resolveUrl("Message/SetReadPriMsg?messageId=") + messageId;
+            var url = APOLLO.resolveUrl("~/Message/SetReadPriMsg?messageId=") + messageId;
 
             $.ajax({
                 url: url,

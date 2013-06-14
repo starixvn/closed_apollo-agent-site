@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.9">Created</change>
+//   <change who="Anders.Le" date="2013.6.12">Refactoring code - change constant name</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Core
@@ -19,8 +20,8 @@ namespace Apollo.Age.Forecast.Core
     /// </summary>
     public class Constants
     {
-        public const string SCORE_MAP_BETTYPES = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType";
-        public const string SCORE_MAP_BETTYPES_LIST = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType.List";
-        public const int FORECAST_RESULT_TABLE_DIMEMSION = 7;
+        public const string ScoreMapBetType = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType";
+        public const string ScoreMapBetTypeList = "Apollo.Age.Forecast.Services.ForecastService.ScoreMapBetType.List";
+        public const int ForecastResultTableDimension = 7;
     }
 }

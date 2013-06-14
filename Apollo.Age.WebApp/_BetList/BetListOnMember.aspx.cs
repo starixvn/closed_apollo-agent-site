@@ -9,6 +9,7 @@
 //     <change who="Kaden.Trinh" date="2013.04.16">Implement betlist Account Info</change>
 //     <change who="Kaden.Trinh" date="2013.05.20">Implement Navigation bar</change>
 //     <change who="Kaden.Trinh" date="2013.05.31">Change rule: we have to get date from after movebetday 1 day</change>
+//   <change who="Anders.Le" date="2013.6.12">Remove unused variables</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -40,11 +41,7 @@ namespace Sunplus.Agent.UI._BetList
 
     public partial class BetListOnMember : TplPage
     {
-        #region Variables
-
-        private DataTable dtResult = null;
-        private DataTable outDataTable = null;
-
+        #region Variables      
         private int custid;
         private string username = string.Empty;
         private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;

@@ -100,7 +100,7 @@ namespace Apollo.Age.Reports.Controllers
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = GetViewName(sportId);
+            string viewName = GetViewBySport(sportId);
             ViewBag.IsParlay = false;
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
@@ -115,7 +115,7 @@ namespace Apollo.Age.Reports.Controllers
                 results = results.OrderBy(match => match.LeagueId);
             }
 
-            string sportName = GetViewName(sportId);
+            string sportName = GetViewBySport(sportId);
 
             ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
             ViewBag.IsParlay = false;
@@ -129,7 +129,7 @@ namespace Apollo.Age.Reports.Controllers
 
             foreach (var result in results)
             {
-                result.ViewName = GetViewName(result.SportId);
+                result.ViewName = GetViewBySport(result.SportId);
             }
 
             if (results != null && results.Any())
@@ -199,7 +199,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Outright Results
 
-        private string GetViewName(byte sportId)
+        private string GetViewBySport(byte sportId)
         {
             switch (sportId)
             {
