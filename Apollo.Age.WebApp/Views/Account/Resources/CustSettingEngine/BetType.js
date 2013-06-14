@@ -114,7 +114,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
         var presetValue = presetSpinBox.getValue();
         if (presetSpinBox.isValid()) {
-            presetSpinBox.setValue(presetValue);
+            //presetSpinBox.setValue(presetValue);
         }
     }
     //// Max K Change affect To Min K and Preset K
@@ -550,7 +550,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
 
         var presetValue = presetSpinBox.getValue();
         if (presetSpinBox.isValid()) {
-            presetSpinBox.setValue(presetValue);
+            //presetSpinBox.setValue(presetValue);
         }
     }
     //// Max K Change affect To Min K and Preset K

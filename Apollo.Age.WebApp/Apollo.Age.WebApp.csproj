@@ -130,9 +130,6 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database">
       <HintPath>..\Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ObjectBuilder">
-      <HintPath>..\Dependencies\Microsoft.Practices.ObjectBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
     </Reference>
@@ -143,17 +140,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception">
       <HintPath>..\Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.StaticFactory">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
     </Reference>
     <Reference Include="NetUtility">
       <HintPath>..\Dependencies\NetUtility.dll</HintPath>
@@ -161,20 +149,11 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\Dependencies\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\Dependencies\Owin.dll</HintPath>
-    </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="RSACryptoPad">
       <HintPath>..\Dependencies\RSACryptoPad.dll</HintPath>
-    </Reference>
-    <Reference Include="SharedCache.WinServiceCommon">
-      <HintPath>..\Dependencies\SharedCache.WinServiceCommon.dll</HintPath>
     </Reference>
     <Reference Include="SPSRemoting">
       <HintPath>..\Dependencies\SPSRemoting.dll</HintPath>
@@ -316,7 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Log.txt" />
-    <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Data\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
     <Content Include="CustSettingEngine\PTGrid.xml">
       <SubType>Designer</SubType>
@@ -926,7 +907,9 @@
     <Content Include="Views\TotalBets\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\TotalGoal.cshtml" />
     <Content Include="Web.AppSettings.config" />
-    <Content Include="Web.ConnectionString.config" />
+    <Content Include="Web.ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.sitemap" />
     <Content Include="_BetList\Resources\BetList.less" />
     <Content Include="_BetList\Resources\ErrorPage.less" />

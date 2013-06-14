@@ -7,6 +7,7 @@
 //   <change who="Anders.Le" date="2013.4.1">Created</change>
 //   <change who="Ricky.Nguyen" date="2013.4.5">Update OU, 1X2, ScoreMap</change>
 //   <change who="Ricky.Nguyen" date="2013.4.9">Update ScoreMap</change>
+//   <change who="Anders.Le" date="2013.6.12">Add Fanex.Caching</change>
 // </history>
 
 namespace Apollo.Age.Forecast.Services
@@ -22,21 +23,26 @@ namespace Apollo.Age.Forecast.Services
     using Apollo.Age.Forecast.Repositories;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
+    using Fanex.Caching;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
+        private readonly ICache _cacheManager;
+        private readonly IForecastRepository _forecastRepository;
+
         public ForecastService()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public ForecastService(IForecastRepository forecastRepository)
+        public ForecastService(IForecastRepository forecastRepository = null, ICache cacheManager = null)
         {
             _forecastRepository = _forecastRepository ?? new ForecastRepository();
+            _cacheManager = cacheManager ?? CacheService.CreateInstance();
         }
 
-        private IForecastRepository _forecastRepository { get; set; }
+        //private IForecastRepository _forecastRepository { get; set; }
 
         /// <summary>
         /// Running Leagues
@@ -186,9 +192,8 @@ namespace Apollo.Age.Forecast.Services
                 });
 
                 //// Map Data
-                int homeIndex = 0;
-                int awayIndex = 0;
-                int length = 0;
+                int homeIndex = 0, awayIndex = 0, length = 0;
+                
                 foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
                 {
                     homeIndex = 0;
@@ -238,7 +243,7 @@ namespace Apollo.Age.Forecast.Services
         /// <returns></returns>
         public List<int> GetListScoreMapBetType()
         {
-            var oldBetTypeIds = CachingService.Get<List<int>>(Constants.SCORE_MAP_BETTYPES_LIST);
+            var oldBetTypeIds = _cacheManager.Get<List<int>>(Constants.ScoreMapBetTypeList);
             if (oldBetTypeIds == null)
             {
                 IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
@@ -252,7 +257,7 @@ namespace Apollo.Age.Forecast.Services
                     }
                 }
 
-                CachingService.Set<List<int>>(Constants.SCORE_MAP_BETTYPES_LIST, betTypeIds, TimeSpan.FromHours(2));
+                _cacheManager.Set<List<int>>(Constants.ScoreMapBetTypeList, betTypeIds, TimeSpan.FromHours(2));
                 return betTypeIds;
             }
 
@@ -496,11 +501,12 @@ namespace Apollo.Age.Forecast.Services
         /// <returns></returns>
         private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()
         {
-            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = CachingService.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES);
+            IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = _cacheManager.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.ScoreMapBetType);
             if (scoreMapBetTypeList == null)
             {
                 scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
-                CachingService.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.SCORE_MAP_BETTYPES, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
+                _cacheManager.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.ScoreMapBetType, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
+                _cacheManager.Set<IEnumerable<ScoreMapBetTypeModel>>(Constants.ScoreMapBetType, scoreMapBetTypeList, new TimeSpan(0, 5, 0));
             }
 
             return scoreMapBetTypeList;

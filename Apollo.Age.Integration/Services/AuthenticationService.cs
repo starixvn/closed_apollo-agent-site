@@ -11,14 +11,15 @@
 namespace Apollo.Age.Integration.Services
 {
     using System;
-    using System.Text;
-    using Apollo.Age.Integration.Configurations;
-    using System.Net;
     using System.IO;
+    using System.Net;
+    using System.Text;
+    using System.Web;
     using System.Web.Helpers;
+    using Apollo.Age.Integration.Configurations;
     using Apollo.Age.Integration.Models;
-    using Fanex.Logging;
     using Apollo.Age.Resources;
+    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,10 +41,10 @@ namespace Apollo.Age.Integration.Services
         /// <returns><see cref="JsonResponseModel"/></returns>
         internal JsonResponseModel GetSessionToken(string authenticationCode)
         {
-
             JsonResponseModel jsonResponseModel = new JsonResponseModel();
 
-            // make a web request to authorization server
+            // compose post data to make a web request to authorization server
+            
             var postData = string.Format(FormParams,
                 authenticationCode,
                 OAuthSettings.Settings.RedirectUri,
@@ -76,7 +77,7 @@ namespace Apollo.Age.Integration.Services
             catch (WebException webException)
             {
                 LogService.Error(webException.Message, webException);
-                
+
             }
             catch (AuthenticationException authException)
             {

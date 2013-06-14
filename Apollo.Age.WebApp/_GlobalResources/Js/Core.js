@@ -97,7 +97,7 @@ if (typeof jQuery != 'undefined') {
 
 			generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
 			alertGeneralError: function () {
-			    alert(APOLLO.generalErrorMsg);
+				alert(APOLLO.generalErrorMsg);
 			},
 			handleAjaxError: function (jqXHR, textStatus, errorThrown) {
 				APOLLO.alertGeneralError();
@@ -123,7 +123,7 @@ if (typeof jQuery != 'undefined') {
 				var datePickers = $('.datepicker');
 
 				if (datePickers.length > 0) {
-				    var isValidDate = function (dateString) {
+					var isValidDate = function (dateString) {
 						// Parse the date parts to integers
 						var parts = dateString.split("/");
 						var day = parseInt(parts[1], 10);
@@ -384,10 +384,10 @@ if (typeof jQuery != 'undefined') {
 				}
 			},
 
-            addAntiForgeryToken: function(data){
-                data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
-                return data;
-            },
+			addAntiForgeryToken: function(data){
+				data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
+				return data;
+			},
 
 			init: function () {
 				APOLLO.initDatePicker();
