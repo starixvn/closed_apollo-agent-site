@@ -18,52 +18,63 @@
 	<div id="page_main">
 		@if (isShowHeader)
 		{
-			<div id="header_main">
+			<div id="header_main" class="frozen-header-main">
 				@ViewBag.Title
 			</div>
 		}
 		<div id="content_main">
 			<div class="setting-mode 
-            @if (isMaster && !isShowHeader)
+            @if (isMaster)
             {
-                @: frozen-mode
+                if(isShowHeader)
+                {
+                    @: frozen-mode-no-popup
+                }
+                else
+                {
+                    @: frozen-mode
+                }
             }
             ">
 				<span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
 				| <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
                 @if (isMaster)
-				{
+                {
 					    <button id="btnSubmitHeader" class="btn" style="display:none;">
 						    @Apollo.Age.Resources.Lang.update</button>
                 }
 			</div>
 			@if (!isMaster)
-			{
+   {
 				<div id="settingContainer">
 					@RenderBody()
 				</div>
-			}
-			else
-			{
+   }
+   else
+   {
                 
-				<div id="settingContainer"
-                @if (!isShowHeader)
+				<div id="settingContainer" class="
+                @if(isShowHeader)
                 {
-                    @: class="setting-container-frozen"
+                    @: setting-container-frozen-no-popup
                 }
-                >
+                else
+                {
+                    @: setting-container-frozen
+                }
+                ">
 					<div class="edit-setting-warning">
 						@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
 					@RenderBody()
 				</div>
-               if (ViewBag.IsMaster)
-               {
+       if (ViewBag.IsMaster)
+       {
 				    <div class="btnLeft">
 					    <button id="btnSubmitFooter" class="btn">
 						    @Apollo.Age.Resources.Lang.update</button>
 				    </div>
-               }
-            }
+       }
+   }
 		</div>
 	</div>
     <div id="forgery-token-div" style="display:none;">
