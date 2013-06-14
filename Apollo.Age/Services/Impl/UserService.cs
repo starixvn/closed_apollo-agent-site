@@ -74,6 +74,8 @@ namespace Apollo.Age.Services.Impl
         /// <returns></returns>
         public int GetUserStatus(int agentId, int agentUserId)
         {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+            Check.Argument.IsNotNegative(agentUserId, "agentUserId");
             try
             {
                 var currentStatus = _userRepository.GetUserStatus(new AgentGetStatusCriteria

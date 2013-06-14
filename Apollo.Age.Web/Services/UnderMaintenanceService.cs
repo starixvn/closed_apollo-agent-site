@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry" date="2013.04.23">Created</change>
-//
+//   <change who="Anders.Le" date="2013.6.12">Add Fanex.Caching</change>
 // </history>
 
 namespace Apollo.Age.Web.Services
@@ -27,18 +27,20 @@ namespace Apollo.Age.Web.Services
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
 
         private readonly UMBusiness umService;
-        private static readonly Mutex mutext = new Mutex();        
+        private static readonly Mutex mutext = new Mutex();
+        private readonly ICache _cacheManager;
 
         public UnderMaintenanceService()
         {
             umService = new UMBusiness();
+            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 
         public UnderMaintenanceViewModel MaintenanceInfo
         {
             get
             {
-                var maintenanceInfo = CachingService.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);                    
+                var maintenanceInfo = _cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);                    
                 if (maintenanceInfo == null)
                 {
                     if (mutext.WaitOne(WaitInterval))
@@ -46,7 +48,7 @@ namespace Apollo.Age.Web.Services
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            CachingService.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));                                
+                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));                                
                         }
                         catch
                         {

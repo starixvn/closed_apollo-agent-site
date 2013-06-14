@@ -17,7 +17,7 @@ namespace Apollo.Age.Forecast.Models
     {
         public ScoreMapMatchResultModel()
         {
-            this.ScoreMatrix = new decimal[Constants.FORECAST_RESULT_TABLE_DIMEMSION, Constants.FORECAST_RESULT_TABLE_DIMEMSION];
+            this.ScoreMatrix = new decimal[Constants.ForecastResultTableDimension, Constants.ForecastResultTableDimension];
         }
 
         public int MatchId { get; set; }

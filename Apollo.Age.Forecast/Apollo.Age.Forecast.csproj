@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fanex.Data, Version=0.5.404.60, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

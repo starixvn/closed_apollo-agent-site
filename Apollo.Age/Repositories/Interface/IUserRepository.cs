@@ -16,18 +16,12 @@ namespace Apollo.Age.Repositories.Interface
 
     public interface IUserRepository : IRepository<User>
     {
-        int GetUserStatus(ICriteria criteria);
-
-        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref    int AdminId);
-
-        bool HasPermissionOnUpdating(ICriteria criteria);
-
-        int WritelogInternalLogin(InternalLogLoginCriteria criteria);
-
-        int InternalCheckIn(InternalCheckinCriteria criteria);
-
         byte InternalReCheckIn(InternalReCheckinCriteria criteria);
-
-        int InternalLogout(InternalLogoutCriteria criteria);
+        int GetUserStatus(ICriteria criteria);        
+        int WritelogInternalLogin(InternalLogLoginCriteria criteria);
+        int InternalCheckIn(InternalCheckinCriteria criteria);
+        int InternalLogout(InternalLogoutCriteria criteria);       
+        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
+        bool HasPermissionOnUpdating(ICriteria criteria);
     }
 }

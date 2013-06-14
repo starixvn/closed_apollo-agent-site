@@ -17,6 +17,7 @@ AGE.prototype.ApplyScroller = function () {
     this.topnews.onmouseover = function () {
         this.scrollerPaused = true;
     };
+
     this.topnews.onmouseout = function () {
         this.scrollerPaused = false;
     };
@@ -80,7 +81,7 @@ function UpdateCountPrivateMsg() {
         }
     }
 
-    var url = APOLLO.resolveUrl("Message/UpdatePriMsg");
+    var url = APOLLO.resolveUrl("~/Message/UpdatePriMsg");
     $.ajax({
         url: url,
         type: 'POST',
@@ -116,7 +117,7 @@ function GetMessages() {
             var objDiv = age.createElement('div');
 
             //Process Public Message: show new public message and its link to message form
-            var url = APOLLO.resolveUrl("Message/NewMessage?pageQuery=");
+            var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
             var balloonPopupContent = "";
             url += publicMessage[MSGTYPE];
 
@@ -152,7 +153,7 @@ function GetMessages() {
     }
 
     $.ajax({
-        url: APOLLO.resolveUrl('Message/GetMessage'),
+        url: APOLLO.resolveUrl('~/Message/GetMessage'),
         type: 'POST',
         dataType: 'JSON',
         success: completedGetMessages,
@@ -319,26 +320,28 @@ function SelectTopMenu(url) {
 var HEADER = function ($) {
     return {
         init: function () {
-            if (DEFAULTS.IsInternalLogin && DEFAULTS.IsMultipleSignOn) {
+            if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
                 setTimeout(function () { HEADER.reCheckIn(); }, 30000);
             }
         },
         reCheckIn: function () {
             $.ajax({
                 type: "POST",
-                url: APOLLO.resolveUrl("Internal/ReCheckIn"),
+                url: APOLLO.resolveUrl("~/Internal/ReCheckIn"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
                 timeout: 120000
             })
                 .done(function (result) {
-                    if (result.isKickout) {
-                        alert(LANGUAGES.AlerSignonMessage);
-                        APOLLO.signOut();
-                    }
-                    else {
-                        setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                    if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
+                        if (result.isKickout) {
+                            alert(LANGUAGES.AlerSignonMessage);
+                            APOLLO.signOut();
+                        }
+                        else {
+                            setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                        }
                     }
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
@@ -346,5 +349,6 @@ var HEADER = function ($) {
                 });
         }
     };
-} (jQuery);
+    } (jQuery);
+
 RegisterStartUp(InitHeader);
