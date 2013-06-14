@@ -18,7 +18,11 @@
 	<div id="page_main">
 		@if (isShowHeader)
 		{
-			<div id="header_main" class="frozen-header-main">
+			<div id="header_main" class="
+            @if (isMaster)
+            {
+                @: frozen-header-main
+            }">
 				@ViewBag.Title
 			</div>
 		}
