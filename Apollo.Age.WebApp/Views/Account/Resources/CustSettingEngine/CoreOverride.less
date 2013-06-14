@@ -5,6 +5,7 @@
 
 body, .pt-grid {
 	font-size: (@fontSize -1);
+	background-color: #F9F9F9;
 }
 
 .betting-limit-item {
@@ -198,6 +199,7 @@ body, .pt-grid {
 
 .setting-mode {
 	margin-bottom: 10px;
+    
 
 	.active-mode{
 		color: @linkColor;
@@ -209,6 +211,22 @@ body, .pt-grid {
 		cursor: default;
 	}
 
+}
+
+.frozen-mode
+{
+	height: 25px;
+	background-color: inherit;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+	background-color: #F9F9F9;
+}
+
+.setting-container-frozen
+{
+	margin-top: 28px !important;
 }
 
 .share-setting-value input {
@@ -289,4 +307,12 @@ body, .pt-grid {
 
 .eq-ie7 #content_main {
 	padding: 0 10px 10px 10px;
+}
+
+#btnSubmitHeader
+{
+	position: fixed;
+    right: 14px;
+    top: 0;
+    z-index: 10;
 }

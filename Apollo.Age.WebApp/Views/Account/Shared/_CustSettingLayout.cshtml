@@ -15,7 +15,6 @@
 	@RenderSection("css", required: false)
 </head>
 <body>
-	
 	<div id="page_main">
 		@if (isShowHeader)
 		{
@@ -24,9 +23,18 @@
 			</div>
 		}
 		<div id="content_main">
-			<div class="setting-mode">
+			<div class="setting-mode 
+            @if (isMaster){
+                @: frozen-mode
+            }
+            ">
 				<span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
 				| <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
+                @if (ViewBag.IsMaster)
+				{
+					    <button id="btnSubmitHeader" class="btn" style="display:none;">
+						    @Apollo.Age.Resources.Lang.update</button>
+                }
 			</div>
 			@if (!isMaster)
 			{
@@ -36,19 +44,20 @@
 			}
 			else
 			{
-				<div id="settingContainer">
+                
+				<div id="settingContainer" class="setting-container-frozen">
 					<div class="edit-setting-warning">
 						@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
 					@RenderBody()
 				</div>
-				if (ViewBag.IsMaster)
-				{
-				<div class="btnLeft">
-					<button id="btnSubmitFooter" class="btn" style="display: none;">
-						@Apollo.Age.Resources.Lang.update</button>
-				</div>
-				}
-			}
+               if (ViewBag.IsMaster)
+               {
+				    <div class="btnLeft">
+					    <button id="btnSubmitFooter" class="btn">
+						    @Apollo.Age.Resources.Lang.update</button>
+				    </div>
+               }
+            }
 		</div>
 	</div>
     <div id="forgery-token-div" style="display:none;">

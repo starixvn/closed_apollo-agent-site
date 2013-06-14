@@ -38,18 +38,20 @@ if (typeof jQuery != 'undefined') {
                     $("setting-mode #simple-mode").removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
                     $("#settingContainer .edit-setting-warning").show();
+                    $("#btnSubmitHeader").hide();
                 }
                 else {
                     $(".setting-mode #advanced-mode").removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
                     $("#settingContainer .edit-setting-warning").hide();
+                    $("#btnSubmitHeader").show();
                 }
             },
             init: function () {
                 EDITSETTING.currentIsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
                 EDITSETTING.initOthers(DEFAULT_LAYOUT.isSimpleMode);
                 EDITSETTING.initForMode();
-                $("#btnSubmitFooter").unbind("click").click(function () {
+                $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
                 });
                 $(".setting-mode #simple-mode").unbind("click").click(function () {
@@ -57,6 +59,7 @@ if (typeof jQuery != 'undefined') {
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
                     $("#settingContainer .edit-setting-warning").show();
+                    $("#btnSubmitHeader").hide();
                     EDITSETTING.currentIsSimpleMode = true;
                     EDITSETTING.initOthers(true);
                     EDITSETTING.setDialogHeight(true);
@@ -70,6 +73,7 @@ if (typeof jQuery != 'undefined') {
                     EDITSETTING.currentIsSimpleMode = false;
                     EDITSETTING.initOthers(false);
                     EDITSETTING.setDialogHeight(false);
+                    $("#btnSubmitHeader").show();
                 });
             },
             saveSetting: function () {
@@ -187,6 +191,5 @@ if (typeof jQuery != 'undefined') {
 
     $(function () {
         EDITSETTING.init();
-        $("#btnSubmitFooter").show();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
