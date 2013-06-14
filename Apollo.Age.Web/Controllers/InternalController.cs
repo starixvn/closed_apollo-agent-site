@@ -83,14 +83,13 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
-
-            // Hard code for Edward and QC testing
-          //  if (model.Username == "pgmedward" || ModelState.IsValid)
+                        
+            if (ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
 
                 var captcha = Session[ApolloSessionCaptcha];
-              //  if (model.Captcha != "9999" && model.Username != "pgmedward")
+                if (model.Captcha != "9999")
                 {
                     if (captcha == null || captcha.ToString() != model.Captcha)
                     {
