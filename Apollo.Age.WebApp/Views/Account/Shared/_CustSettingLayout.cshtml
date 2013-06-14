@@ -24,13 +24,14 @@
 		}
 		<div id="content_main">
 			<div class="setting-mode 
-            @if (isMaster){
+            @if (isMaster && !isShowHeader)
+            {
                 @: frozen-mode
             }
             ">
 				<span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
 				| <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
-                @if (ViewBag.IsMaster)
+                @if (isMaster)
 				{
 					    <button id="btnSubmitHeader" class="btn" style="display:none;">
 						    @Apollo.Age.Resources.Lang.update</button>
@@ -45,7 +46,12 @@
 			else
 			{
                 
-				<div id="settingContainer" class="setting-container-frozen">
+				<div id="settingContainer"
+                @if (!isShowHeader)
+                {
+                    @: class="setting-container-frozen"
+                }
+                >
 					<div class="edit-setting-warning">
 						@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
 					@RenderBody()
