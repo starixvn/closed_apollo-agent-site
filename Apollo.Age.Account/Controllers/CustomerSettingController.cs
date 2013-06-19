@@ -360,7 +360,6 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-       // [BelongChecking()]
         public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.MemberId = memberId;
@@ -376,7 +375,6 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        //[BelongChecking()]
         public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.AgentId = agentId;
