@@ -17,8 +17,8 @@
             {
                 <div class="login-bg clearfix">
                     <div class="login-info">
-                        <span class="username">@Model.Username<span> (@Model.AgentName)</span></span> <a
-                            href="#" onclick="APOLLO.signOut()">@Apollo.Age.Resources.Lang.SignOut</a>
+                        <span class="username">@Model.Username<span> (@Model.AdminName)</span></span> <a id="signout"
+                            href="#">@Apollo.Age.Resources.Lang.SignOut</a>
                     </div>
                 </div>
                 @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())

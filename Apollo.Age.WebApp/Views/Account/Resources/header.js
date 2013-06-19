@@ -322,7 +322,14 @@ var HEADER = function ($) {
         init: function () {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
                 setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+
             }
+            HEADER.signOut();
+        },
+        signOut: function () {
+            $("#signout").on("click", function () {                
+                APOLLO.signOut();
+            });
         },
         reCheckIn: function () {
             $.ajax({
@@ -349,6 +356,6 @@ var HEADER = function ($) {
                 });
         }
     };
-    } (jQuery);
+} (jQuery);
 
 RegisterStartUp(InitHeader);
