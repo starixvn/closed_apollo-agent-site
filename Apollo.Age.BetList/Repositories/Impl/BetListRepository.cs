@@ -304,16 +304,16 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     if (criteria.ToDate < preBalanceUpDay)
                     {
-                        mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
+                        mainTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
                     }
                     else
                     {
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
                         DataTable referenceOldTable = null;
-                        var mainOldTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
+                        var mainOldTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
 
                         DataTable referenceNewTable = null;
-                        var mainNewTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceNewTable);
+                        var mainNewTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceNewTable);
 
                         // Merge two table bettrans
                         mainOldTable.Merge(mainNewTable);
@@ -326,7 +326,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 }
                 else
                 {
-                    mainTable = this.GetWinLossFromNewOrOld("Age_BetList_SelWinloss", criteria, out referenceTable);
+                    mainTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceTable);
                 }
 
                 // Main ticket list
@@ -666,7 +666,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 throw;
             }
         }
-
         /// <summary>
         /// Get bet list Win loss from new or archive
         /// </summary>
@@ -677,10 +676,87 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {
+            {                
                 using (var db = new ObjectDb(uspKey))
                 {
+
                     var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+
+                    // Reference ticket
+                    referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+
+                    return mainTable;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        /// <summary>
+        /// Get bet list Win loss from new or archive
+        /// </summary>
+        /// <param name="uspKey">Store name</param>
+        /// <param name="criteria">Criteria name</param>
+        /// <param name="referenceTable">Out reference table</param>
+        /// <returns>Return to table</returns>
+        private DataTable GetWinLossFromNew(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
+        {
+            try
+            {                
+                
+                using (var db = new ObjectDb(uspKey))
+                {
+                    db.AddInParameter("loggedid", DbType.Int32 ,criteria.LoggedId);
+                    db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
+                    db.AddInParameter("custid", DbType.Int32, criteria.CustId);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
+                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
+                    db.AddInParameter("statusids", DbType.AnsiString , criteria.StatusIds);
+                    db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
+
+                    var dataSet = db.ExecuteDataSet();
+                   
+                    // Main ticket list
+                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+
+                    // Reference ticket
+                    referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+
+                    return mainTable;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get bet list Win loss from new or archive
+        /// </summary>
+        /// <param name="uspKey">Store name</param>
+        /// <param name="criteria">Criteria name</param>
+        /// <param name="referenceTable">Out reference table</param>
+        /// <returns>Return to table</returns>
+        private DataTable GetWinLossFromOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
+        {
+            try
+            {               
+
+                using (var db = new ObjectDb(uspKey))
+                {
+                    db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
+                    db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
+                    db.AddInParameter("custid", DbType.Int32, criteria.CustId);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
+                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
+                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);                    
+
+                    var dataSet = db.ExecuteDataSet();
 
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
