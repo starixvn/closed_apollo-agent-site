@@ -15,7 +15,7 @@
 .bold,.b			{ font-weight: bold !important }
 .em					{ font-style: italic !important }
 .nowrap				{ white-space: nowrap !important }
-.red-num			{ color: red !important }
+.red-num			{ color: #c00 !important }
 
 /* COMMON */
 
@@ -140,6 +140,7 @@ table {
 
 	td, th {
 		white-space: nowrap;
+		padding: 0;
 	}
 	
 	.title-bar {
@@ -187,7 +188,7 @@ table {
 			td {
 				border: 1px solid @tableRptBorderColor;
 			}
-			&.live { background-color: @rowLiveBackground }
+			/*&.live { background-color: @rowLiveBackground }
 			&.league {
 				#gradient.vertical(#F1E5D5, #F8F1E9);
 				color: @grayDark;
@@ -195,7 +196,7 @@ table {
 				text-transform: uppercase;
 				td { padding: 0 4px 0 10px; }
 			}
-			/*&:hover { background-color: @rowHoverBackground }
+			&:hover { background-color: @rowHoverBackground }
 
 			&.RptFooter:hover {
 				background-color: @rowTotalBackground;
