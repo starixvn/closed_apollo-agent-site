@@ -212,10 +212,10 @@ if (typeof jQuery != 'undefined') {
                             buttonImage: "../_globalResources/css/img/calendar.gif",
                             buttonImageOnly: true,
 							beforeShow: function (input, inst) {
-								inst.dpDiv.css({ marginTop: '2px' });
+								//inst.dpDiv.css({ marginTop: '2px' });
 							},
 							onSelect: function (dateText, inst) {
-								validateDate($this);
+								//validateDate($this);
 							}
 
                         })
@@ -230,8 +230,10 @@ if (typeof jQuery != 'undefined') {
 									break;
 							}
 						})*/
-						.blur(function () { validateDate($this) })
-						.parents('form').submit(function () { return validateDate($this) });
+						.blur(function () { //validateDate($this)
+                         })
+						.parents('form').submit(function () { //return validateDate($this) 
+                        });
 					});
 				}
 			},

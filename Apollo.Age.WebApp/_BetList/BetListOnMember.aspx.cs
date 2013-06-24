@@ -65,8 +65,8 @@ namespace Sunplus.Agent.UI._BetList
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
-                tpl.Filter.valueFromDate = fromDate.ToString("M/d/yyyy");
-                tpl.Filter.valueToDate = toDate.ToString("M/d/yyyy");
+                tpl.Filter.valueFromDate = fromDate.ToString("yyyy-mm-dd");
+                tpl.Filter.valueToDate = toDate.ToString("yyyy-mm-dd");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.DateTime.Hide();
@@ -77,7 +77,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 if (pageType.Equals("report"))
                 {
-                    tpl.title = string.Format("{0} {1} - {2}", Apollo.Age.Resources.BetList.lblMemberBetList, fromDate.ToString("M/d/yyyy"), toDate.ToString("M/d/yyyy"));
+                    tpl.title = string.Format("{0} {1} - {2}", Apollo.Age.Resources.BetList.lblMemberBetList, fromDate.ToString("yyyy-mm-dd"), toDate.ToString("yyyy-mm-dd"));
                 }
                 else
                 {
