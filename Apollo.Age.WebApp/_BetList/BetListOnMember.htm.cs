@@ -113,7 +113,7 @@ namespace Apollo.Age.WebApp
 			protected static string s35 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
 			protected static string s36 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s37{get{return Apollo.Age.Resources.Lang.Generate;}}
+			protected static string s37{get{return Apollo.Age.Resources.Lang.search;}}
 			protected static string s38 = "\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
