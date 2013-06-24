@@ -130,6 +130,7 @@ table {
 /* TABLES */
 
 .tblRpt {
+	clear: both;
 	background-color: @tableBackground;
 	border: 4px solid @tableRptBorderColor;
 	border-width: 4px 3px 1px;
@@ -257,19 +258,20 @@ table {
 }
 
 #box_header, .box-header {
-	background-color: #C9DBDF;
-	border: 1px solid #000;
-	margin: 10px 0 0 0;
-	padding: 5px;
+	/*background-color: #C9DBDF;
+	border: 1px solid #000;*/
+	margin: 10px 0;
+	padding: 0 50px 0 0;
+	float: left;
 
 	label {
-		cursor: pointer;
-		background-color: #577176;
+		/*background-color: #577176;
 		color: #fff;
 		padding: 0 3px;
+		cursor: pointer;*/
 	}
 
-	input[type=text], select {
+	input[type=text] { //, select {
 		border: 1px solid #000;
 		
 		line-height: 1.2em;
@@ -287,8 +289,8 @@ table {
 	}
 
 	select {		
-		padding: 3px 3px 2px;
-		height: 23px;
+		/*padding: 3px 3px 2px;
+		height: 23px;*/
 	}
 
 	.row {

@@ -16,8 +16,8 @@
 </head>
 <body>    
 	<div id="page_main">
-		<div id="header_main">@ViewBag.Title</div>
 		<div id="content_main">
+			<div id="header_main">@ViewBag.Title</div>
 			@if (currentAgentId == 0)
 			{
 				@RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
