@@ -4,7 +4,7 @@
 	width: 99%;
 
 	#header_main {
-		display: block;
+		/*display: block;
 		padding: 18px 0 0px;
 		margin-bottom: 10px;
 		width: 100%;
@@ -21,7 +21,7 @@
 			&:hover {
 				opacity: 0.7;
 			}
-		}
+		}*/
 	}
 
 	#content_main {
@@ -80,7 +80,14 @@
 			.lock {
 				color: @red;
 			}
-		}		
+		}
+
+		.freegrid table thead th,
+		.freegrid .col_header table thead th {
+			text-shadow: none;
+			font-weight: normal;
+			border: 1px solid #976061;
+		}
 	}
 }
 

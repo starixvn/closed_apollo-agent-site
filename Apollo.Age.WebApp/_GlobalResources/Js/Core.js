@@ -393,7 +393,7 @@ if (typeof jQuery != 'undefined') {
 
 			init: function () {
 				APOLLO.initDatePicker();
-				APOLLO.initFreeHeader();
+//				APOLLO.initFreeHeader();
 			}
 		};
 	} (jQuery);
