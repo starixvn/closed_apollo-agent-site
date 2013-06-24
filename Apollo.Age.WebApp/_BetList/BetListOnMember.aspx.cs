@@ -41,7 +41,8 @@ namespace Sunplus.Agent.UI._BetList
 
     public partial class BetListOnMember : TplPage
     {
-        #region Variables      
+        #region Variables
+
         private int custid;
         private string username = string.Empty;
         private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;
@@ -65,8 +66,8 @@ namespace Sunplus.Agent.UI._BetList
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
-                tpl.Filter.valueFromDate = fromDate.ToString("yyyy-mm-dd");
-                tpl.Filter.valueToDate = toDate.ToString("yyyy-mm-dd");
+                tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-dd");
+                tpl.Filter.valueToDate = toDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.DateTime.Hide();
@@ -107,6 +108,7 @@ namespace Sunplus.Agent.UI._BetList
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
 
             Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.No.Hide();
             betlistHeader.Member.Hide();
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
@@ -130,9 +132,6 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index++;
                 builder
                     .Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                    .AddNo(index, "<td class='w-order'>", "</td>");
-
-                builder
                     .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
                     .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'>", "</td>", isShowScoremap)
                     .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
@@ -220,8 +219,8 @@ namespace Sunplus.Agent.UI._BetList
                 AgentId = -1,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custid,
-                FromDate = Formater.ResetStartDate(fromDate),
-                ToDate = Formater.ResetEndDate(toDate),
+                FromDate = ResetStartDate(fromDate),
+                ToDate = ResetEndDate(toDate),
                 StatusIds = statusIds,
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
@@ -300,5 +299,19 @@ namespace Sunplus.Agent.UI._BetList
             navigation.item = link;
             return navigation.ToString();
         }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
     }
 }

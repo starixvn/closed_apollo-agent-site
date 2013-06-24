@@ -1304,4 +1304,13 @@
   <data name="dateRange" xml:space="preserve">
     <value>Date range</value>
   </data>
+  <data name="lastWeek" xml:space="preserve">
+    <value>Last Week</value>
+  </data>
+  <data name="thisWeek" xml:space="preserve">
+    <value>This Week</value>
+  </data>
+  <data name="tomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
 </root>

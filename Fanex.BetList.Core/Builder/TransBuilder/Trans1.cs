@@ -13,6 +13,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
 {
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
+    using Fanex.BetList.Core.Utils;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
 
@@ -33,7 +34,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// <returns></returns>
         public virtual Trans_Template Render(ITicket ticket)
         {
-            Template.transTime = ticket.TransDate.ToString();
+            Template.transTime = ticket.TransDate.ToString("yyyy-M-dd hh:mm:ss tt");
 
             // For Mixparlay (Trans9) to reuse
             Template.TransTime.refNo = ticket.TransId.ToString();

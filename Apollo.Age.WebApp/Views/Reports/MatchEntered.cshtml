@@ -4,7 +4,7 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model List<MatchEnteredViewModel>
-<div id="box_header">
+<div id="box_header" class="report">
     <div class="row">
         @{
             var maxDate = DateTime.Now;
@@ -31,13 +31,26 @@
             </div>
         </div>
         <div class="cell">
-            <div class="editor">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            </div>
+            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+        </div>
+        <div class="cell">
+            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+        </div>
+        <div class="cell">
+            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+        </div>
+        <div class="cell">
+            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+        </div>
+        <div class="cell">
+            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
         </div>
     </div>
+    <div class="row bg-action">
+        <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+    </div>
 </div>
-<table class="tblRpt" style="width: auto; min-width: 700px;">
+<table class="tblRpt report" style="width: auto; min-width: 700px;">
     <thead>
         <tr>
             <td rowspan="2">
@@ -99,6 +112,13 @@
         }
     </tbody>
 </table>
+@Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
+@Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))
+@Html.Hidden("tomorrow", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
+@Html.Hidden("thisWeekFrom", DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
+@Html.Hidden("thisWeekTo", DateTime.Now.EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
+@Html.Hidden("lastWeekFrom", DateTime.Now.AddDays(-7).StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
+@Html.Hidden("lastWeekTo", DateTime.Now.AddDays(-7).EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
 @Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
