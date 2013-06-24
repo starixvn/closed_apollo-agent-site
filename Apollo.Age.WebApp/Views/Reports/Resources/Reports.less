@@ -9,6 +9,35 @@
 	margin-top: 10px;
 }
 
+#box_header {
+	background-color: #C9DBDF;
+    border: 1px solid #000000;
+    padding: 3px 2px;
+}
+
+@tableBackground:			@white;
+
+@primaryHeaderBackground:	#687780;
+@primaryHeaderColor:		#fff;
+@tableRptBorderColor:		#000;
+
+@rowBackground:				@white;
+@rowHoverBackground:		#FBF0B9;
+
+@rowTotalBackground:		@gray;
+@evenRowBackground:			@tableBackground;
+
+.tblRpt {
+	border-color: @tableRptBorderColor;
+	color: @black;
+
+	thead td, thead th {
+		border: 1px solid #000;
+		background-color: @primaryHeaderBackground;
+		color: #fff;
+	}
+}
+
 /* FIX IE */
 
 .eq-ie7 #page_main {
