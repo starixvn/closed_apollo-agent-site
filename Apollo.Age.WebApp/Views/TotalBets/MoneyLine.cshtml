@@ -11,7 +11,7 @@
         { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="11">
+        <td colspan="12">
             @item.LeagueName
         </td>
     </tr>
@@ -42,7 +42,7 @@
                 
             </td>
             <td rowspan="2">
-                @Apollo.Age.Resources.Lang.events
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
                 @Apollo.Age.Resources.Lang.fulltime
@@ -96,7 +96,7 @@
             
             <!--MatchContents-->
             <tr class='r'>
-                <td class="c" rowspan="2">
+                <td class="c">
                         @if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
@@ -104,8 +104,10 @@
                 <td class="c bl_time">
                     @Html.Raw(@item.ShowTime)
                 </td>
-                <td class="l">
-                    @item.HomeTeam -vs- @item.AwayTeam
+                <td class="l no-border-bottom">
+                    @item.HomeTeam
+                    <br />
+                    @item.AwayTeam
                 </td>
                 <td>
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" 
@@ -148,7 +150,7 @@
                     </a>
                 </td>
             </tr>
-            
+  
                     currentLeagueId = item.LeagueId;
                 }
             }
