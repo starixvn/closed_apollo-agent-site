@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Lewis" date="2013.5.2">Created</change>
+//   <change who="Anders.Le" date="2013.6.12">Remove hardcode when checking captcha</change>
 // </history>
 
 namespace Apollo.Age.Web
@@ -82,14 +83,13 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
-
-            // Hard code for Edward and QC testing
-            if (model.Username == "pgmedward" || ModelState.IsValid)
+                        
+            if (ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
 
                 var captcha = Session[ApolloSessionCaptcha];
-                if (model.Captcha != "9999" && model.Username != "pgmedward")
+                if (model.Captcha != "9999")
                 {
                     if (captcha == null || captcha.ToString() != model.Captcha)
                     {
@@ -183,13 +183,14 @@ namespace Apollo.Age.Web
             }
             return View();
 
-           
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SelectAccount(SelectAccountViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 User user = _userService.InternalGetAgentByUsername(model.Agent);
@@ -197,6 +198,7 @@ namespace Apollo.Age.Web
                 if (user != null) // continue sign-in process
                 {
                     var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+
                     switch (userStatus)
                     {
                         case (int)CustomerStatus.Active:
@@ -223,6 +225,8 @@ namespace Apollo.Age.Web
                                 string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
                                                 model.AdminName,
                                                 user.Agent.Username);
+
+                                LogService.Info(doing);
                                 WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
 
                                 FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
@@ -248,8 +252,9 @@ namespace Apollo.Age.Web
                                     model.AdminName,
                                     model.Agent,
                                     Lang.AgentNotFound);
-                    WriteLoginLog(0, model.AdminId, 7001, doing);
 
+                    
+                    WriteLoginLog(0, model.AdminId, 7001, doing);
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
             }

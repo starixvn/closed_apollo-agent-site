@@ -21,6 +21,7 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Logging;
 
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
@@ -51,22 +52,34 @@ namespace Apollo.Age.Repositories.Impl
 
         public int GetUserStatus(ICriteria criteria)
         {
-            if (criteria.IsValid())
+            int userStatus = (int)CustomerStatus.Locked;
+            try
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                if (criteria.IsValid())
                 {
-                    IDataReader reader = objectDb.ExecuteReader(criteria.GetSpParams());
-                    if (reader.Read())
+                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        return reader.ToInt("CurrentStatus");
-                    }
-                    else
-                    {
-                        return (int)CustomerStatus.Locked;
+                        //IDataReader reader = objectDb.ExecuteReader(criteria.GetSpParams());
+
+                        //if (reader.Read())
+                        //{
+                        //    return reader.ToInt("CurrentStatus");
+                        //}
+                        //else
+                        //{
+                        //    return (int)CustomerStatus.Locked;
+                        //}                        
+                        userStatus = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
                     }
                 }
             }
-            return (int)CustomerStatus.Locked;
+            catch (Exception ex)
+            {
+               // LogService.Critical(ex.Message + "IN Repository", ex);
+                throw ex;
+            }
+
+            return userStatus;
         }
 
         public bool HasPermissionOnUpdating(ICriteria criteria)
@@ -77,6 +90,7 @@ namespace Apollo.Age.Repositories.Impl
                 {
                     var currentParams = criteria.GetSpParams();
                     objectDb.ExecuteNonQuery(currentParams);
+
                     return Converter.ToBool(currentParams["haspermission"]);
                 }
             }
@@ -98,18 +112,21 @@ namespace Apollo.Age.Repositories.Impl
             throw new NotImplementedException();
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId)
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             try
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    IDataReader reader = db.ExecuteReader(criteria.GetSpParams());
-                    if (reader.Read())
-                    {
-                        AdminId = Convert.ToInt32(reader["UserId"]);
-                    }
-                    return AdminId != 0;
+                    //IDataReader reader = db.ExecuteReader(criteria.GetSpParams());
+                    //if (reader.Read())
+                    //{
+                    //    AdminId = Convert.ToInt32(reader["UserId"]);
+                    //}
+
+                    adminId = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
+
+                    return adminId != 0;
                 }
             }
             catch (Exception ex)
@@ -137,13 +154,15 @@ namespace Apollo.Age.Repositories.Impl
         {
             try
             {
-                var currentParams = criteria.GetSpParams();
+                var param = criteria.GetSpParams();
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    db.ExecuteNonQuery(currentParams);
-                    return Convert.ToInt32(currentParams["onuserid"]);
+                    db.ExecuteNonQuery(param);
+
+                    return Convert.ToInt32(param["onuserid"]);
                 }
-                return 0;
+
+               // return 0;
             }
             catch (Exception ex)
             {
@@ -155,13 +174,15 @@ namespace Apollo.Age.Repositories.Impl
         {
             try
             {
-                var currentParams = criteria.GetSpParams();
+                var param = criteria.GetSpParams();
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    db.ExecuteNonQuery(currentParams);
-                    return Convert.ToByte(currentParams["iskickedout"]);
+                    db.ExecuteNonQuery(param);
+
+                    return Convert.ToByte(param["iskickedout"]);
                 }
-                return 0;
+
+                //return 0;
             }
             catch (Exception ex)
             {
@@ -173,12 +194,13 @@ namespace Apollo.Age.Repositories.Impl
         {
             try
             {
-                var currentParams = criteria.GetSpParams();
+                var param = criteria.GetSpParams();
                 using (var db = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    db.ExecuteNonQuery(currentParams);
+                    db.ExecuteNonQuery(param);
                 }
-                return Convert.ToInt32(currentParams["onuserid"]);
+
+                return Convert.ToInt32(param["onuserid"]);
             }
             catch (Exception ex)
             {

@@ -17,10 +17,11 @@
             {
                 <div class="login-bg clearfix">
                     <div class="login-info">
-                        <span class="username">@Model.Username<span> (@Model.AgentName)</span></span> <a
-                            href="#" onclick="APOLLO.signOut()">@Apollo.Age.Resources.Lang.SignOut</a>
+                        <span class="username">@Model.Username<span> (@Model.AdminName)</span></span> <a id="signout"
+                            href="#">@Apollo.Age.Resources.Lang.SignOut</a>
                     </div>
                 </div>
+                @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
             }
             <div id="text_news_out">
                 <div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
@@ -36,19 +37,14 @@
 
         <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
         <input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
-        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
-	
-	 
-	
-	 
-
+        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />  
         <script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>		
         <script src="~/_globalresources/js/core.js" type="text/javascript"></script>	 
         <script src="~/views/account/resources/header.js" type="text/javascript"></script>
         <script type="text/javascript">
 		     var DEFAULTS = {
 		         IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
-                 IsMultipleSignOn: @Apollo.Age.Configurations.AppSettings.MultipleSignOn.ToString().ToLower()
+                 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower()
                          
              };
 			 var LANGUAGES = {

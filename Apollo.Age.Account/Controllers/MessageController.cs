@@ -33,7 +33,7 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// For temp
         /// </summary>
-        private const int SITEID = 3300;
+        private const int SiteId = 3300;
 
         public MessageController()
             : this(null)
@@ -74,7 +74,7 @@ namespace Apollo.Age.Account.Controllers
             int maxSize = 50;
 
             criteria.CustId = this.CurrentSession.AgentId;
-            criteria.SiteId = this._messageService.GetParentSitesID(SITEID.ToString());
+            criteria.SiteId = this._messageService.GetParentSitesID(SiteId.ToString());
             criteria.Record = maxSize;
 
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
@@ -158,7 +158,7 @@ namespace Apollo.Age.Account.Controllers
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
-            var pubMessage = this._messageService.GetTopPublicMessage(messageType, SITEID);
+            var pubMessage = this._messageService.GetTopPublicMessage(messageType, SiteId);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;

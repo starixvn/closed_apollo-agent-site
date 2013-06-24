@@ -24,8 +24,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Fanex.BetList.Core.TicketHelper;
 
     public partial class MixParlay_Page : TplPage
-    {
-        DataTable betListData = null;
+    {        
         long transid;
 
         public override void RenderContent(HtmlTextWriter writer)

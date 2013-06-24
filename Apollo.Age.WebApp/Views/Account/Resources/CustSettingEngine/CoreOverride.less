@@ -5,6 +5,7 @@
 
 body, .pt-grid {
 	font-size: (@fontSize -1);
+	background-color: #F9F9F9;
 }
 
 .betting-limit-item {
@@ -198,6 +199,7 @@ body, .pt-grid {
 
 .setting-mode {
 	margin-bottom: 10px;
+    
 
 	.active-mode{
 		color: @linkColor;
@@ -209,6 +211,34 @@ body, .pt-grid {
 		cursor: default;
 	}
 
+}
+
+.frozen-mode
+{
+	height: 25px;
+	background-color: inherit;
+    position: fixed;
+    top: 0;
+    width: 915px;
+    z-index: 10;
+	background-color: #F9F9F9;
+}
+
+.frozen-mode-no-popup
+{
+	.frozen-mode;
+	top: 38px;
+	padding-top: 5px;
+}
+
+.setting-container-frozen
+{
+	margin-top: 28px !important;
+}
+
+.setting-container-frozen-no-popup
+{
+	margin-top: 72px !important
 }
 
 .share-setting-value input {
@@ -289,4 +319,19 @@ body, .pt-grid {
 
 .eq-ie7 #content_main {
 	padding: 0 10px 10px 10px;
+}
+
+#btnSubmitHeader
+{
+	float: right;
+    z-index: 10;
+}
+
+.frozen-header-main
+{
+	position: fixed !important;
+	top: 0;
+	background-color: #F9f9f9;
+	width: 98%;
+	z-index: 100;
 }

@@ -87,8 +87,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         private List<TicketText> Ticket(IList<ITicket> tickets)
-        {
-            var index = 0;
+        {            
             var builder = new BetListHTMLBuilder();
             var ticketTextList = new List<TicketText>();
             foreach (var ticket in tickets)

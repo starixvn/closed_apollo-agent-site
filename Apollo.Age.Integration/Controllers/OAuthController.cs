@@ -136,7 +136,7 @@ namespace Apollo.Age.Integration.Controllers
 
             Session.Abandon();
             Response.Cookies.Clear();
-            FormsAuthentication.SignOut();
+           // FormsAuthentication.SignOut();
         }
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
