@@ -1158,7 +1158,7 @@
     <value>Sign In as Agent</value>
   </data>
   <data name="SignOut" xml:space="preserve">
-    <value>Sign Out</value>
+    <value>Logout</value>
   </data>
   <data name="lblCLock" xml:space="preserve">
     <value>C.Lock</value>

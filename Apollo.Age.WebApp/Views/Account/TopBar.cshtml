@@ -16,11 +16,17 @@
             @if (Model.IsInternalSignIn)
             {
                 <div class="login-bg clearfix">
-                    <div class="login-info">
-                        <span class="username">@Model.Username<span> (@Model.AdminName)</span></span> <a id="signout"
-                            href="#">@Apollo.Age.Resources.Lang.SignOut</a>
+                    <div class="left">
                     </div>
-                </div>
+                    <div class="right">
+                        <div class="login-info clearfix">
+                            <div class="username">@Model.Username<span> (@Model.AdminName)</span></div>
+                            <a id="signout" class="logout" href="#">@Apollo.Age.Resources.Lang.SignOut</a>
+                        </div>
+                        <div class="toolbar">
+                        </div>
+                    </div>
+                </div>                
                 @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
             }
             <div id="text_news_out">
