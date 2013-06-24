@@ -67,18 +67,16 @@ namespace Sunplus.Agent.UI._BetList
 
             #region Customize
 
-            short excelColumns = 11;
             Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.No.Hide();
 
             if (!isShowAgentPT)
             {
-                excelColumns--;
                 betlistHeader.Agent.Hide();
             }
 
             if (!isShowMember)
             {
-                excelColumns--;
                 betlistHeader.Member.Hide();
             }
             betlistHeader.Winloss.Hide();
@@ -110,8 +108,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 ticketHelper.Index = ++index;
 
-                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                       .AddNo(index, "<td class='c'>", "</td>");
+                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"));
 
                 if (isShowMember)
                 {

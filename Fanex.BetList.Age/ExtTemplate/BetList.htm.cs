@@ -23,7 +23,7 @@ namespace Fanex.BetList.Age
 			public string title = "{title}";
 			protected static string s7 = "</div><div id=\"content_main\">";
 			public BetList_MainShareHolder_Block MainShareHolder = new BetList_MainShareHolder_Block();
-			protected static string s8 = "<table id=\"betlist\" class=\"tblRpt persist-area\">";
+			protected static string s8 = "<table id=\"betlist\" class=\"tblRpt persist-area betlist\">";
 			public string content = "{content}";
 			protected static string s9 = "</table></div></div>";
 			public BetList_HiddenFields_Block HiddenFields = new BetList_HiddenFields_Block();

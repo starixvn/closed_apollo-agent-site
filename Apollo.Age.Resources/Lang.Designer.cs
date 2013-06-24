@@ -907,6 +907,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Week.
+        /// </summary>
+        public static string lastWeek {
+            get {
+                return ResourceManager.GetString("lastWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.
         /// </summary>
         public static string lbl1 {
@@ -3220,6 +3229,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Week.
+        /// </summary>
+        public static string thisWeek {
+            get {
+                return ResourceManager.GetString("thisWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled Tickets.
         /// </summary>
         public static string TicketCancelled {
@@ -3252,6 +3270,15 @@ namespace Apollo.Age.Resources {
         public static string today {
             get {
                 return ResourceManager.GetString("today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string tomorrow {
+            get {
+                return ResourceManager.GetString("tomorrow", resourceCulture);
             }
         }
         
