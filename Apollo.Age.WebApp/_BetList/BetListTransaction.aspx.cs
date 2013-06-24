@@ -163,16 +163,16 @@ namespace Sunplus.Agent.UI._BetList
         {
             var selectedUserType = "0";
 
-            if (userType)
+            if (userType)   
             {
                 selectedUserType = "1";
             }
 
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-mm-dd");
-            tpl.Filter.valueToDate = toDate.ToString("yyyy-mm-dd");
-            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-mm-dd");
-            tpl.Filter.valueMinDate = minDate.ToString("yyyy-mm-dd");
+            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-MM-dd");
+            tpl.Filter.valueToDate = toDate.ToString("yyyy-MM-dd");
+            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-MM-dd");
+            tpl.Filter.valueMinDate = minDate.ToString("yyyy-MM-dd");
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }

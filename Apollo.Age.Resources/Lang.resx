@@ -1301,4 +1301,7 @@
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>Date range</value>
+  </data>
 </root>

@@ -8,37 +8,39 @@ html, body {
 /* MENU */
 
 #tab-menu {
-	#gradient.vertical(#F8F8F8, #E5E5E5);
+	#gradient.vertical(#900, #800);
 	text-align: center;
 	.clearfix;
 	margin-top: 1px;	
 	width: 100%;
 
 	td {		
-		border: 1px solid @borderColor;
+		border: 1px solid #000;
 		border-width: 1px 0px 1px 1px;
 		text-align: center;
 		padding: 0;
 		
-		&.active, &:hover {		
-					
-			a {
-				color: @secondColor;
-
-				i {
-					background-image: url(../../../_globalResources/css/img/glyphicons-halflings.png);
-				}
-			}
+		&:hover {
+			a { text-decoration: underline }
 		}
 
 		&.active {		
-			border-top: 2px solid #0084B4;
+			border-top: 2px solid @secondColor;
 			border-bottom: 1px solid @white;
 			background-color: @white;
 						
 			a {
+				color: @secondColor;
 				padding: 8px 0 7px;
 				cursor: default;
+
+				i {
+					background-image: url(../../../_globalResources/css/img/glyphicons-halflings-red.png);
+				}
+			}
+
+			&:hover {
+				a { text-decoration: none }
 			}
 		}
 		
@@ -50,14 +52,14 @@ html, body {
 			display: block;
 			padding: 9px 0 7px;
 			text-decoration: none;
-			color: #707070;
+			color: #fff;
 			text-transform: uppercase;
 			font-size: .9em;
 			font-weight: bold;
 
 			i {
 				margin: -2px 3px 0 0;
-				background-image: url(../../../_globalResources/css/img/glyphicons-halflings-gray.png);
+				background-image: url(../../../_globalResources/css/img/glyphicons-halflings-white.png);
 			}
 		}		
 	}
@@ -69,15 +71,14 @@ html, body {
 	.menu-item {
 		display: block;	
 		min-height: 30px;
-		border-bottom: 1px solid @borderColor;
+		border-bottom: 1px solid #000;
 
 		.menu-item-title {
 			display: block;
 			padding: 5px 8px;
-			color: @gray;
+			color: #000;
 			text-transform: uppercase;			
 			cursor: pointer;
-			font-weight: bold;
 			font-size: 0.9em;
 
 			&:hover {	
@@ -96,8 +97,6 @@ html, body {
 				padding: 2px 0;
 				display: block;
 				font-size: .9em;
-				// backup red themes
-				//color: @gray;		
 				color: @linkColor;
 
 				&:hover {
@@ -111,7 +110,7 @@ html, body {
 				background: @grayLighter;
 			}
 			.submenu { 
-				border-top-color: @borderColor;
+				border-top-color: #000;
 			}
 		}
 	}
