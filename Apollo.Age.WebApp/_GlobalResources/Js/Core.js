@@ -205,16 +205,21 @@ if (typeof jQuery != 'undefined') {
                             changeMonth: true,
                             changeYear: true,
 							defaultDate: new Date($this.val()),
-							dateFormat: "m/d/yy",
+							dateFormat: "yy-mm-dd",
 							minDate: limitDate($this, "mindate"),
 							maxDate: limitDate($this, "maxdate"),
+                            showOn: "button",
+                            buttonImage: "../_globalResources/css/img/calendar.gif",
+                            buttonImageOnly: true,
 							beforeShow: function (input, inst) {
 								inst.dpDiv.css({ marginTop: '2px' });
 							},
 							onSelect: function (dateText, inst) {
 								validateDate($this);
 							}
-						}).keydown(function (e) {
+
+                        })
+                        /*.keydown(function (e) {
 							var arrow = { left: 37, up: 38, right: 39, down: 40 };
 							switch (e.keyCode) {
 								case arrow.up:
@@ -224,7 +229,7 @@ if (typeof jQuery != 'undefined') {
 									shiftDate($this, -1);
 									break;
 							}
-						})
+						})*/
 						.blur(function () { validateDate($this) })
 						.parents('form').submit(function () { return validateDate($this) });
 					});
