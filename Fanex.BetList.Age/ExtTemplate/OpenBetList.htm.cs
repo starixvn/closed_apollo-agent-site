@@ -13,7 +13,7 @@ namespace Fanex.BetList.Age
 	{
 		public class OpenBetList_Template : Template
 		{
-			protected static string s0 = "<table class=\"tblRpt persist-area\">";
+			protected static string s0 = "<table class=\"tblRpt persist-area betlist\">";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
