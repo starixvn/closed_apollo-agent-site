@@ -284,7 +284,7 @@ public class Formater
     public static string FullDateFormat(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d hh:mm:ss tt}", dt);
+        return string.Format(cult, "{0:yyyy-mm-dd hh:mm:ss tt}", dt);
     }
     public static string FullDateFormat2Ln(object dt)
     {
@@ -361,7 +361,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("MM/dd hh:mm");
+            return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
         }
         catch
         {

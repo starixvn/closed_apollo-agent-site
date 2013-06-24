@@ -290,25 +290,25 @@ namespace Apollo.Age
         public static string LongDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy HH:mm:ss}", dt);
+            return string.Format(cult, "{0:yyyy-mm-dd HH:mm:ss}", dt);
         }
 
         public static string ShortDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy}", dt);
+            return string.Format(cult, "{0:yyyy-mm-dd}", dt);
         }
 
         public static string FullDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy hh:mm:ss tt}", dt);
+            return string.Format(cult, "{0:yyyy-mm-dd hh:mm:ss tt}", dt);
         }
 
         public static string FullDateFormat2Ln(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy<br/>hh:mm:ss tt}", dt);
+            return string.Format(cult, "{0:yyyy-mm-dd<br/>hh:mm:ss tt}", dt);
         }
 
         public static string FullDateFormat2Line(object obj)
