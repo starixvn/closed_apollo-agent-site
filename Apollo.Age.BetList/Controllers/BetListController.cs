@@ -64,8 +64,8 @@ namespace Apollo.Age.BetList.Controllers
             {
                 LoggedId = this.CurrentSession.AgentId,
                 TransId = transId,
-                FromDate = Formater.ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
-                ToDate = Formater.ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
+                FromDate = ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
+                ToDate = ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
@@ -87,7 +87,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         private List<TicketText> Ticket(IList<ITicket> tickets)
-        {            
+        {
             var builder = new BetListHTMLBuilder();
             var ticketTextList = new List<TicketText>();
             foreach (var ticket in tickets)
@@ -104,5 +104,19 @@ namespace Apollo.Age.BetList.Controllers
 
             return ticketTextList;
         }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
     }
 }

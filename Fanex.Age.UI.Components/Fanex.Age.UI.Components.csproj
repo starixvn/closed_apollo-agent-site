@@ -64,7 +64,6 @@
     <Content Include="ErrorPage\ErrorPage.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formater.cs" />
     <Compile Include="HtmlGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
