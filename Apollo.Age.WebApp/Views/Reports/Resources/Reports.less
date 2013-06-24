@@ -15,26 +15,21 @@
     padding: 3px 2px;
 }
 
-@tableBackground:			@white;
-
 @primaryHeaderBackground:	#687780;
 @primaryHeaderColor:		#fff;
 @tableRptBorderColor:		#000;
-
-@rowBackground:				@white;
-@rowHoverBackground:		#FBF0B9;
 
 @rowTotalBackground:		@gray;
 @evenRowBackground:			@tableBackground;
 
 .tblRpt {
 	border-color: @tableRptBorderColor;
-	color: @black;
+	color: primaryHeaderColor;
 
 	thead td, thead th {
 		border: 1px solid #000;
 		background-color: @primaryHeaderBackground;
-		color: #fff;
+		color: @primaryHeaderColor;
 	}
 }
 
