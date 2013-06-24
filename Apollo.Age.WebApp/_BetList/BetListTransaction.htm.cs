@@ -115,7 +115,7 @@ namespace Apollo.Age.WebApp
 			protected static string s36 = "\" /></div></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
 			protected static string s37 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s38{get{return Apollo.Age.Resources.Lang.Generate;}}
+			protected static string s38{get{return Apollo.Age.Resources.Lang.search;}}
 			protected static string s39 = "\"></div></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
