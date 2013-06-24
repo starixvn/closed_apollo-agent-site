@@ -1591,6 +1591,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string lblLogin {
+            get {
+                return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main Shareholder.
         /// </summary>
         public static string lblMainShareHolder {
