@@ -36,7 +36,7 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2">
-                @Apollo.Age.Resources.Lang.no
+                @Apollo.Age.Resources.Lang.kickofftime
             </td>
             <td rowspan="2">
                 @Apollo.Age.Resources.Lang.time
@@ -96,9 +96,11 @@
             
             <!--MatchContents-->
             <tr class='r'>
-                <td class="w-order">
-                    @rowIndex
-                </td>
+                <td class="c" rowspan="2">
+                        @if(item.KickOffTime != null){
+                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+                        }
+                    </td>
                 <td class="c bl_time">
                     @Html.Raw(@item.ShowTime)
                 </td>

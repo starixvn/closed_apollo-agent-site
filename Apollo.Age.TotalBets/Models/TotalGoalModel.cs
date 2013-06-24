@@ -10,6 +10,7 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
     public class TotalGoalModel
@@ -43,6 +44,8 @@ namespace Apollo.Age.TotalBets.Models
         public bool IsNeutral { get; set; }
 
         public bool Closed { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public string HomeTeam
         {

@@ -1442,13 +1442,13 @@
     <value>총</value>
   </data>
   <data name="total01" xml:space="preserve">
-    <value>0-1</value>
+    <value>0~1</value>
   </data>
   <data name="total23" xml:space="preserve">
-    <value>2-3</value>
+    <value>2~3</value>
   </data>
   <data name="total46" xml:space="preserve">
-    <value>4-6</value>
+    <value>4~6</value>
   </data>
   <data name="total7over" xml:space="preserve">
     <value>7초과</value>

@@ -10,6 +10,7 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
     public class HandicapModel
@@ -59,6 +60,8 @@ namespace Apollo.Age.TotalBets.Models
         public decimal AwayOddHalfTimeOverUnder { get; set; }
 
         public int BetCountHalfTimeOverUnder { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public string HomeTeam
         {

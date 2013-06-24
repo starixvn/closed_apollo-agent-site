@@ -10,6 +10,7 @@
 namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
+    using System;
 
     public class HomeNoBetModel
     {
@@ -50,6 +51,8 @@ namespace Apollo.Age.TotalBets.Models
         public int BetCountHNB { get; set; }
 
         public int BetCountANB { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public string HomeTeam
         {

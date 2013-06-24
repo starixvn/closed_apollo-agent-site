@@ -12,13 +12,13 @@
         
     if (Math.Round(totalOdds, 2) != 0)
     { 
-        <td class="r" style="width: 90px">
+        <td class="r" style="width: 90px" rowspan="2">
             <!--HandicapTotalValue-->
             <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
             betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
             <!--/HandicapTotalValue-->
         </td>
-        <td class="fcbtn">
+        <td class="fcbtn" rowspan="2">
             <!--HandicapTotalButton-->
             <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
             class="btnInfo view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
@@ -27,14 +27,14 @@
     }
     else
     { 
-        <td class="r" style="width: 90px"></td>
-        <td class="fcbtn"></td>
+        <td class="r" style="width: 90px" rowspan="2"></td>
+        <td class="fcbtn"  rowspan="2"></td>
     }
 }
 
 @helper ShowTime(HandicapModel item)
 {
-    <td class="c bl_time">
+    <td class="c bl_time" rowspan="2">
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
@@ -63,18 +63,25 @@
     }
     
     <tr @classRow>
-        <td class="c">
-            @index
+        <td class="c" rowspan="2">
+            @if(item.KickOffTime != null){
+                @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+            }
         </td>
         @ShowTime(item)
         <td>
-            @item.HomeTeam -vs- @item.AwayTeam
+            @item.HomeTeam
         </td>
         @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lblHandicapFC)
         @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU)
         @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp)
         @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU)
-    </tr>           
+    </tr> 
+    <tr @classRow>
+        <td>
+            @item.AwayTeam
+        </td>
+    </tr>          
 }
 
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
@@ -83,7 +90,7 @@
     { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="11">
+        <td colspan="10">
             @item.LeagueName
         </td>
     </tr>
@@ -95,14 +102,14 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 20px">
-                #
+            <td rowspan="2">
+                @Apollo.Age.Resources.Lang.kickofftime
             </td>
             <td rowspan="2" style="width: 110px">
                 @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2">
-                @Apollo.Age.Resources.Lang.events
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
                 @Apollo.Age.Resources.Lang.fulltime

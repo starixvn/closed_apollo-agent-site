@@ -12,7 +12,7 @@
     { 
         <!--LeagueContents-->
         <tr class="league">
-            <td colspan="6">
+            <td colspan="5">
                 @item.LeagueName
             </td>
         </tr>
@@ -32,14 +32,16 @@
     }
     
     <tr @classRow>
-        <td class="c">
-            @index
+        <td class="c" rowspan="2">
+            @if(item.KickOffTime != null){
+                @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+            }
         </td>
         @ShowTime(item)
         <td>
-            @item.HomeTeam -vs- @item.AwayTeam
+            @item.HomeTeam
         </td>
-        <td class="r">
+        <td class="r" rowspan="2">
             @if(item.BetCountHNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
@@ -49,7 +51,7 @@
             }
             
         </td>
-        <td class="r">
+        <td class="r" rowspan="2">
             @if(item.BetCountDNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
@@ -58,7 +60,7 @@
                 </a>
             }
         </td>
-        <td class="r">
+        <td class="r" rowspan="2">
             @if(item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
@@ -67,12 +69,18 @@
                 </a>
             }
         </td>
-    </tr>        
+    </tr>   
+     <tr @classRow>
+     
+        <td>
+            @item.AwayTeam
+        </td>
+    </tr>     
 }
 
 @helper ShowTime(HomeNoBetModel item)
     {
-    <td class="c bl_time">
+    <td class="c bl_time" rowspan="2">
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
@@ -90,14 +98,14 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 20px;">
-                #
+            <td rowspan="2">
+                @Apollo.Age.Resources.Lang.kickofftime
             </td>
             <td rowspan="2" style="width: 110px;">
                 @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2" style="width: 366px;">
-                @Apollo.Age.Resources.Lang.events
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="3">
                 @Apollo.Age.Resources.Lang.fulltime
