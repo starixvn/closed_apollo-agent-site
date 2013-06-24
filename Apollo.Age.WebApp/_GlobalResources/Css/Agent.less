@@ -85,7 +85,7 @@ table {
 	position: relative;
 	padding: 16px 0 1px;
 	margin:  0 10px 10px;
-	border-bottom: 1px solid #83989E;
+	border-bottom: 1px solid #000;
 	text-transform: uppercase;
 	color: @titleColor;
 	font-size: 1.2em;
@@ -261,19 +261,20 @@ table {
 }
 
 #box_header, .box-header {
+	background-color: #C9DBDF;
+	border: 1px solid #000;
 	margin: 10px 0 0 0;
-	padding: 0;
+	padding: 5px;
 
 	label {
-		font-weight: bold;
-		color: @grayDark;
 		cursor: pointer;
+		background-color: #577176;
+		color: #fff;
+		padding: 0 3px;
 	}
 
 	input[type=text], select {
-		background-color: #f8f8f8;
-		border: 1px solid @grayLight;
-		.box-shadow(1px 1px 3px #bbb inset);
+		border: 1px solid #000;
 		
 		line-height: 1.2em;
 		font-size: .9em;
@@ -285,8 +286,8 @@ table {
 	}
 
 	input.datepicker {
-		width: 80px;
-		background: url(img/arrow_down.png) no-repeat right 2px;
+		width: 88px;
+		background: #fff url(img/calendar.gif) no-repeat right 0;
 	}
 
 	select {		
@@ -319,7 +320,7 @@ table {
 }
 
 .btn {
-	height: 23px;
+	/*height: 23px;
 	margin: 0;
 	padding: 2px 6px 3px;
 
@@ -337,7 +338,7 @@ table {
 
 	&:hover, &:focus { #gradient.vertical(#ddd, #ccc) }
 	&:active { #gradient.vertical(#ccc, #ddd) }
-	&::-moz-focus-inner { border: 0 }
+	&::-moz-focus-inner { border: 0 }*/
 }
 
 /* DATE RANGE CONTROL */

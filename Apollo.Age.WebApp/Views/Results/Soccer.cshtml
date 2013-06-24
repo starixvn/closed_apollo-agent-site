@@ -112,7 +112,7 @@
         // Example [BetStatus] = "FL:1-2", "Refund FT;FL:0-2"
 
         var betStatus = string.Empty;
-        if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+        if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
         {
             if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
             {
@@ -123,8 +123,8 @@
                 }
             }
         }
-        else if (!item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND)
-            && !item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
+        else if (!item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund)
+            && !item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
         {
             if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(":"))
             {
@@ -167,7 +167,7 @@
 }
 @helper BindScore(MatchResultModel item, bool isRowHome)
     {
-        if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+        if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
         {
     <td>
         @Apollo.Age.Resources.Lang.lblNA
@@ -176,7 +176,7 @@
         @Apollo.Age.Resources.Lang.lblNA
     </td>
         }
-        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
         {
             if (isRowHome)
             {
@@ -211,7 +211,7 @@
                 </td>
             }
         }
-        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
+        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
         {
             if (isRowHome)
             {
