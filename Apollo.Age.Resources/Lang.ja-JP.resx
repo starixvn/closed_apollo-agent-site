@@ -4200,4 +4200,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="lblAccountWasLocked" xml:space="preserve">
     <value>Your Account was locked!</value>
   </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>日付範囲</value>
+  </data>
 </root>
