@@ -7,6 +7,7 @@
 //   <change who="Anders" date="2013.4.8">Created</change>
 //   <change who="Lewis" date="2013.4.15">Added htmlAttributes param for DatePicker</change>
 //   <change who="Lewis" date="2013.5.17">Added Resource</change>
+//   <change who="Edward.Nguyen" date="2013.6.24">Add get Start of Week</change>
 // </history>
 
 namespace Apollo.Age.Web.Mvc
@@ -155,6 +156,21 @@ namespace Apollo.Age.Web.Mvc
         //    return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing));
         //}
 
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = dt.DayOfWeek - startOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            return dt.AddDays(-1 * diff).Date;
+        }
+
+        public static DateTime EndOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            return dt.StartOfWeek(startOfWeek).AddDays(7);
+        }
         #endregion
 
         #region Date, Year Picker
@@ -207,7 +223,7 @@ namespace Apollo.Age.Web.Mvc
                 mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-M-d") : "null",
                 maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-M-d") : "null",
                 disabledDate = disabledDate
-               
+
             };
 
             var dateValue = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
