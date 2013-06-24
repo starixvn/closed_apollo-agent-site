@@ -103,7 +103,7 @@
 
             <tr class="c">
                 <td rowspan="2" class="width-80">
-                    @RazorHelper.RenderDatetimeFormated2line(item.KickoffTime)
+                    @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
                 </td>
                 <td class="l">
                     @if (item.FinalHomeScore > item.FinalAwayScore)

@@ -10,6 +10,7 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
     public class MoneyLineModel
@@ -57,6 +58,8 @@ namespace Apollo.Age.TotalBets.Models
         public int BetCountAwayHalfTime { get; set; }
 
         public bool IsNeutral { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public string HomeTeam
         {

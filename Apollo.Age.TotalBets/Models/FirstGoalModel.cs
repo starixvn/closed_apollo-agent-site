@@ -9,7 +9,8 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
-    using Apollo.Age.Services;
+    using System;
+using Apollo.Age.Services;
 
     public class FirstGoalModel
     {
@@ -38,6 +39,8 @@ namespace Apollo.Age.TotalBets.Models
         public decimal WinLostHomeLG { get; set; }
 
         public decimal WinLostAwayFG { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public decimal WinLostAwayLG { get; set; }
 

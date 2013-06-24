@@ -9,6 +9,7 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
     /// <summary>
@@ -43,6 +44,8 @@ namespace Apollo.Age.TotalBets.Models
         public decimal TotalAA { get; set; }
 
         public bool IsNeutral { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
 
         public string HomeTeam
         {
