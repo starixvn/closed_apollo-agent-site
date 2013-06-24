@@ -92,6 +92,7 @@ namespace Sunplus.Agent.UI._BetList
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.No.Hide();
             if (!isShowAgentPT)
             {
                 betlistHeader.Agent.Hide();
@@ -109,7 +110,6 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index;
 
                 builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                       .AddNo(index + ((this.pageIndex - 1) * this.pageSize), "<td class='w-order'>", "</td>")
                        .AddMember(ticket, "<td class='l'>", "</td>")
                        .AddTrans(ticket, "<td class='c'>", "</td>")
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
@@ -163,16 +163,16 @@ namespace Sunplus.Agent.UI._BetList
         {
             var selectedUserType = "0";
 
-            if (userType)   
+            if (userType)
             {
                 selectedUserType = "1";
             }
 
             tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-MM-dd");
-            tpl.Filter.valueToDate = toDate.ToString("yyyy-MM-dd");
-            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-MM-dd");
-            tpl.Filter.valueMinDate = minDate.ToString("yyyy-MM-dd");
+            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-d");
+            tpl.Filter.valueToDate = toDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMinDate = minDate.ToString("yyyy-M-d");
             tpl.Filter.User.username = username;
             tpl.HiddenFields.pageType = pageType;
         }
@@ -318,6 +318,6 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.CurrentSession;
             }
-        }       
+        }
     }
 }

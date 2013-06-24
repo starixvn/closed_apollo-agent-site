@@ -41,7 +41,8 @@ namespace Sunplus.Agent.UI._BetList
 
     public partial class BetListOnMember : TplPage
     {
-        #region Variables      
+        #region Variables
+
         private int custid;
         private string username = string.Empty;
         private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;
@@ -65,8 +66,8 @@ namespace Sunplus.Agent.UI._BetList
                 var maxDate = DateTime.Now;
                 tpl.HiddenFields.username = username;
                 tpl.HiddenFields.custId = custid.ToString();
-                tpl.Filter.valueFromDate = fromDate.ToString("yyyy-mm-dd");
-                tpl.Filter.valueToDate = toDate.ToString("yyyy-mm-dd");
+                tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-dd");
+                tpl.Filter.valueToDate = toDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.DateTime.Hide();
@@ -107,6 +108,7 @@ namespace Sunplus.Agent.UI._BetList
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
 
             Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.No.Hide();
             betlistHeader.Member.Hide();
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
@@ -130,9 +132,6 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index++;
                 builder
                     .Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                    .AddNo(index, "<td class='w-order'>", "</td>");
-
-                builder
                     .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
                     .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'>", "</td>", isShowScoremap)
                     .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
