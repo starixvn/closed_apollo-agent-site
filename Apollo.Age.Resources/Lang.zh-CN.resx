@@ -1239,4 +1239,7 @@
   <data name="lblAccountWasLocked" xml:space="preserve">
     <value>Your Account was locked!</value>
   </data>
+  <data name="lblLoading" xml:space="preserve">
+    <value>载入中</value>
+  </data>
 </root>
