@@ -4,7 +4,7 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model List<MatchEnteredViewModel>
-<div id="box_header">
+<div id="box_header" class="report">
     <div class="row">
         @{
             var maxDate = DateTime.Now;
@@ -46,12 +46,8 @@
             <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
         </div>
     </div>
-    <div class="row">
-        <div class="cell">
-            <div class="editor">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            </div>
-        </div>
+    <div class="row bg-action">
+        <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
     </div>
 </div>
 <table class="tblRpt report" style="width: auto; min-width: 700px;">

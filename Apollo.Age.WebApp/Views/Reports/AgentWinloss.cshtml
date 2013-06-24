@@ -6,7 +6,7 @@
     string rowClass = string.Empty;
 }
 @model AgentWinLossViewModel
-<div id="box_header">
+<div id="box_header" class="report">
     <div class="row">
         @{
             var maxDate = DateTime.Now;
@@ -44,19 +44,15 @@
             <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
         </div>
     </div>
-    <div class="row">
-        <div class="cell">
-            <div class="editor">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            </div>
-        </div>
+    <div class="row bg-action">
+        <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
     </div>
 </div>
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 }
-<table class="tblRpt">
+<table class="tblRpt report">
     @if (Model.IsSuper)
     {
         <thead>
