@@ -181,7 +181,7 @@ namespace Apollo.Age.Web.Mvc
             DateTime? minDate = null,
             DateTime? maxDate = null,
             //string formatDate = "M/d/yyyy",
-            string formatDate = "yyyy-M-d",
+            string formatDate = "yyyy-MM-dd",
             IEnumerable<DateTime> unavailDates = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
@@ -205,7 +205,7 @@ namespace Apollo.Age.Web.Mvc
            DateTime? date,
            DateTime? minDate = null,
            DateTime? maxDate = null,
-           string formatDate = "yyyy-M-d",
+           string formatDate = "yyyy-MM-dd",
            IEnumerable<DateTime> unavailDates = null)
         {
             if (string.IsNullOrWhiteSpace(formatDate))
@@ -214,14 +214,14 @@ namespace Apollo.Age.Web.Mvc
             }
 
             string disabledDate = (unavailDates != null && unavailDates.Count() > 0)
-                ? string.Join(",", unavailDates.Select(d => d.ToString("yyyy-M-d")))
+                ? string.Join(",", unavailDates.Select(d => d.ToString("yyyy-MM-dd")))
                 : string.Empty;
 
             var htmlAttribute = new
             {
                 @class = "datepicker",
-                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-M-d") : "null",
-                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-M-d") : "null",
+                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-MM-dd") : "null",
+                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-MM-dd") : "null",
                 disabledDate = disabledDate
 
             };

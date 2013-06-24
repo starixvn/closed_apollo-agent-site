@@ -3292,7 +3292,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0-1.
+        ///   Looks up a localized string similar to 0~1.
         /// </summary>
         public static string total01 {
             get {
@@ -3301,7 +3301,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2-3.
+        ///   Looks up a localized string similar to 2~3.
         /// </summary>
         public static string total23 {
             get {
@@ -3310,7 +3310,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4-6.
+        ///   Looks up a localized string similar to 4~6.
         /// </summary>
         public static string total46 {
             get {
@@ -3319,7 +3319,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7Over.
+        ///   Looks up a localized string similar to 7up.
         /// </summary>
         public static string total7over {
             get {

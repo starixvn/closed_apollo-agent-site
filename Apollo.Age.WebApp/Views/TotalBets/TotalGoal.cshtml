@@ -4,18 +4,18 @@
     ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
 }
 @RazorHelper.RefreshCountDown("TotalGoal", 90, 60, "ReloadPage();")
-<table class="tblRpt persist-area no-border-bottom">
+<table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 20px;">
-                #
+                @Apollo.Age.Resources.Lang.time
             </td>
             <td style="width: 150px;">
-                @Apollo.Age.Resources.Lang.home
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
-            <td style="width: 150px;">
+@*            <td style="width: 150px;">
                 @Apollo.Age.Resources.Lang.away
-            </td>
+            </td>*@
             <td style="width: 80px;">
                 @Apollo.Age.Resources.Lang.total01
             </td>
@@ -47,32 +47,36 @@
                     {
                         classRow = string.Empty;
                     }
-            <tr class="item @item.Closed @classRow">
-                <td class="c" style="width: 20px;">
-                    @count
-                </td>
+                <tr class="item @item.Closed @classRow">
+                 <td class="c" rowspan="2">
+                        @if(item.KickOffTime != null){
+                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+                        }
+                    </td>
+                    <td style="width: 150px;">
+                        <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
+                            href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
+                            @item.HomeTeam
+                        </a>
+                    </td>
+                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                        @RazorHelper.FormatPositiveNumber(item.Total01, 2)
+                    </td>
+                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                        @RazorHelper.FormatPositiveNumber(item.Total23, 2)
+                    </td>
+                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                        @RazorHelper.FormatPositiveNumber(item.Total46, 2)
+                    </td>
+                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                        @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
+                    </td>
+                </tr>
+                <tr class="item @item.Closed @classRow">
                 <td style="width: 150px;">
-                    <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
-                        href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
-                        @item.HomeTeam
-                    </a>
+                        @item.AwayTeam
                 </td>
-                <td style="width: 150px;">
-                    @item.AwayTeam
-                </td>
-                <td class="r fcnum" style="width: 80px;">
-                    @RazorHelper.FormatPositiveNumber(item.Total01, 2)
-                </td>
-                <td class="r fcnum" style="width: 80px;">
-                    @RazorHelper.FormatPositiveNumber(item.Total23, 2)
-                </td>
-                <td class="r fcnum" style="width: 80px;">
-                    @RazorHelper.FormatPositiveNumber(item.Total46, 2)
-                </td>
-                <td class="r fcnum" style="width: 80px;">
-                    @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
-                </td>
-            </tr>
+                </tr>
                 }
             }
             else

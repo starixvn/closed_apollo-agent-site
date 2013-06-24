@@ -272,24 +272,24 @@ public class Formater
     public static string LongDateFormat(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d HH:mm:ss}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd HH:mm:ss}", dt);
     }
 
     public static string ShortDateFormat(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd}", dt);
     }
 
     public static string FullDateFormat(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d hh:mm:ss tt}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss tt}", dt);
     }
     public static string FullDateFormat2Ln(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d<br/>hh:mm:ss tt}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd<br/>hh:mm:ss tt}", dt);
     }
     public static string FullDateFormat2Line(object obj)
     {
@@ -304,7 +304,7 @@ public class Formater
     public static string FormatShortDateNoZeroLeading(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd}", dt);
     }
     /// <summary>
     /// format long date with no zero leading
@@ -315,7 +315,7 @@ public class Formater
     public static string FormatDateTimeNoZeroLeading(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d hh:mm:ss}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
     }
     /// <summary>
     /// format long date time with no zero leading
@@ -326,7 +326,7 @@ public class Formater
     public static string FormatLongDateTimeNoZeroLeading(object dt)
     {
         if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-        return string.Format(cult, "{0:yyyy-M-d hh:mm:ss tt}", dt);
+        return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss tt}", dt);
     }
     /// <summary>
     /// format long time
@@ -361,7 +361,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("MM/dd hh:mm");
+            return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
         }
         catch
         {
@@ -400,7 +400,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("yyyy-M-d");
+            return Convert.ToDateTime(dt).ToString("yyyy-MM-dd");
         }
         catch
         {
@@ -413,7 +413,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("yyyy-M-d");
+            return Convert.ToDateTime(dt).ToString("yyyy-MM-dd");
         }
         catch
         {
@@ -426,7 +426,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("yyyy-M-d hh:mm:ss tt");
+            return Convert.ToDateTime(dt).ToString("yyyy-MM-dd hh:mm:ss tt");
         }
         catch
         {
@@ -439,7 +439,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("yyyy-M-d hh:mm tt");
+            return Convert.ToDateTime(dt).ToString("yyyy-MM-dd hh:mm tt");
         }
         catch
         {
@@ -452,7 +452,7 @@ public class Formater
             return string.Empty;
         try
         {
-            return Convert.ToDateTime(dt).ToString("yyyy-M-d HH:mm:ss");
+            return Convert.ToDateTime(dt).ToString("yyyy-MM-dd HH:mm:ss");
         }
         catch
         {
@@ -472,9 +472,9 @@ public class Formater
         {
             DateTime dt2 = Convert.ToDateTime(dt);
             if ((dt2.Hour == 12 || dt2.Hour == 0) && dt2.Minute == 0)
-                return dt2.ToString("yyyy-M-d");
+                return dt2.ToString("yyyy-MM-dd");
             else
-                return dt2.ToString("yyyy-M-d hh:mm:ss tt");
+                return dt2.ToString("yyyy-MM-dd hh:mm:ss tt");
         }
         catch
         {
