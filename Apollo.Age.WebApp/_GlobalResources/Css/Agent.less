@@ -404,138 +404,29 @@ table {
 /* Options for table */
 
 .tblRpt {
-	&.outright {
-		padding: 3px 2px 0 2px;
-		background-color: #CC9900;
-		color: @black;
-	
-		thead {
-			td, th {
-				background-color: #707070;				
-				border: 1px solid #ccc;
-				.box-shadow(0 -1px 0 #555 inset);
-				text-shadow: 0 -1px 0 #333;
-				color: #fff;
-				text-align: center;
-			}
+	&.res-soccer {
+		border-color: #006255;
+
+		thead td, thead th, tbody .em-row {
+			background-color: #7DD5D2;
+			border-color: #006255;
 		}
 
-		tbody {
-			td {
-				border: 1px solid #AFAFAF;				
-				.box-shadow(0 1px 0 #FFF inset);
-				text-shadow: 0 1px 0 #FFF;
-			}
-
-			tr {	
-				&.league {
-					#gradient.vertical(#EEE, #F7F7F7);				
-					color: @grayDark;
-				}
-			}
+		tbody tr td {
+			border-color: #006255;
 		}
 	}
 
-	.option-2 {
-		background-color: #fff;
-		border: 1px solid #AFAFAF;
-		color: @grayDark;
-		
-		thead {
-			td, th {
-				background-color: #77AAE8;				
-				border: 1px solid #B6CFDB;
-				.box-shadow(0 -1px 0 #4D8CCC inset);
-				text-shadow: 0 -1px 0 #5F88B7;
-				color: #fff;
-			}
+	&.res-basket {
+		border-color: #256179;
+
+		thead td, thead th, tbody .em-row {
+			background-color: #52A4E3;
+			border-color: #256179;
 		}
 
-		tbody {
-			td {
-				border: 1px solid #AFAFAF;				
-				.box-shadow(0 1px 0 #fff inset);
-				text-shadow: 0 1px 0 #FFF;
-			}
-			tr {	
-				&.league {
-					#gradient.vertical(#E8F0FF, #F7FAFF);								
-					color: @grayDark;
-				}
-			}
-		}		
-	}
-
-	.option-3 {
-		background-color: #fff;
-		border: 1px solid #b7c7cf;
-		color: @grayDark;
-
-		thead {
-			td, th {
-				background-color: #E6F1F6;				
-				border: 1px solid #B6CFDB;
-				.box-shadow(0 1px  0 #fff inset);
-				text-shadow: 0 1px 0 #FFF;
-				color: #4183C4;
-			}
-		}
-
-		tbody {
-			td {
-				border: 1px solid #b7c7cf;				
-				.box-shadow(0 1px 0 #fff inset);
-				text-shadow: 0 1px 0 #FFF;
-			}
-			tr {				
-				&.live {
-					background-color: @rowLiveBackground;
-					td {
-						box-shadow: 0 1px 0 #FFF2ED inset;
-					}
-				}
-
-				&.league {					
-					background: #F8F8F8;				
-					color: @grayDark;
-				}
-			}
-		}
-	}
-
-	.option-4 {
-		background-color: #fff;
-		border: 1px solid #bbb;
-		color: @grayDark;
-
-		thead {
-			td, th {
-				background-color: #CB4D4E;
-				border: 1px solid #AC3B3B;
-				.box-shadow(0px 1px 0 #E26363 inset);	
-				text-shadow: 0 -1px 0 #AC3B3B;
-				color: #e5e5e5;
-			}
-		}
-
-		tbody {
-			td {
-				border: 1px solid #bbb;
-				.box-shadow(0 1px 0 #fff inset);
-				text-shadow: 0 1px 0 #FFF;
-			}
-			tr {
-				
-				&.live {
-					td {
-						box-shadow: none;
-					}
-				}
-				&.league {
-					#gradient.vertical(#EFEFEF, #F4F4F4);				
-					color: @grayDark;					
-				}				
-			}
+		tbody tr td {
+			border-color: #256179;
 		}
 	}
 }
