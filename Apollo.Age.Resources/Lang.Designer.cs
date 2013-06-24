@@ -3022,7 +3022,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign Out.
+        ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string SignOut {
             get {

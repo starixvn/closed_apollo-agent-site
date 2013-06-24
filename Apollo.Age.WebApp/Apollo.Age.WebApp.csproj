@@ -340,6 +340,7 @@
     <Content Include="Views\Account\Resources\Images\bg-tooltip-bottom.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-middle.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-top.png" />
+    <Content Include="Views\Account\Resources\Images\bg-welcome.png" />
     <Content Include="Views\Account\Resources\Images\bg_buttonsite.jpg" />
     <Content Include="Views\Account\Resources\Images\bg_buttonsiteOV.jpg" />
     <Content Include="Views\Account\Resources\Images\bg_conts.jpg" />
