@@ -14,13 +14,13 @@
 		<div class="row">
 			<div class="cell">
 				<div class="label">
-					<label for="FromDate">@Apollo.Age.Resources.Lang.from</label>
+					<label for="FromDate">@Apollo.Age.Resources.Lang.dateRange</label>
 				</div>
 				<div class="editor">
 					@Html.DatePicker("FromDate", Model.FromDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)
 				</div>
 				<div class="label">
-					<label for="ToDate">@Apollo.Age.Resources.Lang.to</label>
+					<label for="ToDate">~</label>
 				</div>  
 				<div class="editor">
 					@Html.DatePicker("ToDate", Model.ToDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.Date)

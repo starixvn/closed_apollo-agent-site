@@ -266,8 +266,8 @@
     <Compile Include="_BetList\BetListOnMember.htm.cs" />
     <Compile Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListTransaction.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
@@ -478,7 +478,6 @@
     <Content Include="_Components\AGEWnd\x.jpg" />
     <Content Include="_GlobalResources\Css\Footer.css" />
     <Content Include="_GlobalResources\Css\img\arrow_down.png" />
-    <Content Include="_GlobalResources\Css\img\calendar.gif" />
     <Content Include="_GlobalResources\Css\img\cal\calendar.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_10.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_2.png" />
