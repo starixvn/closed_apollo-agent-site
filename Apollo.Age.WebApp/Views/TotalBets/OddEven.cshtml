@@ -11,7 +11,7 @@
         { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="11" class="league">
+        <td colspan="10" class="league">
             @item.LeagueName
         </td>
     </tr>
@@ -97,9 +97,9 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td rowspan="2" style="width: 20px;">
+          @*  <td rowspan="2" style="width: 20px;">
                 #
-            </td>
+            </td>*@
             <td rowspan="2" style="width: 110px;">
                 @Apollo.Age.Resources.Lang.time
             </td>
@@ -158,9 +158,9 @@
             
             <!--MatchContents-->
             <tr class='r @classRow'>
-                <td class="w-order">
+               @* <td class="w-order">
                     @rowIndex
-                </td>
+                </td>*@
                     @ShowTime(item)
                 <td class="l">
                     @item.HomeTeam -vs- @item.AwayTeam

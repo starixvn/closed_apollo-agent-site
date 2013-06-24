@@ -34,7 +34,7 @@
 
 @helper ShowTime(HandicapModel item)
 {
-    <td class="c bl_time">
+    <td class="c bl_time" rowspan="2">
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
@@ -63,18 +63,23 @@
     }
     
     <tr @classRow>
-        <td class="c">
+        @*<td class="c">
             @index
-        </td>
+        </td>*@
         @ShowTime(item)
         <td>
-            @item.HomeTeam -vs- @item.AwayTeam
+            @item.HomeTeam
         </td>
         @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lblHandicapFC)
         @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU)
         @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp)
         @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU)
-    </tr>           
+    </tr> 
+    <tr>
+        <td>
+            @item.AwayTeam
+        </td>
+    </tr>          
 }
 
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
@@ -83,7 +88,7 @@
     { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="11">
+        <td colspan="10">
             @item.LeagueName
         </td>
     </tr>
@@ -95,14 +100,14 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 20px">
+            @*<td rowspan="2" style="width: 20px">
                 #
-            </td>
+            </td>*@
             <td rowspan="2" style="width: 110px">
                 @Apollo.Age.Resources.Lang.time
             </td>
             <td rowspan="2">
-                @Apollo.Age.Resources.Lang.events
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
                 @Apollo.Age.Resources.Lang.fulltime

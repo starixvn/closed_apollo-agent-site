@@ -12,7 +12,7 @@
     { 
         <!--LeagueContents-->
         <tr class="league">
-            <td colspan="6">
+            <td colspan="5">
                 @item.LeagueName
             </td>
         </tr>
@@ -32,9 +32,9 @@
     }
     
     <tr @classRow>
-        <td class="c">
+       @* <td class="c">
             @index
-        </td>
+        </td>*@
         @ShowTime(item)
         <td>
             @item.HomeTeam -vs- @item.AwayTeam
@@ -90,9 +90,9 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 20px;">
+          @*  <td rowspan="2" style="width: 20px;">
                 #
-            </td>
+            </td>*@
             <td rowspan="2" style="width: 110px;">
                 @Apollo.Age.Resources.Lang.time
             </td>

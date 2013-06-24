@@ -12,7 +12,7 @@
     { 
         <!--LeagueContents-->
         <tr class="league">
-            <td colspan="6">
+            <td colspan="5">
                 @item.LeagueName
             </td>
         </tr>
@@ -22,9 +22,9 @@
 @helper ShowMatch(int index, FirstGoalModel item)
 {    
     <tr>
-        <td class="c" rowspan="2">
+        @*<td class="c" rowspan="2">
             @index
-        </td>
+        </td>*@
         <td class="c bl_time" rowspan="2">
             @Html.Raw(item.ShowTime)
         </td>
@@ -65,9 +65,9 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td style="width: 20px;">
+@*            <td style="width: 20px;">
                 #
-            </td>
+            </td>*@
             <td style="width: 120px;">
                 @Apollo.Age.Resources.Lang.time
             </td>

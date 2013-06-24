@@ -8,9 +8,9 @@
 <table class="tblRpt persist-area no-border-bottom">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td style="width: 20px;">
+           @* <td style="width: 20px;">
             @Apollo.Age.Resources.Lang.no
-            </td>
+            </td>*@
             <td style="width: 200px;">
                 @Apollo.Age.Resources.Lang.home
             </td>
@@ -65,9 +65,9 @@
                     classRow = "r";
                 }
                 <tr class="@classRow">
-                    <td class="c">
+                  @*  <td class="c">
                         @rowIndex
-                    </td>
+                    </td>*@
                     <td class="l">
                         <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
                             href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
