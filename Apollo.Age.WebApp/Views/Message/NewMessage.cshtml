@@ -43,7 +43,7 @@
         <div class="row">
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.from)
+                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.dateRange)
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
@@ -51,7 +51,7 @@
             </div>
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.To, @Apollo.Age.Resources.Lang.to)                    
+                    @Html.LabelFor(m => m.To, "~")                    
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)

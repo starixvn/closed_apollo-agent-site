@@ -1242,4 +1242,7 @@
   <data name="lblLoading" xml:space="preserve">
     <value>載入中</value>
   </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>日期範圍</value>
+  </data>
 </root>

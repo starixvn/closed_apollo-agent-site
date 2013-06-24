@@ -4466,4 +4466,7 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="lblAccountWasLocked" xml:space="preserve">
     <value>Your Account was locked!</value>
   </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
 </root>
