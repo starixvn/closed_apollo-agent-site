@@ -96,7 +96,7 @@ namespace Apollo.Age.WebApp
 
 		public class BetListOnMember_Filter_Block: Block
 		{
-			protected static string s26 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
+			protected static string s26 = "<div id=\"box_header\" class=\"report\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label for=\"dateFrom\">";
 			protected static string s27{get{return Apollo.Age.Resources.Lang.dateRange;}}
 			protected static string s28 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
@@ -110,9 +110,9 @@ namespace Apollo.Age.WebApp
 			protected string t1_valueMinDate;
 			protected static string s33 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s34 = "\" /></div></div><div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
+			protected static string s34 = "\" /></div></div></div><div class=\"row bg-action\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
 			protected static string s35{get{return Apollo.Age.Resources.Lang.search;}}
-			protected static string s36 = "\"></div></div></div></div>";
+			protected static string s36 = "\"></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
