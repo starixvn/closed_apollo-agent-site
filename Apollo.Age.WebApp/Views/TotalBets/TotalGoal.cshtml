@@ -7,7 +7,7 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td style="width: 20px;">
+            <td style="width: 60px;">
                 @Apollo.Age.Resources.Lang.time
             </td>
             <td style="width: 150px;">
@@ -48,7 +48,7 @@
                         classRow = string.Empty;
                     }
                 <tr class="item @item.Closed @classRow">
-                 <td class="c" rowspan="2">
+                 <td class="c" >
                         @if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
@@ -57,25 +57,23 @@
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
                             href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
                             @item.HomeTeam
+                            
                         </a>
+                        <br />
+                            @item.AwayTeam
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total01, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total23, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total46, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
                     </td>
-                </tr>
-                <tr class="item @item.Closed @classRow">
-                <td style="width: 150px;">
-                        @item.AwayTeam
-                </td>
                 </tr>
                 }
             }

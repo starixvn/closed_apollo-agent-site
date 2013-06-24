@@ -12,7 +12,7 @@
     { 
         <!--LeagueContents-->
         <tr class="league">
-            <td colspan="5">
+            <td colspan="6">
                 @item.LeagueName
             </td>
         </tr>
@@ -30,7 +30,7 @@
         <td class="c bl_time" rowspan="2">
             @Html.Raw(item.ShowTime)
         </td>
-        <td>
+        <td class="no-border-bottom">
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.HomeTeam
@@ -67,7 +67,7 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td>
+            <td style="width: 60px;">
                   @Apollo.Age.Resources.Lang.time
             </td>
             <td style="width: 120px;">

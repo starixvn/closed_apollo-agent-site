@@ -8,7 +8,7 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td>
+            <td style="width: 60px;">
              @Apollo.Age.Resources.Lang.time
             </td>
             <td style="width: 400px;">
@@ -65,48 +65,45 @@
                     classRow = "r";
                 }
                 <tr class="@classRow">
-                    <td class="c" rowspan="2">
+                    <td class="c" >
                         @if (item.KickOffTime != null)
                         {
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
                     </td>
-                    <td class="l">
+                    <td class="l no-border-bottom">
                         <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
                             href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
                         </a>
+                        <br />
+                         @item.AwayTeam
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum" >
                         @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
                     </td>
-                    <td class="fcnum" rowspan="2">
+                    <td class="fcnum">
                         @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
-                    </td>
-                </tr>
-                 <tr class="@classRow">
-                    <td class="l">
-                        @item.AwayTeam
                     </td>
                 </tr>
             }
