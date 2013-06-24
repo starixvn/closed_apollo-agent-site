@@ -340,7 +340,6 @@
     <Content Include="Views\Account\Resources\Images\bg-tooltip-bottom.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-middle.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-top.png" />
-    <Content Include="Views\Account\Resources\Images\bg-welcome.png" />
     <Content Include="Views\Account\Resources\Images\bg_buttonsite.jpg" />
     <Content Include="Views\Account\Resources\Images\bg_buttonsiteOV.jpg" />
     <Content Include="Views\Account\Resources\Images\bg_conts.jpg" />
@@ -479,6 +478,7 @@
     <Content Include="_Components\AGEWnd\x.jpg" />
     <Content Include="_GlobalResources\Css\Footer.css" />
     <Content Include="_GlobalResources\Css\img\arrow_down.png" />
+    <Content Include="_GlobalResources\Css\img\calendar.gif" />
     <Content Include="_GlobalResources\Css\img\cal\calendar.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_10.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_2.png" />

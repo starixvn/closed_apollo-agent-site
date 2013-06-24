@@ -82,7 +82,9 @@ table {
 }
 
 #header_main {
-	position: relative;
+	display: none;
+
+	/*position: relative;
 	padding: 16px 0 1px;
 	margin:  0 10px 10px;
 	border-bottom: 1px solid #000;
@@ -107,7 +109,7 @@ table {
 		background: url(img/info-rhombus-icon.png) no-repeat;
 
 		&:hover { .opacity(80) }
-	}
+	}*/
 }
 
 #content_main {
@@ -129,15 +131,14 @@ table {
 
 .tblRpt {
 	background-color: @tableBackground;
-	border: 1px solid @tableRptBorderColor;
+	border: 4px solid @tableRptBorderColor;
+	border-width: 4px 3px 1px;
 	border-collapse: collapse;
 	color: @grayDark;
 	margin: 10px 0 0;	
 	width: 100%;
 
 	td, th {
-		height: 24px;
-		padding: 4px;
 		white-space: nowrap;
 	}
 	
@@ -172,26 +173,20 @@ table {
 		}
 	}
 
-	th {		
-		text-shadow: 0 1px 0 #FFF;
-	}
-
 	thead td, thead th, tbody .em-row {
 		background-color: @primaryHeaderBackground;
 		border-spacing: 0;
 		border: 1px solid @tableRptBorderColor;
-		border-width: 1px 1px 0 0;
 		text-align: center;
-		font-weight: bold;
+		font-weight: normal;
 		color: @primaryHeaderColor;
-		text-shadow: 0 1px 0 #333;			
 	}
 
 	tbody {
-		td {
-			border: 1px solid @grayLight;			
-		}
-		tr {			
+		tr {
+			td {
+				border: 1px solid @tableRptBorderColor;
+			}
 			&.live { background-color: @rowLiveBackground }
 			&.league {
 				#gradient.vertical(#F1E5D5, #F8F1E9);
@@ -200,7 +195,7 @@ table {
 				text-transform: uppercase;
 				td { padding: 0 4px 0 10px; }
 			}
-			&:hover { background-color: @rowHoverBackground }
+			/*&:hover { background-color: @rowHoverBackground }
 
 			&.RptFooter:hover {
 				background-color: @rowTotalBackground;
@@ -209,7 +204,7 @@ table {
 			&.alt {
 				background: @rowAltBackground;
 				&:hover { background-color: @rowHoverBackground }
-			}
+			}*/
 		}
 	}
 
