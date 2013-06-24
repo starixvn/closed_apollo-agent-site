@@ -220,8 +220,8 @@ namespace Sunplus.Agent.UI._BetList
                     LoggedId = CurrentSession.AgentId,
                     AgentId = agentId,
                     CustId = custId,
-                    FromDate = Formater.ResetStartDate(fromDate),
-                    ToDate = Formater.ResetEndDate(toDate),
+                    FromDate = ResetStartDate(fromDate),
+                    ToDate = ResetEndDate(toDate),
                     StatusIds = statusIds,
                     MoveBetsDay = moveBetsDay
                 };
@@ -319,5 +319,19 @@ namespace Sunplus.Agent.UI._BetList
                 return SessionManager.CurrentSession;
             }
         }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
     }
 }
