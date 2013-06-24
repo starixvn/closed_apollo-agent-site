@@ -206,6 +206,9 @@ if (typeof jQuery != 'undefined') {
 							dateFormat: "yy-m-d",
 							minDate: limitDate($this, "mindate"),
 							maxDate: limitDate($this, "maxdate"),
+							showOn: "button",
+							buttonImage: "../_globalResources/css/img/calendar.gif",
+							buttonImageOnly: true,
 							beforeShow: function (input, inst) {
 								inst.dpDiv.css({ marginTop: '2px' });
 							},
