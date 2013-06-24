@@ -125,10 +125,10 @@ if (typeof jQuery != 'undefined') {
 				if (datePickers.length > 0) {
 					var isValidDate = function (dateString) {
 						// Parse the date parts to integers
-						var parts = dateString.split("/");
-						var day = parseInt(parts[1], 10);
-						var month = parseInt(parts[0], 10);
-						var year = parseInt(parts[2], 10);
+						var parts = dateString.split("-");
+						var day = parts[2];
+						var month = parts[1];
+						var year = parts[0];
 
 						// Check the ranges of month and year
 						if (year < 1000 || year > 3000 || month == 0 || month > 12)
@@ -178,11 +178,11 @@ if (typeof jQuery != 'undefined') {
 						var _limit = target.attr(limit);
 
 						if (_limit) { // if limit attribute exists
-							_limit = _limit.split("/");
+							_limit = _limit.split("-");
 
-							var year = _limit[2],
-								month = _limit[0],
-								day = _limit[1];
+							var year = _limit[0],
+								month = _limit[1],
+								day = _limit[2];
 
 							return new Date(year, month - 1, day);
 						}
@@ -202,24 +202,17 @@ if (typeof jQuery != 'undefined') {
 						var $this = $(this);
 
 						$this.datepicker({
-                            changeMonth: true,
-                            changeYear: true,
 							defaultDate: new Date($this.val()),
-							dateFormat: "yy-mm-dd",
+							dateFormat: "yy-m-d",
 							minDate: limitDate($this, "mindate"),
 							maxDate: limitDate($this, "maxdate"),
-                            showOn: "button",
-                            buttonImage: "../_globalResources/css/img/calendar.gif",
-                            buttonImageOnly: true,
 							beforeShow: function (input, inst) {
-								//inst.dpDiv.css({ marginTop: '2px' });
+								inst.dpDiv.css({ marginTop: '2px' });
 							},
 							onSelect: function (dateText, inst) {
-								//validateDate($this);
+								validateDate($this);
 							}
-
-                        })
-                        /*.keydown(function (e) {
+						}).keydown(function (e) {
 							var arrow = { left: 37, up: 38, right: 39, down: 40 };
 							switch (e.keyCode) {
 								case arrow.up:
@@ -229,11 +222,9 @@ if (typeof jQuery != 'undefined') {
 									shiftDate($this, -1);
 									break;
 							}
-						})*/
-						.blur(function () { //validateDate($this)
-                         })
-						.parents('form').submit(function () { //return validateDate($this) 
-                        });
+						})
+						.blur(function () { validateDate($this) })
+						.parents('form').submit(function () { return validateDate($this) });
 					});
 				}
 			},
@@ -400,7 +391,7 @@ if (typeof jQuery != 'undefined') {
 
 			init: function () {
 				APOLLO.initDatePicker();
-//				APOLLO.initFreeHeader();
+				APOLLO.initFreeHeader();
 			}
 		};
 	} (jQuery);
