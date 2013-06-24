@@ -82,11 +82,11 @@
 
                 eventStatus = item.EventStatus;
 
-                if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund ))
                 {
                     finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
                 }
-                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
                 {
                     if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.IndexOf(';') >= 0)
                     {
@@ -97,7 +97,7 @@
                     firstHalfHomeScore = item.HalfTimeHomeScore == null ? "-" : item.HalfTimeHomeScore.ToString();
                     firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
                 }
-                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_HT))
+                else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
                 {
                     if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.IndexOf(';') >= 0)
                     {
@@ -118,7 +118,7 @@
                     betStatus = item.BetStatus;
                 }
 
-                if (!eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                if (!eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
                 {
                     //23-12,26-11,17-13,15-15
                     if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
@@ -169,7 +169,7 @@
                         @Html.Raw(item.HomeTeam)
                     }
                 </td>
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
                 {
                     <td>-</td>
                     <td>-</td>
@@ -184,8 +184,8 @@
                     </td>
                 }
                 
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
-                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund) 
+                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
                 {
                     <td>-</td>
                     <td>-</td>
@@ -231,7 +231,7 @@
                         @Html.Raw(item.AwayTeam)
                     }
                 </td>
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
                 {
                     <td>-</td>
                     <td>-</td>
@@ -246,8 +246,8 @@
                     </td>
                 }
                 
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND) 
-                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.REFUND_FT))
+                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund) 
+                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
                 {
                     <td>-</td>
                     <td>-</td>
