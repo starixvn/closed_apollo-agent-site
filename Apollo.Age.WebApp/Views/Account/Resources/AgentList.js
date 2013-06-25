@@ -290,7 +290,8 @@ var AGENTLIST = function ($) {
                 showTitle: true,
                 titleInfo:
                 {
-                    text: '<ul><li id="current"><a href="#">' + LANGUAGES.AgentList + '</a></li><li><a href="#" id="quickLinkCustomerList">' + LANGUAGES.MemberList + '</a></li></ul>'
+                    text: '<ul><li id="current"><a href="#">' + LANGUAGES.AgentList + '</a></li><li><a href="#" id="quickLinkCustomerList">' + LANGUAGES.MemberList + '</a></li></ul>',
+                    cssClass: 'title-agent-list'
                 }
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
