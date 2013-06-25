@@ -673,6 +673,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        public static string Game {
+            get {
+                return ResourceManager.GetString("Game", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string Generate {
@@ -3117,6 +3126,15 @@ namespace Apollo.Age.Resources {
         public static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running Ball.
+        /// </summary>
+        public static string RunningBall {
+            get {
+                return ResourceManager.GetString("RunningBall", resourceCulture);
             }
         }
         
