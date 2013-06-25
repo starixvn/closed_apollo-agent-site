@@ -3,7 +3,8 @@
 @{
     Layout = null;
     var userLang = ViewBag.UserLang as string;
-    var modeDate = ViewBag.ModeDate as string;
+    int modeDate = ViewBag.ModeDate;
+     
 }
 <link href="~/views/message/resources/Announcement.less" rel="Stylesheet" type="text/css" />
 @using (Html.BeginForm("Announcement", "Message", FormMethod.Get))
@@ -11,16 +12,16 @@
     <table border="0" cellspacing="0" cellpadding="0" class="persist-area his_body">
         <thead class="persist-header">
             <tr>
-                <td class="box_title" colspan="3">
-                    @Lang.announcement
+                <td colspan="3" class="box_title">
+                    <span class="title">@Lang.announcement</span>
                 </td>
             </tr>
             <tr class="m_title_date">
                 <td width="50%" class="page" colspan="2">
-                    <span>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 })</span> /
-                    <span>@Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 })</span>
-                    / <span>@Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 })</span>/
-                    <span>@Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 })</span>
+                    <span>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</span>
+                    / <span>@Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</span>
+                    / <span>@Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</span>
+                    / <span>@Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</span>
                 </td>
                 <td width="50%" align="right" class="search">
                     @Html.TextBox("content", "", new { @class = "ccroll_input" })
@@ -29,7 +30,7 @@
             </tr>
             <tr class="m_title_his">
                 <td width="40">
-                    @Lang.no.
+                    @Lang.lblNo.
                 </td>
                 <td width="70">
                     @Lang.times
@@ -52,7 +53,7 @@
                     <td width="40" align="center">@index
                     </td>
                     <td width="70" align="center">
-                        @msg.PostTime.ToLongTimeString()
+                        @msg.PostTime.ToString("yy-MM-dd")
                     </td>
                     <td class="his_info">
                         @msg.GetFullContent(userLang)
