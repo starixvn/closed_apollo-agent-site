@@ -364,7 +364,6 @@
     <Content Include="Views\Account\Resources\Images\treeview-default-line2.gif" />
     <Content Include="Views\Account\Resources\Images\treeview-default.gif" />
     <Content Include="Views\Account\Resources\Images\treeview.png" />
-    <Content Include="Views\Account\Resources\Images\icon-subMenu.gif" />
     <Content Include="Views\Account\Resources\img\down-arr.png" />
     <Content Include="Views\Account\Resources\img\glyphicons-halflings-red.png" />
     <Content Include="Views\Account\Resources\img\submenu-bullet-o.jpg" />
@@ -669,7 +668,6 @@
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
     <Content Include="Views\Home\PagerPlugin.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
-    <Content Include="_GlobalResources\Js\Pager\Copy of jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
