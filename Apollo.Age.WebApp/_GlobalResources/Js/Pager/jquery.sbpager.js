@@ -41,7 +41,7 @@
         nextText: '>',
         startText: '<<',
         endText: '>>',
-        itemWidth: 36,
+        itemWidth: 34,
         callback: function () { return false; }
     };
 
@@ -98,9 +98,8 @@
 
             me.$itemContainer = me.$pager.find('.item-container');
 
-            if (options.currentPage > 0) {
-                me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
-            }
+            me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
+            
         },
         registerEvents: function () {
             var me = this;
@@ -133,7 +132,7 @@
                 .bind('click', function (e) {
                     var $this = $(this);
                     me.$pager.find('.pager-item').removeClass('selected');
-                    me.$itemContainer.scrollLeft(1000);
+                    me.$itemContainer.scrollLeft(3000);
                     me.$itemContainer.find(':last-child').addClass('selected').trigger('click');
                 });
             me.$pager.find('.move-pre')
