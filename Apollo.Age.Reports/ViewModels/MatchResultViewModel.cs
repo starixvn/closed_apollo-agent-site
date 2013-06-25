@@ -24,23 +24,6 @@ namespace Apollo.Age.Reports.ViewModels
         public DateTime BalanceUpDay { get; set; }
 
         public DateTime EventDate { get; set; }
-
-        public IEnumerable<Sport> SportList { get; set; }
-
-        public IEnumerable<League> LeagueList { get; set; }
-
-        public IEnumerable<SelectListItem> SportSelectListItem
-        {
-            get
-            {
-                var selectItemList = this.SportList.Select(sport => new SelectListItem
-                  {
-                      Value = sport.Id.ToString(),
-                      Text = CacheRef.GetSportName(sport.Id)
-                  }).ToList<SelectListItem>();
-
-                return selectItemList;
-            }
-        }
+            
     }
 }

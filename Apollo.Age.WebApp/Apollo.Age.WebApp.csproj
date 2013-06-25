@@ -674,6 +674,11 @@
     <Content Include="Areas\Wagers\Views\Web.config" />
     <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Index.cshtml" />
     <Content Include="Views\HiddenTool\Index.cshtml" />
     <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
