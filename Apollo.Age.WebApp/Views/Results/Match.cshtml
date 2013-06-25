@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Reports.Models;
 @using Apollo.Age.Reports.ViewModels;
 @using Apollo.Age.Entities;
+@using Apollo.Age.Resources;
 @{
 	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 	ViewBag.Title = Apollo.Age.Resources.Lang.lblMatchResult;
@@ -12,10 +13,10 @@
 }
 
 <div id="function-bar">
-	@{ string[] sportTypes = { "Soccer", "BK/NFL/RUGBY", "Tennis", "VB/BDM/TT", "Baseball", "Other", "Outright", "S Outright" };
+	
 	<ul class="menu">
-		<li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">Yesterday</a></li>
-		<li>Game:</li>
+		<li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">@Lang.yesterday</a></li>
+		<li>@Lang.Game:</li>
 		@foreach (Sport sport in Model.SportList )
 		{
 		  <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
