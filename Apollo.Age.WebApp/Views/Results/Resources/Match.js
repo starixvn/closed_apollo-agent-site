@@ -15,21 +15,24 @@ var Match = (function () {
             btnToday = $("#btnToday");
             btnYesterday = $("#btnYesterday");
 
-            ddlSport.change(function () {
-                Match.bindLeague();
-            });
+            //            ddlSport.change(function () {
+            //                Match.bindLeague();
+            //            });
 
-            ddlLeague.change(function () {
-                Match.showResult();
-            });
+            //            ddlLeague.change(function () {
+            //                Match.showResult();
+            //            });
 
-            btnToday.bind('click', function () {    
+            btnToday.bind('click', function () {
                 $("#EventDate").val($("#todayValue").val());
             });
 
             btnYesterday.bind('click', function () {
                 $("#EventDate").val($("#yesterdayValue").val());
             });
+            Match.showResult($("#todayValue").val(), 1);
+            Match.bindingMenu();
+            Match.filterByDateChanging();
         },
 
         bindLeague: function () {
@@ -55,18 +58,46 @@ var Match = (function () {
                 }
             }
         },
-
-        showResult: function () {
+        bindingMenu: function () {
+            $("[name=menusport]").on("click", function () {
+                var date = $("#filterbydate").attr("value");
+                var sportid = $(this).attr("id");
+                Match.showResult(date, sportid);
+            });
+        },
+        filterByDateChanging: function () {
+            $("#filterbydate").on("click", function () {
+                $this = $(this);
+                if ($this.attr("value") == $("#todayValue").val()) // compare with yesterdate
+                {
+                    $this.html("Yesterday");
+                    $this.attr("value", $("#yesterdayValue").val());
+                }
+                else {
+                    $this.html("Today");
+                    $this.attr("value", $("#todayValue").val());
+                }
+            });
+        },
+        paging: function () {
+            $('#pager').sbPager({
+                itemPerPage: 5,
+                totalItem: 200,
+                callback: function (currentPage) {
+                    alert('page ' + currentPage + ' is clicked');
+                }
+            });
+        },
+        showResult: function (date, sportId) {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
-                var sportId = ddlSport.val();
-                var leagueId = ddlLeague.val();
-
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/ResultByLeague"), { "date": date, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/ResultBySport"), { "date": date, "sportId": sportId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
+                          Match.paging();
+
                       });
                 }
             }
@@ -76,6 +107,6 @@ var Match = (function () {
 
 $(function () {
     Match.init();
-    Match.bindLeague();
-    // Match.showResult();
+    //Match.bindLeague();
+    
 });

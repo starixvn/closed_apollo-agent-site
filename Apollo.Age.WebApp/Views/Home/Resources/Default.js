@@ -147,4 +147,6 @@ $(document).ready(function () {
     }
 
     MiniMenu.init();
+
+    $('#main').attr('src', APOLLO.resolveUrl('message/newmessage'));
 });

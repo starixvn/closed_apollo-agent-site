@@ -202,6 +202,8 @@ if (typeof jQuery != 'undefined') {
                         var $this = $(this);
 
                         $this.datepicker({
+                            changeMonth: true,
+                            changeYear: true,
                             defaultDate: new Date($this.val()),
                             dateFormat: "yy-mm-dd",
                             minDate: limitDate($this, "mindate"),
@@ -394,7 +396,7 @@ if (typeof jQuery != 'undefined') {
 
             init: function () {
                 APOLLO.initDatePicker();
-                APOLLO.initFreeHeader();
+//                APOLLO.initFreeHeader();
             }
         };
     } (jQuery);

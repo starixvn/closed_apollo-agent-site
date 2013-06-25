@@ -81,6 +81,35 @@ table {
 
 #page_main {
 	padding: 0;
+	.clearfix;
+}
+
+#function-bar {
+	background-color: #fff;
+	border-bottom: 1px solid #333;
+	padding: 0 0 0 5px;
+	height: 23px;
+	float: left;
+
+	.menu, .pager {
+		margin: 3px 0;
+		float: left;
+
+		li {
+			float: left;
+			margin-right: 10px;
+		}
+	}
+	.pager {
+		a {
+			color: #009;
+		}
+		.current a {
+			font-weight: bold;
+			color: #f00;
+			cursor: text;
+		}
+	}
 }
 
 #header_main {
@@ -115,7 +144,8 @@ table {
 }
 
 #content_main {
-	padding: 0 10px 10px 10px;
+	padding: 0 5px 5px 5px;
+	.clearfix;
 }
 
 /* COMPONENTS */
@@ -141,7 +171,7 @@ table {
 	clear: both;
 
 	td, th {
-		white-space: nowrap;
+		/*white-space: nowrap;*/
 		font-weight: normal;
 		padding: 0;
 	}
@@ -260,20 +290,16 @@ table {
 }
 
 #box_header, .box-header {
-	/*background-color: #C9DBDF;
-	border: 1px solid #000;*/
 	margin: 3px 0;
 	padding: 0;
 	float: left;
+	clear: both;
 
 	label {
-		/*background-color: #577176;
-		color: #fff;
-		padding: 0 3px;
-		cursor: pointer;*/
+
 	}
 
-	input[type=text] { //, select {
+	input[type=text] {
 		border: 1px solid #000;
 		
 		line-height: 1.2em;
@@ -401,8 +427,29 @@ table {
 }
 
 /* jQUERY UI DIALOG */
-.ui-dialog .ui-dialog-content {
-	overflow: hidden;
+.ui-dialog {
+	background: #a4c0ce;
+	border: 1px solid #00558E;
+	.box-shadow(0 0 0 2px #fff inset);
+
+	.ui-dialog-titlebar {
+		background: none;
+		border: 0;
+
+		.ui-button {
+			background: #D6D3CE;
+			border: 1px solid #fff;
+			border-color: #fff #424142 #424142 #fff;
+			.box-shadow(-1px -1px 0 0 #848284 inset);
+			&:active {
+				border-color: #424142 #fff #fff #424142;
+				.box-shadow(1px 1px 0 0 #848284 inset);	
+			}
+		}
+	}
+	.ui-dialog-content {
+		overflow: hidden;
+	}
 }
 
 /* jQUERY UI TOOLTIP */

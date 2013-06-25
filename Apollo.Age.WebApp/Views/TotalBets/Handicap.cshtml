@@ -18,7 +18,7 @@
             betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
             <!--/HandicapTotalValue-->
         </td>
-        <td class="fcbtn" >
+        <td class="fcbtn c" >
             <!--HandicapTotalButton-->
             <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
             class="btnInfo view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
@@ -38,10 +38,6 @@
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
-            <br />
-            <!--LiveNotice-->
-            <i style="color: red">@Apollo.Age.Resources.Lang.lblLive</i>
-            <!--/LiveNotice-->
         }
         else
         {
@@ -67,9 +63,16 @@
             @if(item.KickOffTime != null){
                 @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
             }
+            
+            @if (item.LiveIndicator)
+            {
+                 <br />
+                <!--LiveNotice-->
+                <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
+            }
         </td>
         @ShowTime(item)
-        <td >
+        <td class="c" >
             @item.LeagueName
         </td>
         <td >
@@ -85,7 +88,7 @@
 }
 
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
-{
+    {
     if (currentLeagueId != item.LeagueId)
     { 
     <!--LeagueContents-->
@@ -102,16 +105,16 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 60px;">
+            <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2" style="width: 110px">
-                
+            <td rowspan="2" style="width: 10%;">
+                @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2" style="width: 200px">
+            <td rowspan="2" style="width: 10%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2">
+            <td rowspan="2"  style="width: 20%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">

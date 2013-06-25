@@ -22,7 +22,7 @@ namespace Apollo.Age.Reports.ViewModels
         public int TodayEntered { get; set; }
 
         public int TodayNonEntered { get; set; }
-
+        
         public string SportTypeName
         {
             get
