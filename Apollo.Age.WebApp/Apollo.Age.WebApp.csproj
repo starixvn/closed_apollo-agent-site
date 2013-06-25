@@ -666,6 +666,9 @@
     <Content Include="_GlobalResources\Js\noty\layouts\topRight.js" />
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
+    <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
+    <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
     <Content Include="_GlobalResources\Js\shortcut.js" />
@@ -1004,6 +1007,10 @@
     <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Wagers\Apollo.Age.Wagers.csproj">
+      <Project>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</Project>
+      <Name>Apollo.Age.Wagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>

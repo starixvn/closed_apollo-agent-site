@@ -168,7 +168,8 @@
             showSendMailButton: false,
             sendMailFunction: null,
             showCollapseExpandButton: false,
-            customButtons: ''
+            customButtons: '',
+            cssClass: ''
         },
         showPager: false,
         pagerOption:
@@ -409,7 +410,7 @@
                 me.$grid.parent().find('#' + titleId).remove();
                 // style="width:' + me.$grid.width() + 'px"
                 var titleHtml = [];
-                titleHtml.push('<div id="' + me.gridId + '-grid-title' + '" class="grid-title display-none"><div class="grid-title-label" id="reporttile">');
+                titleHtml.push('<div id="' + me.gridId + '-grid-title' + '" class="grid-title display-none ' + options.titleInfo.cssClass + '"><div class="grid-title-label" id="reporttile">');
                 titleHtml.push(options.titleInfo.text);
                 titleHtml.push('</div>');
                 titleHtml.push('<div class="grid-toolbox">');
@@ -541,6 +542,12 @@
                                     if (type == 'frozenheader' || type == 'frozenbody') {
                                         //// Calculate height for merger row
                                         currentHeight = ((options.headerColumnHeight * currentCol.MergeRowNumber) + (currentCol.MergeRowNumber - 1) * 5);
+                                        if (options.headerColumnHeight <= 25) {
+                                            currentHeight += 3;
+                                            if (type == 'frozenheader') {
+                                                currentHeight--;
+                                            }
+                                        }
                                     }
                                     customSpan += currentMergeRowNumber;
                                 }

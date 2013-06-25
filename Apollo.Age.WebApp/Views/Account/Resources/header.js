@@ -325,6 +325,27 @@ var HEADER = function ($) {
 
             }
             HEADER.signOut();
+
+            // show sub-menu
+            $('.menu-list').click(function () {
+                var $this = $(this);
+                if ($this.next('.sub-menu').is(':visible')) {
+                    $('.sub-menu').hide();
+                } else {
+                    $('.sub-menu').hide();
+                    $this.next('.sub-menu').show();
+                }
+            });
+
+            // show or hide left navigation
+            $("#account-link").click(function () {
+                HEADER.showAccountTab();
+            });
+
+            // show/hide sport type menu for result page
+            $('#result-link').on('click', function () {
+                $('#function-bar').css('visibility', 'visible');
+            });
         },
         signOut: function () {
             $("#signout").on("click", function () {
@@ -363,7 +384,7 @@ var HEADER = function ($) {
             if (leftMenu.is(':visible')) {
                 HEADER.hideLeftNavigation(leftMenu, mainPage);
             } else { //show left navigation
-                HEADER.showLeftNavigation(leftMenu, mainPage);                
+                HEADER.showLeftNavigation(leftMenu, mainPage);
             }
         },
         hideLeftNavigation: function (leftMenu, mainPage) {
