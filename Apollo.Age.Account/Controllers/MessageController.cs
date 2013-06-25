@@ -33,6 +33,7 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// For temp
         /// </summary>
+        private const string SiteList = "3000,3300";
         private const int SiteId = 3300;
 
         public MessageController()
@@ -47,7 +48,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ViewResult Announcement(DateTime? lastPostTime)
         {
-            var model = this._messageService.GetAnnouncement(this.CurrentSession.AgentId, lastPostTime ?? DateTime.Now);
+            var model = this._messageService.GetAnnouncement(this.CurrentSession.AgentId, SiteList, lastPostTime ?? DateTime.Now);
 
             if (!ReferenceEquals(model, null) && model.Count() > 0)
             {

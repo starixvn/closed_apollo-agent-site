@@ -17,7 +17,7 @@ namespace Apollo.Age.Account.Services
 
     public interface IMessageService
     {
-        IEnumerable<AnnouncementModel> GetAnnouncement(int agentId, DateTime lastPostDate, int totalMessage = 10, bool isTest = false, bool isAgent = true);
+        IEnumerable<AnnouncementModel> GetAnnouncement(int agentId, string siteIds, DateTime lastPostDate, int totalMessage = 10, bool isTest = false, bool isAgent = true);
 
         bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true);
 

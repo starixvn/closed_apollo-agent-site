@@ -26,19 +26,24 @@ namespace Apollo.Age.Account.Services
     /// </summary>
     public class MessageService : QueryService, IMessageService
     {
-        private const string SiteList = "3000,3300";
+        //private const string SiteList = "3000,3300";
 
         private DynamicRepository _dyanamicRepository = new DynamicRepository();
 
         private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
-        public IEnumerable<AnnouncementModel> GetAnnouncement(int agentId
-            , DateTime lastPostDate, int totalMessage = 10, bool isTest = false, bool isAgent = true)
+        public IEnumerable<AnnouncementModel> GetAnnouncement(
+            int agentId,
+            string siteIds,
+            DateTime lastPostDate,
+            int totalMessage = 10,
+            bool isTest = false,
+            bool isAgent = true)
         {
             return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
                 {
                     CustomerId = agentId,
-                    SiteIds = SiteList,
+                    SiteIds = siteIds,
                     LastPostTime = lastPostDate,
                     TotalMessage = totalMessage,
                     IsTest = isTest,
@@ -107,7 +112,7 @@ namespace Apollo.Age.Account.Services
             {
                 var privateMessages = this.GetData<MessageModel>(criteria);
 
-                return privateMessages != null && privateMessages.Any() ;
+                return privateMessages != null && privateMessages.Any();
             }
 
             return false;
@@ -160,7 +165,7 @@ namespace Apollo.Age.Account.Services
                 return message;
             }
 
-            return new MessageModel(); 
+            return new MessageModel();
         }
 
         public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true)
