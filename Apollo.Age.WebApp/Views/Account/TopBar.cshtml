@@ -53,26 +53,6 @@
 					</div>
 				</div>
 			</div>
-			<div id="function-bar" style="visibility: hidden">
-				@{ string[] sportTypes = { "Soccer", "BK/NFL/RUGBY", "Tennis", "VB/BDM/TT", "Baseball", "Other", "Outright", "S Outright" };
-				<ul class="menu">
-					<li><a href="#">Yesterday</a></li>
-					<li>Game:</li>
-					@foreach (string sport in sportTypes)
-					{
-					<li><a href="#">[@(sport)]</a></li>
-					}
-				</ul>
-				}
-				<ul class="pager">
-					<li>PAGE:</li>
-					<li class="current"><a href="#">01</a></li>
-					@for (int i = 2; i < 6; i++)
-					{
-						<li><a href="#">@(i < 10 ? string.Format("0{0}", i) : i.ToString())</a></li>
-					}
-				</ul>
-			</div>
 
 			@Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
 			@*<div id="text_news_out">
