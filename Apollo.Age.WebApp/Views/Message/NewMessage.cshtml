@@ -64,7 +64,7 @@
         <div class="row">
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.dateRange)
+                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.dateRange) :
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
@@ -141,11 +141,7 @@
                     </td>
                 </tr>
         }
-    }
-    else
-    {
-                @RazorHelper.ShowNoInfo(4)
-    }
+    }    
             }
         </tbody>
     </table>

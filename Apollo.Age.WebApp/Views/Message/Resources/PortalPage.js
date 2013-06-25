@@ -212,7 +212,7 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'HTML',
             success: function (result) {
-                var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'width=500,height=800');
+                var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
 
                 myWindow.document.write(result);
                 myWindow.focus();
