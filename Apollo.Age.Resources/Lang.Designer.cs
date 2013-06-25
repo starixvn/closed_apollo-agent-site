@@ -628,6 +628,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flesh.
+        /// </summary>
+        public static string Flesh {
+            get {
+                return ResourceManager.GetString("Flesh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Football.
         /// </summary>
         public static string Football {
@@ -822,6 +831,15 @@ namespace Apollo.Age.Resources {
         public static string HttpError_Default {
             get {
                 return ResourceManager.GetString("HttpError_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        public static string Inactive {
+            get {
+                return ResourceManager.GetString("Inactive", resourceCulture);
             }
         }
         
