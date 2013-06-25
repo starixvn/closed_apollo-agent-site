@@ -81,6 +81,7 @@ table {
 
 #page_main {
 	padding: 0;
+	.clearfix;
 }
 
 #header_main {
@@ -115,7 +116,8 @@ table {
 }
 
 #content_main {
-	padding: 0 10px 10px 10px;
+	padding: 0 5px 5px 5px;
+	.clearfix;
 }
 
 /* COMPONENTS */
@@ -260,20 +262,16 @@ table {
 }
 
 #box_header, .box-header {
-	/*background-color: #C9DBDF;
-	border: 1px solid #000;*/
 	margin: 3px 0;
 	padding: 0;
 	float: left;
+	clear: both;
 
 	label {
-		/*background-color: #577176;
-		color: #fff;
-		padding: 0 3px;
-		cursor: pointer;*/
+
 	}
 
-	input[type=text] { //, select {
+	input[type=text] {
 		border: 1px solid #000;
 		
 		line-height: 1.2em;

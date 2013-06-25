@@ -341,11 +341,6 @@ var HEADER = function ($) {
             $("#account-link").click(function () {
                 HEADER.showAccountTab();
             });
-
-            // show/hide sport type menu for result page
-            $('#result-link').on('click', function () {
-                $('#function-bar').css('visibility', 'visible');
-            });
         },
         signOut: function () {
             $("#signout").on("click", function () {
