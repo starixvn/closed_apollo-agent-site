@@ -13,12 +13,12 @@
                 </th>
             </tr> 
         }
-        <tr>
+        <tr style="color:White">
             <td class="width-80">
-                @Apollo.Age.Resources.Lang.kickofftime
+                @Apollo.Age.Resources.Lang.league
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.match
+                @Apollo.Age.Resources.Lang.HomeGuest
             </td>
             <td style="width: 18px">
                 @Apollo.Age.Resources.Lang.S1
@@ -36,13 +36,13 @@
                 @Apollo.Age.Resources.Lang.S5
             </td>
             <th style="width: 100px">
-                @Apollo.Age.Resources.Lang.totalgame
+                @Apollo.Age.Resources.Lang.Game 
             </th>
             <th style="width: 100px">
-                @Apollo.Age.Resources.Lang.totalset
+                @Apollo.Age.Resources.Lang.Set
             </th>
             <th style="width: 100px">
-                @Apollo.Age.Resources.Lang.status
+                @Apollo.Age.Resources.Lang.more
             </th>
         </tr>
     </thead>
@@ -66,14 +66,27 @@
                 }
 
             <tr class="c">
-                <td rowspan="2" class="width-80">
-                   @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+                <td class="width-80">
+                   @item.LeagueName
                 </td>
                 <td class="l">
                     @if (item.FinalHomeScore > item.FinalAwayScore)
-                    { <b>@item.HomeTeam</b> }
+                    { 
+                        <b>@item.HomeTeam</b>
+                    }
                     else
-                    { @item.HomeTeam }
+                    { 
+                        @item.HomeTeam 
+                    }
+                    <br />
+                     @if (item.FinalAwayScore < item.FinalHomeScore)
+                    { 
+                         <b>@item.AwayTeam</b> 
+                    }
+                    else
+                    {
+                          @item.AwayTeam 
+                     }
                 </td>
                 @{
                     int totalGameHome = 0;
@@ -89,13 +102,20 @@
                     foreach (var status in betStatusList)
                     {
                         int homeScore = Convert.ToInt32(status.Split('-')[0]);
+                        int awayScore = Convert.ToInt32(status.Split('-')[1]);
                         totalGameHome += homeScore;
-                    <td>@homeScore
-                    </td>
+                        totalAwayHome += awayScore;
+                        <td>
+                            @homeScore
+                            <br />
+                            @awayScore
+                        </td>
                     }
                     for (int i = betStatusList.Count; i < 5; i++)
                     {
                     <td>
+                        -
+                        <br />
                         -
                     </td>
                     }
@@ -105,44 +125,21 @@
                     {
                         @totalGameHome
                     }
-                </td>
-                <td>
-                    @item.FinalHomeScore
-                </td>
-                <td rowspan="2" class="border-right">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr class="c">
-                <td class="l">
-                    @if (item.FinalAwayScore < item.FinalHomeScore)
-                    { <b>@item.AwayTeam</b> }
-                    else
-                    { @item.AwayTeam }
-                </td>
-                @foreach (var status in betStatusList)
-                {
-                    int awayScore = Convert.ToInt32(status.Split('-')[1]);
-                    totalAwayHome += awayScore;
-                    <td>@awayScore
-                    </td>
-                }
-                @for (int i = betStatusList.Count; i < 5; i++)
-                {
-                    <td>
-                        -
-                    </td>
-                }
-                <td>
-                    @if (betStatusIsAvailable)
+                    <br />
+                     @if (betStatusIsAvailable)
                     {
                         @totalAwayHome
                     }
                 </td>
                 <td>
-                    @item.FinalAwayScore
+                    @item.FinalHomeScore
+                    <br />
+                     @item.FinalAwayScore
                 </td>
-            </tr>
+                <td rowspan="2" class="border-right">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>            
 
             }
         }

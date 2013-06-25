@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Resources
 @model IEnumerable<MatchResultModel>
 
 <table class="tblRpt basketball">
@@ -14,35 +15,35 @@
             </tr> 
         }
         <tr class="RptHeader">
-            <td class="width-80" columnname="kickofftime">
-                @Apollo.Age.Resources.Lang.kickofftime
+            <td style="width: 100px;" columnname="kickofftime">
+                @Lang.time
+            </td>
+            <td style="width: 300px;">
+            @Lang.league
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.match
+                @Lang.HomeGuest
             </td>
             <td style="width: 40px;">
-                @Apollo.Age.Resources.Lang.Q1
+                @Lang.Q1
             </td>
             <td style="width: 40px;">
-                @Apollo.Age.Resources.Lang.Q2
+                @Lang.Q2
             </td>
             <td style="width: 40px;">
-                @Apollo.Age.Resources.Lang.Q3
+                @Lang.Q3
             </td>
             <td style="width: 40px;">
-                @Apollo.Age.Resources.Lang.Q4
-            </td>
-            <td style="width: 40px;">
-                @Apollo.Age.Resources.Lang.OT
+                @Lang.Q4
             </td>
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.firsthalfscore
+                @Lang.ExtraTime
             </td>
-            <td class="nowrap" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.finalscore
-            </td>
+            <td style="width: 100px;">
+                @Lang.lblScore
+            </td>           
             <td class="nowrap" style="width: 60px;">
-                @Apollo.Age.Resources.Lang.status
+                @Lang.more
             </td>
         </tr>
     </thead>
@@ -156,8 +157,11 @@
                 }
 
             <tr class="c">
-                <td rowspan="2" class="width-80">
+                <td class="width-80">
                     @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+                </td>
+                <td>
+                    @item.LeagueName
                 </td>
                 <td class="l">
                     @if (item.FinalHomeScore > item.FinalAwayScore)
@@ -168,35 +172,63 @@
                     {
                         @Html.Raw(item.HomeTeam)
                     }
+                    <br />
+                     @if (item.FinalHomeScore < item.FinalAwayScore)
+                    {
+                        <b>@Html.Raw(item.AwayTeam)</b>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.AwayTeam)
+                    }
                 </td>
                 @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
                 {
-                    <td>-</td>
-                    <td>-</td>
+                    <td>
+                    -
+                    <br />
+                    -
+                    </td>
+                    <td>
+                    - 
+                    <br />
+                    -
+                    </td>
                 }
                 else
                 {
                     <td>
                         @homeSet[0]
+                        <br />
+                        @awaySet[0]
                     </td>
                     <td>
                         @homeSet[1]
+                        <br />
+                        @awaySet[1]
                     </td>
                 }
                 
                 @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund) 
                     || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
                 {
-                    <td>-</td>
+                    <td>
+                    -
+                    
+                    </td>
                     <td>-</td>
                 }
                 else
                 {
                     <td>
                         @homeSet[2]
+                        <br />
+                        @awaySet[2]
                     </td>
                     <td>
                         @homeSet[3]
+                         <br />
+                        @awaySet[3]
                     </td>
                 }
 
@@ -209,61 +241,8 @@
                     {
                         @OTHome
                     }
-                </td>
-                <td>
-                    @firstHalfHomeScore
-                </td>
-                <td>
-                    @finalHomeScore
-                </td>
-                <td rowspan="2" class="border-right">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr class="c">
-                <td class="l">
-                    @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
-                </td>
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
-                {
-                    <td>-</td>
-                    <td>-</td>
-                }
-                else
-                {
-                    <td>
-                        @awaySet[0]
-                    </td>
-                    <td>
-                        @awaySet[1]
-                    </td>
-                }
-                
-                @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund) 
-                    || eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
-                {
-                    <td>-</td>
-                    <td>-</td>
-                }
-                else
-                {
-                    <td>
-                        @awaySet[2]
-                    </td>
-                    <td>
-                        @awaySet[3]
-                    </td>
-                }
-
-                <td>
-                    @if (string.IsNullOrWhiteSpace(OTAway))
+                    <br />
+                     @if (string.IsNullOrWhiteSpace(OTAway))
                     {
                         <span>-</span>
                     }
@@ -273,12 +252,19 @@
                     }
                 </td>
                 <td>
-                    @firstHalfAwayScore
+                    @firstHalfHomeScore
+                    <br />
+                     @firstHalfAwayScore
                 </td>
                 <td>
-                    @finalAwayScore
+                    @finalHomeScore
+                    <br />
+                     @finalAwayScore
                 </td>
-            </tr>
+                <td rowspan="2" class="border-right">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>            
             }
         }
         else

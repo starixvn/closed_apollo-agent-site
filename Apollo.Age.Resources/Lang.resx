@@ -1394,4 +1394,7 @@
   <data name="HomeGuest" xml:space="preserve">
     <value>Home/Guest</value>
   </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
 </root>
