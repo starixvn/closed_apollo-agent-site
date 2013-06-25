@@ -3094,6 +3094,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running Ball.
+        /// </summary>
+        public static string RunningBall {
+            get {
+                return ResourceManager.GetString("RunningBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1S.
         /// </summary>
         public static string S1 {
