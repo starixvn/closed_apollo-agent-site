@@ -1313,4 +1313,19 @@
   <data name="tomorrow" xml:space="preserve">
     <value>Tomorrow</value>
   </data>
+  <data name="ArchivedDate" xml:space="preserve">
+    <value>Archived Date</value>
+  </data>
+  <data name="BK" xml:space="preserve">
+    <value>B.K</value>
+  </data>
+  <data name="InterEvent" xml:space="preserve">
+    <value>Inter. event</value>
+  </data>
+  <data name="Volleyball" xml:space="preserve">
+    <value>Volleyball</value>
+  </data>
+  <data name="WagerType" xml:space="preserve">
+    <value>Wager type</value>
+  </data>
 </root>
