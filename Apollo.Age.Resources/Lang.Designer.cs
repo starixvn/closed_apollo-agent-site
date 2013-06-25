@@ -1303,6 +1303,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browsing History Deletion Tool.
+        /// </summary>
+        public static string lblBrowsingHistoryDeletionTool {
+            get {
+                return ResourceManager.GetString("lblBrowsingHistoryDeletionTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to B.S.
         /// </summary>
         public static string lblBs {
@@ -1398,6 +1407,15 @@ namespace Apollo.Age.Resources {
         public static string lbldomain {
             get {
                 return ResourceManager.GetString("lbldomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Browsing History Deletion Tool.
+        /// </summary>
+        public static string lblDownloadBrowsingHistoryDeletionTool {
+            get {
+                return ResourceManager.GetString("lblDownloadBrowsingHistoryDeletionTool", resourceCulture);
             }
         }
         
@@ -1857,6 +1875,15 @@ namespace Apollo.Age.Resources {
         public static string lblNA {
             get {
                 return ResourceManager.GetString("lblNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network encryption setting.
+        /// </summary>
+        public static string lblNetworkEncrytionSetting {
+            get {
+                return ResourceManager.GetString("lblNetworkEncrytionSetting", resourceCulture);
             }
         }
         
