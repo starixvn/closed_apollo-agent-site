@@ -10,7 +10,7 @@
         { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="3" class="league">
+        <td colspan="4" class="league">
             @item.LeagueName
         </td>
     </tr>
@@ -20,9 +20,9 @@
 <table class="tblRpt  persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-           @* <td style="width: 5%;">
+            <td style="width: 5%;">
                 #
-            </td>*@
+            </td>
             <td style="width: 45%;">
                 @Apollo.Age.Resources.Lang.lblTeam
             </td>
@@ -50,9 +50,9 @@
             @ShowLeague(currentLeagueId, item)  
             <!--MatchContents-->
             <tr class="r">
-               @* <td class="w-order">
+                <td class="w-order">
                     @rowIndex
-                </td>*@
+                </td>
                 <td class="l">
                     <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
                         href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOutRight"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.TeamName
