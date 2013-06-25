@@ -2,7 +2,8 @@
 
 @internalHeaderHeight:	80px;
 @headerHeight:			29px;
-@menuWidth:				220px;
+//@menuWidth:				220px;
+@menuWidth:				0;
 @miniMenuWidth:			30px;
 
 html, body {
@@ -36,6 +37,7 @@ iframe {
 	top: @headerHeight + 1;
 	width: @menuWidth;
 	border-right: 1px solid #000;
+	display: none;
 
 	&.mini-menu {
 		width: @miniMenuWidth;
