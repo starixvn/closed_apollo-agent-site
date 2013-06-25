@@ -12,6 +12,7 @@ var MessagePortalPage = function ($) {
 
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
+            MessagePortalPage.announcement = $("#announcement").val();
         },
 
         loadAnnouncement: function () {
@@ -144,7 +145,7 @@ $(document).ready(function () {
 		height = 500;
 
         APOLLO.openDialogFrame(APOLLO.resolveUrl("~/message/Announcement"),
-		"Announcement", { width: width, height: height });
+		 "", { width: width, height: height });
     });
 
 });
