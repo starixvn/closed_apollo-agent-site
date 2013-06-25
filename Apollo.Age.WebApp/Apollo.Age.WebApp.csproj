@@ -576,6 +576,7 @@
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\sync.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
+    <Content Include="_GlobalResources\Images\top_04.gif" />
     <Content Include="_GlobalResources\Images\x5.gif" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
@@ -1006,10 +1007,6 @@
     <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Wagers\Apollo.Age.Wagers.csproj">
-      <Project>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</Project>
-      <Name>Apollo.Age.Wagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
