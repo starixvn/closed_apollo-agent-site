@@ -1382,10 +1382,47 @@
   <data name="times" xml:space="preserve">
     <value>Times</value>
   </data>
-  <data name="Flesh" xml:space="preserve">
+  <data name="lblBrowsingHistoryDeletionTool" xml:space="preserve">
+    <value>Browsing History Deletion Tool</value>
+  </data>
+  <data name="lblDownloadBrowsingHistoryDeletionTool" xml:space="preserve">
+    <value>Download Browsing History Deletion Tool</value>
+  </data>
+  <data name="lblNetworkEncrytionSetting" xml:space="preserve">
+    <value>Network encryption setting</value>
+  </data>
+  <data name="RunningBall" xml:space="preserve">
+    <value>Running Ball</value>
+  </data>
+  </data>
+  <data name="HomeGuest" xml:space="preserve">
+    <value>Home/Guest</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="ArchivedDate" xml:space="preserve">
+    <value>Archived Date</value>
+  </data>
+  <data name="BK" xml:space="preserve">
+    <value>B.K</value>
+  </data>
+  <data name="InterEvent" xml:space="preserve">
+    <value>Inter. event</value>
+  </data>
+  <data name="Volleyball" xml:space="preserve">
+    <value>Volleyball</value>
+  </data>
+  <data name="WagerType" xml:space="preserve">
+    <value>Wager type</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+    <data name="Flesh" xml:space="preserve">
     <value>Flesh</value>
   </data>
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
-  </data>
+</data>
 </root>

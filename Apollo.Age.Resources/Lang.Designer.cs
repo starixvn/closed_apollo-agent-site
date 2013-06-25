@@ -223,6 +223,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archived Date.
+        /// </summary>
+        public static string ArchivedDate {
+            get {
+                return ResourceManager.GetString("ArchivedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aug.
         /// </summary>
         public static string August {
@@ -291,6 +300,24 @@ namespace Apollo.Age.Resources {
         public static string bettype {
             get {
                 return ResourceManager.GetString("bettype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.K.
+        /// </summary>
+        public static string BK {
+            get {
+                return ResourceManager.GetString("BK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -583,6 +610,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra Time.
+        /// </summary>
+        public static string ExtraTime {
+            get {
+                return ResourceManager.GetString("ExtraTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feb.
         /// </summary>
         public static string February {
@@ -678,6 +714,15 @@ namespace Apollo.Age.Resources {
         public static string fulltime {
             get {
                 return ResourceManager.GetString("fulltime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game.
+        /// </summary>
+        public static string Game {
+            get {
+                return ResourceManager.GetString("Game", resourceCulture);
             }
         }
         
@@ -799,6 +844,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home/Guest.
+        /// </summary>
+        public static string HomeGuest {
+            get {
+                return ResourceManager.GetString("HomeGuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HT/FT.
         /// </summary>
         public static string htft {
@@ -849,6 +903,15 @@ namespace Apollo.Age.Resources {
         public static string IncorrectCaptchaMsg {
             get {
                 return ResourceManager.GetString("IncorrectCaptchaMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inter. event.
+        /// </summary>
+        public static string InterEvent {
+            get {
+                return ResourceManager.GetString("InterEvent", resourceCulture);
             }
         }
         
@@ -1321,6 +1384,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browsing History Deletion Tool.
+        /// </summary>
+        public static string lblBrowsingHistoryDeletionTool {
+            get {
+                return ResourceManager.GetString("lblBrowsingHistoryDeletionTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to B.S.
         /// </summary>
         public static string lblBs {
@@ -1416,6 +1488,15 @@ namespace Apollo.Age.Resources {
         public static string lbldomain {
             get {
                 return ResourceManager.GetString("lbldomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Browsing History Deletion Tool.
+        /// </summary>
+        public static string lblDownloadBrowsingHistoryDeletionTool {
+            get {
+                return ResourceManager.GetString("lblDownloadBrowsingHistoryDeletionTool", resourceCulture);
             }
         }
         
@@ -1875,6 +1956,15 @@ namespace Apollo.Age.Resources {
         public static string lblNA {
             get {
                 return ResourceManager.GetString("lblNA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network encryption setting.
+        /// </summary>
+        public static string lblNetworkEncrytionSetting {
+            get {
+                return ResourceManager.GetString("lblNetworkEncrytionSetting", resourceCulture);
             }
         }
         
@@ -3112,6 +3202,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running Ball.
+        /// </summary>
+        public static string RunningBall {
+            get {
+                return ResourceManager.GetString("RunningBall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1S.
         /// </summary>
         public static string S1 {
@@ -3198,6 +3297,15 @@ namespace Apollo.Age.Resources {
         public static string September {
             get {
                 return ResourceManager.GetString("September", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set.
+        /// </summary>
+        public static string Set {
+            get {
+                return ResourceManager.GetString("Set", resourceCulture);
             }
         }
         
@@ -3828,6 +3936,24 @@ namespace Apollo.Age.Resources {
         public static string voided {
             get {
                 return ResourceManager.GetString("voided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball.
+        /// </summary>
+        public static string Volleyball {
+            get {
+                return ResourceManager.GetString("Volleyball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager type.
+        /// </summary>
+        public static string WagerType {
+            get {
+                return ResourceManager.GetString("WagerType", resourceCulture);
             }
         }
         

@@ -4,53 +4,228 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model List<MatchEnteredViewModel>
+<div style="padding:5px;">
+    @*@Html.LabelFor(, @Apollo.Age.Resources.Lang.sport)*@
+
+    <label for="ddlSportType">Report:</label>
+    <select id="ddlSportType">
+        <option value="0" >all</option>
+        <option value="1">Soccer</option>
+        <option value="2">BK/NFL/RUGBY</option>
+        <option value="3">Tennis</option>
+        <option value="4">VB/BDM/TT</option>
+        <option value="5">Baseball</option>
+        <option value="6">Inter. event</option>
+        <option value="7">Outright</option>
+    </select>
+
+    <a href="#" style="padding:5px;">Report</a>
+    <a href="#" style="padding:5px;">Ticket cancelled</a>
+</div>
 <div id="box_header" class="report">
-    <div class="row">
-        @{
-            var maxDate = DateTime.Now;
-            var minDate = maxDate.AddMonths(-3);
-        }
-        <div class="cell">
-            <div class="label">
-                <label for="dateFrom">
-                    @Apollo.Age.Resources.Lang.dateRange
-                </label>
-            </div>
-            <div class="editor">
-                @Html.DatePicker("FromDate", maxDate, minDate, maxDate)
-            </div>
+    <table>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.dateRange:
+            </td>
+            <td colspan="4">
+                <div class="row">
+                    @{
+                        var maxDate = DateTime.Now;
+                        var minDate = maxDate.AddMonths(-3);
+                    }
+                    <div class="cell">
+                        @*<div class="label">
+                            <label for="dateFrom">
+                                @Apollo.Age.Resources.Lang.dateRange
+                            </label>
+                        </div>*@
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", maxDate, minDate, maxDate)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="dateFrom">
+                                ~
+                            </label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", maxDate, minDate, maxDate)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                    </div>
+                </div>
+                @*<div class="row bg-action">
+                    <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                </div>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.WagerType:
+            </td>
+            <td colspan="4">
+                <select id="ddlSportType1">
+                    <option value="0" >All</option>
+                    <option value="1">Handicap</option>
+                    <option value="2">Odd/Even</option>
+                    <option value="3">Over/Under</option>
+                    <option value="4">FT. 1X2</option>
+                    <option value="5">Total Goal</option>
+                    <option value="6">First Goal/Last Goal</option>
+                    <option value="7">HT/FT</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.date:
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+            </td>
+            <td colspan="2"  class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now)
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.result:
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.soccer:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.BK:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.Tennis:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.Volleyball:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.Baseball:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.lblOutRight:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.InterEvent:
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td class="winloss_yesterday">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+
+
+        <div class="row bg-action">
+            <span>
+                @Apollo.Age.Resources.Lang.ArchivedDate: 2013-06-25
+            </span>
+            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+            <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
         </div>
-        <div class="cell">
-            <div class="label">
-                <label for="dateFrom">
-                    ~
-                </label>
-            </div>
-            <div class="editor">
-                @Html.DatePicker("ToDate", maxDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-        </div>
-    </div>
-    <div class="row bg-action">
-        <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
     </div>
 </div>
-<table class="tblRpt report" style="width: auto; min-width: 700px;">
+@*<table class="tblRpt report" style="width: auto; min-width: 700px;">
     <thead>
         <tr>
             <td rowspan="2">
@@ -111,7 +286,7 @@
             @RazorHelper.ShowNoInfo(5)
         }
     </tbody>
-</table>
+</table>*@
 @Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
 @Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))
 @Html.Hidden("tomorrow", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
