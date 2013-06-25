@@ -50,6 +50,21 @@ namespace Apollo.Age.Reports.Controllers
             get { return _resultService.GetBalanceUpDay(); }
         }
 
+        //protected IEnumerable<Sport> GenerateSportList
+        //{
+        //    get
+        //    {
+        //        //return IEnumerable<Sport> {
+        //        //   new Sport{
+        //        //    Id = (byte)SportTypes.Soccer,
+        //        //    Name = SportTypes.Soccer.ToString()
+        //        //   },
+        //        //   new Sport{},
+
+        //        //};
+        //    }
+        //}
+
         #region Match Results
 
         [HttpGet]
