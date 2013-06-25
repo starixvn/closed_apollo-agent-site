@@ -682,6 +682,7 @@
     <Content Include="Views\HiddenTool\Index.cshtml" />
     <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
+    <Content Include="Views\TotalBets\Index.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
