@@ -12,6 +12,7 @@ var MessagePortalPage = function ($) {
 
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
+            MessagePortalPage.announcement = $("#announcement").val();
         },
 
         loadAnnouncement: function () {
@@ -138,4 +139,13 @@ $(document).ready(function () {
         var messageId = $(this).attr('id');
         MessagePortalPage.toggleAnnouncementContent(messageId);
     });
+
+    $(document).delegate('#announcement-link', 'click', function () {
+        var width = 600,
+		height = 500;
+
+        APOLLO.openDialogFrame(APOLLO.resolveUrl("~/message/Announcement"),
+		 "", { width: width, height: height });
+    });
+
 });

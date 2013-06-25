@@ -1322,4 +1322,13 @@
   <data name="lblhomeandguest" xml:space="preserve">
     <value>Home/Guest</value>
   </data>
+  <data name="beforeYesterday" xml:space="preserve">
+    <value>Before Yesterday</value>
+  </data>
+  <data name="news" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="times" xml:space="preserve">
+    <value>Times</value>
+  </data>
 </root>
