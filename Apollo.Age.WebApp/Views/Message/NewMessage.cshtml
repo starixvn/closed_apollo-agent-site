@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Resources
 @model GetMessageCriteria
 @{    
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
@@ -41,16 +42,13 @@
     <tbody>
         <tr>
             <td width="150" align="right">
-                News：
+                @Lang.news：
             </td>
             <td width="520">
-                <marquee scrolldelay="200">Soccer:24 June, [Sweden 
-Allsvenskan] (Gefle IF VS Djurgardens IF) Full Time - Wager number: 
-4553751498 will be considered VOID due to the wrong In-Play Over/Under 
-odds being offered.</marquee>
+                <marquee scrolldelay="200" id="topnews"></marquee>
             </td>
             <td align="center">
-                <a href="#" id="announcement-link">Announcement </a>
+                <a href="#" id="announcement-link">@Lang.announcement </a>
             </td>
         </tr>
         <tr align="center">
