@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title - Hidden Tool</title>
+	<link href="~/views/hiddentool/resources/hiddentool.less" rel="stylesheet" type="text/css" />
+	@RenderSection("css", required: false)
+</head>
+<body>
+	
+	<div id="page_main">		
+		<div id="content_main">
+			@RenderBody()
+		</div>
+	</div>
+	@Html.Hidden("ApoRoot", Url.Content("~/"))
+	@RenderSection("scripts", required: false)
+</body>
+</html>
