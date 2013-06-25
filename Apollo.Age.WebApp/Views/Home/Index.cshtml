@@ -15,13 +15,13 @@
         frameborder="0" scrolling="no"></iframe>
 </div>
 <div class="@menuClass">
-    @Html.Action("MiniMenu", "Account")
+    @*@Html.Action("MiniMenu", "Account")*@
     <iframe src="~/account/menu" id="menu" name="menu" width="100%" height="99%" frameborder="0"
         scrolling="no"></iframe>
 </div>
 <div class="@mainPageClass">
-    <div id="btn-mini-menu" class="collapse" title="@Apollo.Age.Resources.Lang.Collapse">
-    </div>
+    @*<div id="btn-mini-menu" class="collapse" title="@Apollo.Age.Resources.Lang.Collapse">
+    </div>*@
     <iframe src="~/message/portal" id="main" name="main" width="100%" height="99%" frameborder="0">
     </iframe>
 </div>
@@ -29,7 +29,7 @@
 {
     @Scripts.Render("~/scripts/homejs")
     <script type="text/javascript">
-        
+
 
         var LANGUAGES = function () {
             return {
