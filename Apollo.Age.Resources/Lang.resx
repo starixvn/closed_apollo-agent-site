@@ -1313,4 +1313,13 @@
   <data name="tomorrow" xml:space="preserve">
     <value>Tomorrow</value>
   </data>
+  <data name="lblfinal" xml:space="preserve">
+    <value>Final</value>
+  </data>
+  <data name="lblhalf" xml:space="preserve">
+    <value>Half</value>
+  </data>
+  <data name="lblhomeandguest" xml:space="preserve">
+    <value>Home/Guest</value>
+  </data>
 </root>
