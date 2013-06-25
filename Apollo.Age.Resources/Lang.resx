@@ -1382,10 +1382,7 @@
   <data name="times" xml:space="preserve">
     <value>Times</value>
   </data>
-  <data name="lblbknflrugby" xml:space="preserve">
-    <value>BK/NFL/RUGBY</value>
-  </data>
-  <data name="lblvbbdmtt" xml:space="preserve">
-    <value>VB/BDM/TT</value>
+  <data name="RunningBall" xml:space="preserve">
+    <value>Running Ball</value>
   </data>
 </root>

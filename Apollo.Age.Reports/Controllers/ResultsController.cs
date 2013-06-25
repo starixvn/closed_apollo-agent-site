@@ -61,7 +61,7 @@ namespace Apollo.Age.Reports.Controllers
                     },
                     new Sport{
                         Id = (int) SportTypes.Rugby,
-                        Name = Resources.Lang.lblbknflrugby
+                        Name = "BK/NFL/RUGBY"
                     },
                     new Sport{
                         Id = (int) SportTypes.Tennis,
@@ -69,7 +69,7 @@ namespace Apollo.Age.Reports.Controllers
                     },
                     new Sport{
                         Id = (int) SportTypes.Badminton,
-                        Name =Resources.Lang.lblvbbdmtt
+                        Name ="VB/BMD/TT"
                     },
                     new Sport{
                         Id = (int) SportTypes.BaseBall,
