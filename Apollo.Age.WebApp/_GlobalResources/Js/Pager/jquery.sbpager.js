@@ -94,7 +94,7 @@
 
 
             var pagerHtml = html.join('');
-            me.$pager.append(pagerHtml);
+            me.$pager.empty().append(pagerHtml);
 
             me.$itemContainer = me.$pager.find('.item-container');
 
