@@ -679,6 +679,9 @@
     <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\VolleyballBadminton\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Tennis\Index.cshtml" />
+    <Content Include="Views\HiddenTool\Index.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
+    <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -1006,6 +1009,10 @@
     <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
       <Name>Apollo.Age.Forecast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj">
+      <Project>{1909258B-93B9-4E7D-A896-C57D8B22254F}</Project>
+      <Name>Apollo.Age.HiddenTool</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
