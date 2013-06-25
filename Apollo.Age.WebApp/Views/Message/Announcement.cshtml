@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<AnnouncementModel>
+@using Apollo.Age.Resources
 @{
     Layout = null;
     var userLang = ViewBag.UserLang as string;
@@ -11,14 +12,14 @@
         <thead class="persist-header">
             <tr>
                 <td class="box_title" colspan="3">
-                    Announcement
+                    @Lang.announcement
                 </td>
             </tr>
             <tr class="m_title_date">
                 <td width="50%" class="page" colspan="2">
-                    <span>@Html.ActionLink("All", "Announcement", new { modeDate = 0 })</span> / <span>@Html.ActionLink("Today", "Announcement", new { modeDate = 1 })</span>
-                    / <span>@Html.ActionLink("Yesterday", "Announcement", new { modeDate = 2 })</span>/
-                    <span>@Html.ActionLink("Before Yesterday", "Announcement", new { modeDate = 3 })</span>
+                    <span>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 })</span> / <span>@Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 })</span>
+                    / <span>@Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 })</span>/
+                    <span>@Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 })</span>
                 </td>
                 <td width="50%" align="right" class="search">
                     @Html.TextBox("content", "", new { @class = "ccroll_input" })
