@@ -56,7 +56,15 @@ var Match = (function () {
                 }
             }
         },
-
+        paging: function () {
+            $('#pager').sbPager({                
+                itemPerPage: 5,
+                totalItem: 200,              
+                callback: function (currentPage) {
+                    alert('page ' + currentPage + ' is clicked');
+                }
+            });
+        },
         showResult: function (date, sportId) {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
@@ -65,6 +73,7 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
+                          Match.paging();
                       });
                 }
             }
