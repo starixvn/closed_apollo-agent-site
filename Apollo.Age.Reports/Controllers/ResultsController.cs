@@ -50,20 +50,47 @@ namespace Apollo.Age.Reports.Controllers
             get { return _resultService.GetBalanceUpDay(); }
         }
 
-        //protected IEnumerable<Sport> GenerateSportList
-        //{
-        //    get
-        //    {
-        //        //return IEnumerable<Sport> {
-        //        //   new Sport{
-        //        //    Id = (byte)SportTypes.Soccer,
-        //        //    Name = SportTypes.Soccer.ToString()
-        //        //   },
-        //        //   new Sport{},
-
-        //        //};
-        //    }
-        //}
+        protected IEnumerable<Sport> GenerateSportList
+        {
+            get
+            {
+                List<Sport> sportList = new List<Sport>() { 
+                    new Sport{
+                        Id = (int) SportTypes.Soccer,
+                        Name = SportTypes.Soccer.ToString()
+                    },
+                    new Sport{
+                        Id = (int) SportTypes.Rugby,
+                        Name = Resources.Lang.lblbknflrugby
+                    },
+                    new Sport{
+                        Id = (int) SportTypes.Tennis,
+                        Name = SportTypes.Tennis.ToString()
+                    },
+                    new Sport{
+                        Id = (int) SportTypes.Badminton,
+                        Name =Resources.Lang.lblvbbdmtt
+                    },
+                    new Sport{
+                        Id = (int) SportTypes.BaseBall,
+                        Name = SportTypes.BaseBall.ToString()
+                    },
+                     new Sport{
+                        Id = (int) SportTypes.OtherSports,
+                        Name = SportTypes.OtherSports.ToString()
+                    },
+                    new Sport{
+                        Id = -100,
+                        Name = Resources.Lang.lblOutRight
+                    },
+                    new Sport{
+                        Id = -101,
+                        Name = Resources.Lang.lblOutrightResult
+                    },
+                };
+                return sportList;
+            }
+        }
 
         #region Match Results
 
@@ -81,7 +108,8 @@ namespace Apollo.Age.Reports.Controllers
             var viewModel = new MatchResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,                
-                EventDate = eventDate
+                EventDate = eventDate,
+                SportList = GenerateSportList
             };
 
             return View(viewModel);
