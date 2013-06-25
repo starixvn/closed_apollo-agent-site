@@ -18,7 +18,7 @@
             betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
             <!--/HandicapTotalValue-->
         </td>
-        <td class="fcbtn" >
+        <td class="fcbtn c" >
             <!--HandicapTotalButton-->
             <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
             class="btnInfo view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
@@ -38,10 +38,6 @@
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
-            <br />
-            <!--LiveNotice-->
-            <i style="color: red">@Apollo.Age.Resources.Lang.lblLive</i>
-            <!--/LiveNotice-->
         }
         else
         {
@@ -66,6 +62,11 @@
         <td class="c">
             @if(item.KickOffTime != null){
                 @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+            }
+            
+            @if (item.LiveIndicator)
+            {
+                
             }
         </td>
         @ShowTime(item)
