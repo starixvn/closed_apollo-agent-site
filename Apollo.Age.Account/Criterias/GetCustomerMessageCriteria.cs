@@ -45,7 +45,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            return this.CustomerId > 0 && !string.IsNullOrWhiteSpace(SiteIds);
+            return this.CustomerId >= 0 && !string.IsNullOrWhiteSpace(SiteIds);
         }
     }
 }
