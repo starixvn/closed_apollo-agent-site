@@ -34,7 +34,7 @@
     $.fn.sbPager.defaults =
     {
         currentPage: 0,
-        numPageDisplay: 8,
+        numPageDisplay: 5,
         itemPerPage: 0,
         totalItem: 0,
         prevText: '<',
