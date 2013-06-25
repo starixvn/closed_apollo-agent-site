@@ -286,12 +286,13 @@ var AGENTLIST = function ($) {
                     itemsPerPageArray: [10, 20, 50, 100, 200, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
                 },
-                bodyRowHeight: 28,
+                bodyRowHeight: 15,
+                headerColumnHeight: 15,
                 showTitle: true,
                 titleInfo:
                 {
                     text: '<ul><li id="current"><a href="#">' + LANGUAGES.AgentList + '</a></li><li><a href="#" id="quickLinkCustomerList">' + LANGUAGES.MemberList + '</a></li></ul>',
-                    cssClass: 'title-agent-list'
+                    cssClass: 'agent-list'
                 }
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {

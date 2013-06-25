@@ -209,7 +209,7 @@ var MEMBERLIST = function ($) {
                 titleInfo:
                 {
                     text: '<ul><li><a href="#" id="quickLinkAgentList">' + LANGUAGES.AgentList + '</a></li><li id="current"><a href="#">' + LANGUAGES.MemberList + '</a></li></ul>',
-                    cssClass: 'title-agent-list'
+                    cssClass: 'member-list'
                 }
             };
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
