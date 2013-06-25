@@ -327,7 +327,7 @@ var HEADER = function ($) {
             HEADER.signOut();
         },
         signOut: function () {
-            $("#signout").on("click", function () {                
+            $("#signout").on("click", function () {
                 APOLLO.signOut();
             });
         },
@@ -354,6 +354,50 @@ var HEADER = function ($) {
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
+        },
+        showAccountTab: function () {
+            //parent.$('#menu').contents().find('body').html('ideate tech');
+            var leftMenu = parent.$('.menu'),
+                mainPage = parent.$('.mainpage');
+            //hide left navigation
+            if (leftMenu.is(':visible')) {
+                HEADER.hideLeftNavigation(leftMenu, mainPage);
+            } else { //show left navigation
+                HEADER.showLeftNavigation(leftMenu, mainPage);                
+            }
+        },
+        hideLeftNavigation: function (leftMenu, mainPage) {
+            leftMenu.hide().animate(
+                { width: "0" },
+                {
+                    duration: 10,
+                    specialEasing: {
+                        width: 'linear',
+                        height: 'easeOutBounce'
+                    },
+                    complete: function () {
+                        var $this = $(this);
+                        mainPage.animate({ left: '0' }, 50);
+                    }
+                }
+            );
+        },
+        showLeftNavigation: function (leftMenu, mainPage) {
+            leftMenu.show().animate(
+                     { width: "220px" },
+                     {
+                         duration: 10,
+                         specialEasing: {
+                             width: 'linear',
+                             height: 'easeOutBounce'
+                         },
+                         complete: function () {
+                             var $this = $(this);
+                             mainPage.animate({ left: '221px' }, 50);
+                         }
+                     }
+                );
+            parent.document.getElementById('menu').contentWindow.MENU.init();
         }
     };
 } (jQuery);
