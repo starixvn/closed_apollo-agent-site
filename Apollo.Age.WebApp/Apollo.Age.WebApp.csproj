@@ -666,6 +666,10 @@
     <Content Include="_GlobalResources\Js\noty\layouts\topRight.js" />
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
+    <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
+    <Content Include="_GlobalResources\Js\Pager\Copy of jquery.sbpager.js" />
+    <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
     <Content Include="_GlobalResources\Js\shortcut.js" />

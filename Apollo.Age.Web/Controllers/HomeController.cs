@@ -124,5 +124,10 @@ namespace Apollo.Age.Web
                 return View();
             }
         }
+
+        public ActionResult PagerPlugin()
+        {
+            return View();
+        }
     }
 }
