@@ -20,5 +20,10 @@ namespace Apollo.Age.HiddenTool.Controllers
         {
             return View();
         }
+
+        public ActionResult NetworkEncryptionSetting()
+        {
+            return View();
+        }
     }
 }

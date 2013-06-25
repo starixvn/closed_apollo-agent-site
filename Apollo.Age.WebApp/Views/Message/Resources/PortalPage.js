@@ -206,11 +206,20 @@ $(document).ready(function () {
     });
 
     $(document).delegate('#announcement-link', 'click', function () {
-        var width = 600,
-		height = 500;
 
-        APOLLO.openDialogFrame(APOLLO.resolveUrl("~/message/Announcement"),
-		 "", { width: width, height: height });
+        $.ajax({
+            url: APOLLO.resolveUrl('~/Message/Announcement'),
+            type: 'GET',
+            dataType: 'HTML',
+            success: function (result) {
+                var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
+
+                myWindow.document.write(result);
+                myWindow.focus();
+            },
+            error: function (xhr, status, err) {
+            }
+        });
     });
 
 });
