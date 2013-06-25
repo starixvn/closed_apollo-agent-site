@@ -1325,4 +1325,55 @@
   <data name="beforeYesterday" xml:space="preserve">
     <value>Before Yesterday</value>
   </data>
+  <data name="lblAccounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="lblBkNflRugby" xml:space="preserve">
+    <value>B.K / NFL / RUGBY</value>
+  </data>
+  <data name="lblBkNflRugbyEm" xml:space="preserve">
+    <value>B.K / NFL / RUGBY-EM</value>
+  </data>
+  <data name="lblBs" xml:space="preserve">
+    <value>B.S</value>
+  </data>
+  <data name="lblBsEm" xml:space="preserve">
+    <value>B.S-EM</value>
+  </data>
+  <data name="lblEmWager" xml:space="preserve">
+    <value>EM Wagers</value>
+  </data>
+  <data name="lblHiddenUrlTool" xml:space="preserve">
+    <value>Hidden URL Tool</value>
+  </data>
+  <data name="lblOtherEm" xml:space="preserve">
+    <value>Other-EM</value>
+  </data>
+  <data name="lblReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="lblResult" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="lblSC" xml:space="preserve">
+    <value>S.C</value>
+  </data>
+  <data name="lblScEm" xml:space="preserve">
+    <value>S.C-EM</value>
+  </data>
+  <data name="lblTN" xml:space="preserve">
+    <value>T.N</value>
+  </data>
+  <data name="lblTnEm" xml:space="preserve">
+    <value>T.N-EM</value>
+  </data>
+  <data name="lblVbBdmTt" xml:space="preserve">
+    <value>V.B / BDM / TT</value>
+  </data>
+  <data name="lblVbBdmTtEm" xml:space="preserve">
+    <value>V.B / BDM / TT-EM</value>
+  </data>
+  <data name="lblWager" xml:space="preserve">
+    <value>Wagers</value>
+  </data>
 </root>
