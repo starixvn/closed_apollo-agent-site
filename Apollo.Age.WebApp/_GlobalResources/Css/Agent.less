@@ -399,8 +399,29 @@ table {
 }
 
 /* jQUERY UI DIALOG */
-.ui-dialog .ui-dialog-content {
-	overflow: hidden;
+.ui-dialog {
+	background: #a4c0ce;
+	border: 1px solid #00558E;
+	.box-shadow(0 0 0 2px #fff inset);
+
+	.ui-dialog-titlebar {
+		background: none;
+		border: 0;
+
+		.ui-button {
+			background: #D6D3CE;
+			border: 1px solid #fff;
+			border-color: #fff #424142 #424142 #fff;
+			.box-shadow(-1px -1px 0 0 #848284 inset);
+			&:active {
+				border-color: #424142 #fff #fff #424142;
+				.box-shadow(1px 1px 0 0 #848284 inset);	
+			}
+		}
+	}
+	.ui-dialog-content {
+		overflow: hidden;
+	}
 }
 
 /* jQUERY UI TOOLTIP */
