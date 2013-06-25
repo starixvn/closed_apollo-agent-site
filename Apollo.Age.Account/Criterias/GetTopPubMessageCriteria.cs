@@ -40,7 +40,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            return MessageType > 0;
+            return true;
         }
     }
 }
