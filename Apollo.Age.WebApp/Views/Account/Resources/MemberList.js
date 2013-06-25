@@ -193,7 +193,7 @@ var MEMBERLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 190,
-                numberOfFrozenColumn: 3,
+//                numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
@@ -204,7 +204,8 @@ var MEMBERLIST = function ($) {
                     itemsPerPageArray: [10, 20, 50, 100, 200, 500],
                     pagerSelectCallBack: ReRenderAfterPaged
                 },
-                bodyRowHeight: 28,
+                bodyRowHeight: 15,
+                headerColumnHeight: 15,
                 showTitle: true,
                 titleInfo:
                 {

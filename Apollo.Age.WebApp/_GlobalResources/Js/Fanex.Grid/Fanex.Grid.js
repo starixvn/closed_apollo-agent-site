@@ -542,6 +542,9 @@
                                     if (type == 'frozenheader' || type == 'frozenbody') {
                                         //// Calculate height for merger row
                                         currentHeight = ((options.headerColumnHeight * currentCol.MergeRowNumber) + (currentCol.MergeRowNumber - 1) * 5);
+                                        if (options.headerColumnHeight <= 25) {
+                                            currentHeight += 2;
+                                        }
                                     }
                                     customSpan += currentMergeRowNumber;
                                 }

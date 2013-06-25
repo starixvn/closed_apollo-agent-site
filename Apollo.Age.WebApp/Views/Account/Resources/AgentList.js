@@ -240,7 +240,7 @@ var AGENTLIST = function ($) {
                                   return ACCOUNTLIST.initStatus(cell.Value.BetStatus, cell.Value.UplineBetStatus);                                  
                               }
                           },
-                         { HeaderText: LANGUAGES.NumberOfAgent, Width: 70, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
+                         { HeaderText: LANGUAGES.NumberOfAgent, Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
                                  return (cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' title='" + LANGUAGES.ViewAgentDownline + "' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
                              }
@@ -250,12 +250,12 @@ var AGENTLIST = function ($) {
                                  return (cell.Value.NumberOfMember != 0 ? "<a href='#' title='" + LANGUAGES.ViewMember + "' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
                              }
                          },
-                         { HeaderText: LANGUAGES.GroupA, Width: 100, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.GroupB, Width: 100, Name: "GroupB", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.GroupC, Width: 100, Name: "GroupC", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.GroupD, Width: 100, Name: "GroupD", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.OneXTwo, Width: 100, Name: "OneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
-                         { HeaderText: LANGUAGES.Other, Width: 100, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
+                         { HeaderText: LANGUAGES.GroupA, Width: 80, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupB, Width: 80, Name: "GroupB", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupC, Width: 80, Name: "GroupC", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.GroupD, Width: 80, Name: "GroupD", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.OneXTwo, Width: 80, Name: "OneXTwo", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
+                         { HeaderText: LANGUAGES.Other, Width: 80, Name: "Other", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ];
             if (AGENTLIST.IsSuper) {
                 currentContentColumns.push({ HeaderText: LANGUAGES.SoccerDeadballHDPGivenShare, Width: 130, Name: "HandicapGivenShare", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" });
@@ -272,7 +272,7 @@ var AGENTLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 190,
-                numberOfFrozenColumn: 3,
+//                numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,
