@@ -46,19 +46,36 @@ namespace Apollo.Age.Account.Controllers
             this._messageService = messageService ?? new MessageService();
         }
 
-        public ViewResult Announcement(DateTime? lastPostTime)
+        public ViewResult Announcement(string content = "", int modeDate = 0)
         {
-            var model = this._messageService.GetAnnouncement(this.CurrentSession.AgentId, SiteList, lastPostTime ?? DateTime.Now);
+            DateTime? startDate = new DateTime();
 
-            if (!ReferenceEquals(model, null) && model.Count() > 0)
+            switch (modeDate)
             {
-                var cookie = new HttpCookie(Constants.LastPostTimeKey, model.Last().PostTime.ToString());
-                HttpContext.Response.Cookies.Set(cookie);
-
-                ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
+                case 1:
+                    startDate = DateTime.Now;
+                    break;
+                case 2:
+                    startDate = DateTime.Now.AddDays(-1);
+                    break;
+                case 3:
+                    startDate = DateTime.Now.AddDays(-2);
+                    break;
+                default:
+                    startDate = null;
+                    break;
             }
 
+            var model = this._messageService.GetAnnouncement(
+                    agentId: this.CurrentSession.AgentId,
+                    siteIds: SiteList,
+                    lastPostDate: DateTime.Now,
+                    startTime: startDate,
+                    content: content,
+                    langue: this.CurrentSession.Language);
+
             ViewBag.UserLang = this.CurrentSession.Language;
+            ViewBag.ModeDate = modeDate;
 
             return View(model);
         }

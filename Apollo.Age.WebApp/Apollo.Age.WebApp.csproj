@@ -965,6 +965,7 @@
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderCommissionSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSettingAdv.cshtml" />
+    <None Include="Views\Message\Resources\Announcement.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

@@ -38,16 +38,21 @@ namespace Apollo.Age.Account.Services
             DateTime lastPostDate,
             int totalMessage = 10,
             bool isTest = false,
-            bool isAgent = true)
+            bool isAgent = true,
+            DateTime? startTime = null,
+            string content = "",
+            string langue = "en-US")
         {
             return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
                 {
                     CustomerId = agentId,
                     SiteIds = siteIds,
                     LastPostTime = lastPostDate,
-                    TotalMessage = totalMessage,
                     IsTest = isTest,
-                    IsAgent = isAgent
+                    IsAgent = isAgent,
+                    StartDate = startTime,
+                    Content = content,
+                    Language = langue
                 });
         }
 

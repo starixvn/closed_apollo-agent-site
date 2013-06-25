@@ -123,6 +123,7 @@ var MessagePortalPage = function ($) {
 
 $(document).ready(function () {
     MessagePortalPage.init();
+    APOLLO.initFreeHeader();
 
     $('.pagequery').click(function () {
         var value = $(this).attr('query');
