@@ -3,20 +3,20 @@
 @import "../../../_globalResources/css/sprites.less";
 
 body {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 td {
-    padding-left: 2px;
-    padding-right: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 #news_main {
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-    background: @headerBackground;	
+	height: 100%;
+	width: auto;
+	overflow: hidden;
+	background: #fff;
 
 	.login-bg {
 		background: #990000;
@@ -191,6 +191,30 @@ td {
 			}
 		}	
 	}	
+}
+
+#function-bar {
+	background-color: #fff;
+	padding: 5px;
+	.clearfix;
+
+	.menu, .pager {
+		float: left;
+		li {
+			float: left;
+			margin-right: 10px;
+		}
+	}
+	.pager {
+		a {
+			color: #009;
+		}
+		.current a {
+			font-weight: bold;
+			color: #f00;
+			cursor: text;
+		}
+	}
 }
 
 .hide {
