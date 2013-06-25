@@ -103,8 +103,11 @@
             <td rowspan="2" style="width: 110px;">
                 
             </td>
+            <td rowspan="2" style="width: 150px;">
+                @Apollo.Age.Resources.Lang.league
+            </td>
             <td rowspan="2">
-                @Apollo.Age.Resources.Lang.home
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
                 @Apollo.Age.Resources.Lang.fulltime
@@ -154,7 +157,7 @@
                         classRow = string.Empty;                        
                     }
                     
-            @ShowLeague(currentLeagueId, item)  
+            //@ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
             <tr class='r @classRow'>
@@ -164,6 +167,9 @@
                         }
                     </td>
                     @ShowTime(item)
+                    <td class="c">
+                         @item.LeagueName 
+                    </td>
                 <td class="l" >
                     @item.HomeTeam 
                     <br />
