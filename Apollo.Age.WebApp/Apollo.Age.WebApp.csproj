@@ -254,6 +254,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -667,6 +670,9 @@
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
     <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <Content Include="Areas\Wagers\Views\Web.config" />
+    <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -675,7 +681,10 @@
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Wagers\Scripts\" />
+    <Folder Include="Areas\Wagers\Styles\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
