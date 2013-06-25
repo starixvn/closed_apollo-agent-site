@@ -117,9 +117,9 @@
       <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
       <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
       <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
-      <Mapping DataField="Content_ip" ObjectProperty="ContentIP"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentIP"/>
       <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
-      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
       <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
       <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
     </Setting>

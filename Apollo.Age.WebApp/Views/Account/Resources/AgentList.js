@@ -272,7 +272,7 @@ var AGENTLIST = function ($) {
                 showFooter: false,
                 fullHeight: true,
                 gridExpandHeight: 190,
-//                numberOfFrozenColumn: 3,
+                numberOfFrozenColumn: 3,
                 marginRight: 0,
                 showPager: true,
                 customPager: true,

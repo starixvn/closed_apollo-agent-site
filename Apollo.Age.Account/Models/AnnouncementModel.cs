@@ -40,7 +40,7 @@ namespace Apollo.Age.Account.Models
 
         public string ContentES { get; set; }
 
-        public string ContentIT { get; set; }
+        public string ContentVN { get; set; }
 
         public string ContentJP { get; set; }
 
