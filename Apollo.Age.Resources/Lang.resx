@@ -1385,7 +1385,13 @@
   <data name="RunningBall" xml:space="preserve">
     <value>Running Ball</value>
   </data>
+  <data name="ExtraTime" xml:space="preserve">
+    <value>Extra Time</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="HomeGuest" xml:space="preserve">
+    <value>Home/Guest</value>
   </data>
 </root>
