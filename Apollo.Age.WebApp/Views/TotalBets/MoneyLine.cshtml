@@ -42,6 +42,9 @@
                 
             </td>
             <td rowspan="2">
+                @Apollo.Age.Resources.Lang.league
+            </td>
+            <td rowspan="2">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
@@ -92,7 +95,7 @@
                 {
                     rowIndex++;
                    
-            @ShowLeague(currentLeagueId, item)  
+            //@ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
             <tr class='r'>
@@ -103,6 +106,9 @@
                     </td>
                 <td class="c bl_time">
                     @Html.Raw(@item.ShowTime)
+                </td>
+                <td>
+                    @item.LeagueName
                 </td>
                 <td class="l no-border-bottom">
                     @item.HomeTeam
