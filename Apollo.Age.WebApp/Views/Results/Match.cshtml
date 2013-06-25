@@ -29,15 +29,14 @@
 		}
 	</ul>
 	<img src="~/_GlobalResources/Images/top_04.gif" alt="" />
+    
+	<input type="hidden" name="todayValue" id="todayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)">
+	<input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">
 </div>
 
 @using (Html.BeginForm())
 {	
-
-	if (Model.SportList != null && Model.SportList.Any())
-	{
-		<div id="resultContainer"></div>
-	}	
+	<div id="resultContainer"></div>
 }
 @section scripts
 {
