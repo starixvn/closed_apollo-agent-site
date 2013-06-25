@@ -53,9 +53,11 @@ namespace Apollo.Age.Reports.Controllers
         #region Match Results
 
         [HttpGet]
-        public ActionResult Match()
+        public ActionResult Match(byte sportId = 1)
         {
-            return Match(DateTime.Now);
+         return Match(DateTime.Now);
+         //   return ResultBySport(DateTime.Now, sportId);
+ 
         }
 
         [HttpPost]
@@ -63,8 +65,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             var viewModel = new MatchResultViewModel
             {
-                BalanceUpDay = BalanceUpDay,
-                SportList = _resultService.GetResultSports(eventDate),
+                BalanceUpDay = BalanceUpDay,                
                 EventDate = eventDate
             };
 
@@ -90,10 +91,11 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ResultByLeague(DateTime date, byte sportId, int leagueId = -1)
+        public ActionResult ResultBySport(DateTime date, byte sportId)
         {
+            date = new DateTime(2013, 6, 11);
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId);
 
             if (matchResults != null && matchResults.Any())
             {

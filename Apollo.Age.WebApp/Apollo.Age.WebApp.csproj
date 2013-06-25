@@ -254,6 +254,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -668,6 +671,14 @@
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
     <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <Content Include="Areas\Wagers\Views\Web.config" />
+    <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Index.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -676,7 +687,10 @@
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Wagers\Scripts\" />
+    <Folder Include="Areas\Wagers\Styles\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -1008,6 +1022,10 @@
     <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Wagers\Apollo.Age.Wagers.csproj">
+      <Project>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</Project>
+      <Name>Apollo.Age.Wagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>

@@ -18,11 +18,7 @@ namespace Apollo.Age.Reports.Criterias
     public class GetMatchResultCriteria : CriteriaBase
     {
         [SpParam(SqlParamName = "FromDate")]
-        public DateTime EventDate { get; set; }
-
-        public int LeagueId { get; set; }
-
-        public string Language { get; set; }
+        public DateTime EventDate { get; set; }           
 
         [SpParam(SqlParamName = "SportType")]
         public int SportId { get; set; }

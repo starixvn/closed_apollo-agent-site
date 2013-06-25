@@ -7,7 +7,7 @@
         @if ((bool)@ViewBag.IsParlay)
         {
             <tr>
-                <th class="summary-header" colspan="5">
+                <th class="summary-header" colspan="6">
                     <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
                     <span>@Model.ToList()[0].LeagueName</span>
                 </th>
@@ -15,60 +15,50 @@
         }
         <tr class="RptHeader">
             <th class="width-80">
-                @Apollo.Age.Resources.Lang.kickofftime
+                @Apollo.Age.Resources.Lang.time
+            </th>
+            <th style="width: 300px;">
+                @Apollo.Age.Resources.Lang.league
             </th>
             <th>
-                @Apollo.Age.Resources.Lang.match
+                @Apollo.Age.Resources.Lang.lblhomeandguest
             </th>
             <th style="width: 100px;">
-                @Apollo.Age.Resources.Lang.firsthalfscore
+                @Apollo.Age.Resources.Lang.lblhalf
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.finalscore
+                @Apollo.Age.Resources.Lang.lblfinal
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.status
+                @Apollo.Age.Resources.Lang.more
             </th>
         </tr>
     </thead>
     <tbody>
         @if (Model != null && Model.Any())
-        {
-            int currentLeagueId = 0;
+        {            
 
             foreach (var item in Model)
-            {
-            @ShowLeague(currentLeagueId, item)
-            @ShowMatch(item)
-
-                currentLeagueId = item.LeagueId;
+            {       
+               @ShowMatch(item)
+                
             }
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 5);
+            @RazorHelper.ShowNoInfo(colspan: 6);
         }
     </tbody>
 </table>
-@helper ShowLeague(int currentLeagueId, MatchResultModel item)
-    {
-        if (!(bool)ViewBag.IsParlay)
-        {
-            if (currentLeagueId != item.LeagueId)
-            {
-                <tr class="league">
-                    <td colspan="6">
-                        @item.LeagueName
-                    </td>
-                </tr>
-            }
-        }
-}
+
 @helper ShowMatch(MatchResultModel item)
     {
     <tr class="c">
         <td rowspan="2" class="width-80">
             @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+        </td>
+        <td rowspan="2">
+           @item.LeagueName
         </td>
         <td class="l">
             @if (item.FinalHomeScore > item.FinalAwayScore)

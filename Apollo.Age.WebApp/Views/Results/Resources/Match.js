@@ -15,21 +15,22 @@ var Match = (function () {
             btnToday = $("#btnToday");
             btnYesterday = $("#btnYesterday");
 
-            ddlSport.change(function () {
-                Match.bindLeague();
-            });
+            //            ddlSport.change(function () {
+            //                Match.bindLeague();
+            //            });
 
-            ddlLeague.change(function () {
-                Match.showResult();
-            });
+            //            ddlLeague.change(function () {
+            //                Match.showResult();
+            //            });
 
-            btnToday.bind('click', function () {    
+            btnToday.bind('click', function () {
                 $("#EventDate").val($("#todayValue").val());
             });
 
             btnYesterday.bind('click', function () {
                 $("#EventDate").val($("#yesterdayValue").val());
             });
+            Match.showResult($("#todayValue").val(), 1);
         },
 
         bindLeague: function () {
@@ -56,14 +57,11 @@ var Match = (function () {
             }
         },
 
-        showResult: function () {
+        showResult: function (date, sportId) {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
-                var sportId = ddlSport.val();
-                var leagueId = ddlLeague.val();
-
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/ResultByLeague"), { "date": date, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/ResultBySport"), { "date": date, "sportId": sportId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
@@ -76,6 +74,6 @@ var Match = (function () {
 
 $(function () {
     Match.init();
-    Match.bindLeague();
-    // Match.showResult();
+    //Match.bindLeague();
+    
 });
