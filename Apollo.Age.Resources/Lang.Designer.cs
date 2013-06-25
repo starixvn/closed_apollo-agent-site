@@ -223,6 +223,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archived Date.
+        /// </summary>
+        public static string ArchivedDate {
+            get {
+                return ResourceManager.GetString("ArchivedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aug.
         /// </summary>
         public static string August {
@@ -291,6 +300,24 @@ namespace Apollo.Age.Resources {
         public static string bettype {
             get {
                 return ResourceManager.GetString("bettype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.K.
+        /// </summary>
+        public static string BK {
+            get {
+                return ResourceManager.GetString("BK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -858,6 +885,15 @@ namespace Apollo.Age.Resources {
         public static string IncorrectCaptchaMsg {
             get {
                 return ResourceManager.GetString("IncorrectCaptchaMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inter. event.
+        /// </summary>
+        public static string InterEvent {
+            get {
+                return ResourceManager.GetString("InterEvent", resourceCulture);
             }
         }
         
@@ -3882,6 +3918,24 @@ namespace Apollo.Age.Resources {
         public static string voided {
             get {
                 return ResourceManager.GetString("voided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball.
+        /// </summary>
+        public static string Volleyball {
+            get {
+                return ResourceManager.GetString("Volleyball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager type.
+        /// </summary>
+        public static string WagerType {
+            get {
+                return ResourceManager.GetString("WagerType", resourceCulture);
             }
         }
         

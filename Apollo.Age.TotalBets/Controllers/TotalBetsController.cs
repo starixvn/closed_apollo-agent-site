@@ -34,6 +34,11 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Load Handicap View
         /// </summary>
