@@ -376,7 +376,6 @@ var HEADER = function ($) {
                         height: 'easeOutBounce'
                     },
                     complete: function () {
-                        var $this = $(this);
                         mainPage.animate({ left: '0' }, 50);
                     }
                 }
@@ -392,7 +391,6 @@ var HEADER = function ($) {
                              height: 'easeOutBounce'
                          },
                          complete: function () {
-                             var $this = $(this);
                              mainPage.animate({ left: '221px' }, 50);
                          }
                      }
