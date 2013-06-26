@@ -255,16 +255,18 @@
 {
 	if(datetime != null)
 	{
-		try
-		{
-			TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-			var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+        datetime = DateTime.Now;
+    }
+	try
+	{
+		TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+		var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
 			
-			@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est,  Formater.LongDateFormat(easternTime)))
-		}
-		catch(Exception ex)
-		{
-			Fanex.Logging.Logger.Log.Error(ex.Message, ex);
-		}
+		<span class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est,  Formater.LongDateFormat(easternTime)))</span>
 	}
+	catch(Exception ex)
+	{
+		Fanex.Logging.Logger.Log.Error(ex.Message, ex);
+	}
+	
 }

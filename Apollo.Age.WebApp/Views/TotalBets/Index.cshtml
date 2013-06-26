@@ -33,7 +33,7 @@
 		@for (int i = 0; i < 10; i++)
 		{
 			var item = menu[i];
-			<li @(i==0? "class='active'" : string.Empty)><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
+			<li class="@(i==0? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
 		}
 			<li id="more-link"><a href="javascript:;">@Apollo.Age.Resources.Lang.more...</a>
 				<ul class="sub-menu" style="display: none">
@@ -49,7 +49,7 @@
 	</div>
 
 	<div class="mainpage">
-		<iframe id="submain" name="submain" width="100%" height="99%" frameborder="0"></iframe>
+		<iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/totalBets/handicap"></iframe>
 	</div>
 
 	@Scripts.Render("~/scripts/forecast-indexjs")
