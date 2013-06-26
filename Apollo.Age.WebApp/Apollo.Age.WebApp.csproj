@@ -459,6 +459,7 @@
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Match.js" />
     <Content Include="Views\Results\Resources\Outright.js" />
+    <Content Include="Views\TotalBets\Resources\Index.js" />
     <Content Include="Views\TotalBets\Resources\TotalBets.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

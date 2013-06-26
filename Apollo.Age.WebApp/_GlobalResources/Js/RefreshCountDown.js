@@ -128,8 +128,9 @@ $(document).ready(function () {
     $('.btnCountDown select').on('change', function () {
         clearInterval(interval);
         var duration = $(this).val();
+        var onRefresh = $('#apo-on-flesh').val();
         if (duration > 0) {
-            interval = setInterval("location.reload()", duration * 1000);
+            interval = setInterval(onRefresh, duration * 1000);
         }
     });
 
