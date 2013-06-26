@@ -22,6 +22,9 @@ namespace Apollo.Age.Account.Criterias
 
         public int PageIndex { get; set; }
 
+        [SpParam(Ignored = true)]
+        public int OldPageIndex { get; set; }
+
         public int TotalItems { get; set; }
 
         public string UserName { get; set; }
@@ -38,7 +41,6 @@ namespace Apollo.Age.Account.Criterias
             }
         }
 
-        [SpParam(Ignored = true)]
         public int Status { get; set; }
 
         [SpParam(Ignored = true)]

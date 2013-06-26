@@ -244,10 +244,23 @@
 			
 		foreach (Apollo.Age.Entities.SingbetSport sport in singbetSports)
 		{
-							
-			<li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+            if(sport.Id != Apollo.Age.Core.SingbetConstants.All)
+            {
+                if(sport.Id == Apollo.Age.Core.SingbetConstants.Other)
+                {							
+			    <li><a href="#" id="@sport.Id" name="menuothersport" >[@(sport.Name)]</a></li>
+                }
+                else if(sport.Id == Apollo.Age.Core.SingbetConstants.Outright)
+                {
+                    <li><a href="#" id="@sport.Id" name="menuoutright" >[@(sport.Name)]</a></li>
+                }
+                else
+                {
+                <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+                }
+            }
 
-		}
+        }
    
 }
 
@@ -261,9 +274,7 @@
 	{
 		TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
 		var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
-			
-		<div class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est,  Formater.LongDateFormat(easternTime)))</div>
-	}
+	}		
 	catch(Exception ex)
 	{
 		Fanex.Logging.Logger.Log.Error(ex.Message, ex);

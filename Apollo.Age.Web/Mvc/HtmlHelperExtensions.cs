@@ -345,7 +345,7 @@ namespace Apollo.Age.Web.Mvc
                     return new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
                 }
             }
-            else if (status == (int)CustomerStatus.Active)
+            else if (status == (int)CustomerStatus.Stopped)
             {
                 return new MvcHtmlString(string.Format(format, "close", Lang.Close));
             }

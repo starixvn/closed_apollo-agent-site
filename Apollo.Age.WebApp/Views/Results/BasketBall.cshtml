@@ -43,7 +43,7 @@
                 @Lang.lblScore
             </td>           
             <td class="nowrap" style="width: 60px;">
-                @Lang.more
+                @Lang.status
             </td>
         </tr>
     </thead>
@@ -143,18 +143,18 @@
                     }
                 }
 
-                if (!(bool)@ViewBag.IsParlay)
+                @*if (!(bool)@ViewBag.IsParlay)
                 {
                     if (currentLeagueId != item.LeagueId)
                     {
                         currentLeagueId = item.LeagueId;
                         <tr class="league">
-                            <td colspan="10">
+                            <td>
                                 @item.LeagueName
                             </td>
                         </tr>
                     }
-                }
+                }*@
 
             <tr class="c">
                 <td class="width-80">
@@ -164,23 +164,9 @@
                     @item.LeagueName
                 </td>
                 <td class="l">
-                    @if (item.FinalHomeScore > item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.HomeTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.HomeTeam)
-                    }
+                    @Html.Raw(item.HomeTeam)
                     <br />
-                     @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
+                    @Html.Raw(item.AwayTeam)
                 </td>
                 @if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
                 {
@@ -214,9 +200,14 @@
                 {
                     <td>
                     -
-                    
+                     <br />
+                    -
                     </td>
-                    <td>-</td>
+                    <td>
+                    -
+                     <br />
+                    -
+                    </td>
                 }
                 else
                 {
@@ -250,18 +241,13 @@
                     {
                         @OTAway
                     }
-                </td>
-                <td>
-                    @firstHalfHomeScore
-                    <br />
-                     @firstHalfAwayScore
-                </td>
+                </td>                
                 <td>
                     @finalHomeScore
                     <br />
                      @finalAwayScore
                 </td>
-                <td rowspan="2" class="border-right">
+                <td class="border-right">
                     @item.EventStatusTranslation
                 </td>
             </tr>            

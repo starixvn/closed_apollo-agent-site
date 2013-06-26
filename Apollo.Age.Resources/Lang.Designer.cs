@@ -241,6 +241,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        public static string area {
+            get {
+                return ResourceManager.GetString("area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ASC.
         /// </summary>
         public static string ASC {
@@ -3784,6 +3793,15 @@ namespace Apollo.Age.Resources {
         public static string TicketCancelled {
             get {
                 return ResourceManager.GetString("TicketCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket cancelled.
+        /// </summary>
+        public static string TicketsCancelled {
+            get {
+                return ResourceManager.GetString("TicketsCancelled", resourceCulture);
             }
         }
         

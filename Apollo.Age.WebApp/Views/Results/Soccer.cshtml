@@ -12,13 +12,13 @@
             </tr>
         }
         <tr class="RptHeader">
-            <th class="width-80">
+            <th  style="width: 100px;">
                 @Apollo.Age.Resources.Lang.time
             </th>
             <th style="width: 300px;">
                 @Apollo.Age.Resources.Lang.league
             </th>
-            <th>
+            <th style="width: 300px;">
                 @Apollo.Age.Resources.Lang.lblhomeandguest
             </th>
             <th style="width: 100px;">
@@ -28,7 +28,7 @@
                 @Apollo.Age.Resources.Lang.lblfinal
             </th>
             <th class="nowrap" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.more
+                @Apollo.Age.Resources.Lang.status
             </th>
         </tr>
     </thead>
@@ -58,28 +58,10 @@
             @item.LeagueName
         </td>
         <td class="l">
-            @if (item.FinalHomeScore > item.FinalAwayScore)
-            {
-                <b>
-                    @item.HomeTeam
-                </b>
-            }
-            else
-            {
-                @item.HomeTeam
-            }
+            @item.HomeTeam
             @FirstAndLastGoal(item, isRowHome: true)
             <br />
-            @if (item.FinalHomeScore < item.FinalAwayScore)
-            {
-                <b>
-                    @item.AwayTeam
-                </b>
-            }
-            else
-            {
-                @item.AwayTeam
-            }
+            @item.AwayTeam
             @FirstAndLastGoal(item, isRowHome: false)
         </td>
         @BindScore(item)
