@@ -30,7 +30,7 @@ td {
 		}
 
 		.left {
-			background: url(images/bg-welcome.png) no-repeat;
+			background: url(images/bg-logo.jpg) no-repeat;
 			width: 183px;
 			height: 50px;			
 			position: absolute;
@@ -52,13 +52,21 @@ td {
 					float: left;
 				}
 
-				a.logout {
-					color: #fff;
+				ul.link {					
 					float: right;
 
-					&:hover {
-						color: #FFFF00;
-					}
+					li {
+						float: left;
+
+						a {
+							color: #fff;
+							margin: 0 5px;
+
+							&:hover {
+								color: #FFFF00;
+							}
+						}
+					}					
 				}
 			}
 

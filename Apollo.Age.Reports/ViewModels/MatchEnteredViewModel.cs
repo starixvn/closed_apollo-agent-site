@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.ViewModels
 
     public class MatchEnteredViewModel
     {
-        public byte SportTypeId { get; set; }
+        public short SportTypeId { get; set; }
 
         public int YesterdayEntered { get; set; }
 
