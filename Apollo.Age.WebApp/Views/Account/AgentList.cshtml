@@ -26,7 +26,8 @@
                             <td>
                                 @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.close }
+					                new SelectListItem { Value = "2", Text = Lang.Close },
+                                    new SelectListItem { Value = "2", Text = Lang.Close }
 				                }, new { id = "ddlIsMember" })
                                 <select class="za_select" onchange="self.myFORM.submit()" name="enable" id="enable">
                                     <option value="Y" selected="selected">Active</option>
