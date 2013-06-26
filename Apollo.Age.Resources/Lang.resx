@@ -1424,6 +1424,9 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
+  <data name="ExtraTime" xml:space="preserve">
+    <value>Extra Time</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>

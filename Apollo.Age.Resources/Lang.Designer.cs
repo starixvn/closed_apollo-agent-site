@@ -610,6 +610,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra Time.
+        /// </summary>
+        public static string ExtraTime {
+            get {
+                return ResourceManager.GetString("ExtraTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feb.
         /// </summary>
         public static string February {
