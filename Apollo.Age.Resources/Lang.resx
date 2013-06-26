@@ -1500,4 +1500,10 @@
   <data name="lblTelephoneNo" xml:space="preserve">
     <value>Telephone No.</value>
   </data>
+  <data name="NonResult" xml:space="preserve">
+    <value>Non-result</value>
+  </data>
+  <data name="WagerState" xml:space="preserve">
+    <value>Wager state</value>
+  </data>
 </root>

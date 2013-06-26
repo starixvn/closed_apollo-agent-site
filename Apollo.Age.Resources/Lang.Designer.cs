@@ -2978,6 +2978,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-result.
+        /// </summary>
+        public static string NonResult {
+            get {
+                return ResourceManager.GetString("NonResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal Announcements.
         /// </summary>
         public static string normalmessage {
@@ -4153,6 +4162,15 @@ namespace Apollo.Age.Resources {
         public static string Volleyball {
             get {
                 return ResourceManager.GetString("Volleyball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager state.
+        /// </summary>
+        public static string WagerState {
+            get {
+                return ResourceManager.GetString("WagerState", resourceCulture);
             }
         }
         
