@@ -51,12 +51,12 @@ namespace Apollo.Age.Reports.Services
             return leagues;
         }
 
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime date, byte sportType, int custId)
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId)
         {
             var criteria = new GetMatchResultCriteria
-                    {
-                        EventDate = date,
-                        SportId = sportType,                        
+                    {                        
+                      FromDate =fromDate,
+                      Sporttypes = sportTypes,
                         BalanceUpDay = GetBalanceUpDay()
                     };
 
