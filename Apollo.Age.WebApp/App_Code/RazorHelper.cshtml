@@ -273,7 +273,7 @@
 	{
 		TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
 		var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
-			
+	}		
 	catch(Exception ex)
 	{
 		Fanex.Logging.Logger.Log.Error(ex.Message, ex);
