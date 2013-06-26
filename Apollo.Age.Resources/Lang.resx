@@ -1509,6 +1509,12 @@
   <data name="area" xml:space="preserve">
     <value>Area</value>
   </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="InComplete" xml:space="preserve">
+    <value>Incomplete</value>
+  </data>
   <data name="TicketsCancelled" xml:space="preserve">
     <value>Ticket cancelled</value>
   </data>

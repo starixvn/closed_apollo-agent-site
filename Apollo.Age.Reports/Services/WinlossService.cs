@@ -18,9 +18,9 @@ namespace Apollo.Age.Reports.Services
 
     public class WinLossService : ReportService, IWinLossService
     {
-        public List<MatchEnteredViewModel> GetMatchEntered()
+        public List<MatchEnteredModel> GetMatchEntered()
         {
-            var matchEnteredList = this.GetData<MatchEnteredModel>(new MatchEnteredCriteria()).ToList();
+            var matchEnteredList = this.GetData<MatchEntered>(new MatchEnteredCriteria()).ToList();
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
@@ -55,15 +55,15 @@ namespace Apollo.Age.Reports.Services
             return memberWinLossList;
         }
 
-        private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredFromList)
+        private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEntered> enteredFromList)
         {
-            List<MatchEnteredViewModel> enteredToList = null;
+            List<MatchEnteredModel> enteredToList = null;
 
             if (enteredFromList != null && enteredFromList.Any())
             {
                 var sportType = -1;
-                MatchEnteredViewModel matchEntered = null;
-                enteredToList = new List<MatchEnteredViewModel>();
+                MatchEnteredModel matchEntered = null;
+                enteredToList = new List<MatchEnteredModel>();
 
                 foreach (var item in enteredFromList)
                 {
@@ -82,7 +82,7 @@ namespace Apollo.Age.Reports.Services
 
                         if (item.IsToday)
                         {
-                            matchEntered = new MatchEnteredViewModel()
+                            matchEntered = new MatchEnteredModel()
                             {
                                 SportTypeId = item.SportType,
                                 TodayEntered = item.Entered,
@@ -91,7 +91,7 @@ namespace Apollo.Age.Reports.Services
                         }
                         else
                         {
-                            matchEntered = new MatchEnteredViewModel()
+                            matchEntered = new MatchEnteredModel()
                             {
                                 SportTypeId = item.SportType,
                                 YesterdayEntered = item.Entered,
