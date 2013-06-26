@@ -34,6 +34,5 @@ namespace Apollo.Age.Account.Core
 
         public const int LogActionPositionTaking = 4;     
 
-        public const 
     }
 }
