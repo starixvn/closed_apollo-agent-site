@@ -241,6 +241,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ASC.
+        /// </summary>
+        public static string ASC {
+            get {
+                return ResourceManager.GetString("ASC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aug.
         /// </summary>
         public static string August {
@@ -430,6 +439,16 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact our Customer Relationship Officers through the following available communication
+        ///                channels should you have any concerns or queries..
+        /// </summary>
+        public static string ContentContact {
+            get {
+                return ResourceManager.GetString("ContentContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string Continue {
@@ -565,6 +584,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DES.
+        /// </summary>
+        public static string DES {
+            get {
+                return ResourceManager.GetString("DES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DH.
         /// </summary>
         public static string dh {
@@ -615,6 +643,15 @@ namespace Apollo.Age.Resources {
         public static string enterusername {
             get {
                 return ResourceManager.GetString("enterusername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E.S.T.
+        /// </summary>
+        public static string est {
+            get {
+                return ResourceManager.GetString("est", resourceCulture);
             }
         }
         
@@ -1618,6 +1655,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string lblEmailAddress {
+            get {
+                return ResourceManager.GetString("lblEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to csdAddress@yahoo.com.
+        /// </summary>
+        public static string lblEmailContact {
+            get {
+                return ResourceManager.GetString("lblEmailContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EM Wagers.
         /// </summary>
         public static string lblEmWager {
@@ -1740,6 +1795,15 @@ namespace Apollo.Age.Resources {
         public static string lblHandicapFC {
             get {
                 return ResourceManager.GetString("lblHandicapFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string lblHelp {
+            get {
+                return ResourceManager.GetString("lblHelp", resourceCulture);
             }
         }
         
@@ -2167,6 +2231,33 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (63) 99917 88888.
+        /// </summary>
+        public static string lblPhone1 {
+            get {
+                return ResourceManager.GetString("lblPhone1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (63) 91542 22222.
+        /// </summary>
+        public static string lblPhone2 {
+            get {
+                return ResourceManager.GetString("lblPhone2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4000 888 092.
+        /// </summary>
+        public static string lblPhone3 {
+            get {
+                return ResourceManager.GetString("lblPhone3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Platform:.
         /// </summary>
         public static string lblplatform {
@@ -2325,6 +2416,15 @@ namespace Apollo.Age.Resources {
         public static string lblTeam {
             get {
                 return ResourceManager.GetString("lblTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telephone No..
+        /// </summary>
+        public static string lblTelephoneNo {
+            get {
+                return ResourceManager.GetString("lblTelephoneNo", resourceCulture);
             }
         }
         
@@ -2964,6 +3064,15 @@ namespace Apollo.Age.Resources {
         public static string OldValue {
             get {
                 return ResourceManager.GetString("OldValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order by.
+        /// </summary>
+        public static string OrderBy {
+            get {
+                return ResourceManager.GetString("OrderBy", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Services.Impl
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -9,7 +10,7 @@
 
     <label for="ddlSport">Report:</label>
 
-    @RazorHelper.RenderSportDropDownList(currentSportId: 0)
+    @RazorHelper.RenderSportDropDownList(SingbetSportService.GetSport(false), currentSportId: 0)
 
     <a href="#" style="padding:5px;" class="sub-menu">Report</a>
     <a href="#" style="padding:5px;" class="sub-menu">Ticket cancelled</a>

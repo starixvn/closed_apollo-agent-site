@@ -354,13 +354,16 @@
     <Content Include="Views\Account\Resources\Images\edit-menu.gif" />
     <Content Include="Views\Account\Resources\Images\edit.png" />
     <Content Include="Views\Account\Resources\Images\edit_disabled.gif" />
+    <Content Include="Views\Account\Resources\Images\icon-close.gif" />
     <Content Include="Views\Account\Resources\Images\icon-edit-setting.png" />
+    <Content Include="Views\Account\Resources\Images\icon-help.png" />
     <Content Include="Views\Account\Resources\Images\icon-root.png" />
     <Content Include="Views\Account\Resources\Images\icon-sub-menu.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info-hover.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info.png" />
     <Content Include="Views\Account\Resources\Images\loader3.gif" />
     <Content Include="Views\Account\Resources\Images\magnifier.png" />
+    <Content Include="Views\Account\Resources\Images\qa_phone.png" />
     <Content Include="Views\Account\Resources\Images\title.jpg" />
     <Content Include="Views\Account\Resources\Images\treeview-1.png" />
     <Content Include="Views\Account\Resources\Images\treeview-default-line.gif" />
