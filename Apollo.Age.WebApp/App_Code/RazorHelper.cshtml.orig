@@ -23,7 +23,7 @@
                 <option value="@sec">@sec @Apollo.Age.Resources.Lang.sec</option>
             }
         </select>
-		<input type="hidden" id="apo-on-refresh" value="@onRefresh" />
+	<input type="hidden" id="apo-on-refresh" value="@onRefresh" />
     </div>
 }
 @*@helper RefreshCountDown(string refreshCountDownId,
@@ -213,46 +213,71 @@
     @Formater.FormatShortDateNoZeroLeading(dateTime)
         }
 }
-@helper RenderSportDropDownList(int currentSportId, string id = "ddlSport", string className = "")
-    {
+@helper RenderSportDropDownList(List<Apollo.Age.Entities.SingbetSport> sportList, int currentSportId, string id = "ddlSport", string className = "")
+	{
+        <select id="@id" class="@className">
+            @if(sportList != null)
+            {
+                foreach(var sport in sportList)
+                {
+                    <option value="@sport.Id" selected="(@sport.Id = @currentSportId)">@sport.Name</option>
+                }
+            }
+        </select>
+}
 
-    <select id="@id" class="@className">
-        <option value="0" selected="@(currentSportId == 0)">@Apollo.Age.Resources.Lang.all</option>
-        <option value="1" selected="@(currentSportId == 1)">@Apollo.Age.Resources.Lang.soccer</option>
-        <option value="2" selected="@(currentSportId == 2)">@Apollo.Age.Resources.Lang.lblBkNflRugby</option>
-        <option value="3" selected="@(currentSportId == 3)">@Apollo.Age.Resources.Lang.Tennis</option>
-        <option value="4" selected="@(currentSportId == 4)">@Apollo.Age.Resources.Lang.lblVbBdmTt</option>
-        <option value="5" selected="@(currentSportId == 5)">@Apollo.Age.Resources.Lang.Baseball</option>
-        <option value="6" selected="@(currentSportId == 6)">@Apollo.Age.Resources.Lang.InterEvent</option>
-        <option value="7" selected="@(currentSportId == 7)">@Apollo.Age.Resources.Lang.lblOutRight</option>
-    </select>
+@helper RenderBettypeDropDownList(List<Apollo.Age.Entities.SingbetBettype> bettypeList, int currentBettypeId, string id = "ddlBettype", string className = "")
+<<<<<<< HEAD
+	{
+		<select id="@id" class="@className">
+			@if (bettypeList != null)
+			{
+				foreach (var bettype in bettypeList)
+				{
+					<option value="@bettype.Id" selected="(@bettype.Id = @currentBettypeId)">@bettype.Name</option>
+				}
+			}
+		</select>
 }
-@helper RenderBettypeDropDownList(int currentBettypeId, string id = "ddlSport", string className = "")
+
+@helper ToEasternTime(DateTime datetime)
+{
+    if(datetime != null)
     {
-    <select id="@id" class="@className">
-        <option value="0" selected="@(currentBettypeId == 0)">@Apollo.Age.Resources.Lang.all</option>
-        <option value="1" selected="@(currentBettypeId == 1)">@Apollo.Age.Resources.Lang.lblHandicapFC</option>
-        <option value="2" selected="@(currentBettypeId == 2)">@Apollo.Age.Resources.Lang.lblOddEven</option>
-        <option value="3" selected="@(currentBettypeId == 3)">@Apollo.Age.Resources.Lang.lblOverUnder</option>
-        <option value="4" selected="@(currentBettypeId == 4)">@Apollo.Age.Resources.Lang.correctscore</option>
-        <option value="5" selected="@(currentBettypeId == 5)">@Apollo.Age.Resources.Lang.lblFT1X2</option>
-        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-        <option value="7" selected="@(currentBettypeId == 7)">@Apollo.Age.Resources.Lang.firstgoal/@Apollo.Age.Resources.Lang.lastgoal</option>
-        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-    </select>
-}
+        try
+        {
+            TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+            
+            @(string.Format("E.S.T {0}", Formater.LongDateFormat(easternTime)))
+        }
+        catch(Exception ex)
+        {
+            Fanex.Logging.Logger.Log.Error(ex.Message, ex);
+        }
+    }
+=======
+    {
+        <select id="@id" class="@className">
+            @if (bettypeList != null)
+            {
+                foreach (var bettype in bettypeList)
+                {
+                    <option value="@bettype.Id" selected="(@bettype.Id = @currentBettypeId)">@bettype.Name</option>
+                }
+            }
+        </select>
+    }
 @helper RenderResultBySport()
     {
-        List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport();
+        List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport(true);
             
         foreach (Apollo.Age.Entities.SingbetSport sport in singbetSports)
         {
-
+                            
             <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
 
         }
    
+>>>>>>> 43e94d7ed35a4fd8619c22c5c27bf996571318cc
 }

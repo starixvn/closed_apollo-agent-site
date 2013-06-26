@@ -55,61 +55,58 @@ namespace Apollo.Age.Reports.Services
             return memberWinLossList;
         }
 
-        private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredDTOList)
+        private List<MatchEnteredViewModel> ConvertToMatchEnteredModel(List<MatchEnteredModel> enteredFromList)
         {
-            List<MatchEnteredViewModel> matchEnteredList = null;
+            List<MatchEnteredViewModel> enteredToList = null;
 
-            if (enteredDTOList != null)
+            if (enteredFromList != null && enteredFromList.Any())
             {
-                if (enteredDTOList.Any())
-                {
-                    var sportType = -1;
-                    MatchEnteredViewModel matchEntered = null;
-                    matchEnteredList = new List<MatchEnteredViewModel>();
+                var sportType = -1;
+                MatchEnteredViewModel matchEntered = null;
+                enteredToList = new List<MatchEnteredViewModel>();
 
-                    foreach (var enteredDTO in enteredDTOList)
+                foreach (var item in enteredFromList)
+                {
+                    if (item.SportType == sportType)
                     {
-                        if (enteredDTO.SportType == sportType)
+                        matchEntered.TodayEntered = item.Entered;
+                        matchEntered.TodayNonEntered = item.NonEntered;
+                    }
+                    else
+                    {
+                        if (sportType != -1)
                         {
-                            matchEntered.TodayEntered = enteredDTO.Entered;
-                            matchEntered.TodayNonEntered = enteredDTO.NonEntered;
+                            enteredToList.Add(matchEntered);
+                            matchEntered = null;
+                        }
+
+                        if (item.IsToday == 1)
+                        {
+                            matchEntered = new MatchEnteredViewModel()
+                            {
+                                SportTypeId = item.SportType,
+                                TodayEntered = item.Entered,
+                                TodayNonEntered = item.NonEntered
+                            };
                         }
                         else
                         {
-                            if (sportType != -1)
+                            matchEntered = new MatchEnteredViewModel()
                             {
-                                matchEnteredList.Add(matchEntered);
-                                matchEntered = null;
-                            }
-
-                            if (enteredDTO.IsToday == 1)
-                            {
-                                matchEntered = new MatchEnteredViewModel()
-                                {
-                                    SportTypeId = enteredDTO.SportType,
-                                    TodayEntered = enteredDTO.Entered,
-                                    TodayNonEntered = enteredDTO.NonEntered
-                                };
-                            }
-                            else
-                            {
-                                matchEntered = new MatchEnteredViewModel()
-                                {
-                                    SportTypeId = enteredDTO.SportType,
-                                    YesterdayEntered = enteredDTO.Entered,
-                                    YesterdayNonEntered = enteredDTO.NonEntered
-                                };
-                            }
-
-                            sportType = enteredDTO.SportType;
+                                SportTypeId = item.SportType,
+                                YesterdayEntered = item.Entered,
+                                YesterdayNonEntered = item.NonEntered
+                            };
                         }
-                    }
 
-                    matchEnteredList.Add(matchEntered);
+                        sportType = item.SportType;
+                    }
                 }
+
+                enteredToList.Add(matchEntered);
             }
 
-            return matchEnteredList;
+            return enteredToList;
         }
     }
 }
