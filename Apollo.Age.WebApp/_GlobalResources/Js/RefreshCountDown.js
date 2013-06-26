@@ -128,9 +128,11 @@ var RefreshCountDown = function ($) {
         ddlRefresh: null,
         onRefresh: null,
 
-        setTimeout: function (timeout) {
-            clearTimeout(RefreshCountDown.timeout);
-            RefreshCountDown.timeout = setTimeout(RefreshCountDown.onRefresh, timeout * 1000);
+        setRefreshTimeout: function (timeout) {
+            if (RefreshCountDown.onRefresh) {
+                clearTimeout(RefreshCountDown.timeout);
+                RefreshCountDown.timeout = setTimeout(RefreshCountDown.onRefresh, timeout * 1000);
+            }
         },
 
         clearTimeout: function () {
@@ -138,12 +140,14 @@ var RefreshCountDown = function ($) {
         },
 
         setCurrentTimeout: function () {
-            var timeout = RefreshCountDown.ddlRefresh.val();
+            var refreshId = $('#refreshCountDownId').attr('refresh-id');
+            var timeout = parseInt(RefreshCountDown.ddlRefresh.val());
             if (timeout > 0) {
-                RefreshCountDown.setTimeout(timeout);
-                $.cookie('ApoRefreshTimeout', timeout);
+                RefreshCountDown.setRefreshTimeout(timeout);
+                $.cookie('ApoRefreshTimeout-' + refreshId, timeout);
             } else {
-                $.removeCookie('ApoRefreshTimeout');
+                RefreshCountDown.clearTimeout();
+                $.removeCookie('ApoRefreshTimeout-' + refreshId);
             }
         }
     };
@@ -154,9 +158,10 @@ $(document).ready(function () {
     RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
 
     // set refresh timeout by using cookie
-    var timeout = $.cookie('ApoRefreshTimeout');
+    var refreshId = $('#refreshCountDownId').attr('refresh-id');
+    var timeout = $.cookie('ApoRefreshTimeout-' + refreshId);
     if (typeof timeout !== 'undefined') {
-        RefreshCountDown.setTimeout(timeout);
+        RefreshCountDown.setRefreshTimeout(timeout);
         RefreshCountDown.ddlRefresh.val(timeout);
     }
 

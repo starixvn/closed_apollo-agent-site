@@ -1,5 +1,5 @@
 ﻿@using Apollo.Age.Reports.ViewModels
-@using Apollo.Age.Services.Impl
+@using Apollo.Age.Entities
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -10,7 +10,7 @@
 
     <label for="ddlSport">Report:</label>
 
-    @RazorHelper.RenderSportDropDownList(SingbetSportService.GetSport(false), currentSportId: 0)
+    @RazorHelper.RenderSportDropDownList((List<SingbetSport>)ViewBag.SportList, currentSportId: "0")
 
     <a href="#" style="padding:5px;" class="sub-menu">Report</a>
     <a href="#" style="padding:5px;" class="sub-menu">Ticket cancelled</a>
@@ -73,16 +73,7 @@
                 @Apollo.Age.Resources.Lang.WagerType:
             </td>
             <td colspan="4">
-                <select id="ddlSportType1">
-                    <option value="0" >All</option>
-                    <option value="1">Handicap</option>
-                    <option value="2">Odd/Even</option>
-                    <option value="3">Over/Under</option>
-                    <option value="4">FT. 1X2</option>
-                    <option value="5">Total Goal</option>
-                    <option value="6">First Goal/Last Goal</option>
-                    <option value="7">HT/FT</option>
-                </select>
+                @RazorHelper.RenderBettypeDropDownList((List<SingbetBettype>)ViewBag.BettypeList, currentBettypeId: "0")
             </td>
         </tr>
         <tr>
@@ -113,108 +104,224 @@
                 @Apollo.Age.Resources.Lang.nonentered
             </td>
         </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.soccer:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.BK:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.Tennis:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.Volleyball:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.Baseball:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.lblOutRight:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td class="winloss_firstcolumn">
-                @Apollo.Age.Resources.Lang.InterEvent:
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td class="winloss_yesterday">
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
+        @if (Model != null && Model.Any() && Model.Count == 7)
+        {
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.soccer:
+                </td>
+                @if (Model[0] != null)
+                {
+                    <td class="winloss_yesterday">@Model[0].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[0].YesterdayNonEntered</td>
+                    <td>@Model[0].TodayEntered</td>
+                    <td>@Model[0].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+                
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.BK:
+                </td>
+                @if (Model[1] != null)
+                {
+                    <td class="winloss_yesterday">@Model[1].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[1].YesterdayNonEntered</td>
+                    <td>@Model[1].TodayEntered</td>
+                    <td>@Model[1].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Tennis:
+                </td>
+                @if (Model[2] != null)
+                {
+                    <td class="winloss_yesterday">@Model[2].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[2].YesterdayNonEntered</td>
+                    <td>@Model[2].TodayEntered</td>
+                    <td>@Model[2].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Volleyball:
+                </td>
+                @if (Model[3] != null)
+                {
+                    <td class="winloss_yesterday">@Model[3].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[3].YesterdayNonEntered</td>
+                    <td>@Model[3].TodayEntered</td>
+                    <td>@Model[3].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Baseball:
+                </td>
+                @if (Model[4] != null)
+                {
+                    <td class="winloss_yesterday">@Model[4].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[4].YesterdayNonEntered</td>
+                    <td>@Model[4].TodayEntered</td>
+                    <td>@Model[4].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.lblOutRight:
+                </td>
+                @if (Model[5] != null)
+                {
+                    <td class="winloss_yesterday">@Model[5].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[5].YesterdayNonEntered</td>
+                    <td>@Model[5].TodayEntered</td>
+                    <td>@Model[5].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.InterEvent:
+                </td>
+                @if (Model[6] != null)
+                {
+                    <td class="winloss_yesterday">@Model[6].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[6].YesterdayNonEntered</td>
+                    <td>@Model[6].TodayEntered</td>
+                    <td>@Model[6].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.soccer:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.BK:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Tennis:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Volleyball:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Baseball:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.lblOutRight:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.InterEvent:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
     </table>
 
     <div>
-
-
         <div class="row bg-action">
+            <span>@Apollo.Age.Resources.Lang.WagerState: </span>
+            <select>
+                <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
+                <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
+            </select>
+            
+            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+            <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
             <span>
                 @Apollo.Age.Resources.Lang.ArchivedDate: 2013-06-25
             </span>
-            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
         </div>
     </div>
 </div>

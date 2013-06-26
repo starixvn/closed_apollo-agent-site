@@ -94,6 +94,11 @@ namespace Apollo.Age.Account.Controllers
             return View(CurrentSession);
         }
 
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
         public ActionResult Menu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
