@@ -130,6 +130,7 @@ namespace Apollo.Age.Reports.Controllers
             var matchEnteredList = _winLossService.GetMatchEntered();
             ViewBag.SportList = sportList;
             ViewBag.BettypeList = bettypeList;
+            ViewBag.BalanceUpDay = _reportService.GetBalanceUpDay();
 
             return View(matchEnteredList);
         }

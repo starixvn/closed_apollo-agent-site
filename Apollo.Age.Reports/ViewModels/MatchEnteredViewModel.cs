@@ -10,6 +10,7 @@
 namespace Apollo.Age.Reports.ViewModels
 {
     using Apollo.Age.Services;
+    using System;
 
     public class MatchEnteredViewModel
     {
