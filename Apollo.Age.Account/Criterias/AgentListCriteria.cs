@@ -35,7 +35,7 @@ namespace Apollo.Age.Account.Criterias
             {
                 int pageSize = 0;
 
-                int.TryParse(ConfigurationManager.AppSettings["PageSizeAgentMemberList"].ToString(), out pageSize);
+                int.TryParse(ConfigurationManager.AppSettings["PageSizeAgentList"].ToString(), out pageSize);
 
                 return pageSize;
             }

@@ -23,7 +23,7 @@
             {
                 int pageSize = 0;
 
-                int.TryParse(ConfigurationManager.AppSettings["PageSizeAgentMemberList"].ToString(), out pageSize);
+                int.TryParse(ConfigurationManager.AppSettings["PageSizeMemberList"].ToString(), out pageSize);
 
                 return pageSize;
             }
