@@ -5,15 +5,7 @@
 
 <table class="tblRpt volleyball">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="11">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
+       
         <tr class="RptHeader">
             <td columnname="kickofftime" style="width: 100px;">
                 @Lang.time
@@ -100,19 +92,7 @@
                     totalPointAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
 
                 }
-
-                if (!(bool)@ViewBag.IsParlay)
-                {
-                    if (currentLeagueId != item.LeagueId)
-                    {
-                        currentLeagueId = item.LeagueId;
-                        <tr class="league">
-                            <td colspan="10">
-                                @item.LeagueName
-                            </td>
-                        </tr>
-                    }
-                }
+               
 
             <tr class="c">
                 <td class="width-80">
@@ -122,23 +102,9 @@
                     @item.LeagueName
                 </td>
                 <td class="l width-215">
-                    @if (item.FinalHomeScore > item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.HomeTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.HomeTeam)
-                    }
+                    @Html.Raw(item.HomeTeam)
                     <br />
-                     @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
+                   @Html.Raw(item.AwayTeam)
                 </td>
                 <td>
                     @homeSets[0]
@@ -203,7 +169,7 @@
                         @item.FinalAwayScore
                     }
                 </td>
-                <td rowspan="2" class="border-right">
+                <td class="border-right">
                     @item.EventStatusTranslation
                 </td>
             </tr>           

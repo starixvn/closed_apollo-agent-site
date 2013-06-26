@@ -5,15 +5,7 @@
 
 <table class="tblRpt basketball">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="10">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
+       
         <tr class="RptHeader">
             <td style="width: 100px;" columnname="kickofftime">
                 @Lang.time

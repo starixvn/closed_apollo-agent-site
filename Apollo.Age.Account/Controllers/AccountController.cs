@@ -267,6 +267,8 @@ namespace Apollo.Age.Account.Controllers
             return Json(memberList, JsonRequestBehavior.AllowGet);
         }
 
+        #region Agent List
+
         [HttpGet]
         public ActionResult AgentList()
         {
@@ -426,49 +428,56 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
-        public ActionResult MemberList(int? agentId)
+        #endregion
+
+        #region Member List
+
+        [HttpGet]
+        public ActionResult MemberList()
         {
-            ViewBag.IsMaster = CurrentSession.IsMaster;
-
-            CurrentAgentId = agentId;
-
-            var criteria = new AgentDownlinePathCriteria()
-            {
-                ParentId = this.CurrentSession.AgentId,
-                AgentId = CurrentAgentId.Value
-            };
-
-            var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
-            return View(listAgent);
-        }
-
-        [HttpPost]
-        public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
-        {
-            CurrentAgentId = agentId;
-            var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
-            var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-            var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
-
             CustomerListCriteria criteria = new CustomerListCriteria()
             {
-                AgentId = CurrentAgentId.Value,
-                PageIndex = currentPageIndex,
-                UserName = currentUsername,
-                PageSize = currentPageSize
+                AgentId = this.CurrentSession.AgentId,
+                PageIndex = 0,
+                UserName = string.Empty
             };
 
             IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
-            return Json(new
-            {
-                TotalItem = criteria.TotalItems,
-                CurrentPage = currentPageIndex,
-                ItemsPerPage = currentPageSize,
-                CurrentAgentId = CurrentAgentId.Value,
-                ListData = models
-            });
+            ViewBag.MemberList = models;
+
+            return View(criteria);
         }
+
+        //[HttpPost]
+        //public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
+        //{
+        //    CurrentAgentId = agentId;
+        //    var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
+        //    var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
+        //    var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
+
+        //    CustomerListCriteria criteria = new CustomerListCriteria()
+        //    {
+        //        AgentId = CurrentAgentId.Value,
+        //        PageIndex = currentPageIndex,
+        //        UserName = currentUsername,
+        //        PageSize = currentPageSize
+        //    };
+
+        //    IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
+
+        //    return Json(new
+        //    {
+        //        TotalItem = criteria.TotalItems,
+        //        CurrentPage = currentPageIndex,
+        //        ItemsPerPage = currentPageSize,
+        //        CurrentAgentId = CurrentAgentId.Value,
+        //        ListData = models
+        //    });
+        //}
+
+        #endregion
 
         [InternalChecking]
         public ActionResult LogLogin()
