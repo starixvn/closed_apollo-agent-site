@@ -25,5 +25,11 @@ namespace Apollo.Age.HiddenTool.Controllers
         {
             return View();
         }
+
+        public ActionResult BrowsingHistoryDeletion()
+        {
+            return View();
+        }
+        
     }
 }
