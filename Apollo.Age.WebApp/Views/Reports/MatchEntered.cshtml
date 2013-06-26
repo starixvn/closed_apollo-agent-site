@@ -7,17 +7,9 @@
 <div style="padding:5px;">
     @*@Html.LabelFor(, @Apollo.Age.Resources.Lang.sport)*@
 
-    <label for="ddlSportType">Report:</label>
-    <select id="ddlSportType">
-        <option value="0" >all</option>
-        <option value="1">Soccer</option>
-        <option value="2">BK/NFL/RUGBY</option>
-        <option value="3">Tennis</option>
-        <option value="4">VB/BDM/TT</option>
-        <option value="5">Baseball</option>
-        <option value="6">Inter. event</option>
-        <option value="7">Outright</option>
-    </select>
+    <label for="ddlSport">Report:</label>
+
+    @RazorHelper.RenderSportDropDownList(currentSportId: 0)
 
     <a href="#" style="padding:5px;">Report</a>
     <a href="#" style="padding:5px;">Ticket cancelled</a>
