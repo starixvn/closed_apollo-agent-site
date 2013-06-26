@@ -22,6 +22,7 @@
             {
                 @RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
             }
+            @RazorHelper.ToEasternTime(DateTime.Now)
             @RenderBody()
         </div>
     </div>

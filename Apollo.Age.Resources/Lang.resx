@@ -1463,4 +1463,13 @@
   <data name="est" xml:space="preserve">
     <value>E.S.T</value>
   </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order by</value>
+  </data>
+  <data name="ASC" xml:space="preserve">
+    <value>ASC</value>
+  </data>
+  <data name="DES" xml:space="preserve">
+    <value>DES</value>
+  </data>
 </root>

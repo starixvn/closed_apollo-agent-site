@@ -47,6 +47,15 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(Ignored = true)]
         public int OrderType { get; set; }
 
+        [SpParam(Ignored = true)]
+        public int NumPages
+        {
+            get
+            {
+                return TotalItems % PageSize == 0 ? TotalItems / PageSize : TotalItems / PageSize + 1;
+            }
+        }
+
         public override string GetSettingKey()
         {
             return "Age_Agent_GetByAgent";
