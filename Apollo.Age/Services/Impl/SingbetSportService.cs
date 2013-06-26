@@ -35,11 +35,7 @@ namespace Apollo.Age.Services.Impl
                 new SingbetSport{
                     Id = SingbetConstants.BaseBall,
                     Name = Apollo.Age.Resources.Lang.Baseball
-                },
-                new SingbetSport{
-                    Id = SingbetConstants.InterEvent,
-                    Name = Apollo.Age.Resources.Lang.InterEvent
-                },
+                },               
                  new SingbetSport{
                     Id = SingbetConstants.Other,
                     Name = Apollo.Age.Resources.Lang.other
