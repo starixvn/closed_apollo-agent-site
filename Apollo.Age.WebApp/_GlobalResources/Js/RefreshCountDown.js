@@ -131,7 +131,10 @@ var RefreshCountDown = function ($) {
         setRefreshTimeout: function (timeout) {
             if (RefreshCountDown.onRefresh) {
                 clearTimeout(RefreshCountDown.timeout);
-                RefreshCountDown.timeout = setTimeout(RefreshCountDown.onRefresh, timeout * 1000);
+                RefreshCountDown.timeout = setTimeout(function () {
+                    eval(RefreshCountDown.onRefresh);
+                    RefreshCountDown.setCurrentTimeout();
+                }, timeout * 1000);
             }
         },
 

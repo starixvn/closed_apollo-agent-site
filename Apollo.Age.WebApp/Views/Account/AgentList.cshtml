@@ -54,7 +54,7 @@
                                         &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
                                     </td>
                                     <td>
-                                        @Html.DropDownList("PageIndex", (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                                        @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                                         <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
                                     </td>
                                     <td nowrap="nowrap">
@@ -113,7 +113,15 @@
                     @item.Username
                 </td>
                 <td>
-                    @item.NumberOfAgent
+                    @if (item.NumberOfAgent != 0)
+                    { 
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
                 </td>
                 <td>
                     @item.NumberOfMember

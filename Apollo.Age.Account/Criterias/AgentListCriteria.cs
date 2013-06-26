@@ -50,6 +50,12 @@ namespace Apollo.Age.Account.Criterias
         public int OrderType { get; set; }
 
         [SpParam(Ignored = true)]
+        public int ParentAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int UplineAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
         public int NumPages
         {
             get

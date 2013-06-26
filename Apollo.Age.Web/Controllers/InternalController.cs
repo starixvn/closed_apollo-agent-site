@@ -15,6 +15,7 @@ namespace Apollo.Age.Web
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -83,7 +84,7 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
-                        
+
             if (ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
@@ -169,7 +170,6 @@ namespace Apollo.Age.Web
                 if (SessionManager.CurrentSession != null)
                 {
                     FormsAuthentication.RedirectFromLoginPage(SessionManager.CurrentSession.Username, createPersistentCookie: false);
-
                 }
                 else
                 {
@@ -182,15 +182,12 @@ namespace Apollo.Age.Web
                 }
             }
             return View();
-
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SelectAccount(SelectAccountViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 User user = _userService.InternalGetAgentByUsername(model.Agent);
@@ -253,7 +250,6 @@ namespace Apollo.Age.Web
                                     model.Agent,
                                     Lang.AgentNotFound);
 
-                    
                     WriteLoginLog(0, model.AdminId, 7001, doing);
                     ModelState.AddModelError("Agent", Lang.AgentNotFound);
                 }
@@ -293,10 +289,10 @@ namespace Apollo.Age.Web
         public ActionResult CaptchaImage(bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
-            int captcha = rand.Next(1000, 9999);
 
+            var captcha = this.GetRandomString(3);
             // saves answer
-            Session[ApolloSessionCaptcha] = captcha.ToString();
+            Session[ApolloSessionCaptcha] = captcha;
 
             FileContentResult img = null; // image stream
 
@@ -311,13 +307,10 @@ namespace Apollo.Age.Web
                 if (noisy)
                 {
                     int i, r, x, y;
-                    var pen = new Pen(Color.Yellow);
+                    var pen = new Pen(Color.White);
                     for (i = 1; i < 10; i++)
                     {
-                        pen.Color = Color.FromArgb(
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)));
+                        pen.Color = Color.FromArgb(255, 255, 255);
 
                         r = rand.Next(0, (130 / 3));
                         x = rand.Next(0, 130);
@@ -328,7 +321,7 @@ namespace Apollo.Age.Web
                 }
 
                 // add captcha
-                gfx.DrawString(captcha.ToString(), new Font("Tahoma", 13), Brushes.White, 5, 2);
+                gfx.DrawString(captcha.ToString(), new Font("Consolas", 13), Brushes.Crimson, 5, 2);
 
                 // render as JPEG
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
@@ -336,6 +329,29 @@ namespace Apollo.Age.Web
             }
 
             return img;
+        }
+
+        private string GetRandomString(int seed)
+        {
+            //use the following string to control your set of alphabetic characters to choose from
+            //for example, you could include uppercase too
+            const string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            // Random is not truly random,
+            // so we try to encourage better randomness by always changing the seed value
+            Random rnd = new Random((seed + DateTime.Now.Millisecond));
+
+            // basic 5 digit random number
+            string result = rnd.Next(1000, 9999).ToString();
+
+            // single random character in ascii range a-z
+            string alphaChar = alphabet.Substring(rnd.Next(0, alphabet.Length - 1), 1);
+
+            // random position to put the alpha character
+            int replacementIndex = rnd.Next(0, (result.Length - 1));
+            result = result.Remove(replacementIndex, 1).Insert(replacementIndex, alphaChar);
+
+            return result;
         }
 
         #endregion SignIn
@@ -377,13 +393,12 @@ namespace Apollo.Age.Web
         {
             var finalBmp = new Bitmap(width, height);
             Random r = new Random();
-
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     int num = r.Next(0, 256);
-                    finalBmp.SetPixel(x, y, Color.Gray);
+                    finalBmp.SetPixel(x, y, Color.FromArgb(175, 172, 137));
                 }
             }
 
