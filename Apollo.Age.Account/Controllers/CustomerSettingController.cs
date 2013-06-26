@@ -57,35 +57,35 @@ namespace Apollo.Age.Account.Controllers
 
         #region Bet Setting
 
-        public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
-        {
-            ViewBag.CustId = custId;
-            ViewBag.UserName = userName;
-            ViewBag.AgentLevel = agentLevel;
-            return View("~/Views/Account/EditBetSetting.cshtml");
-        }
+        //public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
+        //{
+        //    ViewBag.CustId = custId;
+        //    ViewBag.UserName = userName;
+        //    ViewBag.AgentLevel = agentLevel;
+        //    return View("~/Views/Account/EditBetSetting.cshtml");
+        //}
 
-        public ActionResult GetBetLimit(int targetCustId, int? agentId, int? agentLevel)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.BetLimit);
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
-            this.SetBetLimitLanguage(settingContext, betLimits);
+        //public ActionResult GetBetLimit(int targetCustId, int? agentId, int? agentLevel)
+        //{
+        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.BetLimit);
+        //    IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+        //    this.SetCurrentLanguage(base.CurrentSession.Language);
+        //    this.SetBetLimitLanguage(settingContext, betLimits);
 
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var betLimits = {0} ;\n var settingContext = {1} ;",
-                JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
+        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+        //    string jsString = string.Format("var betLimits = {0} ;\n var settingContext = {1} ;",
+        //        JsonConvert.SerializeObject(betLimits, jsonSetting),
+        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return JavaScript(jsString);
-        }
+        //    return JavaScript(jsString);
+        //}
 
-        [HttpPost]
-        public ActionResult UpdateBetLimit(SettingContext settingContext, IList<BettingLimit> betLimits)
-        {
-            Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
-            return ReturnResult(result);
-        }
+        //[HttpPost]
+        //public ActionResult UpdateBetLimit(SettingContext settingContext, IList<BettingLimit> betLimits)
+        //{
+        //    Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
+        //    return ReturnResult(result);
+        //}
 
         #endregion
 
@@ -150,38 +150,38 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/ViewCommission.cshtml", model);
         }
 
-        public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
-        {
-            ViewBag.CustId = custId;
-            ViewBag.UserName = userName;
-            ViewBag.AgentLevel = agentLevel;
-            ViewBag.UserGroup = userGroup;
-            return View("~/Views/Account/EditCommission.cshtml");
-        }
+        //public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
+        //{
+        //    ViewBag.CustId = custId;
+        //    ViewBag.UserName = userName;
+        //    ViewBag.AgentLevel = agentLevel;
+        //    ViewBag.UserGroup = userGroup;
+        //    return View("~/Views/Account/EditCommission.cshtml");
+        //}
 
-        public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.Commission);
-            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
-            {
-                commissionSetting.UserGroup = ugroup;
-            }
+        //public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
+        //{
+        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.Commission);
+        //    CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+        //    if (ugroup != null)
+        //    {
+        //        commissionSetting.UserGroup = ugroup;
+        //    }
 
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var settingContext = {1} ;",
-                JsonConvert.SerializeObject(commissionSetting, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
+        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+        //    string jsString = string.Format("var commissionSetting = {0} ;\n var settingContext = {1} ;",
+        //        JsonConvert.SerializeObject(commissionSetting, jsonSetting),
+        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return JavaScript(jsString);
-        }
+        //    return JavaScript(jsString);
+        //}
 
-        [HttpPost]
-        public ActionResult UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
-        {
-            Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
-            return ReturnResult(result);
-        }
+        //[HttpPost]
+        //public ActionResult UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
+        //{
+        //    Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
+        //    return ReturnResult(result);
+        //}
 
         #endregion
 
@@ -315,35 +315,35 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
-        {
-            ViewBag.CustId = custId;
-            ViewBag.UserName = userName;
-            ViewBag.AgentLevel = agentLevel;
-            return View("~/Views/Account/EditPositionTaking.cshtml");
-        }
+        //public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
+        //{
+        //    ViewBag.CustId = custId;
+        //    ViewBag.UserName = userName;
+        //    ViewBag.AgentLevel = agentLevel;
+        //    return View("~/Views/Account/EditPositionTaking.cshtml");
+        //}
 
-        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
-            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
-            this.SetPositionTakingLanguage(positionTakingSetting);
+        //public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
+        //{
+        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
+        //    PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+        //    this.SetCurrentLanguage(base.CurrentSession.Language);
+        //    this.SetPositionTakingLanguage(positionTakingSetting);
 
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
-                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
+        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+        //    string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+        //        JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
+        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return JavaScript(jsString);
-        }
+        //    return JavaScript(jsString);
+        //}
 
-        [HttpPost]
-        public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
-        {
-            Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
-            return ReturnResult(result);
-        }
+        //[HttpPost]
+        //public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        //{
+        //    Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
+        //    return ReturnResult(result);
+        //}
 
         #endregion
 
@@ -423,6 +423,24 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsShowHeader = true;
             ViewBag.IsMaster = false;
             return View("~/Views/Account/MySetting.cshtml");
+        }
+
+        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
+        {
+            //ViewBag.AgentId = agentId;
+            //ViewBag.UserName = userName;
+            //ViewBag.AgentLevel = agentLevel;
+            //ViewBag.IsSimpleMode = isSimpleMode;
+            //if (showHeader)
+            //{
+            //    ViewBag.IsShowHeader = true;
+            //}
+            //ViewBag.IsMaster = base.CurrentSession.IsMaster;
+
+            SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
+            
+            //ViewBag.CommissionSetting = this.GetCommissionSetting(
+            return View("~/Views/Account/ViewAgentDetails");
         }
 
         #endregion
@@ -587,6 +605,32 @@ namespace Apollo.Age.Account.Controllers
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
             return jsString;
+        }
+
+        private CommissionSetting GetCommissionSetting(SettingContext settingContext, string ugroup)
+        {
+            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+            if (ugroup != null)
+            {
+                commissionSetting.UserGroup = ugroup;
+            }
+            return commissionSetting;
+        }
+
+        private IList<BettingLimit> GetBetSetting(SettingContext settingContext)
+        {
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetBetLimitLanguage(settingContext, betLimits);
+
+            return betLimits;
+        }
+
+        private PositionTakingSetting GetPositionTakingSetting(SettingContext settingContext)
+        {
+            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+            this.SetPositionTakingLanguage(positionTakingSetting);
+            return positionTakingSetting;
         }
 
         [NonAction]

@@ -459,6 +459,7 @@
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Match.js" />
     <Content Include="Views\Results\Resources\Outright.js" />
+    <Content Include="Views\TotalBets\Resources\Index.js" />
     <Content Include="Views\TotalBets\Resources\TotalBets.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -713,7 +714,9 @@
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
     <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
+    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />

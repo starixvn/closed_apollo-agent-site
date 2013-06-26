@@ -38,6 +38,11 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/TotalBets/Resources/TotalBets.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/forecast-indexjs").Include(
+                "~/_GlobalResources/Js/head.js",
+                "~/_GlobalResources/Js/jquery.js",
+                "~/Views/TotalBets/Resources/Index.js"));
+
             bundles.Add(new ScriptBundle("~/scripts/forecastjs").Include(
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",

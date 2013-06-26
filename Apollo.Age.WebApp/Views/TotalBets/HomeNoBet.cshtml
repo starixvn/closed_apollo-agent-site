@@ -47,7 +47,7 @@
         <td class="c">
             @item.LeagueName
         </td>
-        <td  class="no-border-bottom">
+        <td  class="no-border-bottom  valign-top">
             @item.HomeTeam
             <br />
             @item.AwayTeam
@@ -106,13 +106,13 @@
             <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2" style="width: 10%;">
+            <td rowspan="2" style="width: 7%;">
                 @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2" style="width: 15%;"">
+            <td rowspan="2" style="width: 25%;"">
                  @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2" style="width: 20%;">
+            <td rowspan="2" style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="3">
@@ -149,7 +149,7 @@
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 6)
+            //@RazorHelper.ShowNoInfo(colspan: 6)
         }
     </tbody>
 </table>

@@ -98,6 +98,35 @@ table {
 		li {
 			float: left;
 			margin-right: 10px;
+			position: relative;
+			&.active {
+				a {
+					background: #39F;
+					&:hover {
+						color: #00e;
+						cursor: text;
+					}
+				}
+			}
+		}
+		
+		.sub-menu {
+			position: absolute;
+			top: 20px;
+			right: -8px;
+			padding: 5px;
+			background: #fff;
+			border: 1px solid #333;
+			border-top-color: #fff;
+			z-index: 999;
+
+			li {
+				margin: 0;
+				float: right;
+				clear: both;
+				white-space: nowrap;
+				padding: 3px 0;
+			}
 		}
 	}
 	.pager {
@@ -220,6 +249,16 @@ table {
 		tr {
 			td {
 				border: 1px solid @tableRptBorderColor;
+
+				input.fc-button
+				{
+					cursor: pointer;
+					font-family: "Arial";
+					font-size: 15px;
+					font-weight: bold;
+					height: 22px;
+					width: 22px;
+				}
 			}
 			&.league {
 				#gradient.vertical(#F1E5D5, #F8F1E9);

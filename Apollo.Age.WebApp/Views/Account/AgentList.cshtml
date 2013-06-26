@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Entities;
 @using Apollo.Age.Web;
 @using Apollo.Age
+@using Apollo.Age.Resources
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
@@ -10,71 +11,104 @@
 }
 @section css
 {
-    <link href="~/_globalresources/js/fanex.grid/fanex.grid.less" rel="stylesheet" type="text/css" />
-    <link href="~/_globalresources/js/fanex.grid/fanex.pagination.less" rel="stylesheet"
-        type="text/css" />
 }
-<div class="boxNavigation">
-    <ul id="divnavigation">        
-    </ul>
-</div>
-
-<div id="gridId" class="freegrid content-grid agent-list">
-</div>
+<table width="780" cellpadding="0" border="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td class="m_tline">
+                <table cellpadding="0" border="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td nowrap="nowrap">
+                                &nbsp;&nbsp;Agency&nbsp;:&nbsp;
+                            </td>
+                            <td>
+                                <select class="za_select" onchange="self.myFORM.submit()" name="enable" id="enable">
+                                    <option value="Y" selected="selected">Active</option>
+                                    <option value="N">Close</option>
+                                    <option value="S">View Only</option>
+                                    <option value="F">Suspended</option>
+                                </select>
+                            </td>
+                            <td nowrap="nowrap">
+                                &nbsp;--&nbsp;@Lang.lbl&nbsp;:&nbsp;
+                            </td>
+                            <td>
+                                <select class="za_select" name="page" id="page">
+                                    <option value="0" selected="selected">1</option>
+                                </select>
+                            </td>
+                            <td nowrap="nowrap">
+                                &nbsp;/&nbsp;1&nbsp;Pages
+                            </td>
+                            <td>
+                                &nbsp;
+                                <input type="text" class="za_text" maxlength="12" size="8" name="su_name" id="su_name">
+                                &nbsp;
+                                <input type="button" class="za_button" value="Search Agency" name="button">
+                            </td>
+                            <td>
+                                &nbsp;--&nbsp;<input type="button" class="za_button" value="Add" name="append" id="append">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td width="30">
+                <span class="borderFilter"></span>
+            </td>
+        </tr>
+        <tr>
+            <td height="4" colspan="2">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table width="880" cellpadding="0" border="0" bgcolor="#976061" cellspacing="1" class="m_tab">
+    <tbody>
+        <tr bgcolor="#86C0A6" class="m_title_suag">
+            <td width="80">
+                @Lang.enterusername
+            </td>
+            <td width="60">
+                @Lang.agent
+            </td>
+            <td width="70">
+                @Lang.member
+            </td>
+            <td width="60">
+                @Lang.condition
+            </td>
+            <td width="60">
+                @Lang.BestCondition
+            </td>
+            <td width="300">
+                @Lang.Feature
+            </td>
+        </tr>
+        <tr class="m_cen">
+            <td>
+                flat
+            </td>
+            <td>
+                0226
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                Active
+            </td>
+            <td>
+                Active
+            </td>
+            <td align="left">
+                &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
 @section scripts
 {
-    <script language="javascript" type="text/javascript">
-        var DEFAULTS = function () {
-            return {
-                CurrentAgentId: "@ViewBag.AgentId",
-                IsMaster: @(ViewBag.IsMaster ? "true" : "false")
-            };
-        } ();
-        var LANGUAGES = function () {
-            return {
-                Username: "@Apollo.Age.Resources.Lang.enterusername",
-                Status: "@Apollo.Age.Resources.Lang.status",
-                BetStatus: "@Apollo.Age.Resources.Lang.betstatus",
-                Edit: "@(ViewBag.IsMaster ? Apollo.Age.Resources.Lang.edit : Apollo.Age.Resources.Lang.view) ",
-                NumberOfAgent: "@Apollo.Age.Resources.Lang.agent",
-                NumberOfMember: "@Apollo.Age.Resources.Lang.member",
-                GroupA: "@Apollo.Age.Resources.Lang.lblGroupa",
-                GroupB: "@Apollo.Age.Resources.Lang.lblGroupb",
-                GroupC: "@Apollo.Age.Resources.Lang.lblGroupc",
-                GroupD: "@Apollo.Age.Resources.Lang.lblGroupd",
-                Commission: "@Apollo.Age.Resources.Lang.commission",
-                SoccerShare: "@Apollo.Age.Resources.Lang.lblSoccerPT",
-                OneXTwo: "@Apollo.Age.Resources.Lang.lbl1x2",
-                Other: "@Apollo.Age.Resources.Lang.other",
-                TakenShare: "@Apollo.Age.Resources.Lang.takenshare",
-                GivenShare: "@Apollo.Age.Resources.Lang.givenshare",
-                SoccerDeadballHDP: "@Apollo.Age.Resources.Lang.soccerdeadballhdp",
-                SoccerDeadballHDPGivenShare: "@Apollo.Age.Resources.Lang.soccerdeadballhdpgivenshare",
-                Stopped: "@Apollo.Age.Resources.Lang.stopped",
-                Locked: "@Apollo.Age.Resources.Lang.locked",
-                Active: "@Apollo.Age.Resources.Lang.lblActive",
-                ViewAgentDownline: "@Apollo.Age.Resources.Lang.lblViewAgentDownline",
-                ViewMember: "@Apollo.Age.Resources.Lang.lblViewMember",
-                EditSetting: "@Apollo.Age.Resources.Lang.lblEditSetting",
-                ViewSetting: "@Apollo.Age.Resources.Lang.lblViewSetting",
-                PopUpTitle: "@titleFormat",
-                AgentList : "@Apollo.Age.Resources.Lang.lblAgentList",
-                MemberList : "@Apollo.Age.Resources.Lang.lblPlayerList",
-                CLock: "@Apollo.Age.Resources.Lang.lblCLock",
-
-                GoToPage: "@Apollo.Age.Resources.Lang.gotopage",
-                Items: "@Apollo.Age.Resources.Lang.Items ",
-                Of: "@Apollo.Age.Resources.Lang.of ",
-                To: "~",
-                Displaying: "@Apollo.Age.Resources.Lang.Displaying ",
-                PageSize: "@Apollo.Age.Resources.Lang.pagesize "
-
-            };
-        } ();
-    </script>
-    <script src="~/_globalresources/js/fanex.grid/moment.min.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/numeral.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/fanex.grid.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/fanex.pagination.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/agentlist.js" type="text/javascript"></script>
 }
