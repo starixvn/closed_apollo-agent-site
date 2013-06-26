@@ -33,14 +33,17 @@
 				                }, new { id = "ddlIsMember", @class = "za_select" })
                             </td>
                             <td nowrap="nowrap">
-                                &nbsp;&nbsp;@Lang.order&nbsp;:&nbsp;
+                                &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
                             </td>
                             <td>
-                                @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.Close },
-                                    new SelectListItem { Value = "2", Text = Lang.Suspended }
-				                }, new { id = "ddlIsMember", @class = "za_select" })
+                                @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
                             </td>
                             <td nowrap="nowrap">
                                 &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
