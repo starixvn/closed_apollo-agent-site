@@ -80,7 +80,7 @@ namespace Apollo.Age.Reports.Services
                             matchEntered = null;
                         }
 
-                        if (item.IsToday == 1)
+                        if (item.IsToday)
                         {
                             matchEntered = new MatchEnteredViewModel()
                             {

@@ -1,4 +1,15 @@
 ﻿
+var TOTALBETS_INDEX = (function ($) {
+    return {
+        reloadChild: function () {
+//            var subFrame = $('#submain');
+            RefreshCountDown.setCurrentTimeout();
+            document.getElementById('submain').contentWindow.TOTALBETS.reloadPage();
+            //console.log("reload");
+        }
+    };
+})(jQuery);
+
 $(function () {
     $('.menu').on('click', 'li', function () {
         var $this = $(this);
