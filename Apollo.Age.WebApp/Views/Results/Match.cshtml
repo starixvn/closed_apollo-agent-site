@@ -13,15 +13,11 @@
 }
 
 <div id="function-bar">
-	
 	<ul class="menu">
-		<li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">@Lang.yesterday</a></li>
-		<li>@Lang.Game:</li>
-		@foreach (Sport sport in Model.SportList )
-		{
-		  <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
-		}
-	</ul>	
+        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">@Lang.yesterday</a></li>
+        <li>@Lang.Game:</li>
+	    @RazorHelper.RenderResultBySport()
+    </ul>
 	<ul class="pager">
 		<li>PAGE:</li>
         <li>
