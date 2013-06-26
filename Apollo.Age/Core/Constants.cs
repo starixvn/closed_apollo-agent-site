@@ -9,16 +9,8 @@
 
 namespace Apollo.Age.Core
 {
-    public static class SingbetConstants
+    public static class Constants
     {
-        public const string All = "0";
-        public const string Soccer = "1";
-        public const string BK_NFL_RUGBY = "2,3,26";
-        public const string Tennis = "5";
-        public const string VB_BDM_TT = "6,9,18";
-        public const string BaseBall = "8";
-        public const string InterEvent = "-1";
-        public const string Other = "-2";
-        public const string Outright = "-3";
+
     }
 }
