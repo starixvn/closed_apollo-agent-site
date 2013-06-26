@@ -24,14 +24,14 @@ function CountDownRefresh() {
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
     ajax.Request(window.location.href,
-        {
-            asynchronous: true,
-            parameters: 'full_mode=0',
-            onComplete: function (data) {
-                document.getElementById('sContent').innerHTML = data.responseText;
-                RefreshCountDown_Init();
-            }
-        });
+{
+    asynchronous: true,
+    parameters: 'full_mode=0',
+    onComplete: function (data) {
+        document.getElementById('sContent').innerHTML = data.responseText;
+        RefreshCountDown_Init();
+    }
+});
 
     return true;
 }
@@ -122,26 +122,45 @@ function RefreshCountDown_AddEvent(el, evname, func) {
 
 RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);*/
 
-var apoRefreshInterval;
+var RefreshCountDown = function ($) {
+    return {
+        timeout: null,
+        ddlRefresh: null,
+        onRefresh: null,
+
+        setTimeout: function (timeout) {
+            clearTimeout(RefreshCountDown.timeout);
+            RefreshCountDown.timeout = setTimeout(RefreshCountDown.onRefresh, timeout * 1000);
+        },
+
+        clearTimeout: function () {
+            if (RefreshCountDown.timeout != null) clearTimeout(RefreshCountDown.timeout);
+        },
+
+        setCurrentTimeout: function () {
+            var timeout = RefreshCountDown.ddlRefresh.val();
+            if (timeout > 0) {
+                RefreshCountDown.setTimeout(timeout);
+                $.cookie('ApoRefreshTimeout', timeout);
+            } else {
+                $.removeCookie('ApoRefreshTimeout');
+            }
+        }
+    };
+} (jQuery);
 
 $(document).ready(function () {
-    var ddlRefresh = $('.btnCountDown select');
-    var onRefresh = $('#apo-on-refresh').val();
-    var refreshInterval = $.cookie('ApoRefreshInterval');
-    if (typeof refreshInterval !== 'undefined') {
-        apoRefreshInterval = setInterval(onRefresh, refreshInterval * 1000);
-        ddlRefresh.val(refreshInterval);
+    RefreshCountDown.ddlRefresh = $('.btnCountDown select');
+    RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
+
+    // set refresh timeout by using cookie
+    var timeout = $.cookie('ApoRefreshTimeout');
+    if (typeof timeout !== 'undefined') {
+        RefreshCountDown.setTimeout(timeout);
+        RefreshCountDown.ddlRefresh.val(timeout);
     }
 
-    ddlRefresh.on('change', function () {
-        clearInterval(interval);
-
-        var refreshInterval = $(this).val();
-        if (refreshInterval > 0) {
-            apoRefreshInterval = setInterval(onRefresh, refreshInterval * 1000);
-            $.cookie('ApoRefreshInterval', refreshInterval);
-        } else {
-            $.removeCookie('ApoRefreshInterval');
-        }
+    RefreshCountDown.ddlRefresh.on('change', function () {
+        RefreshCountDown.setCurrentTimeout();
     });
 });
