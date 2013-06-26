@@ -1418,10 +1418,22 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-    <data name="Flesh" xml:space="preserve">
+  <data name="Flesh" xml:space="preserve">
     <value>Flesh</value>
   </data>
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
-</data>
+  </data>
+  <data name="BetCondition" xml:space="preserve">
+    <value>Bet Condition</value>
+  </data>
+  <data name="condition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>
