@@ -82,7 +82,12 @@ td {
 
 						&.txtRed {
 							color: #BB0000;
-						}				
+						}
+						
+						&.outright:hover {
+							color: #FF6600;
+							cursor: text;
+						}	
 					}
 
 					.sub-menu {						
@@ -204,4 +209,13 @@ td {
 
 .hide {
 	display: none;
+}
+
+/* FIX IE */
+
+.eq-ie8 {
+	#news_main .login-bg .right .toolbar {
+		height: 19px;
+		border-bottom: 2px ridge #000;
+	}
 }
