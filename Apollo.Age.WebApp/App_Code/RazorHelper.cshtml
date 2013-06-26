@@ -1,29 +1,29 @@
 ﻿@helper ShowNoInfo(int colspan, string cssClass = "no_info")
-	{
-	<!--NotFoundContent-->
-	<tr class="@cssClass">
-		<td colspan="@colspan">
-			@Apollo.Age.Resources.Lang.noInfo
-		</td>
-	</tr>
-	<!--/NotFoundContent-->
+    {
+    <!--NotFoundContent-->
+    <tr class="@cssClass">
+        <td colspan="@colspan">
+            @Apollo.Age.Resources.Lang.noInfo
+        </td>
+    </tr>
+    <!--/NotFoundContent-->
 }
 @helper RefreshCountDown(string refreshCountDownId,
-	int initCountDown = 15,
-	int fromSecond = 15,
-	string onRefresh = "location.reload();")
-{
-	<div class="btnCountDown">
-		@Apollo.Age.Resources.Lang.Flesh:
-		<select>
-			<option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
-		@for (int i = 1; i < 6; i++)
-		{
-			int sec = fromSecond * i;
-			<option value="@sec">@sec @Apollo.Age.Resources.Lang.sec</option>
-		}
-		</select>
-	</div>
+    int initCountDown = 15,
+    int fromSecond = 15,
+    string onRefresh = "location.reload();")
+    {
+    <div class="btnCountDown">
+        @Apollo.Age.Resources.Lang.Flesh:
+        <select>
+            <option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
+            @for (int i = 1; i < 6; i++)
+            {
+                int sec = fromSecond * i;
+                <option value="@sec">@sec @Apollo.Age.Resources.Lang.sec</option>
+            }
+        </select>
+    </div>
 }
 @*@helper RefreshCountDown(string refreshCountDownId,
 	int initCountDown = 15,
@@ -56,198 +56,202 @@
 	</script>
 }*@
 @helper FormatNegativeNumber(decimal value, byte numDecimals = 0, bool showZero = false)
-	{
-		if (value != 0 || showZero)
-		{
-			if (Math.Round(value, numDecimals) < 0 || (numDecimals == 0 && value < 0))
-			{
-	<span class="red-num">@Formater.DecFormat(value, numDecimals)</span>
-			}
-			else
-			{
-	@Formater.DecFormat(value, numDecimals)
-			}
-		}
+    {
+        if (value != 0 || showZero)
+        {
+            if (Math.Round(value, numDecimals) < 0 || (numDecimals == 0 && value < 0))
+            {
+    <span class="red-num">@Formater.DecFormat(value, numDecimals)</span>
+            }
+            else
+            {
+    @Formater.DecFormat(value, numDecimals)
+            }
+        }
 }
 @helper FormatPositiveNumber(decimal value, byte numDecimals = 0, bool showZero = false)
-	{
-		if (value != 0 || showZero)
-		{
-			if (Math.Round(value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
-			{
-	<span class="red-num">@Formater.DecFormat(value, numDecimals)</span>
-			}
-			else
-			{
-	@Formater.DecFormat(value, numDecimals)
-			}
-		}
+    {
+        if (value != 0 || showZero)
+        {
+            if (Math.Round(value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
+            {
+    <span class="red-num">@Formater.DecFormat(value, numDecimals)</span>
+            }
+            else
+            {
+    @Formater.DecFormat(value, numDecimals)
+            }
+        }
 }
 @helper FormatPositiveNumber(decimal? value, byte numDecimals = 0, bool showZero = false)
-	{
-		if (value != null && (value.Value != 0 || showZero))
-		{
-			if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
-			{
-	<span class="red-num">@Formater.DecFormat(value.Value, numDecimals)</span>
-			}
-			else
-			{
-	@Formater.DecFormat(value, numDecimals)
-			}
-		}
+    {
+        if (value != null && (value.Value != 0 || showZero))
+        {
+            if (Math.Round(value.Value, numDecimals) > 0 || (numDecimals == 0 && value > 0))
+            {
+    <span class="red-num">@Formater.DecFormat(value.Value, numDecimals)</span>
+            }
+            else
+            {
+    @Formater.DecFormat(value, numDecimals)
+            }
+        }
 }
 @helper FormatNumber(decimal value, byte numDecimals = 0, bool showZero = false)
-	{
-		if (value != 0 || showZero)
-		{
-	@Formater.DecFormat(value, numDecimals)
-		}
+    {
+        if (value != 0 || showZero)
+        {
+    @Formater.DecFormat(value, numDecimals)
+        }
 }
 @helper FormatComm(decimal value)
-	{
-	<text>@string.Format("{0:#,##0.00}", value)</text>
+    {
+    <text>@string.Format("{0:#,##0.00}", value)</text>
 }
 @helper Navigation(List<Apollo.Age.Entities.Agent> Model)
-	{
-	<div class="boxNavigation">
-		<ul id="divnavigation">
-			@foreach (Apollo.Age.Entities.Agent item in Model)
-			{
-				var last = Model.LastOrDefault();
-				if (last != null && !last.Equals(item))
-				{
-				<li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-				</li>
-				}
-				else
-				{
-				<li class="currentUser"><span>@item.Username</span> </li>
-				}
-			}
-		</ul>
-	</div>
+    {
+    <div class="boxNavigation">
+        <ul id="divnavigation">
+            @foreach (Apollo.Age.Entities.Agent item in Model)
+            {
+                var last = Model.LastOrDefault();
+                if (last != null && !last.Equals(item))
+                {
+                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                </li>
+                }
+                else
+                {
+                <li class="currentUser"><span>@item.Username</span> </li>
+                }
+            }
+        </ul>
+    </div>
 }
 @helper Navigation(List<Apollo.Age.Entities.Agent> Model, bool linkLastItem)
-	{
-		if (linkLastItem)
-		{
-	<div class="boxNavigation">
-		<ul id="divnavigation">
-			@foreach (Apollo.Age.Entities.Agent item in Model)
-			{
-				var last = Model.LastOrDefault();
-				if (last != null && !last.Equals(item))
-				{
-				<li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-				</li>
-				}
-				else
-				{
-				<li class="currentUser"><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
-				</li>
-				}
-			}
-		</ul>
-	</div>
-		}
-		else
-		{
-			RazorHelper.Navigation(Model);
-		}
+    {
+        if (linkLastItem)
+        {
+    <div class="boxNavigation">
+        <ul id="divnavigation">
+            @foreach (Apollo.Age.Entities.Agent item in Model)
+            {
+                var last = Model.LastOrDefault();
+                if (last != null && !last.Equals(item))
+                {
+                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                </li>
+                }
+                else
+                {
+                <li class="currentUser"><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+        }
+        else
+        {
+            RazorHelper.Navigation(Model);
+        }
 }
 @helper RenderMainShareHolderDropDownList(int currentMainShareHolderId, IEnumerable<Apollo.Age.Entities.Agent> mainShareHolders)
-	{
-	<div id="main-shareholder-box" class="box-header">
-		<div class="row">
-			<div class="cell">
-			 @{
-                 if (mainShareHolders != null && mainShareHolders.Any())
-                 {
-				<div class="label">
-					<label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder</label>
-				</div>
-				<div class="editor">
-				   
-						<select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
-							@{
-                     var selectedString = string.Empty;
-                     foreach (var mainShareHolder in mainShareHolders)
-                     {
-                         if (mainShareHolder.Id == currentMainShareHolderId)
-                         {
-                             selectedString = "selected='selected'";
-                         }
-                         else
-                         {
-                             selectedString = string.Empty;
-                         }
-								<option value="@mainShareHolder.Id" @(selectedString) >@mainShareHolder.Username</option>
-                     }
-							}
-						</select>
-						
-					
-				</div>
-				 }
-				 }
-			</div>
-		</div>
-	</div>
+    {
+    <div id="main-shareholder-box" class="box-header">
+        <div class="row">
+            <div class="cell">
+                @{
+                    if (mainShareHolders != null && mainShareHolders.Any())
+                    {
+                    <div class="label">
+                        <label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder</label>
+                    </div>
+                    <div class="editor">
+                        <select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
+                            @{
+                        var selectedString = string.Empty;
+                        foreach (var mainShareHolder in mainShareHolders)
+                        {
+                            if (mainShareHolder.Id == currentMainShareHolderId)
+                            {
+                                selectedString = "selected='selected'";
+                            }
+                            else
+                            {
+                                selectedString = string.Empty;
+                            }
+                                <option value="@mainShareHolder.Id" @(selectedString) >@mainShareHolder.Username</option>
+                        }
+                            }
+                        </select>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 }
 @helper RenderDatetimeFormated2line(object dateTime)
-	{
+    {
         if (dateTime != null)
         {
-	   <span>
-		@Formater.FormatShortDateNoZeroLeading(dateTime)
-	   </span>
-		<br />
-		<span>
-		@Formater.FormatLongTime(dateTime)
-	   </span>
+    <span>
+        @Formater.FormatShortDateNoZeroLeading(dateTime)
+    </span>
+    <br />
+    <span>
+        @Formater.FormatLongTime(dateTime)
+    </span>
         }
 }
-
 @helper RenderShortDateFormated(object dateTime)
-	{
+    {
         if (dateTime != null)
         {
-	   @Formater.FormatShortDateNoZeroLeading(dateTime)
+    @Formater.FormatShortDateNoZeroLeading(dateTime)
         }
 }
-
-
-
 @helper RenderSportDropDownList(int currentSportId, string id = "ddlSport", string className = "")
-	{
-        
-        <select id="@id" class="@className">
-            <option value="0" selected="@(currentSportId == 0)">@Apollo.Age.Resources.Lang.all</option>
-            <option value="1" selected="@(currentSportId == 1)">@Apollo.Age.Resources.Lang.soccer</option>
-            <option value="2" selected="@(currentSportId == 2)">@Apollo.Age.Resources.Lang.lblBkNflRugby</option>
-            <option value="3" selected="@(currentSportId == 3)">@Apollo.Age.Resources.Lang.Tennis</option>
-            <option value="4" selected="@(currentSportId == 4)">@Apollo.Age.Resources.Lang.lblVbBdmTt</option>
-            <option value="5" selected="@(currentSportId == 5)">@Apollo.Age.Resources.Lang.Baseball</option>
-            <option value="6" selected="@(currentSportId == 6)">@Apollo.Age.Resources.Lang.InterEvent</option>
-            <option value="7" selected="@(currentSportId == 7)">@Apollo.Age.Resources.Lang.lblOutRight</option>
-        </select>
-}
+    {
 
+    <select id="@id" class="@className">
+        <option value="0" selected="@(currentSportId == 0)">@Apollo.Age.Resources.Lang.all</option>
+        <option value="1" selected="@(currentSportId == 1)">@Apollo.Age.Resources.Lang.soccer</option>
+        <option value="2" selected="@(currentSportId == 2)">@Apollo.Age.Resources.Lang.lblBkNflRugby</option>
+        <option value="3" selected="@(currentSportId == 3)">@Apollo.Age.Resources.Lang.Tennis</option>
+        <option value="4" selected="@(currentSportId == 4)">@Apollo.Age.Resources.Lang.lblVbBdmTt</option>
+        <option value="5" selected="@(currentSportId == 5)">@Apollo.Age.Resources.Lang.Baseball</option>
+        <option value="6" selected="@(currentSportId == 6)">@Apollo.Age.Resources.Lang.InterEvent</option>
+        <option value="7" selected="@(currentSportId == 7)">@Apollo.Age.Resources.Lang.lblOutRight</option>
+    </select>
+}
 @helper RenderBettypeDropDownList(int currentBettypeId, string id = "ddlSport", string className = "")
-	{
-        <select id="@id" class="@className">
-            <option value="0" selected="@(currentBettypeId == 0)">@Apollo.Age.Resources.Lang.all</option>
-            <option value="1" selected="@(currentBettypeId == 1)">@Apollo.Age.Resources.Lang.lblHandicapFC</option>
-            <option value="2" selected="@(currentBettypeId == 2)">@Apollo.Age.Resources.Lang.lblOddEven</option>
-            <option value="3" selected="@(currentBettypeId == 3)">@Apollo.Age.Resources.Lang.lblOverUnder</option>
-            <option value="4" selected="@(currentBettypeId == 4)">@Apollo.Age.Resources.Lang.correctscore</option>
-            <option value="5" selected="@(currentBettypeId == 5)">@Apollo.Age.Resources.Lang.lblFT1X2</option>
-            <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-            <option value="7" selected="@(currentBettypeId == 7)">@Apollo.Age.Resources.Lang.firstgoal/@Apollo.Age.Resources.Lang.lastgoal</option>
-            <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-            <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-            <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-            <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
-        </select>
+    {
+    <select id="@id" class="@className">
+        <option value="0" selected="@(currentBettypeId == 0)">@Apollo.Age.Resources.Lang.all</option>
+        <option value="1" selected="@(currentBettypeId == 1)">@Apollo.Age.Resources.Lang.lblHandicapFC</option>
+        <option value="2" selected="@(currentBettypeId == 2)">@Apollo.Age.Resources.Lang.lblOddEven</option>
+        <option value="3" selected="@(currentBettypeId == 3)">@Apollo.Age.Resources.Lang.lblOverUnder</option>
+        <option value="4" selected="@(currentBettypeId == 4)">@Apollo.Age.Resources.Lang.correctscore</option>
+        <option value="5" selected="@(currentBettypeId == 5)">@Apollo.Age.Resources.Lang.lblFT1X2</option>
+        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
+        <option value="7" selected="@(currentBettypeId == 7)">@Apollo.Age.Resources.Lang.firstgoal/@Apollo.Age.Resources.Lang.lastgoal</option>
+        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
+        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
+        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
+        <option value="6" selected="@(currentBettypeId == 6)">@Apollo.Age.Resources.Lang.totalgoal</option>
+    </select>
+}
+@helper RenderResultBySport()
+    {
+        List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport();
+            
+        foreach (Apollo.Age.Entities.SingbetSport sport in singbetSports)
+        {
+
+            <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+
+        }
+   
 }
