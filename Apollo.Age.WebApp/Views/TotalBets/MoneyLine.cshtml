@@ -35,16 +35,16 @@
 <table class="tblRpt persist-area" style="width: 100%">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td rowspan="2">
+            <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2">
+            <td rowspan="2" style="width: 7%;">
                 @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2" style="width: 150px;">
+            <td rowspan="2" style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2">
+            <td rowspan="2"  style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
@@ -110,7 +110,7 @@
                 <td class="c">
                     @item.LeagueName
                 </td>
-                <td class="l no-border-bottom">
+                <td class="l no-border-bottom  valign-top">
                     @item.HomeTeam
                     <br />
                     @item.AwayTeam
@@ -162,7 +162,7 @@
             }
             else
             { 
-            @RazorHelper.ShowNoInfo(colspan: 11)
+             //@RazorHelper.ShowNoInfo(colspan: 11)
             }            
         }
     </tbody>
