@@ -1518,4 +1518,7 @@
   <data name="TicketsCancelled" xml:space="preserve">
     <value>Ticket cancelled</value>
   </data>
+  <data name="SearchMember" xml:space="preserve">
+    <value>Search Member</value>
+  </data>
 </root>
