@@ -1433,4 +1433,7 @@
   <data name="lblFT1X2" xml:space="preserve">
     <value>FT. 1X2</value>
   </data>
+  <data name="condition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
 </root>
