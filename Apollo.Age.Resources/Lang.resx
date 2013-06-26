@@ -1430,4 +1430,7 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="lblFT1X2" xml:space="preserve">
+    <value>FT. 1X2</value>
+  </data>
 </root>
