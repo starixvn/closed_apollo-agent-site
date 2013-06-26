@@ -12,9 +12,6 @@
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
-@section css
-{
-}
 @using (Html.BeginForm())
 {       
     <table width="780" cellpadding="0" border="0" cellspacing="0">
