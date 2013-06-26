@@ -697,6 +697,7 @@
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
     <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
+    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
