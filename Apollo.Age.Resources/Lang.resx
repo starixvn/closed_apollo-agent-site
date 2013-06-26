@@ -1424,16 +1424,13 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
-  <data name="BetCondition" xml:space="preserve">
-    <value>Bet Condition</value>
+  <data name="ExtraTime" xml:space="preserve">
+    <value>Extra Time</value>
   </data>
-  <data name="condition" xml:space="preserve">
-    <value>Condition</value>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
   </data>
-  <data name="Feature" xml:space="preserve">
-    <value>Feature</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="lblFT1X2" xml:space="preserve">
+    <value>FT. 1X2</value>
   </data>
 </root>
