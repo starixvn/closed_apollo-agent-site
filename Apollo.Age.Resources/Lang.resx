@@ -1521,4 +1521,10 @@
   <data name="SearchMember" xml:space="preserve">
     <value>Search Member</value>
   </data>
+  <data name="Agents" xml:space="preserve">
+    <value>Agents</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
 </root>
