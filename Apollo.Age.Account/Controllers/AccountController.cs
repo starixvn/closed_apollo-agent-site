@@ -311,7 +311,7 @@ namespace Apollo.Age.Account.Controllers
             /* Order type
              * ASC : 1
              * DES : 2
-             */ 
+             */
             if (criteria.OrderType == 1)
             {
                 models = models.OrderBy(m => m.Username).ToList();
@@ -338,6 +338,34 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
+        [HttpGet]
+        public ActionResult InDirectAgentList(int agentId)
+        {
+            AgentListCriteria criteria = new AgentListCriteria()
+            {
+                AgentId = agentId,
+                Status = (int)CustomerStatus.Active,
+                PageIndex = 0,
+                UserName = string.Empty
+            };
+
+            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+            var listPage = new List<SelectListItem>();
+            for (int i = 0; i <= criteria.NumPages; i++)
+            {
+                listPage.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = (i + 1).ToString()
+                });
+            }
+
+            ViewBag.AgentList = models;
+            ViewBag.ListPage = listPage;
+
+            return View(criteria);
+        }
+
         public ActionResult MemberList(int? agentId)
         {
             ViewBag.IsMaster = CurrentSession.IsMaster;
@@ -354,48 +382,6 @@ namespace Apollo.Age.Account.Controllers
             return View(listAgent);
         }
 
-        //public JsonResult GetAgentDownlinePath(int? agentId)
-        //{
-        //    CurrentAgentId = agentId;
-        //    var criteria = new AgentDownlinePathCriteria()
-        //    {
-        //        ParentId = this.CurrentSession.AgentId,
-        //        AgentId = CurrentAgentId.Value
-        //    };
-
-        //    var listValue = _accountService.GetAgentDownlinePath(criteria)
-        //        .Select(x => new { x.Id, x.Username, x.Level })
-        //        .ToList();
-
-        //    return Json(listValue, JsonRequestBehavior.AllowGet);
-        //}
-
-        //[HttpPost]
-        //public JsonResult GetAgentList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
-        //{
-        //    CurrentAgentId = agentId;
-        //    var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
-        //    var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-        //    var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
-
-        //    AgentListCriteria criteria = new AgentListCriteria()
-        //    {
-        //        AgentId = CurrentAgentId.Value,
-        //        PageIndex = currentPageIndex,
-        //        UserName = currentUsername
-        //    };
-
-        //    IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
-
-        //    return Json(new
-        //    {
-        //        TotalItem = criteria.TotalItems,
-        //        CurrentPage = currentPageIndex,
-        //        ItemsPerPage = currentPageSize,
-        //        CurrentAgentId = CurrentAgentId.Value,
-        //        ListData = models
-        //    });
-        //}
 
         [HttpPost]
         public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
