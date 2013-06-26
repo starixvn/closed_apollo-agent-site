@@ -240,7 +240,7 @@
     }
 @helper RenderResultBySport()
     {
-        List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport();
+        List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport(true);
             
         foreach (Apollo.Age.Entities.SingbetSport sport in singbetSports)
         {
