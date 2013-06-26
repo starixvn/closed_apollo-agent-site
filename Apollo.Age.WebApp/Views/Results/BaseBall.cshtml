@@ -5,15 +5,7 @@
 
 <table class="tblRpt baseball">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="16">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
+        
         <tr class="RptHeader">
             <td columnname="kickofftime" style="width: 50px;">
                 @Lang.time
@@ -119,18 +111,7 @@
 
                 }
                 
-                if (!(bool)@ViewBag.IsParlay)
-                {
-                    if (currentLeagueId != item.LeagueId)
-                    {
-                        currentLeagueId = item.LeagueId;
-                        <tr class="league">
-                            <td colspan="10">
-                                @item.LeagueName
-                            </td>
-                        </tr>
-                    }
-                }
+               
 
             <tr class="c">
                 <td>
