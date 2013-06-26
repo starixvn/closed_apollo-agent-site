@@ -5,15 +5,16 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model MatchEnteredViewModel
-<div style="padding:5px;">
-    @*@Html.LabelFor(, @Apollo.Age.Resources.Lang.sport)*@
-
-    <label for="ddlSport">Report:</label>
-
-    @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
-
-    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.lblReport</a>
-    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.TicketsCancelled</a>
+<div id="function-bar">
+    <div class="item">
+        <label for="ddlSport">Report:</label>
+        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
+    </div>    
+    <ul class="menu">	
+		<li class="active"><a href="#" style="padding:5px;">@Apollo.Age.Resources.Lang.lblReport</a></li>
+	    <li><a href="#" style="padding:5px;">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
+	</ul>
+	<img alt="" src="~/_GlobalResources/Images/top_04.gif">
 </div>
 <div id="box_header" class="report">
     <table>
