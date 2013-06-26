@@ -73,27 +73,49 @@ namespace Apollo.Age.Reports.Controllers
             return View(viewModel);
         }
 
-        public JsonResult MatchLeague(DateTime date, byte sportId)
+        public JsonResult MatchLeague(DateTime date, string sportTypes, int sportId)
         {
             // not add select all item yet
-            var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
-            List<League> leagues = new List<League>();
-            if (leaguesBySport != null && leaguesBySport.Count() > 1)
+            date = new DateTime(2013, 6, 20);
+
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+
+            var listLeague = new List<League>();
+
+            //byte selectedSportId = ((int)this.SportId <= 0) ? (byte)this.SportList.First().Id : this.SportId;
+            if (matchResults != null && matchResults.Any())
             {
-                leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
+                listLeague = matchResults.Where(item => item.SportId == sportId)
+                    .Select(item => new League { Id = item.LeagueId, Name = item.LeagueName })
+                    .Distinct().ToList();
+
+                if (listLeague != null && listLeague.Count() > 1)
+                {
+                    listLeague.Insert(0, new League { Id = 0, Name = Resources.Lang.allleague });
+                }
             }
 
-            leaguesBySport.ForEach((item) => leagues.Add(new League
-            {
-                Id = item.Id,
-                Name = CacheRef.GetLeagueName(item.Id)
-            }));
+            //var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
+            //List<League> leagues = new List<League>();
+            //if (leaguesBySport != null && leaguesBySport.Count() > 1)
+            //{
+            //    leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
+            //}
 
-            return Json(leagues, JsonRequestBehavior.AllowGet);
+            //leaguesBySport.ForEach((item) => leagues.Add(new League
+            //{
+            //    Id = item.Id,
+            //    Name = CacheRef.GetLeagueName(item.Id)
+            //}));
+
+            return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult MatchSport(DateTime date, string sportTypes)
         {
+            date = new DateTime(2013, 6, 20);
+
             IEnumerable<MatchResultModel> matchResults =            
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -110,7 +132,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult MatchResultBySport(DateTime date, string sportTypes)
         {
-            date = new DateTime(2013, 6, 18);
+            date = new DateTime(2013, 6, 20);
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -124,7 +146,29 @@ namespace Apollo.Age.Reports.Controllers
                       
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
-                
+
+        public ActionResult MatchOtherResultBySport(DateTime date, string sportTypes, int sportId, int leagueId)
+        {
+            date = new DateTime(2013, 6, 20);
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+
+            if (matchResults != null && matchResults.Any())
+            {
+                if (leagueId == 0)
+                {
+                    matchResults = matchResults.Where(item => item.SportId == sportId).Distinct();
+                }
+                else
+                {
+                    matchResults = matchResults.Where(item => item.SportId == sportId && item.LeagueId == leagueId).Distinct();
+                }
+            }
+
+            string viewName = GetViewBySport(sportTypes);          
+
+            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
+        }        
 
         //public ActionResult ResultByMatch(int matchId, byte sportId)
         //{

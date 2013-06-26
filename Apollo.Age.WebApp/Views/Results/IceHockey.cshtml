@@ -4,15 +4,7 @@
 
 <table class="tblRpt other">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="8">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
+        
         <tr class="RptHeader">
             <td class="width-80" columnname="kickofftime">
                 @Apollo.Age.Resources.Lang.kickofftime

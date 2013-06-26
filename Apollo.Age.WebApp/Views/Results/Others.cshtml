@@ -5,15 +5,7 @@
 
 <table class="tblRpt other">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="6">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;-
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
+       
         <tr class="RptHeader">
             <th  style="width: 100px;">
                 @Apollo.Age.Resources.Lang.time
@@ -42,18 +34,6 @@
 
             foreach (var item in Model)
             {
-                if (!(bool)ViewBag.IsParlay)
-                {
-                    if (currentLeagueId != item.LeagueId)
-                    {
-                        currentLeagueId = item.LeagueId;
-                        <tr class="league">
-                            <td colspan="10">
-                                @item.LeagueName
-                            </td>
-                        </tr>
-                    }
-                }
 
             <tr class="c">
                 <td class="width-80">
@@ -105,7 +85,7 @@
                         @item.FinalAwayScore
                     }
                 </td>
-                <td rowspan="2" class="border-right">
+                <td class="border-right">
                     @item.EventStatusTranslation
                 </td>
             </tr>            
