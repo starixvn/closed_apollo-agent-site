@@ -14,7 +14,7 @@
 
 <div id="function-bar">
 	<ul class="menu">
-        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))">@Lang.yesterday</a></li>
+        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)">@Lang.yesterday</a></li>
         <li>@Lang.Game:</li>
 	    @RazorHelper.RenderResultBySport()
     </ul>
@@ -31,7 +31,28 @@
 </div>
 
 @using (Html.BeginForm())
-{	
+{
+    <div id="filterOtherResult" class="row" style="display: none">
+				    <div class="cell">
+					    <div class="label">
+						    <label for="ddlSport">@Lang.Game</label>
+					    </div>
+					    <div class="editor">
+						    @Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+                            new { style = "width: 500px" })
+					    </div>
+				    </div>
+				    <div class="cell">
+					    <div class="label">
+						    <label for="ddlLeague">@Lang.league</label>
+					    </div>
+					    <div class="editor">
+						    @Html.DropDownList("ddlLeague",
+                            new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+                            new { style = "width: 500px" })
+					    </div>
+				    </div>
+	</div>
 	<div id="resultContainer"></div>
 }
 @section scripts

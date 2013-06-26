@@ -19,7 +19,7 @@ namespace Apollo.Age.Core
         public const string Tennis = "5";
         public const string VB_BDM_TT = "6,9,18";
         public const string BaseBall = "8";
-        public const string Other = "4,7,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28,99,151,152,153,201,251,30,29,31,32,33,34,35,36,37,38,39,40,41,42,161,180,253,1000";
+        public const string Other = "4,7,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,99";
         public const string Outright = "-1";
         // end Sport
 
