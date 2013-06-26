@@ -26,6 +26,8 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.Enumerations;
+    using Apollo.Age.Resources;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
@@ -270,18 +272,19 @@ namespace Apollo.Age.Account.Controllers
             AgentListCriteria criteria = new AgentListCriteria()
             {
                 AgentId = this.CurrentSession.AgentId,
-                PageIndex = 1,
+                Status = (int)CustomerStatus.Active,
+                PageIndex = 0,
                 UserName = string.Empty
             };
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
             var listPage = new List<SelectListItem>();
-            for (int i = 1; i <= criteria.NumPages; i++)
+            for (int i = 0; i <= criteria.NumPages; i++)
             {
                 listPage.Add(new SelectListItem
                 {
                     Value = i.ToString(),
-                    Text = i.ToString()
+                    Text = (i + 1).ToString()
                 });
             }
 
@@ -294,6 +297,43 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public ActionResult AgentList(AgentListCriteria criteria)
         {
+            if (criteria.PageIndex == criteria.OldPageIndex)
+            {
+                criteria.PageIndex = 0;
+            }
+            else
+            {
+                criteria.OldPageIndex = criteria.PageIndex;
+            }
+
+            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+
+            /* Order type
+             * ASC : 1
+             * DES : 2
+             */ 
+            if (criteria.OrderType == 1)
+            {
+                models = models.OrderBy(m => m.Username).ToList();
+            }
+            else
+            {
+                models = models.OrderByDescending(m => m.Username).ToList();
+            }
+
+            var listPage = new List<SelectListItem>();
+            for (int i = 0; i <= criteria.NumPages; i++)
+            {
+                listPage.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = (i + 1).ToString(),
+                    Selected = i == criteria.PageIndex
+                });
+            }
+
+            ViewBag.AgentList = models;
+            ViewBag.ListPage = listPage;
 
             return View(criteria);
         }
