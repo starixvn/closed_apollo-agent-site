@@ -405,12 +405,22 @@ table {
 
 		.row {
 			background-color: #C9DBDF;
-			padding: 5px 3px;
+			padding: 0 3px;
 			margin-bottom: 1px;
 
 			&.bg-action {
 				background: @white;
 				text-align: center;
+				padding: 8px 0;
+
+				.item {
+					float: left;
+
+					&.btn-action {
+						margin: 0 170px;
+
+					}
+				}				
 			}
 		}
 	}
