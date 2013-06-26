@@ -26,10 +26,14 @@
 <head>
 	<title>Forecast</title>
 	<link href="~/views/totalbets/resources/totalbets.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="function-bar">
-		<ul class="menu">
+        <div class="before-filter">--</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", 15, 15, "TOTALBETS_INDEX.reloadChild();")
+        @RazorHelper.ToEasternTime(DateTime.Now)
+		<div class="before-filter">--</div>
+        <ul class="menu">
 		@for (int i = 0; i < 10; i++)
 		{
 			var item = menu[i];
