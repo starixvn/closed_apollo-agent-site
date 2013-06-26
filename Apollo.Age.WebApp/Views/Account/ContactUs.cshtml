@@ -1,0 +1,41 @@
+﻿@model ICurrentSession
+@using Apollo.Age.Resources
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Header</title>
+    <link href="~/views/account/resources/contactus.less" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="qa_head">
+        <span>@Lang.lblHelp</span><span onclick="window.close();" class="close_box">@Lang.Close</span></div>
+    <div id="wrapper">
+        <div id="qa_nav">
+            <ul>
+                <li class="mail">@Lang.lblContactUs</li>
+            </ul>
+        </div>
+        <div id="main">
+            <h1>
+                @Lang.lblContactUs
+            </h1>
+            <p>
+                @Lang.ContentContact</p>
+            <div class="info">
+                <strong>@Lang.lblTelephoneNo:</strong><br>
+                +@Lang.lblPhone1<br>
+                +@Lang.lblPhone2<br>
+                +@Lang.lblPhone3<br>
+                <br>
+                <strong>@Lang.lblEmailAddress</strong>:<br>
+                <a href="mailto:@Lang.lblEmailContact">@Lang.lblEmailContact</a>
+            </div>
+        </div>
+        <div class="qa_foot">
+        </div>
+    </div>
+</body>
+</html>

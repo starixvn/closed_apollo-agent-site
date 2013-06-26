@@ -1,0 +1,156 @@
+﻿@using Apollo.Age.Entities
+@using Apollo.Age.Resources
+@model CustomerListCriteria
+@{
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
+    ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblMemberListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
+    var agenttitleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
+    agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
+    Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+
+    var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
+
+    var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
+}
+@using (Html.BeginForm())
+{       
+    <table cellpadding="0" border="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td class="m_tline">
+                    <table cellpadding="0" border="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td nowrap="nowrap">
+                                    &nbsp;&nbsp;@Lang.member&nbsp;:&nbsp;
+                                </td>
+                                <td>
+                                    <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                                        @foreach (var item in driectAgentList)
+                                        {
+                                            if (item.Id == Model.AgentId)
+                                            { 
+                                            <option value="@item.Id" selected="selected">@item.Username</option>
+                                            }
+                                            else
+                                            {
+                                            <option value="@item.Id">@item.Username</option>
+                                            }
+                                        }
+                                    </select>
+                                    &nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.Close },
+                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+				                }, new { @class = "za_select" })
+                                </td>
+                                <td nowrap="nowrap">
+                                    &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "2", Text = Lang.DES }
+				                }, new { @class = "za_select" })
+                                </td>
+                                @if (!ReferenceEquals(memberList, null) && memberList.Any())
+                                { 
+                                    <td nowrap="nowrap">
+                                        &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                                        <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                                    </td>
+                                    <td nowrap="nowrap">
+                                        &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
+                                    </td>
+                                }
+                                <td>
+                                    &nbsp;
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+                                    &nbsp;
+                                    <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="30">
+                    <span class="borderFilter"></span>
+                </td>
+            </tr>
+            <tr>
+                <td height="4" colspan="2">
+                </td>
+            </tr>
+        </tbody>
+    </table>        
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.ParentAgentId)   
+}
+<table width="800" cellpadding="0" border="0" bgcolor="#E3D46E" cellspacing="1" class="m_tab">
+    <tbody>
+        <tr bgcolor="#86C0A6" class="mem_title">
+            <td width="80">
+                @Lang.agent
+            </td>
+            <td width="80">
+                @Lang.enterusername
+            </td>
+            <td width="60">
+                @Lang.condition
+            </td>
+            <td width="60">
+                @Lang.BetCondition
+            </td>
+            <td width="80">
+                @Lang.Feature
+            </td>
+        </tr>
+        @if (!ReferenceEquals(memberList, null) && memberList.Any())
+        {
+            foreach (var item in memberList)
+            {
+            <tr class="m_cen">
+                <td>
+                    @ViewBag.AgentUsername
+                </td>
+                <td>
+                    @item.Username
+                </td>
+                <td>
+                    @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                </td>
+                <td>
+                    @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                </td>
+                <td align="left">
+                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                    </span>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.za_select').change(function () {
+                $('#submit').click();
+            });
+        });
+    </script>
+}

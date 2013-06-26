@@ -4,10 +4,119 @@
     ViewBag.Title = "ViewAgentDetails";
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting ?? null;
     var betSetting = (IList<BettingLimit>)ViewBag.BetSetting ?? null;
-}
-<div class="">
-Agency detailed edit -- Account: : 0226  -- Name:flat -- 
-<a href="" > @Lang.edit </a>
-<a href="" > Back </a>
-</div>
 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/views/account/resources/CustomerSetting.less" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="">
+        Agency detailed edit -- Account: : 0226 -- Name:flat -- <a href="">@Lang.edit </a>
+        <a href="">Back </a>
+    </div>
+    @helper RenderSportBlock(CommissionSetting commissionSetting, BettingLimit betLimit)
+        {
+        <table class="tb-cust-setting">
+            <thead>
+                <tr>
+                    <td rowspan="2" style="width: 25%;">
+                        @betLimit.Name
+                    </td>
+                    <td colspan="4">
+                        @Lang.commission
+                    </td>
+                    <td colspan="3">
+                        @Lang.lblBetSetting
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 5%;">
+                        A
+                    </td>
+                    <td style="width: 5%;">
+                        B
+                    </td>
+                    <td style="width: 5%;">
+                        C
+                    </td>
+                    <td style="width: 5%;">
+                        D
+                    </td>
+                    <td style="width: 10%;">@Lang.lblMinBet
+                    </td>
+                    <td style="width: 10%;">@Lang.lblMaxBet
+                    </td>
+                    <td style="width: 10%;">@Lang.lblMaxPerMatch
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    IList<string> betType = new List<string>{
+                            "Handicap, Over/Under, Odd/Even", "R.B. Handicap, R.B. Over/Under, R.B. Odd/Even", "1 X 2, R.B. 1 X 2", "Other Bet Type", "R.B. Other Bet Type"
+                    };
+                    int index = 0;
+                    foreach (var item in betType)
+                    {
+                    <tr>
+                        <td class="first-cell">
+                            @item
+                        </td>
+                        @if (index < 2)
+                        {
+                            <td>
+                                @commissionSetting.CommissionItems[0].DiscountA
+                            </td>
+                            <td>
+                                @commissionSetting.CommissionItems[0].DiscountB
+                            </td>
+                            <td>
+                                @commissionSetting.CommissionItems[0].DiscountC
+                            </td>
+                            <td>
+                                @commissionSetting.CommissionItems[0].DiscountD
+                            </td>
+                            }
+                            else
+                            {
+                             <td colspan="4">
+                                0
+                            </td>
+                            }
+                            
+                        <td>
+                            @betLimit.MinBet
+                        </td>
+                        <td>
+                            @betLimit.MaxBet
+                        </td>
+                        <td>
+                            @betLimit.MaxPerMatch
+                        </td>
+                    </tr>
+                        index++;
+                    }
+                    
+                }
+            </tbody>
+        </table>
+    }
+    <div style="width: 800px;">
+        @if (betSetting != null && betSetting.Any())
+        {
+            foreach (BettingLimit betLimit in betSetting)
+            {
+            @RenderSportBlock(comSetting, betLimit)
+            }
+        }
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+</body>
+</html>

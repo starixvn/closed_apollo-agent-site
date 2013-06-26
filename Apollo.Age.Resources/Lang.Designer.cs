@@ -313,11 +313,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Condition.
+        ///   Looks up a localized string similar to Bet Condition.
         /// </summary>
-        public static string BestCondition {
+        public static string BetCondition {
             get {
-                return ResourceManager.GetString("BestCondition", resourceCulture);
+                return ResourceManager.GetString("BetCondition", resourceCulture);
             }
         }
         

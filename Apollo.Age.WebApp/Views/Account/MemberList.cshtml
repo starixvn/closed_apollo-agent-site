@@ -14,7 +14,7 @@
 }
 @using (Html.BeginForm())
 {       
-    <table width="780" cellpadding="0" border="0" cellspacing="0">
+    <table width="835" cellpadding="0" border="0" cellspacing="0">
         <tbody>
             <tr>
                 <td class="m_tline">
@@ -22,7 +22,7 @@
                         <tbody>
                             <tr>
                                 <td nowrap="nowrap">
-                                    &nbsp;&nbsp;@Lang.agent&nbsp;:&nbsp;
+                                    &nbsp;&nbsp;@Lang.member&nbsp;:&nbsp;
                                 </td>
                                 <td>
                                     @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
@@ -62,7 +62,7 @@
                                     &nbsp;
                                     @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
                                     &nbsp;
-                                    <input type="submit" class="za_button" value="@Lang.SearchAgency" id="submit">
+                                    <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
                                 </td>
                             </tr>
                         </tbody>
@@ -78,8 +78,9 @@
             </tr>
         </tbody>
     </table>        
+    @Html.HiddenFor(m => m.AgentId)
 }
-<table width="880" cellpadding="0" border="0" bgcolor="#E3D46E" cellspacing="1" class="m_tab">
+<table width="800" cellpadding="0" border="0" bgcolor="#E3D46E" cellspacing="1" class="m_tab">
     <tbody>
         <tr bgcolor="#86C0A6" class="mem_title">
             <td width="80">
@@ -89,7 +90,7 @@
                 @Lang.condition
             </td>
             <td width="60">
-                @Lang.BestCondition
+                @Lang.BetCondition
             </td>
             <td width="80">
                 @Lang.Feature
