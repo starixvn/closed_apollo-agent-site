@@ -28,6 +28,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
+    using Apollo.Age.Entities;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
@@ -339,14 +340,15 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpGet]
-        public ActionResult InDirectAgentList(int agentId)
+        public ActionResult InDirectAgentList(int parentAgentId, int agentId)
         {
             AgentListCriteria criteria = new AgentListCriteria()
             {
                 AgentId = agentId,
                 Status = (int)CustomerStatus.Active,
                 PageIndex = 0,
-                UserName = string.Empty
+                UserName = string.Empty,
+                ParentAgentId = parentAgentId
             };
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
@@ -360,8 +362,66 @@ namespace Apollo.Age.Account.Controllers
                 });
             }
 
+            List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
+            {
+                AgentId = parentAgentId
+            });
+
             ViewBag.AgentList = models;
             ViewBag.ListPage = listPage;
+            ViewBag.DirectAgentList = directAgent;
+
+            return View(criteria);
+        }
+
+        [HttpPost]
+        public ActionResult InDirectAgentList(AgentListCriteria criteria)
+        {
+            criteria.AgentId = criteria.UplineAgentId;
+
+            if (criteria.PageIndex == criteria.OldPageIndex)
+            {
+                criteria.PageIndex = 0;
+            }
+            else
+            {
+                criteria.OldPageIndex = criteria.PageIndex;
+            }
+
+            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+
+            /* Order type
+             * ASC : 1
+             * DES : 2
+             */
+            if (criteria.OrderType == 1)
+            {
+                models = models.OrderBy(m => m.Username).ToList();
+            }
+            else
+            {
+                models = models.OrderByDescending(m => m.Username).ToList();
+            }
+
+            var listPage = new List<SelectListItem>();
+            for (int i = 0; i <= criteria.NumPages; i++)
+            {
+                listPage.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = (i + 1).ToString(),
+                    Selected = i == criteria.PageIndex
+                });
+            }
+
+            List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
+            {
+                AgentId = criteria.ParentAgentId
+            });
+
+            ViewBag.AgentList = models;
+            ViewBag.ListPage = listPage;
+            ViewBag.DirectAgentList = directAgent;
 
             return View(criteria);
         }
@@ -381,7 +441,6 @@ namespace Apollo.Age.Account.Controllers
             var listAgent = _accountService.GetAgentDownlinePath(criteria).ToList();
             return View(listAgent);
         }
-
 
         [HttpPost]
         public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)

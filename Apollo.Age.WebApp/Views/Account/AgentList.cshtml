@@ -115,7 +115,8 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList", new { agentId = item.AgentId })</span>
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
                     }
                     else
                     {

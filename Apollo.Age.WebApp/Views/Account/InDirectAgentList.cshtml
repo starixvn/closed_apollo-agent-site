@@ -9,6 +9,8 @@
     var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     titleFormat = string.Format(titleFormat, string.Empty);
 
+    var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
+
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
@@ -17,7 +19,7 @@
 }
 @using (Html.BeginForm())
 {       
-    <table width="880" cellpadding="0" border="0" cellspacing="0">
+    <table cellpadding="0" border="0" cellspacing="0">
         <tbody>
             <tr>
                 <td class="m_tline">
@@ -28,8 +30,20 @@
                                     &nbsp;&nbsp;@Lang.agent&nbsp;:&nbsp;
                                 </td>
                                 <td>
-                                    <select class="za_select">
+                                    <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                                        @foreach (var item in driectAgentList)
+                                        {
+                                            if (item.Id == Model.AgentId)
+                                            { 
+                                            <option value="@item.Id" selected="selected">@item.Username</option>
+                                            }
+                                            else
+                                            {
+                                            <option value="@item.Id">@item.Username</option>
+                                            }
+                                        }
                                     </select>
+                                    &nbsp;&nbsp;
                                 </td>
                                 <td>
                                     @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
@@ -84,7 +98,8 @@
                 </td>
             </tr>
         </tbody>
-    </table>        
+    </table>     
+    @Html.HiddenFor(m => m.ParentAgentId)   
 }
 <table width="880" cellpadding="0" border="0" bgcolor="#4B8E6F" cellspacing="1" class="m_tab">
     <tbody>
@@ -119,7 +134,8 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList", new { agentId = item.AgentId })</span>
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
                     }
                     else
                     {

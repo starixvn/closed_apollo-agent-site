@@ -50,6 +50,12 @@ namespace Apollo.Age.Account.Criterias
         public int OrderType { get; set; }
 
         [SpParam(Ignored = true)]
+        public int ParentAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int UplineAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
         public int NumPages
         {
             get
@@ -57,7 +63,7 @@ namespace Apollo.Age.Account.Criterias
                 return TotalItems % PageSize == 0 ? TotalItems / PageSize : TotalItems / PageSize + 1;
             }
         }
-        
+
         public override string GetSettingKey()
         {
             return "Age_Agent_GetByAgent";
