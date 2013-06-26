@@ -270,8 +270,20 @@ namespace Apollo.Age.Account.Controllers
             };
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+            var listPage = new List<SelectListItem>();
+            for (int i = 1; i <= criteria.NumPages; i++)
+            {
+                listPage.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                });
+            }
 
-            return View();
+            ViewBag.AgentList = models;
+            ViewBag.ListPage = listPage;
+
+            return View(criteria);
         }
 
         [HttpPost]
