@@ -1472,4 +1472,7 @@
   <data name="DES" xml:space="preserve">
     <value>DES</value>
   </data>
+  <data name="area" xml:space="preserve">
+    <value>Area</value>
+  </data>
 </root>

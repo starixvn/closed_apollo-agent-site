@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Reports.ViewModels
 @model IEnumerable<MatchResultModel>
 
 <table class="tblRpt other">
@@ -7,24 +8,27 @@
         @if ((bool)@ViewBag.IsParlay)
         {
             <tr>
-                <th class="summary-header" colspan="5">
+                <th class="summary-header" colspan="6">
                     <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;-
                     <span>@Model.ToList()[0].LeagueName</span>
                 </th>
             </tr> 
         }
         <tr class="RptHeader">
-            <th class="width-80">
-                @Apollo.Age.Resources.Lang.kickofftime
+            <th  style="width: 100px;">
+                @Apollo.Age.Resources.Lang.time
             </th>
-            <th>
-                @Apollo.Age.Resources.Lang.match
+              <th style="width: 300px;">
+                @Apollo.Age.Resources.Lang.league
+            </th>
+            <th style="width: 200px;">
+                @Apollo.Age.Resources.Lang.HomeGuest
             </th>
             <th style="width: 100px;">
-                @Apollo.Age.Resources.Lang.firsthalfscore
+                @Apollo.Age.Resources.Lang.lblhalf
             </th>
             <th style="width: 100px;">
-                @Apollo.Age.Resources.Lang.finalscore
+                @Apollo.Age.Resources.Lang.lblfinal
             </th>
             <th style="width: 100px;">
                 @Apollo.Age.Resources.Lang.status
@@ -52,21 +56,16 @@
                 }
 
             <tr class="c">
-                <td rowspan="2" class="width-80">
+                <td class="width-80">
                    @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
                 </td>
+                <td>
+                    @item.LeagueName
+                </td>
                 <td class="l">
-                    @if (item.FinalHomeScore > item.FinalAwayScore)
-                    {
-                        <b>
-                            @Html.Raw(item.HomeTeam)
-                        </b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.HomeTeam)
-                    }
-                    
+                   @Html.Raw(item.HomeTeam)
+                    <br />
+                    @Html.Raw(item.AwayTeam)
                 </td>
                 <td>
                     @if (item.HalfTimeHomeScore == null)
@@ -76,6 +75,15 @@
                     else
                     {
                         @item.HalfTimeHomeScore
+                    }
+                    <br />
+                    @if (item.HalfTimeAwayScore == null)
+                    {
+                        <span>-</span> 
+                    }
+                    else
+                    {
+                        @item.HalfTimeAwayScore
                     }
                 </td>
                 <td>
@@ -87,36 +95,8 @@
                     {
                         @item.FinalHomeScore
                     }
-                </td>
-                <td rowspan="2" class="border-right">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr class="c">
-                <td class="l">
-                    @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>
-                            @Html.Raw(item.AwayTeam)
-                        </b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
-                </td>
-                <td>
-                    @if (item.HalfTimeAwayScore == null)
-                    {
-                        <span>-</span> 
-                    }
-                    else
-                    {
-                        @item.HalfTimeAwayScore
-                    }
-                </td>
-                <td>
-                    @if (item.FinalAwayScore == null)
+                    <br />
+                     @if (item.FinalAwayScore == null)
                     {
                         <span>-</span> 
                     }
@@ -125,12 +105,15 @@
                         @item.FinalAwayScore
                     }
                 </td>
-            </tr>
+                <td rowspan="2" class="border-right">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>            
             }
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 5);
+            @RazorHelper.ShowNoInfo(colspan: 6);
         }
     </tbody>
 </table>

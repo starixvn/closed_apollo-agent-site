@@ -50,49 +50,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             get { return _resultService.GetBalanceUpDay(); }
         }
-
-        protected IEnumerable<Sport> GenerateSportList
-        {
-            get
-            {
-                List<Sport> sportList = new List<Sport>() { 
-                    new Sport{
-                        Id = (int) SportTypes.Soccer,
-                        Name = SportTypes.Soccer.ToString()
-                    },
-                    new Sport{
-                        Id = (int) SportTypes.Rugby,
-                        Name = "BK/NFL/RUGBY"
-                    },
-                    new Sport{
-                        Id = (int) SportTypes.Tennis,
-                        Name = SportTypes.Tennis.ToString()
-                    },
-                    new Sport{
-                        Id = (int) SportTypes.Badminton,
-                        Name ="VB/BMD/TT"
-                    },
-                    new Sport{
-                        Id = (int) SportTypes.BaseBall,
-                        Name = SportTypes.BaseBall.ToString()
-                    },
-                     new Sport{
-                        Id = (int) SportTypes.OtherSports,
-                        Name = SportTypes.OtherSports.ToString()
-                    },
-                    new Sport{
-                        Id = -100,
-                        Name = Resources.Lang.lblOutRight
-                    },
-                    new Sport{
-                        Id = -101,
-                        Name = Resources.Lang.lblOutrightResult
-                    },
-                };
-                return sportList;
-            }
-        }
-
+        
         #region Match Results
 
         [HttpGet]
@@ -109,8 +67,7 @@ namespace Apollo.Age.Reports.Controllers
             var viewModel = new MatchResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,                
-                EventDate = eventDate,
-                SportList = GenerateSportList
+                EventDate = eventDate,                                
             };
 
             return View(viewModel);
@@ -135,9 +92,25 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult MatchSport(DateTime date, string sportTypes)
+        {
+            IEnumerable<MatchResultModel> matchResults =            
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+
+            IEnumerable<Sport> sports = null;
+            if (matchResults != null && matchResults.Any())
+            {
+                sports = matchResults
+                       .Select(item => new Sport { Id = (byte)item.SportId, Name = item.SportName })
+                       .Distinct();            
+            }
+            return Json(sports, JsonRequestBehavior.AllowGet);
+
+        }
+
         public ActionResult MatchResultBySport(DateTime date, string sportTypes)
         {
-            date = new DateTime(2013, 6, 11);
+            date = new DateTime(2013, 6, 18);
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -145,12 +118,13 @@ namespace Apollo.Age.Reports.Controllers
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
-
+       
             string viewName = GetViewBySport(sportTypes);
             ViewBag.IsParlay = false;
-
+                      
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
+                
 
         //public ActionResult ResultByMatch(int matchId, byte sportId)
         //{
