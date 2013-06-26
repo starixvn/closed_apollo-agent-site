@@ -1457,4 +1457,7 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
 </root>
