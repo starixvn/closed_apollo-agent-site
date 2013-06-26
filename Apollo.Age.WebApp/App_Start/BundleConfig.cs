@@ -34,6 +34,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
                 "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+                "~/_GlobalResources/Js/jquery.cookie.js",
                 "~/_GlobalResources/Js/RefreshCountDown.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/TotalBets/Resources/TotalBets.js"));
@@ -48,6 +49,7 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
                 "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+                "~/_GlobalResources/Js/jquery.cookie.js",
                 "~/_GlobalResources/Js/RefreshCountDown.js",
                 "~/_GlobalResources/Js/ErrorMsg/ErrorMsg.js",
                 "~/_GlobalResources/Js/Core.js"));

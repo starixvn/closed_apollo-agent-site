@@ -26,6 +26,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services;
     using Apollo.Age.Web;
     using Fanex.Common.Extensions;
+    using Apollo.Age.Core;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ResultsController : BaseController
@@ -134,58 +135,58 @@ namespace Apollo.Age.Reports.Controllers
             return Json(leagues, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ResultBySport(DateTime date, byte sportId)
+        public ActionResult MatchResultBySport(DateTime date, string sportTypes)
         {
             date = new DateTime(2013, 6, 11);
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
             if (matchResults != null && matchResults.Any())
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = GetViewBySport(sportId);
+            string viewName = GetViewBySport(sportTypes);
             ViewBag.IsParlay = false;
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult ResultByMatch(int matchId, byte sportId)
-        {
-            IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
+        //public ActionResult ResultByMatch(int matchId, byte sportId)
+        //{
+        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
 
-            if (results != null && results.Any())
-            {
-                results = results.OrderBy(match => match.LeagueId);
-            }
+        //    if (results != null && results.Any())
+        //    {
+        //        results = results.OrderBy(match => match.LeagueId);
+        //    }
 
-            string sportName = GetViewBySport(sportId);
+        //    string sportName = GetViewBySport(sportId);
 
-            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
-            ViewBag.IsParlay = false;
+        //    ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
+        //    ViewBag.IsParlay = false;
 
-            return View("~/Views/Results/MatchResult.cshtml", results);
-        }
+        //    return View("~/Views/Results/MatchResult.cshtml", results);
+        //}
 
-        public ActionResult ParlayResult(long refNo)
-        {
-            IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
+        //public ActionResult ParlayResult(long refNo)
+        //{
+        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
 
-            foreach (var result in results)
-            {
-                result.ViewName = GetViewBySport(result.SportId);
-            }
+        //    foreach (var result in results)
+        //    {
+        //        result.ViewName = GetViewBySport(result.SportId);
+        //    }
 
-            if (results != null && results.Any())
-            {
-                results = results.OrderBy(match => match.LeagueId);
-            }
+        //    if (results != null && results.Any())
+        //    {
+        //        results = results.OrderBy(match => match.LeagueId);
+        //    }
 
-            ViewBag.IsParlay = true;
+        //    ViewBag.IsParlay = true;
 
-            return View("~/Views/Results/ParlayResult.cshtml", results);
-        }
+        //    return View("~/Views/Results/ParlayResult.cshtml", results);
+        //}
         #endregion Match Results
 
         #region Outright Results
@@ -244,44 +245,26 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Outright Results
 
-        private string GetViewBySport(byte sportId)
+        private string GetViewBySport(string sportTypes)
         {
-            switch (sportId)
+            switch (sportTypes)
             {
-                case (byte)SportTypes.Soccer:
+                case SingbetConstants.Soccer:
                     return SportTypes.Soccer.ToString();
-                case (byte)SportTypes.BasketBall:
-                case (byte)SportTypes.Netball:
-                case (byte)SportTypes.FootBall:
-                case (byte)SportTypes.Rugby:
+                case SingbetConstants.BK_NFL_RUGBY:               
                     return SportTypes.BasketBall.ToString();
-                case (byte)SportTypes.IceHockey:
-                case (byte)SportTypes.FieldHockey:
-                    return SportTypes.IceHockey.ToString();
-                case (byte)SportTypes.Tennis:
+                case SingbetConstants.Tennis:
                     return SportTypes.Tennis.ToString();
-                case (byte)SportTypes.BaseBall:
-                    return SportTypes.BaseBall.ToString();
-                case (byte)SportTypes.VolleyBall:
-                case (byte)SportTypes.Badminton:
-                case (byte)SportTypes.Squash:
+                case SingbetConstants.VB_BDM_TT:
                     return SportTypes.Badminton.ToString();
-                case (byte)SportTypes.Golf:
-                case (byte)SportTypes.Motorsports:
-                case (byte)SportTypes.Billard:
-                case (byte)SportTypes.Cycling:
-                case (byte)SportTypes.Fencing:
-                case (byte)SportTypes.Judo:
-                case (byte)SportTypes.ModernPentathlon:
-                case (byte)SportTypes.Rowing:
-                case (byte)SportTypes.Sailing:
-                case (byte)SportTypes.Shooting:
-                case (byte)SportTypes.Taekwondo:
-                case (byte)SportTypes.Triathlon:
-                case (byte)SportTypes.Wrestling:
-                    return SportTypes.Billard.ToString();
+                case SingbetConstants.BaseBall:
+                    return SportTypes.BaseBall.ToString();                
+                case SingbetConstants.Other:
+                    return SportTypes.Others.ToString();
+                case SingbetConstants.Outright:
+                    return "Outright";
                 default:
-                    return SportTypes.OtherSports.ToString();
+                    return SportTypes.Soccer.ToString();
             }
         }
     }

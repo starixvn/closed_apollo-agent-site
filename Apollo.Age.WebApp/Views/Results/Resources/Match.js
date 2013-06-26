@@ -92,7 +92,7 @@ var Match = (function () {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
                 if (sportId != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/ResultBySport"), { "date": date, "sportId": sportId })
+                    $.get(APOLLO.resolveUrl("~/Results/MatchResultBySport"), { "date": date, "sportTypes": sportId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);

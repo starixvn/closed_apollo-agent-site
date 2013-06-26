@@ -122,16 +122,26 @@ function RefreshCountDown_AddEvent(el, evname, func) {
 
 RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);*/
 
-$(document).ready(function () {
-    var interval;
+var apoRefreshInterval;
 
-    $('.btnCountDown select').on('change', function () {
+$(document).ready(function () {
+    var ddlRefresh = $('.btnCountDown select');
+    var onRefresh = $('#apo-on-refresh').val();
+    var refreshInterval = $.cookie('ApoRefreshInterval');
+    if (typeof refreshInterval !== 'undefined') {
+        apoRefreshInterval = setInterval(onRefresh, refreshInterval * 1000);
+        ddlRefresh.val(refreshInterval);
+    }
+
+    ddlRefresh.on('change', function () {
         clearInterval(interval);
-        var duration = $(this).val();
-        var onRefresh = $('#apo-on-flesh').val();
-        if (duration > 0) {
-            interval = setInterval(onRefresh, duration * 1000);
+
+        var refreshInterval = $(this).val();
+        if (refreshInterval > 0) {
+            apoRefreshInterval = setInterval(onRefresh, refreshInterval * 1000);
+            $.cookie('ApoRefreshInterval', refreshInterval);
+        } else {
+            $.removeCookie('ApoRefreshInterval');
         }
     });
-
 });

@@ -313,7 +313,7 @@
     <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="leagueid" ObjectProperty="Id"/>
     </Setting>
-    <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="SVRAGE.RepDB" Plain="0" >
+    <Setting Key="Age_Result_MatchSelBySport" SpName="Age_Result_MatchSelBySport" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="sporttype" ObjectProperty="SportId"/>
       <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
       <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
