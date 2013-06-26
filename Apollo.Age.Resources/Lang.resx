@@ -1439,4 +1439,7 @@
   <data name="Feature" xml:space="preserve">
     <value>Feature</value>
   </data>
+  <data name="BestCondition" xml:space="preserve">
+    <value>Best Condition</value>
+  </data>
 </root>
