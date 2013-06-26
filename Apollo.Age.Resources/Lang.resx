@@ -1454,4 +1454,7 @@
   <data name="SearchAgency" xml:space="preserve">
     <value>Search Agency</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

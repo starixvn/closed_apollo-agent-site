@@ -2,6 +2,7 @@
 @using Apollo.Age.Web;
 @using Apollo.Age
 @using Apollo.Age.Resources
+@model AgentListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
@@ -20,9 +21,13 @@
                     <tbody>
                         <tr>
                             <td nowrap="nowrap">
-                                &nbsp;&nbsp;Agency&nbsp;:&nbsp;
+                                &nbsp;&nbsp;@Lang.Agency&nbsp;:&nbsp;
                             </td>
                             <td>
+                                @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.close }
+				                }, new { id = "ddlIsMember" })
                                 <select class="za_select" onchange="self.myFORM.submit()" name="enable" id="enable">
                                     <option value="Y" selected="selected">Active</option>
                                     <option value="N">Close</option>
@@ -31,7 +36,7 @@
                                 </select>
                             </td>
                             <td nowrap="nowrap">
-                                &nbsp;--&nbsp;@Lang.lbl&nbsp;:&nbsp;
+                                &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
                             </td>
                             <td>
                                 <select class="za_select" name="page" id="page">
@@ -39,16 +44,13 @@
                                 </select>
                             </td>
                             <td nowrap="nowrap">
-                                &nbsp;/&nbsp;1&nbsp;Pages
+                                &nbsp;/&nbsp;1&nbsp;@Lang.Pages
                             </td>
                             <td>
                                 &nbsp;
                                 <input type="text" class="za_text" maxlength="12" size="8" name="su_name" id="su_name">
                                 &nbsp;
-                                <input type="button" class="za_button" value="Search Agency" name="button">
-                            </td>
-                            <td>
-                                &nbsp;--&nbsp;<input type="button" class="za_button" value="Add" name="append" id="append">
+                                <input type="button" class="za_button" value="@Lang.SearchAgency" name="button">
                             </td>
                         </tr>
                     </tbody>
