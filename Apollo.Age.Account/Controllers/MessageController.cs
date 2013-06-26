@@ -50,6 +50,12 @@ namespace Apollo.Age.Account.Controllers
         {
             DateTime? startDate = new DateTime();
 
+            /* Value of ModeDate
+             * 0 : All (From the month before until now)
+             * 1 : Today
+             * 2 : Yesterday
+             * 3 : Before Yesterday
+             */ 
             switch (modeDate)
             {
                 case 1:
