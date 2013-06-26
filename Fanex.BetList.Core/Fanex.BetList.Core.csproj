@@ -268,7 +268,9 @@
     <Compile Include="Templates\Trans.htm.cs" />
     <Compile Include="Utils\Cast.cs" />
     <Compile Include="Utils\ConvertByBetType.cs" />
-    <Compile Include="Utils\Formatter.cs" />
+    <Compile Include="Utils\Formatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utils\NPOIExt\ICellExtension.cs" />
     <Compile Include="Utils\NPOIExt\IRowExtension.cs" />
     <Compile Include="Utils\RTFNumber.cs" />
