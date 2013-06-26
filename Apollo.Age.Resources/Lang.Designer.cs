@@ -1600,6 +1600,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FT. 1X2.
+        /// </summary>
+        public static string lblFT1X2 {
+            get {
+                return ResourceManager.GetString("lblFT1X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Time Odd Even.
         /// </summary>
         public static string lblFTOddEven {
