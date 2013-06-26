@@ -5,19 +5,19 @@
 		new string[] {"~/totalBets/handicap", Apollo.Age.Resources.Lang.lblHOUL},
 		new string[] {"~/totalBets/moneyline", Apollo.Age.Resources.Lang.moneyline},
 		new string[] {"~/totalBets/oddeven", Apollo.Age.Resources.Lang.OE1x2DND},
-		new string[] {"~/_betList/BetList.aspx?type=CorrectScore", "CScore"},
+		new string[] {"~/_betList/BetList.aspx?type=CorrectScore", Apollo.Age.Resources.Lang.correctscore},
 		new string[] {"~/totalBets/totalgoal", Apollo.Age.Resources.Lang.totalgoal},
-		new string[] {"~/_betList/BetList.aspx?type=MixParlay", "MPL"},
-		new string[] {"~/_betList/BetList.aspx?type=CombMixParlayBetList", "SPL"},
+		new string[] {"~/_betList/BetList.aspx?type=MixParlay", Apollo.Age.Resources.Lang.lblMixParlay},
+		new string[] {"~/_betList/BetList.aspx?type=CombMixParlayBetList", Apollo.Age.Resources.Lang.lblSystemParlay},
 		new string[] {"~/totalBets/outright", Apollo.Age.Resources.Lang.lblOutRight},
 		new string[] {"~/totalBets/htft", Apollo.Age.Resources.Lang.htft},
 		new string[] {"~/totalBets/firstgoal", Apollo.Age.Resources.Lang.fglg},
-		new string[] {"~/_betList/BetList.aspx?bettype=13&amp;type=Bettype", "CSheet"},
-		new string[] {"~/_betList/BetList.aspx?bettype=24&amp;type=Bettype", "DC"},
+		new string[] {"~/_betList/BetList.aspx?bettype=13&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(13)},
+		new string[] {"~/_betList/BetList.aspx?bettype=24&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(24)},
 		new string[] {"~/totalBets/homenobet", Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet},
-		new string[] {"~/_betList/BetList.aspx?bettype=26&amp;type=Bettype", "B/O/NTTS"},
-		new string[] {"~/_betList/BetList.aspx?bettype=27&amp;type=Bettype", "WN"},
-		new string[] {"~/_betList/BetList.aspx?bettype=28&amp;type=Bettype", "3WHDP"}
+		new string[] {"~/_betList/BetList.aspx?bettype=26&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(26)},
+		new string[] {"~/_betList/BetList.aspx?bettype=27&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(27)},
+		new string[] {"~/_betList/BetList.aspx?bettype=28&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(28)}
 	};
 	int menuItemCount = menu.Count;
 }
