@@ -213,31 +213,31 @@
 	@Formater.FormatShortDateNoZeroLeading(dateTime)
 		}
 }
-@helper RenderSportDropDownList(List<Apollo.Age.Entities.SingbetSport> sportList, int currentSportId, string id = "ddlSport", string className = "")
+@helper RenderSportDropDownList(List<Apollo.Age.Entities.SingbetSport> sportList, string currentSportId, string id = "ddlSport", string className = "")
 	{
-		<select id="@id" class="@className">
-			@if(sportList != null)
-			{
-				foreach(var sport in sportList)
-				{
-					<option value="@sport.Id" selected="(@sport.Id = @currentSportId)">@sport.Name</option>
-				}
-			}
-		</select>
+        <select id="@id" class="@className">
+            @if(sportList != null)
+            {
+                foreach(var sport in sportList)
+                {
+                    <option value="@sport.Id" selected="@(sport.Id == @currentSportId)">@sport.Name</option>
+                }
+            }
+        </select>
 }
 
-@helper RenderBettypeDropDownList(List<Apollo.Age.Entities.SingbetBettype> bettypeList, int currentBettypeId, string id = "ddlBettype", string className = "")
-	{
-		<select id="@id" class="@className">
-			@if (bettypeList != null)
-			{
-				foreach (var bettype in bettypeList)
-				{
-					<option value="@bettype.Id" selected="(@bettype.Id = @currentBettypeId)">@bettype.Name</option>
-				}
-			}
-		</select>
-	}
+@helper RenderBettypeDropDownList(List<Apollo.Age.Entities.SingbetBettype> bettypeList, string currentBettypeId, string id = "ddlBettype", string className = "")
+    {
+        <select id="@id" class="@className">
+            @if (bettypeList != null)
+            {
+                foreach (var bettype in bettypeList)
+                {
+                    <option value="@bettype.Id" selected="@(bettype.Id == @currentBettypeId)">@bettype.Name</option>
+                }
+            }
+        </select>
+    }
 @helper RenderResultBySport()
 	{
 		List<Apollo.Age.Entities.SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport(true);

@@ -13,11 +13,11 @@ namespace Apollo.Age.Reports.Models
 
     public class MatchEnteredModel
     {
-        public int IsToday { get; set; }
+        public bool IsToday { get; set; }
 
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
 
-        public byte SportType { get; set; }
+        public short SportType { get; set; }
 
         public int Entered { get; set; }
 
