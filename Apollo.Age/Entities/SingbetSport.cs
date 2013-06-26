@@ -20,6 +20,4 @@ namespace Apollo.Age.Entities
 
         public string Name { get; set; }
     }
-
-
 }
