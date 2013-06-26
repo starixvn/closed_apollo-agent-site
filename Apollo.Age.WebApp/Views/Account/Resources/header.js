@@ -338,9 +338,16 @@ var HEADER = function ($) {
             });
 
             // show or hide left navigation
-            $("#account-link").click(function () {
+            $('#account-link').click(function () {
                 HEADER.showAccountTab();
             });
+
+            // show contact us page
+            $('#contact-us').click(function () {
+                var contactWindow = window.open(APOLLO.resolveUrl('~/Account/ContactUs'), '_blank', 'scrollbars=1,width=800,height=428,toolbar=no,top=0,left=0,scrollbars=yes,resizable=yes,personalbar=yes');
+                contactWindow.focus();
+            });
+
         },
         signOut: function () {
             $("#signout").on("click", function () {

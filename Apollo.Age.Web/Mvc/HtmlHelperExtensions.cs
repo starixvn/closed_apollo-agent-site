@@ -24,6 +24,8 @@ namespace Apollo.Age.Web.Mvc
     using System.Web.Compilation;
     using System.Globalization;
     using System.Resources;
+    using Apollo.Age.Enumerations;
+    using Apollo.Age.Resources;
 
     public static class HtmlHelperExtensions
     {
@@ -324,6 +326,35 @@ namespace Apollo.Age.Web.Mvc
 
             return resMgr.GetString(key);
         }
+        #endregion
+
+        #region Status
+
+        public static MvcHtmlString ToStringStatus(this byte status, byte uplineStatus)
+        {
+            string format = "<span class=\"{0}\">{1}</span>";
+
+            if (status == (int)CustomerStatus.Active)
+            {
+                if (uplineStatus == (int)CustomerStatus.Active)
+                {
+                    return new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
+                }
+                else
+                {
+                    return new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
+                }
+            }
+            else if (status == (int)CustomerStatus.Active)
+            {
+                return new MvcHtmlString(string.Format(format, "close", Lang.Close));
+            }
+            else
+            {
+                return new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
+            }
+        }
+
         #endregion
     }
 }

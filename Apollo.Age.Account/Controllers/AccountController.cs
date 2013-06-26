@@ -92,6 +92,11 @@ namespace Apollo.Age.Account.Controllers
             return View(CurrentSession);
         }
 
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
         public ActionResult Menu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
@@ -270,8 +275,20 @@ namespace Apollo.Age.Account.Controllers
             };
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+            var listPage = new List<SelectListItem>();
+            for (int i = 1; i <= criteria.NumPages; i++)
+            {
+                listPage.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                });
+            }
 
-            return View();
+            ViewBag.AgentList = models;
+            ViewBag.ListPage = listPage;
+
+            return View(criteria);
         }
 
         [HttpPost]

@@ -8,6 +8,8 @@
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
     var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     titleFormat = string.Format(titleFormat, string.Empty);
+
+    var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @section css
@@ -21,31 +23,36 @@
                     <tbody>
                         <tr>
                             <td nowrap="nowrap">
-                                &nbsp;&nbsp;@Lang.Agency&nbsp;:&nbsp;
+                                &nbsp;&nbsp;@Lang.agent&nbsp;:&nbsp;
                             </td>
                             <td>
                                 @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
-                                    new SelectListItem { Value = "2", Text = Lang.Close }
-				                }, new { id = "ddlIsMember" })
-                                <select class="za_select" onchange="self.myFORM.submit()" name="enable" id="enable">
-                                    <option value="Y" selected="selected">Active</option>
-                                    <option value="N">Close</option>
-                                    <option value="S">View Only</option>
-                                    <option value="F">Suspended</option>
-                                </select>
+                                    new SelectListItem { Value = "2", Text = Lang.Suspended }
+				                }, new { id = "ddlIsMember", @class = "za_select" })
+                            </td>
+                            <td nowrap="nowrap">
+                                &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
                             </td>
                             <td nowrap="nowrap">
                                 &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
                             </td>
                             <td>
-                                <select class="za_select" name="page" id="page">
-                                    <option value="0" selected="selected">1</option>
-                                </select>
+                                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                             </td>
                             <td nowrap="nowrap">
-                                &nbsp;/&nbsp;1&nbsp;@Lang.Pages
+                                &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
                             </td>
                             <td>
                                 &nbsp;
@@ -85,31 +92,37 @@
             <td width="60">
                 @Lang.BestCondition
             </td>
-            <td width="300">
+            <td width="80">
                 @Lang.Feature
             </td>
         </tr>
-        <tr class="m_cen">
-            <td>
-                flat
-            </td>
-            <td>
-                0226
-            </td>
-            <td>
-                1
-            </td>
-            <td>
-                Active
-            </td>
-            <td>
-                Active
-            </td>
-            <td align="left">
-                &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
-                </span>
-            </td>
-        </tr>
+        @if (!ReferenceEquals(agentList, null) && agentList.Any())
+        {
+            foreach (var item in agentList)
+            {
+            <tr class="m_cen">
+                <td>
+                    @item.Username
+                </td>
+                <td>
+                    @item.NumberOfAgent
+                </td>
+                <td>
+                    @item.NumberOfMember
+                </td>
+                <td>
+                    @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                </td>
+                <td>
+                    @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                </td>
+                <td align="left">
+                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                    </span>
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>
 @section scripts

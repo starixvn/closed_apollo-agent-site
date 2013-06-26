@@ -1460,4 +1460,44 @@
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
   </data>
+  <data name="est" xml:space="preserve">
+    <value>E.S.T</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order by</value>
+  </data>
+  <data name="ASC" xml:space="preserve">
+    <value>ASC</value>
+  </data>
+  <data name="DES" xml:space="preserve">
+    <value>DES</value>
+  </data>
+  <data name="ContentContact" xml:space="preserve">
+    <value>Contact our Customer Relationship Officers through the following available communication
+                channels should you have any concerns or queries.</value>
+  </data>
+  <data name="lblContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="lblEmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="lblEmailContact" xml:space="preserve">
+    <value>csdAddress@yahoo.com</value>
+  </data>
+  <data name="lblHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>(63) 99917 88888</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>(63) 91542 22222</value>
+  </data>
+  <data name="lblPhone3" xml:space="preserve">
+    <value>4000 888 092</value>
+  </data>
+  <data name="lblTelephoneNo" xml:space="preserve">
+    <value>Telephone No.</value>
+  </data>
 </root>
