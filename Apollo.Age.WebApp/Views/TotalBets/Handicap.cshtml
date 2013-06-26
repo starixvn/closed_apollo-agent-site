@@ -20,8 +20,8 @@
         </td>
         <td class="fcbtn c" >
             <!--HandicapTotalButton-->
-            <a href="javascript:void(0);" match-id="@matchId" bet-type="@betType" 
-            class="btnInfo view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
+            <input type="button" match-id="@matchId" bet-type="@betType" 
+            class="fc-button view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
             <!--/HandicapTotalButton-->
         </td>
     }
@@ -75,7 +75,7 @@
         <td class="c" >
             @item.LeagueName
         </td>
-        <td >
+        <td class="valign-top">
             @item.HomeTeam
             <br />
             @item.AwayTeam
@@ -108,13 +108,13 @@
             <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2" style="width: 10%;">
+            <td rowspan="2" style="width: 7%;">
                 @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2" style="width: 10%;">
+            <td rowspan="2" style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2"  style="width: 20%;">
+            <td rowspan="2"  style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">

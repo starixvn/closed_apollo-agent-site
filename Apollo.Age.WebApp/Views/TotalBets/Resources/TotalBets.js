@@ -3,7 +3,7 @@
 var TOTALBETS = function ($) {
     return {
         initViewForeCastHandicap: function () {
-            $(".tblRpt").on("click", "a.view-forecast", function () {
+            $(".tblRpt").on("click", "input.view-forecast", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
 
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
@@ -132,7 +132,7 @@ var TOTALBETS = function ($) {
         },
 
         initViewForecast1x2: function () {
-            $(".tblRpt").on("click", "a.view-forecast", function () {
+            $(".tblRpt").on("click", "input.view-forecast", function () {
                 if (countDownTimer != null) clearTimeout(countDownTimer);
                 var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")

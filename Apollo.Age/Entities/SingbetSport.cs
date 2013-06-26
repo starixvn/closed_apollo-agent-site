@@ -19,21 +19,5 @@ namespace Apollo.Age.Entities
         public string Id { get; set; }
 
         public string Name { get; set; }
-
-        public IEnumerable<SingbetSport> GenerateSingbetSport
-        {
-            get
-            {
-                List<SingbetSport> listSport = new List<SingbetSport>() { 
-                    new SingbetSport{
-                    Id  = "",
-                    Name = ""
-                    }
-                };
-                return listSport;
-            }
-        }
     }
-
-
 }
