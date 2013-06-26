@@ -1506,7 +1506,10 @@
   <data name="WagerState" xml:space="preserve">
     <value>Wager state</value>
   </data>
-<data name="area" xml:space="preserve">
+  <data name="area" xml:space="preserve">
     <value>Area</value>
+  </data>
+  <data name="TicketsCancelled" xml:space="preserve">
+    <value>Ticket cancelled</value>
   </data>
 </root>

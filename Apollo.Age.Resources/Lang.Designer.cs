@@ -3797,6 +3797,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket cancelled.
+        /// </summary>
+        public static string TicketsCancelled {
+            get {
+                return ResourceManager.GetString("TicketsCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string time {
