@@ -1,4 +1,4 @@
-﻿var curCountDown = 0;
+﻿/*var curCountDown = 0;
 var ckiName = null;
 var countDownTimer = null;
 var isStopCoundown = true;
@@ -120,4 +120,17 @@ function RefreshCountDown_AddEvent(el, evname, func) {
     }
 }
 
-RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);
+RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);*/
+
+$(document).ready(function () {
+    var interval;
+
+    $('.btnCountDown select').on('change', function () {
+        clearInterval(interval);
+        var duration = $(this).val();
+        if (duration > 0) {
+            interval = setInterval("location.reload()", duration * 1000);
+        }
+    });
+
+});

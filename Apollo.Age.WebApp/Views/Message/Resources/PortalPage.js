@@ -206,20 +206,8 @@ $(document).ready(function () {
     });
 
     $(document).delegate('#announcement-link', 'click', function () {
-
-        $.ajax({
-            url: APOLLO.resolveUrl('~/Message/Announcement'),
-            type: 'GET',
-            dataType: 'HTML',
-            success: function (result) {
-                var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
-
-                myWindow.document.write(result);
-                myWindow.focus();
-            },
-            error: function (xhr, status, err) {
-            }
-        });
+        var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
+        myWindow.focus();
     });
 
 });
