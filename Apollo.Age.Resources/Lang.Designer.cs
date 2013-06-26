@@ -277,6 +277,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Best Condition.
+        /// </summary>
+        public static string BestCondition {
+            get {
+                return ResourceManager.GetString("BestCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Setting Instructions.
         /// </summary>
         public static string BetSettingInstructions {
@@ -624,6 +633,15 @@ namespace Apollo.Age.Resources {
         public static string ExtraTime {
             get {
                 return ResourceManager.GetString("ExtraTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature.
+        /// </summary>
+        public static string Feature {
+            get {
+                return ResourceManager.GetString("Feature", resourceCulture);
             }
         }
         
