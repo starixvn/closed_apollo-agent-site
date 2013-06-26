@@ -10,8 +10,30 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
+    using Apollo.Age.Services;
 
     public class MatchEnteredModel
+    {
+        public short SportTypeId { get; set; }
+
+        public int YesterdayEntered { get; set; }
+
+        public int YesterdayNonEntered { get; set; }
+
+        public int TodayEntered { get; set; }
+
+        public int TodayNonEntered { get; set; }
+
+        public string SportTypeName
+        {
+            get
+            {
+                return CacheRef.GetSportName(this.SportTypeId);
+            }
+        }
+    }
+
+    public class MatchEntered
     {
         public bool IsToday { get; set; }
 

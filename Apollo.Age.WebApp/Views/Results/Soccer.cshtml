@@ -3,14 +3,7 @@
 @model IEnumerable<MatchResultModel>
 <table class="tblRpt soccer">
     <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="6">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr>
-        }
+      
         <tr class="RptHeader">
             <th  style="width: 100px;">
                 @Apollo.Age.Resources.Lang.time

@@ -35,7 +35,7 @@ namespace Apollo.Age.Account.Criterias
             {
                 int pageSize = 0;
 
-                int.TryParse(ConfigurationManager.AppSettings["PageSizeAgentMemberList"].ToString(), out pageSize);
+                int.TryParse(ConfigurationManager.AppSettings["PageSizeAgentList"].ToString(), out pageSize);
 
                 return pageSize;
             }
@@ -48,6 +48,12 @@ namespace Apollo.Age.Account.Criterias
 
         [SpParam(Ignored = true)]
         public int OrderType { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int ParentAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int UplineAgentId { get; set; }
 
         [SpParam(Ignored = true)]
         public int NumPages

@@ -12,9 +12,6 @@
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
-@section css
-{
-}
 @using (Html.BeginForm())
 {       
     <table width="780" cellpadding="0" border="0" cellspacing="0">
@@ -31,7 +28,7 @@
                                     @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
-                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+                                    new SelectListItem { Value = "3", Text = .Suspended }
 				                }, new { @class = "za_select" })
                                 </td>
                                 <td nowrap="nowrap">
@@ -54,7 +51,7 @@
                                         &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
                                     </td>
                                     <td>
-                                        @Html.DropDownList("PageIndex", (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                                        @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                                         <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
                                     </td>
                                     <td nowrap="nowrap">
@@ -98,7 +95,7 @@
                 @Lang.condition
             </td>
             <td width="60">
-                @Lang.BestCondition
+                @Lang.BetCondition
             </td>
             <td width="80">
                 @Lang.Feature
@@ -113,10 +110,26 @@
                     @item.Username
                 </td>
                 <td>
-                    @item.NumberOfAgent
+                    @if (item.NumberOfAgent != 0)
+                    { 
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
                 </td>
                 <td>
-                    @item.NumberOfMember
+                    @if (item.NumberOfMember != 0)
+                    { 
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
                 </td>
                 <td>
                     @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))

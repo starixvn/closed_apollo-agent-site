@@ -1439,8 +1439,8 @@
   <data name="Feature" xml:space="preserve">
     <value>Feature</value>
   </data>
-  <data name="BestCondition" xml:space="preserve">
-    <value>Best Condition</value>
+  <data name="BetCondition" xml:space="preserve">
+    <value>Bet Condition</value>
   </data>
   <data name="Agency" xml:space="preserve">
     <value>Agency</value>
@@ -1509,7 +1509,16 @@
   <data name="area" xml:space="preserve">
     <value>Area</value>
   </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="InComplete" xml:space="preserve">
+    <value>Incomplete</value>
+  </data>
   <data name="TicketsCancelled" xml:space="preserve">
     <value>Ticket cancelled</value>
+  </data>
+  <data name="SearchMember" xml:space="preserve">
+    <value>Search Member</value>
   </data>
 </root>
