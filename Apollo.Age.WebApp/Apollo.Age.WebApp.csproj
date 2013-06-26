@@ -717,6 +717,8 @@
     <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
     <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
+    <Content Include="Views\Account\ContactUs.cshtml" />
+    <Content Include="Views\Account\Resources\header.less" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -759,7 +761,7 @@
     <Content Include="Views\Account\Resources\CustomerList.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\Core.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
-    <Content Include="Views\Account\Resources\header.less" />
+    <Content Include="Views\Account\Resources\ContactUs.less" />
     <Content Include="Views\Account\Resources\LogLogin.less" />
     <Content Include="Views\Account\Resources\MiniAccount.less" />
     <Content Include="Views\Account\Resources\ViewSetting.less" />
