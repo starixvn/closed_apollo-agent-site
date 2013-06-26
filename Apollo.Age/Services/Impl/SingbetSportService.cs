@@ -9,7 +9,7 @@ namespace Apollo.Age.Services.Impl
 {
     public class SingbetSportService
     {
-        public static List<SingbetSport> GetSport()
+        public static List<SingbetSport> GetSport(bool isOther)
         {
             var sportList = new List<SingbetSport>{
                 new SingbetSport{
@@ -35,10 +35,10 @@ namespace Apollo.Age.Services.Impl
                 new SingbetSport{
                     Id = SingbetConstants.BaseBall,
                     Name = Apollo.Age.Resources.Lang.Baseball
-                },               
-                 new SingbetSport{
+                },
+                new SingbetSport{
                     Id = SingbetConstants.Other,
-                    Name = Apollo.Age.Resources.Lang.other
+                    Name = isOther ? Apollo.Age.Resources.Lang.other : Apollo.Age.Resources.Lang.InterEvent
                 },
                 new SingbetSport{
                     Id = SingbetConstants.Outright,
@@ -77,7 +77,7 @@ namespace Apollo.Age.Services.Impl
                     Name = Apollo.Age.Resources.Lang.Baseball
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.InterEvent,
+                    Id = SingbetConstants.Other,
                     Name = Apollo.Age.Resources.Lang.InterEvent
                 },
                  new SingbetBettype{

@@ -10,7 +10,7 @@
 
     <label for="ddlSport">Report:</label>
 
-    @RazorHelper.RenderSportDropDownList(SingbetSportService.GetSport(), currentSportId: 0)
+    @RazorHelper.RenderSportDropDownList(SingbetSportService.GetSport(false), currentSportId: 0)
 
     <a href="#" style="padding:5px;">Report</a>
     <a href="#" style="padding:5px;">Ticket cancelled</a>
