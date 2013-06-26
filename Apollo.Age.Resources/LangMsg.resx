@@ -180,4 +180,7 @@
   <data name="ValidateFromToDate" xml:space="preserve">
     <value>The From date must be less than the To date</value>
   </data>
+  <data name="MessageValidateWithArchivedDate" xml:space="preserve">
+    <value>Date range cannot be less than Archived Date</value>
+  </data>
 </root>

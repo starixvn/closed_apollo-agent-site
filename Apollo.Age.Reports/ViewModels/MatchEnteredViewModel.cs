@@ -10,25 +10,48 @@
 namespace Apollo.Age.Reports.ViewModels
 {
     using Apollo.Age.Services;
+    using System;
+    using Apollo.Age.Reports.Models;
+    using System.Collections.Generic;
+    using Apollo.Age.Entities;
 
     public class MatchEnteredViewModel
     {
-        public short SportTypeId { get; set; }
+        public DateTime BalanceUpDay { get; set; }
 
-        public int YesterdayEntered { get; set; }
+        public List<MatchEnteredModel> matchEnteredModelList { get; set; }
 
-        public int YesterdayNonEntered { get; set; }
+        public List<SingbetSport> SportList { get; set; }
 
-        public int TodayEntered { get; set; }
+        public List<SingbetBettype> BettypeList { get; set; }
 
-        public int TodayNonEntered { get; set; }
-        
-        public string SportTypeName
+        public bool CheckIsCompleted(bool isToday)
         {
-            get
+            if (matchEnteredModelList != null)
             {
-                return CacheRef.GetSportName(this.SportTypeId);
+                if (isToday)
+                {
+                    foreach (var item in matchEnteredModelList)
+                    {
+                        if (item.TodayNonEntered != 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var item in matchEnteredModelList)
+                    {
+                        if (item.YesterdayNonEntered != 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
+
+            return true;
         }
     }
 }

@@ -125,13 +125,13 @@ namespace Apollo.Age.Reports.Controllers
 
         public ViewResult MatchEntered()
         {
-            var sportList = SingbetSportService.GetSport(false);
-            var bettypeList = SingbetSportService.GetBettype();
-            var matchEnteredList = _winLossService.GetMatchEntered();
-            ViewBag.SportList = sportList;
-            ViewBag.BettypeList = bettypeList;
+            var matchEnteredViewModel = new MatchEnteredViewModel();
+            matchEnteredViewModel.BalanceUpDay = _reportService.GetBalanceUpDay();
+            matchEnteredViewModel.SportList = SingbetSportService.GetSport(false);
+            matchEnteredViewModel.BettypeList = SingbetSportService.GetBettype();
+            matchEnteredViewModel.matchEnteredModelList = _winLossService.GetMatchEntered();
 
-            return View(matchEnteredList);
+            return View(matchEnteredViewModel);
         }
 
         public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)

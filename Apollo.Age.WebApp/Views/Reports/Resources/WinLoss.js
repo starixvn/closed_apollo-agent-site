@@ -4,6 +4,7 @@
         ToDate: null,
 
         init: function () {
+            WINLOSS.BalanceUpDay = $("#balanceUpDay")
             WINLOSS.FromDate = $("#FromDate");
             WINLOSS.ToDate = $("#ToDate");
             WINLOSS.Today = $("#today");
@@ -17,14 +18,22 @@
             $("#btnSubmit").bind('click', function () {
                 var fromDate = new Date(WINLOSS.FromDate.val());
                 var toDate = new Date(WINLOSS.ToDate.val());
+                var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
 
-                if (toDate < fromDate) {
-                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warning' });
+                if (fromDate < balanceUpDate || toDate < balanceUpDate) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate);
                 }
                 else {
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
                     location.href = url;
                 }
+
+//                if (toDate < fromDate) {
+//                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warning' });
+//                }
+//                else {
+//                    
+//                }
             });
 
             $(".navigation").bind('click', function () {
