@@ -243,3 +243,21 @@
 			}
 		</select>
 }
+
+@helper ToEasternTime(DateTime datetime)
+{
+    if(datetime != null)
+    {
+        try
+        {
+            TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+            
+            @(string.Format("E.S.T {0}", Formater.LongDateFormat(easternTime)))
+        }
+        catch(Exception ex)
+        {
+            Fanex.Logging.Logger.Log.Error(ex.Message, ex);
+        }
+    }
+}
