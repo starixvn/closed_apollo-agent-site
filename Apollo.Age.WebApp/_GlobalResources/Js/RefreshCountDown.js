@@ -24,14 +24,14 @@ function CountDownRefresh() {
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
     ajax.Request(window.location.href,
-        {
-            asynchronous: true,
-            parameters: 'full_mode=0',
-            onComplete: function (data) {
-                document.getElementById('sContent').innerHTML = data.responseText;
-                RefreshCountDown_Init();
-            }
-        });
+{
+    asynchronous: true,
+    parameters: 'full_mode=0',
+    onComplete: function (data) {
+        document.getElementById('sContent').innerHTML = data.responseText;
+        RefreshCountDown_Init();
+    }
+});
 
     return true;
 }
@@ -122,16 +122,45 @@ function RefreshCountDown_AddEvent(el, evname, func) {
 
 RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);*/
 
-$(document).ready(function () {
-    var interval;
+var RefreshCountDown = function ($) {
+    return {
+        timeout: null,
+        ddlRefresh: null,
+        onRefresh: null,
 
-    $('.btnCountDown select').on('change', function () {
-        clearInterval(interval);
-        var duration = $(this).val();
-        var onRefresh = $('#apo-on-flesh').val();
-        if (duration > 0) {
-            interval = setInterval(onRefresh, duration * 1000);
+        setTimeout: function (timeout) {
+            clearTimeout(RefreshCountDown.timeout);
+            RefreshCountDown.timeout = setTimeout(RefreshCountDown.onRefresh, timeout * 1000);
+        },
+
+        clearTimeout: function () {
+            if (RefreshCountDown.timeout != null) clearTimeout(RefreshCountDown.timeout);
+        },
+
+        setCurrentTimeout: function () {
+            var timeout = RefreshCountDown.ddlRefresh.val();
+            if (timeout > 0) {
+                RefreshCountDown.setTimeout(timeout);
+                $.cookie('ApoRefreshTimeout', timeout);
+            } else {
+                $.removeCookie('ApoRefreshTimeout');
+            }
         }
-    });
+    };
+} (jQuery);
 
+$(document).ready(function () {
+    RefreshCountDown.ddlRefresh = $('.btnCountDown select');
+    RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
+
+    // set refresh timeout by using cookie
+    var timeout = $.cookie('ApoRefreshTimeout');
+    if (typeof timeout !== 'undefined') {
+        RefreshCountDown.setTimeout(timeout);
+        RefreshCountDown.ddlRefresh.val(timeout);
+    }
+
+    RefreshCountDown.ddlRefresh.on('change', function () {
+        RefreshCountDown.setCurrentTimeout();
+    });
 });

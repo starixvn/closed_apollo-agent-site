@@ -4,7 +4,7 @@ var TOTALBETS = function ($) {
     return {
         initViewForeCastHandicap: function () {
             $(".tblRpt").on("click", "input.view-forecast", function () {
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                RefreshCountDown.clearTimeout();                
 
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
                     + 'matchId=' + $(this).attr("match-id")
@@ -14,21 +14,12 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
 
-                //                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
-                //                    width: 665,
-                //                    height: 350,
-                //                    position: { my: "top+40", at: "center top", of: window },
-                //                    close: function (event, ui) {
-                //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                //                    }
-                //                });
-                
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
                     width: 665,
                     height: 350,
                     position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
-                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                        RefreshCountDown.setCurrentTimeout();
                     }
                 });
             });
@@ -36,7 +27,7 @@ var TOTALBETS = function ($) {
 
         initViewBetList: function () {
             $(".tblRpt").on("click", "a.view-bet-list", function () {
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                RefreshCountDown.clearTimeout();
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
@@ -45,21 +36,12 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
 
-                //                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
-                //                    width: 930,
-                //                    height: 720,
-                //                    position: { my: "top+40", at: "center top", of: window },
-                //                    close: function (event, ui) {
-                //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                //                    }
-                //                });
-
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 720,
                     position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
-                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                        RefreshCountDown.setCurrentTimeout();
                     }
                 });
             });
@@ -67,7 +49,7 @@ var TOTALBETS = function ($) {
 
         initViewBetListGame: function () {
             $(".tblRpt").on("click", "a.view-bet-list", function () {
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                RefreshCountDown.clearTimeout();
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
@@ -78,21 +60,12 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
 
-                //                ageWnd.openDialog(url, title, {
-                //                    width: 930,
-                //                    height: 770,
-                //                    position: { my: "top+40", at: "center top", of: window },
-                //                    close: function (event, ui) {
-                //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                //                    }
-                //                });
-
                 APOLLO.openDialogFrame(url, title, {
                     width: 930,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
-                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                        RefreshCountDown.setCurrentTimeout();
                     }
                 });
             });
@@ -100,7 +73,7 @@ var TOTALBETS = function ($) {
 
         initViewBetListNewGame: function () {
             $(".tblRpt").on("click", "a.view-bet-list-new-game", function () {
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                RefreshCountDown.clearTimeout();
                 var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
                 + '&type=' + $(this).attr("betlist-type")
@@ -111,21 +84,12 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
 
-                //                ageWnd.openDialog(url, DEFAULT_LAYOUT.betListString, {
-                //                    width: 930,
-                //                    height: 770,
-                //                    position: { my: "top+40", at: "center top", of: window },
-                //                    close: function (event, ui) {
-                //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                //                    }
-                //                });
-
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: 930,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
-                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                        RefreshCountDown.setCurrentTimeout();
                     }
                 });
             });
@@ -133,7 +97,7 @@ var TOTALBETS = function ($) {
 
         initViewForecast1x2: function () {
             $(".tblRpt").on("click", "input.view-forecast", function () {
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                RefreshCountDown.clearTimeout();
                 var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
@@ -142,25 +106,16 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
                 }
 
-                //                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
-                //                    width: 600,
-                //                    height: 600,
-                //                    position: { my: "top+40", at: "center top", of: window },
-                //                    close: function (event, ui) {
-                //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-                //                    }
-                //                });
-                
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
                     width: 600,
                     height: 600,
                     position: { my: "top+40", at: "center top", of: window },
                     close: function (event, ui) {
-                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+                        RefreshCountDown.setCurrentTimeout();
                     }
                 });
             });
-        }        
+        }
     };
 } (jQuery);
 

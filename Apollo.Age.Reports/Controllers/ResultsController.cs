@@ -258,8 +258,7 @@ namespace Apollo.Age.Reports.Controllers
                 case SingbetConstants.VB_BDM_TT:
                     return SportTypes.Badminton.ToString();
                 case SingbetConstants.BaseBall:
-                    return SportTypes.BaseBall.ToString();
-                case SingbetConstants.InterEvent:
+                    return SportTypes.BaseBall.ToString();                
                 case SingbetConstants.Other:
                     return SportTypes.Others.ToString();
                 case SingbetConstants.Outright:
