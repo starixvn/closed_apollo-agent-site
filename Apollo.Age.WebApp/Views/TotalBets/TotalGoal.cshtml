@@ -3,29 +3,29 @@
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
 }
-@RazorHelper.RefreshCountDown("TotalGoal", 90, 60, "ReloadPage();")
+
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td style="width: 20px;">
+            <td style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td style="width: 150px;">
+            <td style="width: 25%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
 @*            <td style="width: 150px;">
                 @Apollo.Age.Resources.Lang.away
             </td>*@
-            <td style="width: 80px;">
+            <td >
                 @Apollo.Age.Resources.Lang.total01
             </td>
-            <td style="width: 80px;">
+            <td >
                 @Apollo.Age.Resources.Lang.total23
             </td>
-            <td style="width: 80px;">
+            <td >
                 @Apollo.Age.Resources.Lang.total46
             </td>
-            <td style="width: 80px;">
+            <td >
                 @Apollo.Age.Resources.Lang.total7over
             </td>
         </tr>
@@ -48,7 +48,7 @@
                         classRow = string.Empty;
                     }
                 <tr class="item @item.Closed @classRow">
-                 <td class="c" rowspan="2">
+                 <td class="c" >
                         @if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
@@ -57,31 +57,29 @@
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
                             href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
                             @item.HomeTeam
+                            
                         </a>
+                        <br />
+                            @item.AwayTeam
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total01, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total23, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total46, 2)
                     </td>
-                    <td class="r fcnum" style="width: 80px;" rowspan="2">
+                    <td class="r fcnum" style="width: 80px;">
                         @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
                     </td>
-                </tr>
-                <tr class="item @item.Closed @classRow">
-                <td style="width: 150px;">
-                        @item.AwayTeam
-                </td>
                 </tr>
                 }
             }
             else
             { 
-            @RazorHelper.ShowNoInfo(colspan: 7)
+            //@RazorHelper.ShowNoInfo(colspan: 7)
             }
         }
     </tbody>

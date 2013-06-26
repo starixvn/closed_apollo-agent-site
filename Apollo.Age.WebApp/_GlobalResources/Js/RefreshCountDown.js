@@ -1,4 +1,4 @@
-﻿var curCountDown = 0;
+﻿/*var curCountDown = 0;
 var ckiName = null;
 var countDownTimer = null;
 var isStopCoundown = true;
@@ -24,14 +24,14 @@ function CountDownRefresh() {
     document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
 
     ajax.Request(window.location.href,
-        {
-            asynchronous: true,
-            parameters: 'full_mode=0',
-            onComplete: function (data) {
-                document.getElementById('sContent').innerHTML = data.responseText;
-                RefreshCountDown_Init();
-            }
-        });
+{
+    asynchronous: true,
+    parameters: 'full_mode=0',
+    onComplete: function (data) {
+        document.getElementById('sContent').innerHTML = data.responseText;
+        RefreshCountDown_Init();
+    }
+});
 
     return true;
 }
@@ -120,4 +120,55 @@ function RefreshCountDown_AddEvent(el, evname, func) {
     }
 }
 
-RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);
+RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);*/
+
+var RefreshCountDown = function ($) {
+    return {
+        timeout: null,
+        ddlRefresh: null,
+        onRefresh: null,
+
+        setRefreshTimeout: function (timeout) {
+            if (RefreshCountDown.onRefresh) {
+                clearTimeout(RefreshCountDown.timeout);
+                RefreshCountDown.timeout = setTimeout(function () {
+                    eval(RefreshCountDown.onRefresh);
+                    RefreshCountDown.setCurrentTimeout();
+                }, timeout * 1000);
+            }
+        },
+
+        clearTimeout: function () {
+            if (RefreshCountDown.timeout != null) clearTimeout(RefreshCountDown.timeout);
+        },
+
+        setCurrentTimeout: function () {
+            var refreshId = $('#refreshCountDownId').attr('refresh-id');
+            var timeout = parseInt(RefreshCountDown.ddlRefresh.val());
+            if (timeout > 0) {
+                RefreshCountDown.setRefreshTimeout(timeout);
+                $.cookie('ApoRefreshTimeout-' + refreshId, timeout);
+            } else {
+                RefreshCountDown.clearTimeout();
+                $.removeCookie('ApoRefreshTimeout-' + refreshId);
+            }
+        }
+    };
+} (jQuery);
+
+$(document).ready(function () {
+    RefreshCountDown.ddlRefresh = $('.btnCountDown select');
+    RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
+
+    // set refresh timeout by using cookie
+    var refreshId = $('#refreshCountDownId').attr('refresh-id');
+    var timeout = $.cookie('ApoRefreshTimeout-' + refreshId);
+    if (typeof timeout !== 'undefined') {
+        RefreshCountDown.setRefreshTimeout(timeout);
+        RefreshCountDown.ddlRefresh.val(timeout);
+    }
+
+    RefreshCountDown.ddlRefresh.on('change', function () {
+        RefreshCountDown.setCurrentTimeout();
+    });
+});

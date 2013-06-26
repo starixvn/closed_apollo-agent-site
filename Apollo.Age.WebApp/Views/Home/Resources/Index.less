@@ -1,8 +1,9 @@
 ﻿@import "../../../_globalresources/css/agent.less";
 
-@internalHeaderHeight:	80px;
+@internalHeaderHeight:	50px;
 @headerHeight:			29px;
-@menuWidth:				220px;
+//@menuWidth:				220px;
+@menuWidth:				0;
 @miniMenuWidth:			30px;
 
 html, body {
@@ -24,8 +25,7 @@ iframe {
 
 .header {
 	height: @headerHeight;
-	width: 100%;	
-	border-bottom: 1px solid @headerBorderColor;
+	width: 100%;
 
 	&.int {
 		height: @internalHeaderHeight;
@@ -36,6 +36,7 @@ iframe {
 	top: @headerHeight + 1;
 	width: @menuWidth;
 	border-right: 1px solid #000;
+	display: none;
 
 	&.mini-menu {
 		width: @miniMenuWidth;
@@ -54,7 +55,7 @@ iframe {
 	top: @headerHeight + 1;
 	left: @menuWidth + 1;
 	right: 0;
-	padding: 0 5px 10px;
+	padding: 0 0 10px;
 
 	.collapse, .expand {
 		background: url(img/buttons.png) no-repeat;

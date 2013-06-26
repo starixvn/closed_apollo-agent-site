@@ -35,7 +35,7 @@
     {
     if (isFullTime)
     {
-        <td style="width: 70px" rowspan="2">
+        <td style="width: 70px" >
             <!--OneXTwoValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" 
                 href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2" title="@Apollo.Age.Resources.Lang.ViewBetList">
@@ -44,11 +44,11 @@
             <!--/OneXTwoValue-->
         </td>
            
-        <td class="fcbtn" align="center" style="width: 16px" rowspan="2">
+        <td class="fcbtn" align="center" style="width: 16px">
             @if (item.OneXTwoTotal != 0)
             { 
                 <!--OneXTwoButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
+                <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
                 <!--/OneXTwoButton-->
             }
         </td>
@@ -56,7 +56,7 @@
     }
     else
     {
-        <td style="width: 70px" rowspan="2">
+        <td style="width: 70px" >
             <!--OneXTwoFirstHalfValue-->
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" 
                 href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
@@ -65,11 +65,11 @@
             <!--/OneXTwoFirstHalfValue-->
         </td>
         
-        <td class="fcbtn" align="center" style="width: 16px" rowspan="2">
+        <td class="fcbtn" align="center" style="width: 16px" >
             @if (item.OneXTwoFirstHalf != 0)
             {
                 <!--OneXTwoFirstHalfButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
+                 <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
             }
             <!--/OneXTwoFirstHalfButton-->
         </td>
@@ -78,14 +78,10 @@
 }
 @helper ShowTime(OddEvenModel item)
 {
-    <td class="c bl_time" rowspan="2">
+    <td class="c bl_time" >
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
-            <br />
-            <!--LiveNotice-->
-            <i style="color: red">@Apollo.Age.Resources.Lang.lblLive</i>
-            <!--/LiveNotice-->
         }
         else
         {
@@ -93,18 +89,20 @@
         }
     </td>
 }
-@RazorHelper.RefreshCountDown("OddEven", 15, 15, "ReloadPage();")
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td rowspan="2" style="width: 20px;">
+            <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2" style="width: 110px;">
-                
+            <td rowspan="2" style="width:7%;">
+                @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2">
-                @Apollo.Age.Resources.Lang.home
+            <td rowspan="2" style="width: 25%;">
+                @Apollo.Age.Resources.Lang.league
+            </td>
+            <td rowspan="2" style="width: 15%;">
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
                 @Apollo.Age.Resources.Lang.fulltime
@@ -154,20 +152,31 @@
                         classRow = string.Empty;                        
                     }
                     
-            @ShowLeague(currentLeagueId, item)  
+            //@ShowLeague(currentLeagueId, item)  
             
             <!--MatchContents-->
             <tr class='r @classRow'>
-                 <td class="c" rowspan="2">
+                 <td class="c">
                         @if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
+                        @if (item.LiveIndicator)
+                        {
+                             <br />
+                            <!--LiveNotice-->
+                            <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
+                        }
                     </td>
                     @ShowTime(item)
-                <td class="l" >
+                    <td class="c">
+                         @item.LeagueName 
+                    </td>
+                <td class="l valign-top">
                     @item.HomeTeam 
+                    <br />
+                    @item.AwayTeam
                 </td>
-                <td rowspan="2">
+                <td>
                     <!--OddEvenValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" 
                         href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven" title="@Apollo.Age.Resources.Lang.ViewBetList"> 
@@ -176,7 +185,7 @@
                     <!--/OddEvenValue-->
                 </td>
                 @Show1x2Button(item, true)
-                <td style="width: 86px" rowspan="2">
+                <td style="width: 86px" >
                     <!--DNDValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" 
                         href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
@@ -184,7 +193,7 @@
                     </a>
                     <!--/DNDValue-->
                 </td>
-                <td rowspan="2">
+                <td >
                     <!--OddEvenFirstHalfValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" 
                         href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
@@ -194,17 +203,13 @@
                 </td>
                 @Show1x2Button(item, false)
             </tr>
-            <tr class='l @classRow'>
-                <td>
-                    @item.AwayTeam
-                </td>
-            </tr>
+
                     currentLeagueId = item.LeagueId;
                 }
             }
             else
             { 
-            @RazorHelper.ShowNoInfo(colspan: 11)
+            //@RazorHelper.ShowNoInfo(colspan: 11)
             }            
         }
     </tbody>

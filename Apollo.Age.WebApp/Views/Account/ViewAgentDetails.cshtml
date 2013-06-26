@@ -1,0 +1,13 @@
+﻿@using Fanex.CustSetting.ViewData;
+@using Apollo.Age.Resources;
+@{
+    ViewBag.Title = "ViewAgentDetails";
+    var comSetting = (CommissionSetting)ViewBag.CommissionSetting ?? null;
+    var betSetting = (IList<BettingLimit>)ViewBag.BetSetting ?? null;
+}
+<div class="">
+Agency detailed edit -- Account: : 0226  -- Name:flat -- 
+<a href="" > @Lang.edit </a>
+<a href="" > Back </a>
+</div>
+

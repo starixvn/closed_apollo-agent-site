@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Core\SingbetConstants.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\SingbetBettype.cs" />
+    <Compile Include="Entities\SingbetSport.cs" />
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\BetStatus.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
+    <Compile Include="Services\Impl\SingbetSportService.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAgentService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
@@ -110,7 +114,12 @@
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

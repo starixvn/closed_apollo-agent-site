@@ -51,18 +51,26 @@ namespace Apollo.Age.Reports.Services
             return leagues;
         }
 
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime date, byte sportType, int custId, int leagueId = 0, string language = "E")
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId)
         {
             var criteria = new GetMatchResultCriteria
-                    {
-                        EventDate = date,
-                        SportId = sportType,
-                        LeagueId = leagueId,
-                        Language = language,
+                    {                        
+                      FromDate =fromDate,
+                      Sporttypes = sportTypes,
                         BalanceUpDay = GetBalanceUpDay()
                     };
 
-            var matchResult = GetData<MatchResultModel>(criteria);
+            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "_"));
+            var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
+            if (matchResult == null)
+            {
+                matchResult = GetData<MatchResultModel>(criteria);
+
+                if (sportTypes == Apollo.Age.Core.SingbetConstants.Other)
+                {
+                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
+                }
+            }           
 
             return matchResult;
         }

@@ -9,30 +9,6 @@
 	margin-top: 10px;
 }
 
-#box_header {
-	background-color: #C9DBDF;
-    border: 1px solid #000000;
-    padding: 3px 2px;
-}
-
-@primaryHeaderBackground:	#687780;
-@primaryHeaderColor:		#fff;
-@tableRptBorderColor:		#000;
-
-@rowTotalBackground:		@gray;
-@evenRowBackground:			@tableBackground;
-
-.tblRpt {
-	border-color: @tableRptBorderColor;
-	color: primaryHeaderColor;
-
-	thead td, thead th {
-		border: 1px solid #000;
-		background-color: @primaryHeaderBackground;
-		color: @primaryHeaderColor;
-	}
-}
-
 /* FIX IE */
 
 .eq-ie7 #page_main {
@@ -64,5 +40,38 @@
 }
 
 #resultContainer {
-	margin-bottom: 10px;
+	margin: 5px 0 10px 0;
+	float: left;
+}
+
+#box_header, .box-header {
+	&.report {
+		.winloss_firstcolumn{
+			background-color:#577176;
+			text-align: right;
+			width: 100px;
+			color: white;
+		}
+		.winloss_date{
+			background-color:#699;
+			text-align: center;
+			color: white;
+		}
+
+		.winloss_yesterday{
+			color: red;
+		}
+
+		tr{
+			td{
+				border: 1px solid #DCDCDC;
+				background-color:#C9DBDF;
+				padding: 3px;
+			}
+		}
+	}
+}
+
+a.sub-menu:hover {
+	color: #0000EE;
 }

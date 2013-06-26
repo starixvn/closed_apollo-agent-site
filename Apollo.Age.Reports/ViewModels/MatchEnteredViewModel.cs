@@ -10,10 +10,11 @@
 namespace Apollo.Age.Reports.ViewModels
 {
     using Apollo.Age.Services;
+    using System;
 
     public class MatchEnteredViewModel
     {
-        public byte SportTypeId { get; set; }
+        public short SportTypeId { get; set; }
 
         public int YesterdayEntered { get; set; }
 
@@ -22,7 +23,7 @@ namespace Apollo.Age.Reports.ViewModels
         public int TodayEntered { get; set; }
 
         public int TodayNonEntered { get; set; }
-
+        
         public string SportTypeName
         {
             get

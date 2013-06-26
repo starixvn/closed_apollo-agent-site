@@ -1,4 +1,5 @@
 ﻿@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Resources
 @model GetMessageCriteria
 @{    
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
@@ -37,13 +38,33 @@
 @section head {
     <link href="~/views/message/resources/message.less" rel="stylesheet" type="text/css">
 }
+<table width="750" border="0" cellspacing="1" cellpadding="0" class="m_tab_ed">
+    <tbody>
+        <tr>
+            <td width="150" align="right">
+                @Lang.news：
+            </td>
+            <td width="520">
+                <marquee scrolldelay="200" id="topnews"></marquee>
+            </td>
+            <td align="center">
+                <a href="javascript:;" id="announcement-link">@Lang.announcement </a>
+            </td>
+        </tr>
+        <tr align="center">
+            <td bgcolor="6EC13E" colspan="3">
+                &nbsp;
+            </td>
+        </tr>
+    </tbody>
+</table>
 @using (Html.BeginForm("NewMessage", "Message", FormMethod.Get))
 {   
     <div id="box_header">
         <div class="row">
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.dateRange)
+                    @Html.LabelFor(m => m.From, @Apollo.Age.Resources.Lang.dateRange) :
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
@@ -51,7 +72,7 @@
             </div>
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.To, "~")                    
+                    @Html.LabelFor(m => m.To, "~")
                 </div>
                 <div class="editor">
                     @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
@@ -59,7 +80,7 @@
             </div>
             <div class="cell">
                 <div class="editor">
-                    <input type="submit" class="btn" id="dSubmit" value="@Apollo.Age.Resources.Lang.submit"/>
+                    <input type="submit" class="btn" id="dSubmit" value="@Apollo.Age.Resources.Lang.search"/>
                 </div>
             </div>
         </div>
@@ -120,11 +141,7 @@
                     </td>
                 </tr>
         }
-    }
-    else
-    {
-                @RazorHelper.ShowNoInfo(4)
-    }
+    }    
             }
         </tbody>
     </table>

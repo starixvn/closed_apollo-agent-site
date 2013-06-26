@@ -18,14 +18,10 @@ namespace Apollo.Age.Reports.Criterias
     public class GetMatchResultCriteria : CriteriaBase
     {
         [SpParam(SqlParamName = "FromDate")]
-        public DateTime EventDate { get; set; }
+        public DateTime FromDate { get; set; }
 
-        public int LeagueId { get; set; }
-
-        public string Language { get; set; }
-
-        [SpParam(SqlParamName = "SportType")]
-        public int SportId { get; set; }
+        [SpParam(SqlParamName = "Sporttypes")]
+        public string Sporttypes { get; set; }
 
         [SpParam(SqlParamName = "IsShowAll")]
         public bool IsTest { get; set; }
@@ -35,12 +31,12 @@ namespace Apollo.Age.Reports.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Result_MatchSelByLeague";
+            return "Age_Result_MatchSelBySport";
         }
 
         public override bool IsValid()
         {
-            return this.EventDate <= DateTime.Now && this.EventDate >= BalanceUpDay;
+            return this.FromDate <= DateTime.Now && this.FromDate >= BalanceUpDay;
         }
     }
 }

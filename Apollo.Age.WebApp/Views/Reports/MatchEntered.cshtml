@@ -1,121 +1,328 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Entities
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model List<MatchEnteredViewModel>
-<div id="box_header">
-    <div class="row">
-        @{
-            var maxDate = DateTime.Now;
-            var minDate = maxDate.AddMonths(-3);
-        }
-        <div class="cell">
-            <div class="label">
-                <label for="dateFrom">
-                    @Apollo.Age.Resources.Lang.dateRange
-                </label>
-            </div>
-            <div class="editor">
-                @Html.DatePicker("FromDate", maxDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <div class="label">
-                <label for="dateFrom">
-                    ~
-                </label>
-            </div>
-            <div class="editor">
-                @Html.DatePicker("ToDate", maxDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="cell">
-            <div class="editor">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            </div>
-        </div>
-    </div>
-</div>
-<table class="tblRpt" style="width: auto; min-width: 700px;">
-    <thead>
-        <tr>
-            <td rowspan="2">
-                @Apollo.Age.Resources.Lang.Sports
-            </td>
-            <td colspan="2">
-                @Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))
-            </td>
-            <td colspan="2">
-                @Formater.FormatShortDateNoZeroLeading(DateTime.Now)
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 120px;">
-                @Apollo.Age.Resources.Lang.entered
-            </td>
-            <td style="width: 120px;">
-                @Apollo.Age.Resources.Lang.nonentered
-            </td>
-            <td style="width: 120px;">
-                @Apollo.Age.Resources.Lang.entered
-            </td>
-            <td style="width: 120px;">
-                @Apollo.Age.Resources.Lang.nonentered
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            int i = 1;
-            string rowClass = string.Empty;
+<div style="padding:5px;">
+    @*@Html.LabelFor(, @Apollo.Age.Resources.Lang.sport)*@
 
-            foreach (var item in Model)
-            {
-                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
-            <tr @Html.Raw(rowClass)>
-                <td>
-                    @item.SportTypeName
+    <label for="ddlSport">Report:</label>
+
+    @RazorHelper.RenderSportDropDownList((List<SingbetSport>)ViewBag.SportList, currentSportId: "0")
+
+    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.lblReport</a>
+    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.TicketsCancelled</a>
+</div>
+<div id="box_header" class="report">
+    <table>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.dateRange:
+            </td>
+            <td colspan="4">
+                <div class="row">
+                    <div class="cell">
+                        @*<div class="label">
+                            <label for="dateFrom">
+                                @Apollo.Age.Resources.Lang.dateRange
+                            </label>
+                        </div>*@
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", DateTime.Now)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="dateFrom">
+                                ~
+                            </label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", DateTime.Now)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                    </div>
+                    <div class="cell">
+                        <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                    </div>
+                </div>
+                @*<div class="row bg-action">
+                    <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                </div>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.WagerType:
+            </td>
+            <td colspan="4">
+                @RazorHelper.RenderBettypeDropDownList((List<SingbetBettype>)ViewBag.BettypeList, currentBettypeId: "0")
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.date:
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+            </td>
+            <td colspan="2"  class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now)
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.result:
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+        </tr>
+        @if (Model != null && Model.Any() && Model.Count == 7)
+        {
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.soccer:
                 </td>
-                <td class="fcnum r">
-                    @item.YesterdayEntered
-                </td>
-                <td class="fcnum r">
-                    @item.YesterdayNonEntered
-                </td>
-                <td class="fcnum r">
-                    @item.TodayEntered
-                </td>
-                <td class="fcnum r">
-                    @item.TodayNonEntered
-                </td>
+                @if (Model[0] != null)
+                {
+                    <td class="winloss_yesterday">@Model[0].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[0].YesterdayNonEntered</td>
+                    <td>@Model[0].TodayEntered</td>
+                    <td>@Model[0].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+                
             </tr>
-            }
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.BK:
+                </td>
+                @if (Model[1] != null)
+                {
+                    <td class="winloss_yesterday">@Model[1].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[1].YesterdayNonEntered</td>
+                    <td>@Model[1].TodayEntered</td>
+                    <td>@Model[1].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Tennis:
+                </td>
+                @if (Model[2] != null)
+                {
+                    <td class="winloss_yesterday">@Model[2].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[2].YesterdayNonEntered</td>
+                    <td>@Model[2].TodayEntered</td>
+                    <td>@Model[2].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Volleyball:
+                </td>
+                @if (Model[3] != null)
+                {
+                    <td class="winloss_yesterday">@Model[3].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[3].YesterdayNonEntered</td>
+                    <td>@Model[3].TodayEntered</td>
+                    <td>@Model[3].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Baseball:
+                </td>
+                @if (Model[4] != null)
+                {
+                    <td class="winloss_yesterday">@Model[4].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[4].YesterdayNonEntered</td>
+                    <td>@Model[4].TodayEntered</td>
+                    <td>@Model[4].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.lblOutRight:
+                </td>
+                @if (Model[5] != null)
+                {
+                    <td class="winloss_yesterday">@Model[5].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[5].YesterdayNonEntered</td>
+                    <td>@Model[5].TodayEntered</td>
+                    <td>@Model[5].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.InterEvent:
+                </td>
+                @if (Model[6] != null)
+                {
+                    <td class="winloss_yesterday">@Model[6].YesterdayEntered</td>
+                    <td class="winloss_yesterday">@Model[6].YesterdayNonEntered</td>
+                    <td>@Model[6].TodayEntered</td>
+                    <td>@Model[6].TodayNonEntered</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
         }
         else
         {
-            @RazorHelper.ShowNoInfo(5)
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.soccer:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.BK:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Tennis:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Volleyball:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.Baseball:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.lblOutRight:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.InterEvent:
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         }
-    </tbody>
-</table>
+    </table>
+
+    <div>
+        <div class="row bg-action">
+            <span>@Apollo.Age.Resources.Lang.WagerState: </span>
+            <select>
+                <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
+                <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
+            </select>
+            
+            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+            <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            <span>
+                @Apollo.Age.Resources.Lang.ArchivedDate: @(ViewBag.BalanceUpDay!=null ? Formater.ShortDateFormat((DateTime)ViewBag.BalanceUpDay) : "")
+            </span>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("balanceUpDay", DateTime.Now.ToString("yyyy-MM-dd"))
 @Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
 @Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))
 @Html.Hidden("tomorrow", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
@@ -136,7 +343,8 @@
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate"
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate"
             };
         } ();
     </script>

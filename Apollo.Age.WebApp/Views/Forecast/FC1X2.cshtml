@@ -16,7 +16,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "UpdateForecast1x2Value();")
+    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 15, "UpdateForecast1x2Value();")
 }
 @if (matchId == 0)
 {
@@ -65,7 +65,7 @@
         <thead>
             <tr>
                 <th colspan="2">
-                    @Apollo.Age.Resources.Lang.lblTeam
+                    @Apollo.Age.Resources.Lang.homeaway
                 </th>
                 <th colspan="3">
                     @Apollo.Age.Resources.Lang.lbl1x2

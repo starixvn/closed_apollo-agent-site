@@ -3,20 +3,20 @@
 @import "../../../_globalResources/css/sprites.less";
 
 body {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 td {
-    padding-left: 2px;
-    padding-right: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 #news_main {
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-    background: @headerBackground;	
+	height: 100%;
+	width: auto;
+	overflow: hidden;
+	background: #fff;
 
 	.login-bg {
 		background: #990000;
@@ -30,7 +30,7 @@ td {
 		}
 
 		.left {
-			background: url(images/bg-welcome.png) no-repeat;
+			background: url(images/bg-logo.jpg) no-repeat;
 			width: 183px;
 			height: 50px;			
 			position: absolute;
@@ -52,13 +52,21 @@ td {
 					float: left;
 				}
 
-				a.logout {
-					color: #fff;
+				ul.link {					
 					float: right;
 
-					&:hover {
-						color: #FFFF00;
-					}
+					li {
+						float: left;
+
+						a {
+							color: #fff;
+							margin: 0 5px;
+
+							&:hover {
+								color: #FFFF00;
+							}
+						}
+					}					
 				}
 			}
 
@@ -67,6 +75,47 @@ td {
 				border-bottom: 2px ridge #A0998F;
 				border-top: 1px solid #2F4540;
 				height: 18px;
+
+				li {
+					float: left;
+					margin: 1px 3px;
+					color: @black;
+
+					span {						
+						float: left;
+					}
+
+					a {
+						color: @black;
+
+						&.txtRed {
+							color: #BB0000;
+						}
+						
+						&.outright:hover {
+							color: #FF6600;
+							cursor: text;
+						}	
+					}
+
+					.sub-menu {						
+						float: left;
+						display: none;
+						li {
+							background: url(images/icon-subMenu.gif) left center no-repeat;
+							padding-left: 5px;
+
+							a {
+								color: #0000EE;
+
+								&:hover {
+									color: #FF6600;
+									cursor: text;
+								}
+							}
+						}
+					}
+				}
 			}
 		}				
 	}	
@@ -168,4 +217,13 @@ td {
 
 .hide {
 	display: none;
+}
+
+/* FIX IE */
+
+.eq-ie8 {
+	#news_main .login-bg .right .toolbar {
+		height: 19px;
+		border-bottom: 2px ridge #000;
+	}
 }
