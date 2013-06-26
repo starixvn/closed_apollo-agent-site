@@ -143,6 +143,7 @@ var RefreshCountDown = function ($) {
                 RefreshCountDown.setTimeout(timeout);
                 $.cookie('ApoRefreshTimeout', timeout);
             } else {
+                RefreshCountDown.clearTimeout();
                 $.removeCookie('ApoRefreshTimeout');
             }
         }
