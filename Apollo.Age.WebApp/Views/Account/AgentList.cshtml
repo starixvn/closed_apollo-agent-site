@@ -31,10 +31,10 @@
                                 </select>
                             </td>
                             <td nowrap="nowrap">
-                                &nbsp;--&nbsp;Page&nbsp;:&nbsp;
+                                &nbsp;--&nbsp;@Lang.lbl&nbsp;:&nbsp;
                             </td>
                             <td>
-                                <select class="za_select" onchange="self.myFORM.submit()" name="page" id="page">
+                                <select class="za_select" name="page" id="page">
                                     <option value="0" selected="selected">1</option>
                                 </select>
                             </td>
@@ -45,12 +45,10 @@
                                 &nbsp;
                                 <input type="text" class="za_text" maxlength="12" size="8" name="su_name" id="su_name">
                                 &nbsp;
-                                <input type="button" class="za_button" onclick="ChkSearch();" value="Search Agency"
-                                    name="button">
+                                <input type="button" class="za_button" value="Search Agency" name="button">
                             </td>
                             <td>
-                                &nbsp;--&nbsp;<input type="button" class="za_button" onclick="document.location='./body_super_agents_edit.php?uid=2324b192m56734l7449433'"
-                                    value="Add" name="append" id="append">
+                                &nbsp;--&nbsp;<input type="button" class="za_button" value="Add" name="append" id="append">
                             </td>
                         </tr>
                     </tbody>
@@ -81,6 +79,9 @@
             <td width="60">
                 @Lang.condition
             </td>
+            <td width="60">
+                @Lang.BestCondition
+            </td>
             <td width="300">
                 @Lang.Feature
             </td>
@@ -98,8 +99,11 @@
             <td>
                 Active
             </td>
+            <td>
+                Active
+            </td>
             <td align="left">
-                &nbsp; <span class="m_tab"><a href="#">Edit</a>&nbsp;/&nbsp; <a href="#">Detail</a>
+                &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
                 </span>
             </td>
         </tr>
