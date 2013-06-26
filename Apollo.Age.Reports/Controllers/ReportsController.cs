@@ -23,6 +23,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Web;
+    using Apollo.Age.Services.Impl;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -124,7 +125,11 @@ namespace Apollo.Age.Reports.Controllers
 
         public ViewResult MatchEntered()
         {
+            var sportList = SingbetSportService.GetSport(false);
+            var bettypeList = SingbetSportService.GetBettype();
             var matchEnteredList = _winLossService.GetMatchEntered();
+            ViewBag.SportList = sportList;
+            ViewBag.BettypeList = bettypeList;
 
             return View(matchEnteredList);
         }

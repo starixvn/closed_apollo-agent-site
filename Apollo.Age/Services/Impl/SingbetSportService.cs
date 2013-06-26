@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Apollo.Age.Entities;
 using Apollo.Age.Core;
+using Apollo.Age.Resources;
 
 namespace Apollo.Age.Services.Impl
 {
@@ -14,35 +15,35 @@ namespace Apollo.Age.Services.Impl
             var sportList = new List<SingbetSport>{
                 new SingbetSport{
                     Id = SingbetConstants.All,
-                    Name = Apollo.Age.Resources.Lang.all
+                    Name = Lang.all
                 },
                 new SingbetSport{
                     Id = SingbetConstants.Soccer,
-                    Name = Apollo.Age.Resources.Lang.soccer
+                    Name = Lang.soccer
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.BK_NFL_RUGBY ,
-                    Name = Apollo.Age.Resources.Lang.lblBkNflRugby
+                    Id = SingbetConstants.BK_NFL_RUGBY,
+                    Name = Lang.lblBkNflRugby
                 },
                 new SingbetSport{
                     Id = SingbetConstants.Tennis,
-                    Name = Apollo.Age.Resources.Lang.Tennis
+                    Name = Lang.Tennis
                 },
                 new SingbetSport{
                     Id = SingbetConstants.VB_BDM_TT,
-                    Name = Apollo.Age.Resources.Lang.lblVbBdmTt
+                    Name = Lang.lblVbBdmTt
                 },
                 new SingbetSport{
                     Id = SingbetConstants.BaseBall,
-                    Name = Apollo.Age.Resources.Lang.Baseball
+                    Name = Lang.Baseball
                 },
                 new SingbetSport{
                     Id = SingbetConstants.Other,
-                    Name = isOther ? Apollo.Age.Resources.Lang.other : Apollo.Age.Resources.Lang.InterEvent
+                    Name = isOther ? Lang.other : Lang.InterEvent
                 },
                 new SingbetSport{
                     Id = SingbetConstants.Outright,
-                    Name = Apollo.Age.Resources.Lang.lblOutRight
+                    Name = Lang.lblOutRight
                 }
             };
 
@@ -54,40 +55,72 @@ namespace Apollo.Age.Services.Impl
             var bettypeList = new List<SingbetBettype>{
                 new SingbetBettype{
                     Id = SingbetConstants.All,
-                    Name = Apollo.Age.Resources.Lang.all
+                    Name = Lang.all
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Soccer,
-                    Name = Apollo.Age.Resources.Lang.soccer
+                    Id = SingbetConstants.Handicap,
+                    Name = Lang.lblHandicapFC
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.BK_NFL_RUGBY ,
-                    Name = Apollo.Age.Resources.Lang.lblBkNflRugby
+                    Id = SingbetConstants.Odd_Even,
+                    Name = Lang.lblOddEven
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Tennis,
-                    Name = Apollo.Age.Resources.Lang.Tennis
+                    Id = SingbetConstants.Over_Under,
+                    Name = Lang.lblOverUnder
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.VB_BDM_TT,
-                    Name = Apollo.Age.Resources.Lang.lblVbBdmTt
+                    Id = SingbetConstants.Correct_Score,
+                    Name = Lang.correctscore
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.BaseBall,
-                    Name = Apollo.Age.Resources.Lang.Baseball
+                    Id = SingbetConstants.FT_1X2,
+                    Name = Lang.lblFT1X2
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Other,
-                    Name = Apollo.Age.Resources.Lang.InterEvent
+                    Id = SingbetConstants.Total_Goal,
+                    Name = Lang.totalgoal
                 },
                  new SingbetBettype{
-                    Id = SingbetConstants.Other,
-                    Name = Apollo.Age.Resources.Lang.other
+                    Id = SingbetConstants.First_Goal_Last_Goal,
+                    Name = Lang.firstgoal + "/" + Lang.lastgoal
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Outright,
-                    Name = Apollo.Age.Resources.Lang.lblOutRight
-                }
+                    Id = SingbetConstants.HT_FT,
+                    Name = Lang.htft
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants.Mix_Parlay,
+                    Name = Lang.lblMixParlay
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants.System_Parlay,
+                    Name = Lang.lblSystemParlay
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants.Bettype_Outright,
+                    Name = Lang.lblOutRight
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants._1st_Handicap,
+                    Name = Lang.lbl1stHdp
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants._1st_Odd_Even,
+                    Name = Lang.lblOddEven_1st
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants._1st_Over_Under,
+                    Name = Lang.lbl1stOU
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants.FirstHalf_1X2,
+                    Name = Lang.lbl1x2_1st
+                },
+                new SingbetBettype{
+                    Id = SingbetConstants.OtherBettype,
+                    Name = Lang.Others
+                },
             };
 
             return bettypeList;
