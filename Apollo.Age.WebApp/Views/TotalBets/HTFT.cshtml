@@ -8,40 +8,40 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td style="width: 60px;">
+            <td style="width: 5%;">
              @Apollo.Age.Resources.Lang.time
             </td>
-            <td style="width: 200px;">
+            <td style="width: 20%">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             @*<td style="width: 200px;">
                 @Apollo.Age.Resources.Lang.away
             </td>*@
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.hh
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.hd
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.ha
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.dh
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.dd
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.da
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.ah
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.ad
             </td>
-            <td style="width: 50px;">
+            <td >
                 @Apollo.Age.Resources.Lang.aa
             </td>
         </tr>
@@ -71,7 +71,7 @@
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
                     </td>
-                    <td class="l no-border-bottom">
+                    <td class="l no-border-bottom  valign-top">
                         <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
                             href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
                         </a>

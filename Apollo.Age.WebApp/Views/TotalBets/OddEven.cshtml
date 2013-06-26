@@ -48,7 +48,7 @@
             @if (item.OneXTwoTotal != 0)
             { 
                 <!--OneXTwoButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="5" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
+                <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
                 <!--/OneXTwoButton-->
             }
         </td>
@@ -69,7 +69,7 @@
             @if (item.OneXTwoFirstHalf != 0)
             {
                 <!--OneXTwoFirstHalfButton-->
-                <a match-id="@item.MatchId" league-name="@item.LeagueName" bet-type="15" href="javascript:void(0);" class="btnInfo view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast"></a>
+                 <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
             }
             <!--/OneXTwoFirstHalfButton-->
         </td>
@@ -96,13 +96,13 @@
             <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
             </td>
-            <td rowspan="2" style="width:10%;">
+            <td rowspan="2" style="width:7%;">
                 @Apollo.Age.Resources.Lang.lblScore
             </td>
-            <td rowspan="2" style="width: 10%;">
+            <td rowspan="2" style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2" style="width: 20%;">
+            <td rowspan="2" style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
@@ -172,7 +172,7 @@
                     <td class="c">
                          @item.LeagueName 
                     </td>
-                <td class="l" >
+                <td class="l valign-top">
                     @item.HomeTeam 
                     <br />
                     @item.AwayTeam

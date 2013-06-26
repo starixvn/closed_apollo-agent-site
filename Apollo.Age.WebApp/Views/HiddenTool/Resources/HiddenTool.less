@@ -17,17 +17,21 @@
 	h1 {
 		color: #CC0000;
 		font-size: 27px;
-		font-weight: normal;
+		font-weight: normal;		
 	}
 
 	.list-info {
 		list-style-type:decimal;
 		width: 625px;
+		color: #333399;
+
+		&.txtRed {
+			color: #CC0000;
+		}
 
 		li {
 			line-height: 20px;
-			font-size: 17px;
-			color: #333399;
+			font-size: 17px;			
 
 			span {
 				color: #000;
@@ -46,14 +50,19 @@
 
 	.item {
 		width: width;
-		margin-bottom: 35px;
+		margin-bottom: 27px;
 		display: table;
+		line-height: 22px;
 
 		.title {
 			color: #333399;
 			font-family: Verdana,Arial,Helvetica,sans-serif;
 			font-size: 24px;
-			font-weight: bold; 
+			font-weight: bold;
+
+			&.txtRed {
+				color: #CC0000;
+			}
 		}
 
 		.img, .txt {
@@ -78,5 +87,12 @@
 			color: #CC0000;
 		}
 	}
+}
 
+.eq-ie7 #page_main {
+	.hidden-tool .item {
+		.magin-25 {
+			margin-bottom: 25px;
+		}
+	}
 }
