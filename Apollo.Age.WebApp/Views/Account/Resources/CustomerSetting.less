@@ -1,0 +1,62 @@
+@import "../../../_globalresources/css/agent.less";
+	.tb-cust-setting {
+	background-color: @tableBackground;
+	border: 4px solid #DCDCDC;
+	border-width: 4px 3px 1px;
+	border-collapse: collapse;
+	margin: 0 0 30px 0;
+	width: 100%;
+	clear: both;
+
+	td, th {
+		/*white-space: nowrap;*/
+		font-weight: normal;
+		padding: 0;
+		text-align: center;
+	}
+	
+	.title-bar {
+		th, td {
+			background-color: #FFEFDE;
+		}
+	}
+
+	
+	thead td, thead th, tbody .em-row {
+		background-color: #84968B;
+		border-spacing: 0;
+		border: 1px solid #DCDCDC;
+		text-align: center;
+		//font-weight: normal;
+		color: @primaryHeaderColor;
+	}
+
+	tbody {
+		tr {
+			td {
+				border: 1px solid #DCDCDC;	
+				&.first-cell{
+					background-color: #BDD1DE;
+				}
+			}
+		}
+	}
+
+	tfoot {
+		.total {
+			background: @rowTotalBackground;
+			color: @white;
+
+			td {
+				border: 1px solid #DCDCDC;
+				text-shadow: none;
+				//font-weight: bold;
+			}
+
+			
+		}
+	}
+
+
+	
+}
