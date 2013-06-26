@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Resources
 @model IEnumerable<MatchResultModel>
 
 <table class="tblRpt baseball">
@@ -7,57 +8,60 @@
         @if ((bool)@ViewBag.IsParlay)
         {
             <tr>
-                <th class="summary-header" colspan="15">
+                <th class="summary-header" colspan="16">
                     <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
                     <span>@Model.ToList()[0].LeagueName</span>
                 </th>
             </tr> 
         }
         <tr class="RptHeader">
-            <td columnname="kickofftime" class="width-80">
-                @Apollo.Age.Resources.Lang.kickofftime
+            <td columnname="kickofftime" style="width: 50px;">
+                @Lang.time
+            </td>
+            <td style="width: 250px;">
+                @Lang.league
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.match
+                @Lang.match
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl1
+                @Lang.lbl1
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl2
+                @Lang.lbl2
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl3
+                @Lang.lbl3
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl4
+                @Lang.lbl4
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl5
+                @Lang.lbl5
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl6
+                @Lang.lbl6
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl7
+                @Lang.lbl7
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl8
+                @Lang.lbl8
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl9
+                @Lang.lbl9
             </td>
             <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lblEI
+                @Lang.lblEI
             </td>
             <td class="nowrap" style="width: 70px;">
-                @Apollo.Age.Resources.Lang.lblHTScore
+                @Lang.lblhalf
             </td>
             <td class="nowrap" style="width: 70px;">
-                @Apollo.Age.Resources.Lang.finalscore
+                @Lang.lblfinal
             </td>
             <td class="nowrap" style="width: 60px;">
-                @Apollo.Age.Resources.Lang.status
+                @Lang.more
             </td>
         </tr>
     </thead>
@@ -129,8 +133,11 @@
                 }
 
             <tr class="c">
-                <td rowspan="2" class="width-80">
+                <td>
                     @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+                </td>
+                 <td>
+                    @item.LeagueName
                 </td>
                 <td class="l">
                     @if(item.FinalHomeScore > item.FinalAwayScore)
@@ -141,37 +148,65 @@
                     {
                         @Html.Raw(item.HomeTeam)
                     }
-                    
+                    <br />
+                     @if (item.FinalHomeScore < item.FinalAwayScore)
+                    {
+                        <b>@Html.Raw(item.AwayTeam)</b>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.AwayTeam)
+                    }
                 </td>
                 <td>
                     @homeSet[0]
+                    <br />
+                     @awaySet[0]
                 </td>
                 <td>
                     @homeSet[1]
+                    <br />
+                     @awaySet[1]
                 </td>
                 <td>
                     @homeSet[2]
+                    <br />
+                     @awaySet[2]
                 </td>
                 <td>
                     @homeSet[3]
+                    <br />
+                     @awaySet[3]
                 </td>
                 <td>
                     @homeSet[4]
+                    <br />
+                     @awaySet[4]
                 </td>
                 <td>
                     @homeSet[5]
+                    <br />
+                     @awaySet[5]
                 </td>
                 <td>
                     @homeSet[6]
+                    <br />
+                     @awaySet[6]
                 </td>
                 <td>
                     @homeSet[7]
+                    <br />
+                     @awaySet[7]
                 </td>
                 <td>
                     @homeSet[8]
+                    <br />
+                     @awaySet[8]
                 </td>
                 <td>
                     @ieHome
+                    <br />
+                     @ieAway
                 </td>
                 <td>
                     @if (item.HalfTimeHomeScore == null)
@@ -181,6 +216,15 @@
                     else
                     {
                         @item.HalfTimeHomeScore
+                    }
+                    <br />
+                     @if (item.HalfTimeAwayScore == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @item.HalfTimeAwayScore
                     }
                 </td>
                 <td>
@@ -192,64 +236,8 @@
                     {
                         @item.FinalHomeScore
                     }
-                </td>
-                <td rowspan="2" class="border-right">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr class="c">
-                <td class="l">
-                    @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
-                </td>
-                <td>
-                    @awaySet[0]
-                </td>
-                <td>
-                    @awaySet[1]
-                </td>
-                <td>
-                    @awaySet[2]
-                </td>
-                <td>
-                    @awaySet[3]
-                </td>
-                <td>
-                    @awaySet[4]
-                </td>
-                <td>
-                    @awaySet[5]
-                </td>
-                <td>
-                    @awaySet[6]
-                </td>
-                <td>
-                    @awaySet[7]
-                </td>
-                <td>
-                    @awaySet[8]
-                </td>
-                <td>
-                    @ieAway
-                </td>
-                <td>
-                    @if (item.HalfTimeAwayScore == null)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        @item.HalfTimeAwayScore
-                    }
-                </td>
-                <td>
-                    @if (item.FinalAwayScore == null)
+                    <br />
+                     @if (item.FinalAwayScore == null)
                     {
                         <span>-</span>
                     }
@@ -258,13 +246,17 @@
                         @item.FinalAwayScore
                     }
                 </td>
+                <td class="border-right">
+                    @item.EventStatusTranslation
+                </td>
             </tr>
+           
 
             }
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 15);
+            @RazorHelper.ShowNoInfo(colspan: 16);
         }
     </tbody>
 </table>
