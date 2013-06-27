@@ -25,11 +25,11 @@
         <table class="tb-cust-setting">
             <thead>
                 <tr>
-                    <td rowspan="2" style="width: 25%;">
+                    <td rowspan="2" style="width: 20%;">
                         @betLimit.Name
                     </td>
                     <td colspan="4">
-                        @Lang.commission
+                        @Lang.lblCommission
                     </td>
                     <td colspan="3">
                         @Lang.lblBetSetting
@@ -59,7 +59,11 @@
             <tbody>
                 @{
                     IList<string> betType = new List<string>{
-                            "Handicap, Over/Under, Odd/Even", "R.B. Handicap, R.B. Over/Under, R.B. Odd/Even", "1 X 2, R.B. 1 X 2", "Other Bet Type", "R.B. Other Bet Type"
+                            "Handicap, Over/Under, Odd/Even", 
+                            "R.B. Handicap, R.B. Over/Under", 
+                            "1 X 2, R.B. 1 X 2", 
+                            "Other Bet Type", 
+                            "R.B. Other Bet Type"
                     };
                     int index = 0;
                     foreach (var item in betType)
@@ -91,13 +95,13 @@
                             }
                             
                         <td>
-                            @betLimit.MinBet
+                            @Math.Round(betLimit.MinBet)
                         </td>
                         <td>
-                            @betLimit.MaxBet
+                            @Math.Round(betLimit.MaxBet)
                         </td>
                         <td>
-                            @betLimit.MaxPerMatch
+                            @Math.Round(betLimit.MaxPerMatch)
                         </td>
                     </tr>
                         index++;
@@ -107,7 +111,7 @@
             </tbody>
         </table>
     }
-    <div style="width: 800px;">
+    <div style="width: 700px;">
         @if (betSetting != null && betSetting.Any())
         {
             foreach (BettingLimit betLimit in betSetting)
