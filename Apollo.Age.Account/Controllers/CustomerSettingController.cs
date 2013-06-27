@@ -438,9 +438,10 @@ namespace Apollo.Age.Account.Controllers
             //ViewBag.IsMaster = base.CurrentSession.IsMaster;
 
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
-            
-            //ViewBag.CommissionSetting = this.GetCommissionSetting(
-            return View("~/Views/Account/ViewAgentDetails");
+
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext, null);
+            ViewBag.BetSetting = this.GetBetSetting(settingContext);
+            return View("~/Views/Account/ViewAgentDetails.cshtml");
         }
 
         #endregion

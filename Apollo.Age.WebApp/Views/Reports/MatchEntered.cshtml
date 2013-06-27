@@ -5,15 +5,17 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model MatchEnteredViewModel
-<div style="padding:5px;">
-    @*@Html.LabelFor(, @Apollo.Age.Resources.Lang.sport)*@
-
-    <label for="ddlSport">Report:</label>
-
-    @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
-
-    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.lblReport</a>
-    <a href="#" style="padding:5px;" class="sub-menu">@Apollo.Age.Resources.Lang.TicketsCancelled</a>
+<div id="function-bar">
+    <div class="item">
+        <label for="ddlSport">
+            Report:</label>
+        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
+    </div>
+    <ul class="menu report-winloss">
+        <li class="active"><a href="#">@Apollo.Age.Resources.Lang.lblReport</a></li>
+        <li><a href="#">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
+    </ul>
+    <img alt="" src="~/_GlobalResources/Images/top_04.gif">
 </div>
 <div id="box_header" class="report">
     <table>
@@ -77,7 +79,7 @@
                 @Apollo.Age.Resources.Lang.date:
             </td>
             <td colspan="2" class="winloss_date">
-                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1)) 
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
                 @if (Model.CheckIsCompleted(isToday: false))
                 {
                     <span class="winloss_complete">
@@ -91,7 +93,7 @@
                     </span>
                 }
             </td>
-            <td colspan="2"  class="winloss_date">
+            <td colspan="2" class="winloss_date">
                 @Formater.ShortDateFormat(DateTime.Now)
                 @if (Model.CheckIsCompleted(isToday: true))
                 {
@@ -132,19 +134,26 @@
                 </td>
                 @if (Model.matchEnteredModelList[0] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[0].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[0].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[0].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[0].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[0].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[0].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[0].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[0].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
-                
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
@@ -152,17 +161,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[1] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[1].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[1].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[1].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[1].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[1].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[1].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[1].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[1].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -171,17 +188,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[2] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[2].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[2].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[2].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[2].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[2].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[2].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[2].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[2].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -190,17 +215,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[3] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[3].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[3].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[3].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[3].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[3].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[3].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[3].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[3].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -209,17 +242,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[4] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[4].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[4].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[4].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[4].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[4].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[4].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[4].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[4].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -228,17 +269,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[5] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[5].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[5].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[5].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[5].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[5].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[5].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[5].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[5].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -247,17 +296,25 @@
                 </td>
                 @if (Model.matchEnteredModelList[6] != null)
                 {
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[6].YesterdayEntered</td>
-                    <td class="winloss_yesterday">@Model.matchEnteredModelList[6].YesterdayNonEntered</td>
-                    <td>@Model.matchEnteredModelList[6].TodayEntered</td>
-                    <td>@Model.matchEnteredModelList[6].TodayNonEntered</td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[6].YesterdayEntered
+                    </td>
+                    <td class="winloss_yesterday">@Model.matchEnteredModelList[6].YesterdayNonEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[6].TodayEntered
+                    </td>
+                    <td>@Model.matchEnteredModelList[6].TodayNonEntered
+                    </td>
                 }
                 else
                 {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                 }
             </tr>
         }
@@ -267,85 +324,114 @@
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.soccer:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.BK:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.Tennis:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.Volleyball:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.Baseball:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.lblOutRight:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.InterEvent:
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
             </tr>
         }
     </table>
-
     <div>
         <div class="row bg-action">
-            <span>@Apollo.Age.Resources.Lang.WagerState: </span>
-            <select>
-                <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
-                <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
-            </select>
-            
-            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-            <span>
+            <div class="item">
+                <span>@Apollo.Age.Resources.Lang.WagerState: </span>
+                <select>
+                    <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
+                    <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
+                </select>
+            </div>
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            </div>
+            <div class="item pull-right">
                 @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
-            </span>
+            </div>
         </div>
     </div>
 </div>
-
 @Html.Hidden("balanceUpDay", DateTime.Now.ToString("yyyy-MM-dd"))
 @Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
 @Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))

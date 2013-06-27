@@ -77,7 +77,8 @@
                 </td>
             </tr>
         </tbody>
-    </table>        
+    </table>    
+    @Html.HiddenFor(m => m.AgentId)    
 }
 <table width="880" cellpadding="0" border="0" bgcolor="#976061" cellspacing="1" class="m_tab">
     <tbody>
@@ -95,7 +96,7 @@
                 @Lang.condition
             </td>
             <td width="60">
-                @Lang.BestCondition
+                @Lang.BetCondition
             </td>
             <td width="80">
                 @Lang.Feature
@@ -121,7 +122,15 @@
                     }
                 </td>
                 <td>
-                    @item.NumberOfMember
+                    @if (item.NumberOfMember != 0)
+                    { 
+                        <span class="m_tab">@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
                 </td>
                 <td>
                     @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))

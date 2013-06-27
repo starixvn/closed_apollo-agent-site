@@ -270,29 +270,37 @@ namespace Apollo.Age.Account.Controllers
         #region Agent List
 
         [HttpGet]
-        public ActionResult AgentList()
+        public ActionResult AgentList(int agentId = -1, int pageIndex = 0, string username = "", int status = 1,
+            int oldPageIndex = 0,
+            int orderType = 1)
         {
             AgentListCriteria criteria = new AgentListCriteria()
             {
-                AgentId = this.CurrentSession.AgentId,
-                Status = (int)CustomerStatus.Active,
-                PageIndex = 0,
-                UserName = string.Empty
+                AgentId = agentId == -1 ? this.CurrentSession.AgentId : agentId,
+                Status = status,
+                PageIndex = pageIndex,
+                UserName = username,
+                OldPageIndex = oldPageIndex,
+                OrderType = orderType
             };
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
-            var listPage = new List<SelectListItem>();
-            for (int i = 0; i <= criteria.NumPages; i++)
+
+            /* Order type
+            * ASC : 1
+            * DES : 2
+            */
+            if (criteria.OrderType == 1)
             {
-                listPage.Add(new SelectListItem
-                {
-                    Value = i.ToString(),
-                    Text = (i + 1).ToString()
-                });
+                models = models.OrderBy(m => m.Username).ToList();
+            }
+            else
+            {
+                models = models.OrderByDescending(m => m.Username).ToList();
             }
 
             ViewBag.AgentList = models;
-            ViewBag.ListPage = listPage;
+            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
 
             return View(criteria);
         }
@@ -309,6 +317,33 @@ namespace Apollo.Age.Account.Controllers
                 criteria.OldPageIndex = criteria.PageIndex;
             }
 
+            return RedirectToAction("AgentList", new
+            {
+                agentId = criteria.AgentId,
+                pageIndex = criteria.PageIndex,
+                username = criteria.UserName,
+                status = criteria.Status,
+                oldPageIndex = criteria.OldPageIndex,
+                orderType = criteria.OrderType
+            });
+        }
+
+        [HttpGet]
+        public ActionResult InDirectAgentList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
+            int status = 1,
+            int oldPageIndex = 0,
+            int orderType = 1)
+        {
+            AgentListCriteria criteria = new AgentListCriteria()
+            {
+                AgentId = agentId,
+                PageIndex = pageIndex,
+                UserName = username,
+                Status = status,
+                OldPageIndex = oldPageIndex,
+                OrderType = orderType
+            };
+
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
 
             /* Order type
@@ -324,53 +359,13 @@ namespace Apollo.Age.Account.Controllers
                 models = models.OrderByDescending(m => m.Username).ToList();
             }
 
-            var listPage = new List<SelectListItem>();
-            for (int i = 0; i <= criteria.NumPages; i++)
-            {
-                listPage.Add(new SelectListItem
-                {
-                    Value = i.ToString(),
-                    Text = (i + 1).ToString(),
-                    Selected = i == criteria.PageIndex
-                });
-            }
-
-            ViewBag.AgentList = models;
-            ViewBag.ListPage = listPage;
-
-            return View(criteria);
-        }
-
-        [HttpGet]
-        public ActionResult InDirectAgentList(int parentAgentId, int agentId)
-        {
-            AgentListCriteria criteria = new AgentListCriteria()
-            {
-                AgentId = agentId,
-                Status = (int)CustomerStatus.Active,
-                PageIndex = 0,
-                UserName = string.Empty,
-                ParentAgentId = parentAgentId
-            };
-
-            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
-            var listPage = new List<SelectListItem>();
-            for (int i = 0; i <= criteria.NumPages; i++)
-            {
-                listPage.Add(new SelectListItem
-                {
-                    Value = i.ToString(),
-                    Text = (i + 1).ToString()
-                });
-            }
-
             List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
             {
                 AgentId = parentAgentId
             });
 
             ViewBag.AgentList = models;
-            ViewBag.ListPage = listPage;
+            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
 
             return View(criteria);
@@ -379,8 +374,6 @@ namespace Apollo.Age.Account.Controllers
         [HttpPost]
         public ActionResult InDirectAgentList(AgentListCriteria criteria)
         {
-            criteria.AgentId = criteria.UplineAgentId;
-
             if (criteria.PageIndex == criteria.OldPageIndex)
             {
                 criteria.PageIndex = 0;
@@ -390,12 +383,47 @@ namespace Apollo.Age.Account.Controllers
                 criteria.OldPageIndex = criteria.PageIndex;
             }
 
-            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+            return RedirectToAction("InDirectAgentList", new
+            {
+                parentAgentId = criteria.ParentAgentId,
+                agentId = criteria.UplineAgentId,
+                pageIndex = criteria.PageIndex,
+                username = criteria.UserName,
+                status = criteria.Status,
+                oldPageIndex = criteria.OldPageIndex,
+                orderType = criteria.OrderType
+            });
+        }
+
+        #endregion
+
+        #region Member List
+
+        [HttpGet]
+        public ActionResult MemberList(
+            int agentId = -1,
+            int pageIndex = 0,
+            string username = "",
+            int status = 1,
+            int oldPageIndex = 0,
+            int orderType = 1)
+        {
+            CustomerListCriteria criteria = new CustomerListCriteria()
+            {
+                AgentId = agentId == -1 ? this.CurrentSession.AgentId : agentId,
+                PageIndex = pageIndex,
+                UserName = username,
+                Status = status,
+                OldPageIndex = oldPageIndex,
+                OrderType = orderType
+            };
+
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
             /* Order type
-             * ASC : 1
-             * DES : 2
-             */
+            * ASC : 1
+            * DES : 2
+            */
             if (criteria.OrderType == 1)
             {
                 models = models.OrderBy(m => m.Username).ToList();
@@ -405,77 +433,124 @@ namespace Apollo.Age.Account.Controllers
                 models = models.OrderByDescending(m => m.Username).ToList();
             }
 
+            ViewBag.MemberList = models;
+            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
+
+            return View(criteria);
+        }
+
+        [HttpPost]
+        public ActionResult MemberList(CustomerListCriteria criteria)
+        {
+            if (criteria.PageIndex == criteria.OldPageIndex)
+            {
+                criteria.PageIndex = 0;
+            }
+            else
+            {
+                criteria.OldPageIndex = criteria.PageIndex;
+            }
+
+            return RedirectToAction("MemberList", new
+            {
+                agentId = criteria.AgentId,
+                pageIndex = criteria.PageIndex,
+                username = criteria.UserName,
+                status = criteria.Status,
+                oldPageIndex = criteria.OldPageIndex,
+                orderType = criteria.OrderType
+            });
+        }
+
+        [HttpGet]
+        public ActionResult InDirectMemberList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
+            int status = 1,
+            int oldPageIndex = 0,
+            int orderType = 1)
+        {
+            CustomerListCriteria criteria = new CustomerListCriteria()
+            {
+                AgentId = agentId,
+                PageIndex = pageIndex,
+                UserName = username,
+                Status = status,
+                OldPageIndex = oldPageIndex,
+                OrderType = orderType
+            };
+
+            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
+
+            /* Order type
+           * ASC : 1
+           * DES : 2
+           */
+            if (criteria.OrderType == 1)
+            {
+                models = models.OrderBy(m => m.Username).ToList();
+            }
+            else
+            {
+                models = models.OrderByDescending(m => m.Username).ToList();
+            }
+
+            List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
+            {
+                AgentId = parentAgentId
+            });
+
+            var agent = directAgent.Where(m => m.Id == criteria.AgentId).FirstOrDefault();
+
+            ViewBag.MemberList = models;
+            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
+            ViewBag.DirectAgentList = directAgent;
+            ViewBag.AgentUsername = agent != null ? agent.Username : string.Empty;
+
+            return View(criteria);
+        }
+
+        [HttpPost]
+        public ActionResult InDirectMemberList(CustomerListCriteria criteria)
+        {
+            if (criteria.PageIndex == criteria.OldPageIndex)
+            {
+                criteria.PageIndex = 0;
+            }
+            else
+            {
+                criteria.OldPageIndex = criteria.PageIndex;
+            }
+
+            return RedirectToAction("InDirectMemberList", new
+            {
+                parentAgentId = criteria.ParentAgentId,
+                agentId = criteria.UplineAgentId,
+                pageIndex = criteria.PageIndex,
+                username = criteria.UserName,
+                status = criteria.Status,
+                oldPageIndex = criteria.OldPageIndex,
+                orderType = criteria.OrderType
+            });
+        }
+
+        #endregion
+
+        #region Ultil
+
+        private List<SelectListItem> GetListPage(int numPages, int currentPage)
+        {
             var listPage = new List<SelectListItem>();
-            for (int i = 0; i <= criteria.NumPages; i++)
+            for (int i = 0; i < numPages; i++)
             {
                 listPage.Add(new SelectListItem
                 {
                     Value = i.ToString(),
                     Text = (i + 1).ToString(),
-                    Selected = i == criteria.PageIndex
+                    Selected = i == currentPage
                 });
             }
 
-            List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
-            {
-                AgentId = criteria.ParentAgentId
-            });
-
-            ViewBag.AgentList = models;
-            ViewBag.ListPage = listPage;
-            ViewBag.DirectAgentList = directAgent;
-
-            return View(criteria);
+            return listPage;
         }
-
-        #endregion
-
-        #region Member List
-
-        [HttpGet]
-        public ActionResult MemberList()
-        {
-            CustomerListCriteria criteria = new CustomerListCriteria()
-            {
-                AgentId = this.CurrentSession.AgentId,
-                PageIndex = 0,
-                UserName = string.Empty
-            };
-
-            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
-
-            ViewBag.MemberList = models;
-
-            return View(criteria);
-        }
-
-        //[HttpPost]
-        //public JsonResult GetMemberList(int? agentId, int? pageIndex, int? totalPages, string userName, int? pageSize)
-        //{
-        //    CurrentAgentId = agentId;
-        //    var currentPageIndex = !pageIndex.HasValue ? PageIndex : pageIndex.Value;
-        //    var currentUsername = string.IsNullOrWhiteSpace(userName) ? string.Empty : userName;
-        //    var currentPageSize = !pageSize.HasValue ? PageSize : pageSize.Value;
-
-        //    CustomerListCriteria criteria = new CustomerListCriteria()
-        //    {
-        //        AgentId = CurrentAgentId.Value,
-        //        PageIndex = currentPageIndex,
-        //        UserName = currentUsername,
-        //        PageSize = currentPageSize
-        //    };
-
-        //    IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
-
-        //    return Json(new
-        //    {
-        //        TotalItem = criteria.TotalItems,
-        //        CurrentPage = currentPageIndex,
-        //        ItemsPerPage = currentPageSize,
-        //        CurrentAgentId = CurrentAgentId.Value,
-        //        ListData = models
-        //    });
-        //}
 
         #endregion
 
