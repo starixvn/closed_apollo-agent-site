@@ -14,7 +14,22 @@
 }
 @using (Html.BeginForm())
 {       
-    <table width="780" cellpadding="0" border="0" cellspacing="0">
+    <div id="function-bar">
+        <div class="item">
+            @Lang.agent : 
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.Close },
+                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+				                }, new { @class = "za_select" })
+        </div>
+        <div class="item">
+        </div>
+        <div class="item">
+        </div>
+        <img src="/_GlobalResources/Images/top_04.gif" alt="">
+    </div>
+    <table class="search-option">
         <tbody>
             <tr>
                 <td class="m_tline">
