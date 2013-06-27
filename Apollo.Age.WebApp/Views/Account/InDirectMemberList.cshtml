@@ -69,9 +69,9 @@
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
-<table width="800" cellpadding="0" border="0" bgcolor="#E3D46E" cellspacing="1" class="m_tab">
-    <tbody>
-        <tr bgcolor="#86C0A6" class="mem_title">
+<table class="tblRpt memberList">
+    <thead>
+        <tr>
             <td width="80">
                 @Lang.agent
             </td>
@@ -88,6 +88,8 @@
                 @Lang.Feature
             </td>
         </tr>
+    </thead>
+    <tbody>
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
         {
             foreach (var item in memberList)
@@ -106,7 +108,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td align="left">
-                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetail</a>
+                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.Detail</a>
                     </span>
                 </td>
             </tr>
