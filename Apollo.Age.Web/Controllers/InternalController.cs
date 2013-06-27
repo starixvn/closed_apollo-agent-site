@@ -92,7 +92,7 @@ namespace Apollo.Age.Web
                 var captcha = Session[ApolloSessionCaptcha];
                 if (model.Captcha != "9999")
                 {
-                    if (captcha == null || captcha.ToString() != model.Captcha)
+                    if (captcha == null || captcha.ToString() != model.Captcha.ToUpper())
                     {
                         ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
                         return View(model);
@@ -351,7 +351,7 @@ namespace Apollo.Age.Web
             int replacementIndex = rnd.Next(0, (result.Length - 1));
             result = result.Remove(replacementIndex, 1).Insert(replacementIndex, alphaChar);
 
-            return result;
+            return result.ToUpper();
         }
 
         #endregion SignIn
