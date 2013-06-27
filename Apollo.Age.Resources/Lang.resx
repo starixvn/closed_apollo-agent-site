@@ -1569,4 +1569,16 @@
   <data name="SingleGame" xml:space="preserve">
     <value>Single Game</value>
   </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AgencyDetailEdit" xml:space="preserve">
+    <value>Agency detailed edit</value>
+  </data>
 </root>

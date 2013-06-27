@@ -5,7 +5,8 @@
     ViewBag.Title = "ViewAgentDetails";
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting ?? null;
     var betSetting = (IList<BettingLimit>)ViewBag.BetSetting ?? null;
-    
+    var agentId = (int)ViewBag.AgentId ;
+    var userName = (string)ViewBag.UserName ?? string.Empty ;
     Layout = null;
 }
 <!DOCTYPE html>
@@ -18,8 +19,8 @@
 </head>
 <body>
     <div class="detail-information">
-        Agency detailed edit -- Account: : 0226 -- Name:flat -- <a href="">@Lang.edit </a>
-        <a href="">Back </a>
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@agentId</strong> -- @Lang.Name : <strong>@userName</strong> -- <a href="">@Lang.edit </a>
+         -- <a href="">@Lang.back </a>
     </div>
     @helper RenderSportBlock(CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
         {

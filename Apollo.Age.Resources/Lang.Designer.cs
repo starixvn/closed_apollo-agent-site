@@ -79,6 +79,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string actionname {
@@ -111,6 +120,15 @@ namespace Apollo.Age.Resources {
         public static string Agency {
             get {
                 return ResourceManager.GetString("Agency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agency detailed edit.
+        /// </summary>
+        public static string AgencyDetailEdit {
+            get {
+                return ResourceManager.GetString("AgencyDetailEdit", resourceCulture);
             }
         }
         
@@ -291,6 +309,15 @@ namespace Apollo.Age.Resources {
         public static string away {
             get {
                 return ResourceManager.GetString("away", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string back {
+            get {
+                return ResourceManager.GetString("back", resourceCulture);
             }
         }
         
@@ -3037,6 +3064,15 @@ namespace Apollo.Age.Resources {
         public static string MotorSports {
             get {
                 return ResourceManager.GetString("MotorSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
