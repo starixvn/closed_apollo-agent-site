@@ -96,7 +96,7 @@ namespace Apollo.Age.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     UserName = ticket.UserName,
-                    TransTime = builder.BuildTrans(ticket, new TicketHelper()),
+                    TransTime = string.Empty, // builder.BuildTrans(ticket, new TicketHelper()),
                     AgentComm = builder.BuildAgentComm(ticket, true),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };

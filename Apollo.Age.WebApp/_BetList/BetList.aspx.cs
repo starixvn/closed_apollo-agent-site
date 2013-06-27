@@ -103,14 +103,9 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddTime(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
                 builder.AddDiscount(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
 
-                builder.AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>")
+                builder.AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>", funcGetOddsTypeName)
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='bl_evt'>", "</td>", false)
-                       .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
-
-                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", true);
-                builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
-                builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
 
                 builder.Append("</tr>");
             }
