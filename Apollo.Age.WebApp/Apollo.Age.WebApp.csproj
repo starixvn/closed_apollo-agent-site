@@ -725,6 +725,7 @@
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
+    <Content Include="Views\Account\ViewMemberDetails.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
