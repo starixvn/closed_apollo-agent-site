@@ -123,6 +123,8 @@ var Match = (function () {
                     $this.html("Yesterday");
                     $this.attr("value", $("#todayValue").val());
                 }
+
+
             });
         },
         paging: function () {

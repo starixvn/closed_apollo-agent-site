@@ -248,15 +248,22 @@
             {
                 if(sport.Id == Apollo.Age.Core.SingbetConstants.Other)
                 {							
-			    <li><a href="#" id="@sport.Id" name="menuothersport" >[@(sport.Name)]</a></li>
+			        <li><a href="#" id="@sport.Id" name="menuothersport" activeother="0" >[@(sport.Name)]</a></li>
                 }
                 else if(sport.Id == Apollo.Age.Core.SingbetConstants.Outright)
                 {
-                    <li><a href="#" id="@sport.Id" name="menuoutright" >[@(sport.Name)]</a></li>
+                    <li><a href="#" id="@sport.Id" name="menuoutright" activeoutright="0">[@(sport.Name)]</a></li>
                 }
                 else
                 {
-                <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+                    if (sport.Id == Apollo.Age.Core.SingbetConstants.Soccer)
+                    {
+                        <li><a href="#" id="@sport.Id" name="menusport" active="1">[@(sport.Name)]</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="#" id="@sport.Id" name="menusport" active="0">[@(sport.Name)]</a></li>
+                    }
                 }
             }
 
@@ -265,15 +272,15 @@
 }
 
 @helper ToEasternTime(DateTime datetime)
-{
-	if(datetime != null)
-	{
+    {
+    if (datetime != null)
+    {
         datetime = DateTime.Now;
     }
-	try
-	{
-		TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-		var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+    try
+    {
+        TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+        var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
         
         <div class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
         
