@@ -49,33 +49,38 @@ namespace Apollo.Age.Account.Controllers
         public ViewResult Announcement(string content = "", int modeDate = 0)
         {
             DateTime? startDate = new DateTime();
+            DateTime endDate = new DateTime();
 
             /* Value of ModeDate
              * 0 : All (From the month before until now)
              * 1 : Today
              * 2 : Yesterday
              * 3 : Before Yesterday
-             */ 
+             */
             switch (modeDate)
             {
                 case 1:
                     startDate = DateTime.Now;
+                    endDate = DateTime.Now;
                     break;
                 case 2:
                     startDate = DateTime.Now.AddDays(-1);
+                    endDate = DateTime.Now.AddDays(-1);
                     break;
                 case 3:
                     startDate = DateTime.Now.AddDays(-2);
+                    endDate = DateTime.Now.AddDays(-2);
                     break;
                 default:
                     startDate = null;
+                    endDate = DateTime.Now;
                     break;
             }
 
             var model = this._messageService.GetAnnouncement(
                     agentId: this.CurrentSession.AgentId,
                     siteIds: SiteList,
-                    lastPostDate: DateTime.Now,
+                    lastPostDate: endDate,
                     startTime: startDate,
                     content: content,
                     langue: this.CurrentSession.Language);
