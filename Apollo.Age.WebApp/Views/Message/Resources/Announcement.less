@@ -1,5 +1,8 @@
-html {
-    overflow: -moz-scrollbars-vertical;
+@import "../../../_globalResources/css/agent.less";
+
+body {
+	margin: 0;
+	padding: 0;
 }
 
 .floatingHeader 
@@ -8,8 +11,89 @@ html {
 	position: fixed;
 	top: 0;
 	border-bottom: 1px solid #b7c7cf;
+	left: 0 !important;
 }
 
+.his_body {
+    border-bottom: 1px solid #2A73AC;
+    border-right: 1px solid #2A73AC;
+    width: 495px;
+	font-size: @fontSize;
+
+	td, th {
+        border-left: 1px solid #2A73AC;
+        border-top: 1px solid #2A73AC;
+		padding: 3px 2px;	  
+    }
+
+	tr:hover td {
+		background: #52A4E3;
+	}
+
+	.his_info {
+		font-size: 12px;
+		text-align: left;
+		width: 381px;
+	}
+
+	.persist-header, .floatingHeader {
+		tr {
+			.box_title {
+				background-color: #1D76C2;
+				color: #FFF;
+				font-weight: bold;
+				line-height: 22px;
+				text-align: left;
+
+				.title {
+					padding: 4px 4px 4px 10px;
+				}
+			}
+
+			th {
+				font-weight: normal;
+			}
+
+			&.m_title_date {
+				background-color: #52A4E3;
+				text-align: left;
+
+				th {
+					padding: 3px 2px;
+					span a {
+						color: #fff;					
+					}
+
+					&.page {
+						padding-left: 10px;
+
+						.scr_on {
+							color: #FFFF00;
+							cursor: pointer;
+							text-decoration: none;
+						}
+						.scr_out {
+							color: #FFF;
+							cursor: pointer;
+						}
+					}
+				}		
+			}
+
+			&.m_title_his {
+				background-color: #76C3ED;
+				text-align: center;
+				height: 25px;				 
+			} 
+		}
+	}
+
+	.search
+	{
+		border-left: none;
+		float: right;
+	}
+}
 /* FIX IE */
 .eq-ie8 .floatingHeader {
 	top: -10px;
@@ -32,663 +116,4 @@ html {
 	thead.floatingHeader {
 		display: none;
 	}
-}	
-
-
-.m_tline
-    {
-        background-image: url("../../images/control/zh-tw/top_03b.gif");
-    }
-    tr
-    {
-        font-family: "Arial";
-        font-size: 12px;
-    }
-    a:link
-    {
-        text-decoration: none;
-    }
-    a:visited
-    {
-        text-decoration: none;
-    }
-    .za_button
-    {
-        font-family: "Arial";
-        font-size: 12px;
-        height: 20px;
-        padding-bottom: 1px;
-    }
-    .za_select
-    {
-        font-family: "Arial";
-        font-size: 12px;
-        height: 18px;
-    }
-    .m_tab
-    {
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_cen
-    {
-        background-color: #FFFFFF;
-        text-align: center;
-    }
-    .za_text
-    {
-        background-color: #FFFFFF;
-        border: 1px solid #000000;
-        font-family: "Arial";
-        font-size: 12px;
-        height: 18px;
-        padding-left: 2px;
-        padding-right: 2px;
-    }
-    .m_bc_ed
-    {
-        padding-left: 5px;
-    }
-    .m_tab_ed
-    {
-        background-color: #DCDCDC;
-        border: 1px solid #000000;
-        padding: 3px 2px;
-    }
-    .za_dot
-    {
-        height: 12px;
-        margin-bottom: 2px;
-        width: 11px;
-    }
-    .m_rig
-    {
-        background-color: #FFFFFF;
-        text-align: right;
-    }
-    .m_rig_re
-    {
-        background-color: #DAE9F2;
-        text-align: right;
-    }
-    .m_rig_to
-    {
-        background-color: #990000;
-        color: #FFFFFF;
-        text-align: right;
-    }
-    .m_title_edit
-    {
-        background-color: #84968B;
-        text-align: center;
-    }
-    .za_text_ed
-    {
-        background-color: #FFFFFF;
-        border: 1px solid #000000;
-        font-family: "Arial";
-        font-size: 12px;
-        height: 18px;
-        padding-left: 1px;
-        padding-right: 1px;
-        width: 65px;
-    }
-    .m_rig_close
-    {
-        background-color: #CCCCCC;
-        text-align: right;
-    }
-    .m_cen_top
-    {
-        background-color: #FFFFFF;
-        text-align: center;
-        vertical-align: top;
-    }
-    .m_cen_top_close
-    {
-        background-color: #CCCCCC;
-        text-align: center;
-        vertical-align: top;
-    }
-    .m_cen_close
-    {
-        background-color: #CCCCCC;
-        text-align: center;
-    }
-    .m_tab_fix
-    {
-        background-color: #A4C0CE;
-        padding: 5px;
-    }
-    .m_large
-    {
-        font-size: 15px;
-    }
-    .m_title_ft
-    {
-        background-color: #7DD5D2;
-        text-align: center;
-    }
-    .m_title_ft_future
-    {
-        background-color: #4B807E;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_bk
-    {
-        background-color: #52A4E3;
-        text-align: center;
-    }
-    .m_title_bu
-    {
-        background-color: #7F4823;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_bs
-    {
-        background-color: #919A29;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_be
-    {
-        background-color: #455E99;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_vb
-    {
-        background-color: #AF7416;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_tn
-    {
-        background-color: #990000;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_title_nfs
-    {
-        background-color: #FFFF66;
-        text-align: center;
-    }
-    .m_title_op
-    {
-        background-color: #E49E88;
-        text-align: center;
-    }
-    .m_title_om
-    {
-        background-color: #613C80;
-        color: #FFFFFF;
-        text-align: center;
-    }
-    .m_tab_ft
-    {
-        background-color: #006255;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_fu
-    {
-        background-color: #2A4847;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_bk
-    {
-        background-color: #256179;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_bu
-    {
-        background-color: #532E16;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_bs
-    {
-        background-color: #515616;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_be
-    {
-        background-color: #222E4C;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_vb
-    {
-        background-color: #663300;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_tn
-    {
-        background-color: #660000;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_nfs
-    {
-        background-color: #E3BB00;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_op
-    {
-        background-color: #A82F16;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .m_tab_om
-    {
-        background-color: #32274A;
-        padding-left: 2px;
-        padding-right: 2px;
-        padding-top: 3px;
-    }
-    .t_div
-    {
-        background-color: #C9EEC0;
-        border: 1px double #333333;
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .red_card
-    {
-        background-color: #FF0000;
-        font-size: 3px;
-        height: 7px;
-        margin-bottom: 1px;
-        width: 8px;
-    }
-    .red_font
-    {
-        font-size: 10px;
-    }
-    .ta_div
-    {
-        background-color: #69897C;
-        border: 5px solid #9CCAB6;
-    }
-    .report_c
-    {
-        background-color: #FFD2C7;
-        text-align: center;
-    }
-    .bord b
-    {
-        border-bottom: 8px solid #FF0000;
-        border-left: 4px solid #FFFFFF;
-        border-right: 4px solid #FFFFFF;
-        display: block;
-        float: left;
-        font-size: 1px;
-        height: 0;
-        line-height: 0;
-        margin-right: 2px;
-        margin-top: 2px;
-        padding: 0;
-        width: 0;
-    }
-    html .bord b
-    {
-        height: 0;
-        width: 0;
-    }
-    .bord a, .bord a:visited
-    {
-        color: #3300FF;
-        text-decoration: none;
-    }
-    .bord a:hover
-    {
-        color: #CC0000;
-    }
-    .line
-    {
-        background-color: #CC9900;
-        height: 100%;
-        width: 100%;
-    }
-    .w_bg
-    {
-        height: 100%;
-        line-height: 15px;
-        padding: 2px;
-        text-align: center;
-        width: 100%;
-    }
-    .w_bg2
-    {
-        height: 100%;
-        line-height: 15px;
-        padding: 2px;
-        width: 100%;
-    }
-    .add
-    {
-        font: bold 12px Verdana,Arial,Helvetica,sans-serif;
-        height: 20px;
-        width: 2em;
-    }
-    body
-    {
-        margin-left: 0;
-        margin-top: 0;
-    }
-    .td_2
-    {
-        margin: 0;
-        padding: 0;
-    }
-    .edit
-    {
-        background-color: #FFFFCC;
-        color: #000000;
-        padding: 4px;
-        text-align: center;
-    }
-    .edit_table
-    {
-        background-color: #FF6600;
-        border: 3px solid #CC3300;
-        color: #FFFFFF;
-        padding: 2px;
-        text-align: center;
-    }
-    #divbox
-    {
-        background-color: #FFFFCC;
-        border: 2px ridge #FF3300;
-        width: 260px;
-    }
-    #divbox span
-    {
-        background-color: #FF3300;
-        color: #FFFFFF;
-        display: block;
-        font-family: Arial,Helvetica,sans-serif;
-        font-size: 14px;
-        height: 30px;
-        padding-bottom: 5px;
-        padding-top: 2px;
-        text-align: center;
-    }
-    .info
-    {
-        background-color: #FFFFCC;
-        display: block;
-        height: 80px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        text-align: center;
-    }
-    input.confirm
-    {
-        color: #000000;
-        font-size: 12px;
-        height: 23px;
-        margin-bottom: 5px;
-        margin-top: 5px;
-        padding-bottom: 1px;
-        text-align: center;
-        width: 50px;
-    }
-    .showpic2
-    {
-        float: right;
-        margin-right: 15px;
-        position: relative;
-    }
-    .mg_sp
-    {
-        background-color: #DEFFC9;
-    }
-    .more
-    {
-        background-color: #003300;
-        border: 5px solid #666600;
-        padding: 4px;
-        position: relative;
-        width: 1100px;
-    }
-    .game th, .more th
-    {
-        background-color: #99CC66;
-        color: #000000;
-        font-weight: normal;
-        padding-top: 2px;
-        white-space: nowrap;
-    }
-    .game td, .more td
-    {
-        font-size: 12px;
-        padding: 1px 2px;
-        white-space: nowrap;
-    }
-    .X_right
-    {
-        clear: none;
-        float: right;
-        position: absolute;
-        right: 5px;
-    }
-    .game
-    {
-        background-color: #B9B9A3;
-        font-size: 12px;
-        width: 100%;
-    }
-    .game_team
-    {
-        background-color: #EDFFD2;
-        font-size: 12px;
-    }
-    .game_team_X
-    {
-        float: right;
-        position: absolute;
-        right: 6px;
-    }
-    input.close
-    {
-        float: right;
-        font: 0.75em Arial,Helvetica,sans-serif;
-        margin-bottom: 0;
-    }
-    .stop_div td
-    {
-        padding: 0;
-    }
-    .stop_td
-    {
-        background-color: #FCD5B5;
-    }
-    td.stop_td
-    {
-        padding: 4px 6px;
-    }
-    span.stop_td
-    {
-        line-height: 21px;
-        padding: 6px;
-    }
-    .stop_line
-    {
-        border-bottom: 1px solid #5A85BA;
-    }
-    .m_ag_ed
-    {
-        background-color: #BDD1DE;
-        text-align: right;
-    }
-    .scr_on
-    {
-        color: #FFFF00 !important;
-        cursor: pointer;
-        text-decoration: none !important;
-    }
-    .scr_out
-    {
-        color: #FFFFFF;
-        cursor: pointer;
-    }
-    .box_top
-    {
-        left: 0;
-        position: fixed;
-        top: 0;
-        width: 495px;
-        z-index: 10;
-    }
-    .box_title
-    {
-        background-color: #1D76C2;
-        color: #FFFFFF;
-        font-weight: bold;
-        line-height: 22px;
-        padding: 4px 4px 4px 10px;
-    }
-	.title
-    {
-        padding: 4px 4px 4px 10px;
-    }
-    .m_title_date
-    {
-        background-color: #52A4E3;
-		
-    }
-    .m_title_date td
-    {
-        padding: 3px 2px;
-		span{
-			a{
-				color: #fff;
-			}
-		}
-    }
-    .page
-    {
-        padding-left: 10px !important;
-    }
-    .m_title_his
-    {
-        background-color: #76C3ED;
-        text-align: center;
-    }
-    .his_top
-    {
-        border-bottom: 1px solid #2A73AC;
-        border-right: 1px solid #2A73AC;
-        width: 495px;
-    }
-    .his_body
-    {
-        border-bottom: 1px solid #2A73AC;
-        border-right: 1px solid #2A73AC;
-        width: 495px;
-
-		tr:hover td {
-			background: #52A4E3;
-		}
-
-		.search
-		{
-			border-left: none;
-			float: right;
-		}
-    }
-    .his_top td, .his_body td
-    {
-        border-left: 1px solid #2A73AC;
-        border-top: 1px solid #2A73AC;
-        padding: 3px 2px;
-    }
-    .his_info
-    {
-        font-size: 12px;
-        text-align: left;
-        width: 381px;
-    }    
-    
-    .user_msg
-    {
-        border-color: #000000;
-        border-style: solid none none solid;
-        border-width: 1px 0 0 1px;
-        width: 500px;
-    }
-    .msg_td td
-    {
-        font-weight: bold;
-    }
-    .user_msg span
-    {
-        background-color: #990000;
-        border-color: #000000;
-        border-style: none solid solid none;
-        border-width: 0 1px 1px 0;
-        color: #FFFFFF;
-        display: block;
-        font-weight: bold;
-        height: 25px;
-        line-height: 25px;
-        text-align: center;
-        width: 100%;
-    }
-    .user_msg div
-    {
-        width: 100%;
-    }
-    .user_msg table
-    {
-        width: 100%;
-    }
-    .user_msg table td
-    {
-        border-color: #000000;
-        border-style: none solid solid none;
-        border-width: 0 1px 1px 0;
-        height: 23px;
-        line-height: 23px;
-        padding-left: 5px;
-        text-align: left;
-    }
-    .DT_wagers
-    {
-        background-color: #FFFFE6 !important;
-        border: 1px solid #000000;
-        height: 100px;
-        text-align: center;
-        width: 820px;
-    }
-    .more_close
-    {
-        display: block;
-        height: 25px;
-        text-align: left;
-        width: 820px;
-    }
-    #wager_tr #tk_font, .hand
-    {
-        cursor: pointer;
-    }
+}

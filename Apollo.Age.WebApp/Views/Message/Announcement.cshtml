@@ -12,12 +12,12 @@
     <table border="0" cellspacing="0" cellpadding="0" class="persist-area his_body">
         <thead class="persist-header">
             <tr>
-                <td colspan="3" class="box_title">
+                <th colspan="3" class="box_title">
                     <span class="title">@Lang.announcement</span>
-                </td>
+                </th>
             </tr>
             <tr class="m_title_date">
-                <td width="50%" class="page" colspan="3">
+                <th width="50%" class="page" colspan="3">
                     <span>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</span>
                     / <span>@Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</span>
                     / <span>@Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</span>
@@ -26,18 +26,18 @@
                         @Html.TextBox("content", "", new { @class = "ccroll_input" })
                         <input type="submit" class="ccroll_btn" value="@Lang.search"/>
                     </div>
-                </td>
+                </th>
             </tr>
             <tr class="m_title_his">
-                <td width="40">
+                <th width="40">
                     @Lang.lblNo.
-                </td>
-                <td width="70">
+                </th>
+                <th width="70">
                     @Lang.times
-                </td>
-                <td class="his_info">
+                </th>
+                <th class="his_info">
                     @Lang.news
-                </td>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -50,9 +50,9 @@
         {
             index++;
                 <tr class="m_cen">
-                    <td width="40" align="center">@index
+                    <td width="40" class="text-center">@index
                     </td>
-                    <td width="70" align="center">
+                    <td width="70" class="text-center">
                         @msg.PostTime.ToString("yy-MM-dd")
                     </td>
                     <td class="his_info">
