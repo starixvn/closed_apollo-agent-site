@@ -13,7 +13,7 @@
 }
 <div id="function-bar">
     <ul class="menu">
-        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)">@Lang.yesterday</a></li>
+        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)" action="0">@Lang.yesterday</a></li>
         <li>@Lang.Game:</li>
         @RazorHelper.RenderResultBySport()
     </ul>
@@ -30,7 +30,7 @@
 </div>
 @using (Html.BeginForm())
 {
-    <div id="filterResult" class="box-header" style="display: none">
+    <div id="filterResult" class="box-header">
         <div class="row">
             <div class="cell" id="filterResultGame">
                 <div class="label">
@@ -52,20 +52,8 @@
                 </div>
             </div>
         </div>
-        <div class="cell" id="filterResultGame">
-            <div class="label">
-            </div>
-            <div class="editor">
-            </div>
-        </div>
-        <div class="cell" id="filterResultLeague">
-            <div class="label">
-            </div>
-            <div class="editor">
-            </div>
-        </div>
     </div>
-    <div id="resultContainer">
+    <div id="resultContainer" class="clear">
     </div>
 }
 @section scripts
