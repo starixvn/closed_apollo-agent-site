@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.6.25">Created</change>
+//   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
 // </history>
 
 namespace Apollo.Age.Wagers.Controllers
@@ -21,6 +22,51 @@ namespace Apollo.Age.Wagers.Controllers
     public class TennisController : Controller
     {
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Straight()
+        {
+            return View();
+        }
+
+        public ActionResult FirstHalfRB()
+        {
+            return View();
+        }
+
+        public ActionResult Specialbet()
+        {
+            return View();
+        }
+
+        public ActionResult Correctscore()
+        {
+            return View();
+        }
+
+        public ActionResult FirstHalfCorrectScore()
+        {
+            return View();
+        }
+
+        public ActionResult Total()
+        {
+            return View();
+        }
+
+        public ActionResult HalfFull()
+        {
+            return View();
+        }
+
+        public ActionResult Parlay()
+        {
+            return View();
+        }
+
+        public ActionResult Start()
         {
             return View();
         }

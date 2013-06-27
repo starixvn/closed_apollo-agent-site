@@ -315,35 +315,37 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        //public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
-        //{
-        //    ViewBag.CustId = custId;
-        //    ViewBag.UserName = userName;
-        //    ViewBag.AgentLevel = agentLevel;
-        //    return View("~/Views/Account/EditPositionTaking.cshtml");
-        //}
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool showHeader = false, bool isSimpleMode = true)
+        {
+            ViewBag.CustId = agentId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsShowHeader = showHeader;
+            return View("~/Views/Account/EditPositionTaking.cshtml");
+        }
 
-        //public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
-        //{
-        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
-        //    PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-        //    this.SetCurrentLanguage(base.CurrentSession.Language);
-        //    this.SetPositionTakingLanguage(positionTakingSetting);
+        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
+            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetPositionTakingLanguage(positionTakingSetting);
 
-        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-        //    string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
-        //        JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
-        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
+            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
+            string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
+                JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-        //    return JavaScript(jsString);
-        //}
+            return JavaScript(jsString);
+        }
 
-        //[HttpPost]
-        //public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
-        //{
-        //    Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
-        //    return ReturnResult(result);
-        //}
+        [HttpPost]
+        public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        {
+            Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
+            return ReturnResult(result);
+        }
 
         #endregion
 
@@ -425,9 +427,9 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MySetting.cshtml");
         }
 
-        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
+        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName)
         {
-            ViewBag.UserId = agentId;
+            ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.IsViewOnMember = false;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
@@ -436,7 +438,7 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
-            ViewBag.UserId = memberId;
+            ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.IsViewOnMember = true;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);

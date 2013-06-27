@@ -7,7 +7,7 @@
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting;
     var betSetting = (IList<BettingLimit>)ViewBag.BetSetting;
     var isViewOnMember = (bool)ViewBag.IsViewOnMember;
-    var userId = (int)ViewBag.UserId;
+    var custId = (int)ViewBag.CustId;
     var userName = (string)ViewBag.UserName ?? string.Empty;
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
 }
@@ -128,7 +128,7 @@
 }
 
 <div class="detail-information">
-    @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@userId</strong> -- @Lang.Name
+    @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@custId</strong> -- @Lang.Name
     : <strong>@userName</strong> -- <a href="">@Lang.edit </a>-- <a href="javascript:void(0);" id="back-link">@Lang.back
     </a>
 </div>

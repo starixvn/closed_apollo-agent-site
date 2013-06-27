@@ -54,14 +54,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4923.30128, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.17936, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
     </Reference>
@@ -86,26 +78,11 @@
     <Reference Include="IBCDBLibrary">
       <HintPath>..\Dependencies\IBCDBLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="IBCDLL">
-      <HintPath>..\Dependencies\IBCDLL.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCFile">
-      <HintPath>..\Dependencies\IBCFile.dll</HintPath>
-    </Reference>
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
-    <Reference Include="IBCUtils">
-      <HintPath>..\Dependencies\IBCUtils.dll</HintPath>
-    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPIDBLibrary">
-      <HintPath>..\Dependencies\LVAPIDBLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPILibrary">
-      <HintPath>..\Dependencies\LVAPILibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
@@ -728,6 +705,61 @@
     <Content Include="Views\Account\InDirectMemberList.cshtml" />
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
+    <Content Include="Areas\Wagers\Views\Baseball\Straight.cshtml" />
+    <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Straight.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -757,7 +789,6 @@
     <Content Include="Views\Account\EditCommission.cshtml" />
     <Content Include="Views\Account\EditMemberSetting.cshtml" />
     <Content Include="Views\Account\EditPositionTaking.cshtml" />
-    <Content Include="Views\Account\EditSetting.cshtml" />
     <Content Include="Views\Account\LogLogin.cshtml" />
     <Content Include="Views\Account\MemberDownline.cshtml" />
     <Content Include="Views\Account\MemberList.cshtml" />
@@ -1091,6 +1122,14 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
+      <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
+      <Name>Fanex.BetList.Core.TicketHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
+      <Name>Fanex.BetList.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

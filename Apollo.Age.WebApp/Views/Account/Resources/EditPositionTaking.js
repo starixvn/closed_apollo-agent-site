@@ -9,10 +9,6 @@ if (typeof jQuery != 'undefined') {
             currentIsSimpleMode: true,
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
-                EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
-            },
-            init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
-
                 EDITPOSITIONTAKING.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
                 EDITPOSITIONTAKING.positionTakingSetting = positionTakingSetting;
@@ -20,26 +16,30 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
+            },
+            init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
 
-                if (isUpdateAllSetting) return;
+                EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
                     EDITPOSITIONTAKING.updatePositionTakingSetting();
                 });
 
-                $(".setting-mode #simple-mode").unbind("click").click(function () {
-                    if (EDITPOSITIONTAKING.currentIsSimpleMode) return;
-                    $(this).removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
+                $("#simple-mode").unbind("click").click(function () {
+                    $(this).hide();
+                    $("#page_main").removeClass("advanced-mode-width").addClass("simple-mode-width");
+                    $("#advanced-mode").show();
+
                     EDITPOSITIONTAKING.currentIsSimpleMode = true;
                     EDITPOSITIONTAKING.initOthers(true);
                 });
 
-                $(".setting-mode #advanced-mode").unbind("click").click(function () {
-                    if (EDITPOSITIONTAKING.currentIsSimpleMode == false) return;
-                    $(this).removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
+                $("#advanced-mode").unbind("click").click(function () {
+                    $(this).hide();
+                    $("#page_main").addClass("advanced-mode-width").removeClass("simple-mode-width");
+                    $("#simple-mode").show();
+                    
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
                     EDITPOSITIONTAKING.initOthers(false);
                 });
@@ -79,8 +79,8 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        settingContext.IsSimpleMode = isSimpleMode;
+        settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
-    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    });
     
 }
