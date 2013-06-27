@@ -1587,4 +1587,25 @@
   <data name="lblOP" xml:space="preserve">
     <value>OP</value>
   </data>
+  <data name="lbl1stHalfCorrectScore" xml:space="preserve">
+    <value>1st Half Correct Score</value>
+  </data>
+  <data name="lbl1stHalfRB" xml:space="preserve">
+    <value>1st Half  R.B.</value>
+  </data>
+  <data name="lblHalfFull" xml:space="preserve">
+    <value>Half/Full</value>
+  </data>
+  <data name="lblParlay" xml:space="preserve">
+    <value>Parlay</value>
+  </data>
+  <data name="lblSpecialbet" xml:space="preserve">
+    <value>Special bet</value>
+  </data>
+  <data name="lblStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lblStraight" xml:space="preserve">
+    <value>Straight</value>
+  </data>
 </root>
