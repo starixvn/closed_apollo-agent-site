@@ -427,8 +427,9 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
-            ViewBag.AgentId = agentId;
+            ViewBag.UserId = agentId;
             ViewBag.UserName = userName;
+            ViewBag.IsViewOnMember = false;
             //ViewBag.AgentLevel = agentLevel;
             //ViewBag.IsSimpleMode = isSimpleMode;
             //if (showHeader)
@@ -439,14 +440,20 @@ namespace Apollo.Age.Account.Controllers
 
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
 
-            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext, null);
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
             ViewBag.BetSetting = this.GetBetSetting(settingContext);
             return View("~/Views/Account/ViewAgentDetails.cshtml");
         }
 
-        public ActionResult ViewMemberDetails()
+        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
-            return View("~/Views/Account/ViewMemberDetails.cshtml");
+            ViewBag.UserId = memberId;
+            ViewBag.UserName = userName;
+            ViewBag.IsViewOnMember = true;
+            SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
+            ViewBag.BetSetting = this.GetBetSetting(settingContext);
+            return View("~/Views/Account/ViewAgentDetails.cshtml");
         }
 
         #endregion
@@ -613,12 +620,12 @@ namespace Apollo.Age.Account.Controllers
             return jsString;
         }
 
-        private CommissionSetting GetCommissionSetting(SettingContext settingContext, string ugroup)
+        private CommissionSetting GetCommissionSetting(SettingContext settingContext)
         {
             CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
+            if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                commissionSetting.UserGroup = ugroup;
+                commissionSetting.UserGroup = _customerSettingService.GetMemberGroup(settingContext.TargetCustId);
             }
             return commissionSetting;
         }
