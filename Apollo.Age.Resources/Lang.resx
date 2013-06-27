@@ -1548,4 +1548,16 @@
   <data name="_1x2RB1x2" xml:space="preserve">
     <value>1 X 2, R.B. 1 X 2</value>
   </data>
+  <data name="lblA" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="lblB" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lblC" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="lblD" xml:space="preserve">
+    <value>D</value>
+  </data>
 </root>
