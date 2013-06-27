@@ -727,6 +727,7 @@
     <Content Include="Views\Account\InDirectAgentList.cshtml" />
     <Content Include="Views\Account\InDirectMemberList.cshtml" />
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wagers\Index.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
