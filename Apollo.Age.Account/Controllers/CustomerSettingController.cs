@@ -430,19 +430,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserId = agentId;
             ViewBag.UserName = userName;
             ViewBag.IsViewOnMember = false;
-            //ViewBag.AgentLevel = agentLevel;
-            //ViewBag.IsSimpleMode = isSimpleMode;
-            //if (showHeader)
-            //{
-            //    ViewBag.IsShowHeader = true;
-            //}
-            //ViewBag.IsMaster = base.CurrentSession.IsMaster;
-
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
-
-            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
-            ViewBag.BetSetting = this.GetBetSetting(settingContext);
-            return View("~/Views/Account/ViewAgentDetails.cshtml");
+            return ViewAccountDetails(settingContext);
         }
 
         public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true)
@@ -451,9 +440,14 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.IsViewOnMember = true;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
+            return ViewAccountDetails(settingContext);
+        }
+
+        private ViewResult ViewAccountDetails(SettingContext settingContext)
+        {
             ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
             ViewBag.BetSetting = this.GetBetSetting(settingContext);
-            return View("~/Views/Account/ViewAgentDetails.cshtml");
+            return View("~/Views/Account/ViewAccountDetails.cshtml");
         }
 
         #endregion
