@@ -1,0 +1,29 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="BetListPage.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.06.27">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+namespace Fanex.BetList.Core.Entities
+{
+    public enum BetListPage : int
+    {
+        /// <summary>
+        /// Link from forecast page
+        /// </summary>
+        Forecast = 1,
+
+        /// <summary>
+        /// Link from report page
+        /// </summary>
+        Report = 2,
+
+        /// <summary>
+        /// Link from cancel ticket page
+        /// </summary>
+        Cancel = 3
+    }
+}

@@ -1,0 +1,73 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="Discount.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.06.26">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+namespace Fanex.BetList.Core.Builder.DiscountBuilder
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Templates;
+    using Fanex.BetList.Core.Utils;
+
+    public class Discount : IDiscount
+    {
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        public Discount_Template Template { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Discount" /> class.
+        /// </summary>
+        public Discount()
+        {
+            this.Template = new Discount_Template();
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">Link from page</param>
+        /// <returns></returns>
+        public virtual Discount_Template Render(ITicket ticket, BetListPage page)
+        {
+            switch (page)
+            {
+                case BetListPage.Forecast:
+                    Template.ugroup = ticket.UGroup.ToUpper();
+                    break;
+                case BetListPage.Report:
+                    Template.ugroup = string.Empty;
+                    break;
+                default:
+                    Template.ugroup = Template.discount = string.Empty;
+                    break;
+            }
+
+            if (ticket.ADiscount == 0)
+            {
+                Template.discount = "0";
+            }
+            else
+            {
+                Template.discount = ConvertByBetType.Comm_Percentage(ticket.ADiscount);
+            }
+
+            Template.username = ticket.UserName;
+
+            return Template;
+        }
+    }
+}

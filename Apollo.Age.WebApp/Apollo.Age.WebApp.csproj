@@ -54,14 +54,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4923.30128, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.17936, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
     </Reference>
@@ -86,26 +78,11 @@
     <Reference Include="IBCDBLibrary">
       <HintPath>..\Dependencies\IBCDBLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="IBCDLL">
-      <HintPath>..\Dependencies\IBCDLL.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCFile">
-      <HintPath>..\Dependencies\IBCFile.dll</HintPath>
-    </Reference>
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
-    <Reference Include="IBCUtils">
-      <HintPath>..\Dependencies\IBCUtils.dll</HintPath>
-    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPIDBLibrary">
-      <HintPath>..\Dependencies\LVAPIDBLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPILibrary">
-      <HintPath>..\Dependencies\LVAPILibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
@@ -1145,6 +1122,14 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
+      <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
+      <Name>Fanex.BetList.Core.TicketHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
+      <Name>Fanex.BetList.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

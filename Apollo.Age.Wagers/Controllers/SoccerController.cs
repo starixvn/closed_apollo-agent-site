@@ -29,6 +29,9 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Straight()
         {
+
+
+
             return View();
         }
 

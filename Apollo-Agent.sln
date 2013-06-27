@@ -38,6 +38,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Wagers", "Apollo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.HiddenTool", "Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj", "{1909258B-93B9-4E7D-A896-C57D8B22254F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +108,14 @@ Global
 		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
