@@ -16,86 +16,56 @@
 }
 @using (Html.BeginForm())
 {       
-    <table cellpadding="0" border="0" cellspacing="0">
-        <tbody>
-            <tr>
-                <td class="m_tline">
-                    <table cellpadding="0" border="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td nowrap="nowrap">
-                                    &nbsp;&nbsp;@Lang.member&nbsp;:&nbsp;
-                                </td>
-                                <td>
-                                    <select class="za_select" id="UplineAgentId" name="UplineAgentId">
-                                        @foreach (var item in driectAgentList)
-                                        {
-                                            if (item.Id == Model.AgentId)
-                                            { 
-                                            <option value="@item.Id" selected="selected">@item.Username</option>
-                                            }
-                                            else
-                                            {
-                                            <option value="@item.Id">@item.Username</option>
-                                            }
-                                        }
-                                    </select>
-                                    &nbsp;&nbsp;
-                                </td>
-                                <td>
-                                    @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+    <div id="function-bar">
+        <div class="item">
+            &nbsp;&nbsp;@Lang.member&nbsp;:&nbsp;
+            <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                @foreach (var item in driectAgentList)
+                {
+                    if (item.Id == Model.AgentId)
+                    { 
+                    <option value="@item.Id" selected="selected">@item.Username</option>
+                    }
+                    else
+                    {
+                    <option value="@item.Id">@item.Username</option>
+                    }
+                }
+            </select>
+            &nbsp;&nbsp;
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
                                     new SelectListItem { Value = "3", Text = Lang.Suspended }
 				                }, new { @class = "za_select" })
-                                </td>
-                                <td nowrap="nowrap">
-                                    &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
-                                </td>
-                                <td>
-                                    @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+        </div>
+        <div class="item">
+            &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+            @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
 				                }, new { @class = "za_select" })
-                                </td>
-                                <td>
-                                    @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+            @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
                                     new SelectListItem { Value = "2", Text = Lang.DES }
 				                }, new { @class = "za_select" })
-                                </td>
-                                @if (!ReferenceEquals(memberList, null) && memberList.Any())
-                                { 
-                                    <td nowrap="nowrap">
-                                        &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
-                                    </td>
-                                    <td>
-                                        @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
-                                        <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
-                                    </td>
-                                    <td nowrap="nowrap">
-                                        &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
-                                    </td>
-                                }
-                                <td>
-                                    &nbsp;
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
-                                    &nbsp;
-                                    <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td width="30">
-                    <span class="borderFilter"></span>
-                </td>
-            </tr>
-            <tr>
-                <td height="4" colspan="2">
-                </td>
-            </tr>
-        </tbody>
-    </table>        
+        </div>
+        @if (!ReferenceEquals(memberList, null) && memberList.Any())
+        { 
+            <div class="item">
+                &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
+                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
+            </div>
+        }
+        <div class="item">
+            &nbsp;
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+            &nbsp;
+            <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
+        </div>
+        <img src="/_GlobalResources/Images/top_04.gif" alt="">
+    </div>     
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }

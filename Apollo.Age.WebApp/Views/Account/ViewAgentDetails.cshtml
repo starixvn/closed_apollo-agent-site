@@ -5,7 +5,8 @@
     ViewBag.Title = "ViewAgentDetails";
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting ?? null;
     var betSetting = (IList<BettingLimit>)ViewBag.BetSetting ?? null;
-    
+    var agentId = (int)ViewBag.AgentId ;
+    var userName = (string)ViewBag.UserName ?? string.Empty ;
     Layout = null;
 }
 <!DOCTYPE html>
@@ -17,12 +18,13 @@
     <link href="~/views/account/resources/CustomerSetting.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="">
-        Agency detailed edit -- Account: : 0226 -- Name:flat -- <a href="">@Lang.edit </a>
-        <a href="">Back </a>
+    <div class="detail-information">
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@agentId</strong> -- @Lang.Name : <strong>@userName</strong> -- <a href="">@Lang.edit </a>
+         -- <a href="">@Lang.back </a>
     </div>
     @helper RenderSportBlock(CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
         {
+            <div class="div-border">
         <table class="tb-cust-setting">
             <thead>
                 <tr>
@@ -38,22 +40,22 @@
                 </tr>
                 <tr>
                     <td style="width: 5%;">
-                        A
+                        @Lang.lblA
                     </td>
                     <td style="width: 5%;">
-                        B
+                        @Lang.lblB
                     </td>
                     <td style="width: 5%;">
-                        C
+                        @Lang.lblC
                     </td>
                     <td style="width: 5%;">
-                        D
+                        @Lang.lblD
                     </td>
-                    <td style="width: 10%;">@Lang.lblMinBet
+                    <td style="width: 10%;">@Lang.SingleGame
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxBet
+                    <td style="width: 10%;">@Lang.MinSingleBet
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxPerMatch
+                    <td style="width: 10%;">@Lang.MaxSingleBet
                     </td>
                 </tr>
             </thead>
@@ -89,16 +91,16 @@
                                 @commissionSetting.CommissionItems[0].DiscountD
                             </td>
                         }
-                            
+                        <td>
+                            @Math.Round(betLimit.MaxPerMatch)
+                        </td>
                         <td>
                             @Math.Round(betLimit.MinBet)
                         </td>
                         <td>
                             @Math.Round(betLimit.MaxBet)
                         </td>
-                        <td>
-                            @Math.Round(betLimit.MaxPerMatch)
-                        </td>
+                        
                     </tr>
                         
                     }
@@ -106,8 +108,9 @@
                 }
             </tbody>
         </table>
+        </div>
     }
-    <div style="width: 700px;">
+    <div class="view-detail-container">
         @if (betSetting != null && betSetting.Any())
         {
             BettingLimit outrightBetLimit = null;
