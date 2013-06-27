@@ -56,24 +56,18 @@ namespace Apollo.Age.Reports.Controllers
         [HttpGet]
         public ActionResult Match(byte sportId = 1)
         {
-         return Match(DateTime.Now);
-         //   return ResultBySport(DateTime.Now, sportId);
- 
-        }
-
-        [HttpPost]
-        public ActionResult Match(DateTime eventDate)
-        {
             var viewModel = new MatchResultViewModel
             {
-                BalanceUpDay = BalanceUpDay,                
-                EventDate = eventDate,                                
+                BalanceUpDay = BalanceUpDay,
+                EventDate = DateTime.Now,
             };
 
             return View(viewModel);
+ 
         }
+              
 
-        public JsonResult MatchLeague(DateTime date, string sportTypes, int sportId)
+        public JsonResult GetLeagueBySport(DateTime date, string sportTypes, int sportId)
         {
             // not add select all item yet
             date = new DateTime(2013, 6, 20);
@@ -99,7 +93,7 @@ namespace Apollo.Age.Reports.Controllers
             return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult MatchSport(DateTime date, string sportTypes)
+        public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
             date = new DateTime(2013, 6, 20);
 
@@ -117,7 +111,7 @@ namespace Apollo.Age.Reports.Controllers
 
         }
 
-        public ActionResult MatchResultBySport(DateTime date, string sportTypes)
+        public ActionResult GetMatchResult(DateTime date, string sportTypes)
         {
             date = new DateTime(2013, 6, 20);
             IEnumerable<MatchResultModel> matchResults =
@@ -134,7 +128,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchOtherResultBySport(DateTime date, string sportTypes, int sportId, int leagueId = 0)
+        public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
             date = new DateTime(2013, 6, 20);
             IEnumerable<MatchResultModel> matchResults =
