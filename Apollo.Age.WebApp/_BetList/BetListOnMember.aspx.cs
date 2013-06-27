@@ -108,8 +108,6 @@ namespace Sunplus.Agent.UI._BetList
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
 
             Header1_Template betlistHeader = new Header1_Template();
-            betlistHeader.No.Hide();
-            betlistHeader.Member.Hide();
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
 
@@ -132,7 +130,7 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index++;
                 builder
                     .Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                    .AddTrans(ticket, "<td class='c nonbreak'>", "</td>")
+                    .AddTrans(ticket, ticketHelper, "<td class='c nonbreak'>", "</td>")
                     .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'>", "</td>", isShowScoremap)
                     .AddOdds(ticket, ticketData, "<td class='bl_underdog nonbreak'>", "</td>", funcGetOddsTypeName)
                     .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
