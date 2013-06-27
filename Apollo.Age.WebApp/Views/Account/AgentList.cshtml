@@ -24,7 +24,7 @@
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
-            --<label>@Lang.OrderBy</label>: 
+            --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
 				                }, new { @class = "za_select" })
@@ -36,14 +36,14 @@
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         { 
             <div class="item">
-                --<label>@Lang.Page</label>: 
+                --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
                 &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
             </div>            
         }
-        <div class="item">           
-            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })           
+        <div class="item">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchAgency" id="submit">
         </div>
         <img src="/_GlobalResources/Images/top_04.gif" alt="">
@@ -53,15 +53,21 @@
 <table class="tblRpt agentList">
     <thead>
         <tr>
-            <th width="80">@Lang.enterusername</th>
-            <th width="60">@Lang.agent</th>
-            <th width="70">@Lang.member</th>
-            <th width="60">@Lang.condition</th>
-            <th width="60">@Lang.BetCondition</th>
-            <th width="80">@Lang.Feature</th>
-        </tr>        
+            <th width="80">@Lang.enterusername
+            </th>
+            <th width="60">@Lang.agent
+            </th>
+            <th width="70">@Lang.member
+            </th>
+            <th width="60">@Lang.condition
+            </th>
+            <th width="60">@Lang.BetCondition
+            </th>
+            <th width="80">@Lang.Feature
+            </th>
+        </tr>
     </thead>
-    <tbody>        
+    <tbody>
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         {
             foreach (var item in agentList)
@@ -99,7 +105,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                    <a href="#">@Lang.edit</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
                 </td>
             </tr>
             }

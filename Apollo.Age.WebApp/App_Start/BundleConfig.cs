@@ -73,6 +73,13 @@ namespace Apollo.Age.WebApp
                 "~/Views/Log/Resources/monPickr-0.0.3.js",
                 "~/Views/Log/Resources/Log.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/viewaccountdetails").Include(
+                "~/_GlobalResources/Js/head.js",
+                "~/_GlobalResources/Js/jquery.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+                "~/_GlobalResources/Js/Core.js",
+                "~/Views/Account/Resources/ViewAccountDetails.js"));
+
             bundles.Add(new ScriptBundle("~/scripts/accountjs").Include(
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
