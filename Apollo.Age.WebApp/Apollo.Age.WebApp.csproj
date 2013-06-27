@@ -727,6 +727,11 @@
     <Content Include="Views\Account\InDirectAgentList.cshtml" />
     <Content Include="Views\Account\InDirectMemberList.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
+<<<<<<< HEAD
+=======
+    <Content Include="Views\Account\ViewMemberDetails.cshtml" />
+    <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
+>>>>>>> 0f02348a03f2be73a8f30c1fbf902f93043278c5
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
