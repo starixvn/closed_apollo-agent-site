@@ -509,6 +509,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsBetTeam = columnCollection.Contains("betteam");
             var containsIP = columnCollection.Contains("ip");
             var containsOddsType = columnCollection.Contains("oddstype");
+            var containsUGroup = columnCollection.Contains("ugroup");
 
             // Int
             var containsMatchId = columnCollection.Contains("matchid");
@@ -564,6 +565,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.BetTeam = containsBetTeam ? Converter.ToString2(dataRow["betteam"]) : string.Empty;
                 ticket.IP = containsIP ? Converter.ToString2(dataRow["ip"]) : string.Empty;
                 ticket.OddsType = containsOddsType ? Converter.ToString2(dataRow["oddstype"]) : "0";
+                ticket.UGroup = containsUGroup ? Converter.ToString2(dataRow["ugroup"]) : string.Empty;
 
                 // Int
                 ticket.MatchId = containsMatchId ? Converter.ToInt(dataRow["matchid"]) : 0;
@@ -666,6 +668,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 throw;
             }
         }
+
         /// <summary>
         /// Get bet list Win loss from new or archive
         /// </summary>
@@ -676,10 +679,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {                
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
-
                     var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
 
                     // Main ticket list
@@ -696,6 +698,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 throw;
             }
         }
+
         /// <summary>
         /// Get bet list Win loss from new or archive
         /// </summary>
@@ -706,20 +709,19 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromNew(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {                
-                
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    db.AddInParameter("loggedid", DbType.Int32 ,criteria.LoggedId);
+                    db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
-                    db.AddInParameter("statusids", DbType.AnsiString , criteria.StatusIds);
+                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
 
                     var dataSet = db.ExecuteDataSet();
-                   
+
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
 
@@ -745,8 +747,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {               
-
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
@@ -754,7 +755,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
-                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);                    
+                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
 
                     var dataSet = db.ExecuteDataSet();
 

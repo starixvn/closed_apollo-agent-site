@@ -1907,7 +1907,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Given Share (%).
+        ///   Looks up a localized string similar to % in Agent:.
         /// </summary>
         public static string lblGivenShare {
             get {
@@ -2150,7 +2150,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Given Share (%).
+        ///   Looks up a localized string similar to % in Agent:.
         /// </summary>
         public static string lblMaxGivenShare {
             get {
@@ -2168,7 +2168,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Taken Share (%).
+        ///   Looks up a localized string similar to % in Upper:.
         /// </summary>
         public static string lblMaxTakenShare {
             get {
@@ -2240,7 +2240,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Given Share (%).
+        ///   Looks up a localized string similar to % in Agent Min:.
         /// </summary>
         public static string lblMinGivenShare {
             get {
@@ -2564,7 +2564,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share Setting.
+        ///   Looks up a localized string similar to Betting Setup.
         /// </summary>
         public static string lblShareSetting {
             get {
@@ -2573,7 +2573,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share Setting (Soccer Deadball Handicap).
+        ///   Looks up a localized string similar to Betting Setup.
         /// </summary>
         public static string lblShareSettingSimpleMode {
             get {
@@ -2627,7 +2627,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Taken Share (%).
+        ///   Looks up a localized string similar to % in Upper:.
         /// </summary>
         public static string lblTakenShare {
             get {

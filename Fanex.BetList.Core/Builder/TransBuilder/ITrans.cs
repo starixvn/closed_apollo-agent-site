@@ -29,14 +29,6 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        Trans_Template Render(ITicket ticket);
-
-        /// <summary>
-        /// Renders the RTF.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns></returns>
-        IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper);
+        Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper);
     }
 }

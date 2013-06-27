@@ -394,4 +394,25 @@
   <data name="Roulette" xml:space="preserve">
     <value>Roulette</value>
   </data>
+  <data name="rebate" xml:space="preserve">
+    <value>Rebate</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="explain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="gameType" xml:space="preserve">
+    <value>Game type</value>
+  </data>
+  <data name="ticket" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
 </root>

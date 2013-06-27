@@ -13,7 +13,7 @@
 </head>
 <body>
 	@if (Model != null)
- {
+	{
 		<div id="news_main">
 			<div class="login-bg clearfix">
 				<div class="left">
@@ -22,21 +22,20 @@
 					<div class="login-info clearfix">
 						<div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
 						<ul class="link">
-							 <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
-							 <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
+							<li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
+							<li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
 						</ul>
-						
 					</div>
 					<div class="toolbar">
 						<ul>
 							<li><span class="menu-list">[@Lang.lblWager]</span>
 								<ul class="sub-menu">
-									<li><a href="#">@Lang.lblSC</a></li>
-									<li><a href="#">@Lang.lblBkNflRugby</a></li>
-									<li><a href="#">@Lang.lblTN</a></li>
-									<li><a href="#">@Lang.lblVbBdmTt</a></li>
-									<li><a href="#">@Lang.lblBs</a></li>
-									<li><a href="#">@Lang.other</a></li>
+									<li><a href="~/wagers/Soccer" target="main">@Lang.lblSC</a></li>
+									<li><a href="~/wagers/BkNFLRugby" target="main">@Lang.lblBkNflRugby</a></li>
+									<li><a href="~/wagers/Tennis" target="main">@Lang.lblTN</a></li>
+									<li><a href="~/wagers/VolleyballBadminton" target="main">@Lang.lblVbBdmTt</a></li>
+									<li><a href="~/wagers/Baseball" target="main">@Lang.lblBs</a></li>
+									<li><a href="~/wagers/Others" target="main">@Lang.other</a></li>
 								</ul>
 							</li>
 							<li><span class="menu-list">[@Lang.lblEmWager]</span>
@@ -49,18 +48,16 @@
 									<li><a href="#">@Lang.lblOtherEm</a></li>
 								</ul>
 							</li>
-							<li><span class="menu-list"><a href="~/totalBets" target="main" >[@Lang.lblForecast]</a></span>
-							</li>
+							<li><span class="menu-list"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
 							<li><a href="#" class="outright">[@Lang.lblOutRight]</a></li>
-
 							<li id="account-link"><span class="menu-list">[@Lang.lblAccounts]</span>
 								<ul class="sub-menu">
-									<li><a href="~/Account/AgentList">@Lang.Agents</a></li>
+									<li><a href="~/Account/AgentList" target="main">@Lang.Agents</a></li>
 									@if (Model.AgentLevel > AgentLevel.Shareholder)
 									{
-									<li><a href="~/Account/MemberList">@Lang.Members</a></li>
+										<li><a href="~/Account/MemberList" target="main">@Lang.Members</a></li>
 									}
-								</ul>							
+								</ul>
 							</li>
 							<li><a href="~/Reports/matchentered" target="main" class="txtRed">[@Lang.lblReport]</a></li>
 							<li id="result-link"><a href="~/results/match" target="main" class="txtRed">[@Lang.lblResult]</a></li>
@@ -70,7 +67,6 @@
 					</div>
 				</div>
 			</div>
-
 			@Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
 			@*<div id="text_news_out">
 				<div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">

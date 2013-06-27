@@ -1,10 +1,18 @@
-﻿@{
+﻿@using Apollo.Age.Resources;
+@{
     ViewBag.Title = "Edit Share Setting " + ViewBag.UserName;
-    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+    var userName = (string)ViewBag.UserName ?? string.Empty;
+    var custId = (int)ViewBag.CustId;
+}
+@section header
+{
+    <div class="detail-information">
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@custId</strong> -- @Lang.Name <strong>@userName</strong>  --<a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+    </div>
 }
 
-<div id="ptContainer">
-        </div>
+<div id="ptContainer"></div>
 
 @section scripts
 {

@@ -16,9 +16,11 @@ namespace Fanex.BetList.Core.Builder
     using Fanex.BetList.Core.Builder.AgentCommBuilder;
     using Fanex.BetList.Core.Builder.AgentShareBuilder;
     using Fanex.BetList.Core.Builder.ChoiceBuilder;
+    using Fanex.BetList.Core.Builder.DiscountBuilder;
     using Fanex.BetList.Core.Builder.OddsBuilder;
     using Fanex.BetList.Core.Builder.StakeBuilder;
     using Fanex.BetList.Core.Builder.StatusBuilder;
+    using Fanex.BetList.Core.Builder.TimeBuilder;
     using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
 
@@ -66,6 +68,63 @@ namespace Fanex.BetList.Core.Builder
         {
             this._content.Append(content);
             return this;
+        }
+
+        /// <summary>
+        /// Add the time
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public BetListHTMLBuilder AddTime(ITicket ticket, string openTag, string closeTag, BetListPage page)
+        {
+            string time = BuildTime(ticket, page);
+            this._content.Append(string.Join(null, new string[] { openTag, time, closeTag }));
+            return this;
+        }
+
+        /// <summary>
+        /// Build the time
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public string BuildTime(ITicket ticket, BetListPage page)
+        {
+            ITime timeBuilder = new Time();
+            string time = timeBuilder.Render(ticket, page);
+            return time;
+        }
+
+        /// <summary>
+        /// Add discount
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public BetListHTMLBuilder AddDiscount(ITicket ticket, string openTag, string closeTag, BetListPage page)
+        {
+            string discount = BuildDiscount(ticket, page);
+            this._content.Append(string.Join(null, new string[] { openTag, discount, closeTag }));
+            return this;
+        }
+
+        /// <summary>
+        /// Build discount
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public string BuildDiscount(ITicket ticket, BetListPage page)
+        {
+            IDiscount discountBuilder = new Discount();
+            string discount = discountBuilder.Render(ticket, page);
+
+            return discount;
         }
 
         /// <summary>
@@ -168,9 +227,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddTrans(ITicket ticket, string openTag, string closeTag)
+        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag)
         {
-            string trans = BuildTrans(ticket);
+            string trans = BuildTrans(ticket, ticketHelper);
             this._content.Append(string.Join(null, new string[] { openTag, trans, closeTag }));
             return this;
         }
@@ -180,10 +239,10 @@ namespace Fanex.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public string BuildTrans(ITicket ticket)
+        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
-            string trans = transBuilder.Render(ticket);
+            string trans = transBuilder.Render(ticket, ticketHelper);
             return trans;
         }
 

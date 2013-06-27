@@ -17,6 +17,8 @@ namespace Fanex.BetList.Core.Entities
     /// </summary>
     public interface ITicket
     {
+        string UGroup { get; set; }
+
         int SportTypeId { get; set; }
 
         string UserName { get; set; }

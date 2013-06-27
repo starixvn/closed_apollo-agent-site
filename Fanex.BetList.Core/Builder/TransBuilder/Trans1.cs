@@ -28,38 +28,25 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         public Trans_Template Template { get; set; }
 
         /// <summary>
-        /// Renders the specified ticket.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
-        public virtual Trans_Template Render(ITicket ticket)
-        {
-            Template.transTime = ticket.TransDate.ToString("yyyy-M-dd hh:mm:ss tt");
-
-            // For Mixparlay (Trans9) to reuse
-            Template.TransTime.refNo = ticket.TransId.ToString();
-
-            return Template;
-        }
-
-        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper)
-        {
-            Render(ticket);
-
-            string refNo = Template.TransTime.refNo;
-
-            string transTime = string.Join(null, new string[] { Apollo.Age.Resources.BetList.refno, ": ", refNo });
-            IRichTextString rtfTrans = new HSSFRichTextString(string.Join(null, new string[] { transTime, "\n", Template.transTime }));
-
-            return rtfTrans;
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Trans1" /> class.
         /// </summary>
         public Trans1()
         {
             this.Template = new Trans_Template();
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <returns></returns>
+        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper)
+        {
+            Template.oddsName = ticket.OddsType;
+            Template.transId = ticket.TransId.ToString();
+            Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+
+            return Template;
         }
     }
 }

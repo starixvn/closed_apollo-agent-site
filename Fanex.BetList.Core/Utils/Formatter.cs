@@ -422,7 +422,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd hh:mm");
+                return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
             }
             catch
             {
