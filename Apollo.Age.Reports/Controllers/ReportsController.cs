@@ -134,44 +134,73 @@ namespace Apollo.Age.Reports.Controllers
             return View(matchEnteredViewModel);
         }
 
-        public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
+        //public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
+        //{
+        //    var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
+        //    var agentName = string.IsNullOrWhiteSpace(name) ? this.CurrentSession.AgentName : name;
+        //    var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+        //    var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
+        //    var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
+
+        //    var agentWinLossViewModel = new AgentWinLossViewModel()
+        //    {
+        //        IsSuper = isSuper,
+        //        AgentId = agentId,
+        //        AgentName = agentName,
+        //        FromDate = fromDate,
+        //        ToDate = toDate,
+        //        AgentWinLossList = agentWinLossList,
+        //        DownlinePath = modelAgentDownLine
+        //    };
+
+        //    return View(agentWinLossViewModel);
+        //}
+
+        public ViewResult AgentWinLoss(AgentWinLossViewModel model)
         {
-            var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
-            var agentName = string.IsNullOrWhiteSpace(name) ? this.CurrentSession.AgentName : name;
-            var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+            var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
+            var isSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
-            var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
-            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
-
-            var agentWinLossViewModel = new AgentWinLossViewModel()
-            {
-                IsSuper = isSuper,
-                AgentId = agentId,
-                AgentName = agentName,
-                FromDate = fromDate,
-                ToDate = toDate,
-                AgentWinLossList = agentWinLossList,
-                DownlinePath = modelAgentDownLine
+            var criteria = new AgentWinLossCriteria {
+                AgentId = model.AgentId,
+                Sporttypes = model.Sporttypes,
+                Bettypes = model.Bettypes,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                BalanceUpDay = _reportService.GetBalanceUpDay()
             };
 
-            return View(agentWinLossViewModel);
+            var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
+            var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
+
+            model.IsSuper = isSuper;
+            model.AgentName = agentName;
+            model.AgentWinLossList = agentWinLossList;
+            model.DownlinePath = modelAgentDownLine;
+
+            return View(model);
         }
 
-        public ViewResult MemberWinLoss(int agentId, string agentName, DateTime fromDate, DateTime toDate)
+        public ViewResult MemberWinLoss(MemberWinLossViewModel model)
         {
-            var memberWinLossList = _winLossService.GetMemberWinLoss(agentId, fromDate, toDate);
-            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
-
-            var memberWinLossViewModel = new MemberWinLossViewModel()
+            var criteria = new MemberWinLossCriteria
             {
-                AgentName = agentName,
-                FromDate = fromDate,
-                ToDate = toDate,
-                MemberWinLossList = memberWinLossList,
-                DownlinePath = modelAgentDownLine
+                AgentId = model.AgentId,
+                Sporttypes = model.Sporttypes,
+                Bettypes = model.Bettypes,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                BalanceUpDay = _reportService.GetBalanceUpDay()
             };
 
-            return View(memberWinLossViewModel);
+            var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
+            var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
+
+            model.MemberWinLossList = memberWinLossList;
+            model.DownlinePath = modelAgentDownLine;
+
+            return View(model);
         }
 
         #endregion Agent Win Loss Report

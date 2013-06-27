@@ -1584,4 +1584,13 @@
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
   </data>
+  <data name="BetAmount" xml:space="preserve">
+    <value>Bet Amount</value>
+  </data>
+  <data name="CommBase" xml:space="preserve">
+    <value>Comm Base</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report type</value>
+  </data>
 </root>

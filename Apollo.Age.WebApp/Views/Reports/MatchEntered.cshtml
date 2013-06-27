@@ -7,8 +7,7 @@
 @model MatchEnteredViewModel
 <div id="function-bar">
     <div class="item">
-        <label for="ddlSport">
-            Report:</label>
+        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
     </div>
     <ul class="menu report-winloss">
@@ -424,14 +423,14 @@
         </div>
     </div>
 </div>
-@Html.Hidden("balanceUpDay", DateTime.Now.ToString("yyyy-MM-dd"))
-@Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
-@Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))
-@Html.Hidden("tomorrow", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
-@Html.Hidden("thisWeekFrom", DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
-@Html.Hidden("thisWeekTo", DateTime.Now.EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
-@Html.Hidden("lastWeekFrom", DateTime.Now.AddDays(-7).StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
-@Html.Hidden("lastWeekTo", DateTime.Now.AddDays(-7).EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
+@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
+@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
+@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek(DayOfWeek.Monday)))
+@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek(DayOfWeek.Sunday)))
+@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek(DayOfWeek.Monday)))
+@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek(DayOfWeek.Sunday)))
 @Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
