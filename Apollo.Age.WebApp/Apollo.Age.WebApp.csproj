@@ -75,9 +75,6 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="IBCDBLibrary">
-      <HintPath>..\Dependencies\IBCDBLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
