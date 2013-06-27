@@ -607,6 +607,7 @@
     <Content Include="_GlobalResources\Images\lastGoal.gif" />
     <Content Include="_GlobalResources\Images\letter_icoconts.png" />
     <Content Include="_GlobalResources\Images\loader.gif" />
+    <Content Include="_GlobalResources\Images\loader3.gif" />
     <Content Include="_GlobalResources\Images\more.gif" />
     <Content Include="_GlobalResources\Images\sticky-arrow.png" />
     <Content Include="_GlobalResources\Images\Success.gif" />
@@ -723,6 +724,7 @@
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
+    <None Include="Views\Account\Resources\CustomerSetting.less" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
