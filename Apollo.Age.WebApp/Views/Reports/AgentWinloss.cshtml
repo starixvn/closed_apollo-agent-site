@@ -6,48 +6,18 @@
     string rowClass = string.Empty;
 }
 @model AgentWinLossViewModel
-<div id="box_header" class="report">
-    <div class="row">
-        @{
-            var maxDate = DateTime.Now;
-            var minDate = maxDate.AddMonths(-3);
-        }
-        <div class="cell">
-            <div class="label">
-                @Html.LabelFor(m => m.FromDate, @Apollo.Age.Resources.Lang.dateRange)
-            </div>
-            <div class="editor">
-                @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <div class="label">
-                @Html.LabelFor(m => m.ToDate, "~")
-            </div>
-            <div class="editor">
-                @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
-        </div>
-        <div class="cell">
-            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-        </div>
-        <div class="cell">
-            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-        </div>
+
+<div id="function-bar">
+    <div class="item">
+    <span>@Apollo.Age.Resources.Lang.date : @Formater.ShortDateFormat(Model.FromDate)~@Formater.ShortDateFormat(Model.ToDate)
+    -- @Apollo.Age.Resources.Lang.ReportType : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType : @Model.BettypeName --
+    </span>
+    <a href="#">@Apollo.Age.Resources.Lang.back</a>
     </div>
-    <div class="row bg-action">
-        <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-    </div>
+    <img alt="" src="~/_GlobalResources/Images/top_04.gif">
+    
 </div>
+
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
@@ -62,20 +32,17 @@
                 <th rowspan="2">
                     @Apollo.Age.Resources.Lang.lblSoccerPT
                 </th>
-                <th colspan="2">
-                    @Apollo.Age.Resources.Lang.turnover
+                <th rowspan="2">
+                    @Apollo.Age.Resources.Lang.BetAmount
+                </th>
+                <th rowspan="2">
+                    @Apollo.Age.Resources.Lang.CommBase
                 </th>
                 <th colspan="3">
                     @Apollo.Age.Resources.Lang.company
                 </th>
             </tr>
             <tr>
-                <th>
-                    @Apollo.Age.Resources.Lang.total
-                </th>
-                <th>
-                    @Apollo.Age.Resources.Lang.Actual
-                </th>
                 <th>
                     @Apollo.Age.Resources.Lang.lblWinLoss
                 </th>
@@ -98,7 +65,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/Reports/AgentWinLoss?id=@item.AgentId&name=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
+                        <a href="~/Reports/AgentWinLoss?AgentId=@item.AgentId&AgentName=@item.AgentName&Sporttypes=@Model.Sporttypes&Bettypes=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                             @item.AgentName
                         </a>
                     </td>
@@ -138,8 +105,11 @@
                 <th rowspan="2">
                     @Apollo.Age.Resources.Lang.lblSoccerPT
                 </th>
-                <th colspan="2">
-                    @Apollo.Age.Resources.Lang.turnover
+                <th rowspan="2">
+                    @Apollo.Age.Resources.Lang.BetAmount
+                </th>
+                <th rowspan="2">
+                    @Apollo.Age.Resources.Lang.CommBase
                 </th>
                 <th rowspan="2">
                     @Apollo.Age.Resources.Lang.GrossTotal
@@ -152,12 +122,6 @@
                 </th>
             </tr>
             <tr>
-                <th>
-                    @Apollo.Age.Resources.Lang.total
-                </th>
-                <th>
-                    @Apollo.Age.Resources.Lang.Actual
-                </th>
                 <th>
                     @Apollo.Age.Resources.Lang.lblWinLoss
                 </th>
@@ -197,7 +161,7 @@
                     @if (item.IsAgent)
                     {
                         <td>
-                            <a href="~/Reports/AgentWinLoss?id=@item.AgentId&name=@item.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
+                            <a href="~/Reports/AgentWinLoss?AgentId=@item.AgentId&AgentName=@item.AgentName&Sporttypes=@Model.Sporttypes&Bettypes=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @item.AgentName
                             </a>
                         </td>
@@ -208,7 +172,7 @@
                     else
                     {
                         <td>
-                            <a href="~/Reports/MemberWinLoss?agentId=@Model.AgentId&agentName=@Model.AgentName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
+                            <a href="~/Reports/MemberWinLoss?AgentId=@Model.AgentId&AgentName=@Model.AgentName&Sporttypes=@Model.Sporttypes&Bettypes=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @Apollo.Age.Resources.Lang.lblMemberWinLoss
                             </a>
                         </td>
@@ -276,13 +240,11 @@
         }
     }
 </table>
-@Html.Hidden("today", DateTime.Now.ToString("yyyy-MM-dd"))
-@Html.Hidden("yesterday", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))
-@Html.Hidden("tomorrow", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
-@Html.Hidden("thisWeekFrom", DateTime.Now.StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
-@Html.Hidden("thisWeekTo", DateTime.Now.EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
-@Html.Hidden("lastWeekFrom", DateTime.Now.AddDays(-7).StartOfWeek(DayOfWeek.Monday).ToString("yyyy-MM-dd"))
-@Html.Hidden("lastWeekTo", DateTime.Now.AddDays(-7).EndOfWeek(DayOfWeek.Sunday).ToString("yyyy-MM-dd"))
+@Html.Hidden("ddlSport", Model.Sporttypes)
+@Html.Hidden("ddlBettype", Model.Bettypes)
+@Html.Hidden("ToDate", Formater.ShortDateFormat(Model.ToDate))
+@Html.Hidden("FromDate", Formater.ShortDateFormat(Model.FromDate))
+
 @Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
