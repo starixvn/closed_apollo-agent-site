@@ -723,6 +723,8 @@
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
+    <Content Include="Views\Account\InDirectAgentList.cshtml" />
+    <Content Include="Views\Account\InDirectMemberList.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\Account\ViewMemberDetails.cshtml" />
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />

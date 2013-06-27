@@ -83,7 +83,6 @@ namespace Apollo.Age.Reports.Controllers
 
             var listLeague = new List<League>();
 
-            //byte selectedSportId = ((int)this.SportId <= 0) ? (byte)this.SportList.First().Id : this.SportId;
             if (matchResults != null && matchResults.Any())
             {
                 listLeague = matchResults.Where(item => item.SportId == sportId)
@@ -96,18 +95,6 @@ namespace Apollo.Age.Reports.Controllers
                 }
             }
 
-            //var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
-            //List<League> leagues = new List<League>();
-            //if (leaguesBySport != null && leaguesBySport.Count() > 1)
-            //{
-            //    leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
-            //}
-
-            //leaguesBySport.ForEach((item) => leagues.Add(new League
-            //{
-            //    Id = item.Id,
-            //    Name = CacheRef.GetLeagueName(item.Id)
-            //}));
 
             return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
@@ -169,42 +156,7 @@ namespace Apollo.Age.Reports.Controllers
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }        
-
-        //public ActionResult ResultByMatch(int matchId, byte sportId)
-        //{
-        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
-
-        //    if (results != null && results.Any())
-        //    {
-        //        results = results.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    string sportName = GetViewBySport(sportId);
-
-        //    ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
-        //    ViewBag.IsParlay = false;
-
-        //    return View("~/Views/Results/MatchResult.cshtml", results);
-        //}
-
-        //public ActionResult ParlayResult(long refNo)
-        //{
-        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
-
-        //    foreach (var result in results)
-        //    {
-        //        result.ViewName = GetViewBySport(result.SportId);
-        //    }
-
-        //    if (results != null && results.Any())
-        //    {
-        //        results = results.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    ViewBag.IsParlay = true;
-
-        //    return View("~/Views/Results/ParlayResult.cshtml", results);
-        //}
+              
         #endregion Match Results
 
         #region Outright Results
