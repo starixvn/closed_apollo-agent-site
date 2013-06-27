@@ -12,8 +12,8 @@
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
     </div>
     <ul class="menu report-winloss">
-        <li class="active"><a href="#">@Apollo.Age.Resources.Lang.lblReport</a></li>
-        <li><a href="#">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
+        <li class="active"><a href="~/Reports/MatchEntered">@Apollo.Age.Resources.Lang.lblReport</a></li>
+        <li><a href="~/_betList/BetListTransaction.aspx?type=cancel">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
     </ul>
     <img alt="" src="~/_GlobalResources/Images/top_04.gif">
 </div>
@@ -26,11 +26,6 @@
             <td colspan="4">
                 <div class="row">
                     <div class="cell">
-                        @*<div class="label">
-                            <label for="dateFrom">
-                                @Apollo.Age.Resources.Lang.dateRange
-                            </label>
-                        </div>*@
                         <div class="editor">
                             @Html.DatePicker("FromDate", DateTime.Now)
                         </div>
@@ -61,9 +56,6 @@
                         <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
                     </div>
                 </div>
-                @*<div class="row bg-action">
-                    <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                </div>*@
             </td>
         </tr>
         <tr>
@@ -424,7 +416,7 @@
             </div>
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                <input class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
             </div>
             <div class="item pull-right">
                 @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")

@@ -136,6 +136,15 @@ table {
 
 	.item {
 		float: left;
+		margin: 1px 5px 2px 0;
+
+		label {
+			margin: 0 3px;
+		}
+
+		* {
+			vertical-align: middle;
+		}
 	}
 
 	.pager {
@@ -642,6 +651,22 @@ table {
 		
 		thead td, thead th, tbody .em-row {
 			border-bottom: 0;
+		}
+	}
+	
+
+	&.agentList {
+		border-color: #976061;
+		width: 880px;
+
+		thead td, thead th, tbody .em-row {
+			background-color: #CD9A99;
+			border-color: #976061;
+			color: #000;
+		}
+
+		tbody tr td {
+			border-color: #976061;
 		}
 	}
 }
