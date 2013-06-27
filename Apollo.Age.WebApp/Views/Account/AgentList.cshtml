@@ -105,7 +105,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.edit</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                    <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@Url.Content("~/account/agentlist")">@Lang.edit</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
                 </td>
             </tr>
             }

@@ -44,7 +44,7 @@ if (typeof jQuery != 'undefined') {
                     $(this).hide();
                     $("#page_main").addClass("advanced-mode-width").removeClass("simple-mode-width");
                     $("#simple-mode").show();
-                    
+
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
                     EDITPOSITIONTAKING.initOthers(false);
                 });
@@ -71,14 +71,15 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             completeUpdate: function (result) {
-                setTimeout(function () {
-                    if (typeof (parent.MEMBERLIST) != 'undefined') {
-                        parent.MEMBERLIST.loadMemberList();
-                    }
-                    else if (typeof (parent.AGENTLIST) != 'undefined') {
-                        parent.AGENTLIST.loadAgentList();
-                    }
-                }, 3000);
+                window.location.href = DEFAULT_OBJECT.linkBack;
+                //                setTimeout(function () {
+                //                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                //                        parent.MEMBERLIST.loadMemberList();
+                //                    }
+                //                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                //                        parent.AGENTLIST.loadAgentList();
+                //                    }
+                //                }, 3000);
             }
         }
     } (jQuery);
