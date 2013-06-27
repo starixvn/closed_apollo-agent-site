@@ -317,6 +317,8 @@ function SelectTopMenu(url) {
     else ClearActiveTab();
 }
 
+RegisterStartUp(InitHeader);
+
 var HEADER = function ($) {
     return {
         init: function () {
@@ -349,11 +351,13 @@ var HEADER = function ($) {
             });
 
         },
+
         signOut: function () {
             $("#signout").on("click", function () {
                 APOLLO.signOut();
             });
         },
+
         reCheckIn: function () {
             $.ajax({
                 type: "POST",
@@ -377,7 +381,8 @@ var HEADER = function ($) {
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
-        },
+            },
+
         showAccountTab: function () {
             //parent.$('#menu').contents().find('body').html('ideate tech');
             var leftMenu = parent.$('.menu'),
@@ -389,6 +394,7 @@ var HEADER = function ($) {
                 HEADER.showLeftNavigation(leftMenu, mainPage);
             }
         },
+
         hideLeftNavigation: function (leftMenu, mainPage) {
             leftMenu.hide().animate(
                 { width: "0" },
@@ -403,7 +409,8 @@ var HEADER = function ($) {
                     }
                 }
             );
-        },
+            },
+
         showLeftNavigation: function (leftMenu, mainPage) {
             leftMenu.show().animate(
                      { width: "220px" },
@@ -422,5 +429,3 @@ var HEADER = function ($) {
         }
     };
 } (jQuery);
-
-RegisterStartUp(InitHeader);
