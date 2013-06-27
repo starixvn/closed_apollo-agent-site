@@ -27,7 +27,7 @@ var Match = (function () {
             if (ddlLeague.length > 0) {
                 if (sportId != undefined) {
                     ddlLeague.attr('disabled', true);
-                    $.getJSON(APOLLO.resolveUrl("~/Results/MatchLeague"), { "date": date, "sportTypes": sportTypes, "sportId": sportId })
+                    $.getJSON(APOLLO.resolveUrl("~/Results/GetLeagueBySport"), { "date": date, "sportTypes": sportTypes, "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
                             ddlLeague.empty();
@@ -47,7 +47,7 @@ var Match = (function () {
             }
         },
         bindMatchSport: function () {
-            $.getJSON(APOLLO.resolveUrl("~/Results/MatchSport"), { "date": date, "sportTypes": sportTypes })
+            $.getJSON(APOLLO.resolveUrl("~/Results/GetSportByMatch"), { "date": date, "sportTypes": sportTypes })
                         .done(function (data) {
                             ddlSport.empty();
                             $.each(data, function (i, item) {
@@ -139,7 +139,7 @@ var Match = (function () {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
                 if (sportTypes != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/MatchResultBySport"), { "date": date, "sportTypes": sportTypes })
+                    $.get(APOLLO.resolveUrl("~/Results/GetMatchResult"), { "date": date, "sportTypes": sportTypes })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
@@ -154,7 +154,7 @@ var Match = (function () {
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
                 if (sportTypes != null) {
-                    $.get(APOLLO.resolveUrl("~/Results/MatchOtherResultBySport"), { "date": date, "sportTypes": sportTypes, "sportId": sportId, "leagueId": leagueId })
+                    $.get(APOLLO.resolveUrl("~/Results/GetOtherResult"), { "date": date, "sportTypes": sportTypes, "sportId": sportId, "leagueId": leagueId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
