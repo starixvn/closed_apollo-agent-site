@@ -35,8 +35,15 @@
             });
 
             $("#btnCancel").bind('click', function () {
-                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
-                location.href = url;
+//                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
+                //                location.href = url;
+                history.back();
+                return false;
+            });
+
+            $("#btnBack").bind('click', function () {
+                history.back();
+                return false;
             });
 
             $(".navigation").bind('click', function () {
