@@ -22,9 +22,9 @@ namespace Fanex.BetList.Age
 			protected static string s4 = "</th><th>";
 			protected static string s5{get{return Apollo.Age.Resources.BetList.choice;}}
 			protected static string s6 = "</th><th style=\"width: 50px;\">";
-			protected static string s7{get{return Apollo.Age.Resources.BetList.odds;}}
+			protected static string s7{get{return Apollo.Age.Resources.BetList.amount;}}
 			protected static string s8 = "</th><th style=\"width: 50px;\">";
-			protected static string s9{get{return Apollo.Age.Resources.BetList.stake;}}
+			protected static string s9{get{return Apollo.Age.Resources.BetList.result;}}
 			protected static string s10 = "</th>";
 			public Header1_Winloss_Block Winloss = new Header1_Winloss_Block();
 			public Header1_Status_Block Status = new Header1_Status_Block();

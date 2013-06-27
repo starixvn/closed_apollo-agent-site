@@ -106,6 +106,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string amount {
+            get {
+                return ResourceManager.GetString("amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Away.
         /// </summary>
         public static string away {
@@ -727,11 +736,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results.
+        ///   Looks up a localized string similar to Result.
         /// </summary>
-        public static string results {
+        public static string result {
             get {
-                return ResourceManager.GetString("results", resourceCulture);
+                return ResourceManager.GetString("result", resourceCulture);
             }
         }
         
