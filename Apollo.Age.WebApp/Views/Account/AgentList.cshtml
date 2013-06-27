@@ -16,7 +16,7 @@
 {       
     <div id="function-bar">
         <div class="item">
-            @Lang.agent :
+            <label>@Lang.agent</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
@@ -24,7 +24,7 @@
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
-            &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+            --<label>@Lang.OrderBy</label>: 
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
 				                }, new { @class = "za_select" })
@@ -36,49 +36,37 @@
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         { 
             <div class="item">
-                &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
+                --<label>@Lang.Page</label>: 
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
-                &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
             </div>            
         }
-        <div class="item">
-            &nbsp;
-            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
-            &nbsp;
+        <div class="item">           
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })           
             <input type="submit" class="za_button" value="@Lang.SearchAgency" id="submit">
         </div>
         <img src="/_GlobalResources/Images/top_04.gif" alt="">
     </div>   
     @Html.HiddenFor(m => m.AgentId)    
 }
-<table width="880" cellpadding="0" border="0" bgcolor="#976061" cellspacing="1" class="m_tab">
-    <tbody>
+<table width="880" cellpadding="0" border="0" bgcolor="#976061" cellspacing="1" class="tblRpt agentList">
+    <thead>
         <tr bgcolor="#86C0A6" class="m_title_suag">
-            <td width="80">
-                @Lang.enterusername
-            </td>
-            <td width="60">
-                @Lang.agent
-            </td>
-            <td width="70">
-                @Lang.member
-            </td>
-            <td width="60">
-                @Lang.condition
-            </td>
-            <td width="60">
-                @Lang.BetCondition
-            </td>
-            <td width="80">
-                @Lang.Feature
-            </td>
-        </tr>
+            <th width="80">@Lang.enterusername</th>
+            <th width="60">@Lang.agent</th>
+            <th width="70">@Lang.member</th>
+            <th width="60">@Lang.condition</th>
+            <th width="60">@Lang.BetCondition</th>
+            <th width="80">@Lang.Feature</th>
+        </tr>        
+    </thead>
+    <tbody>        
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         {
             foreach (var item in agentList)
             {
-            <tr class="m_cen">
+            <tr>
                 <td>
                     @item.Username
                 </td>
@@ -110,7 +98,7 @@
                 <td>
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
-                <td align="left">
+                <td class="text-left">
                     &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
                     </span>
                 </td>
