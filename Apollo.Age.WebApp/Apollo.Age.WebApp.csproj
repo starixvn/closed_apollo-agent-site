@@ -724,6 +724,11 @@
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalf.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Rugby.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\SpecialBet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\CorrectScore.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -951,7 +956,6 @@
     <Content Include="Views\Results\Match.cshtml" />
     <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
-    <Content Include="Views\Results\OutrightResult.cshtml" />
     <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
