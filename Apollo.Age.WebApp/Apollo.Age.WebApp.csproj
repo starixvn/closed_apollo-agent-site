@@ -729,6 +729,7 @@
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
+    <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -759,7 +760,6 @@
     <Content Include="Views\Account\EditCommission.cshtml" />
     <Content Include="Views\Account\EditMemberSetting.cshtml" />
     <Content Include="Views\Account\EditPositionTaking.cshtml" />
-    <Content Include="Views\Account\EditSetting.cshtml" />
     <Content Include="Views\Account\LogLogin.cshtml" />
     <Content Include="Views\Account\MemberDownline.cshtml" />
     <Content Include="Views\Account\MemberList.cshtml" />

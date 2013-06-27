@@ -2,6 +2,9 @@
 @import "../../../../_globalresources/css/agent.less";
 
 /* File Created: March 13, 2013 */
+@headerBackgroudSetting: #84968B;
+@headerLeftBackgourndSetting: #BACCC1;
+@borderSetting:#DCDCDC;
 
 body, .pt-grid {
 	font-size: (@fontSize -1);
@@ -18,10 +21,10 @@ body, .pt-grid {
 }
 
 .pt-grid-header {
-	background: @primaryHeaderBackground;
-	color: @white;
+	background: @headerBackgroudSetting;
+	color: @black;
 	font-size: 1.1em;
-	text-align: left;
+	text-align: center;
 	position: relative;
 }
 
@@ -158,16 +161,18 @@ body, .pt-grid {
 .simple-mode-container {
 	font-size: (@fontSize -1);
 
+
 	.share-setting-table {
 		width: 100%;
 	}
 
 	.share-setting-table tr td {
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
+		background-color: #F2FAFF;
 	}
 
 	.share-setting-label {
-		background-color: lighten(@primaryColor, 35%);
+		background-color: @headerLeftBackgourndSetting !important;
 		border: 1px solid @borderColor;
 	}
 
@@ -192,7 +197,7 @@ body, .pt-grid {
 	}
 
 	.share-setting-label {
-		text-align: left;
+		text-align: right;
 		padding: 2px 0 2px 4px;
 	}
 } 

@@ -1050,25 +1050,25 @@
     <value>Commission Setting</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
-    <value>Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>Max Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxTakenShare" xml:space="preserve">
-    <value>Max Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblMinGivenShare" xml:space="preserve">
-    <value>Min Given Share (%)</value>
+    <value>% in Agent Min:</value>
   </data>
   <data name="lblShareSetting" xml:space="preserve">
-    <value>Share Setting</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Share Setting (Soccer Deadball Handicap)</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
-    <value>Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
     <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
