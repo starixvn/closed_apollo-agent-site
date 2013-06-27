@@ -13,7 +13,7 @@
 }
 <div id="function-bar">
     <ul class="menu">
-        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)">@Lang.yesterday</a></li>
+        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)" action="0">@Lang.yesterday</a></li>
         <li>@Lang.Game:</li>
         @RazorHelper.RenderResultBySport()
     </ul>

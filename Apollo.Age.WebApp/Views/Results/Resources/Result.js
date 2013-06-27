@@ -79,20 +79,25 @@ var Match = (function () {
                 Match.showOutrightResult();
             });
         },
+        reActiveMenu: function (action) {
+            $("#filterbydate").attr("action", action);                   
 
+        },
         bindingMenu: function () {
             $("[name=menusport]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
+                Match.reActiveMenu(0);
                 Match.showResult();
             });
 
             $("[name=menuothersport]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
+                Match.reActiveMenu(1);
                 Match.OtherResult();
 
-                ddlSport.unbind('change').bind('change',function () {
+                ddlSport.unbind('change').bind('change', function () {
                     Match.bindMatchLeague();
                 });
 
@@ -103,6 +108,7 @@ var Match = (function () {
             $("[name=menuoutright]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
+                Match.reActiveMenu(2);
                 Match.OutrightResult();
 
                 ddlSport.unbind('change').bind('change', function () {
@@ -123,6 +129,26 @@ var Match = (function () {
                     $this.html("Yesterday");
                     $this.attr("value", $("#todayValue").val());
                 }
+
+                $action = $this.attr("action");
+                switch ($action) {
+                    case "0":
+                        {
+                            Match.showResult();
+                            break;
+                        }
+                    case "1":
+                        {
+                            Match.showOtherResult();
+                            break;
+                        }
+                    case "2":
+                        {
+                            Match.showOutrightResult();
+                            break;
+                        }
+                }
+
             });
         },
         paging: function () {
@@ -143,7 +169,7 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
-                         // Match.paging();
+                          // Match.paging();
 
                       });
                 }
@@ -162,21 +188,21 @@ var Match = (function () {
                       });
                 }
             }
-          },
-          showOutrightResult: function () {
-              sportId = ddlSport.val();
-              var resultContainer = $("#resultContainer");
-              if (resultContainer.length > 0) {
-                  if (sportTypes != null) {
-                      $.get(APOLLO.resolveUrl("~/Results/Outright"), { "date": date, "sportId": sportId })
+        },
+        showOutrightResult: function () {
+            sportId = ddlSport.val();
+            var resultContainer = $("#resultContainer");
+            if (resultContainer.length > 0) {
+                if (sportTypes != null) {
+                    $.get(APOLLO.resolveUrl("~/Results/Outright"), { "date": date, "sportId": sportId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
 
                       });
-                  }
-              }
-          },
+                }
+            }
+        },
         OtherResult: function () {
             $("#filterResult").show();
             $("#filterResultLeague").show();
@@ -185,7 +211,7 @@ var Match = (function () {
         },
         OutrightResult: function () {
             $("#filterResult").show();
-            $("#filterResultLeague").hide();            
+            $("#filterResultLeague").hide();
             Match.bindOutrightSport();
         }
     }
