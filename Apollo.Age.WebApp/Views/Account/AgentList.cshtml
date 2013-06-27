@@ -50,9 +50,9 @@
     </div>   
     @Html.HiddenFor(m => m.AgentId)    
 }
-<table width="880" cellpadding="0" border="0" bgcolor="#976061" cellspacing="1" class="tblRpt agentList">
+<table class="tblRpt agentList">
     <thead>
-        <tr bgcolor="#86C0A6" class="m_title_suag">
+        <tr>
             <th width="80">@Lang.enterusername</th>
             <th width="60">@Lang.agent</th>
             <th width="70">@Lang.member</th>
@@ -73,7 +73,7 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        <span>@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
                     }
                     else
@@ -84,7 +84,7 @@
                 <td>
                     @if (item.NumberOfMember != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        <span>@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
                     }
                     else
@@ -99,7 +99,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.Detail</a>
                     </span>
                 </td>
             </tr>
