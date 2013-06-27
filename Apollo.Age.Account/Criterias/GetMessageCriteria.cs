@@ -84,11 +84,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            var checkDate = false;
-
-            checkDate = From <= To && ((DateTime)To - (DateTime)From).Days <= DateTime.Now.DayOfYear;
-
-            return CustId > 0 && checkDate;
+            return CustId >= 0;
         }
     }
 }

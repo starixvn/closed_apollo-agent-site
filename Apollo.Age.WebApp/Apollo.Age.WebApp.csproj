@@ -307,6 +307,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
     <Content Include="Views\Account\Resources\AccountInfo.js" />
     <Content Include="Views\Account\Resources\AccountList.js" />
     <Content Include="Views\Account\Resources\AgentList.js" />
@@ -382,6 +383,7 @@
     <Content Include="Views\Account\Resources\treeview.css" />
     <Content Include="Views\Account\Resources\ViewComm.js" />
     <Content Include="Views\Account\Resources\ViewShare.js" />
+    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\BetList\Resources\Images\bgHeader.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_conts.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_popup.jpg" />
@@ -596,6 +598,7 @@
     <Content Include="_GlobalResources\Images\btDown.png" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
     <Content Include="_GlobalResources\Images\btRefresh.png" />
+    <Content Include="_GlobalResources\Images\down-arr.png" />
     <Content Include="_GlobalResources\Images\edit.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
     <Content Include="_GlobalResources\Images\error2.png" />
@@ -606,7 +609,6 @@
     <Content Include="_GlobalResources\Images\lastGoal.gif" />
     <Content Include="_GlobalResources\Images\letter_icoconts.png" />
     <Content Include="_GlobalResources\Images\loader.gif" />
-    <Content Include="_GlobalResources\Images\loader3.gif" />
     <Content Include="_GlobalResources\Images\more.gif" />
     <Content Include="_GlobalResources\Images\sticky-arrow.png" />
     <Content Include="_GlobalResources\Images\Success.gif" />
@@ -717,7 +719,6 @@
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
     <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
-    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
     <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <Content Include="Views\Account\ContactUs.cshtml" />
@@ -725,8 +726,8 @@
     <Content Include="Views\Results\Others.cshtml" />
     <Content Include="Views\Account\InDirectAgentList.cshtml" />
     <Content Include="Views\Account\InDirectMemberList.cshtml" />
-    <None Include="Views\Account\Resources\CustomerSetting.less" />
-    <Content Include="Views\Account\ViewMemberDetails.cshtml" />
+    <Content Include="Views\Account\ViewAccountDetails.cshtml" />
+    <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -737,7 +738,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Wagers\Scripts\" />
-    <Folder Include="Areas\Wagers\Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -951,11 +951,10 @@
     <Content Include="Views\Results\Badminton.cshtml" />
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
-    <Content Include="Views\Results\Billard.cshtml" />
-    <Content Include="Views\Results\IceHockey.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
     <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
+    <Content Include="Views\Results\OutrightResult.cshtml" />
     <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />

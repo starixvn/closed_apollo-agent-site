@@ -166,10 +166,10 @@
 					if (mainShareHolders != null && mainShareHolders.Any())
 					{
 					<div class="label">
-						<label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder</label>
+						<label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder&nbsp:</label>
 					</div>
 					<div class="editor">
-						<select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
+						<select id='ddlMainShareHolder' name='ddlMainShareHolder'>
 							@{
 						var selectedString = string.Empty;
 						foreach (var mainShareHolder in mainShareHolders)
@@ -248,15 +248,15 @@
             {
                 if(sport.Id == Apollo.Age.Core.SingbetConstants.Other)
                 {							
-			    <li><a href="#" id="@sport.Id" name="menuothersport" >[@(sport.Name)]</a></li>
+			        <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
                 }
                 else if(sport.Id == Apollo.Age.Core.SingbetConstants.Outright)
                 {
-                    <li><a href="#" id="@sport.Id" name="menuoutright" >[@(sport.Name)]</a></li>
+                    <li><a href="#" id="@sport.Id" name="menuoutright">[@(sport.Name)]</a></li>
                 }
                 else
                 {
-                <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+                   <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
                 }
             }
 
@@ -265,15 +265,15 @@
 }
 
 @helper ToEasternTime(DateTime datetime)
-{
-	if(datetime != null)
-	{
+    {
+    if (datetime != null)
+    {
         datetime = DateTime.Now;
     }
-	try
-	{
-		TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-		var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+    try
+    {
+        TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+        var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
         
         <div class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
         

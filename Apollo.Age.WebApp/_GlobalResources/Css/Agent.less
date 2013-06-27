@@ -106,11 +106,17 @@ table {
 						color: #00e;
 						cursor: text;
 					}
-				}
+				}				
 			}
 
-			a:hover {
-				color: #0000EE;
+			a {
+				&.result-active {
+					color: red;
+				}
+
+				&:hover {
+					color: #0000EE;
+				}
 			}
 		}
 		
@@ -682,6 +688,21 @@ table {
 
 		tbody tr td {
 			border-color: #E3D46E;
+		}
+	}
+
+	&.directAgentList {
+		border-color: #4B8E6F;
+		width: 880px;
+
+		thead td, thead th, tbody .em-row {
+			background-color: #86C0A6;
+			border-color: #4B8E6F;
+			color: #000;
+		}
+
+		tbody tr td {
+			border-color: #4B8E6F;			
 		}
 	}
 }
