@@ -9,13 +9,25 @@
 
     public class CustomerListCriteria : CriteriaBase
     {
+        private string _username = string.Empty;
+
         public int AgentId { get; set; }
 
         public int PageIndex { get; set; }
 
         public int TotalItems { get; set; }
 
-        public string UserName { get; set; }
+        public string UserName
+        {
+            get
+            {
+                return _username != null ? _username.Trim() : string.Empty;
+            }
+            set
+            {
+                _username = value;
+            }
+        }
 
         public int PageSize
         {
