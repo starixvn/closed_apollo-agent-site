@@ -53,10 +53,14 @@
 <table class="tblRpt memberList">
     <thead>
         <tr>
-            <th width="80">@Lang.enterusername</th>
-            <th width="60">@Lang.condition</th>
-            <th width="60">@Lang.BetCondition</th>
-            <th width="80">@Lang.Feature</th>
+            <th width="80">@Lang.enterusername
+            </th>
+            <th width="60">@Lang.condition
+            </th>
+            <th width="60">@Lang.BetCondition
+            </th>
+            <th width="80">@Lang.Feature
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -75,7 +79,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                   <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
+                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
                 </td>
             </tr>
             }

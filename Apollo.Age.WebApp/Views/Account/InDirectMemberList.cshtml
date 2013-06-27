@@ -31,7 +31,7 @@
                     <option value="@item.Id">@item.Username</option>
                     }
                 }
-            </select>            
+            </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
@@ -51,7 +51,7 @@
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
         { 
             <div class="item">
-               --<label>@Lang.Page</label>:
+                --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
                 &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
@@ -105,7 +105,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.Detail</a>
+                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
                 </td>
             </tr>
             }
