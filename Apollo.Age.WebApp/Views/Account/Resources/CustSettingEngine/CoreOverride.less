@@ -5,19 +5,24 @@
 @headerBackgroudSetting: #84968B;
 @headerLeftBackgourndSetting: #BACCC1;
 @borderSetting:#DCDCDC;
+@inputSettingColor:#F2FAFF;
 
 body, .pt-grid {
 	font-size: (@fontSize -1);
 	background-color: #F9F9F9;
+	
 }
 
 .betting-limit-item {
 	padding: 1px 2px 2px 2px;
 }
-
-.pt-grid, .betting-limit-container-header, .commission-container-header,
+.pt-grid
+{
+	border: 1px solid black;
+}
+.betting-limit-container-header, .commission-container-header,
 .commission-setting-table-player, .commission-setting-table-player tr td {
-	border: 1px solid @borderColor;
+	border: 1px solid @borderSetting;
 }
 
 .pt-grid-header {
@@ -29,14 +34,18 @@ body, .pt-grid {
 }
 
 .pt-sport-label, .pt-sport-label2, .bet-type-select, .bet-type-label, .bet-type-select-label {
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;
 	color: #333;
+	
 }
-
+.bet-type-select
+{
+	background: @inputSettingColor;
+}
 .pt-sport {
-	background-color: #ccc;
-	border: 1px solid @borderColor;
+	background-color: @headerBackgroudSetting;
+	border: 1px solid @borderSetting;
 	border-left: none;
 }
 
@@ -77,16 +86,17 @@ body, .pt-grid {
 }
 
 .bet-type-header, .group-label, .group-label2, .group-set-label {
-	background-color: lighten(@primaryColor, 35%);
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;	
+	background-color: @headerLeftBackgourndSetting;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;	
 }
 
 
 .bet-type-header2, .bet-type-header-active, .betting-limit-item-no-info,
 .betting-limit-header-copied, .betting-limit-header-copied-active {
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;
+	background-color:  @headerLeftBackgourndSetting;
 }
 
 .bet-type-inactive {
@@ -95,47 +105,47 @@ body, .pt-grid {
 }
 
 .betting-limit, .betting-limit4 {
-	background-color: lighten(@primaryColor, 35%);
-	border-bottom: 1px solid @borderColor;
-	border-right: 1px solid @borderColor;
+	background-color: @headerLeftBackgourndSetting;
+	border-bottom: 1px solid @borderSetting;
+	border-right: 1px solid @borderSetting;
 }
 
 .betting-limit-item, .betting-limit-item4, .betting-limit-item9, .betting-limit-item92, .betting-limit-label {
 	background-color: @white;
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;
 }
 
 .betting-limit-item5 {
 	background-color: #DDDDDD;
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;
 }
 
 .betting-limit-item2-no-info {
-	border-top: 1px solid @borderColor;
+	border-top: 1px solid @borderSetting;
 }
 
 .betting-limit-item2 {
 	background-color: @white;
-	border-top: 1px solid @borderColor;
+	border-top: 1px solid @borderSetting;
 }
 
 .betting-limit-header, .betting-limit-header-top,
 .betting-limit-header2, .betting-limit-header-top9,
 .betting-limit-header-top4, .betting-limit-header-top5 {
-	border-left: 1px solid @borderColor;
-	border-top: 1px solid @borderColor;
+	border-left: 1px solid @borderSetting;
+	border-top: 1px solid @borderSetting;
 	font-size: @fontSize - 1;
 }
 
 .commission-setting-table, .commission-setting-table-player {
-	background-color: lighten(@primaryColor, 35%);
+	background-color: @headerLeftBackgourndSetting;
 }
 
 .commission-setting-table-player tr th {
 	background: none repeat scroll 0 0 #CCC;
-	border: 1px solid @borderColor;
+	border: 1px solid @borderSetting;
 }
 
 .margin-top-12 {
@@ -173,26 +183,26 @@ body, .pt-grid {
 
 	.share-setting-label {
 		background-color: @headerLeftBackgourndSetting !important;
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
 	}
 
 	.share-setting-value {
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
 	}
 
 	.bet-limit-value {
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
 		border-right: none;
 		width: 20%;
 	}
 
 	.bet-limit-constrain {
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
 		border-left: none;
 	}
 
 	.bet-limit-text {
-		border: 1px solid @borderColor;
+		border: 1px solid @borderSetting;
 		background-color: #F4F1E0;
 	}
 
@@ -212,7 +222,7 @@ body, .pt-grid {
 	}
 
 	.deactive-mode {
-		color: @borderColor;
+		color: @borderSetting;
 		cursor: default;
 	}
 
@@ -256,7 +266,7 @@ body, .pt-grid {
 
 .group-label {
 	padding: 2px 0 2px 4px;
-	text-align: left;
+	text-align: right;
 }
 
 .eq-ie7 {
@@ -302,21 +312,21 @@ body, .pt-grid {
 .simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
 .simple-mode-container .bet-limit-constrain-max-match, simple-mode-container .bet-limit-constrain-mainshareholder
 {
-	border-top: 1px solid @borderColor;
-	border-bottom: 1px solid @borderColor;
-	border-right: 1px solid @borderColor;
+	border-top: 1px solid @borderSetting;
+	border-bottom: 1px solid @borderSetting;
+	border-right: 1px solid @borderSetting;
 }
 
 .simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
 .simple-mode-container .bet-limit-value-max-match
 {
-	border-top: 1px solid @borderColor;
-	border-bottom: 1px solid @borderColor;
-	border-left: 1px solid @borderColor;
+	border-top: 1px solid @borderSetting;
+	border-bottom: 1px solid @borderSetting;
+	border-left: 1px solid @borderSetting;
 }
 .simple-mode-container .bet-limit-value-mainshareholder
 {
-	border: 1px solid @borderColor;
+	border: 1px solid @borderSetting;
 }
 .btnLeft {
 	margin-bottom: 20px;

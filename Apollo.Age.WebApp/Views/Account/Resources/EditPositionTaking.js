@@ -22,8 +22,13 @@ if (typeof jQuery != 'undefined') {
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 
                 //// Register Event
-                $("#btnSubmitFooter").click(function () {
+                $("#btnSubmitFooter").unbind('click').click(function () {
                     EDITPOSITIONTAKING.updatePositionTakingSetting();
+                });
+
+                $("#btnCancelFooter").unbind('click').click(function () {
+                    history.go(-1);
+                    return false;
                 });
 
                 $("#simple-mode").unbind("click").click(function () {
