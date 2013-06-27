@@ -1503,9 +1503,6 @@
   <data name="NonResult" xml:space="preserve">
     <value>Non-result</value>
   </data>
-  <data name="WagerState" xml:space="preserve">
-    <value>Wager state</value>
-  </data>
   <data name="area" xml:space="preserve">
     <value>Area</value>
   </data>
@@ -1613,8 +1610,5 @@
   </data>
   <data name="CommBase" xml:space="preserve">
     <value>Comm Base</value>
-  </data>
-  <data name="ReportType" xml:space="preserve">
-    <value>Report type</value>
   </data>
 </root>
