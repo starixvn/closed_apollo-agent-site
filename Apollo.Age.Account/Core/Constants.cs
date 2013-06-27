@@ -9,6 +9,10 @@
 
 namespace Apollo.Age.Account.Core
 {
+
+    using System.Collections.Generic;
+    using Apollo.Age.Resources;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -32,7 +36,16 @@ namespace Apollo.Age.Account.Core
 
         public const int LogActionBetSetting = 3;
 
-        public const int LogActionPositionTaking = 4;     
+        public const int LogActionPositionTaking = 4;
 
+        public static IList<string> BetTypesHeader = new List<string>{
+                            Lang.HandicapOverUnderOddEven, 
+                            Lang.RBHandicapRBOverUnder, 
+                            Lang._1x2RB1x2, 
+                            Lang.OtherBetType, 
+                            Lang.RBOtherBetType,
+                            Lang.MixSportParlay,
+                            Lang.lblOutRight
+                    };
     }
 }
