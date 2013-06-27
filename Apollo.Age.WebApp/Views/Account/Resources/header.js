@@ -340,8 +340,14 @@ var HEADER = function ($) {
             });
 
             // show or hide left navigation
-            $('#account-link').click(function () {
-                HEADER.showAccountTab();
+            $('.toolbar').on('click', 'li', function (event) {
+                if ($(this).attr('id') !== 'account-link') {
+                    HEADER.hideAccountTab();
+                } else {
+                    HEADER.showAccountTab();
+                }
+
+                event.stopPropagation();
             });
 
             // show contact us page
@@ -381,7 +387,7 @@ var HEADER = function ($) {
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
-            },
+        },
 
         showAccountTab: function () {
             //parent.$('#menu').contents().find('body').html('ideate tech');
@@ -393,6 +399,10 @@ var HEADER = function ($) {
             } else { //show left navigation
                 HEADER.showLeftNavigation(leftMenu, mainPage);
             }
+        },
+
+        hideAccountTab: function () {
+            HEADER.hideLeftNavigation(parent.$('.menu'), parent.$('.mainpage'));
         },
 
         hideLeftNavigation: function (leftMenu, mainPage) {
@@ -409,7 +419,7 @@ var HEADER = function ($) {
                     }
                 }
             );
-            },
+        },
 
         showLeftNavigation: function (leftMenu, mainPage) {
             leftMenu.show().animate(

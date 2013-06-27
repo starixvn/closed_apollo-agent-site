@@ -258,8 +258,8 @@
   <data name="reject" xml:space="preserve">
     <value>Từ chối</value>
   </data>
-  <data name="results" xml:space="preserve">
-    <value>Kết quả </value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="running" xml:space="preserve">
     <value>Đang diễn ra</value>
@@ -414,5 +414,8 @@
   </data>
   <data name="ticket" xml:space="preserve">
     <value>Ticket</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
   </data>
 </root>

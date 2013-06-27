@@ -50,10 +50,6 @@
     <Reference Include="DotNetOpenAuth.Core">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
     </Reference>
@@ -1119,6 +1115,10 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
+      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
+      <Name>Fanex.BetList.Age</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
       <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>

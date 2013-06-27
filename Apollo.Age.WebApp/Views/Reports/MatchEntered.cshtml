@@ -13,6 +13,7 @@
     <ul class="menu report-winloss">
         <li class="active"><a href="~/Reports/MatchEntered">@Apollo.Age.Resources.Lang.lblReport</a></li>
         <li><a href="~/_betList/BetListTransaction.aspx?type=cancel">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
+        <li><a href="~/reports/outstanding">@Apollo.Age.Resources.Lang.lblAgentOutstanding</a></li>
     </ul>
     <img alt="" src="~/_GlobalResources/Images/top_04.gif">
 </div>
@@ -398,13 +399,13 @@
     </table>
     <div>
         <div class="row bg-action">
-            <div class="item">
+            @*<div class="item">
                 <span>@Apollo.Age.Resources.Lang.WagerState: </span>
                 <select>
                     <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
                     <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
                 </select>
-            </div>
+            </div>*@
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
                 <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
