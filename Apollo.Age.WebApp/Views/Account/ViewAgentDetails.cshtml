@@ -50,11 +50,11 @@
                     <td style="width: 5%;">
                         @Lang.lblD
                     </td>
-                    <td style="width: 10%;">@Lang.lblMinBet
+                    <td style="width: 10%;">@Lang.SingleGame
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxBet
+                    <td style="width: 10%;">@Lang.MinSingleBet
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxPerMatch
+                    <td style="width: 10%;">@Lang.MaxSingleBet
                     </td>
                 </tr>
             </thead>
@@ -90,16 +90,16 @@
                                 @commissionSetting.CommissionItems[0].DiscountD
                             </td>
                         }
-                            
+                        <td>
+                            @Math.Round(betLimit.MaxPerMatch)
+                        </td>
                         <td>
                             @Math.Round(betLimit.MinBet)
                         </td>
                         <td>
                             @Math.Round(betLimit.MaxBet)
                         </td>
-                        <td>
-                            @Math.Round(betLimit.MaxPerMatch)
-                        </td>
+                        
                     </tr>
                         
                     }

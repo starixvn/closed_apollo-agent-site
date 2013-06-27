@@ -2870,6 +2870,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Single Bet.
+        /// </summary>
+        public static string MaxSingleBet {
+            get {
+                return ResourceManager.GetString("MaxSingleBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to May.
         /// </summary>
         public static string May {
@@ -2974,6 +2983,15 @@ namespace Apollo.Age.Resources {
         public static string MinPTSuper {
             get {
                 return ResourceManager.GetString("MinPTSuper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Single Bet.
+        /// </summary>
+        public static string MinSingleBet {
+            get {
+                return ResourceManager.GetString("MinSingleBet", resourceCulture);
             }
         }
         
@@ -3748,6 +3766,15 @@ namespace Apollo.Age.Resources {
         public static string simplemode {
             get {
                 return ResourceManager.GetString("simplemode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Game.
+        /// </summary>
+        public static string SingleGame {
+            get {
+                return ResourceManager.GetString("SingleGame", resourceCulture);
             }
         }
         

@@ -1560,4 +1560,13 @@
   <data name="lblD" xml:space="preserve">
     <value>D</value>
   </data>
+  <data name="MaxSingleBet" xml:space="preserve">
+    <value>Max Single Bet</value>
+  </data>
+  <data name="MinSingleBet" xml:space="preserve">
+    <value>Min Single Bet</value>
+  </data>
+  <data name="SingleGame" xml:space="preserve">
+    <value>Single Game</value>
+  </data>
 </root>
