@@ -14,6 +14,8 @@
             WINLOSS.ToThisWeek = $("#thisWeekTo");
             WINLOSS.FromLastWeek = $("#lastWeekFrom");
             WINLOSS.ToLastWeek = $("#lastWeekTo");
+            WINLOSS.ddlSport = $("#ddlSport");
+            WINLOSS.ddlBettype = $("#ddlBettype");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
                 var fromDate = new Date(WINLOSS.FromDate.val());
@@ -24,7 +26,10 @@
                     alert(LANGUAGES.MessageValidateWithArchivedDate);
                 }
                 else {
-                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
+                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
+                    + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
                     location.href = url;
                 }
             });
@@ -35,8 +40,10 @@
             });
 
             $(".navigation").bind('click', function () {
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
-                    + '&fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid") + "&AgentName=" + $(this).html()
+                    + '&FromDate=' + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
                 location.href = url;
             });
 
