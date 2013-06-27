@@ -1050,25 +1050,25 @@
     <value>Commission Setting</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
-    <value>Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>Max Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxTakenShare" xml:space="preserve">
-    <value>Max Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblMinGivenShare" xml:space="preserve">
-    <value>Min Given Share (%)</value>
+    <value>% in Agent Min:</value>
   </data>
   <data name="lblShareSetting" xml:space="preserve">
-    <value>Share Setting</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Share Setting (Soccer Deadball Handicap)</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
-    <value>Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
     <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
@@ -1583,5 +1583,38 @@
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
+  </data>
+  <data name="lblOP" xml:space="preserve">
+    <value>OP</value>
+  </data>
+  <data name="lbl1stHalfCorrectScore" xml:space="preserve">
+    <value>1st Half Correct Score</value>
+  </data>
+  <data name="lbl1stHalfRB" xml:space="preserve">
+    <value>1st Half  R.B.</value>
+  </data>
+  <data name="lblHalfFull" xml:space="preserve">
+    <value>Half/Full</value>
+  </data>
+  <data name="lblParlay" xml:space="preserve">
+    <value>Parlay</value>
+  </data>
+  <data name="lblSpecialbet" xml:space="preserve">
+    <value>Special bet</value>
+  </data>
+  <data name="lblStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lblStraight" xml:space="preserve">
+    <value>Straight</value>
+  </data>
+  <data name="BetAmount" xml:space="preserve">
+    <value>Bet Amount</value>
+  </data>
+  <data name="CommBase" xml:space="preserve">
+    <value>Comm Base</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report type</value>
   </data>
 </root>

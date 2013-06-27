@@ -20,6 +20,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Web;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
 
     /// <summary>
     /// BetList Controller
@@ -95,7 +96,7 @@ namespace Apollo.Age.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     UserName = ticket.UserName,
-                    TransTime = builder.BuildTrans(ticket),
+                    TransTime = builder.BuildTrans(ticket, new TicketHelper()),
                     AgentComm = builder.BuildAgentComm(ticket, true),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };

@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Lewis" date="2013.5.2">Created</change>
 //   <change who="Anders.Le" date="2013.6.12">Remove hardcode when checking captcha</change>
+//   <change who="Anders.Le" date="2013.6.27">Change the implementation of random string</change>
 // </history>
 
 namespace Apollo.Age.Web
@@ -331,27 +332,40 @@ namespace Apollo.Age.Web
             return img;
         }
 
-        private string GetRandomString(int seed)
+        private const string RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private readonly int RandomStringLength = RandomString.Length;
+        private string GetRandomString(int seed, int length = 4)
         {
             //use the following string to control your set of alphabetic characters to choose from
             //for example, you could include uppercase too
-            const string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            //const string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-            // Random is not truly random,
-            // so we try to encourage better randomness by always changing the seed value
+            //// Random is not truly random,
+            //// so we try to encourage better randomness by always changing the seed value
             Random rnd = new Random((seed + DateTime.Now.Millisecond));
+            string result = string.Empty;
+            
+            for (int i = 0; i < length; i++)
+            {
 
-            // basic 5 digit random number
-            string result = rnd.Next(1000, 9999).ToString();
+                result += RandomString[rnd.Next(0, RandomStringLength)];
+            }
 
-            // single random character in ascii range a-z
-            string alphaChar = alphabet.Substring(rnd.Next(0, alphabet.Length - 1), 1);
+            //// basic 5 digit random number
+            //string result = rnd.Next(1000, 9999).ToString();
 
-            // random position to put the alpha character
-            int replacementIndex = rnd.Next(0, (result.Length - 1));
-            result = result.Remove(replacementIndex, 1).Insert(replacementIndex, alphaChar);
+            //// single random character in ascii range a-z
+            //string alphaChar = alphabet.Substring(rnd.Next(0, alphabet.Length - 1), 1);
 
-            return result.ToUpper();
+            //// random position to put the alpha character
+            //int replacementIndex = rnd.Next(0, (result.Length - 1));
+            //result = result.Remove(replacementIndex, 1).Insert(replacementIndex, alphaChar);
+
+
+
+            return result;
+
+
         }
 
         #endregion SignIn

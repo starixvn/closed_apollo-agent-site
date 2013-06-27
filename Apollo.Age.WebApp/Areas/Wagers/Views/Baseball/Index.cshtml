@@ -1,5 +1,55 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@using Apollo.Age.Resources
+@{
+    Layout = null;
+    var menu = new List<string[]>
+	{
+		new string[] {"~/wagers/baseball/Straight", Lang.lblStraight},
+		new string[] {"~/wagers/baseball/FirstHalfRB", Lang.lbl1stHalfRB},
+		new string[] {"~/wagers/baseball/Specialbet", Lang.lblSpecialbet},
+		new string[] {"~/wagers/baseball/Correctscore", Lang.correctscore},
+		new string[] {"~/wagers/baseball/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
+		new string[] {"~/wagers/baseball/Total", Lang.total},
+		new string[] {"~/wagers/baseball/HalfFull", Lang.lblHalfFull},
+		new string[] {"~/wagers/baseball/Parlay",Lang.lblParlay},
+		new string[] {"~/wagers/baseball/Start", Lang.lblStart}
+	};
+    int menuItemCount = menu.Count;
 }
-
-<h2>Index</h2>
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>@Lang.lblWager</title>
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="function-bar">
+        <div class="item">
+            @Lang.lblOP.
+            <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
+                <option value="1">Soccer A</option>
+                <option value="2">Soccer B</option>
+                <option value="3">Soccer C</option>
+                <option value="4">Soccer D</option>
+            </select>
+        </div>
+        <div class="before-filter">
+            --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", 15, 15, "TOTALBETS_INDEX.reloadChild();")
+        @RazorHelper.ToEasternTime(DateTime.Now)
+        <div class="before-filter">
+            --</div>
+        <ul class="menu">
+            @for (int i = 0; i < menu.Count; i++)
+            {
+                var item = menu[i];
+                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
+            }
+        </ul>
+        <img alt="" src="~/_GlobalResources/Images/top_04.gif">
+    </div>
+    <div class="mainpage">
+        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/wagers/baseball/Straight">
+        </iframe>
+    </div>
+</body>
+</html>

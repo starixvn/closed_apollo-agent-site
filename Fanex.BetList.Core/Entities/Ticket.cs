@@ -20,6 +20,8 @@ namespace Fanex.BetList.Core.Entities
     {
         #region ITicket Members
 
+        public string UGroup { get; set; }
+
         public int SportTypeId { get; set; }
 
         public string UserName { get; set; }
