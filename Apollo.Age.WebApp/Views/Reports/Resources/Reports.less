@@ -59,6 +59,12 @@
 		border: 1px solid #000;
 		padding: 0px;
 
+		.btn {
+			font-size: @fontSize;
+			height: 21px;
+			padding-bottom: 1px;
+		}
+
 		.row {
 			background-color: #C9DBDF;
 			padding: 0 3px;
@@ -67,7 +73,7 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 8px 0;
+				padding: 6px 0;
 
 				.item {
 					float: left;
@@ -75,7 +81,11 @@
 
 					&.btn-action {
 						width: 200px;
-						padding-left: 120px;
+						padding-left: 150px;
+
+						input {
+							margin-right: 20px;
+						}
 					}
 				}				
 			}
@@ -132,6 +142,11 @@ a.sub-menu:hover {
 
 /* FIX IE */
 
+.ie {
+	#box_header.report .btn, .box-header.report .btn {
+		height: 20px;
+	}	
+}
 .eq-ie7 #page_main {
 	width: 98%;
 

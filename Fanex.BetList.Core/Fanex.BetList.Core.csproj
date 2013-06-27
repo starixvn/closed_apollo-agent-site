@@ -240,6 +240,8 @@
     <Compile Include="Builder\StatusBuilder\Status9.cs" />
     <Compile Include="Builder\TimeBuilder\ITime.cs" />
     <Compile Include="Builder\TimeBuilder\Time.cs" />
+    <Compile Include="Builder\TransBuilder\Trans.cs" />
+    <Compile Include="Builder\TransBuilder\Trans3.cs" />
     <Compile Include="Builder\TransBuilder\ITrans.cs" />
     <Compile Include="Builder\TransBuilder\Trans1.cs" />
     <Compile Include="Entities\BetStatus.cs" />

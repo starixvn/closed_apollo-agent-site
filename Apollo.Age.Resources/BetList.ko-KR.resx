@@ -207,8 +207,8 @@
   <data name="refno" xml:space="preserve">
     <value>배팅 번호</value>
   </data>
-  <data name="results" xml:space="preserve">
-    <value>결과 확인</value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="stake" xml:space="preserve">
     <value>배팅 금액</value>
@@ -413,5 +413,8 @@
   </data>
   <data name="ticket" xml:space="preserve">
     <value>Ticket</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
   </data>
 </root>
