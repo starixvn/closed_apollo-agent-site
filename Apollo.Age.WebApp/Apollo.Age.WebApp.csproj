@@ -951,8 +951,6 @@
     <Content Include="Views\Results\Badminton.cshtml" />
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
-    <Content Include="Views\Results\Billard.cshtml" />
-    <Content Include="Views\Results\IceHockey.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
     <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
