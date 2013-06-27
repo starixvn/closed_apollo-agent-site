@@ -1461,7 +1461,7 @@
     <value>Suspended</value>
   </data>
   <data name="est" xml:space="preserve">
-    <value>E.S.T</value>
+    <value>E.S.T.</value>
   </data>
   <data name="OrderBy" xml:space="preserve">
     <value>Order by</value>
@@ -1526,5 +1526,26 @@
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members</value>
+  </data>
+  <data name="BetLimit" xml:space="preserve">
+    <value>Bet Limit</value>
+  </data>
+  <data name="HandicapOverUnderOddEven" xml:space="preserve">
+    <value>Handicap, Over/Under, Odd/Even</value>
+  </data>
+  <data name="MixSportParlay" xml:space="preserve">
+    <value>Mix Sport Parlay</value>
+  </data>
+  <data name="OtherBetType" xml:space="preserve">
+    <value>Other Bet Type</value>
+  </data>
+  <data name="RBHandicapRBOverUnder" xml:space="preserve">
+    <value>R.B. Handicap, R.B. Over/Under</value>
+  </data>
+  <data name="RBOtherBetType" xml:space="preserve">
+    <value>R.B. Other Bet Type</value>
+  </data>
+  <data name="_1x2RB1x2" xml:space="preserve">
+    <value>1 X 2, R.B. 1 X 2</value>
   </data>
 </root>
