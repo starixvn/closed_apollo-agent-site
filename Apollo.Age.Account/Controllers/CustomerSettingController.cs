@@ -427,8 +427,8 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
         {
-            //ViewBag.AgentId = agentId;
-            //ViewBag.UserName = userName;
+            ViewBag.AgentId = agentId;
+            ViewBag.UserName = userName;
             //ViewBag.AgentLevel = agentLevel;
             //ViewBag.IsSimpleMode = isSimpleMode;
             //if (showHeader)

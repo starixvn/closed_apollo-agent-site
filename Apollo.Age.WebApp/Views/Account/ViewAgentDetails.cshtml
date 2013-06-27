@@ -1,10 +1,12 @@
 ﻿@using Fanex.CustSetting.ViewData;
+@using Apollo.Age.Account.Core;
 @using Apollo.Age.Resources;
 @{
     ViewBag.Title = "ViewAgentDetails";
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting ?? null;
     var betSetting = (IList<BettingLimit>)ViewBag.BetSetting ?? null;
-
+    var agentId = (int)ViewBag.AgentId ;
+    var userName = (string)ViewBag.UserName ?? string.Empty ;
     Layout = null;
 }
 <!DOCTYPE html>
@@ -16,59 +18,65 @@
     <link href="~/views/account/resources/CustomerSetting.less" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="">
-        Agency detailed edit -- Account: : 0226 -- Name:flat -- <a href="">@Lang.edit </a>
-        <a href="">Back </a>
+    <div class="detail-information">
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@agentId</strong> -- @Lang.Name : <strong>@userName</strong> -- <a href="">@Lang.edit </a>
+         -- <a href="">@Lang.back </a>
     </div>
-    @helper RenderSportBlock(CommissionSetting commissionSetting, BettingLimit betLimit)
+    @helper RenderSportBlock(CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
         {
+            <div class="div-border">
         <table class="tb-cust-setting">
             <thead>
                 <tr>
-                    <td rowspan="2" style="width: 25%;">
+                    <td rowspan="2" style="width: 20%;">
                         @betLimit.Name
                     </td>
                     <td colspan="4">
-                        @Lang.commission
+                        @Lang.lblCommission
                     </td>
                     <td colspan="3">
-                        @Lang.lblBetSetting
+                        @Lang.BetLimit
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 5%;">
-                        A
+                        @Lang.lblA
                     </td>
                     <td style="width: 5%;">
-                        B
+                        @Lang.lblB
                     </td>
                     <td style="width: 5%;">
-                        C
+                        @Lang.lblC
                     </td>
                     <td style="width: 5%;">
-                        D
+                        @Lang.lblD
                     </td>
-                    <td style="width: 10%;">@Lang.lblMinBet
+                    <td style="width: 10%;">@Lang.SingleGame
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxBet
+                    <td style="width: 10%;">@Lang.MinSingleBet
                     </td>
-                    <td style="width: 10%;">@Lang.lblMaxPerMatch
+                    <td style="width: 10%;">@Lang.MaxSingleBet
                     </td>
                 </tr>
             </thead>
             <tbody>
                 @{
-                    IList<string> betType = new List<string>{
-                            "Handicap, Over/Under, Odd/Even", "R.B. Handicap, R.B. Over/Under, R.B. Odd/Even", "1 X 2, R.B. 1 X 2", "Other Bet Type", "R.B. Other Bet Type"
-                    };
                     int index = 0;
-                    foreach (var item in betType)
+                    foreach (var item in betTypes)
                     {
+                        index++;
                     <tr>
                         <td class="first-cell">
                             @item
                         </td>
-                        @if (index < 2)
+                        @if (index > 2 || (betLimit.SportId == 99 && betLimit.BetTypeId == 9))
+                        {
+                            <td colspan="4">
+                                0
+                                </td>
+                            
+                        }
+                        else
                         {
                             <td>
                                 @commissionSetting.CommissionItems[0].DiscountA
@@ -82,38 +90,69 @@
                             <td>
                                 @commissionSetting.CommissionItems[0].DiscountD
                             </td>
-                            }
-                            else
-                            {
-                             <td colspan="4">
-                                0
-                            </td>
-                            }
-                            
+                        }
                         <td>
-                            @betLimit.MinBet
+                            @Math.Round(betLimit.MaxPerMatch)
                         </td>
                         <td>
-                            @betLimit.MaxBet
+                            @Math.Round(betLimit.MinBet)
                         </td>
                         <td>
-                            @betLimit.MaxPerMatch
+                            @Math.Round(betLimit.MaxBet)
                         </td>
+                        
                     </tr>
-                        index++;
+                        
                     }
                     
                 }
             </tbody>
         </table>
+        </div>
     }
-    <div style="width: 800px;">
+    <div class="view-detail-container">
         @if (betSetting != null && betSetting.Any())
         {
+            BettingLimit outrightBetLimit = null;
+            IList<string> currentBetTypes = null;
             foreach (BettingLimit betLimit in betSetting)
             {
-            @RenderSportBlock(comSetting, betLimit)
+                currentBetTypes = new List<string>();
+                switch (betLimit.SportId)
+                {
+                    case (int)SportTypes.Soccer:
+                        currentBetTypes = Constants.BetTypesHeader.Take(5).ToList();
+                        outrightBetLimit = betLimit;
+                        break;
+                    case (int)SportTypes.BasketBall:
+                    case (int)SportTypes.FootBall:
+                    case (int)SportTypes.Tennis:
+                    case (int)SportTypes.BaseBall:
+                    case (int)SportTypes.Golf:
+                    case (int)SportTypes.Motorsports:
+                        currentBetTypes.Add(Constants.BetTypesHeader[0]);
+                        currentBetTypes.Add(Constants.BetTypesHeader[1]);
+                        currentBetTypes.Add(Constants.BetTypesHeader[3]);
+                        break;
+                    case (int)SportTypes.OtherSports:
+                        if (betLimit.BetTypeId == 1)
+                        {
+                            currentBetTypes = Constants.BetTypesHeader.Take(4).ToList();
+                        }
+                        else
+                        {
+                            currentBetTypes.Add(Constants.BetTypesHeader[5]);
+                            outrightBetLimit.BetTypeId = betLimit.BetTypeId;
+                            outrightBetLimit.SportId = betLimit.SportId;
+                        }
+                        break;
+                }
+                @RenderSportBlock(comSetting, betLimit, currentBetTypes)
             }
+            currentBetTypes  = new List<string>{
+                Constants.BetTypesHeader[6]
+            };
+            @RenderSportBlock(null, outrightBetLimit, currentBetTypes)
         }
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
