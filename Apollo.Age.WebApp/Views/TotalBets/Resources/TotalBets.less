@@ -9,11 +9,16 @@ a {
 }
 
 #header_main {
-	color: #00E;
+	color: #000099;
 	display: block;
 	float: left;
 	margin: 1px 10px 5px 0;
 	padding: 2px 0;
+}
+
+.box-header {
+	float: left;
+	clear: none;
 }
 
 #content_main
@@ -40,19 +45,24 @@ a {
 	color: #1D1D1D;
 	text-decoration: none;
 }
+
 .fcbtn {
 	text-align: center;
 	width: 16px;
 }
+
 .hide {
 	display: none;
 }
+
 .negative_color {
 	color: #eb6003;
 }
+
 .blue {
 	color: #2673CE;
 }
+
 .line_n {
 	background: url("../../_globalResources/images/line_n.jpg") repeat scroll 0 0 transparent;
 }
@@ -81,18 +91,6 @@ a {
 	}
 }
 
-/* FIX IE */
-
-.eq-ie7 , .eq-ie8 {
-	.block-loading {
-		&.loading-scoremap {
-			left: 455px;
-			position: fixed;
-			top: 160px;
-		}
-	}
-}
-
 .no-border-bottom {
 	border-bottom-width: 0px !important;
 }
@@ -110,9 +108,22 @@ a {
     right:0;
 	top: 25px;
     overflow:hidden;
+	height: 96%;
 }
 
 .valign-top
 {
 	vertical-align: top;
+}
+
+/* FIX IE */
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
+	}
 }
