@@ -1,0 +1,110 @@
+﻿@import "../../../_globalResources/css/variables.less";
+@import "../../../_globalResources/css/mixins.less";
+@import "../../../_globalResources/css/sprites.less";
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: @fontFamily;
+	font-size: @fontSize;
+}
+
+a {
+	text-decoration: none;
+
+	&:link, &:visited {
+		color: #303030;
+	}
+
+	&:hover {
+		color: #CC6600;
+	}
+}
+
+.qa_head {
+	color: #F8C100;
+	font-size: 12px;
+	height: 37px;
+	width: 783px;
+	background: url("images/icon-help.png") #493721 10px center no-repeat;
+	height: 37px;
+	padding: 0;
+
+	span {
+		line-height: 37px;
+		margin-left: 41px;
+	}
+
+	.close_box {
+		background: url("images/icon-close.gif") no-repeat right center;
+		cursor: pointer;
+		float: right;
+		font-size: 11px;
+		margin: 0px 10px 0 0;
+		padding: 1px 19px 0 0;
+
+		&:hover {
+			color: #CC6600;
+		}
+	}
+}
+
+#wrapper {
+    background-color: #493721;
+    padding: 0 10px;
+    width: 763px;
+	
+	#qa_nav {
+		background-color: #D5D4C8;
+		height: 29px;
+		text-transform: uppercase;
+
+		ul {
+			font-size: 12px;
+			font-weight: bold;
+			margin: 0 0 0 22px;
+			z-index: 990;
+
+			li {
+				float: left;
+				height: 29px;
+				line-height: 29px;
+				list-style: none;
+				margin: 0 10px 0 0;
+				padding: 0 10px;
+				position: relative;
+
+				&.mail {
+					background-color: #FFF;
+				}
+			}
+		}
+	}
+
+	#main {
+		clear: both;
+		vertical-align: top;
+		background: url("images/qa_phone.png") no-repeat scroll 14px 12px #FFF;
+		min-height: 316px;
+		padding: 36px 0 0 184px;
+
+		h1 {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 18px;
+		}
+
+		p {
+			margin-bottom: 18px;
+		}
+
+		.info {
+			line-height: 18px;
+			width: 340px;
+		}
+	}	
+}
+
+.qa_foot {
+	padding: 17px 0 0 47px;
+}

@@ -63,7 +63,7 @@ if (typeof jQuery != 'undefined') {
 						accessClass = "loading-scoremap";
 					}
 				}
-				var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
+				var blockLoading = '<div class="block-loading ' + accessClass + '">loading............................................................</div>';
 
 				// multiple instances of dialog can be opened
 				return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
@@ -396,11 +396,13 @@ if (typeof jQuery != 'undefined') {
 
 			init: function () {
 				APOLLO.initDatePicker();
-//                APOLLO.initFreeHeader();
+				//APOLLO.initFreeHeader();
 			}
 		};
 	} (jQuery);
+
 	APOLLO.browser = APOLLO.detectBrowser();
+
 	$(document).ready(function () {
 		APOLLO.init();
 	});

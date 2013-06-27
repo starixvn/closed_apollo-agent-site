@@ -27,13 +27,11 @@
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?fromDate=' + WINLOSS.FromDate.val() + "&toDate=" + WINLOSS.ToDate.val());
                     location.href = url;
                 }
+            });
 
-//                if (toDate < fromDate) {
-//                    noty({ text: LANGUAGES.MessageValidateDate, type: 'warning' });
-//                }
-//                else {
-//                    
-//                }
+            $("#btnCancel").bind('click', function () {
+                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
+                location.href = url;
             });
 
             $(".navigation").bind('click', function () {
