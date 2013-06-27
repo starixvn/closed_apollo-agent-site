@@ -13,19 +13,6 @@ var Match = (function () {
             ddlLeague = $("#ddlLeague");
             date = $("#filterbydate").attr("value");
             sportTypes = "1";
-            btnToday = $("#btnToday");
-            btnYesterday = $("#btnYesterday");
-
-
-
-            //            btnToday.bind('click', function () {
-            //                $("#EventDate").val($("#todayValue").val());
-            //            });
-
-            //            btnYesterday.bind('click', function () {
-            //                $("#EventDate").val($("#yesterdayValue").val());
-            //            });
-
             Match.bindingMenu();
             Match.filterByDateChanging();
             Match.showResult(date, sportTypes);
@@ -77,7 +64,7 @@ var Match = (function () {
         },
 
         bindOutrightSport: function () {
-            $.getJSON(APOLLO.resolveUrl("~/Results/OutrightSport"), { "date": date })
+            $.getJSON(APOLLO.resolveUrl("~/Results/GetSportOutright"), { "date": date })
             .done(function (data) {
                 ddlSport.empty();
                 $.each(data, function (i, item) {
@@ -89,6 +76,7 @@ var Match = (function () {
                         text: item.Name
                     }));
                 });
+                Match.showOutrightResult();
             });
         },
 
@@ -104,11 +92,11 @@ var Match = (function () {
                 sportTypes = $(this).attr("id");
                 Match.OtherResult();
 
-                ddlSport.change(function () {
+                ddlSport.unbind('change').bind('change',function () {
                     Match.bindMatchLeague();
                 });
 
-                ddlLeague.change(function () {
+                ddlLeague.unbind('change').bind('change', function () {
                     Match.showOtherResult();
                 });
             });
@@ -117,8 +105,8 @@ var Match = (function () {
                 sportTypes = $(this).attr("id");
                 Match.OutrightResult();
 
-                ddlSport.change(function () {
-                    Match.showOutrightrResult();
+                ddlSport.unbind('change').bind('change', function () {
+                    Match.showOutrightResult();
                 });
             });
 
@@ -147,7 +135,7 @@ var Match = (function () {
             });
         },
         showResult: function () {
-            $("#filterOtherResult").hide();
+            $("#filterResult").hide();
             var resultContainer = $("#resultContainer");
             if (resultContainer.length > 0) {
                 if (sportTypes != null) {
@@ -155,7 +143,7 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
-                          Match.paging();
+                         // Match.paging();
 
                       });
                 }
@@ -175,12 +163,12 @@ var Match = (function () {
                 }
             }
           },
-          showOutrightrResult: function () {
-              leagueId = $("#ddlLeague").val();
+          showOutrightResult: function () {
+              sportId = ddlSport.val();
               var resultContainer = $("#resultContainer");
               if (resultContainer.length > 0) {
                   if (sportTypes != null) {
-                      $.get(APOLLO.resolveUrl("~/Results/OutrightResult"), { "date": date, "sportTypes": sportTypes, "sportId": sportId, "leagueId": leagueId })
+                      $.get(APOLLO.resolveUrl("~/Results/Outright"), { "date": date, "sportId": sportId })
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
@@ -190,12 +178,14 @@ var Match = (function () {
               }
           },
         OtherResult: function () {
-            $("#filterOtherResult").show();
+            $("#filterResult").show();
+            $("#filterResultLeague").show();
             Match.bindMatchSport();
 
         },
         OutrightResult: function () {
-            $("#filterOtherResult").show();
+            $("#filterResult").show();
+            $("#filterResultLeague").hide();            
             Match.bindOutrightSport();
         }
     }

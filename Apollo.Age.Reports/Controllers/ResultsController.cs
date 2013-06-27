@@ -209,24 +209,26 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Outright Results
                 
-        public JsonResult OutrightSport(DateTime fromDate)
+        public JsonResult GetSportOutright(DateTime date)
         {
+            date = new DateTime(2013, 3, 28);
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,             
-                OutrightResult = _resultService.GetOutrightResult(fromDate)
+                FromDate = date,
+                OutrightResult = _resultService.GetOutrightResult(date)
             };
 
             return Json(viewModel.SportList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult OutrightResult(DateTime fromDate, int sportId = 0)
+        public ActionResult Outright(DateTime date, int sportId = 0)
         {
-            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(fromDate);
+            date = new DateTime(2013, 3, 28);
+            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date);
             if (outrightResults != null && outrightResults.Any())
             {
-                outrightResults = outrightResults.Where(x => x.SportId == sportId);
+                outrightResults = outrightResults.Where(x => x.SportId == (byte)sportId);
             }
 
             return View(outrightResults);
