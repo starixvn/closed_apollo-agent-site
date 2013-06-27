@@ -106,11 +106,17 @@ table {
 						color: #00e;
 						cursor: text;
 					}
-				}
+				}				
 			}
 
-			a:hover {
-				color: #0000EE;
+			a {
+				&.result-active {
+					color: red;
+				}
+
+				&:hover {
+					color: #0000EE;
+				}
 			}
 		}
 		
