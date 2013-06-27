@@ -349,7 +349,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to B.K.
+        ///   Looks up a localized string similar to B.K..
         /// </summary>
         public static string BK {
             get {
