@@ -360,6 +360,7 @@
     <Content Include="Views\Account\Resources\Images\icon-help.png" />
     <Content Include="Views\Account\Resources\Images\icon-root.png" />
     <Content Include="Views\Account\Resources\Images\icon-sub-menu.png" />
+    <Content Include="Views\Account\Resources\Images\icon-subMenu.gif" />
     <Content Include="Views\Account\Resources\Images\icon-view-info-hover.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info.png" />
     <Content Include="Views\Account\Resources\Images\loader3.gif" />
@@ -726,7 +727,6 @@
     <Content Include="Views\Account\InDirectAgentList.cshtml" />
     <Content Include="Views\Account\InDirectMemberList.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
-    <Content Include="Views\Account\ViewMemberDetails.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
