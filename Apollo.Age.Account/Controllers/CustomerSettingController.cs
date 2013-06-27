@@ -444,6 +444,11 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/ViewAgentDetails.cshtml");
         }
 
+        public ActionResult ViewMemberDetails()
+        {
+            return View("~/Views/Account/ViewMemberDetails.cshtml");
+        }
+
         #endregion
 
         #region Helpers
