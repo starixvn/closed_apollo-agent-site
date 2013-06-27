@@ -303,7 +303,7 @@
             <Mapping DataField="sporttype" ObjectProperty="Id"/>
             <Mapping DataField="sportname" ObjectProperty="Name"/>
         </Setting>
-        <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="SVRAGE.RepDB" Plain="0" >
+        <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright_Xtest" DbName="SVRAGE.RepDB" Plain="0" >
             <Mapping DataField="sporttype" ObjectProperty="SportId"/>
             <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
             <Mapping DataField="eventdate" ObjectProperty="EventDate"/>

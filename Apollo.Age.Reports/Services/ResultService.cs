@@ -75,16 +75,15 @@ namespace Apollo.Age.Reports.Services
             return matchResult;
         }
 
-        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, DateTime toDate)
+        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate)
         {
             var criteria = new GetOutrightResultCriteria
             {
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = fromDate,               
                 IsShowAll = true,
                 BalanceUpDay = GetBalanceUpDay()  
             };
-            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), toDate.ToString("yyyyMMdd"));
+            var cacheKey = fromDate.ToString("yyyyMMdd");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
             if (result == null)

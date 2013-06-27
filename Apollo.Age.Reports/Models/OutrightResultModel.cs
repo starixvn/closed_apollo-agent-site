@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.Models
 
     public class OutrightResultModel
     {
-        public byte SportId { get; set; }
+        public int SportId { get; set; }
 
         public string SportName
         {
