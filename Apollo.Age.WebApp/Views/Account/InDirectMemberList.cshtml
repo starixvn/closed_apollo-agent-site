@@ -18,7 +18,7 @@
 {       
     <div id="function-bar">
         <div class="item">
-            &nbsp;&nbsp;@Lang.member&nbsp;:&nbsp;
+            <label>@Lang.member</label>:
             <select class="za_select" id="UplineAgentId" name="UplineAgentId">
                 @foreach (var item in driectAgentList)
                 {
@@ -31,8 +31,7 @@
                     <option value="@item.Id">@item.Username</option>
                     }
                 }
-            </select>
-            &nbsp;&nbsp;
+            </select>            
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
@@ -40,7 +39,7 @@
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
-            &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+            --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
 				                }, new { @class = "za_select" })
@@ -52,16 +51,14 @@
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
         { 
             <div class="item">
-                &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
+               --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
-                &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
             </div>
         }
         <div class="item">
-            &nbsp;
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
-            &nbsp;
             <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
         </div>
         <img src="/_GlobalResources/Images/top_04.gif" alt="">
@@ -69,9 +66,9 @@
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
-<table width="800" cellpadding="0" border="0" bgcolor="#E3D46E" cellspacing="1" class="m_tab">
-    <tbody>
-        <tr bgcolor="#86C0A6" class="mem_title">
+<table class="tblRpt memberList">
+    <thead>
+        <tr>
             <td width="80">
                 @Lang.agent
             </td>
@@ -88,6 +85,8 @@
                 @Lang.Feature
             </td>
         </tr>
+    </thead>
+    <tbody>
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
         {
             foreach (var item in memberList)
@@ -105,9 +104,8 @@
                 <td>
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
-                <td align="left">
-                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetail</a>
-                    </span>
+                <td class="text-left">
+                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.Detail</a>
                 </td>
             </tr>
             }
