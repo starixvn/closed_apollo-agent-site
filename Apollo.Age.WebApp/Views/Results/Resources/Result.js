@@ -80,7 +80,8 @@ var Match = (function () {
             });
         },
         reActiveMenu: function (action) {
-            $("#filterbydate").attr("action", action);
+            $("#filterbydate").attr("action", action);                   
+
         },
         bindingMenu: function () {
             $("[name=menusport]").on("click", function () {
