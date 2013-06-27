@@ -83,7 +83,6 @@ namespace Apollo.Age.Reports.Controllers
 
             var listLeague = new List<League>();
 
-            //byte selectedSportId = ((int)this.SportId <= 0) ? (byte)this.SportList.First().Id : this.SportId;
             if (matchResults != null && matchResults.Any())
             {
                 listLeague = matchResults.Where(item => item.SportId == sportId)
@@ -96,18 +95,6 @@ namespace Apollo.Age.Reports.Controllers
                 }
             }
 
-            //var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
-            //List<League> leagues = new List<League>();
-            //if (leaguesBySport != null && leaguesBySport.Count() > 1)
-            //{
-            //    leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
-            //}
-
-            //leaguesBySport.ForEach((item) => leagues.Add(new League
-            //{
-            //    Id = item.Id,
-            //    Name = CacheRef.GetLeagueName(item.Id)
-            //}));
 
             return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
@@ -147,7 +134,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult MatchOtherResultBySport(DateTime date, string sportTypes, int sportId, int leagueId)
+        public ActionResult MatchOtherResultBySport(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
             date = new DateTime(2013, 6, 20);
             IEnumerable<MatchResultModel> matchResults =
@@ -169,93 +156,31 @@ namespace Apollo.Age.Reports.Controllers
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }        
-
-        //public ActionResult ResultByMatch(int matchId, byte sportId)
-        //{
-        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
-
-        //    if (results != null && results.Any())
-        //    {
-        //        results = results.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    string sportName = GetViewBySport(sportId);
-
-        //    ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
-        //    ViewBag.IsParlay = false;
-
-        //    return View("~/Views/Results/MatchResult.cshtml", results);
-        //}
-
-        //public ActionResult ParlayResult(long refNo)
-        //{
-        //    IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
-
-        //    foreach (var result in results)
-        //    {
-        //        result.ViewName = GetViewBySport(result.SportId);
-        //    }
-
-        //    if (results != null && results.Any())
-        //    {
-        //        results = results.OrderBy(match => match.LeagueId);
-        //    }
-
-        //    ViewBag.IsParlay = true;
-
-        //    return View("~/Views/Results/ParlayResult.cshtml", results);
-        //}
+              
         #endregion Match Results
 
         #region Outright Results
-
-        [HttpGet]
-        public ActionResult Outright()
+                
+        public JsonResult GetSportOutright(DateTime date)
         {
-            return Outright(DateTime.Now, DateTime.Now);
-        }
-
-        [HttpPost]
-        public ActionResult Outright(DateTime fromDate, DateTime toDate)
-        {
+            date = new DateTime(2013, 3, 28);
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
+                FromDate = date,
+                OutrightResult = _resultService.GetOutrightResult(date)
             };
 
-            return View(viewModel);
+            return Json(viewModel.SportList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult OutrightLeague(DateTime fromDate, DateTime toDate, byte sportId)
+        public ActionResult Outright(DateTime date, int sportId = 0)
         {
-            var viewModel = new OutrightResultViewModel
-            {
-                BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                SportId = sportId,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
-            };
-
-            return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult OutrightResult(DateTime fromDate, DateTime toDate, byte sportId = 0, int leagueId = 0)
-        {
-            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(fromDate, toDate);
+            date = new DateTime(2013, 3, 28);
+            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date);
             if (outrightResults != null && outrightResults.Any())
             {
-                if (leagueId != 0)
-                {
-                    outrightResults = outrightResults.Where(x => x.LeagueId == leagueId);
-                }
-                else
-                {
-                    outrightResults = outrightResults.Where(x => x.SportId == sportId);
-                }
+                outrightResults = outrightResults.Where(x => x.SportId == (byte)sportId);
             }
 
             return View(outrightResults);

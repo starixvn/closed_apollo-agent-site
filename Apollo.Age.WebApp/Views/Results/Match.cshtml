@@ -18,7 +18,7 @@
         <li>@Lang.Game:</li>
 	    @RazorHelper.RenderResultBySport()
     </ul>
-	<ul class="pager">
+	<ul class="pager" style="display:none">
 		<li>PAGE:</li>
         <li>
 		 <div id="pager" class="sbpager"></div>
@@ -32,8 +32,8 @@
 
 @using (Html.BeginForm())
 {
-    <div id="filterOtherResult" class="row" style="display: none">
-				    <div class="cell">
+    <div id="filterResult" class="row" style="display: none">
+				    <div class="cell" id="filterResultGame">
 					    <div class="label">
 						    <label for="ddlSport">@Lang.Game</label>
 					    </div>
@@ -42,7 +42,7 @@
                             new { style = "width: 500px" })
 					    </div>
 				    </div>
-				    <div class="cell">
+				    <div class="cell" id="filterResultLeague">
 					    <div class="label">
 						    <label for="ddlLeague">@Lang.league</label>
 					    </div>
@@ -58,5 +58,5 @@
 @section scripts
 {
     <script src="~/_GlobalResources/Js/Pager/jquery.sbpager.js" type="text/javascript"></script>
-	<script src="~/views/results/resources/match.js" type="text/javascript"></script>
+	<script src="~/views/results/resources/Result.js" type="text/javascript"></script>
 }

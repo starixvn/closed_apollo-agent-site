@@ -303,7 +303,7 @@
             <Mapping DataField="sporttype" ObjectProperty="Id"/>
             <Mapping DataField="sportname" ObjectProperty="Name"/>
         </Setting>
-        <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="SVRAGE.RepDB" Plain="0" >
+        <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright_xtest" DbName="SVRAGE.RepDB" Plain="0" >
             <Mapping DataField="sporttype" ObjectProperty="SportId"/>
             <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
             <Mapping DataField="eventdate" ObjectProperty="EventDate"/>
@@ -522,21 +522,11 @@
         <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking" DbName="SVRCUST.CustDB"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB" TimeOut="600"/>
         <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer" DbName="SVRAGE.RepDB"  TimeOut="600">
-            <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
-            <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
-            <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
-            <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
+          <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+          <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+          <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
+          <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
         </Setting>
-    </Function>
-
-    <Function Name="Player-Apollo-Setting">
-        <Setting Key="PlayerSetting_Age_Customer_GetDiscountForUpdate" SpName="Age_Customer_GetDiscountForUpdate" DbName="SVRAGE.RepDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_GetBetLimitForUpdate" SpName="Age_Customer_GetBetLimitForUpdate" DbName="SVRAGE.RepDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdate" DbName="SVRAGE.RepDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="SVRCUST.CustDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking" DbName="SVRCUST.CustDB"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB" TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_GetInfo" SpName="Age_Customer_GetInfo" DbName="SVRAGE.RepDB"  TimeOut="600"/>
     </Function>
 

@@ -121,23 +121,9 @@
                     @item.LeagueName
                 </td>
                 <td class="l">
-                    @if(item.FinalHomeScore > item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.HomeTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.HomeTeam)
-                    }
+                    @Html.Raw(item.HomeTeam)
                     <br />
-                     @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
+                     @Html.Raw(item.AwayTeam)
                 </td>
                 <td>
                     @homeSet[0]

@@ -69,85 +69,49 @@
 			
 		}
 
-		table {
-			&.search-option {
-				width: 780px;
+		#function-bar {
+			margin-bottom: 5px;
+
+			.za_select, .za_text {
+				font-size: @fontSize;
 			}
 
-			&.m_tab {
-				padding-left: 2px;
-				padding-right: 2px;
-				padding-top: 3px;
-				border-collapse: separate;
+			.za_select {				
+				height: 18px;
+			}
+
+			.za_text {
+				border: 1px solid #000;
+				height: 16px;
+				padding: 0 2px;
+			}
+
+			.za_button {
+				font-size: 11px;
+				height: 20px;
 			}
 		}
-				
-		.borderFilter{
-			background-image: url(images/top_04.gif);
-			width: 30px;
-			height: 24px;
-			display: block;
-		}	
 
-		.m_tline {
-			background-image: url("images/top_03b.gif");
-		}
+		.tblRpt {
+			
+			&.agentList, &.memberList, &.directAgentList {
+				td {
+					text-align: center;
+					padding: 0 2px;
 
-		.za_button {
-			font-family: "Arial";
-			font-size: 12px;
-			height: 20px;
-			padding-bottom: 1px;
-		}
-		
-		.za_text {
-			background-color: #FFFFFF;
-			border: 1px solid #000000;
-			font-family: "Arial";
-			font-size: 12px;
-			height: 14px;
-			padding-left: 2px;
-			padding-right: 2px;
-		}
-		
-		.za_select {
-			font-family: "Arial";
-			font-size: 12px;
-			height: 18px;
-		}
-		
-		tr {
-			font-family: "Arial";
-			font-size: 12px;
-		}
-		
-		
+					a:hover {
+						color: #0000EE;
+					}
+				}
+			}
 
-		.m_title_suag {
-			background-color: #CD9A99;
-			text-align: center;
-		}
-		
-		.m_cen {
-			background-color: #FFFFFF;
-			text-align: center;
-		}
-		
-		.close{
-			background: #FF0000;
-		}
+			.close {
+				background: #FF0000;
+			}
 
-		.suspended{
-			background: #FF9900;
-		}
-		.m_title_ag {
-			background-color: #86C0A6;
-			text-align: center;
-		}
-		
-		.mem_title {
-			background-color: #FEF5B5;
-			text-align: center;
+			.suspended{
+				background: #FF9900;
+			}	
 		}
 	}
 }

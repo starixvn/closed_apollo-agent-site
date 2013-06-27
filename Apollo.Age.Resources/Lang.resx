@@ -1404,7 +1404,7 @@
     <value>Archived Date</value>
   </data>
   <data name="BK" xml:space="preserve">
-    <value>B.K</value>
+    <value>B.K.</value>
   </data>
   <data name="InterEvent" xml:space="preserve">
     <value>Inter. event</value>
@@ -1547,5 +1547,41 @@
   </data>
   <data name="_1x2RB1x2" xml:space="preserve">
     <value>1 X 2, R.B. 1 X 2</value>
+  </data>
+  <data name="lblA" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="lblB" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lblC" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="lblD" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="MaxSingleBet" xml:space="preserve">
+    <value>Max Single Bet</value>
+  </data>
+  <data name="MinSingleBet" xml:space="preserve">
+    <value>Min Single Bet</value>
+  </data>
+  <data name="SingleGame" xml:space="preserve">
+    <value>Single Game</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AgencyDetailEdit" xml:space="preserve">
+    <value>Agency detailed edit</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
   </data>
 </root>
