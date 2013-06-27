@@ -73,8 +73,8 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        <span>@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                        @Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
                     {
@@ -84,8 +84,8 @@
                 <td>
                     @if (item.NumberOfMember != 0)
                     { 
-                        <span>@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                        @Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
                     {
@@ -99,8 +99,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.Detail</a>
-                    </span>
+                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
                 </td>
             </tr>
             }

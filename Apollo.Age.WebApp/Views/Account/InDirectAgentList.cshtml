@@ -18,7 +18,7 @@
 {       
     <div id="function-bar">
         <div class="item">
-            &nbsp;&nbsp;@Lang.agent&nbsp;:&nbsp;
+            <label>@Lang.agent</label>:
             <select class="za_select" id="UplineAgentId" name="UplineAgentId">
                 @foreach (var item in driectAgentList)
                 {
@@ -32,7 +32,6 @@
                     }
                 }
             </select>
-            &nbsp;&nbsp;
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
 					                new SelectListItem { Value = "2", Text = Lang.Close },
@@ -40,7 +39,7 @@
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
-            &nbsp;--&nbsp;@Lang.OrderBy&nbsp;:&nbsp;
+            --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
 				                }, new { @class = "za_select" })
@@ -52,44 +51,44 @@
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         { 
             <div class="item">
-                &nbsp;--&nbsp;@Lang.Page&nbsp;:&nbsp;
+                --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
-                &nbsp;/&nbsp;@Model.NumPages&nbsp;@Lang.Pages
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
             </div>
         }
-        <div class="item">
-            &nbsp;
+        <div class="item">            
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
-            &nbsp;
             <input type="submit" class="za_button" value="@Lang.SearchAgency" id="submit">
         </div>
     </div>     
     <img src="/_GlobalResources/Images/top_04.gif" alt="">
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
-<table width="880" cellpadding="0" border="0" bgcolor="#4B8E6F" cellspacing="1" class="m_tab">
-    <tbody>
+<table width="880" cellpadding="0" border="0" bgcolor="#4B8E6F" cellspacing="1" class="tblRpt directAgentList">
+    <thead>
         <tr bgcolor="#86C0A6" class="m_title_ag">
-            <td width="80">
+            <th width="80">
                 @Lang.enterusername
-            </td>
-            <td width="60">
+            </th>
+            <th width="60">
                 @Lang.agent
-            </td>
-            <td width="70">
+            </th>
+            <th width="70">
                 @Lang.member
-            </td>
-            <td width="60">
+            </th>
+            <th width="60">
                 @Lang.condition
-            </td>
-            <td width="60">
+            </th>
+            <th width="60">
                 @Lang.BetCondition
-            </td>
-            <td width="80">
+            </th>
+            <th width="80">
                 @Lang.Feature
-            </td>
+            </th>
         </tr>
+    </thead>
+    <tbody>        
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
         {
             foreach (var item in agentList)
@@ -101,8 +100,8 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                        @Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
                     {
@@ -112,8 +111,8 @@
                 <td>
                     @if (item.NumberOfMember != 0)
                     { 
-                        <span class="m_tab">@Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })</span>
+                       @Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
                     {
@@ -126,9 +125,8 @@
                 <td>
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
-                <td align="left">
-                    &nbsp; <span class="m_tab"><a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
-                    </span>
+                <td class="text-left">
+                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="#">@Lang.lblDetails</a>
                 </td>
             </tr>
             }

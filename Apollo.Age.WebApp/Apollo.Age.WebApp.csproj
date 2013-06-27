@@ -360,6 +360,7 @@
     <Content Include="Views\Account\Resources\Images\icon-help.png" />
     <Content Include="Views\Account\Resources\Images\icon-root.png" />
     <Content Include="Views\Account\Resources\Images\icon-sub-menu.png" />
+    <Content Include="Views\Account\Resources\Images\icon-subMenu.gif" />
     <Content Include="Views\Account\Resources\Images\icon-view-info-hover.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info.png" />
     <Content Include="Views\Account\Resources\Images\loader3.gif" />
