@@ -227,9 +227,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag)
+        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag, GetCachePropertyById FuncGetOddsTypeName)
         {
-            string trans = BuildTrans(ticket, ticketHelper);
+            string trans = BuildTrans(ticket, ticketHelper, FuncGetOddsTypeName);
             this._content.Append(string.Join(null, new string[] { openTag, trans, closeTag }));
             return this;
         }
@@ -239,10 +239,10 @@ namespace Fanex.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper)
+        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
-            string trans = transBuilder.Render(ticket, ticketHelper);
+            string trans = transBuilder.Render(ticket, ticketHelper, FuncGetOddsTypeName);
             return trans;
         }
 
@@ -466,7 +466,7 @@ namespace Fanex.BetList.Core.Builder
 
             if (type == null)
             {
-                return new Trans1();
+                return new Trans();
             }
             else
             {

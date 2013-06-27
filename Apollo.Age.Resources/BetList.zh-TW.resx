@@ -207,8 +207,8 @@
   <data name="refno" xml:space="preserve">
     <value>參照號碼</value>
   </data>
-  <data name="results" xml:space="preserve">
-    <value>賽果</value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="stake" xml:space="preserve">
     <value>投注額 </value>
@@ -410,5 +410,11 @@
   </data>
   <data name="ticket" xml:space="preserve">
     <value>Ticket</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>results</value>
   </data>
 </root>

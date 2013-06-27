@@ -207,8 +207,8 @@
   <data name="refno" xml:space="preserve">
     <value>หมายเลขอ้างอิง</value>
   </data>
-  <data name="results" xml:space="preserve">
-    <value>ผลการแข่งขัน</value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="stake" xml:space="preserve">
     <value>เงินเดิมพัน </value>
@@ -413,5 +413,11 @@
   </data>
   <data name="ticket" xml:space="preserve">
     <value>Ticket</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>results</value>
   </data>
 </root>
