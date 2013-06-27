@@ -129,7 +129,7 @@
 
 <div class="detail-information">
     @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@userId</strong> -- @Lang.Name
-    : <strong>@userName</strong> -- <a href="">@Lang.edit </a>-- <a href="">@Lang.back
+    : <strong>@userName</strong> -- <a href="">@Lang.edit </a>-- <a href="javascript:void(0);" id="back-link">@Lang.back
     </a>
 </div>
 <div class="view-detail-container">
@@ -177,3 +177,9 @@
         @RenderSportBlock(isViewOnMember, comSetting, outrightBetLimit, currentBetTypes)
     }
 </div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/scripts/viewaccountdetails")
+}

@@ -307,6 +307,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
     <Content Include="Views\Account\Resources\AccountInfo.js" />
     <Content Include="Views\Account\Resources\AccountList.js" />
     <Content Include="Views\Account\Resources\AgentList.js" />
