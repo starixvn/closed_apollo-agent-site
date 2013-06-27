@@ -166,10 +166,10 @@
 					if (mainShareHolders != null && mainShareHolders.Any())
 					{
 					<div class="label">
-						<label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder</label>
+						<label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder&nbsp:</label>
 					</div>
 					<div class="editor">
-						<select id='ddlMainShareHolder' name='ddlMainShareHolder' style="width: 280px">
+						<select id='ddlMainShareHolder' name='ddlMainShareHolder'>
 							@{
 						var selectedString = string.Empty;
 						foreach (var mainShareHolder in mainShareHolders)
