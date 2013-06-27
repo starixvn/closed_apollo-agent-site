@@ -3,8 +3,8 @@ var TOTALBETS_INDEX = (function ($) {
     return {
         reloadChild: function () {
 //            var subFrame = $('#submain');
-            
-            document.getElementById('submain').contentWindow.TOTALBETS.reloadPage();
+
+            document.getElementById('submain').contentWindow.location.href = document.getElementById('submain').contentWindow.location.href;
             //console.log("reload");
         }
     };
