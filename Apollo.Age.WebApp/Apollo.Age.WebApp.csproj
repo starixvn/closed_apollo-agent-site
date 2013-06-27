@@ -383,6 +383,7 @@
     <Content Include="Views\Account\Resources\treeview.css" />
     <Content Include="Views\Account\Resources\ViewComm.js" />
     <Content Include="Views\Account\Resources\ViewShare.js" />
+    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\BetList\Resources\Images\bgHeader.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_conts.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_popup.jpg" />
@@ -719,12 +720,14 @@
     <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
     <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
-    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
     <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
     <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
+    <Content Include="Views\Account\InDirectAgentList.cshtml" />
+    <Content Include="Views\Account\InDirectMemberList.cshtml" />
+    <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
