@@ -1584,4 +1584,7 @@
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
   </data>
+  <data name="lblOP" xml:space="preserve">
+    <value>OP</value>
+  </data>
 </root>

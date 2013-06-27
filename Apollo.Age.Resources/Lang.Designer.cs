@@ -2285,6 +2285,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OP.
+        /// </summary>
+        public static string lblOP {
+            get {
+                return ResourceManager.GetString("lblOP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Others Comm.
         /// </summary>
         public static string lblOtherComm {
