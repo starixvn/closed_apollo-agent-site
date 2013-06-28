@@ -8,7 +8,7 @@
 @inputSettingColor:#F2FAFF;
 
 body, .pt-grid {
-	font-size: (@fontSize -1);
+	font-size: @fontSize;
 	background-color: #F9F9F9;
 	
 }
@@ -136,11 +136,16 @@ body, .pt-grid {
 .betting-limit-header-top4, .betting-limit-header-top5 {
 	border-left: 1px solid @borderSetting;
 	border-top: 1px solid @borderSetting;
-	font-size: @fontSize - 1;
+	font-size: @fontSize;
 }
 
 .commission-setting-table, .commission-setting-table-player {
-	background-color: @headerLeftBackgourndSetting;
+	background-color: @inputSettingColor;
+}
+
+.commission-setting-table tr td
+{
+	border: 1px solid @borderSetting;
 }
 
 .commission-setting-table-player tr th {
@@ -159,6 +164,7 @@ body, .pt-grid {
 
 	#commissionSettingContainer, #bettingLimitContainer, #ptContainer {
 		margin-top:5px;
+		
 	}
 
 	.edit-setting-warning {
@@ -166,10 +172,13 @@ body, .pt-grid {
 		color: @orange;
 	}
 }
-
+#commissionSettingContainer, #bettingLimitContainer, #ptContainer
+{
+	border: 1px solid #000000;
+}
 
 .simple-mode-container {
-	font-size: (@fontSize -1);
+	font-size: @fontSize;
 
 
 	.share-setting-table {
@@ -181,12 +190,14 @@ body, .pt-grid {
 		background-color: #F2FAFF;
 	}
 
-	.share-setting-label {
+	.share-setting-label, .bet-setting-label {
 		background-color: @headerLeftBackgourndSetting !important;
 		border: 1px solid @borderSetting;
+		text-align: right;
+		padding: 2px 0 2px 4px;
 	}
 
-	.share-setting-value {
+	.share-setting-value, .commission-select {
 		border: 1px solid @borderSetting;
 	}
 
@@ -206,10 +217,12 @@ body, .pt-grid {
 		background-color: #F4F1E0;
 	}
 
-	.share-setting-label {
-		text-align: right;
-		padding: 2px 0 2px 4px;
+	.bet-limit-table
+	{
+		background-color: @inputSettingColor;
 	}
+
+
 } 
 
 .setting-mode {
@@ -342,6 +355,11 @@ body, .pt-grid {
     z-index: 10;
 }
 
+#btnSubmitFooter
+{
+	margin-right: 20px;
+}
+
 .frozen-header-main
 {
 	position: fixed !important;
@@ -349,4 +367,11 @@ body, .pt-grid {
 	background-color: #F9f9f9;
 	width: 98%;
 	z-index: 100;
+}
+
+.commission-setting-table tr td.commission-text
+{
+	font-size: @fontSize;
+	border: 1px solid @borderSetting;
+	background-color: @headerLeftBackgourndSetting !important;
 }

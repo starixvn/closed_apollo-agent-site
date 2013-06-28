@@ -9,6 +9,15 @@
     var isViewOnMember = (bool)ViewBag.IsViewOnMember;
     var custId = (int)ViewBag.CustId;
     var userName = (string)ViewBag.UserName ?? string.Empty;
+    var editLink = string.Empty;
+    if(isViewOnMember)
+    {
+        editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}", custId, userName, ViewBag.CurentParentAgentId));
+    }
+    else
+    {
+        editLink = Url.Content(string.Format("~/CustomerSetting/EditAgentSetting?agentId={0}&userName={1}&agentLevel={2}", custId, userName, ViewBag.AgentLevel));
+    }
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
 }
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
@@ -129,7 +138,7 @@
 
 <div class="detail-information">
     @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@custId</strong> -- @Lang.Name
-    : <strong>@userName</strong> -- <a href="">@Lang.edit </a>-- <a href="javascript:void(0);" id="back-link">@Lang.back
+    : <strong>@userName</strong> -- <a href="@editLink">@Lang.edit </a>-- <a href="javascript:void(0);" id="back-link">@Lang.back
     </a>
 </div>
 <div class="view-detail-container">

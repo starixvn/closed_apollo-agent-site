@@ -16,8 +16,11 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
+
+                APOLLO.initPageInfo();
             },
             init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
+                $('#page_main').addClass("simple-mode-share-setting-width");
 
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 
@@ -46,7 +49,7 @@ if (typeof jQuery != 'undefined') {
 
                 $("#simple-mode").unbind("click").click(function () {
                     $(this).hide();
-                    $("#page_main").removeClass("advanced-mode-width").addClass("simple-mode-width");
+                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
                     $("#advanced-mode").show();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = true;
@@ -55,7 +58,7 @@ if (typeof jQuery != 'undefined') {
 
                 $("#advanced-mode").unbind("click").click(function () {
                     $(this).hide();
-                    $("#page_main").addClass("advanced-mode-width").removeClass("simple-mode-width");
+                    $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
                     $("#simple-mode").show();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
@@ -77,7 +80,8 @@ if (typeof jQuery != 'undefined') {
                     data: JSON.stringify({
                         settingContext: EDITPOSITIONTAKING.settingContext,
                         positionTakingSetting: postionTakingValue
-                    })
+                    }),
+                    headers: APOLLO.addAntiForgeryToken({})
                 }).done(function (data) {
                     if (data.ErrCode == 0) {
                         //noty({ text: data.ErrMsg, type: 'success' });

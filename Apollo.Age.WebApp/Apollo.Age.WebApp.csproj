@@ -752,6 +752,7 @@
     <Content Include="Areas\Wagers\Views\VolleyballBadminton\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\VolleyballBadminton\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\VolleyballBadminton\Straight.cshtml" />
+    <None Include="Views\Account\Resources\CustomerSetting.less" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
