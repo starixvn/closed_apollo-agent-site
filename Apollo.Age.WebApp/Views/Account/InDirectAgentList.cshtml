@@ -12,6 +12,7 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
+    var backLink = Url.Content(HttpUtility.UrlEncode(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @using (Html.BeginForm())
@@ -126,7 +127,7 @@
                     @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                 </td>
                 <td class="text-left">
-                    <a href="#">@Lang.edit</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                    <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">@Lang.edit</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
                 </td>
             </tr>
             }

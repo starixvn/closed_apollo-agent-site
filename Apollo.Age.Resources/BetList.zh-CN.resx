@@ -420,4 +420,7 @@
   <data name="amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="results" xml:space="preserve">
+    <value>results</value>
+  </data>
 </root>
