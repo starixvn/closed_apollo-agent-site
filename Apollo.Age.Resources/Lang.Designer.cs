@@ -529,6 +529,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm write this agent?.
+        /// </summary>
+        public static string ConfirmWriteAgent {
+            get {
+                return ResourceManager.GetString("ConfirmWriteAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm write this member?.
+        /// </summary>
+        public static string ConfirmWriteMember {
+            get {
+                return ResourceManager.GetString("ConfirmWriteMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact our Customer Relationship Officers through the following available communication
         ///                channels should you have any concerns or queries..
         /// </summary>

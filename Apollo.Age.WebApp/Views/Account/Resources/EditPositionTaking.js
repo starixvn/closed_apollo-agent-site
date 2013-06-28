@@ -23,7 +23,20 @@ if (typeof jQuery != 'undefined') {
 
                 //// Register Event
                 $("#btnSubmitFooter").unbind('click').click(function () {
-                    EDITPOSITIONTAKING.updatePositionTakingSetting();
+                    var stringConfirm = "";
+                    if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                    }
+                    else {
+                        stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                    }
+                    var c = confirm(stringConfirm);
+                    if (c == true
+                    && EDITPOSITIONTAKING.positionTakingElement.Validate()) {
+                        
+                        EDITPOSITIONTAKING.updatePositionTakingSetting();
+                    }
+
                 });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
@@ -50,6 +63,12 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             updatePositionTakingSetting: function () {
+                var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
+                if (postionTakingValue == null) {
+                    noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                    return;
+                }
+
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
                     type: 'POST',
@@ -57,21 +76,21 @@ if (typeof jQuery != 'undefined') {
                     dataType: "json",
                     data: JSON.stringify({
                         settingContext: EDITPOSITIONTAKING.settingContext,
-                        positionTakingSetting: EDITPOSITIONTAKING.positionTakingElement.Save()
+                        positionTakingSetting: postionTakingValue
                     })
                 }).done(function (data) {
                     if (data.ErrCode == 0) {
-                        noty({ text: data.ErrMsg, type: 'success' });
+                        //noty({ text: data.ErrMsg, type: 'success' });
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
-                        noty({ text: APOLLO.generalErrorMsg, type: 'error' });
+                        noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                 });
             },
             completeUpdate: function (result) {
-                window.location.href = DEFAULT_OBJECT.linkBack;
+                window.location.href = $('#backUrl').val();
                 //                setTimeout(function () {
                 //                    if (typeof (parent.MEMBERLIST) != 'undefined') {
                 //                        parent.MEMBERLIST.loadMemberList();

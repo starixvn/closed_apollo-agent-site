@@ -1611,4 +1611,10 @@
   <data name="CommBase" xml:space="preserve">
     <value>Comm Base</value>
   </data>
+  <data name="ConfirmWriteAgent" xml:space="preserve">
+    <value>Confirm write this agent?</value>
+  </data>
+  <data name="ConfirmWriteMember" xml:space="preserve">
+    <value>Confirm write this member?</value>
+  </data>
 </root>
