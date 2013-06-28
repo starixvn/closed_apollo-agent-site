@@ -28,15 +28,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
-
-            this.Template.betTypeName = null;
-            this.Template.VS = null;
-            this.Template.sportTypeName = null;
-            this.Template.Score = null;
-            this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            //this.Template.betTypeName = null;
+            //this.Template.VS = null;
+            //this.Template.sportTypeName = null;
+            //this.Template.Score = null;
+            //this.Template.Handicap.handicap = null;
 
             this.Template.betTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.p2pGame, " - ", Apollo.Age.Resources.BetList.transfer });
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }

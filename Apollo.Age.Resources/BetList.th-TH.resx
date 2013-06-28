@@ -420,4 +420,7 @@
   <data name="results" xml:space="preserve">
     <value>results</value>
   </data>
+  <data name="vs" xml:space="preserve">
+    <value>VS.</value>
+  </data>
 </root>

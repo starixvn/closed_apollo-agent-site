@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     /// <summary>
     ///  Set x Winner
     /// </summary>
-    public class Choice1311:Choice20
+    public class Choice1311 : Choice20
     {
         /// <summary>
         /// Builds the choice.
@@ -27,8 +27,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
-
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

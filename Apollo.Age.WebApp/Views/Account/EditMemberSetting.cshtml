@@ -5,13 +5,13 @@
     ViewBag.Title = string.Format(titleFormat, userName);
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
 	var memberId = ViewBag.MemberId ?? 0;
-    var backLink = Url.Content(string.Format("~/CustomerSetting/ViewAgentDetails/?memberId={0}&agentId={1}&userName={2}", memberId, ViewBag.AgentId, userName));
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewAgentDetails/?memberId={0}&agentId={1}&userName={2}", memberId, ViewBag.CurentParentAgentId, userName));
 }
 
 @section header
 {
     <div class="detail-information">
-        @Lang.MemberDetailEdit -- @Lang.Account : <strong>@memberId</strong> -- @Lang.Name <strong>@userName</strong>  --<a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+        @Lang.MemberDetailEdit -- @Lang.Account : <strong>@memberId</strong> -- @Lang.Name <strong>@userName</strong>  -- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
     </div>
 }
 @Html.Hidden("backUrl", backLink)

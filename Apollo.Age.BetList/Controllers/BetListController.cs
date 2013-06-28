@@ -11,12 +11,17 @@ namespace Apollo.Age.BetList.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -28,8 +33,10 @@ namespace Apollo.Age.BetList.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListController : BaseController
     {
+        private const string StringEmpty = "";
         private readonly BetListService betListService;
         private readonly ReportService reportService;
+        private readonly TotalBetsService totalBetsService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
@@ -38,11 +45,79 @@ namespace Apollo.Age.BetList.Controllers
         {
             this.betListService = new BetListService();
             this.reportService = new ReportService();
+            this.totalBetsService = new TotalBetsService();
         }
 
         public ViewResult Index()
         {
             return this.View();
+        }
+
+        /// <summary>
+        /// Action betlist from forecast
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="betType"></param>
+        /// <param name="betTeam"></param>
+        /// <param name="matchId"></param>
+        /// <param name="mainShareHolderId"></param>
+        /// <param name="mainShareHolderUsername"></param>
+        /// <param name="isForecast"></param>
+        /// <returns></returns>
+        public ViewResult Forecast(string type = StringEmpty, string betType = StringEmpty, string betTeam = StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty, bool isForecast = false)
+        {
+            var strBetType = string.Empty;
+
+            if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+            }
+            else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.MixParlay);
+            }
+            else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+            }
+            else
+            {
+                strBetType = betType;
+            }
+
+            // List mainShare Holder
+            var mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
+
+            // List ticket
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                LoggedId = CurrentSession.AgentId,
+                AgentId = mainShareHolderId,
+                Bettypes = strBetType,
+                MatchId = matchId,
+                BetTeam = betTeam
+            };
+
+            TicketResult mainTickets;
+
+            if (matchId > 0)
+            {
+                mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetRunningByBettype(criteria);
+            }
+
+            var viewModel = new BetListViewModel
+            {
+                CurrentMainShareHolderId = mainShareHolderId,
+                ListMainShareHolders = mainShareHolders,
+                TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
+            };
+
+            return this.View(viewModel);
         }
 
         /// <summary>
@@ -81,12 +156,50 @@ namespace Apollo.Age.BetList.Controllers
                     listAgentComm = betListService.GetDetailAgentComm(criteria);
                 }
 
-                viewModel.ListAgentComm = this.Ticket(listAgentComm);
+                viewModel.TicketList = this.Ticket(listAgentComm);
             }
 
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Get ticket for betlist
+        /// </summary>
+        /// <param name="ticketResult"></param>
+        /// <param name="betlistPage"></param>
+        /// <returns></returns>
+        private List<TicketText> Ticket(TicketResult ticketResult, BetListPage betlistPage)
+        {
+            GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+            var ticketHelper = new TicketHelper();
+            var builder = new BetListHTMLBuilder();
+            var ticketTextList = new List<TicketText>();
+            var tickets = ticketResult.TicketList;
+            foreach (var ticket in tickets)
+            {
+                var ticketText = new TicketText
+                {
+                    TransId = ticket.TransId,
+                    UserName = ticket.UserName,
+                    TransTime = builder.BuildTime(ticket, betlistPage),
+                    Discount = builder.BuildDiscount(ticket, betlistPage),
+                    GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName),
+                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
+                    Stake = ticket.Stake,
+                    AgentComm = builder.BuildAgentComm(ticket, true),
+                    AgentShare = builder.BuildAgentShare(ticket, null)
+                };
+                ticketTextList.Add(ticketText);
+            }
+
+            return ticketTextList;
+        }
+
+        /// <summary>
+        /// Get ticket for view detail
+        /// </summary>
+        /// <param name="tickets"></param>
+        /// <returns></returns>
         private List<TicketText> Ticket(IList<ITicket> tickets)
         {
             var builder = new BetListHTMLBuilder();
@@ -96,7 +209,6 @@ namespace Apollo.Age.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     UserName = ticket.UserName,
-                    TransTime = string.Empty, // builder.BuildTrans(ticket, new TicketHelper()),
                     AgentComm = builder.BuildAgentComm(ticket, true),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };
@@ -107,6 +219,28 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         #region Format Start, End date
+
+        /// <summary>
+        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
+        /// then load Data of that MainShareHolder
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="betType"></param>
+        /// <returns></returns>
+        private IEnumerable<Agent> ListMainShareHolder(string betType, ref int mainShareHolderId)
+        {
+            int agentId = this.CurrentSession.AgentId;
+            if (this.CurrentSession.IsSuper)
+            {
+                var mainShareHolders = this.totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = betType });
+                if (mainShareHolderId == 0 && mainShareHolders != null && mainShareHolders.Any())
+                {
+                    mainShareHolderId = mainShareHolders.ElementAt(0).Id;
+                }
+                return mainShareHolders;
+            }
+            return new List<Agent>();
+        }
 
         public static DateTime ResetStartDate(DateTime dt)
         {

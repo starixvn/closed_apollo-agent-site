@@ -27,12 +27,12 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.initPageInfo();
             },
             initForMode: function () {
-//                if (EDITSETTING.currentIsSimpleMode) {
-//                    $("#btnSubmitHeader").hide();
-//                }
-//                else {
-//                    $("#btnSubmitHeader").show();
-//                }
+                //                if (EDITSETTING.currentIsSimpleMode) {
+                //                    $("#btnSubmitHeader").hide();
+                //                }
+                //                else {
+                //                    $("#btnSubmitHeader").show();
+                //                }
             },
             init: function () {
                 $('#page_main').addClass('setting-width');
@@ -40,6 +40,7 @@ if (typeof jQuery != 'undefined') {
                 EDITSETTING.initOthers(DEFAULT_LAYOUT.isSimpleMode);
                 EDITSETTING.initForMode();
                 $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
+
                     EDITSETTING.saveSetting();
                 });
                 $("#simple-mode").unbind("click").click(function () {
@@ -51,8 +52,13 @@ if (typeof jQuery != 'undefined') {
                     EDITSETTING.initOthers(true);
                 });
 
+                $("#btnCancelFooter").unbind('click').click(function () {
+                    history.go(-1);
+                    return false;
+                });
+
                 $("#advanced-mode").unbind("click").click(function () {
-                    
+
                     $(this).hide();
                     $("#simple-mode").show();
 
@@ -78,6 +84,18 @@ if (typeof jQuery != 'undefined') {
                         return;
                     }
 
+                    var stringConfirm = "";
+                    if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                    }
+                    else {
+                        stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                    }
+                    var c = confirm(stringConfirm);
+                    if (c == false) {
+                        return;
+                    }
+
                     var url = APOLLO.resolveUrl('CustomerSetting/');
                     if (typeof (DEFAULT_OBJECT.memberId) != 'undefined') {
                         dataObject.memberId = DEFAULT_OBJECT.memberId;
@@ -87,6 +105,7 @@ if (typeof jQuery != 'undefined') {
                         dataObject.agentId = DEFAULT_OBJECT.agentId;
                         url += "UpdateAgentSetting";
                     }
+
 
                     $.ajax({
                         url: url,
@@ -105,12 +124,15 @@ if (typeof jQuery != 'undefined') {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                         try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
-                        $("#btnSubmitFooter").removeAttr("disabled");
                     });
                 }
             },
             completeUpdate: function (result) {
-                window.location.href = $('#backUrl').val();
+                var backLink = $('#backUrl').val();
+                setTimeout(function () {
+                    window.location.href = backLink;
+                }, 1000);
+
             }
         }
     } (jQuery);

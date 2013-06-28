@@ -27,20 +27,21 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
-            this.Template.betTypeName = null;
-            this.Template.VS = null;
-            this.Template.sportTypeName = null;
-            this.Template.Score = null;
-            this.Template.Handicap.handicap = null;
+            //this.Template.betTypeName = null;
+            //this.Template.VS = null;
+            //this.Template.sportTypeName = null;
+            //this.Template.Score = null;
+            //this.Template.Handicap.handicap = null;
 
             this.Template.homeTeam = null;
-            this.Template.home_firstGoal_lastGoal = null;
+            //this.Template.home_firstGoal_lastGoal = null;
             this.Template.awayTeam = null;
-            this.Template.away_firstGoal_lastGoal = null;
+            //this.Template.away_firstGoal_lastGoal = null;
             this.Template.LeagueName.leagueName = null;
 
             this.Template.betTeam = Apollo.Age.Resources.BetList.bingo;
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

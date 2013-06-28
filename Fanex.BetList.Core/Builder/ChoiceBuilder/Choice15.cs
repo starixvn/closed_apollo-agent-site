@@ -39,8 +39,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     }
                                                );
 
-            this.Template.betTeamClassName = BL_FAVORITE;
-            this.Template.Handicap.handicap = null;
+            //this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

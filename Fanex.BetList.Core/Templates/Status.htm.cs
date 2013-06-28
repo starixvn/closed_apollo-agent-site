@@ -63,7 +63,7 @@ namespace Fanex.BetList.Core
 			protected static string s11 = ", ";
 			public string isoutright = "0";
 			protected static string s12 = ");\">";
-			protected static string s13{get{return Apollo.Age.Resources.BetList.results;}}
+			protected static string s13{get{return Apollo.Age.Resources.BetList.result;}}
 			protected static string s14 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{

@@ -29,12 +29,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.VS = null;
+            //this.Template.VS = null;
             this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.over : Apollo.Age.Resources.BetList.under;
 
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.Handicap.handicap = "37.5";
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.homeTeam = string.Join(
                                                 null,
                                                 new string[]

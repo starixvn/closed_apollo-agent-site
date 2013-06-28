@@ -1,0 +1,92 @@
+﻿@using Fanex.BetList.Core.TicketHelper;
+@using Fanex.BetList.Core.Factories;
+@using Fanex.BetList.Core.Utils;
+@model Apollo.Age.BetList.ViewModels.BetListViewModel
+@{
+    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblBetLists;
+}
+@if (Model.ListMainShareHolders.Any())
+{
+    @RazorHelper.RenderMainShareHolderDropDownList(Model.CurrentMainShareHolderId, Model.ListMainShareHolders)
+}
+<div>
+</div>
+<div id="spData">
+    <table class="tblRpt">
+        <thead class="persist-header">
+            <tr>
+                <th style="width: 70px;">
+                    @Apollo.Age.Resources.BetList.time
+                </th>
+                <th style="width: 140px;">
+                    @Apollo.Age.Resources.BetList.rebate
+                </th>
+                <th style="width: 140px;">
+                    @Apollo.Age.Resources.BetList.ticket
+                </th>
+                <th>
+                    @Apollo.Age.Resources.BetList.content
+                </th>
+                <th style="width: 100px;">
+                    @Apollo.Age.Resources.BetList.amount
+                </th>
+                <th style="width: 100px;">
+                    @Apollo.Age.Resources.BetList.result
+                </th>
+            </tr>
+        </thead>
+        @if (Model.TicketList != null && Model.TicketList.Any())
+        {
+            var i = 0;
+            decimal totalAmount = 0;
+            <tbody>
+                @foreach (var item in Model.TicketList)
+                {
+                    i++;
+                    totalAmount += item.Stake;
+                    <tr>
+                        <td class='c'>
+                            @Html.Raw(item.TransTime)
+                        </td>
+                        <td class='c'>@Html.Raw(item.Discount)
+                        </td>
+                        <td class='c'>@Html.Raw(item.GameType)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.Choice)
+                        </td>
+                        <td class='r'>
+                            @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='r'>
+                            0.00
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3">
+                    </td>
+                    <td class="r total">@i
+                    </td>
+                    <td class="r total">
+                        @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r result">
+                        0.00
+                    </td>
+                </tr>
+            </tbody>
+
+        }
+        else
+        {
+            <tfoot>
+                <tr class='total no-result'>
+                    <td class='c' colspan='6'>@Apollo.Age.Resources.Lang.noInfo
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>

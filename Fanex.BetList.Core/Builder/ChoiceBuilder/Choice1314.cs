@@ -31,8 +31,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             bool yes = ticket.BetTeam == "h";
 
             this.Template.betTeam = yes ? Apollo.Age.Resources.BetList.lblYes : Apollo.Age.Resources.BetList.lblNo;
-
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

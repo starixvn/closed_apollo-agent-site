@@ -29,18 +29,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Score = null;
-            this.Template.VS = null;
-            this.Template.Handicap.handicap = null;
+            //this.Template.Score = null;
+            //this.Template.VS = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
 
             string betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.warrior2ndBall : Apollo.Age.Resources.BetList.warrior3rdBall;
 
-            string bettypeName = this.Template.betTypeName;
+            //string bettypeName = this.Template.betTypeName;
 
             this.Template.betTeam = betTeam;
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.betTypeName = bettypeName;
+            //this.Template.betTypeName = bettypeName;
 
             this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
