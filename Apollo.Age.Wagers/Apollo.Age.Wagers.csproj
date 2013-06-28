@@ -52,7 +52,6 @@
     <Compile Include="Controllers\TennisController.cs" />
     <Compile Include="Controllers\VolleyballBadmintonController.cs" />
     <Compile Include="Core\WagersBettypes.cs" />
-    <Compile Include="Core\WagersSporttypes.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Entities\WagerSport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
