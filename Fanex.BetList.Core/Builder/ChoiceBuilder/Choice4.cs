@@ -28,22 +28,22 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;
-
+            //this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string choice = ticket.BetTeam;
             choice = (ticket.BetTeam == "0:5" || ticket.BetTeam == "5:0") ? ticket.BetTeam + " UP" : ticket.BetTeam;
 
             // "&nbsp" because export format
             this.Template.betTeam = string.Join(
-                                                    null, 
-                                                    new string[] 
-                                                    { 
-                                                        "&nbsp;", 
-                                                        choice 
+                                                    null,
+                                                    new string[]
+                                                    {
+                                                        "&nbsp;",
+                                                        choice
                                                     }
-                                               );            
+                                               );
 
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }

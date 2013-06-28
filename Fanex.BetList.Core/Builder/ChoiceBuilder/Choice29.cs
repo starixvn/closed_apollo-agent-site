@@ -44,6 +44,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             string mixParlay = string.Empty, custid = string.Empty;
             if (HttpContext.Current.Request["custid"] != null)

@@ -29,8 +29,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;
-
+            //this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             if (ticket.BetTeam == "b")
             {
                 this.Template.betTeam = Apollo.Age.Resources.BetList.lblBoth;
@@ -44,7 +44,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 this.Template.betTeam = Apollo.Age.Resources.BetList.nogoal;
             }
 
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }
