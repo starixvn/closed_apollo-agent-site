@@ -1,10 +1,24 @@
 ﻿@import "../../../_globalResources/css/Agent.less";
 @import "../../../_globalResources/css/calendar.less";
 
-#header_main #exporttoexcel {
-	position: absolute;
-	right: 10px;
-	top: 10px;
+#header_main {
+	color: #000099;
+	display: block;
+	float: left;
+	margin: 2px 10px 5px 5px;
+	padding: 2px 0;
+
+	#exporttoexcel {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+}
+
+.box-header {
+	float: left;
+	clear: none;
+	margin-top: 4px;
 }
 
 .bl_evt {
@@ -163,7 +177,8 @@
 }
 
 .tblRpt {
-	margin-top: 10px;
+	margin: 5px;
+
 	&.border-tbl td {
 		border-width: 1px;
 	}
