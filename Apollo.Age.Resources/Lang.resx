@@ -168,8 +168,8 @@
   <data name="bettype" xml:space="preserve">
     <value>Bet Type</value>
   </data>
-  <data name="commission" xml:space="preserve">
-    <value>Commission (%)</value>
+  <data name="Commission" xml:space="preserve">
+    <value>Commission</value>
   </data>
   <data name="company" xml:space="preserve">
     <value>Company</value>
@@ -1622,6 +1622,9 @@
   </data>
   <data name="DirectMembers" xml:space="preserve">
     <value>Direct members</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
   </data>
   <data name="lbl1stOddEven" xml:space="preserve">
     <value>1st Odd/Even</value>

@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Core\SingbetConstants.cs" />
+    <Compile Include="Core\SingbetSportConstant.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />

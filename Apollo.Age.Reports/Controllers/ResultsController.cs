@@ -186,19 +186,19 @@ namespace Apollo.Age.Reports.Controllers
         {
             switch (sportTypes)
             {
-                case SingbetConstants.Soccer:
+                case SingbetSportConstant.Soccer:
                     return SportTypes.Soccer.ToString();
-                case SingbetConstants.BK_NFL_RUGBY:               
+                case SingbetSportConstant.BK_NFL_RUGBY:               
                     return SportTypes.BasketBall.ToString();
-                case SingbetConstants.Tennis:
+                case SingbetSportConstant.Tennis:
                     return SportTypes.Tennis.ToString();
-                case SingbetConstants.VB_BDM_TT:
+                case SingbetSportConstant.VB_BDM_TT:
                     return SportTypes.Badminton.ToString();
-                case SingbetConstants.BaseBall:
+                case SingbetSportConstant.BaseBall:
                     return SportTypes.BaseBall.ToString();                
-                case SingbetConstants.Other:
+                case SingbetSportConstant.Other:
                     return SportTypes.Others.ToString();
-                case SingbetConstants.Outright:
+                case SingbetSportConstant.Outright:
                     return "Outright";
                 default:
                     return SportTypes.Soccer.ToString();

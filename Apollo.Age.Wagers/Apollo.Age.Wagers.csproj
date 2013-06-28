@@ -46,13 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseballController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BkNFLRugbyController.cs" />
     <Compile Include="Controllers\OthersController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
     <Compile Include="Controllers\TennisController.cs" />
     <Compile Include="Controllers\VolleyballBadmintonController.cs" />
     <Compile Include="Core\WagersBettypes.cs" />
-    <Compile Include="Core\WagersSporttypes.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Entities\WagerSport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
