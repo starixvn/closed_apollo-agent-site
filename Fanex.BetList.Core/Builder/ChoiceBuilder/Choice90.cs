@@ -67,10 +67,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Score = null;
-            this.Template.VS = null;
-            this.Template.Handicap.handicap = null;
-
             string betId = ticket.BetId.ToString();
             string liveScore = (!ticket.IsLive || betId == string.Empty) ? string.Empty : " [" + betId + "]";
             decimal hdp1 = ticket.Handicap1;
@@ -84,10 +80,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             var betTeamName = BetTeamMap.ContainsKey(betTeamKey) ? BetTeamMap[betTeamKey] : string.Empty;
 
             this.Template.betTeam = string.Join(null, new string[] { betTeamName, liveScore });
-            this.Template.betTeamClassName = BL_FAVORITE;
 
-            this.Template.betTypeName = Apollo.Age.Resources.BetList.numberGroup;
             this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

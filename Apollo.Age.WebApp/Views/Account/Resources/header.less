@@ -87,13 +87,16 @@ td {
 				li {
 					float: left;
 					margin-top: 1px;
-					padding: 0 4px;
 					color: @black;
 
-					span {						
+					span, a {						
 						float: left;
 						margin: 0;
-						padding: 0;
+						padding: 0 4px;
+
+						a {
+							padding: 0;
+						}
 					}
 
 					a {
@@ -114,7 +117,7 @@ td {
 					.sub-menu {						
 						float: left;
 						display: none;
-						margin: 0 0 0 5px;
+						margin: 0;
 						padding: 0;
 
 						li {

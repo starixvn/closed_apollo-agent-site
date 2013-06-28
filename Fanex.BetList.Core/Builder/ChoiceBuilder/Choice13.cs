@@ -44,8 +44,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         "</span>"
                                                     }
                                                );
-
-            this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            //this.Template.Handicap.handicap = null;
         }
     }
 }

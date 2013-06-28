@@ -29,12 +29,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.VS = null;
-            this.Template.Handicap.handicap = null;
-            this.Template.home_firstGoal_lastGoal = null;
-            this.Template.away_firstGoal_lastGoal = null;
+            //this.Template.VS = null;
+            //this.Template.Handicap.handicap = null;
             this.Template.awayTeam = null;
-
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.betTeam = string.Join(
                                                     null,
                                                     new string[]
@@ -45,7 +43,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     }
                                                );
 
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
 
             this.Template.homeTeam = string.Join(
                                                     null,

@@ -6,14 +6,14 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Apollo.Age.Web;
 using Apollo.Age.Web.Services;
 using Fanex.Data.Configuration;
 using Fanex.Logging;
-using Apollo.Age.Web;
 
 namespace Apollo.Age.WebApp
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : HttpApplication
@@ -25,13 +25,13 @@ namespace Apollo.Age.WebApp
             AreaRegistration.RegisterAllAreas();
 
             #region Registration
-            
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            #endregion
+            #endregion Registration
 
             maintenanceService = new UnderMaintenanceService();
             DbSettingProviderManager.Current.Start();
@@ -40,29 +40,29 @@ namespace Apollo.Age.WebApp
         protected void Application_Error(object sender, EventArgs e)
         {
             // Logging
-            Exception ex = Server.GetLastError().GetBaseException();
+            //Exception ex = Server.GetLastError().GetBaseException();
 
-            if (!Request.IsLocal)
-            {
-                string message = ex.Message +
-                    "\r\nSource: " + ex.Source +
-                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-                    "\r\nForm: " + Request.Form.ToString() +
-                    "\r\nQueryString: " + Request.QueryString.ToString() +
-                    "\r\nTargetSite: " + ex.TargetSite +
-                    "\r\nStackTrace: " + ex.StackTrace;
+            //if (!Request.IsLocal)
+            //{
+            //    string message = ex.Message +
+            //        "\r\nSource: " + ex.Source +
+            //        "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+            //        "\r\nForm: " + Request.Form.ToString() +
+            //        "\r\nQueryString: " + Request.QueryString.ToString() +
+            //        "\r\nTargetSite: " + ex.TargetSite +
+            //        "\r\nStackTrace: " + ex.StackTrace;
 
-                LogService.Error(message);
-            }
+            //    LogService.Error(message);
+            //}
 
-            // Redirect to Error pages
-            var serverError = Server.GetLastError() as HttpException;
-            string errorCode = string.Empty;
+            //// Redirect to Error pages
+            //var serverError = Server.GetLastError() as HttpException;
+            //string errorCode = string.Empty;
 
-            if (serverError != null)
-            {
-                errorCode = serverError.GetHttpCode().ToString();
-            }
+            //if (serverError != null)
+            //{
+            //    errorCode = serverError.GetHttpCode().ToString();
+            //}
 
             if (!Request.IsLocal)
             {
@@ -85,7 +85,6 @@ namespace Apollo.Age.WebApp
                     if (maintenanceInfo.IsDownTime)
                     {
                         Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
-                       
                     }
                 }
             }
@@ -94,6 +93,5 @@ namespace Apollo.Age.WebApp
                 LogService.Error(ex.Message, ex);
             }
         }
-
     }
 }

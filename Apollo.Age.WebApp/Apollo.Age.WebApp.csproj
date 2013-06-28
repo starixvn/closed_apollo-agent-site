@@ -354,6 +354,7 @@
     <Content Include="Views\Account\Resources\treeview.css" />
     <Content Include="Views\Account\Resources\ViewComm.js" />
     <Content Include="Views\Account\Resources\ViewShare.js" />
+    <Content Include="Views\BetList\Resources\BetList.js" />
     <Content Include="Views\BetList\Resources\Images\bgHeader.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_conts.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_popup.jpg" />
@@ -363,6 +364,7 @@
     <Content Include="Views\BetList\Resources\Images\q_Icon2_1.png" />
     <Content Include="Views\BetList\Resources\Images\q_Icon_2.png" />
     <Content Include="Views\BetList\Resources\Images\ScoreMapWL.png" />
+    <Content Include="Views\BetList\Resources\Paging.js" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
     <Content Include="Views\Forecast\Resources\FC1X2.js" />
     <Content Include="Views\Forecast\Resources\FCByMatch.js" />
@@ -695,6 +697,9 @@
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
+    <Content Include="Views\BetList\Forecast.cshtml" />
+    <None Include="Views\BetList\Resources\ErrorPage.less" />
+    <None Include="Views\BetList\Resources\Paging.less" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
