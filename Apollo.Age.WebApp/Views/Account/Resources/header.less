@@ -232,10 +232,16 @@ td {
 			color: @black; 
 		}
 
-		.border-link:hover {
-			//border-bottom: #a0998f 2px ridge;
-			//background-color: #ece9d8;
-			//border-top: #2f4540 1px solid;
+		.border-link {			
+			border-right: #ECE9D8 1px solid;
+			border-left: #ECE9D8 1px solid;
+			padding: 0 3px;
+
+			&:hover {
+				border-bottom: #A0A0A0 1px solid;
+				border-right: #A0A0A0 1px solid;
+				border-left: #fff 1px solid;
+			}
 		}
 	}	
 }
