@@ -45,7 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeWagersController.cs" />
+    <Compile Include="Controllers\BaseballController.cs" />
+    <Compile Include="Controllers\BkNFLRugbyController.cs" />
+    <Compile Include="Controllers\OthersController.cs" />
+    <Compile Include="Controllers\SoccerController.cs" />
+    <Compile Include="Controllers\TennisController.cs" />
+    <Compile Include="Controllers\VolleyballBadmintonController.cs" />
     <Compile Include="Core\WagersBettypes.cs" />
     <Compile Include="Core\WagersSporttypes.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />

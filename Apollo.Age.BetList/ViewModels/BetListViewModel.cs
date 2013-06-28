@@ -16,6 +16,8 @@ namespace Apollo.Age.BetList.ViewModels
 
     public class BetListViewModel
     {
+        public string Title { get; set; }
+
         public int CurrentMainShareHolderId { get; set; }
 
         public int CurrentAgentId { get; set; }
