@@ -1617,4 +1617,7 @@
   <data name="ConfirmWriteMember" xml:space="preserve">
     <value>Confirm write this member?</value>
   </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct members</value>
+  </data>
 </root>

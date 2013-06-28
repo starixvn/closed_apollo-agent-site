@@ -719,6 +719,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct members.
+        /// </summary>
+        public static string DirectMembers {
+            get {
+                return ResourceManager.GetString("DirectMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Displaying.
         /// </summary>
         public static string Displaying {
