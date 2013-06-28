@@ -15,15 +15,22 @@ namespace Apollo.Age.Wagers.Services
     using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Wagers.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class WagersService : QueryService, IWagersService
     {
-        public IEnumerable<League> GetLeague(DateTime date,int sportType)
+        public IEnumerable<League> GetLeague(DateTime date, int sportType)
         {
-            return this.GetData<League>()
+            var criteria = new GetLeagueCriteria
+            {
+                FromeDate = date,
+                SportType = sportType
+            };
+
+            return this.GetData<League>(criteria);
         }
     }
 }

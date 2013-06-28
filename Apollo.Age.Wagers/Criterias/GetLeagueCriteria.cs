@@ -13,11 +13,25 @@ namespace Apollo.Age.Wagers.Criterias
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class GetLeagueCriteria : CriteriaBase
     {
+        public DateTime FromeDate { get; set; }
+
+        public int SportType { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Age_Wagers_SelLeague";
+        }
+
+        public override bool IsValid()
+        {
+            return SportType > 0;
+        }
     }
 }
