@@ -24,6 +24,16 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Reports/Resources/Reports.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/winlossjs").Include(
+               "~/_GlobalResources/Js/head.js",
+               "~/_GlobalResources/Js/jquery.js",
+               "~/_GlobalResources/Js/jquery-ui.js",
+               "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+               "~/_GlobalResources/Js/Core.js",
+               "~/Views/Reports/Resources/Reports.js",
+               "~/Views/Reports/Resources/WinLoss.js"
+               ));
+
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
                 "~/_GlobalResources/Js/Fanex.Grid/moment.js",
                 "~/_GlobalResources/Js/Fanex.Grid/numeral.js",
