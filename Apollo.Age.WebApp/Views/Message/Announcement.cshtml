@@ -24,7 +24,7 @@
                     / <span>@Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</span>
                     <div class="search">
                         @Html.TextBox("content", "", new { @class = "ccroll_input" })
-                        <input type="submit" class="ccroll_btn" value="@Lang.search"/>
+                        <input type="submit" class="ccroll_btn" value="@Lang.search" id="submit"/>
                     </div>
                 </th>
             </tr>
@@ -66,4 +66,3 @@
     </table>
     @Html.Hidden("modeDate", modeDate)    
 }
-@Scripts.Render("~/scripts/messagejs")
