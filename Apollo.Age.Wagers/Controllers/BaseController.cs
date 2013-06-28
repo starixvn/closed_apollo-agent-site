@@ -22,9 +22,9 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerService = wagerService ?? new WagersService();
         }
 
-        public List<SelectListItem> GetLeague()
+        public List<SelectListItem> GetLeague(string sportTypes = null)
         {
-            var Leagues = _wagerService.GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
+            var Leagues = _wagerService.GetLeague(DateTime.Now, sportTypes);
             List<SelectListItem> listLeague = new List<SelectListItem>();
             foreach (var league in Leagues)
             {

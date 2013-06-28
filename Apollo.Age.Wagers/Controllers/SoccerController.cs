@@ -25,11 +25,12 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class SoccerController : BaseController
     {
-        private readonly WagersService _wagerService; 
+        private readonly WagersService _wagerService;
 
-        public SoccerController() : this(null)
-        { 
-           
+        public SoccerController()
+            : this(null)
+        {
+
         }
 
         public SoccerController(WagersService wagerService = null)
@@ -39,13 +40,13 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Index(string bettype = "1")
         {
-           
-            ViewBag.Leagues = GetLeague();
+
+            ViewBag.Leagues = GetLeague(SingbetSportConstant.Soccer);
             ViewBag.Title = bettype;
             return View();
         }
 
-        
+
 
         public ActionResult Straight()
         {
