@@ -1,16 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
 @{
-    Layout = null;
-    var menu = new List<string[]>
-	{
-		new string[] {"~/wagers/BkNFLRugby?bettype=1", Lang.lblStraight},		
-		new string[] {"~/wagers/BkNFLRugby?bettype=2", Lang.lblRB},		
-		new string[] {"~/wagers/BkNFLRugby?bettype=3", Lang.total},
-		new string[] {"~/wagers/BkNFLRugby?bettype=4", Lang.lblHalfFull},
-		new string[] {"~/wagers/BkNFLRugby?bettype=5",Lang.lblParlay}		
-	};
-    int menuItemCount = menu.Count;
+    Layout = null;    
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -24,10 +15,10 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" name="ltype" id="ltype">
-                <option value="1">Baskeball A</option>
-                <option value="2">Baskeball B</option>
-                <option value="3">Baskeball C</option>
-                <option value="4">Baskeball D</option>
+                <option value="a">@Lang.Basketball A</option>
+                <option value="b">@Lang.Basketball B</option>
+                <option value="c">@Lang.Basketball C</option>
+                <option value="d">@Lang.Basketball D</option>
             </select>
         </div>
         <div class="before-filter">
@@ -36,44 +27,70 @@
         <div class="before-filter">
             --</div>
         <ul class="menu">
-            @for (int i = 0; i < menu.Count; i++)
-            {
-                var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-            }
+            @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Wagers.Core.WagersSporttypes.BK_NFL_Rugby)
         </ul>
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
         <div id="content_main">
-            <div id="header_main">@ViewBag.Title</div>
-            <div class="box-header" id="main-shareholder-box">
-                <div class="row">
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.view&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @Html.DropDownList("ViewOption", new List<SelectListItem>
-                       {
-                           new SelectListItem{ Value="0", Text=Lang.all},
-                           new SelectListItem{Value="1",Text=Lang.DirectMembers}
-                       })
-                        </div>
-                    </div>
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.league&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
-                        </div>
-                    </div>
-                </div>
+            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
+            <div id="wagerContainer">
+                <table class="tblRpt soccer">
+                    <thead>
+                        <tr class="RptHeader">
+                            <th style="width: 100px;">
+                                Time
+                            </th>
+                            <th style="width: 300px;">
+                                League
+                            </th>
+                            <th style="width: 300px;">
+                                Home/Guest
+                            </th>
+                            <th style="width: 100px;">
+                                Half
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Final
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="c">
+                            <td class="width-80">
+                                06-20<br>
+                                12:59p
+                            </td>
+                            <td>
+                                SWEDEN SUPERETTAN - SPECIFIC 15 MINS OVER/UNDER
+                            </td>
+                            <td class="l">
+                                Orgryte IS 60:01-75:00
+                                <br>
+                                IFK Varnamo 60:01-75:00
+                            </td>
+                            <td>
+                                0
+                                <br>
+                                0
+                            </td>
+                            <td>
+                                1
+                                <br>
+                                0
+                            </td>
+                            <td class="border-right">
+                                Completed
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </body>
 </html>
+@Scripts.Render("~/areas/Wagers/BkNFLRugby")

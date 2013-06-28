@@ -17,17 +17,18 @@
         <div id="news_main">
             <div class="login-bg clearfix">
                 @{ string sso = Model.IsInternalSignIn ? string.Empty : "sso"; }
-                <div class="left @sso"></div>
+                <div class="left @sso">
+                </div>
                 <div class="right">
                     @if (Model.IsInternalSignIn)
                     {
-                    <div class="login-info clearfix">
-                        <div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
-                        <ul class="link">
-                            <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
-                            <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
-                        </ul>
-                    </div>
+                        <div class="login-info clearfix">
+                            <div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
+                            <ul class="link">
+                                <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
+                                <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
+                            </ul>
+                        </div>
                     }
                     <div class="toolbar @sso">
                         <ul>
@@ -51,8 +52,7 @@
                                     <li><a href="#">@Lang.lblOtherEm</a></li>
                                 </ul>
                             </li>
-                            <li><span class="menu-list border-link"><a href="~/totalBets" target="main">
-                                [@Lang.lblForecast]</a></span></li>
+                            <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
                             <li><a href="#" class="outright border-link">[@Lang.lblOutRight]</a></li>
                             <li id="account-link" class="border-link"><span class="menu-list">[@Lang.lblAccounts]</span>
                                 <ul class="sub-menu">
