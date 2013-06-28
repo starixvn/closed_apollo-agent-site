@@ -6,6 +6,7 @@
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblBetLists;
 }
+@Model.Title
 @if (Model.ListMainShareHolders.Any())
 {
     @RazorHelper.RenderMainShareHolderDropDownList(Model.CurrentMainShareHolderId, Model.ListMainShareHolders)
