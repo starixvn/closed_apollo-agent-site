@@ -5,16 +5,18 @@ using System.Text;
 using Apollo.Age.Wagers.Services;
 using System.Web.Mvc;
 using Apollo.Age.Core;
+using Apollo.Age.Entities;
 
 namespace Apollo.Age.Wagers.Controllers
 {
     public class BaseController : System.Web.Mvc.Controller
     {
-        private readonly WagersService _wagerService; 
+        private readonly WagersService _wagerService;
 
-        public BaseController() : this(null)
-        { 
-           
+        public BaseController()
+            : this(null)
+        {
+
         }
 
         public BaseController(WagersService wagerService = null)
@@ -22,20 +24,11 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerService = wagerService ?? new WagersService();
         }
 
-        public List<SelectListItem> GetLeague()
+        public List<League> GetLeague(string sportTypes = null)
         {
-            var Leagues = _wagerService.GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
-            List<SelectListItem> listLeague = new List<SelectListItem>();
-            foreach (var league in Leagues)
-            {
-                listLeague.Add(new SelectListItem
-                {
-                    Value = league.Id.ToString(),
-                    Text = league.Name
+            var leagues = _wagerService.GetLeague(sportTypes);
 
-                });
-            }
-            return listLeague;
+            return leagues.ToList();
         }
     }
 }

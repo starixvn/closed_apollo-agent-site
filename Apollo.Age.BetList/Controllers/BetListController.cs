@@ -128,14 +128,13 @@ namespace Apollo.Age.BetList.Controllers
             {
                 TransId = transid,
             };
-            var mainTickets = betListService.GetMixParlayDetailTicket(criteria);
 
-            // var viewModel = new BetListViewModel
-            //{
-            //    TicketList =
-            //};
+            var viewModel = new MixParlayViewModel
+           {
+               TicketList = betListService.GetMixParlayDetailTicket(criteria)
+           };
 
-            return this.View();
+            return this.View(viewModel);
         }
 
         /// <summary>
@@ -229,27 +228,6 @@ namespace Apollo.Age.BetList.Controllers
                     UserName = ticket.UserName,
                     AgentComm = builder.BuildAgentComm(ticket, true),
                     AgentShare = builder.BuildAgentShare(ticket, null)
-                };
-                ticketTextList.Add(ticketText);
-            }
-
-            return ticketTextList;
-        }
-
-        /// <summary>
-        /// Get Ticket MixParlay
-        /// </summary>
-        /// <param name="tickets"></param>
-        /// <returns></returns>
-        private List<TicketText> TicketMixParlay(IList<ITicket> tickets)
-        {
-            var builder = new BetListHTMLBuilder();
-            var ticketTextList = new List<TicketText>();
-            foreach (var ticket in tickets)
-            {
-                var ticketText = new TicketText
-                {
-                    Choice = builder.BuildAgentShare(ticket, null)
                 };
                 ticketTextList.Add(ticketText);
             }
