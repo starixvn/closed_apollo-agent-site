@@ -5,7 +5,7 @@
     using Apollo.Age.Wagers.Core;
     using Wagers.Entities;
 
-    public static class SportMenuService
+    public static class MenuService
     {
         public static List<WagerSport> GenerateSportMenu()
         {
@@ -44,5 +44,7 @@
 
             return sportList;
         }
+
+       
     }
 }
