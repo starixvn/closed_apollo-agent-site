@@ -336,14 +336,6 @@ var HEADER = function ($) {
                 } else {
                     $('.sub-menu').hide();
                     $this.next('.sub-menu').show();
-                    $this.hover(function () {
-                        $this.css({ "cursor": "text",
-                                    "border-bottom": "#ECE9D8 1px solid",
-                                    "border-right": "#ECE9D8 1px solid",
-                                    "border-left": "#ECE9D8 1px solid"
-                                });
-                    });
-
                 }
             });
 
