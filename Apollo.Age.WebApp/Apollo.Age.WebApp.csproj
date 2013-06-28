@@ -694,8 +694,8 @@
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
-    <Content Include="Views\Account\InDirectAgentList.cshtml" />
-    <Content Include="Views\Account\InDirectMemberList.cshtml" />
+    <Content Include="Views\Account\IndirectAgentList.cshtml" />
+    <Content Include="Views\Account\IndirectMemberList.cshtml" />
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Areas\Wagers\Views\Baseball\Straight.cshtml" />
