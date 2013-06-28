@@ -89,6 +89,86 @@
             return BettypleList;
         }
 
+        public static List<WagerSport> Generate_Tennis_BettypesMenu()
+        {
+            var BettypleList = new List<WagerSport>{
+                new WagerSport{
+                    Id = WagersBettypes.Straight,
+                    Name = Lang.lblStraight,                    
+                },               
+                new WagerSport{
+                 Id = WagersBettypes.RB,
+                    Name = Lang.lblRB,    
+                },               
+               new WagerSport{
+                   Id = WagersBettypes.CorrectScore,
+                    Name = Lang.correctscore,    
+                },                 
+                new WagerSport{
+                  Id = WagersBettypes.Parlay,
+                    Name = Lang.lblParlay,    
+                },
+            };
+
+            return BettypleList;
+        }
+
+        public static List<WagerSport> Generate_Volleyball_BettypesMenu()
+        {
+            var BettypleList = new List<WagerSport>{
+                new WagerSport{
+                    Id = WagersBettypes.Straight,
+                    Name = Lang.lblStraight,                    
+                },               
+                new WagerSport{
+                 Id = WagersBettypes.RB,
+                    Name = Lang.lblRB,    
+                },               
+               new WagerSport{
+                   Id = WagersBettypes.CorrectScore,
+                    Name = Lang.correctscore,    
+                },                 
+                new WagerSport{
+                  Id = WagersBettypes.Parlay,
+                    Name = Lang.lblParlay,    
+                },
+            };
+
+            return BettypleList;
+        }
+
+        public static List<WagerSport> Generate_Baseball_BettypesMenu()
+        {
+            var BettypleList = new List<WagerSport>{
+                new WagerSport{
+                    Id = WagersBettypes.Straight,
+                    Name = Lang.lblStraight,                    
+                },       
+                 new WagerSport{
+                  Id = WagersBettypes.FirstHalf,
+                    Name = Lang.lbl1sthalf,    
+                },
+                new WagerSport{
+                 Id = WagersBettypes.RB,
+                    Name = Lang.lblRB,    
+                },               
+               new WagerSport{
+                   Id = WagersBettypes.CorrectScore,
+                    Name = Lang.correctscore,    
+                },  
+                new WagerSport{
+                  Id = WagersBettypes.Total,
+                    Name = Lang.total,    
+                },
+                new WagerSport{
+                  Id = WagersBettypes.Parlay,
+                    Name = Lang.lblParlay,    
+                },
+            };
+
+            return BettypleList;
+        }
+
         public static List<WagerSport> Generate_BK_NFL_Rugby_BettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
@@ -116,6 +196,46 @@
 
             return BettypleList;
         }
-       
+
+        public static List<WagerSport> Generate_Other_BettypesMenu()
+        {
+            var BettypleList = new List<WagerSport>{
+                new WagerSport{
+                    Id = WagersBettypes.Straight,
+                    Name = Lang.lblStraight,                    
+                },    
+                 new WagerSport{
+                  Id = WagersBettypes.FirstHalf,
+                    Name = Lang.lbl1sthalf,    
+                },
+                new WagerSport{
+                 Id = WagersBettypes.RB,
+                    Name = Lang.lblRB,    
+                },       
+                 new WagerSport{
+                   Id = WagersBettypes.CorrectScore,
+                    Name = Lang.correctscore,    
+                },  
+                 new WagerSport{
+                   Id = WagersBettypes.FirstHalfCorrectScore,
+                    Name = Lang.lbl1stHalfCorrectScore,    
+                },  
+                new WagerSport{
+                  Id = WagersBettypes.HalfFull,
+                    Name = Lang.lblHalfFull,    
+                },
+                 new WagerSport{
+                  Id = WagersBettypes.Total,
+                    Name = Lang.total,    
+                },
+                new WagerSport{
+                  Id = WagersBettypes.Parlay,
+                    Name = Lang.lblParlay,    
+                },
+            };
+
+            return BettypleList;
+        }
+
     }
 }

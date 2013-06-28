@@ -33,33 +33,8 @@
     </div>
     <div class="mainpage">
         <div id="content_main">
-            <div id="header_main">@ViewBag.Title</div>
-            <div class="box-header" id="main-shareholder-box">
-                <div class="row">
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.view&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @Html.DropDownList("ViewOption", new List<SelectListItem>
-                       {
-                           new SelectListItem{ Value="0", Text=Lang.all},
-                           new SelectListItem{Value="1",Text=Lang.DirectMembers}
-                       })
-                        </div>
-                    </div>
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.league&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
-                        </div>
-                    </div>
-                </div>
-            </div>
+         @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
+           
             <div id="wagerContainer">
                 <table class="tblRpt soccer">
                     <thead>

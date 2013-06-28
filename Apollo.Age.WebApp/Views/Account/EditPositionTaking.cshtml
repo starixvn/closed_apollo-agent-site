@@ -11,7 +11,7 @@
 @section header
 {
     <div class="detail-information">
-        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@custId</strong> -- @Lang.Name <strong>@userName</strong>  --<a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@custId</strong> -- @Lang.Name <strong>@userName</strong>  -- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
     </div>
 }
 
@@ -40,16 +40,23 @@
         title = Apollo.Age.Resources.Lang.shareSettingInstruction,
         tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
     })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MainShareHolderShareSetting",
+        trigger = "mainshareholder-share-setting-info-button",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
 }
 else
 {
     @Html.Action("Index", "Instruction", new
-    {
-        key = "MemberShareSetting",
-        trigger = "member-share-setting-info-button",
-        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-    })
+{
+    key = "MemberShareSetting",
+    trigger = "member-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
 }
 @section scripts
 {

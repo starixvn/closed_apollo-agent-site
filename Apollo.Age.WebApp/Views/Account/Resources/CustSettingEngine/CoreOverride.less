@@ -149,7 +149,7 @@ body, .pt-grid {
 }
 
 .commission-setting-table-player tr th {
-	background: none repeat scroll 0 0 #CCC;
+	background: none repeat scroll 0 0 @headerLeftBackgourndSetting;
 	border: 1px solid @borderSetting;
 }
 
@@ -286,12 +286,12 @@ body, .pt-grid {
 	
 	.betting-limit-textbox {
 		height: 20px;
-		margin: 2px;
+		margin: 0 2px;
 		padding: 0 2px;
 	}
 
 	.betting-limit-item .betting-limit-textbox {
-		width: 110px;
+		width: 130px;
 	}
 
 	.btnLeft .btn {
@@ -316,7 +316,7 @@ body, .pt-grid {
 
 		input {
 			height: 18px;
-			margin: 2px;
+			margin: 0 2px;
 			padding: 0 2px;
 		}
 	}
@@ -374,4 +374,9 @@ body, .pt-grid {
 	font-size: @fontSize;
 	border: 1px solid @borderSetting;
 	background-color: @headerLeftBackgourndSetting !important;
+}
+
+.commission-setting-table-player .group-name
+{
+	background-color: @headerLeftBackgourndSetting;
 }
