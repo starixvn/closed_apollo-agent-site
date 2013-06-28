@@ -23,7 +23,7 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SoccerController : Controller
+    public class SoccerController : BaseController
     {
         private readonly WagersService _wagerService; 
 
@@ -45,20 +45,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View();
         }
 
-        protected List<SelectListItem> GetLeague()
-        {
-            var Leagues = _wagerService.GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
-            List<SelectListItem> listLeague = new List<SelectListItem>();
-            foreach (var league in Leagues)
-            {
-                listLeague.Add(new SelectListItem {
-                    Value = league.Id.ToString(),
-                    Text = league.Name
-
-                });
-            }
-            return listLeague;
-        }
+        
 
         public ActionResult Straight()
         {
