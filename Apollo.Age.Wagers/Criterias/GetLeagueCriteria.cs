@@ -31,7 +31,7 @@ namespace Apollo.Age.Wagers.Criterias
 
         public override bool IsValid()
         {
-            return SportType.Length >=0;
+            return !string.IsNullOrWhiteSpace(SportType);
         }
     }
 }
