@@ -1,8 +1,9 @@
 @import "../../../_globalresources/css/agent.less";
 @editSettingBorder : #DCDCDC;
-	.tb-cust-setting {
+
+.tb-cust-setting {
 	background-color: @tableBackground;
-	border: 1px solid @editSettingBorder ;
+	border: 1px solid @editSettingBorder;
 	
 	border-collapse: collapse;
 	
@@ -10,7 +11,6 @@
 	clear: both;
 
 	td, th {
-		/*white-space: nowrap;*/
 		font-weight: normal;
 		padding: 0;
 		text-align: center;
@@ -21,14 +21,12 @@
 			background-color: #FFEFDE;
 		}
 	}
-
 	
 	thead td, thead th, tbody .em-row {
 		background-color: #84968B;
 		border-spacing: 0;
 		border: 1px solid @editSettingBorder;
 		text-align: center;
-		//font-weight: normal;
 		color: @primaryHeaderColor;
 	}
 
@@ -51,26 +49,19 @@
 			td {
 				border: 1px solid @editSettingBorder;
 				text-shadow: none;
-				//font-weight: bold;
 			}
-
-			
 		}
 	}
-
-
-	
 }
 
-.div-border
-{
+.div-border {
 	margin: 0 0 30px 0;
-	border: 1px solid #000000;
+	border: 1px solid #000;
 }
 
-.view-detail-container
-{
+.view-detail-container {
 	width: 700px;
+	clear: both;
 }
 
 .detail-information
@@ -81,8 +72,8 @@
 .m_tab_ed
 {
 	   background-color: #DCDCDC;
-    border: 1px solid #000000;
-    padding: 3px 2px;
+	border: 1px solid #000000;
+	padding: 3px 2px;
 	border-collapse: separate;
 }
 
@@ -97,4 +88,23 @@
 #page_main.setting-width
 {
 	width:1040px;
+}
+
+/* FIX IE */
+.eq-ie7 {
+	#box_header {
+		.row .cell .editor * {
+			vertical-align: top;
+		}
+	}
+
+	.tbl-cust-setting {
+		width: 774px;
+	}
+}
+
+.eq-ie8 {	
+	.tbl-cust-setting {
+		min-width: 752px;
+	}
 }

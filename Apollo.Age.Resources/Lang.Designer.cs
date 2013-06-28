@@ -475,11 +475,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission (%).
+        ///   Looks up a localized string similar to Commission.
         /// </summary>
-        public static string commission {
+        public static string Commission {
             get {
-                return ResourceManager.GetString("commission", resourceCulture);
+                return ResourceManager.GetString("Commission", resourceCulture);
             }
         }
         
@@ -3865,6 +3865,15 @@ namespace Apollo.Age.Resources {
         public static string setting {
             get {
                 return ResourceManager.GetString("setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
             }
         }
         
