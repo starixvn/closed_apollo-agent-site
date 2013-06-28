@@ -14,7 +14,7 @@
 		margin-top: 1px;
 	}
 	.menu.report-winloss {
-		margin: 2px 352px 0 97px;
+		margin: 2px 155px 0 97px;
 
 		li {
 			margin-right: 8px;
@@ -73,15 +73,15 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 6px 0;
+				padding: 6px 0 4px 0;
 
 				.item {
-					float: left;
+					float: right;
 					margin: 0 5px;
 
 					&.btn-action {
 						width: 200px;
-						padding-left: 150px;
+						padding-right: 150px;
 
 						input {
 							margin-right: 20px;
@@ -136,16 +136,16 @@
 	}
 }
 
-a.sub-menu:hover {
-	color: #0000EE;
-}
-
 /* FIX IE */
 
 .ie {
 	#box_header.report .btn, .box-header.report .btn {
 		height: 20px;
-	}	
+	}
+
+	#function-bar .menu.report-winloss {
+		margin: 2px 105px 0 97px;
+	}
 }
 .eq-ie7 #page_main {
 	width: 98%;

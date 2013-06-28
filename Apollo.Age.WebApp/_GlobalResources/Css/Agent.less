@@ -45,7 +45,7 @@ a {
 	color: @linkColor;
 	text-decoration: none;
 
-	&:hover { color: @hoverLinkColor }
+	&:hover { color: @linkColor; }
 }
 
 img { border: 0 }
@@ -90,6 +90,7 @@ table {
 	padding: 0 0 0 5px;
 	height: 23px;
 	float: left;
+	clear: both;
 
 	.menu, .pager {
 		margin: 3px 0;
@@ -103,7 +104,6 @@ table {
 				a {
 					background: #39F;
 					&:hover {
-						color: #00e;
 						cursor: text;
 					}
 				}				
@@ -151,6 +151,16 @@ table {
 		* {
 			vertical-align: middle;
 		}
+	}
+
+	.est-zone {
+		float: left;
+		padding: 3px 5px 0 0;
+	}
+
+	.before-filter {
+		float: left;
+		padding: 3px 0 0 0;
 	}
 
 	.pager {
@@ -881,39 +891,8 @@ table {
 	}
 }
 
-#function-bar {
-	background-color: #fff;
-	border-bottom: 1px solid #333;
-	padding: 0 0 0 5px;
-	height: 23px;
-	float: left;
-	clear: both;
-
-	.est-zone {
-		float: left;
-		padding: 3px 5px 0 0;
-	}
-
-	.before-filter {
-		float: left;
-		padding: 3px 0 0 0;
-	}
-
-	.menu, .pager {
-		float: left;
-		li {
-			float: left;
-			margin-right: 10px;
-		}
-	}
-	.pager {
-		a {
-			color: #009;
-		}
-		.current a {
-			font-weight: bold;
-			color: #f00;
-			cursor: text;
-		}
+.ie {
+	#function-bar a {
+		color: #0066CC;
 	}
 }
