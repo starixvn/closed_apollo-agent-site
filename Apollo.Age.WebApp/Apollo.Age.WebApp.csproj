@@ -729,11 +729,11 @@
     <Content Include="Areas\Wagers\Views\Soccer\Correctscore.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Tennis\Correctscore.cshtml" />
     <Content Include="Areas\Wagers\Views\Tennis\Total.cshtml" />

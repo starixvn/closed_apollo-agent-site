@@ -1587,8 +1587,8 @@
   <data name="lbl1stHalfCorrectScore" xml:space="preserve">
     <value>1st Half Correct Score</value>
   </data>
-  <data name="lbl1stHalfRB" xml:space="preserve">
-    <value>1st Half  R.B.</value>
+  <data name="lblRB" xml:space="preserve">
+    <value>R.B.</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>Half/Full</value>
