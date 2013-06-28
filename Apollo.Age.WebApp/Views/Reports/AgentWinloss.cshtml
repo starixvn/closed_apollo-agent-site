@@ -65,7 +65,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/Reports/AgentWinLoss?AgentId=@item.AgentId&AgentName=@item.AgentName&Sporttypes=@Model.Sporttypes&Bettypes=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
+                        <a class="view-agentwinloss" agentid="@item.AgentId" agentname="@item.AgentName" href="javascript:;">
                             @item.AgentName
                         </a>
                     </td>
@@ -161,6 +161,7 @@
                     @if (item.IsAgent)
                     {
                         <td>
+
                             <a href="~/Reports/AgentWinLoss?AgentId=@item.AgentId&AgentName=@item.AgentName&Sporttypes=@Model.Sporttypes&Bettypes=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)">
                                 @item.AgentName
                             </a>
