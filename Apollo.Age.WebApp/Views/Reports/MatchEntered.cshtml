@@ -11,9 +11,10 @@
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
     </div>
     <ul class="menu report-winloss">
-        <li class="active"><a href="~/Reports/MatchEntered">@Apollo.Age.Resources.Lang.lblReport</a></li>
+        <li class="active"><a href="~/Reports/MatchEntered">@Apollo.Age.Resources.Lang.lblWinLoss</a></li>
+        <li><a href="~/reports/outstanding">@Apollo.Age.Resources.Lang.outstanding</a></li>
+        <li><a href="~/_betList/BetListTransaction.aspx?type=transaction">@Apollo.Age.Resources.Lang.transaction</a></li>
         <li><a href="~/_betList/BetListTransaction.aspx?type=cancel">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
-        <li><a href="~/reports/outstanding">@Apollo.Age.Resources.Lang.lblAgentOutstanding</a></li>
     </ul>
     <img alt="" src="~/_GlobalResources/Images/top_04.gif">
 </div>
