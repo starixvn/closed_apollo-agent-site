@@ -135,6 +135,15 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Error/Resources/Unauthorized.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/betlist").Include(
+               "~/_GlobalResources/Js/head.js",
+               "~/_GlobalResources/Js/jquery.js",
+               "~/_GlobalResources/Js/jquery-ui.js",
+               "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+               "~/_GlobalResources/Js/jquery.cookie.js",
+               "~/_GlobalResources/Js/Core.js",
+               "~/Views/BetList/Resources/BetList.js"));
+
             bundles.FileSetOrderList.Clear();
         }
     }
