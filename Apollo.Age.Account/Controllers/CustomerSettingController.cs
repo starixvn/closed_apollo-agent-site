@@ -28,6 +28,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using System.Web;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
@@ -315,13 +316,28 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool showHeader = false, bool isSimpleMode = true)
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool showHeader = false, bool isSimpleMode = true, string backLink = "")
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsShowHeader = showHeader;
+            ViewBag.IsEditAgent = true;
+            ViewBag.AgentId = 0;
+            ViewBag.BackLink = backLink;
+            return View("~/Views/Account/EditPositionTaking.cshtml");
+        }
+
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true, string backLink = "")
+        {
+            ViewBag.CustId = memberId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentId = agentId;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsShowHeader = showHeader;
+            ViewBag.IsEditAgent = false;
+            ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 

@@ -1503,9 +1503,6 @@
   <data name="NonResult" xml:space="preserve">
     <value>Non-result</value>
   </data>
-  <data name="WagerState" xml:space="preserve">
-    <value>Wager state</value>
-  </data>
   <data name="area" xml:space="preserve">
     <value>Area</value>
   </data>
@@ -1590,8 +1587,8 @@
   <data name="lbl1stHalfCorrectScore" xml:space="preserve">
     <value>1st Half Correct Score</value>
   </data>
-  <data name="lbl1stHalfRB" xml:space="preserve">
-    <value>1st Half  R.B.</value>
+  <data name="lblRB" xml:space="preserve">
+    <value>R.B.</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>Half/Full</value>
@@ -1614,7 +1611,10 @@
   <data name="CommBase" xml:space="preserve">
     <value>Comm Base</value>
   </data>
-  <data name="ReportType" xml:space="preserve">
-    <value>Report type</value>
+  <data name="ConfirmWriteAgent" xml:space="preserve">
+    <value>Confirm write this agent?</value>
+  </data>
+  <data name="ConfirmWriteMember" xml:space="preserve">
+    <value>Confirm write this member?</value>
   </data>
 </root>
