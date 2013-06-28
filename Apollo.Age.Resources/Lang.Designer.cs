@@ -3167,7 +3167,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mix Sport Parlay.
+        ///   Looks up a localized string similar to Mix Sports Parlay.
         /// </summary>
         public static string MixSportParlay {
             get {

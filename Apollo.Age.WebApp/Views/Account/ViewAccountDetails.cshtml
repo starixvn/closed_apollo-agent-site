@@ -11,6 +11,7 @@
     var userName = (string)ViewBag.UserName ?? string.Empty;
     var editLink = string.Empty;
     var canEdit = (bool)ViewBag.CanEdit;
+    var isViewMySetting = (bool)ViewBag.IsViewMySetting;
     if(isViewOnMember)
     {
         editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}", custId, userName, ViewBag.AgentId));
@@ -27,7 +28,7 @@
         <table class="tb-cust-setting">
             <thead>
                 <tr>
-                    <td rowspan="2" style="width: 20%;">
+                    <td rowspan="2" style="width: 15%;">
                         @betLimit.Name
                     </td>
                     <td colspan="@(isViewOnMember ? 0 : 4)">
@@ -40,31 +41,31 @@
                 <tr>
                     @if (isViewOnMember)
                     {
-                        <td style="width: 5%;">
+                        <td style="width: 2%;">
                             @commissionSetting.UserGroup.ToUpper()
                         </td>
                     }
                     else
                     {
-                        <td style="width: 5%;">
+                        <td style="width: 2%;">
                             @Lang.lblA
                         </td>
-                        <td style="width: 5%;">
+                        <td style="width: 2%;">
                             @Lang.lblB
                         </td>
-                        <td style="width: 5%;">
+                        <td style="width: 2%;">
                             @Lang.lblC
                         </td>
-                        <td style="width: 5%;">
+                        <td style="width: 2%;">
                             @Lang.lblD
                         </td>
                     }
                     
-                    <td style="width: 10%;">@Lang.SingleGame
+                    <td style="width: 8%;">@Lang.SingleGame
                     </td>
-                    <td style="width: 10%;">@Lang.MinSingleBet
+                    <td style="width: 8%;">@Lang.MinSingleBet
                     </td>
-                    <td style="width: 10%;">@Lang.MaxSingleBet
+                    <td style="width: 8%;">@Lang.MaxSingleBet
                     </td>
                 </tr>
             </thead>
@@ -140,11 +141,15 @@
 <div class="detail-information">
     @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit) -- @Lang.Account : <strong>@custId</strong> 
     -- @Lang.Name: <strong>@userName</strong> 
-    @if (canEdit)
+
+    @if(!isViewMySetting)
     {
-        @:-- <a href="@editLink">@Lang.edit </a>
+        if (canEdit)
+        {
+            @:-- <a href="@editLink">@Lang.edit </a>
+        }
+        @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
     }
-    -- <a href="javascript:void(0);" id="back-link">@Lang.back
     </a>
 </div>
 <div class="view-detail-container">

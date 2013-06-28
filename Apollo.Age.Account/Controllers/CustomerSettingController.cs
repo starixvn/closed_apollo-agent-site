@@ -433,13 +433,13 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult MySetting()
         {
             ViewBag.CustId = CurrentSession.AgentId;
-            ViewBag.UserName = CurrentSession.Username;
+            ViewBag.UserName = CurrentSession.AgentName;
             ViewBag.AgentLevel = CurrentSession.AgentLevel;
-            ViewBag.UserGroup = string.Empty;
-            ViewBag.CurentParentAgentId = CurrentSession.AgentId;
-            ViewBag.IsShowHeader = true;
-            ViewBag.IsMaster = false;
-            return View("~/Views/Account/MySetting.cshtml");
+            ViewBag.IsViewOnMember = false;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.IsViewMySetting = true;
+            SettingContext settingContext = this.GetCurrentSettingContext(CurrentSession.AgentId, base.CurrentSession.AgentId, CurrentSession.AgentLevel, FormSettingType.All);
+            return ViewAccountDetails(settingContext);
         }
 
         public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName)
@@ -449,6 +449,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.IsViewMySetting = false;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
@@ -459,6 +460,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
+            ViewBag.IsViewMySetting = false;
             ViewBag.CanEdit = (base.CurrentSession.IsMaster && agentId != null && base.CurrentSession.AgentId == agentId.Value);
 
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
