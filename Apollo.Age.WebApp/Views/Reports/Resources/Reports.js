@@ -96,7 +96,8 @@
                 showColumnsShowHide: false,
                 hideYBackGroundScroller: true,
                 columnsNeedHide: [3, 4],
-                bodyRowHeight: 28
+                bodyRowHeight: 15,
+                headerColumnHeight: 15
             };
             $("#agentOutstanding").hide();
             $("#gridId").fanexGrid(gridOption);
