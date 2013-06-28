@@ -134,29 +134,6 @@ namespace Apollo.Age.Reports.Controllers
             return View(matchEnteredViewModel);
         }
 
-        //public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
-        //{
-        //    var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
-        //    var agentName = string.IsNullOrWhiteSpace(name) ? this.CurrentSession.AgentName : name;
-        //    var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
-
-        //    var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
-        //    var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
-
-        //    var agentWinLossViewModel = new AgentWinLossViewModel()
-        //    {
-        //        IsSuper = isSuper,
-        //        AgentId = agentId,
-        //        AgentName = agentName,
-        //        FromDate = fromDate,
-        //        ToDate = toDate,
-        //        AgentWinLossList = agentWinLossList,
-        //        DownlinePath = modelAgentDownLine
-        //    };
-
-        //    return View(agentWinLossViewModel);
-        //}
-
         public ViewResult AgentWinLoss(AgentWinLossViewModel model)
         {
             var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
