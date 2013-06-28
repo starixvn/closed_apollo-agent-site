@@ -18,10 +18,12 @@
             </tr>
             <tr class="m_title_date">
                 <th width="50%" class="page" colspan="3">
-                    <span>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</span>
-                    / <span>@Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</span>
-                    / <span>@Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</span>
-                    / <span>@Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</span>
+                    <ul class="list">
+                        <li>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</li>
+                        <li>/ @Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</li>
+                        <li>/ @Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</li>
+                        <li>/ @Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</li>
+                    </ul>
                     <div class="search">
                         @Html.TextBox("content", "", new { @class = "ccroll_input" })
                         <input type="submit" class="ccroll_btn" value="@Lang.search" id="submit"/>
