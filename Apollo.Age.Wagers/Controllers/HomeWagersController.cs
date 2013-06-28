@@ -27,15 +27,16 @@ namespace Apollo.Age.Wagers.Controllers
         /// <summary>
         /// Index BaseketBall default is straight all
         /// </summary>
-        /// <param name="bettype">Sample bettype = 1</param>
+        /// <param name="betType">Sample bettype = 1</param>
         /// <returns></returns>
-        public ActionResult Index(string sportType, string bettype = "")
+        public ActionResult Index(string sportType, string betType = "")
         {
             string title = string.Empty;
             switch (sportType)
             {
                 case WagersSporttypes.SC:
                     title = Lang.soccer;
+                    betType = string.IsNullOrWhiteSpace(betType) ? WagersBettypes.Straight : betType;
                     break;
                 case WagersSporttypes.BK_NFL_Rugby:
                     title = Lang.Basketball;
@@ -66,6 +67,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.Leagues = listLeague;
             ViewBag.Title = title;
+            ViewBag.SportType = sportType;
             return View();
         }
     }

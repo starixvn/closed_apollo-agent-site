@@ -9,7 +9,9 @@
     public class WagerViewModels
     {
         public DateTime KickOffTime { get; set; }
+
         public int LeagueId { get; set; }
+
         public string LeagueName
         {
             get;
