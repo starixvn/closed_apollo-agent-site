@@ -1,7 +1,9 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
 @{
-    Layout = null;    
+    Layout = null;
+    var sportType = (string)ViewBag.SportType;
+    var title = (string)ViewBag.Title;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -15,10 +17,10 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" name="ltype" id="ltype">
-                <option value="a">@Lang.Basketball A</option>
-                <option value="b">@Lang.Basketball B</option>
-                <option value="c">@Lang.Basketball C</option>
-                <option value="d">@Lang.Basketball D</option>
+                <option value="a">@title A</option>
+                <option value="b">@title B</option>
+                <option value="c">@title C</option>
+                <option value="d">@title D</option>
             </select>
         </div>
         <div class="before-filter">
@@ -27,13 +29,13 @@
         <div class="before-filter">
             --</div>
         <ul class="menu">
-            @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Wagers.Core.WagersSporttypes.BK_NFL_Rugby)
+            @RazorHelper.RenderWagersBettypeMenu(sportType)
         </ul>
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
         <div id="content_main">
-            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
+            @RazorHelper.RenderWagersFilter(title, (List<League>)ViewBag.Leagues)
             <div id="wagerContainer">
                 <table class="tblRpt soccer">
                     <thead>
