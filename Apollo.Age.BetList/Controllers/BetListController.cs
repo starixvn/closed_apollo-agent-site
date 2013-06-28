@@ -33,6 +33,7 @@ namespace Apollo.Age.BetList.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListController : BaseController
     {
+        private const string StringEmpty = "";
         private readonly BetListService betListService;
         private readonly ReportService reportService;
         private readonly TotalBetsService totalBetsService;
@@ -52,8 +53,17 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        private const string StringEmpty = "";
-
+        /// <summary>
+        /// Action betlist from forecast
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="betType"></param>
+        /// <param name="betTeam"></param>
+        /// <param name="matchId"></param>
+        /// <param name="mainShareHolderId"></param>
+        /// <param name="mainShareHolderUsername"></param>
+        /// <param name="isForecast"></param>
+        /// <returns></returns>
         public ViewResult Forecast(string type = StringEmpty, string betType = StringEmpty, string betTeam = StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
@@ -74,6 +84,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 strBetType = betType;
             }
+
             // List mainShare Holder
             var mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
 
