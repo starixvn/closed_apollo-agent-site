@@ -30,13 +30,13 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns></returns>
         public ActionResult Index(string bettype = "1")
         {
-            List<SelectListItem> listLeague = new List<SelectListItem>();
+            List<League> listLeague = new List<League>();
             for (int i = 0; i < 10; i++)
             {
-                listLeague.Add(new SelectListItem
+                listLeague.Add(new League
                 {
-                    Value = i.ToString(),
-                    Text = "League " + i.ToString()
+                    Id = i,
+                    Name = "League " + i.ToString()
                 });
             }
 

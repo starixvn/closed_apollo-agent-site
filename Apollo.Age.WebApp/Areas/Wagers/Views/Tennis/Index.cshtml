@@ -1,19 +1,7 @@
 ﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
 @{
-    Layout = null;
-    var menu = new List<string[]>
-	{
-		new string[] {"~/wagers/Tennis/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/Tennis/FirstHalfRB", Lang.lbl1stHalfRB},
-		new string[] {"~/wagers/Tennis/Specialbet", Lang.lblSpecialbet},
-		new string[] {"~/wagers/Tennis/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/Tennis/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
-		new string[] {"~/wagers/Tennis/Total", Lang.total},
-		new string[] {"~/wagers/Tennis/HalfFull", Lang.lblHalfFull},
-		new string[] {"~/wagers/Tennis/Parlay",Lang.lblParlay},
-		new string[] {"~/wagers/Tennis/Start", Lang.lblStart}
-	};
-    int menuItemCount = menu.Count;
+    Layout = null;    
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -26,11 +14,11 @@
     <div id="function-bar">
         <div class="item">
             @Lang.lblOP.
-            <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="1">Soccer A</option>
-                <option value="2">Soccer B</option>
-                <option value="3">Soccer C</option>
-                <option value="4">Soccer D</option>
+            <select class="za_select" name="ltype" id="ltype">
+                <option value="a">@Lang.soccer A</option>
+                <option value="b">@Lang.soccer B</option>
+                <option value="c">@Lang.soccer C</option>
+                <option value="d">@Lang.soccer D</option>
             </select>
         </div>
         <div class="before-filter">
@@ -39,17 +27,96 @@
         <div class="before-filter">
             --</div>
         <ul class="menu">
-            @for (int i = 0; i < menu.Count; i++)
-            {
-                var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-            }
+           @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Wagers.Core.WagersSporttypes.SC)
         </ul>
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
-        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/wagers/Tennis/Straight">
-        </iframe>
+        <div id="content_main">
+            <div id="header_main">@ViewBag.Title</div>
+            <div class="box-header" id="main-shareholder-box">
+                <div class="row">
+                    <div class="cell">
+                        <div class="label">
+                            <label for="ddlLeague">
+                                @Lang.view&nbsp;:</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DropDownList("ViewOption", new List<SelectListItem>
+                       {
+                           new SelectListItem{ Value="0", Text=Lang.all},
+                           new SelectListItem{Value="1",Text=Lang.DirectMembers}
+                       })
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="ddlLeague">
+                                @Lang.league&nbsp;:</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="wagerContainer">
+                <table class="tblRpt soccer">
+                    <thead>
+                        <tr class="RptHeader">
+                            <th style="width: 100px;">
+                                @Lang.time
+                            </th>
+                            <th style="width: 300px;">
+                                @Lang.league
+                            </th>
+                            <th style="width: 300px;">
+                               Match Code
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                @Lang.homeaway
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Handicap/Wagers
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Over/Under/Wagers
+                            </th>
+                             <th style="width: 100px;" class="nowrap">
+                                1x2/Wagers
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="c">
+                            <td class="width-80">
+                               
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td class="l">
+                               
+                            </td>
+                            <td>
+                              
+                            </td>
+                            <td class="border-right">
+                              
+                            </td>
+                            <td class="border-right">
+                              
+                            </td>
+                              </td>
+                            <td class="border-right">
+                               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+@Scripts.Render("~/areas/Wagers/Soccer")

@@ -329,7 +329,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpGet]
-        public ActionResult InDirectAgentList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
+        public ActionResult IndirectAgentList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
             int status = 1,
             int oldPageIndex = 0,
             int orderType = 1)
@@ -372,7 +372,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public ActionResult InDirectAgentList(AgentListCriteria criteria)
+        public ActionResult IndirectAgentList(AgentListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
             {
@@ -383,7 +383,7 @@ namespace Apollo.Age.Account.Controllers
                 criteria.OldPageIndex = criteria.PageIndex;
             }
 
-            return RedirectToAction("InDirectAgentList", new
+            return RedirectToAction("IndirectAgentList", new
             {
                 parentAgentId = criteria.ParentAgentId,
                 agentId = criteria.UplineAgentId,
@@ -463,7 +463,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpGet]
-        public ActionResult InDirectMemberList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
+        public ActionResult IndirectMemberList(int parentAgentId, int agentId, int pageIndex = 0, string username = "",
             int status = 1,
             int oldPageIndex = 0,
             int orderType = 1)
@@ -509,7 +509,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost]
-        public ActionResult InDirectMemberList(CustomerListCriteria criteria)
+        public ActionResult IndirectMemberList(CustomerListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
             {
@@ -520,7 +520,7 @@ namespace Apollo.Age.Account.Controllers
                 criteria.OldPageIndex = criteria.PageIndex;
             }
 
-            return RedirectToAction("InDirectMemberList", new
+            return RedirectToAction("IndirectMemberList", new
             {
                 parentAgentId = criteria.ParentAgentId,
                 agentId = criteria.UplineAgentId,

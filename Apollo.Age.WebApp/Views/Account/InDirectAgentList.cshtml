@@ -101,7 +101,7 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        @Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
@@ -112,7 +112,7 @@
                 <td>
                     @if (item.NumberOfMember != 0)
                     { 
-                        @Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
