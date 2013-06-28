@@ -22,7 +22,7 @@ namespace Apollo.Age.Wagers.Criterias
     {
         public DateTime FromeDate { get; set; }
 
-        public int SportType { get; set; }
+        public string SportType { get; set; }
 
         public override string GetSettingKey()
         {
@@ -31,7 +31,7 @@ namespace Apollo.Age.Wagers.Criterias
 
         public override bool IsValid()
         {
-            return SportType > 0;
+            return !string.IsNullOrWhiteSpace(SportType);
         }
     }
 }

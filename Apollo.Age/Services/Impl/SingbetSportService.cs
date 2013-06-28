@@ -14,31 +14,31 @@ namespace Apollo.Age.Services.Impl
         {
             var sportList = new List<SingbetSport>{
                 new SingbetSport{
-                    Id = SingbetConstants.All,
+                    Id = SingbetSportConstant.All,
                     Name = Lang.all
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.Soccer,
+                    Id = SingbetSportConstant.Soccer,
                     Name = Lang.soccer
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.BK_NFL_RUGBY,
+                    Id = SingbetSportConstant.BK_NFL_RUGBY,
                     Name = Lang.lblBkNflRugby
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.Tennis,
+                    Id = SingbetSportConstant.Tennis,
                     Name = Lang.Tennis
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.VB_BDM_TT,
+                    Id = SingbetSportConstant.VB_BDM_TT,
                     Name = Lang.lblVbBdmTt
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.BaseBall,
+                    Id = SingbetSportConstant.BaseBall,
                     Name = Lang.Baseball
                 },
                 new SingbetSport{
-                    Id = SingbetConstants.Other,
+                    Id = SingbetSportConstant.Other,
                     Name = isOther ? Lang.other : Lang.InterEvent
                 }
             };
@@ -47,7 +47,7 @@ namespace Apollo.Age.Services.Impl
             {
                 var ouright = new SingbetSport
                 {
-                    Id = SingbetConstants.Outright,
+                    Id = SingbetSportConstant.Outright,
                     Name = Lang.lblOutRight
                 };
                 sportList.Add(ouright);
@@ -60,71 +60,71 @@ namespace Apollo.Age.Services.Impl
         {
             var bettypeList = new List<SingbetBettype>{
                 new SingbetBettype{
-                    Id = SingbetConstants.All,
+                    Id = SingbetSportConstant.All,
                     Name = Lang.all
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Handicap,
+                    Id = SingbetSportConstant.Handicap,
                     Name = Lang.lblHandicapFC
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Odd_Even,
+                    Id = SingbetSportConstant.Odd_Even,
                     Name = Lang.lblOddEven
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Over_Under,
+                    Id = SingbetSportConstant.Over_Under,
                     Name = Lang.lblOverUnder
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Correct_Score,
+                    Id = SingbetSportConstant.Correct_Score,
                     Name = Lang.correctscore
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.FT_1X2,
+                    Id = SingbetSportConstant.FT_1X2,
                     Name = Lang.lblFT1X2
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Total_Goal,
+                    Id = SingbetSportConstant.Total_Goal,
                     Name = Lang.totalgoal
                 },
                  new SingbetBettype{
-                    Id = SingbetConstants.First_Goal_Last_Goal,
+                    Id = SingbetSportConstant.First_Goal_Last_Goal,
                     Name = Lang.firstgoal + "/" + Lang.lastgoal
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.HT_FT,
+                    Id = SingbetSportConstant.HT_FT,
                     Name = Lang.htft
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Mix_Parlay,
+                    Id = SingbetSportConstant.Mix_Parlay,
                     Name = Lang.lblMixParlay
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.System_Parlay,
+                    Id = SingbetSportConstant.System_Parlay,
                     Name = Lang.lblSystemParlay
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.Bettype_Outright,
+                    Id = SingbetSportConstant.Bettype_Outright,
                     Name = Lang.lblOutRight
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants._1st_Handicap,
+                    Id = SingbetSportConstant._1st_Handicap,
                     Name = Lang.lbl1stHdp
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants._1st_Odd_Even,
+                    Id = SingbetSportConstant._1st_Odd_Even,
                     Name = Lang.lbl1stOddEven
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants._1st_Over_Under,
+                    Id = SingbetSportConstant._1st_Over_Under,
                     Name = Lang.lbl1stOU
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.FirstHalf_1X2,
+                    Id = SingbetSportConstant.FirstHalf_1X2,
                     Name = Lang.lbl1x2_1st
                 },
                 new SingbetBettype{
-                    Id = SingbetConstants.OtherBettype,
+                    Id = SingbetSportConstant.OtherBettype,
                     Name = Lang.Othertypes
                 },
             };
