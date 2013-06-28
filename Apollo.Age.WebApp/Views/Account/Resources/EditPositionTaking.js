@@ -92,18 +92,15 @@ if (typeof jQuery != 'undefined') {
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    try { $.unblockUI(); } catch (e) { };
                 });
             },
             completeUpdate: function (result) {
-                window.location.href = $('#backUrl').val();
-                //                setTimeout(function () {
-                //                    if (typeof (parent.MEMBERLIST) != 'undefined') {
-                //                        parent.MEMBERLIST.loadMemberList();
-                //                    }
-                //                    else if (typeof (parent.AGENTLIST) != 'undefined') {
-                //                        parent.AGENTLIST.loadAgentList();
-                //                    }
-                //                }, 3000);
+                var backLink = $('#backUrl').val();
+                setTimeout(function () {
+                    window.location.href = backLink;
+                }, 1000);
+
             }
         }
     } (jQuery);
@@ -111,6 +108,6 @@ if (typeof jQuery != 'undefined') {
     $(function () {
         settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
-    });
+    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     
 }

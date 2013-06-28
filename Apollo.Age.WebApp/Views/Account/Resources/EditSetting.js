@@ -128,7 +128,11 @@ if (typeof jQuery != 'undefined') {
                 }
             },
             completeUpdate: function (result) {
-                window.location.href = $('#backUrl').val();
+                var backLink = $('#backUrl').val();
+                setTimeout(function () {
+                    window.location.href = backLink;
+                }, 1000);
+
             }
         }
     } (jQuery);
