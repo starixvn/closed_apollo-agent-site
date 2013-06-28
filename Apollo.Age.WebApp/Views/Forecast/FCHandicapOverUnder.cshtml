@@ -14,7 +14,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 15, "UpdateForecastHDValue();")
+    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", new int[1] { 180 }, "UpdateForecastHDValue();")
 }
 <div class="box-header selectLeague">
     <div class="row">

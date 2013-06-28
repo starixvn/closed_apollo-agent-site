@@ -1,7 +1,8 @@
 @import "../../../_globalresources/css/agent.less";
+@editSettingBorder : #DCDCDC;
 	.tb-cust-setting {
 	background-color: @tableBackground;
-	border: 4px solid #DCDCDC;
+	border: 1px solid @editSettingBorder ;
 	
 	border-collapse: collapse;
 	
@@ -25,7 +26,7 @@
 	thead td, thead th, tbody .em-row {
 		background-color: #84968B;
 		border-spacing: 0;
-		border: 1px solid #DCDCDC;
+		border: 1px solid @editSettingBorder;
 		text-align: center;
 		//font-weight: normal;
 		color: @primaryHeaderColor;
@@ -34,7 +35,7 @@
 	tbody {
 		tr {
 			td {
-				border: 1px solid #DCDCDC;	
+				border: 1px solid @editSettingBorder;	
 				&.first-cell{
 					background-color: #BDD1DE;
 				}
@@ -48,7 +49,7 @@
 			color: @white;
 
 			td {
-				border: 1px solid #DCDCDC;
+				border: 1px solid @editSettingBorder;
 				text-shadow: none;
 				//font-weight: bold;
 			}
