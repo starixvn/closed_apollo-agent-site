@@ -448,6 +448,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
@@ -458,6 +459,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
+            ViewBag.CanEdit = (base.CurrentSession.IsMaster && agentId != null && base.CurrentSession.AgentId == agentId.Value);
+
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }

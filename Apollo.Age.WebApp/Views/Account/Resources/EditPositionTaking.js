@@ -26,18 +26,19 @@ if (typeof jQuery != 'undefined') {
 
                 //// Register Event
                 $("#btnSubmitFooter").unbind('click').click(function () {
-                    var stringConfirm = "";
-                    if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
-                        stringConfirm = Language.CONFIRM_WRITE_MEMBER;
-                    }
-                    else {
-                        stringConfirm = Language.CONFIRM_WRITE_AGENT;
-                    }
-                    var c = confirm(stringConfirm);
-                    if (c == true
-                    && EDITPOSITIONTAKING.positionTakingElement.Validate()) {
-                        
-                        EDITPOSITIONTAKING.updatePositionTakingSetting();
+
+                    if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
+                        var stringConfirm = "";
+                        if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                            stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                        }
+                        else {
+                            stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                        }
+                        var c = confirm(stringConfirm);
+                        if (c == true) {
+                            EDITPOSITIONTAKING.updatePositionTakingSetting();
+                        }
                     }
 
                 });
