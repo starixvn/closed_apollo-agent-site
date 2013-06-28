@@ -43,6 +43,18 @@
                     + "&AgentName=" + $(this).attr("agentname")
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
                     + "&Bettypes=" + WINLOSS.ddlBettype.val());
+                location.href = url;
+            });
+
+            $(".view-memberwinloss").on("click", function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl("Reports/MemberWinLoss?FromDate="
+                    + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+                    + "&AgentId=" + $(this).attr("agentid")
+                    + "&AgentName=" + $(this).attr("agentname")
+                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
+                location.href = url;
             });
 
             $("#btnCancel").bind('click', function () {
