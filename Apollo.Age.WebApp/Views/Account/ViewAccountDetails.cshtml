@@ -11,6 +11,7 @@
     var userName = (string)ViewBag.UserName ?? string.Empty;
     var editLink = string.Empty;
     var canEdit = (bool)ViewBag.CanEdit;
+    var isViewMySetting = (bool)ViewBag.IsViewMySetting;
     if(isViewOnMember)
     {
         editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}", custId, userName, ViewBag.AgentId));
@@ -140,11 +141,15 @@
 <div class="detail-information">
     @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit) -- @Lang.Account : <strong>@custId</strong> 
     -- @Lang.Name: <strong>@userName</strong> 
-    @if (canEdit)
+
+    @if(!isViewMySetting)
     {
-        @:-- <a href="@editLink">@Lang.edit </a>
+        if (canEdit)
+        {
+            @:-- <a href="@editLink">@Lang.edit </a>
+        }
+        @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
     }
-    -- <a href="javascript:void(0);" id="back-link">@Lang.back
     </a>
 </div>
 <div class="view-detail-container">

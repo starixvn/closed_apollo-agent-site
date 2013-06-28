@@ -57,6 +57,10 @@
                             <li><a href="#" class="outright border-link">[@Lang.lblOutRight]</a></li>
                             <li id="account-link" class="border-link"><span class="menu-list">[@Lang.lblAccounts]</span>
                                 <ul class="sub-menu">
+                                     @if (!Model.IsSuper)
+                                     { 
+                                         <li><a href="~/CustomerSetting/MySetting" target="main">@Lang.Agency</a></li>
+                                     }
                                     <li><a href="~/Account/AgentList" target="main">@Lang.Agents</a></li>
                                     @if (Model.AgentLevel > AgentLevel.Shareholder)
                                     {
