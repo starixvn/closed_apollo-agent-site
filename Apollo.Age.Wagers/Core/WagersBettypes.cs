@@ -1,4 +1,4 @@
-﻿namespace Apollo.Age.Core
+﻿namespace Apollo.Age.Wagers.Core
 {
     public static class WagersBettypes
     {
