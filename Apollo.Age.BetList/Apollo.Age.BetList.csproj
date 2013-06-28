@@ -71,6 +71,10 @@
       <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
       <Name>Apollo.Age.Reports</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
