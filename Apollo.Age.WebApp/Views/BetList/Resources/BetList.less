@@ -21,19 +21,16 @@
 
 .bl_underdog, .underdog {
 	color: #01122B;
-	//font-weight: bold;
 	text-align: right;
 }
 
 .total .bl_underdog
 {
 	color:white;
-	//font-weight: bold;
 	text-align: right;
 }
 
 .favorite, .bl_favorite {
-	//font-weight: bold;
 	color: #B50000;
 }
 
@@ -47,10 +44,6 @@
 
 .bl_stype, .sport {
 	color: #06C;
-}
-
-.bl_status, .status {
-	//font-weight: bold;
 }
 
 .div_result, .result {
@@ -67,15 +60,15 @@
 	text-align: left;
 }
 
-.bl_num, .handicap .odds {
-	color: #039;
-	font-size: 8pt;
+.bl_num, .handicap {
+	color: #2804C0;
+	font-size: 9pt;
+	font-weight: bold;
 }
 
 .bl_ip {
 	color: #434343;
 	font-size: 7pt;
-	//font-weight: normal;
 	text-align: center;
 }
 
@@ -97,7 +90,6 @@
 
 .bl_match {
 	color: @black;
-	//font-weight: normal;
 	line-height: 15px;
 }
 
@@ -105,9 +97,6 @@
 	color: #586985;
 }
 
-.handicap.custom {
-	//font-weight: bold;
-}
 
 .blue {
 	color: #2673CE;
@@ -169,46 +158,28 @@
 	cursor: pointer;
 }
 
-
-/* Report for result */
-
-#box_header {
-	margin-bottom: 10px;
-
-	.row {
-		margin-bottom: 0;
-	}
-
-	img.img-calendar {
-		margin-left: 4px;
-	}	
-}
-
 #spDateTimeSearch {
 	float: left;
 }
 
 .tblRpt {
 	margin-top: 10px;
-
 	&.border-tbl td {
 		border-width: 1px;
 	}
 
 	.red-color {
 		color: #B50000;
+		white-space: nowrap;
 	}
 
 	tbody {
 
 		td {
+			padding:3px;
 			white-space: normal;
-			vertical-align: top;
+			vertical-align: middle;
 			border-width: 0 1px 0 0;
-
-			.time {
-				font-size: 0.9em;
-			}
 		}
 
 		tr {
@@ -216,15 +187,39 @@
 			&.subtotal {
 				td {
 					background: lighten(@primaryColor, 35%);
-					//font-weight: bold;
 					height: 24px;
 				}
 			}
 
 			&.outstanding td {				
 				background: #ddd;
-				//font-weight: bold;
 				border: 1px solid @borderColor;
+			}
+
+			&.bl_footertotal {
+				background: @rowTotalBackground;
+				color: @white;
+
+				td {
+					border-right: 1px solid @borderColor;
+				}
+
+				&:hover {
+					background: @rowTotalBackground;
+				}
+
+				.red-color {
+					color: #FF4C4C;
+					white-space: nowrap;
+				}
+
+			}
+			.total{
+				background:#DCDCDC;
+			}
+			.result {
+				background:#990000;
+				color:#fff;
 			}
 		}		
 	}
@@ -234,10 +229,11 @@
 
 			&.total td {
 				//font-weight: bold;
-
-				.red-color {
-					color: #FF4C4C;
-				}
+			}	
+			
+			.red-color {
+				color: #FF4C4C;
+				white-space: nowrap;
 			}		
 		}
 	}
@@ -248,37 +244,16 @@
 	width: 20px;
 }
 
-#spData .tblRpt {
-	width: 394px;
-	margin: 10px 10px 10px 15px;
-	tr {
-
-		td {
-			vertical-align: middle;
-
-			.bl_underdog {
-				//font-weight: normal;
-			}
-
-			.bold {
-				//font-weight: normal !important;
-			}
-		}
-
-		&.total {
-			.bl_underdog {
-				//font-weight: bold;
-			}
-
-			.bold {
-				//font-weight: bold !important;
-			}
-		}
-	}
-}
-
 .ui-dialog #dialog-details {
 	overflow: auto;
+}
+
+.block-loading {
+	&.loading-scoremap {
+		left: 460px;
+		position: fixed;
+		top: 277px;
+	}
 }
 
 /* FIX IE */
@@ -287,5 +262,16 @@
 	 #dialog-details .tblRpt {
 		width: 394px;
 		margin: 10px 0 10px 15px;
+	}
+	
+}
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
 	}
 }

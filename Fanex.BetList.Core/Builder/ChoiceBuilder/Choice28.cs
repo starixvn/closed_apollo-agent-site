@@ -35,14 +35,14 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;
-
+            //this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string teamName = Apollo.Age.Resources.BetList.lblDraw;
             decimal hdp1 = ticket.Handicap1;
             decimal hdp2 = ticket.Handicap2;
 
             string handicap = string.Empty;
-            this.Template.betTeamClassName = BL_FAVORITE;
+            //this.Template.betTeamClassName = BL_FAVORITE;
 
             if ("1" == ticket.BetTeam)
             {

@@ -34,7 +34,11 @@ td {
 			width: 183px;
 			height: 50px;			
 			position: absolute;
-			left: 0;		
+			left: 0;
+			
+			&.sso {
+				background: url(images/bg-logo.jpg) no-repeat left -25px;
+			}		
 		}
 		
 		.right {
@@ -76,13 +80,23 @@ td {
 				border-top: 1px solid #2F4540;
 				height: 18px;
 
+				&.sso {
+					margin-top: 4px;
+				}
+
 				li {
 					float: left;
-					margin: 1px 3px;
+					margin-top: 1px;
 					color: @black;
 
-					span {						
+					span, a {						
 						float: left;
+						margin: 0;
+						padding: 0 4px;
+
+						a {
+							padding: 0;
+						}
 					}
 
 					a {
@@ -99,10 +113,13 @@ td {
 							cursor: text;
 						}	
 					}
-
+					
 					.sub-menu {						
 						float: left;
 						display: none;
+						margin: 0;
+						padding: 0;
+
 						li {
 							background: url(images/icon-subMenu.gif) left center no-repeat;
 							padding-left: 5px;
@@ -234,14 +251,20 @@ td {
 
 		.border-link {			
 			border-right: #ECE9D8 1px solid;
-			border-left: #ECE9D8 1px solid;
-			padding: 0 3px;
+			border-left: #ECE9D8 1px solid;			
 
 			&:hover {
 				border-bottom: #A0A0A0 1px solid;
 				border-right: #A0A0A0 1px solid;
 				border-left: #fff 1px solid;
-			}
+			}			
+		}
+
+		.no-border {
+			border-right: #ECE9D8 1px solid;
+			border-left: #ECE9D8 1px solid;
+			border-bottom: none;
+			cursor: text;
 		}
 	}	
 }

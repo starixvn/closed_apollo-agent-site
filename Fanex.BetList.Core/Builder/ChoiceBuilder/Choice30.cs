@@ -27,7 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
-
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string choice = ticket.BetTeam;
             choice = (choice == "0:4" || choice == "4:0") ? choice + " UP" : choice;
 

@@ -31,9 +31,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.odd : Apollo.Age.Resources.BetList.even;
-            this.Template.betTeamClassName = this.Template.betTeam == Apollo.Age.Resources.BetList.odd ? BL_FAVORITE : BL_UNDER_DOG;
+            //this.Template.betTeamClassName = this.Template.betTeam == Apollo.Age.Resources.BetList.odd ? BL_FAVORITE : BL_UNDER_DOG;
         }
     }
 }

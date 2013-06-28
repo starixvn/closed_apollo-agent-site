@@ -30,8 +30,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.Handicap.handicap = null;
-
+            //this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string betTeam = string.Empty;
             if (ticket.BetTeam.Length == 2)
             {
@@ -40,9 +40,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             // "&nbsp" because export format
             this.Template.betTeam = string.Join(null, new string[] { "&nbsp;", betTeam });
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
 
-            this.Template.betTeamClassName = BL_UNDER_DOG;
+            //this.Template.betTeamClassName = BL_UNDER_DOG;
         }
     }
 }
