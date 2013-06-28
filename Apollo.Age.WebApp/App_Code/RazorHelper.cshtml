@@ -249,13 +249,13 @@
 
         foreach (SingbetSport sport in singbetSports)
         {
-            if (sport.Id != Apollo.Age.Core.SingbetConstants.All)
+            if (sport.Id != Apollo.Age.Core.SingbetSportConstant.All)
             {
-                if (sport.Id == Apollo.Age.Core.SingbetConstants.Other)
+                if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Other)
                 {							
     <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
                 }
-                else if (sport.Id == Apollo.Age.Core.SingbetConstants.Outright)
+                else if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Outright)
                 {
     <li><a href="#" id="@sport.Id" name="menuoutright">[@(sport.Name)]</a></li>
                 }
@@ -292,32 +292,32 @@
         var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
         switch (sport)
         {
-            case SingbetConstants.Soccer:
+            case SingbetSportConstant.Soccer:
                 {
                     wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
                     break;
                 }
-            case SingbetConstants.BK_NFL_RUGBY:
+            case SingbetSportConstant.BK_NFL_RUGBY:
                 {
                     wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
                     break;
                 }
-            case SingbetConstants.Tennis :
+            case SingbetSportConstant.Tennis :
                 {
                     wagesBettypes = MenuService.GenerateTennisBettypesMenu();
                     break;
                 }
-            case SingbetConstants.VB_BDM_TT:
+            case SingbetSportConstant.VB_BDM_TT:
                 {
                     wagesBettypes = MenuService.GenerateVolleyballBettypesMenu();
                     break;
                 }
-            case SingbetConstants.BaseBall:
+            case SingbetSportConstant.BaseBall:
                 {
                     wagesBettypes = MenuService.GenerateBaseballBettypesMenu();
                     break;
                 }
-            case SingbetConstants.Other:
+            case SingbetSportConstant.Other:
                 {
                     wagesBettypes = MenuService.GenerateOtherBettypesMenu();
                     break;
