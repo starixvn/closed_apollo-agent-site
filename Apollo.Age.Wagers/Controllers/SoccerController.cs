@@ -22,8 +22,20 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class SoccerController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string bettype = "1")
         {
+            List<SelectListItem> listLeague = new List<SelectListItem>();
+            for (int i = 0; i < 10; i++)
+            {
+                listLeague.Add(new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = "League " + i.ToString()
+                });
+            }
+
+            ViewBag.Leagues = listLeague;
+            ViewBag.Title = bettype;
             return View();
         }
 
