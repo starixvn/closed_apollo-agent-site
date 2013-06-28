@@ -46,6 +46,7 @@ namespace Apollo.Age.Account.Controllers
             this._messageService = messageService ?? new MessageService();
         }
 
+        [ValidateInput(false)]
         public ViewResult Announcement(string content = "", int modeDate = 0)
         {
             DateTime? startDate = new DateTime();
