@@ -18,27 +18,27 @@
                 new WagerSport{
                     Id =  WagersSporttypes.BK_NFL_Rugby,
                     Name = Lang.lblBkNflRugby,
-                    Url = "wagers/BkNFLRugby"
+                    Url = "~/wagers/BkNFLRugby"
                 },
                 new WagerSport{
                     Id = WagersSporttypes.TN,
                     Name = Lang.lblTN,
-                    Url = "wagers/Tennis"
+                    Url = "~/wagers/Tennis"
                 },
                 new WagerSport{
                     Id = WagersSporttypes.VB,
                     Name = Lang.lblVbBdmTt,
-                    Url = "wagers/VolleyballBadminton"
+                    Url = "~/wagers/VolleyballBadminton"
                 },
                 new WagerSport{
                     Id = WagersSporttypes.BS,
                     Name = Lang.lblBs,
-                    Url = "wagers/BaseBall"
+                    Url = "~/wagers/BaseBall"
                 },
                 new WagerSport{
                     Id =WagersSporttypes.Other,
                     Name = Lang.other,
-                    Url = "wagers/Other"
+                    Url = "~/wagers/Other"
                 },
             };
 
