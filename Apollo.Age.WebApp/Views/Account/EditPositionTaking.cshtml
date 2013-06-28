@@ -15,16 +15,12 @@
     </div>
 }
 
-
+@Html.Hidden("backUrl",linkBack) 
 <div id="ptContainer"></div>
 
 @section scripts
 {
     <script type="text/javascript">
-        var DEFAULT_OBJECT =
-        {
-            linkBack: "@(linkBack)"
-        }
     </script>
     @if (isEditAgent)
     {

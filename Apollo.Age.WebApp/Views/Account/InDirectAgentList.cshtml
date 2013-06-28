@@ -12,7 +12,7 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
-    var backLink = Url.Content(HttpUtility.UrlEncode(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @using (Html.BeginForm())

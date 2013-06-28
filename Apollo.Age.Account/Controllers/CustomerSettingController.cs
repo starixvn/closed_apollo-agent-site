@@ -325,7 +325,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsShowHeader = showHeader;
             ViewBag.IsEditAgent = true;
             ViewBag.AgentId = 0;
-            ViewBag.BackLink = HttpUtility.UrlDecode(backLink);
+            ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -337,7 +337,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsShowHeader = showHeader;
             ViewBag.IsEditAgent = false;
-            ViewBag.BackLink = HttpUtility.UrlDecode(backLink);
+            ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
