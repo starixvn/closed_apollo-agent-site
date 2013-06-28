@@ -27,7 +27,7 @@
         <div class="before-filter">
             --</div>
         <ul class="menu">
-            @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Wagers.Core.WagersSporttypes.SC)
+            @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Core.SingbetSportConstant.Soccer)
         </ul>
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
@@ -55,7 +55,7 @@
                                 @Lang.league&nbsp;:</label>
                         </div>
                         <div class="editor">
-                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
+                            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
                         </div>
                     </div>
                 </div>

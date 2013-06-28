@@ -63,6 +63,7 @@
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
+    <Compile Include="ViewModels\MixParlayViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

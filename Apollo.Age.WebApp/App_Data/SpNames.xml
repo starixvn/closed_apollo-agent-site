@@ -543,6 +543,8 @@
         <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust" DbName="SVRLOG.LogDB" TimeOut="600"/>
     </Function>
     <Function Name="Wagers">
-        <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB">
+            <Mapping DataField="LeagueId" ObjectProperty="Id" />
+        </Setting>
     </Function>
 </Functions>

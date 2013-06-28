@@ -5,6 +5,8 @@
 @using Fanex.Logging
 @using Apollo.Age.Wagers.Core;
 @using Apollo.Age.Resources
+@using Apollo.Age.Core
+@using Apollo.Age.Services
 @helper ShowNoInfo(int colspan, string cssClass = "no_info")
     {
     <!--NotFoundContent-->
@@ -15,7 +17,7 @@
     </tr>
     <!--/NotFoundContent-->
 }
-@helper RefreshCountDown(string refreshCountDownId, 
+@helper RefreshCountDown(string refreshCountDownId,
     int[] timerArray,
     string onRefresh = "location.reload()")
     {
@@ -248,13 +250,13 @@
 
         foreach (SingbetSport sport in singbetSports)
         {
-            if (sport.Id != Apollo.Age.Core.SingbetConstants.All)
+            if (sport.Id != Apollo.Age.Core.SingbetSportConstant.All)
             {
-                if (sport.Id == Apollo.Age.Core.SingbetConstants.Other)
+                if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Other)
                 {							
     <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
                 }
-                else if (sport.Id == Apollo.Age.Core.SingbetConstants.Outright)
+                else if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Outright)
                 {
     <li><a href="#" id="@sport.Id" name="menuoutright">[@(sport.Name)]</a></li>
                 }
@@ -285,38 +287,37 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
-
 @helper RenderWagersBettypeMenu(string sport)
     {
         var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
         switch (sport)
         {
-            case WagersSporttypes.SC:
+            case SingbetSportConstant.Soccer:
                 {
                     wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.BK_NFL_Rugby:
+            case SingbetSportConstant.BK_NFL_RUGBY:
                 {
                     wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.TN :
+            case SingbetSportConstant.Tennis:
                 {
                     wagesBettypes = MenuService.GenerateTennisBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.VB:
+            case SingbetSportConstant.VB_BDM_TT:
                 {
                     wagesBettypes = MenuService.GenerateVolleyballBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.BS:
+            case SingbetSportConstant.BaseBall:
                 {
                     wagesBettypes = MenuService.GenerateBaseballBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.Other:
+            case SingbetSportConstant.Other:
                 {
                     wagesBettypes = MenuService.GenerateOtherBettypesMenu();
                     break;
@@ -325,7 +326,7 @@
 
         foreach (var bettype in wagesBettypes)
         {
-    <li><a href="~/Wagers/HomeWagers?sportType=@sport&betType=@bettype.Id" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
+    <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
         }
         
 }
@@ -356,9 +357,10 @@
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
                         {
+                            <option value="0">@Lang.all</option>
                             foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@item.Name</option>
+                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
                             }
                         }
                     </select>
