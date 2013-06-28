@@ -226,6 +226,7 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>

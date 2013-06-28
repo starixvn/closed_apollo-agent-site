@@ -39,7 +39,7 @@
             @for (int i = 0; i < menu.Count; i++)
             {
                 var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
+                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="main">@item[1]</a></li>
             }
         </ul>
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
@@ -73,7 +73,63 @@
                     </div>
                 </div>
             </div>
+            <div id="wagerContainer">
+                <table class="tblRpt soccer">
+                    <thead>
+                        <tr class="RptHeader">
+                            <th style="width: 100px;">
+                                Time
+                            </th>
+                            <th style="width: 300px;">
+                                League
+                            </th>
+                            <th style="width: 300px;">
+                                Home/Guest
+                            </th>
+                            <th style="width: 100px;">
+                                Half
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Final
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="c">
+                            <td class="width-80">
+                                06-20<br>
+                                12:59p
+                            </td>
+                            <td>
+                                SWEDEN SUPERETTAN - SPECIFIC 15 MINS OVER/UNDER
+                            </td>
+                            <td class="l">
+                                Orgryte IS 60:01-75:00
+                                <br>
+                                IFK Varnamo 60:01-75:00
+                            </td>
+                            <td>
+                                0
+                                <br>
+                                0
+                            </td>
+                            <td>
+                                1
+                                <br>
+                                0
+                            </td>
+                            <td class="border-right">
+                                Completed
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>
 </html>
+@Scripts.Render("~/areas/Wagers/BkNFLRugby")
