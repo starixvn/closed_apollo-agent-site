@@ -58,10 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Core\WagersSporttypes.cs" />
     <Compile Include="Core\SingbetConstants.cs" />
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="Core\WagersBettypes.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalLogoutCriteria.cs" />

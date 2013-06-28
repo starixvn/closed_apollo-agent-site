@@ -49,41 +49,7 @@ namespace Apollo.Age.Services.Impl
 
             return sportList;
         }
-
-        public static List<SingbetSport> GetWagersSport()
-        {
-            return null;
-            
-            var sportList = new List<SingbetSport>{
-                new SingbetSport{
-                    Id = WagersSporttypes.SC,
-                    Name = Lang.lblSC
-                },
-                new SingbetSport{
-                    Id =  WagersSporttypes.BK_NFL_Rugby,
-                    Name = Lang.lblBkNflRugby
-                },
-                new SingbetSport{
-                    Id = WagersSporttypes.TN,
-                    Name = Lang.lblTN
-                },
-                new SingbetSport{
-                    Id = WagersSporttypes.VB,
-                    Name = Lang.lblVbBdmTt
-                },
-                new SingbetSport{
-                    Id = WagersSporttypes.BS,
-                    Name = Lang.lblBs
-                },
-                new SingbetSport{
-                    Id =WagersSporttypes.Other,
-                    Name = Lang.other
-                },              
-            };
-
-            return sportList;
-        }
-
+               
         public static List<SingbetBettype> GetBettype()
         {
             var bettypeList = new List<SingbetBettype>{
