@@ -18,7 +18,6 @@
             WINLOSS.ddlBettype = $("#ddlBettype");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                $.blockUI();
                 var fromDate = new Date(WINLOSS.FromDate.val());
                 var toDate = new Date(WINLOSS.ToDate.val());
                 var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
@@ -27,6 +26,7 @@
                     alert(LANGUAGES.MessageValidateWithArchivedDate);
                 }
                 else {
+                    $.blockUI();
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
