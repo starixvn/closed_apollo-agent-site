@@ -16,12 +16,26 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Wagers.Services;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : Controller
     {
+        private readonly WagersService _wagerService; 
+
+        public SoccerController() : this(null)
+        { 
+           
+        }
+
+        public SoccerController(WagersService wagerService = null)
+        {
+            _wagerService = wagerService ?? new WagersService();
+        }
+
         public ActionResult Index(string bettype = "1")
         {
             List<SelectListItem> listLeague = new List<SelectListItem>();
@@ -38,6 +52,12 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.Title = bettype;
             return View();
         }
+
+        //protected List<SelectListItem> GetLeague()
+        //{
+        //    var Leagues = _wagerService.GetLeague(DateTime.Now, Apollo.Age.Core.SingbetConstants.Soccer);
+        //    return Leagues.ToList();
+        //}
 
         public ActionResult Straight()
         {
