@@ -35,7 +35,7 @@ function showMP(transid) {
 	var divEvent = document.getElementById('divEvent_' + transid);
 	if (divEvent.style.display == 'none') {
 		if (divEvent.innerHTML == "") {
-			ajax.Request(APOLLO.resolveUrl("~/_BetList/MixParlay/MixParlay.aspx"), { method: 'get', parameters: 'transid=' + transid,
+			ajax.Request(APOLLO.resolveUrl("~/BetList/MixParlay"), { method: 'get', parameters: 'transid=' + transid,
 				onSuccess: function (data) {
 					if (data.errCode == 500) {
 						divEvent.innerHTML = data.errMsg;
@@ -96,17 +96,17 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-    if (parent.APOLLO.currentOpenDialog) {
-        var heightPopup = 630;
-	    if (APOLLO.browser.msie) {
-            heightPopup = 615;
-            if(parseInt(APOLLO.browser.version, 10) == 7) {
-	            $('#content_main').css({ 'padding-bottom': '130px' });
-	        }
-        }
-	    parent.APOLLO.resizeDialog(900, heightPopup);
+	if (parent.APOLLO.currentOpenDialog) {
+		var heightPopup = 630;
+		if (APOLLO.browser.msie) {
+			heightPopup = 615;
+			if (parseInt(APOLLO.browser.version, 10) == 7) {
+				$('#content_main').css({ 'padding-bottom': '130px' });
+			}
+		}
+		parent.APOLLO.resizeDialog(900, heightPopup);
 	}
-	
+
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
 	}
@@ -137,10 +137,10 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
 	// Check IE7
 	if (APOLLO.browser.msie && (parseInt(APOLLO.browser.version, 10) == 7
         || parseInt(APOLLO.browser.version, 10) == 8)) {
-	    wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 610, position: { my: "center", at: "center", of: window} }, singleFrame);
+		wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 610, position: { my: "center", at: "center", of: window} }, singleFrame);
 	} else {
-	    wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 625 }, singleFrame);
-	}  
+		wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 625 }, singleFrame);
+	}
 }
 
 RegisterStartUp(InitBetList);

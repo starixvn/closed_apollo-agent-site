@@ -1626,4 +1626,10 @@
   <data name="Share" xml:space="preserve">
     <value>Share</value>
   </data>
+  <data name="lbl1stOddEven" xml:space="preserve">
+    <value>1st Odd/Even</value>
+  </data>
+  <data name="Othertypes" xml:space="preserve">
+    <value>Other types</value>
+  </data>
 </root>

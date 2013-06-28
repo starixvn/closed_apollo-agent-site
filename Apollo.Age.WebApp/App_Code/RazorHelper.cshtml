@@ -5,6 +5,7 @@
 @using Fanex.Logging
 @using Apollo.Age.Wagers.Core;
 @using Apollo.Age.Resources
+@using  Apollo.Age.Core
 @helper ShowNoInfo(int colspan, string cssClass = "no_info")
     {
     <!--NotFoundContent-->
@@ -291,32 +292,32 @@
         var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
         switch (sport)
         {
-            case WagersSporttypes.SC:
+            case SingbetConstants.Soccer:
                 {
                     wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.BK_NFL_Rugby:
+            case SingbetConstants.BK_NFL_RUGBY:
                 {
                     wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.TN :
+            case SingbetConstants.Tennis :
                 {
                     wagesBettypes = MenuService.GenerateTennisBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.VB:
+            case SingbetConstants.VB_BDM_TT:
                 {
                     wagesBettypes = MenuService.GenerateVolleyballBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.BS:
+            case SingbetConstants.BaseBall:
                 {
                     wagesBettypes = MenuService.GenerateBaseballBettypesMenu();
                     break;
                 }
-            case WagersSporttypes.Other:
+            case SingbetConstants.Other:
                 {
                     wagesBettypes = MenuService.GenerateOtherBettypesMenu();
                     break;
@@ -325,7 +326,7 @@
 
         foreach (var bettype in wagesBettypes)
         {
-    <li><a href="~/Wagers/HomeWagers?sportType=@sport&betType=@bettype.Id" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
+            <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
         }
         
 }

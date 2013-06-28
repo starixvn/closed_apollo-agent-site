@@ -1277,6 +1277,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Odd/Even.
+        /// </summary>
+        public static string lbl1stOddEven {
+            get {
+                return ResourceManager.GetString("lbl1stOddEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1st Over/Under.
         /// </summary>
         public static string lbl1stOU {
@@ -3442,6 +3451,15 @@ namespace Apollo.Age.Resources {
         public static string OtherSports {
             get {
                 return ResourceManager.GetString("OtherSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other types.
+        /// </summary>
+        public static string Othertypes {
+            get {
+                return ResourceManager.GetString("Othertypes", resourceCulture);
             }
         }
         

@@ -40,12 +40,18 @@ namespace Apollo.Age.Services.Impl
                 new SingbetSport{
                     Id = SingbetConstants.Other,
                     Name = isOther ? Lang.other : Lang.InterEvent
-                },
-                new SingbetSport{
-                    Id = SingbetConstants.Outright,
-                    Name = Lang.lblOutRight
                 }
             };
+
+            if (isOther)
+            {
+                var ouright = new SingbetSport
+                {
+                    Id = SingbetConstants.Outright,
+                    Name = Lang.lblOutRight
+                };
+                sportList.Add(ouright);
+            }
 
             return sportList;
         }
@@ -107,7 +113,7 @@ namespace Apollo.Age.Services.Impl
                 },
                 new SingbetBettype{
                     Id = SingbetConstants._1st_Odd_Even,
-                    Name = Lang.lblOddEven_1st
+                    Name = Lang.lbl1stOddEven
                 },
                 new SingbetBettype{
                     Id = SingbetConstants._1st_Over_Under,
@@ -119,7 +125,7 @@ namespace Apollo.Age.Services.Impl
                 },
                 new SingbetBettype{
                     Id = SingbetConstants.OtherBettype,
-                    Name = Lang.Others
+                    Name = Lang.Othertypes
                 },
             };
 

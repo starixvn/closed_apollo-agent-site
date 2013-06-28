@@ -18,11 +18,11 @@
             WINLOSS.ddlBettype = $("#ddlBettype");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                var fromDate = new Date(WINLOSS.FromDate.val());
-                var toDate = new Date(WINLOSS.ToDate.val());
-                var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
+                //                var fromDate = new Date(WINLOSS.FromDate.val());
+                //                var toDate = new Date(WINLOSS.ToDate.val());
+                //                var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
 
-                if (fromDate < balanceUpDate || toDate < balanceUpDate) {
+                if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate);
                 }
                 else {
@@ -79,6 +79,8 @@
                     + "&Bettypes=" + WINLOSS.ddlBettype.val());
                 location.href = url;
             });
+
+            $(".ui-datepicker-trigger").attr("title", "");
 
             $(".dateRange").bind('click', function () {
                 /* Range type value

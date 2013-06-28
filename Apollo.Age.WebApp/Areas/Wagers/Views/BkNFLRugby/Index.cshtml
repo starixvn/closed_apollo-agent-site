@@ -1,0 +1,96 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@{
+    Layout = null;    
+}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>@Lang.lblWager</title>
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="function-bar">
+        <div class="item">
+            @Lang.lblOP.
+            <select class="za_select" name="ltype" id="ltype">
+                <option value="a">@Lang.Basketball A</option>
+                <option value="b">@Lang.Basketball B</option>
+                <option value="c">@Lang.Basketball C</option>
+                <option value="d">@Lang.Basketball D</option>
+            </select>
+        </div>
+        <div class="before-filter">
+            --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
+        @RazorHelper.ToEasternTime(DateTime.Now)
+        <div class="before-filter">
+            --</div>
+        <ul class="menu">
+            @RazorHelper.RenderWagersBettypeMenu(Apollo.Age.Core.SingbetConstants.BK_NFL_RUGBY)
+        </ul>
+        <img alt="" src="~/_GlobalResources/Images/top_04.gif">
+    </div>
+    <div class="mainpage">
+        <div id="content_main">
+            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
+            <div id="wagerContainer">
+                <table class="tblRpt soccer">
+                    <thead>
+                        <tr class="RptHeader">
+                            <th style="width: 100px;">
+                                Time
+                            </th>
+                            <th style="width: 300px;">
+                                League
+                            </th>
+                            <th style="width: 300px;">
+                                Home/Guest
+                            </th>
+                            <th style="width: 100px;">
+                                Half
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Final
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="c">
+                            <td class="width-80">
+                                06-20<br>
+                                12:59p
+                            </td>
+                            <td>
+                                SWEDEN SUPERETTAN - SPECIFIC 15 MINS OVER/UNDER
+                            </td>
+                            <td class="l">
+                                Orgryte IS 60:01-75:00
+                                <br>
+                                IFK Varnamo 60:01-75:00
+                            </td>
+                            <td>
+                                0
+                                <br>
+                                0
+                            </td>
+                            <td>
+                                1
+                                <br>
+                                0
+                            </td>
+                            <td class="border-right">
+                                Completed
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@Scripts.Render("~/areas/Wagers/BkNFLRugby")
