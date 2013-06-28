@@ -136,16 +136,16 @@
     <value>AH</value>
   </data>
   <data name="alertIncorrectMaxBet" xml:space="preserve">
-    <value>Incorrect Max Bet</value>
+    <value>Incorrect Max Single Bet</value>
   </data>
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>Incorrect Max Per Ball</value>
   </data>
   <data name="alertIncorrectMaxPerMatch" xml:space="preserve">
-    <value>Incorrect Max Per Match</value>
+    <value>Incorrect Max Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
-    <value>Incorrect Min Bet</value>
+    <value>Incorrect Min Single Bet</value>
   </data>
   <data name="all" xml:space="preserve">
     <value>All</value>
@@ -340,16 +340,16 @@
     <value>Agent Outstanding</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
-    <value>Max Bet must be less than or equal to</value>
+    <value>Max Single Bet must be less than or equal to</value>
   </data>
   <data name="lblalertMaxPerBallCompare" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMaxPerMatchCompare" xml:space="preserve">
-    <value>Max Per Match must be less than or equal to {1}.</value>
+    <value>Max Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
-    <value>Min Bet must be greater than or equal to</value>
+    <value>Min Single Bet must be greater than or equal to</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>HDP, OU, OE</value>
@@ -410,10 +410,10 @@
     <comment>Label Number Game</comment>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Max Bet</value>
+    <value>Max Single Bet</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Max Per Match</value>
+    <value>Max Single Game</value>
   </data>
   <data name="lblMemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
@@ -431,7 +431,7 @@
     <value>Message</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Min Bet</value>
+    <value>Min Single Bet</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Max Bet should be less than or equal to Max Per Match</value>
+    <value>{0} - The Max Single Bet should be less than or equal to Max Single Game</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Bet</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Single Bet</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Per Match</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Single Game</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
@@ -945,7 +945,7 @@
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Per Ball</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Parent</value>
@@ -1451,8 +1451,8 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages</value>
   </data>
-  <data name="SearchAgency" xml:space="preserve">
-    <value>Search Agency</value>
+  <data name="SearchAgent" xml:space="preserve">
+    <value>Search Agent</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
@@ -1587,8 +1587,8 @@
   <data name="lbl1stHalfCorrectScore" xml:space="preserve">
     <value>1st Half Correct Score</value>
   </data>
-  <data name="lbl1stHalfRB" xml:space="preserve">
-    <value>1st Half  R.B.</value>
+  <data name="lblRB" xml:space="preserve">
+    <value>R.B.</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>Half/Full</value>
@@ -1610,5 +1610,17 @@
   </data>
   <data name="CommBase" xml:space="preserve">
     <value>Comm Base</value>
+  </data>
+  <data name="ConfirmWriteAgent" xml:space="preserve">
+    <value>Confirm write this agent?</value>
+  </data>
+  <data name="ConfirmWriteMember" xml:space="preserve">
+    <value>Confirm write this member?</value>
+  </data>
+  <data name="MemberDetailEdit" xml:space="preserve">
+    <value>Member detailed edit</value>
+  </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct members</value>
   </data>
 </root>

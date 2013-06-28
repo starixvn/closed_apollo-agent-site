@@ -16,14 +16,31 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
+
+                APOLLO.initPageInfo();
             },
             init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
+                $('#page_main').addClass("simple-mode-share-setting-width");
 
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 
                 //// Register Event
                 $("#btnSubmitFooter").unbind('click').click(function () {
-                    EDITPOSITIONTAKING.updatePositionTakingSetting();
+
+                    if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
+                        var stringConfirm = "";
+                        if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                            stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                        }
+                        else {
+                            stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                        }
+                        var c = confirm(stringConfirm);
+                        if (c == true) {
+                            EDITPOSITIONTAKING.updatePositionTakingSetting();
+                        }
+                    }
+
                 });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
@@ -33,7 +50,7 @@ if (typeof jQuery != 'undefined') {
 
                 $("#simple-mode").unbind("click").click(function () {
                     $(this).hide();
-                    $("#page_main").removeClass("advanced-mode-width").addClass("simple-mode-width");
+                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
                     $("#advanced-mode").show();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = true;
@@ -42,7 +59,7 @@ if (typeof jQuery != 'undefined') {
 
                 $("#advanced-mode").unbind("click").click(function () {
                     $(this).hide();
-                    $("#page_main").addClass("advanced-mode-width").removeClass("simple-mode-width");
+                    $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
                     $("#simple-mode").show();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
@@ -50,6 +67,12 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             updatePositionTakingSetting: function () {
+                var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
+                if (postionTakingValue == null) {
+                    noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                    return;
+                }
+
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
                     type: 'POST',
@@ -57,29 +80,27 @@ if (typeof jQuery != 'undefined') {
                     dataType: "json",
                     data: JSON.stringify({
                         settingContext: EDITPOSITIONTAKING.settingContext,
-                        positionTakingSetting: EDITPOSITIONTAKING.positionTakingElement.Save()
-                    })
+                        positionTakingSetting: postionTakingValue
+                    }),
+                    headers: APOLLO.addAntiForgeryToken({})
                 }).done(function (data) {
                     if (data.ErrCode == 0) {
-                        noty({ text: data.ErrMsg, type: 'success' });
+                        //noty({ text: data.ErrMsg, type: 'success' });
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
-                        noty({ text: APOLLO.generalErrorMsg, type: 'error' });
+                        noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    try { $.unblockUI(); } catch (e) { };
                 });
             },
             completeUpdate: function (result) {
-                window.location.href = DEFAULT_OBJECT.linkBack;
-                //                setTimeout(function () {
-                //                    if (typeof (parent.MEMBERLIST) != 'undefined') {
-                //                        parent.MEMBERLIST.loadMemberList();
-                //                    }
-                //                    else if (typeof (parent.AGENTLIST) != 'undefined') {
-                //                        parent.AGENTLIST.loadAgentList();
-                //                    }
-                //                }, 3000);
+                var backLink = $('#backUrl').val();
+                setTimeout(function () {
+                    window.location.href = backLink;
+                }, 1000);
+
             }
         }
     } (jQuery);
@@ -87,6 +108,6 @@ if (typeof jQuery != 'undefined') {
     $(function () {
         settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
-    });
+    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     
 }

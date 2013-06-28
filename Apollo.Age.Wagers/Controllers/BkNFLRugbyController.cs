@@ -16,59 +16,32 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class BkNFLRugbyController : Controller
     {
-        public ActionResult Index()
+        /// <summary>
+        /// Index BaseketBall default is straight all
+        /// </summary>
+        /// <param name="bettype">Sample bettype = 1</param>
+        /// <returns></returns>
+        public ActionResult Index(string bettype = "1")
         {
-            return View();
-        }
+            List<League> listLeague = new List<League>();
+            for (int i = 0; i < 10; i++)
+            {
+                listLeague.Add(new League
+                {
+                    Id = i,
+                    Name = "League " + i.ToString()
+                });
+            }
 
-        public ActionResult Straight()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfRB()
-        {
-            return View();
-        }
-
-        public ActionResult Specialbet()
-        {
-            return View();
-        }
-
-        public ActionResult Correctscore()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
-
-        public ActionResult Parlay()
-        {
-            return View();
-        }
-
-        public ActionResult Start()
-        {
+            ViewBag.Leagues = listLeague;
+            ViewBag.Title = bettype;
             return View();
         }
     }

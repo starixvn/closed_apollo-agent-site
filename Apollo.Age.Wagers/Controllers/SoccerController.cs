@@ -16,26 +16,36 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string bettype = "1")
         {
+            List<League> listLeague = new List<League>();
+            for (int i = 0; i < 10; i++)
+            {
+                listLeague.Add(new League
+                {
+                    Id = i,
+                    Name = "League " + i.ToString()                    
+                });
+            }
+
+            ViewBag.Leagues = listLeague;
+            ViewBag.Title = bettype;
             return View();
         }
 
         public ActionResult Straight()
         {
-
-
-
             return View();
         }
 
-        public ActionResult FirstHalfRB()
+        public ActionResult FirstHalf()
         {
             return View();
         }
@@ -70,7 +80,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View();
         }
 
-        public ActionResult Start()
+        public ActionResult RunningBall()
         {
             return View();
         }

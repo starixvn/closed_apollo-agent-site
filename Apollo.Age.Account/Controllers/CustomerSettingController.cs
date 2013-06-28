@@ -325,7 +325,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsShowHeader = showHeader;
             ViewBag.IsEditAgent = true;
             ViewBag.AgentId = 0;
-            ViewBag.BackLink = HttpUtility.UrlDecode(backLink);
+            ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -337,7 +337,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsShowHeader = showHeader;
             ViewBag.IsEditAgent = false;
-            ViewBag.BackLink = HttpUtility.UrlDecode(backLink);
+            ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -378,11 +378,10 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
+        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true)
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
-            ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.IsSimpleMode = isSimpleMode;
             if (showHeader)
@@ -420,15 +419,15 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits )
         {
-            return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
         [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits )
         {
-            return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
         public ActionResult MySetting()
@@ -447,7 +446,9 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
@@ -456,7 +457,10 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
+            ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
+            ViewBag.CanEdit = (base.CurrentSession.IsMaster && agentId != null && base.CurrentSession.AgentId == agentId.Value);
+
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
@@ -619,14 +623,11 @@ namespace Apollo.Age.Account.Controllers
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
-            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-            this.SetPositionTakingLanguage(positionTakingSetting);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var positionTakingSetting = {2} ;\n var settingContext = {3} ;",
+            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
             return jsString;
@@ -659,16 +660,16 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [NonAction]
-        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
-            if (commissionSetting == null && betLimits == null && positionTakingSetting == null)
+            if (commissionSetting == null && betLimits == null)
             {
                 return ReturnResult(new Result { 
                     ErrCode = 0,
                     ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
                 });
             }
-            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
             return ReturnResult(result);
         }
 

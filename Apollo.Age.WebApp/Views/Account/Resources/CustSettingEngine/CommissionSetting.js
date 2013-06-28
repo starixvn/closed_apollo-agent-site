@@ -257,7 +257,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var comContainer = document.createElement("DIV");
         comContainer.className = 'commission-spin-box';
         comContainer2.appendChild(comContainer);
-        tdValue.appendChild(comContainer2);
+        tdValue.appendChild(comContainer);
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING
         || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
             comContainer.innerHTML = " " + discount;

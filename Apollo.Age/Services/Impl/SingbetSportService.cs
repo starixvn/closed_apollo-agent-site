@@ -49,7 +49,7 @@ namespace Apollo.Age.Services.Impl
 
             return sportList;
         }
-
+               
         public static List<SingbetBettype> GetBettype()
         {
             var bettypeList = new List<SingbetBettype>{

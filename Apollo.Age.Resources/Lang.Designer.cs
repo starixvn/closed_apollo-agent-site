@@ -196,7 +196,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Max Bet.
+        ///   Looks up a localized string similar to Incorrect Max Single Bet.
         /// </summary>
         public static string alertIncorrectMaxBet {
             get {
@@ -214,7 +214,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Max Per Match.
+        ///   Looks up a localized string similar to Incorrect Max Single Game.
         /// </summary>
         public static string alertIncorrectMaxPerMatch {
             get {
@@ -223,7 +223,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Min Bet.
+        ///   Looks up a localized string similar to Incorrect Min Single Bet.
         /// </summary>
         public static string alertIncorrectMinBet {
             get {
@@ -529,6 +529,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm write this agent?.
+        /// </summary>
+        public static string ConfirmWriteAgent {
+            get {
+                return ResourceManager.GetString("ConfirmWriteAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm write this member?.
+        /// </summary>
+        public static string ConfirmWriteMember {
+            get {
+                return ResourceManager.GetString("ConfirmWriteMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact our Customer Relationship Officers through the following available communication
         ///                channels should you have any concerns or queries..
         /// </summary>
@@ -697,6 +715,15 @@ namespace Apollo.Age.Resources {
         public static string dh {
             get {
                 return ResourceManager.GetString("dh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct members.
+        /// </summary>
+        public static string DirectMembers {
+            get {
+                return ResourceManager.GetString("DirectMembers", resourceCulture);
             }
         }
         
@@ -1241,15 +1268,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Half  R.B..
-        /// </summary>
-        public static string lbl1stHalfRB {
-            get {
-                return ResourceManager.GetString("lbl1stHalfRB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 1st Handicap.
         /// </summary>
         public static string lbl1stHdp {
@@ -1502,7 +1520,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Bet must be less than or equal to.
+        ///   Looks up a localized string similar to Max Single Bet must be less than or equal to.
         /// </summary>
         public static string lblalerMaxbetCompare {
             get {
@@ -1520,7 +1538,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Match must be less than or equal to {1}..
+        ///   Looks up a localized string similar to Max Single Game must be less than or equal to {1}..
         /// </summary>
         public static string lblalertMaxPerMatchCompare {
             get {
@@ -1529,7 +1547,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Bet must be greater than or equal to.
+        ///   Looks up a localized string similar to Min Single Bet must be greater than or equal to.
         /// </summary>
         public static string lblalertMinbetCompare {
             get {
@@ -2141,7 +2159,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Bet.
+        ///   Looks up a localized string similar to Max Single Bet.
         /// </summary>
         public static string lblMaxBet {
             get {
@@ -2159,7 +2177,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Per Match.
+        ///   Looks up a localized string similar to Max Single Game.
         /// </summary>
         public static string lblMaxPerMatch {
             get {
@@ -2231,7 +2249,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Bet.
+        ///   Looks up a localized string similar to Min Single Bet.
         /// </summary>
         public static string lblMinBet {
             get {
@@ -2488,6 +2506,15 @@ namespace Apollo.Age.Resources {
         public static string lblPostdate {
             get {
                 return ResourceManager.GetString("lblPostdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.B..
+        /// </summary>
+        public static string lblRB {
+            get {
+                return ResourceManager.GetString("lblRB", resourceCulture);
             }
         }
         
@@ -2978,7 +3005,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Max Bet should be less than or equal to Max Per Match.
+        ///   Looks up a localized string similar to {0} - The Max Single Bet should be less than or equal to Max Single Game.
         /// </summary>
         public static string maxBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3041,6 +3068,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member detailed edit.
+        /// </summary>
+        public static string MemberDetailEdit {
+            get {
+                return ResourceManager.GetString("MemberDetailEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Members.
         /// </summary>
         public static string memberList {
@@ -3077,7 +3113,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Min Bet should be less than or equal to Max Bet.
+        ///   Looks up a localized string similar to {0} - The Min Single Bet should be less than or equal to Max Single Bet.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxBet {
             get {
@@ -3086,7 +3122,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Min Bet should be less than or equal to Max Per Ball.
+        ///   Looks up a localized string similar to {0} - The Min Single Bet should be less than or equal to Max Per Ball.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerBall {
             get {
@@ -3095,7 +3131,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Min Bet should be less than or equal to Max Per Match.
+        ///   Looks up a localized string similar to {0} - The Min Single Bet should be less than or equal to Max Single Game.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3761,11 +3797,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Agency.
+        ///   Looks up a localized string similar to Search Agent.
         /// </summary>
-        public static string SearchAgency {
+        public static string SearchAgent {
             get {
-                return ResourceManager.GetString("SearchAgency", resourceCulture);
+                return ResourceManager.GetString("SearchAgent", resourceCulture);
             }
         }
         

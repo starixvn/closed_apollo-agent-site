@@ -1,13 +1,22 @@
-﻿@{
+﻿@using Apollo.Age.Resources;
+@{
 	var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
-	ViewBag.UserName = ViewBag.UserName ?? string.Empty;
-	ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
-	Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+	var userName = ViewBag.UserName ?? string.Empty;
+    ViewBag.Title = string.Format(titleFormat, userName);
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
 	var memberId = ViewBag.MemberId ?? 0;
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewAgentDetails/?memberId={0}&agentId={1}&userName={2}", memberId, ViewBag.CurentParentAgentId, userName));
 }
+
+@section header
+{
+    <div class="detail-information">
+        @Lang.MemberDetailEdit -- @Lang.Account : <strong>@memberId</strong> -- @Lang.Name <strong>@userName</strong>  -- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+    </div>
+}
+@Html.Hidden("backUrl", backLink)
 <div id="commissionSettingContainer"></div>
 <div id="bettingLimitContainer"></div>
-<div id="ptContainer"></div>
 
 @Html.Action("Index", "Instruction", new {
 	key = "MemberCommissionSetting",
@@ -23,12 +32,7 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
-@Html.Action("Index", "Instruction", new {
-	key = "MemberShareSetting",
-    trigger = "member-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+
 
 @Html.Action("Index", "Instruction", new {
 	key = "MemberCommissionSettingAdv",
@@ -60,6 +64,6 @@
             };
         }();
 	</script>
-	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&ugroup=@(ViewBag.UserGroup)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
+	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
 	<script src="~/views/account/resources/editsetting.js" type="text/javascript"></script>
 }

@@ -537,16 +537,16 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             boxTBody.appendChild(trSetting)
             // Share Settings
             var presetLabel = document.createElement("TD");
-            presetLabel.innerHTML = Language.SOCCER;
+            presetLabel.innerHTML = Language.SOCCER + ':';
             presetLabel.title = Language.SOCCER;
-            presetLabel.className = "share-setting-label";
+            presetLabel.className = "bet-setting-label";
             trSetting.appendChild(presetLabel);
 
             var item = this.items[0];
             //// Min Bet
             item.minBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MIN_BET,
+            Language.MIN_BET + ':',
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '>= '.FormatNumber(item.MinBetMax),
             item.MinBet,
             false,
@@ -555,7 +555,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             //// Max Bet
             item.maxBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MAX_BET,
+            Language.MAX_BET + ':',
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxBetMin),
             item.MaxBet,
             false,
@@ -564,9 +564,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             /// Max Per Match
             item.maxPerMatchElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MAX_PER_MATCH,
+            Language.MAX_PER_MATCH + ':',
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxPerMatchMin),
-            item.MaxPerMatch,
+            item.MaxPerMatch ,
             false,
             "max-match");
 

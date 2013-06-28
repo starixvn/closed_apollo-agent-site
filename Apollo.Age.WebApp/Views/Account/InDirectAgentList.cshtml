@@ -12,7 +12,7 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
-    var backLink = Url.Content(HttpUtility.UrlEncode(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 }
 @using (Html.BeginForm())
@@ -60,7 +60,7 @@
         }
         <div class="item">
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
-            <input type="submit" class="za_button" value="@Lang.SearchAgency" id="submit">
+            <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
         </div>
     </div>     
     <img src="/_GlobalResources/Images/top_04.gif" alt="">
@@ -101,7 +101,7 @@
                 <td>
                     @if (item.NumberOfAgent != 0)
                     { 
-                        @Html.ActionLink(item.NumberOfAgent.ToString(), "InDirectAgentList",
+                        @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else
@@ -112,7 +112,7 @@
                 <td>
                     @if (item.NumberOfMember != 0)
                     { 
-                        @Html.ActionLink(item.NumberOfMember.ToString(), "InDirectMemberList",
+                        @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                     }
                     else

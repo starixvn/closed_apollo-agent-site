@@ -26,6 +26,7 @@
                     alert(LANGUAGES.MessageValidateWithArchivedDate);
                 }
                 else {
+                    $.blockUI();
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
@@ -34,19 +35,44 @@
                 }
             });
 
+            $(".view-agentwinloss").on("click", function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl("Reports/AgentWinLoss?FromDate="
+                    + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+                    + "&AgentId=" + $(this).attr("agentid")
+                    + "&AgentName=" + $(this).attr("agentname")
+                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
+                location.href = url;
+            });
+
+            $(".view-memberwinloss").on("click", function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl("Reports/MemberWinLoss?FromDate="
+                    + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+                    + "&AgentId=" + $(this).attr("agentid")
+                    + "&AgentName=" + $(this).attr("agentname")
+                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
+                location.href = url;
+            });
+
             $("#btnCancel").bind('click', function () {
-//                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
+                $.blockUI();
+                //                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
                 //                location.href = url;
                 history.back();
                 return false;
             });
 
             $("#btnBack").bind('click', function () {
+                $.blockUI();
                 history.back();
                 return false;
             });
 
             $(".navigation").bind('click', function () {
+                $.blockUI();
                 var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid") + "&AgentName=" + $(this).html()
                     + '&FromDate=' + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
@@ -98,6 +124,8 @@
 } (jQuery);
 
 $(document).ready(function () {
+    $.blockUI();
     WINLOSS.init();
     APOLLO.initPageInfo();
+    $.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
