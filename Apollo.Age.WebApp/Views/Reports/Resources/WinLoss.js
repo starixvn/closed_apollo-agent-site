@@ -80,7 +80,7 @@
                 location.href = url;
             });
 
-            $(".ui-datepicker-trigger").attr("title", "");
+            //$(".ui-datepicker-trigger").attr("title", "");
 
             $(".dateRange").bind('click', function () {
                 /* Range type value

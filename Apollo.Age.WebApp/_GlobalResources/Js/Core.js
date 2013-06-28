@@ -211,6 +211,7 @@ if (typeof jQuery != 'undefined') {
 							showOn: "button",
 							buttonImage: "../_globalResources/css/img/calendar.gif",
 							buttonImageOnly: true,
+							buttonText: "",
 							beforeShow: function (input, inst) {
 								inst.dpDiv.css({ marginTop: '2px' });
 							},
