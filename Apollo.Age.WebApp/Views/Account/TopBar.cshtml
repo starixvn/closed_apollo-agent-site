@@ -1,5 +1,6 @@
 ﻿@model ICurrentSession
 @using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
 @{
     Layout = null;
 }
@@ -34,12 +35,12 @@
                         <ul>
                             <li><span class="menu-list border-link">[@Lang.lblWager]</span>
                                 <ul class="sub-menu">
-                                    <li><a href="~/wagers/Soccer" target="main">@Lang.lblSC</a></li>
-                                    <li><a href="~/wagers/BkNFLRugby" target="main">@Lang.lblBkNflRugby</a></li>
-                                    <li><a href="~/wagers/Tennis" target="main">@Lang.lblTN</a></li>
-                                    <li><a href="~/wagers/VolleyballBadminton" target="main">@Lang.lblVbBdmTt</a></li>
-                                    <li><a href="~/wagers/Baseball" target="main">@Lang.lblBs</a></li>
-                                    <li><a href="~/wagers/Others" target="main">@Lang.other</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.SC" target="main">@Lang.lblSC</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.BK_NFL_Rugby" target="main">@Lang.lblBkNflRugby</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.TN" target="main">@Lang.lblTN</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.VB" target="main">@Lang.lblVbBdmTt</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.BS" target="main">@Lang.lblBs</a></li>
+                                    <li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.Other" target="main">@Lang.other</a></li>
                                 </ul>
                             </li>
                             <li><span class="menu-list border-link">[@Lang.lblEmWager]</span>

@@ -16,8 +16,9 @@ namespace Fanex.BetList.Core
 			public string ugroup = "{ugroup}";
 			protected static string s0 = " ";
 			public string username = "{username}";
-			protected static string s1 = " ";
+			protected static string s1 = " <span class='red-color'>";
 			public string discount = "{discount}";
+			protected static string s2 = "<span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -28,6 +29,7 @@ namespace Fanex.BetList.Core
 					bd.Append(username);
 					bd.Append(s1);
 					bd.Append(discount);
+					bd.Append(s2);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

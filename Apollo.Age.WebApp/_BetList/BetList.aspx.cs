@@ -181,7 +181,7 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (type.Equals("mixparlay"))
             {
-                bettype = Convert.ToString((int)BetTypes.Mix_Parlay);
+                bettype = Convert.ToString((int)BetTypes.MixParlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
             }
             else if (type.Equals("combmixparlaybetlist"))

@@ -7,44 +7,6 @@
 
     public static class MenuService
     {
-        public static List<WagerSport> GenerateSportMenu()
-        {
-            var sportList = new List<WagerSport>{
-                new WagerSport{
-                    Id = WagersSporttypes.SC,
-                    Name = Lang.lblSC,
-                    Url = "~/wagers/Soccer"
-                },
-                new WagerSport{
-                    Id =  WagersSporttypes.BK_NFL_Rugby,
-                    Name = Lang.lblBkNflRugby,
-                    Url = "~/wagers/BkNFLRugby"
-                },
-                new WagerSport{
-                    Id = WagersSporttypes.TN,
-                    Name = Lang.lblTN,
-                    Url = "~/wagers/Tennis"
-                },
-                new WagerSport{
-                    Id = WagersSporttypes.VB,
-                    Name = Lang.lblVbBdmTt,
-                    Url = "~/wagers/VolleyballBadminton"
-                },
-                new WagerSport{
-                    Id = WagersSporttypes.BS,
-                    Name = Lang.lblBs,
-                    Url = "~/wagers/BaseBall"
-                },
-                new WagerSport{
-                    Id =WagersSporttypes.Other,
-                    Name = Lang.other,
-                    Url = "~/wagers/Other"
-                },
-            };
-
-            return sportList;
-        }
-
         public static List<WagerSport> GenerateSoccerBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
@@ -89,7 +51,7 @@
             return BettypleList;
         }
 
-        public static List<WagerSport> Generate_Tennis_BettypesMenu()
+        public static List<WagerSport> GenerateTennisBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
                 new WagerSport{
@@ -113,7 +75,7 @@
             return BettypleList;
         }
 
-        public static List<WagerSport> Generate_Volleyball_BettypesMenu()
+        public static List<WagerSport> GenerateVolleyballBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
                 new WagerSport{
@@ -137,7 +99,7 @@
             return BettypleList;
         }
 
-        public static List<WagerSport> Generate_Baseball_BettypesMenu()
+        public static List<WagerSport> GenerateBaseballBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
                 new WagerSport{
@@ -169,7 +131,7 @@
             return BettypleList;
         }
 
-        public static List<WagerSport> Generate_BK_NFL_Rugby_BettypesMenu()
+        public static List<WagerSport> GenerateBKNFLRugbyBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
                 new WagerSport{
@@ -197,7 +159,7 @@
             return BettypleList;
         }
 
-        public static List<WagerSport> Generate_Other_BettypesMenu()
+        public static List<WagerSport> GenerateOtherBettypesMenu()
         {
             var BettypleList = new List<WagerSport>{
                 new WagerSport{

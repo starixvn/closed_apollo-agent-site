@@ -11,9 +11,17 @@ namespace Apollo.Age.BetList.ViewModels
 {
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
+    using Apollo.Age.Entities;
+    using Fanex.BetList.Core.Entities;
 
     public class BetListViewModel
     {
-        public List<TicketText> ListAgentComm { get; set; }
+        public int CurrentMainShareHolderId { get; set; }
+
+        public int CurrentAgentId { get; set; }
+
+        public IEnumerable<Agent> ListMainShareHolders { get; set; }
+
+        public List<TicketText> TicketList { get; set; }
     }
 }
