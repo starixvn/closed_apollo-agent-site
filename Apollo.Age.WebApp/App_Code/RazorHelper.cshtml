@@ -315,6 +315,26 @@
                     wagesBettypes = MenuService.Generate_BK_NFL_Rugby_BettypesMenu();
                     break;
                 }
+            case WagersSporttypes.TN :
+                {
+                    wagesBettypes = MenuService.Generate_Tennis_BettypesMenu();
+                    break;
+                }
+            case WagersSporttypes.VB:
+                {
+                    wagesBettypes = MenuService.Generate_Volleyball_BettypesMenu();
+                    break;
+                }
+            case WagersSporttypes.BS:
+                {
+                    wagesBettypes = MenuService.Generate_Baseball_BettypesMenu();
+                    break;
+                }
+            case WagersSporttypes.Other:
+                {
+                    wagesBettypes = MenuService.Generate_Other_BettypesMenu();
+                    break;
+                }
         }
 
         foreach (var bettype in wagesBettypes)
