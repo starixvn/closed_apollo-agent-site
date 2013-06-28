@@ -20,8 +20,6 @@ namespace Apollo.Age.Wagers.Criterias
     /// </summary>
     public class GetLeagueCriteria : CriteriaBase
     {
-        public DateTime FromeDate { get; set; }
-
         public string SportType { get; set; }
 
         public override string GetSettingKey()

@@ -5,7 +5,8 @@
 @using Fanex.Logging
 @using Apollo.Age.Wagers.Core;
 @using Apollo.Age.Resources
-@using  Apollo.Age.Core
+@using Apollo.Age.Core
+@using Apollo.Age.Services
 @helper ShowNoInfo(int colspan, string cssClass = "no_info")
     {
     <!--NotFoundContent-->
@@ -16,7 +17,7 @@
     </tr>
     <!--/NotFoundContent-->
 }
-@helper RefreshCountDown(string refreshCountDownId, 
+@helper RefreshCountDown(string refreshCountDownId,
     int[] timerArray,
     string onRefresh = "location.reload()")
     {
@@ -286,7 +287,6 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
-
 @helper RenderWagersBettypeMenu(string sport)
     {
         var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
@@ -302,7 +302,7 @@
                     wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
                     break;
                 }
-            case SingbetSportConstant.Tennis :
+            case SingbetSportConstant.Tennis:
                 {
                     wagesBettypes = MenuService.GenerateTennisBettypesMenu();
                     break;
@@ -326,7 +326,7 @@
 
         foreach (var bettype in wagesBettypes)
         {
-            <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
+    <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
         }
         
 }
@@ -357,9 +357,10 @@
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
                         {
+                            <option value="0">@Lang.all</option>
                             foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@item.Name</option>
+                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
                             }
                         }
                     </select>
