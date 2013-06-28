@@ -136,6 +136,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ViewResult AgentWinLoss(AgentWinLossViewModel model)
         {
+            model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
             var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
             var isSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 

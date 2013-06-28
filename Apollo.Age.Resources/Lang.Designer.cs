@@ -719,6 +719,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct members.
+        /// </summary>
+        public static string DirectMembers {
+            get {
+                return ResourceManager.GetString("DirectMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Displaying.
         /// </summary>
         public static string Displaying {
@@ -3059,6 +3068,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member detailed edit.
+        /// </summary>
+        public static string MemberDetailEdit {
+            get {
+                return ResourceManager.GetString("MemberDetailEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Members.
         /// </summary>
         public static string memberList {
@@ -3779,11 +3797,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Agency.
+        ///   Looks up a localized string similar to Search Agent.
         /// </summary>
-        public static string SearchAgency {
+        public static string SearchAgent {
             get {
-                return ResourceManager.GetString("SearchAgency", resourceCulture);
+                return ResourceManager.GetString("SearchAgent", resourceCulture);
             }
         }
         

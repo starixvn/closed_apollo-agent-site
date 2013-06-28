@@ -222,6 +222,35 @@ td {
 }
 
 /* FIX IE */
+.ie {
+	#news_main .login-bg .right .toolbar {		
+		li, li a, li a.outright, .sub-menu li a:hover {
+			cursor: pointer;
+		}
+
+		li a.outright {
+			color: @black; 
+		}
+
+		.border-link {			
+			border-right: #ECE9D8 1px solid;
+			border-left: #ECE9D8 1px solid;
+			padding: 0 3px;
+
+			&:hover {
+				border-bottom: #A0A0A0 1px solid;
+				border-right: #A0A0A0 1px solid;
+				border-left: #fff 1px solid;
+			}
+		}
+	}	
+}
+
+.eq-ie7 {
+	#news_main .login-bg .right .toolbar {
+		height: 19px;
+	}
+}
 
 .eq-ie8 {
 	#news_main .login-bg .right .toolbar {
