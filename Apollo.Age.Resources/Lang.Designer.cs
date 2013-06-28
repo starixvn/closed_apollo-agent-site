@@ -3059,6 +3059,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member detailed edit.
+        /// </summary>
+        public static string MemberDetailEdit {
+            get {
+                return ResourceManager.GetString("MemberDetailEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Members.
         /// </summary>
         public static string memberList {
