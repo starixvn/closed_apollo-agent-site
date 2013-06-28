@@ -1,15 +1,25 @@
-﻿@{
+﻿@using Apollo.Age.Resources;
+@{
     var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
-    ViewBag.UserName = ViewBag.UserName ?? string.Empty;
-    ViewBag.Title = string.Format(titleFormat, ViewBag.UserName);
-    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+    var userName = ViewBag.UserName ?? string.Empty;
+    ViewBag.Title = string.Format(titleFormat, ViewBag.userName);
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
     var agentId = ViewBag.AgentId ?? 0;
+    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}", agentId, ViewBag.AgentLevel, userName);
 }
+
+@section header
+{
+    <div class="detail-information">
+        @Lang.AgencyDetailEdit -- @Lang.Account : <strong>@agentId</strong> -- @Lang.Name <strong>@userName</strong>  --<a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a><a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+    </div>
+}
+
+@Html.Hidden("backUrl", backLink)
+
 <div id="commissionSettingContainer">
 </div>
 <div id="bettingLimitContainer">
-</div>
-<div id="ptContainer">
 </div>
 
 
@@ -28,12 +38,7 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
-@Html.Action("Index", "Instruction", new {
-	key = "AgentShareSetting",
-    trigger = "agent-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+
 
 @Html.Action("Index", "Instruction", new {
 	key = "AgentCommissionSettingAdv",
@@ -49,12 +54,7 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
-@Html.Action("Index", "Instruction", new {
-	key = "AgentShareSettingAdv",
-    trigger = "agent-share-setting-info-button-adv",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+
 
 @Html.Action("Index", "Instruction", new {
 	key = "MainShareHolderBetSetting",
@@ -77,12 +77,7 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
-@Html.Action("Index", "Instruction", new {
-    key = "MainShareHolderShareSettingAdv",
-    trigger = "mainshareholder-share-setting-info-button-adv",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+
 
 @Html.Action("Index", "Instruction", new {
     key = "MainShareHolderCommissionSetting",

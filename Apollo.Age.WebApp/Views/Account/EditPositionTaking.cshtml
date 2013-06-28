@@ -17,7 +17,40 @@
 
 @Html.Hidden("backUrl",linkBack) 
 <div id="ptContainer"></div>
-
+@if (isEditAgent)
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentShareSetting",
+        trigger = "agent-share-setting-info-button",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "AgentShareSettingAdv",
+        trigger = "agent-share-setting-info-button-adv",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MainShareHolderShareSettingAdv",
+        trigger = "mainshareholder-share-setting-info-button-adv",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+}
+else
+{
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberShareSetting",
+        trigger = "member-share-setting-info-button",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+}
 @section scripts
 {
     <script type="text/javascript">

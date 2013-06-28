@@ -1,17 +1,14 @@
 ﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
 @{
     Layout = null;
     var menu = new List<string[]>
 	{
-		new string[] {"~/wagers/BkNFLRugby/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/BkNFLRugby/FirstHalfRB", Lang.lbl1stHalfRB},
-		new string[] {"~/wagers/BkNFLRugby/Specialbet", Lang.lblSpecialbet},
-		new string[] {"~/wagers/BkNFLRugby/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/BkNFLRugby/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
-		new string[] {"~/wagers/BkNFLRugby/Total", Lang.total},
-		new string[] {"~/wagers/BkNFLRugby/HalfFull", Lang.lblHalfFull},
-		new string[] {"~/wagers/BkNFLRugby/Parlay",Lang.lblParlay},
-		new string[] {"~/wagers/BkNFLRugby/Start", Lang.lblStart}
+		new string[] {"~/wagers/BkNFLRugby?bettype=1", Lang.lblStraight},		
+		new string[] {"~/wagers/BkNFLRugby?bettype=2", Lang.lblRB},		
+		new string[] {"~/wagers/BkNFLRugby?bettype=3", Lang.total},
+		new string[] {"~/wagers/BkNFLRugby?bettype=4", Lang.lblHalfFull},
+		new string[] {"~/wagers/BkNFLRugby?bettype=5",Lang.lblParlay}		
 	};
     int menuItemCount = menu.Count;
 }
@@ -26,11 +23,11 @@
     <div id="function-bar">
         <div class="item">
             @Lang.lblOP.
-            <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="1">Soccer A</option>
-                <option value="2">Soccer B</option>
-                <option value="3">Soccer C</option>
-                <option value="4">Soccer D</option>
+            <select class="za_select" name="ltype" id="ltype">
+                <option value="1">Baskeball A</option>
+                <option value="2">Baskeball B</option>
+                <option value="3">Baskeball C</option>
+                <option value="4">Baskeball D</option>
             </select>
         </div>
         <div class="before-filter">
@@ -48,8 +45,35 @@
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
-        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/wagers/BkNFLRugby/Straight">
-        </iframe>
+        <div id="content_main">
+            <div id="header_main">@ViewBag.Title</div>
+            <div class="box-header" id="main-shareholder-box">
+                <div class="row">
+                    <div class="cell">
+                        <div class="label">
+                            <label for="ddlLeague">
+                                @Lang.view&nbsp;:</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DropDownList("ViewOption", new List<SelectListItem>
+                       {
+                           new SelectListItem{ Value="0", Text=Lang.all},
+                           new SelectListItem{Value="1",Text=Lang.DirectMembers}
+                       })
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="ddlLeague">
+                                @Lang.league&nbsp;:</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
