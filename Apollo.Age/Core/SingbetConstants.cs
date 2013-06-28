@@ -9,7 +9,7 @@
 
 namespace Apollo.Age.Core
 {
-    public static class SingbetConstants
+    public static class SingbetSportConstant
     {
         public const string All = "0";
         
