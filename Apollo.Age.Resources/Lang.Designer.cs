@@ -3797,11 +3797,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Agency.
+        ///   Looks up a localized string similar to Search Agent.
         /// </summary>
-        public static string SearchAgency {
+        public static string SearchAgent {
             get {
-                return ResourceManager.GetString("SearchAgency", resourceCulture);
+                return ResourceManager.GetString("SearchAgent", resourceCulture);
             }
         }
         

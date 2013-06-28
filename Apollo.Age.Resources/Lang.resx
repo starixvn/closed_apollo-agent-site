@@ -1451,8 +1451,8 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages</value>
   </data>
-  <data name="SearchAgency" xml:space="preserve">
-    <value>Search Agency</value>
+  <data name="SearchAgent" xml:space="preserve">
+    <value>Search Agent</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
@@ -1619,5 +1619,8 @@
   </data>
   <data name="MemberDetailEdit" xml:space="preserve">
     <value>Member detailed edit</value>
+  </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct members</value>
   </data>
 </root>
