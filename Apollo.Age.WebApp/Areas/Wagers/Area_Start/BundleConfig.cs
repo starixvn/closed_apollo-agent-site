@@ -25,6 +25,13 @@
            "~/_GlobalResources/Js/Core.js",
            "~/Areas/Wagers/Views/Soccer/Resources/Soccer.js"
            ));
+
+           bundles.Add(new ScriptBundle("~/areas/Wagers/Tennis").Include(
+           "~/_GlobalResources/Js/head.js",
+           "~/_GlobalResources/Js/jquery.js",
+           "~/_GlobalResources/Js/Core.js"//,
+           //"~/Areas/Wagers/Views/Soccer/Resources/Tennis.js"
+           ));
         }
     }
 }

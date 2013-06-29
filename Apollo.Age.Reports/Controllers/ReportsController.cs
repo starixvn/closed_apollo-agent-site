@@ -127,8 +127,8 @@ namespace Apollo.Age.Reports.Controllers
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
             matchEnteredViewModel.BalanceUpDay = _reportService.GetBalanceUpDay();
-            matchEnteredViewModel.SportList = SingbetSportService.GetSport(false);
-            matchEnteredViewModel.BettypeList = SingbetSportService.GetBettype();
+            matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+            matchEnteredViewModel.BettypeList = ReportService.GetBettype();
             matchEnteredViewModel.matchEnteredModelList = _winLossService.GetMatchEntered();
 
             return View(matchEnteredViewModel);
