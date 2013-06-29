@@ -96,7 +96,7 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-	if (parent.APOLLO.currentOpenDialog) {
+	if (APOLLO.currentOpenDialog) {
 		var heightPopup = 630;
 		if (APOLLO.browser.msie) {
 			heightPopup = 615;
