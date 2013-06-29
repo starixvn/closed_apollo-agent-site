@@ -19,6 +19,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -42,55 +43,60 @@ namespace Apollo.Age.Wagers.Controllers
         {
 
             ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
-            ViewBag.Title = bettype;
+            string bettypeText = string.Empty;
+            
+            switch (bettype)
+            {
+                case WagersBettypes.Straight:
+                    {
+                        bettypeText = Resources.Lang.lblStraight;
+                        break;
+                    }
+                case WagersBettypes.FirstHalf:
+                    {
+                        bettypeText = Resources.Lang.lbl1sthalf;
+                        break;
+                    }
+                case WagersBettypes.RB:
+                    {
+                        bettypeText = Resources.Lang.lblRB;
+                        break;
+                    }
+                case WagersBettypes.SpecialBet:
+                    {
+                        bettypeText = Resources.Lang.lblSpecialbet;
+                        break;
+                    }
+                case WagersBettypes.CorrectScore:
+                    {
+                        bettypeText = Resources.Lang.correctscore;
+                        break;
+                    }
+                case WagersBettypes.FirstHalfCorrectScore:
+                    {
+                        bettypeText = Resources.Lang.lbl1stHalfCorrectScore;
+                        break;
+                    }
+                case WagersBettypes.HalfFull:
+                    {
+                        bettypeText = Resources.Lang.lblHalfFull;
+                        break;
+                    }
+                case WagersBettypes.Total:
+                    {
+                        bettypeText = Resources.Lang.total;
+                        break;
+                    }
+                case WagersBettypes.Parlay:
+                    {
+                        bettypeText = Resources.Lang.lblParlay;
+                        break;
+                    }
+            }
+           // string url = string.Format("~/Views/Results/{0}.cshtml", viewName);
+            ViewBag.Title = bettypeText;
             return View();
         }
-
-
-
-        public ActionResult Straight()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalf()
-        {
-            return View();
-        }
-
-        public ActionResult Specialbet()
-        {
-            return View();
-        }
-
-        public ActionResult Correctscore()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
-
-        public ActionResult Parlay()
-        {
-            return View();
-        }
-
-        public ActionResult RunningBall()
-        {
-            return View();
-        }
+              
     }
 }
