@@ -1656,10 +1656,37 @@
   <data name="SoccerDeadballHandicap" xml:space="preserve">
     <value>Soccer Deadball Handicap</value>
   </data>
+  <data name="lbl0_1" xml:space="preserve">
+    <value>0~1</value>
+  </data>
+  <data name="lbl1x2Wager" xml:space="preserve">
+    <value>1x2/Wagers</value>
+  </data>
+  <data name="lbl2_3" xml:space="preserve">
+    <value>2~3</value>
+  </data>
+  <data name="lbl4_6" xml:space="preserve">
+    <value>4~6</value>
+  </data>
   <data name="lbl7up" xml:space="preserve">
     <value>7up</value>
   </data>
-  <data name="lblEven" xml:space="preserve">
+  <data name="lblHadicapWager" xml:space="preserve">
+    <value>Handicap/Wagers</value>
+  </data>
+  <data name="lblHomeAway" xml:space="preserve">
+    <value>Home/Away</value>
+  </data>
+  <data name="lblOverUnderWager" xml:space="preserve">
+    <value>Over/Under/Wagers</value>
+  </data>
+  <data name="lblWagersGolds" xml:space="preserve">
+    <value>Wagers/Golds</value>
+  </data>
+  <data name="lblMatchCode" xml:space="preserve">
+    <value>Match Code</value>
+  </data>
+<data name="lblEven" xml:space="preserve">
     <value>Even</value>
   </data>
   <data name="lblFeature" xml:space="preserve">
