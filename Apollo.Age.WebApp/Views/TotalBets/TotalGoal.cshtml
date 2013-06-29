@@ -50,10 +50,11 @@
                         classRow = string.Empty;
                     }
                 <tr class="item @item.Closed @classRow">
-                 <td class="c show-time" >
-                       @Html.Raw(item.ShowTime.TrimEnd('M'))
-                    </td>
-                    <td style="width: 150px;">
+                
+                <td class="c show-time" >
+            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
+            </td>
+                    <td style="width: 150px;" class="home-away-team">
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
                             href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
                             @item.HomeTeam

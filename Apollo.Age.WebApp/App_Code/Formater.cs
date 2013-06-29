@@ -519,4 +519,9 @@ public class Formater
         return TruncateWithTip(value, maxLength, false);
     }
     #endregion
+
+    public static string ShowTimeFormat(string showTime)
+    {
+        return string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace('/', '-').TrimEnd('M');
+    }
 }

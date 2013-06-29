@@ -23,12 +23,12 @@
 {    
     <tr>
          <td class="c show-time" >
-                       @Html.Raw(item.ShowTime.TrimEnd('M'))
-                    </td>
+            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
+            </td>
         <td class="c" >
             @item.LeagueName
         </td>
-        <td class="no-border-bottom  valign-top">
+        <td class="no-border-bottom  valign-top home-away-team">
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.HomeTeam

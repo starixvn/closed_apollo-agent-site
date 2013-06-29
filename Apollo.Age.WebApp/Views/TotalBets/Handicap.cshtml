@@ -59,14 +59,14 @@
     }
     
     <tr @classRow>
-       <td class="c show-time" >
-                       @Html.Raw(item.ShowTime.TrimEnd('M'))
-                    </td>
+        <td class="c show-time" >
+            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
+            </td>
         @ShowTime(item)
         <td class="c" >
             @item.LeagueName
         </td>
-        <td class="valign-top">
+        <td class="valign-top  home-away-team">
             @item.HomeTeam
             <br />
             @item.AwayTeam
@@ -80,15 +80,15 @@
 
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
     {
-    if (currentLeagueId != item.LeagueId)
-    { 
+        if (currentLeagueId != item.LeagueId)
+        { 
     <!--LeagueContents-->
     <tr class="league">
         <td colspan="11">
             @item.LeagueName
         </td>
     </tr>
-    }            
+        }            
 }
 
 

@@ -32,14 +32,14 @@
     }
     
     <tr @classRow>
-         <td class="c show-time" >
-                       @Html.Raw(item.ShowTime.TrimEnd('M'))
-                    </td>
+        <td class="c show-time" >
+            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
+            </td>
         @ShowTime(item)
         <td class="c">
             @item.LeagueName
         </td>
-        <td  class="no-border-bottom  valign-top">
+        <td  class="no-border-bottom  valign-top home-away-team">
             @item.HomeTeam
             <br />
             @item.AwayTeam

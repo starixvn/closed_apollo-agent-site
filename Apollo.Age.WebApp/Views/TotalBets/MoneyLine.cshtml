@@ -101,12 +101,12 @@
             <!--MatchContents-->
             <tr class='r'>
                 <td class="c show-time" >
-                       @Html.Raw(item.ShowTime.TrimEnd('M'))
-                    </td>
+            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
+            </td>
                 <td class="c">
                     @item.LeagueName
                 </td>
-                <td class="l no-border-bottom  valign-top">
+                <td class="l no-border-bottom  valign-top home-away-team">
                     @item.HomeTeam
                     <br />
                     @item.AwayTeam
