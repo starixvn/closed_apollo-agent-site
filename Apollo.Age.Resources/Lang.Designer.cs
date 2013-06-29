@@ -2789,6 +2789,42 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soccer A.
+        /// </summary>
+        public static string lblsoccerA {
+            get {
+                return ResourceManager.GetString("lblsoccerA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer B.
+        /// </summary>
+        public static string lblsoccerB {
+            get {
+                return ResourceManager.GetString("lblsoccerB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer C.
+        /// </summary>
+        public static string lblsoccerC {
+            get {
+                return ResourceManager.GetString("lblsoccerC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer D.
+        /// </summary>
+        public static string lblsoccerD {
+            get {
+                return ResourceManager.GetString("lblsoccerD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Soccer Share (%).
         /// </summary>
         public static string lblSoccerPT {
