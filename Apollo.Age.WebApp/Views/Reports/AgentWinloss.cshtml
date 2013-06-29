@@ -23,8 +23,10 @@
     @RazorHelper.Navigation(Model.DownlinePath)
 }
 <table class="tblRpt report">
-    @if (Model.IsSuper)
+    @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
     {
+        if (Model.IsSuper)
+        {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -55,11 +57,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
-            {
-                var list = Model.AgentWinLossList;
-
-                foreach (var item in list)
+                @foreach (var item in Model.AgentWinLossList)
                 {
                     rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
@@ -89,15 +87,10 @@
                     </td>
                 </tr>
                 }
-            }
-            else
-            {
-                @RazorHelper.ShowNoInfo(7)
-            }
         </tbody>
-    }
-    else
-    {
+        }
+        else
+        {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -133,9 +126,9 @@
                 </th>
             </tr>
         </thead>
-
-        if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
-        {
+            
+        <tbody>
+            @{
             var list = Model.AgentWinLossList;
             decimal totalTurnover = 0;
             decimal totalActual = 0;
@@ -144,8 +137,7 @@
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
-
-        <tbody>
+            }
             @foreach (var item in list)
             {
                 totalTurnover += item.Turnover;
@@ -235,10 +227,20 @@
             </tr>
         </tfoot>
         }
-        else
-        {
-        @RazorHelper.ShowNoInfo(9)
-        }
+    }
+    else
+    {
+        <thead>
+            <th class="none-result">
+                No data for search
+            </th>
+            
+        </thead>
+        <tbody>
+            <th class="row-exit">
+                <a href="javascript:;" id= "lnkExit">Exit</a>
+            </th>
+        </tbody>
     }
 </table>
 @Html.Hidden("ddlSport", Model.Sporttypes)
