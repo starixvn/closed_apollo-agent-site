@@ -65,6 +65,8 @@ if (typeof jQuery != 'undefined') {
                     EDITSETTING.currentIsSimpleMode = false;
                     EDITSETTING.initOthers(false);
                 });
+
+                $('#tbl-edit').show();
             },
             saveSetting: function () {
                 if (EDITSETTING.commissionSettingElement.Validate()

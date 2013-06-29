@@ -65,6 +65,8 @@ if (typeof jQuery != 'undefined') {
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
                     EDITPOSITIONTAKING.initOthers(false);
                 });
+
+                $('#tbl-edit').show();
             },
             updatePositionTakingSetting: function () {
                 var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();

@@ -47,18 +47,20 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseballController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\BkNFLRugbyController.cs" />
+    <Compile Include="Controllers\BasketballController.cs" />
     <Compile Include="Controllers\OthersController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
     <Compile Include="Controllers\TennisController.cs" />
-    <Compile Include="Controllers\VolleyballBadmintonController.cs" />
+    <Compile Include="Controllers\VolleyballController.cs" />
     <Compile Include="Core\WagersBettypes.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
+    <Compile Include="Criterias\GetWagersStraightCriteria.cs" />
     <Compile Include="Entities\WagerSport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWagersService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\WagersService.cs" />
+    <Compile Include="ViewModels\WagersStraightViewModel.cs" />
     <Compile Include="ViewModels\WagerViewModels.cs" />
   </ItemGroup>
   <ItemGroup>

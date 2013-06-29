@@ -136,16 +136,16 @@
     <value>AH</value>
   </data>
   <data name="alertIncorrectMaxBet" xml:space="preserve">
-    <value>Incorrect Max Single Bet</value>
+    <value>Incorrect Single Bet Max</value>
   </data>
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>Incorrect Max Per Ball</value>
   </data>
   <data name="alertIncorrectMaxPerMatch" xml:space="preserve">
-    <value>Incorrect Max Single Game</value>
+    <value>Incorrect Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
-    <value>Incorrect Min Single Bet</value>
+    <value>Incorrect Single Bet Min</value>
   </data>
   <data name="all" xml:space="preserve">
     <value>All</value>
@@ -340,16 +340,16 @@
     <value>Agent Outstanding</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
-    <value>Max Single Bet must be less than or equal to</value>
+    <value>Single Bet Max must be less than or equal to</value>
   </data>
   <data name="lblalertMaxPerBallCompare" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMaxPerMatchCompare" xml:space="preserve">
-    <value>Max Single Game must be less than or equal to {1}.</value>
+    <value>Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
-    <value>Min Single Bet must be greater than or equal to</value>
+    <value>Single Bet Min must be greater than or equal to</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>HDP, OU, OE</value>
@@ -361,7 +361,7 @@
     <value>Bet List</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Bet Limit</value>
   </data>
   <data name="lblComm" xml:space="preserve">
     <value>Comm</value>
@@ -410,10 +410,10 @@
     <comment>Label Number Game</comment>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Max Single Bet</value>
+    <value>Single Bet Max</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Max Single Game</value>
+    <value>Single Game</value>
   </data>
   <data name="lblMemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
@@ -431,7 +431,7 @@
     <value>Message</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Min Single Bet</value>
+    <value>Single Bet Min</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -882,7 +882,7 @@
     <value>Pre Game</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
-    <value>Copy all below bet settings from {0}</value>
+    <value>Copy all below bet limit from {0}</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0} position taking setting is being applied to:</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Max Single Bet should be less than or equal to Max Single Game</value>
+    <value>{0} - The Single Bet Max should be less than or equal to Single Game</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Single Bet</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Single Bet Max</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Single Game</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Single Game</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
@@ -945,7 +945,7 @@
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Per Ball</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Parent</value>
@@ -1047,7 +1047,7 @@
     <value>Commission Group</value>
   </data>
   <data name="lblCommissionSetting" xml:space="preserve">
-    <value>Commission Setting</value>
+    <value>Commission</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
     <value>% in Agent:</value>
@@ -1137,7 +1137,7 @@
     <value>Commission Setting Instructions</value>
   </data>
   <data name="BetSettingInstructions" xml:space="preserve">
-    <value>Bet Setting Instructions</value>
+    <value>Bet Limit Instructions</value>
   </data>
   <data name="AgentWinLossInstructions" xml:space="preserve">
     <value>Agent WinLoss Instructions</value>
@@ -1558,10 +1558,10 @@
     <value>D</value>
   </data>
   <data name="MaxSingleBet" xml:space="preserve">
-    <value>Max Single Bet</value>
+    <value>Single Bet Max</value>
   </data>
   <data name="MinSingleBet" xml:space="preserve">
-    <value>Min Single Bet</value>
+    <value>Single Bet Min</value>
   </data>
   <data name="SingleGame" xml:space="preserve">
     <value>Single Game</value>
@@ -1576,7 +1576,7 @@
     <value>Name</value>
   </data>
   <data name="AgencyDetailEdit" xml:space="preserve">
-    <value>Agency detailed edit</value>
+    <value>Agent detailed edit</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1649,5 +1649,8 @@
   </data>
   <data name="NoneMembers" xml:space="preserve">
     <value>None Members</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>User Name</value>
   </data>
 </root>

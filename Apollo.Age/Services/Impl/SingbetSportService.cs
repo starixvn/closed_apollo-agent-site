@@ -20,31 +20,31 @@ namespace Apollo.Age.Services.Impl
         {
             var sportList = new List<SingbetSport>{
                 new SingbetSport{
-                    Id = SingbetSportConstant.All,
+                    Id = WagerSports.All,
                     Name = Lang.all
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.Soccer,
+                    Id = WagerSports.Soccer,
                     Name = Lang.soccer
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.BK_NFL_RUGBY,
+                    Id = WagerSports.Basketball_Football_Rugy,
                     Name = Lang.lblBkNflRugby
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.Tennis,
+                    Id = WagerSports.Tennis,
                     Name = Lang.Tennis
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.VB_BDM_TT,
+                    Id = WagerSports.Volleyball_Badminton_TableTennis,
                     Name = Lang.lblVbBdmTt
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.BaseBall,
+                    Id = WagerSports.BaseBall,
                     Name = Lang.Baseball
                 },
                 new SingbetSport{
-                    Id = SingbetSportConstant.Other,
+                    Id = WagerSports.Other,
                     Name = isOther ? Lang.other : Lang.InterEvent
                 }
             };
@@ -53,7 +53,7 @@ namespace Apollo.Age.Services.Impl
             {
                 var ouright = new SingbetSport
                 {
-                    Id = SingbetSportConstant.Outright,
+                    Id = WagerSports.Outright,
                     Name = Lang.lblOutRight
                 };
                 sportList.Add(ouright);
