@@ -32,7 +32,7 @@
     </Sport>
     <Sport Controller="Baseball" ResourceKey="">
         <BetType Action="Straight" ResourceKey="Straight" />
-        <BetType Action="FirstHalf" ResourceKey="FirstHalf" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
         <BetType Action="RunningBall" ResourceKey="RunningBall" />
         <BetType Action="Correctscore" ResourceKey="correctscore" />
         <BetType Action="Total" ResourceKey="total" />

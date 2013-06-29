@@ -1,18 +1,5 @@
 ﻿@using Apollo.Age.Resources
-@{
-    Layout = null;
-    var menu = new List<string[]>
-	{
-		new string[] {"~/wagers/baseball/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/baseball/FirstHalf", "1st Haft"},
-        new string[] {"~/wagers/baseball/RunningBall", Lang.RunningBall},
-		new string[] {"~/wagers/baseball/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/baseball/Total", Lang.total},
-		new string[] {"~/wagers/baseball/Parlay",Lang.lblParlay},
-		new string[] {"~/wagers/baseball/Start", Lang.lblStart}
-	};
-    int menuItemCount = menu.Count;
-}
+@using Apollo.Age.Wagers.Core
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -36,13 +23,7 @@
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
-        <ul class="menu">
-            @for (int i = 0; i < menu.Count; i++)
-            {
-                var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-            }
-        </ul>
+        @RazorHelper.RenderWagersMenu(WagersSportName.Baseball)
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
