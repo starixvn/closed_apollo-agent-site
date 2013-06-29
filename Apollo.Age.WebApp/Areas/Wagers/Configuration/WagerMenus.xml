@@ -7,15 +7,15 @@
         <BetType Action="Correctscore" ResourceKey="correctscore" />
         <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
         <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
-        <BetType Action="Total" ResourceKey="total" />        
-        <BetType Action="Parlay" ResourceKey="lblParlay" />        
+        <BetType Action="Total" ResourceKey="total" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
     </Sport>
     <Sport Controller="Basketball" ResourceKey="">
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="StraightAll" ResourceKey="lblStraightAll" />
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Quater" ResourceKey="lblQuarter" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
     </Sport>
     <Sport Controller="Tenis" ResourceKey="">
         <BetType Action="Straight" ResourceKey="" />
@@ -40,13 +40,14 @@
         <BetType Action="Start" ResourceKey="lblStart" />
     </Sport>
     <Sport Controller="Others" ResourceKey="">
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
+        <BetType Action="RB" ResourceKey="lblRB" />
+        <BetType Action="Correctscore" ResourceKey="correctscore" />
+        <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
+        <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
+        <BetType Action="Total" ResourceKey="total" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Start" ResourceKey="lblStart" />
     </Sport>
 </Wagers>
