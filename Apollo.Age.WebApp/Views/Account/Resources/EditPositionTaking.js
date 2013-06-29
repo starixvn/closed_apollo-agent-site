@@ -69,6 +69,7 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $('#tbl-edit').show();
+                $('#edit-warning').show();
             },
             updatePositionTakingSetting: function () {
                 var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();

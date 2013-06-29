@@ -39,10 +39,10 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
         }
-        else
+       @* else
         {
             @Html.Raw(item.ShowTime)
-        }
+        }*@
     </td>
 }
 
@@ -60,16 +60,14 @@
     
     <tr @classRow>
         <td class="c">
-            @if(item.KickOffTime != null){
-                @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-            }
+            @Html.Raw(item.ShowTime)
             
-            @if (item.LiveIndicator)
+            @*@if (item.LiveIndicator)
             {
                  <br />
                 <!--LiveNotice-->
                 <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-            }
+            }*@
         </td>
         @ShowTime(item)
         <td class="c" >
@@ -106,7 +104,9 @@
     <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 5%;">
-                @Apollo.Age.Resources.Lang.time
+                @Apollo.Age.Resources.Lang.time 
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT)
             </td>
             <td rowspan="2" style="width: 7%;">
                 @Apollo.Age.Resources.Lang.lblScore

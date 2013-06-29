@@ -61,7 +61,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 	var width = 750,
 		height = 350,
 		params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
-		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + refno + ": " + transid;
+		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + ApoRes.RefNo + ": " + transid;
 	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params),
 		detailTitle, { width: width, height: height });
 }
@@ -104,7 +104,9 @@ function InitBetList() {
 				$('#content_main').css({ 'padding-bottom': '130px' });
 			}
 		}
-		parent.APOLLO.resizeDialog(900, heightPopup);
+		if (parent.APOLLO.isResizeDialog) {
+			parent.APOLLO.resizeDialog(900, heightPopup);
+		}
 	}
 
 	if (document.getElementById("exporttoexcel") != null) {
@@ -187,10 +189,10 @@ if (typeof jQuery != "undefined") {
 					"&toDate=" + toDate +
 					"&type=" + type;
 
-			var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
-
+			var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
+			APOLLO.isResizeDialog = false;
 			APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
-				title, { width: 450, height: 450, modal: false });
+							title, { width: 400, height: 500, modal: false });
 
 			return false;
 		});

@@ -101,7 +101,7 @@
                 if (Model.HasAgentDownline)
                 {
                 <a class="lnk-agent-list"
-                            target="main" href="~/Account/AgentList?agentid=@Model.CustId">
+                            target="main" href="~/Account/indirectagentlist?parentAgentId=@Model.ActorAgentId&agentid=@Model.CustId">
                     @Apollo.Age.Resources.Lang.lblAgentList
                 </a>
                 }
@@ -141,10 +141,10 @@
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditMemberSetting?memberId=@Model.CustId&userName=@Model.Username&showHeader=true&userGroup=@group&agentId=@Model.ParentId">
+                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.lblEditSB
+                                @Apollo.Age.Resources.Lang.edit
                             }
                             else
                             {
@@ -152,6 +152,10 @@
                             }
                         </a>
 
+                       <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username">
+                            @Apollo.Age.Resources.Lang.ViewDetails
+                        </a>
+                        
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.ViewShare
                         </a>
@@ -176,10 +180,10 @@
                         else
                         {
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAgentSetting?agentId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level&showHeader=true">
+                                href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.lblEditSB
+                                @Apollo.Age.Resources.Lang.edit
                             }
                             else
                             {
@@ -188,6 +192,10 @@
                         </a>
                         }
 
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username">
+                            @Apollo.Age.Resources.Lang.ViewDetails
+                        </a>
+                        
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.ViewShare
                         </a>

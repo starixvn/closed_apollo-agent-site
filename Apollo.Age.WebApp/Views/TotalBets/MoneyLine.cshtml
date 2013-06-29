@@ -36,10 +36,12 @@
         <tr class="RptHeader">
             <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT)
             </td>
-            <td rowspan="2" style="width: 7%;">
+          @*  <td rowspan="2" style="width: 7%;">
                 @Apollo.Age.Resources.Lang.lblScore
-            </td>
+            </td>*@
             <td rowspan="2" style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
@@ -98,12 +100,12 @@
             
             <!--MatchContents-->
             <tr class='r'>
-                <td class="c">
+                @*<td class="c">
                         @if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
-                    </td>
-                <td class="c bl_time">
+                    </td>*@
+                <td class="c">
                     @Html.Raw(@item.ShowTime)
                 </td>
                 <td class="c">
