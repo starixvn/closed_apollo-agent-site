@@ -11,63 +11,62 @@
 
 namespace Apollo.Age.Wagers.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OthersController : Controller
+    public class OthersController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string groupBetName = "")
         {
-            return View();
+            this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
+
+            return base.BaseIndex(SportGroup.Other);
         }
 
-        public ActionResult Straight()
+        public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View("~/Areas/Wagers/Views/Others/Straight.cshtml");
         }
 
-        public ActionResult FirstHalf()
+        public ActionResult FirstHalf(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult RB()
+        public ActionResult RB(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Correctscore()
+        public ActionResult Correctscore(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult FirstHalfCorrectScore()
+        public ActionResult FirstHalfCorrectScore(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult HalfFull()
+        public ActionResult HalfFull(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Total()
+        public ActionResult Total(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Parlay()
+        public ActionResult Parlay(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Start()
+        public ActionResult Start(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }

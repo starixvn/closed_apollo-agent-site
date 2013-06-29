@@ -16,6 +16,7 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,7 +26,7 @@ namespace Apollo.Age.Wagers.Controllers
         public ActionResult Index(string groupBetName = "")
         {
             this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
-            return this.BaseIndex();
+            return this.BaseIndex(SportGroup.Soccer);
         }
 
         public ActionResult Straight()
