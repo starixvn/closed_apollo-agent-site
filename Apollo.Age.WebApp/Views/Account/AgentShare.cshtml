@@ -18,7 +18,7 @@
 					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Lang.sport)</label>
 				</div>
 				<div class="editor">
-					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
+					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", @class="sport-type" })
 				</div>
 			</div>
 		}
@@ -30,17 +30,20 @@
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
-					new { id = "ddlBetType", style = "width: 160px" })
+					new { id = "ddlBetType", @class="bet-type"})
 				</div>
 			</div>
 		}
+
 		<div class="cell">
-			<div class="editor">
-				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+            <div class="editor">
+                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
 					new SelectListItem { Value = "false", Text = Lang.agent },
 					new SelectListItem { Value = "true", Text = Lang.member }
-				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
+				}, new { id = "ddlIsMember" })				
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", @class="username" })
+            </div>
+			<div class="editor">                
 				<input id="btnSubmit" class="btn" type="button" value="@Lang.submit" />
 			</div>
 		</div>

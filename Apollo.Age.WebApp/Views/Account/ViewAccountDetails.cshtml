@@ -1,7 +1,6 @@
 ﻿@using Fanex.CustSetting.ViewData;
 @using Apollo.Age.Account.Core;
 @using Apollo.Age.Resources;
-
 @{
     ViewBag.Title = "View Agent Details";
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting;
@@ -24,134 +23,139 @@
 }
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
     {
-    <div class="div-border">
-        <table class="tb-cust-setting">
-            <thead>
+    
+    <table class="tb-cust-setting">
+        <thead>
+            <tr>
+                <th rowspan="2">
+                    @betLimit.Name
+                </th>
+                <th colspan="@(isViewOnMember ? 0 : 4)">
+                    @Lang.lblCommission
+                </th>
+                <th colspan="3">
+                    @Lang.BetLimit
+                </th>
+            </tr>
+            <tr>
+                @if (isViewOnMember)
+                {
+                    <th style="width: 2%;">
+                        @commissionSetting.UserGroup.ToUpper()
+                    </th>
+                }
+                else
+                {
+                    <th style="width: 40px;">
+                        @Lang.lblA
+                    </th>
+                    <th style="width: 40px;">
+                        @Lang.lblB
+                    </th>
+                    <th style="width: 40px;">
+                        @Lang.lblC
+                    </th>
+                    <th style="width: 40px;">
+                        @Lang.lblD
+                    </th>
+                }
+                <th style="width: 125px;">@Lang.SingleGame
+                </th>
+                <th style="width: 125px;">@Lang.MinSingleBet
+                </th>
+                <th style="width: 125px;">@Lang.MaxSingleBet
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int index = 0;
+                foreach (var item in betTypes)
+                {
+                    index++;
                 <tr>
-                    <td rowspan="2" style="width: 15%;">
-                        @betLimit.Name
+                    <td class="first-cell">
+                        @item
                     </td>
-                    <td colspan="@(isViewOnMember ? 0 : 4)">
-                        @Lang.lblCommission
-                    </td>
-                    <td colspan="3">
-                        @Lang.BetLimit
-                    </td>
-                </tr>
-                <tr>
-                    @if (isViewOnMember)
+                    @if (index > 2 || (betLimit.SportId == 99 && betLimit.BetTypeId == 9))
                     {
-                        <td style="width: 2%;">
-                            @commissionSetting.UserGroup.ToUpper()
-                        </td>
+                        if (isViewOnMember)
+                        {
+                        @:<td>
+                                }
+
+                        else
+                        {
+                        @:<td colspan="4">
+                                }
+                                    
+                        @: 0</td>
+                            
                     }
                     else
                     {
-                        <td style="width: 2%;">
-                            @Lang.lblA
+                        if (isViewOnMember)
+                        {
+                        <td>
+                        @Formater.DecFormat(commissionSetting.CommissionItems[0].Discount, 2)
                         </td>
-                        <td style="width: 2%;">
-                            @Lang.lblB
+                        }
+                        else
+                        {
+                        <td>
+                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountA, 2)
                         </td>
-                        <td style="width: 2%;">
-                            @Lang.lblC
+                        <td>
+                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountB, 2)
                         </td>
-                        <td style="width: 2%;">
-                            @Lang.lblD
+                        <td>
+                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountC, 2)
                         </td>
+                        <td>
+                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountD, 2)
+                    </td>
+                        }
                     }
-                    
-                    <td style="width: 8%;">@Lang.SingleGame
-                    </td>
-                    <td style="width: 8%;">@Lang.MinSingleBet
-                    </td>
-                    <td style="width: 8%;">@Lang.MaxSingleBet
-                    </td>
+                    <td> @Math.Round(betLimit.MaxPerMatch) </td> <td> @Math.Round(betLimit.MinBet) </td>
+                    <td> @Math.Round(betLimit.MaxBet) </td>
                 </tr>
-            </thead>
-            <tbody>
-                @{
-                    int index = 0;
-                    foreach (var item in betTypes)
-                    {
-                        index++;
-                    <tr>
-                        <td class="first-cell">
-                            @item
-                        </td>
-
-                            @if (index > 2 || (betLimit.SportId == 99 && betLimit.BetTypeId == 9))
-                            {
-                                if (isViewOnMember)
-                                {
-                                    @:<td>
-                                }
-
-                                else
-                                {
-                                    @:<td colspan="4">
-                                }
-                                    
-                                @: 0</td>
-                            
-                            }
-                            else
-                            {
-                                if (isViewOnMember)
-                                {
-                                    <td>
-                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].Discount, 2)
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountA, 2)
-                                    </td>
-                                    <td>
-                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountB, 2)
-                                    </td>
-                                    <td>
-                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountC, 2)
-                                    </td>
-                                    <td>
-                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountD, 2)
-                                    </td>
-                                }
-                            }
-                        <td>
-                            @Math.Round(betLimit.MaxPerMatch)
-                        </td>
-                        <td>
-                            @Math.Round(betLimit.MinBet)
-                        </td>
-                        <td>
-                            @Math.Round(betLimit.MaxBet)
-                        </td>
-                    </tr>
                         
-                    }
-                    
                 }
-            </tbody>
-        </table>
-    </div>
+                    
+            }
+        </tbody>
+    </table>
+    
 }
-
-<div class="detail-information">
-    @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit) -- @Lang.enterusername : <strong>@userName</strong> 
-     
-
+<div id="function-bar">
+    <div class="item detail-information">
+        @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit)
+        -- @Lang.enterusername : <strong>@userName</strong>
+        @if (!isViewMySetting)
+        {
+            if (canEdit)
+            {
+            @:-- <a href="@editLink">@Lang.edit </a>
+        }
+            @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
+                }
+        </a>
+    </div>
+    <img src="/_GlobalResources/Images/top_04.gif" class="end-function-bar">
+</div>
+@*<div class="detail-information">
+    @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit)
+    -- @Lang.enterusername : <strong>@userName</strong>
     @if (!isViewMySetting)
     {
         if (canEdit)
         {
-            @:-- <a href="@editLink">@Lang.edit </a>
+        @:-- <a href="@editLink">@Lang.edit </a>
         }
         @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
-    }
+            }
     </a>
-</div>
+</div>*@
 <div class="view-detail-container">
     @if (betSetting != null && betSetting.Any())
     {
@@ -200,8 +204,6 @@
         @RenderSportBlock(isViewOnMember, comSetting, outrightBetLimit, currentBetTypes)
     }
 </div>
-
-
 @section scripts
 {
     @Scripts.Render("~/scripts/viewaccountdetails")
