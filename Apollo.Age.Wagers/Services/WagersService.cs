@@ -16,6 +16,7 @@ namespace Apollo.Age.Wagers.Services
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Wagers.Criterias;
+using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -31,6 +32,11 @@ namespace Apollo.Age.Wagers.Services
             };
 
             return this.GetData<League>(criteria);
+        }
+
+        public IEnumerable<T> GetWagerData<T>(ICriteria criteria)
+        {
+            return this.GetData<T>(criteria);
         }
     }
 }

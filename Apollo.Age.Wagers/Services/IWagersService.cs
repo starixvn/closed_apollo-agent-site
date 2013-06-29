@@ -14,6 +14,7 @@ namespace Apollo.Age.Wagers.Services
     using System.Linq;
     using System.Text;
     using Apollo.Age.Entities;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,5 +22,7 @@ namespace Apollo.Age.Wagers.Services
     public interface IWagersService
     {
         IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes);
+
+        IEnumerable<T> GetWagerData<T>(ICriteria criteria);
     }
 }

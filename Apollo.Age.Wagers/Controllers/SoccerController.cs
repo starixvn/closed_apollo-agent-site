@@ -17,18 +17,19 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.WebApp;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.Services;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : WagerController
     {
-        private readonly QueryService _soccerServices;
+        private readonly IWagersService _soccerServices;
 
         public SoccerController() : this(null) { }
 
-        public SoccerController(QueryService soccerService)
+        public SoccerController(IWagersService soccerService)
         {
-            _soccerServices = soccerService ?? new QueryService();
+            _soccerServices = soccerService ?? new WagersService();
         }
 
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
@@ -42,7 +43,7 @@ namespace Apollo.Age.Wagers.Controllers
                 UGroup = uGroup
             };
 
-            var result = _soccerServices.GetData<WagersStraightViewModel>(criteria);
+            var result = _soccerServices.GetWagerData<WagersStraightViewModel>(criteria);
 
             return View(result);
         }
@@ -58,7 +59,7 @@ namespace Apollo.Age.Wagers.Controllers
                 UGroup = uGroup
             };
 
-            var result = _soccerServices.GetData<WagersRunningBallViewModel>(criteria);
+            var result = _soccerServices.GetWagerData<WagersRunningBallViewModel>(criteria);
 
             return View(result);
         }
@@ -75,7 +76,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Bettype = 4
             };
 
-            var result = _soccerServices.GetData<WagersCorrectScoreViewModel>(criteria);
+            var result = _soccerServices.GetWagerData<WagersCorrectScoreViewModel>(criteria);
 
             return View(result);
         }
@@ -96,7 +97,7 @@ namespace Apollo.Age.Wagers.Controllers
                 UGroup = uGroup
 
             };
-            var result = _soccerServices.GetData<WagersTotalViewModel>(criteria);
+            var result = _soccerServices.GetWagerData<WagersTotalViewModel>(criteria);
 
             return View(result);
         }
@@ -122,7 +123,7 @@ namespace Apollo.Age.Wagers.Controllers
                 UGroup = uGroup
 
             };
-            var result = _soccerServices.GetData<WagersSpecialViewModel>(criteria);
+            var result = _soccerServices.GetWagerData<WagersSpecialViewModel>(criteria);
 
             return View(result);
         }
