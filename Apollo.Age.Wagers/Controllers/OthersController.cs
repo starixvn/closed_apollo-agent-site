@@ -29,7 +29,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Straight()
         {
-            return View();
+            return View("~/Areas/Wagers/Views/Others/Straight.cshtml");
         }
 
         public ActionResult FirstHalfRB()
