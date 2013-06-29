@@ -65,42 +65,42 @@
 							<td>
 								@if (Model.Group.ToLower() == "a")
 								{
-									@RazorHelper.FormatComm(comm.DiscountA * 100)
+									@Formater.DecFormat(comm.DiscountA * 100, 2)
 								}
 							</td>
 							<td>
 								@if (Model.Group.ToLower() == "b")
 								{
-									@RazorHelper.FormatComm(comm.DiscountB * 100)
+									@Formater.DecFormat(comm.DiscountB * 100, 2)
 								}
 							</td>
 							<td>
 								@if (Model.Group.ToLower() == "c")
 								{
-									@RazorHelper.FormatComm(comm.DiscountC * 100)
+									@Formater.DecFormat(comm.DiscountC * 100, 2)
 								}
 							</td>
 							<td>
 								@if (Model.Group.ToLower() == "d")
 								{
-									@RazorHelper.FormatComm(comm.DiscountD * 100)
+									@Formater.DecFormat(comm.DiscountD * 100, 2)
 								}
 							</td>
 						}
 						else
 						{
-							<td>@RazorHelper.FormatComm(comm.DiscountA * 100)
+							<td>@Formater.DecFormat(comm.DiscountA * 100, 2)
 							</td>
-							<td>@RazorHelper.FormatComm(comm.DiscountB * 100)
+							<td>@Formater.DecFormat(comm.DiscountB * 100, 2)
 							</td>
-							<td>@RazorHelper.FormatComm(comm.DiscountC * 100)
+							<td>@Formater.DecFormat(comm.DiscountC * 100, 2)
 							</td>
-							<td>@RazorHelper.FormatComm(comm.DiscountD * 100)
+							<td>@Formater.DecFormat(comm.DiscountD * 100, 2)
 							</td>
 						}
-						<td>@RazorHelper.FormatComm(comm.Discount1x2 * 100)
+						<td>@Formater.DecFormat(comm.Discount1x2 * 100, 2)
 						</td>
-						<td>@RazorHelper.FormatComm(comm.DiscountOthers * 100)
+						<td>@Formater.DecFormat(comm.DiscountOthers * 100, 2)
 						</td>
 					</tr>
 					}
