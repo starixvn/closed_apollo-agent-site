@@ -51,66 +51,75 @@
     @Html.HiddenFor(m => m.AgentId)    
 }
 <table class="tblRpt agentList">
-    <thead>
-        <tr>
-            <th width="80">@Lang.enterusername
-            </th>
-            <th width="60">@Lang.agent
-            </th>
-            <th width="70">@Lang.member
-            </th>
-            <th width="60">@Lang.condition
-            </th>
-            <th width="60">@Lang.BetCondition
-            </th>
-            <th width="80">@Lang.Feature
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!ReferenceEquals(agentList, null) && agentList.Any())
-        {
-            foreach (var item in agentList)
-            {
+    @if (!ReferenceEquals(agentList, null) && agentList.Any())
+    {
+        <thead>
             <tr>
-                <td>
-                    @item.Username
-                </td>
-                <td>
-                    @if (item.NumberOfAgent != 0)
-                    { 
-                        @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
-                    }
-                    else
-                    {
-                        <span>0</span>
-                    }
-                </td>
-                <td>
-                    @if (item.NumberOfMember != 0)
-                    { 
-                        @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
-                    }
-                    else
-                    {
-                        <span>0</span>
-                    }
-                </td>
-                <td>
-                    @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
-                </td>
-                <td>
-                    @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
-                </td>
-                <td class="text-left">
-                    <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">@Lang.edit</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
-                </td>
+                <th width="80">@Lang.enterusername
+                </th>
+                <th width="60">@Lang.agent
+                </th>
+                <th width="70">@Lang.member
+                </th>
+                <th width="60">@Lang.condition
+                </th>
+                <th width="60">@Lang.BetCondition
+                </th>
+                <th width="80">@Lang.Feature
+                </th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in agentList)
+            {
+                <tr>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @if (item.NumberOfAgent != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.NumberOfMember != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                    </td>
+                    <td>
+                        @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td class="text-left">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">@Lang.edit</a>
+                        &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                    </td>
+                </tr>
             }
-        }
-    </tbody>
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <th height="30">
+                @Lang.NonResult
+            </th>
+        </thead>
+    }
 </table>
 @section scripts
 {
