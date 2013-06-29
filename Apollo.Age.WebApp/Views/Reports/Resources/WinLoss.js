@@ -60,8 +60,12 @@
 
             $("#btnCancel").bind('click', function () {
                 $.blockUI();
-                //                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
-                //                location.href = url;
+                history.back();
+                return false;
+            });
+
+            $("#lnkExit").bind('click', function () {
+                $.blockUI();
                 history.back();
                 return false;
             });

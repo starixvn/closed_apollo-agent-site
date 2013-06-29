@@ -1,5 +1,49 @@
-﻿@{
-    Layout = null;
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@section css {
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
 }
-<h1>
-    Straight</h1>
+<table class="tblRpt basketball">
+    <thead>
+        <tr class="RptHeader">
+            <th style="width: 100px;">
+                @Lang.time
+            </th>
+            <th style="width: 300px;">
+                @Lang.league
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblhomeandguest
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblHandicapWager
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblOverUnderWager
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblOddEven
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="c">
+            <td class="width-80">
+            </td>
+            <td>
+            </td>
+            <td class="l">
+            </td>
+            <td>
+            </td>
+            <td class="border-right">
+            </td>
+            <td class="border-right">
+            </td>
+            </td>
+            <td class="border-right">
+            </td>
+        </tr>
+    </tbody>
+</table>
