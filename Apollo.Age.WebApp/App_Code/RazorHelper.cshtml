@@ -354,10 +354,10 @@
                 </div>
                 <div class="editor">
                     <select id="League">
+                        <option value="0">@Lang.all</option>
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
                         {
-                            <option value="0">@Lang.all</option>
                             foreach (var item in leagues)
                             {
                             <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
