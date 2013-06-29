@@ -22,6 +22,19 @@
     @RazorHelper.Navigation(Model.DownlinePath, true)
 }
 <table class="tblRpt report">
+@if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
+{
+    var list = Model.MemberWinLossList;
+    decimal totalTurnover = 0;
+    decimal totalActual = 0;
+    decimal totalMWinLoss = 0;
+    decimal totalMComm = 0;
+    decimal totalMTotal = 0;
+    decimal totalAWinLoss = 0;
+    decimal totalAComm = 0;
+    decimal totalATotal = 0;
+    decimal totalUpline = 0;
+    
     <thead>
         <tr>
             <th rowspan="2">
@@ -67,113 +80,110 @@
             </th>
         </tr>
     </thead>
-    @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
-    {
-        var list = Model.MemberWinLossList;
-        decimal totalTurnover = 0;
-        decimal totalActual = 0;
-        decimal totalMWinLoss = 0;
-        decimal totalMComm = 0;
-        decimal totalMTotal = 0;
-        decimal totalAWinLoss = 0;
-        decimal totalAComm = 0;
-        decimal totalATotal = 0;
-        decimal totalUpline = 0;
+    <tbody>
+        @foreach (var item in list)
+        {
+            totalTurnover += item.Turnover;
+            totalActual += item.ActualTO;
+            totalMWinLoss += item.WinLoss;
+            totalMComm += item.MemComm;
+            totalMTotal += item.MemTotal;
+            totalAWinLoss += item.AWinLoss;
+            totalAComm += item.AComm;
+            totalATotal += item.ATotal;
+            totalUpline += item.UplineTotal;
+            rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-        <tbody>
-            @foreach (var item in list)
-            {
-                totalTurnover += item.Turnover;
-                totalActual += item.ActualTO;
-                totalMWinLoss += item.WinLoss;
-                totalMComm += item.MemComm;
-                totalMTotal += item.MemTotal;
-                totalAWinLoss += item.AWinLoss;
-                totalAComm += item.AComm;
-                totalATotal += item.ATotal;
-                totalUpline += item.UplineTotal;
-                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
-
-                <tr @Html.Raw(rowClass)>
-                    <td>
-                        <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
-                            @item.MemberName
-                        </a>
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.WinLoss, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.UplineTotal, Formater.CULT_NAME_ENG)
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr class="total">
+            <tr @Html.Raw(rowClass)>
                 <td>
-                    @Apollo.Age.Resources.Lang.total
-                </td>
-                <td>
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(totalTurnover, Formater.CULT_NAME_ENG)
+                    <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
+                        @item.MemberName
+                    </a>
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMWinLoss, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMComm, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMTotal, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.WinLoss, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r bold">
+                    @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalAComm, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalATotal, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r">
-                    @Formater.FormatNumber20(totalUpline, Formater.CULT_NAME_ENG)
+                <td class="r bold">
+                    @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r bold">
+                    @Formater.FormatNumber20(item.UplineTotal, Formater.CULT_NAME_ENG)
                 </td>
             </tr>
-        </tfoot>
-    }
-    else
-    {
-        @RazorHelper.ShowNoInfo(11)
-    }
+        }
+    </tbody>
+    <tfoot>
+        <tr class="total">
+            <td>
+                @Apollo.Age.Resources.Lang.total
+            </td>
+            <td>
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalTurnover, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalMWinLoss, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalMComm, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalMTotal, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalAComm, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalATotal, Formater.CULT_NAME_ENG)
+            </td>
+            <td class="r">
+                @Formater.FormatNumber20(totalUpline, Formater.CULT_NAME_ENG)
+            </td>
+        </tr>
+    </tfoot>
+}
+else
+{
+    <thead>
+            <th class="none-result">
+                No data for search
+            </th>
+            
+        </thead>
+        <tbody>
+            <th class="row-exit">
+                <a href="javascript:;" id= "lnkExit">@Apollo.Age.Resources.Lang.lblExit</a>
+            </th>
+        </tbody>
+}
 </table>
 
 @Html.Hidden("ddlSport", Model.Sporttypes)

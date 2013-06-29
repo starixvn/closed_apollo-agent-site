@@ -461,7 +461,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
             ViewBag.IsViewMySetting = false;
-            ViewBag.CanEdit = (base.CurrentSession.IsMaster && agentId != null && base.CurrentSession.AgentId == agentId.Value);
+            ViewBag.CanEdit = (base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper));
 
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
             return ViewAccountDetails(settingContext);

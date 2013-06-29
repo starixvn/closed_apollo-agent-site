@@ -1461,7 +1461,7 @@
     <value>Suspended</value>
   </data>
   <data name="est" xml:space="preserve">
-    <value>E.S.T.</value>
+    <value>E.S.T</value>
   </data>
   <data name="OrderBy" xml:space="preserve">
     <value>Order by</value>
@@ -1706,5 +1706,11 @@
   </data>
   <data name="lblStraightAll" xml:space="preserve">
     <value>Straight All</value>
+  </data>
+  <data name="lblExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="NodataSearch" xml:space="preserve">
+    <value>No data for search</value>
   </data>
 </root>
