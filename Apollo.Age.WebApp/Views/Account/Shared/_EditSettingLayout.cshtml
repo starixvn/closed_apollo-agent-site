@@ -17,12 +17,13 @@
 </head>
 <body>
     @RenderSection("header", required: false)
-    <div id="edit-warning" class="edit-setting-warning">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
+    <div id="edit-warning" class="edit-setting-warning clear">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
 	<div id="page_main" class="settingContainer">
         @RenderBody()
-        <table id="tbl-edit" style="display:none;" width="100%"  cellspacing="1" cellpadding="0" border="0" class="m_tab_ed">
-		    <tbody><tr bgcolor="#FFFFFF" align="center">
-			    <td align="center">
+        <table id="tbl-edit" class="tbl-contain-button">
+		    <tbody>
+            <tr>
+			    <td>
 				        <input id="btnSubmitFooter" type="button" class="btn" value="Confirm" />
                         <input id="btnCancelFooter" type="button" class="btn" value="Cancel" />
 			    </td>

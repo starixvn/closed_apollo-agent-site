@@ -2,25 +2,24 @@
 @import "../../../../_globalresources/css/agent.less";
 
 /* File Created: March 13, 2013 */
-@tableBackground: #F2FAFF;
-@containerBackground: #DCDCDC;
 @headerBackgroudSetting: #84968B;
 @headerLeftBackgourndSetting: #BACCC1;
-@borderSetting: #DCDCDC;
+@borderSetting:#DCDCDC;
+@inputSettingColor:#F2FAFF;
 
 body, .pt-grid {
 	font-size: @fontSize;
-	background-color: #F9F9F9;	
+	background-color: #F9F9F9;
+	
 }
 
 .betting-limit-item {
 	padding: 1px 2px 2px 2px;
 }
-
-.pt-grid {
+.pt-grid
+{
 	border: 1px solid black;
 }
-
 .betting-limit-container-header, .commission-container-header,
 .commission-setting-table-player, .commission-setting-table-player tr td {
 	border: 1px solid @borderSetting;
@@ -40,38 +39,14 @@ body, .pt-grid {
 	color: #333;
 	
 }
-
-.bet-type-select {
-	background: @tableBackground;
+.bet-type-select
+{
+	background: @inputSettingColor;
 }
-
 .pt-sport {
 	background-color: @headerBackgroudSetting;
 	border: 1px solid @borderSetting;
 	border-left: none;
-}
-
-.spinBox input{
-	border: 1px solid #000;
-    padding: 0 1px;
-    text-align: left;
-}
-
-.commission-setting-table tr td.commission-text .div-commission-text {
-	margin: 0 2px;
-}
-
-#commissionSettingContainer, #bettingLimitContainer, #ptContainer {
-	padding: 3px;
-}
-
-.commission-setting-table tr td {
-	height: 15px;
-	border: 1px solid @borderSetting;
-}
-
-.pt-grid-header {
-	line-height: 15px;
 }
 
 .upline-agent-share {
@@ -165,12 +140,12 @@ body, .pt-grid {
 }
 
 .commission-setting-table, .commission-setting-table-player {
-	background-color: @tableBackground;
+	background-color: @inputSettingColor;
 }
 
 .commission-setting-table tr td
 {
-	//border: 1px solid @borderSetting;
+	border: 1px solid @borderSetting;
 }
 
 .commission-setting-table-player tr th {
@@ -188,21 +163,18 @@ body, .pt-grid {
 	width: 915px;
 
 	#commissionSettingContainer, #bettingLimitContainer, #ptContainer {
-		margin-top:5px;		
+		margin-top:5px;
+		
 	}
 
-	
-}
-.edit-setting-warning {
+	.edit-setting-warning {
 		font-style: italic;
 		color: @orange;
-		margin-bottom: 10px;
 	}
-
+}
 #commissionSettingContainer, #bettingLimitContainer, #ptContainer
 {
-	border: 1px solid #000;
-	background: @containerBackground;
+	border: 1px solid #000000;
 }
 
 .simple-mode-container {
@@ -247,7 +219,7 @@ body, .pt-grid {
 
 	.bet-limit-table
 	{
-		background-color: @tableBackground;
+		background-color: @inputSettingColor;
 	}
 
 
@@ -310,88 +282,8 @@ body, .pt-grid {
 	text-align: right;
 }
 
-.simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
-.simple-mode-container .bet-limit-constrain-max-match, simple-mode-container .bet-limit-constrain-mainshareholder
-{
-	border-top: 1px solid @borderSetting;
-	border-bottom: 1px solid @borderSetting;
-	border-right: 1px solid @borderSetting;
-}
-
-.simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
-.simple-mode-container .bet-limit-value-max-match
-{
-	border-top: 1px solid @borderSetting;
-	border-bottom: 1px solid @borderSetting;
-	border-left: 1px solid @borderSetting;
-}
-.simple-mode-container .bet-limit-value-mainshareholder
-{
-	border: none;
-}
-.btnLeft {
-	margin-bottom: 20px;
-}
-
-#btnSubmitHeader
-{
-	float: right;
-    z-index: 10;
-}
-
-#btnSubmitFooter
-{
-	margin-right: 20px;
-}
-
-.frozen-header-main
-{
-	position: fixed !important;
-	top: 0;
-	background-color: #F9f9f9;
-	width: 98%;
-	z-index: 100;
-}
-
-.commission-setting-table tr td.commission-text
-{
-	font-size: @fontSize;
-	border: 1px solid @borderSetting;
-	background-color: @headerLeftBackgourndSetting;
-	border-width: 1px 1px 1px 0;
-}
-
-.commission-setting-table-player .group-name
-{
-	background-color: @headerLeftBackgourndSetting;
-}
-
-.simple-mode-container {
-	padding: 0;
-}
-
-.simple-mode-container .share-setting-label, .simple-mode-container .bet-setting-label {
-	border-width: 1px 1px 1px 0;
-	width: 175px;
-}
-
-/* Fix bug IE */
-
-.ie {
-	.simple-mode-container .bet-limit-table, .commission-setting-table, .commission-setting-table-player  {
-		background-color: #DCDCDC;
-	}
-
-	.commission-setting-table tr td  {
-		border: none;
-	}
-}
-
 .eq-ie7 {
-	#content_main {
-		padding: 0 10px 10px 10px;
-	}
-
+	
 	.betting-limit-textbox {
 		height: 20px;
 		margin: 0 2px;
@@ -428,4 +320,63 @@ body, .pt-grid {
 			padding: 0 2px;
 		}
 	}
+}
+
+.simple-mode-container .bet-limit-constrain-max, .simple-mode-container .bet-limit-constrain-min,
+.simple-mode-container .bet-limit-constrain-max-match, simple-mode-container .bet-limit-constrain-mainshareholder
+{
+	border-top: 1px solid @borderSetting;
+	border-bottom: 1px solid @borderSetting;
+	border-right: 1px solid @borderSetting;
+}
+
+.simple-mode-container .bet-limit-value-max, .simple-mode-container .bet-limit-value-min,
+.simple-mode-container .bet-limit-value-max-match
+{
+	border-top: 1px solid @borderSetting;
+	border-bottom: 1px solid @borderSetting;
+	border-left: 1px solid @borderSetting;
+}
+.simple-mode-container .bet-limit-value-mainshareholder
+{
+	border: 1px solid @borderSetting;
+}
+.btnLeft {
+	margin-bottom: 20px;
+}
+
+.eq-ie7 #content_main {
+	padding: 0 10px 10px 10px;
+}
+
+#btnSubmitHeader
+{
+	float: right;
+    z-index: 10;
+}
+
+#btnSubmitFooter
+{
+	margin-right: 20px;
+}
+
+.frozen-header-main
+{
+	position: fixed !important;
+	top: 0;
+	background-color: #F9f9f9;
+	width: 98%;
+	z-index: 100;
+}
+
+.commission-setting-table tr td.commission-text
+{
+	font-size: @fontSize;
+	border: 1px solid @borderSetting;
+	background-color: @headerLeftBackgourndSetting !important;
+}
+
+.commission-setting-table-player .group-name
+{
+	background-color: @headerLeftBackgourndSetting;
 }

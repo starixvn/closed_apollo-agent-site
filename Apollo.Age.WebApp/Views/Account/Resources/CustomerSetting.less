@@ -82,12 +82,21 @@
 	clear: both;
 }
 
-.m_tab_ed
-{
-	   background-color: #DCDCDC;
+.tbl-contain-button {
+	background-color: @backgroundCust;
 	border: 1px solid #000;
 	padding: 3px 2px;
 	border-collapse: separate;
+	width: 100%;
+
+	tr td {
+		background: #fff;
+		text-align: center;
+
+		#btnSubmitFooter {
+			margin-right: 13px;
+		}
+	}
 }
 
 #page_main {
@@ -101,11 +110,19 @@
 	}
 
 	&.setting-width {
-		width:1040px;
+		width: 1040px;
 	}
 }
 
 /* FIX IE */
+.ie {
+	.tbl-contain-button {
+		.btn {
+			padding: 0 8px;
+		}
+	}
+}
+
 .eq-ie7 {
 	#box_header {
 		.row .cell .editor * {
