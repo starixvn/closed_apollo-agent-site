@@ -8,65 +8,124 @@
 //   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Core;
 
+    using Apollo.Age.WebApp;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.Services;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : WagerController
     {
-        //public ActionResult Index(string groupBetName = "")
-        //{
-        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
-        //    return this.Index(SportGroup.Soccer);
-        //}
+        private readonly IWagersService _soccerServices;
 
-        public ActionResult Straight()
-        {           
-            return View();
+        public SoccerController() : this(null) { }
+
+        public SoccerController(IWagersService soccerService)
+        {
+            _soccerServices = soccerService ?? new WagersService();
         }
 
-        public ActionResult RunningBall()
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            var criteria = new WagersStraightCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup
+            };
+
+            var result = _soccerServices.GetWagerData<WagersStraightViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Specialbet()
+        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            var criteria = new WagersRunningBallCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup
+            };
+
+            var result = _soccerServices.GetWagerData<WagersRunningBallViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Correctscore()
+        public ActionResult Correctscore(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            var criteria = new WagersCorrectScoreCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Bettype = 4
+            };
+
+            var result = _soccerServices.GetWagerData<WagersCorrectScoreViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult FirstHalfCorrectScore()
+        public ActionResult FirstHalfCorrectScore(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            return Correctscore(fromDate, uGroup, isDirectMember, leagueId);
         }
 
-        public ActionResult Total()
+        public ActionResult Total(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            var criteria = new WagersTotalCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup
+
+            };
+            var result = _soccerServices.GetWagerData<WagersTotalViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult HalfFull()
+        public ActionResult HalfFull(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            return Correctscore(fromDate, uGroup, isDirectMember, leagueId);
         }
 
         public ActionResult Parlay()
         {
             return View();
+        }
+
+        public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        {
+            var criteria = new WagersSpecialCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup
+
+            };
+            var result = _soccerServices.GetWagerData<WagersSpecialViewModel>(criteria);
+
+            return View(result);
         }
 
         public ActionResult Start()

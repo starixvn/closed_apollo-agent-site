@@ -5,6 +5,8 @@
     Layout = null;
     var groupBetName = (string)ViewBag.GroupBetName;
     var sportName = (string)ViewBag.SportName;
+    var title = (string)ViewBag.Title;
+    var titleAll = (string)ViewBag.TitleAll;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -18,11 +20,11 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="0">@Lang.all</option>
-                <option value="1">@Lang.lblsoccerA</option>
-                <option value="2">@Lang.lblsoccerB </option>
-                <option value="3">@Lang.lblsoccerC </option>
-                <option value="4">@Lang.lblsoccerD </option>
+                <option value="0">@titleAll</option>
+                <option value="1">@title A</option>
+                <option value="2">@title B </option>
+                <option value="3">@title C </option>
+                <option value="4">@title D </option>
             </select>
         </div>
         <div class="before-filter">
@@ -42,3 +44,4 @@
     </div>
 </body>
 </html>
+@Scripts.Render("~/areas/Wagers")

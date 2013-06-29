@@ -21,11 +21,6 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class TennisController : Controller
     {
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         public ActionResult Straight()
         {
             return View();

@@ -1,31 +1,24 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetWagers_1_3_5_Criteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetWagersStraightCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Edward.Nguyen" date="2013.6.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Wagers.Criterias.Soccer
-{
-    using System;
-    using Fanex.NAP.Framework.Data;
+using System;
+using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public class GetWagersStraightCriteria : CriteriaBase
+namespace Apollo.Age.WebApp
+{
+    public class WagersStraightCriteria : CriteriaBase
     {
         public int LoggedId { get; set; }
 
         public DateTime FromDate { get; set; }
 
         public string UGroup { get; set; }
-
-        public string Sporttypes { get; set; }
-
-        public bool LiveIndicator { get; set; }
 
         public bool IsDirectMem { get; set; }
 
@@ -38,7 +31,7 @@ namespace Apollo.Age.Wagers.Criterias.Soccer
 
         public override bool IsValid()
         {
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

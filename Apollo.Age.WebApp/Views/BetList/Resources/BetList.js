@@ -96,7 +96,7 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-	if (parent.APOLLO.currentOpenDialog) {
+	if (APOLLO.currentOpenDialog) {
 		var heightPopup = 630;
 		if (APOLLO.browser.msie) {
 			heightPopup = 615;
@@ -266,6 +266,12 @@ if (typeof jQuery != "undefined") {
 			else {
 				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
 			}
+
+			//			var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid") + "&AgentName=" + $(this).html()
+			//                    + '&FromDate=' + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
+			//                    + "&Sporttypes=" + WINLOSS.ddlSport.val()
+			//                    + "&Bettypes=" + WINLOSS.ddlBettype.val());
+			//			location.href = url;
 		});
 	});
 }
