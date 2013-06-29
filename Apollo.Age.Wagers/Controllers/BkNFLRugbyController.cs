@@ -17,31 +17,26 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Entities;
+    using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BkNFLRugbyController : Controller
+    public class BkNFLRugbyController : BaseController
     {
         /// <summary>
         /// Index BaseketBall default is straight all
         /// </summary>
         /// <param name="bettype">Sample bettype = 1</param>
         /// <returns></returns>
-        public ActionResult Index(string bettype = "1")
+        public ActionResult Index(string bettype = WagersBettypes.Straight)
         {
             List<League> listLeague = new List<League>();
-            for (int i = 0; i < 10; i++)
-            {
-                listLeague.Add(new League
-                {
-                    Id = i,
-                    Name = "League " + i.ToString()
-                });
-            }
+            listLeague = this.GetLeague(SingbetSportConstant.BK_NFL_RUGBY);
 
             ViewBag.Leagues = listLeague;
-            ViewBag.Title = bettype;
+
             return View();
         }
     }

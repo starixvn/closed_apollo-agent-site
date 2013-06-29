@@ -1632,4 +1632,16 @@
   <data name="Othertypes" xml:space="preserve">
     <value>Other types</value>
   </data>
+  <data name="BasketballA" xml:space="preserve">
+    <value>Basketball A</value>
+  </data>
+  <data name="BasketballB" xml:space="preserve">
+    <value>Basketball B</value>
+  </data>
+  <data name="BasketballC" xml:space="preserve">
+    <value>Basketball C</value>
+  </data>
+  <data name="BasketballD" xml:space="preserve">
+    <value>Basketball D</value>
+  </data>
 </root>
