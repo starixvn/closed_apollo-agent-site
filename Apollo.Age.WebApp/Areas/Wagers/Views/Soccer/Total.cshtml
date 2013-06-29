@@ -1,5 +1,51 @@
-﻿@{
-    Layout = null;
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@section css {
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
 }
-<h1>
-    Total</h1>
+<table class="tblRpt soccer">
+                    <thead>
+                        <tr class="RptHeader">
+                            <th style="width: 100px;">
+                                @Lang.time
+                            </th>                                                     
+                            <th style="width: 100px;" class="nowrap">
+                                @Lang.odds
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                               @Lang.events
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                               0~1
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                               2~3
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                               4~6
+                            </th>
+                            <th style="width: 100px;" class="nowrap">
+                               7up
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="c">
+                            <td>
+                            </td>
+                            <td class="l">
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>     
+                            <td>
+                            </td>   
+                            <td>
+                            </td>   
+                            <td>
+                            </td>                          
+                        </tr>
+                    </tbody>
+                </table>

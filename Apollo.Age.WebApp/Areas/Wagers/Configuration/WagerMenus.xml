@@ -2,7 +2,7 @@
 <Wagers>
     <Sport Controller="Soccer" ResourceKey="">
         <BetType Action="Straight" ResourceKey="lblStraight" />
-        <BetType Action="FirstHalfRB" ResourceKey="lblRB" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
         <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
         <BetType Action="Correctscore" ResourceKey="correctscore" />
         <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
