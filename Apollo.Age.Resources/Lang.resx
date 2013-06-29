@@ -1713,4 +1713,16 @@
   <data name="NodataSearch" xml:space="preserve">
     <value>No data for search</value>
   </data>
+  <data name="lblsoccerA" xml:space="preserve">
+    <value>Soccer A</value>
+  </data>
+  <data name="lblsoccerB" xml:space="preserve">
+    <value>Soccer B</value>
+  </data>
+  <data name="lblsoccerC" xml:space="preserve">
+    <value>Soccer C</value>
+  </data>
+  <data name="lblsoccerD" xml:space="preserve">
+    <value>Soccer D</value>
+  </data>
 </root>
