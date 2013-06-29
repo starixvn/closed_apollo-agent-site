@@ -46,7 +46,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View();
         }
 
-        public ActionResult GetDataContant(string bettype = WagersBettypes.Straight)
+        public ActionResult GetDataContain(string bettype = WagersBettypes.Straight)
         {
             string bettypeText = string.Empty;
             string viewName = string.Empty;
