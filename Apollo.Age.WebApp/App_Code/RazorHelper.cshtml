@@ -290,7 +290,7 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
-@helper RenderWagersMenu(string controller)
+@helper RenderWagersMenu(string controller, string groupBetName)
     {
         var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         var xDocument = WagerMenusConfiguration.MenuConfig;
@@ -299,7 +299,6 @@
         @foreach (var itemWager in xWagers)
         {
             var xSport = itemWager.Descendants("Sport");
-            int count = 0;
 
             foreach (var itemSport in xSport)
             {
@@ -313,9 +312,9 @@
                         string tempAction = itemBettype.Attribute("Action").Value;
                         string resourceKey = itemBettype.Attribute("ResourceKey").Value;
                         
-            <li class="@(count == 0 ? "active" : string.Empty)"><a href="~/wagers/@controller?groupBetName=@tempAction" target="submain">@resMgr.GetString(resourceKey)</a>
-            </li>   
-                        count++;
+            <li class="@(string.Compare(groupBetName, tempAction, true) == 0 ? "active" : string.Empty)">
+                <a href="~/wagers/@controller?groupBetName=@tempAction" target="main">@resMgr.GetString(resourceKey)</a>
+            </li>                           
                     }
 
                     break;

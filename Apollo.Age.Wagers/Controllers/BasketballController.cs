@@ -25,13 +25,11 @@ namespace Apollo.Age.Wagers.Controllers
     {
         public ActionResult Index(string groupBetName = "")
         {
-            // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), SportGroup.Basketball_Football_Rugy);
-            ViewBag.GroupBetName = groupBetName;
+            this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
 
-            return View();
+            return base.BaseIndex();
         }
-       
+
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
