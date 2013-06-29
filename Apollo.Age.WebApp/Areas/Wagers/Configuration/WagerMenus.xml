@@ -23,22 +23,21 @@
         <BetType Action="Straight" ResourceKey="" />
         <BetType Action="Straight" ResourceKey="" />
     </Sport>
-    <Sport Controller="Volleyball" ResourceKey="">
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
+    <Sport Controller="Volleyball" ResourceKey="Straight">
+      <BetType Action="Straight" ResourceKey="lblStraight" />  
+      <BetType Action="runningball" ResourceKey="RunningBall" />
+        <BetType Action="Correctscore" ResourceKey="correctscore" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Start" ResourceKey="lblStart" />
     </Sport>
     <Sport Controller="Baseball" ResourceKey="">
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="Straight" />
+        <BetType Action="FirstHalf" ResourceKey="FirstHalf" />
+        <BetType Action="RunningBall" ResourceKey="RunningBall" />
+        <BetType Action="Correctscore" ResourceKey="correctscore" />
+        <BetType Action="Total" ResourceKey="total" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Start" ResourceKey="lblStart" />
     </Sport>
     <Sport Controller="Others" ResourceKey="">
         <BetType Action="Straight" ResourceKey="" />
