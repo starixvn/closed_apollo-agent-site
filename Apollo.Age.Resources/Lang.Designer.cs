@@ -124,7 +124,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agency detailed edit.
+        ///   Looks up a localized string similar to Agent detailed edit.
         /// </summary>
         public static string AgencyDetailEdit {
             get {
