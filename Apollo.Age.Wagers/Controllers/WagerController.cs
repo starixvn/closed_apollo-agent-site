@@ -6,10 +6,12 @@ using Apollo.Age.Wagers.Services;
 using System.Web.Mvc;
 using Apollo.Age.Core;
 using Apollo.Age.Entities;
+using Apollo.Age.Wagers.Core;
+using Apollo.Age.Web;
 
 namespace Apollo.Age.Wagers.Controllers
 {
-    public class WagerController : Controller
+    public class WagerController : BaseController
     {
         private readonly WagersService _wagerService;
 
@@ -32,12 +34,38 @@ namespace Apollo.Age.Wagers.Controllers
 
             return leagues != null ? leagues.ToList() : new List<League>();
         }
-        
-        public ActionResult Index(string sportTypes)
+
+        public ActionResult Index(string sportName, string groupBetName = "straight")
         {
+            var sportTypes = string.Empty;
+            sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
+
+            switch (sportName)
+            {
+                case WagersSportName.Soccer:
+                    sportTypes = SportGroup.Soccer;
+                    break;
+                case WagersSportName.Basketball:
+                    sportTypes = SportGroup.Basketball_Football_Rugy;
+                    break;
+                case WagersSportName.Tennis:
+                    sportTypes = SportGroup.Tennis;
+                    break;
+                case WagersSportName.Volleyball:
+                    sportTypes = SportGroup.Volleyball_Badminton_TableTennis;
+                    break;
+                case WagersSportName.Baseball:
+                    sportTypes = SportGroup.BaseBall;
+                    break;
+                default:
+                    sportTypes = SportGroup.Other;
+                    break;
+            }
+
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), sportTypes);
-            ViewBag.GroupBetName = ActionName;
+            ViewBag.GroupBetName = groupBetName;
+            ViewBag.SportName = sportName;
 
             return View();
         }

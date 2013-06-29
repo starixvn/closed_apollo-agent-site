@@ -23,13 +23,6 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class BasketballController : WagerController
     {
-        //public ActionResult Index(string groupBetName = "")
-        //{
-        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
-
-        //    return base.Index(SportGroup.Basketball_Football_Rugy);
-        //}
-
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
@@ -54,6 +47,5 @@ namespace Apollo.Age.Wagers.Controllers
         {
             return View();
         }
-
     }
 }
