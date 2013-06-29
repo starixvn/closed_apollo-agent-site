@@ -52,15 +52,13 @@
     <Compile Include="Controllers\SoccerController.cs" />
     <Compile Include="Controllers\TennisController.cs" />
     <Compile Include="Controllers\VolleyballController.cs" />
-    <Compile Include="Core\WagersBettypes.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
-    <Compile Include="Criterias\GetWagersStraightCriteria.cs" />
+    <Compile Include="Criterias\Soccer\GetWagersStraightCriteria.cs" />
     <Compile Include="Entities\WagerSport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWagersService.cs" />
-    <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\WagersService.cs" />
-    <Compile Include="ViewModels\WagersStraightViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\WagersStraightViewModel.cs" />
     <Compile Include="ViewModels\WagerViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +72,19 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+    <Folder Include="Criterias\Baseball\" />
+    <Folder Include="Criterias\Basketball\" />
+    <Folder Include="Criterias\Others\" />
+    <Folder Include="Criterias\Tenis\" />
+    <Folder Include="Criterias\Volleyball\" />
+    <Folder Include="ViewModels\Baseball\" />
+    <Folder Include="ViewModels\Basketball\" />
+    <Folder Include="ViewModels\Others\" />
+    <Folder Include="ViewModels\Tenis\" />
+    <Folder Include="ViewModels\Volleyball\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

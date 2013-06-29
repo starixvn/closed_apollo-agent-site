@@ -3,7 +3,6 @@
 @using Apollo.Age.Wagers.Services
 @using Apollo.Age.Entities
 @using Fanex.Logging
-@using Apollo.Age.Wagers.Core;
 @using Apollo.Age.Resources
 @using Apollo.Age.Core
 @using Apollo.Age.Services
@@ -244,30 +243,6 @@
         }
     </select>
 }
-@helper RenderResultBySport()
-    {
-        List<SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport(true);
-
-        foreach (SingbetSport sport in singbetSports)
-        {
-            if (sport.Id != Apollo.Age.Core.SingbetSportConstant.All)
-            {
-                if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Other)
-                {							
-    <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
-                }
-                else if (sport.Id == Apollo.Age.Core.SingbetSportConstant.Outright)
-                {
-    <li><a href="#" id="@sport.Id" name="menuoutright">[@(sport.Name)]</a></li>
-                }
-                else
-                {
-    <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
-                }
-            }
-
-        }
-}
 @helper ToEasternTime(DateTime datetime)
     {
         if (datetime != null)
@@ -286,49 +261,6 @@
         {
             Logger.Log.Error(ex.Message, ex);
         }
-}
-@helper RenderWagersBettypeMenu(string sport)
-    {
-        var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
-        switch (sport)
-        {
-            case SingbetSportConstant.Soccer:
-                {
-                    wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
-                    break;
-                }
-            case SingbetSportConstant.BK_NFL_RUGBY:
-                {
-                    wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
-                    break;
-                }
-            case SingbetSportConstant.Tennis:
-                {
-                    wagesBettypes = MenuService.GenerateTennisBettypesMenu();
-                    break;
-                }
-            case SingbetSportConstant.VB_BDM_TT:
-                {
-                    wagesBettypes = MenuService.GenerateVolleyballBettypesMenu();
-                    break;
-                }
-            case SingbetSportConstant.BaseBall:
-                {
-                    wagesBettypes = MenuService.GenerateBaseballBettypesMenu();
-                    break;
-                }
-            case SingbetSportConstant.Other:
-                {
-                    wagesBettypes = MenuService.GenerateOtherBettypesMenu();
-                    break;
-                }
-        }
-
-        foreach (var bettype in wagesBettypes)
-        {
-    <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
-        }
-        
 }
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
