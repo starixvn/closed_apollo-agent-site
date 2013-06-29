@@ -40,23 +40,35 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
+            var title = string.Empty;
+            var titleAll = string.Empty;
 
             switch (sportName)
             {
                 case WagersSportName.Soccer:
                     sportTypes = SportGroup.Soccer;
+                    title = Lang.soccer;
+                    titleAll = Lang.lblsoccerAll;
                     break;
                 case WagersSportName.Basketball:
                     sportTypes = SportGroup.Basketball_Football_Rugy;
+                    title = Lang.Basketball;
+                    titleAll = Lang.BasketballAll;
                     break;
                 case WagersSportName.Tennis:
                     sportTypes = SportGroup.Tennis;
+                    title = Lang.Tennis;
+                    titleAll = Lang.lblTennisAll;
                     break;
                 case WagersSportName.Volleyball:
                     sportTypes = SportGroup.Volleyball_Badminton_TableTennis;
+                    title = Lang.Volleyball;
+                    titleAll = Lang.lblVolleyballAll;
                     break;
                 case WagersSportName.Baseball:
                     sportTypes = SportGroup.BaseBall;
+                    title = Lang.Baseball;
+                    titleAll = Lang.lblBaseballAll;
                     break;
                 default:
                     sportTypes = SportGroup.Other;
@@ -67,123 +79,10 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), sportTypes);
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
+            ViewBag.Title = title;
+            ViewBag.TitleAll = titleAll;
 
             return View();
         }
-
-        #region Private
-
-        private List<SelectListItem> GenerateSoccerCommissionGroup()
-        {
-            var list = new List<SelectListItem>();
-
-            list.Add(new SelectListItem
-            {
-                Value = "",
-                Text = Lang.lblsoccerAll
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "A",
-                Text = Lang.lblsoccerA
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "B",
-                Text = Lang.lblsoccerB
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "C",
-                Text = Lang.lblsoccerC
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "D",
-                Text = Lang.lblsoccerD
-            });
-
-            return list;
-        }
-
-        private List<SelectListItem> GenerateBasketballCommissionGroup()
-        {
-            var list = new List<SelectListItem>();
-
-            list.Add(new SelectListItem
-            {
-                Value = "",
-                Text = Lang.Basketball
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "A",
-                Text = Lang.BasketballA
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "B",
-                Text = Lang.Basketball
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "C",
-                Text = Lang.Basketball
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "D",
-                Text = Lang.Basketball
-            });
-
-            return list;
-        }
-
-        private List<SelectListItem> GenerateBaseballCommissionGroup()
-        {
-            var list = new List<SelectListItem>();
-
-            list.Add(new SelectListItem
-            {
-                Value = "",
-                Text = Lang.lblBaseballAll
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "A",
-                Text = Lang.lblBaseballA
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "B",
-                Text = Lang.lblBaseballB
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "C",
-                Text = Lang.lblBaseballC
-            });
-
-            list.Add(new SelectListItem
-            {
-                Value = "D",
-                Text = Lang.lblBaseballD
-            });
-
-            return list;
-        }
-        
-        #endregion
     }
 }

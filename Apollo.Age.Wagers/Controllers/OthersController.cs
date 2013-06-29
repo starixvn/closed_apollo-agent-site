@@ -19,13 +19,6 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class OthersController : WagerController
     {
-        //public ActionResult Index(string groupBetName = "")
-        //{
-        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
-
-        //    return base.Index(SportGroup.Other);
-        //}
-
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View("~/Areas/Wagers/Views/Others/Straight.cshtml");
