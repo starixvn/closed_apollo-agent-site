@@ -24,9 +24,9 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerService = wagerService ?? new WagersService();
         }
 
-        public List<League> GetLeague(string sportTypes = null)
+        public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
-            var leagues = _wagerService.GetLeague(sportTypes);
+            var leagues = _wagerService.GetLeague(fromDate, sportTypes);
 
             return leagues.ToList();
         }

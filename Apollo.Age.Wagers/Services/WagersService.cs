@@ -22,11 +22,12 @@ namespace Apollo.Age.Wagers.Services
     /// </summary>
     public class WagersService : QueryService, IWagersService
     {
-        public IEnumerable<League> GetLeague(string sportType)
+        public IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes)
         {
             var criteria = new GetLeagueCriteria
             {
-                SportType = sportType
+                FromDate = fromDate,
+                SportTypes = sportTypes
             };
 
             return this.GetData<League>(criteria);
