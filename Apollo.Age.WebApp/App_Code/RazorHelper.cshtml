@@ -282,7 +282,7 @@
             TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
             var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
 		
-    <div class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
+    <div class="est-zone">@(string.Format("--{0}:{1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
 		
         }
         catch (Exception ex)
