@@ -41,12 +41,12 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
+            ViewBag.Leagues = GetLeague(DateTime.Now, WagerSports.Soccer);
             ViewBag.Title = Resources.Lang.lblStraight;
             return View();
         }
 
-        public ActionResult GetDataContant(string bettype = WagersBettypes.Straight)
+        public ActionResult GetDataContain(string bettype = WagersBettypes.Straight)
         {
             string bettypeText = string.Empty;
             string viewName = string.Empty;
