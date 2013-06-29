@@ -1728,4 +1728,10 @@
   <data name="lblOddEvenWagers" xml:space="preserve">
     <value>Odd Even / Wagers</value>
   </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="GMT" xml:space="preserve">
+    <value>GMT+8</value>
+  </data>
 </root>
