@@ -29,6 +29,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
+            base.BuildChoice(ticket, ticketHelper, ticketData);
             bool betHomeTeam = ticket.BetTeam != null && ticket.BetTeam.Contains("h");
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             //this.Template.Handicap.handicap = null;

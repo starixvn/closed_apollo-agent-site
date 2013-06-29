@@ -44,8 +44,9 @@
 	text-align: right;
 }
 
-.favorite, .bl_favorite {
-	color: #B50000;
+.game-type-odd
+{
+	color: #009900;
 }
 
 .colorHandicap, .handicap {
@@ -80,10 +81,9 @@
 	font-weight: bold;
 }
 
-.bl_ip {
-	color: #434343;
-	font-size: 7pt;
-	text-align: center;
+.ip, .view-detail {
+	padding-top:3px;
+	color: @linkColor;
 }
 
 .firstGoal {
@@ -109,15 +109,6 @@
 
 .bl_oddtype, .oddstype {
 	color: #586985;
-}
-
-
-.blue {
-	color: #2673CE;
-}
-
-.div_pt {
-	background: none repeat scroll 0% 0% rgb(245, 227, 227);
 }
 
 .div_horline {
@@ -179,6 +170,7 @@
 .tblRpt {
 	margin: 5px;
 	width:99%;
+
 	&.border-tbl td {
 		border-width: 1px;
 	}
@@ -238,18 +230,11 @@
 			}
 		}		
 	}
-	
-	tfoot {
-		tr {
-
-			&.total td {
-				//font-weight: bold;
-			}	
-			
-			.red-color {
-				color: #FF4C4C;
-				white-space: nowrap;
-			}		
+	&.betlist
+	{
+		.result{
+			background:#000033;
+			color:#fff;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="Tran3.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Trans3.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -11,13 +11,7 @@
 
 namespace Fanex.BetList.Core.Builder.TransBuilder
 {
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Templates;
-    using Fanex.BetList.Core.Utils;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-
-    public class Tran3 : Trans1
+    public class Trans3 : Trans1
     {
     }
 }
