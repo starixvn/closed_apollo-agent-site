@@ -3,7 +3,6 @@
 @using Apollo.Age.Wagers.Services
 @using Apollo.Age.Entities
 @using Fanex.Logging
-@using Apollo.Age.Wagers.Core;
 @using Apollo.Age.Resources
 @using Apollo.Age.Core
 @using Apollo.Age.Services
@@ -287,49 +286,7 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
-@helper RenderWagersBettypeMenu(string sport)
-    {
-        var wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
-        switch (sport)
-        {
-            case SportGroup.Soccer:
-                {
-                    wagesBettypes = MenuService.GenerateSoccerBettypesMenu();
-                    break;
-                }
-            case SportGroup.Basketball_Football_Rugy:
-                {
-                    wagesBettypes = MenuService.GenerateBKNFLRugbyBettypesMenu();
-                    break;
-                }
-            case SportGroup.Tennis:
-                {
-                    wagesBettypes = MenuService.GenerateTennisBettypesMenu();
-                    break;
-                }
-            case SportGroup.Volleyball_Badminton_TableTennis:
-                {
-                    wagesBettypes = MenuService.GenerateVolleyballBettypesMenu();
-                    break;
-                }
-            case SportGroup.BaseBall:
-                {
-                    wagesBettypes = MenuService.GenerateBaseballBettypesMenu();
-                    break;
-                }
-            case SportGroup.Other:
-                {
-                    wagesBettypes = MenuService.GenerateOtherBettypesMenu();
-                    break;
-                }
-        }
 
-        foreach (var bettype in wagesBettypes)
-        {
-    <li><a href="#" name="wagers-submenu" data-bettype="@bettype.Id" target="main">@bettype.Name</a></li>
-        }
-        
-}
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
     <div id="header_main">@title</div>
