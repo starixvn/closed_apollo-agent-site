@@ -569,5 +569,20 @@ namespace Apollo.Age.Account.Controllers
 
             return View(models);
         }
+
+        public JsonResult GetAgentDownlinePath(int? agentId)
+        {
+            var criteria = new AgentDownlinePathCriteria()
+            {
+                ParentId = this.CurrentSession.AgentId,
+                AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId
+            };
+
+            var listValue = _accountService.GetAgentDownlinePath(criteria)
+                .Select(x => new { x.Id, x.Username, x.Level })
+                .ToList();
+
+            return Json(listValue, JsonRequestBehavior.AllowGet);
+        }
     }
 }
