@@ -9,9 +9,10 @@ var Soccer = function ($) {
 
             $("[name=wagers-submenu]").on('click', function () {
                 var $this = $(this);
-                location.href = APOLLO.resolveUrl("~/wagers/Soccer") + "?bettype=" + $this.attr("data-bettype");
+                //location.href = APOLLO.resolveUrl("~/wagers/Soccer") + "?bettype=" + $this.attr("data-bettype");
             });
-        }
+        },              
+
     }
 } (jQuery);
 
