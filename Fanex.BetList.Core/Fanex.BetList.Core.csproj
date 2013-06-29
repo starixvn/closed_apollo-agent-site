@@ -160,7 +160,6 @@
     <Compile Include="Builder\ChoiceBuilder\Choice4.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice5.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice6.cs" />
-    <Compile Include="Builder\ChoiceBuilder\Choice7.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice71.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice73.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice8.cs" />
@@ -238,6 +237,10 @@
     <Compile Include="Builder\StatusBuilder\Status9.cs" />
     <Compile Include="Builder\TimeBuilder\ITime.cs" />
     <Compile Include="Builder\TimeBuilder\Time.cs" />
+    <Compile Include="Builder\TransBuilder\Trans1203.cs" />
+    <Compile Include="Builder\TransBuilder\Trans85.cs" />
+    <Compile Include="Builder\TransBuilder\Trans18.cs" />
+    <Compile Include="Builder\TransBuilder\Trans7.cs" />
     <Compile Include="Builder\TransBuilder\Trans.cs" />
     <Compile Include="Builder\TransBuilder\Trans3.cs" />
     <Compile Include="Builder\TransBuilder\ITrans.cs" />

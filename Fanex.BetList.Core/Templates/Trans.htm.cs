@@ -13,11 +13,12 @@ namespace Fanex.BetList.Core
 	{
 		public class Trans_Template : Template
 		{
-			protected static string s0 = "<div>";
+			protected static string s0 = "<div class=\"game-type-odd\">";
 			public string oddsName = "{oddsName}";
 			protected static string s1 = "</div><div>";
 			public string transId = "{transId}";
 			protected static string s2 = " ";
+			public string sportName = "{sportName}";
 			public string bettypeName = "{bettypeName}";
 			protected static string s3 = "</div>";
 			public override void ToString(ref StringBuilder bd)
@@ -30,6 +31,7 @@ namespace Fanex.BetList.Core
 					bd.Append(s1);
 					bd.Append(transId);
 					bd.Append(s2);
+					bd.Append(sportName);
 					bd.Append(bettypeName);
 					bd.Append(s3);
 				}

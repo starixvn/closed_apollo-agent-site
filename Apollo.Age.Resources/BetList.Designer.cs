@@ -250,6 +250,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feature.
+        /// </summary>
+        public static string feature {
+            get {
+                return ResourceManager.GetString("feature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FG.
         /// </summary>
         public static string FG {

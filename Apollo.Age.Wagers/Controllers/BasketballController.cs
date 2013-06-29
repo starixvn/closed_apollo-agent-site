@@ -8,7 +8,6 @@
 //   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.Controllers
 {
     using System;
@@ -17,27 +16,26 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BasketballController : BaseController
+    public class BasketballController : WagerController
     {
-        public ActionResult Index(string groupBetName = "")
-        {
-            // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), SportGroup.Basketball_Football_Rugy);
-            ViewBag.GroupBetName = groupBetName;
+        //public ActionResult Index(string groupBetName = "")
+        //{
+        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
 
-            return View();
-        }
-       
+        //    return base.Index(SportGroup.Basketball_Football_Rugy);
+        //}
+
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult FirstHaft(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult FirstHalf(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }

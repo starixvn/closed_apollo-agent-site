@@ -423,4 +423,7 @@
   <data name="vs" xml:space="preserve">
     <value>VS.</value>
   </data>
+  <data name="feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
 </root>

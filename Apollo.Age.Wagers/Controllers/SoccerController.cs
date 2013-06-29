@@ -16,21 +16,21 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SoccerController : BaseController
+    public class SoccerController : WagerController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index(string groupBetName = "")
+        //{
+        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
+        //    return this.Index(SportGroup.Soccer);
+        //}
 
         public ActionResult Straight()
-        {
-            //ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
-            //ViewBag.Title = Resources.Lang.lblStraight;
+        {           
             return View();
         }
 
