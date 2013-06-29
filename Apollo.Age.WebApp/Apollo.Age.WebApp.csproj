@@ -697,12 +697,9 @@
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Correctscore.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfCorrectScore.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfRB.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Parlay.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Total.cshtml" />
@@ -755,6 +752,7 @@
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\RunningBall.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
