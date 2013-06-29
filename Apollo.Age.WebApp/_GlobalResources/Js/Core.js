@@ -15,6 +15,7 @@ if (typeof jQuery != 'undefined') {
 				modal: true,
 				width: 'auto'
 			},
+			isResizeDialog: true,
 			currentOpenDialog: null,
 			openDialog: function (target, title, options) {
 				options = options || {};
@@ -342,7 +343,6 @@ if (typeof jQuery != 'undefined') {
 				$(window).resize(function () {
 					APOLLO.updateTableHeaders();
 				});
-
 			},
 
 			updateTableHeaders: function () {
@@ -498,21 +498,6 @@ String.prototype.escapeHtml = function () { // Replace all ampersands with &amp;
 	}
 	return result;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /////////////// LEGACY CODE ///////////////
 
