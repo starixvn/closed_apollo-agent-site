@@ -54,6 +54,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
+        public ViewResult Winloss()
+        {
+            return this.View();
+        }
+
         /// <summary>
         /// Action betlist from forecast
         /// </summary>

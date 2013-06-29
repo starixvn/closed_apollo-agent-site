@@ -14,6 +14,7 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Linq;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.Services;
     using Apollo.Age.Services.Impl;
 
     public class AgentWinLossViewModel
@@ -57,7 +58,7 @@ namespace Apollo.Age.Reports.ViewModels
         {
             get
             {
-                var bettypeList = SingbetSportService.GetBettype();
+                var bettypeList = ReportService.GetBettype();
                 var bettype = bettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
 
                 if (bettype != null)

@@ -9,11 +9,6 @@
 
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     public class SingbetBettype
     {
         public string Id { get; set; }

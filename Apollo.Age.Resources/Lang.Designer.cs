@@ -3320,6 +3320,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None Agents.
+        /// </summary>
+        public static string NoneAgents {
+            get {
+                return ResourceManager.GetString("NoneAgents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Members.
+        /// </summary>
+        public static string NoneMembers {
+            get {
+                return ResourceManager.GetString("NoneMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Non-Entered.
         /// </summary>
         public static string nonentered {
