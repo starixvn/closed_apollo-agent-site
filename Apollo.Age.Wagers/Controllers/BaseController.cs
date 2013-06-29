@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apollo.Age.Wagers.Services;
+
 using System.Web.Mvc;
 using Apollo.Age.Core;
 using Apollo.Age.Entities;
+using Apollo.Age.Wagers.Services;
 
 namespace Apollo.Age.Wagers.Controllers
 {

@@ -546,6 +546,11 @@
         <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB">
             <Mapping DataField="LeagueId" ObjectProperty="Id" />
         </Setting>
-        <Setting Key="Age_Wagers_1_3_5" SpName="Age_Wagers_1_3_5" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_1_3_5" SpName="Age_Wagers_SC_1_3_5" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_1_3_7_8_RunBall" SpName="Age_Wagers_SC_1_3_7_8_RunBall" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_4_30_16" SpName="Age_Wagers_SC_4_30_16" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_7_8_15" SpName="Age_Wagers_SC_7_8_15" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_2_12_6" SpName="Age_Wagers_SC_2_12_6" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_Special" SpName="Age_Wagers_SC_Special" DbName="SVRAGE.RepDB"/>
     </Function>
 </Functions>
