@@ -9,19 +9,19 @@ using Apollo.Age.Entities;
 
 namespace Apollo.Age.Wagers.Controllers
 {
-    public class BaseController : Controller
+    public class WagerController : Controller
     {
         private readonly WagersService _wagerService;
 
         public string ActionName { get; set; }
 
-        public BaseController()
+        public WagerController()
             : this(null)
         {
             this.ActionName = "Straight";
         }
 
-        public BaseController(WagersService wagerService = null)
+        public WagerController(WagersService wagerService = null)
         {
             _wagerService = wagerService ?? new WagersService();
         }
@@ -32,9 +32,8 @@ namespace Apollo.Age.Wagers.Controllers
 
             return leagues != null ? leagues.ToList() : new List<League>();
         }
-
-        [NonAction]
-        public ActionResult BaseIndex(string sportTypes)
+        
+        public ActionResult Index(string sportTypes)
         {
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), sportTypes);

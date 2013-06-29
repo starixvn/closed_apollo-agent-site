@@ -17,14 +17,14 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class OthersController : BaseController
+    public class OthersController : WagerController
     {
-        public ActionResult Index(string groupBetName = "")
-        {
-            this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
+        //public ActionResult Index(string groupBetName = "")
+        //{
+        //    this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
 
-            return base.BaseIndex(SportGroup.Other);
-        }
+        //    return base.Index(SportGroup.Other);
+        //}
 
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {

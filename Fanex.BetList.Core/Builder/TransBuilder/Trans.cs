@@ -40,11 +40,20 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName)
+        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
             this.Template.oddsName = string.Empty;
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+
+            if (betListPage == BetListPage.Report)
+            {
+                this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
+            }
+            else
+            {
+                this.Template.sportName = string.Empty;
+            }
 
             return Template;
         }
