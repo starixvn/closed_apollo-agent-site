@@ -1779,5 +1779,7 @@
   <data name="GMT" xml:space="preserve">
     <value>GMT+8</value>
   </data>
-
+  <data name="lblsoccerAll" xml:space="preserve">
+    <value>Soccer All</value>
+  </data>
 </root>
