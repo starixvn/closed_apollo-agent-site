@@ -24,6 +24,8 @@ namespace Apollo.Age.BetList.ViewModels
 
         public IEnumerable<Agent> ListMainShareHolders { get; set; }
 
+        public IEnumerable<Agent> DownlinePath { get; set; }
+
         public List<TicketText> TicketList { get; set; }
     }
 }

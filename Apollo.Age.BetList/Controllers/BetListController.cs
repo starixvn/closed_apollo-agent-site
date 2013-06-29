@@ -101,9 +101,12 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
             }
 
+            var modelAgentDownLine = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, custId);
+
             var viewModel = new BetListViewModel
             {
-                TicketList = this.Ticket(mainTickets, BetListPage.Report)
+                TicketList = this.Ticket(mainTickets, BetListPage.Report),
+                DownlinePath = modelAgentDownLine
             };
             return this.View(viewModel);
         }
