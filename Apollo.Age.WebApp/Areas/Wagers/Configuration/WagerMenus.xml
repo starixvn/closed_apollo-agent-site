@@ -6,10 +6,9 @@
         <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
         <BetType Action="Correctscore" ResourceKey="correctscore" />
         <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
-        <BetType Action="Total" ResourceKey="total" />
         <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
-        <BetType Action="Parlay" ResourceKey="lblParlay" />
-        <BetType Action="Start" ResourceKey="lblStart" />
+        <BetType Action="Total" ResourceKey="total" />        
+        <BetType Action="Parlay" ResourceKey="lblParlay" />        
     </Sport>
     <Sport Controller="Basketball" ResourceKey="">
         <BetType Action="Straight" ResourceKey="" />
