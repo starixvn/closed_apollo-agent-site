@@ -47,7 +47,7 @@ if (typeof jQuery != 'undefined') {
 
                     $(this).hide();
                     $("#advanced-mode").show();
-
+                    $('#edit-warning').show();
                     EDITSETTING.currentIsSimpleMode = true;
                     EDITSETTING.initOthers(true);
                 });
@@ -61,6 +61,7 @@ if (typeof jQuery != 'undefined') {
 
                     $(this).hide();
                     $("#simple-mode").show();
+                    $('#edit-warning').hide();
 
                     EDITSETTING.currentIsSimpleMode = false;
                     EDITSETTING.initOthers(false);

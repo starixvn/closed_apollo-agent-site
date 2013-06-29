@@ -16,60 +16,46 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BasketballController : Controller
+    public class BasketballController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string groupBetName = "")
+        {
+            // AddDays(-9) : sample code for get data
+            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), SportGroup.Basketball_Football_Rugy);
+            ViewBag.GroupBetName = groupBetName;
+
+            return View();
+        }
+       
+        public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Straight()
+        public ActionResult FirstHaft(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult FirstHalfRB()
+        public ActionResult RunningBall(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Specialbet()
+        public ActionResult Parlay(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Correctscore()
+        public ActionResult SpecialBet(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
-
-        public ActionResult Parlay()
-        {
-            return View();
-        }
-
-        public ActionResult Start()
-        {
-            return View();
-        }
     }
 }

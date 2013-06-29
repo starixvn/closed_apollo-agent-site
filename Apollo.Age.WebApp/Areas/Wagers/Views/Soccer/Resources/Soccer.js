@@ -3,19 +3,9 @@
 var Soccer = function ($) {
     return {
         init: function () {
-            Soccer.bindSubMenu();
+            alert('test');
         },
-        bindSubMenu: function () {
-
-            $("[name=wagers-submenu]").on('click', function () {
-                var $this = $(this);
-                $.getJSON(APOLLO.resolveUrl("~/wagers/GetDataContain"), { "bettype": $this.attr("data-bettype") })
-                        .done(function (data) {
-                           $("#wagerContainer").html(data);
-                        });
-                //location.href = APOLLO.resolveUrl("~/wagers/Soccer") + "?bettype=" + $this.attr("data-bettype");
-            });
-        },              
+               
 
     }
 } (jQuery);

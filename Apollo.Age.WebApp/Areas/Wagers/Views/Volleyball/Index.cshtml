@@ -1,19 +1,5 @@
 ﻿@using Apollo.Age.Resources
-@{
-    Layout = null;
-    var menu = new List<string[]>
-	{
-		new string[] {"~/wagers/Volleyball/Straight", Lang.lblStraight},		
-		new string[] {"~/wagers/Volleyball/Specialbet", Lang.lblSpecialbet},
-		new string[] {"~/wagers/Volleyball/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/Volleyball/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
-		new string[] {"~/wagers/Volleyball/Total", Lang.total},
-		new string[] {"~/wagers/Volleyball/HalfFull", Lang.lblHalfFull},
-		new string[] {"~/wagers/Volleyball/Parlay",Lang.lblParlay},
-		new string[] {"~/wagers/Volleyball/Start", Lang.lblStart}
-	};
-    int menuItemCount = menu.Count;
-}
+@using Apollo.Age.Wagers.Core
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -26,10 +12,10 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="1">Soccer A</option>
-                <option value="2">Soccer B</option>
-                <option value="3">Soccer C</option>
-                <option value="4">Soccer D</option>
+                <option value="1">@Lang.Volleyball A</option>
+                <option value="2">@Lang.Volleyball B</option>
+                <option value="3"  selected="selected">@Lang.Volleyball C</option>
+                <option value="4">@Lang.Volleyball D</option>
             </select>
         </div>
         <div class="before-filter">
@@ -37,13 +23,7 @@
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
-        <ul class="menu">
-            @for (int i = 0; i < menu.Count; i++)
-            {
-                var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-            }
-        </ul>
+        @RazorHelper.RenderWagersMenu(WagersSportName.Volleyball)
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">

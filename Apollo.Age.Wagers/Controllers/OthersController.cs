@@ -29,15 +29,15 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Straight()
         {
-            return View();
+            return View("~/Areas/Wagers/Views/Others/Straight.cshtml");
         }
 
-        public ActionResult FirstHalfRB()
+        public ActionResult FirstHalf()
         {
             return View();
         }
 
-        public ActionResult Specialbet()
+        public ActionResult RB()
         {
             return View();
         }
@@ -52,12 +52,12 @@ namespace Apollo.Age.Wagers.Controllers
             return View();
         }
 
-        public ActionResult Total()
+        public ActionResult HalfFull()
         {
             return View();
         }
 
-        public ActionResult HalfFull()
+        public ActionResult Total()
         {
             return View();
         }

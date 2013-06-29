@@ -31,10 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -45,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\WagerMenusConfiguration.cs" />
     <Compile Include="Controllers\BaseballController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BasketballController.cs" />
@@ -52,6 +57,7 @@
     <Compile Include="Controllers\SoccerController.cs" />
     <Compile Include="Controllers\TennisController.cs" />
     <Compile Include="Controllers\VolleyballController.cs" />
+    <Compile Include="Core\WagersSportName.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Criterias\Soccer\GetWagersStraightCriteria.cs" />
     <Compile Include="Entities\WagerSport.cs" />
@@ -74,7 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="Criterias\Baseball\" />
     <Folder Include="Criterias\Basketball\" />
     <Folder Include="Criterias\Others\" />

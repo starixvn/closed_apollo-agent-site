@@ -1,18 +1,8 @@
 ﻿@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
+@using Apollo.Age.Entities
 @{
     Layout = null;
-    var menu = new List<string[]>
-	{
-		new string[] {"~/wagers/Others/Straight", Lang.lblStraight},		
-		new string[] {"~/wagers/Others/Specialbet", Lang.lblSpecialbet},
-		new string[] {"~/wagers/Others/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/Others/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
-		new string[] {"~/wagers/Others/Total", Lang.total},
-		new string[] {"~/wagers/Others/HalfFull", Lang.lblHalfFull},
-		new string[] {"~/wagers/Others/Parlay",Lang.lblParlay},
-		new string[] {"~/wagers/Others/Start", Lang.lblStart}
-	};
-    int menuItemCount = menu.Count;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -36,17 +26,12 @@
             --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
-            --</div>
-        <ul class="menu">
-            @for (int i = 0; i < menu.Count; i++)
-            {
-                var item = menu[i];
-                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-            }
-        </ul>
+        </div>
+        @RazorHelper.RenderWagersMenu(WagersSportName.Others)
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
+        @RazorHelper.RenderWagersFilter(Lang.lblStraight, (List<League>)ViewBag.Leagues)
         <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="">
         </iframe>
     </div>

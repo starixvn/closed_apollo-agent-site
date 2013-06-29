@@ -1065,7 +1065,7 @@
     <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Betting Setup</value>
+    <value>Betting Setup (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% in Upper:</value>
@@ -1461,7 +1461,7 @@
     <value>Suspended</value>
   </data>
   <data name="est" xml:space="preserve">
-    <value>E.S.T.</value>
+    <value>E.S.T</value>
   </data>
   <data name="OrderBy" xml:space="preserve">
     <value>Order by</value>
@@ -1652,5 +1652,65 @@
   </data>
   <data name="lblUserName" xml:space="preserve">
     <value>User Name</value>
+  </data>
+  <data name="SoccerDeadballHandicap" xml:space="preserve">
+    <value>Soccer Deadball Handicap</value>
+  </data>
+  <data name="lbl0_1" xml:space="preserve">
+    <value>0~1</value>
+  </data>
+  <data name="lbl1x2Wager" xml:space="preserve">
+    <value>1x2/Wagers</value>
+  </data>
+  <data name="lbl2_3" xml:space="preserve">
+    <value>2~3</value>
+  </data>
+  <data name="lbl4_6" xml:space="preserve">
+    <value>4~6</value>
+  </data>
+  <data name="lbl7up" xml:space="preserve">
+    <value>7up</value>
+  </data>
+  <data name="lblHandicapWager" xml:space="preserve">
+    <value>Handicap/Wagers</value>
+  </data>
+  <data name="lblHomeAway" xml:space="preserve">
+    <value>Home/Away</value>
+  </data>
+  <data name="lblOverUnderWager" xml:space="preserve">
+    <value>Over/Under/Wagers</value>
+  </data>
+  <data name="lblWagersGolds" xml:space="preserve">
+    <value>Wagers/Golds</value>
+  </data>
+  <data name="lblMatchCode" xml:space="preserve">
+    <value>Match Code</value>
+  </data>
+  <data name="lblEven" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="lblFeature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="lblGolds" xml:space="preserve">
+    <value>Golds</value>
+  </data>
+  <data name="lblOdd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="RBOverUnder" xml:space="preserve">
+    <value>R.B Over/Under</value>
+  </data>
+  <data name="lblQuarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
+  <data name="lblStraightAll" xml:space="preserve">
+    <value>Straight All</value>
+  </data>
+  <data name="lblExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="NodataSearch" xml:space="preserve">
+    <value>No data for search</value>
   </data>
 </root>

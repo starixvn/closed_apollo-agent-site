@@ -6,6 +6,10 @@
 @using Apollo.Age.Resources
 @using Apollo.Age.Core
 @using Apollo.Age.Services
+@using Apollo.Age.Wagers.Configuration
+@using System.Xml.Linq
+@using Apollo.Age.Web
+@using System.Resources
 @helper ShowNoInfo(int colspan, string cssClass = "no_info")
     {
     <!--NotFoundContent-->
@@ -278,7 +282,7 @@
             TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
             var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
 		
-    <div class="est-zone">@(string.Format("--{0} : {1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
+    <div class="est-zone">@(string.Format("--{0}:{1}", Apollo.Age.Resources.Lang.est, Formater.LongDateFormat(easternTime)))</div>
 		
         }
         catch (Exception ex)
@@ -286,7 +290,41 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
+@helper RenderWagersMenu(string controller)
+    {
+        var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+        var xDocument = WagerMenusConfiguration.MenuConfig;
+        var xWagers = xDocument.Descendants("Wagers");
+    <ul class="menu">
+        @foreach (var itemWager in xWagers)
+        {
+            var xSport = itemWager.Descendants("Sport");
+            int count = 0;
 
+            foreach (var itemSport in xSport)
+            {
+                string currentController = itemSport.Attribute("Controller").Value;
+
+                if (string.Compare(currentController, controller, true) == 0)
+                {
+                    var xBettype = itemSport.Descendants("BetType");
+                    foreach (var itemBettype in xBettype)
+                    {
+                        string tempAction = itemBettype.Attribute("Action").Value;
+                        string resourceKey = itemBettype.Attribute("ResourceKey").Value;
+                        
+            <li class="@(count == 0 ? "active" : string.Empty)"><a href="~/wagers/@controller?groupBetName=@tempAction" target="submain">@resMgr.GetString(resourceKey)</a>
+            </li>   
+                        count++;
+                    }
+
+                    break;
+                }
+
+            }
+        }
+    </ul>
+}
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
     <div id="header_main">@title</div>

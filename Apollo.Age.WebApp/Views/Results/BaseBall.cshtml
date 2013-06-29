@@ -52,8 +52,8 @@
             <td class="nowrap" style="width: 70px;">
                 @Lang.lblfinal
             </td>
-            <td class="nowrap" style="width: 60px;">
-                @Lang.more
+            <td class="nowrap" style="width: 100px;">
+                @Lang.status
             </td>
         </tr>
     </thead>
@@ -90,13 +90,15 @@
                     if (listOfBetStatus.Count() > 1)
                     {
                         string[] splitBetStatus = null;
+                        int i = 0;
                         foreach (string betstatus in listOfBetStatus)
                         {
                             splitBetStatus = betstatus.Split('-');
                             if (splitBetStatus != null)
-                            {
-                                homeSet.Add(splitBetStatus[0]);
-                                awaySet.Add(splitBetStatus[1]);
+                            {                               
+                                homeSet[i] = splitBetStatus[0];
+                                awaySet[i] = splitBetStatus[1];
+                                i++;
                             }
                         }
                         if (listOfBetStatus.Count() < 10)
@@ -117,7 +119,7 @@
                 <td>
                     @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
                 </td>
-                 <td>
+                 <td class="l">
                     @item.LeagueName
                 </td>
                 <td class="l">

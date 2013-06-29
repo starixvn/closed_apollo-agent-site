@@ -25,7 +25,8 @@
                 if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + WINLOSS.BalanceUpDay.val());
                 }
-                else {
+                else 
+                {
                     $.blockUI();
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
@@ -59,8 +60,12 @@
 
             $("#btnCancel").bind('click', function () {
                 $.blockUI();
-                //                var url = APOLLO.resolveUrl("_betList/BetListTransaction.aspx?type=cancel");
-                //                location.href = url;
+                history.back();
+                return false;
+            });
+
+            $("#lnkExit").bind('click', function () {
+                $.blockUI();
                 history.back();
                 return false;
             });
