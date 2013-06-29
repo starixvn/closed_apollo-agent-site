@@ -33,7 +33,7 @@ namespace Apollo.Age.Wagers.Controllers
         public ActionResult Index(string bettype = WagersBettypes.Straight)
         {
             List<League> listLeague = new List<League>();
-            listLeague = this.GetLeague(SingbetSportConstant.BK_NFL_RUGBY);
+            listLeague = this.GetLeague(DateTime.Now, SingbetSportConstant.BK_NFL_RUGBY);
 
             ViewBag.Leagues = listLeague;
 

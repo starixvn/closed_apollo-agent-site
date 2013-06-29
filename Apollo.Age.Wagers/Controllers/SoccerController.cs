@@ -41,7 +41,7 @@ namespace Apollo.Age.Wagers.Controllers
         public ActionResult Index(string bettype = "1")
         {
 
-            ViewBag.Leagues = GetLeague(SingbetSportConstant.Soccer);
+            ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
             ViewBag.Title = bettype;
             return View();
         }
