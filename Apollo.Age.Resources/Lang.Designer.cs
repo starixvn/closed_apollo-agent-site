@@ -124,7 +124,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agency detailed edit.
+        ///   Looks up a localized string similar to Agent detailed edit.
         /// </summary>
         public static string AgencyDetailEdit {
             get {
@@ -2803,6 +2803,15 @@ namespace Apollo.Age.Resources {
         public static string lblUO {
             get {
                 return ResourceManager.GetString("lblUO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Name.
+        /// </summary>
+        public static string lblUserName {
+            get {
+                return ResourceManager.GetString("lblUserName", resourceCulture);
             }
         }
         

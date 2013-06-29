@@ -1576,7 +1576,7 @@
     <value>Name</value>
   </data>
   <data name="AgencyDetailEdit" xml:space="preserve">
-    <value>Agency detailed edit</value>
+    <value>Agent detailed edit</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1649,5 +1649,8 @@
   </data>
   <data name="NoneMembers" xml:space="preserve">
     <value>None Members</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>User Name</value>
   </data>
 </root>

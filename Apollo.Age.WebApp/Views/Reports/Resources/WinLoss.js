@@ -23,7 +23,7 @@
                 //                var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
 
                 if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
-                    alert(LANGUAGES.MessageValidateWithArchivedDate);
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + WINLOSS.BalanceUpDay.val());
                 }
                 else {
                     $.blockUI();
