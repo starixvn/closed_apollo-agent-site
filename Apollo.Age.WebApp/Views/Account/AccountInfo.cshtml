@@ -101,7 +101,7 @@
                 if (Model.HasAgentDownline)
                 {
                 <a class="lnk-agent-list"
-                            target="main" href="~/Account/AgentList?agentid=@Model.CustId">
+                            target="main" href="~/Account/indirectagentlist?parentAgentId=@Model.ActorAgentId&agentid=@Model.CustId">
                     @Apollo.Age.Resources.Lang.lblAgentList
                 </a>
                 }
