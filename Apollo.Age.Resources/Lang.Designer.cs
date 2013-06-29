@@ -214,7 +214,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Single Game Max.
+        ///   Looks up a localized string similar to Incorrect Single Game.
         /// </summary>
         public static string alertIncorrectMaxPerMatch {
             get {
@@ -1583,7 +1583,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Game Max must be less than or equal to {1}..
+        ///   Looks up a localized string similar to Single Game must be less than or equal to {1}..
         /// </summary>
         public static string lblalertMaxPerMatchCompare {
             get {
@@ -2222,7 +2222,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Game Max.
+        ///   Looks up a localized string similar to Single Game.
         /// </summary>
         public static string lblMaxPerMatch {
             get {
@@ -3050,7 +3050,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Max should be less than or equal to Single Game Max.
+        ///   Looks up a localized string similar to {0} - The Single Bet Max should be less than or equal to Single Game.
         /// </summary>
         public static string maxBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3176,7 +3176,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Min should be less than or equal to Single Game Max.
+        ///   Looks up a localized string similar to {0} - The Single Bet Min should be less than or equal to Single Game.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {

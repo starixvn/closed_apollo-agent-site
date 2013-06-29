@@ -142,7 +142,7 @@
     <value>Incorrect Max Per Ball</value>
   </data>
   <data name="alertIncorrectMaxPerMatch" xml:space="preserve">
-    <value>Incorrect Single Game Max</value>
+    <value>Incorrect Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
     <value>Incorrect Single Bet Min</value>
@@ -346,7 +346,7 @@
     <value>Max Per Ball must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMaxPerMatchCompare" xml:space="preserve">
-    <value>Single Game Max must be less than or equal to {1}.</value>
+    <value>Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
     <value>Single Bet Min must be greater than or equal to</value>
@@ -413,7 +413,7 @@
     <value>Single Bet Max</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Single Game Max</value>
+    <value>Single Game</value>
   </data>
   <data name="lblMemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Bet Max should be less than or equal to Single Game Max</value>
+    <value>{0} - The Single Bet Max should be less than or equal to Single Game</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
     <value>{0} - The Single Bet Min should be less than or equal to Single Bet Max</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Bet Min should be less than or equal to Single Game Max</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Single Game</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
