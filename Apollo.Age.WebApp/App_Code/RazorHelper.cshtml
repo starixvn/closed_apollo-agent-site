@@ -313,7 +313,7 @@
                         string tempAction = itemBettype.Attribute("Action").Value;
                         string resourceKey = itemBettype.Attribute("ResourceKey").Value;
                         
-            <li class="@(count == 0 ? "active" : string.Empty)"><a href="~/wagers/@controller/@tempAction" target="submain">@resMgr.GetString(resourceKey)</a>
+            <li class="@(count == 0 ? "active" : string.Empty)"><a href="~/wagers/@controller?groupBetName=@tempAction" target="submain">@resMgr.GetString(resourceKey)</a>
             </li>   
                         count++;
                     }
