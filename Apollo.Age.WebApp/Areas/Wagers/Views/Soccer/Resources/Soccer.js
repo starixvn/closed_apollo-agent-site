@@ -6,6 +6,7 @@ var Soccer = function ($) {
     var urlAction;
     return {
         init: function () {
+        alert('test');
             container = $("#container");
             groupBetName = $("GroupBetName").val();
             urlAction = APOLLO.resolveUrl("~/Soccer/") + groupBetName;
