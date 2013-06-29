@@ -62,7 +62,7 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             }
             else
             {
-                Template.discount = ConvertByBetType.Comm_Percentage(ticket.ADiscount);
+                Template.discount = ticket.ADiscount.ToString("N2");
             }
 
             Template.username = ticket.UserName;
