@@ -18,18 +18,18 @@ namespace Apollo.Age.Wagers.Core
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class WagersSportName
+    public static class WagersSportName
     {
-        public static readonly string Basketball = Lang.Basketball;
+        public const string Basketball = "basketball";
 
-        public static readonly string Baseball = Lang.Baseball;
+        public const string Baseball = "baseball";
 
-        public static readonly string Others = Lang.Others;
+        public const string Others = "others";
 
-        public static readonly string Soccer = Lang.soccer;
+        public const string Soccer = "soccer";
 
-        public static readonly string Tennis = Lang.Tennis;
+        public const string Tennis = "tennis";
 
-        public static readonly string Volleyball = Lang.Volleyball;
+        public const string Volleyball = "volleyball";
     }
 }

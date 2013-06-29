@@ -2,8 +2,9 @@
 @using Apollo.Age.Wagers.Core
 @using Apollo.Age.Entities
 @{
-    Layout = null;  
-    var groupBetName=(string)ViewBag.GroupBetName;
+    Layout = null;
+    var groupBetName = (string)ViewBag.GroupBetName;
+    var sportName = (string)ViewBag.SportName;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -18,10 +19,10 @@
             @Lang.lblOP.
             <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
                 <option value="0">@Lang.all</option>
-                <option value="1">@Lang.BasketballA</option>
-                <option value="2">@Lang.BasketballB</option>
-                <option value="3">@Lang.BasketballC</option>
-                <option value="4">@Lang.BasketballD</option>
+                <option value="1">@Lang.lblsoccerA</option>
+                <option value="2">@Lang.lblsoccerB </option>
+                <option value="3">@Lang.lblsoccerC </option>
+                <option value="4">@Lang.lblsoccerD </option>
             </select>
         </div>
         <div class="before-filter">
@@ -29,14 +30,15 @@
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
-        @RazorHelper.RenderWagersMenu(WagersSportName.Basketball,groupBetName)
+        @RazorHelper.RenderWagersMenu(sportName, groupBetName)
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
+    @Html.Hidden("SportName", sportName)
     <div class="mainpage">
         @RazorHelper.RenderWagersFilter(Lang.lblStraight, (List<League>)ViewBag.Leagues)
-        @*<iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="">
-        </iframe>*@
+        <div id="container">
+        </div>
     </div>
 </body>
 </html>

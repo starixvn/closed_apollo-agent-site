@@ -1682,6 +1682,51 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baseball A.
+        /// </summary>
+        public static string lblBaseballA {
+            get {
+                return ResourceManager.GetString("lblBaseballA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseball All.
+        /// </summary>
+        public static string lblBaseballAll {
+            get {
+                return ResourceManager.GetString("lblBaseballAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseball B.
+        /// </summary>
+        public static string lblBaseballB {
+            get {
+                return ResourceManager.GetString("lblBaseballB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseball C.
+        /// </summary>
+        public static string lblBaseballC {
+            get {
+                return ResourceManager.GetString("lblBaseballC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baseball D.
+        /// </summary>
+        public static string lblBaseballD {
+            get {
+                return ResourceManager.GetString("lblBaseballD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string lblBetLists {
@@ -2924,6 +2969,51 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tennis A.
+        /// </summary>
+        public static string lblTennisA {
+            get {
+                return ResourceManager.GetString("lblTennisA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tennis All.
+        /// </summary>
+        public static string lblTennisAll {
+            get {
+                return ResourceManager.GetString("lblTennisAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tennis B.
+        /// </summary>
+        public static string lblTennisB {
+            get {
+                return ResourceManager.GetString("lblTennisB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tennis C.
+        /// </summary>
+        public static string lblTennisC {
+            get {
+                return ResourceManager.GetString("lblTennisC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tennis D.
+        /// </summary>
+        public static string lblTennisD {
+            get {
+                return ResourceManager.GetString("lblTennisD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to T.N.
         /// </summary>
         public static string lblTN {
@@ -3127,6 +3217,51 @@ namespace Apollo.Age.Resources {
         public static string lblViewSetting {
             get {
                 return ResourceManager.GetString("lblViewSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball A.
+        /// </summary>
+        public static string lblVolleyballA {
+            get {
+                return ResourceManager.GetString("lblVolleyballA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball All.
+        /// </summary>
+        public static string lblVolleyballAll {
+            get {
+                return ResourceManager.GetString("lblVolleyballAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball B.
+        /// </summary>
+        public static string lblVolleyballB {
+            get {
+                return ResourceManager.GetString("lblVolleyballB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball C.
+        /// </summary>
+        public static string lblVolleyballC {
+            get {
+                return ResourceManager.GetString("lblVolleyballC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volleyball D.
+        /// </summary>
+        public static string lblVolleyballD {
+            get {
+                return ResourceManager.GetString("lblVolleyballD", resourceCulture);
             }
         }
         

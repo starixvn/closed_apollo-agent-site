@@ -706,7 +706,6 @@
     <Content Include="Areas\Wagers\Views\Basketball\SpecialBet.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\FirstHalf.cshtml" />
-    <Content Include="Areas\Wagers\Views\Basketball\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Parlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Correctscore.cshtml" />
@@ -750,6 +749,7 @@
     <Content Include="Areas\Wagers\Views\Volleyball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
