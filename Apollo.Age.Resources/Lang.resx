@@ -1683,4 +1683,10 @@
   <data name="lblWagersGolds" xml:space="preserve">
     <value>Wagers/Golds</value>
   </data>
+  <data name="lblStraightAll" xml:space="preserve">
+    <value>Straight All</value>
+  </data>
+  <data name="lblQuarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
 </root>
