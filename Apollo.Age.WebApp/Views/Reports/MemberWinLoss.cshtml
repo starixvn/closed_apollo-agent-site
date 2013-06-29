@@ -96,7 +96,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/_BetList/BetListOnMember.aspx?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
+                        <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
                             @item.MemberName
                         </a>
                     </td>

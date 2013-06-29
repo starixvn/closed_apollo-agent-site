@@ -1671,7 +1671,7 @@
   <data name="lbl7up" xml:space="preserve">
     <value>7up</value>
   </data>
-  <data name="lblHadicapWager" xml:space="preserve">
+  <data name="lblHandicapWager" xml:space="preserve">
     <value>Handicap/Wagers</value>
   </data>
   <data name="lblHomeAway" xml:space="preserve">
@@ -1685,5 +1685,20 @@
   </data>
   <data name="lblMatchCode" xml:space="preserve">
     <value>Match Code</value>
+  </data>
+<data name="lblEven" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="lblFeature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="lblGolds" xml:space="preserve">
+    <value>Golds</value>
+  </data>
+  <data name="lblOdd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="RBOverUnder" xml:space="preserve">
+    <value>R.B Over/Under</value>
   </data>
 </root>
