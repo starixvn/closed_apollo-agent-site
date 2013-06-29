@@ -16,14 +16,17 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BasketballController : Controller
+    public class BasketballController : BaseController
     {
         public ActionResult Index()
         {
+            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), SportGroup.Basketball_Football_Rugy);
+
             return View();
         }
 
