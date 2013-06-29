@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Wagers>
+    <Sport Controller="Soccer" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+    <Sport Controller="Basketball" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+    <Sport Controller="Tenis" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+    <Sport Controller="Volleyball" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+    <Sport Controller="Baseball" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+    <Sport Controller="Others" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="" />
+    </Sport>
+</Wagers>
