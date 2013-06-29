@@ -243,6 +243,30 @@
         }
     </select>
 }
+@helper RenderResultBySport()
+    {
+        List<SingbetSport> singbetSports = Apollo.Age.Services.Impl.SingbetSportService.GetSport(true);
+
+        foreach (SingbetSport sport in singbetSports)
+        {
+            if (sport.Id != Apollo.Age.Core.SportGroup.All)
+            {
+                if (sport.Id == Apollo.Age.Core.SportGroup.Other)
+                {							
+    <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
+                }
+                else if (sport.Id == Apollo.Age.Core.SportGroup.Outright)
+                {
+    <li><a href="#" id="@sport.Id" name="menuoutright">[@(sport.Name)]</a></li>
+                }
+                else
+                {
+    <li><a href="#" id="@sport.Id" name="menusport">[@(sport.Name)]</a></li>
+                }
+            }
+
+        }
+}
 @helper ToEasternTime(DateTime datetime)
     {
         if (datetime != null)
@@ -262,6 +286,7 @@
             Logger.Log.Error(ex.Message, ex);
         }
 }
+
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
     <div id="header_main">@title</div>

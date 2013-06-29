@@ -3,8 +3,7 @@
     Layout = null;
     var menu = new List<string[]>
 	{
-		new string[] {"~/wagers/Tennis/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/Tennis/FirstHalfRB", Lang.lbl1stHalfRB},
+		new string[] {"~/wagers/Tennis/Straight", Lang.lblStraight},		
 		new string[] {"~/wagers/Tennis/Specialbet", Lang.lblSpecialbet},
 		new string[] {"~/wagers/Tennis/Correctscore", Lang.correctscore},
 		new string[] {"~/wagers/Tennis/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
@@ -34,7 +33,7 @@
             </select>
         </div>
         <div class="before-filter">
-              --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
+            --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
