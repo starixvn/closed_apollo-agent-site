@@ -2258,6 +2258,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Match Code.
+        /// </summary>
+        public static string lblMatchCode {
+            get {
+                return ResourceManager.GetString("lblMatchCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match Results.
         /// </summary>
         public static string lblMatchResult {

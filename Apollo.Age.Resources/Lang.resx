@@ -1683,4 +1683,7 @@
   <data name="lblWagersGolds" xml:space="preserve">
     <value>Wagers/Golds</value>
   </data>
+  <data name="lblMatchCode" xml:space="preserve">
+    <value>Match Code</value>
+  </data>
 </root>
