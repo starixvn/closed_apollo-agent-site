@@ -52,6 +52,7 @@ if (typeof jQuery != 'undefined') {
                     $(this).hide();
                     $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
                     $("#advanced-mode").show();
+                    $('#edit-warning').show();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = true;
                     EDITPOSITIONTAKING.initOthers(true);
@@ -61,6 +62,7 @@ if (typeof jQuery != 'undefined') {
                     $(this).hide();
                     $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
                     $("#simple-mode").show();
+                    $('#edit-warning').hide();
 
                     EDITPOSITIONTAKING.currentIsSimpleMode = false;
                     EDITPOSITIONTAKING.initOthers(false);

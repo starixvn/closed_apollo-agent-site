@@ -1065,7 +1065,7 @@
     <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Betting Setup</value>
+    <value>Betting Setup (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% in Upper:</value>
@@ -1652,5 +1652,8 @@
   </data>
   <data name="lblUserName" xml:space="preserve">
     <value>User Name</value>
+  </data>
+  <data name="SoccerDeadballHandicap" xml:space="preserve">
+    <value>Soccer Deadball Handicap</value>
   </data>
 </root>
