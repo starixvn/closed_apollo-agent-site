@@ -809,7 +809,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E.S.T..
+        ///   Looks up a localized string similar to E.S.T.
         /// </summary>
         public static string est {
             get {
