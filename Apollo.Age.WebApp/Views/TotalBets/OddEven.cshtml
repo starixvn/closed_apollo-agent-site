@@ -158,17 +158,8 @@
             
             <!--MatchContents-->
             <tr class='r @classRow'>
-                 <td class="c">
-                        @*@if(item.KickOffTime != null){
-                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-                        }
-                        @if (item.LiveIndicator)
-                        {
-                             <br />
-                            <!--LiveNotice-->
-                            <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-                        }*@
-                        @Html.Raw(item.ShowTime)
+                 <td class="c show-time" >
+                       @Html.Raw(item.ShowTime.TrimEnd('M'))
                     </td>
                     @ShowTime(item)
                     <td class="c">

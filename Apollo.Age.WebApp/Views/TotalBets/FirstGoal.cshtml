@@ -22,15 +22,9 @@
 @helper ShowMatch(int index, FirstGoalModel item)
 {    
     <tr>
-         <td class="c" >
-            @*@if(item.KickOffTime != null){
-                @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-            }*@
-            @Html.Raw(item.ShowTime)
-        </td>
-        @*<td class="c bl_time" >
-            @Html.Raw(item.ShowTime)
-        </td>*@
+         <td class="c show-time" >
+                       @Html.Raw(item.ShowTime.TrimEnd('M'))
+                    </td>
         <td class="c" >
             @item.LeagueName
         </td>

@@ -7,11 +7,11 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            @*<td style="width: 5%;">
+            <td style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
                 <br />
                 (@Apollo.Age.Resources.Lang.GMT)
-            </td>*@
+            </td>
             <td style="width: 25%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
@@ -50,11 +50,9 @@
                         classRow = string.Empty;
                     }
                 <tr class="item @item.Closed @classRow">
-                @* <td class="c" >
-                        @if(item.KickOffTime != null){
-                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-                        }
-                    </td>*@
+                 <td class="c show-time" >
+                       @Html.Raw(item.ShowTime.TrimEnd('M'))
+                    </td>
                     <td style="width: 150px;">
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
                             href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">

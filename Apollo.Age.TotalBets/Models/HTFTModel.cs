@@ -43,6 +43,8 @@ namespace Apollo.Age.TotalBets.Models
 
         public decimal TotalAA { get; set; }
 
+        public string ShowTime { get; set; }
+
         public bool IsNeutral { get; set; }
 
         public DateTime? KickOffTime { get; set; }

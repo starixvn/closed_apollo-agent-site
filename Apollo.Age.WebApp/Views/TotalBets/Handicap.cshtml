@@ -59,16 +59,9 @@
     }
     
     <tr @classRow>
-        <td class="c">
-            @Html.Raw(item.ShowTime)
-            
-            @*@if (item.LiveIndicator)
-            {
-                 <br />
-                <!--LiveNotice-->
-                <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-            }*@
-        </td>
+       <td class="c show-time" >
+                       @Html.Raw(item.ShowTime.TrimEnd('M'))
+                    </td>
         @ShowTime(item)
         <td class="c" >
             @item.LeagueName
