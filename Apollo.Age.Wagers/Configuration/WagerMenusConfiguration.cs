@@ -13,11 +13,33 @@ namespace Apollo.Age.Wagers.Configuration
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Xml.Linq;
+    using System.Configuration;
+    using Fanex.Logging;
+    using System.Web;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class WagerMenusConfiguration
+    public static class WagerMenusConfiguration
     {
+        /// <summary>
+        /// Constructor, for Lazy loading
+        /// </summary>
+        static WagerMenusConfiguration()
+        {
+            try
+            {
+                var strPath = ConfigurationManager.AppSettings["WagerMenuConfig"].ToString();
+                MenuConfig = XDocument.Load(HttpContext.Current.Server.MapPath(strPath));
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+                throw new Exception("Could not load Wagers Menu configruation file.", ex);
+            }
+        }
+
+        public static XDocument MenuConfig { get; set; }
     }
 }
