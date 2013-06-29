@@ -136,16 +136,16 @@
     <value>AH</value>
   </data>
   <data name="alertIncorrectMaxBet" xml:space="preserve">
-    <value>Incorrect Max Bet</value>
+    <value>Incorrect Max Single Bet</value>
   </data>
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>Incorrect Max Per Ball</value>
   </data>
   <data name="alertIncorrectMaxPerMatch" xml:space="preserve">
-    <value>Incorrect Max Per Match</value>
+    <value>Incorrect Max Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
-    <value>Incorrect Min Bet</value>
+    <value>Incorrect Min Single Bet</value>
   </data>
   <data name="all" xml:space="preserve">
     <value>All</value>
@@ -168,8 +168,8 @@
   <data name="bettype" xml:space="preserve">
     <value>Bet Type</value>
   </data>
-  <data name="commission" xml:space="preserve">
-    <value>Commission (%)</value>
+  <data name="Commission" xml:space="preserve">
+    <value>Commission</value>
   </data>
   <data name="company" xml:space="preserve">
     <value>Company</value>
@@ -340,16 +340,16 @@
     <value>Agent Outstanding</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
-    <value>Max Bet must be less than or equal to</value>
+    <value>Max Single Bet must be less than or equal to</value>
   </data>
   <data name="lblalertMaxPerBallCompare" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMaxPerMatchCompare" xml:space="preserve">
-    <value>Max Per Match must be less than or equal to {1}.</value>
+    <value>Max Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
-    <value>Min Bet must be greater than or equal to</value>
+    <value>Min Single Bet must be greater than or equal to</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>HDP, OU, OE</value>
@@ -410,10 +410,10 @@
     <comment>Label Number Game</comment>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Max Bet</value>
+    <value>Max Single Bet</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Max Per Match</value>
+    <value>Max Single Game</value>
   </data>
   <data name="lblMemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
@@ -431,7 +431,7 @@
     <value>Message</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Min Bet</value>
+    <value>Min Single Bet</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Max Bet should be less than or equal to Max Per Match</value>
+    <value>{0} - The Max Single Bet should be less than or equal to Max Single Game</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Bet</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Single Bet</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Per Match</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Single Game</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
@@ -945,7 +945,7 @@
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
-    <value>{0} - The Min Bet should be less than or equal to Max Per Ball</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Parent</value>
@@ -1050,25 +1050,25 @@
     <value>Commission Setting</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
-    <value>Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>Max Given Share (%)</value>
+    <value>% in Agent:</value>
   </data>
   <data name="lblMaxTakenShare" xml:space="preserve">
-    <value>Max Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblMinGivenShare" xml:space="preserve">
-    <value>Min Given Share (%)</value>
+    <value>% in Agent Min:</value>
   </data>
   <data name="lblShareSetting" xml:space="preserve">
-    <value>Share Setting</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Share Setting (Soccer Deadball Handicap)</value>
+    <value>Betting Setup</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
-    <value>Taken Share (%)</value>
+    <value>% in Upper:</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
     <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
@@ -1382,13 +1382,6 @@
   <data name="times" xml:space="preserve">
     <value>Times</value>
   </data>
-<<<<<<< HEAD
-  <data name="Flesh" xml:space="preserve">
-    <value>Flesh</value>
-  </data>
-  <data name="Inactive" xml:space="preserve">
-    <value>Inactive</value>
-=======
   <data name="lblBrowsingHistoryDeletionTool" xml:space="preserve">
     <value>Browsing History Deletion Tool</value>
   </data>
@@ -1401,7 +1394,6 @@
   <data name="RunningBall" xml:space="preserve">
     <value>Running Ball</value>
   </data>
-  </data>
   <data name="HomeGuest" xml:space="preserve">
     <value>Home/Guest</value>
   </data>
@@ -1412,7 +1404,7 @@
     <value>Archived Date</value>
   </data>
   <data name="BK" xml:space="preserve">
-    <value>B.K</value>
+    <value>B.K.</value>
   </data>
   <data name="InterEvent" xml:space="preserve">
     <value>Inter. event</value>
@@ -1425,6 +1417,221 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
->>>>>>> bbd28403bfef9192bfc45100d6760c33d9e866c4
+  </data>
+  <data name="Flesh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="ExtraTime" xml:space="preserve">
+    <value>Extra Time</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="lblFT1X2" xml:space="preserve">
+    <value>FT. 1X2</value>
+  </data>
+  <data name="condition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="BetCondition" xml:space="preserve">
+    <value>Bet Condition</value>
+  </data>
+  <data name="Agency" xml:space="preserve">
+    <value>Agency</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="SearchAgent" xml:space="preserve">
+    <value>Search Agent</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="est" xml:space="preserve">
+    <value>E.S.T.</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order by</value>
+  </data>
+  <data name="ASC" xml:space="preserve">
+    <value>ASC</value>
+  </data>
+  <data name="DES" xml:space="preserve">
+    <value>DES</value>
+  </data>
+  <data name="ContentContact" xml:space="preserve">
+    <value>Contact our Customer Relationship Officers through the following available communication
+                channels should you have any concerns or queries.</value>
+  </data>
+  <data name="lblContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="lblEmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="lblEmailContact" xml:space="preserve">
+    <value>csdAddress@yahoo.com</value>
+  </data>
+  <data name="lblHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>(63) 99917 88888</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>(63) 91542 22222</value>
+  </data>
+  <data name="lblPhone3" xml:space="preserve">
+    <value>4000 888 092</value>
+  </data>
+  <data name="lblTelephoneNo" xml:space="preserve">
+    <value>Telephone No.</value>
+  </data>
+  <data name="NonResult" xml:space="preserve">
+    <value>Non-result</value>
+  </data>
+  <data name="area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="InComplete" xml:space="preserve">
+    <value>Incomplete</value>
+  </data>
+  <data name="TicketsCancelled" xml:space="preserve">
+    <value>Ticket cancelled</value>
+  </data>
+  <data name="SearchMember" xml:space="preserve">
+    <value>Search Member</value>
+  </data>
+  <data name="Agents" xml:space="preserve">
+    <value>Agents</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="BetLimit" xml:space="preserve">
+    <value>Bet Limit</value>
+  </data>
+  <data name="HandicapOverUnderOddEven" xml:space="preserve">
+    <value>Handicap, Over/Under, Odd/Even</value>
+  </data>
+  <data name="MixSportParlay" xml:space="preserve">
+    <value>Mix Sport Parlay</value>
+  </data>
+  <data name="OtherBetType" xml:space="preserve">
+    <value>Other Bet Type</value>
+  </data>
+  <data name="RBHandicapRBOverUnder" xml:space="preserve">
+    <value>R.B. Handicap, R.B. Over/Under</value>
+  </data>
+  <data name="RBOtherBetType" xml:space="preserve">
+    <value>R.B. Other Bet Type</value>
+  </data>
+  <data name="_1x2RB1x2" xml:space="preserve">
+    <value>1 X 2, R.B. 1 X 2</value>
+  </data>
+  <data name="lblA" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="lblB" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lblC" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="lblD" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="MaxSingleBet" xml:space="preserve">
+    <value>Max Single Bet</value>
+  </data>
+  <data name="MinSingleBet" xml:space="preserve">
+    <value>Min Single Bet</value>
+  </data>
+  <data name="SingleGame" xml:space="preserve">
+    <value>Single Game</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AgencyDetailEdit" xml:space="preserve">
+    <value>Agency detailed edit</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="lblOP" xml:space="preserve">
+    <value>OP</value>
+  </data>
+  <data name="lbl1stHalfCorrectScore" xml:space="preserve">
+    <value>1st Half Correct Score</value>
+  </data>
+  <data name="lblRB" xml:space="preserve">
+    <value>R.B.</value>
+  </data>
+  <data name="lblHalfFull" xml:space="preserve">
+    <value>Half/Full</value>
+  </data>
+  <data name="lblParlay" xml:space="preserve">
+    <value>Parlay</value>
+  </data>
+  <data name="lblSpecialbet" xml:space="preserve">
+    <value>Special bet</value>
+  </data>
+  <data name="lblStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lblStraight" xml:space="preserve">
+    <value>Straight</value>
+  </data>
+  <data name="BetAmount" xml:space="preserve">
+    <value>Bet Amount</value>
+  </data>
+  <data name="CommBase" xml:space="preserve">
+    <value>Comm Base</value>
+  </data>
+  <data name="ConfirmWriteAgent" xml:space="preserve">
+    <value>Confirm write this agent?</value>
+  </data>
+  <data name="ConfirmWriteMember" xml:space="preserve">
+    <value>Confirm write this member?</value>
+  </data>
+  <data name="MemberDetailEdit" xml:space="preserve">
+    <value>Member detailed edit</value>
+  </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct members</value>
+  </data>
+<<<<<<< HEAD
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+=======
+  <data name="lbl1stOddEven" xml:space="preserve">
+    <value>1st Odd/Even</value>
+  </data>
+  <data name="Othertypes" xml:space="preserve">
+    <value>Other types</value>
+>>>>>>> 369e741dd389fcae9df6e0cc39ebc1434d571993
   </data>
 </root>

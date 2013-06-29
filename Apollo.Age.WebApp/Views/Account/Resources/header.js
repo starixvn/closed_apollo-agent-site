@@ -341,10 +341,10 @@ var HEADER = function ($) {
 
             // show or hide left navigation
             $('.toolbar').on('click', 'li', function (event) {
-                if ($(this).attr('id') !== 'account-link') {
-                    HEADER.hideAccountTab();
-                } else {
+                if ($(this).attr('id') == 'account-link') {
                     HEADER.showAccountTab();
+                } else {
+                    HEADER.hideAccountTab();
                 }
 
                 event.stopPropagation();
@@ -390,10 +390,10 @@ var HEADER = function ($) {
         },
 
         showAccountTab: function () {
-            //parent.$('#menu').contents().find('body').html('ideate tech');
-            var leftMenu = parent.$('.menu'),
-                mainPage = parent.$('.mainpage');
-            //hide left navigation
+            var leftMenu = parent.$('.menu');
+            var mainPage = parent.$('.mainpage');
+
+            // hide left navigation
             if (leftMenu.is(':visible')) {
                 HEADER.hideLeftNavigation(leftMenu, mainPage);
             } else { //show left navigation
@@ -423,19 +423,20 @@ var HEADER = function ($) {
 
         showLeftNavigation: function (leftMenu, mainPage) {
             leftMenu.show().animate(
-                     { width: "220px" },
-                     {
-                         duration: 10,
-                         specialEasing: {
-                             width: 'linear',
-                             height: 'easeOutBounce'
-                         },
-                         complete: function () {
-                             mainPage.animate({ left: '221px' }, 50);
-                         }
-                     }
-                );
-            parent.document.getElementById('menu').contentWindow.MENU.init();
+                { width: "220px" },
+                {
+                    duration: 10,
+                    specialEasing: {
+                        width: 'linear',
+                        height: 'easeOutBounce'
+                    },
+                    complete: function () {
+                        mainPage.animate({ left: '221px' }, 50);
+                    }
+                }
+            );
+
+            parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         }
     };
 } (jQuery);

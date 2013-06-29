@@ -1,5 +1,6 @@
 ﻿@model ICurrentSession
 @using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
 @{
 	Layout = null;
 }
@@ -17,29 +18,33 @@
 	{
 		<div id="news_main">
 			<div class="login-bg clearfix">
-				<div class="left">
+				@{ string sso = Model.IsInternalSignIn ? string.Empty : "sso"; }
+				<div class="left @sso">
 				</div>
 				<div class="right">
-					<div class="login-info clearfix">
-						<div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
-						<ul class="link">
-							<li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
-							<li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
-						</ul>
-					</div>
-					<div class="toolbar">
+					@if (Model.IsInternalSignIn)
+					{
+						<div class="login-info clearfix">
+							<div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
+							<ul class="link">
+								<li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
+								<li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
+							</ul>
+						</div>
+					}
+					<div class="toolbar @sso">
 						<ul>
-							<li><span class="menu-list">[@Lang.lblWager]</span>
+							<li><span class="menu-list border-link">[@Lang.lblWager]</span>
 								<ul class="sub-menu">
-									<li><a href="~/wagers/Soccer" target="main">@Lang.lblSC</a></li>
-									<li><a href="~/wagers/BkNFLRugby" target="main">@Lang.lblBkNflRugby</a></li>
-									<li><a href="~/wagers/Tennis" target="main">@Lang.lblTN</a></li>
-									<li><a href="~/wagers/VolleyballBadminton" target="main">@Lang.lblVbBdmTt</a></li>
-									<li><a href="~/wagers/Baseball" target="main">@Lang.lblBs</a></li>
-									<li><a href="~/wagers/Others" target="main">@Lang.other</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.SC" target="main">@Lang.lblSC</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.BK_NFL_Rugby" target="main">@Lang.lblBkNflRugby</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.TN" target="main">@Lang.lblTN</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.VB" target="main">@Lang.lblVbBdmTt</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.BS" target="main">@Lang.lblBs</a></li>
+									<li><a href="~/wagers/HomeWagers?sportType=@WagersSporttypes.Other" target="main">@Lang.other</a></li>
 								</ul>
 							</li>
-							<li><span class="menu-list">[@Lang.lblEmWager]</span>
+							<li><span class="menu-list border-link">[@Lang.lblEmWager]</span>
 								<ul class="sub-menu">
 									<li><a href="#">@Lang.lblScEm</a></li>
 									<li><a href="#">@Lang.lblBkNflRugbyEm</a></li>
@@ -49,15 +54,17 @@
 									<li><a href="#">@Lang.lblOtherEm</a></li>
 								</ul>
 							</li>
-							<li><span class="menu-list"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
-							<li><a href="#" class="outright">[@Lang.lblOutRight]</a></li>
-							<li id="account-link"><span class="menu-list">[@Lang.lblAccounts]</span>
+							<li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
+							<li><a href="#" class="outright border-link">[@Lang.lblOutRight]</a></li>
+							<li id="account-link" class="border-link"><span class="menu-list">[@Lang.lblAccounts]</span>
 								<ul class="sub-menu">
 									<li><a href="~/Account/AgentList" target="main">@Lang.Agents</a></li>
 									@if (Model.AgentLevel > AgentLevel.Shareholder)
 									{
 										<li><a href="~/Account/MemberList" target="main">@Lang.Members</a></li>
 									}
+									<li><a href="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
+									<li><a href="~/CustomerSetting/ViewCommission" target="main">@Lang.Commission</a></li>
 								</ul>
 							</li>
 							<li><a href="~/Reports/matchentered" target="main" class="txtRed">[@Lang.lblReport]</a></li>
@@ -75,19 +82,23 @@
     {
         <div id="news_main">
             <div class="login-bg clearfix">
-                <div class="left">
+                @{ string sso = Model.IsInternalSignIn ? string.Empty : "sso"; }
+                <div class="left @sso">
                 </div>
                 <div class="right">
-                    <div class="login-info clearfix">
-                        <div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
-                        <ul class="link">
-                            <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
-                            <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
-                        </ul>
-                    </div>
-                    <div class="toolbar">
+                    @if (Model.IsInternalSignIn)
+                    {
+                        <div class="login-info clearfix">
+                            <div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
+                            <ul class="link">
+                                <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
+                                <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
+                            </ul>
+                        </div>
+                    }
+                    <div class="toolbar @sso">
                         <ul>
-                            <li><span class="menu-list">[@Lang.lblWager]</span>
+                            <li><span class="menu-list border-link">[@Lang.lblWager]</span>
                                 <ul class="sub-menu">
                                     <li><a href="~/wagers/Soccer" target="main">@Lang.lblSC</a></li>
                                     <li><a href="~/wagers/BkNFLRugby" target="main">@Lang.lblBkNflRugby</a></li>
@@ -97,7 +108,7 @@
                                     <li><a href="~/wagers/Others" target="main">@Lang.other</a></li>
                                 </ul>
                             </li>
-                            <li><span class="menu-list">[@Lang.lblEmWager]</span>
+                            <li><span class="menu-list border-link">[@Lang.lblEmWager]</span>
                                 <ul class="sub-menu">
                                     <li><a href="#">@Lang.lblScEm</a></li>
                                     <li><a href="#">@Lang.lblBkNflRugbyEm</a></li>
@@ -107,10 +118,9 @@
                                     <li><a href="#">@Lang.lblOtherEm</a></li>
                                 </ul>
                             </li>
-                            <li><span class="menu-list"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span>
-                            </li>
-                            <li><a href="#" class="outright">[@Lang.lblOutRight]</a></li>
-                            <li id="account-link"><span class="menu-list">[@Lang.lblAccounts]</span>
+                            <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
+                            <li><a href="#" class="outright border-link">[@Lang.lblOutRight]</a></li>
+                            <li id="account-link" class="border-link"><span class="menu-list">[@Lang.lblAccounts]</span>
                                 <ul class="sub-menu">
                                     <li><a href="~/Account/AgentList" target="main">@Lang.Agents</a></li>
                                     @if (Model.AgentLevel > AgentLevel.Shareholder)
@@ -129,7 +139,7 @@
             </div>
             @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
             @*<div id="text_news_out">
->>>>>>> 2e110c895f6d5c6388eda35445d9d8362fbeb0f9
+>>>>>>> 369e741dd389fcae9df6e0cc39ebc1434d571993
 				<div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
 					<div id="scroller" class="news-scroller">
 						<a id="topnews" href="javascript:;"></a>

@@ -546,7 +546,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             //// Min Bet
             item.minBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MIN_BET + ':',
+            Language.MIN_BET,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '>= '.FormatNumber(item.MinBetMax),
             item.MinBet,
             false,
@@ -555,7 +555,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             //// Max Bet
             item.maxBetElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MAX_BET + ':',
+            Language.MAX_BET,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxBetMin),
             item.MaxBet,
             false,
@@ -564,7 +564,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             /// Max Per Match
             item.maxPerMatchElement = this.RenderBetLimitBlock(isEditNonDirectMember,
             trSetting,
-            Language.MAX_PER_MATCH + ':',
+            Language.MAX_PER_MATCH,
             context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder ? '' : '<= '.FormatNumber(item.MaxPerMatchMin),
             item.MaxPerMatch ,
             false,
@@ -586,7 +586,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         else {
             betSettingContainer.className = "bet-limit-value-" + suffixClass;
             var divText = document.createElement("DIV");
-            divText.innerHTML = minMaxText + ' ';
+            divText.innerHTML = minMaxText +':';
             divText.title = minMaxText + ' ';
             divText.className = "div-bet-limit-value-" + suffixClass;
             betSettingContainer.appendChild(divText);

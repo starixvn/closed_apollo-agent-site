@@ -21,6 +21,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Services;
+    using Apollo.Age.Resources;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Fanex.BetList.Core.Builder;
@@ -67,22 +68,26 @@ namespace Apollo.Age.BetList.Controllers
         public ViewResult Forecast(string type = StringEmpty, string betType = StringEmpty, string betTeam = StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
-
+            var title = string.Empty;
             if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
             {
+                title = CacheRef.GetBettype((int)BetTypes.Correct_Score);
                 strBetType = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
             else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
             {
                 strBetType = Convert.ToString((int)BetTypes.MixParlay);
+                title = CacheRef.GetBettype(betType);
             }
             else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
             {
                 strBetType = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+                title = Lang.lblSystemParlay;
             }
             else
             {
                 strBetType = betType;
+                title = CacheRef.GetBettype(betType);
             }
 
             // List mainShare Holder
@@ -112,7 +117,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
-                Title = "Test Title",
+                Title = title,
                 CurrentMainShareHolderId = mainShareHolderId,
                 ListMainShareHolders = mainShareHolders,
                 TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
@@ -128,14 +133,13 @@ namespace Apollo.Age.BetList.Controllers
             {
                 TransId = transid,
             };
-            var mainTickets = betListService.GetMixParlayDetailTicket(criteria);
 
-            // var viewModel = new BetListViewModel
-            //{
-            //    TicketList =
-            //};
+            var viewModel = new MixParlayViewModel
+           {
+               TicketList = betListService.GetMixParlayDetailTicket(criteria)
+           };
 
-            return this.View();
+            return this.View(viewModel);
         }
 
         /// <summary>
@@ -229,27 +233,6 @@ namespace Apollo.Age.BetList.Controllers
                     UserName = ticket.UserName,
                     AgentComm = builder.BuildAgentComm(ticket, true),
                     AgentShare = builder.BuildAgentShare(ticket, null)
-                };
-                ticketTextList.Add(ticketText);
-            }
-
-            return ticketTextList;
-        }
-
-        /// <summary>
-        /// Get Ticket MixParlay
-        /// </summary>
-        /// <param name="tickets"></param>
-        /// <returns></returns>
-        private List<TicketText> TicketMixParlay(IList<ITicket> tickets)
-        {
-            var builder = new BetListHTMLBuilder();
-            var ticketTextList = new List<TicketText>();
-            foreach (var ticket in tickets)
-            {
-                var ticketText = new TicketText
-                {
-                    Choice = builder.BuildAgentShare(ticket, null)
                 };
                 ticketTextList.Add(ticketText);
             }

@@ -758,6 +758,7 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
+    <Content Include="Views\BetList\MixParlay.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />

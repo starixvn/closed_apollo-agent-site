@@ -55,7 +55,7 @@
                                 @Lang.league&nbsp;:</label>
                         </div>
                         <div class="editor">
-                            @Html.DropDownList("League", (List<SelectListItem>)ViewBag.Leagues)
+                            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
                         </div>
                     </div>
                 </div>
