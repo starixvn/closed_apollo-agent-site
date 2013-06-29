@@ -5,7 +5,7 @@
     ViewBag.Title = string.Format(titleFormat, userName);
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
 	var memberId = ViewBag.MemberId ?? 0;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewAgentDetails/?memberId={0}&agentId={1}&userName={2}", memberId, ViewBag.CurentParentAgentId, userName));
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}", memberId, ViewBag.CurentParentAgentId, userName));
 }
 
 @section header

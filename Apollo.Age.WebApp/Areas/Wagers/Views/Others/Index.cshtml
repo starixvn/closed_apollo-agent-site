@@ -4,7 +4,7 @@
     var menu = new List<string[]>
 	{
 		new string[] {"~/wagers/Others/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/VolleyballBadminton/FirstHalfRB", Lang.lbl1sthalf},
+		new string[] {"~/wagers/Others/FirstHalfRB", Lang.lbl1stHalfRB},
 		new string[] {"~/wagers/Others/Specialbet", Lang.lblSpecialbet},
 		new string[] {"~/wagers/Others/Correctscore", Lang.correctscore},
 		new string[] {"~/wagers/Others/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
@@ -34,7 +34,7 @@
             </select>
         </div>
         <div class="before-filter">
-            --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
+              --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
@@ -48,7 +48,7 @@
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div class="mainpage">
-        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/wagers/Others/Straight">
+        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="">
         </iframe>
     </div>
 </body>
