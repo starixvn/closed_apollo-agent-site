@@ -333,26 +333,22 @@ namespace Apollo.Age.Web.Mvc
         public static MvcHtmlString ToStringStatus(this byte status, byte uplineStatus)
         {
             string format = "<span class=\"{0}\">{1}</span>";
+            MvcHtmlString result = null;
 
-            if (status == (int)CustomerStatus.Active)
+            switch (status)
             {
-                if (uplineStatus == (int)CustomerStatus.Active)
-                {
-                    return new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
-                }
-                else
-                {
-                    return new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
-                }
+                case 1:
+                    result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
+                    break;
+                case 2:
+                    result = new MvcHtmlString(string.Format(format, "close", Lang.Close));
+                    break;
+                default:
+                    result = new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
+                    break;
             }
-            else if (status == (int)CustomerStatus.Stopped)
-            {
-                return new MvcHtmlString(string.Format(format, "close", Lang.Close));
-            }
-            else
-            {
-                return new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
-            }
+
+            return result;
         }
 
         #endregion
