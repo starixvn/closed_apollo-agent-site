@@ -9,7 +9,7 @@ using Apollo.Age.Entities;
 
 namespace Apollo.Age.Wagers.Controllers
 {
-    public class BaseController : System.Web.Mvc.Controller
+    public class BaseController : Controller
     {
         private readonly WagersService _wagerService;
 

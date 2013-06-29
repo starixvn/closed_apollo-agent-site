@@ -8,7 +8,6 @@
 //   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.Controllers
 {
     using System;
