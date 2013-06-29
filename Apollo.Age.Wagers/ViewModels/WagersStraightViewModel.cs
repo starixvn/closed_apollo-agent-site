@@ -11,7 +11,7 @@ namespace Apollo.Age.Wagers.Criterias
 {
     using System;
 
-    public class Wagers_1_2_5_ViewModel
+    public class WagersStraightViewModel
     {
         public DateTime KickOffTime { get; set; }
 

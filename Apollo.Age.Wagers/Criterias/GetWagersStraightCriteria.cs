@@ -15,7 +15,7 @@ namespace Apollo.Age.Wagers.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class GetWagers_1_3_5_Criteria : CriteriaBase
+    public class GetWagersStraightCriteria : CriteriaBase
     {
         public int LoggedId { get; set; }
 
