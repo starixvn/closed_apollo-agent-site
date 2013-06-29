@@ -41,13 +41,14 @@
         <BetType Action="Straight" ResourceKey="" />
     </Sport>
     <Sport Controller="Others" ResourceKey="">
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
-        <BetType Action="Straight" ResourceKey="" />
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
+        <BetType Action="RB" ResourceKey="lblRB" />
+        <BetType Action="Correctscore" ResourceKey="correctscore" />
+        <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
+        <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
+        <BetType Action="Total" ResourceKey="total" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Start" ResourceKey="lblStart" />
     </Sport>
 </Wagers>
