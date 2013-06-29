@@ -12,7 +12,7 @@
     var editLink = string.Empty;
     var canEdit = (bool)ViewBag.CanEdit;
     var isViewMySetting = (bool)ViewBag.IsViewMySetting;
-    if(isViewOnMember)
+    if (isViewOnMember)
     {
         editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}", custId, userName, ViewBag.AgentId));
     }
@@ -83,10 +83,10 @@
                             @if (index > 2 || (betLimit.SportId == 99 && betLimit.BetTypeId == 9))
                             {
                                 if (isViewOnMember)
-                                    {
+                                {
                                     @:<td>
                                 }
-                                
+
                                 else
                                 {
                                     @:<td colspan="4">
@@ -100,22 +100,22 @@
                                 if (isViewOnMember)
                                 {
                                     <td>
-                                        @commissionSetting.CommissionItems[0].Discount
+                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].Discount, 2)
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        @commissionSetting.CommissionItems[0].DiscountA
+                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountA, 2)
                                     </td>
                                     <td>
-                                        @commissionSetting.CommissionItems[0].DiscountB
+                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountB, 2)
                                     </td>
                                     <td>
-                                        @commissionSetting.CommissionItems[0].DiscountC
+                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountC, 2)
                                     </td>
                                     <td>
-                                        @commissionSetting.CommissionItems[0].DiscountD
+                                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountD, 2)
                                     </td>
                                 }
                             }
@@ -139,10 +139,10 @@
 }
 
 <div class="detail-information">
-    @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit) -- @Lang.Account : <strong>@custId</strong> 
-    -- @Lang.Name: <strong>@userName</strong> 
+    @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit) -- @Lang.Account : <strong>@userName</strong> 
+     
 
-    @if(!isViewMySetting)
+    @if (!isViewMySetting)
     {
         if (canEdit)
         {

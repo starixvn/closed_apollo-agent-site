@@ -19,6 +19,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -38,59 +39,79 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerService = wagerService ?? new WagersService();
         }
 
-        public ActionResult Index(string bettype = "1")
+        public ActionResult Index()
         {
-
-            ViewBag.Leagues = GetLeague(SingbetSportConstant.Soccer);
-            ViewBag.Title = bettype;
+            ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
+            ViewBag.Title = Resources.Lang.lblStraight;
             return View();
         }
 
-
-
-        public ActionResult Straight()
+        public ActionResult GetDataContant(string bettype = WagersBettypes.Straight)
         {
-            return View();
-        }
+            string bettypeText = string.Empty;
+            string viewName = string.Empty;
+            switch (bettype)
+            {
+                case WagersBettypes.Straight:
+                    {
+                        bettypeText = Resources.Lang.lblStraight;
+                        viewName = "Straight";
+                        break;
+                    }
+                case WagersBettypes.FirstHalf:
+                    {
+                        bettypeText = Resources.Lang.lbl1sthalf;
+                        viewName = "FirstHalf";
+                        break;
+                    }
+                case WagersBettypes.RB:
+                    {
+                        bettypeText = Resources.Lang.lblRB;
+                        viewName = "RunningBall";
+                        break;
+                    }
+                case WagersBettypes.SpecialBet:
+                    {
+                        bettypeText = Resources.Lang.lblSpecialbet;
+                        viewName = "Specialbet";
+                        break;
+                    }
+                case WagersBettypes.CorrectScore:
+                    {
+                        bettypeText = Resources.Lang.correctscore;
+                        viewName = "Correctscore";
+                        break;
+                    }
+                case WagersBettypes.FirstHalfCorrectScore:
+                    {
+                        bettypeText = Resources.Lang.lbl1stHalfCorrectScore;
+                        viewName = "FirstHalfCorrectScore";
+                        break;
+                    }
+                case WagersBettypes.HalfFull:
+                    {
+                        bettypeText = Resources.Lang.lblHalfFull;
+                        viewName = "HalfFull";
+                        break;
+                    }
+                case WagersBettypes.Total:
+                    {
+                        bettypeText = Resources.Lang.total;
+                        viewName = "Total";
+                        break;
+                    }
+                case WagersBettypes.Parlay:
+                    {
+                        bettypeText = Resources.Lang.lblParlay;
+                        viewName = "Parlay";
+                        break;
+                    }
+            }
+            string url = string.Format("~/Areas/Wagers/Views/Soccer/{0}.cshtml", viewName);
+            ViewBag.Title = bettypeText;
 
-        public ActionResult FirstHalf()
-        {
-            return View();
+            return View(url);
         }
-
-        public ActionResult Specialbet()
-        {
-            return View();
-        }
-
-        public ActionResult Correctscore()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
-
-        public ActionResult Parlay()
-        {
-            return View();
-        }
-
-        public ActionResult RunningBall()
-        {
-            return View();
-        }
+              
     }
 }

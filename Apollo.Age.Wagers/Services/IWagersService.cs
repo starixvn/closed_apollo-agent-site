@@ -20,6 +20,6 @@ namespace Apollo.Age.Wagers.Services
     /// </summary>
     public interface IWagersService
     {
-        IEnumerable<League> GetLeague(string sportType);
+        IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes);
     }
 }

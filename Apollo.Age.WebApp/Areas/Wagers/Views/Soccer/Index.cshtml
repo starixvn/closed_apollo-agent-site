@@ -33,83 +33,13 @@
     </div>
     <div class="mainpage">
         <div id="content_main">
-            <div id="header_main">@ViewBag.Title</div>
-            <div class="box-header" id="main-shareholder-box">
-                <div class="row">
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.view&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @Html.DropDownList("ViewOption", new List<SelectListItem>
-                       {
-                           new SelectListItem{ Value="0", Text=Lang.all},
-                           new SelectListItem{Value="1",Text=Lang.DirectMembers}
-                       })
-                        </div>
-                    </div>
-                    <div class="cell">
-                        <div class="label">
-                            <label for="ddlLeague">
-                                @Lang.league&nbsp;:</label>
-                        </div>
-                        <div class="editor">
-                            @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
-                        </div>
-                    </div>
-                </div>
-            </div>
+           @RazorHelper.RenderWagersFilter(ViewBag.Title, (List<League>)ViewBag.Leagues)
             <div id="wagerContainer">
-                <table class="tblRpt soccer">
-                    <thead>
-                        <tr class="RptHeader">
-                            <th style="width: 100px;">
-                                @Lang.time
-                            </th>
-                            <th style="width: 300px;">
-                                @Lang.league
-                            </th>
-                            <th style="width: 300px;">
-                                Match Code
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.homeaway
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                Handicap/Wagers
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                Over/Under/Wagers
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="c">
-                            <td class="width-80">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                
             </div>
         </div>
     </div>
+    <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
 </body>
 </html>
 @Scripts.Render("~/areas/Wagers/Soccer")
