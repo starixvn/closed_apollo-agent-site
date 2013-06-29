@@ -4,11 +4,8 @@
     var menu = new List<string[]>
 	{
 		new string[] {"~/wagers/Volleyball/Straight", Lang.lblStraight},		
-		new string[] {"~/wagers/Volleyball/Specialbet", Lang.lblSpecialbet},
+		new string[] {"~/wagers/Volleyball/runningball", Lang.RunningBall},
 		new string[] {"~/wagers/Volleyball/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/Volleyball/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
-		new string[] {"~/wagers/Volleyball/Total", Lang.total},
-		new string[] {"~/wagers/Volleyball/HalfFull", Lang.lblHalfFull},
 		new string[] {"~/wagers/Volleyball/Parlay",Lang.lblParlay},
 		new string[] {"~/wagers/Volleyball/Start", Lang.lblStart}
 	};
@@ -26,10 +23,10 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="1">Soccer A</option>
-                <option value="2">Soccer B</option>
-                <option value="3">Soccer C</option>
-                <option value="4">Soccer D</option>
+                <option value="1">@Lang.Volleyball A</option>
+                <option value="2">@Lang.Volleyball B</option>
+                <option value="3">@Lang.Volleyball C</option>
+                <option value="4">@Lang.Volleyball D</option>
             </select>
         </div>
         <div class="before-filter">
