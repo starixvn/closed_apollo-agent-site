@@ -4,12 +4,10 @@
     var menu = new List<string[]>
 	{
 		new string[] {"~/wagers/baseball/Straight", Lang.lblStraight},
-		new string[] {"~/wagers/baseball/FirstHalfRB", Lang.lblRB},
-		new string[] {"~/wagers/baseball/Specialbet", Lang.lblSpecialbet},
+		new string[] {"~/wagers/baseball/FirstHalf", "1st Haft"},
+        new string[] {"~/wagers/baseball/RunningBall", Lang.RunningBall},
 		new string[] {"~/wagers/baseball/Correctscore", Lang.correctscore},
-		new string[] {"~/wagers/baseball/FirstHalfCorrectScore",Lang.lbl1stHalfCorrectScore},
 		new string[] {"~/wagers/baseball/Total", Lang.total},
-		new string[] {"~/wagers/baseball/HalfFull", Lang.lblHalfFull},
 		new string[] {"~/wagers/baseball/Parlay",Lang.lblParlay},
 		new string[] {"~/wagers/baseball/Start", Lang.lblStart}
 	};
@@ -27,10 +25,10 @@
         <div class="item">
             @Lang.lblOP.
             <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
-                <option value="1">Soccer A</option>
-                <option value="2">Soccer B</option>
-                <option value="3">Soccer C</option>
-                <option value="4">Soccer D</option>
+                <option value="1">@Lang.Baseball A</option>
+                <option value="2">@Lang.Baseball B</option>
+                <option value="3" selected="selected">@Lang.Baseball C</option>
+                <option value="4">@Lang.Baseball D</option>
             </select>
         </div>
         <div class="before-filter">
