@@ -20,7 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SoccerController : Controller
+    public class SoccerController : BaseController
     {
         public ActionResult Index()
         {
@@ -29,6 +29,8 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Straight()
         {
+            //ViewBag.Leagues = GetLeague(DateTime.Now, SingbetSportConstant.Soccer);
+            //ViewBag.Title = Resources.Lang.lblStraight;
             return View();
         }
 
