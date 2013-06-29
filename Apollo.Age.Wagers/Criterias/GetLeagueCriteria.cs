@@ -20,7 +20,9 @@ namespace Apollo.Age.Wagers.Criterias
     /// </summary>
     public class GetLeagueCriteria : CriteriaBase
     {
-        public string SportType { get; set; }
+        public string SportTypes { get; set; }
+
+        public DateTime FromDate { get; set; }
 
         public override string GetSettingKey()
         {
@@ -29,7 +31,7 @@ namespace Apollo.Age.Wagers.Criterias
 
         public override bool IsValid()
         {
-            return !string.IsNullOrWhiteSpace(SportType);
+            return !string.IsNullOrWhiteSpace(SportTypes);
         }
     }
 }

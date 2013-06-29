@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Reports.ViewModels
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblMemberWinLoss;
-    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    Layout = "~/Views/Reports/Shared/_LayoutWinloss.cshtml";
     int i = 1;
     string rowClass = string.Empty;
 }
@@ -183,7 +183,6 @@
 
 @section scripts
 {
-    <script src="~/views/reports/resources/winloss.js" type="text/javascript"></script>
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {

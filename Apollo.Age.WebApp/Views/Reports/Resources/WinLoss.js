@@ -80,8 +80,6 @@
                 location.href = url;
             });
 
-            //$(".ui-datepicker-trigger").attr("title", "");
-
             $(".dateRange").bind('click', function () {
                 /* Range type value
                 + 1 : Today

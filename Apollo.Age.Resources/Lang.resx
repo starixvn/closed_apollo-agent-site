@@ -1644,4 +1644,10 @@
   <data name="BasketballD" xml:space="preserve">
     <value>Basketball D</value>
   </data>
+  <data name="NoneAgents" xml:space="preserve">
+    <value>None Agents</value>
+  </data>
+  <data name="NoneMembers" xml:space="preserve">
+    <value>None Members</value>
+  </data>
 </root>
