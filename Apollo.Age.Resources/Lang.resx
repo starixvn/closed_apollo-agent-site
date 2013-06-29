@@ -1686,4 +1686,19 @@
   <data name="lblMatchCode" xml:space="preserve">
     <value>Match Code</value>
   </data>
+<data name="lblEven" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="lblFeature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="lblGolds" xml:space="preserve">
+    <value>Golds</value>
+  </data>
+  <data name="lblOdd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="RBOverUnder" xml:space="preserve">
+    <value>R.B Over/Under</value>
+  </data>
 </root>

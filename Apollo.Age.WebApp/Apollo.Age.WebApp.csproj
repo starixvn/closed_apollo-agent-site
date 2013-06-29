@@ -226,9 +226,7 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
@@ -700,9 +698,12 @@
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Correctscore.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\FirstHalf.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\Total.cshtml" />
@@ -718,11 +719,11 @@
     <Content Include="Areas\Wagers\Views\Basketball\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Correctscore.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\FirstHalfCorrectScore.cshtml" />
-    <Content Include="Areas\Wagers\Views\Others\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Parlay.cshtml" />
-    <Content Include="Areas\Wagers\Views\Others\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\RB.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Total.cshtml" />
@@ -737,23 +738,27 @@
     <Content Include="Areas\Wagers\Views\Tennis\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Tennis\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Volleyball\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Volleyball\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Volleyball\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Parlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Volleyball\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Correctscore.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
-    <Content Include="Areas\Wagers\Views\Volleyball\RunningBall.cshtml" />
-    <Content Include="Areas\Wagers\Views\Baseball\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
