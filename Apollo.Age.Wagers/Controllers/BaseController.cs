@@ -30,7 +30,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var leagues = _wagerService.GetLeague(fromDate, sportTypes);
 
-            return leagues.ToList();
+            return leagues != null ? leagues.ToList() : new List<League>();
         }
 
         [NonAction]
