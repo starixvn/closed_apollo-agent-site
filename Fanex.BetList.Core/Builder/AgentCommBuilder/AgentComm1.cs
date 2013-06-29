@@ -30,7 +30,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public AgentComm_Template Render(ITicket ticket, bool hideLinkDetail = false)
+        public AgentComm_Template Render(ITicket ticket)
         {
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
 
@@ -50,14 +50,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             {
                 Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
             }
-            if (hideLinkDetail)
-            {
-                Template.ViewDetail.Visible = false;
-            }
-            else
-            {
-                Template.ViewDetail.transId = ticket.TransId.ToString();
-            }
+
             return Template;
         }
     }

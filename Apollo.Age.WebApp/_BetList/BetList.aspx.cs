@@ -103,7 +103,7 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddTime(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
                 builder.AddDiscount(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
 
-                builder.AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>", funcGetOddsTypeName)
+                builder.AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>", funcGetOddsTypeName, BetListPage.Forecast)
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='bl_evt'>", "</td>", false)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 

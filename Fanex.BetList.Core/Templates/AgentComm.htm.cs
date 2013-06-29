@@ -15,7 +15,6 @@ namespace Fanex.BetList.Core
 		{
 			public AgentComm_AgentComm_Block AgentComm = new AgentComm_AgentComm_Block();
 			public AgentComm_AgentCommValue_Block AgentCommValue = new AgentComm_AgentCommValue_Block();
-			public AgentComm_ViewDetail_Block ViewDetail = new AgentComm_ViewDetail_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -23,7 +22,6 @@ namespace Fanex.BetList.Core
 				{
 					if(null != AgentComm) AgentComm.ToString(ref bd);
 					if(null != AgentCommValue) AgentCommValue.ToString(ref bd);
-					if(null != ViewDetail) ViewDetail.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -67,28 +65,6 @@ namespace Fanex.BetList.Core
 					bd.Append(s2);
 					bd.Append(agentComm_value);
 					bd.Append(s3);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class AgentComm_ViewDetail_Block: Block
-		{
-			protected static string s4 = "<a class=\"view-detail\" href=\"#\" tid=\"";
-			public string transId = "{transId}";
-			protected static string s5 = "\">";
-			protected static string s6{get{return Apollo.Age.Resources.BetList.details;}}
-			protected static string s7 = "</a>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s4);
-					bd.Append(transId);
-					bd.Append(s5);
-					bd.Append(s6);
-					bd.Append(s7);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
