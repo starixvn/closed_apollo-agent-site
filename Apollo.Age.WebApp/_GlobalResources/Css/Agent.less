@@ -490,19 +490,33 @@ table {
 
 /* jQUERY UI DIALOG */
 .ui-dialog {
-	background: #a4c0ce;
+	//background: #a4c0ce;
+	padding: 3px;
+	background: #fff;
 	border: 1px solid #00558E;
 	.box-shadow(0 0 0 2px #fff inset);
 
 	.ui-dialog-titlebar {
-		background: none;
-		border: 0;
+		background: #0163A2;
+		border: 0;    
+		padding: 5px;
+		border-bottom: 1px solid #000;
+		color: #fff;
 
 		.ui-button {
-			background: #D6D3CE;
+			//background: #D6D3CE;
 			border: 1px solid #fff;
-			border-color: #fff #424142 #424142 #fff;
-			.box-shadow(-1px -1px 0 0 #848284 inset);
+			border-color: #fff #424142 #424142 #fff;			
+			float: right;
+			height: 16px;
+			line-height: 0;
+			padding: 0;
+			cursor: pointer;
+
+			.ui-button-text {
+				line-height: 10px;
+			}
+			//.box-shadow(-1px -1px 0 0 #848284 inset);
 			&:active {
 				border-color: #424142 #fff #fff #424142;
 				.box-shadow(1px 1px 0 0 #848284 inset);	
@@ -745,10 +759,8 @@ table {
 				background: none;
 			}
 		}
-	}
-	
+	}	
 }
-
 
 /* B*S* MISC */
 
@@ -873,9 +885,14 @@ table {
 }
 
 /* FIX IE */
-.eq-ie8 .floatingHeader {
-	top: -10px;
-	left: 11px !important;
+.eq-ie8 {
+	.floatingHeader {
+		top: -10px;
+		left: 11px !important;
+	}
+	.ui-dialog .ui-dialog-titlebar .ui-button {
+		padding: 0 3px;
+	}
 }
 
 .eq-ie7 {
@@ -894,10 +911,31 @@ table {
 	thead.floatingHeader {
 		display: none;
 	}
+
+	.ui-dialog {
+		.ui-dialog-titlebar {
+			height: 16px;
+		}
+
+		.ui-dialog-title {
+			float: left;
+		}
+	}
+
+	#forecast-body {
+		.tblRpt thead th {
+			border-bottom: none;
+			border-left: none;
+		}
+	}
 }
 
 .ie {
 	#function-bar a {
 		color: #0066CC;
+
+		&:hover {
+			color: #0066CC;
+		}
 	}
 }
