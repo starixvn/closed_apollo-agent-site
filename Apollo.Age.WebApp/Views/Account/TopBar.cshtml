@@ -1,6 +1,5 @@
 ﻿@model ICurrentSession
 @using Apollo.Age.Resources
-@using Apollo.Age.Wagers.Core
 @{
 	Layout = null;
 }
@@ -34,14 +33,14 @@
 					<div class="toolbar @sso">
 						<ul>
 							<li><span class="menu-list border-link">[@Lang.lblWager]</span>
-								<ul class="sub-menu">
+								 <ul class="sub-menu">
                                     <li><a href="~/wagers/Soccer" target="main">@Lang.lblSC</a></li>
-                                    <li><a href="~/wagers/BkNFLRugby" target="main">@Lang.lblBkNflRugby</a></li>
+                                    <li><a href="~/wagers/Basketball" target="main">@Lang.lblBkNflRugby</a></li>
                                     <li><a href="~/wagers/Tennis" target="main">@Lang.lblTN</a></li>
-                                    <li><a href="~/wagers/VolleyballBadminton" target="main">@Lang.lblVbBdmTt</a></li>
+                                    <li><a href="~/wagers/Volleyball" target="main">@Lang.lblVbBdmTt</a></li>
                                     <li><a href="~/wagers/Baseball" target="main">@Lang.lblBs</a></li>
                                     <li><a href="~/wagers/Others" target="main">@Lang.other</a></li>
-								</ul>
+                                </ul>
 							</li>
 							<li><span class="menu-list border-link">[@Lang.lblEmWager]</span>
 								<ul class="sub-menu">

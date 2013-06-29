@@ -7,7 +7,7 @@
 //   <change who="Edward.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Wagers.Criterias
+namespace Apollo.Age.Wagers.Criterias.Soccer
 {
     using System;
     using Fanex.NAP.Framework.Data;
@@ -33,7 +33,7 @@ namespace Apollo.Age.Wagers.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Wagers_1_3_5";
+            return "Age_Wagers_SC_1_3_5";
         }
 
         public override bool IsValid()
