@@ -71,5 +71,10 @@ namespace Apollo.Age.Wagers.Controllers
         {
             return View();
         }
+
+        public ActionResult RunningBall()
+        {
+            return View();
+        }
     }
 }

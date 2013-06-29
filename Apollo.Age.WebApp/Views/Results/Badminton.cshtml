@@ -13,7 +13,7 @@
              <td style="width: 300px;">
                 @Lang.league
             </td>
-            <td style="width: 200px;">
+            <td style="width: 300px;">
                 @Lang.match
             </td>
             <td style="width: 50px;">
@@ -95,13 +95,13 @@
                
 
             <tr class="c">
-                <td class="width-80">
+                <td>
                     @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
                 </td>
-                 <td class="width-80">
+                 <td class="l">
                     @item.LeagueName
                 </td>
-                <td class="l width-215">
+                <td class="l">
                     @Html.Raw(item.HomeTeam)
                     <br />
                    @Html.Raw(item.AwayTeam)
