@@ -83,10 +83,10 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
         }
-        else
+       @* else
         {
             @Html.Raw(item.ShowTime)
-        }
+        }*@
     </td>
 }
 <table class="tblRpt persist-area">
@@ -94,6 +94,8 @@
         <tr class="RptHeader">
             <td rowspan="2" style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT)
             </td>
             <td rowspan="2" style="width:7%;">
                 @Apollo.Age.Resources.Lang.lblScore
@@ -157,7 +159,7 @@
             <!--MatchContents-->
             <tr class='r @classRow'>
                  <td class="c">
-                        @if(item.KickOffTime != null){
+                        @*@if(item.KickOffTime != null){
                             @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
                         }
                         @if (item.LiveIndicator)
@@ -165,7 +167,8 @@
                              <br />
                             <!--LiveNotice-->
                             <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-                        }
+                        }*@
+                        @Html.Raw(item.ShowTime)
                     </td>
                     @ShowTime(item)
                     <td class="c">

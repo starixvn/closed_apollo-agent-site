@@ -26,6 +26,12 @@ namespace Apollo.Age.BetList.Criterias
 
         public decimal Stake { get; set; }
 
+        public decimal Result { get; set; }
+
+        public decimal AgentWinlossValue { get; set; }
+
+        public decimal AgentCommValue { get; set; }
+
         public string WinLoss { get; set; }
 
         public string AgentComm { get; set; }
@@ -33,5 +39,7 @@ namespace Apollo.Age.BetList.Criterias
         public string AgentShare { get; set; }
 
         public string Status { get; set; }
+
+        public string IP { get; set; }
     }
 }

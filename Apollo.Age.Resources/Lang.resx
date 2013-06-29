@@ -1728,4 +1728,61 @@
   <data name="lblOddEvenWagers" xml:space="preserve">
     <value>Odd Even / Wagers</value>
   </data>
+  <data name="lblBaseballA" xml:space="preserve">
+    <value>Baseball A</value>
+  </data>
+  <data name="lblBaseballAll" xml:space="preserve">
+    <value>Baseball All</value>
+  </data>
+  <data name="lblBaseballB" xml:space="preserve">
+    <value>Baseball B</value>
+  </data>
+  <data name="lblBaseballC" xml:space="preserve">
+    <value>Baseball C</value>
+  </data>
+  <data name="lblBaseballD" xml:space="preserve">
+    <value>Baseball D</value>
+  </data>
+  <data name="lblTennisA" xml:space="preserve">
+    <value>Tennis A</value>
+  </data>
+  <data name="lblTennisAll" xml:space="preserve">
+    <value>Tennis All</value>
+  </data>
+  <data name="lblTennisB" xml:space="preserve">
+    <value>Tennis B</value>
+  </data>
+  <data name="lblTennisC" xml:space="preserve">
+    <value>Tennis C</value>
+  </data>
+  <data name="lblTennisD" xml:space="preserve">
+    <value>Tennis D</value>
+  </data>
+  <data name="lblVolleyballA" xml:space="preserve">
+    <value>Volleyball A</value>
+  </data>
+  <data name="lblVolleyballAll" xml:space="preserve">
+    <value>Volleyball All</value>
+  </data>
+  <data name="lblVolleyballB" xml:space="preserve">
+    <value>Volleyball B</value>
+  </data>
+  <data name="lblVolleyballC" xml:space="preserve">
+    <value>Volleyball C</value>
+  </data>
+  <data name="lblVolleyballD" xml:space="preserve">
+    <value>Volleyball D</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="GMT" xml:space="preserve">
+    <value>GMT+8</value>
+  </data>
+  <data name="lblsoccerAll" xml:space="preserve">
+    <value>Soccer All</value>
+  </data>
+  <data name="BasketballAll" xml:space="preserve">
+    <value>Basketball All</value>
+  </data>
 </root>

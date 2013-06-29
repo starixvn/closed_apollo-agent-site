@@ -27,6 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
+            base.BuildChoice(ticket, ticketHelper, ticketData);
             //this.Template.betTypeName = null;
             //this.Template.VS = null;
             //this.Template.sportTypeName = null;

@@ -227,9 +227,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag, GetCachePropertyById FuncGetOddsTypeName)
+        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
-            string trans = BuildTrans(ticket, ticketHelper, FuncGetOddsTypeName);
+            string trans = BuildTrans(ticket, ticketHelper, FuncGetOddsTypeName, betListPage);
             this._content.Append(string.Join(null, new string[] { openTag, trans, closeTag }));
             return this;
         }
@@ -239,10 +239,10 @@ namespace Fanex.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName)
+        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
-            string trans = transBuilder.Render(ticket, ticketHelper, FuncGetOddsTypeName);
+            string trans = transBuilder.Render(ticket, ticketHelper, FuncGetOddsTypeName, betListPage);
             return trans;
         }
 
@@ -288,9 +288,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddAgentComm(ITicket ticket, bool isHideLink, string openTag, string closeTag)
+        public BetListHTMLBuilder AddAgentComm(ITicket ticket, string openTag, string closeTag)
         {
-            string agentComm = BuildAgentComm(ticket, isHideLink);
+            string agentComm = BuildAgentComm(ticket);
             this._content.Append(string.Join(null, new string[] { openTag, agentComm, closeTag }));
 
             return this;
@@ -300,12 +300,11 @@ namespace Fanex.BetList.Core.Builder
         /// Build agent comm
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="hideLinkDetail">Show or Hide link</param>
         /// <returns></returns>
-        public string BuildAgentComm(ITicket ticket, bool isHideLink)
+        public string BuildAgentComm(ITicket ticket)
         {
             IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
-            string agentComm = agentCommBuilder.Render(ticket, isHideLink);
+            string agentComm = agentCommBuilder.Render(ticket);
 
             return agentComm;
         }

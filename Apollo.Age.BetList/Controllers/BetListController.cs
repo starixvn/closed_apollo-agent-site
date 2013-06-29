@@ -54,9 +54,58 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        public ViewResult Winloss()
+        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = StringEmpty, string username = StringEmpty,
+             int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty)
         {
-            return this.View();
+            var statusIds = string.Empty;
+            if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
+            {
+                statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
+                      (int)Apollo.Age.Enumerations.BetStatus.Void,
+                      (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                      (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                      (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                      (int)Apollo.Age.Enumerations.BetStatus.Won,
+                      (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+
+            else
+            {
+                statusIds = string.Format("{0},{1}",
+                         (int)Apollo.Age.Enumerations.BetStatus.Running,
+                         (int)Apollo.Age.Enumerations.BetStatus.Waiting);
+            }
+
+            var balanceUpDay = reportService.GetBalanceUpDay();
+            var moveBetsDay = reportService.MoveBetsDay().AddDays(1);
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                AgentId = -1,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custId,
+                FromDate = this.ResetStartDate(fromDate),
+                ToDate = this.ResetEndDate(toDate),
+                StatusIds = statusIds,
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay
+            };
+
+            TicketResult mainTickets;
+            if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
+            {
+                mainTickets = betListService.GetWinLossByDateAndMem(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+            }
+
+            var viewModel = new BetListViewModel
+            {
+                TicketList = this.Ticket(mainTickets, BetListPage.Report)
+            };
+            return this.View(viewModel);
         }
 
         /// <summary>
@@ -96,8 +145,11 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             // List mainShare Holder
-            var mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
-
+            IEnumerable<Agent> mainShareHolders = new List<Agent>();
+            if (!isForecast)
+            {
+                mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
+            }
             // List ticket
             var betListService = new BetListService();
             var criteria = new BetListCriteria
@@ -210,10 +262,15 @@ namespace Apollo.Age.BetList.Controllers
                     UserName = ticket.UserName,
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
-                    GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName),
+                    GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
                     Stake = ticket.Stake,
-                    AgentComm = builder.BuildAgentComm(ticket, true),
+                    Result = ticket.Winlost + ticket.PlayerComm,
+                    Status = ticket.Status,
+                    IP = ticket.IP,
+                    AgentWinlossValue = ticket.AWinlost,
+                    AgentCommValue = ticket.AComm,
+                    AgentComm = builder.BuildAgentComm(ticket),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };
                 ticketTextList.Add(ticketText);
@@ -236,7 +293,7 @@ namespace Apollo.Age.BetList.Controllers
                 var ticketText = new TicketText
                 {
                     UserName = ticket.UserName,
-                    AgentComm = builder.BuildAgentComm(ticket, true),
+                    AgentComm = builder.BuildAgentComm(ticket),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };
                 ticketTextList.Add(ticketText);
@@ -269,12 +326,12 @@ namespace Apollo.Age.BetList.Controllers
             return new List<Agent>();
         }
 
-        public static DateTime ResetStartDate(DateTime dt)
+        private DateTime ResetStartDate(DateTime dt)
         {
             return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
         }
 
-        public static DateTime ResetEndDate(DateTime dt)
+        private DateTime ResetEndDate(DateTime dt)
         {
             return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
         }
