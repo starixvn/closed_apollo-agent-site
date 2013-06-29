@@ -8,6 +8,7 @@ using Apollo.Age.Core;
 using Apollo.Age.Entities;
 using Apollo.Age.Wagers.Core;
 using Apollo.Age.Web;
+using Apollo.Age.Resources;
 
 namespace Apollo.Age.Wagers.Controllers
 {
@@ -69,5 +70,44 @@ namespace Apollo.Age.Wagers.Controllers
 
             return View();
         }
+
+        #region Private
+
+        private List<SelectListItem> GenerateSoccerCommissionGroup()
+        {
+            var list = new List<SelectListItem>();
+
+            list.Add(new SelectListItem
+            {
+                Value = "0",
+                Text = Lang.lblsoccerAll
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "0",
+                Text = Lang.lblsoccerB
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "0",
+                Text = Lang.lblsoccerC
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "0",
+                Text = Lang.lblsoccerD
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "0",
+                Text = Lang.lblsoccerA
+            });
+        }
+
+        #endregion
     }
 }
