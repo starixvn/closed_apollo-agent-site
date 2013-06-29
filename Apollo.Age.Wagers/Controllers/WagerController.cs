@@ -79,35 +79,111 @@ namespace Apollo.Age.Wagers.Controllers
 
             list.Add(new SelectListItem
             {
-                Value = "0",
+                Value = "",
                 Text = Lang.lblsoccerAll
             });
 
             list.Add(new SelectListItem
             {
-                Value = "0",
+                Value = "A",
+                Text = Lang.lblsoccerA
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "B",
                 Text = Lang.lblsoccerB
             });
 
             list.Add(new SelectListItem
             {
-                Value = "0",
+                Value = "C",
                 Text = Lang.lblsoccerC
             });
 
             list.Add(new SelectListItem
             {
-                Value = "0",
+                Value = "D",
                 Text = Lang.lblsoccerD
+            });
+
+            return list;
+        }
+
+        private List<SelectListItem> GenerateBasketballCommissionGroup()
+        {
+            var list = new List<SelectListItem>();
+
+            list.Add(new SelectListItem
+            {
+                Value = "",
+                Text = Lang.Basketball
             });
 
             list.Add(new SelectListItem
             {
-                Value = "0",
-                Text = Lang.lblsoccerA
+                Value = "A",
+                Text = Lang.BasketballA
             });
+
+            list.Add(new SelectListItem
+            {
+                Value = "B",
+                Text = Lang.Basketball
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "C",
+                Text = Lang.Basketball
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "D",
+                Text = Lang.Basketball
+            });
+
+            return list;
         }
 
+        private List<SelectListItem> GenerateBaseballCommissionGroup()
+        {
+            var list = new List<SelectListItem>();
+
+            list.Add(new SelectListItem
+            {
+                Value = "",
+                Text = Lang.lblBaseballAll
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "A",
+                Text = Lang.lblBaseballA
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "B",
+                Text = Lang.lblBaseballB
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "C",
+                Text = Lang.lblBaseballC
+            });
+
+            list.Add(new SelectListItem
+            {
+                Value = "D",
+                Text = Lang.lblBaseballD
+            });
+
+            return list;
+        }
+        
         #endregion
     }
 }

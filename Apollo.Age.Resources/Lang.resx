@@ -1782,4 +1782,7 @@
   <data name="lblsoccerAll" xml:space="preserve">
     <value>Soccer All</value>
   </data>
+  <data name="BasketballAll" xml:space="preserve">
+    <value>Basketball All</value>
+  </data>
 </root>

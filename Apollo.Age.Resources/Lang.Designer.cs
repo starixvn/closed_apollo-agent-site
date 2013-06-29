@@ -349,6 +349,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basketball All.
+        /// </summary>
+        public static string BasketballAll {
+            get {
+                return ResourceManager.GetString("BasketballAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basketball B.
         /// </summary>
         public static string BasketballB {
