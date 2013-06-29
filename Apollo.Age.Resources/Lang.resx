@@ -1650,4 +1650,7 @@
   <data name="NoneMembers" xml:space="preserve">
     <value>None Members</value>
   </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
 </root>
