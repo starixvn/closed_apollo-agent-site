@@ -66,7 +66,7 @@ namespace Apollo.Age.Reports.Services
             {
                 matchResult = GetData<MatchResultModel>(criteria);
 
-                if (sportTypes == Apollo.Age.Core.WagerSports.Other && matchResult != null)
+                if (sportTypes == Apollo.Age.Core.SportGroup.Other && matchResult != null)
                 {
                     CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
                 }
