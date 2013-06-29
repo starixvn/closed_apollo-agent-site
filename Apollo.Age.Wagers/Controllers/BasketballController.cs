@@ -27,7 +27,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             this.ActionName = string.IsNullOrWhiteSpace(groupBetName) ? this.ActionName : groupBetName;
 
-            return base.BaseIndex(WagersSportName.Basketball);
+            return base.BaseIndex(SportGroup.Basketball_Football_Rugy);
         }
 
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)

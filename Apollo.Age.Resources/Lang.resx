@@ -1725,4 +1725,7 @@
   <data name="lblsoccerD" xml:space="preserve">
     <value>Soccer D</value>
   </data>
+  <data name="lblOddEvenWagers" xml:space="preserve">
+    <value>Odd Even / Wagers</value>
+  </data>
 </root>
