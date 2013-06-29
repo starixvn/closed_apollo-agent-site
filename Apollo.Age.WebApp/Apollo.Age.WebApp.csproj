@@ -226,9 +226,7 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
@@ -725,7 +723,7 @@
     <Content Include="Areas\Wagers\Views\Others\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Parlay.cshtml" />
-    <Content Include="Areas\Wagers\Views\Others\Specialbet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\RB.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Others\Total.cshtml" />
@@ -755,10 +753,11 @@
     <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
