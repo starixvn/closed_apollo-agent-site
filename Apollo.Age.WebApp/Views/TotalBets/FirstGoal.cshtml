@@ -23,13 +23,14 @@
 {    
     <tr>
          <td class="c" >
-            @if(item.KickOffTime != null){
+            @*@if(item.KickOffTime != null){
                 @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-            }
-        </td>
-        <td class="c bl_time" >
+            }*@
             @Html.Raw(item.ShowTime)
         </td>
+        @*<td class="c bl_time" >
+            @Html.Raw(item.ShowTime)
+        </td>*@
         <td class="c" >
             @item.LeagueName
         </td>
@@ -65,9 +66,6 @@
         <tr>
             <td style="width: 5%;">
                   @Apollo.Age.Resources.Lang.time
-            </td>
-            <td style="width: 7%;">
-                @Apollo.Age.Resources.Lang.lblScore
             </td>
             <td style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league

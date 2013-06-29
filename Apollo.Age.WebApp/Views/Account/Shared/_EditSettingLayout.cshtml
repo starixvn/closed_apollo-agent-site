@@ -1,45 +1,46 @@
 ﻿@{
-	var isShowHeader = ViewBag.IsShowHeader ?? false;
-	var isMaster = ViewBag.IsMaster ?? false;
-	var isSimpleMode = ViewBag.IsSimpleMode ?? true;
+    var isShowHeader = ViewBag.IsShowHeader ?? false;
+    var isMaster = ViewBag.IsMaster ?? false;
+    var isSimpleMode = ViewBag.IsSimpleMode ?? true;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title</title>
-	<link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />    
-    <link href="~/views/account/resources/custSettingengine/core.less?ver=1" rel="stylesheet" type="text/css" />
-	<link href="~/views/account/resources/custSettingengine/coreoverride.less" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="~/views/account/resources/custSettingengine/core.less?ver=1" rel="stylesheet"
+        type="text/css" />
+    <link href="~/views/account/resources/custSettingengine/coreoverride.less" rel="stylesheet"
+        type="text/css" />
     <link href="~/views/account/resources/customersetting.less" rel="stylesheet" type="text/css" />
-	@RenderSection("css", required: false)
+    @RenderSection("css", required: false)
 </head>
 <body>
     @RenderSection("header", required: false)
-    <div id="edit-warning" class="edit-setting-warning clear">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
-	<div id="page_main" class="settingContainer">
+    <div id="edit-warning" class="edit-setting-warning clear" style="display: none;">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
+    <div id="page_main" class="settingContainer">
         @RenderBody()
         <table id="tbl-edit" class="tbl-contain-button">
-		    <tbody>
-            <tr>
-			    <td>
-				        <input id="btnSubmitFooter" type="button" class="btn" value="Confirm" />
+            <tbody>
+                <tr>
+                    <td>
+                        <input id="btnSubmitFooter" type="button" class="btn" value="Confirm" />
                         <input id="btnCancelFooter" type="button" class="btn" value="Cancel" />
-			    </td>
-		    </tr>
-	        </tbody>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-	</div>
-    
-    <div id="forgery-token-div" style="display:none;">
+    </div>
+    <div id="forgery-token-div" style="display: none;">
         @Html.AntiForgeryToken()
     </div>
-	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
-	@Scripts.Render("~/scripts/custsettingjs")
-
-	<script type="text/javascript">
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    @Scripts.Render("~/scripts/custsettingjs")
+    <script type="text/javascript">
 		var DEFAULT_LAYOUT = function () {
 			return {
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
@@ -112,8 +113,7 @@
             CONFIRM_WRITE_AGENT: "@(Apollo.Age.Resources.Lang.ConfirmWriteAgent)",
             CONFIRM_WRITE_MEMBER: "@Apollo.Age.Resources.Lang.ConfirmWriteMember"
 		};
-	</script>
-
-	@RenderSection("scripts", required: false)
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
