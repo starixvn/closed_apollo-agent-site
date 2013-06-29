@@ -20,7 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SoccerController : BaseController
+    public class SoccerController : WagerController
     {
         private readonly QueryService _soccerServices;
 
@@ -44,7 +44,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = 123,
+                LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup
             };
 
@@ -60,7 +60,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = 123,
+                LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup
             };
 
@@ -76,7 +76,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = 123,
+                LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
                 Bettype = 4
             };
@@ -98,7 +98,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = 123,
+                LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup
                
             };
@@ -115,6 +115,22 @@ namespace Apollo.Age.Wagers.Controllers
         public ActionResult Parlay()
         {
             return View();
+        }
+
+        public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        {
+            var criteria = new WagersSpecialCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup
+
+            };
+            var result = _soccerServices.GetData<WagersSpecialViewModel>(criteria);
+
+            return View(result);
         }
 
         public ActionResult Start()
