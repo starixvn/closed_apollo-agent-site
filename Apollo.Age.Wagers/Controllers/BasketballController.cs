@@ -30,7 +30,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// </summary>
         /// <param name="bettype">Sample bettype = 1</param>
         /// <returns></returns>
-        public ActionResult Index(string bettype = WagersBettypes.Straight)
+        public ActionResult Index()
         {
             List<League> listLeague = new List<League>();
             listLeague = this.GetLeague(DateTime.Now, SportGroup.Basketball_Football_Rugy);
