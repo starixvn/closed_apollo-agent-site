@@ -10,12 +10,12 @@
         <BetType Action="Total" ResourceKey="total" />
         <BetType Action="Parlay" ResourceKey="lblParlay" />
     </Sport>
-    <Sport Controller="Basketball" ResourceKey="">
-        <BetType Action="StraightAll" ResourceKey="lblStraightAll" />
+    <Sport Controller="Basketball" ResourceKey="">        
         <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
         <BetType Action="RunningBall" ResourceKey="lblRB" />
-        <BetType Action="Quater" ResourceKey="lblQuarter" />
         <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
     </Sport>
     <Sport Controller="Tenis" ResourceKey="">
         <BetType Action="Straight" ResourceKey="" />

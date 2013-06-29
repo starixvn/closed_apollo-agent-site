@@ -23,25 +23,21 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class BasketballController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string groupBetName = "")
         {
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), SportGroup.Basketball_Football_Rugy);
+            ViewBag.GroupBetName = groupBetName;
 
             return View();
         }
-
-        public ActionResult StraightAll(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
+       
         public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
 
-        public ActionResult Quater(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult FirstHaft(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
         {
             return View();
         }
@@ -55,5 +51,11 @@ namespace Apollo.Age.Wagers.Controllers
         {
             return View();
         }
+
+        public ActionResult SpecialBet(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        {
+            return View();
+        }
+
     }
 }
