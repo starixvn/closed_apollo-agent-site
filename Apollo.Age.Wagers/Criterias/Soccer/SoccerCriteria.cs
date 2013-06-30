@@ -7,42 +7,14 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-using System;
-using Fanex.NAP.Framework.Data;
-
-namespace Apollo.Age.WebApp
+namespace Apollo.Age.Wagers.Criterias.Soccer
 {
-    public class SoccerCriteria : CriteriaBase
+    using System;
+    using Apollo.Age.Wagers.Criterias;
+    using Fanex.NAP.Framework.Data;
+
+    public class SoccerCriteria : WagerCriteriaBase
     {
-        private string _groupBetName = string.Empty;
-
-        [SpParam(Ignored = true)]
-        public string GroupBetName
-        {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(_groupBetName) ? _groupBetName.ToLower() : string.Empty;
-            }
-            set
-            {
-                _groupBetName = value;
-            }
-        }
-
-
-        public int LoggedId { get; set; }
-
-        public DateTime FromDate { get; set; }
-
-        public string UGroup { get; set; }
-
-        public bool IsDirectMem { get; set; }
-
-        public int LeagueId { get; set; }
-
-
-
-
         public override string GetSettingKey()
         {
             var settingKey = string.Empty;
@@ -67,8 +39,6 @@ namespace Apollo.Age.WebApp
             }
 
             return settingKey;
-
-            
         }
 
         public override bool IsValid()

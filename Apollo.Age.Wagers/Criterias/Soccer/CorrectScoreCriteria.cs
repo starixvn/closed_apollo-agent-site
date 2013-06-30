@@ -7,24 +7,13 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-using System;
-using Fanex.NAP.Framework.Data;
-
-namespace Apollo.Age.WebApp
+namespace Apollo.Age.Wagers.Criterias.CorrectScore
 {
-    public class CorrectScoreCriteria : CriteriaBase
+    using Apollo.Age.Wagers.Criterias;
+
+    public class CorrectScoreCriteria : WagerCriteriaBase
     {
-        public int LoggedId { get; set; }
-
-        public DateTime FromDate { get; set; }
-
-        public string UGroup { get; set; }
-
         public int Bettype { get; set; }
-
-        public bool IsDirectMem { get; set; }
-
-        public int LeagueId { get; set; }
 
         public override string GetSettingKey()
         {

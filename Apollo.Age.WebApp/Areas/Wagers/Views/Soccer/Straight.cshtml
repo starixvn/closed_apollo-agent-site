@@ -1,67 +1,34 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
 @using Apollo.Age.Wagers.ViewModels.Soccer
-@model IEnumerable<StraightViewModel>
+@using Apollo.Age.Web.Mvc
+@model List<StraightViewModel>
 <table class="tblRpt soccer">
-                    <thead>
-                        <tr class="RptHeader">
-                            <th style="width: 100px;">
-                                @Lang.time
-                            </th>
-                            <th style="width: 300px;">
-                                @Lang.league
-                            </th>                            
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.lblHomeAway
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.lblHandicapWager
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.lblOverUnderWager
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.lbl1x2Wager
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr class="c">
-                                @RazorHelper.RenderWagersBaseColumn(item,true)
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                    , Lang.lblOverUnderWager
+                    , Lang.lblOddEvenWagers)
+    <tbody>
+        @Model.List(
+                            @<tr class="c">
+                                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
                                 <td class="r">
-                                    @item.HomeCountHDP 
-                                    /                              
-                                    @item.HomeStakeHDP 
+                                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
                                     <br />
-                                     @item.AwayCountHDP
-                                    /                              
-                                    @item.AwayStakeHDP                                     
+                                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
                                 </td>
                                 <td class="r">
-                                     @item.HomeCountOU 
-                                    /                              
-                                    @item.HomeStakeOU 
+                                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
                                     <br />
-                                     @item.AwayCountOU
-                                    /                              
-                                    @item.AwayStakeOU 
-                                </td>                                
-                               <td class="r">
-                                     @item.Count1 
-                                    /                              
-                                    @item.Stake1 
+                                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                                </td>
+                                <td class="r">
+                                    @((int)item.Count1)/@((int)item.Stake1)
                                     <br />
-                                     @item.Count2
-                                    /                              
-                                    @item.Stake2 
-                                     <br />
-                                     @item.CountX
-                                    /                              
-                                    @item.StakeX 
-                                </td> 
+                                    @((int)item.Count2)/@((int)item.Stake2)
+                                    <br />
+                                    @((int)item.CountX)/@((int)item.StakeX)
+                                </td>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                       )
+    </tbody>
+</table>

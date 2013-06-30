@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="WagersTotalViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.6.30">Created</change>
 // </history>
+
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {

@@ -741,7 +741,6 @@
     <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfRB.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Start.cshtml" />
     <Content Include="Areas\Wagers\Views\Volleyball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\FirstHalf.cshtml" />

@@ -8,58 +8,73 @@
 //   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.Controllers
 {
+    using System;
     using System.Web.Mvc;
-    using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Criterias.Others;
+    using Apollo.Age.Wagers.ViewModels.Others;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class OthersController : WagerController
     {
-        public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View("~/Areas/Wagers/Views/Others/Straight.cshtml");
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new OthersCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<StraightViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult FirstHalf(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult Specialbet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new OthersCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<SpecialViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult RB(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new OthersCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Correctscore(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult Total(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult Parlay(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult Start(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult Parlay()
         {
             return View();
         }

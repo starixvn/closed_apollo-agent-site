@@ -88,9 +88,9 @@
 @helper RenderBaseColumns(WagerViewModel item, string draw = "")
     {
         var showTime = item.ShowTime;
-        string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
+        var format = new HtmlString(string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M'));
     <td class="width-40 show-time">
-        @item.ShowTime
+        @format
         @if (item.LiveIndicator)
         {
             <span class="red-num">@Lang.RunningBall</span>

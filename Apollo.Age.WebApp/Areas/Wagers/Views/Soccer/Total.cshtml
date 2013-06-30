@@ -1,51 +1,32 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@using Apollo.Age.Web.Mvc
+@model List<TotalViewModel>
 <table class="tblRpt soccer">
-                    <thead>
-                        <tr class="RptHeader">
-                            <th style="width: 100px;">
-                                @Lang.time
-                            </th>                                                     
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.odds
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.events
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                              @Lang.lbl0_1
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.lbl2_3
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.lbl4_6
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.lbl7up
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="c">
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>     
-                            <td>
-                            </td>   
-                            <td>
-                            </td>   
-                            <td>
-                            </td>                          
-                        </tr>
-                    </tbody>
-                </table>
+        @WagerHelper.RederHeaderColumn(Lang.odds, Lang.events, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)   
+    
+        @Model.List(
+        @<tr class="c">                           
+              @WagerHelper.RenderBaseColumns(item)
+            <td>
+                            
+            </td>
+            <td>
+
+            </td>
+            <td>
+                @((int)item.Total01Count)/@((int)item.Total01Stake)
+            </td>   
+            <td>
+                @((int)item.Total23Count)/@((int)item.Total23Stake)
+            </td>   
+            <td>
+                @((int)item.Total46Count)/@((int)item.Total46Stake)
+            </td> 
+            <td>
+                @((int)item.Total7OverCount)/@((int)item.Total7OverStake)
+            </td>                           
+        </tr>
+    )                    
+</table>

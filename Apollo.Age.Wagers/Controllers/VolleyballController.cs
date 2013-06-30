@@ -16,63 +16,74 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Linq;
     using System.Text;
     using System.Web.Mvc;
+    using Apollo.Age.Wagers.ViewModels.Volleyball;
+    using Apollo.Age.Wagers.Criterias.Volleyball;
+    
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class VolleyballController : WagerController
     {
-        public VolleyballController()
-            : base(null)
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new VolleyballCriteria
+            {
+
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<StraightViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Straight()
+
+        public ActionResult Specialbet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new VolleyballCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<SpecialViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult FirstHalfRB()
+
+        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new VolleyballCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Specialbet()
-        {
-            return View();
-        }
-
-        public ActionResult Correctscore()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
 
         public ActionResult Parlay()
-        {
-            return View();
-        }
-
-        public ActionResult Start()
-        {
-            return View();
-        }
-
-        public ActionResult RunningBall()
         {
             return View();
         }

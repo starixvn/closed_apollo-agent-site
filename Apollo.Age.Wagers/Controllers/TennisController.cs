@@ -14,56 +14,79 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Web.Mvc;
+    using System.Web.Mvc;    
+    using Apollo.Age.Wagers.ViewModels.Tennis;
+    using Apollo.Age.Core;
+    using Apollo.Age.Wagers.Criterias.Tennis;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class TennisController : WagerController
     {
-        public ActionResult Straight()
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new TennisCriteria
+            {
+
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<StraightViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult FirstHalfRB()
+
+        public ActionResult Specialbet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new TennisCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<SpecialViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Specialbet()
+
+        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new TennisCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
+
+            return View(result);
         }
 
-        public ActionResult Correctscore()
-        {
-            return View();
-        }
-
-        public ActionResult FirstHalfCorrectScore()
-        {
-            return View();
-        }
-
-        public ActionResult Total()
-        {
-            return View();
-        }
-
-        public ActionResult HalfFull()
-        {
-            return View();
-        }
 
         public ActionResult Parlay()
         {
             return View();
         }
 
-        public ActionResult Start()
-        {
-            return View();
-        }
+      
     }
 }

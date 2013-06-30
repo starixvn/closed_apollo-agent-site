@@ -14,10 +14,12 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Core;
 
-    using Apollo.Age.WebApp;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Wagers.ViewModels.Soccer;
+    
+    using Apollo.Age.Services.Impl;    
     using Apollo.Age.Wagers.Services;
+    using Apollo.Age.Wagers.ViewModels.Soccer;
+    using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.Criterias.CorrectScore;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -56,7 +58,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = this.CurrentAction
             };
 
             var result = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
@@ -74,7 +76,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                Bettype = 4
+                Bettype = 4,                
             };
 
             var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
@@ -84,7 +86,20 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult FirstHalfCorrectScore(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return Correctscore(fromDate, uGroup, isDirectMember, leagueId);
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new CorrectScoreCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Bettype = 30
+            };
+
+            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
+
+            return View(result);
         }
 
         public ActionResult Total(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
@@ -97,7 +112,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = this.CurrentAction
 
             };
             var result = _WagerService.GetWagerData<TotalViewModel>(criteria);
@@ -107,7 +122,20 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult HalfFull(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return Correctscore(fromDate, uGroup, isDirectMember, leagueId);
+            fromDate = new DateTime(2013, 05, 23);
+            var criteria = new CorrectScoreCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Bettype = 16
+            };
+
+            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
+
+            return View(result);
         }
 
         public ActionResult Parlay()
@@ -125,7 +153,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = this.CurrentAction
 
             };
             var result = _WagerService.GetWagerData<SpecialViewModel>(criteria);
