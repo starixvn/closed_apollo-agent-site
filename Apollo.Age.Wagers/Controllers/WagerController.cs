@@ -42,7 +42,7 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? leagues.ToList() : new List<League>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "straight")
+        public ActionResult Index(string sportName, string groupBetName = "straight", string resourceKey = "lblStraight")
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -87,8 +87,9 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
+            ViewBag.LableGroupBetName = GetResourceData(resourceKey);
 
             return View();
-        }          
+        }
     }
 }
