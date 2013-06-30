@@ -1,22 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Apollo.Age.Wagers.Services;
-using System.Web.Mvc;
-using Apollo.Age.Core;
-using Apollo.Age.Entities;
-using Apollo.Age.Wagers.Core;
-using Apollo.Age.Web;
-using Apollo.Age.Resources;
+﻿// --------------------------------------------------------------------------
+// <copyright file="WagerController.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
+// </history>
 
 namespace Apollo.Age.Wagers.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Apollo.Age.Core;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Resources;
+    using Apollo.Age.Wagers.Core;
+    using Apollo.Age.Wagers.Services;
+    using Apollo.Age.Web;
+
     public class WagerController : BaseController
     {
         private readonly WagersService _wagerService;
 
         public string ActionName { get; set; }
+
+        public WagersService WagersService
+        {
+            get
+            {
+                return _wagerService;
+            }
+        }
 
         public WagerController()
             : this(null)
@@ -76,7 +92,7 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-9), sportTypes);
+            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-10), sportTypes);
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;

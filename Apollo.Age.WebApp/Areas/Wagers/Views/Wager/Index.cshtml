@@ -19,7 +19,7 @@
     <div id="function-bar">
         <div class="item">
             @Lang.lblOP.
-            <select class="za_select" onchange="chg_ltype()" name="ltype" id="ltype">
+            <select class="za_select" name="ltype" id="groupComm">
                 <option value="All">@titleAll</option>
                 <option value="A">@title A</option>
                 <option value="B">@title B </option>
@@ -37,11 +37,13 @@
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
     @Html.Hidden("SportName", sportName)
+    @Html.Hidden("FromDate", DateTime.Now.AddDays(-10))@*Sample data - 10 days*@
     <div class="mainpage">
         @RazorHelper.RenderWagersFilter(Lang.lblStraight, (List<League>)ViewBag.Leagues)
         <div id="container">
         </div>
     </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
 </body>
 </html>
 @Scripts.Render("~/areas/Wagers")
