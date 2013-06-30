@@ -102,14 +102,14 @@
                 {
                 <a class="lnk-agent-list"
                             target="main" href="~/Account/indirectagentlist?parentAgentId=@Model.ActorAgentId&agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.lblAgentList
+                    @Apollo.Age.Resources.Lang.lblAgents
                 </a>
                 }
                 if (Model.HasMemberDownline && Model.Level > Constants.ShareHolderLevel)
                 {
                 <a class="lnk-member-list"
                             target="main" href="~/Account/MemberList?agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.lblPlayerList
+                    @Apollo.Age.Resources.Lang.memberList
                 </a>
                 }
             }
@@ -157,12 +157,12 @@
                         </a>
                         
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.ViewShare
+                            @Apollo.Age.Resources.Lang.Share
                         </a>
 
                         <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.ViewCommission
+                            @Apollo.Age.Resources.Lang.lblComm
                         </a>
                         
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&Username=@Model.Username">
@@ -197,11 +197,11 @@
                         </a>
                         
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.ViewShare
+                            @Apollo.Age.Resources.Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.ViewCommission
+                            @Apollo.Age.Resources.Lang.lblComm
                         </a>
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
@@ -216,7 +216,7 @@
                     }
                     else
                     {
-                        <div class="no-data">@Apollo.Age.Resources.Lang.noInfo</div>
+                        <div class="no-data">@Apollo.Age.Resources.Lang.NoneAgent</div>
                     }
                 </div>
                 <div id="membersTab-content">
