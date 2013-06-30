@@ -39,7 +39,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = _WagerService.GetWagerData<WagersStraightViewModel>(criteria);
+            var list = _WagerService.GetWagerData<StraightViewModel>(criteria);
 
             return View(list);
         }
@@ -57,7 +57,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = _WagerService.GetWagerData<WagersFirstHaftViewModel>(criteria);
+            var list = _WagerService.GetWagerData<FirstHaftViewModel>(criteria);
 
             return View(list);
         }
@@ -75,7 +75,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = _WagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
+            var list = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
 
             return View(list);
         }
@@ -98,7 +98,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = _WagerService.GetWagerData<WagersSpecialViewModel>(criteria);
+            var list = _WagerService.GetWagerData<SpecialViewModel>(criteria);
 
             return View(list);
         }

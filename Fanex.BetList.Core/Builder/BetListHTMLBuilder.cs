@@ -309,6 +309,14 @@ namespace Fanex.BetList.Core.Builder
             return agentComm;
         }
 
+        /// <summary>
+        /// Add Agent share
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <returns></returns>
         public BetListHTMLBuilder AddAgentShare(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag)
         {
             string agentShare = BuildAgentShare(ticket, ticketData);
@@ -317,6 +325,12 @@ namespace Fanex.BetList.Core.Builder
             return this;
         }
 
+        /// <summary>
+        /// Buil agent share
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <returns></returns>
         public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)
         {
             IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);

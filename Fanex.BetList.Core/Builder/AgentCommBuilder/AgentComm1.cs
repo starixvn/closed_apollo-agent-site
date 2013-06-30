@@ -13,8 +13,14 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Agent commission
+    /// </summary>
     public class AgentComm1 : IAgentComm
     {
+        /// <summary>
+        /// Template
+        /// </summary>
         public AgentComm_Template Template { get; set; }
 
         /// <summary>
@@ -42,6 +48,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             {
                 Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
             }
+
             if (ticket.AgentLevel == 0)
             {
                 Template.AgentComm.agentComm_setting = Apollo.Age.Resources.BetList.lblNA;

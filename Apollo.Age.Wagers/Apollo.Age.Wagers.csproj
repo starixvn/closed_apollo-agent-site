@@ -74,10 +74,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWagersService.cs" />
     <Compile Include="Services\WagersService.cs" />
-    <Compile Include="ViewModels\Basketball\WagersFirstHaftViewModel.cs" />
-    <Compile Include="ViewModels\Basketball\WagersRunningBallViewModel.cs" />
-    <Compile Include="ViewModels\Basketball\WagersSpecialViewModel.cs" />
-    <Compile Include="ViewModels\Basketball\WagersStraightViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\RunningBallViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
     <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Soccer\WagersTotalViewModel.cs" />
     <Compile Include="ViewModels\Soccer\RunningBallViewModel.cs" />

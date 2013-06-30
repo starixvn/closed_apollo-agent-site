@@ -13,8 +13,14 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Agent share
+    /// </summary>
     public class AgentShare1 : IAgentShare
     {
+        /// <summary>
+        /// Template
+        /// </summary>
         public AgentShare_Template Template { get; set; }
 
         /// <summary>
