@@ -18,10 +18,6 @@ var Wagers = function ($) {
         init: function () {
             Wagers.sportName = $('#SportName').val();
             Wagers.groupBetName = $('#GroupBetName').val();
-            Wagers.viewOption = $('#ViewOption').val();
-            Wagers.League = $('#League').val();
-            Wagers.fromDate = $('#FromDate').val();
-            Wagers.groupComm = $('#groupComm').val();
         },
 
         initGetData: function () {
@@ -35,6 +31,12 @@ var Wagers = function ($) {
         },
 
         getWagerData: function (url) {
+            
+            Wagers.viewOption = $('#ViewOption').val();
+            Wagers.League = $('#League').val();
+            Wagers.fromDate = $('#FromDate').val();
+            Wagers.groupComm = $('#groupComm').val();
+
             $.ajax({
                 url: APOLLO.resolveUrl(url),
                 data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League },
