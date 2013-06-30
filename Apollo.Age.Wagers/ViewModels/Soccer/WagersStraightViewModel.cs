@@ -7,7 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Wagers.Criterias.Soccer
+namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     public class WagersStraightViewModel
     {
