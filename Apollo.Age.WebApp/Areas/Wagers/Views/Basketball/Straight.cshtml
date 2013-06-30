@@ -1,7 +1,6 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
-@using Apollo.Age.Services
 @model List<WagersStraightViewModel>
 <table class="tblRpt basketball">
     <thead>
@@ -41,7 +40,7 @@
                     }
                 </td>
                 <td class="l">
-                    @CacheRef.GetLeagueName(item.leagueid)
+                    @item.LeagueName
                 </td>
                 <td class="l">
                     <div>@item.HomeName</div>

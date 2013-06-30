@@ -677,8 +677,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
-    maxLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    maxLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    maxLabel.innerHTML = Language.PERCENT_IN_MEMBER;
+    maxLabel.title = Language.PERCENT_IN_MEMBER;
     maxLabel.className = "share-setting-label";
     trSetting.appendChild(maxLabel);
 
@@ -967,8 +967,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
     boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
-    maxLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    maxLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    maxLabel.innerHTML = Language.PERCENT_IN_MEMBER;
+    maxLabel.title = Language.PERCENT_IN_MEMBER;
     maxLabel.className = "share-setting-label";
     trSetting.appendChild(maxLabel);
 

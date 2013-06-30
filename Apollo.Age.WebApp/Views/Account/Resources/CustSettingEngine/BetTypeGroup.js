@@ -20,8 +20,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     box.appendChild(emptyLabel);
 
     var ptLabel = document.createElement("DIV");
-    ptLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    ptLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    ptLabel.innerHTML = Language.PERCENT_IN_MEMBER;
+    ptLabel.title = Language.PERCENT_IN_MEMBER;
     ptLabel.className = "group-label";
     box.appendChild(ptLabel);
 
