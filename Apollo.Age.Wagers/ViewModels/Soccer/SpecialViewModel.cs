@@ -7,26 +7,10 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-using System;
-
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
-    public class WagersSpecialViewModel
+    public class SpecialViewModel : WagerViewModel
     {
-        public string Showtime { get; set; }
-
-        public bool LiveIndicator { get; set; }
-
-        public int leagueid { get; set; }
-
-        public string matchcode { get; set; }
-
-        public int HomeId { get; set; }
-
-        public int AwayId { get; set; }
-
-        public string UGroup { get; set; }
-
         public decimal HomeStakeOE { get; set; }
 
         public decimal AwayStakeOE { get; set; }

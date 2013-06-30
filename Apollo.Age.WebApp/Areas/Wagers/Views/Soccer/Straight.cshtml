@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
 @using Apollo.Age.Wagers.ViewModels.Soccer
-@model IEnumerable<WagersStraightViewModel>
+@model IEnumerable<StraightViewModel>
 <table class="tblRpt soccer">
                     <thead>
                         <tr class="RptHeader">
@@ -30,7 +30,7 @@
                         {
                             <tr class="c">
                                 <td class="width-80">                                    
-                                    @Html.Raw(item.Showtime)
+                                    @Html.Raw(item.ShowTime)
                                       @if (item.LiveIndicator)
                                         {
                                             <span class="red-num">@Lang.RunningBall</span>
