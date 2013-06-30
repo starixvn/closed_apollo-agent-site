@@ -54,7 +54,7 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _stringEmpty, string username = _stringEmpty, string betType = _stringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _stringEmpty)
+        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _StringEmpty, string username = _StringEmpty, string betType = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty)
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
@@ -121,7 +121,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <param name="isForecast"></param>
         /// <returns></returns>
-        public ViewResult Forecast(string type = _stringEmpty, string betType = _stringEmpty, string betTeam = _stringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _stringEmpty, bool isForecast = false)
+        public ViewResult Forecast(string type = _StringEmpty, string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
             var title = string.Empty;
