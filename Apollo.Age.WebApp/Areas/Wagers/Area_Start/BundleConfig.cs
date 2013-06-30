@@ -10,7 +10,7 @@
             "~/_GlobalResources/Js/head.js",
             "~/_GlobalResources/Js/jquery.js",
             "~/_GlobalResources/Js/Core.js",
-             "~/Areas/Wagers/Views/Soccer/Resources/Soccer.js"
+             "~/Areas/Wagers/Scripts/Wagers.js"
             ));
 
         }

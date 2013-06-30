@@ -136,16 +136,16 @@
     <value>AH</value>
   </data>
   <data name="alertIncorrectMaxBet" xml:space="preserve">
-    <value>Incorrect Max Single Bet</value>
+    <value>Incorrect Single Bet Max</value>
   </data>
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>Incorrect Max Per Ball</value>
   </data>
   <data name="alertIncorrectMaxPerMatch" xml:space="preserve">
-    <value>Incorrect Max Single Game</value>
+    <value>Incorrect Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
-    <value>Incorrect Min Single Bet</value>
+    <value>Incorrect Single Bet Min</value>
   </data>
   <data name="all" xml:space="preserve">
     <value>All</value>
@@ -340,16 +340,16 @@
     <value>Agent Outstanding</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
-    <value>Max Single Bet must be less than or equal to</value>
+    <value>Single Bet Max must be less than or equal to</value>
   </data>
   <data name="lblalertMaxPerBallCompare" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMaxPerMatchCompare" xml:space="preserve">
-    <value>Max Single Game must be less than or equal to {1}.</value>
+    <value>Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
-    <value>Min Single Bet must be greater than or equal to</value>
+    <value>Single Bet Min must be greater than or equal to</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>HDP, OU, OE</value>
@@ -361,7 +361,7 @@
     <value>Bet List</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Bet Limit</value>
   </data>
   <data name="lblComm" xml:space="preserve">
     <value>Comm</value>
@@ -410,10 +410,10 @@
     <comment>Label Number Game</comment>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Max Single Bet</value>
+    <value>Single Bet Max</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Max Single Game</value>
+    <value>Single Game</value>
   </data>
   <data name="lblMemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
@@ -431,7 +431,7 @@
     <value>Message</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Min Single Bet</value>
+    <value>Single Bet Min</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -882,7 +882,7 @@
     <value>Pre Game</value>
   </data>
   <data name="copyAllBetSettingFromExcludingNG" xml:space="preserve">
-    <value>Copy all below bet settings from {0}</value>
+    <value>Copy all below bet limit from {0}</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0} position taking setting is being applied to:</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Max Single Bet should be less than or equal to Max Single Game</value>
+    <value>{0} - The Single Bet Max should be less than or equal to Single Game</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Single Bet</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Single Bet Max</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Single Game</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Single Game</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
@@ -945,7 +945,7 @@
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
-    <value>{0} - The Min Single Bet should be less than or equal to Max Per Ball</value>
+    <value>{0} - The Single Bet Min should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Parent</value>
@@ -1047,7 +1047,7 @@
     <value>Commission Group</value>
   </data>
   <data name="lblCommissionSetting" xml:space="preserve">
-    <value>Commission Setting</value>
+    <value>Commission</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
     <value>% in Agent:</value>
@@ -1065,7 +1065,7 @@
     <value>Betting Setup</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Betting Setup</value>
+    <value>Betting Setup (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% in Upper:</value>
@@ -1137,7 +1137,7 @@
     <value>Commission Setting Instructions</value>
   </data>
   <data name="BetSettingInstructions" xml:space="preserve">
-    <value>Bet Setting Instructions</value>
+    <value>Bet Limit Instructions</value>
   </data>
   <data name="AgentWinLossInstructions" xml:space="preserve">
     <value>Agent WinLoss Instructions</value>
@@ -1461,7 +1461,7 @@
     <value>Suspended</value>
   </data>
   <data name="est" xml:space="preserve">
-    <value>E.S.T.</value>
+    <value>E.S.T</value>
   </data>
   <data name="OrderBy" xml:space="preserve">
     <value>Order by</value>
@@ -1531,7 +1531,7 @@
     <value>Handicap, Over/Under, Odd/Even</value>
   </data>
   <data name="MixSportParlay" xml:space="preserve">
-    <value>Mix Sport Parlay</value>
+    <value>Mix Sports Parlay</value>
   </data>
   <data name="OtherBetType" xml:space="preserve">
     <value>Other Bet Type</value>
@@ -1558,10 +1558,10 @@
     <value>D</value>
   </data>
   <data name="MaxSingleBet" xml:space="preserve">
-    <value>Max Single Bet</value>
+    <value>Single Bet Max</value>
   </data>
   <data name="MinSingleBet" xml:space="preserve">
-    <value>Min Single Bet</value>
+    <value>Single Bet Min</value>
   </data>
   <data name="SingleGame" xml:space="preserve">
     <value>Single Game</value>
@@ -1576,7 +1576,7 @@
     <value>Name</value>
   </data>
   <data name="AgencyDetailEdit" xml:space="preserve">
-    <value>Agency detailed edit</value>
+    <value>Agent detailed edit</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1623,15 +1623,162 @@
   <data name="DirectMembers" xml:space="preserve">
     <value>Direct members</value>
   </data>
-<<<<<<< HEAD
   <data name="Share" xml:space="preserve">
     <value>Share</value>
-=======
+  </data>
   <data name="lbl1stOddEven" xml:space="preserve">
     <value>1st Odd/Even</value>
   </data>
   <data name="Othertypes" xml:space="preserve">
     <value>Other types</value>
->>>>>>> 369e741dd389fcae9df6e0cc39ebc1434d571993
+  </data>
+  <data name="BasketballA" xml:space="preserve">
+    <value>Basketball A</value>
+  </data>
+  <data name="BasketballB" xml:space="preserve">
+    <value>Basketball B</value>
+  </data>
+  <data name="BasketballC" xml:space="preserve">
+    <value>Basketball C</value>
+  </data>
+  <data name="BasketballD" xml:space="preserve">
+    <value>Basketball D</value>
+  </data>
+  <data name="NoneAgents" xml:space="preserve">
+    <value>None Agents</value>
+  </data>
+  <data name="NoneMembers" xml:space="preserve">
+    <value>None Members</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="SoccerDeadballHandicap" xml:space="preserve">
+    <value>Soccer Deadball Handicap</value>
+  </data>
+  <data name="lbl0_1" xml:space="preserve">
+    <value>0~1</value>
+  </data>
+  <data name="lbl1x2Wager" xml:space="preserve">
+    <value>1x2/Wagers</value>
+  </data>
+  <data name="lbl2_3" xml:space="preserve">
+    <value>2~3</value>
+  </data>
+  <data name="lbl4_6" xml:space="preserve">
+    <value>4~6</value>
+  </data>
+  <data name="lbl7up" xml:space="preserve">
+    <value>7up</value>
+  </data>
+  <data name="lblHandicapWager" xml:space="preserve">
+    <value>Handicap/Wagers</value>
+  </data>
+  <data name="lblHomeAway" xml:space="preserve">
+    <value>Home/Away</value>
+  </data>
+  <data name="lblOverUnderWager" xml:space="preserve">
+    <value>Over/Under/Wagers</value>
+  </data>
+  <data name="lblWagersGolds" xml:space="preserve">
+    <value>Wagers/Golds</value>
+  </data>
+  <data name="lblMatchCode" xml:space="preserve">
+    <value>Match Code</value>
+  </data>
+  <data name="lblEven" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="lblFeature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="lblGolds" xml:space="preserve">
+    <value>Golds</value>
+  </data>
+  <data name="lblOdd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="RBOverUnder" xml:space="preserve">
+    <value>R.B Over/Under</value>
+  </data>
+  <data name="lblQuarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
+  <data name="lblStraightAll" xml:space="preserve">
+    <value>Straight All</value>
+  </data>
+  <data name="lblExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="NodataSearch" xml:space="preserve">
+    <value>No data for search</value>
+  </data>
+  <data name="lblsoccerA" xml:space="preserve">
+    <value>Soccer A</value>
+  </data>
+  <data name="lblsoccerB" xml:space="preserve">
+    <value>Soccer B</value>
+  </data>
+  <data name="lblsoccerC" xml:space="preserve">
+    <value>Soccer C</value>
+  </data>
+  <data name="lblsoccerD" xml:space="preserve">
+    <value>Soccer D</value>
+  </data>
+  <data name="lblOddEvenWagers" xml:space="preserve">
+    <value>Odd Even / Wagers</value>
+  </data>
+<<<<<<< HEAD
+  <data name="lblBaseballA" xml:space="preserve">
+    <value>Baseball A</value>
+  </data>
+  <data name="lblBaseballAll" xml:space="preserve">
+    <value>Baseball All</value>
+  </data>
+  <data name="lblBaseballB" xml:space="preserve">
+    <value>Baseball B</value>
+  </data>
+  <data name="lblBaseballC" xml:space="preserve">
+    <value>Baseball C</value>
+  </data>
+  <data name="lblBaseballD" xml:space="preserve">
+    <value>Baseball D</value>
+  </data>
+  <data name="lblTennisA" xml:space="preserve">
+    <value>Tennis A</value>
+  </data>
+  <data name="lblTennisAll" xml:space="preserve">
+    <value>Tennis All</value>
+  </data>
+  <data name="lblTennisB" xml:space="preserve">
+    <value>Tennis B</value>
+  </data>
+  <data name="lblTennisC" xml:space="preserve">
+    <value>Tennis C</value>
+  </data>
+  <data name="lblTennisD" xml:space="preserve">
+    <value>Tennis D</value>
+  </data>
+  <data name="lblVolleyballA" xml:space="preserve">
+    <value>Volleyball A</value>
+  </data>
+  <data name="lblVolleyballAll" xml:space="preserve">
+    <value>Volleyball All</value>
+  </data>
+  <data name="lblVolleyballB" xml:space="preserve">
+    <value>Volleyball B</value>
+  </data>
+  <data name="lblVolleyballC" xml:space="preserve">
+    <value>Volleyball C</value>
+  </data>
+  <data name="lblVolleyballD" xml:space="preserve">
+    <value>Volleyball D</value>
+=======
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="GMT" xml:space="preserve">
+    <value>GMT+8</value>
+>>>>>>> b8de3c9593c1b7f65d74688bb1642ebe521f6bb8
   </data>
 </root>

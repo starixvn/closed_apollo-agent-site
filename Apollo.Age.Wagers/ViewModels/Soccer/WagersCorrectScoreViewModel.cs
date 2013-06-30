@@ -7,7 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Wagers.Criterias.Soccer
+namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     /// <summary>
     /// for Correct Score(4), 1st Half Correct Score(30) and Half/Full(16) 
