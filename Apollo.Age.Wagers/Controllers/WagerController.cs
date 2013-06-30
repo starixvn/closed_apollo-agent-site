@@ -23,7 +23,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     public class WagerController : BaseController
     {
-        protected readonly IWagersService _wagerService;
+        protected readonly IWagersService _WagerService;
 
         public WagerController()
             : this(null)
@@ -32,12 +32,12 @@ namespace Apollo.Age.Wagers.Controllers
 
         public WagerController(IWagersService wagerService = null)
         {
-            _wagerService = wagerService ?? new WagersService();
+            _WagerService = wagerService ?? new WagersService();
         }
 
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
-            var leagues = _wagerService.GetLeague(fromDate, sportTypes);
+            var leagues = _WagerService.GetLeague(fromDate, sportTypes);
 
             return leagues != null ? leagues.ToList() : new List<League>();
         }
@@ -89,6 +89,6 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
 
             return View();
-        }
+        }          
     }
 }

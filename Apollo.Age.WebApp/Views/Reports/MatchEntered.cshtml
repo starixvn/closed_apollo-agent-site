@@ -421,10 +421,10 @@
 @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
 @Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
-@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek(DayOfWeek.Monday)))
-@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek(DayOfWeek.Sunday)))
-@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek(DayOfWeek.Monday)))
-@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek(DayOfWeek.Sunday)))
+@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
+@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
+@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
+@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
 @Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
