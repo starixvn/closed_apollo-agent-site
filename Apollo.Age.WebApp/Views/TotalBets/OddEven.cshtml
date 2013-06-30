@@ -158,9 +158,7 @@
             
             <!--MatchContents-->
             <tr class='r @classRow'>
-                 <td class="c show-time" >
-            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
-            </td>
+              @Html.FormatShowTime(item.ShowTime)
                     @ShowTime(item)
                     <td class="c">
                          @item.LeagueName 
