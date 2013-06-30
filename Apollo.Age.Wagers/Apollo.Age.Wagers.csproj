@@ -82,7 +82,7 @@
     <Compile Include="ViewModels\Soccer\WagersTotalViewModel.cs" />
     <Compile Include="ViewModels\Soccer\WagersRunningBallViewModel.cs" />
     <Compile Include="ViewModels\Soccer\WagersFirstHalfViewModel.cs" />
-    <Compile Include="ViewModels\Soccer\WagersCorrectScoreViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\Soccer\WagersStraightViewModel.cs" />
     <Compile Include="ViewModels\WagerViewModels.cs" />
   </ItemGroup>

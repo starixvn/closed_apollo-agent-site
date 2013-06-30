@@ -12,7 +12,7 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
     /// <summary>
     /// for Correct Score(4), 1st Half Correct Score(30) and Half/Full(16)
     /// </summary>
-    public class WagersCorrectScoreViewModel : WagerViewModel
+    public class CorrectScoreViewModel : WagerViewModel
     {
         public short Bettype { get; set; }
 
