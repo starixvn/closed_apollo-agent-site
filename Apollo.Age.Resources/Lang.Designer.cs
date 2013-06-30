@@ -2186,7 +2186,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handicap/Wagers.
+        ///   Looks up a localized string similar to Handicap / Wagers.
         /// </summary>
         public static string lblHandicapWager {
             get {
@@ -2663,7 +2663,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Over/Under/Wagers.
+        ///   Looks up a localized string similar to Over / Under / Wagers.
         /// </summary>
         public static string lblOverUnderWager {
             get {

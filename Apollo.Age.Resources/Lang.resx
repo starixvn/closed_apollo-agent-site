@@ -1672,13 +1672,13 @@
     <value>7up</value>
   </data>
   <data name="lblHandicapWager" xml:space="preserve">
-    <value>Handicap/Wagers</value>
+    <value>Handicap / Wagers</value>
   </data>
   <data name="lblHomeAway" xml:space="preserve">
     <value>Home/Away</value>
   </data>
   <data name="lblOverUnderWager" xml:space="preserve">
-    <value>Over/Under/Wagers</value>
+    <value>Over / Under / Wagers</value>
   </data>
   <data name="lblWagersGolds" xml:space="preserve">
     <value>Wagers/Golds</value>
