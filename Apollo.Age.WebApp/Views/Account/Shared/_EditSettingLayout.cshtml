@@ -1,6 +1,7 @@
 ﻿@{
     var isSimpleMode = ViewBag.IsSimpleMode ?? true;
     var reload = ViewBag.Reload ?? false;
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -45,6 +46,7 @@
 			return {
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
                 reload: @(reload ? "true" : "false"),
+                fromLeftMenu: @(fromLeftMenu ? "true" : "false"),
 				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)"
 			};
 		}();

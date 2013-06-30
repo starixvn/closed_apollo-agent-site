@@ -273,7 +273,7 @@
 
         }
 }
-@helper ToEasternTime(DateTime datetime)
+@helper ToServerTime(DateTime datetime)
     {
         if (datetime != null)
         {
@@ -293,3 +293,76 @@
         }
 }
 
+<<<<<<< HEAD
+=======
+                    break;
+                }
+
+            }
+        }
+    </ul>
+}
+@helper RenderWagersFilter(string title, List<League> leagues)
+    {
+    <div id="header_main">@title</div>
+    <div class="box-header" id="main-shareholder-box">
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlLeague">
+                        @Lang.view&nbsp;:</label>
+                </div>
+                <div class="editor">
+                    <select id="ViewOption" class="za_select">
+                        <option value="false">@Lang.all</option>
+                        <option value="true">@Lang.DirectMembers</option>
+                    </select>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlLeague">
+                        @Lang.league&nbsp;:</label>
+                </div>
+                <div class="editor">
+                    <select id="League" class="za_select">
+                        <option value="0">@Lang.all</option>
+                        @if (!ReferenceEquals(leagues, null)
+                            && leagues.Any())
+                        {
+                            foreach (var item in leagues)
+                            {
+                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@helper RenderWagersBaseColumn(WagerViewModel item, bool isRaw=false)
+    {
+        var showTime = item.ShowTime;
+        string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
+    <td class="width-40 show-time">
+        @item.ShowTime
+        @if (item.LiveIndicator)
+        {
+            <span class="red-num">@Lang.RunningBall</span>
+        }
+    </td>
+    <td class="l">
+        @item.LeagueName
+    </td>
+    <td class="l">
+        @item.HomeName
+        <br />
+        @item.AwayName
+        @if(isRaw)
+        {
+            <div class="r text-green">@Lang.lblDraw</div> 
+        }
+    </td>
+}
+>>>>>>> 6f2baeacbf98ac419b3d057412556472cf167cd7

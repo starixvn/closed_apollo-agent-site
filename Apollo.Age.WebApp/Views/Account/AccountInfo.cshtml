@@ -3,6 +3,18 @@
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    var backLink = string.Empty;
+    if (Model != null)
+    {
+        if(Model.IsMember)
+        {
+            backLink = HttpUtility.UrlEncode(string.Format(Url.Content("~/Account/MemberList") + "?agentid={0}", Model.ParentId));
+        }
+        else
+        {
+            backLink = HttpUtility.UrlEncode(string.Format(Url.Content("~/Account/indirectagentlist") + "?parentAgentId={0}&agentid={1}", Model.ActorAgentId, Model.ParentId));
+        }
+    }
 }
 <table id="tab-menu">
     <tr>
@@ -141,7 +153,7 @@
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=&reload=true">
+                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true&reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -152,7 +164,7 @@
                             }
                         </a>
 
-                       <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username">
+                       <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=@backLink">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
                         
@@ -180,7 +192,7 @@
                         else
                         {
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=&reload=true">
+                                href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true&reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -192,7 +204,7 @@
                         </a>
                         }
 
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=@backLink">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
                         

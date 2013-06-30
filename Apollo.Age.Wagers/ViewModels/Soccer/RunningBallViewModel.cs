@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="WagersStraightViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="WagersRunningBallViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,47 +7,10 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-using Apollo.Age.Services;
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
-    public class WagersStraightViewModel
+    public class RunningBallViewModel : WagerViewModel
     {
-        public string Showtime { get; set; }
-
-        public bool LiveIndicator { get; set; }
-
-        public int LeagueId { get; set; }
-
-        public string LeagueName {
-            get {
-                return CacheRef.GetLeagueName(this.LeagueId);
-            }
-        
-        }
-
-        public string matchcode { get; set; }
-
-        public int HomeId { get; set; }
-
-        public string HomeName
-        {
-            get {
-                return CacheRef.GetTeamName(this.HomeId); 
-            }
-        }
-
-        public int AwayId { get; set; }
-
-        public string AwayName
-        {
-            get
-            {
-                return CacheRef.GetTeamName(this.AwayId); 
-            }
-        }
-
-        public string UGroup { get; set; }
-
         public decimal HomeStakeHDP { get; set; }
 
         public decimal AwayStakeHDP { get; set; }

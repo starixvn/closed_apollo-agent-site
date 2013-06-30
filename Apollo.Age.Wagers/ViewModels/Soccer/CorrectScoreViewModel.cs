@@ -14,9 +14,7 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
     /// </summary>
     public class CorrectScoreViewModel : WagerViewModel
     {
-        public short Bettype { get; set; }
-
-        public string UGroup { get; set; }
+        public short Bettype { get; set; }                
 
         public decimal Stake { get; set; }
 
