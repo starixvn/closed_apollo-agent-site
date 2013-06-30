@@ -27,14 +27,20 @@ var Wagers = function ($) {
         initGetData: function () {
             var url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
 
+            Wagers.getWagerData(url);
+
             $('.za_select').on('change', function () {
-                $.ajax({
-                    url: APOLLO.resolveUrl(url),
-                    data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League },
-                    success: function (data) {
-                        $('#container').html(data);
-                    }
-                });
+                getWagerData(url);
+            });
+        },
+
+        getWagerData: function (url) {
+            $.ajax({
+                url: APOLLO.resolveUrl(url),
+                data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League },
+                success: function (data) {
+                    $('#container').html(data);
+                }
             });
         }
     }
