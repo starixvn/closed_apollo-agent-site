@@ -9,22 +9,8 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
-    public class WagersFirstHalfViewModel
+    public class FirstHalfViewModel : WagerViewModel
     {
-        public string Showtime { get; set; }
-
-        public bool LiveIndicator { get; set; }
-
-        public int leagueid { get; set; }
-
-        public string matchcode { get; set; }
-
-        public int HomeId { get; set; }
-
-        public int AwayId { get; set; }
-
-        public string UGroup { get; set; }
-
         public decimal HomeStakeHTHDP { get; set; }
 
         public decimal AwayStakeHTHDP { get; set; }

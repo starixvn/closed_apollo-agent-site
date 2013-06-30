@@ -29,6 +29,7 @@ namespace Apollo.Age.Wagers.Controllers
      
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                
@@ -47,6 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
@@ -64,6 +66,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Correctscore(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new CorrectScoreCriteria
             {
                 FromDate = fromDate,
@@ -74,7 +77,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Bettype = 4
             };
 
-            var result = _WagerService.GetWagerData<WagersCorrectScoreViewModel>(criteria);
+            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             return View(result);
         }
@@ -86,6 +89,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Total(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
@@ -113,6 +117,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
