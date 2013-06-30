@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Apollo.Age.Wagers.Criterias.Soccer
+namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     public class WagersSpecialViewModel
     {

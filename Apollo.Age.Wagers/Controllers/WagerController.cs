@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 //   <change who="Anders.Le" date="2013.6.30">Remove property WagerService</change>
+//   <change who="Anders.Le" date="2013.6.30">Add CurrentActionName</change>
 // </history>
 
 namespace Apollo.Age.Wagers.Controllers
@@ -23,7 +24,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     public class WagerController : BaseController
     {
-        protected readonly IWagersService _wagerService;
+        protected readonly IWagersService _WagerService;
 
         public WagerController()
             : this(null)
@@ -32,12 +33,12 @@ namespace Apollo.Age.Wagers.Controllers
 
         public WagerController(IWagersService wagerService = null)
         {
-            _wagerService = wagerService ?? new WagersService();
+            _WagerService = wagerService ?? new WagersService();
         }
 
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
-            var leagues = _wagerService.GetLeague(fromDate, sportTypes);
+            var leagues = _WagerService.GetLeague(fromDate, sportTypes);
 
             return leagues != null ? leagues.ToList() : new List<League>();
         }
@@ -89,6 +90,6 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
 
             return View();
-        }
+        }          
     }
 }

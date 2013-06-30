@@ -16,7 +16,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     using Apollo.Age.WebApp;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.ViewModels.Soccer;
     using Apollo.Age.Wagers.Services;
     /// <summary>
     /// TODO: Update summary.
@@ -31,15 +31,16 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new SoccerCriteria
             {
+               
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = this.CurrentActionName
             };
 
-            var result = _wagerService.GetWagerData<WagersStraightViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersStraightViewModel>(criteria);
 
             return View(result);
         }
@@ -56,7 +57,7 @@ namespace Apollo.Age.Wagers.Controllers
                 GroupBetName = SportGroup.Soccer
             };
 
-            var result = _wagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
 
             return View(result);
         }
@@ -73,7 +74,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Bettype = 4
             };
 
-            var result = _wagerService.GetWagerData<WagersCorrectScoreViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersCorrectScoreViewModel>(criteria);
 
             return View(result);
         }
@@ -95,7 +96,7 @@ namespace Apollo.Age.Wagers.Controllers
                 GroupBetName = SportGroup.Soccer
 
             };
-            var result = _wagerService.GetWagerData<WagersTotalViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersTotalViewModel>(criteria);
 
             return View(result);
         }
@@ -122,7 +123,7 @@ namespace Apollo.Age.Wagers.Controllers
                 GroupBetName = SportGroup.Soccer
 
             };
-            var result = _wagerService.GetWagerData<WagersSpecialViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersSpecialViewModel>(criteria);
 
             return View(result);
         }
