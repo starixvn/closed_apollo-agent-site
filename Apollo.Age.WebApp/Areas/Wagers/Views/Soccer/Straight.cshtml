@@ -29,21 +29,7 @@
                         @foreach (var item in Model)
                         {
                             <tr class="c">
-                                <td class="width-80">                                    
-                                    @Html.Raw(item.ShowTime)
-                                      @if (item.LiveIndicator)
-                                        {
-                                            <span class="red-num">@Lang.RunningBall</span>
-                                        }
-                                </td>
-                                <td>
-                                    @item.LeagueName
-                                </td>                              
-                                <td>
-                                    <div>@item.HomeName </div>
-                                    <div> @item.AwayName</div>
-                                    <div class="r text-green">@Lang.lblDraw</div>                                                                      
-                                </td>
+                                @RazorHelper.RenderWagersBaseColumn(item,true)
                                 <td class="r">
                                     @item.HomeCountHDP 
                                     /                              
