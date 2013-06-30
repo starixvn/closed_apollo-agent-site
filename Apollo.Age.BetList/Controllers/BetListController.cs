@@ -34,19 +34,19 @@ namespace Apollo.Age.BetList.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListController : BaseController
     {
-        private const string StringEmpty = "";
-        private readonly BetListService betListService;
-        private readonly ReportService reportService;
-        private readonly TotalBetsService totalBetsService;
+        private const string _StringEmpty = "";
+        private readonly BetListService _betListService;
+        private readonly ReportService _reportService;
+        private readonly TotalBetsService _totalBetsService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
         /// </summary>
         public BetListController()
         {
-            this.betListService = new BetListService();
-            this.reportService = new ReportService();
-            this.totalBetsService = new TotalBetsService();
+            this._betListService = new BetListService();
+            this._reportService = new ReportService();
+            this._totalBetsService = new TotalBetsService();
         }
 
         public ViewResult Index()
@@ -54,14 +54,12 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = StringEmpty, string username = StringEmpty, string betType = StringEmpty,
-             int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty)
+        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _stringEmpty, string username = _stringEmpty, string betType = _stringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _stringEmpty)
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
-
                       (int)Apollo.Age.Enumerations.BetStatus.Void,
                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
@@ -69,7 +67,6 @@ namespace Apollo.Age.BetList.Controllers
                       (int)Apollo.Age.Enumerations.BetStatus.Won,
                       (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
-
             else
             {
                 statusIds = string.Format("{0},{1}",
@@ -77,8 +74,8 @@ namespace Apollo.Age.BetList.Controllers
                          (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            var balanceUpDay = reportService.GetBalanceUpDay();
-            var moveBetsDay = reportService.MoveBetsDay().AddDays(1);
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
             var betListService = new BetListService();
             var criteria = new BetListCriteria
             {
@@ -114,7 +111,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Action betlist from forecast
+        /// Action view betList from forecast
         /// </summary>
         /// <param name="type"></param>
         /// <param name="betType"></param>
@@ -124,7 +121,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <param name="isForecast"></param>
         /// <returns></returns>
-        public ViewResult Forecast(string type = StringEmpty, string betType = StringEmpty, string betTeam = StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty, bool isForecast = false)
+        public ViewResult Forecast(string type = _stringEmpty, string betType = _stringEmpty, string betTeam = _stringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _stringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
             var title = string.Empty;
@@ -216,8 +213,8 @@ namespace Apollo.Age.BetList.Controllers
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
-            var balanceUpDay = this.reportService.GetBalanceUpDay();
-            var moveBetsDay = this.reportService.MoveBetsDay();
+            var balanceUpDay = this._reportService.GetBalanceUpDay();
+            var moveBetsDay = this._reportService.MoveBetsDay();
             var viewModel = new BetListViewModel();
 
             var criteria = new BetListCriteria
@@ -247,7 +244,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Get ticket for betlist
+        /// Get ticket for betList
         /// </summary>
         /// <param name="ticketResult"></param>
         /// <param name="betlistPage"></param>
@@ -309,24 +306,26 @@ namespace Apollo.Age.BetList.Controllers
         #region Format Start, End date
 
         /// <summary>
-        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
+        /// Get total bet data by betType, if MainShareHolderId > 0 and Current is Supper
         /// then load Data of that MainShareHolder
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="betType"></param>
+        /// <param name="mainShareHolderId"></param>
         /// <returns></returns>
         private IEnumerable<Agent> ListMainShareHolder(string betType, ref int mainShareHolderId)
         {
             int agentId = this.CurrentSession.AgentId;
             if (this.CurrentSession.IsSuper)
             {
-                var mainShareHolders = this.totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = betType });
+                var mainShareHolders = this._totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = betType });
                 if (mainShareHolderId == 0 && mainShareHolders != null && mainShareHolders.Any())
                 {
                     mainShareHolderId = mainShareHolders.ElementAt(0).Id;
                 }
+
                 return mainShareHolders;
             }
+
             return new List<Agent>();
         }
 
