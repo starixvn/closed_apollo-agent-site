@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
-
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@model IEnumerable<WagersCorrectScoreViewModel>
 <table class="tblRpt soccer">
                     <thead>
                         <tr class="RptHeader">
@@ -19,15 +20,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="c">
-                            <td class="width-80">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>                            
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="c">
+                                <td>
+                                   @Html.FormatShowTime(item.Showtime, true)
+                                </td>
+                                <td>
+                                    @item.LeagueName
+                                </td>
+                                <td class="l">
+                                    <div>@item.HomeName </div>
+                                    <div> @item.AwayName</div>                                     
+                                </td>
+                                <td class="r">
+                                     @item.BetCount 
+                                    /                              
+                                    @item.Stake
+                                </td>                            
+                            </tr>
+                        }
                     </tbody>
                 </table>
