@@ -21,6 +21,11 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class BasketballController : WagerController
     {
+        public BasketballController()
+            : base(null)
+        {
+        }
+
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
             var criteria = new BasketballCriteria
