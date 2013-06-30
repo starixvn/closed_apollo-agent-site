@@ -2960,7 +2960,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %.
+        ///   Looks up a localized string similar to % in Upper.
         /// </summary>
         public static string lblTakenShare {
             get {
@@ -3973,6 +3973,15 @@ namespace Apollo.Age.Resources {
         public static string pending {
             get {
                 return ResourceManager.GetString("pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        public static string PercentInMember {
+            get {
+                return ResourceManager.GetString("PercentInMember", resourceCulture);
             }
         }
         
