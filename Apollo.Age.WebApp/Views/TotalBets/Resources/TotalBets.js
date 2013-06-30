@@ -65,6 +65,7 @@ var TOTALBETS = function ($) {
 				APOLLO.openDialogFrame(url, title, {
 					width: 930,
 					height: 770,
+					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
 						parent.RefreshCountDown.setCurrentTimeout();

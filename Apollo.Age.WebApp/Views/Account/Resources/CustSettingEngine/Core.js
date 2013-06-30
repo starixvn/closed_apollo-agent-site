@@ -180,7 +180,7 @@
             Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 5000, false);
         }
         else {
-            Validators.show(elementInput, errorMessage, -200, 250, -45, 38, 18, 5000, false);
+            Validators.show(elementInput, errorMessage, -150, 210, -45, 38, 18, 5000, false);
         }
         Validators.animate(elementInput);
     };

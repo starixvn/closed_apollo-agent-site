@@ -6,27 +6,22 @@
     string rowClass = string.Empty;
 }
 @model AgentWinLossViewModel
-
 <div id="function-bar">
     <div class="item">
         <span>@Apollo.Age.Resources.Lang.date : @Formater.ShortDateFormat(Model.FromDate)~@Formater.ShortDateFormat(Model.ToDate)
-        -- @Apollo.Age.Resources.Lang.sport : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType : @Model.BettypeName --
-        </span>
-        <a id="btnBack" href="javascript:;">@Apollo.Age.Resources.Lang.back</a>
+            -- @Apollo.Age.Resources.Lang.sport : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType
+            : @Model.BettypeName -- </span><a id="btnBack" href="javascript:;">@Apollo.Age.Resources.Lang.back</a>
     </div>
     <img alt="" src="~/_GlobalResources/Images/top_04.gif">
-    
 </div>
-
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 }
-<table class="tblRpt report">
-    @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
-    {
-        if (Model.IsSuper)
-        {
+@if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
+{
+    <table class="tblRpt report">
+        @if (Model.IsSuper) {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -57,9 +52,9 @@
             </tr>
         </thead>
         <tbody>
-                @foreach (var item in Model.AgentWinLossList)
-                {
-                    rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+            @foreach (var item in Model.AgentWinLossList)
+            {
+                rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                 <tr @Html.Raw(rowClass)>
                     <td>
@@ -86,11 +81,9 @@
                         @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
-                }
+            }
         </tbody>
-        }
-        else
-        {
+        } else {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -126,7 +119,6 @@
                 </th>
             </tr>
         </thead>
-            
         <tbody>
             @{
             var list = Model.AgentWinLossList;
@@ -153,7 +145,6 @@
                     @if (item.IsAgent)
                     {
                         <td>
-
                             <a class="view-agentwinloss" agentid="@item.AgentId" agentname="@item.AgentName" href="javascript:;">
                                 @item.AgentName
                             </a>
@@ -227,27 +218,27 @@
             </tr>
         </tfoot>
         }
-    }
-    else
-    {
+    </table>
+}
+else
+{
+    <table class="tblRpt report none-result">
         <thead>
-            <th class="none-result">
-                @Apollo.Age.Resources.Lang.NodataSearch
+            <th>
+                <marquee behavior="alternate" align="middle">@Apollo.Age.Resources.Lang.NodataSearch</marquee>
             </th>
-            
         </thead>
         <tbody>
-            <th class="row-exit">
-                <a href="javascript:;" id= "lnkExit">@Apollo.Age.Resources.Lang.lblExit</a>
-            </th>
+            <td class="text-center row-exit">
+                <a href="javascript:;" id="lnkExit">@Apollo.Age.Resources.Lang.lblExit</a>
+            </td>
         </tbody>
-    }
-</table>
+    </table>
+}
 @Html.Hidden("ddlSport", Model.Sporttypes)
 @Html.Hidden("ddlBettype", Model.Bettypes)
 @Html.Hidden("ToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("FromDate", Formater.ShortDateFormat(Model.FromDate))
-
 @Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",

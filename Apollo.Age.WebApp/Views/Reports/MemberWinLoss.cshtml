@@ -18,20 +18,19 @@
 {
     @RazorHelper.Navigation(Model.DownlinePath, true)
 }
-<table class="tblRpt report">
-    @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
-    {
-        var list = Model.MemberWinLossList;
-        decimal totalTurnover = 0;
-        decimal totalActual = 0;
-        decimal totalMWinLoss = 0;
-        decimal totalMComm = 0;
-        decimal totalMTotal = 0;
-        decimal totalAWinLoss = 0;
-        decimal totalAComm = 0;
-        decimal totalATotal = 0;
-        decimal totalUpline = 0;
-
+@if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
+{
+    var list = Model.MemberWinLossList;
+    decimal totalTurnover = 0;
+    decimal totalActual = 0;
+    decimal totalMWinLoss = 0;
+    decimal totalMComm = 0;
+    decimal totalMTotal = 0;
+    decimal totalAWinLoss = 0;
+    decimal totalAComm = 0;
+    decimal totalATotal = 0;
+    decimal totalUpline = 0;
+    <table class="tblRpt report">
         <thead>
             <tr>
                 <th rowspan="2">
@@ -165,21 +164,23 @@
                 </td>
             </tr>
         </tfoot>
-    }
-    else
-    {
+    </table>
+}
+else
+{
+    <table class="tblRpt report none-result">
         <thead>
-            <th class="none-result">
-                No data for search
+            <th>
+                <marquee behavior=alternate align="middle">@Apollo.Age.Resources.Lang.NodataSearch</marquee>
             </th>
         </thead>
         <tbody>
-            <th class="row-exit">
+            <td class="text-center row-exit">
                 <a href="javascript:;" id="lnkExit">@Apollo.Age.Resources.Lang.lblExit</a>
-            </th>
+            </td>
         </tbody>
-    }
-</table>
+    </table>
+}
 @Html.Hidden("ddlSport", Model.Sporttypes)
 @Html.Hidden("ddlBettype", Model.Bettypes)
 @Html.Hidden("ToDate", Formater.ShortDateFormat(Model.ToDate))

@@ -1,31 +1,48 @@
 ﻿@using Apollo.Age.Resources
-@using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@model List<WagersSpecialViewModel>
 <table class="tblRpt basketball">
     <thead>
         <tr class="RptHeader">
-            <th style="width: 100px;">
+            <th style="width: 40px;">
                 @Lang.time
             </th>
-            <th style="width: 300px;">
+            <th>
                 @Lang.league
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.moneyline
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr class="c">
-            <td class="width-80">
-            </td>
-            <td class="l">
-            </td>
-            <td class="border-right">
-            </td>
-        </tr>
+        @if (!ReferenceEquals(Model, null)
+        && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+            <tr class="c">
+                <td class="width-40 show-time">
+                    @Html.FormatShowTime(item.Showtime, true)
+                    @if (item.LiveIndicator)
+                    {
+                        <span class="red-num">@Lang.RunningBall</span>
+                    }
+                </td>
+                <td class="l">
+                    @item.LeagueName
+                </td>
+                <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountMoney)/@((int)item.HomeStakeMoney)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountMoney)/@((int)item.AwayStakeMoney)
+                    </div>
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>

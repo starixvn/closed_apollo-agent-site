@@ -133,7 +133,7 @@ if (typeof jQuery != 'undefined') {
                 var backLink = $('#backUrl').val();
                 setTimeout(function () {
                     window.location.href = backLink;
-                }, 1000);
+                }, 2000);
 
             }
         }

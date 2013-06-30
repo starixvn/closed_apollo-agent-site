@@ -8,6 +8,7 @@ if (typeof jQuery != 'undefined') {
             positionTakingSetting: null,
             currentIsSimpleMode: true,
             initOthers: function (isSimpleMode) {
+                EDITPOSITIONTAKING.currentIsSimpleMode = isSimpleMode;
                 settingContext.IsSimpleMode = isSimpleMode;
                 EDITPOSITIONTAKING.settingContext = settingContext;
                 Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(settingContext);
@@ -16,6 +17,20 @@ if (typeof jQuery != 'undefined') {
                 var positionTakingContainer = document.getElementById('ptContainer');
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
+
+
+                if (isSimpleMode) {
+                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
+                    $("#simple-mode").hide();
+                    $("#advanced-mode").show();
+                    $('#edit-warning').show();
+                }
+                else {
+                    $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
+                    $("#simple-mode").show();
+                    $('#edit-warning').hide();
+                    $("#advanced-mode").hide();
+                }
 
                 APOLLO.initPageInfo();
             },
@@ -49,27 +64,15 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $("#simple-mode").unbind("click").click(function () {
-                    $(this).hide();
-                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
-                    $("#advanced-mode").show();
-                    $('#edit-warning').show();
-
-                    EDITPOSITIONTAKING.currentIsSimpleMode = true;
+                    
                     EDITPOSITIONTAKING.initOthers(true);
                 });
 
                 $("#advanced-mode").unbind("click").click(function () {
-                    $(this).hide();
-                    $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
-                    $("#simple-mode").show();
-                    $('#edit-warning').hide();
-
-                    EDITPOSITIONTAKING.currentIsSimpleMode = false;
                     EDITPOSITIONTAKING.initOthers(false);
                 });
-
                 $('#tbl-edit').show();
-                $('#edit-warning').show();
+
             },
             updatePositionTakingSetting: function () {
                 var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
@@ -103,8 +106,18 @@ if (typeof jQuery != 'undefined') {
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
                 setTimeout(function () {
-                    window.location.href = backLink;
-                }, 1000);
+                    if (DEFAULT_LAYOUT.reload) {
+                        var url = window.location.href;
+                        if (url.indexOf("&isSimpleMode=") > 0) {
+                            url = url.substring(0, url.indexOf("&isSimpleMode="));
+                        }
+                        window.location.href = url + '&isSimpleMode=' + EDITPOSITIONTAKING.currentIsSimpleMode;
+                    }
+                    else {
+                        window.location.href = backLink;
+                        
+                    }
+                }, 2000);
 
             }
         }
