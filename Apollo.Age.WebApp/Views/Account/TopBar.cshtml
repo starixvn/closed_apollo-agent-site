@@ -57,10 +57,10 @@
                             <li><a href="#" class="outright border-link">[@Lang.lblOutRight]</a></li>
                             <li id="account-link" class="border-link"><span class="menu-list">[@Lang.lblAccounts]</span>
                                 <ul class="sub-menu">
-                                    @if (!Model.IsSuper)
+                                    @*@if (!Model.IsSuper)
                                     { 
                                         <li><a href="~/CustomerSetting/MySetting" target="main">@Lang.Agency</a></li>
-                                    }
+                                    }*@
                                     <li><a href="~/Account/AgentList" target="main">@Lang.Agents</a></li>
                                     @if (Model.AgentLevel > AgentLevel.Shareholder)
                                     {
@@ -90,10 +90,10 @@
 						target="main"><span class="icon-home icon-white"></span></a>
 			</div>*@
         </div>
-
         <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
         <input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
-        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />  
+        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
+        <span id="txtSuper" style="display: none">@Model.IsSuper</span>
         <script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>		
         <script src="~/_globalresources/js/core.js" type="text/javascript"></script>	 
         <script src="~/views/account/resources/header.js" type="text/javascript"></script>
