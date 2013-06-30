@@ -365,7 +365,7 @@
         </div>
     </div>
 }
-@helper RenderWagersBaseColumn(WagerViewModel item)
+@helper RenderWagersBaseColumn(WagerViewModel item, bool isRaw=false)
     {
         var showTime = item.ShowTime;
         string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
@@ -383,5 +383,9 @@
         @item.HomeName
         <br />
         @item.AwayName
+        @if(isRaw)
+        {
+            <div class="r text-green">@Lang.lblDraw</div> 
+        }
     </td>
 }
