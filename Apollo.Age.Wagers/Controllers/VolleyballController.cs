@@ -20,7 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class VolleyballController : Controller
+    public class VolleyballController : WagerController
     {
         public ActionResult Straight()
         {
