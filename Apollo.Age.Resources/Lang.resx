@@ -1016,8 +1016,8 @@
   <data name="Others" xml:space="preserve">
     <value>Others</value>
   </data>
-  <data name="ShareTakenOnMember" xml:space="preserve">
-    <value>Share Taken On Member (%)</value>
+  <data name="lblPercentUpper" xml:space="preserve">
+    <value>% Max</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
     <value>My Setting</value>

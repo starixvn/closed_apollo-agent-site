@@ -2690,6 +2690,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Max.
+        /// </summary>
+        public static string lblPercentUpper {
+            get {
+                return ResourceManager.GetString("lblPercentUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (63) 99917 88888.
         /// </summary>
         public static string lblPhone1 {
@@ -4360,15 +4369,6 @@ namespace Apollo.Age.Resources {
         public static string shareSettingInstruction {
             get {
                 return ResourceManager.GetString("shareSettingInstruction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Share Taken On Member (%).
-        /// </summary>
-        public static string ShareTakenOnMember {
-            get {
-                return ResourceManager.GetString("ShareTakenOnMember", resourceCulture);
             }
         }
         

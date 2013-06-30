@@ -6,10 +6,11 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.05.14">Created and Implement</change>
 // </history>
-using System;
 
 namespace Apollo.Age.BetList.Criterias
 {
+    using System;
+
     public class TicketText
     {
         public string UserName { get; set; }
