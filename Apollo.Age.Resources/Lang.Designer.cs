@@ -2672,7 +2672,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parent.
+        ///   Looks up a localized string similar to Upper.
         /// </summary>
         public static string lblParentname {
             get {
@@ -3707,20 +3707,20 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Agents.
+        ///   Looks up a localized string similar to None Agent.
         /// </summary>
-        public static string NoneAgents {
+        public static string NoneAgent {
             get {
-                return ResourceManager.GetString("NoneAgents", resourceCulture);
+                return ResourceManager.GetString("NoneAgent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Members.
+        ///   Looks up a localized string similar to None Member.
         /// </summary>
-        public static string NoneMembers {
+        public static string NoneMember {
             get {
-                return ResourceManager.GetString("NoneMembers", resourceCulture);
+                return ResourceManager.GetString("NoneMember", resourceCulture);
             }
         }
         
