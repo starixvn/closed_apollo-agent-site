@@ -335,9 +335,9 @@
                         @Lang.view&nbsp;:</label>
                 </div>
                 <div class="editor">
-                    <select id="ViewOption">
-                        <option value="0">@Lang.all</option>
-                        <option value="1">@Lang.DirectMembers</option>
+                    <select id="ViewOption" class="za_select">
+                        <option value="false">@Lang.all</option>
+                        <option value="true">@Lang.DirectMembers</option>
                     </select>
                 </div>
             </div>
@@ -347,7 +347,7 @@
                         @Lang.league&nbsp;:</label>
                 </div>
                 <div class="editor">
-                    <select id="League">
+                    <select id="League" class="za_select">
                         <option value="0">@Lang.all</option>
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
