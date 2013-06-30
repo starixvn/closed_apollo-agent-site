@@ -9,19 +9,19 @@
             <th style="width: 40px;">
                 @Lang.time
             </th>
-            <th style="width: 50px;">
+            <th>
                 @Lang.league
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblhomeandguest
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblHandicapWager
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblOverUnderWager
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblOddEvenWagers
             </th>
         </tr>
@@ -37,14 +37,16 @@
                     @Html.FormatShowTime(item.Showtime, true)
                     @if (item.LiveIndicator)
                     {
-
+                        <span class="red-num">@Lang.RunningBall</span>
                     }
                 </td>
-                <td class="l width-50">
+                <td class="l">
                     @CacheRef.GetLeagueName(item.leagueid)
                 </td>
                 <td class="l">
-                    @CacheRef.GetTeamName(item.HomeId)
+                    <div>@CacheRef.GetTeamName(item.HomeId)</div>
+                    <div>@CacheRef.GetTeamName(item.AwayId)</div>
+                    <div class="r text-green">@Lang.lblDraw</div>
                 </td>
                 <td class="border-right">
                 </td>
