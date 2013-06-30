@@ -468,10 +468,10 @@ Spinner.prototype = {
         var fractional = '' + value % multiplier;
 
         // add leading zeros to the fractional part
-//        var decimalLength = this.options.decimals - fractional.length;
-//        for (var i = 0; i < decimalLength; i++) {
-//            fractional = '0' + fractional;
-//        }
+        var decimalLength = this.options.decimals - fractional.length;
+        for (var i = 0; i < decimalLength; i++) {
+            fractional = '0' + fractional;
+        }
 
 
         if (fractional.length > 0) {

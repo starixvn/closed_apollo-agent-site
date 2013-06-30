@@ -54,13 +54,14 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = StringEmpty, string username = StringEmpty,
+        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = StringEmpty, string username = StringEmpty, string betType = StringEmpty,
              int mainShareHolderId = 0, string mainShareHolderUsername = StringEmpty)
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
             {
                 statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
+
                       (int)Apollo.Age.Enumerations.BetStatus.Void,
                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
@@ -87,6 +88,7 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = this.ResetStartDate(fromDate),
                 ToDate = this.ResetEndDate(toDate),
                 StatusIds = statusIds,
+                Bettypes = betType,
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };

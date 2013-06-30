@@ -1,4 +1,6 @@
-﻿@using Apollo.Age.TotalBets.Models
+﻿@using Apollo.Age.Web.Mvc;
+@using Apollo.Age.TotalBets.Models
+
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
@@ -59,21 +61,12 @@
     }
     
     <tr @classRow>
-        <td class="c">
-            @Html.Raw(item.ShowTime)
-            
-            @*@if (item.LiveIndicator)
-            {
-                 <br />
-                <!--LiveNotice-->
-                <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-            }*@
-        </td>
+        @Html.FormatShowTime(item.ShowTime)
         @ShowTime(item)
         <td class="c" >
             @item.LeagueName
         </td>
-        <td class="valign-top">
+        <td class="valign-top  home-away-team">
             @item.HomeTeam
             <br />
             @item.AwayTeam
@@ -87,15 +80,15 @@
 
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
     {
-    if (currentLeagueId != item.LeagueId)
-    { 
+        if (currentLeagueId != item.LeagueId)
+        { 
     <!--LeagueContents-->
     <tr class="league">
         <td colspan="11">
             @item.LeagueName
         </td>
     </tr>
-    }            
+        }            
 }
 
 

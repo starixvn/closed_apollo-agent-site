@@ -158,23 +158,12 @@
             
             <!--MatchContents-->
             <tr class='r @classRow'>
-                 <td class="c">
-                        @*@if(item.KickOffTime != null){
-                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-                        }
-                        @if (item.LiveIndicator)
-                        {
-                             <br />
-                            <!--LiveNotice-->
-                            <span style="color: red">@Apollo.Age.Resources.Lang.RunningBall</span>
-                        }*@
-                        @Html.Raw(item.ShowTime)
-                    </td>
+              @Html.FormatShowTime(item.ShowTime)
                     @ShowTime(item)
                     <td class="c">
                          @item.LeagueName 
                     </td>
-                <td class="l valign-top">
+                <td class="l valign-top home-away-team">
                     @item.HomeTeam 
                     <br />
                     @item.AwayTeam

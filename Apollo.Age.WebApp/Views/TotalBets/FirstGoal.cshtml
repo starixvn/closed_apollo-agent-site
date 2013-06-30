@@ -22,19 +22,11 @@
 @helper ShowMatch(int index, FirstGoalModel item)
 {    
     <tr>
-         <td class="c" >
-            @*@if(item.KickOffTime != null){
-                @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-            }*@
-            @Html.Raw(item.ShowTime)
-        </td>
-        @*<td class="c bl_time" >
-            @Html.Raw(item.ShowTime)
-        </td>*@
+         @Html.FormatShowTime(item.ShowTime)
         <td class="c" >
             @item.LeagueName
         </td>
-        <td class="no-border-bottom  valign-top">
+        <td class="no-border-bottom  valign-top home-away-team">
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.HomeTeam

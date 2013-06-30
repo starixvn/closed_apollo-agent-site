@@ -100,18 +100,11 @@
             
             <!--MatchContents-->
             <tr class='r'>
-                @*<td class="c">
-                        @if(item.KickOffTime != null){
-                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-                        }
-                    </td>*@
-                <td class="c">
-                    @Html.Raw(@item.ShowTime)
-                </td>
+                @Html.FormatShowTime(item.ShowTime)
                 <td class="c">
                     @item.LeagueName
                 </td>
-                <td class="l no-border-bottom  valign-top">
+                <td class="l no-border-bottom  valign-top home-away-team">
                     @item.HomeTeam
                     <br />
                     @item.AwayTeam

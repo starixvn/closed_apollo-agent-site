@@ -169,15 +169,20 @@ body, .pt-grid {
 		margin-top:5px;
 		
 	}
-
-	.edit-setting-warning {
-		font-style: italic;
-		color: @orange;
-	}
 }
-#commissionSettingContainer, #bettingLimitContainer, #ptContainer
+.edit-setting-warning {
+			font-style: italic;
+			color: @orange;
+			margin-bottom: 5px;
+		}
+.settingContainer
 {
-	border: 1px solid #000000;
+	
+	#commissionSettingContainer, #bettingLimitContainer, #ptContainer
+	{
+		border: 1px solid #000;
+		clear: both;
+	}
 }
 
 .simple-mode-container {

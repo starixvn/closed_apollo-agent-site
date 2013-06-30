@@ -10,23 +10,26 @@
 }
 @section header
 {
-    <div class="detail-information">
-        @if (isEditAgent)
-        {
-            @Lang.AgencyDetailEdit 
+    <div id="function-bar">
+        <div class="item detail-information">
+            @if (isEditAgent)
+            {
+                @Lang.AgencyDetailEdit 
             }
             else
             {
-            @Lang.MemberDetailEdit 
+                @Lang.MemberDetailEdit 
             }
-        -- @Lang.enterusername : <strong>@userName</strong> 
-        -- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a>
-        <a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>
+            -- @Lang.enterusername : <strong>@userName</strong> -- <a href="javascript:void(0);"
+                id="simple-mode" style="display: none;">@Lang.simplemode</a> <a href="javascript:void(0);"
+                    id="advanced-mode">@Lang.lblAdvancedMode</a>
+        </div>
+        <img src="/_GlobalResources/Images/top_04.gif" class="end-function-bar">
     </div>
 }
-
-@Html.Hidden("backUrl", linkBack) 
-<div id="ptContainer"></div>
+@Html.Hidden("backUrl", linkBack)
+<div id="ptContainer">
+</div>
 @if (isEditAgent)
 {
     @Html.Action("Index", "Instruction", new
