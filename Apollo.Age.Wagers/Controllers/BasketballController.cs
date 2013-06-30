@@ -21,11 +21,16 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class BasketballController : WagerController
     {
+        public BasketballController()
+            : base(null)
+        {
+        }
+
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "straight",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -34,7 +39,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = this.WagersService.GetData<WagersStraightViewModel>(criteria);
+            var list = _WagerService.GetWagerData<WagersStraightViewModel>(criteria);
 
             return View(list);
         }
@@ -43,7 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "firsthalf",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -52,7 +57,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = this.WagersService.GetData<WagersFirstHaftViewModel>(criteria);
+            var list = _WagerService.GetWagerData<WagersFirstHaftViewModel>(criteria);
 
             return View(list);
         }
@@ -61,7 +66,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "runningball",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -70,7 +75,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = this.WagersService.GetData<WagersRunningBallViewModel>(criteria);
+            var list = _WagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
 
             return View(list);
         }
@@ -84,7 +89,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "specialbet",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -93,7 +98,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Sporttypes = SportGroup.Basketball_Football_Rugy
             };
 
-            var list = this.WagersService.GetData<WagersSpecialViewModel>(criteria);
+            var list = _WagerService.GetWagerData<WagersSpecialViewModel>(criteria);
 
             return View(list);
         }

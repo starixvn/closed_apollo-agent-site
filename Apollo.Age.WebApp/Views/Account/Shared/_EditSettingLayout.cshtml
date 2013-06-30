@@ -1,7 +1,6 @@
 ﻿@{
-    var isShowHeader = ViewBag.IsShowHeader ?? false;
-    var isMaster = ViewBag.IsMaster ?? false;
     var isSimpleMode = ViewBag.IsSimpleMode ?? true;
+    var reload = ViewBag.Reload ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -40,13 +39,16 @@
     @Html.Hidden("ApoRoot", Url.Content("~/"))
     @Html.Partial("_ApoRes")
     @Scripts.Render("~/scripts/custsettingjs")
+    
     <script type="text/javascript">
 		var DEFAULT_LAYOUT = function () {
 			return {
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
+                reload: @(reload ? "true" : "false"),
 				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)"
 			};
 		}();
+
 		var Language =
 		{
 			MIN_BET: "@(Apollo.Age.Resources.Lang.lblMinBet)",
@@ -57,12 +59,12 @@
 			LIVE: "@(Apollo.Age.Resources.Lang.lblLive)",
 			DEAD_BALL_VN: "@(Apollo.Age.Resources.Lang.lblDeadball)",
 			LIVE_VN: "@(Apollo.Age.Resources.Lang.lblLive)",
-			MIN_POSITION: "@(Apollo.Age.Resources.Lang.lblMinGivenShare)",
-			MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxGivenShare)",
-			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
-			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
-			PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxTakenShare)",
-			POSITION_TAKING: "@(Apollo.Age.Resources.Lang.positiontaking)",
+			MIN_POSITION: "@(Apollo.Age.Resources.Lang.lblMinGivenShare):",
+			MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxGivenShare):",
+			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare):",
+			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
+			PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
+			POSITION_TAKING: "@(Apollo.Age.Resources.Lang.positiontaking):",
 			COPY_FROM: "@(Apollo.Age.Resources.Lang.copyFrom)",
 			COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Apollo.Age.Resources.Lang.copyAllPositionTakingFrom)",
 			COPY_ALL_POSITION_TAKING_FROM: "@(Apollo.Age.Resources.Lang.copyPositionTakingFrom)",
@@ -103,10 +105,10 @@
 			COMM_FOR_AGENT: "",
 			COMM_FOR_MEMBER: "@(Apollo.Age.Resources.Lang.lblMemberCommission)",
 			GROUP: "@(Apollo.Age.Resources.Lang.group)",
-			AGENT_SHARE: "@(Apollo.Age.Resources.Lang.lblAgentShare)",
+			AGENT_SHARE: "@(Apollo.Age.Resources.Lang.lblAgentShare):",
 			SPORT_BOOK: "@(Apollo.Age.Resources.Lang.sportBook)",
-			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
-			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
+			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare):",
+			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
 			INVALID_RANGE: "@(Apollo.Age.Resources.Lang.lblInvalidValueRange)",
 			OUTRANGE_SIMPLE_MODE_ERROR: "@(Apollo.Age.Resources.Lang.lblPleaseCheckConstrainMaxMin)",
 			INVALID_INPUT_DECIMAIL_POINT: "@(Apollo.Age.Resources.Lang.lblInvalidInputDecimals)",

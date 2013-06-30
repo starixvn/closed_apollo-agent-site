@@ -12,7 +12,7 @@
     </Sport>
     <Sport Controller="Basketball" ResourceKey="">        
         <BetType Action="Straight" ResourceKey="lblStraight" />
-        <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
         <BetType Action="RunningBall" ResourceKey="lblRB" />
         <BetType Action="Parlay" ResourceKey="lblParlay" />
         <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />

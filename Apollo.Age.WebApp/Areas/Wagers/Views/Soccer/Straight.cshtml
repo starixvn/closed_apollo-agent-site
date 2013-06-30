@@ -1,5 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@model IEnumerable<WagersStraightViewModel>
 <table class="tblRpt soccer">
                     <thead>
                         <tr class="RptHeader">
@@ -8,10 +10,7 @@
                             </th>
                             <th style="width: 300px;">
                                 @Lang.league
-                            </th>
-                            <th style="width: 300px;">
-                               @Lang.lblMatchCode
-                            </th>
+                            </th>                            
                             <th style="width: 100px;" class="nowrap">
                                 @Lang.lblHomeAway
                             </th>
@@ -27,22 +26,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="c">
-                            <td class="width-80">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="c">
+                                <td class="width-80">
+                                    @item.Showtime
+                                </td>
+                                <td>
+                                    @item.LeagueName
+                                </td>                              
+                                <td>
+                                    @item.HomeName 
+                                    <br />
+                                    @item.AwayName
+                                    <br />
+                                    @Lang.lblDraw
+                                </td>
+                                <td class="border-right">
+                                    @item.HomeCountHDP 
+                                    /                              
+                                    @item.HomeStakeHDP 
+                                    <br />
+                                     @item.AwayCountHDP
+                                    /                              
+                                    @item.AwayStakeHDP                                     
+                                </td>
+                                <td class="border-right">
+                                     @item.HomeCountOU 
+                                    /                              
+                                    @item.HomeStakeOU 
+                                    <br />
+                                     @item.AwayCountOU
+                                    /                              
+                                    @item.AwayStakeOU 
+                                </td>                                
+                               <td class="border-right">
+                                     @item.Count1 
+                                    /                              
+                                    @item.Stake1 
+                                    <br />
+                                     @item.Count2
+                                    /                              
+                                    @item.Stake2 
+                                     <br />
+                                     @item.CountX
+                                    /                              
+                                    @item.StakeX 
+                                </td> 
+                            </tr>
+                        }
                     </tbody>
                 </table>

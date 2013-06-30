@@ -7,6 +7,7 @@
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 // </history>
 
+using Apollo.Age.Services;
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
     /// <summary>
@@ -51,5 +52,21 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public int HomeCountOU { get; set; }
 
         public int AwayCountOU { get; set; }
+
+        public string HomeName
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.HomeId);
+            }
+        }
+
+        public string AwayName
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.AwayId);
+            }
+        }
     }
 }

@@ -16,57 +16,55 @@ namespace Apollo.Age.Wagers.Controllers
 
     using Apollo.Age.WebApp;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.ViewModels.Soccer;
     using Apollo.Age.Wagers.Services;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : WagerController
-    {
-        private readonly IWagersService _soccerServices;
+    {       
 
-        public SoccerController() : this(null) { }
+        public SoccerController() : base(null) { }
 
-        public SoccerController(IWagersService soccerService)
-        {
-            _soccerServices = soccerService ?? new WagersService();
-        }
-
+     
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            var criteria = new WagersStraightCriteria
+            var criteria = new SoccerCriteria
             {
+               
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
-                UGroup = uGroup
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
             };
 
-            var result = _soccerServices.GetWagerData<WagersStraightViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersStraightViewModel>(criteria);
 
             return View(result);
         }
 
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            var criteria = new WagersRunningBallCriteria
+            var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
-                UGroup = uGroup
+                UGroup = uGroup,
+                GroupBetName = SportGroup.Soccer
             };
 
-            var result = _soccerServices.GetWagerData<WagersRunningBallViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
 
             return View(result);
         }
 
         public ActionResult Correctscore(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            var criteria = new WagersCorrectScoreCriteria
+            var criteria = new CorrectScoreCriteria
             {
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
@@ -76,7 +74,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Bettype = 4
             };
 
-            var result = _soccerServices.GetWagerData<WagersCorrectScoreViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersCorrectScoreViewModel>(criteria);
 
             return View(result);
         }
@@ -88,16 +86,17 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult Total(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            var criteria = new WagersTotalCriteria
+            var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
-                UGroup = uGroup
+                UGroup = uGroup,
+                GroupBetName = SportGroup.Soccer
 
             };
-            var result = _soccerServices.GetWagerData<WagersTotalViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersTotalViewModel>(criteria);
 
             return View(result);
         }
@@ -114,16 +113,17 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            var criteria = new WagersSpecialCriteria
+            var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
-                UGroup = uGroup
+                UGroup = uGroup,
+                GroupBetName = SportGroup.Soccer
 
             };
-            var result = _soccerServices.GetWagerData<WagersSpecialViewModel>(criteria);
+            var result = _WagerService.GetWagerData<WagersSpecialViewModel>(criteria);
 
             return View(result);
         }
