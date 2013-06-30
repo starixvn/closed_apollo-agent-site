@@ -16,7 +16,7 @@ namespace Apollo.Age.Wagers.Services
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Wagers.Criterias;
-using Fanex.NAP.Framework.Data;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.

@@ -227,6 +227,7 @@
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
     <Content Include="Areas\Wagers\Configuration\WagerMenus.xml" />
+    <Content Include="Areas\Wagers\Scripts\Wagers.js" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
@@ -274,7 +275,6 @@
     <Content Include="App_Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Wagers\Views\Soccer\Resources\Soccer.js" />
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
     <Content Include="CustSettingEngine\PTGrid.xml">
       <SubType>Designer</SubType>
@@ -762,9 +762,7 @@
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Wagers\Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

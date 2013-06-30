@@ -11,41 +11,91 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Apollo.Age.Core;
-    using Apollo.Age.Wagers.Core;
+    using Apollo.Age.Wagers.Criterias.Basketball;
+    using Apollo.Age.Wagers.ViewModels.Basketball;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class BasketballController : WagerController
     {
-        public ActionResult Straight(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        {
+            var criteria = new BasketballCriteria
+            {
+                GroupBetName = "straight",
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Sporttypes = SportGroup.Basketball_Football_Rugy
+            };
+
+            var list = this.WagersService.GetData<WagersStraightViewModel>(criteria);
+
+            return View(list);
+        }
+
+        public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        {
+            var criteria = new BasketballCriteria
+            {
+                GroupBetName = "firsthalf",
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Sporttypes = SportGroup.Basketball_Football_Rugy
+            };
+
+            var list = this.WagersService.GetData<WagersFirstHaftViewModel>(criteria);
+
+            return View(list);
+        }
+
+        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        {
+            var criteria = new BasketballCriteria
+            {
+                GroupBetName = "runningball",
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Sporttypes = SportGroup.Basketball_Football_Rugy
+            };
+
+            var list = this.WagersService.GetData<WagersRunningBallViewModel>(criteria);
+
+            return View(list);
+        }
+
+        public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
             return View();
         }
 
-        public ActionResult FirstHalf(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
+        public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
-            return View();
-        }
+            var criteria = new BasketballCriteria
+            {
+                GroupBetName = "specialbet",
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = CurrentSession.AgentId,
+                UGroup = uGroup,
+                Sporttypes = SportGroup.Basketball_Football_Rugy
+            };
 
-        public ActionResult RunningBall(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
+            var list = this.WagersService.GetData<WagersSpecialViewModel>(criteria);
 
-        public ActionResult Parlay(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
-        }
-
-        public ActionResult SpecialBet(int viewOption = 0, int leagueId = 0, int pageIndex = 0)
-        {
-            return View();
+            return View(list);
         }
     }
 }
