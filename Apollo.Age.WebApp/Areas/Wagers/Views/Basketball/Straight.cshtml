@@ -1,16 +1,15 @@
 ﻿@using Apollo.Age.Resources
-@using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Services
+@model List<WagersStraightViewModel>
 <table class="tblRpt basketball">
     <thead>
         <tr class="RptHeader">
-            <th style="width: 100px;">
+            <th style="width: 40px;">
                 @Lang.time
             </th>
-            <th style="width: 300px;">
+            <th style="width: 50px;">
                 @Lang.league
             </th>
             <th style="width: 100px;" class="nowrap">
@@ -28,19 +27,33 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="c">
-            <td class="width-80">
-            </td>
-            <td class="l">
-            </td>
-            <td>
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-        </tr>
+        @if (!ReferenceEquals(Model, null)
+        && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+            <tr class="c">
+                <td class="width-40 show-time">
+                    @Html.FormatShowTime(item.Showtime, true)
+                    @if (item.LiveIndicator)
+                    {
+
+                    }
+                </td>
+                <td class="l width-50">
+                    @CacheRef.GetLeagueName(item.leagueid)
+                </td>
+                <td class="l">
+                    @CacheRef.GetTeamName(item.HomeId)
+                </td>
+                <td class="border-right">
+                </td>
+                <td class="border-right">
+                </td>
+                <td class="border-right">
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>
