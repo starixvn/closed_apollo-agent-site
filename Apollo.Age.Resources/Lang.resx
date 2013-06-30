@@ -1068,7 +1068,7 @@
     <value>Betting Setup (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
-    <value>%</value>
+    <value>% in Upper</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
     <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
@@ -1784,5 +1784,8 @@
   </data>
   <data name="BasketballAll" xml:space="preserve">
     <value>Basketball All</value>
+  </data>
+  <data name="PercentInMember" xml:space="preserve">
+    <value>%</value>
   </data>
 </root>

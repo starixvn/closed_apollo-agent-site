@@ -316,26 +316,26 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool showHeader = false, bool isSimpleMode = true, string backLink = "")
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "")
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsShowHeader = showHeader;
+            ViewBag.Reload = reload;
             ViewBag.IsEditAgent = true;
             ViewBag.AgentId = 0;
             ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool showHeader = false, bool isSimpleMode = true, string backLink = "")
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true, string backLink = "")
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsShowHeader = showHeader;
+            ViewBag.Reload = reload;
             ViewBag.IsEditAgent = false;
             ViewBag.BackLink = backLink;
             return View("~/Views/Account/EditPositionTaking.cshtml");
@@ -378,24 +378,20 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true)
+        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId)
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.CurentParentAgentId = agentId;
-            ViewBag.Reload = reload;
-            ViewBag.isSimpleMode = isSimpleMode;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool reload = false, bool isSimpleMode = true)
+        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.Reload = reload;
-            ViewBag.isSimpleMode = isSimpleMode;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -436,7 +432,7 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool reload = false, bool isSimpleMode = true)
+        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName)
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -444,21 +440,17 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewOnMember = false;
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = false;
-            ViewBag.Reload = reload;
-            ViewBag.isSimpleMode = isSimpleMode;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true)
+        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
             ViewBag.IsViewMySetting = false;
-            ViewBag.Reload = reload;
-            ViewBag.isSimpleMode = isSimpleMode;
             ViewBag.CanEdit = (base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper));
 
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
