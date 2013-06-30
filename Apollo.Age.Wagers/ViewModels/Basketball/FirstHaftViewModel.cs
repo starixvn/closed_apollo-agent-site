@@ -7,28 +7,13 @@
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 // </history>
 
-using Apollo.Age.Services;
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class WagersFirstHaftViewModel
+    public class FirstHaftViewModel : WagerViewModel
     {
-        public string Showtime { get; set; }
-
-        public bool LiveIndicator { get; set; }
-
-        public int leagueid { get; set; }
-
-        public string matchcode { get; set; }
-
-        public int HomeId { get; set; }
-
-        public int AwayId { get; set; }
-
-        public string UGroup { get; set; }
-
         public decimal HomeStakeHTHDP { get; set; }
 
         public decimal AwayStakeHTHDP { get; set; }
@@ -53,28 +38,5 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
 
         public int AwayCountHTOE { get; set; }
 
-        public string HomeName
-        {
-            get
-            {
-                return CacheRef.GetTeamName(this.HomeId);
-            }
-        }
-
-        public string AwayName
-        {
-            get
-            {
-                return CacheRef.GetTeamName(this.AwayId);
-            }
-        }
-
-        public string LeagueName
-        {
-            get
-            {
-                return CacheRef.GetTeamName(this.leagueid);
-            }
-        }
     }
 }

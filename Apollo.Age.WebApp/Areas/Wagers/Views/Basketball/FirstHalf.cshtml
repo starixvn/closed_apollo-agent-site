@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
-@model List<WagersFirstHaftViewModel>
+@model List<FirstHaftViewModel>
 <table class="tblRpt basketball">
     <thead>
         <tr class="RptHeader">
@@ -32,43 +32,21 @@
             foreach (var item in Model)
             {
             <tr class="c">
-                <td class="width-40 show-time">
-                    @Html.FormatShowTime(item.Showtime, true)
-                    @if (item.LiveIndicator)
-                    {
-                        <span class="red-num">@Lang.RunningBall</span>
-                    }
+                
+                <td class="border-right r red-num">
+                    @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
+                    <br />
+                    @((int)item.AwayCountHTHDP)/@((int)item.AwayStakeHTHDP)
                 </td>
-                <td class="l">
-                    @item.LeagueName
+                <td class="border-right r red-num">
+                    @((int)item.HomeCountHTOU)/@((int)item.HomeStakeHTOU)
+                    <br />
+                    @((int)item.AwayCountHTOU)/@((int)item.AwayStakeHTOU)
                 </td>
-                <td class="l">
-                    <div>@item.HomeName</div>
-                    <div>@item.AwayName</div>
-                </td>
-                <td class="border-right">
-                    <div class="r red-num">
-                        @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
-                    </div>
-                    <div class="r red-num">
-                        @((int)item.AwayCountHTHDP)/@((int)item.AwayStakeHTHDP)
-                    </div>
-                </td>
-                <td class="border-right">
-                    <div class="r red-num">
-                        @((int)item.HomeCountHTOU)/@((int)item.HomeStakeHTOU)
-                    </div>
-                    <div class="r red-num">
-                        @((int)item.AwayCountHTOU)/@((int)item.AwayStakeHTOU)
-                    </div>
-                </td>
-                <td class="border-right">
-                    <div class="r red-num">
-                        @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
-                    </div>
-                    <div class="r red-num">
-                        @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
-                    </div>
+                <td class="border-right red-num">
+                    @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
+                    <br />
+                    @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
                 </td>
             </tr>
             }
