@@ -25,11 +25,13 @@ namespace Fanex.BetList.Core
 			public string handicap = "{handicap}";
 			protected static string s4 = "</span> ";
 			public string awayTeam = "{awayTeam}";
-			protected static string s5 = "</div><div><span class=\"red-color\">";
+			protected static string s5 = "</div><div>";
+			public Choice_Score_Block Score = new Choice_Score_Block();
+			protected static string s6 = "<span class=\"red-color\">";
 			public string betTeam = "{betTeam}";
-			protected static string s6 = "</span> @ <span class=\"red-color\">";
+			protected static string s7 = "</span> @ <span class=\"red-color\"><b>";
 			public string odds = "{odds}";
-			protected static string s7 = "</span></div>";
+			protected static string s8 = "</b></span></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -48,10 +50,12 @@ namespace Fanex.BetList.Core
 					bd.Append(s4);
 					bd.Append(awayTeam);
 					bd.Append(s5);
-					bd.Append(betTeam);
+					if(null != Score) Score.ToString(ref bd);
 					bd.Append(s6);
-					bd.Append(odds);
+					bd.Append(betTeam);
 					bd.Append(s7);
+					bd.Append(odds);
+					bd.Append(s8);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -66,33 +70,33 @@ namespace Fanex.BetList.Core
 
 		public class Choice_ScoreMapIcon_Block: Block
 		{
-			protected static string s8 = "<a class=\"scoremap\" href=\"javascript:OpenScoreMap(";
+			protected static string s9 = "<a class=\"scoremap\" href=\"javascript:OpenScoreMap(";
 			public string matchId = "{matchId}";
-			protected static string s9 = ",";
-			public string betTypeId = "{betTypeId}";
 			protected static string s10 = ",";
-			public string liveindicator = "{liveindicator}";
+			public string betTypeId = "{betTypeId}";
 			protected static string s11 = ",";
+			public string liveindicator = "{liveindicator}";
+			protected static string s12 = ",";
 			public string custId = "{custId}";
-			protected static string s12 = ")\"title=\"";
-			protected static string s13{get{return Apollo.Age.Resources.BetList.scoreMap;}}
-			protected static string s14 = "\"></a>";
+			protected static string s13 = ")\"title=\"";
+			protected static string s14{get{return Apollo.Age.Resources.BetList.scoreMap;}}
+			protected static string s15 = "\"></a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s8);
-					bd.Append(matchId);
 					bd.Append(s9);
-					bd.Append(betTypeId);
+					bd.Append(matchId);
 					bd.Append(s10);
-					bd.Append(liveindicator);
+					bd.Append(betTypeId);
 					bd.Append(s11);
-					bd.Append(custId);
+					bd.Append(liveindicator);
 					bd.Append(s12);
+					bd.Append(custId);
 					bd.Append(s13);
 					bd.Append(s14);
+					bd.Append(s15);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -100,17 +104,39 @@ namespace Fanex.BetList.Core
 
 		public class Choice_LeagueName_Block: Block
 		{
-			protected static string s15 = "<div class=\"league\">";
+			protected static string s16 = "<div class=\"league\">";
 			public string leagueName = "{leagueName}";
-			protected static string s16 = "</div>";
+			protected static string s17 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s15);
-					bd.Append(leagueName);
 					bd.Append(s16);
+					bd.Append(leagueName);
+					bd.Append(s17);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class Choice_Score_Block: Block
+		{
+			protected static string s18 = "<span class=\"game-type-odd\"><b>";
+			public string finalHomeScore = "{finalHomeScore}";
+			protected static string s19 = ":";
+			public string finalAwayScore = "{finalAwayScore}";
+			protected static string s20 = "</b>&nbsp;</span>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s18);
+					bd.Append(finalHomeScore);
+					bd.Append(s19);
+					bd.Append(finalAwayScore);
+					bd.Append(s20);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

@@ -1,46 +1,61 @@
 ﻿@using Apollo.Age.Resources
-@using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Services
+@model List<WagersStraightViewModel>
 <table class="tblRpt basketball">
     <thead>
         <tr class="RptHeader">
-            <th style="width: 100px;">
+            <th style="width: 40px;">
                 @Lang.time
             </th>
-            <th style="width: 300px;">
+            <th>
                 @Lang.league
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblhomeandguest
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblHandicapWager
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblOverUnderWager
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblOddEvenWagers
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr class="c">
-            <td class="width-80">
-            </td>
-            <td class="l">
-            </td>
-            <td>
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-        </tr>
+        @if (!ReferenceEquals(Model, null)
+        && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+            <tr class="c">
+                <td class="width-40 show-time">
+                    @Html.FormatShowTime(item.Showtime, true)
+                    @if (item.LiveIndicator)
+                    {
+                        <span class="red-num">@Lang.RunningBall</span>
+                    }
+                </td>
+                <td class="l">
+                    @CacheRef.GetLeagueName(item.leagueid)
+                </td>
+                <td class="l">
+                    <div>@CacheRef.GetTeamName(item.HomeId)</div>
+                    <div>@CacheRef.GetTeamName(item.AwayId)</div>
+                    <div class="r text-green">@Lang.lblDraw</div>
+                </td>
+                <td class="border-right">
+                </td>
+                <td class="border-right">
+                </td>
+                <td class="border-right">
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>
