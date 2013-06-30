@@ -72,7 +72,7 @@
 				string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
 
 			<tr @Html.Raw(rowClass)>
-				<td class="em-row l">
+				<td class="first-cell l">
 					@item.Username
 				</td>
 				@if (index == Model.MemberShareModelList.Count)
