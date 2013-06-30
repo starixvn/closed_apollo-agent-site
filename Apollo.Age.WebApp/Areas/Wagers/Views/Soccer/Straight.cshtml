@@ -29,18 +29,20 @@
                         @foreach (var item in Model)
                         {
                             <tr class="c">
-                                <td class="width-80">
-                                    @item.Showtime
+                                <td class="width-80">                                    
+                                    @Html.Raw(item.Showtime)
+                                      @if (item.LiveIndicator)
+                                        {
+                                            <span class="red-num">@Lang.RunningBall</span>
+                                        }
                                 </td>
                                 <td>
                                     @item.LeagueName
                                 </td>                              
                                 <td>
-                                    @item.HomeName 
-                                    <br />
-                                    @item.AwayName
-                                    <br />
-                                    @Lang.lblDraw
+                                    <div>@item.HomeName </div>
+                                    <div> @item.AwayName</div>
+                                    <div class="r text-green">@Lang.lblDraw</div>                                                                      
                                 </td>
                                 <td class="border-right">
                                     @item.HomeCountHDP 

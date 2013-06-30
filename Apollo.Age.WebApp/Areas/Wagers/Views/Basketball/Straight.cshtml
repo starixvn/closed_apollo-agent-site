@@ -35,6 +35,7 @@
             <tr class="c">
                 <td class="width-40 show-time">
                     @Html.FormatShowTime(item.Showtime, true)
+                    <br />
                     @if (item.LiveIndicator)
                     {
                         <span class="red-num">@Lang.RunningBall</span>

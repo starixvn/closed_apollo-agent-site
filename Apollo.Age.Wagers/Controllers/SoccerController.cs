@@ -29,6 +29,7 @@ namespace Apollo.Age.Wagers.Controllers
      
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
@@ -36,7 +37,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = "Straight"
             };
 
             var result = _wagerService.GetWagerData<WagersStraightViewModel>(criteria);
@@ -46,6 +47,7 @@ namespace Apollo.Age.Wagers.Controllers
 
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
+            fromDate = new DateTime(2013, 05, 23);
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
@@ -53,7 +55,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = "RunningBall"
             };
 
             var result = _wagerService.GetWagerData<WagersRunningBallViewModel>(criteria);
@@ -92,7 +94,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = "Total"
 
             };
             var result = _wagerService.GetWagerData<WagersTotalViewModel>(criteria);
@@ -119,7 +121,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = SportGroup.Soccer
+                GroupBetName = "SpecialBet"
 
             };
             var result = _wagerService.GetWagerData<WagersSpecialViewModel>(criteria);

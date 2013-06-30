@@ -1,9 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@model IEnumerable<WagersRunningBallViewModel>
 <table class="tblRpt soccer">
                     <thead>
                         <tr class="RptHeader">
@@ -12,10 +10,7 @@
                             </th>
                             <th style="width: 300px;">
                                 @Lang.league
-                            </th>
-                            <th style="width: 300px;">
-                                Match Code
-                            </th>
+                            </th>                          
                             <th style="width: 100px;" class="nowrap">
                                 @Lang.homeaway
                             </th>
@@ -31,22 +26,57 @@
                         </tr>
                     </thead>
                     <tbody>
+                     @foreach (var item in Model)
+                     {
                         <tr class="c">
-                            <td class="width-80">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                        </tr>
+                                <td class="width-80">                                    
+                                    @Html.Raw(item.Showtime)
+                                    <br />
+                                      @if (item.LiveIndicator)
+                                      {
+                                            <span class="red-num">@Lang.RunningBall</span>
+                                      }
+                                </td>
+                                <td>
+                                    @item.LeagueName
+                                </td>                              
+                                <td>
+                                    <div>@item.HomeName </div>
+                                    <div> @item.AwayName</div>
+                                    <div class="r text-green">@Lang.lblDraw</div>                                                                      
+                                </td>
+                                <td class="border-right">
+                                    @item.HomeCountHDP 
+                                    /                              
+                                    @item.HomeStakeHDP 
+                                    <br />
+                                     @item.AwayCountHDP
+                                    /                              
+                                    @item.AwayStakeHDP                                     
+                                </td>
+                                <td class="border-right">
+                                     @item.HomeCountOU 
+                                    /                              
+                                    @item.HomeStakeOU 
+                                    <br />
+                                     @item.AwayCountOU
+                                    /                              
+                                    @item.AwayStakeOU 
+                                </td>                                
+                               <td class="border-right">
+                                     @item.Count1 
+                                    /                              
+                                    @item.Stake1 
+                                    <br />
+                                     @item.Count2
+                                    /                              
+                                    @item.Stake2 
+                                     <br />
+                                     @item.CountX
+                                    /                              
+                                    @item.StakeX 
+                                </td> 
+                            </tr>
+                     }
                     </tbody>
                 </table>
