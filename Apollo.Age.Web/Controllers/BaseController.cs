@@ -10,41 +10,37 @@
 //   <change who="Anders.Le" date="2013.5.2">Modify Current Session, change it to readonly</change>
 //   <change who="Anders.Le" date="2013.5.2">Check whether request is authenticated</change>
 //   <change who="Terry.Nguyen" date="2013.5.28">Handle unknow action</change>
+//   <change who="Anders.Le" date="2013.6.30">Add property ActionName, ControllerName, and AreaName</change>
 // </history>
 
 namespace Apollo.Age.Web
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.Net;
-    using System.Resources;
-    using System.Threading;
     using System.Web.Mvc;
-    using System.Web.Security;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Resources;
-    using Apollo.Age.Services.Interface;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.Web.Filters;
-    using Fanex.Logging;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Fanex.Common;
+    using Fanex.Logging;
 
+    /// <summary>
+    /// This class override OnActionExecuting to check authentication, authorization, duplicated login
+    /// All non-anonymous controller MUST inherit from this base controller
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
-        private readonly IUserService _userService;       
+        private readonly IUserService _userService;
         private LanguageManager _langManager;
-       
 
         public BaseController()
         {
-            _userService = new UserService();           
-            _langManager = new LanguageManager();           
-
+            _userService = new UserService();
+            _langManager = new LanguageManager();
         }
-
-        
+        #region Override functions
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
@@ -57,13 +53,12 @@ namespace Apollo.Age.Web
             {
                 CheckAuthentication();
                 CheckValidDownline(filterContext);
-                CheckKickOut(filterContext);               
+                CheckKickOut(filterContext);
             }
 
             if (CurrentSession != null)
             {
                 _langManager.SetCulture(CurrentSession.Language);
-                
             }
 
             base.OnActionExecuting(filterContext);
@@ -71,18 +66,16 @@ namespace Apollo.Age.Web
 
         protected override void HandleUnknownAction(string actionName)
         {
-
             try
-            {               
+            {
                 this.View(actionName).ExecuteResult(this.ControllerContext);
             }
             catch
-            {               
-               Response.Redirect(ApoURLs.URLs.Error + "?err=404");              
+            {
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
             }
-           
-        }              
-
+        }
+        #endregion
         #region Auth
 
         private void CheckAuthentication()
@@ -98,7 +91,7 @@ namespace Apollo.Age.Web
             try
             {
                 if (SessionManager.CurrentSession != null)
-                {                  
+                {
                     var currentSession = SessionManager.CurrentSession;
 
                     int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
@@ -139,7 +132,6 @@ namespace Apollo.Age.Web
                 {
                     if (Request.IsAjaxRequest())
                     {
-                        
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         Response.Write(_langManager.GetResourceData("lblAccountWasStopped"));
                         Response.Buffer = false;
@@ -156,7 +148,6 @@ namespace Apollo.Age.Web
                 }
             }
         }
-              
 
         private void DoUnAuthorized(ActionExecutingContext filterContext)
         {
@@ -176,17 +167,42 @@ namespace Apollo.Age.Web
         }
 
         #endregion
-
+        #region PROPERTIES
         protected ICurrentSession CurrentSession
         {
             get { return SessionManager.CurrentSession; }
         }
 
-       
-
         protected string GetResourceData(string key)
         {
-            return _langManager.GetResourceData(key); 
+            return _langManager.GetResourceData(key);
         }
+
+        #region Controller Util
+        protected string CurrentAction
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
+            }
+        }
+
+        protected string CurrentController
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
+            }
+        }
+
+        protected string CurrentArea
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
+            }
+        }
+        #endregion
+        #endregion
     }
 }

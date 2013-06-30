@@ -256,9 +256,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="closeTag">The close tag.</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddStatus(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, string openTag, string closeTag, bool isShowVNIP)
+        public BetListHTMLBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag, bool isShowVNIP)
         {
-            string status = BuildStatus(ticket, ticketHelper, ticketData, isShowVNIP);
+            string status = BuildStatus(ticket, ticketData);
             this._content.Append(string.Join(null, new string[] { openTag, status, closeTag }));
             return this;
         }
@@ -271,10 +271,10 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data (Status33 Win/Place)</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public string BuildStatus(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
+        public string BuildStatus(ITicket ticket, List<ITicketData> ticketData)
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
-            string status = statusBuilder.Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            string status = statusBuilder.Render(ticket, ticketData);
 
             return status;
         }

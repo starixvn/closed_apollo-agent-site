@@ -136,7 +136,6 @@ namespace Sunplus.Agent.UI._BetList
                     .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
 
                 builder.AddWinLoss(ticket, "<td class='r nonbreak'>", "</td>");
-                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
                 builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
                 builder.Append("</tr>");

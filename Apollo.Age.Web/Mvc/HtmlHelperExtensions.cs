@@ -158,9 +158,9 @@ namespace Apollo.Age.Web.Mvc
         //    return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing));
         //}
 
-        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        public static DateTime StartOfWeek(this DateTime dt)
         {
-            int diff = dt.DayOfWeek - startOfWeek;
+            int diff = dt.DayOfWeek - DayOfWeek.Monday;
             if (diff < 0)
             {
                 diff += 7;
@@ -169,9 +169,9 @@ namespace Apollo.Age.Web.Mvc
             return dt.AddDays(-1 * diff).Date;
         }
 
-        public static DateTime EndOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        public static DateTime EndOfWeek(this DateTime dt)
         {
-            return dt.StartOfWeek(startOfWeek).AddDays(7);
+            return dt.StartOfWeek().AddDays(6);
         }
         #endregion
 
@@ -357,13 +357,12 @@ namespace Apollo.Age.Web.Mvc
         public static MvcHtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
             string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
-            
+
             if (!ignoreTd)
             {
                 string format = "<td class=\"c show-time\" >{0}</td>";
                 showTimeFormat = string.Format(format, showTimeFormat);
             }
-                
 
             return new MvcHtmlString(showTimeFormat);
         }

@@ -96,19 +96,19 @@ function InitExcelFunction() {
 }
 
 function InitBetList() {
-	if (APOLLO.currentOpenDialog) {
-		var heightPopup = 630;
-		if (APOLLO.browser.msie) {
-			heightPopup = 615;
-			if (parseInt(APOLLO.browser.version, 10) == 7) {
-				$('#content_main').css({ 'padding-bottom': '130px' });
+	if (parent.APOLLO.isResizeDialog) {
+		if (parent.APOLLO.currentOpenDialog) {
+			var heightPopup = 630;
+			if (APOLLO.browser.msie) {
+				heightPopup = 615;
+				if (parseInt(APOLLO.browser.version, 10) == 7) {
+					$('#content_main').css({ 'padding-bottom': '130px' });
+				}
 			}
-		}
-		if (parent.APOLLO.isResizeDialog) {
+
 			parent.APOLLO.resizeDialog(900, heightPopup);
 		}
 	}
-
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
 	}

@@ -126,6 +126,12 @@ namespace Fanex.BetList.Core.Entities
 
         public DateTime EventDate { get; set; }
 
+        public decimal PlayerDiscount { get; set; }
+
+        public int FinalHomeScore { get; set; }
+
+        public int FinalAwayScore { get; set; }
+
         #endregion ITicket Members
     }
 }
