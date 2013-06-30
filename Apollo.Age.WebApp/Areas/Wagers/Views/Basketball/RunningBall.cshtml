@@ -1,41 +1,65 @@
 ﻿@using Apollo.Age.Resources
-@using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@model List<WagersRunningBallViewModel>
 <table class="tblRpt basketball">
     <thead>
         <tr class="RptHeader">
-            <th style="width: 100px;">
+            <th style="width: 40px;">
                 @Lang.time
             </th>
-            <th style="width: 300px;">
+            <th>
                 @Lang.league
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblhomeandguest
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblHandicapWager
             </th>
-            <th style="width: 100px;" class="nowrap">
+            <th class="nowrap">
                 @Lang.lblOverUnderWager
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr class="c">
-            <td class="width-80">
-            </td>
-            <td class="l">
-            </td>
-            <td>
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-        </tr>
+        @if (!ReferenceEquals(Model, null)
+        && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+            <tr class="c">
+                <td class="width-40 show-time">
+                    @if (item.LiveIndicator)
+                    {
+                        <span class="red-num">@Lang.RunningBall</span>
+                    }
+                </td>
+                <td class="l">
+                    @item.LeagueName
+                </td>
+                <td class="l">
+                    <div>@item.HomeName</div>
+                    <div>@item.AwayName</div>
+                </td>
+                <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
+                    </div>
+                </td>
+                <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                    </div>
+                </td>
+            </tr>
+            }
+        }
     </tbody>
 </table>

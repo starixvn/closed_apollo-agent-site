@@ -60,5 +60,13 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
                 return CacheRef.GetTeamName(this.AwayId);
             }
         }
+
+        public string LeagueName
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.leagueid);
+            }
+        }
     }
 }
