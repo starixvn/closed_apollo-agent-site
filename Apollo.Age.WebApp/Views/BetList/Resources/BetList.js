@@ -259,8 +259,8 @@ if (typeof jQuery != "undefined") {
 			}
 
 			if (type == "report") {
-				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
-					+ '&fromDate=' + fromDate + "&toDate=" + toDate);
+				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?agentId=' + $(this).attr("agentid") + "&name=" + $(this).html()
+					+ '&fromDate=' + fromDate + "&toDate=" + toDate + "&Sporttypes=0&Bettypes=0");
 				location.href = url;
 			}
 			else {
