@@ -30,7 +30,7 @@
         </div>
         <div class="before-filter">
             --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TOTALBETS_INDEX.reloadChild();")
-        @RazorHelper.ToEasternTime(DateTime.Now)
+        @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">
             --</div>
         @RazorHelper.RenderWagersMenu(sportName, groupBetName)

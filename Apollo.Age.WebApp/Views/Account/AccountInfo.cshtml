@@ -153,7 +153,7 @@
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true">
+                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true&reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -192,7 +192,7 @@
                         else
                         {
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true">
+                                href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&backLink=@backLink&fromLeftMenu=true&reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
