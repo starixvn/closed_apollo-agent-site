@@ -54,7 +54,15 @@ namespace Apollo.Age.Wagers.ViewModels
             }
         }
 
-        public string CommGroup { get; set; }
+        public string CommGroup {
+            get
+            {
+                return this.UGroup;
+            }
+        }
+
+        public string UGroup { get; set; }
+
 
     }
 }

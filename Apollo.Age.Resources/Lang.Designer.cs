@@ -2672,7 +2672,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parent.
+        ///   Looks up a localized string similar to Upper.
         /// </summary>
         public static string lblParentname {
             get {
@@ -2686,6 +2686,15 @@ namespace Apollo.Age.Resources {
         public static string lblParlay {
             get {
                 return ResourceManager.GetString("lblParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Max.
+        /// </summary>
+        public static string lblPercentUpper {
+            get {
+                return ResourceManager.GetString("lblPercentUpper", resourceCulture);
             }
         }
         
@@ -3698,20 +3707,20 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Agents.
+        ///   Looks up a localized string similar to None Agent.
         /// </summary>
-        public static string NoneAgents {
+        public static string NoneAgent {
             get {
-                return ResourceManager.GetString("NoneAgents", resourceCulture);
+                return ResourceManager.GetString("NoneAgent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Members.
+        ///   Looks up a localized string similar to None Member.
         /// </summary>
-        public static string NoneMembers {
+        public static string NoneMember {
             get {
-                return ResourceManager.GetString("NoneMembers", resourceCulture);
+                return ResourceManager.GetString("NoneMember", resourceCulture);
             }
         }
         
@@ -4360,15 +4369,6 @@ namespace Apollo.Age.Resources {
         public static string shareSettingInstruction {
             get {
                 return ResourceManager.GetString("shareSettingInstruction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Share Taken On Member (%).
-        /// </summary>
-        public static string ShareTakenOnMember {
-            get {
-                return ResourceManager.GetString("ShareTakenOnMember", resourceCulture);
             }
         }
         

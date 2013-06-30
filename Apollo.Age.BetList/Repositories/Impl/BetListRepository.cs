@@ -459,7 +459,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get Agent Upline of member
+        /// Get Agent up line of member
         /// </summary>
         /// <param name="parentId">Logged id</param>
         /// <param name="custId">customer id</param>

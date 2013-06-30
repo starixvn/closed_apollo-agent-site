@@ -948,7 +948,7 @@
     <value>{0} - The Single Bet Min should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
-    <value>Parent</value>
+    <value>Upper</value>
   </data>
   <data name="ShareAmount" xml:space="preserve">
     <value>Share Amount</value>
@@ -1016,8 +1016,8 @@
   <data name="Others" xml:space="preserve">
     <value>Others</value>
   </data>
-  <data name="ShareTakenOnMember" xml:space="preserve">
-    <value>Share Taken On Member (%)</value>
+  <data name="lblPercentUpper" xml:space="preserve">
+    <value>% Max</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
     <value>My Setting</value>
@@ -1644,11 +1644,11 @@
   <data name="BasketballD" xml:space="preserve">
     <value>Basketball D</value>
   </data>
-  <data name="NoneAgents" xml:space="preserve">
-    <value>None Agents</value>
+  <data name="NoneAgent" xml:space="preserve">
+    <value>None Agent</value>
   </data>
-  <data name="NoneMembers" xml:space="preserve">
-    <value>None Members</value>
+  <data name="NoneMember" xml:space="preserve">
+    <value>None Member</value>
   </data>
   <data name="lblUserName" xml:space="preserve">
     <value>User Name</value>

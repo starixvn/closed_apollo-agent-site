@@ -77,7 +77,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Bettype = 4
             };
 
-            var result = _WagerService.GetWagerData<WagersCorrectScoreViewModel>(criteria);
+            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             return View(result);
         }
