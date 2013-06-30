@@ -16,7 +16,7 @@ var TOTALBETS = function ($) {
 
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
 					width: 665,
-					height: 200,
+					height: 250,
 					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
