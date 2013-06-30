@@ -78,8 +78,7 @@
                         @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
                     </td>
                     <td class='r'>
-                        <div>@item.Status</div>
-                        <div class="ip">@item.IP</div>
+                     @Html.Raw(item.Status)
                     </td>
                     <td class='r'>
                         @Html.Raw(item.AgentShare)

@@ -523,6 +523,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsAgentLevel = columnCollection.Contains("agentlevel");
             var containsActualStake = columnCollection.Contains("actual_stake");
             var containsStatusId = columnCollection.Contains("statusid");
+            var containsFinalHomeScore = columnCollection.Contains("finalhomescore");
+            var containsFinalAwayScore = columnCollection.Contains("finalawayscore");
 
             // Boolean
             var containsNeutral = columnCollection.Contains("isneutral");
@@ -536,6 +538,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsStake = columnCollection.Contains("stake");
             var containsAPositionTaking = columnCollection.Contains("apositiontaking");
             var containsADiscount = columnCollection.Contains("adiscount");
+            var containsPlayerDiscount = columnCollection.Contains("playerdiscount");
             var containsAWinlost = columnCollection.Contains("awinlost");
             var containsAComm = columnCollection.Contains("acomm");
             var containWinlost = columnCollection.Contains("winlost");
@@ -578,6 +581,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
                 ticket.AgentLevel = containsAgentLevel ? Converter.ToInt(dataRow["agentlevel"]) : 0;
                 ticket.StatusId = containsStatusId ? Converter.ToInt(dataRow["statusid"]) : 0;
+                ticket.FinalHomeScore = containsFinalHomeScore ? Converter.ToInt(dataRow["finalhomescore"]) : 0;
+                ticket.FinalAwayScore = containsFinalAwayScore ? Converter.ToInt(dataRow["finalawayscore"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
@@ -593,6 +598,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                 ticket.APositionTaking = containsAPositionTaking ? Converter.ToDecimal(dataRow["apositiontaking"]) : 0;
                 ticket.ADiscount = containsADiscount ? Converter.ToDecimal(dataRow["adiscount"]) : 0;
+                ticket.PlayerDiscount = containsPlayerDiscount ? Converter.ToDecimal(dataRow["playerdiscount"]) : 0;
 
                 ticket.AWinlost = containsAWinlost ? Converter.ToDecimal(dataRow["awinlost"]) : 0;
                 ticket.AComm = containsAComm ? Converter.ToDecimal(dataRow["acomm"]) : 0;
