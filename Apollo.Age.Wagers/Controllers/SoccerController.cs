@@ -37,7 +37,7 @@ namespace Apollo.Age.Wagers.Controllers
                 LeagueId = leagueId,
                 LoggedId = CurrentSession.AgentId,
                 UGroup = uGroup,
-                GroupBetName = this.CurrentActionName
+                GroupBetName = this.CurrentAction
             };
 
             var result = _WagerService.GetWagerData<WagersStraightViewModel>(criteria);
