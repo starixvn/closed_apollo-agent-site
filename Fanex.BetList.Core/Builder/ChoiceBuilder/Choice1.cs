@@ -123,7 +123,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             }
             else
             {
-                this.Template.Score.Visible = true;
+                this.Template.Score.Visible = false;
             }
 
             //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
