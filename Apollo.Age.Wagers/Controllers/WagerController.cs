@@ -6,7 +6,6 @@
 // <history>
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 //   <change who="Anders.Le" date="2013.6.30">Remove property WagerService</change>
-//   <change who="Anders.Le" date="2013.6.30">Add CurrentActionName</change>
 // </history>
 
 namespace Apollo.Age.Wagers.Controllers
