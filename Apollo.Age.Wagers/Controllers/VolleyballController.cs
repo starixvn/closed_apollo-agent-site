@@ -22,6 +22,11 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class VolleyballController : WagerController
     {
+        public VolleyballController()
+            : base(null)
+        {
+        }
+
         public ActionResult Straight()
         {
             return View();

@@ -747,6 +747,7 @@
     <Content Include="Areas\Wagers\Views\Baseball\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Baseball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
+    <Content Include="App_Code\WagerHelper.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />

@@ -33,14 +33,14 @@
         @RazorHelper.ToEasternTime(DateTime.Now)
         <div class="before-filter">
             --</div>
-        @RazorHelper.RenderWagersMenu(sportName, groupBetName)
-        <img alt="" src="~/_GlobalResources/Images/top_04.gif">
+        @WagerHelper.RenderMenu(sportName, groupBetName)
+        <img alt="" src="~/_GlobalResources/Images/top_04.gif" />
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
     @Html.Hidden("SportName", sportName)
     @Html.Hidden("FromDate", DateTime.Now.AddDays(-10))@*Sample data - 10 days*@
     <div class="mainpage">
-        @RazorHelper.RenderWagersFilter(lableGroupBet, (List<League>)ViewBag.Leagues)
+        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues)
         <div id="container">
         </div>
     </div>

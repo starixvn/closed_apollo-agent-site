@@ -83,6 +83,7 @@
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="DeviceDetection.cs" />
     <Compile Include="LanguageManager.cs" />
+    <Compile Include="Mvc\RazorExtensions.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
