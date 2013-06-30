@@ -275,7 +275,6 @@
     <Content Include="App_Data\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Wagers\Views\Soccer\Resources\Soccer.js" />
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
     <Content Include="CustSettingEngine\PTGrid.xml">
       <SubType>Designer</SubType>
