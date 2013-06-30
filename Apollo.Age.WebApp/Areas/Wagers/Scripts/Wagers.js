@@ -30,7 +30,7 @@ var Wagers = function ($) {
             Wagers.getWagerData(url);
 
             $('.za_select').on('change', function () {
-                getWagerData(url);
+                Wagers.getWagerData(url);
             });
         },
 
