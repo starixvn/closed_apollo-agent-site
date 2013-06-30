@@ -21,11 +21,16 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class BasketballController : WagerController
     {
+        public BasketballController()
+            : base(null)
+        {
+        }
+
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "straight",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -43,7 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "firsthalf",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -61,7 +66,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "runningball",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
@@ -84,7 +89,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var criteria = new BasketballCriteria
             {
-                GroupBetName = "specialbet",
+                GroupBetName = this.CurrentAction,
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
