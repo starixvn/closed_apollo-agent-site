@@ -44,15 +44,32 @@
                     @CacheRef.GetLeagueName(item.leagueid)
                 </td>
                 <td class="l">
-                    <div>@CacheRef.GetTeamName(item.HomeId)</div>
-                    <div>@CacheRef.GetTeamName(item.AwayId)</div>
-                    <div class="r text-green">@Lang.lblDraw</div>
+                    <div>@item.HomeName</div>
+                    <div>@item.AwayName</div>
                 </td>
                 <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
+                    </div>
                 </td>
                 <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                    </div>
                 </td>
                 <td class="border-right">
+                    <div class="r red-num">
+                        @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
+                    </div>
+                    <div class="r red-num">
+                        @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
+                    </div>
                 </td>
             </tr>
             }
