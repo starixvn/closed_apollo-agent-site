@@ -121,8 +121,6 @@ namespace Sunplus.Agent.UI._BetList
                     builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
                 }
 
-                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
-
                 if (isShowAgentPT)
                 {
                     builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");

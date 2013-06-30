@@ -114,7 +114,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string homeName = ticketHelper.GetTeamNameById(ticket.HomeId);
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            //this.Template.Score.Visible = ticket.IsLive;
+            // For Final Score
+            string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+            if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose)
+            {
+                this.Template.Score.finalHomeScore = ticket.FinalHomeScore.ToString();
+                this.Template.Score.finalAwayScore = ticket.FinalAwayScore.ToString();
+            }
+            else
+            {
+                this.Template.Score.Visible = false;
+            }
+
             //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             this.Template.homeTeam = string.Join(
                                                     null,

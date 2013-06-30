@@ -88,6 +88,8 @@ namespace Fanex.BetList.Core.Entities
 
         decimal ADiscount { get; set; }
 
+        decimal PlayerDiscount { get; set; }
+
         decimal MasterDiscount { get; set; }
 
         decimal SuperDiscount { get; set; }
@@ -128,5 +130,9 @@ namespace Fanex.BetList.Core.Entities
         string CommStatus { get; set; }
 
         DateTime EventDate { get; set; }
+
+        int FinalHomeScore { get; set; }
+
+        int FinalAwayScore { get; set; }
     }
 }

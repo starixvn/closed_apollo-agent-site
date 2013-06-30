@@ -56,13 +56,13 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
                     break;
             }
 
-            if (ticket.ADiscount == 0)
+            if (ticket.PlayerDiscount == 0)
             {
                 Template.discount = "0";
             }
             else
             {
-                Template.discount = ticket.ADiscount.ToString("N2");
+                Template.discount = ticket.PlayerDiscount.ToString("N2");
             }
 
             Template.username = ticket.UserName;
