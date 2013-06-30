@@ -522,6 +522,7 @@ public class Formater
 
     public static string ShowTimeFormat(string showTime)
     {
-        return string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace('/', '-').TrimEnd('M');
+
+        return string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
     }
 }

@@ -100,9 +100,7 @@
             
             <!--MatchContents-->
             <tr class='r'>
-                <td class="c show-time" >
-            @Html.Raw(Formater.ShowTimeFormat(item.ShowTime))
-            </td>
+                @Html.FormatShowTime(item.ShowTime)
                 <td class="c">
                     @item.LeagueName
                 </td>

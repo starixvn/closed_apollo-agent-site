@@ -1,5 +1,36 @@
-﻿@{
-    Layout = null;
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@section css {
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
 }
-<h1>
-    Parlay</h1>
+<table class="tblRpt basketball">
+    <thead>
+        <tr class="RptHeader">
+            <th style="width: 100px;">
+                @Lang.time
+            </th>
+            <th style="width: 300px;">
+                @Lang.league
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblMixParlay
+            </th>
+            <th style="width: 100px;" class="nowrap">
+                @Lang.lblSystemParlay
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="c">
+            <td class="width-80">
+            </td>
+            <td class="l">
+            </td>
+            <td>
+            </td>
+            <td class="border-right">
+            </td>
+        </tr>
+    </tbody>
+</table>
