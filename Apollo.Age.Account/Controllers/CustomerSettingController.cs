@@ -316,7 +316,7 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "")
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -326,10 +326,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsEditAgent = true;
             ViewBag.AgentId = 0;
             ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true, string backLink = "")
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -338,6 +339,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.Reload = reload;
             ViewBag.IsEditAgent = false;
             ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -432,7 +434,7 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName)
+        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, bool fromLeftMenu = false)
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -440,17 +442,19 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewOnMember = false;
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = false;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId)
+        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
             ViewBag.IsViewOnMember = true;
             ViewBag.IsViewMySetting = false;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.CanEdit = (base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper));
 
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
