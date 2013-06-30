@@ -142,7 +142,7 @@ namespace Apollo.Age.Account.Services
 
             if (SportList == null)
             {
-                GetAllSportType();
+                SportList = GetAllSportType();
             }
 
             var sport = SportList.Where(t => (t.Id == sportId && t.IsMixSportParlay == isMixSportParlay)).SingleOrDefault();

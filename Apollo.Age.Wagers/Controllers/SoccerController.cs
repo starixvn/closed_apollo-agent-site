@@ -16,7 +16,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     using Apollo.Age.WebApp;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Wagers.Criterias.Soccer;
+    using Apollo.Age.Wagers.ViewModels.Soccer;
     using Apollo.Age.Wagers.Services;
     /// <summary>
     /// TODO: Update summary.
