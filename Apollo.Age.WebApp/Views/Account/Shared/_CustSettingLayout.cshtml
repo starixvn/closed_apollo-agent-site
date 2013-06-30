@@ -2,6 +2,7 @@
 	var isShowHeader = ViewBag.IsShowHeader ?? false;
 	var isMaster = ViewBag.IsMaster ?? false;
 	var isSimpleMode = ViewBag.IsSimpleMode ?? true;
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -92,7 +93,8 @@
 		var DEFAULT_LAYOUT = function () {
 			return {
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
-				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)"
+				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)",
+                fromLeftMenu: @(fromLeftMenu ? "true" : "false")
 			};
 		}();
 		var Language =

@@ -4,7 +4,13 @@ var VIEWACCOUNTDETAILS = (function ($) {
     return {
         init: function () {
             $('#back-link').unbind('click').bind('click', function () {
-                history.go(-1); 
+                if ($('#BackLink').val() != '') {
+                    window.location.href = $('#BackLink').val();
+                    
+                }
+                else {
+                    history.go(-1);
+                }
                 return false;
             });
         }

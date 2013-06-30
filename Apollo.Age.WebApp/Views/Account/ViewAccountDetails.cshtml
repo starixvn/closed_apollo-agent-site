@@ -19,8 +19,10 @@
     {
         editLink = Url.Content(string.Format("~/CustomerSetting/EditAgentSetting?agentId={0}&userName={1}&agentLevel={2}", custId, userName, ViewBag.AgentLevel));
     }
+    string backLink = ViewBag.BackLink ?? string.Empty;
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
 }
+@Html.Hidden("BackLink", backLink)
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
     {
     

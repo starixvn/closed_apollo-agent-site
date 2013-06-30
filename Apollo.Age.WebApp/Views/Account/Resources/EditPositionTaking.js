@@ -59,12 +59,17 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
-                    history.go(-1);
+                    if (DEFAULT_LAYOUT.fromLeftMenu == true) {
+                        window.location.href = $('#backUrl').val();
+                    }
+                    else {
+                        history.go(-1);
+                    }
                     return false;
                 });
 
                 $("#simple-mode").unbind("click").click(function () {
-                    
+
                     EDITPOSITIONTAKING.initOthers(true);
                 });
 
@@ -115,7 +120,7 @@ if (typeof jQuery != 'undefined') {
                     }
                     else {
                         window.location.href = backLink;
-                        
+
                     }
                 }, 2000);
 
