@@ -117,7 +117,7 @@ if (typeof jQuery != 'undefined') {
                         window.location.href = backLink;
                         
                     }
-                }, 1000);
+                }, 2000);
 
             }
         }
