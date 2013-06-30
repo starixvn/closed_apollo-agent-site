@@ -7,6 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
+using Apollo.Age.Services;
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     public class WagersStraightViewModel
@@ -15,13 +16,35 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 
         public bool LiveIndicator { get; set; }
 
-        public int leagueid { get; set; }
+        public int LeagueId { get; set; }
+
+        public string LeagueName {
+            get {
+                return CacheRef.GetLeagueName(this.LeagueId);
+            }
+        
+        }
 
         public string matchcode { get; set; }
 
         public int HomeId { get; set; }
 
+        public string HomeName
+        {
+            get {
+                return CacheRef.GetTeamName(this.HomeId); 
+            }
+        }
+
         public int AwayId { get; set; }
+
+        public string AwayName
+        {
+            get
+            {
+                return CacheRef.GetTeamName(this.AwayId); 
+            }
+        }
 
         public string UGroup { get; set; }
 
