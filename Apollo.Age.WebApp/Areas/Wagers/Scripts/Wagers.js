@@ -5,12 +5,13 @@ var Wagers = function ($) {
 
         sportName: null,
         groupBetName: null,
-        viewOption: 0,        
+        viewOption: 0,
         isDirectMember: true,
         league: null,
         fromDate: null,
         groupComm: null,
         sportTypeIds: null,
+        url: null,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
@@ -21,34 +22,50 @@ var Wagers = function ($) {
             Wagers.groupComm = $('#groupComm').val();
             Wagers.sportTypeIds = $('#SportTypeIds').val();
 
+
             if (Wagers.viewOption > 0) {
                 Wagers.isDirectMember = false;
             }
             else {
-                Wagers.isDirectMembe = (Wagers.viewOption == 0);
+
+                Wagers.isDirectMember = (Wagers.viewOption == 0 ? false : true);
             }
-        },
 
-        initGetData: function () {
-
-            if (Wagers.sportName != "soccer") {
+            if (Wagers.sportName.toLowerCase() != "soccer") {
                 Wagers.sportName = "basketball";
             }
 
-            var url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+            Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
 
-            Wagers.getWagerData(url);
+            Wagers.getWagerData();
 
-            $('.za_select').on('change', function () {
-                Wagers.getWagerData(url);
+            $('#ViewOption').on('change', function () {
+                var $this = $(this);
+                if ($this.val() > 0) {
+                    Wagers.isDirectMember = false;
+                }
+                else {
+
+                    Wagers.isDirectMember = ($this.val() == 0 ? false : true);
+                }
+
+                Wagers.getWagerData();
+            });
+
+            $('#League').on('change', function () {
+                Wagers.League = $(this).val();
+                Wagers.getWagerData();
+            });
+
+            $('#groupComm').on('change', function () {
+                Wagers.groupComm = $(this).val();
+                Wagers.getWagerData();
             });
         },
 
-        getWagerData: function (url) {
-            Wagers.init();
-
+        getWagerData: function () {
             $.ajax({
-                url: APOLLO.resolveUrl(url),
+                url: APOLLO.resolveUrl(Wagers.url),
                 data: {
                     fromDate: Wagers.fromDate,
                     uGroup: Wagers.groupComm,
@@ -67,6 +84,5 @@ var Wagers = function ($) {
 } (jQuery);
 
 $(function () {
-    Wagers.init();
-    Wagers.initGetData();
+    Wagers.init();   
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
