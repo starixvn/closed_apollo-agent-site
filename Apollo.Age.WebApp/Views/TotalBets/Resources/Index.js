@@ -1,17 +1,24 @@
 ﻿
-var TOTALBETS_INDEX = (function ($) {
+var TotalBetsIndex = (function ($) {
     return {
-        reloadChild: function () {
-//            var subFrame = $('#submain');
+        menu: null,
+        moreLink: null,
+        moreMenu: null,
+        moreMenuTimer: null,
 
-            document.getElementById('submain').contentWindow.location.href = document.getElementById('submain').contentWindow.location.href;
-            //console.log("reload");
+        reloadChild: function () {
+            document.getElementById('submain').contentWindow.location.href =
+            document.getElementById('submain').contentWindow.location.href;
         }
     };
 })(jQuery);
 
 $(function () {
-    $('.menu').on('click', 'li', function () {
+    TotalBetsIndex.menu = $('.menu');
+    TotalBetsIndex.moreLink = $('#more-link');
+    TotalBetsIndex.moreMenu = $('#more-link .sub-menu');
+
+    TotalBetsIndex.menu.on('click', 'li', function () {
         var $this = $(this);
         if ($this.attr('id') !== 'more-link') {
             $this.parents('.menu').find('li').removeClass('active');
@@ -19,9 +26,19 @@ $(function () {
         }
     });
 
-    $('#more-link').on('click', '>a', function () {
+    TotalBetsIndex.moreLink
+    .on('click', '>a', function () {
         $(this).siblings('.sub-menu').slideToggle('fast');
-    }).on('click', 'ul a', function () {
+    })
+    .on('click', 'ul a', function () {
         $(this).parents('.sub-menu').slideToggle('fast');
+    })
+    .on('mouseleave', function () {
+        TotalBetsIndex.moreMenuTimer = setTimeout("TotalBetsIndex.moreMenu.slideUp('fast')", 500);
+    })
+    .on('mouseenter', '.sub-menu', function () {
+        if (TotalBetsIndex.moreMenuTimer) {
+            clearTimeout(TotalBetsIndex.moreMenuTimer);
+        }
     });
 });
