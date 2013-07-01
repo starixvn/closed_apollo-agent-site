@@ -1788,4 +1788,10 @@
   <data name="PercentInMember" xml:space="preserve">
     <value>%</value>
   </data>
+  <data name="lblfirsthalfOdd" xml:space="preserve">
+    <value>1st Half Odd</value>
+  </data>
+  <data name="lblfirsthalfOven" xml:space="preserve">
+    <value>1st Half Even</value>
+  </data>
 </root>

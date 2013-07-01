@@ -42,31 +42,32 @@ if (typeof jQuery != 'undefined') {
                 $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
                     EDITSETTING.saveSetting();
                 });
-//                $("#simple-mode").unbind("click").click(function () {
+                //                $("#simple-mode").unbind("click").click(function () {
 
-//                    $(this).hide();
-//                    $("#advanced-mode").show();
-//                    $('#edit-warning').show();
-//                    EDITSETTING.currentIsSimpleMode = true;
-//                    EDITSETTING.initOthers(true);
-//                });
+                //                    $(this).hide();
+                //                    $("#advanced-mode").show();
+                //                    $('#edit-warning').show();
+                //                    EDITSETTING.currentIsSimpleMode = true;
+                //                    EDITSETTING.initOthers(true);
+                //                });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
                     history.go(-1);
                     return false;
                 });
 
-//                $("#advanced-mode").unbind("click").click(function () {
+                //                $("#advanced-mode").unbind("click").click(function () {
 
-//                    $(this).hide();
-//                    $("#simple-mode").show();
-//                    $('#edit-warning').hide();
+                //                    $(this).hide();
+                //                    $("#simple-mode").show();
+                //                    $('#edit-warning').hide();
 
-//                    EDITSETTING.currentIsSimpleMode = false;
-//                    EDITSETTING.initOthers(false);
-//                });
+                //                    EDITSETTING.currentIsSimpleMode = false;
+                //                    EDITSETTING.initOthers(false);
+                //                });
 
                 $('#tbl-edit').show();
+                $('#btnCancelFooter').show();
             },
             saveSetting: function () {
                 if (EDITSETTING.commissionSettingElement.Validate()

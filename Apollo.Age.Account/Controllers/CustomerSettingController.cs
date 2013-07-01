@@ -208,16 +208,16 @@ namespace Apollo.Age.Account.Controllers
             if (SportSettingService.SportList == null)
             {
                 sportList = _sportService.GetAllSportType();
-                foreach (var sportItem in sportList)
-                {
-                    sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
-                }
-
                 SportSettingService.SportList = sportList;
             }
             else
             {
                 sportList = SportSettingService.SportList;
+            }
+
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
@@ -394,21 +394,23 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId)
+        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId, bool fromLeftMenu = false)
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName)
+        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool fromLeftMenu = false)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -448,7 +450,7 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, string backLink = "")
+        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -457,11 +459,12 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = false;
             ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, string backLink = "")
+        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -469,6 +472,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewOnMember = true;
             ViewBag.IsViewMySetting = false;
             ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.CanEdit = (base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper));
 
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
