@@ -23,14 +23,14 @@ namespace Apollo.Age.Wagers.Controllers
     {
         public SoccerController() : base(null) { }
 
-        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId)
+        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int mainShareHolderId, int leagueId)
         {
             var criteria = new SoccerCriteria
             {
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 GroupBetName = this.CurrentAction
             };
@@ -144,6 +144,6 @@ namespace Apollo.Age.Wagers.Controllers
 
             return View(result);
         }
-       
+
     }
 }

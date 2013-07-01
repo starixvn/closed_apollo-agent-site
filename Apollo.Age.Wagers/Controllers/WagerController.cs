@@ -71,7 +71,7 @@ namespace Apollo.Age.Wagers.Controllers
            return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "straight", string resourceKey = "lblStraight")
+        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight")
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
