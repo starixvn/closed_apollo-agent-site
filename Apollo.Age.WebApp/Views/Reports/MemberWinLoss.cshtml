@@ -91,7 +91,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&bettype=@Model.Bettypes&type=report">
+                        <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&sportType=@Model.Sporttypes&betType=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
                             @item.MemberName
                         </a>
                     </td>
@@ -171,7 +171,7 @@ else
     <table class="tblRpt report none-result">
         <thead>
             <th>
-                <marquee behavior=alternate align="middle">@Apollo.Age.Resources.Lang.NodataSearch</marquee>
+                @Apollo.Age.Resources.Lang.NodataSearch
             </th>
         </thead>
         <tbody>

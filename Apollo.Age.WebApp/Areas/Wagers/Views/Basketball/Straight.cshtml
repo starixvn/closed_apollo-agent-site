@@ -2,7 +2,7 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<StraightViewModel>
-<table class="tblRpt basketball">
+<table class="tblRpt @ViewBag.SportName">
     @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
         , Lang.lblOverUnderWager
         , Lang.lblOddEvenWagers)

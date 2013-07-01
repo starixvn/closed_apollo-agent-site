@@ -354,17 +354,16 @@ namespace Apollo.Age.Web.Mvc
         #endregion
 
         #region Format Show Time
-        public static MvcHtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
+        public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
-            string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
+            string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
 
             if (!ignoreTd)
             {
-                string format = "<td class=\"c show-time\" >{0}</td>";
-                showTimeFormat = string.Format(format, showTimeFormat);
+                showTimeFormat = string.Format("<td class=\"c show-time\" >{0}</td>", showTimeFormat);
             }
 
-            return new MvcHtmlString(showTimeFormat);
+            return new HtmlString(showTimeFormat);
         }
         #endregion
 

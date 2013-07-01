@@ -45,12 +45,12 @@
                             </li>
                             <li><span class="menu-list border-link">[@Lang.lblEmWager]</span>
                                 <ul class="sub-menu">
-                                    <li><a href="#">@Lang.lblScEm</a></li>
-                                    <li><a href="#">@Lang.lblBkNflRugbyEm</a></li>
-                                    <li><a href="#">@Lang.lblTnEm</a></li>
-                                    <li><a href="#">@Lang.lblVbBdmTtEm</a></li>
-                                    <li><a href="#">@Lang.lblBsEm</a></li>
-                                    <li><a href="#">@Lang.lblOtherEm</a></li>
+                                    <li><a  href="~/wagers/wager?sportname=@(WagersSportName.Soccer)&isEM=true" target="main">@Lang.lblScEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Basketball)&isEM=true" target="main">@Lang.lblBkNflRugbyEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Tennis)&isEM=true" target="main">@Lang.lblTnEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Volleyball)&isEM=true" target="main">@Lang.lblVbBdmTtEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Baseball)&isEM=true" target="main">@Lang.lblBsEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Others)&isEM=true" target="main">@Lang.lblOtherEm</a></li>
                                 </ul>
                             </li>
                             <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
@@ -93,15 +93,14 @@
         <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
         <input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
         <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
-        <span id="txtSuper" style="display: none">@Model.IsSuper</span>
         <script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>		
         <script src="~/_globalresources/js/core.js" type="text/javascript"></script>	 
         <script src="~/views/account/resources/header.js" type="text/javascript"></script>
         <script type="text/javascript">
 			 var DEFAULTS = {
 				 IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
-				 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower()
-						 
+				 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower(),
+				 IsMaster: @Model.IsSuper.ToString().ToLower()	 
 			 };
 			 var LANGUAGES = {
 				AlerSignonMessage : "@Apollo.Age.Resources.Lang.stringSessionLogged"

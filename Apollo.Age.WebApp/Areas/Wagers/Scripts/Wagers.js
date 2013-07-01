@@ -5,43 +5,82 @@ var Wagers = function ($) {
 
         sportName: null,
         groupBetName: null,
-        viewOption: null,
+        viewOption: 0,
+        isDirectMember: true,
         league: null,
         fromDate: null,
         groupComm: null,
         sportTypeIds: null,
+        url: null,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
             Wagers.groupBetName = $('#GroupBetName').val();
-        },
-
-        initGetData: function () {
-
-            if (Wagers.sportName != "soccer") {
-                Wagers.sportName = "basketball";
-            }
-
-            var url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
-
-            Wagers.getWagerData(url);
-
-            $('.za_select').on('change', function () {
-                Wagers.getWagerData(url);
-            });
-        },
-
-        getWagerData: function (url) {
-
             Wagers.viewOption = $('#ViewOption').val();
             Wagers.League = $('#League').val();
             Wagers.fromDate = $('#FromDate').val();
             Wagers.groupComm = $('#groupComm').val();
             Wagers.sportTypeIds = $('#SportTypeIds').val();
 
+
+            if (Wagers.viewOption > 0) {
+                Wagers.isDirectMember = false;
+            }
+            else {
+
+                Wagers.isDirectMember = (Wagers.viewOption == 0 ? false : true);
+            }
+
+            if (Wagers.sportName.toLowerCase() != "soccer") {
+                Wagers.sportName = "basketball";
+            }
+
+            Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+
+            Wagers.getWagerData();
+
+            $('#ViewOption').on('change', function () {
+                var $this = $(this);
+                if ($this.val() > 0) {
+                    Wagers.isDirectMember = false;
+                }
+                else {
+
+                    Wagers.isDirectMember = ($this.val() == 0 ? false : true);
+                }
+
+                Wagers.getWagerData();
+            });
+
+            $('#League').on('change', function () {
+                Wagers.League = $(this).val();
+                Wagers.getWagerData();
+            });
+
+            $('#groupComm').on('change', function () {
+                Wagers.groupComm = $(this).val();
+                Wagers.getWagerData();
+            });
+
+            $('#EmDate').on('change', function () {                
+                Wagers.fromDate = $(this).val();
+                Wagers.getWagerData();
+            });
+
+        },
+
+        getWagerData: function () {
             $.ajax({
-                url: APOLLO.resolveUrl(url),
-                data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League, sportTypes: Wagers.sportTypeIds },
+                url: APOLLO.resolveUrl(Wagers.url),
+                data: {
+                    fromDate: Wagers.fromDate,
+                    uGroup: Wagers.groupComm,
+                    isDirectMember: Wagers.isDirectMember,
+                    mainShareHolderId: Wagers.viewOption,
+                    leagueId: Wagers.League,
+                    sportTypes: Wagers.sportTypeIds,
+                    sportName: Wagers.sportName
+                },
                 success: function (data) {
                     $('#container').html(data);
                 }
@@ -51,6 +90,5 @@ var Wagers = function ($) {
 } (jQuery);
 
 $(function () {
-    Wagers.init();
-    Wagers.initGetData();
-});
+    Wagers.init();   
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);

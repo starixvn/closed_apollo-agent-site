@@ -20,6 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Wagers.Core.BettypeGroup;
 
     public class WagerController : BaseController
     {
@@ -42,7 +43,47 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? leagues.ToList() : new List<League>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "straight", string resourceKey = "lblStraight")
+        public List<SelectListItem> GenerateEarlyMarketCalendar()
+        {
+            var list = new List<SelectListItem>();
+            string result = string.Empty;
+            for (var date = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(1).Month, 1); date.Month == DateTime.Now.AddMonths(1).Month; date = date.AddDays(1))
+            {
+                result = date.ToString("yyyy-MM-dd");
+                list.Add(new SelectListItem() { Text = result, Value = result });
+            }
+            return list;            
+        }
+
+        public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
+        {
+            switch (sportName)
+            {
+                case WagersSportName.Soccer:
+                    {
+                        if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
+                        {
+                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()]; 
+                        }
+                        
+                        break;
+                    }
+                default:
+                    {
+                        if (Basketball.ListOfBettype().ContainsKey(groupBetName.ToLower()))
+                        {
+                            groupBetName = Basketball.ListOfBettype()[groupBetName.ToLower()];
+                        }
+                        break;
+                    }
+
+            }
+           var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
+ 
+           return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
+        }
+
+        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight", bool isEM = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -85,18 +126,27 @@ namespace Apollo.Age.Wagers.Controllers
                 default:
                     sportTypes = SportGroup.Other;
                     sportTypeIds = SportGroup.Other;
+                    titleAll = Lang.all;
                     break;
             }
 
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-11), sportTypes);
+            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName,groupBetName) : new List<Agent>()); 
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-
+            if (isEM)
+            {
+                ViewBag.EmCalendar = GenerateEarlyMarketCalendar();
+            }
+            else
+            {
+                ViewBag.EmCalendar = null;
+            }
             return View();
         }
     }

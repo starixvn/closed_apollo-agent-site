@@ -143,7 +143,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 LoggedId = loggedId,
                 AgentId = mainShareHolderId,
-                Bettypes = bettype,
+                BetTypes = bettype,
                 MatchId = matchId,
                 LiveIndicator = live,
                 BetTeam = betTeam

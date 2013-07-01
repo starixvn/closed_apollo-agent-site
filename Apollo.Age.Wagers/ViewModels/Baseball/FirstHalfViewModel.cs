@@ -10,7 +10,7 @@
 namespace Apollo.Age.Wagers.ViewModels.Baseball
 {
     public class FirstHalfViewModel : WagerViewModel
-    {
+    {       
         public decimal HomeStakeHTHDP { get; set; }
 
         public decimal AwayStakeHTHDP { get; set; }

@@ -2,7 +2,7 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<SpecialViewModel>
-<table class="tblRpt basketball">
+<table class="tblRpt @ViewBag.SportName">
     @WagerHelper.RederHeaderColumn(Lang.moneyline)
     @*/RenderHeader*@
     <tbody>
@@ -10,9 +10,7 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountMoney)/@((int)item.HomeStakeMoney)
-                    <br />
-                    @((int)item.AwayCountMoney)/@((int)item.AwayStakeMoney)
+                    @((int)item.Count)/@((int)item.Stake)
                 </td>
             </tr>
             )

@@ -16,7 +16,8 @@
             treeList.treeview({
                 url: appRoot + "Account/GetDataByNode",
                 link: "<a class='view-agentinfo' href='javascript:;'" + "agent-id='{0}' agent-name={1} target='menu'> {2} </a>",
-                agentId: agentId
+                agentId: agentId,
+                showRoot: false
             });
 
             DOWNLINE.initAgentdownline();

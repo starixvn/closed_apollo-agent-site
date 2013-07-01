@@ -7,11 +7,13 @@
 //   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
 //   <change who="Quinn.Vo" date="2013.4.22">Add Action: AgentShare, MemberShare, GetBetType</change>
 //   <change who="Ricky.Nguyen" date="2013.4.29">Update AgentId, Member Id, Shadow Account edit setting</change>
+//   <change who="Ricky.Nguyen" date="2013.7.1">Updated Edit Share Setting, Commission Setting, Bet Limit with Singbet requirements</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using System.Web.Mvc;
@@ -29,6 +31,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
 
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
     {
@@ -39,13 +42,13 @@ namespace Apollo.Age.Account.Controllers
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null, null) 
-        { 
+            : this(null, null, null)
+        {
         }
 
         public CustomerSettingController(
-            IAccountService accountService, 
-            ICustomerSettingService customerSettingService, 
+            IAccountService accountService,
+            ICustomerSettingService customerSettingService,
             ISportSettingService sportService)
         {
             _accountService = accountService ?? new AccountService();
@@ -53,41 +56,7 @@ namespace Apollo.Age.Account.Controllers
             _sportService = sportService ?? new SportSettingService();
         }
 
-        #endregion
-
-        #region Bet Setting
-
-        //public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
-        //{
-        //    ViewBag.CustId = custId;
-        //    ViewBag.UserName = userName;
-        //    ViewBag.AgentLevel = agentLevel;
-        //    return View("~/Views/Account/EditBetSetting.cshtml");
-        //}
-
-        //public ActionResult GetBetLimit(int targetCustId, int? agentId, int? agentLevel)
-        //{
-        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.BetLimit);
-        //    IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
-        //    this.SetCurrentLanguage(base.CurrentSession.Language);
-        //    this.SetBetLimitLanguage(settingContext, betLimits);
-
-        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-        //    string jsString = string.Format("var betLimits = {0} ;\n var settingContext = {1} ;",
-        //        JsonConvert.SerializeObject(betLimits, jsonSetting),
-        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
-
-        //    return JavaScript(jsString);
-        //}
-
-        //[HttpPost]
-        //public ActionResult UpdateBetLimit(SettingContext settingContext, IList<BettingLimit> betLimits)
-        //{
-        //    Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
-        //    return ReturnResult(result);
-        //}
-
-        #endregion
+        #endregion Ctors
 
         #region Commission Setting
 
@@ -110,7 +79,7 @@ namespace Apollo.Age.Account.Controllers
                     model.Id = -1; // force search by username only
                 }
             }
-            
+
             CustomerInfoModel customerInfo = model.IsMember
                 ? _accountService.GetMemberInfo(new GetMemberInfoCriteria
                 {
@@ -150,40 +119,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/ViewCommission.cshtml", model);
         }
 
-        //public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
-        //{
-        //    ViewBag.CustId = custId;
-        //    ViewBag.UserName = userName;
-        //    ViewBag.AgentLevel = agentLevel;
-        //    ViewBag.UserGroup = userGroup;
-        //    return View("~/Views/Account/EditCommission.cshtml");
-        //}
-
-        //public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
-        //{
-        //    SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.Commission);
-        //    CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-        //    if (ugroup != null)
-        //    {
-        //        commissionSetting.UserGroup = ugroup;
-        //    }
-
-        //    JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-        //    string jsString = string.Format("var commissionSetting = {0} ;\n var settingContext = {1} ;",
-        //        JsonConvert.SerializeObject(commissionSetting, jsonSetting),
-        //        JsonConvert.SerializeObject(settingContext, jsonSetting));
-
-        //    return JavaScript(jsString);
-        //}
-
-        //[HttpPost]
-        //public ActionResult UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
-        //{
-        //    Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
-        //    return ReturnResult(result);
-        //}
-
-        #endregion
+        #endregion Commission Setting
 
         #region Share [Position Taking]
 
@@ -335,25 +271,26 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.Reload = reload;
-            ViewBag.IsEditAgent = true;
-            ViewBag.AgentId = 0;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.IsEditAgent = true;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
-            ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.Reload = reload;
-            ViewBag.IsEditAgent = false;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.Reload = reload;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsEditAgent = false;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -365,21 +302,21 @@ namespace Apollo.Age.Account.Controllers
             this.SetPositionTakingLanguage(positionTakingSetting);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+            string javascriptString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
                 JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return JavaScript(jsString);
+            return JavaScript(javascriptString);
         }
 
-        [HttpPost]
+        [HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
             return ReturnResult(result);
         }
 
-        #endregion
+        #endregion Share [Position Taking]
 
         #region Setting
 
@@ -416,24 +353,24 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult GetMemberSetting(int memberId, int? agentId)
         {
-            string jsString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
-            return JavaScript(jsString);
+            string javascriptString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
+            return JavaScript(javascriptString);
         }
 
         public ActionResult GetAgentSetting(int agentId, int agentLevel)
         {
-            string jsString = this.GetSettingScript(agentId, null, (int?) agentLevel, null);
-            return JavaScript(jsString);
+            string javascriptString = this.GetSettingScript(agentId, null, (int?)agentLevel, null);
+            return JavaScript(javascriptString);
         }
 
         [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits )
+        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
         [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits )
+        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
@@ -473,8 +410,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewMySetting = false;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            ViewBag.CanEdit = (base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper));
-
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
             return ViewAccountDetails(settingContext);
         }
@@ -486,7 +422,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/ViewAccountDetails.cshtml");
         }
 
-        #endregion
+        #endregion Setting
 
         #region Helpers
 
@@ -603,9 +539,9 @@ namespace Apollo.Age.Account.Controllers
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-            //// If Current Login Agent is not Agent Master User, then set form to form view
             else if (!base.CurrentSession.IsMaster)
             {
+                //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
                 if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
                 {
@@ -637,14 +573,13 @@ namespace Apollo.Age.Account.Controllers
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
-
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
+            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return jsString;
+            return javasciptString;
         }
 
         private CommissionSetting GetCommissionSetting(SettingContext settingContext)
@@ -654,6 +589,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 commissionSetting.UserGroup = _customerSettingService.GetMemberGroup(settingContext.TargetCustId);
             }
+
             return commissionSetting;
         }
 
@@ -678,15 +614,17 @@ namespace Apollo.Age.Account.Controllers
         {
             if (commissionSetting == null && betLimits == null)
             {
-                return ReturnResult(new Result { 
+                return ReturnResult(new Result
+                {
                     ErrCode = 0,
                     ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
                 });
             }
+
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
             return ReturnResult(result);
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

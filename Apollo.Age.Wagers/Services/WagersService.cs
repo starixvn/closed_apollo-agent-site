@@ -38,5 +38,15 @@ namespace Apollo.Age.Wagers.Services
         {
             return this.GetData<T>(criteria);
         }
+
+
+        public IEnumerable<Agent> GetMainShareHolder(string betTypes)
+        {
+            var criteria = new GetMainShareHolderCriteria
+            {
+                Bettypes = betTypes
+            };
+            return this.GetData<Agent>(criteria);
+        }
     }
 }
