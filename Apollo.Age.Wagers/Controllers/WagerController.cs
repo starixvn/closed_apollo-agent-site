@@ -43,14 +43,20 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? leagues.ToList() : new List<League>();
         }
 
-        public List<SelectListItem> GenerateEarlyMarketCalendar()
+        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
         {
-            var list = new List<SelectListItem>();
-            string result = string.Empty;
-            for (var date = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(1).Month, 1); date.Month == DateTime.Now.AddMonths(1).Month; date = date.AddDays(1))
+            if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
             {
-                result = date.ToString("yyyy-MM-dd");
-                list.Add(new SelectListItem() { Text = result, Value = result });
+                sportName = WagersSportName.WagerSportGroup()[sportName];
+            }
+
+            var listEventDate = _WagerService.GetEventDate(sportName);
+ 
+            var list = new List<SelectListItem>();            
+
+            foreach (var date in listEventDate)
+            {                
+                list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
             }
             return list;            
         }
@@ -124,8 +130,8 @@ namespace Apollo.Age.Wagers.Controllers
                     sportTypeIds = SportGroup.BaseBall;
                     break;
                 default:
-                    sportTypes = SportGroup.Other;
-                    sportTypeIds = SportGroup.Other;
+                    sportTypes = SportGroup.Others;
+                    sportTypeIds = SportGroup.Others;
                     titleAll = Lang.all;
                     break;
             }
@@ -141,7 +147,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.SportTypes = sportTypeIds;
             if (isEM)
             {
-                ViewBag.EmCalendar = GenerateEarlyMarketCalendar();
+                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
             }
             else
             {
