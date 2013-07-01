@@ -40,10 +40,13 @@ namespace Apollo.Age.Wagers.Criterias
 
         public int LeagueId { get; set; }
 
+        [SpParam(Ignored = true)]
         public int PageIndex { get; set; }
 
+        [SpParam(Ignored = true)]
         public int TotalPages { get; set; }
 
-        public int PageSize { get; set; }    
+        [SpParam(Ignored = true)]
+        public int PageSize { get; set; }
     }
 }
