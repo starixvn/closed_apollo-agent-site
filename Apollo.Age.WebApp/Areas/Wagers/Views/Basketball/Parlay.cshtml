@@ -2,7 +2,7 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<ParlayViewModel>
-<table class="tblRpt basketball">
+<table class="tblRpt @ViewBag.SportName">
     @WagerHelper.RederHeaderColumn(Lang.lblMixParlay
                 , Lang.lblSystemParlay)
     @*/RenderHeader*@
@@ -11,19 +11,9 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                    @((int)item.Count9)/@((int)item.Stake9)
                     <br />
-                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
-                </td>
-                <td class="border-right r red-num">
-                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
-                    <br />
-                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
-                </td>
-                <td class="border-right r red-num">
-                    @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
-                    <br />
-                    @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
+                    @((int)item.Count29)/@((int)item.Stake29)
                 </td>
             </tr>
             )

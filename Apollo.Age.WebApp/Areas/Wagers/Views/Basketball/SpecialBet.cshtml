@@ -2,7 +2,7 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<SpecialViewModel>
-<table class="tblRpt basketball">
+<table class="tblRpt @ViewBag.SportName">
     @WagerHelper.RederHeaderColumn(Lang.moneyline)
     @*/RenderHeader*@
     <tbody>
