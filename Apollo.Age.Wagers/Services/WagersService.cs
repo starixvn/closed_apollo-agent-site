@@ -34,11 +34,19 @@ namespace Apollo.Age.Wagers.Services
             return this.GetData<League>(criteria);
         }
 
-        public IEnumerable<T> GetWagerData<T>(ICriteria criteria)
+        public IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria)
         {
             return this.GetData<T>(criteria);
         }
 
+        public IEnumerable<DateTime> GetEventDate(string sportTypes)
+        {
+            var criteria = new GetEventDateCriteria
+            {
+                Sporttypes = sportTypes
+            };
+            return this.GetData<DateTime>(criteria); 
+        }
 
         public IEnumerable<Agent> GetMainShareHolder(string betTypes)
         {
@@ -46,6 +54,7 @@ namespace Apollo.Age.Wagers.Services
             {
                 Bettypes = betTypes
             };
+
             return this.GetData<Agent>(criteria);
         }
     }
