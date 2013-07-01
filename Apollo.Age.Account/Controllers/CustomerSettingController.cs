@@ -335,25 +335,26 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.Reload = reload;
-            ViewBag.IsEditAgent = true;
-            ViewBag.AgentId = 0;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.IsEditAgent = true;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int? agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
-            ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.Reload = reload;
-            ViewBag.IsEditAgent = false;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.Reload = reload;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsEditAgent = false;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
