@@ -11,7 +11,8 @@
             "~/_GlobalResources/Js/jquery.js",
             "~/_GlobalResources/Js/Core.js",
             "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-             "~/Areas/Wagers/Scripts/Wagers.js"
+             "~/Areas/Wagers/Scripts/Wagers.js",
+             "~/_GlobalResources/Js/Pager/jquery.sbpager.js"
             ));
 
         }

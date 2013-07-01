@@ -22,7 +22,6 @@ var Wagers = function ($) {
             Wagers.groupComm = $('#groupComm').val();
             Wagers.sportTypeIds = $('#SportTypeIds').val();
 
-
             if (Wagers.viewOption > 0) {
                 Wagers.isDirectMember = false;
             }
@@ -70,7 +69,12 @@ var Wagers = function ($) {
 
         },
 
-        getWagerData: function () {
+        getWagerData: function (pageIndex) {
+
+            if (pageIndex == undefined) {
+                pageIndex = 0;
+            }
+
             $.ajax({
                 url: APOLLO.resolveUrl(Wagers.url),
                 data: {
@@ -80,10 +84,24 @@ var Wagers = function ($) {
                     mainShareHolderId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,
-                    sportName: Wagers.sportName
+                    sportName: Wagers.sportName,
+                    pageIndex: pageIndex
                 },
                 success: function (data) {
                     $('#container').html(data);
+                    Wagers.initPager(pageIndex);
+                }
+            });
+        },
+
+        initPager: function (pageIndex) {
+            $('#pager').sbPager({
+                currentPage: pageIndex,
+                itemPerPage: 40,
+                totalItem: $('#TotalItems').val(),
+                //numPageDisplay: 8,
+                callback: function (currentPage) {
+                    Wagers.getWagerData(currentPage);
                 }
             });
         }

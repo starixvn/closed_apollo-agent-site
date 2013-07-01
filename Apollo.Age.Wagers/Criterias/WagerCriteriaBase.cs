@@ -46,7 +46,7 @@ namespace Apollo.Age.Wagers.Criterias
         public int PageIndex { get; set; }
 
         [SpParam(Ignored = true)]
-        public int TotalPages { get; set; }
+        public int TotalItems { get; set; }
 
         [SpParam(Ignored = true)]
         public int PageSize
