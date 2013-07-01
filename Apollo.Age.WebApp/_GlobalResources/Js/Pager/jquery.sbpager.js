@@ -41,7 +41,7 @@
         nextText: '>',
         startText: '<<',
         endText: '>>',
-        itemWidth: 34,
+        itemWidth: 36,
         callback: function () { return false; }
     };
 
@@ -79,18 +79,22 @@
             }
 
             var numDisplayItem = numItem > options.numPageDisplay ? options.numPageDisplay : numItem;
-            html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
-            html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
-            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 2)  + 'px">');
+            if (numItem > options.numPageDisplay) {
+                html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
+                html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
+            }
+            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 2) + 'px">');
             for (var i = 0; i < numItem; i++) {
                 currentItem = i + 1;
-                currentItem = (currentItem < 10 ? '0' + currentItem : currentItem);
+                //currentItem = (currentItem < 10 ? '0' + currentItem : currentItem);
                 itemHtml = '<a href="javascript:void(0);" class="pager-item' + (i == options.currentPage ? ' selected' : '') + '" index="' + i + '">' + currentItem + '</a>';
                 html.push(itemHtml);
             }
             html.push('</div>');
-            html.push('<a href="javascript:void(0);" class="move-next">' + options.nextText + '</a>');
-            html.push('<a href="javascript:void(0);" class="move-end">' + options.endText + '</a>');
+            if (numItem > options.numPageDisplay) {
+                html.push('<a href="javascript:void(0);" class="move-next">' + options.nextText + '</a>');
+                html.push('<a href="javascript:void(0);" class="move-end">' + options.endText + '</a>');
+            }
 
 
             var pagerHtml = html.join('');
@@ -99,7 +103,7 @@
             me.$itemContainer = me.$pager.find('.item-container');
 
             me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
-            
+
         },
         registerEvents: function () {
             var me = this;
@@ -139,20 +143,22 @@
                 .unbind('click')
                 .bind('click', function (e) {
                     var currentIndex = me.$itemContainer.scrollLeft();
-                    me.$itemContainer.animate(
-                    {
-                        scrollLeft: currentIndex - options.itemWidth
-                    }, 100);
+                    me.$itemContainer.scrollLeft(currentIndex - options.itemWidth);
+                    //                    me.$itemContainer.animate(
+                    //                    {
+                    //                        scrollLeft: currentIndex - options.itemWidth
+                    //                    }, 100);
                 });
 
             me.$pager.find('.move-next')
                 .unbind('click')
                 .bind('click', function (e) {
                     var currentIndex = me.$itemContainer.scrollLeft();
-                    me.$itemContainer.animate(
-                    {
-                        scrollLeft: currentIndex + options.itemWidth
-                    }, 100);
+                    me.$itemContainer.scrollLeft(currentIndex + options.itemWidth);
+                    //                    me.$itemContainer.animate(
+                    //                    {
+                    //                        scrollLeft: currentIndex + options.itemWidth
+                    //                    }, 100);
 
                 });
         }
