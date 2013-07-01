@@ -33,6 +33,9 @@ namespace Apollo.Age.Wagers.Criterias.Soccer
                 case "special":
                     settingKey = "Age_Wagers_SC_Special";
                     break;
+                case "parlay":
+                    settingKey = "Age_Wagers_SC_9_29";
+                    break;
                 default:
                     settingKey = "Age_Wagers_SC_2_12_6";
                     break;

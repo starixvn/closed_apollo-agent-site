@@ -90,6 +90,7 @@
     <Compile Include="ViewModels\Others\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Others\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Others\StraightViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Soccer\TotalViewModel.cs" />
     <Compile Include="ViewModels\Soccer\RunningBallViewModel.cs" />
