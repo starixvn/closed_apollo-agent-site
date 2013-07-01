@@ -23,7 +23,9 @@ if (typeof jQuery != 'undefined') {
                     $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
                     $("#simple-mode").hide();
                     $("#advanced-mode").show();
-                    $('#edit-warning').show();
+                    if (DEFAULT_LAYOUT.isMaster) {
+                        $('#edit-warning').show();
+                    }
                 }
                 else {
                     $("#page_main").addClass("advanced-mode-share-setting-width").removeClass("simple-mode-share-setting-width");
@@ -76,7 +78,9 @@ if (typeof jQuery != 'undefined') {
                 $("#advanced-mode").unbind("click").click(function () {
                     EDITPOSITIONTAKING.initOthers(false);
                 });
-                $('#tbl-edit').show();
+                if (DEFAULT_LAYOUT.isMaster) {
+                    $('#tbl-edit').show();
+                }
 
             },
             updatePositionTakingSetting: function () {
