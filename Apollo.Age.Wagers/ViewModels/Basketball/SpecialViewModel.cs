@@ -9,11 +9,15 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
+    using Apollo.Age.Services;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SpecialViewModel : WagerViewModel
     {
+        public int MatchId { get; set; }
+
         public int Bettype { get; set; }
 
         public decimal Stake { get; set; }
@@ -21,5 +25,13 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public long Count { get; set; }
 
         public byte Type { get; set; }
+
+        public string BetName
+        {
+            get
+            {
+                return CacheRef.GetBettype(this.Bettype);
+            }
+        }
     }
 }

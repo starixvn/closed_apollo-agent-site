@@ -27,7 +27,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId)
         {
             var criteria = new BasketballCriteria
             {
@@ -35,7 +35,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 Sporttypes = sportTypes
             };
@@ -47,7 +47,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId)
         {
             var criteria = new BasketballCriteria
             {
@@ -55,7 +55,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 Sporttypes = sportTypes
             };
@@ -67,7 +67,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId)
         {
             var criteria = new BasketballCriteria
             {
@@ -75,7 +75,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 Sporttypes = sportTypes
             };
@@ -87,7 +87,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId)
         {
             var criteria = new BasketballCriteria
             {
@@ -95,7 +95,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 Sporttypes = sportTypes
             };
@@ -107,7 +107,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId)
         {
             var criteria = new BasketballCriteria
             {
@@ -115,7 +115,7 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
                 Sporttypes = sportTypes
             };
