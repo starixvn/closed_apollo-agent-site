@@ -558,5 +558,6 @@
         <Setting Key="Age_Wagers_BK_1_3_RunBall" SpName="Age_Wagers_BK_1_3_RunBall" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_7_8_12" SpName="Age_Wagers_BK_7_8_12" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_BK_9_29" SpName="Age_Wagers_BK_9_29" DbName="SVRAGE.RepDB"/>
     </Function>
 </Functions>
