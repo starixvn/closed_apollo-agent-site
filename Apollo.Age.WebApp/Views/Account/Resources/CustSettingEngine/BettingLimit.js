@@ -46,11 +46,11 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                 var maxBet = parseFloat(item.maxBetElement.value, true);
                 var maxPerMatch = parseFloat(item.maxPerMatchElement.value, true);
                 if (minBet > maxPerMatch) {
-                    Fanex.ValidateMessage(item.minBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
+                    Fanex.ValidateMessage(item.maxPerMatchElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
                 if (maxBet > maxPerMatch) {
-                    Fanex.ValidateMessage(item.maxBetElement, Language.MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
+                    Fanex.ValidateMessage(item.maxPerMatchElement, Language.MAX_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
                 if (minBet > maxBet) {
