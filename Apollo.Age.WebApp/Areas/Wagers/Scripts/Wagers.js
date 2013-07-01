@@ -32,10 +32,11 @@ var Wagers = function ($) {
             }
 
             if (Wagers.sportName.toLowerCase() != "soccer") {
-                Wagers.sportName = "basketball";
+                Wagers.url = "~/wagers/basketball/" + Wagers.groupBetName;
             }
-
-            Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+            else {
+                Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+            }
 
             Wagers.getWagerData();
 
@@ -62,7 +63,7 @@ var Wagers = function ($) {
                 Wagers.getWagerData();
             });
 
-            $('#EmDate').on('change', function () {                
+            $('#EmDate').on('change', function () {
                 Wagers.fromDate = $(this).val();
                 Wagers.getWagerData();
             });
@@ -90,5 +91,5 @@ var Wagers = function ($) {
 } (jQuery);
 
 $(function () {
-    Wagers.init();   
+    Wagers.init();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

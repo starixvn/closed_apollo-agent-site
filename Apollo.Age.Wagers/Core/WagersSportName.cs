@@ -14,7 +14,7 @@ namespace Apollo.Age.Wagers.Core
     using System.Linq;
     using System.Text;
     using Apollo.Age.Resources;
-
+    using Apollo.Age.Core;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -31,5 +31,19 @@ namespace Apollo.Age.Wagers.Core
         public const string Tennis = "tennis";
 
         public const string Volleyball = "volleyball";
+
+        public static Dictionary<string, string> WagerSportGroup()
+        {
+            var listOfSportType = new Dictionary<string, string>();
+
+            listOfSportType.Add("soccer", SportGroup.Soccer);
+            listOfSportType.Add("basketball", SportGroup.Basketball_Football_Rugy);
+            listOfSportType.Add("volleyball", SportGroup.Volleyball_Badminton_TableTennis);
+            listOfSportType.Add("tennis", SportGroup.Tennis);
+            listOfSportType.Add("baseball", SportGroup.BaseBall);
+            listOfSportType.Add("others", SportGroup.Others);
+
+            return listOfSportType;
+        }
     }
 }

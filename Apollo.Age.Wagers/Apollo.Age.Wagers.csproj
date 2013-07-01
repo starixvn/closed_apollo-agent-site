@@ -64,6 +64,7 @@
     <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Core\WagersSportName.cs" />
     <Compile Include="Criterias\Basketball\BasketballCriteria.cs" />
+    <Compile Include="Criterias\GetEventDateCriteria.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Criterias\GetMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\Soccer\SoccerCriteria.cs" />

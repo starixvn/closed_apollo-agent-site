@@ -257,7 +257,7 @@
         {
             if (sport.Id != Apollo.Age.Core.SportGroup.All)
             {
-                if (sport.Id == Apollo.Age.Core.SportGroup.Other)
+                if (sport.Id == Apollo.Age.Core.SportGroup.Others)
                 {							
     <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
                 }
@@ -293,15 +293,7 @@
         }
 }
 
-<<<<<<< HEAD
-=======
-                    break;
-                }
 
-            }
-        }
-    </ul>
-}
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
     <div id="header_main">@title</div>
@@ -365,4 +357,4 @@
         }
     </td>
 }
->>>>>>> 6f2baeacbf98ac419b3d057412556472cf167cd7
+

@@ -44,7 +44,7 @@ namespace Apollo.Age.Services.Impl
                     Name = Lang.Baseball
                 },
                 new SingbetSport{
-                    Id = SportGroup.Other,
+                    Id = SportGroup.Others,
                     Name = isOther ? Lang.other : Lang.InterEvent
                 }
             };
