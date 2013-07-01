@@ -372,7 +372,7 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(jsString);
         }
 
-        [HttpPost]
+        [HttpPost, CustomValidateAntiForgeryToken]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);

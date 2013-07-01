@@ -20,7 +20,7 @@
             {
                 @Lang.MemberDetailEdit 
             }
-            -- @Lang.enterusername : <strong>@userName</strong> -- <a href="javascript:void(0);"
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername : <strong>@userName</strong> &nbsp;&nbsp;&nbsp;&nbsp;-- <a href="javascript:void(0);"
                 id="simple-mode" style="display: none;">@Lang.simplemode</a> <a href="javascript:void(0);"
                     id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
         </div>
@@ -64,12 +64,20 @@
 else
 {
     @Html.Action("Index", "Instruction", new
-{
-    key = "MemberShareSetting",
-    trigger = "member-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+    {
+        key = "MemberShareSetting",
+        trigger = "member-share-setting-info-button",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+    @Html.Action("Index", "Instruction", new
+    {
+        key = "MemberShareSettingAdv",
+        trigger = "member-share-setting-info-button-adv",
+        title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+        tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    })
+
 }
 @section scripts
 {
@@ -84,5 +92,5 @@ else
         
         <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
     }
-    <script src="~/views/account/resources/editpositiontaking.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/editpositiontakingjs")
 }

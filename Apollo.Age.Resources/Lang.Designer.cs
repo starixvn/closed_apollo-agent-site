@@ -620,7 +620,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} position taking setting is being applied to:.
+        ///   Looks up a localized string similar to {0} share setting is being applied to:.
         /// </summary>
         public static string copyAllHint {
             get {

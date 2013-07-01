@@ -134,19 +134,19 @@
 <div id="function-bar">
     <div class="item detail-information">
         @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit)
-        -- @Lang.enterusername : <strong>@userName</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername: <strong>@userName</strong>
         @{
             
             if (!isViewMySetting)
             {
                 if (canEdit)
                 {
-                @:-- <a href="@editLink">@Lang.edit </a>
+                @:&nbsp;&nbsp;-- <a href="@editLink">@Lang.edit </a>
                 }
         
                 if (!fromLeftMenu)
                 {
-                    @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
+                    @:&nbsp;&nbsp;-- <a href="javascript:void(0);" id="back-link">@Lang.back
                 }
             }
         

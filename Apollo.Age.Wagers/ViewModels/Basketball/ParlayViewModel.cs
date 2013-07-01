@@ -14,28 +14,16 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// </summary>
     public class ParlayViewModel : WagerViewModel
     {
-        public decimal HomeStakeHDP { get; set; }
+        public int HomeId { get; set; }
 
-        public decimal AwayStakeHDP { get; set; }
+        public int AwayId { get; set; }
 
-        public decimal HomeStakeOE { get; set; }
+        public decimal Stake9 { get; set; }
 
-        public decimal AwayStakeOE { get; set; }
+        public decimal Stake29 { get; set; }
 
-        public decimal HomeStakeOU { get; set; }
+        public int Count9 { get; set; }
 
-        public decimal AwayStakeOU { get; set; }
-
-        public int HomeCountHDP { get; set; }
-
-        public int AwayCountHDP { get; set; }
-
-        public int HomeCountOE { get; set; }
-
-        public int AwayCountOE { get; set; }
-
-        public int HomeCountOU { get; set; }
-
-        public int AwayCountOU { get; set; }
+        public int Count29 { get; set; }
     }
 }

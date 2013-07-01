@@ -885,7 +885,7 @@
     <value>Copy all below bet limit from {0}</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
-    <value>{0} position taking setting is being applied to:</value>
+    <value>{0} share setting is being applied to:</value>
   </data>
   <data name="copyAllPositionTakingFrom" xml:space="preserve">
     <value>Copy all below share settings from {0} {1}</value>
