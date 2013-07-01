@@ -52,12 +52,6 @@
 	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })
 
-@Html.Action("Index", "Instruction", new {
-	key = "MemberShareSettingAdv",
-    trigger = "member-share-setting-info-button-adv",
-	title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
 
 @section scripts
 {
@@ -69,5 +63,5 @@
         }();
 	</script>
 	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
-	<script src="~/views/account/resources/editsetting.js" type="text/javascript"></script>
+	@Scripts.Render("~/scripts/editsettingjs")
 }

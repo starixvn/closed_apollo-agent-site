@@ -97,6 +97,11 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/Core.js"));
 
+            #region Customer Setting
+            bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
+                "~/views/account/resources/editsetting.js"));
+            bundles.Add(new ScriptBundle("~/scripts/editpositiontakingjs").Include(
+                "~/views/account/resources/editpositiontaking.js"));
             bundles.Add(new ScriptBundle("~/scripts/custsettingjs").Include(
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
@@ -110,7 +115,8 @@ namespace Apollo.Age.WebApp
                 "~/Views/Account/Resources/CustSettingEngine/BetType.js",
                 "~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js",
                 "~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js"));
-
+            #endregion
+            
             bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
