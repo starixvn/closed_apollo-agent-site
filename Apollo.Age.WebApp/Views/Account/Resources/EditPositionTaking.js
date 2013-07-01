@@ -45,6 +45,18 @@ if (typeof jQuery != 'undefined') {
                 $("#btnSubmitFooter").unbind('click').click(function () {
 
                     if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
+
+                        var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
+                        if (postionTakingValue == null) {
+                            noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                            return;
+                        }
+
+                        if (!EDITPOSITIONTAKING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
+                            noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                            return;
+                        }
+                        
                         var stringConfirm = "";
                         if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
                             stringConfirm = Language.CONFIRM_WRITE_MEMBER;
@@ -54,7 +66,7 @@ if (typeof jQuery != 'undefined') {
                         }
                         var c = confirm(stringConfirm);
                         if (c == true) {
-                            EDITPOSITIONTAKING.updatePositionTakingSetting();
+                            EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
                         }
                     }
 
@@ -83,12 +95,8 @@ if (typeof jQuery != 'undefined') {
                 }
 
             },
-            updatePositionTakingSetting: function () {
-                var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
-                if (postionTakingValue == null) {
-                    noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
-                    return;
-                }
+            updatePositionTakingSetting: function (postionTakingValue) {
+                
 
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
