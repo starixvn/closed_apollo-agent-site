@@ -1,48 +1,34 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@using Apollo.Age.Web.Mvc
+@model List<FirstHalfViewModel>
 <table class="tblRpt soccer">
-    <thead>
-        <tr class="RptHeader">
-            <th style="width: 100px;">
-                @Lang.time
-            </th>
-            <th style="width: 300px;">
-                @Lang.league
-            </th>
-            <th style="width: 300px;">
-                Match Code
-            </th>
-            <th style="width: 100px;" class="nowrap">
-                @Lang.homeaway
-            </th>
-            <th style="width: 100px;" class="nowrap">
-                @Lang.lblHandicapWager
-            </th>
-            <th style="width: 100px;" class="nowrap">
-               @Lang.lblOverUnderWager
-            </th>
-            <th style="width: 100px;" class="nowrap">
-                @Lang.lbl1x2Wager
-            </th>
-        </tr>
-    </thead>
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                    , Lang.lblOverUnderWager
+                    , Lang.lblOddEvenWagers)
     <tbody>
-        <tr class="c">
-            <td class="width-80">
-            </td>
-            <td>
-            </td>
-            <td class="l">
-            </td>
-            <td>
-            </td>
-            <td class="border-right">
-            </td>
-            <td class="border-right">
-            </td>
-            </td>
-            <td class="border-right">
-            </td>
-        </tr>
+        @Model.List(
+                            @<tr class="c">
+                                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
+                                <td class="r">
+                                    @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
+                                    <br />
+                                    @((int)item.AwayCountHTHDP)/@((int)item.AwayCountHTHDP)
+                                </td>
+                                <td class="r">
+                                    @((int)item.HomeCountHTOU)/@((int)item.HomeStakeHTOU)
+                                    <br />
+                                    @((int)item.AwayCountHTOU)/@((int)item.AwayStakeHTOU)
+                                </td>
+                                <td class="r">
+                                    @((int)item.CountHT1)/@((int)item.StakeHT1)
+                                    <br />
+                                    @((int)item.CountHT2)/@((int)item.StakeHT2)
+                                    <br />
+                                    @((int)item.CountHTX)/@((int)item.StakeHTX)
+                                </td>
+                            </tr>
+                       )
     </tbody>
 </table>
