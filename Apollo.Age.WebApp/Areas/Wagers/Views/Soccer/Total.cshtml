@@ -10,10 +10,10 @@
         @<tr class="c">                           
               @WagerHelper.RenderBaseColumns(item)
             <td>
-                            
+              @((int)item.HomeCountOE)/@((int)item.HomeStakeHTOE)
             </td>
             <td>
-
+            @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
             </td>
             <td>
                 @((int)item.Total01Count)/@((int)item.Total01Stake)
