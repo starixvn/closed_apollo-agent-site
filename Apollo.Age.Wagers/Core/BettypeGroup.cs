@@ -1,7 +1,16 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------
+// <copyright file="BettypeGroup.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.7.1">Created</change>
+// </history>
 
 namespace Apollo.Age.Wagers.Core.BettypeGroup
 {
+    using System.Collections.Generic;
+
     public static class Soccer
     {
         public const string Straight = "1, 3, 5";
@@ -18,15 +27,15 @@ namespace Apollo.Age.Wagers.Core.BettypeGroup
         {
             var listOfBettype = new Dictionary<string, string>();
 
-            listOfBettype.Add("Straight", Soccer.Straight);
-            listOfBettype.Add("FirstHalf", Soccer.FirstHalf);
-            listOfBettype.Add("RunningBall", Soccer.RunningBall);
-            listOfBettype.Add("SpecialBet", Soccer.SpecialBet);
-            listOfBettype.Add("CorrectScore", Soccer.CorrectScore);
-            listOfBettype.Add("FirstHalfCorrectScore", Soccer.FirstHalfCorrectScore);
-            listOfBettype.Add("HalfFull", Soccer.HalfFull);
-            listOfBettype.Add("Total", Soccer.Total);
-            listOfBettype.Add("Parlay", Soccer.Parlay);
+            listOfBettype.Add("straight", Soccer.Straight);
+            listOfBettype.Add("firsthalf", Soccer.FirstHalf);
+            listOfBettype.Add("runningball", Soccer.RunningBall);
+            listOfBettype.Add("specialbet", Soccer.SpecialBet);
+            listOfBettype.Add("correctscore", Soccer.CorrectScore);
+            listOfBettype.Add("firsthalfcorrectscore", Soccer.FirstHalfCorrectScore);
+            listOfBettype.Add("halffull", Soccer.HalfFull);
+            listOfBettype.Add("total", Soccer.Total);
+            listOfBettype.Add("parlay", Soccer.Parlay);
 
             return listOfBettype;
         }
@@ -44,11 +53,11 @@ namespace Apollo.Age.Wagers.Core.BettypeGroup
         {
             var listOfBettype = new Dictionary<string, string>();
 
-            listOfBettype.Add("Straight", Basketball.Straight);
-            listOfBettype.Add("FirstHalf", Basketball.FirstHalf);
-            listOfBettype.Add("RunningBall", Basketball.RunningBall);
-            listOfBettype.Add("SpecialBet", Basketball.SpecialBet);
-            listOfBettype.Add("Parlay", Basketball.Parlay);
+            listOfBettype.Add("straight", Basketball.Straight);
+            listOfBettype.Add("firsthalf", Basketball.FirstHalf);
+            listOfBettype.Add("runningball", Basketball.RunningBall);
+            listOfBettype.Add("specialbet", Basketball.SpecialBet);
+            listOfBettype.Add("parlay", Basketball.Parlay);
 
             return listOfBettype;
         }

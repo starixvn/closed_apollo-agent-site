@@ -240,6 +240,27 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetRootNode()
+        {
+            var criteria = new AgentDownlineCriteria()
+            {
+                AgentId = this.CurrentSession.AgentId
+            };
+
+            var agentList = _accountService.GetDirectDownline(criteria);
+            var hasAgentDownline = agentList == null ? false : (agentList.Count > 0);
+            var agent= new Agent{  
+                Id = this.CurrentSession.AgentId,
+                Username = this.CurrentSession.AgentName,
+                HasAgentDownline = hasAgentDownline
+            };
+
+            var rootList = new List<Agent>();
+            rootList.Add(agent);
+
+            return Json(rootList.Select(x => new { x.Id, x.Username, x.HasAgentDownline }), JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
             var criteria = new GetAgentByUsernameCriteria()

@@ -719,6 +719,7 @@
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
+    <Content Include="Views\BetList\Outstanding.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />

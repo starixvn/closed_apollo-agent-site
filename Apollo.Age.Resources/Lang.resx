@@ -1576,7 +1576,7 @@
     <value>Name</value>
   </data>
   <data name="AgencyDetailEdit" xml:space="preserve">
-    <value>Agent detailed edit</value>
+    <value>Agent detailed</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1618,7 +1618,7 @@
     <value>Confirm write this member?</value>
   </data>
   <data name="MemberDetailEdit" xml:space="preserve">
-    <value>Member detailed edit</value>
+    <value>Member detailed</value>
   </data>
   <data name="DirectMembers" xml:space="preserve">
     <value>Direct members</value>
