@@ -1,25 +1,9 @@
-﻿@{
-    Layout = null;
-}
-
-<link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-<link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-
-<br />
-
+﻿@using Apollo.Age.Resources
 
 <table class="tblRpt other" style="width:850px;">
-    <thead>
-        <tr>
-            <th>@Apollo.Age.Resources.Lang.time</th>
-            <th>@Apollo.Age.Resources.Lang.league</th>
-            <th>@Apollo.Age.Resources.Lang.lblNo.#</th>
-            <th>@Apollo.Age.Resources.Lang.homeaway</th>
-            <th>@Apollo.Age.Resources.Lang.lblHandicapFC / @Apollo.Age.Resources.Lang.lblWager</th>
-            <th>@Apollo.Age.Resources.Lang.lblOverUnder / @Apollo.Age.Resources.Lang.lblWager</th>
-            <th>@Apollo.Age.Resources.Lang.lbl1x2 / @Apollo.Age.Resources.Lang.lblWager</th>
-        </tr>
-    </thead>
+   @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                    , Lang.lblOverUnderWager
+                    , Lang.lblOddEvenWagers)
 
     <tbody>
         

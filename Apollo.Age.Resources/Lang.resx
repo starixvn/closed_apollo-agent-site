@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Bet Max should be less than or equal to Single Game</value>
+    <value>{0} - The Single Game should be greater than or equal to Single Bet Max  </value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
     <value>{0} - The Single Bet Min should be less than or equal to Single Bet Max</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Bet Min should be less than or equal to Single Game</value>
+    <value>{0} - The Single Game should be greater than or equal to Single Bet Min</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
