@@ -124,9 +124,20 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult Parlay()
+        public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember, int mainShareHolderId, int leagueId)
         {
-            return View();
+            var criteria = new SoccerCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+            var result = _WagerService.GetWagerData<ParlayViewModel>(criteria);
+
+            return View(result);
         }
 
         public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int mainShareHolderId, int leagueId)
