@@ -15,6 +15,7 @@ namespace Apollo.Age.Wagers.Services
     using System.Text;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Wagers.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,7 +26,7 @@ namespace Apollo.Age.Wagers.Services
 
         IEnumerable<Agent> GetMainShareHolder(string betTypes);
 
-        IEnumerable<T> GetWagerData<T>(ICriteria criteria);
+        IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria);
 
         IEnumerable<DateTime> GetEventDate(string sportTypes);
     }
