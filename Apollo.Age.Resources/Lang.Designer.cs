@@ -3428,7 +3428,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Max should be less than or equal to Single Game.
+        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Single Bet Max  .
         /// </summary>
         public static string maxBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3554,7 +3554,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Min should be less than or equal to Single Game.
+        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Single Bet Min.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
