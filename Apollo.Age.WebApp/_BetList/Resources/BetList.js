@@ -159,25 +159,25 @@ if (typeof jQuery != "undefined") {
 	} (jQuery);
 
 	$(document).ready(function () {
-		BETLIST.init();
+	    BETLIST.init();
 
-		var viewDetailsLinks = $(".view-detail");
-		var submit = $(".act-submit");
+	    var viewDetailsLinks = $(".view-detail");
+	    var submit = $(".act-submit");
 
-		viewDetailsLinks.click(function () {
-			var fromDate = toDate = type = "";
+	    viewDetailsLinks.click(function () {
+	        var fromDate = toDate = type = "";
 
-			if (typeof ($("#fromDate").val()) !== 'undefined') {
-				fromDate = $("#fromDate").val();
-			}
-			if (typeof ($("#toDate").val()) !== 'undefined') {
-				toDate = $("#toDate").val();
-			}
-			if (typeof ($("#type").val()) !== 'undefined') {
-				type = $("#type").val();
-			}
+	        if (typeof ($("#fromDate").val()) !== 'undefined') {
+	            fromDate = $("#fromDate").val();
+	        }
+	        if (typeof ($("#toDate").val()) !== 'undefined') {
+	            toDate = $("#toDate").val();
+	        }
+	        if (typeof ($("#type").val()) !== 'undefined') {
+	            type = $("#type").val();
+	        }
 
-			var $this = $(this),
+	        var $this = $(this),
 				transId = $this.attr("tid"),
 				fromDate = fromDate,
 				toDate = toDate,
@@ -187,83 +187,83 @@ if (typeof jQuery != "undefined") {
 					"&toDate=" + toDate +
 					"&type=" + type;
 
-			var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;
+	        var title = _page.titleViewComm + " - " + _page.refNo + ": " + transId;                
 
-			APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
+	        APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
 				title, { width: 450, height: 450, modal: false });
 
-			return false;
-		});
+	        return false;
+	    });
 
-		if (submit.length > 0) {
-			submit.click(function () {
-				$("#frmBetList").submit();
-			});
-		}
-		if (typeof ($("#username").val()) !== 'undefined') {
-			$("#username").autocomplete({
-				source: function (request, response) {
-					var url = "";
-					if ($("#userType").val() == "0") {
-						url = "Account/GetMemberByUsername?username=" + request.term;
-					}
-					else {
-						url = "Account/GetAgentByUsername?username=" + request.term;
-					}
+	    if (submit.length > 0) {
+	        submit.click(function () {
+	            $("#frmBetList").submit();
+	        });
+	    }
+	    if (typeof ($("#username").val()) !== 'undefined') {
+	        $("#username").autocomplete({
+	            source: function (request, response) {
+	                var url = "";
+	                if ($("#userType").val() == "0") {
+	                    url = "Account/GetMemberByUsername?username=" + request.term;
+	                }
+	                else {
+	                    url = "Account/GetAgentByUsername?username=" + request.term;
+	                }
 
-					$.ajax({
-						url: APOLLO.resolveUrl(url),
-						success: function (data) {
-							var found = $.map(data, function (item) {
-								return {
-									value: item.Username
-								}
-							});
-							return response(found);
-						}
-					});
-				},
-				position: { my: "right top", at: "right bottom" }
-			});
-		}
+	                $.ajax({
+	                    url: APOLLO.resolveUrl(url),
+	                    success: function (data) {
+	                        var found = $.map(data, function (item) {
+	                            return {
+	                                value: item.Username
+	                            }
+	                        });
+	                        return response(found);
+	                    }
+	                });
+	            },
+	            position: { my: "right top", at: "right bottom" }
+	        });
+	    }
 
-		if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
-			$("#ddlMainShareHolder").change(function () {
-				var $this = $(this);
-				var markIndex = document.location.href.indexOf('?');
-				var link = document.location.href;
-				if (markIndex > 0) {
-					var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
-					if (markIndexShareHolderId > 0) {
-						link = document.location.href.substring(0, markIndexShareHolderId);
-					}
-					link = link + "&mainShareHolderId=" + $this.val();
-				}
-				document.location.href = link;
-			});
-		}
+	    if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
+	        $("#ddlMainShareHolder").change(function () {
+	            var $this = $(this);
+	            var markIndex = document.location.href.indexOf('?');
+	            var link = document.location.href;
+	            if (markIndex > 0) {
+	                var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
+	                if (markIndexShareHolderId > 0) {
+	                    link = document.location.href.substring(0, markIndexShareHolderId);
+	                }
+	                link = link + "&mainShareHolderId=" + $this.val();
+	            }
+	            document.location.href = link;
+	        });
+	    }
 
-		$(".navigation").bind('click', function () {
-			var fromDate = toDate = type = "";
+	    $(".navigation").bind('click', function () {
+	        var fromDate = toDate = type = "";
 
-			if (typeof ($("#fromDate").val()) !== 'undefined') {
-				fromDate = $("#fromDate").val();
-			}
-			if (typeof ($("#toDate").val()) !== 'undefined') {
-				toDate = $("#toDate").val();
-			}
-			if (typeof ($("#type").val()) !== 'undefined') {
-				type = $("#type").val();
-			}
+	        if (typeof ($("#fromDate").val()) !== 'undefined') {
+	            fromDate = $("#fromDate").val();
+	        }
+	        if (typeof ($("#toDate").val()) !== 'undefined') {
+	            toDate = $("#toDate").val();
+	        }
+	        if (typeof ($("#type").val()) !== 'undefined') {
+	            type = $("#type").val();
+	        }
 
-			if (type == "report") {
-				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
+	        if (type == "report") {
+	            var url = APOLLO.resolveUrl('Reports/AgentWinLoss?id=' + $(this).attr("agentid") + "&name=" + $(this).html()
 					+ '&fromDate=' + fromDate + "&toDate=" + toDate);
-				location.href = url;
-			}
-			else {
-				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
-			}
-		});
+	            location.href = url;
+	        }
+	        else {
+	            location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+	        }
+	    });
 	});
 }

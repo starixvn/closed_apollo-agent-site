@@ -426,4 +426,10 @@
   <data name="feature" xml:space="preserve">
     <value>Feature</value>
   </data>
+  <data name="Comm" xml:space="preserve">
+    <value>Comm</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>
