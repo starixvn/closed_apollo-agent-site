@@ -3347,7 +3347,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Win Loss.
+        ///   Looks up a localized string similar to Win/Loss.
         /// </summary>
         public static string lblWinLoss {
             get {
@@ -3869,7 +3869,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other.
+        ///   Looks up a localized string similar to Others.
         /// </summary>
         public static string other {
             get {
