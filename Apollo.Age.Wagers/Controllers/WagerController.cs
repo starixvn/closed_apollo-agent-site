@@ -49,18 +49,18 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 case WagersSportName.Soccer:
                     {
-                        if (Soccer.ListOfBettype().ContainsKey(groupBetName))
+                        if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
                         {
-                            groupBetName = Soccer.ListOfBettype()[groupBetName]; 
+                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()]; 
                         }
                         
                         break;
                     }
                 default:
                     {
-                        if (Basketball.ListOfBettype().ContainsKey(groupBetName))
+                        if (Basketball.ListOfBettype().ContainsKey(groupBetName.ToLower()))
                         {
-                            groupBetName = Basketball.ListOfBettype()[groupBetName];
+                            groupBetName = Basketball.ListOfBettype()[groupBetName.ToLower()];
                         }
                         break;
                     }
