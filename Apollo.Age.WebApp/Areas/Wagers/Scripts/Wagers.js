@@ -6,7 +6,7 @@ var Wagers = function ($) {
         sportName: null,
         groupBetName: null,
         viewOption: 0,        
-        isDirectMember: false,
+        isDirectMember: true,
         league: null,
         fromDate: null,
         groupComm: null,
@@ -22,7 +22,7 @@ var Wagers = function ($) {
             Wagers.sportTypeIds = $('#SportTypeIds').val();
 
             if (Wagers.viewOption > 0) {
-                Wagers.isDirectMember = true;
+                Wagers.isDirectMember = false;
             }
             else {
                 Wagers.isDirectMembe = (Wagers.viewOption == 0);
