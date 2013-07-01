@@ -546,6 +546,8 @@
     <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB">
       <Mapping DataField="LeagueId" ObjectProperty="Id" />
     </Setting>
+    <Setting Key="Age_Wagers_SelDateBySports" SpName="Age_Wagers_SelDateBySports" DbName="SVRAGE.RepDB">      
+    </Setting>    
   </Function>
   <Function Name="Wagers-Soccer">
 
