@@ -9,6 +9,8 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
+    using Apollo.Age.Services;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -23,5 +25,13 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public long Count { get; set; }
 
         public byte Type { get; set; }
+
+        public string BetName
+        {
+            get
+            {
+                return CacheRef.GetBettype(this.Bettype);
+            }
+        }
     }
 }
