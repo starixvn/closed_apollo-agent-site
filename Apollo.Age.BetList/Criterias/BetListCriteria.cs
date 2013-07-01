@@ -45,7 +45,9 @@ namespace Apollo.Age.BetList.Criterias
 
         public string StatusIds { get; set; }
 
-        public string Bettypes { get; set; }
+        public string BetTypes { get; set; }
+
+        public string SportTypes { get; set; }
 
         public string BetTeam { get; set; }
 

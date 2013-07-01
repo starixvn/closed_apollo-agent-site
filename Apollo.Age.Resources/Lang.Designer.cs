@@ -124,7 +124,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent detailed edit.
+        ///   Looks up a localized string similar to Agent detailed.
         /// </summary>
         public static string AgencyDetailEdit {
             get {
@@ -3347,7 +3347,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Win Loss.
+        ///   Looks up a localized string similar to Win/Loss.
         /// </summary>
         public static string lblWinLoss {
             get {
@@ -3509,7 +3509,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member detailed edit.
+        ///   Looks up a localized string similar to Member detailed.
         /// </summary>
         public static string MemberDetailEdit {
             get {
@@ -3869,7 +3869,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Other.
+        ///   Looks up a localized string similar to Others.
         /// </summary>
         public static string other {
             get {

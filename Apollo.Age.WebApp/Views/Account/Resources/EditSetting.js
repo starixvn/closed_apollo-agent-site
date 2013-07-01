@@ -65,8 +65,9 @@ if (typeof jQuery != 'undefined') {
                 //                    EDITSETTING.currentIsSimpleMode = false;
                 //                    EDITSETTING.initOthers(false);
                 //                });
-
-                $('#tbl-edit').show();
+                if (DEFAULT_LAYOUT.isMaster) {
+                    $('#tbl-edit').show();
+                }
                 $('#btnCancelFooter').show();
             },
             saveSetting: function () {

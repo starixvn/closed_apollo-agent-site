@@ -6,13 +6,16 @@
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentId = ViewBag.AgentId ?? 0;
+    var isMaster = ViewBag.IsMaster ?? false;
     string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);
 }
 @section header
 {
     <div id="function-bar">
         <div class="item detail-information">
-            @Lang.AgencyDetailEdit &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername: <strong>@userName</strong> @*-- <a
+            @Lang.AgencyDetailEdit 
+            @(isMaster ? Lang.edit.ToLower() : string.Empty)
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername: <strong>@userName</strong> @*-- <a
             href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a><a
                 href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>*@
         </div>

@@ -17,6 +17,11 @@ namespace Fanex.BetList.Core.Entities
         Forecast = 1,
 
         /// <summary>
+        /// Link from report Outstanding page
+        /// </summary>
+        Outstanding = 4,
+
+        /// <summary>
         /// Link from report page
         /// </summary>
         Report = 2,

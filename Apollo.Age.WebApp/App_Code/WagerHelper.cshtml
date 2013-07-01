@@ -12,7 +12,7 @@
 @using System.Resources
 @using Apollo.Age.Wagers.ViewModels
 @using Apollo.Age.Web.Mvc
-@helper RenderMenu(string controller, string groupBetName)
+@helper RenderMenu(string controller, string groupBetName, bool isEM)
     {
         var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         var xDocument = WagerMenusConfiguration.MenuConfig;
@@ -35,7 +35,7 @@
                         string resourceKey = itemBettype.Attribute("ResourceKey").Value;
 						
             <li class="@(string.Compare(groupBetName, tempAction, true) == 0 ? "active" : string.Empty)">
-                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey" target="main">@resMgr.GetString(resourceKey)</a>
+                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey&isEM=@(isEM ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
             </li>                           
                     }
 

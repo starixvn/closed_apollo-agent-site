@@ -40,6 +40,23 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
+        public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember, int mainShareHolderId, int leagueId)
+        {
+            var criteria = new SoccerCriteria
+            {
+                FromDate = fromDate,
+                IsDirectMem = isDirectMember,
+                LeagueId = leagueId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
+                UGroup = uGroup,
+                GroupBetName = this.CurrentAction
+            };
+
+            var result = _WagerService.GetWagerData<FirstHalfViewModel>(criteria);
+
+            return View(result);
+        }
+
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int mainShareHolderId, int leagueId)
         {
             var criteria = new SoccerCriteria
