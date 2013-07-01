@@ -3,46 +3,18 @@
 @using Apollo.Age.Web.Mvc
 @model List<SpecialViewModel>
 <table class="tblRpt basketball">
-    <thead>
-        <tr class="RptHeader">
-            <th style="width: 40px;">
-                @Lang.time
-            </th>
-            <th>
-                @Lang.league
-            </th>
-            <th class="nowrap">
-                @Lang.moneyline
-            </th>
-        </tr>
-    </thead>
+    @WagerHelper.RederHeaderColumn(Lang.moneyline)
+    @*/RenderHeader*@
     <tbody>
-        @if (!ReferenceEquals(Model, null)
-        && Model.Any())
-        {
-            foreach (var item in Model)
-            {
-            <tr class="c">
-                <td class="width-40 show-time">
-                    @Html.FormatShowTime(item.Showtime, true)
-                    @if (item.LiveIndicator)
-                    {
-                        <span class="red-num">@Lang.RunningBall</span>
-                    }
-                </td>
-                <td class="l">
-                    @item.LeagueName
-                </td>
-                <td class="border-right">
-                    <div class="r red-num">
-                        @((int)item.HomeCountMoney)/@((int)item.HomeStakeMoney)
-                    </div>
-                    <div class="r red-num">
-                        @((int)item.AwayCountMoney)/@((int)item.AwayStakeMoney)
-                    </div>
+        @Model.List(
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item)
+                <td class="border-right r red-num">
+                    @((int)item.HomeCountMoney)/@((int)item.HomeStakeMoney)
+                    <br />
+                    @((int)item.AwayCountMoney)/@((int)item.AwayStakeMoney)
                 </td>
             </tr>
-            }
-        }
+            )
     </tbody>
 </table>

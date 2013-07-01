@@ -552,11 +552,14 @@
         <Setting Key="Age_Wagers_SC_7_8_15" SpName="Age_Wagers_SC_7_8_15" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_2_12_6" SpName="Age_Wagers_SC_2_12_6" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_Special" SpName="Age_Wagers_SC_Special" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_SC_9_29" SpName="Age_Wagers_SC_9_29" DbName="SVRAGE.RepDB"/>
+      
     </Function>
     <Function Name="Wagers-Basketball">
         <Setting Key="Age_Wagers_BK_1_2_3" SpName="Age_Wagers_BK_1_2_3" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_1_3_RunBall" SpName="Age_Wagers_BK_1_3_RunBall" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_7_8_12" SpName="Age_Wagers_BK_7_8_12" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB"/>
+        <Setting Key="Age_Wagers_BK_9_29" SpName="Age_Wagers_BK_9_29" DbName="SVRAGE.RepDB"/>
     </Function>
 </Functions>

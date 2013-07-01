@@ -1,46 +1,22 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
-}
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@using Apollo.Age.Web.Mvc
+@model List<ParlayViewModel>
 <table class="tblRpt soccer">
-                    <thead>
-                        <tr class="RptHeader">
-                            <th style="width: 50px;">
-                                @Lang.time
-                            </th>                                                     
-                            <th style="width: 200px;" class="nowrap">
-                                @Lang.league
-                            </th>
-                            <th style="width: 50px;" class="nowrap">
-                               @Lang.no
-                            </th>
-                            <th style="width: 300px;" class="nowrap">
-                              @Lang.lblHomeAway
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.lblSystemParlay
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               @Lang.lblMixParlay
-                            </th>                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="c">
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>     
-                            <td>
-                            </td>   
-                            <td>
-                            </td>                               
-                        </tr>
-                    </tbody>
-                </table>
+    @WagerHelper.RederHeaderColumn(Lang.lblMixParlay
+                    , Lang.lblSystemParlay)
+    <tbody>
+        @Model.List(
+                            @<tr class="c">
+                                @WagerHelper.RenderBaseColumns(item)
+                                <td class="r">
+                                    @((int)item.Count9)/@((int)item.Stake9)                                 
+                                </td>
+                                <td class="r">
+                                  @((int)item.Count29)/@((int)item.Stake29)             
+                                </td>                                
+                            </tr>
+                       )
+    </tbody>
+</table>

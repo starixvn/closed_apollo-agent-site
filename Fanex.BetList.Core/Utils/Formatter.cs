@@ -387,7 +387,7 @@ namespace Fanex.BetList.Core.Utils
         public static string FullDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:yyyy-M-dd hh:mm:ss tt}", dt);
+            return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
         }
 
         /// <summary>

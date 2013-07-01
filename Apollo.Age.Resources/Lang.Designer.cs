@@ -2060,6 +2060,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Half Odd.
+        /// </summary>
+        public static string lblfirsthalfOdd {
+            get {
+                return ResourceManager.GetString("lblfirsthalfOdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st Half Even.
+        /// </summary>
+        public static string lblfirsthalfOven {
+            get {
+                return ResourceManager.GetString("lblfirsthalfOven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forecast.
         /// </summary>
         public static string lblForecast {

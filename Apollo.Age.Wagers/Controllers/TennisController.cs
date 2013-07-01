@@ -14,7 +14,7 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Web.Mvc;    
+    using System.Web.Mvc;
     using Apollo.Age.Wagers.ViewModels.Tennis;
     using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias.Tennis;
@@ -87,6 +87,6 @@ namespace Apollo.Age.Wagers.Controllers
             return View();
         }
 
-      
+
     }
 }
