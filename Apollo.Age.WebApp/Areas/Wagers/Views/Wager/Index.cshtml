@@ -8,6 +8,7 @@
     var title = (string)ViewBag.Title;
     var titleAll = (string)ViewBag.TitleAll;
     var lableGroupBet = (string)ViewBag.LableGroupBetName;
+    
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -41,7 +42,7 @@
     @Html.Hidden("FromDate", DateTime.Now.AddDays(-11))@*Sample data - 10 days*@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
     <div class="mainpage">
-        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues)
+        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
         <div id="container">
         </div>
     </div>

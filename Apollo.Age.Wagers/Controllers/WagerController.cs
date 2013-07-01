@@ -20,6 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Wagers.Core.BettypeGroup;
 
     public class WagerController : BaseController
     {
@@ -40,6 +41,34 @@ namespace Apollo.Age.Wagers.Controllers
             var leagues = _WagerService.GetLeague(fromDate, sportTypes);
 
             return leagues != null ? leagues.ToList() : new List<League>();
+        }
+
+        public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
+        {
+            switch (sportName)
+            {
+                case WagersSportName.Soccer:
+                    {
+                        if (Soccer.ListOfBettype().ContainsKey(groupBetName))
+                        {
+                            groupBetName = Soccer.ListOfBettype()[groupBetName]; 
+                        }
+                        
+                        break;
+                    }
+                default:
+                    {
+                        if (Basketball.ListOfBettype().ContainsKey(groupBetName))
+                        {
+                            groupBetName = Basketball.ListOfBettype()[groupBetName];
+                        }
+                        break;
+                    }
+
+            }
+           var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
+ 
+           return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
         public ActionResult Index(string sportName, string groupBetName = "straight", string resourceKey = "lblStraight")
@@ -90,6 +119,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-11), sportTypes);
+            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName,groupBetName) : new List<Agent>()); 
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
