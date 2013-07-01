@@ -2,6 +2,10 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<SpecialViewModel>
+@{
+    var list = Model != null ? Model : new List<SpecialViewModel>();
+    var groupMatch = list.GroupBy(m => m.MatchId);
+}
 <table class="tblRpt @ViewBag.SportName">
     @WagerHelper.RederHeaderColumn(Lang.moneyline)
     @*/RenderHeader*@
