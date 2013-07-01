@@ -17,7 +17,6 @@ var TOTALBETS = function ($) {
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
 					width: 665,
 					height: 250,
-					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
 						parent.RefreshCountDown.setCurrentTimeout();
@@ -40,7 +39,6 @@ var TOTALBETS = function ($) {
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
 					width: 930,
 					height: 720,
-					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
 						parent.RefreshCountDown.setCurrentTimeout();
@@ -65,7 +63,6 @@ var TOTALBETS = function ($) {
 				APOLLO.openDialogFrame(url, title, {
 					width: 930,
 					height: 770,
-					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
 						parent.RefreshCountDown.setCurrentTimeout();
@@ -112,7 +109,6 @@ var TOTALBETS = function ($) {
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
 					width: 600,
 					height: 600,
-					closeText: 'X',
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
 						parent.RefreshCountDown.setCurrentTimeout();

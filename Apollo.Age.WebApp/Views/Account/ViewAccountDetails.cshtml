@@ -11,16 +11,18 @@
     var editLink = string.Empty;
     var canEdit = (bool)ViewBag.CanEdit;
     var isViewMySetting = (bool)ViewBag.IsViewMySetting;
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     if (isViewOnMember)
     {
-        editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}", custId, userName, ViewBag.AgentId));
+        editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}&fromLeftMenu={3}", custId, userName, ViewBag.AgentId, fromLeftMenu));
     }
     else
     {
-        editLink = Url.Content(string.Format("~/CustomerSetting/EditAgentSetting?agentId={0}&userName={1}&agentLevel={2}", custId, userName, ViewBag.AgentLevel));
+        editLink = Url.Content(string.Format("~/CustomerSetting/EditAgentSetting?agentId={0}&userName={1}&agentLevel={2}&fromLeftMenu={3}", custId, userName, ViewBag.AgentLevel, fromLeftMenu));
     }
     string backLink = ViewBag.BackLink ?? string.Empty;
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
+    
 }
 @Html.Hidden("BackLink", backLink)
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
@@ -133,14 +135,22 @@
     <div class="item detail-information">
         @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit)
         -- @Lang.enterusername : <strong>@userName</strong>
-        @if (!isViewMySetting)
-        {
-            if (canEdit)
+        @{
+            
+            if (!isViewMySetting)
             {
-            @:-- <a href="@editLink">@Lang.edit </a>
-        }
-            @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
+                if (canEdit)
+                {
+                @:-- <a href="@editLink">@Lang.edit </a>
                 }
+        
+                if (!fromLeftMenu)
+                {
+                    @:-- <a href="javascript:void(0);" id="back-link">@Lang.back
+                }
+            }
+        
+        }
         </a>
     </div>
     <img src="/_GlobalResources/Images/top_04.gif" class="end-function-bar">
