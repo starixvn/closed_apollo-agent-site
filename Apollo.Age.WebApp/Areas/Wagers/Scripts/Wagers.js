@@ -4,16 +4,12 @@ var Wagers = function ($) {
     return {
 
         sportName: null,
-
         groupBetName: null,
-
         viewOption: null,
-
         league: null,
-
         fromDate: null,
-
         groupComm: null,
+        sportTypeIds: null,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
@@ -21,6 +17,11 @@ var Wagers = function ($) {
         },
 
         initGetData: function () {
+
+            if (Wagers.sportName != "soccer") {
+                Wagers.sportName = "basketball";
+            }
+
             var url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
 
             Wagers.getWagerData(url);
@@ -31,15 +32,16 @@ var Wagers = function ($) {
         },
 
         getWagerData: function (url) {
-            
+
             Wagers.viewOption = $('#ViewOption').val();
             Wagers.League = $('#League').val();
             Wagers.fromDate = $('#FromDate').val();
             Wagers.groupComm = $('#groupComm').val();
+            Wagers.sportTypeIds = $('#SportTypeIds').val();
 
             $.ajax({
                 url: APOLLO.resolveUrl(url),
-                data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League },
+                data: { fromDate: Wagers.fromDate, uGroup: Wagers.groupComm, isDirectMember: Wagers.viewOption, leagueId: Wagers.League, sportTypes: Wagers.sportTypeIds },
                 success: function (data) {
                     $('#container').html(data);
                 }

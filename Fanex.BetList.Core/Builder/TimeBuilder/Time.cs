@@ -49,7 +49,7 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
                     Template.transDate = Formatter.FormatDateTime22(ticket.TransDate);
                     break;
                 default:
-                    Template.transDate = Formatter.FormatDateTime22(ticket.TransDate);
+                    Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
                     break;
             }
 

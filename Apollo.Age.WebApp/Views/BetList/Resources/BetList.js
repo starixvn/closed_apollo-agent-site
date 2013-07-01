@@ -247,7 +247,7 @@ if (typeof jQuery != "undefined") {
 		}
 
 		$(".navigation").bind('click', function () {
-			var fromDate = toDate = type = "";
+			var fromDate, toDate, type;
 
 			if (typeof ($("#fromDate").val()) !== 'undefined') {
 				fromDate = $("#fromDate").val();
