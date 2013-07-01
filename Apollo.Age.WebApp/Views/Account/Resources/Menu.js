@@ -6,7 +6,6 @@ var MENU = function ($) {
 		menu: null,
 		tabmenu: null,
 		apoRoot: null,
-		isAgentListLoaded: false,
 
 		init: function () {
 			MENU.menu = $('#menu');
@@ -45,20 +44,20 @@ var MENU = function ($) {
 			$('.submenu a[target=main]').on('click', function () {
 				parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
 			});
+
+			MENU.loadAgentList();
 		},
 
 		loadAgentList: function () {
-			if (!MENU.isAgentListLoaded) {
-				var agentList = $("#agent-list");
-				var agentId = agentList.attr("agent-id");
+			var agentList = $("#agent-list");
 
+			if (agentList.length > 0) {
+				var agentId = agentList.attr("agent-id");
 				agentList.treeview({
 					url: MENU.apoRoot + "Account/GetDataByNode",
-					link: "<a href='" + MENU.apoRoot + "Account/indirectagentlist?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",
+					link: "<a href='" + MENU.apoRoot + "Account/IndirectAgentList?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",
 					agentId: agentId
 				});
-
-				MENU.isAgentListLoaded = true;
 			}
 		}
 	};

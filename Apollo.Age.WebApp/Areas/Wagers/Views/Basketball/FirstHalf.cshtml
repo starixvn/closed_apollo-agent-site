@@ -3,36 +3,14 @@
 @using Apollo.Age.Web.Mvc
 @model List<FirstHaftViewModel>
 <table class="tblRpt basketball">
-    <thead>
-        <tr class="RptHeader">
-            <th style="width: 40px;">
-                @Lang.time
-            </th>
-            <th>
-                @Lang.league
-            </th>
-            <th class="nowrap">
-                @Lang.lblhomeandguest
-            </th>
-            <th class="nowrap">
-                @Lang.lblHandicapWager
-            </th>
-            <th class="nowrap">
-                @Lang.lblOverUnderWager
-            </th>
-            <th class="nowrap">
-                @Lang.lblOddEvenWagers
-            </th>
-        </tr>
-    </thead>
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                        , Lang.lblOverUnderWager,
+                                 Lang.lblOddEvenWagers)
+    @*/RenderHeader*@
     <tbody>
-        @if (!ReferenceEquals(Model, null)
-        && Model.Any())
-        {
-            foreach (var item in Model)
-            {
-            <tr class="c">
-                
+        @Model.List(
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
                     @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
                     <br />
@@ -49,7 +27,6 @@
                     @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
                 </td>
             </tr>
-            }
-        }
+            )
     </tbody>
 </table>
