@@ -48,6 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
             var title = string.Empty;
             var titleAll = string.Empty;
+            var sportTypeIds = string.Empty;
 
             switch (sportName)
             {
@@ -55,39 +56,46 @@ namespace Apollo.Age.Wagers.Controllers
                     sportTypes = SportGroup.Soccer;
                     title = Lang.soccer;
                     titleAll = Lang.lblsoccerAll;
+                    sportTypeIds = SportGroup.Soccer;
                     break;
                 case WagersSportName.Basketball:
                     sportTypes = SportGroup.Basketball_Football_Rugy;
                     title = Lang.Basketball;
                     titleAll = Lang.BasketballAll;
+                    sportTypeIds = SportGroup.Basketball_Football_Rugy;
                     break;
                 case WagersSportName.Tennis:
                     sportTypes = SportGroup.Tennis;
                     title = Lang.Tennis;
                     titleAll = Lang.lblTennisAll;
+                    sportTypeIds = SportGroup.Tennis;
                     break;
                 case WagersSportName.Volleyball:
                     sportTypes = SportGroup.Volleyball_Badminton_TableTennis;
                     title = Lang.Volleyball;
                     titleAll = Lang.lblVolleyballAll;
+                    sportTypeIds = SportGroup.Volleyball_Badminton_TableTennis;
                     break;
                 case WagersSportName.Baseball:
                     sportTypes = SportGroup.BaseBall;
                     title = Lang.Baseball;
                     titleAll = Lang.lblBaseballAll;
+                    sportTypeIds = SportGroup.BaseBall;
                     break;
                 default:
                     sportTypes = SportGroup.Other;
+                    sportTypeIds = SportGroup.Other;
                     break;
             }
 
             // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-10), sportTypes);
+            ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-11), sportTypes);
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
+            ViewBag.SportTypes = sportTypeIds;
 
             return View();
         }

@@ -441,7 +441,7 @@ var HEADER = function ($) {
                 }
             );
 
-            parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
+            //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         }
     };
 } (jQuery);

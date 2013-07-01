@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\Baseball\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Baseball\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Baseball\StraightViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
     <Compile Include="ViewModels\Basketball\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />

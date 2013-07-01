@@ -32,7 +32,7 @@ namespace Apollo.Age.Wagers.Criterias.Basketball
                     settingKey = "Age_Wagers_BK_1_3_RunBall";
                     break;
                 case "parlay":
-                    settingKey = "";
+                    settingKey = "Age_Wagers_BK_9_29";
                     break;
                 default:
                     settingKey = "Age_Wagers_BK_Special";
