@@ -2,6 +2,7 @@
     var isSimpleMode = ViewBag.IsSimpleMode ?? true;
     var reload = ViewBag.Reload ?? false;
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+    var isMaster = ViewBag.IsMaster ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -47,7 +48,8 @@
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
                 reload: @(reload ? "true" : "false"),
                 fromLeftMenu: @(fromLeftMenu ? "true" : "false"),
-				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)"
+				noChangeMessage: "@(Apollo.Age.Resources.Lang.noChangeToUpdate)",
+                isMaster: @(isMaster ? "true" : "false")
 			};
 		}();
 
