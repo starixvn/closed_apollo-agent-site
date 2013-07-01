@@ -11,11 +11,12 @@ namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Xml;
     using Apollo.Age.Account.Entities;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Services.Impl;
     using Fanex.Common;
-    using Apollo.Age.Enumerations;
 
     public class SportSettingService : ServiceBase, ISportSettingService
     {
@@ -48,7 +49,7 @@ namespace Apollo.Age.Account.Services
             var sportList = new List<SportSetting>();
             XmlDocument xmlDoc = new XmlDocument();
 
-            xmlDoc.Load(System.AppDomain.CurrentDomain.BaseDirectory + PATH_XML);
+            xmlDoc.Load(HttpContext.Current.Server.MapPath(PATH_XML));
 
             foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(SPORT_TYPE_NODE_XML))
             {

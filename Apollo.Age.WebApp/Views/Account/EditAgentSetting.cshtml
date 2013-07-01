@@ -4,8 +4,9 @@
     var userName = ViewBag.UserName ?? string.Empty;
     ViewBag.Title = string.Format(titleFormat, ViewBag.userName);
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentId = ViewBag.AgentId ?? 0;
-    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}", agentId, ViewBag.AgentLevel, userName);
+    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);
 }
 @section header
 {
