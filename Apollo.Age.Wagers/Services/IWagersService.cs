@@ -23,6 +23,8 @@ namespace Apollo.Age.Wagers.Services
     {
         IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes);
 
+        IEnumerable<Agent> GetMainShareHolder(string betTypes);
+
         IEnumerable<T> GetWagerData<T>(ICriteria criteria);
     }
 }

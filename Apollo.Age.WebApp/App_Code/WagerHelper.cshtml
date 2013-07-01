@@ -46,7 +46,7 @@
         }
     </ul>
 }
-@helper RenderFilter(string title, List<League> leagues)
+@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders)
     {
     <div id="header_main">@title</div>
     <div class="box-header" id="main-shareholder-box">
@@ -58,8 +58,18 @@
                 </div>
                 <div class="editor">
                     <select id="ViewOption" class="za_select">
-                        <option value="false">@Lang.all</option>
-                        <option value="true">@Lang.DirectMembers</option>
+                        @if(mainShareHolders.Count() > 0)
+                        {
+                            foreach(var mainShareHolder in mainShareHolders)
+                            {
+                                <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="0">@Lang.all</option>
+                            <option value="-1">@Lang.DirectMembers</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -91,10 +101,10 @@
         var format = new HtmlString(string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M'));
     <td class="width-40 show-time">
         @format
-        @if (item.LiveIndicator)
+        @*@if (item.LiveIndicator)
         {
             <span class="red-num">@Lang.RunningBall</span>
-        }
+        }*@
     </td>
     <td class="l">
         @item.LeagueName
