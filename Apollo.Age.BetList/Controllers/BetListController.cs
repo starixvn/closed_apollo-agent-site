@@ -54,6 +54,50 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
+        public ViewResult Outstanding(int custId, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty)
+        {
+            var statusIds = string.Format("{0},{1}",
+                   (int)Apollo.Age.Enumerations.BetStatus.Running,
+                   (int)Apollo.Age.Enumerations.BetStatus.Waiting);
+
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+
+            // List ticket
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                AgentId = -1,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custId,
+                FromDate = ResetStartDate(moveBetsDay),
+                ToDate = ResetEndDate(DateTime.Now),
+                StatusIds = statusIds
+            };
+
+            var mainTickets = _betListService.GetAllBetsByDateAndMem(criteria);
+            var modelAgentDownLine = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, custId);
+
+            var viewModel = new BetListViewModel
+            {
+                DownlinePath = modelAgentDownLine,
+                TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
+            };
+
+            return this.View(viewModel);
+        }
+
+        /// <summary>
+        /// Betlist winloss report
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <param name="type"></param>
+        /// <param name="username"></param>
+        /// <param name="betType"></param>
+        /// <param name="mainShareHolderId"></param>
+        /// <param name="mainShareHolderUsername"></param>
+        /// <returns></returns>
         public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _StringEmpty, string username = _StringEmpty, string betType = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty)
         {
             var statusIds = string.Empty;

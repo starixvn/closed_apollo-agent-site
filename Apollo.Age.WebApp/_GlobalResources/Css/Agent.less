@@ -509,7 +509,7 @@ table {
 	.ui-dialog-titlebar {
 		background: #0163A2;
 		border: 0;    
-		padding: 5px;
+		padding: 1px 1px 1px 3px;
 		border-bottom: 1px solid #000;
 		color: #fff;
 
@@ -522,6 +522,7 @@ table {
 			line-height: 0;
 			padding: 0;
 			cursor: pointer;
+			margin: -7px -2px 0 0;
 
 			.ui-button-text {
 				line-height: 10px;
@@ -532,13 +533,22 @@ table {
 				.box-shadow(1px 1px 0 0 #848284 inset);	
 			}
 		}
+		
+		.ui-dialog-title {
+			font-weight: normal;
+		}
 	}
 	.ui-dialog-content {
 		overflow: hidden;
+		background: #A4C0CE;
 	}
 
 	.ui-dialog-titlebar-close {
 		width: 18px;
+	}
+
+	.ui-state-default .ui-icon {
+		top: 6px;
 	}
 }
 
@@ -951,12 +961,6 @@ table {
 	#function-bar {
 
 		a, a:hover {
-			color: #0066CC;
-		}
-	}
-
-	.tblRpt {
-		tbody tr td a {
 			color: #0066CC;
 		}
 	}

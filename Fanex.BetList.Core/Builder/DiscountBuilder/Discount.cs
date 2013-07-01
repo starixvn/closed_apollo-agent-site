@@ -46,6 +46,7 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             switch (page)
             {
                 case BetListPage.Forecast:
+                case BetListPage.Outstanding:
                     Template.ugroup = ticket.UGroup.ToUpper();
                     break;
                 case BetListPage.Report:
