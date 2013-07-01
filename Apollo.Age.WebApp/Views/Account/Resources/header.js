@@ -342,8 +342,7 @@ var HEADER = function ($) {
             // show or hide left navigation
             $('.toolbar').on('click', 'li', function (event) {
                 if ($(this).attr('id') == 'account-link') {
-                    var isSuper = $('#txtSuper');
-                    if (isSuper.html().toLowerCase() == "false") {
+                    if (!DEFAULTS.IsMaster) {
                         var url = "/CustomerSetting/MySetting";
                         parent.document.getElementById('main').setAttribute('src', '/CustomerSetting/MySetting');
                     }
