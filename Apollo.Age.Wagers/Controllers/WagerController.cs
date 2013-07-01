@@ -52,7 +52,7 @@ namespace Apollo.Age.Wagers.Controllers
                 result = date.ToString("yyyy-MM-dd");
                 list.Add(new SelectListItem() { Text = result, Value = result });
             }
-            return list;            
+            return list;
         }
 
         public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
@@ -63,9 +63,9 @@ namespace Apollo.Age.Wagers.Controllers
                     {
                         if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
                         {
-                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()]; 
+                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()];
                         }
-                        
+
                         break;
                     }
                 default:
@@ -78,12 +78,13 @@ namespace Apollo.Age.Wagers.Controllers
                     }
 
             }
-           var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
- 
-           return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
+            var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
+
+            return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight", bool isEM = false)
+        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight",
+            bool isEM = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -132,7 +133,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-11), sportTypes);
-            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName,groupBetName) : new List<Agent>()); 
+            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>());
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
