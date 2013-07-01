@@ -69,4 +69,4 @@ var Wagers = function ($) {
 $(function () {
     Wagers.init();
     Wagers.initGetData();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
