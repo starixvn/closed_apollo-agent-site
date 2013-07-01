@@ -5,7 +5,8 @@ var Wagers = function ($) {
 
         sportName: null,
         groupBetName: null,
-        viewOption: null,
+        viewOption: 0,        
+        isDirectMember: false,
         league: null,
         fromDate: null,
         groupComm: null,
@@ -19,6 +20,13 @@ var Wagers = function ($) {
             Wagers.fromDate = $('#FromDate').val();
             Wagers.groupComm = $('#groupComm').val();
             Wagers.sportTypeIds = $('#SportTypeIds').val();
+
+            if (Wagers.viewOption > 0) {
+                Wagers.isDirectMember = true;
+            }
+            else {
+                Wagers.isDirectMembe = (Wagers.viewOption == 0);
+            }
         },
 
         initGetData: function () {
@@ -44,7 +52,8 @@ var Wagers = function ($) {
                 data: {
                     fromDate: Wagers.fromDate,
                     uGroup: Wagers.groupComm,
-                    isDirectMember: Wagers.viewOption,
+                    isDirectMember: Wagers.isDirectMember,
+                    mainShareHolderId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,
                     sportName: Wagers.sportName
