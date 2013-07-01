@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.07.01">Add properties SportList and BettypeList</change>
 // </history>
 
 namespace Apollo.Age.BetList.ViewModels

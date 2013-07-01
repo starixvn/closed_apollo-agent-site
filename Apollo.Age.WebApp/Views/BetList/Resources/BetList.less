@@ -1,5 +1,5 @@
-﻿@import "../../../_globalResources/css/Agent.less";
-@import "../../../_globalResources/css/calendar.less";
+﻿@import "../../../_GlobalResources/css/Agent.less";
+@import "../../../_GlobalResources/css/calendar.less";
 
 #header_main {
 	color: #000099;
@@ -14,11 +14,91 @@
 		top: 10px;
 	}
 }
+#function-bar {	
+	clear: both;
+	margin-bottom: 5px;
 
-.box-header {
-	float: left;
-	clear: none;
-	margin-top: 4px;
+	.item {
+		margin-top: 1px;
+
+		#ddlSport {
+			height: 20px;
+		}
+	}
+	.menu.report-winloss {
+		margin: 2px 155px 0 97px;
+
+		li {
+			margin-right: 8px;
+		}
+	}
+}
+
+#box_header, .box-header {
+	width: 795px;
+
+	&.report {
+		background-color: #DCDCDC;
+		border: 1px solid #000;
+		padding: 0px;
+
+		.btn {
+			font-size: @fontSize;
+			height: 21px;
+			padding-bottom: 1px;
+		}
+
+		.row {
+			background-color: #C9DBDF;
+			padding: 0 3px;
+			margin-bottom: 1px;
+
+			&.bg-action {
+				background: @white;
+				text-align: center;
+				padding: 6px 0 4px 0;
+
+				.item {
+					float: right;
+					margin: 0 5px;
+
+					&.btn-action {
+						width: 200px;
+						padding-right: 150px;
+
+						input {
+							margin-right: 20px;
+						}
+
+						.btn {
+							padding: 0 8px;
+							height: 20px;
+						}
+					}
+				}				
+			}
+		}
+
+		.winloss_firstcolumn{
+			background-color:#577176;
+			text-align: right;
+			width: 100px;
+			color: white;
+		}
+
+		table {
+			width: 100%;
+
+			tr{
+				td{
+					border: 1px solid #DCDCDC;
+					background-color: #C9DBDF;
+					padding: 0 3px;
+					
+				}
+			}
+		}
+	}
 }
 
 .bl_evt {
