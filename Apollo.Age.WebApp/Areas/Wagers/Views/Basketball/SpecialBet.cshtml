@@ -27,55 +27,10 @@
                 @for (int i = 0; i < countBet; i++)
                 {
                     <td class="border-right r red-num">
-                        @RenderBetTypeData(listMatch, listBet[i].Bettype)
+                        @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype)
                     </td>
                 }
             </tr>
         }
     </tbody>
 </table>
-@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
-    {         
-        var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
-        var typeAll = groupBet.Where(m => m.Type == 0).FirstOrDefault();
-
-        if (typeAll != null)
-        {
-    <div>
-        @typeAll.Count/@Math.Round(typeAll.Stake)
-        <br />
-        0/0
-        <br />
-        0/0
-    </div>
-        }
-        else
-        {
-            var typeHome = groupBet.Where(m => m.Type == 1).FirstOrDefault();
-            var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
-            var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
-    @RenderColumn(typeHome)
-    <br />
-    @RenderColumn(typeAway)
-    <br />
-    @RenderColumn(typeDraw)
-        }        
-}
-@helper RenderColumn(SpecialViewModel item)
-    {
-        if (item != null)
-        {
-    <span>@item.Count/@Math.Round(item.Stake)</span>
-        }
-        else
-        { 
-    <span>0/0</span>
-        }
-}
-@*
-    Type : 
-        + 0 : All
-        + 1 : Home
-        + 2 : Away
-        + 3 : Draw
-*@

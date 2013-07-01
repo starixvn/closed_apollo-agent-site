@@ -168,7 +168,7 @@ namespace Apollo.Age.Wagers.Controllers
                 UGroup = uGroup,
                 GroupBetName = this.CurrentAction
             };
-            var result = _WagerService.GetWagerData<SpecialViewModel>(criteria);
+            var result = _WagerService.GetWagerData<ViewModels.Basketball.SpecialViewModel>(criteria);
 
             return View(result);
         }
