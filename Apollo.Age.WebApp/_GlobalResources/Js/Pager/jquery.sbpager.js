@@ -79,18 +79,22 @@
             }
 
             var numDisplayItem = numItem > options.numPageDisplay ? options.numPageDisplay : numItem;
-            html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
-            html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
+            if (numItem > options.numPageDisplay) {
+                html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
+                html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
+            }
             html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 2) + 'px">');
             for (var i = 0; i < numItem; i++) {
                 currentItem = i + 1;
-                currentItem = (currentItem < 10 ? '0' + currentItem : currentItem);
+                //currentItem = (currentItem < 10 ? '0' + currentItem : currentItem);
                 itemHtml = '<a href="javascript:void(0);" class="pager-item' + (i == options.currentPage ? ' selected' : '') + '" index="' + i + '">' + currentItem + '</a>';
                 html.push(itemHtml);
             }
             html.push('</div>');
-            html.push('<a href="javascript:void(0);" class="move-next">' + options.nextText + '</a>');
-            html.push('<a href="javascript:void(0);" class="move-end">' + options.endText + '</a>');
+            if (numItem > options.numPageDisplay) {
+                html.push('<a href="javascript:void(0);" class="move-next">' + options.nextText + '</a>');
+                html.push('<a href="javascript:void(0);" class="move-end">' + options.endText + '</a>');
+            }
 
 
             var pagerHtml = html.join('');
