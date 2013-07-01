@@ -11,13 +11,13 @@
 
 namespace Apollo.Age.Account.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
@@ -28,7 +28,6 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using System.Web;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
@@ -198,6 +197,7 @@ namespace Apollo.Age.Account.Controllers
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
+            List<SportSetting> sportList = null;
 
             if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
             {
@@ -205,15 +205,19 @@ namespace Apollo.Age.Account.Controllers
                 agentId = this.CurrentSession.AgentId;
             }
 
-            var sportList = _sportService.GetAllSportType();
-            foreach (var sportItem in sportList)
-            {
-                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
-            }
-
             if (SportSettingService.SportList == null)
-            {   
+            {
+                sportList = _sportService.GetAllSportType();
+                foreach (var sportItem in sportList)
+                {
+                    sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+                }
+
                 SportSettingService.SportList = sportList;
+            }
+            else
+            {
+                sportList = SportSettingService.SportList;
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
@@ -259,14 +263,24 @@ namespace Apollo.Age.Account.Controllers
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
+            List<SportSetting> sportList = null;
 
-            var sportList = _sportService.GetAllSportType();
-            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
-
-            foreach (var sportItem in sportList)
+            if (SportSettingService.SportList == null)
             {
-                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+                sportList = _sportService.GetAllSportType();
+                foreach (var sportItem in sportList)
+                {
+                    sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+                }
+
+                SportSettingService.SportList = sportList;
             }
+            else
+            {
+                sportList = SportSettingService.SportList;
+            }
+
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
 
             foreach (var betTypeItem in betTypeList)
             {
