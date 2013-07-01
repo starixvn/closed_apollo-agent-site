@@ -101,10 +101,10 @@
         var format = new HtmlString(string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M'));
     <td class="width-40 show-time">
         @format
-        @if (item.LiveIndicator)
+        @*@if (item.LiveIndicator)
         {
             <span class="red-num">@Lang.RunningBall</span>
-        }
+        }*@
     </td>
     <td class="l">
         @item.LeagueName

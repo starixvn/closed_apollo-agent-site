@@ -114,6 +114,7 @@ namespace Apollo.Age.Wagers.Controllers
                 default:
                     sportTypes = SportGroup.Other;
                     sportTypeIds = SportGroup.Other;
+                    titleAll = Lang.all;
                     break;
             }
 

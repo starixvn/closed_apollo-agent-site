@@ -58,41 +58,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\WagerMenusConfiguration.cs" />
-    <Compile Include="Controllers\BaseballController.cs" />
     <Compile Include="Controllers\WagerController.cs" />
     <Compile Include="Controllers\BasketballController.cs" />
-    <Compile Include="Controllers\OthersController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
-    <Compile Include="Controllers\TennisController.cs" />
-    <Compile Include="Controllers\VolleyballController.cs" />
     <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Core\WagersSportName.cs" />
-    <Compile Include="Criterias\Baseball\VolleyballCriteria.cs" />
     <Compile Include="Criterias\Basketball\BasketballCriteria.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Criterias\GetMainShareHolderCriteria.cs" />
-    <Compile Include="Criterias\Others\OthersCriteria.cs" />
     <Compile Include="Criterias\Soccer\SoccerCriteria.cs" />
     <Compile Include="Criterias\Soccer\CorrectScoreCriteria.cs" />
-    <Compile Include="Criterias\Tennis\TennisCriteria.cs" />
-    <Compile Include="Criterias\Volleyball\VolleyballCriteria.cs" />
     <Compile Include="Criterias\WagerCriteriaBase.cs" />
     <Compile Include="Entities\WagerSport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWagersService.cs" />
     <Compile Include="Services\WagersService.cs" />
-    <Compile Include="ViewModels\Baseball\FirstHalfViewModel.cs" />
-    <Compile Include="ViewModels\Baseball\RunningBallViewModel.cs" />
-    <Compile Include="ViewModels\Baseball\SpecialViewModel.cs" />
-    <Compile Include="ViewModels\Baseball\StraightViewModel.cs" />
     <Compile Include="ViewModels\Basketball\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
     <Compile Include="ViewModels\Basketball\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
-    <Compile Include="ViewModels\Others\RunningBallViewModel.cs" />
-    <Compile Include="ViewModels\Others\SpecialViewModel.cs" />
-    <Compile Include="ViewModels\Others\StraightViewModel.cs" />
     <Compile Include="ViewModels\Soccer\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Soccer\TotalViewModel.cs" />
@@ -100,12 +85,6 @@
     <Compile Include="ViewModels\Soccer\FirstHalfViewModel.cs" />
     <Compile Include="ViewModels\Soccer\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\Soccer\StraightViewModel.cs" />
-    <Compile Include="ViewModels\Tennis\RunningBallViewModel.cs" />
-    <Compile Include="ViewModels\Tennis\SpecialViewModel.cs" />
-    <Compile Include="ViewModels\Tennis\StraightViewModel.cs" />
-    <Compile Include="ViewModels\Volleyball\RunningBallViewModel.cs" />
-    <Compile Include="ViewModels\Volleyball\SpecialViewModel.cs" />
-    <Compile Include="ViewModels\Volleyball\StraightViewModel.cs" />
     <Compile Include="ViewModels\WagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
