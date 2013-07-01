@@ -54,7 +54,15 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
-        public ViewResult Outstanding(int custId, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty)
+        /// <summary>
+        /// Betlist Outstanding report
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="username"></param>
+        /// <param name="mainShareHolderId"></param>
+        /// <param name="mainShareHolderUsername"></param>
+        /// <returns></returns>
+        public ViewResult Outstanding(int custId, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, string betType = _StringEmpty, string sportType = _StringEmpty)
         {
             var statusIds = string.Format("{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -67,6 +75,8 @@ namespace Apollo.Age.BetList.Controllers
             var criteria = new BetListCriteria
             {
                 AgentId = -1,
+                BetTypes = betType,
+                SportTypes = sportType,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
@@ -98,7 +108,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
-        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _StringEmpty, string username = _StringEmpty, string betType = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty)
+        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _StringEmpty, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, string betType = _StringEmpty, string sportType = _StringEmpty)
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
@@ -129,7 +139,8 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = this.ResetStartDate(fromDate),
                 ToDate = this.ResetEndDate(toDate),
                 StatusIds = statusIds,
-                Bettypes = betType,
+                BetTypes = betType,
+                SportTypes = sportType,
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
@@ -202,7 +213,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 LoggedId = CurrentSession.AgentId,
                 AgentId = mainShareHolderId,
-                Bettypes = strBetType,
+                BetTypes = strBetType,
                 MatchId = matchId,
                 BetTeam = betTeam
             };

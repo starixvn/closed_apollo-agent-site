@@ -137,7 +137,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 AgentId = criteria.AgentId,
                 criteria.LoggedId,
-                criteria.Bettypes
+                Bettypes = criteria.BetTypes
             };
 
             try
@@ -260,7 +260,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 MatchID = criteria.MatchId,
                 LoggedId = criteria.LoggedId,
                 AgentId = criteria.AgentId,
-                Bettype = criteria.Bettypes,
+                Bettype = criteria.BetTypes,
                 Liveindicator = criteria.LiveIndicator,
                 Betteam = criteria.BetTeam
             };
