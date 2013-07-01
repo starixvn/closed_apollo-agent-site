@@ -48,6 +48,10 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
                 case BetListPage.Forecast:
                     Template.transDate = Formatter.FormatDateTime22(ticket.TransDate);
                     break;
+                case BetListPage.Report:
+                case BetListPage.Outstanding:
+                    Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
+                    break;
                 default:
                     Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
                     break;

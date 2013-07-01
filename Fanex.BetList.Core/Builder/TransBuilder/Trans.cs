@@ -46,13 +46,18 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
-            if (betListPage == BetListPage.Report)
+            switch (betListPage)
             {
-                this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
-            }
-            else
-            {
-                this.Template.sportName = string.Empty;
+                case BetListPage.Forecast:
+                case BetListPage.Outstanding:
+                    this.Template.sportName = string.Empty;
+                    break;
+                case BetListPage.Report:
+                    this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
+                    break;
+                default:
+                    this.Template.sportName = string.Empty;
+                    break;
             }
 
             return Template;
