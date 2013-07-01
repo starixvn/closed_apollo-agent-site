@@ -78,8 +78,8 @@
                 ieHome = "-";
                 ieAway = "-";
 
-                homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-" };
-                awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-" }; 
+                homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" };
+                awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" }; 
 
                 betStatus = item.BetStatus;
 
@@ -91,27 +91,22 @@
                     {
                         string[] splitBetStatus = null;
                         int i = 0;
-                        if (listOfBetStatus.Count() <= 8)
+                        foreach (string betstatus in listOfBetStatus)
                         {
-                            foreach (string betstatus in listOfBetStatus)
-                            {
-                                splitBetStatus = betstatus.Split('-');
-                                if (splitBetStatus != null)
-                                {
-                                    homeSet[i] = splitBetStatus[0];
-                                    awaySet[i] = splitBetStatus[1];
-                                    i++;
-                                }
+                            splitBetStatus = betstatus.Split('-');
+                            if (splitBetStatus != null)
+                            {                               
+                                homeSet[i] = splitBetStatus[0];
+                                awaySet[i] = splitBetStatus[1];
+                                i++;
                             }
                         }
-                        else                            
+                        if (homeSet.Count() >= 10 && awaySet.Count() >= 10)
                         {
-                            homeSet.Add("-1");
-                            awaySet.Add("-1");
+                            ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
+                            ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
                         }
-
-                        ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
-                        ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
+                        
                     }
 
                 }

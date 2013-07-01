@@ -30,7 +30,7 @@ namespace Apollo.Age.Wagers.Criterias.Soccer
                 case "runningball":
                     settingKey = "Age_Wagers_SC_1_3_7_8_RunBall";
                     break;
-                case "special":
+                case "specialbet":
                     settingKey = "Age_Wagers_SC_Special";
                     break;
                 case "parlay":
