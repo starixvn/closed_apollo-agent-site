@@ -39,7 +39,7 @@
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
     @Html.Hidden("SportName", sportName)
-    @Html.Hidden("FromDate", DateTime.Now.AddDays(-6))@*Sample data - 10 days*@
+    @Html.Hidden("FromDate", DateTime.Now.AddDays(31))@*Sample data - 10 days*@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
