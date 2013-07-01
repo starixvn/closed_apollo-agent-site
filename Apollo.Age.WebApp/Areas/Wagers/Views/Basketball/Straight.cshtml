@@ -12,21 +12,21 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                    @item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)
                     <br />
-                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
+                    @item.AwayCountHDP/@Math.Round(item.AwayStakeHDP)
                 </td>
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
+                    @item.HomeCountOU/@Math.Round(item.HomeStakeOU)
                     <br />
-                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                    @item.AwayCountOU/@Math.Round(item.AwayStakeOU)
                 </td>
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
+                    @item.HomeCountOE/@Math.Round(item.HomeStakeOE)
                     <br />
-                    @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
+                    @item.AwayCountOE/@Math.Round(item.AwayStakeOE)
                 </td>
             </tr>
             )
-    </tbody>    
+    </tbody>
 </table>

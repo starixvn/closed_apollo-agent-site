@@ -61,6 +61,12 @@ var Wagers = function ($) {
                 Wagers.groupComm = $(this).val();
                 Wagers.getWagerData();
             });
+
+            $('#EmDate').on('change', function () {                
+                Wagers.fromDate = $(this).val();
+                Wagers.getWagerData();
+            });
+
         },
 
         getWagerData: function () {

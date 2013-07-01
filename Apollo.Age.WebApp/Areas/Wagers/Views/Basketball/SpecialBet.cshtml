@@ -2,17 +2,80 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<SpecialViewModel>
-<table class="tblRpt @ViewBag.SportName special-bet">
-    @WagerHelper.RederHeaderColumn(Lang.moneyline)
+@{
+    var list = Model != null ? Model : new List<SpecialViewModel>();
+    List<SpecialViewModel> listBet = list.DistinctBy(m => m.Bettype).OrderBy(m => m.Bettype).ToList();
+
+    string[] arrBet = new string[listBet.Count()];
+    int countBet = 0;
+    foreach (SpecialViewModel item in listBet)
+    {
+        arrBet[countBet++] = item.BetName;
+    }
+
+    var groupMatch = list.GroupBy(m => m.MatchId);
+}
+<table class="tblRpt @ViewBag.SportName">
+    @WagerHelper.RederHeaderColumn(arrBet)
     @*/RenderHeader*@
     <tbody>
-        @Model.List(
-            @<tr class="c">
-                @WagerHelper.RenderBaseColumns(item)
-                <td class="border-right r red-num">
-                    @((int)item.Count)/@((int)item.Stake)
-                </td>
+        @foreach (var item in groupMatch)
+        {
+            var listMatch = item.OrderBy(m => m.Bettype).ToList();
+            <tr class="c">
+                @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
+                @for (int i = 0; i < countBet; i++)
+                {
+                    <td class="border-right r red-num">
+                        @RenderBetTypeData(listMatch, listBet[i].Bettype)
+                    </td>
+                }
             </tr>
-            )
+        }
     </tbody>
 </table>
+@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
+    {         
+        var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
+        var typeAll = groupBet.Where(m => m.Type == 0).FirstOrDefault();
+
+        if (typeAll != null)
+        {
+    <div>
+        @typeAll.Count/@Math.Round(typeAll.Stake)
+        <br />
+        0/0
+        <br />
+        0/0
+    </div>
+        }
+        else
+        {
+            var typeHome = groupBet.Where(m => m.Type == 1).FirstOrDefault();
+            var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
+            var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
+    @RenderColumn(typeHome)
+    <br />
+    @RenderColumn(typeAway)
+    <br />
+    @RenderColumn(typeDraw)
+        }        
+}
+@helper RenderColumn(SpecialViewModel item)
+    {
+        if (item != null)
+        {
+    <span>@item.Count/@Math.Round(item.Stake)</span>
+        }
+        else
+        { 
+    <span>0/0</span>
+        }
+}
+@*
+    Type : 
+        + 0 : All
+        + 1 : Home
+        + 2 : Away
+        + 3 : Draw
+*@

@@ -91,17 +91,20 @@
                     {
                         string[] splitBetStatus = null;
                         int i = 0;
-                        foreach (string betstatus in listOfBetStatus)
+                        if (listOfBetStatus.Count() <= 8)
                         {
-                            splitBetStatus = betstatus.Split('-');
-                            if (splitBetStatus != null)
-                            {                               
-                                homeSet[i] = splitBetStatus[0];
-                                awaySet[i] = splitBetStatus[1];
-                                i++;
+                            foreach (string betstatus in listOfBetStatus)
+                            {
+                                splitBetStatus = betstatus.Split('-');
+                                if (splitBetStatus != null)
+                                {
+                                    homeSet[i] = splitBetStatus[0];
+                                    awaySet[i] = splitBetStatus[1];
+                                    i++;
+                                }
                             }
                         }
-                        if (listOfBetStatus.Count() < 10)
+                        else                            
                         {
                             homeSet.Add("-1");
                             awaySet.Add("-1");
