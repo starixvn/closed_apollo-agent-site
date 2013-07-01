@@ -14,12 +14,12 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// </summary>
     public class SpecialViewModel : WagerViewModel
     {
-        public decimal HomeStakeMoney { get; set; }
+        public int Bettype { get; set; }
 
-        public decimal AwayStakeMoney { get; set; }
+        public decimal Stake { get; set; }
 
-        public int HomeCountMoney { get; set; }
+        public long Count { get; set; }
 
-        public int AwayCountMoney { get; set; }
+        public byte Type { get; set; }
     }
 }
