@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.6.30">Created</change>
+//   <change who="Anders.Le" date="2013.7.1">Add paging params</change>
 // </history>
 namespace Apollo.Age.Wagers.Criterias
 {
@@ -38,5 +39,11 @@ namespace Apollo.Age.Wagers.Criterias
         public bool IsDirectMem { get; set; }
 
         public int LeagueId { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int TotalPages { get; set; }
+
+        public int PageSize { get; set; }    
     }
 }
