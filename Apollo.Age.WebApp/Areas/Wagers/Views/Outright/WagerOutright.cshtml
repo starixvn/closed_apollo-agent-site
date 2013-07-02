@@ -3,24 +3,26 @@
 @using Apollo.Age.Wagers.ViewModels.Outright
 @using Apollo.Age.Web.Mvc
 @model List<OutrightViewModel>
-<table class="tblRpt soccer">
-    <tr>
-        <th>
-            @Lang.time
-        </th>
-        <th>
-            @Lang.league
-        </th>
-        <th>
-            @Lang.lblTeam
-        </th>
-        <th>
-            @Lang.lblelimination
-        </th>
-        <th>
-            @Lang.lblWager
-        </th>
-    </tr>
+<table class="tblRpt outright soccer">
+    <thead>
+        <tr>
+            <th>
+                @Lang.time
+            </th>
+            <th>
+                @Lang.league
+            </th>
+            <th>
+                @Lang.lblTeam
+            </th>
+            <th>
+                @Lang.lblelimination
+            </th>
+            <th>
+                @Lang.lblWager
+            </th>
+        </tr>
+    </thead>    
     <tbody>
        
        @if (Model != null && Model.Any())
@@ -35,8 +37,8 @@
                 <td>
                     @item.LeagueName
                 </td>
-                <td>
-                     <table class="tblRpt soccer">
+                <td colspan="3">
+                     <table class="tbl">
                       @{
                       subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();  
                       foreach(OutrightViewModel subItem in subModel)
