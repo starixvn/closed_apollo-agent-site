@@ -90,7 +90,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight",
-            bool isEM = false)
+            bool isEM = false, bool isOR = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -145,15 +145,12 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
-            ViewBag.SportTypes = sportTypeIds;
-            if (isEM)
-            {
-                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
-            }
-            else
-            {
-                ViewBag.EmCalendar = null;
-            }
+            ViewBag.SportTypes = sportTypeIds;            
+            ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+
+            ViewBag.isEM = isEM;
+            ViewBag.isOR = isOR;
+
             return View();
         }
     }

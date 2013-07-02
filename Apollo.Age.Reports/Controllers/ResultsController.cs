@@ -69,9 +69,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public JsonResult GetLeagueBySport(DateTime date, string sportTypes, int sportId)
         {
-            // not add select all item yet
-            date = new DateTime(2013, 6, 20);
-
+          
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -88,24 +86,31 @@ namespace Apollo.Age.Reports.Controllers
                     listLeague.Insert(0, new League { Id = 0, Name = Resources.Lang.allleague });
                 }
             }
-
+            else
+            {
+                listLeague.Add(new League { Id = -1, Name= string.Empty  });
+            }
+            
 
             return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
-            date = new DateTime(2013, 6, 20);
-
+          
             IEnumerable<MatchResultModel> matchResults =            
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
-            IEnumerable<Sport> sports = null;
+            var sports = new List<Sport>();            
             if (matchResults != null && matchResults.Any())
             {
                 sports = matchResults
                        .Select(item => new Sport { Id = (byte)item.SportId, Name = item.SportName })
-                       .Distinct();            
+                       .Distinct().ToList();
+            }
+            else
+            {
+                sports.Add(new Sport { Id = 01, Name = string.Empty  }); 
             }
             return Json(sports, JsonRequestBehavior.AllowGet);
 
@@ -113,7 +118,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult GetMatchResult(DateTime date, string sportTypes)
         {
-            date = new DateTime(2013, 6, 20);
+          
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -130,7 +135,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
-            date = new DateTime(2013, 6, 20);
+          
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
 
@@ -157,7 +162,7 @@ namespace Apollo.Age.Reports.Controllers
                 
         public JsonResult GetSportOutright(DateTime date)
         {
-            date = new DateTime(2013, 3, 28);
+          
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
@@ -170,7 +175,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult Outright(DateTime date, int sportId = 0)
         {
-            date = new DateTime(2013, 3, 28);
+          
             IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date);
             if (outrightResults != null && outrightResults.Any())
             {

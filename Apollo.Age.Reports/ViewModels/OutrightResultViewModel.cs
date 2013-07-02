@@ -31,18 +31,26 @@ namespace Apollo.Age.Reports.ViewModels
 
         public IEnumerable<OutrightResultModel> OutrightResult { get; set; }
 
-        public IEnumerable<Sport> SportList
+        public List<Sport> SportList
         {
             get
             {
+                var sports = new List<Sport>();
                 if (this.OutrightResult != null && this.OutrightResult.Any())
                 {
-                    return this.OutrightResult
+                    sports = this.OutrightResult
                         .Select(item => new Sport { Id = item.SportId, Name = item.SportName })
-                        .Distinct();
+                        .Distinct().ToList();
+                }
+                else
+                {
+                    sports.Add(new Sport {
+                    Id = -1,
+                    Name  = string.Empty
+                    });
                 }
 
-                return new List<Sport>();
+                return sports;
             }
         }        
     }

@@ -12,7 +12,7 @@ var Wagers = function ($) {
         groupComm: null,
         sportTypeIds: null,
         url: null,
-        isEM: null,
+        isEM: false,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
@@ -88,7 +88,7 @@ var Wagers = function ($) {
                     sportTypes: Wagers.sportTypeIds,
                     sportName: Wagers.sportName,
                     pageIndex: pageIndex,
-                    isEM: Wagers.isEM,
+                    isEM: Wagers.isEM
                 },
                 success: function (data) {
                     $('#container').html(data);
