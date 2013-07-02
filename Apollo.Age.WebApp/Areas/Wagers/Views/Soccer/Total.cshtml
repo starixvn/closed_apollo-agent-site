@@ -8,29 +8,29 @@
     @Model.List(
         @<tr class="c">
             @WagerHelper.RenderBaseColumns(item)
-            <td>
-                @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
+            <td class="border-right r red-num">
+                @item.HomeCountHTOE/@Math.Round(@item.HomeStakeHTOE)
             </td>
-            <td>
-                @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
+            <td class="border-right r red-num">
+                @item.AwayCountHTOE/@Math.Round(@item.AwayStakeHTOE)
             </td>
-            <td>
-                @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
+            <td class="border-right r red-num">
+                @item.HomeCountOE/@Math.Round(@item.HomeStakeOE)
             </td>
-            <td>
-                @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
+            <td class="border-right r red-num">
+                @item.AwayCountOE/@Math.Round(@item.AwayStakeOE)
             </td>
-            <td>
-                @((int)item.Total01Count)/@((int)item.Total01Stake)
+            <td class="border-right r red-num">
+                @item.Total01Count/@Math.Round(@item.Total01Stake)
             </td>
-            <td>
-                @((int)item.Total23Count)/@((int)item.Total23Stake)
+            <td class="border-right r red-num">
+                @item.Total23Count/@Math.Round(@item.Total23Stake)
             </td>
-            <td>
-                @((int)item.Total46Count)/@((int)item.Total46Stake)
+            <td class="border-right r red-num">
+                @item.Total46Count/@Math.Round(@item.Total46Stake)
             </td>
-            <td>
-                @((int)item.Total7OverCount)/@((int)item.Total7OverStake)
+            <td class="border-right r red-num">
+                @item.Total7OverCount/@Math.Round(@item.Total7OverStake)
             </td>
         </tr>
     )

@@ -9,27 +9,27 @@
                     , Lang.lblOddEvenWagers)
     <tbody>
         @Model.List(
-                            @<tr class="c">
-                                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
-                                <td class="r">
-                                    @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
-                                    <br />
-                                    @((int)item.AwayCountHTHDP)/@((int)item.AwayCountHTHDP)
-                                </td>
-                                <td class="r">
-                                    @((int)item.HomeCountHTOU)/@((int)item.HomeStakeHTOU)
-                                    <br />
-                                    @((int)item.AwayCountHTOU)/@((int)item.AwayStakeHTOU)
-                                </td>
-                                <td class="r">
-                                    @((int)item.CountHT1)/@((int)item.StakeHT1)
-                                    <br />
-                                    @((int)item.CountHT2)/@((int)item.StakeHT2)
-                                    <br />
-                                    @((int)item.CountHTX)/@((int)item.StakeHTX)
-                                </td>
-                            </tr>
-                       )
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
+                <td class="border-right r red-num">
+                    @item.HomeCountHTHDP/@Math.Round(item.HomeStakeHTHDP)
+                    <br />
+                    @item.AwayCountHTHDP/@Math.Round(item.AwayStakeHTHDP)
+                </td>
+                <td class="border-right r red-num">
+                    @item.HomeCountHTOU/@Math.Round(item.HomeStakeHTOU)
+                    <br />
+                    @item.AwayCountHTOU/@Math.Round(item.AwayStakeHTOU)
+                </td>
+                <td class="border-right r red-num">
+                    @item.CountHT1/@Math.Round(item.StakeHT1)
+                    <br />
+                    @item.CountHT2/@Math.Round(item.StakeHT2)
+                    <br />
+                    @item.CountHTX/@Math.Round(item.StakeHTX)
+                </td>
+            </tr>
+        )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
