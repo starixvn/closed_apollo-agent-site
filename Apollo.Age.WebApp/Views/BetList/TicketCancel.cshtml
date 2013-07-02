@@ -86,16 +86,22 @@
                        Selected = (0 == Model.UserType)
                    }};
                     }
-                    @Html.DropDownList("UserType", dllUserType)
+                    @Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
                 </td>
                 <td>
-                    @Html.TextBox("Username", Model.Username, new { @maxlength = 50, @width = "120", @autocomplete = "off" })
+                    @Html.TextBox("Username", Model.Username, new { @maxlength = 50, @autocomplete = "off", @class = "txt-username" })
                 </td>
             </tr>
         </table>
         <div>
             <div class="row bg-action">
-                <input id="btnSubmit" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                <div class="item">
+                    @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+                </div>
+                <div class="item btn-action">
+                    <input id="btnSubmit" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                    <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                </div>
             </div>
         </div>
     </div>

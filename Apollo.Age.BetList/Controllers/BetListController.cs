@@ -443,7 +443,7 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
+                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Result = ticket.Winlost + ticket.PlayerComm,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
