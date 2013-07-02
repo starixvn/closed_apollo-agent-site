@@ -24,7 +24,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     public class WagerController : BaseController
     {
-        protected readonly IWagersService _WagerService;
+        protected readonly IWagersService WagerService;
 
         public WagerController()
             : this(null)
@@ -33,12 +33,12 @@ namespace Apollo.Age.Wagers.Controllers
 
         public WagerController(IWagersService wagerService = null)
         {
-            _WagerService = wagerService ?? new WagersService();
+            WagerService = wagerService ?? new WagersService();
         }
 
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
-            var leagues = _WagerService.GetLeague(fromDate, sportTypes);
+            var leagues = WagerService.GetLeague(fromDate, sportTypes);
 
             return leagues != null ? leagues.ToList() : new List<League>();
         }
@@ -50,7 +50,7 @@ namespace Apollo.Age.Wagers.Controllers
                 sportName = WagersSportName.WagerSportGroup()[sportName];
             }
 
-            var listEventDate = _WagerService.GetEventDate(sportName);
+            var listEventDate = WagerService.GetEventDate(sportName);
  
             var list = new List<SelectListItem>();            
 
@@ -84,7 +84,7 @@ namespace Apollo.Age.Wagers.Controllers
                     }
 
             }
-            var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
+            var mainShareHolders = WagerService.GetMainShareHolder(groupBetName);
 
             return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }

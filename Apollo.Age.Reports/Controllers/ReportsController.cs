@@ -57,7 +57,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Outstanding Report
 
-        public ViewResult Outstanding(int? agentId)
+        public ViewResult Outstanding(int? agentId, string sportType, string betType)
         {
             CurrentAgentId = agentId;
             var mainShareHolder = new Apollo.Age.Entities.Agent();
