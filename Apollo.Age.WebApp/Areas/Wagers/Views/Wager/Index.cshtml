@@ -53,6 +53,7 @@
     @Html.Hidden("SportName", sportName)
     @Html.Hidden("FromDate", new DateTime(2013, 8, 1))@*Sample data - 10 days*@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
+    @Html.Hidden("IsEm", isEM)
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
         <div class="pages-size">

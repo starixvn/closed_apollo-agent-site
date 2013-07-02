@@ -62,5 +62,8 @@ namespace Apollo.Age.Wagers.Criterias
                 return pageSize;
             }
         }
+
+        [SpParam(Ignored = true)]
+        public bool IsEM { get; set; }
     }
 }

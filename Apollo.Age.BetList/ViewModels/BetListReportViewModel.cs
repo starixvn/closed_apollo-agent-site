@@ -18,6 +18,8 @@ namespace Apollo.Age.BetList.ViewModels
 
     public class BetListReportViewModel
     {
+        public DateTime BalanceUpDay { get; set; }
+
         public string Username { get; set; }
 
         public int UserType { get; set; }
