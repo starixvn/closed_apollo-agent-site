@@ -158,5 +158,15 @@ namespace Apollo.Age.BetList.Services
         {
             return this._betListRepository.GetAgentUpLineOfMember(parentId, custId);
         }
+
+        /// <summary>
+        /// Get data betlist on Wagers page
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult WagersTicket(WagersCriteria criteria)
+        {
+            return this._betListRepository.WagersTicket(criteria);
+        }
     }
 }
