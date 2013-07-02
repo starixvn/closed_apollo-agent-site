@@ -3,7 +3,7 @@
 @using Apollo.Age.Wagers.ViewModels.Outright
 @using Apollo.Age.Web.Mvc
 @model List<OutrightViewModel>
-<table class="tblRpt">
+<table class="tblRpt soccer">
     <tr>
         <th>
             @Lang.time
@@ -22,27 +22,37 @@
         </th>
     </tr>
     <tbody>
-        @{
-            IEnumerable<int> leagueIds = Model.Select(x => x.LeagueId).Distinct();
-            IEnumerable<OutrightViewModel> outrights = null;
-            
-        }
-        @foreach (var item in leagueIds)
-        {
-            outrights = Model.Where(x => x.LeagueId == item);
-
-            foreach (var outright in outrights)
-            { 
-            <tr class="c">
-                <td class="border-right r red-num">
+       
+       @if (Model != null && Model.Any())
+       {
+           var subModel = new List<OutrightViewModel>();
+           foreach (var item in Model)
+           {
+            <tr>
+                <td>
+                    @item.EventDate
                 </td>
-                <td class="border-right r red-num">
+                <td>
+                    @item.LeagueName
                 </td>
-                <td class="border-right r red-num">
+                <td>
+                     <table class="tblRpt soccer">
+                      @{
+                      subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();  
+                      foreach(OutrightViewModel subItem in subModel)
+                        {
+                            <tr>
+                                <td>@subItem.TeamName </td>
+                                <td>@subItem.Stake</td>
+                                <td>@((int)subItem.BetCount)/@((int)subItem.Stake)</td>
+                            </tr>
+                        }     
+                          }                      
+                    </table>                   
                 </td>
             </tr>
-            }
-        }
+          }
+       }
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
