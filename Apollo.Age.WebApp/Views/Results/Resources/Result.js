@@ -137,11 +137,11 @@ var Result = (function () {
                 $this = $(this);
                 if ($this.attr("value") == $("#todayValue").val()) // compare with yesterdate
                 {
-                    $this.html("Today");
+                    $this.html($("#lbltoday").val());
                     $this.attr("value", $("#yesterdayValue").val());
                 }
                 else {
-                    $this.html("Yesterday");
+                    $this.html($("#lblyesterday").val());
                     $this.attr("value", $("#todayValue").val());
                 }
 
