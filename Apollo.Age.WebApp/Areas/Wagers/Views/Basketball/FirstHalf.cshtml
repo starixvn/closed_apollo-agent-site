@@ -2,7 +2,7 @@
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
 @model List<FirstHaftViewModel>
-<table class="tblRpt @ViewBag.SportName">
+<table class="tblRpt @ViewBag.SportName first-half">
     @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
                         , Lang.lblOverUnderWager,
                                  Lang.lblOddEvenWagers)
@@ -12,21 +12,22 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountHTHDP)/@((int)item.HomeStakeHTHDP)
+                    @item.HomeCountHTHDP/@Math.Round(item.HomeStakeHTHDP)
                     <br />
-                    @((int)item.AwayCountHTHDP)/@((int)item.AwayStakeHTHDP)
+                    @item.AwayCountHTHDP/@Math.Round(item.AwayStakeHTHDP)
                 </td>
                 <td class="border-right r red-num">
-                    @((int)item.HomeCountHTOU)/@((int)item.HomeStakeHTOU)
+                    @item.HomeCountHTOU/@Math.Round(item.HomeStakeHTOU)
                     <br />
-                    @((int)item.AwayCountHTOU)/@((int)item.AwayStakeHTOU)
+                    @item.AwayCountHTOU/@Math.Round(item.AwayStakeHTOU)
                 </td>
                 <td class="border-right red-num">
-                    @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
+                    @item.HomeCountHTOE/@Math.Round(item.HomeStakeHTOE)
                     <br />
-                    @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
+                    @item.AwayCountHTOE/@Math.Round(item.AwayStakeHTOE)
                 </td>
             </tr>
             )
     </tbody>
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

@@ -3,32 +3,37 @@
 @using Apollo.Age.Wagers.ViewModels.Soccer
 @using Apollo.Age.Web.Mvc
 @model List<StraightViewModel>
-<table class="tblRpt soccer">
+<table class="tblRpt soccer straight">
     @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
                     , Lang.lblOverUnderWager
-                    , Lang.lblOddEvenWagers)
+                    , Lang.lbl1x2Wager)
     <tbody>
         @Model.List(
-                            @<tr class="c">
-                                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
-                                <td class="r">
-                                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
-                                    <br />
-                                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
-                                </td>
-                                <td class="r">
-                                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
-                                    <br />
-                                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
-                                </td>
-                                <td class="r">
-                                    @((int)item.Count1)/@((int)item.Stake1)
-                                    <br />
-                                    @((int)item.Count2)/@((int)item.Stake2)
-                                    <br />
-                                    @((int)item.CountX)/@((int)item.StakeX)
-                                </td>
-                            </tr>
-                       )
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
+                <td class="r">
+                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                    <br />
+                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
+                    <br />
+                    &nbsp
+                </td>
+                <td class="r">
+                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
+                    <br />
+                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                    <br />
+                    &nbsp
+                </td>
+                <td class="r">
+                    @((int)item.Count1)/@((int)item.Stake1)
+                    <br />
+                    @((int)item.Count2)/@((int)item.Stake2)
+                    <br />
+                    @((int)item.CountX)/@((int)item.StakeX)
+                </td>
+            </tr>
+        )
     </tbody>
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

@@ -45,12 +45,12 @@
                             </li>
                             <li><span class="menu-list border-link">[@Lang.lblEmWager]</span>
                                 <ul class="sub-menu">
-                                    <li><a href="#">@Lang.lblScEm</a></li>
-                                    <li><a href="#">@Lang.lblBkNflRugbyEm</a></li>
-                                    <li><a href="#">@Lang.lblTnEm</a></li>
-                                    <li><a href="#">@Lang.lblVbBdmTtEm</a></li>
-                                    <li><a href="#">@Lang.lblBsEm</a></li>
-                                    <li><a href="#">@Lang.lblOtherEm</a></li>
+                                    <li><a  href="~/wagers/wager?sportname=@(WagersSportName.Soccer)&isEM=true" target="main">@Lang.lblScEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Basketball)&isEM=true" target="main">@Lang.lblBkNflRugbyEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Tennis)&isEM=true" target="main">@Lang.lblTnEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Volleyball)&isEM=true" target="main">@Lang.lblVbBdmTtEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Baseball)&isEM=true" target="main">@Lang.lblBsEm</a></li>
+                                    <li><a href="~/wagers/wager?sportname=@(WagersSportName.Others)&isEM=true" target="main">@Lang.lblOtherEm</a></li>
                                 </ul>
                             </li>
                             <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>

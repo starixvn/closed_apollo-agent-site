@@ -3,7 +3,7 @@
 @using Apollo.Age.Wagers.ViewModels.Soccer
 @using Apollo.Age.Web.Mvc
 @model List<CorrectScoreViewModel>
-<table class="tblRpt soccer">
+<table class="tblRpt soccer first-half-correct">
     @WagerHelper.RederHeaderColumn(Lang.correctscore)                    
     <tbody>
         @Model.List(
@@ -16,3 +16,4 @@
         )
     </tbody>
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

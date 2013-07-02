@@ -3,7 +3,7 @@
 @using Apollo.Age.Wagers.ViewModels.Soccer
 @using Apollo.Age.Web.Mvc
 @model List<ParlayViewModel>
-<table class="tblRpt soccer">
+<table class="tblRpt soccer parlay">
     @WagerHelper.RederHeaderColumn(Lang.lblMixParlay
                     , Lang.lblSystemParlay)
     <tbody>
@@ -20,3 +20,4 @@
                        )
     </tbody>
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

@@ -12,7 +12,9 @@
 @using System.Resources
 @using Apollo.Age.Wagers.ViewModels
 @using Apollo.Age.Web.Mvc
-@helper RenderMenu(string controller, string groupBetName)
+@using Apollo.Age.Wagers.ViewModels.Basketball
+
+@helper RenderMenu(string controller, string groupBetName, bool isEM)
     {
         var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         var xDocument = WagerMenusConfiguration.MenuConfig;
@@ -35,7 +37,7 @@
                         string resourceKey = itemBettype.Attribute("ResourceKey").Value;
 						
             <li class="@(string.Compare(groupBetName, tempAction, true) == 0 ? "active" : string.Empty)">
-                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey" target="main">@resMgr.GetString(resourceKey)</a>
+                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey&isEM=@(isEM ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
             </li>                           
                     }
 
@@ -114,7 +116,7 @@
         <br />
         @item.AwayName
         <br />
-        <span class="r text-green">
+        <span class="pull-right text-green">
             @draw
         </span>
     </td>
@@ -146,3 +148,49 @@
      <tbody>    
     </tbody>
 }
+
+@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
+    {         
+        var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
+        var typeAll = groupBet.Where(m => m.Type == 0).FirstOrDefault();
+
+        if (typeAll != null)
+        {
+    <div>
+        @typeAll.Count/@Math.Round(typeAll.Stake)
+        <br />
+        0/0
+        <br />
+        0/0
+    </div>
+        }
+        else
+        {
+            var typeHome = groupBet.Where(m => m.Type == 1).FirstOrDefault();
+            var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
+            var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
+    @RenderColumn(typeHome)
+    <br />
+    @RenderColumn(typeAway)
+    <br />
+    @RenderColumn(typeDraw)
+        }        
+}
+@helper RenderColumn(SpecialViewModel item)
+    {
+        if (item != null)
+        {
+    <span>@item.Count/@Math.Round(item.Stake)</span>
+        }
+        else
+        { 
+    <span>0/0</span>
+        }
+}
+@*
+    Type : 
+        + 0 : All
+        + 1 : Home
+        + 2 : Away
+        + 3 : Draw
+*@

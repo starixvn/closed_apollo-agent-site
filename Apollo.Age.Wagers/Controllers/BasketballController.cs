@@ -27,7 +27,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
             {
@@ -35,19 +35,21 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
-                Sporttypes = sportTypes
+                Sporttypes = sportTypes,
+                PageIndex = pageIndex
             };
 
             var list = _WagerService.GetWagerData<StraightViewModel>(criteria);
             ViewBag.SportName = sportName;
+            ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
         public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
             {
@@ -55,19 +57,21 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
-                Sporttypes = sportTypes
+                Sporttypes = sportTypes,
+                PageIndex = pageIndex
             };
 
             var list = _WagerService.GetWagerData<FirstHaftViewModel>(criteria);
             ViewBag.SportName = sportName;
+            ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
         public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
             {
@@ -75,19 +79,21 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
-                Sporttypes = sportTypes
+                Sporttypes = sportTypes,
+                PageIndex = pageIndex
             };
 
             var list = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
             ViewBag.SportName = sportName;
+            ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
         public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
             {
@@ -95,19 +101,21 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
-                Sporttypes = sportTypes
+                Sporttypes = sportTypes,
+                PageIndex = pageIndex
             };
 
             var list = _WagerService.GetWagerData<ParlayViewModel>(criteria);
             ViewBag.SportName = sportName;
+            ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
         public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName)
+            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
             {
@@ -115,13 +123,15 @@ namespace Apollo.Age.Wagers.Controllers
                 FromDate = fromDate,
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
-                LoggedId = CurrentSession.AgentId,
+                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
                 UGroup = uGroup,
-                Sporttypes = sportTypes
+                Sporttypes = sportTypes,
+                PageIndex = pageIndex
             };
 
             var list = _WagerService.GetWagerData<SpecialViewModel>(criteria);
             ViewBag.SportName = sportName;
+            ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }

@@ -196,7 +196,7 @@ namespace Apollo.Age.Reports.Controllers
                     return SportTypes.Badminton.ToString();
                 case SportGroup.BaseBall:
                     return SportTypes.BaseBall.ToString();                
-                case SportGroup.Other:
+                case SportGroup.Others:
                     return SportTypes.Others.ToString();
                 case SportGroup.Outright:
                     return "Outright";

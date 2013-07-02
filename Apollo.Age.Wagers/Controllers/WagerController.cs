@@ -18,9 +18,9 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Resources;
     using Apollo.Age.Wagers.Core;
+    using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Wagers.Core.BettypeGroup;
 
     public class WagerController : BaseController
     {
@@ -43,6 +43,24 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? leagues.ToList() : new List<League>();
         }
 
+        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
+        {
+            if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
+            {
+                sportName = WagersSportName.WagerSportGroup()[sportName];
+            }
+
+            var listEventDate = _WagerService.GetEventDate(sportName);
+ 
+            var list = new List<SelectListItem>();            
+
+            foreach (var date in listEventDate)
+            {                
+                list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
+            }
+            return list;
+        }
+
         public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
         {
             switch (sportName)
@@ -51,9 +69,9 @@ namespace Apollo.Age.Wagers.Controllers
                     {
                         if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
                         {
-                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()]; 
+                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()];
                         }
-                        
+
                         break;
                     }
                 default:
@@ -66,12 +84,13 @@ namespace Apollo.Age.Wagers.Controllers
                     }
 
             }
-           var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
- 
-           return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
+            var mainShareHolders = _WagerService.GetMainShareHolder(groupBetName);
+
+            return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight")
+        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight",
+            bool isEM = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -112,22 +131,29 @@ namespace Apollo.Age.Wagers.Controllers
                     sportTypeIds = SportGroup.BaseBall;
                     break;
                 default:
-                    sportTypes = SportGroup.Other;
-                    sportTypeIds = SportGroup.Other;
+                    sportTypes = SportGroup.Others;
+                    sportTypeIds = SportGroup.Others;
                     titleAll = Lang.all;
                     break;
             }
 
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(DateTime.Now.AddDays(-11), sportTypes);
-            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName,groupBetName) : new List<Agent>()); 
+            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>());
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-
+            if (isEM)
+            {
+                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+            }
+            else
+            {
+                ViewBag.EmCalendar = null;
+            }
             return View();
         }
     }

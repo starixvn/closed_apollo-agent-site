@@ -1,110 +1,37 @@
 ﻿@using Apollo.Age.Resources
-@using Apollo.Age.Entities
-@section css {
-    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
-    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@model List<SpecialViewModel>
+@{
+    var list = Model != null ? Model : new List<SpecialViewModel>();
+    List<SpecialViewModel> listBet = list.DistinctBy(m => m.Bettype).OrderBy(m => m.Bettype).ToList();
+
+    string[] arrBet = new string[listBet.Count()];
+    int countBet = 0;
+    foreach (SpecialViewModel item in listBet)
+    {
+        arrBet[countBet++] = item.BetName;
+    }
+
+    var groupMatch = list.GroupBy(m => m.MatchId);
 }
-<table class="tblRpt soccer">
-                    <thead>
-                        <tr class="RptHeader">
-                            <th style="width: 100px;">
-                                @Lang.time
-                            </th>
-                            <th style="width: 300px;">
-                                @Lang.league
-                            </th>                          
-                            <th style="width: 100px;" class="nowrap">
-                                @Lang.homeaway
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                               First team to score
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                Last team to score
-                            </th>
-                            <th style="width: 100px;" class="nowrap">
-                                First offside
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                Last offside
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                               First substitution
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                Last substitution
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                First corner
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                Last corner
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                               First card
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                               Last card
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                             <th style="width: 100px;" class="nowrap">
-                                1x2/Wagers
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="c">
-                            <td class="width-80">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="l">
-                            </td>
-                            <td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            <td class="border-right">
-                            </td>
-                            </td>
-                            <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                             <td class="border-right">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<table class="tblRpt @ViewBag.SportName">
+    @WagerHelper.RederHeaderColumn(arrBet)
+    @*/RenderHeader*@
+    <tbody>
+        @foreach (var item in groupMatch)
+        {
+            var listMatch = item.OrderBy(m => m.Bettype).ToList();
+            <tr class="c">
+                @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
+                @for (int i = 0; i < countBet; i++)
+                {
+                    <td class="border-right r red-num">
+                        @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype)
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
