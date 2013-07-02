@@ -36,6 +36,6 @@ namespace Apollo.Age.Wagers.ViewModels.Outright
 
         public int BetCount { get; set; }
 
-        public decimal Stake1 { get; set; }
+        public string Status { get; set; }
     }
 }

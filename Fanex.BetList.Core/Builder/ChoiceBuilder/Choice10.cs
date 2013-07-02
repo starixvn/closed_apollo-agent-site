@@ -33,7 +33,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = ticketHelper.GetTeamNameById(ticket.HomeId == 0 ? ticket.AwayId : ticket.HomeId);
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            //this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

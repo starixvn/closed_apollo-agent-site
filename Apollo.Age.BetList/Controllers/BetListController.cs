@@ -85,7 +85,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = ReportService.GetBettype();
+            model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -324,8 +324,8 @@ namespace Apollo.Age.BetList.Controllers
                 IsDirectMem = isDirectMem,
                 LiveIndicator = liveIndicator,
                 LeagueId = leagueId,
-                SportTypes = sportType,
-                BetTypes = betType,
+                SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
+                BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
                 BetTeam = betTeam
             };
 

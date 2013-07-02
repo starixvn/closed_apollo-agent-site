@@ -63,7 +63,7 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             }
             else
             {
-                Template.discount = ticket.PlayerDiscount.ToString("N2");
+                Template.discount = (ticket.PlayerDiscount *100).ToString("N2");
             }
 
             Template.username = ticket.UserName;

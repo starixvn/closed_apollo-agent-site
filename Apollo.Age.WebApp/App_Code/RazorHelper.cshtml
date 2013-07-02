@@ -355,3 +355,35 @@
         }
     </td>
 }
+
+@helper RenderReportLinks(string currentLink)
+{
+	var classWinloss = string.Empty;
+	var classOutstanding = string.Empty;
+	var classTransaction = string.Empty;
+	var classTicketsCancelled = string.Empty;
+
+	if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
+	{
+		classWinloss = "class=active";
+	}
+	else if (currentLink.ToUpper().Equals(Lang.outstanding.ToUpper()))
+	{
+		classOutstanding = "class=active";
+	}
+	else if (currentLink.ToUpper().Equals(Lang.transaction.ToUpper()))
+	{
+		classTransaction = "class=active";
+	}
+	else
+	{
+		classTicketsCancelled = "class=active";
+	}
+
+	<ul class="menu report-winloss">
+        <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>
+        <li @classOutstanding><a href="~/reports/outstanding">@Lang.outstanding</a></li>
+        <li @classTransaction><a href="~/_betList/BetListTransaction.aspx?type=transaction">@Lang.transaction</a></li>
+        <li @classTicketsCancelled><a href="~/betList/ticketcancel?fromDate=2013-6-20&toDate=2013-7-1">@Lang.TicketsCancelled</a></li>
+    </ul>
+}

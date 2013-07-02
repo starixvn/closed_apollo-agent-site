@@ -137,6 +137,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 this.Template.Score.Visible = false;
             }
 
+            if (ticket.IsLive)
+            {
+                this.Template.LiveScore.liveHomeScore = ticket.LiveHomeScore.ToString();
+                this.Template.LiveScore.liveAwayScore = ticket.LiveAwayScore.ToString();
+            }
+            else
+            {
+                this.Template.LiveScore.Hide();
+            }
+
             //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             this.Template.homeTeam = string.Join(
                                                     null,

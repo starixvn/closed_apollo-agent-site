@@ -144,7 +144,7 @@ var Result = (function () {
                     $this.html($("#lblyesterday").val());
                     $this.attr("value", $("#todayValue").val());
                 }
-
+                date = $this.attr("value");
                 $action = $this.attr("action");
                 switch ($action) {
                     case "0":
