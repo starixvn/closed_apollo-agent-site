@@ -140,7 +140,7 @@ namespace Fanex.BetList.Core.Builder
         public BetListHTMLBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData,
             string openTag, string closeTag, bool isShowScoreMap)
         {
-            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap);
+            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
             return this;
         }
@@ -153,10 +153,10 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>string</returns>
-        public string BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap)
+        public string BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap,BetListPage betlistPage)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
-            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
+            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap, betlistPage);
 
             return choice;
         }

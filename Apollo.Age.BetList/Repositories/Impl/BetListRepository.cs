@@ -348,6 +348,38 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
+        /// Get data betlist on Wagers page
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult WagersTicket(WagersCriteria criteria)
+        {
+            try
+            {
+                var ticketResult = new TicketResult();
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var dataSet = db.ExecuteDataSet(param);
+
+                        // Main ticket list
+                        var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                        ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                        return ticketResult;
+                    }
+                }
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Get Combination Mix Parlay Detail
         /// </summary>
         /// <param name="criteria">Criteria name</param>

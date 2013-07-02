@@ -1,0 +1,58 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Outright
+@using Apollo.Age.Web.Mvc
+@model List<OutrightViewModel>
+<table class="tblRpt soccer">
+    <tr>
+        <th>
+            @Lang.time
+        </th>
+        <th>
+            @Lang.league
+        </th>
+        <th>
+            @Lang.lblTeam
+        </th>
+        <th>
+            @Lang.lblelimination
+        </th>
+        <th>
+            @Lang.lblWager
+        </th>
+    </tr>
+    <tbody>
+       
+       @if (Model != null && Model.Any())
+       {
+           var subModel = new List<OutrightViewModel>();
+           foreach (var item in Model)
+           {
+            <tr>
+                <td>
+                    @item.EventDate
+                </td>
+                <td>
+                    @item.LeagueName
+                </td>
+                <td>
+                     <table class="tblRpt soccer">
+                      @{
+                      subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();  
+                      foreach(OutrightViewModel subItem in subModel)
+                        {
+                            <tr>
+                                <td>@subItem.TeamName </td>
+                                <td>@subItem.Stake</td>
+                                <td>@((int)subItem.BetCount)/@((int)subItem.Stake)</td>
+                            </tr>
+                        }     
+                          }                      
+                    </table>                   
+                </td>
+            </tr>
+          }
+       }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

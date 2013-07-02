@@ -58,7 +58,7 @@
         @Html.CheckBoxFor(m => m.ShowOldValue)
         <label for="ShowOldValue">@Lang.ShowOldValues</label>
     </div>
-    <table class="tblRpt">
+    <table class="tblRpt log">
         <thead>
             <tr>
                 <th style="width: 60px">
@@ -98,7 +98,19 @@
                         <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
-                        @Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))
+                        @*@Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))*@
+                        @switch (itemLog.ActionTypeId)
+                        {
+                            case 2:
+                            @Viewlog._2
+                       break;
+                            case 3:
+                            @Viewlog._3
+                       break;
+                            default:
+                            @Viewlog._4
+                       break;
+                        }
                     </td>
                     <td class="message_content">
                         @Html.Action("LogActionType" + itemLog.ActionTypeId.ToString(), "Log", new

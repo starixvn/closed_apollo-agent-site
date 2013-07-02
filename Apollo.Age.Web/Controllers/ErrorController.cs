@@ -9,32 +9,23 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Resources;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Apollo.Age.Web.Services;
-    using System.Net;
     using Apollo.Age.Resources;
-    using System.Threading;
+    using Apollo.Age.Web.Services;
 
     public class ErrorController : Controller
     {
         private readonly UnderMaintenanceService maintenanceService;
-        private LanguageManager _langManager;
-     
+
         public ErrorController()
         {
             maintenanceService = new UnderMaintenanceService();
             if (SessionManager.CurrentSession != null)
             {
-                _langManager = new LanguageManager();
-                _langManager.SetCulture(SessionManager.CurrentSession.Language);
-            }            
-            
+                LanguageManager.SetCulture(SessionManager.CurrentSession.Language);
+            }
+
         }
 
         public ActionResult Index(string err)
@@ -85,8 +76,8 @@ namespace Apollo.Age.Web
         }
 
         public ActionResult AccountStopped()
-        {            
+        {
             return View();
-        }      
+        }
     }
 }

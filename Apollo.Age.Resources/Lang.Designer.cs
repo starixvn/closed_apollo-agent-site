@@ -1034,7 +1034,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to top.
+        ///   Looks up a localized string similar to TO TOP.
         /// </summary>
         public static string GoToTop {
             get {
@@ -1880,6 +1880,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string lblconfirm {
+            get {
+                return ResourceManager.GetString("lblconfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         public static string lblContactUs {
@@ -2002,6 +2011,15 @@ namespace Apollo.Age.Resources {
         public static string lblEI {
             get {
                 return ResourceManager.GetString("lblEI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elimination.
+        /// </summary>
+        public static string lblelimination {
+            get {
+                return ResourceManager.GetString("lblelimination", resourceCulture);
             }
         }
         

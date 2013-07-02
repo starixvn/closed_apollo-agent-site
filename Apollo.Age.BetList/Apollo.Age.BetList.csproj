@@ -57,6 +57,7 @@
     <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />
     <Compile Include="Criterias\TicketResult.cs" />
     <Compile Include="Criterias\TicketText.cs" />
+    <Compile Include="Criterias\WagersCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BetListRepository.cs" />
     <Compile Include="Repositories\Interface\IBetListRepository.cs" />

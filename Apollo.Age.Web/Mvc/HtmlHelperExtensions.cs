@@ -322,9 +322,7 @@ namespace Apollo.Age.Web.Mvc
         public static string Resource(this HtmlHelper htmlhelper, string key,
             Type resourceSource = null)
         {
-            var resMgr = new ResourceManager(resourceSource ?? typeof(Apollo.Age.Resources.Lang));
-
-            return resMgr.GetString(key);
+            return LanguageManager.GetResourceData(key);
         }
         #endregion
 

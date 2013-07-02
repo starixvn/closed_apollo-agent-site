@@ -5,6 +5,8 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.07.02">Implement cancel ticket</change>
+//   <change who="Kaden.Trinh" date="2013.07.02">Implement Wagers</change>
 // </history>
 
 namespace Apollo.Age.BetList.Controllers
@@ -12,7 +14,6 @@ namespace Apollo.Age.BetList.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.InteropServices;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
@@ -67,6 +68,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.TicketCancel(viewModel);
         }
 
+        /// <summary>
+        /// Cancel ticket betlist
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
@@ -293,6 +299,46 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Action view betList from Wagers page
+        /// </summary>
+        /// <param name="loggedId"></param>
+        /// <param name="fromDate"></param>
+        /// <param name="UGroup"></param>
+        /// <param name="isDirectMem"></param>
+        /// <param name="liveIndicator"></param>
+        /// <param name="leagueId"></param>
+        /// <param name="betType"></param>
+        /// <param name="sportType"></param>
+        /// <param name="betTeam"></param>
+        /// <returns></returns>
+        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty)
+        {
+            // List ticket
+            var betListService = new BetListService();
+            var criteria = new WagersCriteria
+            {
+                LoggedId = loggedId,
+                FromDate = fromDate,
+                UGroup = uGroup,
+                IsDirectMem = isDirectMem,
+                LiveIndicator = liveIndicator,
+                LeagueId = leagueId,
+                SportTypes = sportType,
+                BetTypes = betType,
+                BetTeam = betTeam
+            };
+
+            TicketResult mainTickets = betListService.WagersTicket(criteria);
+
+            var viewModel = new BetListViewModel
+            {
+                TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
+            };
+
+            return this.View(viewModel);
+        }
+
         public ViewResult MixParlay(long transid)
         {
             var betListService = new BetListService();
@@ -373,7 +419,7 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
+                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Result = ticket.Winlost + ticket.PlayerComm,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
