@@ -227,7 +227,7 @@
 }
 @helper RenderSportDropDownList(List<Apollo.Age.Entities.SingbetSport> sportList, string currentSportId, string id = "ddlSport", string className = "")
     {
-    <select id="@id" class="@className">
+    <select id="@id" name="@id"  class="@className">
         @if (sportList != null)
         {
             foreach (var sport in sportList)
@@ -239,7 +239,7 @@
 }
 @helper RenderBettypeDropDownList(List<Apollo.Age.Entities.SingbetBettype> bettypeList, string currentBettypeId, string id = "ddlBettype", string className = "")
     {
-    <select id="@id" class="@className">
+    <select id="@id" name="@id" class="@className">
         @if (bettypeList != null)
         {
             foreach (var bettype in bettypeList)
@@ -258,7 +258,7 @@
             if (sport.Id != Apollo.Age.Core.SportGroup.All)
             {
                 if (sport.Id == Apollo.Age.Core.SportGroup.Others)
-                {							
+                {
     <li><a href="#" id="@sport.Id" name="menuothersport">[@(sport.Name)]</a></li>
                 }
                 else if (sport.Id == Apollo.Age.Core.SportGroup.Outright)
@@ -283,17 +283,15 @@
         {
             TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
             var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
-		
+
     <div class="est-zone">@(string.Format("--GMT-4: {0}", Formater.LongDateFormat(easternTime)))</div>
-		
+
         }
         catch (Exception ex)
         {
             Logger.Log.Error(ex.Message, ex);
         }
 }
-
-
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
     <div id="header_main">@title</div>
@@ -333,7 +331,7 @@
         </div>
     </div>
 }
-@helper RenderWagersBaseColumn(WagerViewModel item, bool isRaw=false)
+@helper RenderWagersBaseColumn(WagerViewModel item, bool isRaw = false)
     {
         var showTime = item.ShowTime;
         string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
@@ -351,10 +349,9 @@
         @item.HomeName
         <br />
         @item.AwayName
-        @if(isRaw)
+        @if (isRaw)
         {
-            <div class="r text-green">@Lang.lblDraw</div> 
+            <div class="r text-green">@Lang.lblDraw</div>
         }
     </td>
 }
-

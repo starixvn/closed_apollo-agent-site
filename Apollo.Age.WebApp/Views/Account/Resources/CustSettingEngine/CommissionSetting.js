@@ -403,7 +403,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             //// User Group
             var trGroup = document.createElement("TR");
             var tdGroupText = document.createElement("TD");
-            tdGroupText.innerHTML = Language.GROUP;
+            tdGroupText.innerHTML = Language.GROUP + ':';
             tdGroupText.className = "user-group";
             if (this.hasNumberGameSection) {
                 //.setAttribute("ROWSPAN", 4);
@@ -432,7 +432,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
 
             var tdGroupText1 = document.createElement("TD");
-            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE + ' &nbsp; ';
+            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE + ': &nbsp; ';
             tdGroupText1.className = "group-name";
             trGroup.appendChild(tdGroupText1);
 
@@ -478,10 +478,10 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             boxTBody.appendChild(trGroup);
             box.appendChild(boxTBody);
             //// Other Com
-            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
-            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ': &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ': &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
             if (hasNumberGameSection) {
-                boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
+                boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ': &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
             }
 
             container.appendChild(bodyContainer);
