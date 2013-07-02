@@ -5,6 +5,8 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
+//   <change who="Kaden.Trinh" date="2013.07.02">Implement cancel ticket</change>
+//   <change who="Kaden.Trinh" date="2013.07.02">Implement Wagers</change>
 // </history>
 
 namespace Apollo.Age.BetList.Controllers
@@ -12,7 +14,6 @@ namespace Apollo.Age.BetList.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.InteropServices;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
@@ -67,6 +68,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.TicketCancel(viewModel);
         }
 
+        /// <summary>
+        /// Cancel ticket betlist
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
@@ -230,6 +236,70 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="isForecast"></param>
         /// <returns></returns>
         public ViewResult Forecast(string type = _StringEmpty, string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
+        {
+            var strBetType = string.Empty;
+            var title = string.Empty;
+            if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
+            {
+                title = CacheRef.GetBettype((int)BetTypes.Correct_Score);
+                strBetType = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+            }
+            else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.MixParlay);
+                title = CacheRef.GetBettype(betType);
+            }
+            else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+                title = Lang.lblSystemParlay;
+            }
+            else
+            {
+                strBetType = betType;
+                title = CacheRef.GetBettype(betType);
+            }
+
+            // List mainShare Holder
+            IEnumerable<Agent> mainShareHolders = new List<Agent>();
+            if (!isForecast)
+            {
+                mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
+            }
+            // List ticket
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                LoggedId = CurrentSession.AgentId,
+                AgentId = mainShareHolderId,
+                BetTypes = strBetType,
+                MatchId = matchId,
+                BetTeam = betTeam
+            };
+
+            TicketResult mainTickets;
+
+            if (matchId > 0)
+            {
+                mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetRunningByBettype(criteria);
+            }
+
+            var viewModel = new BetListViewModel
+            {
+                Title = title,
+                CurrentMainShareHolderId = mainShareHolderId,
+                ListMainShareHolders = mainShareHolders,
+                TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
+            };
+
+            return this.View(viewModel);
+        }
+
+        public ViewResult Wager(string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
             var title = string.Empty;
