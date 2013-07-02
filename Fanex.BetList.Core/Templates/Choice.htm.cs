@@ -25,6 +25,7 @@ namespace Fanex.BetList.Core
 			public string handicap = "{handicap}";
 			protected static string s4 = "</span> ";
 			public string awayTeam = "{awayTeam}";
+			public Choice_LiveScore_Block LiveScore = new Choice_LiveScore_Block();
 			protected static string s5 = "</div><div>";
 			public Choice_Score_Block Score = new Choice_Score_Block();
 			protected static string s6 = "<span class=\"red-color\">";
@@ -49,6 +50,7 @@ namespace Fanex.BetList.Core
 					bd.Append(handicap);
 					bd.Append(s4);
 					bd.Append(awayTeam);
+					if(null != LiveScore) LiveScore.ToString(ref bd);
 					bd.Append(s5);
 					if(null != Score) Score.ToString(ref bd);
 					bd.Append(s6);
@@ -120,23 +122,45 @@ namespace Fanex.BetList.Core
 			}
 		}
 
-		public class Choice_Score_Block: Block
+		public class Choice_LiveScore_Block: Block
 		{
-			protected static string s18 = "<span class=\"game-type-odd\"><b>";
-			public string finalHomeScore = "{finalHomeScore}";
-			protected static string s19 = ":";
-			public string finalAwayScore = "{finalAwayScore}";
-			protected static string s20 = "</b>&nbsp;</span>";
+			protected static string s18 = "<span class=\"red-color\"> ";
+			public string liveHomeScore = "{liveHomeScore}";
+			protected static string s19 = "-";
+			public string liveAwayScore = "{liveAwayScore}";
+			protected static string s20 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s18);
-					bd.Append(finalHomeScore);
+					bd.Append(liveHomeScore);
 					bd.Append(s19);
-					bd.Append(finalAwayScore);
+					bd.Append(liveAwayScore);
 					bd.Append(s20);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class Choice_Score_Block: Block
+		{
+			protected static string s21 = "<span class=\"game-type-odd\"><b>";
+			public string finalHomeScore = "{finalHomeScore}";
+			protected static string s22 = ":";
+			public string finalAwayScore = "{finalAwayScore}";
+			protected static string s23 = "</b>&nbsp;</span>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s21);
+					bd.Append(finalHomeScore);
+					bd.Append(s22);
+					bd.Append(finalAwayScore);
+					bd.Append(s23);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
