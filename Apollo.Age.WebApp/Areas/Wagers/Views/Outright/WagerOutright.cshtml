@@ -37,27 +37,27 @@
                 <td>
                     <table class="tblRpt soccer">
                         @{
-                subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
-                var status = string.Empty;
-                foreach (OutrightViewModel subItem in subModel)
-                {
-                    if (subItem.Status.ToLower() == "refund")
-                    {
-                        status = Lang.refund;
-                    }
-                    else if (subItem.Status.ToLower() == "close")
-                    {
-                        status = "+";
-                    }
-                            <tr>
-                                <td>@subItem.TeamName
-                                </td>
-                                <td>@status
-                                </td>
-                                <td>@((int)subItem.BetCount)/@((int)subItem.Stake)
-                                </td>
-                            </tr>
-                }
+                            subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
+                            var status = string.Empty;
+                            foreach (OutrightViewModel subItem in subModel)
+                            {
+                                if (subItem.Status.ToLower() == "refund")
+                                {
+                                    status = Lang.refund;
+                                }
+                                else if (subItem.Status.ToLower() == "close")
+                                {
+                                    status = "+";
+                                }
+                                        <tr>
+                                            <td>@subItem.TeamName
+                                            </td>
+                                            <td>@status
+                                            </td>
+                                            <td>@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                            </td>
+                                        </tr>
+                            }
                         }
                     </table>
                 </td>
