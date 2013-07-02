@@ -31,7 +31,7 @@
             {
             <tr>
                 <td>
-                    @item.EventDate
+                    @Html.Raw(Formater.FormatDateTime22(item.EventDate))
                 </td>
                 <td>
                     @item.LeagueName
@@ -51,14 +51,14 @@
                                 {
                                     status = "+";
                                 }
-                                        <tr class="one-row">
-                                            <td style="width: 269px">@subItem.TeamName
-                                            </td>
-                                            <td style="width: 65px">@status
-                                            </td>
-                                            <td style="width: 42px">@((int)subItem.BetCount)/@((int)subItem.Stake)
-                                            </td>
-                                        </tr>
+                                <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
+                                    <td style="width: 269px">@subItem.TeamName
+                                    </td>
+                                    <td style="width: 65px">@status
+                                    </td>
+                                    <td style="width: 42px">@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                    </td>
+                                </tr>
                             }
                         }
                     </table>
