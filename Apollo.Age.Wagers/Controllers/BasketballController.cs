@@ -30,8 +30,10 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
             var list = WagerService.GetWagerData<StraightViewModel>(criteria);
+
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(list);
         }
@@ -42,8 +44,10 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
             var list = WagerService.GetWagerData<FirstHaftViewModel>(criteria);
+
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(list);
         }
@@ -54,8 +58,10 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
             var list = WagerService.GetWagerData<RunningBallViewModel>(criteria);
+
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(list);
         }
@@ -66,8 +72,10 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
             var list = WagerService.GetWagerData<ParlayViewModel>(criteria);
+
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(list);
         }
@@ -78,8 +86,10 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
             var list = WagerService.GetWagerData<SpecialViewModel>(criteria);
+
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(list);
         }

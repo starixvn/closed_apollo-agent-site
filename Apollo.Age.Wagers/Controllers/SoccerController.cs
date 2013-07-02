@@ -30,6 +30,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<StraightViewModel>(criteria).ToList();
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -42,6 +43,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<FirstHalfViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -54,6 +56,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -66,6 +69,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -78,6 +82,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -90,6 +95,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<TotalViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -102,6 +108,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -114,6 +121,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<ParlayViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
@@ -126,6 +134,7 @@ namespace Apollo.Age.Wagers.Controllers
             var result = WagerService.GetWagerData<ViewModels.Basketball.SpecialViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
