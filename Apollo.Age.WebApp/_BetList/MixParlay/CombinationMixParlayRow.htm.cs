@@ -14,15 +14,15 @@ namespace Apollo.Age.WebApp
 		public class CombinationMixParlayRow_Template : Template
 		{
 			protected static string s0 = "<table class=\"tblRpt border-tbl\"><thead><tr><th style=\"width: 100px;\">";
-			protected static string s1{get{return Apollo.Age.Resources.Lang.date;}}
+			protected static string s1{get{return Apollo.Age.Resources.Lang.time;}}
 			protected static string s2 = "</th><th style=\"width: 370px;\">";
-			protected static string s3{get{return Apollo.Age.Resources.Lang.events;}}
+			protected static string s3{get{return Apollo.Age.Resources.Lang.homeaway;}}
 			protected static string s4 = "</th><th style=\"width: 60px;\">";
 			protected static string s5{get{return Apollo.Age.Resources.Lang.odds;}}
 			protected static string s6 = "</th><th style=\"width: 60px;\">";
-			protected static string s7{get{return Apollo.Age.Resources.Lang.stake;}}
+			protected static string s7{get{return Apollo.Age.Resources.Lang.Amount;}}
 			protected static string s8 = "</th><th style=\"width: 80px;\">";
-			protected static string s9{get{return Apollo.Age.Resources.Lang.lblWinLoss;}}
+			protected static string s9{get{return Apollo.Age.Resources.Lang.lblResult;}}
 			protected static string s10 = "</th><th style=\"width: 80px;\">";
 			protected static string s11{get{return Apollo.Age.Resources.Lang.status;}}
 			protected static string s12 = "</th></tr></thead><tbody>";

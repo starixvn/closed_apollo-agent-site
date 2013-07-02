@@ -48,7 +48,7 @@
         nextText: '>',
         startText: '<<',
         endText: '>>',
-        itemWidth: 29,
+        itemWidth: 28,
         callback: function () { return false; }
     };
 
@@ -77,13 +77,9 @@
             var options = this.options;
 
             var html = [],
-            numItem = Math.round((options.totalItem + options.numPageDisplay/2) / options.itemPerPage),
+            numItem = Math.round((parseInt(options.totalItem) + options.numPageDisplay / 2) / options.itemPerPage),
             itemHtml = ''
             currentItem = '';
-
-//            if (options.totalItem > 0 && numItem == 0) {
-//                numItem = 1;
-//            }
 
             if (!me.$pager.hasClass('sbpager')) {
                 me.$pager.addClass('sbpager');
@@ -94,10 +90,9 @@
                 html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
                 html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
             }
-            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 2) + 'px">');
+            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 5) + 'px">');
             for (var i = 0; i < numItem; i++) {
                 currentItem = i + 1;
-                //currentItem = (currentItem < 10 ? '0' + currentItem : currentItem);
                 itemHtml = '<a href="javascript:void(0);" class="pager-item' + (i == options.currentPage ? ' selected' : '') + '" index="' + i + '">' + currentItem + '</a>';
                 html.push(itemHtml);
             }
@@ -114,7 +109,7 @@
             me.$itemContainer = me.$pager.find('.item-container');
 
             if (options.currentPage + 1 > numDisplayItem) {
-                me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
+                me.$itemContainer.scrollLeft(me.calculateScrollLeft(options.currentPage));
             }
         },
         registerEvents: function () {
@@ -129,9 +124,6 @@
                     me.$pager.find('.pager-item').removeClass('selected');
                     $this.addClass('selected');
                     var currentPage = parseInt($this.attr('index'));
-                    if (currentPage + 2 > options.numPageDisplay) {
-                        me.$itemContainer.scrollLeft((currentPage + 1 - options.numPageDisplay / 2) * options.itemWidth);
-                    }
                     options.callback(currentPage);
 
                     return false;
@@ -152,7 +144,8 @@
                 .bind('click', function (e) {
                     var $this = $(this);
                     me.$pager.find('.pager-item').removeClass('selected');
-                    me.$itemContainer.scrollLeft(3000);
+                    me.$itemContainer.scrollLeft(9999);
+                    
                     me.$itemContainer.find(':last-child').addClass('selected').trigger('click');
                 });
             me.$pager.find('.move-pre')
@@ -160,10 +153,6 @@
                 .bind('click', function (e) {
                     var currentIndex = me.$itemContainer.scrollLeft();
                     me.$itemContainer.scrollLeft(currentIndex - options.itemWidth);
-                    //                    me.$itemContainer.animate(
-                    //                    {
-                    //                        scrollLeft: currentIndex - options.itemWidth
-                    //                    }, 100);
                 });
 
             me.$pager.find('.move-next')
@@ -172,12 +161,22 @@
 
                     var currentIndex = me.$itemContainer.scrollLeft();
                     me.$itemContainer.scrollLeft(currentIndex + options.itemWidth);
-                    //                    me.$itemContainer.animate(
-                    //                    {
-                    //                        scrollLeft: currentIndex + options.itemWidth
-                    //                    }, 100);
 
                 });
+        },
+        calculateScrollLeft: function (pageIndex) {
+            var me = this;
+            var options = this.options;
+            var widthScrollLeft = 0;
+            if (pageIndex > 9) {
+                widthScrollLeft += (pageIndex - 13) * (me.$pager.find('.pager-item[index=9]').outerWidth());
+                widthScrollLeft += 10 * (me.$pager.find('.pager-item[index=0]').outerWidth());
+            }
+            else {
+                widthScrollLeft += (pageIndex + 2 - options.numPageDisplay / 2) * (me.$pager.find('.pager-item[index=0]').outerWidth() - 3);
+            }
+
+            return widthScrollLeft;
         }
     };
 })(jQuery);
