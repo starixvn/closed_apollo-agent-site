@@ -81,6 +81,10 @@
             itemHtml = ''
             currentItem = '';
 
+            if (options.totalItem > 0 && numItem == 0) {
+                numItem = 1;
+            }
+
             if (!me.$pager.hasClass('sbpager')) {
                 me.$pager.addClass('sbpager');
             }
