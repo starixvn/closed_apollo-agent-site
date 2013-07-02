@@ -15,7 +15,7 @@
 		{
 			<div class="cell">
 				<div class="label">
-					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Lang.sport)</label>
+					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Lang.sport):</label>
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", @class="sport-type" })
@@ -26,7 +26,7 @@
 		{
 			<div class="cell">
 				<div class="label">
-					<label for="ddlBetType">@Html.LabelFor(m => m.BetType, Lang.bettype)</label>
+					<label for="ddlBetType">@Html.LabelFor(m => m.BetType, Lang.bettype):</label>
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
@@ -87,14 +87,14 @@
 						else
 						{
 							<td class="r">
-								@Formater.FormatNumber20(item.TakenShare / 100.00, Formater.CULT_NAME_ENG)
+								@Formater.DecFormat(item.TakenShare / 100.00, 2)
 							</td>
 						}
 						<td class="r">
-							@Formater.FormatNumber20(item.MaxGiven / 100.00, Formater.CULT_NAME_ENG)
+							@Formater.DecFormat(item.MaxGiven / 100.00, 2)
 						</td>
 						<td class="r">
-							@Formater.FormatNumber20(item.MinGiven / 100.00, Formater.CULT_NAME_ENG)
+							@Formater.DecFormat(item.MinGiven / 100.00, 2)
 						</td>
 					</tr>
 					}
