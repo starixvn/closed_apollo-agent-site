@@ -344,7 +344,10 @@ var HEADER = function ($) {
                 if ($(this).attr('id') == 'account-link') {
                     if (!DEFAULTS.IsMaster) {
                         var url = "/CustomerSetting/MySetting";
-                        parent.document.getElementById('main').setAttribute('src', '/CustomerSetting/MySetting');
+                        parent.document.getElementById('main').setAttribute('src', url);
+                    } else {
+                        var url = "/Account/AgentList";
+                        parent.document.getElementById('main').setAttribute('src', url);
                     }
                     HEADER.showAccountTab();
                 } else {
