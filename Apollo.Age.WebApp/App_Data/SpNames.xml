@@ -550,7 +550,6 @@
     </Setting>    
   </Function>
   <Function Name="Wagers-Soccer">
-
     <Setting Key="Age_Wagers_SC_1_3_5" SpName="Age_Wagers_SC_1_3_5" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_1_3_7_8_RunBall" SpName="Age_Wagers_SC_1_3_7_8_RunBall" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_4_30_16" SpName="Age_Wagers_SC_4_30_16" DbName="SVRAGE.RepDB"/>
@@ -568,4 +567,7 @@
         <Setting Key="Age_Wagers_BK_9_29" SpName="Age_Wagers_BK_9_29" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB"/>
     </Function>
+  <Function Name="Wagers-Outright">
+    <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB"/>    
+  </Function>
 </Functions>
