@@ -9,7 +9,9 @@
 					url: APOLLO.resolveUrl("Reports/MemberOutstanding"),
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
-					data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'mainShareHolderId': $this.attr("mainshareholderid"), 'mainShareHolderUsername': $this.attr("mainshareholderusername") }),
+					data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'Sporttypes': $("#ddlSport").val(),
+						'Bettypes': $("#ddlBettype").val(), 'mainShareHolderId': $this.attr("mainshareholderid"), 'mainShareHolderUsername': $this.attr("mainshareholderusername")
+					}),
 					timeout: 120000
 				})
                 .done(function (result) {
@@ -22,11 +24,16 @@
 			});
 
 			$("[name='navigation']").on('click', function () {
-				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
+				+ "&Sporttypes=" + $("#ddlSport").val()
+                    + "&Bettypes=" + $("#ddlBettype").val());
 			});
 
 			$("[name='viewagent']").on('click', function () {
-				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
+				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
+				+ "&Sporttypes=" + $("#ddlSport").val()
+                    + "&Bettypes=" + $("#ddlBettype").val()
+					);
 			});
 
 			$("#gridId").on("click", ".act-view-betlist", REPORTS.viewBetList);
@@ -35,7 +42,9 @@
 		// View betlist page from report Outstanding
 		viewBetList: function () {
 			var username = $(this).closest('tr').children('td:first').text();
-			location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid") + "&username=" + username + "&mainShareHolderId=" + $(this).attr("mainShareHolderId") + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername"));
+			location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid") + "&username=" + username
+			+ "&sporttype=" + $("#ddlSport").val() + "&bettype=" + $("#ddlBettype").val()
+			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId") + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername"));
 		},
 
 		initGrid: function (outstandingData) {
@@ -79,7 +88,7 @@
 
                          { HeaderText: "", Width: 150, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                          	CustomCellRender: function (cell) {
-                         		return (cell.Value.Outstanding != 0 ? "<a href='#' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName);
+                         		return (cell.Value.Outstanding != 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName);
                          	}
                          },
                         { HeaderText: LANGUAGES.Outstanding, Width: 200, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },

@@ -22,236 +22,119 @@ namespace Apollo.Age.Wagers.Controllers
     /// </summary>
     public class SoccerController : WagerController
     {
-        public ActionResult Straight(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult Straight(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<StraightViewModel>(criteria).ToList();
+            var result = WagerService.GetWagerData<StraightViewModel>(criteria).ToList();
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult FirstHalf(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult FirstHalf(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<FirstHalfViewModel>(criteria);
+            var result = WagerService.GetWagerData<FirstHalfViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult RunningBall(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult RunningBall(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
+            var result = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult Correctscore(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult Correctscore(CorrectScoreCriteria criteria)
         {
-            var criteria = new CorrectScoreCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Bettype = 4,
-                PageIndex = pageIndex
-            };
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Bettype = 4;
 
-            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
+            var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult FirstHalfCorrectScore(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult FirstHalfCorrectScore(CorrectScoreCriteria criteria)
         {
-            var criteria = new CorrectScoreCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Bettype = 30,
-                PageIndex = pageIndex
-            };
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Bettype = 30;
 
-            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
+            var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult Total(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult Total(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<TotalViewModel>(criteria);
+            var result = WagerService.GetWagerData<TotalViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult HalfFull(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult HalfFull(CorrectScoreCriteria criteria)
         {
-            var criteria = new CorrectScoreCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Bettype = 16,
-                PageIndex = pageIndex
-            };
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Bettype = 16;
 
-            var result = _WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
+            var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult Parlay(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult Parlay(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<ParlayViewModel>(criteria);
+            var result = WagerService.GetWagerData<ParlayViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }
 
-        public ActionResult SpecialBet(
-            DateTime fromDate,
-            string groupComm,
-            bool isDirectMember,
-            int mainShareHolderId,
-            int leagueId,
-            int pageIndex = 0)
+        public ActionResult SpecialBet(SoccerCriteria criteria)
         {
-            var criteria = new SoccerCriteria
-            {
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                GroupBetName = this.CurrentAction,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var result = _WagerService.GetWagerData<ViewModels.Basketball.SpecialViewModel>(criteria);
+            var result = WagerService.GetWagerData<ViewModels.Basketball.SpecialViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
+            ViewBag.IsEM = criteria.IsEM;
 
             return View(result);
         }

@@ -57,7 +57,7 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Outstanding Report
 
-        public ViewResult Outstanding(int? agentId, string sportType, string betType)
+		public ViewResult Outstanding(int? agentId, string Sporttypes, string Bettypes)
         {
             CurrentAgentId = agentId;
             var mainShareHolder = new Apollo.Age.Entities.Agent();
@@ -74,7 +74,9 @@ namespace Apollo.Age.Reports.Controllers
 
             IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
             {
-                AgentId = CurrentAgentId.Value
+                AgentId = CurrentAgentId.Value,
+				Sporttypes = Sporttypes,
+				Bettypes = Bettypes
             });
 
             var outstandingViewModel = new OutstandingViewModel()
@@ -83,7 +85,9 @@ namespace Apollo.Age.Reports.Controllers
                 ListOutStanding = models,
                 DownlinePath = modelAgentDownLine,
                 AgentLevel = modelAgentDownLine.LastOrDefault().Level,
-                MainShareHolder = mainShareHolder
+                MainShareHolder = mainShareHolder,
+				Sporttypes = Sporttypes,
+				Bettypes = Bettypes
             };
 
             outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
@@ -93,13 +97,15 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         [HttpPost]
-        public ActionResult MemberOutstanding(int? agentId, int mainShareHolderId, string mainShareHolderUsername)
+		public ActionResult MemberOutstanding(int? agentId, string Sporttypes, string Bettypes, int mainShareHolderId, string mainShareHolderUsername)
         {
             CurrentAgentId = agentId;
             //// call service to get report data here
             IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
             {
-                AgentId = CurrentAgentId.Value
+                AgentId = CurrentAgentId.Value,
+				Sporttypes = Sporttypes,
+				Bettypes = Bettypes
             });
 
             //// Sum total amount
