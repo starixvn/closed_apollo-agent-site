@@ -21,7 +21,7 @@ html, body {
 		padding: 0;
 		
 		&:hover {
-			a { text-decoration: underline }
+			a { color: #FFFF00; }
 		}
 
 		&.active {		
@@ -177,7 +177,7 @@ html, body {
 		}
 		.agent-name, .parent-name {
 			text-align: right;
-			color: @orange;
+			color: #BB0000;
 		}
 		.parent-name {
 			a {
@@ -303,7 +303,6 @@ html, body {
 					.border-radius(2px 2px 0 0);
 					
 					color: @gray;
-					font-weight: bold;
 
 					float: left;
 					margin: 0 3px 0 0;
@@ -328,7 +327,7 @@ html, body {
 
 		.content {
 			position: absolute;
-			top: 30px;
+			top: 26px;
 			bottom: 0;
 			left: 0;
 			right: 0;
@@ -352,7 +351,7 @@ html, body {
 					width: 100%;
 					
 					&:hover { 
-						color: @hoverLinkYellowColor;
+						color: @hoverLinkOrangeColor;
 					}
 				}
 			}
@@ -406,6 +405,10 @@ html, body {
 		padding: 0 0 0 5px;
 		color: @linkColor;
 		white-space: nowrap;
+
+		&:hover {
+			color: @hoverLinkOrangeColor;
+		}
 	}
 }
 
@@ -413,7 +416,7 @@ html, body {
 	a {
 		color: @linkColor;
 		&:hover { 
-			color: @hoverLinkYellowColor;
+			color: @hoverLinkOrangeColor;
 		}
 	}
 }
@@ -438,46 +441,30 @@ html, body {
 	text-align: left;
 
 	span, a {
-		//#gradient.vertical(#F8F8F8, #EAEAEA);
-		//border: 1px solid #CCC;
-		//.box-shadow(0 1px 0 #FFF inset);
 		margin: 0 2px;
 		padding: 2px 5px;
-		color: @linkColor;
+		color: @black;
 		text-align: center;
 		text-decoration: none;
 		.transition(all 0.15s ease-in-out 0s);
 		cursor: pointer;
 
 		&:hover, &:focus, &:active {
-			background: @grayLight;
 			padding: 2px 5px;
-			color: @white;
-			text-shadow: 0 1px 0 #555;
+			color: @red;
 		}
 	}
 
 	.current {
-		background: @grayLight;
 		padding: 2px 5px;
-		color: @white;
-		text-shadow: 0 1px 0 @gray;
-
-		&:hover, &:focus, &:active {
-			cursor: default;
-			color: @white;
-		}
+		color: @red;
 	}
 
 	.disabled, .disabled:hover {		
 		cursor: default;
-		background: #ddd;
-		color: @gray;
-		border: 1px solid @borderColor;
-		text-shadow: none;
+		color: @black;
 	}
 }
-
 
 .line-pager {
 	background: #efefef;
