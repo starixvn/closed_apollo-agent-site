@@ -17,12 +17,7 @@
         <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
     </div>
-    <ul class="menu report-winloss">
-        <li><a href="~/Reports/MatchEntered">@Apollo.Age.Resources.Lang.lblWinLoss</a></li>
-        <li class="active"><a href="~/reports/outstanding">@Apollo.Age.Resources.Lang.outstanding</a></li>
-        <li><a href="~/_betList/BetListTransaction.aspx?type=transaction">@Apollo.Age.Resources.Lang.transaction</a></li>
-        <li><a href="~/_betList/BetListTransaction.aspx?type=cancel">@Apollo.Age.Resources.Lang.TicketsCancelled</a></li>
-    </ul>
+	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding)
  }
  else
  {
