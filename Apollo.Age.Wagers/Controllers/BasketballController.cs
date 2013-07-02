@@ -26,7 +26,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
         }
 
-        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
+        public ActionResult Straight(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
             string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
@@ -36,7 +36,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Sporttypes = sportTypes,
                 PageIndex = pageIndex
             };
@@ -48,7 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
-        public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
+        public ActionResult FirstHalf(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
             string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
@@ -58,7 +58,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Sporttypes = sportTypes,
                 PageIndex = pageIndex
             };
@@ -70,7 +70,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
-        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
+        public ActionResult RunningBall(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
             string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
@@ -80,7 +80,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Sporttypes = sportTypes,
                 PageIndex = pageIndex
             };
@@ -92,7 +92,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
-        public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
+        public ActionResult Parlay(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
             string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
@@ -102,7 +102,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Sporttypes = sportTypes,
                 PageIndex = pageIndex
             };
@@ -114,7 +114,7 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
-        public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember, int leagueId,
+        public ActionResult SpecialBet(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
             string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
         {
             var criteria = new BasketballCriteria
@@ -124,7 +124,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Sporttypes = sportTypes,
                 PageIndex = pageIndex
             };

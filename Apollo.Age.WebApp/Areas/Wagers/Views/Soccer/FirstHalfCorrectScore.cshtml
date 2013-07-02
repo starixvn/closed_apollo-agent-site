@@ -4,14 +4,14 @@
 @using Apollo.Age.Web.Mvc
 @model List<CorrectScoreViewModel>
 <table class="tblRpt soccer first-half-correct">
-    @WagerHelper.RederHeaderColumn(Lang.correctscore)                    
+    @WagerHelper.RederHeaderColumn(Lang.correctscore)
     <tbody>
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
-                <td class="r">
-                        @((int)item.BetCount)/@((int)item.Stake)
-                </td>                            
+                <td class="border-right r red-num">
+                    @item.BetCount/@Math.Round(item.Stake)
+                </td>
             </tr>
         )
     </tbody>

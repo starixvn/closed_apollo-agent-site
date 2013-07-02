@@ -53,7 +53,7 @@ namespace Apollo.Age.Services.Impl
             {
                 return _cacheManager.Get<T>(key);
             }
-            catch (Exception ex)
+            catch
             {
                 return default(T);
             }
