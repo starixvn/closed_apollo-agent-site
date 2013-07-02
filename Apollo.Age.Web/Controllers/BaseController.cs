@@ -33,12 +33,10 @@ namespace Apollo.Age.Web
     public class BaseController : Controller
     {
         private readonly IUserService _userService;
-        private LanguageManager _langManager;
 
         public BaseController()
         {
             _userService = new UserService();
-            _langManager = new LanguageManager();
         }
         #region Override functions
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -58,7 +56,7 @@ namespace Apollo.Age.Web
 
             if (CurrentSession != null)
             {
-                _langManager.SetCulture(CurrentSession.Language);
+                LanguageManager.SetCulture(CurrentSession.Language);
             }
 
             base.OnActionExecuting(filterContext);
@@ -133,7 +131,7 @@ namespace Apollo.Age.Web
                     if (Request.IsAjaxRequest())
                     {
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        Response.Write(_langManager.GetResourceData("lblAccountWasStopped"));
+                        Response.Write(LanguageManager.GetResourceData("lblAccountWasStopped"));
                         Response.Buffer = false;
                         Response.ClearContent();
                         Response.ClearHeaders();
@@ -175,7 +173,7 @@ namespace Apollo.Age.Web
 
         protected string GetResourceData(string key)
         {
-            return _langManager.GetResourceData(key);
+            return LanguageManager.GetResourceData(key);
         }
 
         #region Controller Util

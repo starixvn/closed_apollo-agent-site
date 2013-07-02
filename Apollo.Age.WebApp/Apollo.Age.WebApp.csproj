@@ -280,10 +280,18 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
-    <Content Include="Views\Account\Resources\AccountInfo.js" />
-    <Content Include="Views\Account\Resources\AccountList.js" />
-    <Content Include="Views\Account\Resources\AgentList.js" />
+    <Content Include="Views\Account\Resources\ViewAccountDetails.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\AccountInfo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\AccountList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\AgentList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Account\Resources\CustSettingEngine\BettingLimit.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BetType.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BetTypeGroup.js" />
@@ -306,14 +314,30 @@
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\pointerDown.png" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Languages\en.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\PTSetting.js" />
-    <Content Include="Views\Account\Resources\DownlineInfo.js" />
-    <Content Include="Views\Account\Resources\EditBetLimit.js" />
-    <Content Include="Views\Account\Resources\EditCommission.js" />
-    <Content Include="Views\Account\Resources\EditPositionTaking.js" />
-    <Content Include="Views\Account\Resources\EditSetting.js" />
-    <Content Include="Views\Account\Resources\gistfile1.js" />
-    <Content Include="Views\Account\Resources\gistfile1.min.js" />
-    <Content Include="Views\Account\Resources\header.js" />
+    <Content Include="Views\Account\Resources\DownlineInfo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\EditBetLimit.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\EditCommission.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\EditPositionTaking.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\EditSetting.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\gistfile1.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\gistfile1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\header.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Account\Resources\Images\ajax-loader.gif" />
     <Content Include="Views\Account\Resources\Images\bg-logo.jpg" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-bottom.png" />
@@ -349,13 +373,27 @@
     <Content Include="Views\Account\Resources\img\glyphicons-halflings-red.png" />
     <Content Include="Views\Account\Resources\img\submenu-bullet-o.jpg" />
     <Content Include="Views\Account\Resources\img\submenu-bullet.jpg" />
-    <Content Include="Views\Account\Resources\jquery.treeview.async.js" />
-    <Content Include="Views\Account\Resources\jquery.treeview.js" />
-    <Content Include="Views\Account\Resources\MemberList.js" />
-    <Content Include="Views\Account\Resources\Menu.js" />
-    <Content Include="Views\Account\Resources\treeview.css" />
-    <Content Include="Views\Account\Resources\ViewComm.js" />
-    <Content Include="Views\Account\Resources\ViewShare.js" />
+    <Content Include="Views\Account\Resources\jquery.treeview.async.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\jquery.treeview.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\MemberList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\Menu.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\treeview.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\ViewComm.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\ViewShare.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\BetList\Resources\BetList.js" />
     <Content Include="Views\BetList\Resources\Images\bgHeader.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_conts.jpg" />
@@ -693,7 +731,9 @@
     <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
     <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <Content Include="Views\Account\ContactUs.cshtml" />
-    <Content Include="Views\Account\Resources\header.less" />
+    <Content Include="Views\Account\Resources\header.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Results\Others.cshtml" />
     <Content Include="Views\Account\IndirectAgentList.cshtml" />
     <Content Include="Views\Account\IndirectMemberList.cshtml" />
@@ -716,6 +756,10 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <Content Include="App_Code\WagerHelper.cshtml" />
+    <Content Include="Views\Account\Resources\CustomerSetting.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
@@ -726,6 +770,7 @@
     <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />
     <Content Include="Views\BetList\Winloss.cshtml" />
     <Content Include="Views\BetList\TicketCancel.cshtml" />
+    <Content Include="Views\BetList\Wagers.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -760,14 +805,26 @@
     <Content Include="Views\Account\Menu.cshtml" />
     <Content Include="Views\Account\MiniMenu.cshtml" />
     <Content Include="Views\Account\MySetting.cshtml" />
-    <Content Include="Views\Account\Resources\Account.less" />
-    <Content Include="Views\Account\Resources\CustomerList.less" />
+    <Content Include="Views\Account\Resources\Account.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\CustomerList.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Views\Account\Resources\CustSettingEngine\Core.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
-    <Content Include="Views\Account\Resources\ContactUs.less" />
-    <Content Include="Views\Account\Resources\LogLogin.less" />
-    <Content Include="Views\Account\Resources\MiniAccount.less" />
-    <Content Include="Views\Account\Resources\ViewSetting.less" />
+    <Content Include="Views\Account\Resources\ContactUs.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\LogLogin.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\MiniAccount.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Account\Resources\ViewSetting.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Account\Shared\_CustSettingLayout.cshtml" />
     <Content Include="Views\Account\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Shared\_LayoutAccountList.cshtml" />
@@ -948,7 +1005,6 @@
     <Content Include="Views\Results\Match.cshtml" />
     <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
-    <Content Include="Views\Results\OutrightResult.cshtml" />
     <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
@@ -1024,7 +1080,9 @@
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderCommissionSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSettingAdv.cshtml" />
-    <None Include="Views\Message\Resources\Announcement.less" />
+    <Content Include="Views\Message\Resources\Announcement.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
