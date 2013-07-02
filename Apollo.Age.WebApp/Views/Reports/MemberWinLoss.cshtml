@@ -7,12 +7,71 @@
 }
 @model MemberWinLossViewModel
 <div id="function-bar">
-    <div class="item">
+    @*<div class="item">
         <span>@Apollo.Age.Resources.Lang.date : @Formater.ShortDateFormat(Model.FromDate)~@Formater.ShortDateFormat(Model.ToDate)
             -- @Apollo.Age.Resources.Lang.sport : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType
             : @Model.BettypeName -- </span><a id="btnBack" href="javascript:;">@Apollo.Age.Resources.Lang.back</a>
+    </div>*@
+    <div class="item">
+        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
+        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
     </div>
+    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
     <img alt="" src="~/_GlobalResources/Images/top_04.gif">
+</div>
+<div id="box_header" class="report">
+    <table class="winloss">
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.dateRange:
+            </td>
+            <td class= "winloss_secondcolumn">
+                <div class="row">
+                    <div class="cell">
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="dateFrom">
+                                ~
+                            </label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                        <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                        <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                        <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                        <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="winloss_firstcolumn">
+                @Apollo.Age.Resources.Lang.WagerType:
+            </td>
+            <td class= "winloss_secondcolumn">
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+            </td>
+        </tr>
+	</table>
+	<div>
+        <div class="row bg-action">
+            <div class="item">
+                @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+            </div>
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            </div>
+        </div>
+    </div>
 </div>
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
