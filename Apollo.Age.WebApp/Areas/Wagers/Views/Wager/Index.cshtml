@@ -12,6 +12,7 @@
     var EmCalendar = ViewBag.EmCalendar != null ? (List<SelectListItem>)ViewBag.EmCalendar : null;
     var isEM = (bool)ViewBag.isEM;
     var isOR = (bool)ViewBag.isOR;
+    var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -58,14 +59,16 @@
         else
         { 
             <div class="item">
-             @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+             @Html.DatePicker("OutrightFromDate", DateTime.Now, minDate: balanceUpDay)
              </div>
              <div class="before-filter">
             ~</div>
             <div class="item">
-             @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+             @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay)
              </div>
-            
+            <div class="item">
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />
+            </div>
         }
         <img alt="" src="~/_GlobalResources/Images/top_04.gif" />
     </div>
@@ -73,8 +76,8 @@
     @Html.Hidden("SportName", sportName)
     @Html.Hidden("FromDate", new DateTime(2013, 8, 1))@*Sample data - 10 days*@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
-    @Html.Hidden("IsEm", isEM)
-    @Html.Hidden("IsOR", isOR)
+    @Html.Hidden("IsEM", isEM.ToString().ToLower())
+    @Html.Hidden("IsOR", isOR.ToString().ToLower())
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
         <div class="pages-size">

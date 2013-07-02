@@ -1797,4 +1797,10 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="lblconfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="lblelimination" xml:space="preserve">
+    <value>Elimination</value>
+  </data>
 </root>

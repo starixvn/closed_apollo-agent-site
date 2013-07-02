@@ -10,21 +10,12 @@
 namespace Apollo.Age.Wagers.Criterias.Outright
 {
     using System;
-    using Fanex.NAP.Framework.Data;
 
-    public class OutrightCriteria : CriteriaBase
+    public class OutrightCriteria : WagerCriteriaBase
     {
-        public int LoggedId { get; set; }
-
-        public DateTime FromDate { get; set; }
-
         public DateTime ToDate { get; set; }
 
         public string Sporttypes { get; set; }
-
-        public bool IsDirectMem { get; set; }
-
-        public int LeagueId { get; set; }
 
         public override string GetSettingKey()
         {
