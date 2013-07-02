@@ -30,5 +30,9 @@ namespace Apollo.Age.Reports.ViewModels
         public IEnumerable<OutstandingModel> ListOutStanding { get; set; }
 
         public IEnumerable<Agent> DownlinePath { get; set; }
+
+        public List<SingbetSport> SportList { get; set; }
+
+        public List<SingbetBettype> BettypeList { get; set; }
     }
 }
