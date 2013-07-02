@@ -38,5 +38,11 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public int CountX { get; set; }
 
         public int Count2 { get; set; }
+
+        public string Betteam1 { get; set; }
+
+        public string BetteamX { get; set; }
+
+        public string Betteam2 { get; set; }
     }
 }

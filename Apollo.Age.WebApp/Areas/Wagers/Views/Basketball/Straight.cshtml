@@ -12,7 +12,8 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    <a class="red" href="#">@item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)</a>
+                    @*<a class="red">@item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)</a>*@
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator)
                     <br />
                     @item.AwayCountHDP/@Math.Round(item.AwayStakeHDP)
                 </td>
