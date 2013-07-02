@@ -18,7 +18,24 @@ namespace Apollo.Age.BetList.ViewModels
 
     public class BetListReportViewModel
     {
+        public BetListReportViewModel()
+        {
+            UserType = 1;
+            FromDate = DateTime.Now;
+            ToDate = DateTime.Now;
+            UserType = 1;
+            SportTypes = BetTypes = "0";
+        }
+
+        public DateTime FromDate { get; set; }
+
+        public DateTime ToDate { get; set; }
+
         public DateTime BalanceUpDay { get; set; }
+
+        public string SportTypes { get; set; }
+
+        public string BetTypes { get; set; }
 
         public string Username { get; set; }
 

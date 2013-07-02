@@ -18,7 +18,7 @@
         @RazorHelper.RenderResultBySport()
     </ul>
     <ul class="pager" style="display: none">
-        <li>PAGE:</li>
+        <li>@Lang.Page:</li>
         <li>
             <div id="pager" class="sbpager">
             </div>
@@ -27,6 +27,8 @@
     <img src="~/_GlobalResources/Images/top_04.gif" alt="" />
     <input type="hidden" name="todayValue" id="todayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)"/>
     <input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))"/>
+    <input type="hidden" name="lbltoday" id="lbltoday" value="@Lang.today"/>
+    <input type="hidden" name="lblyesterday" id="lblyesterday" value="@Lang.yesterday"/>
 </div>
 @using (Html.BeginForm())
 {
@@ -34,7 +36,7 @@
         <div class="row">
             <div class="cell" id="filterResultGame">
                 <div class="label">
-                    <label for="ddlSport">@Lang.Game</label>
+                    <label for="ddlSport">@Lang.Game:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
@@ -43,7 +45,7 @@
             </div>
             <div class="cell" id="filterResultLeague">
                 <div class="label">
-                    <label for="ddlLeague">@Lang.league</label>
+                    <label for="ddlLeague">@Lang.league:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownList("ddlLeague",

@@ -62,33 +62,37 @@ namespace Apollo.Age.Reports.Controllers
             CurrentAgentId = agentId;
             var mainShareHolder = new Apollo.Age.Entities.Agent();
 
-            IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
-
-            if (CurrentSession.IsSuper)
-            {
-                if (modelAgentDownLine.Count() > 1)
-                {
-                    mainShareHolder = modelAgentDownLine.ToList()[1];
-                }
-            }
-
-            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
-            {
-                AgentId = CurrentAgentId.Value,
+			var outstandingViewModel = new OutstandingViewModel()
+			{
+				CurrentAgentId = CurrentAgentId.Value,
+				MainShareHolder = mainShareHolder,
 				Sporttypes = Sporttypes,
 				Bettypes = Bettypes
-            });
+			};
 
-            var outstandingViewModel = new OutstandingViewModel()
-            {
-                CurrentAgentId = CurrentAgentId.Value,
-                ListOutStanding = models,
-                DownlinePath = modelAgentDownLine,
-                AgentLevel = modelAgentDownLine.LastOrDefault().Level,
-                MainShareHolder = mainShareHolder,
-				Sporttypes = Sporttypes,
-				Bettypes = Bettypes
-            };
+			if (Sporttypes != null)
+			{
+				IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
+
+				if (CurrentSession.IsSuper)
+				{
+					if (modelAgentDownLine.Count() > 1)
+					{
+						mainShareHolder = modelAgentDownLine.ToList()[1];
+					}
+				}
+
+				IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
+				{
+					AgentId = CurrentAgentId.Value,
+					Sporttypes = Sporttypes,
+					Bettypes = Bettypes
+				});
+
+				outstandingViewModel.ListOutStanding = models;
+				outstandingViewModel.DownlinePath = modelAgentDownLine;
+				outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
+			}
 
             outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             outstandingViewModel.BettypeList = ReportService.GetBettype();

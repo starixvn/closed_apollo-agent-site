@@ -43,4 +43,5 @@
         <BetType Action="Parlay" ResourceKey="lblParlay" />
         <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
     </Sport>
+   
 </Wagers>

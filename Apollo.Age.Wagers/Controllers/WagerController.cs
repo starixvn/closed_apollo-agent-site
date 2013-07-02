@@ -16,6 +16,7 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Core.BettypeGroup;
@@ -25,6 +26,7 @@ namespace Apollo.Age.Wagers.Controllers
     public class WagerController : BaseController
     {
         protected readonly IWagersService WagerService;
+        protected readonly ReportService ReportService;
 
         public WagerController()
             : this(null)
@@ -34,6 +36,7 @@ namespace Apollo.Age.Wagers.Controllers
         public WagerController(IWagersService wagerService = null)
         {
             WagerService = wagerService ?? new WagersService();
+            ReportService = new ReportService();
         }
 
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
@@ -43,19 +46,26 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? leagues.ToList() : new List<League>();
         }
 
-        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
+        public string SportId(string sportName)
         {
+            string sportId = string.Empty;
             if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
             {
-                sportName = WagersSportName.WagerSportGroup()[sportName];
+                sportId = WagersSportName.WagerSportGroup()[sportName];
             }
+            return sportId;
+        }
 
-            var listEventDate = WagerService.GetEventDate(sportName);
- 
-            var list = new List<SelectListItem>();            
+        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
+        {
+            var sportId = SportId(sportName);
+
+            var listEventDate = WagerService.GetEventDate(sportId);
+
+            var list = new List<SelectListItem>();
 
             foreach (var date in listEventDate)
-            {                
+            {
                 list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
             }
             return list;
@@ -82,7 +92,6 @@ namespace Apollo.Age.Wagers.Controllers
                         }
                         break;
                     }
-
             }
             var mainShareHolders = WagerService.GetMainShareHolder(groupBetName);
 
@@ -90,7 +99,7 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight",
-            bool isEM = false)
+            bool isEM = false, bool isOR = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -138,7 +147,7 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(new DateTime(2013,8,1), sportTypes);
+            ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes);
             ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>());
             ViewBag.GroupBetName = groupBetName;
             ViewBag.SportName = sportName;
@@ -146,14 +155,13 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-            if (isEM)
-            {
-                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
-            }
-            else
-            {
-                ViewBag.EmCalendar = null;
-            }
+            ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+
+            ViewBag.isEM = isEM;
+            ViewBag.isOR = isOR;
+
+            ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
+
             return View();
         }
     }

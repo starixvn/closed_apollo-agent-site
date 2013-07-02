@@ -2,43 +2,48 @@
 
 var Wagers = function ($) {
     return {
-
         sportName: null,
         groupBetName: null,
         viewOption: 0,
         isDirectMember: true,
         league: null,
         fromDate: null,
+        toDate: null,
         groupComm: null,
         sportTypeIds: null,
         url: null,
-        isEM: null,
-
+        isEM: false,
+        isOR: false,
+        pageIndex: 0,
         init: function () {
             Wagers.sportName = $('#SportName').val();
             Wagers.groupBetName = $('#GroupBetName').val();
             Wagers.viewOption = $('#ViewOption').val();
             Wagers.League = $('#League').val();
-            Wagers.fromDate = $('#FromDate').val();
             Wagers.groupComm = $('#groupComm').val();
             Wagers.sportTypeIds = $('#SportTypeIds').val();
-            Wagers.isEM = $('#IsEm').val();
+            Wagers.isEM = $('#IsEM').val();
+            Wagers.isOR = $('#IsOR').val();
 
+            Wagers.fromDate = Wagers.isOR == "true" ? $('#OutrightFromDate').val() : $('#FromDate').val();
+            Wagers.toDate = $('#OutrightToDate').val();
             if (Wagers.viewOption > 0) {
                 Wagers.isDirectMember = false;
             }
             else {
-
                 Wagers.isDirectMember = (Wagers.viewOption == 0 ? false : true);
             }
-
-            if (Wagers.sportName.toLowerCase() != "soccer") {
-                Wagers.url = "~/wagers/basketball/" + Wagers.groupBetName;
+            if (Wagers.isOR == "true") {
+                Wagers.url = "~/wagers/Outright/WagerOutright";
             }
             else {
-                Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+                if (Wagers.sportName.toLowerCase() != "soccer") {
+                    Wagers.url = "~/wagers/basketball/" + Wagers.groupBetName;
+                }
+                else {
+                    Wagers.url = "~/wagers/" + Wagers.sportName + "/" + Wagers.groupBetName;
+                }
             }
-
             Wagers.getWagerData();
 
             $('#ViewOption').on('change', function () {
@@ -47,7 +52,6 @@ var Wagers = function ($) {
                     Wagers.isDirectMember = false;
                 }
                 else {
-
                     Wagers.isDirectMember = ($this.val() == 0 ? false : true);
                 }
 
@@ -69,30 +73,34 @@ var Wagers = function ($) {
                 Wagers.getWagerData();
             });
 
+            if (Wagers.isOR == "true") {
+                $("#btnSubmit").on('click', function () {
+                    Wagers.fromDate = $('#OutrightFromDate').val();
+                    Wagers.toDate = $('#OutrightToDate').val();
+                    Wagers.getWagerData();
+                });
+            }
         },
 
-        getWagerData: function (pageIndex) {
-
-            if (pageIndex == undefined) {
-                pageIndex = 0;
-            }
+        getWagerData: function () {
 
             $.ajax({
                 url: APOLLO.resolveUrl(Wagers.url),
                 data: {
                     fromDate: Wagers.fromDate,
+                    toDate: Wagers.toDate,
                     uGroup: Wagers.groupComm,
                     isDirectMember: Wagers.isDirectMember,
                     loggedId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,
                     sportName: Wagers.sportName,
-                    pageIndex: pageIndex,
-                    isEM: Wagers.isEM,
+                    pageIndex: Wagers.pageIndex,
+                    isEM: Wagers.isEM
                 },
                 success: function (data) {
                     $('#container').html(data);
-                    Wagers.initPager(pageIndex);
+                    Wagers.initPager(Wagers.pageIndex);
                 }
             });
         },
@@ -104,10 +112,11 @@ var Wagers = function ($) {
                 totalItem: $('#TotalItems').val(),
                 //numPageDisplay: 8,
                 callback: function (currentPage) {
-                    Wagers.getWagerData(currentPage);
+                    Wagers.pageIndex = currentPage;
+                    Wagers.getWagerData();
                 }
             });
-        }
+        }       
     }
 } (jQuery);
 

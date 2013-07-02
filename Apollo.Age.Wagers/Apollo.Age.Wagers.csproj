@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\WagerMenusConfiguration.cs" />
+    <Compile Include="Controllers\OutrightController.cs" />
     <Compile Include="Controllers\WagerController.cs" />
     <Compile Include="Controllers\BasketballController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Criterias\GetEventDateCriteria.cs" />
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Criterias\GetMainShareHolderCriteria.cs" />
+    <Compile Include="Criterias\Outright\OutrightCriteria.cs" />
     <Compile Include="Criterias\Soccer\SoccerCriteria.cs" />
     <Compile Include="Criterias\Soccer\CorrectScoreCriteria.cs" />
     <Compile Include="Criterias\WagerCriteriaBase.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="ViewModels\Basketball\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
+    <Compile Include="ViewModels\Outright\OutrightViewModel.cs" />
     <Compile Include="ViewModels\Soccer\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Soccer\TotalViewModel.cs" />
@@ -89,6 +92,10 @@
     <Compile Include="ViewModels\WagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
+      <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
+      <Name>Apollo.Age.Reports</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>

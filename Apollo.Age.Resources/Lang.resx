@@ -136,7 +136,7 @@
     <value>AH</value>
   </data>
   <data name="alertIncorrectMaxBet" xml:space="preserve">
-    <value>Incorrect Single Bet Max</value>
+    <value>Incorrect Single Bet</value>
   </data>
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>Incorrect Max Per Ball</value>
@@ -145,7 +145,7 @@
     <value>Incorrect Single Game</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
-    <value>Incorrect Single Bet Min</value>
+    <value>Incorrect Min Single Bet</value>
   </data>
   <data name="all" xml:space="preserve">
     <value>All</value>
@@ -241,7 +241,7 @@
     <value>Golf</value>
   </data>
   <data name="group" xml:space="preserve">
-    <value>Group</value>
+    <value>Line</value>
   </data>
   <data name="ha" xml:space="preserve">
     <value>HA</value>
@@ -340,7 +340,7 @@
     <value>Agent Outstanding</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
-    <value>Single Bet Max must be less than or equal to</value>
+    <value>Single Bet must be less than or equal to</value>
   </data>
   <data name="lblalertMaxPerBallCompare" xml:space="preserve">
     <value>Max Per Ball must be less than or equal to {1}.</value>
@@ -349,7 +349,7 @@
     <value>Single Game must be less than or equal to {1}.</value>
   </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
-    <value>Single Bet Min must be greater than or equal to</value>
+    <value>Min Single Bet must be greater than or equal to</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>HDP, OU, OE</value>
@@ -382,16 +382,16 @@
     <value>Forecast</value>
   </data>
   <data name="lblGroupa" xml:space="preserve">
-    <value>Group A</value>
+    <value>Line A</value>
   </data>
   <data name="lblGroupb" xml:space="preserve">
-    <value>Group B</value>
+    <value>Line B</value>
   </data>
   <data name="lblGroupc" xml:space="preserve">
-    <value>Group C</value>
+    <value>Line C</value>
   </data>
   <data name="lblGroupd" xml:space="preserve">
-    <value>Group D</value>
+    <value>Line D</value>
   </data>
   <data name="lblHandicapFC" xml:space="preserve">
     <value>Handicap</value>
@@ -410,7 +410,7 @@
     <comment>Label Number Game</comment>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Single Bet Max</value>
+    <value>Single Bet</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
     <value>Single Game</value>
@@ -431,7 +431,7 @@
     <value>Message</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Single Bet Min</value>
+    <value>Min Single Bet </value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -699,7 +699,7 @@
     <value>Sorry, You don't have permission to access this page.</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Search</value>
   </data>
   <data name="subTotal" xml:space="preserve">
     <value>Sub Total</value>
@@ -897,13 +897,13 @@
     <value>Copy {0} share settings from {1}</value>
   </data>
   <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Game should be greater than or equal to Single Bet Max  </value>
+    <value>{0} - The Single Game should be greater than or equal to Single Bet</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
-    <value>{0} - The Single Bet Min should be less than or equal to Single Bet Max</value>
+    <value>{0} - The Single Bet should be greater than or equal to Min Single Bet</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - The Single Game should be greater than or equal to Single Bet Min</value>
+    <value>{0} - The Single Game should be greater than or equal to Min Single Bet</value>
   </data>
   <data name="otherBetTypesOf" xml:space="preserve">
     <value>Other bet types of {0}</value>
@@ -945,7 +945,7 @@
     <value>Show Upline</value>
   </data>
   <data name="minBetShouldBeLessThanOrEqualToMaxPerBall" xml:space="preserve">
-    <value>{0} - The Single Bet Min should be less than or equal to Max Per Ball</value>
+    <value>{0} - The Min Single Bet should be less than or equal to Max Per Ball</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Upper</value>
@@ -1044,7 +1044,7 @@
     <value>Agent Share</value>
   </data>
   <data name="lblCommissionGroup" xml:space="preserve">
-    <value>Commission Group</value>
+    <value>Commission Line</value>
   </data>
   <data name="lblCommissionSetting" xml:space="preserve">
     <value>Commission</value>
@@ -1062,10 +1062,10 @@
     <value>% in Agent Min</value>
   </data>
   <data name="lblShareSetting" xml:space="preserve">
-    <value>Share</value>
+    <value>Share %</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Share (Soccer Deadball Handicap)</value>
+    <value>Share % (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% in Upper</value>
@@ -1558,10 +1558,10 @@
     <value>D</value>
   </data>
   <data name="MaxSingleBet" xml:space="preserve">
-    <value>Single Bet Max</value>
+    <value>Single Bet</value>
   </data>
   <data name="MinSingleBet" xml:space="preserve">
-    <value>Single Bet Min</value>
+    <value>Min Single Bet</value>
   </data>
   <data name="SingleGame" xml:space="preserve">
     <value>Single Game</value>
@@ -1796,5 +1796,11 @@
   </data>
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
+  </data>
+  <data name="lblconfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="lblelimination" xml:space="preserve">
+    <value>Elimination</value>
   </data>
 </root>

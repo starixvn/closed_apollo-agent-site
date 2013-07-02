@@ -1,0 +1,40 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="OutrightViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.7.2">Created</change>
+// </history>
+
+namespace Apollo.Age.Wagers.ViewModels.Outright
+{
+    using System;
+    using Apollo.Age.Services;
+
+    public class OutrightViewModel: WagerViewModel
+    {
+        public DateTime EventDate { get; set; }
+        
+        public int TeamId { get; set; }
+
+        public string TeamName {
+            get
+            {
+                return CacheRef.GetTeamName(this.TeamId);
+            }
+        }
+
+        public int Orid { get; set; }
+
+        public short Bettype { get; set; }
+
+        public decimal Stake { get; set; }
+
+        public string betteam { get; set; }
+
+        public int BetCount { get; set; }
+
+        public decimal Stake1 { get; set; }
+    }
+}

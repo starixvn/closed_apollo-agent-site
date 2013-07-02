@@ -12,6 +12,7 @@ namespace Apollo.Age.BetList.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
@@ -55,14 +56,31 @@ namespace Apollo.Age.BetList.Controllers
             return this.View();
         }
 
+        /// <summary>
+        /// Cancel ticket betlist
+        /// </summary>
         [HttpGet]
-        public ViewResult TicketCancel(DateTime fromDate, DateTime toDate, string betType = _StringEmpty, string sportType = _StringEmpty, string userType = _StringEmpty, string userName = _StringEmpty)
+        public ViewResult TicketCancel()
         {
-            int agentId, custId;
+            var viewModel = new BetListReportViewModel();
+
+            return this.TicketCancel(viewModel);
+        }
+
+        [HttpPost]
+        public ViewResult TicketCancel(BetListReportViewModel model)
+        {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
+            int agentId, custId;
             int errorCode;
-            _betListService.GetUserIdByUserName(CurrentSession.AgentId, userType == "1" ? true : false, userName, out agentId, out custId, out errorCode);
+
+            model.Username = CurrentSession.AgentName;
+            _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList = ReportService.GetBettype();
+            model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
             {
@@ -72,42 +90,21 @@ namespace Apollo.Age.BetList.Controllers
                     AgentId = agentId,
                     LoggedId = CurrentSession.AgentId,
                     CustId = custId,
-                    FromDate = this.ResetStartDate(fromDate),
-                    ToDate = this.ResetEndDate(toDate),
+                    FromDate = this.ResetStartDate(model.FromDate),
+                    ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
-                    SportTypes = sportType,
-                    BetTypes = betType
+                    SportTypes = model.SportTypes,
+                    BetTypes = model.BetTypes
                 };
 
                 TicketResult mainTickets;
-
                 mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
 
-                var viewModel = new BetListReportViewModel
-                {
-                    TicketList = this.Ticket(mainTickets, BetListPage.Report),
-                    UserType = 1,
-                    Username = CurrentSession.AgentName,
-                    SportList = SingbetSportService.GetSport(isOther: false),
-                    BettypeList = ReportService.GetBettype(),
-                    BalanceUpDay = balanceUpDay
-                };
-
-                return this.View(viewModel);
+                // Set data to view model
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
             }
-            else
-            {
-                var viewModel = new BetListReportViewModel
-                {
-                    UserType = 1,
-                    Username = CurrentSession.AgentName,
-                    SportList = SingbetSportService.GetSport(isOther: false),
-                    BettypeList = ReportService.GetBettype(),
-                    BalanceUpDay = balanceUpDay
-                };
 
-                return this.View(viewModel);
-            }
+            return this.View(model);
         }
 
         /// <summary>
@@ -376,7 +373,7 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
+                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Result = ticket.Winlost + ticket.PlayerComm,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),

@@ -1,0 +1,48 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Outright
+@using Apollo.Age.Web.Mvc
+@model List<OutrightViewModel>
+<table class="tblRpt">
+    <tr>
+        <th>
+            @Lang.time
+        </th>
+        <th>
+            @Lang.league
+        </th>
+        <th>
+            @Lang.lblTeam
+        </th>
+        <th>
+            @Lang.lblelimination
+        </th>
+        <th>
+            @Lang.lblWager
+        </th>
+    </tr>
+    <tbody>
+        @{
+            IEnumerable<int> leagueIds = Model.Select(x => x.LeagueId).Distinct();
+            IEnumerable<OutrightViewModel> outrights = null;
+            
+        }
+        @foreach (var item in leagueIds)
+        {
+            outrights = Model.Where(x => x.LeagueId == item);
+
+            foreach (var outright in outrights)
+            { 
+            <tr class="c">
+                <td class="border-right r red-num">
+                </td>
+                <td class="border-right r red-num">
+                </td>
+                <td class="border-right r red-num">
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

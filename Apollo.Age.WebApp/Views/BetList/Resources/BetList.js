@@ -216,13 +216,7 @@ if (typeof jQuery != "undefined") {
 				}
 				else {
 					$.blockUI();
-					var url = APOLLO.resolveUrl('Betlist/TicketCancel?FromDate='
-                    + BETLIST.FromDate.val() + "&ToDate=" + BETLIST.ToDate.val()
-					+ "&userName=" + $("#Username").val()
-					+ "&userType=" + $("#UserType").val()
-                    + "&Sporttypes=" + BETLIST.ddlSport.val()
-                    + "&Bettypes=" + BETLIST.ddlBettype.val());
-					location.href = url;
+					$("form:first").submit();
 				}
 			}
 		};
