@@ -1034,7 +1034,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to top.
+        ///   Looks up a localized string similar to TO TOP.
         /// </summary>
         public static string GoToTop {
             get {
