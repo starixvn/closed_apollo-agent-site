@@ -25,6 +25,8 @@ namespace Apollo.Age.BetList.Services
 
         IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria);
 
+        TicketResult WagersTicket(WagersCriteria criteria);
+
         TicketResult GetRunningByBettype(BetListCriteria criteria);
 
         TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);
