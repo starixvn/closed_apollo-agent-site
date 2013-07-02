@@ -14,6 +14,13 @@
             return this.each(function () {
                 return new Fanex.SBPager(this, opts);
             });
+        },
+        setCurrentPage: function (pageIndex) {
+            $(this).find('.pager-item[index=' + pageIndex + ']').trigger('click');
+        },
+        getCurrentPage: function () {
+            var index = $(this).find('.item-container .selected').attr('index');
+            return parseInt(index);
         }
     };
 
@@ -34,14 +41,14 @@
     $.fn.sbPager.defaults =
     {
         currentPage: 0,
-        numPageDisplay: 5,
+        numPageDisplay: 8,
         itemPerPage: 0,
         totalItem: 0,
         prevText: '<',
         nextText: '>',
         startText: '<<',
         endText: '>>',
-        itemWidth: 36,
+        itemWidth: 29,
         callback: function () { return false; }
     };
 
@@ -102,8 +109,9 @@
 
             me.$itemContainer = me.$pager.find('.item-container');
 
-            me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
-
+            if (options.currentPage + 1 > numDisplayItem) {
+                me.$itemContainer.scrollLeft(options.currentPage * options.itemWidth);
+            }
         },
         registerEvents: function () {
             var me = this;
@@ -116,7 +124,11 @@
                     var $this = $(this);
                     me.$pager.find('.pager-item').removeClass('selected');
                     $this.addClass('selected');
-                    options.callback(parseInt($this.attr('index')));
+                    var currentPage = parseInt($this.attr('index'));
+                    if (currentPage > options.currentPage + 1) {
+                        me.$itemContainer.scrollLeft(currentPage * options.itemWidth);
+                    }
+                    options.callback(currentPage);
 
                     return false;
                 });
@@ -153,6 +165,7 @@
             me.$pager.find('.move-next')
                 .unbind('click')
                 .bind('click', function (e) {
+
                     var currentIndex = me.$itemContainer.scrollLeft();
                     me.$itemContainer.scrollLeft(currentIndex + options.itemWidth);
                     //                    me.$itemContainer.animate(
