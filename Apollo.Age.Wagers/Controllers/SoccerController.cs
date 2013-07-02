@@ -11,21 +11,24 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Wagers.Criterias.CorrectScore;
     using Apollo.Age.Wagers.Criterias.Soccer;
     using Apollo.Age.Wagers.ViewModels.Soccer;
-    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class SoccerController : WagerController
     {
-        public SoccerController() : base(null) { }
-
-        public ActionResult Straight(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult Straight(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -33,7 +36,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -45,8 +48,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult FirstHalf(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult FirstHalf(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -54,7 +62,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -66,8 +74,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult RunningBall(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult RunningBall(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -75,7 +88,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -87,8 +100,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult Correctscore(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult Correctscore(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new CorrectScoreCriteria
             {
@@ -96,7 +114,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Bettype = 4,
                 PageIndex = pageIndex
             };
@@ -108,8 +126,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult FirstHalfCorrectScore(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult FirstHalfCorrectScore(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new CorrectScoreCriteria
             {
@@ -117,7 +140,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Bettype = 30,
                 PageIndex = pageIndex
             };
@@ -129,8 +152,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult Total(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult Total(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -138,7 +166,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -150,8 +178,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult HalfFull(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult HalfFull(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new CorrectScoreCriteria
             {
@@ -159,7 +192,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 Bettype = 16,
                 PageIndex = pageIndex
             };
@@ -171,8 +204,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult Parlay(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult Parlay(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -180,7 +218,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -192,8 +230,13 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult SpecialBet(DateTime fromDate, string uGroup, bool isDirectMember,
-            int mainShareHolderId, int leagueId, int pageIndex = 0)
+        public ActionResult SpecialBet(
+            DateTime fromDate,
+            string groupComm,
+            bool isDirectMember,
+            int mainShareHolderId,
+            int leagueId,
+            int pageIndex = 0)
         {
             var criteria = new SoccerCriteria
             {
@@ -201,7 +244,7 @@ namespace Apollo.Age.Wagers.Controllers
                 IsDirectMem = isDirectMember,
                 LeagueId = leagueId,
                 LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = uGroup,
+                UGroup = groupComm,
                 GroupBetName = this.CurrentAction,
                 PageIndex = pageIndex
             };
@@ -212,6 +255,5 @@ namespace Apollo.Age.Wagers.Controllers
 
             return View(result);
         }
-
     }
 }

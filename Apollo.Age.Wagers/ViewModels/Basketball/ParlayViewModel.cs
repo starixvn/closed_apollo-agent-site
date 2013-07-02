@@ -13,11 +13,7 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// TODO: Update summary.
     /// </summary>
     public class ParlayViewModel : WagerViewModel
-    {
-        public int HomeId { get; set; }
-
-        public int AwayId { get; set; }
-
+    {     
         public decimal Stake9 { get; set; }
 
         public decimal Stake29 { get; set; }
