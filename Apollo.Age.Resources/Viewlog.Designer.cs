@@ -70,7 +70,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Bet Setting.
+        ///   Looks up a localized string similar to Update Bet Limit.
         /// </summary>
         public static string _3 {
             get {
