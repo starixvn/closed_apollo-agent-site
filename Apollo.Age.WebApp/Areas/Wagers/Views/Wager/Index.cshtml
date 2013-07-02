@@ -32,7 +32,7 @@
             </select>
         </div>
         <div class="before-filter">
-            --</div>@RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 180 }, "TotalBetsIndex.reloadChild();")
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 10 }, "Wagers.getWagerData($('#PageIndex').val());")
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">
             --</div>
@@ -59,7 +59,7 @@
             <div class="pull-left">@Lang.Pages:</div>
             <div id="pager" class="sbpager">
             </div>
-        </div>        
+        </div>
         <div id="container">
         </div>
     </div>
