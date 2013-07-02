@@ -2870,7 +2870,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betting Setup.
+        ///   Looks up a localized string similar to Share.
         /// </summary>
         public static string lblShareSetting {
             get {
@@ -2879,7 +2879,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betting Setup (Soccer Deadball Handicap).
+        ///   Looks up a localized string similar to Share (Soccer Deadball Handicap).
         /// </summary>
         public static string lblShareSettingSimpleMode {
             get {
