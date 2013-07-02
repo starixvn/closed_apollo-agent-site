@@ -18,9 +18,9 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Resources;
     using Apollo.Age.Wagers.Core;
+    using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Wagers.Core.BettypeGroup;
 
     public class WagerController : BaseController
     {

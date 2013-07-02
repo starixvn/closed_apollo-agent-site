@@ -322,7 +322,7 @@ namespace Apollo.Age.Account.Controllers
 
             ViewBag.AgentList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
-
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
             return View(criteria);
         }
 
@@ -388,6 +388,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
 
             return View(criteria);
         }
@@ -456,6 +457,7 @@ namespace Apollo.Age.Account.Controllers
 
             ViewBag.MemberList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
 
             return View(criteria);
         }
@@ -525,6 +527,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
             ViewBag.AgentUsername = agent != null ? agent.Username : string.Empty;
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
 
             return View(criteria);
         }
