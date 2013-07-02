@@ -1062,10 +1062,10 @@
     <value>% in Agent Min</value>
   </data>
   <data name="lblShareSetting" xml:space="preserve">
-    <value>Betting Setup</value>
+    <value>Share</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>Betting Setup (Soccer Deadball Handicap)</value>
+    <value>Share (Soccer Deadball Handicap)</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% in Upper</value>
