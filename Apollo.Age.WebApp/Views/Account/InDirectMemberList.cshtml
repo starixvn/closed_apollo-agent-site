@@ -9,7 +9,7 @@
     var agenttitleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
-
+    var isMaster = (bool)ViewBag.IsMaster;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
@@ -105,8 +105,15 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@backLink">@Lang.edit</a>&nbsp;/&nbsp;
-                        <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@backLink">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.view
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }

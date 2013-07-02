@@ -724,6 +724,7 @@
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />
     <Content Include="Views\BetList\Winloss.cshtml" />
+    <Content Include="Views\BetList\TicketCancel.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
@@ -962,7 +963,9 @@
     <Content Include="Views\TotalBets\Resources\TotalBets.less" />
     <Content Include="Views\TotalBets\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\TotalGoal.cshtml" />
-    <Content Include="Web.AppSettings.config" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.ConnectionString.config">
       <SubType>Designer</SubType>
     </Content>

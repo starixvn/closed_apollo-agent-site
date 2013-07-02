@@ -8,7 +8,7 @@
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
     var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     titleFormat = string.Format(titleFormat, string.Empty);
-
+    var isMaster = (bool)ViewBag.IsMaster;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
@@ -127,8 +127,15 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">@Lang.edit</a>&nbsp;/&nbsp;
-                        <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.view
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }

@@ -22,6 +22,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
+    using Apollo.Age.Services.Impl;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Fanex.BetList.Core.Builder;
@@ -52,6 +53,52 @@ namespace Apollo.Age.BetList.Controllers
         public ViewResult Index()
         {
             return this.View();
+        }
+
+        [HttpGet]
+        public ViewResult TicketCancel(DateTime fromDate, DateTime toDate, string betType = _StringEmpty, string sportType = _StringEmpty, string userType = _StringEmpty, string userName = _StringEmpty)
+        {
+            int agentId, custId;
+            var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            int errorCode;
+            _betListService.GetUserIdByUserName(CurrentSession.AgentId, userType == "1" ? true : false, userName, out agentId, out custId, out errorCode);
+
+            if (errorCode == 0)
+            {
+                var balanceUpDay = _reportService.GetBalanceUpDay();
+                var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+                var betListService = new BetListService();
+                var criteria = new BetListCriteria
+                {
+                    AgentId = agentId,
+                    LoggedId = CurrentSession.AgentId,
+                    CustId = custId,
+                    FromDate = this.ResetStartDate(fromDate),
+                    ToDate = this.ResetEndDate(toDate),
+                    StatusIds = statusIds,
+                    SportTypes = sportType,
+                    BetTypes = betType
+                };
+
+                TicketResult mainTickets;
+
+                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+
+                var viewModel = new BetListReportViewModel
+                {
+                    TicketList = this.Ticket(mainTickets, BetListPage.Report),
+                    UserType = 1,
+                    Username = CurrentSession.AgentName,
+                    SportList = SingbetSportService.GetSport(isOther: false),
+                    BettypeList = ReportService.GetBettype()
+                };
+
+                return this.View(viewModel);
+            }
+            else
+            {
+                return this.View(new BetListReportViewModel());
+            }
         }
 
         /// <summary>

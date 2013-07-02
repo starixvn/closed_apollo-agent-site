@@ -12,7 +12,7 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)
+                    <a class="red" href="#">@item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)</a>
                     <br />
                     @item.AwayCountHDP/@Math.Round(item.AwayStakeHDP)
                 </td>
@@ -30,3 +30,4 @@
             )
     </tbody>
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

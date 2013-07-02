@@ -4,35 +4,35 @@
 @using Apollo.Age.Web.Mvc
 @model List<TotalViewModel>
 <table class="tblRpt soccer total">
-        @WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.odds, Lang.events, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)   
-    
-        @Model.List(
-        @<tr class="c">                           
-              @WagerHelper.RenderBaseColumns(item)
+    @WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.odds, Lang.events, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)
+    @Model.List(
+        @<tr class="c">
+            @WagerHelper.RenderBaseColumns(item)
             <td>
-              @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
+                @((int)item.HomeCountHTOE)/@((int)item.HomeStakeHTOE)
             </td>
             <td>
-            @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
+                @((int)item.AwayCountHTOE)/@((int)item.AwayStakeHTOE)
             </td>
             <td>
-              @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
+                @((int)item.HomeCountOE)/@((int)item.HomeStakeOE)
             </td>
             <td>
-            @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
+                @((int)item.AwayCountOE)/@((int)item.AwayStakeOE)
             </td>
             <td>
                 @((int)item.Total01Count)/@((int)item.Total01Stake)
-            </td>   
+            </td>
             <td>
                 @((int)item.Total23Count)/@((int)item.Total23Stake)
-            </td>   
+            </td>
             <td>
                 @((int)item.Total46Count)/@((int)item.Total46Stake)
-            </td> 
+            </td>
             <td>
                 @((int)item.Total7OverCount)/@((int)item.Total7OverStake)
-            </td>                           
+            </td>
         </tr>
-    )                    
+    )
 </table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
