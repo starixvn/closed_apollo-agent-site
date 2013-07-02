@@ -61,9 +61,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
-        public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap)
+        public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
         {
-            this.BuildChoice(ticket, ticketHelper, ticketData);
+            this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
             this.BuildHandicapOdds(ticket, ticketHelper);
             this.BuildScoreMap(ticket, isShowScoreMap);
 
@@ -80,7 +80,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <returns>Choice_Template.</returns>
         public virtual List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
         {
-            this.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
+            this.Render(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
             var choiceData = BuildRTFChoice(ticket, rtfHelper, ticketHelper);
             List<IRichTextString> rtfChoice;
 
@@ -102,12 +102,23 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             //this.Template.Score.homeScore = ticket.LiveHomeScore.ToString();
             //this.Template.Score.awayScore = ticket.LiveAwayScore.ToString();
 
-            this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+            switch (betListPage)
+            {
+                case BetListPage.Forecast:
+                    this.Template.LeagueName.Hide();
+                    break;
+                case BetListPage.Default:
+                case BetListPage.Cancel:
+                case BetListPage.Outstanding:
+                case BetListPage.Report:
+                    this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+                    break;
+            }            
             this.Template.homeid = ticket.HomeId.ToString();
             this.Template.awayid = ticket.AwayId.ToString();
 
