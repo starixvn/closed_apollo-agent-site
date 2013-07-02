@@ -59,7 +59,7 @@
                         { Name: "ShareAmountGame", Value: outstandingData.Total.GameShareAmount },
                     ]
 			});
-			var rowLength = outstandingData.ListOutstanding.length;
+			var rowLength =  outstandingData.ListOutstanding != null ? outstandingData.ListOutstanding.length : 0;
 			for (var i = 0; i < rowLength; i++) {
 				var current = outstandingData.ListOutstanding[i];
 				bodyData.push({
@@ -86,7 +86,7 @@
                         { HeaderText: LANGUAGES.ShareAmount, Width: 200, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
 				bodyRows: bodyData,
-				showFooter: true,
+				showFooter: bodyData.length > 0,
 				footerRows: footerData,
 				fullHeight: true,
 				gridExpandHeight: 100,
