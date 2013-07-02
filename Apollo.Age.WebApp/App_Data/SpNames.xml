@@ -281,7 +281,7 @@
         <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="SVRAGE.RepDB" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="UserId" />
         </Setting>
-        <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="SVRAGE.RepDB" Plain="0">
+        <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
             <Mapping DataField="CustId" ObjectProperty="UserId" />
             <Mapping DataField="Username" ObjectProperty="Username" />
             <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
@@ -290,7 +290,7 @@
             <Mapping DataField="Outstanding_NG" ObjectProperty="GameOutstanding" />
             <Mapping DataField="PositionTaking_NG" ObjectProperty="GameShareAmount" />
         </Setting>
-        <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="SVRAGE.RepDB" Plain="0">
+        <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding_Xtest" DbName="SVRAGE.RepDB" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="UserId" />
             <Mapping DataField="Username" ObjectProperty="Username" />
             <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
@@ -550,7 +550,6 @@
     </Setting>    
   </Function>
   <Function Name="Wagers-Soccer">
-
     <Setting Key="Age_Wagers_SC_1_3_5" SpName="Age_Wagers_SC_1_3_5" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_1_3_7_8_RunBall" SpName="Age_Wagers_SC_1_3_7_8_RunBall" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_SC_4_30_16" SpName="Age_Wagers_SC_4_30_16" DbName="SVRAGE.RepDB"/>
@@ -568,4 +567,7 @@
         <Setting Key="Age_Wagers_BK_9_29" SpName="Age_Wagers_BK_9_29" DbName="SVRAGE.RepDB"/>
         <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB"/>
     </Function>
+  <Function Name="Wagers-Outright">
+    <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB"/>    
+  </Function>
 </Functions>

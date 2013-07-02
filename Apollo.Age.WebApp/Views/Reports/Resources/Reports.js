@@ -59,7 +59,7 @@
                         { Name: "ShareAmountGame", Value: outstandingData.Total.GameShareAmount },
                     ]
 			});
-			var rowLength = outstandingData.ListOutstanding.length;
+			var rowLength =  outstandingData.ListOutstanding != null ? outstandingData.ListOutstanding.length : 0;
 			for (var i = 0; i < rowLength; i++) {
 				var current = outstandingData.ListOutstanding[i];
 				bodyData.push({
@@ -74,18 +74,7 @@
 				});
 			}
 			var gridOption = {
-				customizeHeader: true,
-				groupHeaderRows: [
-                                 {
-                                 	Columns: [
-                                            { HeaderText: "", Name: "Member", MergeRowNumber: 2 },
-                                            { HeaderText: LANGUAGES.SportBook, Name: "Outstanding", MergeColNumber: 2 },
-                                            { HeaderText: LANGUAGES.NumberGame, Name: "OutstandingGame", MergeColNumber: 2 }
-                                        ]
-                                 }
-                        ],
 				columns: [
-
                          { HeaderText: "", Width: 150, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                          	CustomCellRender: function (cell) {
                          		return (cell.Value.Outstanding != 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName);
@@ -97,7 +86,7 @@
                         { HeaderText: LANGUAGES.ShareAmount, Width: 200, Name: "ShareAmountGame", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" }
                         ],
 				bodyRows: bodyData,
-				showFooter: true,
+				showFooter: bodyData.length > 0,
 				footerRows: footerData,
 				fullHeight: true,
 				gridExpandHeight: 100,

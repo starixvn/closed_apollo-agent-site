@@ -4589,7 +4589,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submit.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string submit {
             get {

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 
-var Match = (function () {
+var Result = (function () {
     var ddlSport;
     var ddlLeague;
     var date;
@@ -13,9 +13,9 @@ var Match = (function () {
             ddlLeague = $("#ddlLeague");
             date = $("#filterbydate").attr("value");
             sportTypes = "1";
-            Match.bindingMenu();
-            Match.filterByDateChanging();
-            Match.showResult(date, sportTypes);
+            Result.bindingMenu();
+            Result.filterByDateChanging();
+            Result.showResult(date, sportTypes);
         },
 
         bindMatchLeague: function () {
@@ -30,18 +30,24 @@ var Match = (function () {
                     $.getJSON(APOLLO.resolveUrl("~/Results/GetLeagueBySport"), { "date": date, "sportTypes": sportTypes, "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
-                            ddlLeague.empty();
-                            $.each(data, function (i, item) {
-                                if (i == 0) {
-                                    leagueId = item.Id;
-                                }
-                                ddlLeague.append($('<option>', {
-                                    value: item.Id,
-                                    text: item.Name
-                                }));
-                            });
-                            ddlLeague.removeAttr('disabled');
-                            Match.showOtherResult();
+                            if (data[0].Id != -1) {
+                                ddlLeague.empty();
+                                $.each(data, function (i, item) {
+                                    if (i == 0) {
+                                        leagueId = item.Id;
+                                    }
+                                    ddlLeague.append($('<option>', {
+                                        value: item.Id,
+                                        text: item.Name
+                                    }));
+                                });
+                                ddlLeague.removeAttr('disabled');
+                            }
+                            else {
+                                $("#filterResult").hide();
+                                $("#filterResultLeague").hide();
+                            }
+                            Result.showOtherResult();
                         });
                 }
             }
@@ -49,73 +55,82 @@ var Match = (function () {
         bindMatchSport: function () {
             $.getJSON(APOLLO.resolveUrl("~/Results/GetSportByMatch"), { "date": date, "sportTypes": sportTypes })
                         .done(function (data) {
-                            ddlSport.empty();
-                            $.each(data, function (i, item) {
-                                if (i == 0) {
-                                    sportId = item.Id;
-                                }
-                                ddlSport.append($('<option>', {
-                                    value: item.Id,
-                                    text: item.Name
-                                }));
-                            });
-                            Match.bindMatchLeague();
+                            if (data[0].Id != -1) {
+                                ddlSport.empty();
+                                $.each(data, function (i, item) {
+                                    if (i == 0) {
+                                        sportId = item.Id;
+                                    }
+                                    ddlSport.append($('<option>', {
+                                        value: item.Id,
+                                        text: item.Name
+                                    }));
+                                });
+                            }
+                            else {
+                                $("#filterResult").hide();
+                                $("#filterResultLeague").hide();
+                            }
+                            Result.bindMatchLeague();
                         });
         },
 
         bindOutrightSport: function () {
             $.getJSON(APOLLO.resolveUrl("~/Results/GetSportOutright"), { "date": date })
             .done(function (data) {
-                ddlSport.empty();
-                $.each(data, function (i, item) {
-                    if (i == 0) {
-                        sportId = item.Id;
-                    }
-                    ddlSport.append($('<option>', {
-                        value: item.Id,
-                        text: item.Name
-                    }));
-                });
-                Match.showOutrightResult();
+                if (data[0].Id != -1) {
+                    ddlSport.empty();
+                    $.each(data, function (i, item) {
+                        if (i == 0) {
+                            sportId = item.Id;
+                        }
+                        ddlSport.append($('<option>', {
+                            value: item.Id,
+                            text: item.Name
+                        }));
+                    });
+                }
+                else {
+                    $("#filterResult").hide();
+                 }
+                Result.showOutrightResult();
             });
         },
         reActiveMenu: function (action) {
-            $("#filterbydate").attr("action", action);                   
-
+            $("#filterbydate").attr("action", action);
         },
         bindingMenu: function () {
             $("[name=menusport]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
-                Match.reActiveMenu(0);
-                Match.showResult();
+                Result.reActiveMenu(0);
+                Result.showResult();
             });
 
             $("[name=menuothersport]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
-                Match.reActiveMenu(1);
-                Match.OtherResult();
+                Result.reActiveMenu(1);
+                Result.OtherResult();
 
                 ddlSport.unbind('change').bind('change', function () {
-                    Match.bindMatchLeague();
+                    Result.bindMatchLeague();
                 });
 
                 ddlLeague.unbind('change').bind('change', function () {
-                    Match.showOtherResult();
+                    Result.showOtherResult();
                 });
             });
             $("[name=menuoutright]").on("click", function () {
                 date = $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
-                Match.reActiveMenu(2);
-                Match.OutrightResult();
+                Result.reActiveMenu(2);
+                Result.OutrightResult();
 
                 ddlSport.unbind('change').bind('change', function () {
-                    Match.showOutrightResult();
+                    Result.showOutrightResult();
                 });
             });
-
         },
         filterByDateChanging: function () {
             $("#filterbydate").on("click", function () {
@@ -134,21 +149,20 @@ var Match = (function () {
                 switch ($action) {
                     case "0":
                         {
-                            Match.showResult();
+                            Result.showResult();
                             break;
                         }
                     case "1":
                         {
-                            Match.showOtherResult();
+                            Result.showOtherResult();
                             break;
                         }
                     case "2":
                         {
-                            Match.showOutrightResult();
+                            Result.showOutrightResult();
                             break;
                         }
                 }
-
             });
         },
         paging: function () {
@@ -169,8 +183,7 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
-                          // Match.paging();
-
+                          // Result.paging();
                       });
                 }
             }
@@ -184,7 +197,6 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
-
                       });
                 }
             }
@@ -198,7 +210,6 @@ var Match = (function () {
                       .done(function (resultContent) {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
-
                       });
                 }
             }
@@ -206,19 +217,17 @@ var Match = (function () {
         OtherResult: function () {
             $("#filterResult").show();
             $("#filterResultLeague").show();
-            Match.bindMatchSport();
-
+            Result.bindMatchSport();
         },
         OutrightResult: function () {
             $("#filterResult").show();
             $("#filterResultLeague").hide();
-            Match.bindOutrightSport();
+            Result.bindOutrightSport();
         }
     }
 })();
 
 $(function () {
-    Match.init();
-    //Match.bindMatchLeague();
-    
+    Result.init();
+    //Result.bindMatchLeague();
 });
