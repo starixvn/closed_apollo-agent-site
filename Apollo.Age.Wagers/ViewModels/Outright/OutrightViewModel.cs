@@ -12,13 +12,14 @@ namespace Apollo.Age.Wagers.ViewModels.Outright
     using System;
     using Apollo.Age.Services;
 
-    public class OutrightViewModel: WagerViewModel
+    public class OutrightViewModel : WagerViewModel
     {
         public DateTime EventDate { get; set; }
         
         public int TeamId { get; set; }
 
-        public string TeamName {
+        public string TeamName 
+        {
             get
             {
                 return CacheRef.GetTeamName(this.TeamId);
@@ -31,10 +32,10 @@ namespace Apollo.Age.Wagers.ViewModels.Outright
 
         public decimal Stake { get; set; }
 
-        public string betteam { get; set; }
+        public string BetTeam { get; set; }
 
         public int BetCount { get; set; }
 
-        public decimal Stake1 { get; set; }
+        public string Status { get; set; }
     }
 }
