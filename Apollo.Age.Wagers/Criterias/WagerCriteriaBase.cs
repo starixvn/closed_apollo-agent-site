@@ -13,10 +13,21 @@ namespace Apollo.Age.Wagers.Criterias
     using System;
     using System.Configuration;
     using Fanex.NAP.Framework.Data;
+    using Fanex.Common;
 
     public class WagerCriteriaBase : CriteriaBase
     {
-        private string _groupBetName = string.Empty;
+        private string _groupBetName;
+
+        public int LoggedId { get; set; }
+
+        public DateTime FromDate { get; set; }
+
+        public string UGroup { get; set; }
+
+        public bool IsDirectMem { get; set; }
+
+        public int LeagueId { get; set; }
 
         [SpParam(Ignored = true)]
         public string GroupBetName
@@ -32,15 +43,8 @@ namespace Apollo.Age.Wagers.Criterias
             }
         }
 
-        public int LoggedId { get; set; }
-
-        public DateTime FromDate { get; set; }
-
-        public string UGroup { get; set; }
-
-        public bool IsDirectMem { get; set; }
-
-        public int LeagueId { get; set; }
+        [SpParam(Ignored = true)]
+        public string SportName { get; set; }
 
         [SpParam(Ignored = true)]
         public int PageIndex { get; set; }
@@ -53,9 +57,7 @@ namespace Apollo.Age.Wagers.Criterias
         {
             get
             {
-                int pageSize = 0;
-
-                int.TryParse(ConfigurationManager.AppSettings["PageSize"].ToString(), out pageSize);
+                int pageSize = Converter.ToInt(ConfigurationManager.AppSettings["PageSize"], 40);
 
                 return pageSize;
             }

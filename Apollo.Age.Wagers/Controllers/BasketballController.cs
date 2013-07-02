@@ -10,9 +10,7 @@
 
 namespace Apollo.Age.Wagers.Controllers
 {
-    using System;
     using System.Web.Mvc;
-    using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels.Basketball;
 
@@ -26,111 +24,61 @@ namespace Apollo.Age.Wagers.Controllers
         {
         }
 
-        public ActionResult Straight(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
+        public ActionResult Straight(BasketballCriteria criteria)
         {
-            var criteria = new BasketballCriteria
-            {
-                GroupBetName = this.CurrentAction,
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Sporttypes = sportTypes,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var list = _WagerService.GetWagerData<StraightViewModel>(criteria);
-            ViewBag.SportName = sportName;
+            var list = WagerService.GetWagerData<StraightViewModel>(criteria);
+            ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
-        public ActionResult FirstHalf(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
+        public ActionResult FirstHalf(BasketballCriteria criteria)
         {
-            var criteria = new BasketballCriteria
-            {
-                GroupBetName = this.CurrentAction,
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Sporttypes = sportTypes,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var list = _WagerService.GetWagerData<FirstHaftViewModel>(criteria);
-            ViewBag.SportName = sportName;
+            var list = WagerService.GetWagerData<FirstHaftViewModel>(criteria);
+            ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
-        public ActionResult RunningBall(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
+        public ActionResult RunningBall(BasketballCriteria criteria)
         {
-            var criteria = new BasketballCriteria
-            {
-                GroupBetName = this.CurrentAction,
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Sporttypes = sportTypes,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var list = _WagerService.GetWagerData<RunningBallViewModel>(criteria);
-            ViewBag.SportName = sportName;
+            var list = WagerService.GetWagerData<RunningBallViewModel>(criteria);
+            ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
-        public ActionResult Parlay(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
+        public ActionResult Parlay(BasketballCriteria criteria)
         {
-            var criteria = new BasketballCriteria
-            {
-                GroupBetName = this.CurrentAction,
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Sporttypes = sportTypes,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var list = _WagerService.GetWagerData<ParlayViewModel>(criteria);
-            ViewBag.SportName = sportName;
+            var list = WagerService.GetWagerData<ParlayViewModel>(criteria);
+            ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
         }
 
-        public ActionResult SpecialBet(DateTime fromDate, string groupComm, bool isDirectMember, int leagueId,
-            string sportTypes, string sportName, int mainShareHolderId, int pageIndex = 0)
+        public ActionResult SpecialBet(BasketballCriteria criteria)
         {
-            var criteria = new BasketballCriteria
-            {
-                GroupBetName = this.CurrentAction,
-                FromDate = fromDate,
-                IsDirectMem = isDirectMember,
-                LeagueId = leagueId,
-                LoggedId = mainShareHolderId > 0 ? mainShareHolderId : CurrentSession.AgentId,
-                UGroup = groupComm,
-                Sporttypes = sportTypes,
-                PageIndex = pageIndex
-            };
+            criteria.GroupBetName = this.CurrentAction;
+            criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
 
-            var list = _WagerService.GetWagerData<SpecialViewModel>(criteria);
-            ViewBag.SportName = sportName;
+            var list = WagerService.GetWagerData<SpecialViewModel>(criteria);
+            ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
 
             return View(list);
