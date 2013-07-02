@@ -2,7 +2,7 @@
 @import "../../../_globalResources/css/calendar.less";
 
 #box_header {
-	margin-bottom: 0;	
+	margin-bottom: 5px;	
 }
 
 .show-old-value {
@@ -214,10 +214,18 @@ div.line {
 }
 
 #box_header {
+	input[type="text"] {
+		padding: 0 3px;
+		height: 17px;
+	}
+
+	.btn {
+		height: 20px;
+	}
+
 	.monpickr-wrap, .daypickr-wrap {
 		input[type="text"] {
-			height: 9px;
-			margin-top: 1px;
+			height: 13px;
 		}
 	}
 
@@ -225,13 +233,13 @@ div.line {
 		margin-left: 1px;
 	}
 
-	.btn {
-		height: 23px;
-	}
-
 	.monpickr-arrows {
 		padding: 1px;
-		height: 19px;
+		height: 15px;
+	}
+
+	.monpickr-arrows .monpickr-prev, .monpickr-arrows .monpickr-next, .monpickr-arrows .monpickr-down {
+		top: -1px;
 	}
 
 	.daypickr {

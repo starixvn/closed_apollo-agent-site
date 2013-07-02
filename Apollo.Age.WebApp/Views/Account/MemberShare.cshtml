@@ -83,17 +83,17 @@
 				else
 				{
 					<td class="r">
-						@Formater.FormatNumber20(item.TakenShare / 100.00, Formater.CULT_NAME_ENG)
+						@Formater.DecFormat(item.TakenShare / 100.00, 2)
 					</td>
 				}
 				<td class="r">
-					@Formater.FormatNumber20(item.MaxGiven / 100.00, Formater.CULT_NAME_ENG)
+					@Formater.DecFormat(item.MaxGiven / 100.00, 2)
 				</td>
 				<td class="r">
-					@Formater.FormatNumber20(item.MinGiven / 100.00, Formater.CULT_NAME_ENG)
+					@Formater.DecFormat(item.MinGiven / 100.00, 2)
 				</td>
 				<td class="r">
-					@Formater.FormatNumber20(item.TakenShareMember / 100.00, Formater.CULT_NAME_ENG)
+					@Formater.DecFormat(item.TakenShareMember / 100.00, 2)
 				</td>
 			</tr>
 			}

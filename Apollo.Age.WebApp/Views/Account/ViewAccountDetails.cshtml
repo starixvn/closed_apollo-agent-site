@@ -65,10 +65,11 @@
                 }
                 <th style="width: 125px;">@Lang.SingleGame
                 </th>
-                <th style="width: 125px;">@Lang.MinSingleBet
-                </th>
                 <th style="width: 125px;">@Lang.MaxSingleBet
                 </th>
+                <th style="width: 125px;">@Lang.MinSingleBet
+                </th>
+                
             </tr>
         </thead>
         <tbody>
@@ -120,8 +121,9 @@
                     </td>
                         }
                     }
-                    <td> @Math.Round(betLimit.MaxPerMatch) </td> <td> @Math.Round(betLimit.MinBet) </td>
+                    <td> @Math.Round(betLimit.MaxPerMatch) </td> 
                     <td> @Math.Round(betLimit.MaxBet) </td>
+                    <td> @Math.Round(betLimit.MinBet) </td>
                 </tr>
                         
                 }

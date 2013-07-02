@@ -196,7 +196,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Single Bet Max.
+        ///   Looks up a localized string similar to Incorrect Single Bet.
         /// </summary>
         public static string alertIncorrectMaxBet {
             get {
@@ -223,7 +223,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect Single Bet Min.
+        ///   Looks up a localized string similar to Incorrect Min Single Bet.
         /// </summary>
         public static string alertIncorrectMinBet {
             get {
@@ -1052,7 +1052,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group.
+        ///   Looks up a localized string similar to Line.
         /// </summary>
         public static string group {
             get {
@@ -1637,7 +1637,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Max must be less than or equal to.
+        ///   Looks up a localized string similar to Single Bet must be less than or equal to.
         /// </summary>
         public static string lblalerMaxbetCompare {
             get {
@@ -1664,7 +1664,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Min must be greater than or equal to.
+        ///   Looks up a localized string similar to Min Single Bet must be greater than or equal to.
         /// </summary>
         public static string lblalertMinbetCompare {
             get {
@@ -1862,7 +1862,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission Group.
+        ///   Looks up a localized string similar to Commission Line.
         /// </summary>
         public static string lblCommissionGroup {
             get {
@@ -2168,7 +2168,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group A.
+        ///   Looks up a localized string similar to Line A.
         /// </summary>
         public static string lblGroupa {
             get {
@@ -2177,7 +2177,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group B.
+        ///   Looks up a localized string similar to Line B.
         /// </summary>
         public static string lblGroupb {
             get {
@@ -2186,7 +2186,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group C.
+        ///   Looks up a localized string similar to Line C.
         /// </summary>
         public static string lblGroupc {
             get {
@@ -2195,7 +2195,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group D.
+        ///   Looks up a localized string similar to Line D.
         /// </summary>
         public static string lblGroupd {
             get {
@@ -2420,7 +2420,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Max.
+        ///   Looks up a localized string similar to Single Bet.
         /// </summary>
         public static string lblMaxBet {
             get {
@@ -2510,7 +2510,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Min.
+        ///   Looks up a localized string similar to Min Single Bet .
         /// </summary>
         public static string lblMinBet {
             get {
@@ -2897,7 +2897,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share.
+        ///   Looks up a localized string similar to Share %.
         /// </summary>
         public static string lblShareSetting {
             get {
@@ -2906,7 +2906,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share (Soccer Deadball Handicap).
+        ///   Looks up a localized string similar to Share % (Soccer Deadball Handicap).
         /// </summary>
         public static string lblShareSettingSimpleMode {
             get {
@@ -3473,7 +3473,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Single Bet Max  .
+        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Single Bet.
         /// </summary>
         public static string maxBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3491,7 +3491,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Max.
+        ///   Looks up a localized string similar to Single Bet.
         /// </summary>
         public static string MaxSingleBet {
             get {
@@ -3581,7 +3581,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Min should be less than or equal to Single Bet Max.
+        ///   Looks up a localized string similar to {0} - The Single Bet should be greater than or equal to Min Single Bet.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxBet {
             get {
@@ -3590,7 +3590,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Bet Min should be less than or equal to Max Per Ball.
+        ///   Looks up a localized string similar to {0} - The Min Single Bet should be less than or equal to Max Per Ball.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerBall {
             get {
@@ -3599,7 +3599,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Single Bet Min.
+        ///   Looks up a localized string similar to {0} - The Single Game should be greater than or equal to Min Single Bet.
         /// </summary>
         public static string minBetShouldBeLessThanOrEqualToMaxPerMatch {
             get {
@@ -3617,7 +3617,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Min.
+        ///   Looks up a localized string similar to Min Single Bet.
         /// </summary>
         public static string MinSingleBet {
             get {
@@ -4607,7 +4607,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submit.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string submit {
             get {
