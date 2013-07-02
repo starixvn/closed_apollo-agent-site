@@ -755,14 +755,14 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <Content Include="App_Code\WagerHelper.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Account\Resources\CustomerSetting.less">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-=======
+
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
->>>>>>> d779db9b858f75f5669c930f191c3c50cb49c146
+
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
