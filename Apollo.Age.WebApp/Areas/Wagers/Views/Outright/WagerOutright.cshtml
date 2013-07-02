@@ -6,7 +6,7 @@
 <table class="tblRpt outright soccer">
     <thead>
         <tr>
-            <th>
+            <th style="width: 40px">
                 @Lang.time
             </th>
             <th>
@@ -36,7 +36,7 @@
                 <td>
                     @item.LeagueName
                 </td>
-                <td colspan="3">
+                <td colspan="3" class="hasTbl">
                     <table class="tbl">
                         @{
                             subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
@@ -51,7 +51,7 @@
                                 {
                                     status = "+";
                                 }
-                                        <tr>
+                                        <tr class="one-row">
                                             <td style="width: 269px">@subItem.TeamName
                                             </td>
                                             <td style="width: 65px">@status
