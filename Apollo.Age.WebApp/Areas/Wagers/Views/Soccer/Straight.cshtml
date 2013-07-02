@@ -11,26 +11,26 @@
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
-                <td class="r">
-                    @((int)item.HomeCountHDP)/@((int)item.HomeStakeHDP)
+                <td class="border-right r red-num">
+                    @item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)
                     <br />
-                    @((int)item.AwayCountHDP)/@((int)item.AwayStakeHDP)
-                    <br />
-                    &nbsp
-                </td>
-                <td class="r">
-                    @((int)item.HomeCountOU)/@((int)item.HomeStakeOU)
-                    <br />
-                    @((int)item.AwayCountOU)/@((int)item.AwayStakeOU)
+                    @item.AwayCountHDP/@Math.Round(item.AwayStakeHDP)
                     <br />
                     &nbsp
                 </td>
-                <td class="r">
-                    @((int)item.Count1)/@((int)item.Stake1)
+                <td class="border-right r red-num">
+                    @item.HomeCountOU/@Math.Round(item.HomeStakeOU)
                     <br />
-                    @((int)item.Count2)/@((int)item.Stake2)
+                    @item.AwayCountOU/@Math.Round(item.AwayStakeOU)
                     <br />
-                    @((int)item.CountX)/@((int)item.StakeX)
+                    &nbsp
+                </td>
+                <td class="border-right r red-num">
+                    @item.Count1/@Math.Round(item.Stake1)
+                    <br />
+                    @item.Count2/@Math.Round(item.Stake2)
+                    <br />
+                    @item.CountX/@Math.Round(item.StakeX)
                 </td>
             </tr>
         )

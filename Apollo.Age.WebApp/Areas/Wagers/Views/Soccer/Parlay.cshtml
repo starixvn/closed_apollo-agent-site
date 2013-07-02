@@ -8,16 +8,16 @@
                     , Lang.lblSystemParlay)
     <tbody>
         @Model.List(
-                            @<tr class="c">
-                                @WagerHelper.RenderBaseColumns(item)
-                                <td class="r">
-                                    @((int)item.Count9)/@((int)item.Stake9)                                 
-                                </td>
-                                <td class="r">
-                                  @((int)item.Count29)/@((int)item.Stake29)             
-                                </td>                                
-                            </tr>
-                       )
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item)
+                <td class="border-right r red-num">
+                    @item.Count9/@Math.Round(item.Stake9)
+                </td>
+                <td class="border-right r red-num">
+                    @item.Count29/@Math.Round(item.Stake29)
+                </td>
+            </tr>
+        )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

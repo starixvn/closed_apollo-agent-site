@@ -9,8 +9,8 @@
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
-                <td class="r">
-                        @((int)item.BetCount)/@((int)item.Stake)
+                <td class="border-right r red-num">
+                        @item.BetCount/@Math.Round(item.Stake)
                 </td>                            
             </tr>
         )
