@@ -29,6 +29,11 @@ namespace Fanex.BetList.Core.Entities
         /// <summary>
         /// Link from cancel ticket page
         /// </summary>
-        Cancel = 3
+        Cancel = 3,
+
+        /// <summary>
+        /// Other Pages
+        /// </summary>
+        Default = 5
     }
 }
