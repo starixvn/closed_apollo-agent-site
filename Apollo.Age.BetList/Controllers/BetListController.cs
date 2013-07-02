@@ -299,64 +299,39 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
-        public ViewResult Wager(string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
+        /// <summary>
+        /// Action view betList from Wagers page
+        /// </summary>
+        /// <param name="fromDate"></param>
+        /// <param name="UGroup"></param>
+        /// <param name="isDirectMem"></param>
+        /// <param name="liveIndicator"></param>
+        /// <param name="leagueId"></param>
+        /// <param name="betType"></param>
+        /// <param name="sportType"></param>
+        /// <param name="betTeam"></param>
+        /// <returns></returns>
+        public ViewResult Wagers(DateTime fromDate, string UGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty)
         {
-            var strBetType = string.Empty;
-            var title = string.Empty;
-            if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
-            {
-                title = CacheRef.GetBettype((int)BetTypes.Correct_Score);
-                strBetType = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
-            }
-            else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
-            {
-                strBetType = Convert.ToString((int)BetTypes.MixParlay);
-                title = CacheRef.GetBettype(betType);
-            }
-            else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
-            {
-                strBetType = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
-                title = Lang.lblSystemParlay;
-            }
-            else
-            {
-                strBetType = betType;
-                title = CacheRef.GetBettype(betType);
-            }
-
-            // List mainShare Holder
-            IEnumerable<Agent> mainShareHolders = new List<Agent>();
-            if (!isForecast)
-            {
-                mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
-            }
             // List ticket
             var betListService = new BetListService();
-            var criteria = new BetListCriteria
+            var criteria = new WagersCriteria
             {
                 LoggedId = CurrentSession.AgentId,
-                AgentId = mainShareHolderId,
-                BetTypes = strBetType,
-                MatchId = matchId,
+                FromDate = fromDate,
+                UGroup = UGroup,
+                IsDirectMem = isDirectMem,
+                LiveIndicator = liveIndicator,
+                LeagueId = leagueId,
+                SportTypes = sportType,
+                BetTypes = betType,
                 BetTeam = betTeam
             };
 
-            TicketResult mainTickets;
-
-            if (matchId > 0)
-            {
-                mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
-            }
-            else
-            {
-                mainTickets = betListService.GetRunningByBettype(criteria);
-            }
+            TicketResult mainTickets = betListService.WagersTicket(criteria);
 
             var viewModel = new BetListViewModel
             {
-                Title = title,
-                CurrentMainShareHolderId = mainShareHolderId,
-                ListMainShareHolders = mainShareHolders,
                 TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
             };
 
