@@ -77,14 +77,19 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = CurrentAgentId.Value
             });
 
-            return View(new OutstandingViewModel()
+            var outstandingViewModel = new OutstandingViewModel()
             {
                 CurrentAgentId = CurrentAgentId.Value,
                 ListOutStanding = models,
                 DownlinePath = modelAgentDownLine,
                 AgentLevel = modelAgentDownLine.LastOrDefault().Level,
                 MainShareHolder = mainShareHolder
-            });
+            };
+
+            outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+            outstandingViewModel.BettypeList = ReportService.GetBettype();
+
+            return View(outstandingViewModel);
         }
 
         [HttpPost]

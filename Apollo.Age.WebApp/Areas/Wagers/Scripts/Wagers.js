@@ -102,6 +102,7 @@ var Wagers = function ($) {
                 //numPageDisplay: 8,
                 callback: function (currentPage) {
                     Wagers.getWagerData(currentPage);
+                    $('#PageIndex').val(currentPage);
                 }
             });
         }
