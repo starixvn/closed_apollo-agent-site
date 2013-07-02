@@ -755,14 +755,11 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <Content Include="App_Code\WagerHelper.cshtml" />
-
     <Content Include="Views\Account\Resources\CustomerSetting.less">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
-
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
@@ -772,6 +769,7 @@
     <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />
     <Content Include="Views\BetList\Winloss.cshtml" />
     <Content Include="Views\BetList\TicketCancel.cshtml" />
+    <Content Include="Views\BetList\Wagers.cshtml" />
     <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
