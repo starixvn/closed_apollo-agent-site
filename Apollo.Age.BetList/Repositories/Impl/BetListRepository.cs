@@ -179,7 +179,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 criteria.CustId,
                 criteria.FromDate,
                 criteria.ToDate,
-                criteria.StatusIds
+                criteria.StatusIds,
+                criteria.BetTypes,
+                criteria.SportTypes
             };
 
             try
@@ -221,7 +223,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 criteria.FromDate,
                 criteria.ToDate,
                 criteria.MoveBetsDay,
-                criteria.StatusIds
+                criteria.StatusIds,
+                criteria.BetTypes,
+                criteria.SportTypes
             };
 
             try
@@ -725,6 +729,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
+                    db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
+                    db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
 
                     var dataSet = db.ExecuteDataSet();
 
@@ -762,6 +768,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
+                    db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
+                    db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
 
                     var dataSet = db.ExecuteDataSet();
 
