@@ -60,13 +60,12 @@ namespace Apollo.Age.BetList.Controllers
         {
             int agentId, custId;
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            var balanceUpDay = _reportService.GetBalanceUpDay();
             int errorCode;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, userType == "1" ? true : false, userName, out agentId, out custId, out errorCode);
 
             if (errorCode == 0)
             {
-                var balanceUpDay = _reportService.GetBalanceUpDay();
-                var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
                 var betListService = new BetListService();
                 var criteria = new BetListCriteria
                 {
@@ -90,14 +89,24 @@ namespace Apollo.Age.BetList.Controllers
                     UserType = 1,
                     Username = CurrentSession.AgentName,
                     SportList = SingbetSportService.GetSport(isOther: false),
-                    BettypeList = ReportService.GetBettype()
+                    BettypeList = ReportService.GetBettype(),
+                    BalanceUpDay = balanceUpDay
                 };
 
                 return this.View(viewModel);
             }
             else
             {
-                return this.View(new BetListReportViewModel());
+                var viewModel = new BetListReportViewModel
+                {
+                    UserType = 1,
+                    Username = CurrentSession.AgentName,
+                    SportList = SingbetSportService.GetSport(isOther: false),
+                    BettypeList = ReportService.GetBettype(),
+                    BalanceUpDay = balanceUpDay
+                };
+
+                return this.View(viewModel);
             }
         }
 
