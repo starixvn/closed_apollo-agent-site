@@ -435,6 +435,7 @@
     <Content Include="Views\Message\Images\onlinelist.png" />
     <Content Include="Views\Message\Images\statistic.png" />
     <Content Include="Views\Message\Resources\PortalPage.js" />
+    <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Result.js" />

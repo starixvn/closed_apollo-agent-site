@@ -15,6 +15,8 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
+	using Apollo.Age.Services.Impl;
+	using Apollo.Age.Reports.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,6 +29,10 @@ namespace Apollo.Age.Reports.ViewModels
 
         public int AgentLevel { get; set; }
 
+		public string Sporttypes { get; set; }
+
+		public string Bettypes { get; set; }
+
         public IEnumerable<OutstandingModel> ListOutStanding { get; set; }
 
         public IEnumerable<Agent> DownlinePath { get; set; }
@@ -34,5 +40,41 @@ namespace Apollo.Age.Reports.ViewModels
         public List<SingbetSport> SportList { get; set; }
 
         public List<SingbetBettype> BettypeList { get; set; }
+
+		public string SportName
+		{
+			get
+			{
+				var sportList = SingbetSportService.GetSport(false);
+				var sport = sportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+
+				if (sport != null)
+				{
+					return sport.Name;
+				}
+				else
+				{
+					return string.Empty;
+				}
+			}
+		}
+
+		public string BettypeName
+		{
+			get
+			{
+				var bettypeList = ReportService.GetBettype();
+				var bettype = bettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+
+				if (bettype != null)
+				{
+					return bettype.Name;
+				}
+				else
+				{
+					return string.Empty;
+				}
+			}
+		}
     }
 }

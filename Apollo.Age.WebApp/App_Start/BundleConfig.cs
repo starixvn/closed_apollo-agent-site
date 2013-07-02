@@ -37,7 +37,8 @@ namespace Apollo.Age.WebApp
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
                 "~/_GlobalResources/Js/Fanex.Grid/moment.js",
                 "~/_GlobalResources/Js/Fanex.Grid/numeral.js",
-                "~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js"));
+                "~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js",
+				"~/Views/Reports/Resources/Outstanding.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/totalbetsjs").Include(
                 "~/_GlobalResources/Js/head.js",
