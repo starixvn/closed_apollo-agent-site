@@ -125,8 +125,8 @@
                     me.$pager.find('.pager-item').removeClass('selected');
                     $this.addClass('selected');
                     var currentPage = parseInt($this.attr('index'));
-                    if (currentPage > options.currentPage + 1) {
-                        me.$itemContainer.scrollLeft(currentPage * options.itemWidth);
+                    if (currentPage + 2 > options.numPageDisplay) {
+                        me.$itemContainer.scrollLeft((currentPage + 1 - options.numPageDisplay / 2) * options.itemWidth);
                     }
                     options.callback(currentPage);
 
