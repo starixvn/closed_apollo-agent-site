@@ -55,9 +55,11 @@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
-        @Lang.Pages:
-        <div id="pager" class="sbpager">
-        </div>
+        <div class="pages-size">
+            <div class="pull-left">@Lang.Pages:</div>
+            <div id="pager" class="sbpager">
+            </div>
+        </div>        
         <div id="container">
         </div>
     </div>
