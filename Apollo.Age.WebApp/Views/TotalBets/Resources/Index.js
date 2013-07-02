@@ -28,13 +28,13 @@ $(function () {
 
     TotalBetsIndex.moreLink
     .on('click', '>a', function () {
-        $(this).siblings('.sub-menu').slideToggle('fast');
+        $(this).siblings('.sub-menu').toggle();
     })
     .on('click', 'ul a', function () {
-        $(this).parents('.sub-menu').slideToggle('fast');
+        $(this).parents('.sub-menu').toggle();
     })
     .on('mouseleave', function () {
-        TotalBetsIndex.moreMenuTimer = setTimeout("TotalBetsIndex.moreMenu.slideUp('fast')", 500);
+        TotalBetsIndex.moreMenuTimer = setTimeout("TotalBetsIndex.moreMenu.hide()", 500);
     })
     .on('mouseenter', '.sub-menu', function () {
         if (TotalBetsIndex.moreMenuTimer) {
