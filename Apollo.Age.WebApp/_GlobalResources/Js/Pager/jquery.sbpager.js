@@ -90,7 +90,7 @@
                 html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
                 html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
             }
-            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 2) + 'px">');
+            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 5) + 'px">');
             for (var i = 0; i < numItem; i++) {
                 currentItem = i + 1;
                 itemHtml = '<a href="javascript:void(0);" class="pager-item' + (i == options.currentPage ? ' selected' : '') + '" index="' + i + '">' + currentItem + '</a>';
@@ -169,7 +169,7 @@
             var options = this.options;
             var widthScrollLeft = 0;
             if (pageIndex > 9) {
-                widthScrollLeft += (pageIndex - 12) * (me.$pager.find('.pager-item[index=9]').outerWidth());
+                widthScrollLeft += (pageIndex - 13) * (me.$pager.find('.pager-item[index=9]').outerWidth());
                 widthScrollLeft += 10 * (me.$pager.find('.pager-item[index=0]').outerWidth());
             }
             else {
