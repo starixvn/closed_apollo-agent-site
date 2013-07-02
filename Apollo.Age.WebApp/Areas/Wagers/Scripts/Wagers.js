@@ -79,9 +79,9 @@ var Wagers = function ($) {
                 url: APOLLO.resolveUrl(Wagers.url),
                 data: {
                     fromDate: Wagers.fromDate,
-                    groupComm: Wagers.groupComm,
+                    uGroup: Wagers.groupComm,
                     isDirectMember: Wagers.isDirectMember,
-                    mainShareHolderId: Wagers.viewOption,
+                    loggedId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,
                     sportName: Wagers.sportName,
@@ -102,7 +102,6 @@ var Wagers = function ($) {
                 //numPageDisplay: 8,
                 callback: function (currentPage) {
                     Wagers.getWagerData(currentPage);
-                    $('#PageIndex').val(currentPage);
                 }
             });
         }
