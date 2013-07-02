@@ -34,7 +34,7 @@
         <div class="row">
             <div class="cell" id="filterResultGame">
                 <div class="label">
-                    <label for="ddlSport">@Lang.Game</label>
+                    <label for="ddlSport">@Lang.Game:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
@@ -43,7 +43,7 @@
             </div>
             <div class="cell" id="filterResultLeague">
                 <div class="label">
-                    <label for="ddlLeague">@Lang.league</label>
+                    <label for="ddlLeague">@Lang.league:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownList("ddlLeague",
