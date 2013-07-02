@@ -22,12 +22,11 @@
         </th>
     </tr>
     <tbody>
-       
-       @if (Model != null && Model.Any())
-       {
-           var subModel = new List<OutrightViewModel>();
-           foreach (var item in Model)
-           {
+        @if (Model != null && Model.Any())
+        {
+            var subModel = new List<OutrightViewModel>();
+            foreach (var item in Model)
+            {
             <tr>
                 <td>
                     @item.EventDate
@@ -36,23 +35,35 @@
                     @item.LeagueName
                 </td>
                 <td>
-                     <table class="tblRpt soccer">
-                      @{
-                      subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();  
-                      foreach(OutrightViewModel subItem in subModel)
-                        {
+                    <table class="tblRpt soccer">
+                        @{
+                subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
+                var status = string.Empty;
+                foreach (OutrightViewModel subItem in subModel)
+                {
+                    if (subItem.Status.ToLower() == "refund")
+                    {
+                        status = Lang.refund;
+                    }
+                    else if (subItem.Status.ToLower() == "close")
+                    {
+                        status = "+";
+                    }
                             <tr>
-                                <td>@subItem.TeamName </td>
-                                <td>@subItem.Stake</td>
-                                <td>@((int)subItem.BetCount)/@((int)subItem.Stake)</td>
+                                <td>@subItem.TeamName
+                                </td>
+                                <td>@status
+                                </td>
+                                <td>@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                </td>
                             </tr>
-                        }     
-                          }                      
-                    </table>                   
+                }
+                        }
+                    </table>
                 </td>
             </tr>
-          }
-       }
+            }
+        }
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
