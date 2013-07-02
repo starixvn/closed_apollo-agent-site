@@ -77,13 +77,13 @@
             var options = this.options;
 
             var html = [],
-            numItem = Math.round(options.totalItem / options.itemPerPage),
+            numItem = Math.round((options.totalItem + options.numPageDisplay/2) / options.itemPerPage),
             itemHtml = ''
             currentItem = '';
 
-            if (options.totalItem > 0 && numItem == 0) {
-                numItem = 1;
-            }
+//            if (options.totalItem > 0 && numItem == 0) {
+//                numItem = 1;
+//            }
 
             if (!me.$pager.hasClass('sbpager')) {
                 me.$pager.addClass('sbpager');
