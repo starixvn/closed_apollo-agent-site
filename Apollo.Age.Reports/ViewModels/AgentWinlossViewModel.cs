@@ -9,67 +9,70 @@
 
 namespace Apollo.Age.Reports.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Reports.Models;
-    using Apollo.Age.Reports.Services;
-    using Apollo.Age.Services.Impl;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Apollo.Age.Entities;
+	using Apollo.Age.Reports.Models;
 
-    public class AgentWinLossViewModel
-    {
-        public bool IsSuper { get; set; }
+	public class AgentWinLossViewModel
+	{
+		public bool IsSuper { get; set; }
 
-        public int AgentId { get; set; }
+		public int AgentId { get; set; }
 
-        public string AgentName { get; set; }
+		public string AgentName { get; set; }
 
-        public string Sporttypes { get; set; }
+		public string Sporttypes { get; set; }
 
-        public string Bettypes { get; set; }
+		public string Bettypes { get; set; }
 
-        public DateTime FromDate { get; set; }
+		public List<SingbetSport> SportList { get; set; }
 
-        public DateTime ToDate { get; set; }
+		public List<SingbetBettype> BettypeList { get; set; }
 
-        public List<AgentWinLossModel> AgentWinLossList { get; set; }
+		public DateTime FromDate { get; set; }
 
-        public List<Agent> DownlinePath { get; set; }
+		public DateTime ToDate { get; set; }
 
-        public string SportName { 
-            get 
-            {
-                var sportList = SingbetSportService.GetSport(false);
-                var sport = sportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+		public DateTime BalanceUpDay { get; set; }
 
-                if (sport != null)
-                {
-                    return sport.Name;
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            } 
-        }
+		public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
-        public string BettypeName
-        {
-            get
-            {
-                var bettypeList = ReportService.GetBettype();
-                var bettype = bettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+		public List<Agent> DownlinePath { get; set; }
 
-                if (bettype != null)
-                {
-                    return bettype.Name;
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
-    }
+		public string SportName
+		{
+			get
+			{
+				var sport = SportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+
+				if (sport != null)
+				{
+					return sport.Name;
+				}
+				else
+				{
+					return string.Empty;
+				}
+			}
+		}
+
+		public string BettypeName
+		{
+			get
+			{
+				var bettype = BettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+
+				if (bettype != null)
+				{
+					return bettype.Name;
+				}
+				else
+				{
+					return string.Empty;
+				}
+			}
+		}
+	}
 }

@@ -12,55 +12,56 @@
 
 namespace Apollo.Age.Reports.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Reports.Criterias;
-    using Apollo.Age.Reports.Models;
-    using Apollo.Age.Reports.Services;
-    using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Web;
-    using Apollo.Age.Services.Impl;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Web.Mvc;
+	using System.Web.SessionState;
+	using Apollo.Age.Entities;
+	using Apollo.Age.Reports.Criterias;
+	using Apollo.Age.Reports.Models;
+	using Apollo.Age.Reports.Services;
+	using Apollo.Age.Reports.ViewModels;
+	using Apollo.Age.Web;
+	using Apollo.Age.Services.Impl;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
-    public class ReportsController : BaseController
-    {
-        private readonly OutstandingService _reportService;
-        private readonly IWinLossService _winLossService;
-        private int _currentAgentId;
+	[SessionState(SessionStateBehavior.ReadOnly)]
+	public class ReportsController : BaseController
+	{
+		private readonly OutstandingService _reportService;
+		private readonly IWinLossService _winLossService;
+		private int _currentAgentId;
 
-        public ReportsController() : this(null) 
-        { 
-        }
+		public ReportsController()
+			: this(null)
+		{
+		}
 
-        public ReportsController(OutstandingService reportService = null)
-        {
-            _reportService = reportService ?? new OutstandingService();
-            _winLossService = _winLossService ?? new WinLossService();
-        }
+		public ReportsController(OutstandingService reportService = null)
+		{
+			_reportService = reportService ?? new OutstandingService();
+			_winLossService = _winLossService ?? new WinLossService();
+		}
 
-        public int? CurrentAgentId
-        {
-            get
-            {
-                return _currentAgentId;
-            }
+		public int? CurrentAgentId
+		{
+			get
+			{
+				return _currentAgentId;
+			}
 
-            set
-            {
-                _currentAgentId = value.HasValue ? value.Value : this.CurrentSession.AgentId;
-            }
-        }
+			set
+			{
+				_currentAgentId = value.HasValue ? value.Value : this.CurrentSession.AgentId;
+			}
+		}
 
-        #region Outstanding Report
+		#region Outstanding Report
 
 		public ViewResult Outstanding(int? agentId, string Sporttypes, string Bettypes)
-        {
-            CurrentAgentId = agentId;
-            var mainShareHolder = new Apollo.Age.Entities.Agent();
+		{
+			CurrentAgentId = agentId;
+			var mainShareHolder = new Apollo.Age.Entities.Agent();
 
 			var outstandingViewModel = new OutstandingViewModel()
 			{
@@ -94,119 +95,126 @@ namespace Apollo.Age.Reports.Controllers
 				outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
 			}
 
-            outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-            outstandingViewModel.BettypeList = ReportService.GetBettype();
+			outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+			outstandingViewModel.BettypeList = _reportService.GetBettype();
 
-            return View(outstandingViewModel);
-        }
+			return View(outstandingViewModel);
+		}
 
-        [HttpPost]
+		[HttpPost]
 		public ActionResult MemberOutstanding(int? agentId, string Sporttypes, string Bettypes, int mainShareHolderId, string mainShareHolderUsername)
-        {
-            CurrentAgentId = agentId;
-            //// call service to get report data here
-            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
-            {
-                AgentId = CurrentAgentId.Value,
+		{
+			CurrentAgentId = agentId;
+			//// call service to get report data here
+			IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
+			{
+				AgentId = CurrentAgentId.Value,
 				Sporttypes = Sporttypes,
 				Bettypes = Bettypes
-            });
+			});
 
-            //// Sum total amount
-            OutstandingModel totalModels = new OutstandingModel();
-            if (models != null && models.Any())
-            {
-                foreach (OutstandingModel item in models)
-                {
-                    totalModels.Outstanding += item.Outstanding;
-                    totalModels.ShareAmount += item.ShareAmount;
-                    totalModels.GameOutstanding += item.GameOutstanding;
-                    totalModels.GameShareAmount += item.GameShareAmount;
-                }
-            }
-            //// return object
-            return Json(new
-            {
-                ListOutstanding = models,
-                Total = totalModels,
-                MainShareHolderId = mainShareHolderId,
-                MainShareHolderUsername = mainShareHolderUsername
-            });
-        }
+			//// Sum total amount
+			OutstandingModel totalModels = new OutstandingModel();
+			if (models != null && models.Any())
+			{
+				foreach (OutstandingModel item in models)
+				{
+					totalModels.Outstanding += item.Outstanding;
+					totalModels.ShareAmount += item.ShareAmount;
+					totalModels.GameOutstanding += item.GameOutstanding;
+					totalModels.GameShareAmount += item.GameShareAmount;
+				}
+			}
+			//// return object
+			return Json(new
+			{
+				ListOutstanding = models,
+				Total = totalModels,
+				MainShareHolderId = mainShareHolderId,
+				MainShareHolderUsername = mainShareHolderUsername
+			});
+		}
 
-        #endregion Outstanding Report
+		#endregion Outstanding Report
 
-        #region Agent Win Loss Report
+		#region Agent Win Loss Report
 
-        public ViewResult MatchEntered()
-        {
-            var matchEnteredViewModel = new MatchEnteredViewModel();
-            matchEnteredViewModel.BalanceUpDay = _reportService.GetBalanceUpDay();
-            matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-            matchEnteredViewModel.BettypeList = ReportService.GetBettype();
-            matchEnteredViewModel.matchEnteredModelList = _winLossService.GetMatchEntered();
+		public ViewResult MatchEntered()
+		{
+			var matchEnteredViewModel = new MatchEnteredViewModel();
+			matchEnteredViewModel.BalanceUpDay = _reportService.GetBalanceUpDay();
+			matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+			matchEnteredViewModel.BettypeList = _reportService.GetBettype();
+			matchEnteredViewModel.matchEnteredModelList = _winLossService.GetMatchEntered();
 
-            return View(matchEnteredViewModel);
-        }
+			return View(matchEnteredViewModel);
+		}
 
-        public ViewResult AgentWinLoss(AgentWinLossViewModel model)
-        {
-            model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
-            var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
-            var isSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+		public ViewResult AgentWinLoss(AgentWinLossViewModel model)
+		{
+			model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
+			var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
+			var isSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
-            var criteria = new AgentWinLossCriteria {
-                AgentId = model.AgentId,
-                Sporttypes = model.Sporttypes,
-                Bettypes = model.Bettypes,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay()
-            };
+			var criteria = new AgentWinLossCriteria
+			{
+				AgentId = model.AgentId,
+				Sporttypes = model.Sporttypes,
+				Bettypes = model.Bettypes,
+				FromDate = model.FromDate,
+				ToDate = model.ToDate,
+				BalanceUpDay = _reportService.GetBalanceUpDay()
+			};
 
-            var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
-            var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
+			var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
+			var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
 
-            model.IsSuper = isSuper;
-            model.AgentName = agentName;
-            model.AgentWinLossList = agentWinLossList;
-            model.DownlinePath = modelAgentDownLine;
+			model.IsSuper = isSuper;
+			model.AgentName = agentName;
+			model.AgentWinLossList = agentWinLossList;
+			model.DownlinePath = modelAgentDownLine;
+			model.SportList = SingbetSportService.GetSport(isOther: false);
+			model.BettypeList = _reportService.GetBettype();
+			model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            return View(model);
-        }
+			return View(model);
+		}
 
-        public ViewResult MemberWinLoss(MemberWinLossViewModel model)
-        {
-            var criteria = new MemberWinLossCriteria
-            {
-                AgentId = model.AgentId,
-                Sporttypes = model.Sporttypes,
-                Bettypes = model.Bettypes,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay()
-            };
+		public ViewResult MemberWinLoss(MemberWinLossViewModel model)
+		{
+			var criteria = new MemberWinLossCriteria
+			{
+				AgentId = model.AgentId,
+				Sporttypes = model.Sporttypes,
+				Bettypes = model.Bettypes,
+				FromDate = model.FromDate,
+				ToDate = model.ToDate,
+				BalanceUpDay = _reportService.GetBalanceUpDay()
+			};
 
-            var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
-            var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
+			var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
+			var modelAgentDownLine = AgentDownlinePath(model.AgentId).ToList();
 
-            model.MemberWinLossList = memberWinLossList;
-            model.DownlinePath = modelAgentDownLine;
+			model.MemberWinLossList = memberWinLossList;
+			model.DownlinePath = modelAgentDownLine;
+			model.SportList = SingbetSportService.GetSport(isOther: false);
+			model.BettypeList = _reportService.GetBettype();
+			model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            return View(model);
-        }
+			return View(model);
+		}
 
-        #endregion Agent Win Loss Report
+		#endregion Agent Win Loss Report
 
-        private IEnumerable<Agent> AgentDownlinePath(int agentId)
-        {
-            IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
-            {
-                ParentId = CurrentSession.AgentId,
-                AgentId = agentId
-            });
+		private IEnumerable<Agent> AgentDownlinePath(int agentId)
+		{
+			IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
+			{
+				ParentId = CurrentSession.AgentId,
+				AgentId = agentId
+			});
 
-            return models;
-        }
-    }
+			return models;
+		}
+	}
 }
