@@ -1349,6 +1349,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Half HDP / Wagers.
+        /// </summary>
+        public static string lbl1stHpdWager {
+            get {
+                return ResourceManager.GetString("lbl1stHpdWager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1st Odd/Even.
         /// </summary>
         public static string lbl1stOddEven {
@@ -1363,6 +1372,15 @@ namespace Apollo.Age.Resources {
         public static string lbl1stOU {
             get {
                 return ResourceManager.GetString("lbl1stOU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st Half O/U / Wagers.
+        /// </summary>
+        public static string lbl1stOUWager {
+            get {
+                return ResourceManager.GetString("lbl1stOUWager", resourceCulture);
             }
         }
         

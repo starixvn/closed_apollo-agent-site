@@ -4,9 +4,7 @@
 @using Apollo.Age.Web.Mvc
 @model List<RunningBallViewModel>
 <table class="tblRpt soccer @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
-                    , Lang.lblOverUnderWager
-                    , Lang.lblOddEvenWagers)
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager, Lang.lbl1stHpdWager, Lang.lblOverUnderWager, Lang.lbl1stOUWager)
     <tbody>
         @Model.List(
             @<tr class="c">
@@ -16,24 +14,22 @@
                     <br />
                     @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator)
                 </td>
+                 <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
+                </td>
                 <td class="border-right r red-num">
                     @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator)
                     <br />
                     @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
                 </td>
-                <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
+                 <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
-                </td>
-                @*<td class="border-right r red-num">
-                    @item.Count1/@Math.Round(item.Stake1)
-                    @WagerHelper.RenderColumnData(item., item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
-                    <br />
-                    @item.Count2/@Math.Round(item.Stake2)
-                    <br />
-                    @item.CountX/@Math.Round(item.StakeX)
-                </td>*@
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
+                </td>             
+                           
             </tr>
             )
     </tbody>
