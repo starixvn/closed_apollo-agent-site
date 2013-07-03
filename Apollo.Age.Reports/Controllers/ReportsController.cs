@@ -12,7 +12,6 @@
 
 namespace Apollo.Age.Reports.Controllers
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Web.Mvc;
@@ -22,8 +21,8 @@ namespace Apollo.Age.Reports.Controllers
 	using Apollo.Age.Reports.Models;
 	using Apollo.Age.Reports.Services;
 	using Apollo.Age.Reports.ViewModels;
-	using Apollo.Age.Web;
 	using Apollo.Age.Services.Impl;
+	using Apollo.Age.Web;
 
 	[SessionState(SessionStateBehavior.ReadOnly)]
 	public class ReportsController : BaseController
@@ -58,7 +57,7 @@ namespace Apollo.Age.Reports.Controllers
 
 		#region Outstanding Report
 
-		public ViewResult Outstanding(int? agentId, string Sporttypes, string Bettypes)
+		public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
 		{
 			CurrentAgentId = agentId;
 			var mainShareHolder = new Apollo.Age.Entities.Agent();
@@ -67,11 +66,11 @@ namespace Apollo.Age.Reports.Controllers
 			{
 				CurrentAgentId = CurrentAgentId.Value,
 				MainShareHolder = mainShareHolder,
-				Sporttypes = Sporttypes,
-				Bettypes = Bettypes
+				Sporttypes = sporttypes,
+				Bettypes = bettypes
 			};
 
-			if (Sporttypes != null)
+			if (sporttypes != null)
 			{
 				IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
 
@@ -86,8 +85,8 @@ namespace Apollo.Age.Reports.Controllers
 				IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
 				{
 					AgentId = CurrentAgentId.Value,
-					Sporttypes = Sporttypes,
-					Bettypes = Bettypes
+					Sporttypes = sporttypes,
+					Bettypes = bettypes
 				});
 
 				outstandingViewModel.ListOutStanding = models;
@@ -102,15 +101,15 @@ namespace Apollo.Age.Reports.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult MemberOutstanding(int? agentId, string Sporttypes, string Bettypes, int mainShareHolderId, string mainShareHolderUsername)
+		public ActionResult MemberOutstanding(int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
 		{
 			CurrentAgentId = agentId;
 			//// call service to get report data here
 			IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
 			{
 				AgentId = CurrentAgentId.Value,
-				Sporttypes = Sporttypes,
-				Bettypes = Bettypes
+				Sporttypes = sporttypes,
+				Bettypes = bettypes
 			});
 
 			//// Sum total amount
