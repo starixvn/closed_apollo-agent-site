@@ -1313,6 +1313,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st 1x2/Wagers.
+        /// </summary>
+        public static string lbl1st1x2wager {
+            get {
+                return ResourceManager.GetString("lbl1st1x2wager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1st Ball.
         /// </summary>
         public static string lbl1stBall {
@@ -2551,6 +2560,15 @@ namespace Apollo.Age.Resources {
         public static string lblMixParlay {
             get {
                 return ResourceManager.GetString("lblMixParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Line/Wagers.
+        /// </summary>
+        public static string lblmoneylineWager {
+            get {
+                return ResourceManager.GetString("lblmoneylineWager", resourceCulture);
             }
         }
         
