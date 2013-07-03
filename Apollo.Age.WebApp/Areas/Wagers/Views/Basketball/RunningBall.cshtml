@@ -73,3 +73,4 @@
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

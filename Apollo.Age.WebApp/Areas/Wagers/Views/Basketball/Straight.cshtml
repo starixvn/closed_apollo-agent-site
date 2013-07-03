@@ -12,22 +12,23 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator, item.LeagueId)
                 </td>
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator, item.LeagueId)
                 </td>
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamOE, item.HomeCountOE, item.HomeStakeOE, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamOE, item.HomeCountOE, item.HomeStakeOE, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.LiveIndicator, item.LeagueId)
                 </td>
             </tr>
         )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

@@ -10,10 +10,11 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator, item.LeagueId)
                 </td>
             </tr>
         )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))
