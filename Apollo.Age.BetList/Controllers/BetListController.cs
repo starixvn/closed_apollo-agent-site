@@ -30,6 +30,7 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.Common;
 
     /// <summary>
     /// BetList Controller
@@ -121,7 +122,14 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
-        public ViewResult Outstanding(int custId, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, string betType = _StringEmpty, string sportType = _StringEmpty)
+        public ViewResult Outstanding(int custId, 
+            string username = _StringEmpty, 
+            int mainShareHolderId = 0, 
+            string mainShareHolderUsername = _StringEmpty, 
+            string betType = _StringEmpty, 
+            string sportType = _StringEmpty,
+            string sportName = _StringEmpty,
+            string betTypeName = _StringEmpty)
         {
             var statusIds = string.Format("{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -151,7 +159,8 @@ namespace Apollo.Age.BetList.Controllers
                 DownlinePath = modelAgentDownLine,
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
             };
-
+            ViewBag.SportName = sportName;
+            ViewBag.BetTypeName = betTypeName; 
             return this.View(viewModel);
         }
 
