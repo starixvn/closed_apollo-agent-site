@@ -339,10 +339,10 @@ namespace Apollo.Age.Web.Mvc
                     result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
                     break;
                 case 2:
-                    result = new MvcHtmlString(string.Format(format, "close", Lang.Close));
+                    result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));
                     break;
                 default:
-                    result = new MvcHtmlString(string.Format(format, "suspended", Lang.Suspended));
+                    result = new MvcHtmlString(string.Format(format, "suspended", Lang.locked));
                     break;
             }
 
