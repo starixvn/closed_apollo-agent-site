@@ -19,7 +19,6 @@ namespace Apollo.Age.WebApp
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
                 "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
                 "~/_GlobalResources/Js/noty/jquery.noty.js",
                 "~/_GlobalResources/Js/Core.js",
                 "~/Views/Reports/Resources/Reports.js"));
@@ -35,9 +34,15 @@ namespace Apollo.Age.WebApp
                ));
 
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
+				"~/_GlobalResources/Js/head.js",
+				"~/_GlobalResources/Js/jquery.js",
+				"~/_GlobalResources/Js/jquery-ui.js",
+				"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+				"~/_GlobalResources/Js/Core.js",
                 "~/_GlobalResources/Js/Fanex.Grid/moment.js",
                 "~/_GlobalResources/Js/Fanex.Grid/numeral.js",
                 "~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js",
+				"~/Views/Reports/Resources/Reports.js",
 				"~/Views/Reports/Resources/Outstanding.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/totalbetsjs").Include(

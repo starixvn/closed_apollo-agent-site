@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
-    Layout = "~/Views/Reports/Shared/_LayoutWinloss.cshtml";
+	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
 @model MatchEnteredViewModel
 <div id="function-bar">
@@ -430,6 +430,7 @@
 })
 @section scripts
 {
+	@Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
