@@ -744,8 +744,6 @@
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
-    <Content Include="Areas\Wagers\Views\Basketball\SpecialBet.cshtml" />
-    <Content Include="Areas\Wagers\Views\Basketball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Parlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Straight.cshtml" />
@@ -754,8 +752,6 @@
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
-    <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
@@ -764,6 +760,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
