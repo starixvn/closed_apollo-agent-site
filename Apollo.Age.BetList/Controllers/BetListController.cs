@@ -466,7 +466,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportType"></param>
         /// <param name="betTeam"></param>
         /// <returns></returns>
-        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty)
+        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
         {
             // List ticket
             var betListService = new BetListService();
@@ -480,7 +480,8 @@ namespace Apollo.Age.BetList.Controllers
                 LeagueId = leagueId,
                 SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
                 BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
-                BetTeam = betTeam
+                BetTeam = betTeam,
+                MatchId = matchId
             };
 
             TicketResult mainTickets = betListService.WagersTicket(criteria);
