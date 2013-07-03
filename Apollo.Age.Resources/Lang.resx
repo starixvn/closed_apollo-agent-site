@@ -708,7 +708,7 @@
     <value>Tennis</value>
   </data>
   <data name="time" xml:space="preserve">
-    <value>Time</value>
+    <value>Show Time (GMT+8)</value>
   </data>
   <data name="to" xml:space="preserve">
     <value>To</value>
