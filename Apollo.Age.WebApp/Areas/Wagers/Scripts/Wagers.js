@@ -93,7 +93,7 @@ var Wagers = function ($) {
                     fromDate: Wagers.fromDate,
                     toDate: Wagers.toDate,
                     uGroup: Wagers.groupComm,
-                    isDirectMember: Wagers.isDirectMember,
+                    IsDirectMem: Wagers.isDirectMember,
                     loggedId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,

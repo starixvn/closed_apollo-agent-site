@@ -84,10 +84,10 @@
                         <option value="0">@Lang.all</option>
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
-                        {
+                        {                           
                             foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
+                            <option value="@item.Id">@item.Name</option>
                             }
                         }
                     </select>
@@ -154,12 +154,10 @@
 
         if (typeAll != null)
         {
-    <div>
+    <div class="vertical-middle">
+        <br />
         @RenderColumn(typeAll)
         <br />
-        0/0
-        <br />
-        0/0
     </div>
         }
         else
@@ -168,9 +166,7 @@
             var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
             var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
     @RenderColumn(typeHome)
-    <br />
-    @RenderColumn(typeAway)
-    <br />
+    @RenderColumn(typeAway)    
     @RenderColumn(typeDraw)
         }        
 }
@@ -182,7 +178,7 @@
         }
         else
         { 
-    <span>0/0</span>
+    <br />
         }
 @*
     Type : 

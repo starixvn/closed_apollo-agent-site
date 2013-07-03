@@ -139,13 +139,13 @@ var Log = function ($) {
 $(document).ready(function () {
     Log.init();
     Log.initSearchClick();
-
+    $('.show-old-value').show();
     //format css
     $('.monpickr-wrap-parent, #monthDateTime').width(107);
     $('.monpickr-selected-month').width(60);
     $('.daypickr-selected-day').width(20);
     $('.monpickr-dropdown').width(105);
     $('#dSubmit').on('click', function () {
-        $.blockUI();       
+        $.blockUI();
     });
 });
