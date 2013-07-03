@@ -155,7 +155,7 @@
         if (typeAll != null)
         {
     <div>
-        @typeAll.Count/@Math.Round(typeAll.Stake)
+        @RenderColumn(typeAll)
         <br />
         0/0
         <br />
@@ -177,8 +177,8 @@
 @helper RenderColumn(SpecialViewModel item)
     {
         if (item != null)
-        {
-    <span>@item.Count/@Math.Round(item.Stake)</span>
+        {    
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator)
         }
         else
         { 
@@ -194,6 +194,13 @@
 }
 @helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive)
     {    
+        if (betCount != 0
+            && stake != 0)
+        { 
     <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive">@betCount/@Math.Round(stake)</a>   
-        
+        }
+        else
+        {
+    <span>@betCount/@Math.Round(stake)</span>
+        }        
 }

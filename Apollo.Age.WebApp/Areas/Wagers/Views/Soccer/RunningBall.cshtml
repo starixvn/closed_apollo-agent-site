@@ -12,22 +12,28 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
                 <td class="border-right r red-num">
-                    @item.HomeCountHDP/@Math.Round(item.HomeStakeHDP)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHDP/@Math.Round(item.AwayStakeHDP)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator)
                 </td>
                 <td class="border-right r red-num">
-                    @item.HomeCountOU/@Math.Round(item.HomeStakeOU)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator)
                     <br />
-                    @item.AwayCountOU/@Math.Round(item.AwayStakeOU)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
                 </td>
                 <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
+                </td>
+                @*<td class="border-right r red-num">
                     @item.Count1/@Math.Round(item.Stake1)
+                    @WagerHelper.RenderColumnData(item., item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
                     <br />
                     @item.Count2/@Math.Round(item.Stake2)
                     <br />
                     @item.CountX/@Math.Round(item.StakeX)
-                </td>
+                </td>*@
             </tr>
             )
     </tbody>

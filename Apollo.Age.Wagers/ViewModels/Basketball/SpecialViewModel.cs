@@ -26,6 +26,8 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
 
         public byte Type { get; set; }
 
+        public string BetTeam { get; set; }
+
         public string BetName
         {
             get

@@ -15,6 +15,8 @@ var Wagers = function ($) {
         isEM: false,
         isOR: false,
         pageIndex: 0,
+        betTypeIds: null,
+
         init: function () {
             Wagers.sportName = $('#SportName').val();
             Wagers.groupBetName = $('#GroupBetName').val();
@@ -24,6 +26,7 @@ var Wagers = function ($) {
             Wagers.sportTypeIds = $('#SportTypeIds').val();
             Wagers.isEM = $('#IsEM').val();
             Wagers.isOR = $('#IsOR').val();
+            Wagers.betTypeIds = $('#BetTypeIds').val();
 
             Wagers.fromDate = Wagers.isOR == "true" ? $('#OutrightFromDate').val() : $('#FromDate').val();
             Wagers.toDate = $('#OutrightToDate').val();
@@ -130,7 +133,7 @@ var Wagers = function ($) {
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
                 + "&leagueId=" + Wagers.League
-                + "&betType=" + "1,2,3"
+                + "&betType=" + Wagers.betTypeIds
                 + "&sportType=" + Wagers.sportTypeIds
                 + "&betTeam=" + betteam
                 + "&loggedId=" + Wagers.viewOption;
