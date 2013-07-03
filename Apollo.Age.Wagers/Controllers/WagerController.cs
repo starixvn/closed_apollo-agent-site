@@ -186,6 +186,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.isOR = isOR;
 
             ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
+            ViewBag.IsShowDirectMember = CurrentSession.AgentLevel > 2;
 
             return View();
         }

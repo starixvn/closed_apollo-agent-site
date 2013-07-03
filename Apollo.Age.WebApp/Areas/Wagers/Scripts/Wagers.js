@@ -51,6 +51,7 @@ var Wagers = function ($) {
 
             $('#ViewOption').on('change', function () {
                 var $this = $(this);
+                Wagers.viewOption = $this.val();
                 if ($this.val() > 0) {
                     Wagers.isDirectMember = false;
                 }
