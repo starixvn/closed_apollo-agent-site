@@ -53,18 +53,22 @@
                 location.href = url;
             });
 
+
             $("#gridId").on("click", ".act-view-betlist", OUTSTANDING.viewBetList);
         },
 
         viewBetList: function () {
             $.blockUI();
             var username = $(this).closest('tr').children('td:first').text();
-            location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid") + "&username=" + username
-            			+ "&sporttype=" + OUTSTANDING.ddlSport.val() + "&bettype=" + OUTSTANDING.ddlBettype.val()
-//            			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
-//                        + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
-                        + "&type=outstanding");
-
+            location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
+            + "&username=" + username
+			+ "&sporttype=" + OUTSTANDING.ddlSport.val()
+            + "&bettype=" + OUTSTANDING.ddlBettype.val()
+			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
+            + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
+            + "&type=outstanding")
+            + "&sportName=" + escape(OUTSTANDING.ddlSport.find(':selected').text())
+            + "&betTypeName=" + escape(OUTSTANDING.ddlBettype.find(':selected').text());
         },
 
         initGrid: function (outstandingData) {
