@@ -270,11 +270,11 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
+                Title = string.Format("{0}: {1} --{2}: {3}", Lang.sport, sportName, Lang.bettype, betTypeName),
                 DownlinePath = modelAgentDownLine,
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
             };
-            ViewBag.SportName = sportName;
-            ViewBag.BetTypeName = betTypeName;
+
             return this.View(viewModel);
         }
 
