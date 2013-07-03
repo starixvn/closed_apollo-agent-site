@@ -318,7 +318,7 @@ namespace Apollo.Age.BetList.Controllers
             var betListService = new BetListService();
             var criteria = new WagersCriteria
             {
-                LoggedId = loggedId,
+                LoggedId = loggedId == 0 ? CurrentSession.AgentId : loggedId,
                 FromDate = fromDate,
                 UGroup = uGroup,
                 IsDirectMem = isDirectMem,
