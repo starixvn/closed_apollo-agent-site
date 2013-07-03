@@ -267,7 +267,6 @@ form {
 }
 
 .tblRpt {
-	margin: 5px;
 	width:99%;
 
 	&.border-tbl td {
@@ -278,6 +277,7 @@ form {
 		color: #B50000;
 		white-space: nowrap;
 	}
+
 	thead{
 		th{
 			height:23px;
@@ -333,14 +333,21 @@ form {
 			}
 		}		
 	}
-	&.betlist
-	{
+
+	&.betlist {
+		margin: 0 5px;
+
 		.total{
 				background:#DAE9F2;
 		}
 		.result{
 			background:#000033;
 			color:#fff;
+		}
+		.out-standing-result
+		{
+			background:#990000;
+				color:#fff;
 		}
 	}
 }

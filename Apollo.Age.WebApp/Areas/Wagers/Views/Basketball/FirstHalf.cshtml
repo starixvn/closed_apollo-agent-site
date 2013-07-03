@@ -1,33 +1,36 @@
 ﻿@using Apollo.Age.Resources
 @using Apollo.Age.Wagers.ViewModels.Basketball
 @using Apollo.Age.Web.Mvc
+@using Apollo.Age.Enumerations
 @model List<FirstHaftViewModel>
 <table class="tblRpt @ViewBag.SportName first-half @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
-                        , Lang.lblOverUnderWager,
-                                 Lang.lblOddEvenWagers)
+    @WagerHelper.RederHeaderColumn(
+            Lang.lblHandicapWager,
+            Lang.lblOverUnderWager,
+            Lang.lblOddEvenWagers)
     @*/RenderHeader*@
     <tbody>
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
-                <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
+                <td class="r red-num" data-bettype="@((int)BetTypes._1st_Handicap)">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator, item.LeagueId)
                 </td>
-                <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator)
+                <td class="r red-num" data-bettype="@((int)BetTypes._1st_Over_Under)">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator, item.LeagueId)
                 </td>
-                <td class="border-right red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator)
+                <td class="r red-num" data-bettype="@((int)BetTypes._1st_Odd_Even)">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator, item.LeagueId)
                 </td>
             </tr>
             )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

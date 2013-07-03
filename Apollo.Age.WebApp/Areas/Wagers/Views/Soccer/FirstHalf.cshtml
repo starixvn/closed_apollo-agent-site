@@ -12,24 +12,25 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator, item.LeagueId)
                 </td>
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator, item.LeagueId)
                 </td>
                 <td class="border-right r red-num">
-                    @WagerHelper.RenderColumnData(item.BetteamHT1, item.CountHT1, item.StakeHT1, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.BetteamHT1, item.CountHT1, item.StakeHT1, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.BetteamHT2, item.CountHT2, item.StakeHT2, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.BetteamHT2, item.CountHT2, item.StakeHT2, item.LiveIndicator, item.LeagueId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountHTX, item.StakeHTX, item.LiveIndicator)
+                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountHTX, item.StakeHTX, item.LiveIndicator, item.LeagueId)
                 </td>
             </tr>
         )
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

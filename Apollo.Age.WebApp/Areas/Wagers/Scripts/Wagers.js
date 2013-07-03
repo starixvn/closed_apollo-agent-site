@@ -105,6 +105,7 @@ var Wagers = function ($) {
                     $('#container').html(data);
                     Wagers.initPager(Wagers.pageIndex);
                     Wagers.initWagerBetList();
+                    $('.est-zone').html($('#TimeZone').val());
                 }
             });
         },
@@ -127,13 +128,15 @@ var Wagers = function ($) {
 
                 var betteam = $(this).attr('data-betTeams');
                 var live = $(this).attr('data-live');
+                var league = $(this).attr('data-league');
+                var bettype = $(this).parent().attr('data-bettype');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
                 + "&uGroup=" + Wagers.groupComm
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
-                + "&leagueId=" + Wagers.League
-                + "&betType=" + Wagers.betTypeIds
+                + "&leagueId=" + league
+                + "&betType=" + bettype
                 + "&sportType=" + Wagers.sportTypeIds
                 + "&betTeam=" + betteam
                 + "&loggedId=" + Wagers.viewOption;

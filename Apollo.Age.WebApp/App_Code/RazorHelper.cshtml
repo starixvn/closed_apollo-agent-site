@@ -280,17 +280,21 @@
             datetime = DateTime.Now;
         }
         try
-        {
-            TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
-            var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
-
-    <div class="est-zone">@(string.Format("--GMT-4: {0}", Formater.LongDateFormat(easternTime)))</div>
-
+        {           
+    <div class="est-zone">@GetAtlanticStandardTimeZone(datetime)
+    </div>
         }
         catch (Exception ex)
         {
             Logger.Log.Error(ex.Message, ex);
         }
+}
+@helper GetAtlanticStandardTimeZone(DateTime datetime)
+    {
+        TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
+        var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+        
+    @(string.Format("--GMT-4: {0}", Formater.LongDateFormat(easternTime)))
 }
 @helper RenderWagersFilter(string title, List<League> leagues)
     {
@@ -355,35 +359,34 @@
         }
     </td>
 }
-
 @helper RenderReportLinks(string currentLink)
-{
-	var classWinloss = string.Empty;
-	var classOutstanding = string.Empty;
-	var classTransaction = string.Empty;
-	var classTicketsCancelled = string.Empty;
+    {
+        var classWinloss = string.Empty;
+        var classOutstanding = string.Empty;
+        var classTransaction = string.Empty;
+        var classTicketsCancelled = string.Empty;
 
-	if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
-	{
-		classWinloss = "class=active";
-	}
-	else if (currentLink.ToUpper().Equals(Lang.outstanding.ToUpper()))
-	{
-		classOutstanding = "class=active";
-	}
-	else if (currentLink.ToUpper().Equals(Lang.transaction.ToUpper()))
-	{
-		classTransaction = "class=active";
-	}
-	else
-	{
-		classTicketsCancelled = "class=active";
-	}
+        if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
+        {
+            classWinloss = "class=active";
+        }
+        else if (currentLink.ToUpper().Equals(Lang.outstanding.ToUpper()))
+        {
+            classOutstanding = "class=active";
+        }
+        else if (currentLink.ToUpper().Equals(Lang.transaction.ToUpper()))
+        {
+            classTransaction = "class=active";
+        }
+        else
+        {
+            classTicketsCancelled = "class=active";
+        }
 
-	<ul class="menu report-winloss">
+    <ul class="menu report-winloss">
         <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>
         <li @classOutstanding><a href="~/reports/outstanding">@Lang.outstanding</a></li>
-        <li @classTransaction><a href="~/_betList/BetListTransaction.aspx?type=transaction">@Lang.transaction</a></li>
-        <li @classTicketsCancelled><a href="~/betList/ticketcancel?fromDate=2013-6-20&toDate=2013-7-1">@Lang.TicketsCancelled</a></li>
+        <li @classTransaction><a href="~/betList/transactions">@Lang.transaction</a></li>
+        <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.TicketsCancelled</a></li>
     </ul>
 }

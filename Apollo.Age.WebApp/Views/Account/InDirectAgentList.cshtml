@@ -37,9 +37,9 @@
                 }
             </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.Close },
-                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+					                 new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.stopped },
+                                    new SelectListItem { Value = "3", Text = Lang.locked }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -70,7 +70,7 @@
 		{
 		<div class="item">
 			--
-			<a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.lblPlayerList</a>
+			<a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.memberList</a>
 		</div>
 		}
     </div>
