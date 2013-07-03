@@ -5,33 +5,33 @@
 @using Apollo.Age.Enumerations
 @model List<TotalViewModel>
 <table class="tblRpt soccer total @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.lblOdd, Lang.events, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)
+    @WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.lblOdd, Lang.lblEven, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)
     @Model.List(
         @<tr class="c">
             @WagerHelper.RenderBaseColumns(item)
             <td class="r red-num" data-bettype="@((int)BetTypes._1st_Odd_Even)">
-                @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes._1st_Odd_Even)">
-                @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Odd_Even)">
-                @WagerHelper.RenderColumnData(item.HomeBetteamOE, item.HomeCountOE, item.HomeStakeOE, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.HomeBetteamOE, item.HomeCountOE, item.HomeStakeOE, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Odd_Even)">
-                @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Total_Goal)">
-                @WagerHelper.RenderColumnData(item.Total01Betteam, item.Total01Count, item.Total01Stake, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.Total01Betteam, item.Total01Count, item.Total01Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Total_Goal)">
-                @WagerHelper.RenderColumnData(item.Total23Betteam, item.Total23Count, item.Total23Stake, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.Total23Betteam, item.Total23Count, item.Total23Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Total_Goal)">
-                @WagerHelper.RenderColumnData(item.Total46Betteam, item.Total46Count, item.Total46Stake, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.Total46Betteam, item.Total46Count, item.Total46Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
             <td class="r red-num" data-bettype="@((int)BetTypes.Total_Goal)">
-                @WagerHelper.RenderColumnData(item.Total7OverBetteam, item.Total7OverCount, item.Total7OverStake, item.LiveIndicator, item.LeagueId)
+                @WagerHelper.RenderColumnData(item.Total7OverBetteam, item.Total7OverCount, item.Total7OverStake, item.LiveIndicator, item.LeagueId, item.MatchId)
             </td>
         </tr>
     )

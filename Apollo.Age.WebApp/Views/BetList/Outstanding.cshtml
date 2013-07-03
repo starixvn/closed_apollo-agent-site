@@ -8,8 +8,7 @@
 }
 <div id="function-bar">
     <div class="item back-link">
-        @Lang.sport: @ViewBag.SportName --@Lang.WagerType: @ViewBag.BetTypeName --<a href="javascript:void();"
-            id="backLink">@Lang.back</a>
+        @Model.Title --<a href="javascript:void();" id="backLink">@Lang.back</a>
     </div>
     <img src="/_GlobalResources/Images/top_04.gif" alt="">
 </div>
@@ -40,34 +39,33 @@
             </th>
         </tr>
     </thead>
-   
-        <tbody>
-         @if (Model.TicketList != null && Model.TicketList.Any())
-         {
-             var i = 0;
-             decimal totalAmount = 0;
+    <tbody>
+        @if (Model.TicketList != null && Model.TicketList.Any())
+        {
+            var i = 0;
+            decimal totalAmount = 0;
             foreach (var item in Model.TicketList)
             {
                 i++;
                 totalAmount += item.Stake;
-                <tr>
-                    <td class='c'>
-                        @Html.Raw(item.TransTime)
-                    </td>
-                    <td class='c'>@Html.Raw(item.Discount)
-                    </td>
-                    <td class='c'>@Html.Raw(item.GameType)
-                    </td>
-                    <td class='r'>
-                        @Html.Raw(item.Choice)
-                    </td>
-                    <td class='r'>
-                        @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class='r'>
-                        0.00
-                    </td>
-                </tr>
+            <tr>
+                <td class='c'>
+                    @Html.Raw(item.TransTime)
+                </td>
+                <td class='c'>@Html.Raw(item.Discount)
+                </td>
+                <td class='c'>@Html.Raw(item.GameType)
+                </td>
+                <td class='r'>
+                    @Html.Raw(item.Choice)
+                </td>
+                <td class='r'>
+                    @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                </td>
+                <td class='r'>
+                    0.00
+                </td>
+            </tr>
             }
             <tr>
                 <td colspan="3">
@@ -81,19 +79,16 @@
                     0.00
                 </td>
             </tr>
-         }
-         else
-         {
-             <tr>
+        }
+        else
+        {
+            <tr>
                 <td class="c" colspan="6">
                     @Lang.NodataSearch
                 </td>
-                </tr>
-         }
-    
-        </tbody>
-
-    
+            </tr>
+        }
+    </tbody>
 </table>
 @Html.Hidden("type", Request["type"])
 @Html.Hidden("sportTypes", Request["sporttype"])

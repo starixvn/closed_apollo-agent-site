@@ -708,7 +708,7 @@
     <value>Tennis</value>
   </data>
   <data name="time" xml:space="preserve">
-    <value>Time (GMT+8)</value>
+    <value>Time</value>
   </data>
   <data name="to" xml:space="preserve">
     <value>To</value>
@@ -1792,7 +1792,7 @@
     <value>1st Half Odd</value>
   </data>
   <data name="lblfirsthalfOven" xml:space="preserve">
-    <value>1st Half Event</value>
+    <value>1st Half Even</value>
   </data>
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
@@ -1817,5 +1817,8 @@
   </data>
   <data name="lblallmember" xml:space="preserve">
     <value>All Member</value>
+  </data>
+  <data name="TimeGMT8" xml:space="preserve">
+    <value>Time (GMT+8)</value>
   </data>
 </root>
