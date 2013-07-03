@@ -1313,7 +1313,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st 1x2/Wagers.
+        ///   Looks up a localized string similar to 1st 1 X 2 / Wagers.
         /// </summary>
         public static string lbl1st1x2wager {
             get {
@@ -1421,7 +1421,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1x2/Wagers.
+        ///   Looks up a localized string similar to 1 X 2 / Wagers.
         /// </summary>
         public static string lbl1x2Wager {
             get {

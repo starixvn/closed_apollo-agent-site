@@ -1660,7 +1660,7 @@
     <value>0~1</value>
   </data>
   <data name="lbl1x2Wager" xml:space="preserve">
-    <value>1x2/Wagers</value>
+    <value>1 X 2 / Wagers</value>
   </data>
   <data name="lbl2_3" xml:space="preserve">
     <value>2~3</value>
@@ -1813,7 +1813,7 @@
     <value>Money Line/Wagers</value>
   </data>
   <data name="lbl1st1x2wager" xml:space="preserve">
-    <value>1st 1x2/Wagers</value>
+    <value>1st 1 X 2 / Wagers</value>
   </data>
   <data name="lblallmember" xml:space="preserve">
     <value>All Member</value>
