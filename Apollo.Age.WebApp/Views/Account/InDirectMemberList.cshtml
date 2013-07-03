@@ -13,6 +13,8 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
+	var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
+	var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
 }
 @using (Html.BeginForm())
 {       
@@ -61,6 +63,13 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
         </div>
+		@if (hasAgentDownline)
+		{
+			<div class="item">
+				--
+				<a href="~/Account/IndirectAgentList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.lblAgentList</a>
+			</div>
+		}
         <img src="/_GlobalResources/Images/top_04.gif" alt="">
     </div>     
     @Html.HiddenFor(m => m.AgentId)

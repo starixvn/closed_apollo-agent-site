@@ -14,6 +14,9 @@
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+
+	var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
+	var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
 }
 @using (Html.BeginForm())
 {       
@@ -62,13 +65,21 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
         </div>
-    </div>     
+
+		@if (hasMemberDownline)
+		{
+		<div class="item">
+			--
+			<a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.lblPlayerList</a>
+		</div>
+		}
+    </div>
     <img src="/_GlobalResources/Images/top_04.gif" alt="">
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
 <table class="tblRpt directAgentList">
     @if (!ReferenceEquals(agentList, null) && agentList.Any())
-    {
+	{
         <thead>
             <tr bgcolor="#86C0A6" class="m_title_ag">
                 <th width="80">
@@ -93,32 +104,32 @@
         </thead>
         <tbody>
             @foreach (var item in agentList)
-            {
+			{
                 <tr class="m_cen">
                     <td>
                         @item.Username
                     </td>
                     <td>
                         @if (item.NumberOfAgent != 0)
-                        { 
+						{ 
                             @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
-                        }
-                        else
-                        {
+						new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+						}
+						else
+						{
                             <span>0</span>
-                        }
+						}
                     </td>
                     <td>
                         @if (item.NumberOfMember != 0)
-                        { 
+						{ 
                             @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
-                        }
-                        else
-                        {
+						new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+						}
+						else
+						{
                             <span>0</span>
-                        }
+						}
                     </td>
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
@@ -129,20 +140,20 @@
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">
                             @if (isMaster)
-                            {
+							{
                                 @Lang.edit
-                            }
-                            else
-                            {
+							}
+							else
+							{
                                 @Lang.view
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+							}</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
-            }
+			}
         </tbody>
-    }
-    else
-    {
+	}
+	else
+	{
         <thead>
             <th class="none-result">
                 @Lang.NoneAgent
