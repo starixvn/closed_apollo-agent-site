@@ -1,19 +1,35 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
-namespace Apollo.Age.WebApp
+﻿namespace Apollo.Age.WebApp
 {
+    using System.Web;
+    using System.Web.Optimization;
+    using BundleTransformer.Core.Transformers;
+    using BundleTransformer.Core.Orderers;
+
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            #region css
+
+            bundles.AddAndInclude("~/css/totalbets",
+                "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+                "~/views/totalbets/resources/totalbets.less");
+
+            bundles.AddAndInclude("~/css/new-message",
+                "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+                "~/views/message/resources/message.less");
+
+            #endregion
+
+            #region js
+
             bundles.Add(new ScriptBundle("~/scripts/homejs").Include(
-            "~/_GlobalResources/Js/head.js",
-            "~/_GlobalResources/Js/jquery.js",
-            "~/_GlobalResources/Js/Core.js",
-            "~/_GlobalResources/Js/jquery.cookie.js",
-            "~/Views/Home/Resources/Default.js"));
+                    "~/_GlobalResources/Js/head.js",
+                    "~/_GlobalResources/Js/jquery.js",
+                    "~/_GlobalResources/Js/Core.js",
+                    "~/_GlobalResources/Js/jquery.cookie.js",
+                    "~/Views/Home/Resources/Default.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/reportjs").Include(
                 "~/_GlobalResources/Js/head.js",
@@ -34,16 +50,16 @@ namespace Apollo.Age.WebApp
                ));
 
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
-				"~/_GlobalResources/Js/head.js",
-				"~/_GlobalResources/Js/jquery.js",
-				"~/_GlobalResources/Js/jquery-ui.js",
-				"~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-				"~/_GlobalResources/Js/Core.js",
+                "~/_GlobalResources/Js/head.js",
+                "~/_GlobalResources/Js/jquery.js",
+                "~/_GlobalResources/Js/jquery-ui.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+                "~/_GlobalResources/Js/Core.js",
                 "~/_GlobalResources/Js/Fanex.Grid/moment.js",
                 "~/_GlobalResources/Js/Fanex.Grid/numeral.js",
                 "~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js",
-				"~/Views/Reports/Resources/Reports.js",
-				"~/Views/Reports/Resources/Outstanding.js"));
+                "~/Views/Reports/Resources/Reports.js",
+                "~/Views/Reports/Resources/Outstanding.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/totalbetsjs").Include(
                 "~/_GlobalResources/Js/head.js",
@@ -122,7 +138,7 @@ namespace Apollo.Age.WebApp
                 "~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js",
                 "~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js"));
             #endregion
-            
+
             bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
                 "~/_GlobalResources/Js/head.js",
                 "~/_GlobalResources/Js/jquery.js",
@@ -175,7 +191,31 @@ namespace Apollo.Age.WebApp
                "~/_GlobalResources/Js/Core.js",
                "~/Views/BetList/Resources/BetList.js"));
 
+            #endregion
+
             bundles.FileSetOrderList.Clear();
+        }
+    }
+
+    static class BundleExtensions
+    {
+        public static void AddAndInclude(this BundleCollection bundles,
+            string bundleVirtualPath, params string[] virtualPaths)
+        {
+            bundles.Add(new Bundle(bundleVirtualPath)
+            {
+                Transforms = { new CssTransformer(), new CssMinify() },
+                Orderer = new NullOrderer()
+            }.Include(virtualPaths));
+        }
+
+        public static string RelativeFromAbsolutePath(this HttpContextBase context, string path)
+        {
+            var request = context.Request;
+            var applicationPath = request.PhysicalApplicationPath;
+            var virtualDir = request.ApplicationPath;
+            virtualDir = virtualDir == "/" ? virtualDir : (virtualDir + "/");
+            return path.Replace(applicationPath, virtualDir).Replace(@"\", "/");
         }
     }
 }
