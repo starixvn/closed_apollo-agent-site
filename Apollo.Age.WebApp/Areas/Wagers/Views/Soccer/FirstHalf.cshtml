@@ -12,21 +12,21 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
                 <td class="border-right r red-num">
-                    @item.HomeCountHTHDP/@Math.Round(item.HomeStakeHTHDP)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHTHDP/@Math.Round(item.AwayStakeHTHDP)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
                 </td>
                 <td class="border-right r red-num">
-                    @item.HomeCountHTOU/@Math.Round(item.HomeStakeHTOU)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHTOU/@Math.Round(item.AwayStakeHTOU)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
                 </td>
                 <td class="border-right r red-num">
-                    @item.CountHT1/@Math.Round(item.StakeHT1)
+                    @WagerHelper.RenderColumnData(item.BetteamHT1, item.CountHT1, item.StakeHT1, item.LiveIndicator)
                     <br />
-                    @item.CountHT2/@Math.Round(item.StakeHT2)
+                    @WagerHelper.RenderColumnData(item.BetteamHT2, item.CountHT2, item.StakeHT2, item.LiveIndicator)
                     <br />
-                    @item.CountHTX/@Math.Round(item.StakeHTX)
+                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountHTX, item.StakeHTX, item.LiveIndicator)
                 </td>
             </tr>
         )

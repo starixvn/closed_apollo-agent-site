@@ -19,6 +19,10 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 
         public decimal AwayStakeOU { get; set; }
 
+        public decimal HomeStakeHTHDP { get; set; }
+
+        public decimal AwayStakeHTHDP { get; set; }
+
         public decimal Stake1 { get; set; }
 
         public decimal StakeX { get; set; }
@@ -29,6 +33,10 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 
         public int AwayCountHDP { get; set; }
 
+        public int HomeCountHTHDP { get; set; }
+
+        public int AwayCountHTHDP { get; set; }
+
         public int HomeCountOU { get; set; }
 
         public int AwayCountOU { get; set; }
@@ -38,5 +46,21 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public int CountX { get; set; }
 
         public int Count2 { get; set; }
+
+        public string HomeBetteamHDP { get; set; }
+
+        public string AwayBetteamHDP { get; set; }
+
+        public string HomeBetteamOU { get; set; }
+
+        public string AwayBetteamOU { get; set; }
+
+        public string HomeBetteamHTHDP { get; set; }
+
+        public string AwayBetteamHTHDP { get; set; }
+
+        public string HomeBetteamHTOU { get; set; }
+
+        public string AwayBetteamHTOU { get; set; }
     }
 }
