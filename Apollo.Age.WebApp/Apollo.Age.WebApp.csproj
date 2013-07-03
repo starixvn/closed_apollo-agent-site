@@ -767,7 +767,6 @@
     <Content Include="Views\BetList\Outstanding.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
-    <Content Include="Views\Reports\Shared\_LayoutWinloss.cshtml" />
     <Content Include="Views\BetList\Winloss.cshtml" />
     <Content Include="Views\BetList\TicketCancel.cshtml" />
     <Content Include="Views\BetList\Wagers.cshtml" />
