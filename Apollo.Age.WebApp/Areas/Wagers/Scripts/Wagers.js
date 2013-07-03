@@ -129,7 +129,7 @@ var Wagers = function ($) {
                 var betteam = $(this).attr('data-betTeams');
                 var live = $(this).attr('data-live');
                 var league = $(this).attr('data-league');
-                var bettype = $(this).parent().attr('data-bettype');
+                var bettype = $(this).parents('td').attr('data-bettype');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
                 + "&uGroup=" + Wagers.groupComm
