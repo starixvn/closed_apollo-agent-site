@@ -21,7 +21,7 @@
                     <br />
                     @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
                 </td>
-                <td class="border-right red-num">
+                <td class="border-right r red-num">
                     @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator)
                     <br />
                     @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator)
@@ -31,3 +31,4 @@
     </tbody>
 </table>
 @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

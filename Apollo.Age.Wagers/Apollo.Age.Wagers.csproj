@@ -69,6 +69,7 @@
     <Compile Include="Criterias\GetLeagueCriteria.cs" />
     <Compile Include="Criterias\GetMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\Outright\OutrightCriteria.cs" />
+    <Compile Include="Criterias\RunningBallCriteria.cs" />
     <Compile Include="Criterias\Soccer\SoccerCriteria.cs" />
     <Compile Include="Criterias\Soccer\CorrectScoreCriteria.cs" />
     <Compile Include="Criterias\WagerCriteriaBase.cs" />
@@ -78,14 +79,13 @@
     <Compile Include="Services\WagersService.cs" />
     <Compile Include="ViewModels\Basketball\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
-    <Compile Include="ViewModels\Basketball\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
     <Compile Include="ViewModels\Outright\OutrightViewModel.cs" />
+    <Compile Include="ViewModels\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Soccer\ParlayViewModel.cs" />
     <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Soccer\TotalViewModel.cs" />
-    <Compile Include="ViewModels\Soccer\RunningBallViewModel.cs" />
     <Compile Include="ViewModels\Soccer\FirstHalfViewModel.cs" />
     <Compile Include="ViewModels\Soccer\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\Soccer\StraightViewModel.cs" />
