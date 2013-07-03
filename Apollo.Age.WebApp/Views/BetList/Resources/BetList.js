@@ -151,103 +151,110 @@ RegisterStartUp(InitBetList);
 var BETLIST = {};
 
 if (typeof jQuery != "undefined") {
-	BETLIST = function ($) {
-		return {
-			dialogDetails: null,
-			init: function () {
-				BETLIST.BalanceUpDay = $("#balanceUpDay")
-				BETLIST.FromDate = $("#FromDate");
-				BETLIST.ToDate = $("#ToDate");
-				BETLIST.Today = $("#today");
-				BETLIST.Yesterday = $("#yesterday");
-				BETLIST.Tomorrow = $("#tomorrow");
-				BETLIST.FromThisWeek = $("#thisWeekFrom");
-				BETLIST.ToThisWeek = $("#thisWeekTo");
-				BETLIST.FromLastWeek = $("#lastWeekFrom");
-				BETLIST.ToLastWeek = $("#lastWeekTo");
-				BETLIST.ddlSport = $("#ddlSport");
-				BETLIST.ddlBettype = $("#ddlBettype");
-				BETLIST.dialogDetails = $('#dialog-details');
-				// Event click submit on ticket cancel
-				$(".act-ticket-cancel").click(function () {
-					BETLIST.ticketCancel();
-				});
-				$(".dateRange").bind('click', function () {
-					/* Range type value
-					+ 1 : Today
-					+ 2 : Yesterday
-					+ 3 : Tomorrow
-					+ 4 : This Week
-					+ 5 : Last Week
-					*/
-					var rangeType = $(this).attr('range');
+    BETLIST = function ($) {
+        return {
+            dialogDetails: null,
+            init: function () {
+                BETLIST.BalanceUpDay = $("#balanceUpDay")
+                BETLIST.FromDate = $("#FromDate");
+                BETLIST.ToDate = $("#ToDate");
+                BETLIST.Today = $("#today");
+                BETLIST.Yesterday = $("#yesterday");
+                BETLIST.Tomorrow = $("#tomorrow");
+                BETLIST.FromThisWeek = $("#thisWeekFrom");
+                BETLIST.ToThisWeek = $("#thisWeekTo");
+                BETLIST.FromLastWeek = $("#lastWeekFrom");
+                BETLIST.ToLastWeek = $("#lastWeekTo");
+                BETLIST.ddlSport = $("#ddlSport");
+                BETLIST.ddlBettype = $("#ddlBettype");
+                BETLIST.dialogDetails = $('#dialog-details');
+                // Event click submit on ticket cancel
+                $(".act-ticket-cancel").click(function () {
+                    BETLIST.ticketCancel();
+                });
+                $(".dateRange").bind('click', function () {
+                    /* Range type value
+                    + 1 : Today
+                    + 2 : Yesterday
+                    + 3 : Tomorrow
+                    + 4 : This Week
+                    + 5 : Last Week
+                    */
+                    var rangeType = $(this).attr('range');
 
-					switch (rangeType) {
-						case "1":
-							BETLIST.FromDate.val(BETLIST.Today.val());
-							BETLIST.ToDate.val(BETLIST.Today.val());
-							break;
-						case "2":
-							BETLIST.FromDate.val(BETLIST.Yesterday.val());
-							BETLIST.ToDate.val(BETLIST.Yesterday.val());
-							break;
-						case "3":
-							BETLIST.FromDate.val(BETLIST.Tomorrow.val());
-							BETLIST.ToDate.val(BETLIST.Tomorrow.val());
-							break;
-						case "4":
-							BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
-							BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
-							break;
-						case "5":
-							BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
-							BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
-							break;
-						default:
-							BETLIST.FromDate.val(BETLIST.Today.val());
-							BETLIST.ToDate.val(BETLIST.Today.val());
-							return;
-					}
-				});
-			},
-			ticketCancel: function () {
-				if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
-					alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
-				}
-				else {
-					$.blockUI();
-					$("form:first").submit();
-				}
-			}
-		};
-	} (jQuery);
+                    switch (rangeType) {
+                        case "1":
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            break;
+                        case "2":
+                            BETLIST.FromDate.val(BETLIST.Yesterday.val());
+                            BETLIST.ToDate.val(BETLIST.Yesterday.val());
+                            break;
+                        case "3":
+                            BETLIST.FromDate.val(BETLIST.Tomorrow.val());
+                            BETLIST.ToDate.val(BETLIST.Tomorrow.val());
+                            break;
+                        case "4":
+                            BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
+                            break;
+                        case "5":
+                            BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
+                            break;
+                        default:
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            return;
+                    }
+                });
+            },
+            ticketCancel: function () {
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+            backPage: function () { 
+                
+            }
+        };
+    } (jQuery);
 
-	$(document).ready(function () {
-		BETLIST.init();
+    $(document).ready(function () {
+        BETLIST.init();
 
-		$("#btnCancel").on('click', function () {
-		    $.blockUI();
-		    history.back();
-		    return false;
-		});
+        $('#btnCancel').on('click', function () {
+            $.blockUI();
+            history.back();
+            return false;
+        });
 
-		var viewDetailsLinks = $(".view-detail");
-		var submit = $(".act-submit");
+        $('#divnavigation').click(function () {
 
-		viewDetailsLinks.click(function () {
-			var fromDate = toDate = type = "";
+        });
 
-			if (typeof ($("#fromDate").val()) !== 'undefined') {
-				fromDate = $("#fromDate").val();
-			}
-			if (typeof ($("#toDate").val()) !== 'undefined') {
-				toDate = $("#toDate").val();
-			}
-			if (typeof ($("#type").val()) !== 'undefined') {
-				type = $("#type").val();
-			}
+        var viewDetailsLinks = $(".view-detail");
+        var submit = $(".act-submit");
 
-			var $this = $(this),
+        viewDetailsLinks.click(function () {
+            var fromDate = toDate = type = "";
+
+            if (typeof ($("#fromDate").val()) !== 'undefined') {
+                fromDate = $("#fromDate").val();
+            }
+            if (typeof ($("#toDate").val()) !== 'undefined') {
+                toDate = $("#toDate").val();
+            }
+            if (typeof ($("#type").val()) !== 'undefined') {
+                type = $("#type").val();
+            }
+
+            var $this = $(this),
 				transId = $this.attr("tid"),
 				fromDate = fromDate,
 				toDate = toDate,
@@ -257,83 +264,110 @@ if (typeof jQuery != "undefined") {
 					"&toDate=" + toDate +
 					"&type=" + type;
 
-			var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
-			APOLLO.isResizeDialog = false;
-			APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
+            var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
+            APOLLO.isResizeDialog = false;
+            APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
 							title, { width: 400, height: 500, modal: false });
 
-			return false;
-		});
+            return false;
+        });
 
-		if (submit.length > 0) {
-			submit.click(function () {
-				$("#frmBetList").submit();
-			});
-		}
-		if (typeof ($("#username").val()) !== 'undefined') {
-			$("#username").autocomplete({
-				source: function (request, response) {
-					var url = "";
-					if ($("#userType").val() == "0") {
-						url = "Account/GetMemberByUsername?username=" + request.term;
-					}
-					else {
-						url = "Account/GetAgentByUsername?username=" + request.term;
-					}
+        if (submit.length > 0) {
+            submit.click(function () {
+                $("#frmBetList").submit();
+            });
+        }
+        if (typeof ($("#username").val()) !== 'undefined') {
+            $("#username").autocomplete({
+                source: function (request, response) {
+                    var url = "";
+                    if ($("#userType").val() == "0") {
+                        url = "Account/GetMemberByUsername?username=" + request.term;
+                    }
+                    else {
+                        url = "Account/GetAgentByUsername?username=" + request.term;
+                    }
 
-					$.ajax({
-						url: APOLLO.resolveUrl(url),
-						success: function (data) {
-							var found = $.map(data, function (item) {
-								return {
-									value: item.Username
-								}
-							});
-							return response(found);
-						}
-					});
-				},
-				position: { my: "right top", at: "right bottom" }
-			});
-		}
+                    $.ajax({
+                        url: APOLLO.resolveUrl(url),
+                        success: function (data) {
+                            var found = $.map(data, function (item) {
+                                return {
+                                    value: item.Username
+                                }
+                            });
+                            return response(found);
+                        }
+                    });
+                },
+                position: { my: "right top", at: "right bottom" }
+            });
+        }
 
-		if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
-			$("#ddlMainShareHolder").change(function () {
-				var $this = $(this);
-				var markIndex = document.location.href.indexOf('?');
-				var link = document.location.href;
-				if (markIndex > 0) {
-					var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
-					if (markIndexShareHolderId > 0) {
-						link = document.location.href.substring(0, markIndexShareHolderId);
-					}
-					link = link + "&mainShareHolderId=" + $this.val();
-				}
-				document.location.href = link;
-			});
-		}
+        if (typeof ($("#ddlMainShareHolder").val()) !== 'undefined') {
+            $("#ddlMainShareHolder").change(function () {
+                var $this = $(this);
+                var markIndex = document.location.href.indexOf('?');
+                var link = document.location.href;
+                if (markIndex > 0) {
+                    var markIndexShareHolderId = document.location.href.indexOf("&mainShareHolderId=");
+                    if (markIndexShareHolderId > 0) {
+                        link = document.location.href.substring(0, markIndexShareHolderId);
+                    }
+                    link = link + "&mainShareHolderId=" + $this.val();
+                }
+                document.location.href = link;
+            });
+        }
 
-		$(".navigation").bind('click', function () {
-			var fromDate, toDate, type;
+        // change page with navigation
+        $(".navigation").bind('click', function () {
+            var obType = $("#type"),
+                type = null;
+            if (obType.length) {
+                type = obType.val();
+            }
 
-			if (typeof ($("#fromDate").val()) !== 'undefined') {
-				fromDate = $("#fromDate").val();
-			}
-			if (typeof ($("#toDate").val()) !== 'undefined') {
-				toDate = $("#toDate").val();
-			}
-			if (typeof ($("#type").val()) !== 'undefined') {
-				type = $("#type").val();
-			}
+            if (type != null) {
+                var fromDate = toDate = null,
+                    sportType = betType = 0,
+                    obFromDate = $('#fromDate'),
+                    obToDate = $('#toDate');
+                    obSportType = $('#sportTypes'),
+                    obBetType = $('#betTypes');
 
-			if (type == "report") {
-				var url = APOLLO.resolveUrl('Reports/AgentWinLoss?agentId=' + $(this).attr("agentid") + "&name=" + $(this).html()
-					+ '&fromDate=' + fromDate + "&toDate=" + toDate + "&Sporttypes=0&Bettypes=0");
-				location.href = url;
-			}
-			else {
-				location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid"));
-			}
-		});
-	});
+                if (obFromDate.length) {
+                    fromDate = $("#fromDate").val();
+                }
+
+                if (obToDate.length) {
+                    toDate = obToDate.val();
+                }
+
+                if (obSportType.length) {
+                    sportType = obSportType.val();
+                }
+
+                if (obBetType.length) {
+                    betType = obBetType.val();
+                }
+
+                $.blockUI();
+                if (type == "report") {                    
+                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid")
+                                                    + "&AgentName=" + $(this).html()
+					                                + '&FromDate=' + fromDate
+                                                    + '&ToDate=' + toDate
+                                                    + '&Sporttypes=' + sportType
+                                                    + '&Bettypes=' + betType);
+                    location.href = url;
+                } else if (type == "outstanding") {
+                    var url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("agentid")
+                                                    + '&Sporttypes=' + sportType
+                                                    + '&Bettypes=' + betType);
+                    location.href = url;
+                }
+            }            
+        });
+    });
 }
