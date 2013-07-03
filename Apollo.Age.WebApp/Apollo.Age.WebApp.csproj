@@ -483,6 +483,7 @@
     <Content Include="Views\Message\Images\onlinelist.png" />
     <Content Include="Views\Message\Images\statistic.png" />
     <Content Include="Views\Message\Resources\PortalPage.js" />
+    <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Result.js" />
@@ -750,6 +751,8 @@
     <Content Include="Views\Account\ViewAccountDetails.cshtml" />
     <Content Include="Areas\Wagers\Styles\Wagers.less" />
     <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
+    <Content Include="Areas\Wagers\Views\Basketball\SpecialBet.cshtml" />
+    <Content Include="Areas\Wagers\Views\Basketball\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\FirstHalf.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Parlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Basketball\Straight.cshtml" />
@@ -758,6 +761,8 @@
     <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Specialbet.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
@@ -766,12 +771,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
-    <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
-    <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
-
-    <None Include="BundleTransformer.Configuration.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
@@ -1014,7 +1013,9 @@
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
+    <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
+    <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />
@@ -1094,6 +1095,10 @@
     </Content>
     <Content Include="Views\Results\Shared\_Layout.cshtml" />
     <Content Include="Views\BetList\Transactions.cshtml" />
+    <Content Include="Views\Log\Templates\AgentDiscount.cshtml" />
+    <Content Include="Views\Log\Templates\BetSetting.cshtml" />
+    <Content Include="Views\Log\Templates\CustomerDiscount.cshtml" />
+    <Content Include="Views\Log\Templates\PositionTaking.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

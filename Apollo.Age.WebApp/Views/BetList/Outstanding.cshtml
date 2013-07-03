@@ -6,6 +6,7 @@
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
 }
+<div class="back-link">@Lang.sport: @ViewBag.SportName --@Lang.WagerType: @ViewBag.BetTypeName --<a href="javascript:void();" id="backLink">@Lang.back</a></div>
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath as List<Apollo.Age.Entities.Agent>)
@@ -77,3 +78,7 @@
 
     }
 </table>
+
+@Html.Hidden("type", Request["type"])
+@Html.Hidden("sportTypes", Request["sporttype"])
+@Html.Hidden("betTypes", Request["bettype"])
