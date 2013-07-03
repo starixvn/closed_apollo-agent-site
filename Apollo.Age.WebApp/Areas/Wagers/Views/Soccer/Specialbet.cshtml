@@ -20,7 +20,7 @@
     @*/RenderHeader*@
     <tbody>
         @foreach (var item in groupMatch)
-        {
+        {            
             var listMatch = item.OrderBy(m => m.Bettype).ToList();
             <tr class="c">
                 @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
