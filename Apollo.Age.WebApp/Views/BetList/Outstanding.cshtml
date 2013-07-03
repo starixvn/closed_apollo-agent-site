@@ -34,12 +34,13 @@
             </th>
         </tr>
     </thead>
-    @if (Model.TicketList != null && Model.TicketList.Any())
-    {
-        var i = 0;
-        decimal totalAmount = 0;
+   
         <tbody>
-            @foreach (var item in Model.TicketList)
+         @if (Model.TicketList != null && Model.TicketList.Any())
+         {
+             var i = 0;
+             decimal totalAmount = 0;
+            foreach (var item in Model.TicketList)
             {
                 i++;
                 totalAmount += item.Stake;
@@ -74,9 +75,19 @@
                     0.00
                 </td>
             </tr>
+         }
+         else
+         {
+             <tr>
+                <td class="c" colspan="6">
+                    @Lang.NodataSearch
+                </td>
+                </tr>
+         }
+    
         </tbody>
 
-    }
+    
 </table>
 
 @Html.Hidden("type", Request["type"])
