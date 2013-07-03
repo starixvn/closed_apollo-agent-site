@@ -4,7 +4,7 @@
 @using Apollo.Age.Web.Mvc
 @model List<CorrectScoreViewModel>
 <table class="tblRpt soccer half-full @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.correctscore)
+    @WagerHelper.RederHeaderColumn(Lang.lblWagersGolds)
     <tbody>
         @Model.List(
             @<tr class="c">

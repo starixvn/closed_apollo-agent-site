@@ -4,9 +4,9 @@
 @using Apollo.Age.Web.Mvc
 @model List<FirstHalfViewModel>
 <table class="tblRpt soccer first-half @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
-                    , Lang.lblOverUnderWager
-                    , Lang.lblOddEvenWagers)
+    @WagerHelper.RederHeaderColumn(Lang.lbl1stHpdWager
+                    , Lang.lbl1stOUWager
+                    , Lang.lbl1x2Wager)
     <tbody>
         @Model.List(
             @<tr class="c">
