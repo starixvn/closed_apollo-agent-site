@@ -165,7 +165,7 @@ namespace Apollo.Age.Wagers.Controllers
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes);
             ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>());
-            ViewBag.GroupBetName = groupBetName;
+            ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;

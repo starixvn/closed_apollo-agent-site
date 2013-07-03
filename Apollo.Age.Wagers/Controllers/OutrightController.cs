@@ -22,8 +22,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             var result = WagerService.GetWagerData<OutrightViewModel>(criteria);
 
-            ViewBag.TotalItems = criteria.TotalItems;
-            
+            ViewBag.TotalItems = criteria.TotalItems;           
             return View(result);
         }
     }
