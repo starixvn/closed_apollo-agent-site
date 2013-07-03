@@ -48,10 +48,11 @@
             <div class="item">
                 @(Lang.date):
                 @Html.DropDownList("EmDate", EmCalendar)
-            </div>
-        }
-        <div class="before-filter">
+            </div> 
+             <div class="before-filter">
             --</div>
+        }
+      
         @if (isOR == false)
         {
             @WagerHelper.RenderMenu(sportName, groupBetName, isEM)
