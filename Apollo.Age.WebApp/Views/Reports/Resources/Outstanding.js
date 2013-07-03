@@ -53,6 +53,7 @@
                 location.href = url;
             });
 
+
             $("#gridId").on("click", ".act-view-betlist", OUTSTANDING.viewBetList);
         },
 
@@ -64,7 +65,8 @@
 			+ "&sporttype=" + OUTSTANDING.ddlSport.val()
             + "&bettype=" + OUTSTANDING.ddlBettype.val()
 			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
-            + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername"))
+            + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
+            + "&type=outstanding")
             + "&sportName=" + escape(OUTSTANDING.ddlSport.find(':selected').text())
             + "&betTypeName=" + escape(OUTSTANDING.ddlBettype.find(':selected').text());
         },
@@ -128,8 +130,8 @@
 } (jQuery);
 
 $(document).ready(function () {
-	$.blockUI();
-	OUTSTANDING.init();
-	APOLLO.initPageInfo();
-	$.unblockUI();
+    $.blockUI();
+    OUTSTANDING.init();
+    APOLLO.initPageInfo();
+    $.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

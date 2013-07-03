@@ -4715,7 +4715,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time.
+        ///   Looks up a localized string similar to Show Time (GMT+8).
         /// </summary>
         public static string time {
             get {
