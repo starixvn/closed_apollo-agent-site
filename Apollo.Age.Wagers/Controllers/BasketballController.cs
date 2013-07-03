@@ -58,6 +58,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Sporttypes = SportId(criteria.SportName);
 
             var list = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 

@@ -1809,4 +1809,10 @@
   <data name="lbl1stOUWager" xml:space="preserve">
     <value>1st Half O/U / Wagers</value>
   </data>
+  <data name="lblmoneylineWager" xml:space="preserve">
+    <value>Money Line/Wagers</value>
+  </data>
+  <data name="lbl1st1x2wager" xml:space="preserve">
+    <value>1st 1x2/Wagers</value>
+  </data>
 </root>
