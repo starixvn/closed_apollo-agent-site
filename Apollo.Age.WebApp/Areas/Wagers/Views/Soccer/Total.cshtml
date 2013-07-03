@@ -9,28 +9,28 @@
         @<tr class="c">
             @WagerHelper.RenderBaseColumns(item)
             <td class="border-right r red-num">
-                @item.HomeCountHTOE/@Math.Round(@item.HomeStakeHTOE)
+                @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.AwayCountHTOE/@Math.Round(@item.AwayStakeHTOE)
+                @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.HomeCountOE/@Math.Round(@item.HomeStakeOE)
+                @WagerHelper.RenderColumnData(item.HomeBetteamOE, item.HomeCountOE, item.HomeStakeOE, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.AwayCountOE/@Math.Round(@item.AwayStakeOE)
+                @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.Total01Count/@Math.Round(@item.Total01Stake)
+                @WagerHelper.RenderColumnData(item.Total01Betteam, item.Total01Count, item.Total01Stake, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.Total23Count/@Math.Round(@item.Total23Stake)
+                @WagerHelper.RenderColumnData(item.Total23Betteam, item.Total23Count, item.Total23Stake, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.Total46Count/@Math.Round(@item.Total46Stake)
+                @WagerHelper.RenderColumnData(item.Total46Betteam, item.Total46Count, item.Total46Stake, item.LiveIndicator)
             </td>
             <td class="border-right r red-num">
-                @item.Total7OverCount/@Math.Round(@item.Total7OverStake)
+                @WagerHelper.RenderColumnData(item.Total7OverBetteam, item.Total7OverCount, item.Total7OverStake, item.LiveIndicator)
             </td>
         </tr>
     )
