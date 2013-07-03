@@ -46,13 +46,13 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             if ("1" == ticket.BetTeam)
             {
                 teamName = this.Template.homeTeam;
-                handicap = Formatter.FormatSignNumber((int)(hdp2 - hdp1));
+                handicap = Formatter.FormatSignNumber(hdp2 - hdp1, 2);
             }
             else if ("2" == ticket.BetTeam)
             {
                 string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
                 teamName = awayName;
-                handicap = Formatter.FormatSignNumber((int)(hdp1 - hdp2));
+                handicap = Formatter.FormatSignNumber(hdp1 - hdp2, 2);
             }
             else
             {
@@ -70,7 +70,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                     handicap = string.Empty;
                 }
 
-                handicap += Formatter.FormatSignNumber((int)Math.Abs(hdp2 - hdp1));
+                handicap += Formatter.FormatSignNumber(Math.Abs(hdp2 - hdp1), 2);
             }
 
             this.Template.betTeam = string.Join(

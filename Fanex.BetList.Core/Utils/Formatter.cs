@@ -345,10 +345,10 @@ namespace Fanex.BetList.Core.Utils
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>System.String.</returns>
-        public static string FormatSignNumber(int number)
+        public static string FormatSignNumber(decimal number, byte decDigits = 0)
         {
-            if (number > 0) return "+" + number.ToString();
-            else return number.ToString();
+            if (number > 0) return "+" + DecFormat(number, decDigits);
+            else return DecFormat(number, decDigits);
         }
 
         #endregion Number
