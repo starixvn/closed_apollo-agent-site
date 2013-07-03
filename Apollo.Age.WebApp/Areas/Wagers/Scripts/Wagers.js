@@ -105,6 +105,7 @@ var Wagers = function ($) {
                     $('#container').html(data);
                     Wagers.initPager(Wagers.pageIndex);
                     Wagers.initWagerBetList();
+                    $('.est-zone').html($('#TimeZone').val());
                 }
             });
         },
