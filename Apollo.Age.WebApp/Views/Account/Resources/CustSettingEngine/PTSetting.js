@@ -27,7 +27,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         SPINNER_BOX_WIDTH: 45,
         PT_LAST_LETTER: '',
         COM_LAST_LETTER: '',
-        Min_WIDTH_BET_TYPE_GROUP: 160,
+        Min_WIDTH_BET_TYPE_GROUP: 140,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
             if (typeof (element) != 'object') return false;
             var count = element.childNodes.length;
