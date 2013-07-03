@@ -54,9 +54,9 @@
                                 <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
                                     <td style="width: 269px">@subItem.TeamName
                                     </td>
-                                    <td style="width: 65px">@status
+                                    <td style="width: 65px" class="c">@status
                                     </td>
-                                    <td style="width: 42px">@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                    <td style="width: 42px" class="c">@((int)subItem.BetCount)/@((int)subItem.Stake)
                                     </td>
                                 </tr>
                             }
