@@ -975,10 +975,10 @@
     <value>Generate</value>
   </data>
   <data name="locked" xml:space="preserve">
-    <value>Lock</value>
+    <value>Locked</value>
   </data>
   <data name="stopped" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stopped</value>
   </data>
   <data name="GrossTotal" xml:space="preserve">
     <value>Gross Total</value>
