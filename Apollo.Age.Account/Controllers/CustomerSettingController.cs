@@ -60,11 +60,11 @@ namespace Apollo.Age.Account.Controllers
 
         #region Commission Setting
 
-        /// <summary>
-        /// Views commission from logged-in agent to selected (searched) agent/member
-        /// </summary>
-        /// <param name="id">id of selected agent/member</param>
-        /// <param name="isMember">indicates whether the customer is agent or member</param>
+		/// <summary>
+		/// Views commission from logged-in agent to selected (searched) agent/member
+		/// </summary>
+		/// <param name="model">Username: text which user input to search, IsMember: is agent or member</param>
+		/// <returns>ViewCommission</returns>
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
