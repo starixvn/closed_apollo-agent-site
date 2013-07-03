@@ -146,6 +146,18 @@ a {
 
 		td {
 			vertical-align: text-top;
+
+			&.vertical-middle {
+				vertical-align: middle;
+			}
+
+			&.vertical-top {
+				vertical-align: text-top;
+			}
+
+			&.vertical-bottom {
+				vertical-align: text-bottom;
+			}
 		}
 
 		&.soccer {
@@ -167,11 +179,7 @@ a {
 		}
 
 		&.basketball {
-			width: 860px;
-
-			&.running-ball {
-				width: 720px;
-			}
+			width: 720px;
 
 			&.parlay {
 				width: 450px;
@@ -179,12 +187,10 @@ a {
 		}
 
 		&.tennis, &.volleyball {
+			width: 720px;
+
 			&.straight {
 				width: 988px;
-			}
-
-			&.running-ball {
-				width: 720px;
 			}
 
 			&.parlay {
@@ -193,12 +199,10 @@ a {
 		}
 
 		&.baseball {
+			width: 720px;
+
 			&.straight {
 				width: 850px;
-			}
-
-			&.running-ball {
-				width: 720px;
 			}
 
 			&.parlay {
@@ -207,6 +211,8 @@ a {
 		}
 
 		&.others {
+			width: 720px;
+
 			&.straight, &.first-half {
 				width: 850px;
 			}
