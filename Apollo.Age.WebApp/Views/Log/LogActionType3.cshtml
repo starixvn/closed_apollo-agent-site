@@ -12,13 +12,13 @@
             <td class="colW1">
             </td>
             <td class="colW1">
-                @Lang.lblMinBet
+                @Lang.lblMaxPerMatch
             </td>
             <td class="colW1">
                 @Lang.lblMaxBet
             </td>
             <td class="colW1">
-                @Lang.lblMaxPerMatch
+                @Lang.lblMinBet
             </td>
             <td class="colW1">
             </td>
@@ -37,13 +37,13 @@
                     @Html.Resource(resourcekey)
                 </td>
                 <td class="colW2">
-                    @ToString(item.OldMinBet, item.MinBet)
+                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
                 <td class="colW2">
                     @ToString(item.OldMaxBet, item.MaxBet)
                 </td>
                 <td class="colW2">
-                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
+                    @ToString(item.OldMinBet, item.MinBet)
                 </td>
                 <td class="colW2">
                 </td>

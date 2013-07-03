@@ -29,5 +29,13 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public int HomeCountOU { get; set; }
 
         public int AwayCountOU { get; set; }
+
+        public string HomeBetteamHDP { get; set; }
+
+        public string AwayBetteamHDP { get; set; }
+
+        public string HomeBetteamOU { get; set; }
+
+        public string AwayBetteamOU { get; set; }
     }
 }

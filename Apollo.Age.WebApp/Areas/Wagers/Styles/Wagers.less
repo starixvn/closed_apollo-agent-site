@@ -9,6 +9,17 @@ a {
 	}
 }
 
+#function-bar {
+	input.datepicker {
+		border: 1px solid #000;		
+		line-height: 1.2em;
+		font-size: .9em;
+		width: 75px;
+		height: 11px;
+		padding: 3px;
+	}
+}
+
 #header_main {
 	color: #000099;
 	display: block;
@@ -206,6 +217,7 @@ a {
 
 		&.outright {
 			&.soccer {
+				width: 820px;
 				border-color: #CC9900;
 
 				thead td, thead th, tbody .em-row {
@@ -215,15 +227,27 @@ a {
 
 				tbody tr td {
 					border-color: #CC9900;
+					&.hasTbl {
+						padding: 0;
+						vertical-align: top;
 
-					.tbl {
-						border: 1px solid #CC9900;
-						width: 100%;
+						.tbl {
+							border: 1px solid #CC9900;
+							width: 100%;
+							height: 100%;
 
-						tbody tr td {
-							border-color: #CC9900;
+							tbody tr {
+
+								&.one-row td {
+									height: 30px;
+								}
+
+								td {
+									border-color: #CC9900;
+								}
+							}
 						}
-					}
+					}					
 				}
 			}
 		}

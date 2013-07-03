@@ -15,6 +15,8 @@ var Wagers = function ($) {
         isEM: false,
         isOR: false,
         pageIndex: 0,
+        betTypeIds: null,
+
         init: function () {
             Wagers.sportName = $('#SportName').val();
             Wagers.groupBetName = $('#GroupBetName').val();
@@ -24,6 +26,7 @@ var Wagers = function ($) {
             Wagers.sportTypeIds = $('#SportTypeIds').val();
             Wagers.isEM = $('#IsEM').val();
             Wagers.isOR = $('#IsOR').val();
+            Wagers.betTypeIds = $('#BetTypeIds').val();
 
             Wagers.fromDate = Wagers.isOR == "true" ? $('#OutrightFromDate').val() : $('#FromDate').val();
             Wagers.toDate = $('#OutrightToDate').val();
@@ -101,6 +104,7 @@ var Wagers = function ($) {
                 success: function (data) {
                     $('#container').html(data);
                     Wagers.initPager(Wagers.pageIndex);
+                    Wagers.initWagerBetList();
                 }
             });
         },
@@ -116,7 +120,28 @@ var Wagers = function ($) {
                     Wagers.getWagerData();
                 }
             });
-        }       
+        },
+
+        initWagerBetList: function () {
+            $('.wager-link').on('click', function () {
+
+                var betteam = $(this).attr('data-betTeams');
+                var live = $(this).attr('data-live');
+
+                var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
+                + "&uGroup=" + Wagers.groupComm
+                + "&isDirectMem=" + Wagers.isDirectMember
+                + "&liveIndicator=" + live
+                + "&leagueId=" + Wagers.League
+                + "&betType=" + Wagers.betTypeIds
+                + "&sportType=" + Wagers.sportTypeIds
+                + "&betTeam=" + betteam
+                + "&loggedId=" + Wagers.viewOption;
+
+
+                window.open(APOLLO.resolveUrl(url), '_blank');
+            });
+        }
     }
 } (jQuery);
 

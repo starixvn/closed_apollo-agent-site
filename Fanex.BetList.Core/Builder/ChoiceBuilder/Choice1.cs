@@ -118,9 +118,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 case BetListPage.Report:
                     this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
                     break;
-            }            
-            this.Template.homeid = ticket.HomeId.ToString();
-            this.Template.awayid = ticket.AwayId.ToString();
+            }      
+            
+            this.Template.HomeAwayId.homeid = ticket.HomeId.ToString();
+            this.Template.HomeAwayId.awayid = ticket.AwayId.ToString();
 
             string homeName = ticketHelper.GetTeamNameById(ticket.HomeId);
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);

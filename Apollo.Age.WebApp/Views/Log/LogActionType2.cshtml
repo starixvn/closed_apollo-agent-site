@@ -144,8 +144,8 @@
 }
 @helper ToString(decimal oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue * 100, 2).ToString();
-        string strNew = Math.Round(newValue * 100, 2).ToString();
+        string strOld = Math.Round(oldValue * 100).ToString();
+        string strNew = Math.Round(newValue * 100).ToString();
 
         if (oldValue != newValue)
         { 

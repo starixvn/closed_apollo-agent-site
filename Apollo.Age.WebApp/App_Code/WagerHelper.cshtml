@@ -13,7 +13,6 @@
 @using Apollo.Age.Wagers.ViewModels
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Wagers.ViewModels.Basketball
-
 @helper RenderMenu(string controller, string groupBetName, bool isEM)
     {
         var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
@@ -60,11 +59,11 @@
                 </div>
                 <div class="editor">
                     <select id="ViewOption" class="za_select">
-                        @if(mainShareHolders.Count() > 0)
+                        @if (mainShareHolders.Count() > 0)
                         {
-                            foreach(var mainShareHolder in mainShareHolders)
+                            foreach (var mainShareHolder in mainShareHolders)
                             {
-                                <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
+                            <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
                             }
                         }
                         else
@@ -145,10 +144,9 @@
 }
 @helper RenderBody(WagerViewModel item, Func<dynamic, HelperResult> template)
     {
-     <tbody>    
+    <tbody>
     </tbody>
 }
-
 @helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
     {         
         var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
@@ -157,7 +155,7 @@
         if (typeAll != null)
         {
     <div>
-        @typeAll.Count/@Math.Round(typeAll.Stake)
+        @RenderColumn(typeAll)
         <br />
         0/0
         <br />
@@ -179,14 +177,13 @@
 @helper RenderColumn(SpecialViewModel item)
     {
         if (item != null)
-        {
-    <span>@item.Count/@Math.Round(item.Stake)</span>
+        {    
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator)
         }
         else
         { 
     <span>0/0</span>
         }
-}
 @*
     Type : 
         + 0 : All
@@ -194,3 +191,16 @@
         + 2 : Away
         + 3 : Draw
 *@
+}
+@helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive)
+    {    
+        if (betCount != 0
+            && stake != 0)
+        { 
+    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive">@betCount/@Math.Round(stake)</a>   
+        }
+        else
+        {
+    <span>@betCount/@Math.Round(stake)</span>
+        }        
+}

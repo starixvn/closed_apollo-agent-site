@@ -6,7 +6,7 @@
 <table class="tblRpt outright soccer">
     <thead>
         <tr>
-            <th>
+            <th style="width: 40px">
                 @Lang.time
             </th>
             <th>
@@ -31,12 +31,12 @@
             {
             <tr>
                 <td>
-                    @item.EventDate
+                    @Html.Raw(Formater.FormatDateTime22(item.EventDate))
                 </td>
                 <td>
                     @item.LeagueName
                 </td>
-                <td colspan="3">
+                <td colspan="3" class="hasTbl">
                     <table class="tbl">
                         @{
                             subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
@@ -51,14 +51,14 @@
                                 {
                                     status = "+";
                                 }
-                                        <tr>
-                                            <td style="width: 269px">@subItem.TeamName
-                                            </td>
-                                            <td style="width: 65px">@status
-                                            </td>
-                                            <td style="width: 42px">@((int)subItem.BetCount)/@((int)subItem.Stake)
-                                            </td>
-                                        </tr>
+                                <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
+                                    <td style="width: 269px">@subItem.TeamName
+                                    </td>
+                                    <td style="width: 65px" class="c">@status
+                                    </td>
+                                    <td style="width: 42px" class="c">@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                    </td>
+                                </tr>
                             }
                         }
                     </table>
