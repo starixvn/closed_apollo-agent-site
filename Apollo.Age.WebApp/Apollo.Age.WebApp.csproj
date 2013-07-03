@@ -766,14 +766,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
-<<<<<<< HEAD
     <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
-=======
+
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
->>>>>>> e978d9bca44ce63605fa3391206041d6529cc01d
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
