@@ -67,11 +67,15 @@
                             }
                         }
                         else
-                        {
-                            <option value="0">@Lang.all</option>
+                        {                            
                             if(isShowDirectMember)
                             {
+                                <option value="0">@Lang.all</option>
                                 <option value="-1">@Lang.DirectMembers</option>
+                            }
+                            else
+                            {
+                                <option value="0">@Lang.lblallmember</option>       
                             }
                         }
                     </select>
