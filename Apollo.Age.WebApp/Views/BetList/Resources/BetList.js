@@ -225,6 +225,12 @@ if (typeof jQuery != "undefined") {
 	$(document).ready(function () {
 		BETLIST.init();
 
+		$("#btnCancel").on('click', function () {
+		    $.blockUI();
+		    history.back();
+		    return false;
+		});
+
 		var viewDetailsLinks = $(".view-detail");
 		var submit = $(".act-submit");
 
