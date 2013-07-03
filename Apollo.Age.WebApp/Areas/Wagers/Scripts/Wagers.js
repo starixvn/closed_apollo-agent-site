@@ -128,12 +128,13 @@ var Wagers = function ($) {
 
                 var betteam = $(this).attr('data-betTeams');
                 var live = $(this).attr('data-live');
+                var league = $(this).attr('data-league');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
                 + "&uGroup=" + Wagers.groupComm
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
-                + "&leagueId=" + Wagers.League
+                + "&leagueId=" + league
                 + "&betType=" + Wagers.betTypeIds
                 + "&sportType=" + Wagers.sportTypeIds
                 + "&betTeam=" + betteam
