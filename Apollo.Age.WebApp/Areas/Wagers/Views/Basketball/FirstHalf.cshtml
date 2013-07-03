@@ -12,19 +12,19 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @item.HomeCountHTHDP/@Math.Round(item.HomeStakeHTHDP)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTHDP, item.HomeCountHTHDP, item.HomeStakeHTHDP, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHTHDP/@Math.Round(item.AwayStakeHTHDP)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTHDP, item.AwayCountHTHDP, item.AwayStakeHTHDP, item.LiveIndicator)
                 </td>
                 <td class="border-right r red-num">
-                    @item.HomeCountHTOU/@Math.Round(item.HomeStakeHTOU)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOU, item.HomeCountHTOU, item.HomeStakeHTOU, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHTOU/@Math.Round(item.AwayStakeHTOU)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOU, item.AwayCountHTOU, item.AwayStakeHTOU, item.LiveIndicator)
                 </td>
                 <td class="border-right red-num">
-                    @item.HomeCountHTOE/@Math.Round(item.HomeStakeHTOE)
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHTOE, item.HomeCountHTOE, item.HomeStakeHTOE, item.LiveIndicator)
                     <br />
-                    @item.AwayCountHTOE/@Math.Round(item.AwayStakeHTOE)
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator)
                 </td>
             </tr>
             )

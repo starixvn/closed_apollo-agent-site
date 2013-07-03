@@ -10,7 +10,7 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="border-right r red-num">
-                    @item.BetCount/@Math.Round(item.Stake)
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator)
                 </td>
             </tr>
         )

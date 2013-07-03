@@ -38,5 +38,19 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public int CountHTX { get; set; }
 
         public int CountHT2 { get; set; }
+
+        public string HomeBetteamHTHDP { get; set; }
+
+        public string AwayBetteamHTHDP { get; set; }
+
+        public string HomeBetteamHTOU { get; set; }
+
+        public string AwayBetteamHTOU { get; set; }
+
+        public string BetteamHT1 { get; set; }
+
+        public string BetteamHTX { get; set; }
+
+        public string BetteamHT2 { get; set; }
     }
 }
