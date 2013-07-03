@@ -27,14 +27,19 @@ namespace Fanex.BetList.Core.Entities
         Report = 2,
 
         /// <summary>
-        /// Link from cancel ticket page
+        /// Link from cancel ticket
         /// </summary>
         Cancel = 3,
 
         /// <summary>
-        /// Link from transactions ticket page
+        /// Link from transactions ticket
         /// </summary>
         Transaction = 6,
+
+        /// <summary>
+        /// Link from account info
+        /// </summary>
+        AccountInfo = 7,
 
         /// <summary>
         /// Other Pages

@@ -47,7 +47,7 @@
         }
     </ul>
 }
-@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders)
+@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders,bool isShowDirectMember)
     {
     <div id="header_main">@title</div>
     <div class="box-header" id="main-shareholder-box">
@@ -67,9 +67,16 @@
                             }
                         }
                         else
-                        {
-                            <option value="0">@Lang.all</option>
-                            <option value="-1">@Lang.DirectMembers</option>
+                        {                            
+                            if(isShowDirectMember)
+                            {
+                                <option value="0">@Lang.all</option>
+                                <option value="-1">@Lang.DirectMembers</option>
+                            }
+                            else
+                            {
+                                <option value="0">@Lang.lblallmember</option>       
+                            }
                         }
                     </select>
                 </div>
