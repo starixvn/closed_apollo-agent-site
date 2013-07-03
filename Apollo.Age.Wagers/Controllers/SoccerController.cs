@@ -16,6 +16,8 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Criterias.CorrectScore;
     using Apollo.Age.Wagers.Criterias.Soccer;
     using Apollo.Age.Wagers.ViewModels.Soccer;
+    using Apollo.Age.Wagers.Criterias;
+    using Apollo.Age.Wagers.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -39,7 +41,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
-
+            
             var result = WagerService.GetWagerData<FirstHalfViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
@@ -48,10 +50,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View(result);
         }
 
-        public ActionResult RunningBall(SoccerCriteria criteria)
+        public ActionResult RunningBall(RunningBallCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Sporttypes = SportId(criteria.SportName);
 
             var result = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 

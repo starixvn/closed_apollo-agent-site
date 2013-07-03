@@ -11,6 +11,8 @@
     var isMaster = (bool)ViewBag.IsMaster;
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+
+    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
 }
 @using (Html.BeginForm())
 {       
@@ -19,8 +21,8 @@
             <label>@Lang.agent</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
 					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.Close },
-                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+					                new SelectListItem { Value = "2", Text = Lang.stopped },
+                                    new SelectListItem { Value = "3", Text = Lang.locked }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -46,6 +48,12 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
         </div>
+        @if (hasMemberDownline)
+        {
+            <div class="item">
+                -- <a href="~/Account/MemberList">@Lang.memberList</a>
+            </div>
+        }
         <img src="/_GlobalResources/Images/top_04.gif" alt="">
     </div>   
     @Html.HiddenFor(m => m.AgentId)    

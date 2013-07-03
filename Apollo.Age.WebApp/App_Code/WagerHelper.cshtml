@@ -87,7 +87,7 @@
                         {
                             foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
+                            <option value="@item.Id">@item.Name</option>
                             }
                         }
                     </select>
@@ -174,7 +174,7 @@
     {
         if (item != null)
         {    
-    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator)
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator,item.LeagueId)
         }
         else
         { 
@@ -188,12 +188,12 @@
         + 3 : Draw
 *@
 }
-@helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive)
+@helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive, int leagueId)
     {    
         if (betCount != 0
             && stake != 0)
         { 
-    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive">@betCount/@Math.Round(stake)</a>   
+    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId">@betCount/@Math.Round(stake)</a>   
         }
         else
         {

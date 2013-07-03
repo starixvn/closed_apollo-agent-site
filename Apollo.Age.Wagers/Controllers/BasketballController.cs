@@ -13,6 +13,8 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels.Basketball;
+    using Apollo.Age.Wagers.Criterias;
+    using Apollo.Age.Wagers.ViewModels;
 
     /// <summary>
     /// TODO: Update summary.
@@ -52,10 +54,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
-        public ActionResult RunningBall(BasketballCriteria criteria)
+        public ActionResult RunningBall(RunningBallCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.Sporttypes = SportId(criteria.SportName);
 
             var list = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 

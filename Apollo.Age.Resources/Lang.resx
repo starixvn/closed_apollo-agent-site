@@ -975,10 +975,10 @@
     <value>Generate</value>
   </data>
   <data name="locked" xml:space="preserve">
-    <value>Lock</value>
+    <value>Locked</value>
   </data>
   <data name="stopped" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stopped</value>
   </data>
   <data name="GrossTotal" xml:space="preserve">
     <value>Gross Total</value>
@@ -1792,7 +1792,7 @@
     <value>1st Half Odd</value>
   </data>
   <data name="lblfirsthalfOven" xml:space="preserve">
-    <value>1st Half Even</value>
+    <value>1st Half Event</value>
   </data>
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
@@ -1808,5 +1808,11 @@
   </data>
   <data name="lbl1stOUWager" xml:space="preserve">
     <value>1st Half O/U / Wagers</value>
+  </data>
+  <data name="lblmoneylineWager" xml:space="preserve">
+    <value>Money Line/Wagers</value>
+  </data>
+  <data name="lbl1st1x2wager" xml:space="preserve">
+    <value>1st 1x2/Wagers</value>
   </data>
 </root>

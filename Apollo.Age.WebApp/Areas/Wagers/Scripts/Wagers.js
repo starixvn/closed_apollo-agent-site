@@ -93,7 +93,7 @@ var Wagers = function ($) {
                     fromDate: Wagers.fromDate,
                     toDate: Wagers.toDate,
                     uGroup: Wagers.groupComm,
-                    isDirectMember: Wagers.isDirectMember,
+                    IsDirectMem: Wagers.isDirectMember,
                     loggedId: Wagers.viewOption,
                     leagueId: Wagers.League,
                     sportTypes: Wagers.sportTypeIds,
@@ -105,6 +105,7 @@ var Wagers = function ($) {
                     $('#container').html(data);
                     Wagers.initPager(Wagers.pageIndex);
                     Wagers.initWagerBetList();
+                    $('.est-zone').html($('#TimeZone').val());
                 }
             });
         },
@@ -127,12 +128,13 @@ var Wagers = function ($) {
 
                 var betteam = $(this).attr('data-betTeams');
                 var live = $(this).attr('data-live');
+                var league = $(this).attr('data-league');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
                 + "&uGroup=" + Wagers.groupComm
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
-                + "&leagueId=" + Wagers.League
+                + "&leagueId=" + league
                 + "&betType=" + Wagers.betTypeIds
                 + "&sportType=" + Wagers.sportTypeIds
                 + "&betTeam=" + betteam
