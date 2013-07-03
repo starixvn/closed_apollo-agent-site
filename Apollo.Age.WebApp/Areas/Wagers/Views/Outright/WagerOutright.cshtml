@@ -2,6 +2,7 @@
 @using Apollo.Age.Entities
 @using Apollo.Age.Wagers.ViewModels.Outright
 @using Apollo.Age.Web.Mvc
+@using Apollo.Age.Enumerations
 @model List<OutrightViewModel>
 <table class="tblRpt outright soccer">
     <thead>
@@ -56,7 +57,7 @@
                                     </td>
                                     <td style="width: 65px" class="c">@status
                                     </td>
-                                    <td style="width: 42px" class="c">
+                                    <td style="width: 42px" class="c" data-bettype="@((int)BetTypes.Outright)">
                                      @WagerHelper.RenderColumnData(item.BetTeam, item.BetCount, item.Stake, item.LiveIndicator, item.LeagueId)                                    
                                     </td>
                                 </tr>
