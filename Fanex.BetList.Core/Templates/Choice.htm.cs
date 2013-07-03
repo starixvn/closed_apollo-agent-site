@@ -15,24 +15,21 @@ namespace Fanex.BetList.Core
 		{
 			public Choice_ScoreMapIcon_Block ScoreMapIcon = new Choice_ScoreMapIcon_Block();
 			public Choice_LeagueName_Block LeagueName = new Choice_LeagueName_Block();
-			protected static string s0 = "<div>[";
-			public string homeid = "{homeid}";
-			protected static string s1 = "] vs [";
-			public string awayid = "{awayid}";
-			protected static string s2 = "]</div><div>";
+			public Choice_HomeAwayId_Block HomeAwayId = new Choice_HomeAwayId_Block();
+			protected static string s0 = "<div>";
 			public string homeTeam = "{homeTeam}";
-			protected static string s3 = " <span class=\"handicap\">";
+			protected static string s1 = " <span class=\"handicap\">";
 			public string handicap = "{handicap}";
-			protected static string s4 = "</span> ";
+			protected static string s2 = "</span> ";
 			public string awayTeam = "{awayTeam}";
 			public Choice_LiveScore_Block LiveScore = new Choice_LiveScore_Block();
-			protected static string s5 = "</div><div>";
+			protected static string s3 = "</div><div>";
 			public Choice_Score_Block Score = new Choice_Score_Block();
-			protected static string s6 = "<span class=\"red-color\">";
+			protected static string s4 = "<span class=\"red-color\">";
 			public string betTeam = "{betTeam}";
-			protected static string s7 = "</span> @ <span class=\"red-color\"><b>";
+			protected static string s5 = "</span> @ <span class=\"red-color\"><b>";
 			public string odds = "{odds}";
-			protected static string s8 = "</b></span></div>";
+			protected static string s6 = "</b></span></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -40,24 +37,21 @@ namespace Fanex.BetList.Core
 				{
 					if(null != ScoreMapIcon) ScoreMapIcon.ToString(ref bd);
 					if(null != LeagueName) LeagueName.ToString(ref bd);
+					if(null != HomeAwayId) HomeAwayId.ToString(ref bd);
 					bd.Append(s0);
-					bd.Append(homeid);
-					bd.Append(s1);
-					bd.Append(awayid);
-					bd.Append(s2);
 					bd.Append(homeTeam);
-					bd.Append(s3);
+					bd.Append(s1);
 					bd.Append(handicap);
-					bd.Append(s4);
+					bd.Append(s2);
 					bd.Append(awayTeam);
 					if(null != LiveScore) LiveScore.ToString(ref bd);
-					bd.Append(s5);
+					bd.Append(s3);
 					if(null != Score) Score.ToString(ref bd);
-					bd.Append(s6);
+					bd.Append(s4);
 					bd.Append(betTeam);
-					bd.Append(s7);
+					bd.Append(s5);
 					bd.Append(odds);
-					bd.Append(s8);
+					bd.Append(s6);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -72,33 +66,33 @@ namespace Fanex.BetList.Core
 
 		public class Choice_ScoreMapIcon_Block: Block
 		{
-			protected static string s9 = "<a class=\"scoremap\" href=\"javascript:OpenScoreMap(";
+			protected static string s7 = "<a class=\"scoremap\" href=\"javascript:OpenScoreMap(";
 			public string matchId = "{matchId}";
-			protected static string s10 = ",";
+			protected static string s8 = ",";
 			public string betTypeId = "{betTypeId}";
-			protected static string s11 = ",";
+			protected static string s9 = ",";
 			public string liveindicator = "{liveindicator}";
-			protected static string s12 = ",";
+			protected static string s10 = ",";
 			public string custId = "{custId}";
-			protected static string s13 = ")\"title=\"";
-			protected static string s14{get{return Apollo.Age.Resources.BetList.scoreMap;}}
-			protected static string s15 = "\"></a>";
+			protected static string s11 = ")\"title=\"";
+			protected static string s12{get{return Apollo.Age.Resources.BetList.scoreMap;}}
+			protected static string s13 = "\"></a>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s9);
+					bd.Append(s7);
 					bd.Append(matchId);
-					bd.Append(s10);
+					bd.Append(s8);
 					bd.Append(betTypeId);
-					bd.Append(s11);
+					bd.Append(s9);
 					bd.Append(liveindicator);
-					bd.Append(s12);
+					bd.Append(s10);
 					bd.Append(custId);
+					bd.Append(s11);
+					bd.Append(s12);
 					bd.Append(s13);
-					bd.Append(s14);
-					bd.Append(s15);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -106,17 +100,39 @@ namespace Fanex.BetList.Core
 
 		public class Choice_LeagueName_Block: Block
 		{
-			protected static string s16 = "<div class=\"league\">";
+			protected static string s14 = "<div class=\"league\">";
 			public string leagueName = "{leagueName}";
-			protected static string s17 = "</div>";
+			protected static string s15 = "</div>";
+			public override void ToString(ref StringBuilder bd)
+			{
+				if(!Visible) return;
+				if(RenderChild)
+				{
+					bd.Append(s14);
+					bd.Append(leagueName);
+					bd.Append(s15);
+				}
+				if(IsAssigned){bd.Append(Value);}
+			}
+		}
+
+		public class Choice_HomeAwayId_Block: Block
+		{
+			protected static string s16 = "<div>[";
+			public string homeid = "{homeid}";
+			protected static string s17 = "] vs [";
+			public string awayid = "{awayid}";
+			protected static string s18 = "]</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s16);
-					bd.Append(leagueName);
+					bd.Append(homeid);
 					bd.Append(s17);
+					bd.Append(awayid);
+					bd.Append(s18);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -124,21 +140,21 @@ namespace Fanex.BetList.Core
 
 		public class Choice_LiveScore_Block: Block
 		{
-			protected static string s18 = "<span class=\"red-color\"> ";
+			protected static string s19 = "<span class=\"red-color\"> ";
 			public string liveHomeScore = "{liveHomeScore}";
-			protected static string s19 = "-";
+			protected static string s20 = ":";
 			public string liveAwayScore = "{liveAwayScore}";
-			protected static string s20 = "</span>";
+			protected static string s21 = "</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s18);
-					bd.Append(liveHomeScore);
 					bd.Append(s19);
-					bd.Append(liveAwayScore);
+					bd.Append(liveHomeScore);
 					bd.Append(s20);
+					bd.Append(liveAwayScore);
+					bd.Append(s21);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -146,21 +162,21 @@ namespace Fanex.BetList.Core
 
 		public class Choice_Score_Block: Block
 		{
-			protected static string s21 = "<span class=\"game-type-odd\"><b>";
+			protected static string s22 = "<span class=\"game-type-odd\"><b>";
 			public string finalHomeScore = "{finalHomeScore}";
-			protected static string s22 = ":";
+			protected static string s23 = ":";
 			public string finalAwayScore = "{finalAwayScore}";
-			protected static string s23 = "</b>&nbsp;</span>";
+			protected static string s24 = "</b>&nbsp;</span>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s21);
-					bd.Append(finalHomeScore);
 					bd.Append(s22);
-					bd.Append(finalAwayScore);
+					bd.Append(finalHomeScore);
 					bd.Append(s23);
+					bd.Append(finalAwayScore);
+					bd.Append(s24);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
