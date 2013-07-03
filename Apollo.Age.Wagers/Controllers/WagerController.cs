@@ -23,6 +23,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
+    using Core.BettypeGroup;
 
     public class WagerController : BaseController
     {
@@ -107,6 +108,20 @@ namespace Apollo.Age.Wagers.Controllers
             var title = string.Empty;
             var titleAll = string.Empty;
             var sportTypeIds = string.Empty;
+            groupBetName = groupBetName.ToLower();
+
+            if (Equals(sportName, WagersSportName.Soccer))
+            {
+                var dic = Soccer.ListOfBettype();
+
+                ViewBag.BetTypeIds = dic.ContainsKey(groupBetName) ? dic[groupBetName] : string.Empty;
+            }
+            else
+            {
+                var dic = Basketball.ListOfBettype();
+
+                ViewBag.BetTypeIds = dic.ContainsKey(groupBetName) ? dic[groupBetName] : string.Empty;
+            }
 
             switch (sportName)
             {
@@ -157,7 +172,6 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
             ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
-
             ViewBag.isEM = isEM;
             ViewBag.isOR = isOR;
 

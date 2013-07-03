@@ -76,6 +76,7 @@
     @Html.Hidden("SportName", sportName)
     @Html.Hidden("FromDate", new DateTime(2013, 8, 1))@*Sample data - 10 days*@
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
+    @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
     <div class="mainpage">
