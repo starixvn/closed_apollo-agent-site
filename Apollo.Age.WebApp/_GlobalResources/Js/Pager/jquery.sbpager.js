@@ -77,7 +77,7 @@
             var options = this.options;
 
             var html = [],
-            numItem = Math.round((parseInt(options.totalItem) + options.numPageDisplay / 2) / options.itemPerPage),
+            numItem = Math.round((parseInt(options.totalItem) + options.itemPerPage / 2) / options.itemPerPage),
             itemHtml = ''
             currentItem = '';
 
