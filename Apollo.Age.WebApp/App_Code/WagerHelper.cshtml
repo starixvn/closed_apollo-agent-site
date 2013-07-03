@@ -156,10 +156,10 @@
         {
     <div>
         @RenderColumn(typeAll)
-        <br />
+        @*<br />
         0/0
         <br />
-        0/0
+        0/0*@
     </div>
         }
         else
@@ -168,9 +168,7 @@
             var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
             var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
     @RenderColumn(typeHome)
-    <br />
-    @RenderColumn(typeAway)
-    <br />
+    @RenderColumn(typeAway)    
     @RenderColumn(typeDraw)
         }        
 }
@@ -182,7 +180,8 @@
         }
         else
         { 
-    <span>0/0</span>
+@*<span>0/0</span>*@ 
+    <br />
         }
 @*
     Type : 
