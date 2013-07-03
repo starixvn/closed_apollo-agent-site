@@ -549,6 +549,8 @@
     </Setting>
     <Setting Key="Age_Wagers_SelDateBySports" SpName="Age_Wagers_SelDateBySports" DbName="SVRAGE.RepDB">
     </Setting>
+    <Setting Key="Age_Wagers_RunningBall" SpName="Age_Wagers_RunningBall" DbName="SVRAGE.RepDB">
+    </Setting>
   </Function>
   <Function Name="Wagers-Soccer">
     <Setting Key="Age_Wagers_SC_1_3_5" SpName="Age_Wagers_SC_1_3_5" DbName="SVRAGE.RepDB"/>
