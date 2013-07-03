@@ -24,6 +24,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Core.BettypeGroup;
+    using Apollo.Age.Services;
 
     public class WagerController : BaseController
     {
@@ -44,8 +45,17 @@ namespace Apollo.Age.Wagers.Controllers
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
             var leagues = WagerService.GetLeague(fromDate, sportTypes);
+            var result = new List<League>();
+            foreach (var league in leagues)
+            {
+                result.Add(new League
+                {
+                    Id = league.Id,
+                    Name = CacheRef.GetLeagueName(league.Id)
+                });
+            }
 
-            return leagues != null ? leagues.ToList() : new List<League>();
+            return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
         }
 
         public string SportId(string sportName)
