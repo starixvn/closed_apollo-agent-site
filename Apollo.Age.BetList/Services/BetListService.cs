@@ -84,17 +84,6 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Get all bets by date and member
-        /// For only agent (Member Outstanding bet list)
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
-        {
-            return this._betListRepository.GetAllBetsByDateAndMem(criteria);
-        }
-
-        /// <summary>
         /// Get all bets by date and member from Win loss report
         /// </summary>
         /// <param name="criteria">Criteria name</param>
@@ -102,16 +91,6 @@ namespace Apollo.Age.BetList.Services
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             return this._betListRepository.GetWinLossByDateAndMem(criteria);
-        }
-
-        /// <summary>
-        /// BetList transaction
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
-        {
-            return this._betListRepository.GetAllBetsTransactionByDateAndMem(criteria);
         }
 
         /// <summary>
@@ -167,6 +146,11 @@ namespace Apollo.Age.BetList.Services
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
             return this._betListRepository.WagersTicket(criteria);
+        }
+
+        public TicketResult GetTicketResult(BetListCriteria criteria)
+        {
+            return this._betListRepository.GetTicketResult(criteria);
         }
     }
 }
