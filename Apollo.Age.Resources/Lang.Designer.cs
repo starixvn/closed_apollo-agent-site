@@ -2132,7 +2132,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Half Event.
+        ///   Looks up a localized string similar to 1st Half Even.
         /// </summary>
         public static string lblfirsthalfOven {
             get {
