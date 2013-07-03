@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.6.25">Created</change>
 //   <change who="Edward.Nguyen" date="2013.6.27">Implement prototype</change>
+//   <change who="Terry.Nguyen" date="2013.7.3">Return exactly url for Runningball and Special bet</change>
 // </history>
 
 namespace Apollo.Age.Wagers.Controllers
@@ -61,7 +62,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TotalItems = criteria.TotalItems;
             ViewBag.IsEM = criteria.IsEM;
 
-            return View(result);
+            return View("~/Areas/Wagers/Views/Wager/RunningBall.cshtml", result);
         }
 
         public ActionResult Correctscore(CorrectScoreCriteria criteria)
@@ -139,7 +140,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TotalItems = criteria.TotalItems;
             ViewBag.IsEM = criteria.IsEM;
 
-            return View(result);
+            return View("~/Areas/Wagers/Views/Wager/SpecialBet.cshtml", result);
         }
     }
 }

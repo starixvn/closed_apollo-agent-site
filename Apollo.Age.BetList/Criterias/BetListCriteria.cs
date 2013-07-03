@@ -10,6 +10,7 @@
 namespace Apollo.Age.BetList.Criterias
 {
     using System;
+    using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -41,8 +42,6 @@ namespace Apollo.Age.BetList.Criterias
 
         public int MatchId { get; set; }
 
-        public bool IsExportExcel { get; set; }
-
         public string StatusIds { get; set; }
 
         public string BetTypes { get; set; }
@@ -52,6 +51,27 @@ namespace Apollo.Age.BetList.Criterias
         public string BetTeam { get; set; }
 
         public int? LiveIndicator { get; set; }
+
+        [SpParam(Ignored = true)]
+        public BetListPage BetListPage { get; set; }
+
+        public override string GetSettingKey()
+        {
+            string settingKey = string.Empty;
+
+            switch (this.BetListPage)
+            {
+                case BetListPage.Outstanding:
+                case BetListPage.Cancel:
+                    settingKey = "Age_BetList_SelByDateMemStatus";
+                    break;
+                case BetListPage.Transaction:
+                    settingKey = "Age_BetList_SelTransaction";
+                    break;
+            }
+
+            return settingKey;
+        }
 
         public override bool IsValid()
         {
