@@ -1,13 +1,14 @@
-﻿@{
+﻿@using Apollo.Age.Resources
+@{
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.announcement;
+    ViewBag.Title = Lang.announcement;
 }
 
 @section head {
     <link href="~/views/message/resources/portalpage.less" rel="Stylesheet" type="text/css" />
 }
 
-@Html.ActionLink(Apollo.Age.Resources.Lang.MessageHistory, "NewMessage", "Message", new { @class = "gotoMsg" })
+@Html.ActionLink(Lang.MessageHistory, "NewMessage", "Message", new { @class = "gotoMsg" })
 <div id="divAnnouncement">
     @Html.Action("Announcement")
 </div>
