@@ -226,11 +226,11 @@ namespace Sunplus.Agent.UI._BetList
 
                 if (pageType.Equals("transaction"))
                 {
-                    mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
+                    mainTickets = betListService.GetTicketResult(criteria);
                 }
                 else
                 {
-                    mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                    mainTickets = betListService.GetTicketResult(criteria);
                 }
 
                 // Paging
