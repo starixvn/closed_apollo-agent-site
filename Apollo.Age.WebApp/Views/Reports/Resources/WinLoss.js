@@ -2,25 +2,25 @@
     return {
         FromDate: null,
         ToDate: null,
+        BalanceUpDay: null,
+        ddlSport: null,
+        ddlBettype: null,
 
         init: function () {
             WINLOSS.BalanceUpDay = $("#balanceUpDay")
             WINLOSS.FromDate = $("#FromDate");
             WINLOSS.ToDate = $("#ToDate");
             WINLOSS.Today = $("#today");
+            WINLOSS.ddlSport = $("#ddlSport");
+            WINLOSS.ddlBettype = $("#ddlBettype");
             WINLOSS.Yesterday = $("#yesterday");
             WINLOSS.Tomorrow = $("#tomorrow");
             WINLOSS.FromThisWeek = $("#thisWeekFrom");
             WINLOSS.ToThisWeek = $("#thisWeekTo");
             WINLOSS.FromLastWeek = $("#lastWeekFrom");
             WINLOSS.ToLastWeek = $("#lastWeekTo");
-            WINLOSS.ddlSport = $("#ddlSport");
-            WINLOSS.ddlBettype = $("#ddlBettype");
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                //                var fromDate = new Date(WINLOSS.FromDate.val());
-                //                var toDate = new Date(WINLOSS.ToDate.val());
-                //                var balanceUpDate = new Date(WINLOSS.BalanceUpDay.val());
 
                 if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + WINLOSS.BalanceUpDay.val());
@@ -58,25 +58,7 @@
                 location.href = url;
             });
 
-            $("#btnCancel").bind('click', function () {
-                $.blockUI();
-                history.back();
-                return false;
-            });
-
-            $("#lnkExit").bind('click', function () {
-                $.blockUI();
-                history.back();
-                return false;
-            });
-
-            $("#btnBack").bind('click', function () {
-                $.blockUI();
-                history.back();
-                return false;
-            });
-
-            $(".navigation").bind('click', function () {
+            $(".navigation").on('click', function () {
                 $.blockUI();
                 var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid") + "&AgentName=" + $(this).html()
                     + '&FromDate=' + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
@@ -85,7 +67,7 @@
                 location.href = url;
             });
 
-            $(".dateRange").bind('click', function () {
+            $(".dateRange").on('click', function () {
                 /* Range type value
                 + 1 : Today
                 + 2 : Yesterday
