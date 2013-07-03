@@ -4,7 +4,7 @@ var TOTALBETS = function ($) {
 	return {
 		initViewForeCastHandicap: function () {
 			$(".tblRpt").on("click", "input.view-forecast", function () {
-				parent.RefreshCountDown.clearTimeout();
+				//parent.RefreshCountDown.clearTimeout();
 
 				var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
                     + 'matchId=' + $(this).attr("match-id")
@@ -14,14 +14,15 @@ var TOTALBETS = function ($) {
 					url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
 				}
 
-				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
-					width: 665,
-					height: 250,
-					position: { my: "top+40", at: "center top", of: window },
-					close: function (event, ui) {
-						parent.RefreshCountDown.setCurrentTimeout();
-					}
-				});
+	            window.open(url, '_blank');
+//				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
+//					width: 665,
+//					height: 250,
+//					position: { my: "top+40", at: "center top", of: window },
+//					close: function (event, ui) {
+//						parent.RefreshCountDown.setCurrentTimeout();
+//					}
+//				});
 			});
 		},
 
@@ -97,7 +98,7 @@ var TOTALBETS = function ($) {
 
 		initViewForecast1x2: function () {
 			$(".tblRpt").on("click", "input.view-forecast", function () {
-				parent.RefreshCountDown.clearTimeout();
+				//parent.RefreshCountDown.clearTimeout();
 				var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
@@ -105,15 +106,15 @@ var TOTALBETS = function ($) {
 				if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 					url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
 				}
-
-				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
-					width: 600,
-					height: 600,
-					position: { my: "top+40", at: "center top", of: window },
-					close: function (event, ui) {
-						parent.RefreshCountDown.setCurrentTimeout();
-					}
-				});
+	            window.open(url, '_blank');
+//				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.forecastString, {
+//					width: 600,
+//					height: 600,
+//					position: { my: "top+40", at: "center top", of: window },
+//					close: function (event, ui) {
+//						parent.RefreshCountDown.setCurrentTimeout();
+//					}
+//				});
 			});
 		},
 		reloadPage: function () {

@@ -176,7 +176,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : ticket.Handicap1;
 
-            this.Template.handicap = ConvertByBetType.Hdp(handicap);
+            this.Template.handicap = Formatter.FormatHandicap(handicap);
         }
 
         /// <summary>
