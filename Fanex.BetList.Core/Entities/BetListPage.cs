@@ -32,6 +32,11 @@ namespace Fanex.BetList.Core.Entities
         Cancel = 3,
 
         /// <summary>
+        /// Link from transactions ticket page
+        /// </summary>
+        Transaction = 6,
+
+        /// <summary>
         /// Other Pages
         /// </summary>
         Default = 5

@@ -26,7 +26,7 @@
                 @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
                 @for (int i = 0; i < countBet; i++)
                 {
-                    <td class="border-right r red-num">
+                    <td class="r red-num" data-bettype="@listBet[i].Bettype">
                         @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype)
                     </td>
                 }

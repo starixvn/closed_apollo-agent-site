@@ -150,31 +150,28 @@
 @helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
     {         
         var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
-        var typeAll = groupBet.Where(m => m.Type == 0).FirstOrDefault();
 
-        if (typeAll != null)
+        if (!ReferenceEquals(groupBet, null) && groupBet.Any())
         {
-    <div class="vertical-middle">
-        <br />
-        @RenderColumn(typeAll)
-        <br />
-    </div>
+            var firstModel = groupBet.FirstOrDefault();
+    <br />
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), firstModel.LiveIndicator, firstModel.LeagueId)
+    <br />
         }
         else
         {
-            var typeHome = groupBet.Where(m => m.Type == 1).FirstOrDefault();
-            var typeAway = groupBet.Where(m => m.Type == 2).FirstOrDefault();
-            var typeDraw = groupBet.Where(m => m.Type == 3).FirstOrDefault();
-    @RenderColumn(typeHome)
-    @RenderColumn(typeAway)    
-    @RenderColumn(typeDraw)
-        }        
+    <div class="vertical-middle">
+        <br />
+        0/0
+        <br />
+    </div>
+        } 
 }
 @helper RenderColumn(SpecialViewModel item)
     {
         if (item != null)
         {    
-    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator,item.LeagueId)
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator, item.LeagueId)
         }
         else
         { 

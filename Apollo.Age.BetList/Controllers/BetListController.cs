@@ -30,6 +30,7 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.Common;
 
     /// <summary>
     /// BetList Controller
@@ -55,6 +56,64 @@ namespace Apollo.Age.BetList.Controllers
         public ViewResult Index()
         {
             return this.View();
+        }
+
+        [HttpGet]
+        public ViewResult Transactions()
+        {
+            var viewModel = new BetListReportViewModel();
+
+            return this.Transactions(viewModel);
+        }
+
+        [HttpPost]
+        public ViewResult Transactions(BetListReportViewModel model)
+        {
+            var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                     (int)Apollo.Age.Enumerations.BetStatus.Void,
+                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                     (int)Apollo.Age.Enumerations.BetStatus.Running,
+                     (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                     (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                     (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                     (int)Apollo.Age.Enumerations.BetStatus.Won,
+                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            int agentId, custId;
+            int errorCode;
+
+            model.Username = CurrentSession.AgentName;
+            _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList = _reportService.GetBettype();
+            model.BalanceUpDay = balanceUpDay;
+
+            if (errorCode == 0)
+            {
+                var betListService = new BetListService();
+                var criteria = new BetListCriteria
+                {
+                    AgentId = agentId,
+                    LoggedId = CurrentSession.AgentId,
+                    CustId = custId,
+                    FromDate = this.ResetStartDate(model.FromDate),
+                    ToDate = this.ResetEndDate(model.ToDate),
+                    StatusIds = statusIds,
+                    SportTypes = model.SportTypes,
+                    BetTypes = model.BetTypes,
+                    BetListPage = BetListPage.Transaction,
+                    MoveBetsDay = balanceUpDay
+                };
+
+                TicketResult mainTickets;
+                mainTickets = betListService.GetTicketResult(criteria);
+
+                // Set data to view model
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
+            }
+
+            return this.View(model);
         }
 
         /// <summary>
@@ -100,11 +159,12 @@ namespace Apollo.Age.BetList.Controllers
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
                     SportTypes = model.SportTypes,
-                    BetTypes = model.BetTypes
+                    BetTypes = model.BetTypes,
+                    BetListPage = BetListPage.Cancel
                 };
 
                 TicketResult mainTickets;
-                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                mainTickets = betListService.GetTicketResult(criteria);
 
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
@@ -121,7 +181,14 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
-        public ViewResult Outstanding(int custId, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, string betType = _StringEmpty, string sportType = _StringEmpty)
+        public ViewResult Outstanding(int custId, 
+            string username = _StringEmpty, 
+            int mainShareHolderId = 0, 
+            string mainShareHolderUsername = _StringEmpty, 
+            string betType = _StringEmpty, 
+            string sportType = _StringEmpty,
+            string sportName = _StringEmpty,
+            string betTypeName = _StringEmpty)
         {
             var statusIds = string.Format("{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -140,10 +207,11 @@ namespace Apollo.Age.BetList.Controllers
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
                 ToDate = ResetEndDate(DateTime.Now),
-                StatusIds = statusIds
+                StatusIds = statusIds,
+                BetListPage = BetListPage.Outstanding
             };
 
-            var mainTickets = _betListService.GetAllBetsByDateAndMem(criteria);
+            var mainTickets = _betListService.GetTicketResult(criteria);
             var modelAgentDownLine = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, custId);
 
             var viewModel = new BetListViewModel
@@ -151,7 +219,8 @@ namespace Apollo.Age.BetList.Controllers
                 DownlinePath = modelAgentDownLine,
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
             };
-
+            ViewBag.SportName = sportName;
+            ViewBag.BetTypeName = betTypeName; 
             return this.View(viewModel);
         }
 
@@ -211,7 +280,7 @@ namespace Apollo.Age.BetList.Controllers
             }
             else
             {
-                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                mainTickets = betListService.GetTicketResult(criteria);
             }
 
             var modelAgentDownLine = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, custId);

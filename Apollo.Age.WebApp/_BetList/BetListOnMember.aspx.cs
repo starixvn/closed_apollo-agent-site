@@ -229,7 +229,7 @@ namespace Sunplus.Agent.UI._BetList
             }
             else
             {
-                mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                mainTickets = betListService.GetTicketResult(criteria);
             }
 
             return mainTickets;
