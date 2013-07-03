@@ -85,9 +85,16 @@
                         @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
                         {
+                            for (int i = 0; i < leagues.Count; i++)
+                            {
+                                leagues[i].Name = CacheRef.GetLeagueName(leagues[i].Id);
+                            }
+
+                            leagues = leagues.OrderBy(m => m.Name).ToList();
+
                             foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@CacheRef.GetLeagueName(item.Id)</option>
+                            <option value="@item.Id">@item.Name</option>
                             }
                         }
                     </select>
