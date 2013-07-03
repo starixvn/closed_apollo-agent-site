@@ -13,7 +13,7 @@
 <div id="function-bar">
     <div class="item">
         <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
+        @RazorHelper.RenderSportDropDownList(Model.SportList, Model.Sporttypes)
     </div>
 	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding)
 
@@ -32,7 +32,7 @@
                 @Apollo.Age.Resources.Lang.WagerType:
             </td>
             <td>
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: "0")
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
             </td>
         </tr>
     </table>
