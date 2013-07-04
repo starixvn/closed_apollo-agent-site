@@ -55,6 +55,7 @@
 
 #box_header, .box-header {
 	width: 795px;
+	margin-top: 0px;
 
 	&.report {
 		background-color: #DCDCDC;
@@ -98,7 +99,7 @@
 			}
 		}
 
-		.winloss {
+		.winloss, .outstanding {
 			width: 100%;
 
 			.winloss_date{
@@ -116,14 +117,14 @@
 				}
 			}
 
-			.winloss_firstcolumn{
+			.firstcolumn {
 				background-color:#577176;
 				text-align: right;
 				width: 100px;
 				color: white;
 			}
 
-			.winloss_secondcolumn{
+			.secondcolumn{
 				width: 695px;
 			}
 
@@ -131,7 +132,7 @@
 				td{
 					border: 1px solid #DCDCDC;
 					background-color: #C9DBDF;
-					padding: 1 3px;
+					padding: 2px 3px;
 					width: 22%;
 
 					.bettype {
@@ -143,26 +144,6 @@
 
 			.winloss_yesterday{
 				color: red;
-			}
-		}
-
-		.outstanding {
-			width: 100%;
-
-			.outstanding_firstcolumn{
-				background-color:#577176;
-				text-align: right;
-				width: 100px;
-				color: white;
-			}
-
-			tr{
-				td{
-					border: 1px solid #DCDCDC;
-					background-color: #C9DBDF;
-					padding: 0 3px;
-					width: 695px;
-				}
 			}
 		}
 	}
