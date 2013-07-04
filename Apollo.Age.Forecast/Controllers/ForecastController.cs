@@ -151,7 +151,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetForecastMatcheValue(currentAgentId,this.CurrentSession.AgentId, matchId, betType, currentScore));
+            return View(_forecastService.GetForecastMatcheValue(currentAgentId, this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
         /// <summary>

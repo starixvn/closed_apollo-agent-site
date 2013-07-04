@@ -60,11 +60,11 @@ namespace Apollo.Age.Account.Controllers
 
         #region Commission Setting
 
-		/// <summary>
-		/// Views commission from logged-in agent to selected (searched) agent/member
-		/// </summary>
-		/// <param name="model">Username: text which user input to search, IsMember: is agent or member</param>
-		/// <returns>ViewCommission</returns>
+        /// <summary>
+        /// Views commission from logged-in agent to selected (searched) agent/member.
+        /// </summary>
+        /// <param name="model">Username: text which user input to search, IsMember: is agent or member.</param>
+        /// <returns>ViewCommission</returns>
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
@@ -124,10 +124,16 @@ namespace Apollo.Age.Account.Controllers
         #region Share [Position Taking]
 
         /// <summary>
-        /// Views "share info" from logged-in agent to selected (searched) agent
+        /// Views "share info" from logged-in agent to selected (searched) agent.
         /// </summary>
-        /// <param name="username">selected agent username</param>
-        public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
+        /// <param name="username">selected agent username.</param>
+        public ActionResult AgentShare(
+            int? agentId, 
+            string userName, 
+            short? sportType, 
+            short? betType, 
+            bool? isLive, 
+            bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
@@ -193,7 +199,13 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
-        public ActionResult MemberShare(int? memberId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
+        public ActionResult MemberShare(
+            int? memberId, 
+            string userName, 
+            short? sportType, 
+            short? betType, 
+            bool? isLive, 
+            bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
@@ -425,6 +437,21 @@ namespace Apollo.Age.Account.Controllers
         #endregion Setting
 
         #region Helpers
+        [NonAction]
+        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
+        {
+            if (commissionSetting == null && betLimits == null)
+            {
+                return ReturnResult(new Result
+                {
+                    ErrCode = 0,
+                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
+                });
+            }
+
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
+            return ReturnResult(result);
+        }
 
         private int GetRoleFromAgentLevel(int agentLevel)
         {
@@ -607,23 +634,7 @@ namespace Apollo.Age.Account.Controllers
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetPositionTakingLanguage(positionTakingSetting);
             return positionTakingSetting;
-        }
-
-        [NonAction]
-        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
-        {
-            if (commissionSetting == null && betLimits == null)
-            {
-                return ReturnResult(new Result
-                {
-                    ErrCode = 0,
-                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
-                });
-            }
-
-            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
-            return ReturnResult(result);
-        }
+        }     
 
         #endregion Helpers
     }

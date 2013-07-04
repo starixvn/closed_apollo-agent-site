@@ -16,19 +16,20 @@ namespace Apollo.Age.Entities
     using System.Text;
 
     /// <summary>
-    /// Shadow account
+    /// Shadow account.
     /// </summary>
     [Serializable]
     public class User : EntityBase
     {
         public bool IsMaster { get; set; }
+
         public Agent Agent { get; set; }
 
         public bool IsSuper
         {
             get
             {
-                return this.Agent.Level == 0; //&& something else
+                return this.Agent.Level == 0; 
             }
         }
     }

@@ -27,10 +27,12 @@ namespace Apollo.Age.Integration.Controllers
     [AllowAnonymous]
     public class OAuthController : Controller
     {
+        private const int ServerId = 1;
+
         private readonly AuthenticationService _authService;
-        private readonly UserService _userService;
-        private const int SERVERID = 1;
+        private readonly UserService _userService;        
         private DeviceDetection _deviceService;
+
         public OAuthController()
             : this(null)
         {
@@ -88,8 +90,9 @@ namespace Apollo.Age.Integration.Controllers
                             }
                             else
                             {
-                                LogService.Error(string.Format("User {0} is not found or is not the requested user [{1}]",
-                                    authModel.Username, user.Username));
+                                #if DEBUG
+                                LogService.Error(string.Format("User {0} is not found or is not the requested user [{1}]", authModel.Username, user.Username));                                    
+                                #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
                                 // ActionID: 7002 -> SSO login fail.
@@ -136,27 +139,26 @@ namespace Apollo.Age.Integration.Controllers
 
             Session.Abandon();
             Response.Cookies.Clear();
-           // FormsAuthentication.SignOut();
+            // FormsAuthentication.SignOut();
         }
 
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
             {
-               
                 _userService.WriteLogInternalLogin(
                     agentId,
                     agentUserId,
-                    SERVERID,
+                    ServerId,
                     actionId,
                     doing,
                     _deviceService.ClientIp,
                     _deviceService.DomainName,
                     _deviceService.BrowserName,
                     _deviceService.Platform,
-                    _deviceService.CountryCode
-                    );
+                    _deviceService.CountryCode);
             });
+
             try
             {
                 task.Wait();
@@ -164,7 +166,7 @@ namespace Apollo.Age.Integration.Controllers
             catch (AggregateException ex)
             {
                 LogService.Error(ex.Message);
-                throw ex.Flatten();            
+                throw ex.Flatten();
             }
         }
     }

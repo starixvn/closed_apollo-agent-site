@@ -265,7 +265,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map BetType, Will Render 2 Part Live and Deadball
+        /// Score Map Bet Type, Will Render 2 Part Live and Dead ball
         /// </summary>
         /// <returns></returns>
         public ScoreMapBetTypesModel GetScoreMapBetType()
@@ -290,7 +290,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// From a bettype 1st or full time will return a couple of 1st and full time
+        /// From a bet type 1st or full time will return a couple of 1st and full time
         /// </summary>
         /// <param name="betTypeId"></param>
         /// <param name="isLive"></param>
@@ -444,19 +444,19 @@ namespace Apollo.Age.Forecast.Services
         private decimal GetForecastHandicapValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
-            if (forecastScore > 0 && forecastScore < (decimal)(0.5))
+            if (forecastScore > 0 && forecastScore < (decimal)0.5)
             {
                 forecast += forecastMatch.AwayWinLost / 2; // win 1/2
             }
-            else if (forecastScore >= (decimal)(0.5))
+            else if (forecastScore >= (decimal)0.5)
             {
                 forecast += forecastMatch.AwayWinLost;
             }
-            else if (forecastScore < 0 && forecastScore > -(decimal)(0.5))
+            else if (forecastScore < 0 && forecastScore > -(decimal)0.5)
             {
                 forecast += forecastMatch.HomeWinLost / 2;
             }
-            else if (forecastScore <= (decimal)(-0.5))
+            else if (forecastScore <= (decimal)-0.5)
             {
                 forecast += forecastMatch.HomeWinLost;
             }
@@ -475,11 +475,11 @@ namespace Apollo.Age.Forecast.Services
         private decimal GetForecastOverUnderValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
-            if (forecastScore == (decimal)(0.25))
+            if (forecastScore == (decimal)0.25)
             {
                 forecast += forecastMatch.AwayWinLost / 2;
             }
-            else if (forecastScore > (decimal)(0.25))
+            else if (forecastScore > (decimal)0.25)
             {
                 forecast += forecastMatch.AwayWinLost;
             }

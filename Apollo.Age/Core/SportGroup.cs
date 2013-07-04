@@ -1,11 +1,12 @@
-﻿﻿// --------------------------------------------------------------------------
-// <copyright file="Constant.cs" company="Nexcel Solutions Vietnam">
+﻿//-----------------------------------------------------------------------
+// <copyright file="SportGroup.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+// <summary>This is the SportGroup</summary>
 // <history>
 //   <change who="Lewis.Le" date="2013.5.8">Created</change>
 // </history>
+//-----------------------------------------------------------------------
 
 namespace Apollo.Age.Core
 {

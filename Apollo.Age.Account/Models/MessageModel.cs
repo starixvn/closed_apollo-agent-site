@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MessageViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MessageModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------

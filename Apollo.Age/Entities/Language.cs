@@ -6,8 +6,6 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.29">Created</change>
 // </history>
-
-
 namespace Apollo.Age.Services
 {
     using System;

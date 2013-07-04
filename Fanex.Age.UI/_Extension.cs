@@ -1,5 +1,11 @@
-﻿using System.Collections;
-using System.Web;
+﻿// --------------------------------------------------------------------------
+// <copyright file="_Extension.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Lee" date="2013.7.4">Created</change>
+// </history>
 
 /*
  * Created 20091211@Lee - Extension for UI
@@ -12,6 +18,9 @@ using System.Web;
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+    using System.Web;
+
     public static class _Extension
     {
         /// <summary>

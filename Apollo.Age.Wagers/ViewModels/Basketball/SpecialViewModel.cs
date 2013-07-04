@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
+//   <change who="Anders.Le" date="2013.7.4">Remove MatchId property</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Basketball
@@ -15,9 +16,7 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// TODO: Update summary.
     /// </summary>
     public class SpecialViewModel : WagerViewModel
-    {
-        public int MatchId { get; set; }
-
+    {       
         public int Bettype { get; set; }
 
         public decimal Stake { get; set; }
