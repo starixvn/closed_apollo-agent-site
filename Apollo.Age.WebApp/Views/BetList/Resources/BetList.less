@@ -51,7 +51,7 @@ form {
 #box_header, .box-header {
 	width: 795px;
 	clear: none;
-	margin: 4px 0 0 5px;
+	margin: 0 0 0 5px;
 
 	&.report {
 		background-color: #DCDCDC;
@@ -110,13 +110,13 @@ form {
 				td{
 					border: 1px solid #DCDCDC;
 					background-color: #C9DBDF;
-					padding: 0 3px;
+					padding: 2px 3px;
 					height: 23px;
 
 					.user-type {
 						margin: 0 0 1px 0;
 						font-size: 12px;
-						height: 17px;
+						height: 18px;
 					}	
 					
 					.txt-username {
@@ -333,12 +333,12 @@ form {
 				}
 
 			}
-			.total{
-				background:#DCDCDC;
+			.total {
+				background: #DCDCDC;
 			}
 			.result {
-				background:#990000;
-				color:#fff;
+				background: #990000;
+				color: #fff;
 			}
 		}		
 	}
@@ -346,17 +346,22 @@ form {
 	&.betlist {
 		margin: 0 5px;
 
-		.total{
+		.total {
 				background:#DAE9F2;
 		}
-		.result{
+
+		.result {
 			background:#000033;
 			color:#fff;
 		}
-		.out-standing-result
-		{
+
+		.out-standing-result {
 			background:#990000;
-				color:#fff;
+			color:#fff;
+		}
+
+		tfoot .total.no-result td {
+			border-color: #000;
 		}
 	}
 }

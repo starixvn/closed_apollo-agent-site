@@ -144,9 +144,12 @@ a {
 
 	.tblRpt {
 
-		td {
-			vertical-align: text-top;
+		th, td {
 			padding: 1px 3px;
+		}
+
+		td {
+			vertical-align: text-top;			
 
 			&.vertical-middle {
 				vertical-align: middle;
@@ -162,7 +165,20 @@ a {
 		}
 
 		&.special-bet {
-			//width: 570px;
+			max-width: 100%;
+			width: 700px;
+		}
+
+		&.soccer, &.basketball, &.tennis, &.volleyball, &.baseball, &.others {
+			width: 770px;
+
+			&.parlay {
+				width: 800px;
+			}
+
+			&.running-ball {
+				width: 100%;
+			}
 		}
 
 		&.soccer {			
@@ -178,23 +194,7 @@ a {
 			&.correct-score, &.first-half-correct, &.half-full {
 				width: 460px;
 			}
-
-			&.parlay {
-				width: 800px;
-			}
-		}
-
-		&.basketball, &.tennis, &.volleyball, &.baseball, &.others {
-			width: 770px;
-
-			&.parlay {
-				width: 800px;
-			}
-
-			&.running-ball {
-				width: 100%;
-			}
-		}
+		}		
 		
 		&.tennis, &.volleyball {
 
