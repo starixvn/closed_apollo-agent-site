@@ -1,0 +1,61 @@
+﻿@import "../../../_globalResources/css/Agent.less";
+
+.box-header {
+	padding: 0;
+	margin-bottom: 10px;
+
+	select {
+		margin: 0 0 0 2px;
+	}
+}
+.tblRpt
+{
+	border-width: 1px;	
+
+	&.fc1x2 {
+		margin-top: 40px;
+	}
+}
+a {
+	&:hover {
+		color: @hoverLinkOrangeColor;
+		text-decoration: none;
+	}
+
+	&.forecast_betlist_link {
+		display: block;
+		float: left;
+		padding-left: 10px;
+	}
+
+	&.forecast_toggle_link {
+		display: block;
+		float: right;
+		padding-left: 10px;
+	}
+}
+
+.btnCountDown {
+	position: absolute;
+	top: 5px;
+	right: -4px;
+}
+
+#forecast-body .btnCountDown {
+	position: relative;
+	top: 0;
+	right: 0;
+}
+
+#forecast-body {
+	margin-top: 35px;
+}
+
+.eq-ie7 {
+	#forecast-body {
+		.tblRpt tbody td {
+			border-bottom: none;
+			border-left: none;
+		}
+	}
+}

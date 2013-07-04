@@ -1,0 +1,180 @@
+﻿@using Apollo.Age.TotalBets.Models
+
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.moneyline;
+}
+@model IEnumerable<MoneyLineModel>
+@helper ShowLeague(int currentLeagueId, MoneyLineModel item)
+    {
+        if (currentLeagueId != item.LeagueId)
+        { 
+    <!--LeagueContents-->
+    <tr class="league">
+        <td colspan="12">
+            @item.LeagueName
+        </td>
+    </tr>
+        }            
+}
+@helper ShowTotal(int betCount, decimal odds)
+    {
+        if (betCount != 0)
+        {
+    @Formater.FormatNumber2(odds, "en-US")                
+        }   
+}
+@helper ShowForecas(int betCount, decimal winlost)
+    {
+        if (betCount != 0)
+        {
+    @RazorHelper.FormatPositiveNumber(winlost, 2)
+        }
+}
+<table class="tblRpt persist-area" style="width: 100%">
+    <thead class="persist-header">
+        <tr class="RptHeader">
+            <td rowspan="2" style="width: 5%;">
+                @Apollo.Age.Resources.Lang.time
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT)
+            </td>
+          @*  <td rowspan="2" style="width: 7%;">
+                @Apollo.Age.Resources.Lang.lblScore
+            </td>*@
+            <td rowspan="2" style="width: 25%;">
+                @Apollo.Age.Resources.Lang.league
+            </td>
+            <td rowspan="2"  style="width: 15%;">
+                @Apollo.Age.Resources.Lang.homeaway
+            </td>
+            <td colspan="4">
+                @Apollo.Age.Resources.Lang.fulltime
+            </td>
+            <td colspan="4">
+                @Apollo.Age.Resources.Lang.lbl1sthalf
+            </td>
+        </tr>
+        <tr class="RptHeader02">
+            <td>
+                @Apollo.Age.Resources.Lang.totalhome
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.totalaway
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.forecasthome
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.forecastaway
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.totalhome
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.totalaway
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.forecasthome
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.forecastaway
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <!--LeagueContents-->
+        @{
+        
+            if (Model != null && Model.Any())
+            {
+                int rowIndex = 0;
+                int currentLeagueId = 0;
+                var classRow = string.Empty;
+
+                foreach (var item in Model)
+                {
+                    rowIndex++;
+                   
+            //@ShowLeague(currentLeagueId, item)  
+            
+            <!--MatchContents-->
+            <tr class='r'>
+                @Html.FormatShowTime(item.ShowTime)
+                <td class="c">
+                    @item.LeagueName
+                </td>
+                <td class="l no-border-bottom  valign-top home-away-team">
+                    @item.HomeTeam
+                    <br />
+                    @item.AwayTeam
+                </td>
+                <td>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowTotal(item.BetCountHome, item.HomeOdds)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowTotal(item.BetCountAway, item.AwayOdds)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowForecas(item.BetCountHome, item.HomeWinLost)
+                    </a>
+                </td>
+                <td >
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="20" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowForecas(item.BetCountAway, item.AwayWinLost)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="1st Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowTotal(item.BetCountHomeHalfTime, item.HomeOddsHalfTime)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId bet-type="21" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="1st Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowTotal(item.BetCountAwayHalfTime, item.AwayOddsHalfTime)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="1st Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowForecas(item.BetCountHomeHalfTime, item.HomeHalfTimeWinLost)
+                    </a>
+                </td>
+                <td>
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="21" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="1st Money Line" title="@Apollo.Age.Resources.Lang.ViewBetList">@ShowForecas(item.BetCountAwayHalfTime, item.AwayHalfTimeWinLost)
+                    </a>
+                </td>
+            </tr>
+  
+                    currentLeagueId = item.LeagueId;
+                }
+            }
+            else
+            { 
+             //@RazorHelper.ShowNoInfo(colspan: 11)
+            }            
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        var DEFAULT_OBJECT = function () {
+            return {
+                initData: function () {
+                    TOTALBETS.initViewBetList();
+                    
+                }
+            };
+        } ();
+        $(function () {
+            DEFAULT_OBJECT.initData();
+        });
+    </script>    
+}

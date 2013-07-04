@@ -1,0 +1,90 @@
+﻿@using Apollo.Age.Enumerations
+@using Apollo.Age.Account.Models
+@using Apollo.Age.Resources
+@model List<DiscountModel>
+@if (!ReferenceEquals(Model, null) && Model.Any())
+{
+    var oldGroup = (string)ViewBag.OldGroup;
+    var group = (string)ViewBag.Group;
+    
+    <table class="tblRpt">
+        <tr class="colW bg-gray">
+            <td>
+                @Lang.group
+            </td>
+            <td colspan="2">
+                @Lang.membercomm
+            </td>
+        </tr>
+        <tr>
+            <td class="colW2" rowspan="3">
+                @if (oldGroup != group)
+                { 
+                    <span class="valuechanged">@group</span>
+                    <div class="line">
+                    </div>
+                    <span class="valueold">@oldGroup</span>
+                  
+                }
+                else
+                { 
+                    <span class="valueold">@oldGroup</span>
+                }
+            </td>
+            <td class="colW">
+                @Lang.lblAsianHDC_OU_OE (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in Model)
+                {
+                    if (item.BetType == (int)BetTypes.Handicap)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW">
+                @Lang.lbl1x2Comm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in Model)
+                {
+                    if (item.BetType == (int)BetTypes.FT_1X2)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="colW">
+                @Lang.lblOtherComm (%)
+            </td>
+            <td class="colW2 no-border-right">
+                @foreach (var item in Model)
+                {
+                    if (item.BetType == (int)BetTypes.Correct_Score)
+                    {
+                    @ToString(item.OldGroupA, item.GroupA);
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+}
+@helper ToString(decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue * 100, 2).ToString();
+        string strNew = Math.Round(newValue * 100, 2).ToString();
+
+        if (oldValue != newValue)
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>            
+    <span>| </span><span class="valueold">@strOld</span>           
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
+}
