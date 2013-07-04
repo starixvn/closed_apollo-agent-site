@@ -553,6 +553,20 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
+        /// Combination MixParlay
+        /// </summary>
+        /// <param name="refNo"></param>
+        /// <param name="winlossDate"></param>
+        /// <param name="transId"></param>
+        /// <param name="betId"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public ViewResult CombinationMixParlay(string refNo, DateTime winlossDate, int transId, int betId, int custId)
+        {
+            return this.View();
+        }
+
+        /// <summary>
         /// View detail popup Agent Share and Agent commission
         /// </summary>
         /// <param name="transId">Trans Id</param>
