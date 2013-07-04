@@ -11,10 +11,13 @@ namespace Apollo.Age.BetList.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Text;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
+    using Fanex.Common;
+    using Fanex.NAP.Framework.Data;
 
     public class BetListReportViewModel
     {
@@ -25,6 +28,20 @@ namespace Apollo.Age.BetList.ViewModels
             ToDate = DateTime.Now;
             UserType = 1;
             SportTypes = BetTypes = "0";
+        }
+
+        [SpParam(Ignored = true)]
+        public int PageIndex { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int PageSize
+        {
+            get
+            {
+                int pageSize = Converter.ToInt(ConfigurationManager.AppSettings["PageSize"], 40);
+
+                return pageSize;
+            }
         }
 
         public DateTime FromDate { get; set; }
