@@ -12,10 +12,10 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
-    using Apollo.Age.Wagers.Criterias.Basketball;
-    using Apollo.Age.Wagers.ViewModels.Basketball;
     using Apollo.Age.Wagers.Criterias;
+    using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels;
+    using Apollo.Age.Wagers.ViewModels.Basketball;
 
     /// <summary>
     /// TODO: Update summary.

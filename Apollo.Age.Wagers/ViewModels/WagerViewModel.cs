@@ -7,14 +7,8 @@
 //   <change who="Terry.Nguyen" date="2013.6.30">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
     using Apollo.Age.Services;
 
     public class WagerViewModel
@@ -31,7 +25,6 @@ namespace Apollo.Age.Wagers.ViewModels
             {
                 return CacheRef.GetLeagueName(this.LeagueId);
             }
-
         }
 
         public int HomeId { get; set; }
