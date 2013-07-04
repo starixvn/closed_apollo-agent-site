@@ -26,6 +26,8 @@ namespace Apollo.Age.Reports.Criterias
 
 		public DateTime BalanceUpDay { get; set; }
 
+		public DateTime MoveBetDay { get; set; }
+
 		public override string GetSettingKey()
 		{
 			return "Age_Rpt_WinLoss_Member";
