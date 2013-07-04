@@ -1,0 +1,132 @@
+﻿@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+@model IEnumerable<MatchResultModel>
+
+<table class="tblRpt tennis">
+    <thead>
+       
+        <tr>
+            <td style="width: 250px;color:White">
+                @Apollo.Age.Resources.Lang.league
+            </td>
+            <td style="width: 250px;color:White">
+                @Apollo.Age.Resources.Lang.HomeGuest
+            </td>
+            <td style="width: 50px;color:White">
+                @Apollo.Age.Resources.Lang.S1
+            </td>
+            <td style="width: 50px;color:White">
+                @Apollo.Age.Resources.Lang.S2
+            </td>
+            <td style="width: 50px;color:White">
+                @Apollo.Age.Resources.Lang.S3
+            </td>
+            <td style="width: 50px;color:White">
+                @Apollo.Age.Resources.Lang.S4
+            </td>
+            <td style="width: 50px;color:White">
+                @Apollo.Age.Resources.Lang.S5
+            </td>
+            <th style="width: 100px;color:White">
+                @Apollo.Age.Resources.Lang.Game 
+            </th>
+            <th style="width: 100px;color:White">
+                @Apollo.Age.Resources.Lang.Set
+            </th>
+            <th style="width: 100px;color:White">
+                @Apollo.Age.Resources.Lang.status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var currentLeagueId = 0;
+            foreach (var item in Model)
+            {
+                
+
+            <tr class="c">
+                <td class="l">
+                   @item.LeagueName
+                </td>
+                <td class="l">
+                    @if (item.FinalHomeScore > item.FinalAwayScore)
+                    { 
+                        <b>@item.HomeTeam</b>
+                    }
+                    else
+                    { 
+                        @item.HomeTeam 
+                    }
+                    <br />
+                     @if (item.FinalAwayScore < item.FinalHomeScore)
+                    { 
+                         <b>@item.AwayTeam</b> 
+                    }
+                    else
+                    {
+                          @item.AwayTeam 
+                     }
+                </td>
+                @{
+                    int totalGameHome = 0;
+                    int totalAwayHome = 0;
+                    var betStatusList = new List<string>();
+                    bool betStatusIsAvailable = item.BetStatus != null && item.BetStatus.IndexOf(',') >= 0;
+
+                    if (betStatusIsAvailable)
+                    {
+                        betStatusList = item.BetStatus.Split(',').ToList();
+                    }
+
+                    foreach (var status in betStatusList)
+                    {
+                        int homeScore = Convert.ToInt32(status.Split('-')[0]);
+                        int awayScore = Convert.ToInt32(status.Split('-')[1]);
+                        totalGameHome += homeScore;
+                        totalAwayHome += awayScore;
+                        <td>
+                            @homeScore
+                            <br />
+                            @awayScore
+                        </td>
+                    }
+                    for (int i = betStatusList.Count; i < 5; i++)
+                    {
+                    <td>
+                        -
+                        <br />
+                        -
+                    </td>
+                    }
+                }
+                <td>
+                    @if (betStatusIsAvailable)
+                    {
+                        @totalGameHome
+                    }
+                    <br />
+                     @if (betStatusIsAvailable)
+                    {
+                        @totalAwayHome
+                    }
+                </td>
+                <td>
+                    @item.FinalHomeScore
+                    <br />
+                     @item.FinalAwayScore
+                </td>
+                <td class="border-right">
+                    @item.EventStatusTranslation
+                </td>
+            </tr>            
+
+            }
+        }
+        else
+        {
+            @RazorHelper.ShowNoInfo(colspan: 10);
+        }
+    </tbody>
+</table>

@@ -1,0 +1,76 @@
+﻿@using System.Resources
+@using Apollo.Age.Enumerations
+@model ICurrentSession
+@{
+	Layout = "~/Views/Account/Shared/_Layout.cshtml";
+	var menu = ViewBag.RootNode;
+}
+<table id="tab-menu">
+	<tr>
+		<td class="active">
+			<a><i class="icon-align-justify"></i>@Apollo.Age.Resources.Lang.mainmenu</a>
+		</td>
+		<td>
+			<a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user"></i>
+				@Apollo.Age.Resources.Lang.userinfo</a>
+		</td>
+		<td>
+			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>
+				@Apollo.Age.Resources.Lang.search</a>
+		</td>
+	</tr>
+</table>
+<ul id="menu">
+	@foreach (SiteMapNode item in menu.ChildNodes)
+	{
+		string activeClass = Convert.ToBoolean(item["active"]) ? "active" : string.Empty;
+
+		<li class="menu-item @activeClass"><a class="menu-item-title">@Html.Resource(item.Title)</a>
+			@if (item.HasChildNodes)
+			{
+				<div class="submenu">
+					@foreach (SiteMapNode subItem in item.ChildNodes)
+					{
+						var isAgentOnly = Convert.ToBoolean(subItem["isAgentOnly"]);
+						var isInternalOnly = Convert.ToBoolean(subItem["isInternalOnly"]);
+						var isNotForSuper = Convert.ToBoolean(subItem["isNotForSuper"]);
+
+						if (Model.IsSuper && isNotForSuper)
+						{
+							continue;
+						}
+		 
+						if (Model.AgentLevel < AgentLevel.MainAgent && isAgentOnly)
+						{
+							continue;
+						}
+		 
+						if (!SessionManager.CurrentSession.IsInternalSignIn && isInternalOnly)
+						{
+							continue;
+						}
+		 
+						int bettypeId = 0;
+						string title = string.Empty;
+
+						if (subItem.Title.Contains("bettype")
+							&& Int32.TryParse(subItem.Title.Substring(7), out bettypeId)) // get from RemotingRef
+						{
+							title = Apollo.Age.Services.CacheRef.GetBettype(bettypeId);
+						}
+						else
+						{
+							title = Html.Resource(subItem.Title);
+						}
+
+						<a href="@subItem.Url" target="main">@title</a>
+					}
+				</div>
+
+			}
+		</li>
+	}
+</ul>
+@section foot {
+	<script src="~/views/account/resources/menu.js" type="text/javascript"></script>
+}

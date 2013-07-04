@@ -12,8 +12,8 @@ namespace Apollo.Age.Wagers.Criterias
 {
     using System;
     using System.Configuration;
-    using Fanex.NAP.Framework.Data;
     using Fanex.Common;
+    using Fanex.NAP.Framework.Data;
 
     public class WagerCriteriaBase : CriteriaBase
     {

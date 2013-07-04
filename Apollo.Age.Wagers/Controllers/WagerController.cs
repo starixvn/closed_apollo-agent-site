@@ -19,12 +19,11 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
+    using Apollo.Age.Services;
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
-    using Core.BettypeGroup;
-    using Apollo.Age.Services;
 
     public class WagerController : BaseController
     {
@@ -65,6 +64,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 sportId = WagersSportName.WagerSportGroup()[sportName];
             }
+
             return sportId;
         }
 
@@ -80,6 +80,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
             }
+
             return list;
         }
 
@@ -96,22 +97,29 @@ namespace Apollo.Age.Wagers.Controllers
 
                         break;
                     }
+
                 default:
                     {
                         if (Basketball.ListOfBettype().ContainsKey(groupBetName.ToLower()))
                         {
                             groupBetName = Basketball.ListOfBettype()[groupBetName.ToLower()];
                         }
+
                         break;
                     }
             }
+
             var mainShareHolders = WagerService.GetMainShareHolder(groupBetName);
 
             return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
-        public ActionResult Index(string sportName, string groupBetName = "Straight", string resourceKey = "lblStraight",
-            bool isEM = false, bool isOR = false)
+        public ActionResult Index(
+            string sportName,
+            string groupBetName = "Straight",
+            string resourceKey = "lblStraight",
+            bool isEM = false,
+            bool isOR = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -174,7 +182,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             // AddDays(-9) : sample code for get data
             ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes);
-            ViewBag.MainShareHolder = (CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>());
+            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;

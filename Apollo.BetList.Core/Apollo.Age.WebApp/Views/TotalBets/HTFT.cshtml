@@ -1,0 +1,128 @@
+﻿@using Apollo.Age.TotalBets.Models
+@{
+    Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.htft;
+}
+@model IEnumerable<HTFTModel>
+<table class="tblRpt persist-area">
+    <thead class="persist-header">
+        <tr class="RptHeader">
+            <td style="width: 5%;">
+             @Apollo.Age.Resources.Lang.time
+             <br />
+                (@Apollo.Age.Resources.Lang.GMT)
+            </td>
+            <td style="width: 20%">
+                @Apollo.Age.Resources.Lang.homeaway
+            </td>
+            @*<td style="width: 200px;">
+                @Apollo.Age.Resources.Lang.away
+            </td>*@
+            <td >
+                @Apollo.Age.Resources.Lang.hh
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.hd
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.ha
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.dh
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.dd
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.da
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.ah
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.ad
+            </td>
+            <td >
+                @Apollo.Age.Resources.Lang.aa
+            </td>
+        </tr>
+    </thead>
+    @{
+        
+        if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            var classRow = string.Empty;
+            
+            foreach (var item in Model)
+            {
+                rowIndex++;
+                if (rowIndex % 2 != 0)
+                {
+                    classRow = "r alt";
+                }
+                else
+                {
+                    classRow = "r";
+                }
+                <tr class="@classRow">
+                   @Html.FormatShowTime(item.ShowTime)
+                    <td class="l no-border-bottom  valign-top home-away-team">
+                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
+                            href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
+                        </a>
+                        <br />
+                         @item.AwayTeam
+                    </td>
+                    <td class="fcnum" >
+                        @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
+                    </td>
+                    <td class="fcnum">
+                        @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+        //@RazorHelper.ShowNoInfo(colspan: 12)
+        }
+    }
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        var DEFAULT_OBJECT = function () {
+            return {
+                initData: function () {
+                    TOTALBETS.initViewBetList();
+                    
+                }
+            };
+        } ();
+        $(function () {
+            DEFAULT_OBJECT.initData();
+        });
+    </script>       
+}

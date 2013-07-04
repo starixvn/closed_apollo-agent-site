@@ -9,9 +9,7 @@
 
 namespace Apollo.Age.Wagers.Criterias.Soccer
 {
-    using System;
     using Apollo.Age.Wagers.Criterias;
-    using Fanex.NAP.Framework.Data;
 
     public class SoccerCriteria : WagerCriteriaBase
     {

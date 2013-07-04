@@ -1,0 +1,341 @@
+﻿@import "../../../_globalResources/css/agent.less";
+@import "../../../_globalResources/css/calendar.less";
+
+#box_header {
+	margin-bottom: 5px;	
+}
+
+#content_main {
+	position: relative;
+}
+
+.show-old-value {
+	background: none repeat scroll 0 0 #ECE9D8;
+    border: 1px solid #000;
+    padding-right: 2px;
+    position: fixed;
+    right: 7px;
+    top: 3px;
+	display: block;
+
+	* {		
+		vertical-align: middle;
+	}
+
+	label {
+		color:  @black;
+		cursor: pointer;
+	}
+}
+
+.top-link {
+	//background: url(images/top-white.png) #0084B4 no-repeat 4px 7px;
+	background: url(images/arrow-up-red.png) #ECE9D8 no-repeat 4px;	
+	border: 1px solid #000;
+	height: 17px;
+	width: 60px;
+    position: fixed;
+    right: 8px;
+    bottom: 0;
+	display: none;
+	padding: 1px 0 0 23px;
+	cursor: pointer;
+
+	a {
+		color: #0000EE;		
+	}
+}
+
+.tblRpt {
+	margin-top: 0;	
+	line-height:15px;
+
+	tbody td {
+		white-space: normal;
+		background: @white;
+		vertical-align: top;
+		
+		&.message_content {
+			padding: 0;
+		}
+				
+		.tblRpt {
+			border: none;
+			height: 100%;
+
+			tr {
+				td {
+					border-width: 1px 1px 0 0;
+					vertical-align: middle;
+
+					&.no-border-right {
+						border-right: none;
+					}
+
+					&.fixed-width {
+						width: 100px;
+					}
+				}
+
+				&.bg-gray td {
+					background: #ccc;
+				}
+
+				&.sub-title {
+					td {
+						border-width: 1px 0;
+					}
+
+					&:first-child td {
+						border-top: none;
+					}
+				}
+
+				&.no-border-top td {
+					border-top: none;
+				}
+
+				&.have-border-bottom {
+					border-bottom: 1px solid @borderColor;
+				}
+			}
+		}
+	}
+
+	tr.sub-title td {
+		background: #84968B;
+	}
+
+	.tbList {
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+		#gradient.vertical(#777, #555);
+		text-align: left;
+
+		ul {				
+			li {					
+				float: left;
+				//font-weight: normal;
+				padding: 8px 20px 10px 0;
+
+				a {
+					display: inline-block;
+					padding: 0;
+					//color: lighten(@primaryColor, 40%);
+					color: #fff;
+
+					span {							
+						//font-weight: normal;												
+						padding: 2px 0px;
+						float: none;							
+					}
+
+					&:hover {
+						border-bottom: 1px solid #fff;
+					}											
+				}					
+
+				&#current a {	
+					// backup red themes	
+					//color: @textColor;
+					border-bottom: 1px solid #fff;
+				}
+			}		
+		}
+	}
+	
+	.valuechanged {
+		color: #FF0000;
+	}
+
+	.valueold {
+		color: #457777;
+	}
+
+	.colW {
+		background-color: #BDD1DE;
+		//font-weight: normal;
+		padding-left: 5px;
+		text-align: left;
+		text-transform: capitalize;
+		width: 116px;
+		white-space: nowrap;
+	}
+
+	.colW1 {
+		background-color: #BDD1DE;
+		//font-weight: normal;
+		padding-left: 5px;
+		text-align: center;
+		text-transform: capitalize;
+		width: 100px;
+		white-space: nowrap;
+	}
+
+	.colW2 {
+		text-transform: capitalize;
+		width: 122px;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.colW3 {
+		background-color: #F3F3F3;
+		text-transform: capitalize;
+		width: 116px;
+		text-align: center;
+		white-space: nowrap;
+		padding-left: 5px;
+	}
+
+	.headerSportTypeDetail {
+		background-color: #D3D6DB;
+		height: 20px;
+		text-align: left;
+		text-transform: capitalize;
+		vertical-align: middle;
+	}
+
+	.left-text {
+		text-align: left;
+		background: #F3F3F3;
+	}
+}
+
+div.line {
+    border-bottom: 1px solid #ccc;
+    display: block;
+    line-height: 5px;
+    margin: auto;
+	width:100px;
+}
+
+/* FORMATING FOR DATE TEXTBOX */
+.daypickr.monpickr-arrows input.monpickr-input {
+	text-align: center;
+}
+
+.monpickr-wrap *, .daypickr-wrap * {
+	vertical-align: top;
+}
+
+#box_header {
+	input[type="text"] {
+		padding: 0 3px;
+		height: 17px;
+	}
+
+	.btn {
+		height: 20px;
+	}
+
+	.monpickr-wrap, .daypickr-wrap {
+		input[type="text"] {
+			height: 13px;
+		}
+	}
+
+	.daypickr-wrap input[type="text"] {
+		margin-left: 1px;
+	}
+
+	.monpickr-arrows {
+		padding: 1px;
+		height: 15px;
+	}
+
+	.monpickr-arrows .monpickr-prev, .monpickr-arrows .monpickr-next, .monpickr-arrows .monpickr-down {
+		top: -1px;
+	}
+
+	.daypickr {
+		width: 49px;
+	}
+
+	.monpickr-label {
+		margin: 0 10px;
+		font-size: 1em;
+	}
+
+	.ui-icon-circle-triangle-w:hover, .ui-icon-circle-triangle-e:hover,
+	.ui-icon-circle-triangle-s:hover {
+		background-image: url("/_globalResources/css/jquery-ui-1.10.2/apollo/images/ui-icons_888888_256x240.png");
+	}
+
+	.ui-icon-circle-triangle-w:hover {
+		margin: 1px 0 0 1px;
+	}
+
+	.ui-icon-circle-triangle-e:hover {
+		margin: 1px 1px 0 0;
+	}
+
+	.ui-icon-circle-triangle-s:hover {
+		margin: 1px 1px 1px 0;
+	}
+
+	.ui-monpickr li {
+		line-height: 0.8em;
+	}
+
+	.daypickr-dropdown {
+		max-height: 250px;
+	}
+
+	.ui-widget-content .ui-state-active {
+		width: 95%;
+	}
+}
+
+/* FIX IE */
+
+.eq-ie7, .eq-ie8  {
+	#box_header {
+		.editor {
+			input[type="text"] {
+				height: 17px;
+			}
+
+			select {
+				height: 20px;
+			}
+		}
+
+		.label select {
+			height: 20px;
+		}
+	}
+}
+
+.eq-ie7  {
+	.show-old-value  {
+		float: right;
+		position: relative;
+		margin-right: -8px;
+	}
+
+	#box_header {
+		.monpickr-arrows {
+			height: 16px;
+		}
+
+		.monpickr-arrows {
+			.monpickr-down, .monpickr-prev, .monpickr-next {
+				top: 0;
+			}
+		}
+
+		.ui-monpickr li a {
+			padding: 2px;
+		}
+	}
+}
+
+.eq-ie8 {
+	#box_header .monpickr-wrap input[type="text"],
+	#box_header .daypickr-wrap input[type="text"] {
+		height: 12px;
+		margin-top: 0;
+	}
+}
+
