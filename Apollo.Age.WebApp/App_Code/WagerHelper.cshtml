@@ -47,15 +47,15 @@
         }
     </ul>
 }
-@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders, bool isShowDirectMember)
+@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders, int isShowViewOption)
     {
     <div id="header_main">@title</div>
     <div class="box-header" id="main-shareholder-box">
         <div class="row">
-            <div class="cell" style="@(mainShareHolders.Count() > 0 ? string.Empty : "display:none")">
+            <div class="cell" style="@(isShowViewOption == 0 || isShowViewOption == 2 ? string.Empty : "display:none")">
                 <div class="label">
                     <label for="ddlLeague">
-                        @if(mainShareHolders.Count() > 0)
+                        @if (isShowViewOption == 0)
                         {
                             @Lang.lblMainShareHolder
                         }
@@ -68,7 +68,7 @@
                 </div>
                 <div class="editor">
                     <select id="ViewOption" class="za_select">
-                        @if (mainShareHolders.Count() > 0)
+                        @if (isShowViewOption == 0)
                         {
                             foreach (var mainShareHolder in mainShareHolders)
                             {
