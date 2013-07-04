@@ -52,10 +52,19 @@
     <div id="header_main">@title</div>
     <div class="box-header" id="main-shareholder-box">
         <div class="row">
-            <div class="cell">
+            <div class="cell" style="@(mainShareHolders.Count() > 0 ? string.Empty : "display:none")">
                 <div class="label">
                     <label for="ddlLeague">
-                        @Lang.view&nbsp;:</label>
+                        @if(mainShareHolders.Count() > 0)
+                        {
+                            @Lang.lblMainShareHolder
+                        }
+                        else
+                        {
+                            @Lang.view
+                        }
+                        :
+                    </label>
                 </div>
                 <div class="editor">
                     <select id="ViewOption" class="za_select">
@@ -68,15 +77,8 @@
                         }
                         else
                         {
-                            if (isShowDirectMember)
-                            {
                             <option value="0">@Lang.all</option>
                             <option value="-1">@Lang.DirectMembers</option>
-                            }
-                            else
-                            {
-                            <option value="0">@Lang.lblallmember</option>       
-                            }
                         }
                     </select>
                 </div>

@@ -162,7 +162,8 @@ namespace Apollo.Age.Reports.Controllers
 				Bettypes = model.Bettypes,
 				FromDate = model.FromDate,
 				ToDate = model.ToDate,
-				BalanceUpDay = _reportService.GetBalanceUpDay()
+				BalanceUpDay = _reportService.GetBalanceUpDay(),
+				MoveBetDay = _reportService.MoveBetsDay()
 			};
 
 			var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
@@ -188,7 +189,8 @@ namespace Apollo.Age.Reports.Controllers
 				Bettypes = model.Bettypes,
 				FromDate = model.FromDate,
 				ToDate = model.ToDate,
-				BalanceUpDay = _reportService.GetBalanceUpDay()
+				BalanceUpDay = _reportService.GetBalanceUpDay(),
+				MoveBetDay = _reportService.MoveBetsDay()
 			};
 
 			var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
