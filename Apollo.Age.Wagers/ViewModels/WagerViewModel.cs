@@ -54,7 +54,8 @@ namespace Apollo.Age.Wagers.ViewModels
             }
         }
 
-        public string CommGroup {
+        public string CommGroup
+        {
             get
             {
                 return this.UGroup;
@@ -63,6 +64,6 @@ namespace Apollo.Age.Wagers.ViewModels
 
         public string UGroup { get; set; }
 
-
+        public int MatchId { get; set; }
     }
 }

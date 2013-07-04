@@ -66,12 +66,42 @@ namespace Apollo.Age.BetList.Controllers
         [HttpGet]
         public ViewResult AccountInfo(int custId)
         {
+            var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                    (int)Apollo.Age.Enumerations.BetStatus.Void,
+                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                    (int)Apollo.Age.Enumerations.BetStatus.Running,
+                    (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                    (int)Apollo.Age.Enumerations.BetStatus.Won,
+                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
+
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+
+            // List ticket
+            var betListService = new BetListService();
             var model = new BetListCriteria
             {
-                CustId = custId
+                AgentId = -1,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custId,
+                FromDate = ResetStartDate(moveBetsDay),
+                ToDate = ResetEndDate(DateTime.Now),
+                StatusIds = statusIds,
+                BetListPage = BetListPage.AccountInfo,
             };
 
-            return this.AccountInfo(model);
+            var mainTickets = _betListService.GetTicketResult(model);
+
+            var viewModel = new BetListReportViewModel
+            {
+                TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
+                FromDate = moveBetsDay,
+                ToDate = DateTime.Now,
+                BalanceUpDay = moveBetsDay
+            };
+
+            return this.View(viewModel);
         }
 
         /// <summary>
@@ -97,8 +127,6 @@ namespace Apollo.Age.BetList.Controllers
             var betListService = new BetListService();
             model.AgentId = -1;
             model.LoggedId = CurrentSession.AgentId;
-            model.FromDate = ResetStartDate(moveBetsDay);
-            model.ToDate = ResetEndDate(DateTime.Now);
             model.StatusIds = statusIds;
             model.BetListPage = BetListPage.AccountInfo;
 
@@ -107,6 +135,9 @@ namespace Apollo.Age.BetList.Controllers
             var viewModel = new BetListReportViewModel
             {
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
+                FromDate = moveBetsDay,
+                ToDate = DateTime.Now,
+                BalanceUpDay = moveBetsDay
             };
 
             return this.View(viewModel);
@@ -270,11 +301,11 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
+                Title = string.Format("{0}: {1} --{2}: {3}", Lang.sport, sportName, Lang.bettype, betTypeName),
                 DownlinePath = modelAgentDownLine,
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
             };
-            ViewBag.SportName = sportName;
-            ViewBag.BetTypeName = betTypeName;
+
             return this.View(viewModel);
         }
 
@@ -435,7 +466,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportType"></param>
         /// <param name="betTeam"></param>
         /// <returns></returns>
-        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty)
+        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
         {
             // List ticket
             var betListService = new BetListService();
@@ -449,7 +480,8 @@ namespace Apollo.Age.BetList.Controllers
                 LeagueId = leagueId,
                 SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
                 BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
-                BetTeam = betTeam
+                BetTeam = betTeam,
+                MatchId = matchId
             };
 
             TicketResult mainTickets = betListService.WagersTicket(criteria);

@@ -47,7 +47,7 @@
         }
     </ul>
 }
-@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders,bool isShowDirectMember)
+@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders, bool isShowDirectMember)
     {
     <div id="header_main">@title</div>
     <div class="box-header" id="main-shareholder-box">
@@ -67,15 +67,15 @@
                             }
                         }
                         else
-                        {                            
-                            if(isShowDirectMember)
+                        {
+                            if (isShowDirectMember)
                             {
-                                <option value="0">@Lang.all</option>
-                                <option value="-1">@Lang.DirectMembers</option>
+                            <option value="0">@Lang.all</option>
+                            <option value="-1">@Lang.DirectMembers</option>
                             }
                             else
                             {
-                                <option value="0">@Lang.lblallmember</option>       
+                            <option value="0">@Lang.lblallmember</option>       
                             }
                         }
                     </select>
@@ -131,8 +131,8 @@
     {
     <thead>
         <tr class="RptHeader">
-            <th style="width: 40px;">
-                @Lang.time
+            <th style="width: 90px;">
+                @Lang.TimeGMT8
             </th>
             <th>
                 @Lang.league
@@ -162,7 +162,7 @@
         {
             var firstModel = groupBet.FirstOrDefault();
     <br />
-    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), firstModel.LiveIndicator, firstModel.LeagueId)
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)
     <br />
         }
         else
@@ -178,7 +178,7 @@
     {
         if (item != null)
         {    
-    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator, item.LeagueId)
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
         }
         else
         { 
@@ -192,12 +192,12 @@
         + 3 : Draw
 *@
 }
-@helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive, int leagueId)
+@helper RenderColumnData(string betTeams, int betCount, decimal stake, bool isLive, int leagueId, int matchId)
     {    
         if (betCount != 0
             && stake != 0)
         { 
-    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId">@betCount/@Math.Round(stake)</a>   
+    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">@betCount/@Math.Round(stake)</a>   
         }
         else
         {
