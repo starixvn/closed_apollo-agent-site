@@ -60,83 +60,9 @@ namespace Apollo.Age.Reports.Services
 
         public List<SingbetBettype> GetBettype()
         {
-<<<<<<< HEAD
             if (SingbetBettypeList == null)
             {
                 var bettypeList = new List<SingbetBettype>{
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.All,
-                        Name = Lang.all
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Handicap,
-                        Name = Lang.lblHandicapFC
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Odd_Even,
-                        Name = Lang.lblOddEven
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Over_Under,
-                        Name = Lang.lblOverUnder
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Correct_Score,
-                        Name = Lang.correctscore
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.FT_1X2,
-                        Name = Lang.lblFT1X2
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Total_Goal,
-                        Name = Lang.totalgoal
-                    },
-                     new SingbetBettype{
-                        Id = SingbetBettypeConstant.First_Goal_Last_Goal,
-                        Name = Lang.firstgoal + "/" + Lang.lastgoal
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.HT_FT,
-                        Name = Lang.htft
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Mix_Parlay,
-                        Name = Lang.lblMixParlay
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.System_Parlay,
-                        Name = Lang.lblSystemParlay
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.Bettype_Outright,
-                        Name = Lang.lblOutRight
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant._1st_Handicap,
-                        Name = Lang.lbl1stHdp
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant._1st_Odd_Even,
-                        Name = Lang.lbl1stOddEven
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant._1st_Over_Under,
-                        Name = Lang.lbl1stOU
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.FirstHalf_1X2,
-                        Name = Lang.lbl1x2_1st
-                    },
-                    new SingbetBettype{
-                        Id = SingbetBettypeConstant.OtherBettype,
-                        Name = Lang.Othertypes
-                    },
-                };
-=======
-			if (SingbetBettypeList == null)
-			{
-				var bettypeList = new List<SingbetBettype>{
 					new SingbetBettype{
 						Id = BettypeGroup.All,
 						Name = Lang.all
@@ -206,7 +132,6 @@ namespace Apollo.Age.Reports.Services
 						Name = Lang.Othertypes
 					},
 				};
->>>>>>> 5a7da1dee5f364e9261b82b5ba855a665fcc57d9
 
                 SingbetBettypeList = bettypeList;
             }

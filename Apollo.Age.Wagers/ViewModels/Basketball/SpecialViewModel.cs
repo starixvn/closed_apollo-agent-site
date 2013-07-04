@@ -16,7 +16,7 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// TODO: Update summary.
     /// </summary>
     public class SpecialViewModel : WagerViewModel
-       
+    {
         public int Bettype { get; set; }
 
         public decimal Stake { get; set; }
