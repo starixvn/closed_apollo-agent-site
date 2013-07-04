@@ -1,0 +1,87 @@
+﻿@using Apollo.Age.Forecast.Models
+@{
+    Layout = null;
+}
+@helper ShowTime(Forecast1X2Model fcItem)
+    {
+    if (fcItem.LiveIndicator)
+    {
+    @Html.Raw(fcItem.LiveHomeScore + " - " + fcItem.LiveAwayScore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Apollo.Age.Resources.Lang.lblLive + "</font></i>")
+    }
+    else
+    {
+    @Html.Raw(fcItem.ShowTime)
+    }
+}
+@model IEnumerable<Forecast1X2Model>
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (Forecast1X2Model fcItem in Model)
+        {
+
+    <!--RowContent-->
+    <tr class="league">
+        <td colspan="5">
+            @fcItem.HomeTeam
+            <br />
+            @fcItem.AwayTeam
+        </td>
+    </tr>
+    <tr class="c">
+        <td colspan="2">
+            @ShowTime(fcItem)
+        </td>
+        <td class="bold">
+            1
+        </td>
+        <td class="bold" style="background-color: #ffefde">
+            X
+        </td>
+        <td class="bold">
+            2
+        </td>
+    </tr>
+    <tr class="c">
+        <td style="width: 39%">
+            @Apollo.Age.Resources.Lang.fulltime
+        </td>
+        <td style="width: 1%">
+            <a class="btnInfo view-bet-list" match-id="@fcItem.MatchID" bet-type="5" href="javascript:void(0)">
+            </a>
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HomeWinLost, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.DrawWinLost, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.AwayWinLost, 2, showZero: true)
+        </td>
+    </tr>
+    <tr class="c">
+        <td style="width: 39%">
+            @Apollo.Age.Resources.Lang.halftime
+        </td>
+        <td style="width: 1%">
+            <a class="btnInfo view-bet-list" match-id="@fcItem.MatchID" bet-type="15" href="javascript:void(0)">
+            </a>
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHomeWinLost, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeDrawWinLost, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 20%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeAwayWinLost, 2, showZero: true)
+        </td>
+    </tr>
+        }
+    }
+    else
+    {
+    @RazorHelper.ShowNoInfo(colspan: 8)
+    }
+}

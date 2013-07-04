@@ -1,0 +1,116 @@
+﻿@using Apollo.Age.Forecast.Models
+@{
+    Layout = null;
+}
+@model IEnumerable<ForecastHandicapOUModel>
+@helper ShowTime(ForecastHandicapOUModel fcItem)
+    {
+        if (fcItem.LiveIndicator)
+        {
+    @Html.Raw(fcItem.LiveHomeScore + " - " + fcItem.LiveAwayScore + "&nbsp;&nbsp;&nbsp;&nbsp;<i><font style='color:red;'>" + Apollo.Age.Resources.Lang.lblLive + "</font></i>")
+        }
+        else
+        {
+    @Html.Raw(fcItem.ShowTime)
+        }
+}
+@{
+    if (Model != null && Model.Any())
+    {
+
+        foreach (ForecastHandicapOUModel fcItem in Model)
+        {
+            var offsetHDP = fcItem.LiveHomeScore - fcItem.LiveAwayScore;
+            var offsetOU = fcItem.LiveHomeScore + fcItem.LiveAwayScore;
+    <!--RowContent-->
+    <tr class="league">
+        <td colspan="8">
+            @fcItem.HomeTeam
+            <br />
+            @fcItem.AwayTeam
+        </td>
+    </tr>
+    <tr class="c">
+        <td colspan="2">
+            @ShowTime(fcItem)
+        </td>
+        <td class="bold" style="width: 8%">
+            @((offsetHDP - 1).ToString())
+        </td>
+        <td class="bold" style="width: 8%; background-color: #ffefde">
+            @(offsetHDP)
+        </td>
+        <td class="bold" style="width: 8%">
+            @((offsetHDP + 1).ToString())
+        </td>
+        <td class="bold" style="width: 8%">
+            @((offsetOU + 2).ToString())
+        </td>
+        <td class="bold" style="width: 8%">
+            @((offsetOU + 1).ToString())
+        </td>
+        <td class="bold" style="width: 8%; background-color: #ffefde">
+            @offsetOU
+        </td>
+    </tr>
+    <tr class="c">
+        <td style="width: 15%">
+            @Apollo.Age.Resources.Lang.fulltime
+        </td>
+        <td style="width: 1%">
+            <a match-id="@fcItem.MatchId" bet-type="1"  href="javascript:void(0)" class="btnInfo view-forecast-detail">
+            </a>
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HandicapWinLostMinus1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HandicapWinLostBase, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HandicapWinLostPlus1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.OverUnderWinLost2, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.OverUnderWinLost1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.OverUnderWinLostBase, 2, showZero: true)
+        </td>
+    </tr>
+    <tr class="c">
+        <td style="width: 15%">
+            @Apollo.Age.Resources.Lang.halftime
+        </td>
+        <td style="width: 1%">
+            <a match-id="@fcItem.MatchId" bet-type="7"  href="javascript:void(0)" class="btnInfo view-forecast-detail">
+            </a>
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHandicapWinLostMinus1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHandicapWinLostBase, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeHandicapWinLostPlus1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeOverUnderWinLost2, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeOverUnderWinLost1, 2, showZero: true)
+        </td>
+        <td class="bold" style="width: 8%">
+            @RazorHelper.FormatPositiveNumber(fcItem.HalfTimeOverUnderWinLostBase, 2, showZero: true)
+        </td>
+    </tr>
+        }
+    }
+    else
+    {
+    @RazorHelper.ShowNoInfo(colspan: 8)
+    }
+}

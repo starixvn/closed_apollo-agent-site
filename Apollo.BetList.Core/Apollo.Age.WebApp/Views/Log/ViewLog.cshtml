@@ -1,0 +1,138 @@
+﻿@using Apollo.Age.Resources
+@model GetLogCustSettingCriteria
+@{    
+    Layout = "~/Views/Log/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
+    var logData = (List<LogRunSpModel>)ViewBag.LogData;
+    var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
+}
+@section head {
+    <link href="~/views/log/resources/log.less" rel="stylesheet" type="text/css">
+}
+@using (Html.BeginForm("ViewLog", "Log", FormMethod.Get))
+{   
+    <div id="box_header">
+        <div class="row">
+            <div class="cell">
+                <div class="label">
+                    @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
+            new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
+            new SelectListItem { Value = "false", Text = Lang.member }
+        })
+                    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    @Html.TextBoxFor(m => m.Username, Lang.enterusername)
+                </div>
+            </div>
+            <div class="cell">
+                <div class="label">
+                    @Html.LabelFor(m => m.ActionTypeId, Lang.viewby)
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
+               {
+                new SelectListItem{Value ="0",Text=Lang.all},
+                new SelectListItem{Value ="2",Text=Lang.lblCommission},
+                new SelectListItem{Value ="3",Text=Lang.lblBetSetting},
+                new SelectListItem{Value ="4",Text=Lang.positiontaking}
+               })
+                </div>
+            </div>
+            <div class="cell">
+                <div id="monthDateTime">
+                </div>
+                @Html.Hidden("From", Model.From.ToString("MM/dd/yyyy"))
+                @Html.Hidden("To", Model.To.ToString("MM/dd/yyyy"))
+            </div>
+            <div class="cell">
+                <div class="editor">
+                    <input type="submit" class="btn" id="dSubmit" value="@Lang.submit"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show-old-value">
+        @Html.CheckBoxFor(m => m.ShowOldValue)
+        <label for="ShowOldValue">@Lang.ShowOldValues</label>
+    </div>
+    <table class="tblRpt log">
+        <thead>
+            <tr>
+                <th style="width: 60px">
+                    @Lang.logid
+                </th>
+                <th>
+                    @Lang.editby
+                </th>
+                <th>
+                    @Lang.actionname
+                </th>
+                <th>
+                    @Lang.lblDetails
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int count = 0;
+
+    if (!ReferenceEquals(logData, null) && logData.Any())
+    {
+        string rowClass = string.Empty;
+        string actionName = string.Empty;
+        foreach (var itemLog in logData)
+        {
+            count++;
+            actionName = Lang.update + " ";
+            rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
+                <tr @Html.Raw(rowClass)>
+                    <td class="c">
+                        @itemLog.LogId
+                    </td>
+                    <td class="c">
+                        @itemLog.Username
+                        <p>@itemLog.LogDate.ToShortDateString()</p>
+                        <p>@itemLog.LogDate.ToShortTimeString()</p>
+                    </td>
+                    <td class="c">
+                        @*@Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))*@
+                        @switch (itemLog.ActionTypeId)
+                        {
+                            case 2:
+                            @Viewlog._2
+                       break;
+                            case 3:
+                            @Viewlog._3
+                       break;
+                            default:
+                            @Viewlog._4
+                       break;
+                        }
+                    </td>
+                    <td class="message_content">
+                        @Html.Action("LogActionType" + itemLog.ActionTypeId.ToString(), "Log", new
+                   {
+                       oldData = itemLog.OldData,
+                       data = itemLog.Data,
+                       agentLevel = agentLevel,
+                       isAgent = Model.IsAgent
+                   })
+                    </td>
+                </tr>
+        }
+    }
+    else
+    {
+                @RazorHelper.ShowNoInfo(6)
+    }
+            }
+        </tbody>
+    </table>
+    <div id="btn-go-top" class="top-link">
+        <a href="#">@Lang.GoToTop</a></div>
+}
+@Html.Hidden("ToDayLable", "~")
+@Html.Hidden("FromDayLable", Lang.dateRange)

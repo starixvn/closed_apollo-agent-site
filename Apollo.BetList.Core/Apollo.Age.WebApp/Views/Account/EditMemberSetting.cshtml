@@ -1,0 +1,72 @@
+﻿@using Apollo.Age.Resources;
+@{
+	var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
+	var userName = ViewBag.UserName ?? string.Empty;
+    ViewBag.Title = string.Format(titleFormat, userName);
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+	var memberId = ViewBag.MemberId ?? 0;
+    var isMaster = ViewBag.IsMaster ?? false;
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu));
+}
+
+@section header
+{
+    <div id="function-bar">
+        <div class="item detail-information">
+        @Lang.MemberDetailEdit 
+        @(isMaster ? Lang.edit.ToLower() : string.Empty)
+        &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername: <strong>@userName</strong>  
+        @*-- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a>
+        <a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>*@
+     </div>
+        <img src="/_GlobalResources/Images/top_04.gif" class="end-function-bar">
+    </div>
+}
+@Html.Hidden("backUrl", backLink)
+<div id="commissionSettingContainer"></div>
+<div id="bettingLimitContainer"></div>
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberCommissionSetting",
+	trigger = "member-commission-info-button",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberBetSetting",
+    trigger = "member-bet-limit-info-button",
+	title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberCommissionSettingAdv",
+    trigger = "member-commission-info-button-adv",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+	key = "MemberBetSettingAdv",
+    trigger = "member-bet-limit-info-button-adv",
+    title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+
+@section scripts
+{
+	<script type="text/javascript">
+        var DEFAULT_OBJECT = function(){
+            return {
+                memberId : @(memberId)
+            };
+        }();
+	</script>
+	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
+	@Scripts.Render("~/scripts/editsettingjs")
+}
