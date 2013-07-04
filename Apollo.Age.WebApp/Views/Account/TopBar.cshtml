@@ -52,8 +52,7 @@
                                     <li><a href="~/wagers/wager?sportname=@(WagersSportName.Baseball)&isEM=true" target="main">@Lang.lblBsEm</a></li>
                                     <li><a href="~/wagers/wager?sportname=@(WagersSportName.Others)&isEM=true" target="main">@Lang.lblOtherEm</a></li>
                                 </ul>
-                            </li>
-                            <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>
+                            </li>                            
                             <li>
                             <span class="menu-list border-link">[@Lang.lblOutRight]</span>
                                 <ul class="sub-menu">
@@ -64,7 +63,8 @@
                                     <li><a href="~/wagers/wager?sportname=@WagersSportName.Baseball&isOR=true" target="main">@Lang.lblBs</a></li>
                                     <li><a href="~/wagers/wager?sportname=@WagersSportName.Others&isOR=true" target="main">@Lang.InterEvent</a></li>
                                 </ul>
-                            </li>                            
+                            </li>
+                            <li><span class="menu-list border-link"><a href="~/totalBets" target="main">[@Lang.lblForecast]</a></span></li>                            
                             <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
                                 <ul class="sub-menu">
                                     @*@if (!Model.IsSuper)
