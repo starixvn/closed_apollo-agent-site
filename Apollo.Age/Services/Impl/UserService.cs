@@ -57,13 +57,13 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria,  ref int AdminId)
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             criteria.Password = Cryptography.CfsEnCode(criteria.Password);
 
-            return _userRepository.AuthenticateNapUser(criteria,ref AdminId);
+            return _userRepository.AuthenticateNapUser(criteria, ref AdminId);
         }
 
         /// <summary>
@@ -118,31 +118,29 @@ namespace Apollo.Age.Services.Impl
             return false;
         }
 
-       
         public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
         {
-             try
-             {
-                 var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
-                 {
-                     AgentId = agentId,
-                     AgentUserId = agentUserId,
-                     ServerId = serverId,
-                     ActionId = actionId,
-                     Doing = doing,
-                     LoginIp = loginIp,
-                     Platform = platform,
-                     CountryCode = countryCode,
-                     BrowserName = browserName,
-                     DomainName = domainName
-                 });
-             }
-             catch (Exception ex)
-             {
-                 Logger.Log.Error(ex.Message, ex);
-             }
+            try
+            {
+                var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+                {
+                    AgentId = agentId,
+                    AgentUserId = agentUserId,
+                    ServerId = serverId,
+                    ActionId = actionId,
+                    Doing = doing,
+                    LoginIp = loginIp,
+                    Platform = platform,
+                    CountryCode = countryCode,
+                    BrowserName = browserName,
+                    DomainName = domainName
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
         }
-
 
         public User InternalGetAgentByUsername(string username)
         {
@@ -164,13 +162,13 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
-
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
             Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
             try
             {
-                var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria { 
+                var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria
+                {
                     UserId = adminId,
                     OnUserId = 0,
                     NetSessionId = netSessionId,
@@ -180,7 +178,7 @@ namespace Apollo.Age.Services.Impl
             }
             catch (Exception ex)
             {
-                Logger.Log.Error(ex.Message, ex);  
+                Logger.Log.Error(ex.Message, ex);
             }
             return 0;
         }

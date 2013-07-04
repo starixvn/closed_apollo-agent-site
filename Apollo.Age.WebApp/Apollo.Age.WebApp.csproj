@@ -1012,9 +1012,7 @@
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
-    <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
-    <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />

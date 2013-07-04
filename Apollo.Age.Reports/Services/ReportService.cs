@@ -60,6 +60,7 @@ namespace Apollo.Age.Reports.Services
 
         public List<SingbetBettype> GetBettype()
         {
+<<<<<<< HEAD
             if (SingbetBettypeList == null)
             {
                 var bettypeList = new List<SingbetBettype>{
@@ -132,6 +133,80 @@ namespace Apollo.Age.Reports.Services
                         Name = Lang.Othertypes
                     },
                 };
+=======
+			if (SingbetBettypeList == null)
+			{
+				var bettypeList = new List<SingbetBettype>{
+					new SingbetBettype{
+						Id = BettypeGroup.All,
+						Name = Lang.all
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.Handicap,
+						Name = Lang.lblHandicapFC
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.OddEven,
+						Name = Lang.lblOddEven
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.OverUnder,
+						Name = Lang.lblOverUnder
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.CorrectScore,
+						Name = Lang.correctscore
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.FT1X2,
+						Name = Lang.lblFT1X2
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.TotalGoal,
+						Name = Lang.totalgoal
+					},
+					 new SingbetBettype{
+						Id = BettypeGroup.FirstGoalLastGoal,
+						Name = Lang.firstgoal + "/" + Lang.lastgoal
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.HTFT,
+						Name = Lang.htft
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.MixParlay,
+						Name = Lang.lblMixParlay
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.SystemParlay,
+						Name = Lang.lblSystemParlay
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.Outright,
+						Name = Lang.lblOutRight
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.FirstHandicap,
+						Name = Lang.lbl1stHdp
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.FirstOddEven,
+						Name = Lang.lbl1stOddEven
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.FirstOverUnder,
+						Name = Lang.lbl1stOU
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.FirstHalf1X2,
+						Name = Lang.lbl1x2_1st
+					},
+					new SingbetBettype{
+						Id = BettypeGroup.OtherBettype,
+						Name = Lang.Othertypes
+					},
+				};
+>>>>>>> 5a7da1dee5f364e9261b82b5ba855a665fcc57d9
 
                 SingbetBettypeList = bettypeList;
             }

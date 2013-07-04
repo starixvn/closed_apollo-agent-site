@@ -39,6 +39,7 @@ namespace Apollo.Age.Repositories.Impl
                             },
                             splitOn: "AgentId",
                             parameters: criteria.GetSpParams()
+
                         );
 
                     return user;

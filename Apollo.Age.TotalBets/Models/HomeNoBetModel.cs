@@ -12,6 +12,9 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
     using System;
 
+    /// <summary>
+    /// Home no bet model
+    /// </summary>
     public class HomeNoBetModel
     {
         public string ShowTime { get; set; }
@@ -58,7 +61,7 @@ namespace Apollo.Age.TotalBets.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 

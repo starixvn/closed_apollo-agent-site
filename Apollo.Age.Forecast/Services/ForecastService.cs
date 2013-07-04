@@ -22,9 +22,12 @@ namespace Apollo.Age.Forecast.Services
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Repositories;
     using Apollo.Age.Services.Impl;
-    using Fanex.Common.Helper;
     using Fanex.Caching;
+    using Fanex.Common.Helper;
 
+    /// <summary>
+    /// Forecast Service
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
@@ -193,7 +196,7 @@ namespace Apollo.Age.Forecast.Services
 
                 //// Map Data
                 int homeIndex = 0, awayIndex = 0, length = 0;
-                
+
                 foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
                 {
                     homeIndex = 0;
@@ -266,7 +269,6 @@ namespace Apollo.Age.Forecast.Services
 
         /// <summary>
         /// Score Map Bet Type, Will Render 2 Part Live and Dead ball
-        /// </summary>
         /// <returns></returns>
         public ScoreMapBetTypesModel GetScoreMapBetType()
         {
@@ -385,6 +387,11 @@ namespace Apollo.Age.Forecast.Services
             return matchOddsViewModels.ElementAtOrDefault(0);
         }
 
+        /// <summary>
+        /// Get Main shareholder in super view
+        /// </summary>
+        /// <param name="criteria">Get data parameters</param>
+        /// <returns>main shareholder id</returns>
         public int GetMainShareHolderByMember(GetMainShareHolderByMemberCriteria criteria)
         {
             return _forecastRepository.GetMainShareHolderByMember(criteria);
@@ -483,11 +490,11 @@ namespace Apollo.Age.Forecast.Services
             {
                 forecast += forecastMatch.AwayWinLost;
             }
-            else if (forecastScore == (decimal)(-0.25))
+            else if (forecastScore == (decimal)-0.25)
             {
                 forecast += forecastMatch.HomeWinLost / 2;
             }
-            else if (forecastScore < (decimal)(-0.25))
+            else if (forecastScore < (decimal)-0.25)
             {
                 forecast += forecastMatch.HomeWinLost;
             }
@@ -511,6 +518,7 @@ namespace Apollo.Age.Forecast.Services
 
             return scoreMapBetTypeList;
         }
+
         #endregion Private Methods
     }
 }

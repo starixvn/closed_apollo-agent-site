@@ -14,10 +14,8 @@ namespace Apollo.Age.TotalBets.Services
     using System.Linq;
     using System.Text;
     using Fanex.NAP.Framework.Data;
- 
     using Apollo.Age.Services.Impl;
     
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
