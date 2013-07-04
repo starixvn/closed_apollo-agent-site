@@ -194,7 +194,19 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.isOR = isOR;
 
             ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
-            ViewBag.IsShowDirectMember = CurrentSession.AgentLevel > 2;
+            
+            if (CurrentSession.AgentLevel == 0)
+            {
+                ViewBag.IsShowViewOption = 0; // show selection Main Share Holder
+            }
+            else if (CurrentSession.AgentLevel > 0 && CurrentSession.AgentLevel < 3)
+            {
+                ViewBag.IsShowViewOption = 1; // Remove Option
+            }
+            else
+            {
+                ViewBag.IsShowViewOption = 2; // Show selected All and Direct Member
+            }
 
             return View();
         }

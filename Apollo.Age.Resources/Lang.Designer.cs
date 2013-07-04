@@ -1700,11 +1700,11 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Member.
+        ///   Looks up a localized string similar to All members.
         /// </summary>
-        public static string lblallmember {
+        public static string lblallmembers {
             get {
-                return ResourceManager.GetString("lblallmember", resourceCulture);
+                return ResourceManager.GetString("lblallmembers", resourceCulture);
             }
         }
         
