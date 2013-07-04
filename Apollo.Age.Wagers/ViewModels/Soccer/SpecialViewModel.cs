@@ -11,7 +11,7 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     public class SpecialViewModel : WagerViewModel
     {
-        public int bettype { get; set; }
+        public int Bettype { get; set; }
 
         public decimal Stake { get; set; }
 

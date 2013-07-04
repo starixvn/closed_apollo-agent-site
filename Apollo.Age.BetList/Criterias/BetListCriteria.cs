@@ -62,6 +62,7 @@ namespace Apollo.Age.BetList.Criterias
             switch (this.BetListPage)
             {
                 case BetListPage.Outstanding:
+                case BetListPage.AccountInfo:
                 case BetListPage.Cancel:
                     settingKey = "Age_BetList_SelByDateMemStatus";
                     break;

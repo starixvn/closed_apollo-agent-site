@@ -13,6 +13,7 @@
     var isEM = (bool)ViewBag.isEM;
     var isOR = (bool)ViewBag.isOR;
     var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
+    var isShowDirectMember =(bool) ViewBag.IsShowDirectMember;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -81,7 +82,7 @@
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
     <div class="mainpage">
-        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
+        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowDirectMember)
         <div class="pages-size">
             <div class="pull-left">@Lang.Page:</div>
             <div id="pager" class="sbpager">

@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.Wagers.Criterias
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     public class GetMainShareHolderCriteria : CriteriaBase

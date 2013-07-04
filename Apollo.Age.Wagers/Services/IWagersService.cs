@@ -11,10 +11,7 @@ namespace Apollo.Age.Wagers.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
-    using Fanex.NAP.Framework.Data;
     using Apollo.Age.Wagers.Criterias;
 
     /// <summary>

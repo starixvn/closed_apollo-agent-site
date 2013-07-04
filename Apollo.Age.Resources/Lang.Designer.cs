@@ -1313,7 +1313,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st 1x2/Wagers.
+        ///   Looks up a localized string similar to 1st 1 X 2 / Wagers.
         /// </summary>
         public static string lbl1st1x2wager {
             get {
@@ -1421,7 +1421,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1x2/Wagers.
+        ///   Looks up a localized string similar to 1 X 2 / Wagers.
         /// </summary>
         public static string lbl1x2Wager {
             get {
@@ -1696,6 +1696,15 @@ namespace Apollo.Age.Resources {
         public static string lblalertMinbetCompare {
             get {
                 return ResourceManager.GetString("lblalertMinbetCompare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Member.
+        /// </summary>
+        public static string lblallmember {
+            get {
+                return ResourceManager.GetString("lblallmember", resourceCulture);
             }
         }
         
@@ -2123,7 +2132,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Half Event.
+        ///   Looks up a localized string similar to 1st Half Even.
         /// </summary>
         public static string lblfirsthalfOven {
             get {
@@ -4720,6 +4729,15 @@ namespace Apollo.Age.Resources {
         public static string time {
             get {
                 return ResourceManager.GetString("time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time (GMT+8).
+        /// </summary>
+        public static string TimeGMT8 {
+            get {
+                return ResourceManager.GetString("TimeGMT8", resourceCulture);
             }
         }
         

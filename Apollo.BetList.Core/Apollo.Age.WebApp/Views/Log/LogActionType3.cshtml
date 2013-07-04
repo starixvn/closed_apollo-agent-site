@@ -1,0 +1,70 @@
+﻿@using Fanex.CustSetting.Core
+@using Apollo.Age.Resources
+@{   
+    var xmlBetSetting = _Configuration.BettingLimitSportNameConfig;
+    var list = (Dictionary<string, BetSettingModel>)Model;  
+}
+@if (!ReferenceEquals(list, null) && list.Any())
+{
+    var itemBetSetting = xmlBetSetting.Descendants("Name");
+    <table class="tblRpt">
+        <tr class="no-border-top bg-gray">
+            <td class="colW1">
+            </td>
+            <td class="colW1">
+                @Lang.lblMaxPerMatch
+            </td>
+            <td class="colW1">
+                @Lang.lblMaxBet
+            </td>
+            <td class="colW1">
+                @Lang.lblMinBet
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1 no-border-right">
+            </td>
+        </tr>
+        @foreach (var itemBet in itemBetSetting)
+        {
+            var sportId = itemBet.Attribute("sportId").Value;
+            var betTypeId = itemBet.Attribute("betTypeId").Value;
+            var resourcekey = itemBet.Attribute("resourcekey").Value;
+            var key = string.Format("{0}_{1}", sportId, betTypeId);
+            var item = list[key];
+            <tr>
+                <td class="colW">
+                    @Html.Resource(resourcekey)
+                </td>
+                <td class="colW2">
+                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
+                </td>
+                <td class="colW2">
+                    @ToString(item.OldMaxBet, item.MaxBet)
+                </td>
+                <td class="colW2">
+                    @ToString(item.OldMinBet, item.MinBet)
+                </td>
+                <td class="colW2">
+                </td>
+                <td class="colW2 no-border-right">
+                </td>
+            </tr>
+        }
+    </table>
+}
+@helper ToString(decimal oldValue, decimal newValue)
+    {
+        string strOld = Math.Round(oldValue, 0).ToString("#,#");
+        string strNew = Math.Round(newValue, 0).ToString("#,#");
+
+        if (oldValue != newValue)
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>
+    <span>| </span><span class="valueold">@strOld</span>
+            
+        }
+        else
+        { <span class="valueold">@strOld</span>
+        }            
+}

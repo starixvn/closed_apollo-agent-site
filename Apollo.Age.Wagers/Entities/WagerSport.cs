@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------
+// <copyright file="WagerSport.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Edward.Nguyen" date="2013.7.4">Created</change>
+// </history>
 
 namespace Apollo.Age.Wagers.Entities
 {
     public class WagerSport
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
     }
 }

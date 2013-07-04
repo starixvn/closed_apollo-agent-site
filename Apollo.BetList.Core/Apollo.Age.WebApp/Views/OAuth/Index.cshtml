@@ -1,0 +1,26 @@
+﻿@using Apollo.Age.Integration.Configurations;
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	
+	<script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>
+	<script src="@OAuthSettings.Settings.TgpScriptSrc" type="text/javascript"></script>
+	<script type="text/javascript">
+		TGP.authorize_endpoint = "@OAuthSettings.Settings.AuthorizeUrl";
+
+		TGP.authorize({
+			client_id: "@OAuthSettings.Settings.AppId",
+			redirect_uri: "@OAuthSettings.Settings.RedirectUri?username=@ViewBag.Username&language=@ViewBag.Language",
+			user_id: "@ViewBag.Username",
+			lang : "@ViewBag.Language",
+			state: "sso"
+		});
+	</script>
+</body>
+</html>
