@@ -10,8 +10,11 @@
 namespace Apollo.Age.TotalBets.Models
 {
     using System;
-using Apollo.Age.Services;
+    using Apollo.Age.Services;
 
+    /// <summary>
+    /// First Goal Model
+    /// </summary>
     public class FirstGoalModel
     {
         public string ShowTime { get; set; }
@@ -50,7 +53,7 @@ using Apollo.Age.Services;
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 

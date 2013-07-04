@@ -24,6 +24,9 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Total Bets Controller
+    /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class TotalBetsController : BaseController
     {
@@ -34,6 +37,10 @@ namespace Apollo.Age.TotalBets.Controllers
             _totalBetsService = new TotalBetsService();
         }
 
+        /// <summary>
+        /// Index Page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -134,12 +141,12 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Get totalbet data by bettype, if MainShareHolderId > 0 and Current is Supper
+        /// Get total bet data by bet type, if MainShareHolderId > 0 and Current is Supper
         /// then load Data of that MainShareHolder
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="betType"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Return Data</typeparam>
+        /// <param name="betType">Bet Type</param>
+        /// <returns>List of total bet data</returns>
         private IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
         {
             int agentId = this.CurrentSession.AgentId;
