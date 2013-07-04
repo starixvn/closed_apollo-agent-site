@@ -1,0 +1,71 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Outright
+@using Apollo.Age.Web.Mvc
+@model List<OutrightViewModel>
+<table class="tblRpt outright soccer">
+    <thead>
+        <tr>
+            <th style="width: 40px">
+                @Lang.time
+            </th>
+            <th>
+                @Lang.league
+            </th>
+            <th style="width: 270px">
+                @Lang.lblTeam
+            </th>
+            <th style="width: 65px">
+                @Lang.lblelimination
+            </th>
+            <th style="width: 40px">
+                @Lang.lblWager
+            </th>
+        </tr>
+    </thead>    
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var subModel = new List<OutrightViewModel>();
+            foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.Raw(Formater.FormatDateTime22(item.EventDate))
+                </td>
+                <td>
+                    @item.LeagueName
+                </td>
+                <td colspan="3" class="hasTbl">
+                    <table class="tbl">
+                        @{
+                            subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
+                            var status = string.Empty;
+                            foreach (OutrightViewModel subItem in subModel)
+                            {
+                                if (subItem.Status.ToLower() == "refund")
+                                {
+                                    status = Lang.refund;
+                                }
+                                else if (subItem.Status.ToLower() == "close")
+                                {
+                                    status = "+";
+                                }
+                                <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
+                                    <td style="width: 269px">@subItem.TeamName
+                                    </td>
+                                    <td style="width: 65px" class="c">@status
+                                    </td>
+                                    <td style="width: 42px" class="c">@((int)subItem.BetCount)/@((int)subItem.Stake)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

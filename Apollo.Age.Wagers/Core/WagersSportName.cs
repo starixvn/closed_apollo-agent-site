@@ -9,12 +9,9 @@
 
 namespace Apollo.Age.Wagers.Core
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Resources;
     using Apollo.Age.Core;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

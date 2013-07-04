@@ -10,13 +10,10 @@
 namespace Apollo.Age.Wagers.Configuration
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Xml.Linq;
     using System.Configuration;
-    using Fanex.Logging;
     using System.Web;
+    using System.Xml.Linq;
+    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.

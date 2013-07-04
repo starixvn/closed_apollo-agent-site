@@ -7,7 +7,6 @@
 //   <change who="Terry.Nguyen" date="2013.6.30">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     public class TotalViewModel : WagerViewModel

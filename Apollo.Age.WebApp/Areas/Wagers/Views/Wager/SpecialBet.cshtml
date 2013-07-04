@@ -15,7 +15,7 @@
 
     var groupMatch = list.GroupBy(m => m.MatchId);
 }
-<table class="tblRpt @ViewBag.SportName @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
+<table class="tblRpt @ViewBag.SportName @((bool)ViewBag.IsEM ? "emw" : string.Empty) special-bet">
     @WagerHelper.RederHeaderColumn(arrBet)
     @*/RenderHeader*@
     <tbody>

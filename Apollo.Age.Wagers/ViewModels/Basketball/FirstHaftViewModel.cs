@@ -49,6 +49,5 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public string HomeBetteamHTOE { get; set; }
 
         public string AwayBetteamHTOE { get; set; }
-
     }
 }

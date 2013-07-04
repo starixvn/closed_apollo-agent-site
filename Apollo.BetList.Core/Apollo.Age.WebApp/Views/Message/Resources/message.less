@@ -1,0 +1,90 @@
+﻿@import "../../../_globalResources/css/agent.less";
+@import "../../../_globalResources/css/calendar.less";
+
+#box_header {
+	padding: 5px;
+	margin-bottom: 0;
+}
+
+.m_tab_ed {
+	background-color: #DCDCDC;
+	border: 1px solid #000;
+	padding: 0;
+	width: 750px;
+	border-collapse: separate;
+    border-spacing: 1px;
+
+	td {
+		height: 20px;
+		padding: 0 2px;	
+	}
+
+	.bg-green {
+		background: #6EC13E;		
+	}
+}
+
+.tblRpt.message {
+	margin-top: 0;
+	border-color: #000;
+	border-style:solid none none solid;
+	border-width: 2px 1px 1px;
+
+	tbody td {
+		white-space: normal;
+	}
+
+	.tbList {
+		// backup red themes
+		//#gradient.vertical(#F8F8F8, @primaryHeaderBackground);			
+		#gradient.vertical(#777, #555);
+		text-align: left;
+		background: #900;
+		font-weight: bolder;
+				
+		ul {				
+			li {					
+				float: left;
+				//font-weight: normal;
+				padding: 3px 20px 5px 5px;
+
+				a {
+					display: inline-block;
+					padding: 0;
+					//color: lighten(@primaryColor, 40%);
+					color: #fff;
+
+					span {							
+						//font-weight: normal;												
+						padding: 2px 0px;
+						float: none;							
+					}
+
+					&:hover {
+						border-bottom: 1px solid #fff;
+					}											
+				}					
+
+				&#current a {	
+					// backup red themes	
+					//color: @textColor;
+					border-bottom: 1px solid #fff;
+				}
+			}		
+		}
+	}
+}
+
+/* FIX IE */
+
+.ie {
+	.m_tab_ed a {
+		color: #0066CC;
+	}
+}
+
+.eq-ie7 {
+	form {
+		margin: 0;
+	}
+}
