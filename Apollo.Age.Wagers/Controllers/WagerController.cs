@@ -199,7 +199,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 ViewBag.IsShowViewOption = 0; // show selection Main Share Holder
             }
-            else if (CurrentSession.AgentLevel > 0 && CurrentSession.AgentLevel < 4)
+            else if (CurrentSession.AgentLevel > 0 && CurrentSession.AgentLevel < 3)
             {
                 ViewBag.IsShowViewOption = 1; // Remove Option
             }
