@@ -162,18 +162,12 @@
 
         if (!ReferenceEquals(groupBet, null) && groupBet.Any())
         {
-            var firstModel = groupBet.FirstOrDefault();
-    <br />
-    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)
-    <br />
+            var firstModel = groupBet.FirstOrDefault();    
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)    
         }
         else
         {
-    <div class="vertical-middle">
-        <br />
-        0/0
-        <br />
-    </div>
+    <span>0/0</span>                   
         } 
 }
 @helper RenderColumn(SpecialViewModel item)
