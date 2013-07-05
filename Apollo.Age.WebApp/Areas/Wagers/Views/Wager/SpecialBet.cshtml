@@ -23,7 +23,7 @@
         {
             var listMatch = item.OrderBy(m => m.Bettype).ToList();
             <tr class="c">
-                @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
+                @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault())
                 @for (int i = 0; i < countBet; i++)
                 {
                     <td class="r red-num" data-bettype="@listBet[i].Bettype">
