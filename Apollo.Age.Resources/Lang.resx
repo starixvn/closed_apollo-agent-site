@@ -1637,7 +1637,7 @@
     <value>HT/FT</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
-    <value>â€»Note: In simple mode</value>
+    <value>※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well.</value>
   </data>
   <data name="lblOU" xml:space="preserve">
     <value>O/U</value>

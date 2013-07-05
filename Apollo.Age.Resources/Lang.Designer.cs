@@ -3419,7 +3419,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to â€»Note: In simple mode.
+        ///   Looks up a localized string similar to ※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well..
         /// </summary>
         public static string lblWarningEditSetting {
             get {
