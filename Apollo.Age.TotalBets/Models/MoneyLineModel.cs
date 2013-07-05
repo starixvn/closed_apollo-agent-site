@@ -14,7 +14,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// Money Line Model
+    /// Money Line Model.
     /// </summary>
     public class MoneyLineModel
     {
