@@ -134,6 +134,16 @@
                 "~/_globalresources/js/blockui/jquery.blockui.js",
                 "~/_globalresources/js/core.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/resultjs").Include(
+               "~/_GlobalResources/Js/head.js",
+               "~/_GlobalResources/Js/jquery.js",
+               "~/_GlobalResources/Js/jquery.cookie.js",
+               "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+               "~/_GlobalResources/Js/Core.js",               
+               "~/_GlobalResources/Js/Pager/jquery.sbpager.js",
+               "~/views/results/resources/Result.js"
+               ));
+
             #region Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
