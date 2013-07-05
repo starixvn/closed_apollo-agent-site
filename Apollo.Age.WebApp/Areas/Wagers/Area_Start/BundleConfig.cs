@@ -15,17 +15,7 @@ namespace Apollo.Age.WebApp.Areas.Wagers
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            //bundles.Add(new ScriptBundle("~/areas/Wagers").Include(
-            //    "~/_GlobalResources/Js/head.js",
-            //    "~/_GlobalResources/Js/jquery.js",
-            //    "~/_GlobalResources/Js/jquery-ui.js",
-            //    "~/_GlobalResources/Js/Core.js",
-            //    "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-            //    "~/Areas/Wagers/Scripts/Wagers.js",
-            //    "~/_GlobalResources/Js/Pager/jquery.sbpager.js",
-            //    "~/_GlobalResources/Js/jquery.cookie.js",
-            //    "~/_GlobalResources/Js/RefreshCountDown.js"
-            //));
+           
 
         }
     }
