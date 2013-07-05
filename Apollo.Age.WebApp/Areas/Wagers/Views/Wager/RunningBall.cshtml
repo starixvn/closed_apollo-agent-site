@@ -51,18 +51,18 @@
                     @WagerHelper.RenderColumnData(item.AwayBetteamHTOE, item.AwayCountHTOE, item.AwayStakeHTOE, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
                 <td class="r red-num" data-bettype="@((int)BetTypes.FT_1X2)">
-                    @WagerHelper.RenderColumnData(item.BetteamHT1, item.Count1, item.Stake1, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData(item.Betteam1, item.Count1, item.Stake1, item.LiveIndicator, item.LeagueId, item.MatchId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountX, item.StakeX, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData(item.Betteam2, item.Count2, item.Stake2, item.LiveIndicator, item.LeagueId, item.MatchId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.BetteamHT2, item.Count2, item.Stake2, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData(item.BetteamX, item.CountX, item.StakeX, item.LiveIndicator, item.LeagueId, item.MatchId)                    
                 </td>
                 <td class="r red-num" data-bettype="@((int)BetTypes.FirstHalf_1X2)">
                     @WagerHelper.RenderColumnData(item.BetteamHT1, item.CountHT1, item.StakeHT1, item.LiveIndicator, item.LeagueId, item.MatchId)
                     <br />
-                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountHTX, item.StakeHTX, item.LiveIndicator, item.LeagueId, item.MatchId)
-                    <br />
                     @WagerHelper.RenderColumnData(item.BetteamHT2, item.CountHT2, item.StakeHT2, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    <br />                    
+                    @WagerHelper.RenderColumnData(item.BetteamHTX, item.CountHTX, item.StakeHTX, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
                 <td class="r red-num" data-bettype="@((int)BetTypes.Money_Line)">
                     @WagerHelper.RenderColumnData(item.HomeBetteamMoney, item.HomeCountMoney, item.HomeStakeMoney, item.LiveIndicator, item.LeagueId, item.MatchId)

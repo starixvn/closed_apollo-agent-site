@@ -28,6 +28,7 @@
 	<input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))"/>
 	<input type="hidden" name="lbltoday" id="lbltoday" value="@Lang.today"/>
 	<input type="hidden" name="lblyesterday" id="lblyesterday" value="@Lang.yesterday"/>
+    <input type="hidden" name="hardcodedatetime" id="hardcodedatetime" value="2013-06-11"/>
 </div>
 @using (Html.BeginForm())
 {

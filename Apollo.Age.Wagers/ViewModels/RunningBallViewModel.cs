@@ -106,6 +106,12 @@ namespace Apollo.Age.Wagers.ViewModels
 
         public string AwayBetteamOU { get; set; }
 
+        public string Betteam1 { get; set; }
+
+        public string BetteamX { get; set; }
+
+        public string Betteam2 { get; set; }
+
         public string HomeBetteamHTHDP { get; set; }
 
         public string AwayBetteamHTHDP { get; set; }
