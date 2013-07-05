@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="BkNFLRugbyController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BasketballController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -27,6 +27,11 @@ namespace Apollo.Age.Wagers.Controllers
         {
         }
 
+        /// <summary>
+        /// Group bet type name Straight.
+        /// </summary>
+        /// <param name="criteria">BasketballCriteria model.</param>
+        /// <returns>View results.</returns>
         public ActionResult Straight(BasketballCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
@@ -41,6 +46,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// Group bet type name FirstHalf.
+        /// </summary>
+        /// <param name="criteria">BasketballCriteria model.</param>
+        /// <returns>View results.</returns>
         public ActionResult FirstHalf(BasketballCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
@@ -55,6 +65,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// Group bet type name RunningBall.
+        /// </summary>
+        /// <param name="criteria">BasketballCriteria model.</param>
+        /// <returns>View results.</returns>
         public ActionResult RunningBall(RunningBallCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
@@ -70,6 +85,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View("~/Areas/Wagers/Views/Wager/RunningBall.cshtml", list);
         }
 
+        /// <summary>
+        /// Group bet type name Parlay.
+        /// </summary>
+        /// <param name="criteria">BasketballCriteria model.</param>
+        /// <returns>View results.</returns>
         public ActionResult Parlay(BasketballCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;
@@ -84,6 +104,11 @@ namespace Apollo.Age.Wagers.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// Group bet type name SpecialBet.
+        /// </summary>
+        /// <param name="criteria">BasketballCriteria model.</param>
+        /// <returns>View results.</returns>
         public ActionResult SpecialBet(BasketballCriteria criteria)
         {
             criteria.GroupBetName = this.CurrentAction;

@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
+    /// <summary>
+    /// Total view model.
+    /// </summary>
     public class TotalViewModel : WagerViewModel
     {
         public decimal HomeStakeOE { get; set; }

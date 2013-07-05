@@ -21,6 +21,12 @@ namespace Apollo.Age.Wagers.Services
     /// </summary>
     public class WagersService : QueryService, IWagersService
     {
+        /// <summary>
+        /// Get league.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="sportTypes">Sport type id.</param>
+        /// <returns>List league.</returns>
         public IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes)
         {
             var criteria = new GetLeagueCriteria
@@ -32,6 +38,12 @@ namespace Apollo.Age.Wagers.Services
             return this.GetData<League>(criteria);
         }
 
+        /// <summary>
+        /// Get wagers data.
+        /// </summary>
+        /// <typeparam name="T">Type of criteria.</typeparam>
+        /// <param name="criteria">Criteria class.</param>
+        /// <returns>List wagers.</returns>
         public IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria)
         {
             var result = this.GetData<T>(criteria);
@@ -46,6 +58,11 @@ namespace Apollo.Age.Wagers.Services
             return new List<T>();
         }
 
+        /// <summary>
+        /// Get event date for early market.
+        /// </summary>
+        /// <param name="sportTypes">Sport type ids.</param>
+        /// <returns>List date time.</returns>
         public IEnumerable<DateTime> GetEventDate(string sportTypes)
         {
             var criteria = new GetEventDateCriteria
@@ -55,6 +72,11 @@ namespace Apollo.Age.Wagers.Services
             return this.GetData<DateTime>(criteria);
         }
 
+        /// <summary>
+        /// Get main shareholder.
+        /// </summary>
+        /// <param name="betTypes">Bet type id.</param>
+        /// <returns>List agent.</returns>
         public IEnumerable<Agent> GetMainShareHolder(string betTypes)
         {
             var criteria = new GetMainShareHolderCriteria

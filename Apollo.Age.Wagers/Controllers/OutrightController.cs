@@ -13,8 +13,16 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Criterias.Outright;
     using Apollo.Age.Wagers.ViewModels.Outright;
 
+    /// <summary>
+    /// Outright Controller.
+    /// </summary>
     public class OutrightController : WagerController
     {
+        /// <summary>
+        /// Wager Outright.
+        /// </summary>
+        /// <param name="criteria">OutrightCriteria model.</param>
+        /// <returns>View result.</returns>
         public ActionResult WagerOutright(OutrightCriteria criteria)
         {
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;

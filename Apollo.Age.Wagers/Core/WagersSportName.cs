@@ -29,6 +29,10 @@ namespace Apollo.Age.Wagers.Core
 
         public const string Volleyball = "volleyball";
 
+        /// <summary>
+        /// Get sport id by sport name.
+        /// </summary>
+        /// <returns>Dictionary of sport id.</returns>
         public static Dictionary<string, string> WagerSportGroup()
         {
             var listOfSportType = new Dictionary<string, string>();

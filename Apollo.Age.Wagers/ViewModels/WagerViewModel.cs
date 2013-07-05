@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="WagerViewModels.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="WagerViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -11,6 +11,9 @@ namespace Apollo.Age.Wagers.ViewModels
 {
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Wager view model.
+    /// </summary>
     public class WagerViewModel
     {
         public string ShowTime { get; set; }

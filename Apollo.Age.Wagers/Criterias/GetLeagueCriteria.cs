@@ -21,11 +21,19 @@ namespace Apollo.Age.Wagers.Criterias
 
         public DateTime FromDate { get; set; }
 
+        /// <summary>
+        /// Get setting key.
+        /// </summary>
+        /// <returns>Age_Wagers_SelLeague key.</returns>
         public override string GetSettingKey()
         {
             return "Age_Wagers_SelLeague";
         }
 
+        /// <summary>
+        /// Check criteria is valid.
+        /// </summary>
+        /// <returns>If is valid return true.</returns>
         public override bool IsValid()
         {
             return !string.IsNullOrWhiteSpace(SportTypes);
