@@ -68,8 +68,14 @@ var Wagers = function ($) {
             });
 
             $('#groupComm').on('change', function () {
-                Wagers.groupComm = $(this).val();
-                Wagers.getWagerData();
+                if (Wagers.isOR == "true") {
+                    location.href = APOLLO.resolveUrl("~/wagers/wager?sportname=" + $(this).val() + "&isOR=true");
+                }
+                else {
+                    Wagers.groupComm = $(this).val();
+                    Wagers.getWagerData();
+                }
+
             });
 
             $('#EmDate').on('change', function () {
@@ -87,6 +93,9 @@ var Wagers = function ($) {
         },
 
         getWagerData: function () {
+            if (Wagers.isOR == "true") {
+                Wagers.groupComm = "All";
+            }
 
             $.ajax({
                 url: APOLLO.resolveUrl(Wagers.url),
