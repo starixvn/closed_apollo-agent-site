@@ -1819,4 +1819,7 @@
   <data name="date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="lblUnderConstruction" xml:space="preserve">
+    <value>Under construction</value>
+  </data>
 </root>

@@ -338,7 +338,7 @@
 @helper RenderWagersBaseColumn(WagerViewModel item, bool isRaw = false)
     {
         var showTime = item.ShowTime;
-        string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font>").TrimEnd('M');
+        string format = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
     <td class="width-40 show-time">
         @item.ShowTime
         @if (item.LiveIndicator)
