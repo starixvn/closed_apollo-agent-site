@@ -42,7 +42,12 @@ namespace Apollo.Age.Forecast.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                if (this.IsNeutral)
+                {
+                    return CacheRef.GetTeamName(this.HomeId) + "(N)";
+                }
+
+                return CacheRef.GetTeamName(this.HomeId);
             }
         }
 

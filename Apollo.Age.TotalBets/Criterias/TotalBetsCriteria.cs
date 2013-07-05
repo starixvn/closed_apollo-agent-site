@@ -12,6 +12,9 @@ namespace Apollo.Age.TotalBets.Criterias
     using Apollo.Age.Enumerations;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get Total bet Criteria
+    /// </summary>
     public class TotalBetsCriteria : CriteriaBase
     {
         private int _agentId;
@@ -26,6 +29,10 @@ namespace Apollo.Age.TotalBets.Criterias
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Get Setting Key for Get Data
+        /// </summary>
+        /// <returns></returns>
         public override string GetSettingKey()
         {
             switch (BetType)
@@ -53,6 +60,10 @@ namespace Apollo.Age.TotalBets.Criterias
             return string.Empty;
         }
 
+        /// <summary>
+        /// Can run store procedure
+        /// </summary>
+        /// <returns>Can run or not</returns>
         public override bool IsValid()
         {
             return AgentId > 0;

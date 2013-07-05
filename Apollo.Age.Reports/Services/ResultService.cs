@@ -11,8 +11,6 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -54,9 +52,9 @@ namespace Apollo.Age.Reports.Services
         public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId)
         {
             var criteria = new GetMatchResultCriteria
-                    {                        
-                      FromDate =fromDate,
-                      Sporttypes = sportTypes,
+                    {
+                        FromDate = fromDate,
+                        Sporttypes = sportTypes,
                         BalanceUpDay = GetBalanceUpDay()
                     };
 
@@ -70,7 +68,7 @@ namespace Apollo.Age.Reports.Services
                 {
                     CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
                 }
-            }           
+            }
 
             return matchResult;
         }
@@ -79,21 +77,21 @@ namespace Apollo.Age.Reports.Services
         {
             var criteria = new GetOutrightResultCriteria
             {
-                FromDate = fromDate,               
+                FromDate = fromDate,
                 IsShowAll = true,
-                BalanceUpDay = GetBalanceUpDay()  
+                BalanceUpDay = GetBalanceUpDay()
             };
             var cacheKey = fromDate.ToString("yyyyMMdd");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
             if (result == null)
             {
-                result =  GetData<OutrightResultModel>(criteria);
+                result = GetData<OutrightResultModel>(criteria);
                 if (result != null)
                 {
                     CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
                 }
-            }           
+            }
 
             return result;
         }
@@ -114,7 +112,7 @@ namespace Apollo.Age.Reports.Services
         {
             var criteria = new GetResultByParlayCriteria
             {
-                 RefNo = refNo
+                RefNo = refNo
             };
 
             var parlayResult = GetData<MatchResultModel>(criteria);

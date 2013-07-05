@@ -7,7 +7,6 @@
 //   <change who="Anders" date="2013.4.28">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Integration
 {
     using System;
@@ -21,6 +20,7 @@ namespace Apollo.Age.Integration
     public class AuthenticationException : Exception
     {
         public int UserId { get; set; }
+
         public string Lang { get; set; }
 
         public override string ToString()

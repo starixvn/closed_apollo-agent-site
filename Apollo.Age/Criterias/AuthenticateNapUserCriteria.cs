@@ -1,7 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AuthenticateNapUserCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="AuthenticateNapUserCriteria.cs" company="Nexcel Solutions Vietnam" >
+// Copyright (c) 2013 Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
+// <summary>
+// Define criteria for authentication function
+// </summary>
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Lewis.Le" date="2013.5.3">Created</change>

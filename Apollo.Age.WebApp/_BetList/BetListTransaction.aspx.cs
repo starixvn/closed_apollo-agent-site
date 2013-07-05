@@ -77,7 +77,7 @@ namespace Sunplus.Agent.UI._BetList
             bool isShowScoremap;
 
             int index = 0;
-            bool isAdminCanViewVNIP = true;
+           // bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 

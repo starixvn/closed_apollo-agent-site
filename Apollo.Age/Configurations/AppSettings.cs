@@ -16,12 +16,7 @@ namespace Apollo.Age.Configurations
     using System.Text;
 
     public static class AppSettings
-    {
-        public static string GetValue(string key)
-        {
-            return ConfigurationManager.AppSettings[key].ToLower();
-        }
-
+    {     
         public static string UnderMaintenanceUrl
         {
             get
@@ -61,12 +56,18 @@ namespace Apollo.Age.Configurations
                 return GetValue("AllowInternalUpdate") == "1";
             }
         }
+
         public static bool AllowMultipleSignIn
         {
             get
             {
                 return GetValue("AllowMultipleSignIn") == "1";
             }
+        }
+
+        public static string GetValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key].ToLower();
         }
     }
 }

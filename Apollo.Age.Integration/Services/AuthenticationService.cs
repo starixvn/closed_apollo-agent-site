@@ -6,8 +6,6 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.26">Created</change>
 // </history>
-
-
 namespace Apollo.Age.Integration.Services
 {
     using System;
@@ -30,7 +28,6 @@ namespace Apollo.Age.Integration.Services
 
         public AuthenticationService()
         {
-
         }
 
         /// <summary>
@@ -77,7 +74,6 @@ namespace Apollo.Age.Integration.Services
             catch (WebException webException)
             {
                 LogService.Error(webException.Message, webException);
-
             }
             catch (AuthenticationException authException)
             {
@@ -112,7 +108,7 @@ namespace Apollo.Age.Integration.Services
         }
 
         /// <summary>
-        ///  Transalate error message key returned from OAuth service to understandable message
+        ///  Translate error message key returned from authentication service to understandable message
         /// </summary>
         /// <param name="errorCode">server_error is default error code</param>
         /// <returns></returns>
@@ -137,7 +133,7 @@ namespace Apollo.Age.Integration.Services
         }
 
         /// <summary>
-        ///  Convert language code returned from OAuth service to Apollo agent language code
+        ///  Convert language code returned from authentication service to Apollo agent language code
         /// </summary>
         /// <param name="sungameLanguage"></param>
         /// <returns></returns>

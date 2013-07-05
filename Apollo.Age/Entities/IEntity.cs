@@ -6,8 +6,6 @@
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
-
-
 namespace Apollo.Age.Entities
 {
     using System;
@@ -21,6 +19,7 @@ namespace Apollo.Age.Entities
     public interface IEntity<TId, TName>
     {
         TId Id { get; set; }
+
         TName Username { get; set; }        
     }
 }

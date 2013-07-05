@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LoginByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="InternalGetAgentByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,10 +9,6 @@
 
 namespace Apollo.Age.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

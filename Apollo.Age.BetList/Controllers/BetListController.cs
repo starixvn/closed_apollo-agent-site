@@ -53,13 +53,8 @@ namespace Apollo.Age.BetList.Controllers
             this._totalBetsService = new TotalBetsService();
         }
 
-        public ViewResult Index()
-        {
-            return this.View();
-        }
-
         /// <summary>
-        /// Betlist of member
+        /// Bet list of member
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
@@ -105,7 +100,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Betlist of member
+        /// Bet list of member
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -143,14 +138,54 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        /// <summary>
+        ///  Bet list Transaction
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ViewResult Transactions()
         {
             var viewModel = new BetListReportViewModel();
+            viewModel.Username = CurrentSession.AgentName;
 
             return this.Transactions(viewModel);
         }
 
+        /// <summary>
+        /// Bet list Transaction
+        /// </summary>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <param name="sportTypes"></param>
+        /// <param name="betTypes"></param>
+        /// <param name="userName"></param>
+        /// <param name="userType"></param>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ViewResult TransactionsPaging(DateTime fromDate, DateTime toDate, string sportTypes = _StringEmpty,
+            string betTypes = _StringEmpty, string userName = _StringEmpty,
+            int userType = 0, int pageIndex = 0)
+        {
+            var viewModel = new BetListReportViewModel()
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                SportTypes = sportTypes,
+                BetTypes = betTypes,
+                Username = userName,
+                UserType = userType,
+                PageIndex = pageIndex
+            };
+
+            return this.Transactions(viewModel);
+        }
+
+        /// <summary>
+        /// Bet list Transaction
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ViewResult Transactions(BetListReportViewModel model)
         {
@@ -167,7 +202,6 @@ namespace Apollo.Age.BetList.Controllers
             int agentId, custId;
             int errorCode;
 
-            model.Username = CurrentSession.AgentName;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
@@ -193,12 +227,15 @@ namespace Apollo.Age.BetList.Controllers
 
                 TicketResult mainTickets;
                 mainTickets = betListService.GetTicketResult(criteria);
+                ViewBag.TotalItems = mainTickets.TicketList.Count();
+
+                mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
 
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
             }
 
-            return this.View(model);
+            return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
         /// <summary>
@@ -259,7 +296,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Betlist Outstanding report
+        /// Bet list Outstanding report
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="username"></param>
@@ -310,7 +347,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Betlist winloss report
+        /// Bet list winloss report
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="fromDate"></param>
@@ -472,7 +509,7 @@ namespace Apollo.Age.BetList.Controllers
             var betListService = new BetListService();
             var criteria = new WagersCriteria
             {
-                LoggedId = loggedId == 0 ? CurrentSession.AgentId : loggedId,
+                LoggedId = loggedId > 0 ? loggedId : CurrentSession.AgentId,
                 FromDate = fromDate,
                 UGroup = uGroup,
                 IsDirectMem = isDirectMem,
@@ -494,6 +531,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Action MixParlay
+        /// </summary>
+        /// <param name="transid"></param>
+        /// <returns></returns>
         public ViewResult MixParlay(long transid)
         {
             var betListService = new BetListService();
@@ -508,6 +550,20 @@ namespace Apollo.Age.BetList.Controllers
            };
 
             return this.View(viewModel);
+        }
+
+        /// <summary>
+        /// Combination MixParlay
+        /// </summary>
+        /// <param name="refNo"></param>
+        /// <param name="winlossDate"></param>
+        /// <param name="transId"></param>
+        /// <param name="betId"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public ViewResult CombinationMixParlay(string refNo, DateTime winlossDate, int transId, int betId, int custId)
+        {
+            return this.View();
         }
 
         /// <summary>
@@ -638,11 +694,21 @@ namespace Apollo.Age.BetList.Controllers
             return new List<Agent>();
         }
 
+        /// <summary>
+        /// Time start date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         private DateTime ResetStartDate(DateTime dt)
         {
             return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
         }
 
+        /// <summary>
+        /// Time end date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         private DateTime ResetEndDate(DateTime dt)
         {
             return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));

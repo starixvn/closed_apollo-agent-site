@@ -3,17 +3,27 @@
 @using Fanex.BetList.Core.Utils;
 @model Apollo.Age.BetList.ViewModels.BetListReportViewModel
 @{
-    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
+}
+@section css
+{
+    <link href="~/_GlobalResources/Js/Pager/jquery.sbpager.less" rel="stylesheet" />
+}
+@section scripts
+{
+    <script src="~/_GlobalResources/Js/Pager/jquery.sbpager.js" type="text/javascript"></script>
 }
 @using (Html.BeginForm())
 {
+    if (!Request.IsAjaxRequest())
+    {
     <div id="function-bar">
         <div class="item">
             <label for="ddlSport">@Lang.lblReport:</label>
             @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
         </div>
-         @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
+        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
         <img alt="" src="~/_GlobalResources/Images/top_04.gif">
     </div>
     <div id="box_header" class="report">
@@ -68,7 +78,7 @@
             <tr>
                 <td class="winloss_firstcolumn">
                     @{
-    var dllUserType = new List<SelectListItem>{new SelectListItem
+        var dllUserType = new List<SelectListItem>{new SelectListItem
                    {
                        Text = Lang.agent,
                        Value = "1",
@@ -100,111 +110,120 @@
             </div>
         </div>
     </div>
+    <div class="pages-size">
+        <div class="pull-left">@Lang.Page:</div>
+        <div id="pager" class="sbpager">
+        </div>
+        @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+    </div>
+    }
 }
-<table class="tblRpt betlist">
-    <thead class="persist-header">
-        <tr>
-            <th style="width: 70px;">
-                @BetList.time
-            </th>
-            <th style="width: 170px;">
-                @BetList.discount
-            </th>
-            <th style="width: 170px;">
-                @BetList.gameType
-            </th>
-            <th>
-                @BetList.explain
-            </th>
-            <th style="width: 100px;">
-                @BetList.amount
-            </th>
-            <th style="width: 90px;">
-                @BetList.result
-            </th>
-            <th style="width: 80px;">
-                @BetList.status
-            </th>
-            <th style="width: 90px;">
-                @BetList.agentPT
-            </th>
-            <th style="width: 90px;">
-                @BetList.agentComm
-            </th>
-            <th style="width: 60px;">
-                @BetList.feature
-            </th>
-        </tr>
-    </thead>
-    @if (Model.TicketList != null && Model.TicketList.Any())
-    {
-        var i = 0;
-        decimal totalAmount = 0;
-        decimal totalResult = 0;
-        decimal totalAgentWinloss = 0;
-        decimal totalAgentComm = 0;
-        <tbody>
-            @foreach (var item in Model.TicketList)
-            {
-                i++;
-                totalAmount += item.Stake;
-                totalResult += item.Result;
-                totalAgentComm += item.AgentCommValue;
-                totalAgentWinloss += item.AgentWinlossValue;
+<div id="container">
+    <table class="tblRpt betlist">
+        <thead class="persist-header">
+            <tr>
+                <th style="width: 70px;">
+                    @BetList.time
+                </th>
+                <th style="width: 170px;">
+                    @BetList.discount
+                </th>
+                <th style="width: 170px;">
+                    @BetList.gameType
+                </th>
+                <th>
+                    @BetList.explain
+                </th>
+                <th style="width: 100px;">
+                    @BetList.amount
+                </th>
+                <th style="width: 90px;">
+                    @BetList.result
+                </th>
+                <th style="width: 80px;">
+                    @BetList.status
+                </th>
+                <th style="width: 90px;">
+                    @BetList.agentPT
+                </th>
+                <th style="width: 90px;">
+                    @BetList.agentComm
+                </th>
+                <th style="width: 60px;">
+                    @BetList.feature
+                </th>
+            </tr>
+        </thead>
+        @if (Model.TicketList != null && Model.TicketList.Any())
+        {
+            var i = 0;
+            decimal totalAmount = 0;
+            decimal totalResult = 0;
+            decimal totalAgentWinloss = 0;
+            decimal totalAgentComm = 0;
+            <tbody>
+                @foreach (var item in Model.TicketList)
+                {
+                    i++;
+                    totalAmount += item.Stake;
+                    totalResult += item.Result;
+                    totalAgentComm += item.AgentCommValue;
+                    totalAgentWinloss += item.AgentWinlossValue;
+                    <tr>
+                        <td class='c'>
+                            @Html.Raw(item.TransTime)
+                        </td>
+                        <td class='c'>@Html.Raw(item.Discount)
+                        </td>
+                        <td class='c'>@Html.Raw(item.GameType)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.Choice)
+                        </td>
+                        <td class='r'>
+                            @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='r'>
+                            @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.Status)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentShare)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentComm)
+                        </td>
+                        <td class='r'>
+                            <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                        </td>
+                    </tr>
+                }
                 <tr>
-                    <td class='c'>
-                        @Html.Raw(item.TransTime)
+                    <td colspan="3" class="total">
                     </td>
-                    <td class='c'>@Html.Raw(item.Discount)
+                    <td class="r total">@i
                     </td>
-                    <td class='c'>@Html.Raw(item.GameType)
+                    <td class="r total">
+                        @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class='r'>
-                        @Html.Raw(item.Choice)
+                    <td class="r result">
+                        @Formater.FormatNumber20(totalResult, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class='r'>
-                        @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                    <td class='r total'>
                     </td>
-                    <td class='r'>
-                        @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
+                    <td class='r result'>
+                        @Formater.FormatNumber20(totalAgentWinloss, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class='r'>
-                        @Html.Raw(item.Status)
+                    <td class='r result'>
+                        @Formater.FormatNumber20(totalAgentComm, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class='r'>
-                        @Html.Raw(item.AgentShare)
-                    </td>
-                    <td class='r'>
-                        @Html.Raw(item.AgentComm)
-                    </td>
-                    <td class='r'>
-                        <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                    <td class='r total'>
                     </td>
                 </tr>
-            }
-            <tr>
-                <td colspan="3" class="total">
-                </td>
-                <td class="r total">@i
-                </td>
-                <td class="r total">
-                    @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
-                </td>
-                <td class="r result">
-                    @Formater.FormatNumber20(totalResult, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r total'>
-                </td>
-                <td class='r result'>
-                    @Formater.FormatNumber20(totalAgentWinloss, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r result'>
-                    @Formater.FormatNumber20(totalAgentComm, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r total'>
-                </td>
-            </tr>
-        </tbody>
+            </tbody>
 
-    }
-</table>
+        }
+    </table>
+</div>

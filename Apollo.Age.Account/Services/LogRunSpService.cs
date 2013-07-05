@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LogService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="LogRunSpService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------

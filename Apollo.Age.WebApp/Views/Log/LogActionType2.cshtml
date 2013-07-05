@@ -1,4 +1,6 @@
-﻿@using Apollo.Age.Resources
+﻿@using Apollo.Age.Account.Core;
+@using Fanex.CustSetting.ViewData;
+@using Apollo.Age.Resources
 @{   
     var list = (List<DiscountModel>)Model;
     var oldGroup = ViewBag.OldGroup;
@@ -144,8 +146,8 @@
 }
 @helper ToString(decimal oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue * 100).ToString();
-        string strNew = Math.Round(newValue * 100).ToString();
+        string strOld = Formater.DecFormat(oldValue * 100, 2).ToString();
+        string strNew = Formater.DecFormat(newValue * 100,2).ToString();
 
         if (oldValue != newValue)
         { 

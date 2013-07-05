@@ -56,7 +56,7 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="Core\SingbetBettypeConstant.cs" />
+    <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />

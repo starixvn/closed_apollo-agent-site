@@ -777,6 +777,7 @@
     <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
     <Content Include="Views\BetList\Outstanding.cshtml" />
     <Content Include="Views\BetList\AccountInfo.cshtml" />
+    <Content Include="Views\BetList\CombinationMixParlay.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />
@@ -1014,9 +1015,7 @@
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
-    <Content Include="Views\Results\MatchResult.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
-    <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />

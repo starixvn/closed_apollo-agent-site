@@ -114,7 +114,7 @@ namespace Sunplus.Agent.UI._BetList
             var forecastService = new ForecastService();
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-            bool isAdminCanViewVNIP = true;
+           // bool isAdminCanViewVNIP = true;
 
             #endregion INIT
 

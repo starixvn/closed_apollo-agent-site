@@ -17,7 +17,7 @@ namespace Apollo.Age.Integration.Configurations
     using System.Configuration;
 
     /// <summary>
-    /// Define OAuth section
+    /// Define open authentication section
     /// <example>http://haacked.com/archive/2007/03/11/custom-configuration-sections-in-3-easy-steps.aspx</example>
     /// </summary>
     public class OAuthSettings : ConfigurationSection
@@ -64,7 +64,7 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// The url client submit to in order to get authenitcation token
+        /// The url client submit to in order to get authentication token
         /// </summary>
         [ConfigurationProperty("TokenUrl", IsRequired = true)]
         public string TokenUrl
@@ -84,7 +84,7 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// Src path to TGP script which handle the inital step of sso
+        /// Path to TGP script which handle the initial step of single sign on
         /// </summary>
         [ConfigurationProperty("TgpScriptSrc", IsRequired = true)]
         public string TgpScriptSrc
@@ -94,7 +94,7 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// The url user will be redirected to after sso sucessfull login
+        /// The url user will be redirected to after single sign on sucessfull login
         /// </summary>
         [ConfigurationProperty("DefaultUrl", IsRequired = true)]
         public string DefaultUrl

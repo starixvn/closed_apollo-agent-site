@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetTopPriMessage24Criteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetHasPriMessage24Criteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------

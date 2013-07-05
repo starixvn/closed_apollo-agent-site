@@ -7,7 +7,6 @@
 //   <change who="Anders" date="2013.5.2">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Integration.Models
 {
     using System;
@@ -16,7 +15,8 @@ namespace Apollo.Age.Integration.Models
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Represent the object returned from authorization model
+    /// So pls ignore stylecop rule violations
     /// </summary>
     public class JsonResponseModel
     {

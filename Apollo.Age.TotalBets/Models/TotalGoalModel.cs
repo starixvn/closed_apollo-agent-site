@@ -13,6 +13,9 @@ namespace Apollo.Age.TotalBets.Models
     using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Total Goal Model
+    /// </summary>
     public class TotalGoalModel
     {
         public int MatchId { get; set; }
@@ -53,7 +56,7 @@ namespace Apollo.Age.TotalBets.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 
