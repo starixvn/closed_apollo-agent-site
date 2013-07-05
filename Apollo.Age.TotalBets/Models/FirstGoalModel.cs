@@ -13,7 +13,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// First Goal Model
+    /// First Goal Model.
     /// </summary>
     public class FirstGoalModel
     {
