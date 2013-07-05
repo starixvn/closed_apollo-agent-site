@@ -33,14 +33,14 @@ namespace Apollo.Age.Reports.Controllers
     public class ResultsController : BaseController
     {
         /// <summary>
-        ///
+        /// Get property from Result service
         /// </summary>
         private readonly ResultService _resultService;
 
         #region Ctors
 
         /// <summary>
-        ///
+        /// Contructor default
         /// </summary>
         public ResultsController()
             : this(null)
@@ -48,7 +48,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        ///
+        /// Contructor Controller
         /// </summary>
         /// <param name="resultService"></param>
         public ResultsController(ResultService resultService = null)
@@ -59,7 +59,7 @@ namespace Apollo.Age.Reports.Controllers
         #endregion Ctors
 
         /// <summary>
-        ///
+        /// Get Balance Up Day.
         /// </summary>
         protected DateTime BalanceUpDay
         {
@@ -92,7 +92,10 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="sportTypes"></param>
         /// <param name="sportId"></param>
         /// <returns></returns>
-        public JsonResult GetLeagueBySport(DateTime date, string sportTypes, int sportId)
+        public JsonResult GetLeagueBySport(
+            DateTime date,
+            string sportTypes,
+            int sportId)
         {
             IEnumerable<MatchResultModel> matchResults =
                 _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
@@ -121,9 +124,9 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all sports by match
         /// </summary>
-        /// <param name="date"></param>
-        /// <param name="sportTypes"></param>
-        /// <returns></returns>
+        /// <param name="date">Date</param>
+        /// <param name="sportTypes">Sporttypes</param>
+        /// <returns>Json data</returns>
         public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
             IEnumerable<MatchResultModel> matchResults =
