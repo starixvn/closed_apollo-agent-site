@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.Entities
 {
+    /// <summary>
+    /// WagerSport class.
+    /// </summary>
     public class WagerSport
     {
         public string Id { get; set; }

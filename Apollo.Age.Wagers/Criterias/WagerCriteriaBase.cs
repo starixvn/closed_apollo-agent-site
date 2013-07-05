@@ -15,6 +15,9 @@ namespace Apollo.Age.Wagers.Criterias
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// WagerCriteriaBase class.
+    /// </summary>
     public class WagerCriteriaBase : CriteriaBase
     {
         private string _groupBetName;

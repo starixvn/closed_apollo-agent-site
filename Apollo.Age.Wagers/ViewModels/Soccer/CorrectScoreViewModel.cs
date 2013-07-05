@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="WagersCorrectScoreViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CorrectScoreViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
     /// <summary>
-    /// for Correct Score(4), 1st Half Correct Score(30) and Half/Full(16)
+    /// For Correct Score(4), 1st Half Correct Score(30) and Half/Full(16).
     /// </summary>
     public class CorrectScoreViewModel : WagerViewModel
     {

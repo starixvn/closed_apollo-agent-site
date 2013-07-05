@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.ViewModels
 {
+    /// <summary>
+    /// RunningBallViewModel class.
+    /// </summary>
     public class RunningBallViewModel : WagerViewModel
     {
         public decimal HomeStakeHDP { get; set; }

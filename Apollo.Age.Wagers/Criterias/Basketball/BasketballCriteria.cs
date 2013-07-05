@@ -10,12 +10,16 @@
 namespace Apollo.Age.Wagers.Criterias.Basketball
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// BasketballCriteria class.
     /// </summary>
     public class BasketballCriteria : WagerCriteriaBase
     {
         public string Sporttypes { get; set; }
 
+        /// <summary>
+        /// Get setting key.
+        /// </summary>
+        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
             var settingKey = string.Empty;
@@ -42,6 +46,10 @@ namespace Apollo.Age.Wagers.Criterias.Basketball
             return settingKey;
         }
 
+        /// <summary>
+        /// Check criteria is valid data.
+        /// </summary>
+        /// <returns>Is true if criteria is valid.</returns>
         public override bool IsValid()
         {
             return true;
