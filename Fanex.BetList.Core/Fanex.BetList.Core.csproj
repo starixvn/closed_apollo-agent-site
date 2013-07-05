@@ -197,6 +197,7 @@
     <Compile Include="Builder\StatusBuilder\Status33.cs" />
     <Compile Include="Builder\TimeBuilder\ITime.cs" />
     <Compile Include="Builder\TimeBuilder\Time.cs" />
+    <Compile Include="Builder\TransBuilder\Trans8.cs" />
     <Compile Include="Builder\TransBuilder\Trans1203.cs" />
     <Compile Include="Builder\TransBuilder\Trans85.cs" />
     <Compile Include="Builder\TransBuilder\Trans18.cs" />
