@@ -27,12 +27,13 @@ namespace Apollo.Age.Wagers.Services
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">Sport type id.</param>
         /// <returns>List league.</returns>
-        public IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes)
+        public IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes, bool isOutright=false)
         {
             var criteria = new GetLeagueCriteria
             {
                 FromDate = fromDate,
-                SportTypes = sportTypes
+                SportTypes = sportTypes,
+                IsOutright = isOutright
             };
 
             return this.GetData<League>(criteria);

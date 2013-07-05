@@ -87,9 +87,34 @@ var Wagers = function ($) {
                 $("#btnSubmit").on('click', function () {
                     Wagers.fromDate = $('#OutrightFromDate').val();
                     Wagers.toDate = $('#OutrightToDate').val();
-                    Wagers.getWagerData();
+                    Wagers.getLeagues();
+                   
                 });
             }
+        },
+
+        getLeagues: function () {
+            $.ajax({
+                url: APOLLO.resolveUrl("~/wagers/wager/GetJsonLeague"),
+                data: {
+                    fromDate: Wagers.fromDate,
+                    sportTypes: Wagers.sportTypeIds,
+                    isOutright: true
+                },
+                success: function (data) {
+                    $('#League').empty();
+                    $.each(data, function (i, item) {
+                        if (i == 0) {
+                            Wagers.League = item.Id;
+                        }
+                        $('#League').append($('<option>', {
+                            value: item.Id,
+                            text: item.Name
+                        }));
+                    });
+                    Wagers.getWagerData();
+                }
+            });
         },
 
         getWagerData: function () {

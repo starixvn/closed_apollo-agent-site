@@ -50,9 +50,9 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">Sport type ids.</param>
         /// <returns>List of league.</returns>
-        public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
+        public List<League> GetLeague(DateTime fromDate, string sportTypes = null, bool isOutright = false)
         {
-            var leagues = WagerService.GetLeague(fromDate, sportTypes);
+            var leagues = WagerService.GetLeague(fromDate, sportTypes, isOutright);
             var result = new List<League>();
             foreach (var league in leagues)
             {
@@ -64,6 +64,27 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
+        }
+
+        public JsonResult GetJsonLeague(DateTime fromDate, string sportTypes = null, bool isOutright = false)
+        {
+            var leagues = WagerService.GetLeague(fromDate, sportTypes, isOutright);
+            var result = new List<League>();
+            result.Add(new League
+            {
+                Id = 0,
+                Name = Lang.all
+            });
+            foreach (var league in leagues)
+            {
+                result.Add(new League
+                {
+                    Id = league.Id,
+                    Name = CacheRef.GetLeagueName(league.Id)
+                });
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet); 
         }
 
         /// <summary>
@@ -215,7 +236,7 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes);
+            ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
             ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
             ViewBag.SportName = sportName;
