@@ -13,6 +13,7 @@
     var isEM = (bool)ViewBag.isEM;
     var isOR = (bool)ViewBag.isOR;
     var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
+    var moveBetDate = (DateTime)ViewBag.MoveBetDate;
     var isShowViewOption = (int)ViewBag.IsShowViewOption;
 }
 <!DOCTYPE html>
@@ -84,7 +85,7 @@
             
             <div class="item">            
             
-             @Html.DatePicker("OutrightFromDate", DateTime.Now, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
+             @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
              </div>
              <div class="before-filter">
             ~</div>
