@@ -18,7 +18,7 @@ namespace Apollo.Age.Reports.ViewModels
 	{
 		public DateTime BalanceUpDay { get; set; }
 
-		public List<MatchEnteredModel> matchEnteredModelList { get; set; }
+		public List<MatchEnteredModel> MatchEnteredModelList { get; set; }
 
 		public List<SingbetSport> SportList { get; set; }
 
@@ -26,11 +26,11 @@ namespace Apollo.Age.Reports.ViewModels
 
 		public bool CheckIsCompleted(bool isToday)
 		{
-			if (matchEnteredModelList != null)
+			if (MatchEnteredModelList != null)
 			{
 				if (isToday)
 				{
-					foreach (var item in matchEnteredModelList)
+					foreach (var item in MatchEnteredModelList)
 					{
 						if (item.TodayNonEntered != 0)
 						{
@@ -40,7 +40,7 @@ namespace Apollo.Age.Reports.ViewModels
 				}
 				else
 				{
-					foreach (var item in matchEnteredModelList)
+					foreach (var item in MatchEnteredModelList)
 					{
 						if (item.YesterdayNonEntered != 0)
 						{
