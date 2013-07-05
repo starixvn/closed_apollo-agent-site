@@ -58,8 +58,12 @@ var Wagers = function ($) {
                 else {
                     Wagers.isDirectMember = ($this.val() == 0 ? false : true);
                 }
-
-                Wagers.getWagerData();
+                if (Wagers.isOR == "true") {
+                    Wagers.getLeagues();
+                }
+                else {
+                    Wagers.getWagerData();
+                }
             });
 
             $('#League').on('change', function () {
@@ -68,8 +72,14 @@ var Wagers = function ($) {
             });
 
             $('#groupComm').on('change', function () {
-                Wagers.groupComm = $(this).val();
-                Wagers.getWagerData();
+                if (Wagers.isOR == "true") {
+                    location.href = APOLLO.resolveUrl("~/wagers/wager?sportname=" + $(this).val() + "&isOR=true");
+                }
+                else {
+                    Wagers.groupComm = $(this).val();
+                    Wagers.getWagerData();
+                }
+
             });
 
             $('#EmDate').on('change', function () {
@@ -81,12 +91,40 @@ var Wagers = function ($) {
                 $("#btnSubmit").on('click', function () {
                     Wagers.fromDate = $('#OutrightFromDate').val();
                     Wagers.toDate = $('#OutrightToDate').val();
-                    Wagers.getWagerData();
+                    Wagers.getLeagues();
+
                 });
             }
         },
 
+        getLeagues: function () {
+            $.ajax({
+                url: APOLLO.resolveUrl("~/wagers/wager/GetJsonLeague"),
+                data: {
+                    fromDate: Wagers.fromDate,
+                    sportTypes: Wagers.sportTypeIds,
+                    isOutright: true
+                },
+                success: function (data) {
+                    $('#League').empty();
+                    $.each(data, function (i, item) {
+                        if (i == 0) {
+                            Wagers.League = item.Id;
+                        }
+                        $('#League').append($('<option>', {
+                            value: item.Id,
+                            text: item.Name
+                        }));
+                    });
+                    Wagers.getWagerData();
+                }
+            });
+        },
+
         getWagerData: function () {
+            if (Wagers.isOR == "true") {
+                Wagers.groupComm = "All";
+            }
 
             $.ajax({
                 url: APOLLO.resolveUrl(Wagers.url),
