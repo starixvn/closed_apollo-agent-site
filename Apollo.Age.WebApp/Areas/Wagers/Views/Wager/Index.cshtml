@@ -61,12 +61,12 @@
         else
         { 
             <div class="item">
-             @Html.DatePicker("OutrightFromDate", DateTime.Now, minDate: balanceUpDay)
+             @Html.DatePicker("OutrightFromDate", DateTime.Now, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
              </div>
              <div class="before-filter">
             ~</div>
             <div class="item">
-             @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay)
+             @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
              </div>
             <div class="item">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />
