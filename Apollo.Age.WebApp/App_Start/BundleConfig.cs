@@ -208,6 +208,18 @@
                "~/_GlobalResources/Js/Core.js",
                "~/Views/BetList/Resources/BetList.js"));
 
+            //bundles.Add(new ScriptBundle("~/areas/wagers").Include(
+            //   "~/_GlobalResources/Js/head.js",
+            //   "~/_GlobalResources/Js/jquery.js",
+            //   "~/_GlobalResources/Js/jquery-ui.js",
+            //   "~/_GlobalResources/Js/Core.js",
+            //   "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+            //   "~/Areas/Wagers/Scripts/Wagers.js",
+            //   "~/_GlobalResources/Js/Pager/jquery.sbpager.js",
+            //   "~/_GlobalResources/Js/jquery.cookie.js",
+            //   "~/_GlobalResources/Js/RefreshCountDown.js"
+           //));
+
             #endregion js
 
             bundles.FileSetOrderList.Clear();
