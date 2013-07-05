@@ -2645,7 +2645,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Odd Even / Wagers.
+        ///   Looks up a localized string similar to Odd/Even / Wagers.
         /// </summary>
         public static string lblOddEvenWagers {
             get {
