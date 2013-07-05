@@ -769,6 +769,8 @@
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
+    <Content Include="Areas\Wagers\Views\LangTemp.cshtml" />
+    <Content Include="Views\Account\LangTemp.cshtml" />
     <None Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />

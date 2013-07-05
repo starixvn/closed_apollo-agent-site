@@ -19,7 +19,7 @@
     <tbody>
         @Model.List(
             @<tr class="c">
-                @WagerHelper.RenderBaseColumns(item)
+                @WagerHelper.RenderBaseColumns(item,Lang.lblDraw)
                 <td class="r red-num" data-bettype="@((int)BetTypes.Handicap)">
                     @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator, item.LeagueId, item.MatchId)
                     <br />
