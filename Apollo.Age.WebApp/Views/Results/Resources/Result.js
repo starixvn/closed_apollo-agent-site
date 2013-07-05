@@ -11,7 +11,7 @@ var Result = (function () {
         init: function () {
             ddlSport = $("#ddlSport");
             ddlLeague = $("#ddlLeague");
-            date = $("#filterbydate").attr("value");
+            date = $("#hardcodedatetime").val() != null ? $("#hardcodedatetime").val() : $("#filterbydate").attr("value");
             sportTypes = "1";
             Result.bindingMenu();
             Result.filterByDateChanging();
@@ -101,14 +101,14 @@ var Result = (function () {
         },
         bindingMenu: function () {
             $("[name=menusport]").on("click", function () {
-                date = $("#filterbydate").attr("value");
+                date = $("#hardcodedatetime").val() != null ? $("#hardcodedatetime").val() : $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
                 Result.reActiveMenu(0);
                 Result.showResult();
             });
 
             $("[name=menuothersport]").on("click", function () {
-                date = $("#filterbydate").attr("value");
+                date = $("#hardcodedatetime").val() != null ? $("#hardcodedatetime").val() : $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
                 Result.reActiveMenu(1);
                 Result.OtherResult();
@@ -122,7 +122,7 @@ var Result = (function () {
                 });
             });
             $("[name=menuoutright]").on("click", function () {
-                date = $("#filterbydate").attr("value");
+                date = $("#hardcodedatetime").val() != null ? $("#hardcodedatetime").val() : $("#filterbydate").attr("value");
                 sportTypes = $(this).attr("id");
                 Result.reActiveMenu(2);
                 Result.OutrightResult();

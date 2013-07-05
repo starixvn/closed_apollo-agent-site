@@ -116,119 +116,121 @@ RegisterStartUp(InitBetList);
 var BETLIST = {};
 
 if (typeof jQuery != "undefined") {
-	BETLIST = function ($) {
-		return {
-			dialogDetails: null,
-			pageIndex: 0,
-			init: function () {
-				BETLIST.BalanceUpDay = $("#balanceUpDay")
-				BETLIST.FromDate = $("#FromDate");
-				BETLIST.ToDate = $("#ToDate");
-				BETLIST.Today = $("#today");
-				BETLIST.Yesterday = $("#yesterday");
-				BETLIST.Tomorrow = $("#tomorrow");
-				BETLIST.FromThisWeek = $("#thisWeekFrom");
-				BETLIST.ToThisWeek = $("#thisWeekTo");
-				BETLIST.FromLastWeek = $("#lastWeekFrom");
-				BETLIST.ToLastWeek = $("#lastWeekTo");
-				BETLIST.ddlSport = $("#SportTypes");
-				BETLIST.ddlBettype = $("#BetTypes");
-				BETLIST.dialogDetails = $('#dialog-details');
-				// Event click submit on ticket cancel
-				$(".act-ticket-cancel").click(function () {
-					BETLIST.ticketCancel();
-				});
+    BETLIST = function ($) {
+        return {
+            dialogDetails: null,
+            pageIndex: 0,
+            init: function () {
+                BETLIST.BalanceUpDay = $("#balanceUpDay")
+                BETLIST.FromDate = $("#FromDate");
+                BETLIST.ToDate = $("#ToDate");
+                BETLIST.Today = $("#today");
+                BETLIST.Yesterday = $("#yesterday");
+                BETLIST.Tomorrow = $("#tomorrow");
+                BETLIST.FromThisWeek = $("#thisWeekFrom");
+                BETLIST.ToThisWeek = $("#thisWeekTo");
+                BETLIST.FromLastWeek = $("#lastWeekFrom");
+                BETLIST.ToLastWeek = $("#lastWeekTo");
+                BETLIST.ddlSport = $("#SportTypes");
+                BETLIST.ddlBettype = $("#BetTypes");
+                BETLIST.dialogDetails = $('#dialog-details');
+                // Event click submit on ticket cancel
+                $(".act-ticket-cancel").click(function () {
+                    BETLIST.ticketCancel();
+                });
 
-				$('#backLink').click(function () {
-					history.go(-1);
-					return false;
-				});
-				$(".dateRange").bind('click', function () {
-					/* Range type value
-					+ 1 : Today
-					+ 2 : Yesterday
-					+ 3 : Tomorrow
-					+ 4 : This Week
-					+ 5 : Last Week
-					*/
-					var rangeType = $(this).attr('range');
+                $('#backLink').click(function () {
+                    history.go(-1);
+                    return false;
+                });
+                $(".dateRange").bind('click', function () {
+                    /* Range type value
+                    + 1 : Today
+                    + 2 : Yesterday
+                    + 3 : Tomorrow
+                    + 4 : This Week
+                    + 5 : Last Week
+                    */
+                    var rangeType = $(this).attr('range');
 
-					switch (rangeType) {
-						case "1":
-							BETLIST.FromDate.val(BETLIST.Today.val());
-							BETLIST.ToDate.val(BETLIST.Today.val());
-							break;
-						case "2":
-							BETLIST.FromDate.val(BETLIST.Yesterday.val());
-							BETLIST.ToDate.val(BETLIST.Yesterday.val());
-							break;
-						case "3":
-							BETLIST.FromDate.val(BETLIST.Tomorrow.val());
-							BETLIST.ToDate.val(BETLIST.Tomorrow.val());
-							break;
-						case "4":
-							BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
-							BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
-							break;
-						case "5":
-							BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
-							BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
-							break;
-						default:
-							BETLIST.FromDate.val(BETLIST.Today.val());
-							BETLIST.ToDate.val(BETLIST.Today.val());
-							return;
-					}
-				});
+                    switch (rangeType) {
+                        case "1":
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            break;
+                        case "2":
+                            BETLIST.FromDate.val(BETLIST.Yesterday.val());
+                            BETLIST.ToDate.val(BETLIST.Yesterday.val());
+                            break;
+                        case "3":
+                            BETLIST.FromDate.val(BETLIST.Tomorrow.val());
+                            BETLIST.ToDate.val(BETLIST.Tomorrow.val());
+                            break;
+                        case "4":
+                            BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
+                            break;
+                        case "5":
+                            BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
+                            break;
+                        default:
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            return;
+                    }
+                });
 
-				BETLIST.initPager(BETLIST.pageIndex);
-			},
+                if ($('#IsTransactionsBetList').val() === '1') {
+                    BETLIST.initPager(BETLIST.pageIndex);
+                }
+            },
 
-			getBetListData: function () {
-				$.blockUI();
-				$.ajax({
-					url: APOLLO.resolveUrl("~/Betlist/TransactionsPaging"),
-					data: {
-						fromDate: BETLIST.FromDate.val(),
-						toDate: BETLIST.ToDate.val(),
-						sportTypes: BETLIST.ddlSport.val(),
-						betTypes: BETLIST.ddlBettype.val(),
-						username: $("#Username").val(),
-						userType: $("#UserType").val(),
-						pageIndex: BETLIST.pageIndex
-					},
-					success: function (data) {
-						$('#container').html(data);
-					},
-					complete: function () {
-						$.unblockUI();
-					}
-				});
-			},
+            getBetListData: function () {
+                $.blockUI();
+                $.ajax({
+                    url: APOLLO.resolveUrl("~/Betlist/TransactionsPaging"),
+                    data: {
+                        fromDate: BETLIST.FromDate.val(),
+                        toDate: BETLIST.ToDate.val(),
+                        sportTypes: BETLIST.ddlSport.val(),
+                        betTypes: BETLIST.ddlBettype.val(),
+                        username: $("#Username").val(),
+                        userType: $("#UserType").val(),
+                        pageIndex: BETLIST.pageIndex
+                    },
+                    success: function (data) {
+                        $('#container').html(data);
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    }
+                });
+            },
 
-			initPager: function (pageIndex) {
-				$('#pager').sbPager({
-					currentPage: pageIndex,
-					itemPerPage: 40,
-					totalItem: $('#TotalItems').val(),
-					callback: function (currentPage) {
-						BETLIST.pageIndex = currentPage;
-						BETLIST.getBetListData();
-					}
-				});
-			},
+            initPager: function (pageIndex) {
+                $('#pager').sbPager({
+                    currentPage: pageIndex,
+                    itemPerPage: 40,
+                    totalItem: $('#TotalItems').val(),
+                    callback: function (currentPage) {
+                        BETLIST.pageIndex = currentPage;
+                        BETLIST.getBetListData();
+                    }
+                });
+            },
 
-			ticketCancel: function () {
-				if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
-					alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
-				}
-				else {
-					$.blockUI();
-					$("form:first").submit();
-				}
-			}
-		};
-	} (jQuery);
+            ticketCancel: function () {
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            }
+        };
+    } (jQuery);
 
 	$(document).ready(function () {
 		BETLIST.init();
