@@ -2,10 +2,14 @@
     return {
         ddlSport: null,
         ddlBettype: null,
+        hdSportType: null,
+        hdBettype: null,
 
         init: function () {
             OUTSTANDING.ddlSport = $("#ddlSport");
             OUTSTANDING.ddlBettype = $("#ddlBettype");
+            OUTSTANDING.hdSportType = $("#hdSportType");
+            OUTSTANDING.hdBettype = $("#hdBettype");
 
             $("#MemberOutstanding").on('click', function () {
                 var $this = $(this);
@@ -15,14 +19,17 @@
                     url: APOLLO.resolveUrl("Reports/MemberOutstanding"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'Sporttypes': OUTSTANDING.ddlSport.val(),
-                        'Bettypes': OUTSTANDING.ddlBettype.val(), 'mainShareHolderId': $this.attr("mainshareholderid"),
+                    data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'Sporttypes': OUTSTANDING.hdSportType.val(),
+                        'Bettypes': OUTSTANDING.hdBettype.val(), 'mainShareHolderId': $this.attr("mainshareholderid"),
                         'mainShareHolderUsername': $this.attr("mainshareholderusername")
                     }),
                     timeout: 120000
                 })
                 .done(function (result) {
                     OUTSTANDING.initGrid(result);
+
+                    OUTSTANDING.ddlSport.val(OUTSTANDING.hdSportType.val());
+                    OUTSTANDING.ddlBettype.val(OUTSTANDING.hdBettype.val());
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
@@ -33,20 +40,19 @@
             $("[name='navigation']").on('click', function () {
                 $.blockUI();
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
-				+ "&Sporttypes=" + OUTSTANDING.ddlSport.val()
-                    + "&Bettypes=" + OUTSTANDING.ddlBettype.val());
+				+ "&Sporttypes=" + OUTSTANDING.hdSportType.val()
+                    + "&Bettypes=" + OUTSTANDING.hdBettype.val());
             });
 
             $("[name='viewagent']").on('click', function () {
                 $.blockUI();
                 location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
-				+ "&Sporttypes=" + OUTSTANDING.ddlSport.val()
-                    + "&Bettypes=" + OUTSTANDING.ddlBettype.val()
+				+ "&Sporttypes=" + OUTSTANDING.hdSportType.val()
+                    + "&Bettypes=" + OUTSTANDING.hdBettype.val()
 					);
             });
 
             $("#btnSubmit").on('click', function () {
-
                 $.blockUI();
                 var url = APOLLO.resolveUrl('Reports/Outstanding?Sporttypes=' + OUTSTANDING.ddlSport.val()
                     + "&Bettypes=" + OUTSTANDING.ddlBettype.val());
@@ -62,8 +68,8 @@
             var username = $(this).closest('tr').children('td:first').text();
             location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&username=" + username
-			+ "&sporttype=" + OUTSTANDING.ddlSport.val()
-            + "&bettype=" + OUTSTANDING.ddlBettype.val()
+			+ "&sporttype=" + OUTSTANDING.hdSportType.val()
+            + "&bettype=" + OUTSTANDING.hdBettype.val()
 			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
             + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
             + "&type=outstanding")

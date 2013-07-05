@@ -294,10 +294,10 @@ else
         </tbody>
     </table>
 }
-@*@Html.Hidden("ddlSport", Model.Sporttypes)
-@Html.Hidden("ddlBettype", Model.Bettypes)
-@Html.Hidden("ToDate", Formater.ShortDateFormat(Model.ToDate))
-@Html.Hidden("FromDate", Formater.ShortDateFormat(Model.FromDate))*@
+@Html.Hidden("hdSportType", Model.Sporttypes)
+@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
+@Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))

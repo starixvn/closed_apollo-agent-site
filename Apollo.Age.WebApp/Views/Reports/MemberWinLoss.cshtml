@@ -150,7 +150,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/Betlist/Winloss?custId=@item.MemberId&username=@item.MemberName&sportType=@Model.Sporttypes&betType=@Model.Bettypes&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
+                        <a class="view-betlist" memberid="@item.MemberId" membername="item.MemberName" href="javascript:;">
                             @item.MemberName
                         </a>
                     </td>
@@ -240,10 +240,10 @@ else
         </tbody>
     </table>
 }
-@Html.Hidden("ddlSport", Model.Sporttypes)
-@Html.Hidden("ddlBettype", Model.Bettypes)
-@Html.Hidden("ToDate", Formater.ShortDateFormat(Model.ToDate))
-@Html.Hidden("FromDate", Formater.ShortDateFormat(Model.FromDate))
+@Html.Hidden("hdSportType", Model.Sporttypes)
+@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
+@Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @section scripts
 {
 	@Scripts.Render("~/scripts/winlossjs")
