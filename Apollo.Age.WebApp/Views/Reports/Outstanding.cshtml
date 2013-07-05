@@ -38,8 +38,8 @@
     </table>
 	<div>
         <div class="row bg-action">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+            <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
         </div>
     </div>
 </div>
@@ -160,7 +160,8 @@
 </div>
 <div id="gridId" class="freegrid content-grid clear" style="display: none"></div>
 }
-
+@Html.Hidden("hdSportType", Model.Sporttypes)
+@Html.Hidden("hdBettype", Model.Bettypes)
 @section scripts
 {
 	@Scripts.Render("~/scripts/outstandingjs")
