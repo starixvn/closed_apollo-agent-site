@@ -25,7 +25,7 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Web;
 
     /// <summary>
-    /// Total Bets Controller
+    /// Total Bets Controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class TotalBetsController : BaseController
@@ -38,19 +38,19 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Index Page
+        /// Index Page.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View return.</returns>
         public ActionResult Index()
         {
             return View();
         }
 
         /// <summary>
-        /// Load Handicap View
+        /// Load Handicap View.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult Handicap(int mainShareHolderId = 0)
         {
             var model = GetModel<HandicapModel>(BetTypes.Handicap, mainShareHolderId);
@@ -58,10 +58,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load Money Line View
+        /// Load Money Line View.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult MoneyLine(int mainShareHolderId = 0)
         {
             var model = GetModel<MoneyLineModel>(BetTypes.Money_Line, mainShareHolderId);
@@ -69,10 +69,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load Total Goal
+        /// Load Total Goal.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult TotalGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<TotalGoalModel>(BetTypes.Total_Goal, mainShareHolderId);
@@ -80,10 +80,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load Odd Even
+        /// Load Odd Even.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult OddEven(int mainShareHolderId = 0)
         {
             var model = GetModel<OddEvenModel>(BetTypes.Odd_Even, mainShareHolderId);
@@ -91,10 +91,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load HTFT
+        /// Load HTFT page.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult HTFT(int mainShareHolderId = 0)
         {
             var model = GetModel<HTFTModel>(BetTypes.HT_FT, mainShareHolderId);
@@ -102,10 +102,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load OutRight
+        /// Load OutRight page.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult OutRight(int mainShareHolderId = 0)
         {
             var model = GetModel<OutRightModel>(BetTypes.Outright, mainShareHolderId);
@@ -119,10 +119,10 @@ namespace Apollo.Age.TotalBets.Controllers
         //}
 
         /// <summary>
-        /// Load Home No Bet, Draw No Bet
+        /// Load Home No Bet, Draw No Bet.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult HomeNoBet(int mainShareHolderId = 0)
         {
             var model = GetModel<HomeNoBetModel>(BetTypes.Draw_No_Bet, mainShareHolderId);
@@ -130,10 +130,10 @@ namespace Apollo.Age.TotalBets.Controllers
         }
 
         /// <summary>
-        /// Load FGLG
+        /// Load FGLG page.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">Get current main shareholder data if id > 0.</param>
+        /// <returns>View return.</returns>
         public ViewResult FirstGoal(int mainShareHolderId = 0)
         {
             var model = GetModel<FirstGoalModel>(BetTypes.First_Goal_Last_Goal, mainShareHolderId);
@@ -142,11 +142,12 @@ namespace Apollo.Age.TotalBets.Controllers
 
         /// <summary>
         /// Get total bet data by bet type, if MainShareHolderId > 0 and Current is Supper
-        /// then load Data of that MainShareHolder
+        /// then load Data of that MainShareHolder.
         /// </summary>
-        /// <typeparam name="T">Return Data</typeparam>
-        /// <param name="betType">Bet Type</param>
-        /// <returns>List of total bet data</returns>
+        /// <typeparam name="T">Return Data.</typeparam>
+        /// <param name="betType">Bet Type gets data.</param>
+        /// <param name="mainShareHolderId">Main share holder id for get data.</param>
+        /// <returns>List of total bet data.</returns>
         private IEnumerable<T> GetModel<T>(BetTypes betType, int mainShareHolderId)
         {
             int agentId = this.CurrentSession.AgentId;

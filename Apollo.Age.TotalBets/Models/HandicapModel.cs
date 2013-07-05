@@ -14,7 +14,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// Handicap Model
+    /// Handicap Model.
     /// </summary>
     public class HandicapModel
     {

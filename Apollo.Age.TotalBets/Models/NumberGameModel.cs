@@ -12,7 +12,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// Number Game Model
+    /// Number Game Model.
     /// </summary>
     public class NumberGameModel
     {

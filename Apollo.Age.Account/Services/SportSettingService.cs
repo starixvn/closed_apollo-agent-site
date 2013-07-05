@@ -20,44 +20,57 @@ namespace Apollo.Age.Account.Services
 
     public class SportSettingService : ServiceBase, ISportSettingService
     {
-        public static List<SportSetting> SportList = null;
-
         #region const for read XML PTGrid
-        private const string PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
+        private const string _PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
 
-        private const string SPORT_TYPE_NODE_XML = "PTGrid/SportType";
+        private const string _SPORT_TYPE_NODE_XML = "PTGrid/SportType";
 
-        private const string BET_TYPE_NODE_XML = "BetTypeGroup/BetType";
+        private const string _BET_TYPE_NODE_XML = "BetTypeGroup/BetType";
 
-        private const string ATTRIBUTE_SPORT_ID = "id";
+        private const string _ATTRIBUTE_SPORT_ID = "id";
 
-        private const string ATTRIBUTE_BETTYPE_ID = "id";
+        private const string _ATTRIBUTE_BETTYPE_ID = "id";
 
-        private const string ATTRIBUTE_SPORT_NAME = "name";
+        private const string _ATTRIBUTE_SPORT_NAME = "name";
 
-        private const string ATTRIBUTE_BETTYPE_NAME = "name";
+        private const string _ATTRIBUTE_BETTYPE_NAME = "name";
 
-        private const string ATTRIBUTE_SPORT_LIVE = "isLive";
+        private const string _ATTRIBUTE_SPORT_LIVE = "isLive";
 
-        private const string ATTRIBUTE_RESOURCE_KEY = "resourcekey";
+        private const string _ATTRIBUTE_RESOURCE_KEY = "resourcekey";
 
-        private const string MIX_SPORT_PARLAY = "Mix Sports Parlay";
+        private const string _MIX_SPORT_PARLAY = "Mix Sports Parlay";
         #endregion
+
+		private static List<SportSetting> _sportList = null;
+
+		public static List<SportSetting> SportList
+		{
+			get 
+			{ 
+				return _sportList; 
+			}
+
+			set
+			{
+				_sportList = value;
+			}
+		}
 
         public List<SportSetting> GetAllSportType()
         {
             var sportList = new List<SportSetting>();
             XmlDocument xmlDoc = new XmlDocument();
 
-            xmlDoc.Load(HttpContext.Current.Server.MapPath(PATH_XML));
+            xmlDoc.Load(HttpContext.Current.Server.MapPath(_PATH_XML));
 
-            foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(SPORT_TYPE_NODE_XML))
+            foreach (XmlNode sportTypeNode in xmlDoc.SelectNodes(_SPORT_TYPE_NODE_XML))
             {
-                if (sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value != null
-                    && sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value != null)
+                if (sportTypeNode.Attributes[_ATTRIBUTE_SPORT_ID].Value != null
+                    && sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value != null)
                 {
-                    var isLive = Converter.ToBool(sportTypeNode.Attributes[ATTRIBUTE_SPORT_LIVE].Value);
-                    var sportId = Converter.To<short>(sportTypeNode.Attributes[ATTRIBUTE_SPORT_ID].Value);
+                    var isLive = Converter.ToBool(sportTypeNode.Attributes[_ATTRIBUTE_SPORT_LIVE].Value);
+                    var sportId = Converter.To<short>(sportTypeNode.Attributes[_ATTRIBUTE_SPORT_ID].Value);
 
                     var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
 
@@ -67,24 +80,25 @@ namespace Apollo.Age.Account.Services
                         {
                             Id = sportId,
                             IsMixSportParlay = false,
-                            Name = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString(),
-                            ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
+                            Name = sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value.ToString(),
+                            ResourceKey = sportTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                             BetTypeList = new List<BetTypeSetting>()
                         };
 
                         sportList.Add(sport);
                     }
-                    else // process for sport id=99 & name=Mix Sports Parlay
+                    else 
                     {
-                        var sportName = sportTypeNode.Attributes[ATTRIBUTE_SPORT_NAME].Value.ToString();
-                        if (sportId == (short)SportTypes.OtherSports && sportName == MIX_SPORT_PARLAY)
+						// process for sport id=99 & name=Mix Sports Parlay
+                        var sportName = sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value.ToString();
+                        if (sportId == (short)SportTypes.OtherSports && sportName == _MIX_SPORT_PARLAY)
                         {
                             sport = new SportSetting()
                             {
                                 Id = sportId,
                                 IsMixSportParlay = true,
                                 Name = sportName,
-                                ResourceKey = sportTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
+                                ResourceKey = sportTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                 BetTypeList = new List<BetTypeSetting>()
                             };
 
@@ -93,12 +107,12 @@ namespace Apollo.Age.Account.Services
                     }
 
                     // bet type
-                    foreach (XmlNode betTypeNode in sportTypeNode.SelectNodes(@BET_TYPE_NODE_XML))
+                    foreach (XmlNode betTypeNode in sportTypeNode.SelectNodes(@_BET_TYPE_NODE_XML))
                     {
-                        if (betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value != null
-                            && betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value != null)
+                        if (betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_ID].Value != null
+                            && betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_NAME].Value != null)
                         {
-                            var betTypeId = Converter.ToInt(betTypeNode.Attributes[ATTRIBUTE_BETTYPE_ID].Value);
+                            var betTypeId = Converter.ToInt(betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_ID].Value);
                             var betType = sport.BetTypeList.Where(t => t.Id == betTypeId).SingleOrDefault();
 
                             if (betType == null)
@@ -106,8 +120,8 @@ namespace Apollo.Age.Account.Services
                                 betType = new BetTypeSetting()
                                 {
                                     Id = betTypeId,
-                                    Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
-                                    ResourceKey = betTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
+                                    Name = betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    ResourceKey = betTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = false
                                 };
@@ -120,8 +134,8 @@ namespace Apollo.Age.Account.Services
                                 betType = new BetTypeSetting()
                                 {
                                     Id = betTypeId,
-                                    Name = betTypeNode.Attributes[ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
-                                    ResourceKey = betTypeNode.Attributes[ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
+                                    Name = betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
+                                    ResourceKey = betTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
                                     IsLive = isLive,
                                     IsDead = !isLive
                                 };

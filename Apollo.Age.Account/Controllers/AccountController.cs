@@ -32,9 +32,8 @@ namespace Apollo.Age.Account.Controllers
     public class AccountController : BaseController
     {
         #region Const for paging
-        private const int PageIndex = 0; // Current index page
-        private const int PageSize = 50; // Maximum items in a page
-        private const int TotalPage = 0; // Maximum page totals
+        private const int _PageIndex = 0; // Current index page
+        private const int _PageSize = 50; // Maximum items in a page
         #endregion
 
         private readonly IAccountService _accountService;
@@ -118,14 +117,14 @@ namespace Apollo.Age.Account.Controllers
             {
                 AgentId = agentId,
                 PageIndex = currentPageIndex + 1,
-                PageSize = PageSize,
+                PageSize = _PageSize,
                 TotalPages = totalPage
             };
 
             var memberList = _accountService.GetMemberDownline(ref criteria);
             totalPage = criteria.TotalPages;
 
-            return View(memberList.ToPagedList(currentPageIndex, PageSize, totalPage * PageSize));
+            return View(memberList.ToPagedList(currentPageIndex, _PageSize, totalPage * _PageSize));
         }
 
         [ValidateInput(false)]
