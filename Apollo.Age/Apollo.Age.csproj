@@ -113,6 +113,7 @@
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
+    <Compile Include="Services\ServiceLayerException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
