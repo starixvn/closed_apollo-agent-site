@@ -228,6 +228,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.isOR = isOR;
 
             ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
+            ViewBag.MoveBetDate = ReportService.MoveBetsDay();
 
             if (CurrentSession.AgentLevel == 0)
             {
