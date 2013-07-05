@@ -133,27 +133,29 @@ namespace Apollo.Age.Integration.Services
         }
 
         /// <summary>
-        ///  Convert language code returned from authentication service to Apollo agent language code
+        ///  Convert language code returned from authentication service to Apollo agent language code.
+        ///  <see cref="OAuthController" >Default is zh-CN (Chinese traditional).</see>
+        ///  <seealso cref="member">text</seealso>
         /// </summary>
         /// <param name="sungameLanguage"></param>
-        /// <returns></returns>
+        /// <returns>Language code.</returns>
         public string ConvertToApolloLanguage(string sungameLanguage)
         {
             switch (sungameLanguage)
             {
                 case "zh_TW":
                     return "zh-TW";
-                case "zh_GB":
-                    return "zh-CN";
                 case "ja_JP":
-                    return "ja-JP";
+                    return "zh-CN";
                 case "th_TH":
-                    return "th-TH";
+                    return "zh-CN";
                 case "vm_VM":
-                    return "vi-VN";
+                    return "zh-CN";
                 case "en_US":
-                default:
                     return "en-US";
+                case "zh_GB":
+                default:
+                    return "zh-CN";
             }
         }
     }

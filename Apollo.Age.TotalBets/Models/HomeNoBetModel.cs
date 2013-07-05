@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="HomeNoBet.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="HomeNoBetModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,11 +9,11 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
-    using Apollo.Age.Services;
     using System;
+    using Apollo.Age.Services;
 
     /// <summary>
-    /// Home no bet model
+    /// Home no bet model.
     /// </summary>
     public class HomeNoBetModel
     {
