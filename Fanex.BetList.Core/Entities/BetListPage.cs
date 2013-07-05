@@ -42,6 +42,11 @@ namespace Fanex.BetList.Core.Entities
         AccountInfo = 7,
 
         /// <summary>
+        /// Link from Wager page
+        /// </summary>
+        Wager = 8,
+
+        /// <summary>
         /// Other Pages
         /// </summary>
         Default = 5
