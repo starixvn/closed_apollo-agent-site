@@ -61,7 +61,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 X 2, R.B. 1 X 2.
+        ///   Looks up a localized string similar to 1 X 2.
         /// </summary>
         public static string _1x2RB1x2 {
             get {
@@ -1034,7 +1034,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TO TOP.
+        ///   Looks up a localized string similar to Go to top.
         /// </summary>
         public static string GoToTop {
             get {
@@ -1079,7 +1079,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handicap, Over/Under, Odd/Even.
+        ///   Looks up a localized string similar to Handicap.
         /// </summary>
         public static string HandicapOverUnderOddEven {
             get {
@@ -1412,7 +1412,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 X 2 Comm.
+        ///   Looks up a localized string similar to 1x2 Comm.
         /// </summary>
         public static string lbl1x2Comm {
             get {
@@ -1628,7 +1628,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent List Of .
+        ///   Looks up a localized string similar to Agent List Of.
         /// </summary>
         public static string lblAgentListOf {
             get {
@@ -1709,7 +1709,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HDP, OU, OE.
+        ///   Looks up a localized string similar to HDP.
         /// </summary>
         public static string lblAsianHDC_OU_OE {
             get {
@@ -2366,7 +2366,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Value Range, Input must in [{0} - {1}]..
+        ///   Looks up a localized string similar to Invalid Value Range.
         /// </summary>
         public static string lblInvalidValueRange {
             get {
@@ -2546,7 +2546,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Single Bet .
+        ///   Looks up a localized string similar to Min Single Bet.
         /// </summary>
         public static string lblMinBet {
             get {
@@ -2645,7 +2645,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Odd/Even / Wagers.
+        ///   Looks up a localized string similar to Odd Even / Wagers.
         /// </summary>
         public static string lblOddEvenWagers {
             get {
@@ -2834,7 +2834,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it.
+        ///   Looks up a localized string similar to Given Share Value is lower than Min Given Value.
         /// </summary>
         public static string lblPleaseCheckConstrainMaxMin {
             get {
@@ -3176,6 +3176,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Under construction.
+        /// </summary>
+        public static string lblUnderConstruction {
+            get {
+                return ResourceManager.GetString("lblUnderConstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Under Even.
         /// </summary>
         public static string lblUnderEven {
@@ -3410,7 +3419,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well..
+        ///   Looks up a localized string similar to â€»Note: In simple mode.
         /// </summary>
         public static string lblWarningEditSetting {
             get {
@@ -4184,7 +4193,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to R.B. Handicap, R.B. Over/Under.
+        ///   Looks up a localized string similar to R.B. Handicap.
         /// </summary>
         public static string RBHandicapRBOverUnder {
             get {
@@ -4382,7 +4391,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  sec.
+        ///   Looks up a localized string similar to sec.
         /// </summary>
         public static string sec {
             get {
@@ -4634,7 +4643,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you, please contact your upline!!!.
+        ///   Looks up a localized string similar to ... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you.
         /// </summary>
         public static string stringSessionLogged {
             get {
