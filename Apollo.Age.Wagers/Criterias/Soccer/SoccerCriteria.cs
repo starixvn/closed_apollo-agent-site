@@ -11,8 +11,15 @@ namespace Apollo.Age.Wagers.Criterias.Soccer
 {
     using Apollo.Age.Wagers.Criterias;
 
+    /// <summary>
+    /// SoccerCriteria class.
+    /// </summary>
     public class SoccerCriteria : WagerCriteriaBase
     {
+        /// <summary>
+        /// Get setting key.
+        /// </summary>
+        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
             var settingKey = string.Empty;
@@ -42,6 +49,10 @@ namespace Apollo.Age.Wagers.Criterias.Soccer
             return settingKey;
         }
 
+        /// <summary>
+        /// Check criteria is valid.
+        /// </summary>
+        /// <returns>If is valid return true.</returns>
         public override bool IsValid()
         {
             return true;

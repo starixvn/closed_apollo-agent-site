@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
+    /// <summary>
+    /// ParlayViewModel class.
+    /// </summary>
     public class ParlayViewModel : WagerViewModel
     {
         public decimal Stake9 { get; set; }

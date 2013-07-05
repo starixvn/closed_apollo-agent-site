@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="IWagerService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="IWagersService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -19,12 +19,34 @@ namespace Apollo.Age.Wagers.Services
     /// </summary>
     public interface IWagersService
     {
+        /// <summary>
+        /// Get league.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="sportTypes">Sport type id.</param>
+        /// <returns>List league.</returns>
         IEnumerable<League> GetLeague(DateTime fromDate, string sportTypes);
 
+        /// <summary>
+        /// Get main shareholder.
+        /// </summary>
+        /// <param name="betTypes">Bet type id.</param>
+        /// <returns>List agent.</returns>
         IEnumerable<Agent> GetMainShareHolder(string betTypes);
 
+        /// <summary>
+        /// Get wagers data.
+        /// </summary>
+        /// <typeparam name="T">Type of criteria.</typeparam>
+        /// <param name="criteria">Criteria class.</param>
+        /// <returns>List wagers.</returns>
         IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria);
 
+        /// <summary>
+        /// Get event date for early market.
+        /// </summary>
+        /// <param name="sportTypes">Sport type ids.</param>
+        /// <returns>List date time.</returns>
         IEnumerable<DateTime> GetEventDate(string sportTypes);
     }
 }

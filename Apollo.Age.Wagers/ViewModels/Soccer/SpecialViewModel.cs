@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
+    /// <summary>
+    /// SpecialViewModel class.
+    /// </summary>
     public class SpecialViewModel : WagerViewModel
     {
         public int Bettype { get; set; }

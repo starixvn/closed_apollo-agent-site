@@ -25,6 +25,9 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Wager Controller.
+    /// </summary>
     public class WagerController : BaseController
     {
         protected readonly IWagersService WagerService;
@@ -41,6 +44,12 @@ namespace Apollo.Age.Wagers.Controllers
             ReportService = new ReportService();
         }
 
+        /// <summary>
+        /// Get league.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="sportTypes">Sport type ids.</param>
+        /// <returns>List of league.</returns>
         public List<League> GetLeague(DateTime fromDate, string sportTypes = null)
         {
             var leagues = WagerService.GetLeague(fromDate, sportTypes);
@@ -57,6 +66,11 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
         }
 
+        /// <summary>
+        /// Get sport type id by sport name.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <returns>Sport type id.</returns>
         public string SportId(string sportName)
         {
             string sportId = string.Empty;
@@ -68,6 +82,11 @@ namespace Apollo.Age.Wagers.Controllers
             return sportId;
         }
 
+        /// <summary>
+        /// Get date for early market wagers.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <returns>List date.</returns>
         public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
         {
             var sportId = SportId(sportName);
@@ -84,6 +103,12 @@ namespace Apollo.Age.Wagers.Controllers
             return list;
         }
 
+        /// <summary>
+        /// Get list main share holder.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="groupBetName">Group bet name.</param>
+        /// <returns>List agent.</returns>
         public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
         {
             switch (sportName)
@@ -114,6 +139,15 @@ namespace Apollo.Age.Wagers.Controllers
             return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
+        /// <summary>
+        /// Wagers index.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="groupBetName">Group bet name.</param>
+        /// <param name="resourceKey">Resource key of group bet name.</param>
+        /// <param name="isEM">Is early market.</param>
+        /// <param name="isOR">Is outright wagers.</param>
+        /// <returns>View result.</returns>
         public ActionResult Index(
             string sportName,
             string groupBetName = "Straight",
@@ -194,7 +228,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.isOR = isOR;
 
             ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
-            
+
             if (CurrentSession.AgentLevel == 0)
             {
                 ViewBag.IsShowViewOption = 0; // show selection Main Share Holder

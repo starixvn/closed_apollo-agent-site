@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="WagersStraightViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="StraightViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
 {
+    /// <summary>
+    /// StraightViewModel class.
+    /// </summary>
     public class StraightViewModel : WagerViewModel
     {
         public decimal HomeStakeHDP { get; set; }

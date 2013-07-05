@@ -12,6 +12,9 @@ namespace Apollo.Age.Wagers.ViewModels.Outright
     using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Outright view model.
+    /// </summary>
     public class OutrightViewModel : WagerViewModel
     {
         public DateTime EventDate { get; set; }

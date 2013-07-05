@@ -21,7 +21,7 @@ namespace Apollo.Age.Wagers.Configuration
     public static class WagerMenusConfiguration
     {
         /// <summary>
-        /// Constructor, for Lazy loading
+        /// Initializes static members of the <see cref="WagerMenusConfiguration" /> class.
         /// </summary>
         static WagerMenusConfiguration()
         {
