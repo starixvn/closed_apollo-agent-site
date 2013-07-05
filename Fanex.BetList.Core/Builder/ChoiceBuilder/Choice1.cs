@@ -109,17 +109,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             switch (betListPage)
             {
+                case BetListPage.Wager:
                 case BetListPage.Forecast:
                     this.Template.LeagueName.Hide();
                     break;
+                case BetListPage.AccountInfo:
                 case BetListPage.Default:
                 case BetListPage.Cancel:
                 case BetListPage.Outstanding:
                 case BetListPage.Report:
                     this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
                     break;
-            }      
-            
+            }
+
             this.Template.HomeAwayId.homeid = ticket.HomeId.ToString();
             this.Template.HomeAwayId.awayid = ticket.AwayId.ToString();
 
@@ -128,8 +130,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             // For Final Score
             string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-            if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose 
-                || (ticket.StatusId != null && ticket.StatusId.Value > 1) )
+            if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+                || (ticket.StatusId != null && ticket.StatusId.Value > 1))
             {
                 this.Template.Score.finalHomeScore = ticket.FinalHomeScore.ToString();
                 this.Template.Score.finalAwayScore = ticket.FinalAwayScore.ToString();

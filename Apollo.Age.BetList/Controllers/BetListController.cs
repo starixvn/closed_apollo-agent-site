@@ -90,7 +90,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListReportViewModel
             {
-                TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
+                TicketList = this.Ticket(mainTickets, BetListPage.AccountInfo),
                 FromDate = moveBetsDay,
                 ToDate = DateTime.Now,
                 BalanceUpDay = moveBetsDay
@@ -129,7 +129,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListReportViewModel
             {
-                TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
+                TicketList = this.Ticket(mainTickets, BetListPage.AccountInfo),
                 FromDate = moveBetsDay,
                 ToDate = DateTime.Now,
                 BalanceUpDay = moveBetsDay
@@ -232,7 +232,7 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
 
                 // Set data to view model
-                model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Transaction);
             }
 
             return this.View("~/Views/BetList/Transactions.cshtml", model);
@@ -289,7 +289,7 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets = betListService.GetTicketResult(criteria);
 
                 // Set data to view model
-                model.TicketList = this.Ticket(mainTickets, BetListPage.Report);
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
 
             return this.View(model);
@@ -525,7 +525,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
-                TicketList = this.Ticket(mainTickets, BetListPage.Forecast),
+                TicketList = this.Ticket(mainTickets, BetListPage.Wager),
             };
 
             return this.View(viewModel);

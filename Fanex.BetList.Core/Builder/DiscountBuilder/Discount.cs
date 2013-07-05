@@ -45,10 +45,14 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
         {
             switch (page)
             {
+                case BetListPage.AccountInfo:
+                case BetListPage.Wager:
                 case BetListPage.Forecast:
                 case BetListPage.Outstanding:
                     Template.ugroup = ticket.UGroup.ToUpper();
                     break;
+                case BetListPage.Cancel:
+                case BetListPage.Transaction:
                 case BetListPage.Report:
                     Template.ugroup = string.Empty;
                     break;
@@ -63,7 +67,7 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             }
             else
             {
-                Template.discount = (ticket.PlayerDiscount *100).ToString("N2");
+                Template.discount = (ticket.PlayerDiscount * 100).ToString("N2");
             }
 
             Template.username = ticket.UserName;
