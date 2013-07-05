@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="TotalBetCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TotalBetsCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Apollo.Age.TotalBets.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Get Total bet Criteria
+    /// Get Total bet Criteria.
     /// </summary>
     public class TotalBetsCriteria : CriteriaBase
     {
@@ -30,9 +30,9 @@ namespace Apollo.Age.TotalBets.Criterias
         public int BetType { get; set; }
 
         /// <summary>
-        /// Get Setting Key for Get Data
+        /// Get Setting Key for Get Data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Setting key.</returns>
         public override string GetSettingKey()
         {
             switch (BetType)
@@ -47,8 +47,6 @@ namespace Apollo.Age.TotalBets.Criterias
                     return "Age_TotalBets_2_5_12_15_123";
                 case (int)BetTypes.HT_FT: // HTFT
                     return "Age_TotalBets_16";
-                //case 161: // Number Game
-                //    return "Age_TotalBets_161";
                 case (int)BetTypes.Draw_No_Bet: // Home/Draw/Away/No Bet
                     return "Age_TotalBets_25_121_122";
                 case (int)BetTypes.First_Goal_Last_Goal: // First Goal/Last Goal
@@ -61,9 +59,9 @@ namespace Apollo.Age.TotalBets.Criterias
         }
 
         /// <summary>
-        /// Can run store procedure
+        /// Can run store procedure.
         /// </summary>
-        /// <returns>Can run or not</returns>
+        /// <returns>Can run or not.</returns>
         public override bool IsValid()
         {
             return AgentId > 0;

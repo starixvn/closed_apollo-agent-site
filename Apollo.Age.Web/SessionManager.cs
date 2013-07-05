@@ -7,13 +7,12 @@
 //   <change who="Anders" date="2013.5.1">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Web
 {
     using System.Web;
 
     /// <summary>
-    /// http://msdn.microsoft.com/en-us/library/ff650316.aspx
+    /// <see cref="http://msdn.microsoft.com/en-us/library/ff650316.aspx"/> 
     /// </summary>
     public static class SessionManager
     {
@@ -25,6 +24,7 @@ namespace Apollo.Age.Web
             {
                 return (ICurrentSession)HttpContext.Current.Session[ApolloCurrentSessionKey];
             }
+
             set
             {
                 HttpContext.Current.Session[ApolloCurrentSessionKey] = value;
