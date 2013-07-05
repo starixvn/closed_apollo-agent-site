@@ -230,4 +230,4 @@ var Result = (function () {
 $(function () {
     Result.init();
     //Result.bindMatchLeague();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
