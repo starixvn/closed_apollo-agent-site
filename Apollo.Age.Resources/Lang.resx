@@ -973,7 +973,7 @@
     <value>Nov</value>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Single Bet Max</value>
+    <value>Single Bet</value>
   </data>
   <data name="lblOverUnderWager" xml:space="preserve">
     <value>Over / Under / Wagers</value>
@@ -1816,7 +1816,7 @@
     <value>Invalid Value Range, Input must in [{0} - {1}].</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Single Bet Min</value>
+    <value>Min Single Bet</value>
   </data>
   <data name="hd" xml:space="preserve">
     <value>HD</value>

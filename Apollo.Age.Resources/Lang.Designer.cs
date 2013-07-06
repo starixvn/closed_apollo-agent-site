@@ -2455,7 +2455,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Max.
+        ///   Looks up a localized string similar to Single Bet.
         /// </summary>
         public static string lblMaxBet {
             get {
@@ -2545,7 +2545,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet Min.
+        ///   Looks up a localized string similar to Min Single Bet.
         /// </summary>
         public static string lblMinBet {
             get {
