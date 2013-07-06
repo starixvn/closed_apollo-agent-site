@@ -244,7 +244,10 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-            ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+            if (isEM)
+            {
+                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+            }
             ViewBag.isEM = isEM;
             ViewBag.isOR = isOR;
 
