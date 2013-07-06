@@ -8,10 +8,10 @@
     <thead>
         <tr>
             <th style="width: 40px">
-                @Lang.time
+                @Lang.TimeGMT8
             </th>
             <th>
-                @Lang.league
+                @Lang.league / @Lang.events
             </th>
             <th style="width: 270px">
                 @Lang.lblTeam
@@ -28,40 +28,43 @@
         @if (Model != null && Model.Any())
         {
             var subModel = new List<OutrightViewModel>();
-            foreach (var item in Model)
+            var groupLeague = Model.GroupBy(or => new { or.LeagueId, or.LeagueName, or.EventDate });
+            foreach (var item in groupLeague)
             {
             <tr>
-                <td>
-                    @Html.Raw(Formater.FormatDateTime22(item.EventDate))
+                <td class="outright-league">
+                    @Html.Raw(Formater.FormatDateTime22(item.Key.EventDate))
                 </td>
-                <td>
-                    @item.LeagueName
+                <td class="outright-league">
+                    @item.Key.LeagueName
                 </td>
                 <td colspan="3" class="hasTbl">
                     <table class="tbl">
                         @{
-                            subModel = Model.Where(x => x.LeagueId == item.LeagueId).ToList();
+                            subModel = item.ToList();
+                                //Model.Where(x => x.LeagueId == item.Key.LeagueId).ToList();
                             var status = string.Empty;
                             foreach (OutrightViewModel subItem in subModel)
                             {
+                                status = string.Empty;
                                 if(!string.IsNullOrEmpty(subItem.Status))
                                 {
                                     if (subItem.Status.ToLower() == "refund")
                                     {
                                         status = Lang.refund;
                                     }
-                                    else if (subItem.Status.ToLower() == "close")
+                                    else if (subItem.Status.ToLower() == "lose")
                                     {
                                         status = "+";
                                     }
                                 }
-                                <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
-                                    <td style="width: 269px">@subItem.TeamName
+                                <tr class="@(!string.IsNullOrEmpty(status) ? "outright-status" : string.Empty) ">
+                                    <td style="width: 269px" >@subItem.TeamName
                                     </td>
                                     <td style="width: 65px" class="c">@status
                                     </td>
                                     <td style="width: 42px" class="c" data-bettype="@((int)BetTypes.Outright)">
-                                     @WagerHelper.RenderColumnData(item.BetTeam, item.BetCount, item.Stake, item.LiveIndicator, item.LeagueId, item.MatchId)                                    
+                                     @WagerHelper.RenderColumnData(subItem.BetTeam, subItem.BetCount, subItem.Stake, subItem.LiveIndicator, subItem.LeagueId, subItem.MatchId)                                    
                                     </td>
                                 </tr>
                             }

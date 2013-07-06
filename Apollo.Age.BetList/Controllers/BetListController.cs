@@ -234,6 +234,10 @@ namespace Apollo.Age.BetList.Controllers
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Transaction);
             }
+            else
+            {
+                ViewBag.TotalItems = 0;
+            }
 
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
