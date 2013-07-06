@@ -91,6 +91,12 @@ var Wagers = function ($) {
                 $("#btnSubmit").on('click', function () {
                     var newFromDate = $('#OutrightFromDate').val();
                     var newToDate = $('#OutrightToDate').val();
+
+                    if (newFromDate > newToDate) {
+                        alert("Please recheck the range of date!!");
+                        return;
+                    }
+
                     if (Wagers.fromDate != newFromDate || newToDate != Wagers.toDate) {
                         Wagers.fromDate = newFromDate;
                         Wagers.toDate = newToDate;
