@@ -50,9 +50,9 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">Sport type ids.</param>
         /// <returns>List of league.</returns>
-        public List<League> GetLeague(DateTime fromDate, string sportTypes = null, bool isOutright = false)
+        public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
-            var leagues = WagerService.GetLeague(fromDate, sportTypes, isOutright);
+            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
             var result = new List<League>();
             foreach (var league in leagues)
             {
@@ -66,9 +66,9 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
         }
 
-        public JsonResult GetJsonLeague(DateTime fromDate, string sportTypes = null, bool isOutright = false)
+        public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
-            var leagues = WagerService.GetLeague(fromDate, sportTypes, isOutright);
+            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
             var result = new List<League>();
             result.Add(new League
             {
@@ -234,9 +234,19 @@ namespace Apollo.Age.Wagers.Controllers
                     titleAll = Lang.all;
                     break;
             }
-
+            ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
+            ViewBag.MoveBetDate = ReportService.MoveBetsDay();
+            DateTime? toDate = null;
+            if (isOR)
+            {
+                toDate = DateTime.Now.Date;
+            }
             // AddDays(-9) : sample code for get data
-            ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
+            //ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
+            ViewBag.Leagues = this.GetLeague(isOR ? ReportService.MoveBetsDay() : new DateTime(2013, 8, 1)
+                , toDate
+                , sportTypes
+                , isOR);
             ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
             ViewBag.SportName = sportName;
@@ -251,8 +261,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.isEM = isEM;
             ViewBag.isOR = isOR;
 
-            ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
-            ViewBag.MoveBetDate = ReportService.MoveBetsDay();
+            
 
             if (CurrentSession.AgentLevel == 0)
             {

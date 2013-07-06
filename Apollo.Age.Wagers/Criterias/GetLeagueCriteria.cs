@@ -23,6 +23,8 @@ namespace Apollo.Age.Wagers.Criterias
 
         public bool IsOutright { get; set; }
 
+        public DateTime? ToDate { get; set; }
+
         /// <summary>
         /// Get setting key.
         /// </summary>

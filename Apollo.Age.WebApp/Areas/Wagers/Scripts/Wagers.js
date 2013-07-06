@@ -102,6 +102,7 @@ var Wagers = function ($) {
                 url: APOLLO.resolveUrl("~/wagers/wager/GetJsonLeague"),
                 data: {
                     fromDate: Wagers.fromDate,
+                    toDate: Wagers.isOR == "true" ? Wagers.toDate : null,
                     sportTypes: Wagers.sportTypeIds,
                     isOutright: true
                 },
