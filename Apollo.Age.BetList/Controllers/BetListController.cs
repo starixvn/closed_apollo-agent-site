@@ -201,7 +201,7 @@ namespace Apollo.Age.BetList.Controllers
             var balanceUpDay = _reportService.GetBalanceUpDay();
             int agentId, custId;
             int errorCode;
-
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.TrimEnd() : string.Empty;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
