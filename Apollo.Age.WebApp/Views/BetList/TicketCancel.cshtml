@@ -85,7 +85,7 @@
                     @Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
                 </td>
                 <td>
-                    @Html.TextBox("Username", Model.Username, new { @maxlength = 50, @autocomplete = "off", @class = "txt-username" })
+                    <input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
                 </td>
             </tr>
         </table>
