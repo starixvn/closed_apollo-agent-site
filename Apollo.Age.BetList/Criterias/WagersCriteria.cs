@@ -20,6 +20,8 @@ namespace Apollo.Age.BetList.Criterias
 
         public DateTime FromDate { get; set; }
 
+        public DateTime? ToDate { get; set; }
+
         public string UGroup { get; set; }
 
         public bool IsDirectMem { get; set; }

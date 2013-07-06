@@ -507,14 +507,19 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportType"></param>
         /// <param name="betTeam"></param>
         /// <returns></returns>
-        public ViewResult Wagers(int loggedId, DateTime fromDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
+        public ViewResult Wagers(int loggedId, DateTime fromDate, DateTime? toDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
         {
             // List ticket
             var betListService = new BetListService();
+            if (toDate == null)
+            {
+                toDate = fromDate;
+            }
             var criteria = new WagersCriteria
             {
                 LoggedId = loggedId > 0 ? loggedId : CurrentSession.AgentId,
                 FromDate = fromDate,
+                ToDate = toDate,
                 UGroup = uGroup,
                 IsDirectMem = isDirectMem,
                 LiveIndicator = liveIndicator,

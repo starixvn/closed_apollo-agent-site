@@ -185,7 +185,8 @@ var Wagers = function ($) {
                 var match = $(this).attr('data-match');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
-                + "&uGroup=" + Wagers.groupComm
+                + "&toDate=" +  (Wagers.isOR == "true" ? Wagers.toDate : null)
+                + "&uGroup=" + (Wagers.isOR == "true" ? 'All' : Wagers.groupComm)
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
                 + "&leagueId=" + league
