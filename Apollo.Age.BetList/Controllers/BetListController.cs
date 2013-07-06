@@ -248,7 +248,10 @@ namespace Apollo.Age.BetList.Controllers
         [HttpGet]
         public ViewResult TicketCancel()
         {
-            var viewModel = new BetListReportViewModel();
+            var viewModel = new BetListReportViewModel
+                {
+                    Username = CurrentSession.AgentName
+                };
 
             return this.TicketCancel(viewModel);
         }
@@ -266,7 +269,7 @@ namespace Apollo.Age.BetList.Controllers
             int agentId, custId;
             int errorCode;
 
-            model.Username = CurrentSession.AgentName;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.TrimEnd() : string.Empty;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
@@ -720,7 +723,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns></returns>
         private DateTime ResetEndDate(DateTime dt)
         {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+            return ResetStartDate(dt).Add(new TimeSpan(23, 58, 59));
         }
 
         #endregion Format Start, End date
