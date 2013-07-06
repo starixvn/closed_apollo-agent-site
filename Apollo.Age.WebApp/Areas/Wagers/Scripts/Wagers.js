@@ -58,8 +58,12 @@ var Wagers = function ($) {
                 else {
                     Wagers.isDirectMember = ($this.val() == 0 ? false : true);
                 }
-
-                Wagers.getWagerData();
+                if (Wagers.isOR == "true") {
+                    Wagers.getLeagues();
+                }
+                else {
+                    Wagers.getWagerData();
+                }
             });
 
             $('#League').on('change', function () {
@@ -88,7 +92,7 @@ var Wagers = function ($) {
                     Wagers.fromDate = $('#OutrightFromDate').val();
                     Wagers.toDate = $('#OutrightToDate').val();
                     Wagers.getLeagues();
-                   
+
                 });
             }
         },

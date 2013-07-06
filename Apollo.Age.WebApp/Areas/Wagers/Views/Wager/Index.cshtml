@@ -117,7 +117,8 @@
         </div>
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    @Html.Hidden("PageIndex", 0)
+    @Html.Hidden("PageIndex", 0)    
+    @Scripts.Render("~/scripts/wagers")
 </body>
 </html>
-@Scripts.Render("~/areas/Wagers")
+

@@ -47,92 +47,102 @@
                     "~/Views/Home/Resources/Default.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/reportjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/noty/jquery.noty.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Reports/Resources/Reports.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/noty/jquery.noty.js",
+                "~/_globalresources/js/core.js",
+                "~/views/reports/resources/reports.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/winlossjs").Include(
-               "~/_GlobalResources/Js/head.js",
-               "~/_GlobalResources/Js/jquery.js",
-               "~/_GlobalResources/Js/jquery-ui.js",
-               "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-               "~/_GlobalResources/Js/Core.js",
-               "~/Views/Reports/Resources/Reports.js",
-               "~/Views/Reports/Resources/WinLoss.js"
-               ));
+               "~/_globalresources/js/head.js",
+               "~/_globalresources/js/jquery.js",
+               "~/_globalresources/js/jquery-ui.js",
+               "~/_globalresources/js/blockui/jquery.blockui.js",
+               "~/_globalresources/js/core.js",
+               "~/views/reports/resources/reports.js",
+               "~/views/reports/resources/winloss.js"));
+               
 
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/_GlobalResources/Js/Fanex.Grid/moment.js",
-                "~/_GlobalResources/Js/Fanex.Grid/numeral.js",
-                "~/_GlobalResources/Js/Fanex.Grid/Fanex.Grid.js",
-                "~/Views/Reports/Resources/Reports.js",
-                "~/Views/Reports/Resources/Outstanding.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/_globalresources/js/fanex.grid/moment.js",
+                "~/_globalresources/js/fanex.grid/numeral.js",
+                "~/_globalresources/js/fanex.grid/fanex.grid.js",
+                "~/views/reports/resources/reports.js",
+                "~/views/reports/resources/outstanding.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/totalbetsjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/_GlobalResources/Js/RefreshCountDown.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/TotalBets/Resources/TotalBets.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/refreshcountdown.js",
+                "~/_globalresources/js/core.js",
+                "~/views/totalbets/resources/totalbets.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/forecast-indexjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/_GlobalResources/Js/RefreshCountDown.js",
-                "~/Views/TotalBets/Resources/Index.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/refreshcountdown.js",
+                "~/views/totalbets/resources/index.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/forecastjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/_GlobalResources/Js/RefreshCountDown.js",
-                "~/_GlobalResources/Js/ErrorMsg/ErrorMsg.js",
-                "~/_GlobalResources/Js/Core.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/refreshcountdown.js",
+                "~/_globalresources/js/errormsg/errormsg.js",
+                "~/_globalresources/js/core.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/messagejs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Message/Resources/PortalPage.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/message/resources/portalpage.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/logjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Log/Resources/monPickr-0.0.3.js",
-                "~/Views/Log/Resources/Log.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/log/resources/monpickr-0.0.3.js",
+                "~/views/log/resources/log.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/viewaccountdetails").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Account/Resources/ViewAccountDetails.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/viewaccountdetails.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/accountjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/resultjs").Include(
+               "~/_GlobalResources/Js/head.js",
+               "~/_GlobalResources/Js/jquery.js",
+               "~/_GlobalResources/Js/jquery.cookie.js",
+               "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+               "~/_GlobalResources/Js/Core.js",               
+               "~/_GlobalResources/Js/Pager/jquery.sbpager.js",
+               "~/views/results/resources/Result.js"
+               ));
 
             #region Customer Setting
 
@@ -141,57 +151,57 @@
             bundles.Add(new ScriptBundle("~/scripts/editpositiontakingjs").Include(
                 "~/views/account/resources/editpositiontaking.js"));
             bundles.Add(new ScriptBundle("~/scripts/custsettingjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/noty/jquery.noty.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Account/Resources/CustSettingEngine/Core.js",
-                "~/Views/Account/Resources/CustSettingEngine/PTSetting.js",
-                "~/Views/Account/Resources/CustSettingEngine/BettingLimit.js",
-                "~/Views/Account/Resources/CustSettingEngine/BetType.js",
-                "~/Views/Account/Resources/CustSettingEngine/BetTypeGroup.js",
-                "~/Views/Account/Resources/CustSettingEngine/CommissionSetting.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/noty/jquery.noty.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/custsettingengine/core.js",
+                "~/views/account/resources/custsettingengine/ptsetting.js",
+                "~/views/account/resources/custsettingengine/bettinglimit.js",
+                "~/views/account/resources/custsettingengine/bettype.js",
+                "~/views/account/resources/custsettingengine/bettypegroup.js",
+                "~/views/account/resources/custsettingengine/commissionsetting.js"));
 
             #endregion Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
-                "~/Views/Account/Resources/AccountList.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/accountlist.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/logloginjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery.cookie.js",
-                "~/Views/Account/Resources/jquery.treeview.js",
-                "~/Views/Account/Resources/jquery.treeview.async.js"));
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery.cookie.js",
+                "~/views/account/resources/jquery.treeview.js",
+                "~/views/account/resources/jquery.treeview.async.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/viewsharesettingjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
                 "~/views/account/resources/viewshare.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/viewcommsettingjs").Include(
-                "~/_GlobalResources/Js/head.js",
-                "~/_GlobalResources/Js/jquery.js",
-                "~/_GlobalResources/Js/jquery-ui.js",
-                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
-                "~/_GlobalResources/Js/Core.js",
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
                 "~/views/account/resources/viewcomm.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/unauthjs").Include(
@@ -207,6 +217,18 @@
                "~/_GlobalResources/Js/jquery.cookie.js",
                "~/_GlobalResources/Js/Core.js",
                "~/Views/BetList/Resources/BetList.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/wagers").Include(
+                "~/_GlobalResources/Js/head.js",
+                "~/_GlobalResources/Js/jquery.js",
+                "~/_GlobalResources/Js/jquery-ui.js",
+                "~/_GlobalResources/Js/Core.js",
+                "~/_GlobalResources/Js/BlockUI/jquery.blockUI.js",
+                "~/Areas/Wagers/Scripts/Wagers.js",
+                "~/_GlobalResources/Js/Pager/jquery.sbpager.js",
+                "~/_GlobalResources/Js/jquery.cookie.js",
+                "~/_GlobalResources/Js/RefreshCountDown.js"
+            ));
 
             #endregion js
 
