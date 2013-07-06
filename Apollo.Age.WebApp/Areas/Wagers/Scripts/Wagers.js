@@ -89,10 +89,16 @@ var Wagers = function ($) {
 
             if (Wagers.isOR == "true") {
                 $("#btnSubmit").on('click', function () {
-                    Wagers.fromDate = $('#OutrightFromDate').val();
-                    Wagers.toDate = $('#OutrightToDate').val();
-                    Wagers.getLeagues();
-
+                    var newFromDate = $('#OutrightFromDate').val();
+                    var newToDate = $('#OutrightToDate').val();
+                    if (Wagers.fromDate != newFromDate || newToDate != Wagers.toDate) {
+                        Wagers.fromDate = newFromDate;
+                        Wagers.toDate = newToDate;
+                        Wagers.getLeagues();
+                    }
+                    else {
+                        Wagers.getWagerData();
+                    }
                 });
             }
         },

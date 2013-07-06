@@ -44,13 +44,16 @@
                             var status = string.Empty;
                             foreach (OutrightViewModel subItem in subModel)
                             {
-                                if (subItem.Status.ToLower() == "refund")
+                                if(!string.IsNullOrEmpty(subItem.Status))
                                 {
-                                    status = Lang.refund;
-                                }
-                                else if (subItem.Status.ToLower() == "close")
-                                {
-                                    status = "+";
+                                    if (subItem.Status.ToLower() == "refund")
+                                    {
+                                        status = Lang.refund;
+                                    }
+                                    else if (subItem.Status.ToLower() == "close")
+                                    {
+                                        status = "+";
+                                    }
                                 }
                                 <tr @(subModel.Count == 1 ? "class=one-row" : string.Empty)>
                                     <td style="width: 269px">@subItem.TeamName
