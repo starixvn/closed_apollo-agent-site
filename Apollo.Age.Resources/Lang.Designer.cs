@@ -61,7 +61,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 X 2.
+        ///   Looks up a localized string similar to 1 X 2, R.B. 1 X 2.
         /// </summary>
         public static string _1x2RB1x2 {
             get {
@@ -601,8 +601,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact our Customer Relationship Officers through the following available communication
-        ///                channels should you have any concerns or queries..
+        ///   Looks up a localized string similar to Contact our Customer Relationship Officers through the following available communication channels should you have any concerns or queries..
         /// </summary>
         public static string ContentContact {
             get {
@@ -1079,7 +1078,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Handicap.
+        ///   Looks up a localized string similar to Handicap, Over/Under, Odd/Even.
         /// </summary>
         public static string HandicapOverUnderOddEven {
             get {
@@ -1709,7 +1708,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HDP.
+        ///   Looks up a localized string similar to HDP, OU, OE.
         /// </summary>
         public static string lblAsianHDC_OU_OE {
             get {
@@ -2366,7 +2365,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Value Range.
+        ///   Looks up a localized string similar to Invalid Value Range, Input must in [{0} - {1}]..
         /// </summary>
         public static string lblInvalidValueRange {
             get {
@@ -2456,7 +2455,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet.
+        ///   Looks up a localized string similar to Single Bet Max.
         /// </summary>
         public static string lblMaxBet {
             get {
@@ -2546,7 +2545,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Single Bet.
+        ///   Looks up a localized string similar to Single Bet Min.
         /// </summary>
         public static string lblMinBet {
             get {
@@ -2834,7 +2833,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Given Share Value is lower than Min Given Value.
+        ///   Looks up a localized string similar to Given Share Value is lower than Min Given Value, please Use Advanced Mode to see it.
         /// </summary>
         public static string lblPleaseCheckConstrainMaxMin {
             get {
@@ -3419,7 +3418,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ※Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well..
+        ///   Looks up a localized string similar to â€»Note: In simple mode, your changes of soccer setting will be applied to all sporttypes/bettypes as well..
         /// </summary>
         public static string lblWarningEditSetting {
             get {
@@ -4193,7 +4192,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to R.B. Handicap.
+        ///   Looks up a localized string similar to R.B. Handicap, R.B. Over/Under.
         /// </summary>
         public static string RBHandicapRBOverUnder {
             get {
@@ -4643,7 +4642,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you.
+        ///   Looks up a localized string similar to ... Another session has been logged in ...\n Your session will be terminated!!! \n If that is not you, please contact your upline!!!.
         /// </summary>
         public static string stringSessionLogged {
             get {
@@ -4661,7 +4660,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string submit {
             get {

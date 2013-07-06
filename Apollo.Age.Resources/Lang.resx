@@ -946,16 +946,16 @@
     <value>% in Upper</value>
   </data>
   <data name="lblGroupd" xml:space="preserve">
-    <value>Group D</value>
+    <value>Line D</value>
   </data>
   <data name="lblGroupc" xml:space="preserve">
-    <value>Group C</value>
+    <value>Line C</value>
   </data>
   <data name="lblGroupb" xml:space="preserve">
-    <value>Group B</value>
+    <value>Line B</value>
   </data>
   <data name="lblGroupa" xml:space="preserve">
-    <value>Group A</value>
+    <value>Line A</value>
   </data>
   <data name="lblParentname" xml:space="preserve">
     <value>Upper</value>
@@ -1612,7 +1612,7 @@
     <value>Download Browsing History Deletion Tool</value>
   </data>
   <data name="group" xml:space="preserve">
-    <value>Group</value>
+    <value>Line</value>
   </data>
   <data name="HomeGuest" xml:space="preserve">
     <value>Home/Guest</value>
