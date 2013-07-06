@@ -222,7 +222,7 @@ namespace Apollo.Age.BetList.Controllers
                     SportTypes = model.SportTypes,
                     BetTypes = model.BetTypes,
                     BetListPage = BetListPage.Transaction,
-                    MoveBetsDay = balanceUpDay
+                    MoveBetsDay = _reportService.MoveBetsDay()
                 };
 
                 TicketResult mainTickets;

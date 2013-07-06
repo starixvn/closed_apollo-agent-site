@@ -118,6 +118,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 case BetListPage.Cancel:
                 case BetListPage.Outstanding:
                 case BetListPage.Report:
+                case BetListPage.Transaction:
                     this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
                     break;
             }
