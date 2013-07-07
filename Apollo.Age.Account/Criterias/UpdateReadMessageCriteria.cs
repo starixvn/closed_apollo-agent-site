@@ -19,12 +19,7 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class UpdateReadMessageCriteria : CriteriaBase
-    {
-        public override string GetSettingKey()
-        {
-            return "Age_Msg_UpdateRead";
-        }
-
+    {       
         [SpParam(SqlParamName = "TargetId")]
         public int CustomerId { get; set; }
 
@@ -35,6 +30,11 @@ namespace Apollo.Age.Account.Criterias
         public override bool IsValid()
         {
             return !string.IsNullOrWhiteSpace(this.MessageIds);
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Age_Msg_UpdateRead";
         }
     }
 }

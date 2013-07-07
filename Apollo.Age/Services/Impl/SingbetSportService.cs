@@ -18,32 +18,40 @@ namespace Apollo.Age.Services.Impl
     {
         public static List<SingbetSport> GetSport(bool isOther)
         {
-            var sportList = new List<SingbetSport>{
-                new SingbetSport{
+            var sportList = new List<SingbetSport>
+            {
+                new SingbetSport
+                {
                     Id = SportGroup.All,
                     Name = Lang.all
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.Soccer,
                     Name = Lang.soccer
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.Basketball_Football_Rugy,
                     Name = Lang.lblBkNflRugby
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.Tennis,
                     Name = Lang.Tennis
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.Volleyball_Badminton_TableTennis,
                     Name = Lang.lblVbBdmTt
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.BaseBall,
                     Name = Lang.Baseball
                 },
-                new SingbetSport{
+                new SingbetSport
+                {
                     Id = SportGroup.Others,
                     Name = isOther ? Lang.other : Lang.InterEvent
                 }

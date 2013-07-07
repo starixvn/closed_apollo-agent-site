@@ -48,7 +48,9 @@ namespace Apollo.Age.Wagers.Controllers
         /// Get league.
         /// </summary>
         /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">From date.</param>
         /// <param name="sportTypes">Sport type ids.</param>
+        /// <param name="isOutright">Check to whether get league for Outright.</param>
         /// <returns>List of league.</returns>
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
@@ -75,6 +77,7 @@ namespace Apollo.Age.Wagers.Controllers
                 Id = 0,
                 Name = Lang.all
             });
+
             foreach (var league in leagues)
             {
                 result.Add(new League
@@ -234,19 +237,24 @@ namespace Apollo.Age.Wagers.Controllers
                     titleAll = Lang.all;
                     break;
             }
+
             ViewBag.BalanceUpDay = ReportService.GetBalanceUpDay();
             ViewBag.MoveBetDate = ReportService.MoveBetsDay();
             DateTime? toDate = null;
+
             if (isOR)
             {
                 toDate = DateTime.Now.Date;
             }
+
             // AddDays(-9) : sample code for get data
             //ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
-            ViewBag.Leagues = this.GetLeague(isOR ? ReportService.MoveBetsDay() : new DateTime(2013, 8, 1)
-                , toDate
-                , sportTypes
-                , isOR);
+            ViewBag.Leagues = this.GetLeague(
+                isOR ? ReportService.MoveBetsDay() : new DateTime(2013, 8, 1),
+                toDate,
+                sportTypes,
+                isOR);
+
             ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
             ViewBag.SportName = sportName;
@@ -258,10 +266,9 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
             }
-            ViewBag.isEM = isEM;
-            ViewBag.isOR = isOR;
 
-            
+            ViewBag.isEM = isEM;
+            ViewBag.isOR = isOR;            
 
             if (CurrentSession.AgentLevel == 0)
             {

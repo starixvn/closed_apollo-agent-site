@@ -59,6 +59,7 @@ namespace Apollo.Age.WebApp
             var serverError = Server.GetLastError() as HttpException;
             string errorCode = string.Empty;
 
+            // Do not log http exception
             if (serverError != null)
             {
                 errorCode = serverError.GetHttpCode().ToString();
@@ -66,8 +67,8 @@ namespace Apollo.Age.WebApp
 
             if (!Request.IsLocal)
             {
-                //Server.ClearError();
-                //Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
+                Server.ClearError();
+                Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
             }
         }
 

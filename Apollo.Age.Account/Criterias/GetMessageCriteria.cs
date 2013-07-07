@@ -9,48 +9,14 @@
 
 namespace Apollo.Age.Account.Criterias
 {
-    using Fanex.NAP.Framework.Data;
     using System;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class GetMessageCriteria : CriteriaBase
-    {
-        public override string GetSettingKey()
-        {
-            string settingKey = string.Empty;
-
-            switch (this.IsPublic)
-            {
-                case 0:
-                    settingKey = "Dot_Msg_GetPrivateMessage";
-                    break;
-
-                case 1:
-                    settingKey = "Dot_Msg_GetPublicMessage";
-                    break;
-
-                default:
-                    switch (this.Special)
-                    {
-                        case 0:
-                            settingKey = "Dot_Msg_GetNotSpecialMessage";
-                            break;
-
-                        case 1:
-                            settingKey = "Dot_Msg_GetSpecialMessage";
-                            break;
-
-                    }
-                    settingKey = (string.IsNullOrEmpty(settingKey) ? "Dot_Msg_GetMessage" : settingKey);
-                    break;
-
-            }
-
-            return settingKey;
-        }
-
+    {    
         [SpParam(SqlParamName = "TargetId")]
         public int CustId { get; set; }
 
@@ -85,6 +51,43 @@ namespace Apollo.Age.Account.Criterias
         public override bool IsValid()
         {
             return CustId >= 0;
+        }
+
+        public override string GetSettingKey()
+        {
+            string settingKey = string.Empty;
+
+            switch (this.IsPublic)
+            {
+                case 0:
+                    settingKey = "Dot_Msg_GetPrivateMessage";
+                    break;
+
+                case 1:
+                    settingKey = "Dot_Msg_GetPublicMessage";
+                    break;
+
+                default:
+                    switch (this.Special)
+                    {
+                        case 0:
+                            settingKey = "Dot_Msg_GetNotSpecialMessage";
+                            break;
+
+                        case 1:
+                            settingKey = "Dot_Msg_GetSpecialMessage";
+                            break;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(settingKey))
+                    {
+                        settingKey = "Dot_Msg_GetMessage";
+                    }                    
+
+                    break;
+            }
+
+            return settingKey;
         }
     }
 }
