@@ -62,7 +62,8 @@
     <Compile Include="Controllers\WagerController.cs" />
     <Compile Include="Controllers\BasketballController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
-    <Compile Include="Core\BettypeGroup.cs" />
+    <Compile Include="Core\BettypeGroup\Basketball.cs" />
+    <Compile Include="Core\BettypeGroup\Soccer.cs" />
     <Compile Include="Core\WagersSportName.cs" />
     <Compile Include="Criterias\Basketball\BasketballCriteria.cs" />
     <Compile Include="Criterias\GetEventDateCriteria.cs" />

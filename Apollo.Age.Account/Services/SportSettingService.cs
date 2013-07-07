@@ -42,20 +42,20 @@ namespace Apollo.Age.Account.Services
         private const string _MIX_SPORT_PARLAY = "Mix Sports Parlay";
         #endregion
 
-		private static List<SportSetting> _sportList = null;
+        private static List<SportSetting> _sportList = null;
 
-		public static List<SportSetting> SportList
-		{
-			get 
-			{ 
-				return _sportList; 
-			}
+        public static List<SportSetting> SportList
+        {
+            get 
+            { 
+                return _sportList; 
+            }
 
-			set
-			{
-				_sportList = value;
-			}
-		}
+            set
+            {
+                _sportList = value;
+            }
+        }
 
         public List<SportSetting> GetAllSportType()
         {
@@ -89,7 +89,7 @@ namespace Apollo.Age.Account.Services
                     }
                     else 
                     {
-						// process for sport id=99 & name=Mix Sports Parlay
+                        // process for sport id=99 & name=Mix Sports Parlay
                         var sportName = sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value.ToString();
                         if (sportId == (short)SportTypes.OtherSports && sportName == _MIX_SPORT_PARLAY)
                         {

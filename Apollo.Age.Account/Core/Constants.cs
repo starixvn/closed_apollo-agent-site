@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.Account.Core
 {
-
     using System.Collections.Generic;
     using Apollo.Age.Resources;
 
@@ -38,7 +37,8 @@ namespace Apollo.Age.Account.Core
 
         public const int LogActionPositionTaking = 4;
 
-        public static IList<string> BetTypesHeader = new List<string>{
+        public static readonly IList<string> BetTypesHeader = new List<string>
+        {
                             Lang.HandicapOverUnderOddEven, 
                             Lang.RBHandicapRBOverUnder, 
                             Lang._1x2RB1x2, 

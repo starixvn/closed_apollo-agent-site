@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
-
   <Function Name="Apollo-Login">
     <Setting Key="Age_AgentUser_GetByUserName" SpName="Age_AgentUser_GetByUserName" DbName="SVRCUST.CustDB" Plain="0" >
       <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
@@ -99,21 +98,8 @@
       <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
       <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
     </Setting>
-    <!--<Setting Key="Dot_Msg_GetMessage_Simple" SpName="Dot_Msg_GetMessage_Simple" DbName="SVRMSG.MsgDB" Plain="0" />
-
-    <Setting Key="Dot_Msg_GetTopPubMessage" SpName="Dot_Msg_GetTopPubMessage" DbName="SVRMSG.MsgDB" Plain="0" />
-
-    <Setting Key="Dot_Msg_SetMessage" SpName="Dot_Msg_SetMessage" DbName="SVRMSG.MsgDB" Plain="0" />
-
-    <Setting Key="Dot_Msg_SetUsrMessage" SpName="Dot_Msg_SetUsrMessage" DbName="SVRMSG.MsgDB" Plain="0" />
-    <Setting Key="Age_MessageNoticeSelByCustID" SpName="Age_MessageNoticeSelByCustID" DbName="on_user" Plain="0" />
-    <Setting Key="Age_MessageNoticeUpdStatus" SpName="Age_MessageNoticeUpdStatus" DbName="on_user" Plain="0" />
-    <Setting Key="Age_MessageSelAll" SpName="Age_MessageSelAll" DbName="on_user" Plain="0" />
-    <Setting Key="Age_MessageSelByType" SpName="Age_MessageSelByType" DbName="on_user" Plain="0" />
-    <Setting Key="Age_MessageSelOne" SpName="Age_MessageSelOne" DbName="on_user" Plain="0" />-->
-
     <Setting Key="Dot_Msg_HasPriMessage24" SpName="Dot_Msg_HasPriMessage24" DbName="SVRMSG.MsgDB" Plain="0" />
-    <Setting Key="Age_Msg_GetByCustomer" SpName="Age_Msg_GetByCustomer" DbName="SVRMSG.MsgDB" Plain="0" >
+    <Setting Key="Age_Msg_GetByCustomer" SpName="Age_Msg_GetByCustomerxxx" DbName="SVRMSG.MsgDB" Plain="0" >
       <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
       <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
       <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
@@ -205,22 +191,6 @@
       <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
     </Setting>
   </Function>
-
-  <!--<Function Name="Agent - Forecast">
-    <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="archive" Plain="0" />
-    -->
-  <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="archive" Plain="0" />-->
-  <!--
-    <Setting Key="Age_Forecast_SelByLeague_Ag" SpName="Age_Forecast_SelByLeague_Ag" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_SelByLeague_MAg" SpName="Age_Forecast_SelByLeague_MAg" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_SelByLeague_SAg" SpName="Age_Forecast_SelByLeague_SAg" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_SelHDP" SpName="Age_Forecast_SelHDP" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast_SelOU" SpName="Age_Forecast_SelOU" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast1x2_SelByLeague_Ag" SpName="Age_Forecast1x2_SelByLeague_Ag" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast1x2_SelByLeague_MAg" SpName="Age_Forecast1x2_SelByLeague_MAg" DbName="archive" Plain="0" />
-    <Setting Key="Age_Forecast1x2_SelByLeague_SAg" SpName="Age_Forecast1x2_SelByLeague_SAg" DbName="archive" Plain="0" />
-  </Function>-->
 
   <Function Name="Agent-Apollo-Report-BetList">
     <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="SVRARC.ArchiveDB" Plain="0" />
@@ -429,7 +399,6 @@
 
   <Function Name="Agent-Apollo-ForeCast">
     <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="SVRAGE.RepDB" Plain="0" />
-    <!--<Setting Key="Age_Forecast_Sel22" SpName="Age_Forecast_Sel22" DbName="DB05" Plain="0" />-->
     <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="WinLost_M1_HDP" ObjectProperty="HandicapWinLostMinus1" />
       <Mapping DataField="WinLost_0_HDP" ObjectProperty="HandicapWinLostBase" />
@@ -485,12 +454,7 @@
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="SVRAGE.RepDB" Plain="0" />
   </Function>
 
-  <Function Name="Agent-Apollo-Admin">
-    <Setting Key="Age_Exchange_GetById" SpName="Age_Exchange_GetById" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Exchange_GetByCurrency" SpName="Age_Exchange_GetByCurrency" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Exchange_GetAll" SpName="Age_Exchange_GetAll" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Exchange_InsertRate" SpName="Age_Exchange_InsertRate" DbName="SVRPRO.ProdDB" Plain="0" />
-    <Setting Key="Age_Exchange_UpdateRate" SpName="Age_Exchange_UpdateRate" DbName="SVRPRO.ProdDB" Plain="0" />
+  <Function Name="Agent-Apollo-Admin">    
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB" Plain="0" />
   </Function>
@@ -537,7 +501,6 @@
   <Function Name="Write log internal login">
     <Setting Key="WriteLog_AgentLog_Login" SpName="WriteLog_AgentLog_Login" DbName="SVRLOG.LogDB" TimeOut="600"/>
     <Setting Key="ReadLog_Login" SpName="ReadLog_Login" DbName="SVRLOG.LogDB" TimeOut="600"/>
-
   </Function>
   <Function Name="Read Log Cust Setting">
     <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent" DbName="SVRLOG.LogDB" TimeOut="600"/>

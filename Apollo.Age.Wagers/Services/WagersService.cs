@@ -22,12 +22,18 @@ namespace Apollo.Age.Wagers.Services
     public class WagersService : QueryService, IWagersService
     {
         /// <summary>
-        /// Get league.
+        /// Get all league which has event happens.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="sportTypes">Sport type id.</param>
-        /// <returns>List league.</returns>
-        public IEnumerable<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright=false)
+        /// <param name="fromDate">Valid from date.</param>
+        /// <param name="toDate">Valid to date.</param>
+        /// <param name="sportTypes">List of sport type id.</param>
+        /// <param name="isOutright">Is outright sport.</param>
+        /// <returns>Return a list of league which having match/even happens.</returns>
+        public IEnumerable<League> GetLeague(
+            DateTime fromDate,
+            DateTime? toDate = null,
+            string sportTypes = null,
+            bool isOutright = false)
         {
             var criteria = new GetLeagueCriteria
             {

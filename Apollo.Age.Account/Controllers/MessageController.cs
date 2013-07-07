@@ -27,13 +27,13 @@ namespace Apollo.Age.Account.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class MessageController : BaseController
     {
-        private MessageService _messageService;
-
         /// <summary>
-        /// For temp
+        /// For temp.
         /// </summary>
-        private const string _SiteList = "3000,3300";
-        private const int _SiteId = 3300;
+        private const string SiteList = "3000,3300";
+        private const int SiteId = 3300;        
+
+        private MessageService _messageService;
 
         public MessageController()
             : this(null)
@@ -79,7 +79,7 @@ namespace Apollo.Age.Account.Controllers
 
             var model = this._messageService.GetAnnouncement(
                     agentId: this.CurrentSession.AgentId,
-                    siteIds: _SiteList,
+                    siteIds: SiteList,
                     lastPostDate: endDate,
                     startTime: startDate,
                     content: content,
@@ -103,7 +103,7 @@ namespace Apollo.Age.Account.Controllers
             int maxSize = 50;
 
             criteria.CustId = this.CurrentSession.AgentId;
-            criteria.SiteId = this._messageService.GetParentSitesID(_SiteId.ToString());
+            criteria.SiteId = this._messageService.GetParentSitesID(SiteId.ToString());
             criteria.Record = maxSize;
 
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
@@ -187,7 +187,7 @@ namespace Apollo.Age.Account.Controllers
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
-            var pubMessage = this._messageService.GetTopPublicMessage(messageType, _SiteId);
+            var pubMessage = this._messageService.GetTopPublicMessage(messageType, SiteId);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;

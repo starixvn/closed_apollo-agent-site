@@ -9,12 +9,8 @@
 
 namespace Apollo.Age.Account.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.NAP.Framework.Data;
     using System.Configuration;
+    using Fanex.NAP.Framework.Data;
 
     public class AgentListCriteria : CriteriaBase
     {
@@ -35,6 +31,7 @@ namespace Apollo.Age.Account.Criterias
             {
                 return _username != null ? _username.Trim() : string.Empty;
             }
+
             set
             {
                 _username = value;
@@ -72,7 +69,7 @@ namespace Apollo.Age.Account.Criterias
         {
             get
             {
-                return TotalItems % PageSize == 0 ? TotalItems / PageSize : TotalItems / PageSize + 1;
+                return TotalItems % PageSize == 0 ? TotalItems / PageSize : (TotalItems / PageSize) + 1;
             }
         }
 

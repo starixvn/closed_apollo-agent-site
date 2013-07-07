@@ -1,11 +1,15 @@
-﻿namespace Apollo.Age.Account.Criterias
+﻿// --------------------------------------------------------------------------
+// <copyright file="CustomerListCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Anders.Le" date="2013.7.7">Created</change>
+// </history>
+namespace Apollo.Age.Account.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.NAP.Framework.Data;
     using System.Configuration;
+    using Fanex.NAP.Framework.Data;
 
     public class CustomerListCriteria : CriteriaBase
     {
@@ -23,6 +27,7 @@
             {
                 return _username != null ? _username.Trim() : string.Empty;
             }
+
             set
             {
                 _username = value;
@@ -63,7 +68,7 @@
         {
             get
             {
-                return TotalItems % PageSize == 0 ? TotalItems / PageSize : TotalItems / PageSize + 1;
+                return TotalItems % PageSize == 0 ? TotalItems / PageSize : (TotalItems / PageSize) + 1;
             }
         }
 

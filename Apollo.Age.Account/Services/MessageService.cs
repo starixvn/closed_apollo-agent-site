@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
 //   <change who="Edward.Nguyen" date="2013.4.9">Implement</change>
+//   <change who="Anders.Le" date="2013.7.7">Add ctor</change>
 // </history>
 
 namespace Apollo.Age.Account.Services
@@ -26,11 +27,23 @@ namespace Apollo.Age.Account.Services
     /// </summary>
     public class MessageService : QueryService, IMessageService
     {
-        //private const string SiteList = "3000,3300";
+        private DynamicRepository _dyanamicRepository;
 
-        private DynamicRepository _dyanamicRepository = new DynamicRepository();
+        private ICache _cache;
 
-        private ICache _cache = CacheService.CreateInstance(CacheType.MemoryCache);
+        #region ctor
+        public MessageService(ICache cache, DynamicRepository dynamicRepository)
+        {
+            _cache = cache ?? CacheService.CreateInstance(CacheType.MemoryCache);
+            _dyanamicRepository = _dyanamicRepository ?? new DynamicRepository();
+        }
+
+        public MessageService()
+            : this(null, null)
+        {
+        }
+       
+        #endregion       
 
         public IEnumerable<AnnouncementModel> GetAnnouncement(
             int agentId,
@@ -155,17 +168,7 @@ namespace Apollo.Age.Account.Services
                         message = messageList.FirstOrDefault();
                         _cache.Set<MessageModel>(key, message);
                     }
-                }
-
-                //if (_cache.Contains(key)
-                //    && _cache.Get<MessageModel>(key) != null)
-                //{
-                //    return _cache.Get<MessageModel>(key);
-                //}
-
-                //message = this.GetData<MessageModel>(criteria).FirstOrDefault();
-
-                //_cache.Set<MessageModel>(key, message);
+                }              
 
                 return message;
             }
@@ -173,7 +176,11 @@ namespace Apollo.Age.Account.Services
             return new MessageModel();
         }
 
-        public MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true)
+        public MessageModel GetTopPrivateMessage24(
+            int userId, 
+            int latestMessageId = 0, 
+            bool isTest = false, 
+            bool isAgent = true)
         {
             var criteria = new GetTopPriMessage24Criteria
             {
@@ -237,7 +244,7 @@ namespace Apollo.Age.Account.Services
             return new List<MessageModel>();
         }
 
-        public static object GetValue(object obj, string propertyName)
+        private static object GetValue(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
             if (propertyInfo != null)
@@ -248,7 +255,7 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        public static PropertyInfo GetPropertyInfo(object obj, string propertyName)
+        private static PropertyInfo GetPropertyInfo(object obj, string propertyName)
         {
             foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
             {
@@ -261,15 +268,9 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-        public static bool HasPropertyInfo(object obj, string propertyName)
+        private static bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
-            //if (propertyInfo != null)
-            //{
-            //    return true;
-            //}
-
-            //return false;
 
             return !ReferenceEquals(propertyInfo, null);
         }

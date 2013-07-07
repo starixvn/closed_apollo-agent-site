@@ -109,8 +109,8 @@ namespace Apollo.Age.Account.Models
 
             if (userLanguage.Contains("zh"))
             {
-                var Content_cs = this.ContentCS;
-                var Content_ch = this.ContentCH;
+                var contentCS = this.ContentCS;
+                var contentCH = this.ContentCH;
 
                 if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))
                 {
@@ -192,6 +192,7 @@ namespace Apollo.Age.Account.Models
             {
                 return propertyInfo.GetValue(obj, null);
             }
+
             return null;
         }
 
@@ -204,15 +205,15 @@ namespace Apollo.Age.Account.Models
                     return propertyInfo;
                 }
             }
+
             return null;
         }
 
         private bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
-            if (propertyInfo != null)
-                return true;
-            return false;
+
+            return propertyInfo != null;            
         }
     }
 }

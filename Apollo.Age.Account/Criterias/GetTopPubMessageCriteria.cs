@@ -15,12 +15,7 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class GetTopPubMessageCriteria : CriteriaBase
-    {
-        public override string GetSettingKey()
-        {
-            return "Acc_Msg_GetTopPubMessage";
-        }
-
+    {      
         public int MessageType { get; set; }
 
         public string Site1 { get; set; }
@@ -41,6 +36,11 @@ namespace Apollo.Age.Account.Criterias
         public override bool IsValid()
         {
             return true;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Acc_Msg_GetTopPubMessage";
         }
     }
 }
