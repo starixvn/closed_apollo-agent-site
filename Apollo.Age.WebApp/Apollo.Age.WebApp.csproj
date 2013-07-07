@@ -36,6 +36,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -268,7 +270,6 @@
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="App_Code\Formater.cs" />
-    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -667,7 +668,6 @@
     <Content Include="_GlobalResources\Js\Fanex.Grid\moment.js" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\moment.min.js" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\numeral.js" />
-    <Content Include="_GlobalResources\Js\head.js" />
     <Content Include="_GlobalResources\Js\head.min.js" />
     <Content Include="_GlobalResources\Js\jquery-ui-1.10.2\dialog.min.js" />
     <Content Include="_GlobalResources\Js\jquery-ui.js" />
