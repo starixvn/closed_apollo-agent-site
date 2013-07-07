@@ -2,8 +2,7 @@
 <html lang="en-us">
 <head>
     <title>@Page.Title</title>
-    <link href="~/views/account/resources/treeview.css" rel="stylesheet" type="text/css" />
-    <link href="~/views/account/resources/account.less" rel="Stylesheet" type="text/css" />
+    @Styles.Render("~/css/account");
     @RenderSection("css", required: false)
 </head>
 <body class="downlineTreview-bg">

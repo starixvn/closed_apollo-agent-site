@@ -28,8 +28,7 @@ namespace Apollo.Age.WebApp
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AuthConfig.RegisterAuth();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);            
 
             #endregion Registration
 
