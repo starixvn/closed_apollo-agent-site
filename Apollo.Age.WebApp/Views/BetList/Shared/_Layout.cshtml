@@ -11,6 +11,14 @@
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
     @Html.Partial("_ApoRes")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate"
+            };
+        } ();
+    </script>
     @Scripts.Render("~/scripts/betlist")
     @RenderSection("scripts", required: false)
 </body>
