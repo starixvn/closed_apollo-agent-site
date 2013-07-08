@@ -668,6 +668,7 @@
     <Content Include="_GlobalResources\Js\Fanex.Grid\moment.js" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\moment.min.js" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\numeral.js" />
+    <Content Include="_GlobalResources\Js\head.js" />
     <Content Include="_GlobalResources\Js\head.min.js" />
     <Content Include="_GlobalResources\Js\jquery-ui-1.10.2\dialog.min.js" />
     <Content Include="_GlobalResources\Js\jquery-ui.js" />

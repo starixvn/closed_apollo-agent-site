@@ -6,6 +6,14 @@
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
 }
+<div id="function-bar">
+    <div class="item back-link">
+        @Lang.from: @Request["fromDate"]
+        --@Lang.to: @Request["toDate"]
+        @Model.Title
+    </div>
+    <img src="/_GlobalResources/Images/top_04.gif" alt="">
+</div>
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath as List<Apollo.Age.Entities.Agent>)
