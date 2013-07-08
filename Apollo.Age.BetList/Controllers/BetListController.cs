@@ -124,6 +124,7 @@ namespace Apollo.Age.BetList.Controllers
             model.LoggedId = CurrentSession.AgentId;
             model.StatusIds = statusIds;
             model.BetListPage = BetListPage.AccountInfo;
+            model.ToDate = ResetEndDate(model.ToDate);
 
             var mainTickets = _betListService.GetTicketResult(model);
 
@@ -739,7 +740,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns></returns>
         private DateTime ResetEndDate(DateTime dt)
         {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 58, 59));
+            return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));
         }
 
         #endregion Format Start, End date

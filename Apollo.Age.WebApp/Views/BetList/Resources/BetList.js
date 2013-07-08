@@ -332,7 +332,8 @@ if (typeof jQuery != "undefined") {
 			}
 
 			if (type != null) {
-				var fromDate = toDate = null,
+			    var fromDate = null,
+                 toDate = null,
                     sportType = betType = 0,
                     obFromDate = $('#fromDate'),
                     obToDate = $('#toDate');

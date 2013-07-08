@@ -99,7 +99,7 @@
       <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
     </Setting>
     <Setting Key="Dot_Msg_HasPriMessage24" SpName="Dot_Msg_HasPriMessage24" DbName="SVRMSG.MsgDB" Plain="0" />
-    <Setting Key="Age_Msg_GetByCustomer" SpName="Age_Msg_GetByCustomerxxx" DbName="SVRMSG.MsgDB" Plain="0" >
+    <Setting Key="Age_Msg_GetByCustomer" SpName="Age_Msg_GetByCustomer" DbName="SVRMSG.MsgDB" Plain="0" >
       <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
       <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
       <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>

@@ -64,21 +64,25 @@ namespace Apollo.Age.Services
                 info.AddValue("SettingKey", this.SettingKey);
             }
         }
-        #endregion
-
-        public string SettingKey { get; set; }
+        #endregion      
+       
+        public string SettingKey
+        {
+            get;
+            set;
+        }
 
         public override string Message
         {
             get
             {
-                var dbSetting = Fanex.Data.Configuration.DbSettingProviderManager.Current.GetSetting(SettingKey);
-                if (dbSetting != null)
+                var databaseSetting = Fanex.Data.Configuration.DbSettingProviderManager.Current.GetSetting(SettingKey);
+                if (databaseSetting != null)
                 {
                     return base.Message +
                         "\nSettingKey:" + SettingKey +
-                        "\nDBName:" + dbSetting.DbName + 
-                        "\nConnectionString:" + dbSetting.ConnectionString;
+                        "\nDBName:" + databaseSetting.DbName +
+                        "\nConnectionString:" + databaseSetting.ConnectionString;
                 }
 
                 return base.Message + "\nSettingKey:" + SettingKey;

@@ -352,9 +352,9 @@ namespace Apollo.Age.Account.Controllers
 
         [HttpGet]
         public ActionResult IndirectAgentList(
-            int parentAgentId, 
-            int agentId, 
-            int pageIndex = 0, 
+            int parentAgentId,
+            int agentId,
+            int pageIndex = 0,
             string username = "",
             int status = 1,
             int oldPageIndex = 0,
@@ -404,6 +404,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
+            ViewBag.AgentUsername = agentInfo.Username;
 
             return View(criteria);
         }
@@ -500,7 +501,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             return RedirectToAction(
-                "MemberList", 
+                "MemberList",
                 new
             {
                 agentId = criteria.AgentId,
@@ -514,9 +515,9 @@ namespace Apollo.Age.Account.Controllers
 
         [HttpGet]
         public ActionResult IndirectMemberList(
-            int parentAgentId, 
-            int agentId, 
-            int pageIndex = 0, 
+            int parentAgentId,
+            int agentId,
+            int pageIndex = 0,
             string username = "",
             int status = 1,
             int oldPageIndex = 0,
@@ -585,7 +586,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             return RedirectToAction(
-                "IndirectMemberList", 
+                "IndirectMemberList",
                 new
             {
                 parentAgentId = criteria.ParentAgentId,

@@ -3,58 +3,58 @@
 @using Apollo.Age.Entities;
 @using Apollo.Age.Resources;
 @{
-	Layout = "~/Views/Results/Shared/_Layout.cshtml";
-	ViewBag.Title = Lang.lblMatchResult;
+    Layout = "~/Views/Results/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.lblMatchResult;
 }
 @model MatchResultViewModel
 @section css {
-	@Styles.Render("~/css/results/match")
+    @Styles.Render("~/css/results/match")
 }
 <div id="function-bar">
-	<ul class="menu">
-		<li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)" action="0">@Lang.yesterday</a></li>
-		<li>@Lang.Game:</li>
-		@RazorHelper.RenderResultBySport()
-	</ul>
-	<ul class="pager" style="display: none">
-		<li>@Lang.Page:</li>
-		<li>
-			<div id="pager" class="sbpager">
-			</div>
-		</li>
-	</ul>
-	<img src="~/_GlobalResources/Images/top_04.gif" alt="" />
-	<input type="hidden" name="todayValue" id="todayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now)"/>
-	<input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))"/>
-	<input type="hidden" name="lbltoday" id="lbltoday" value="@Lang.today"/>
-	<input type="hidden" name="lblyesterday" id="lblyesterday" value="@Lang.yesterday"/>
-    <input type="hidden" name="hardcodedatetime" id="hardcodedatetime" value="2013-06-11"/>
+    <ul class="menu">
+        <li><a href="#" id="filterbydate" value="@Formater.FormatShortDateNoZeroLeading(Model.EventDate)" action="0">@Lang.yesterday</a></li>
+        <li>@Lang.Game:</li>
+        @RazorHelper.RenderResultBySport()
+    </ul>
+    <ul class="pager" style="display: none">
+        <li>@Lang.Page:</li>
+        <li>
+            <div id="pager" class="sbpager">
+            </div>
+        </li>
+    </ul>
+    <img src="~/_GlobalResources/Images/top_04.png" alt="" />
+    <input type="hidden" name="todayValue" id="todayValue" value="@Formater.FormatShortDateNoZeroLeading(Model.EventDate)"/>
+    <input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(Model.EventDate.AddDays(-1))"/>
+    <input type="hidden" name="lbltoday" id="lbltoday" value="@Lang.today"/>
+    <input type="hidden" name="lblyesterday" id="lblyesterday" value="@Lang.yesterday"/>
+    @*<input type="hidden" name="hardcodedatetime" id="hardcodedatetime" value="2013-06-11" />*@
 </div>
 @using (Html.BeginForm())
 {
-	<div id="filterResult" class="box-header">
-		<div class="row">
-			<div class="cell" id="filterResultGame">
-				<div class="label">
-					<label for="ddlSport">@Lang.Game:</label>
-				</div>
-				<div class="editor">
-					@Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
-				new { @class="selSport" })
-				</div>
-			</div>
-			<div class="cell" id="filterResultLeague">
-				<div class="label">
-					<label for="ddlLeague">@Lang.league:</label>
-				</div>
-				<div class="editor">
-					@Html.DropDownList("ddlLeague",
-				new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
-				new { @class = "selLeague" })
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="resultContainer" class="clear">
-	</div>
+    <div id="filterResult" class="box-header">
+        <div class="row">
+            <div class="cell" id="filterResultGame">
+                <div class="label">
+                    <label for="ddlSport">@Lang.Game:</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+                new { @class = "selSport" })
+                </div>
+            </div>
+            <div class="cell" id="filterResultLeague">
+                <div class="label">
+                    <label for="ddlLeague">@Lang.league:</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownList("ddlLeague",
+                new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+                new { @class = "selLeague" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="resultContainer" class="clear">
+    </div>
 }

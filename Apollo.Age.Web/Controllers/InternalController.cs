@@ -91,7 +91,19 @@ namespace Apollo.Age.Web
                 #region if captcha is null or incorrect then return View with captcha error message
 
                 var captcha = Session[ApolloSessionCaptcha];
-                if (model.Captcha != "9999")
+
+                if (Request.IsLocal)
+                {
+                    if (model.Captcha != "9999")
+                    {
+                        if (captcha == null || captcha.ToString() != model.Captcha.ToUpper())
+                        {
+                            ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
+                            return View(model);
+                        }
+                    }
+                }
+                else
                 {
                     if (captcha == null || captcha.ToString() != model.Captcha.ToUpper())
                     {
@@ -99,6 +111,7 @@ namespace Apollo.Age.Web
                         return View(model);
                     }
                 }
+
 
                 #endregion if captcha is null or incorrect then return View with captcha error message
 
@@ -344,7 +357,7 @@ namespace Apollo.Age.Web
             //// so we try to encourage better randomness by always changing the seed value
             Random rnd = new Random((seed + DateTime.Now.Millisecond));
             string result = string.Empty;
-            
+
             for (int i = 0; i < length; i++)
             {
 
