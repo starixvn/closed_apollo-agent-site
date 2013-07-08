@@ -365,7 +365,17 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
-        public ViewResult Winloss(int custId, DateTime fromDate, DateTime toDate, string type = _StringEmpty, string username = _StringEmpty, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, string betType = _StringEmpty, string sportType = _StringEmpty)
+        public ViewResult Winloss(int custId, 
+            DateTime fromDate, 
+            DateTime toDate, 
+            string type = _StringEmpty, 
+            string username = _StringEmpty, 
+            int mainShareHolderId = 0, 
+            string mainShareHolderUsername = _StringEmpty, 
+            string betType = _StringEmpty, 
+            string sportType = _StringEmpty,
+            string sportName = _StringEmpty,
+            string betTypeName = _StringEmpty)
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
@@ -416,6 +426,12 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
+                Title = string.Format("--{0}: {1} --{2}: {3}",
+                    Lang.sport,
+                    sportName,
+                    Lang.bettype,
+                    betTypeName
+                ),
                 TicketList = this.Ticket(mainTickets, BetListPage.Report),
                 DownlinePath = modelAgentDownLine
             };

@@ -4,13 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>    
-    @Styles.Render("~/css/betlist");
+    @Styles.Render("~/css/betlist")
     @RenderSection("css", required: false)
 </head>
 <body>
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
     @Html.Partial("_ApoRes")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate"
+            };
+        } ();
+    </script>
     @Scripts.Render("~/scripts/betlist")
     @RenderSection("scripts", required: false)
 </body>

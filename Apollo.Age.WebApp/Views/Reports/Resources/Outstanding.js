@@ -54,6 +54,7 @@
 
             $("#btnSubmit").on('click', function () {
                 $.blockUI();
+
                 var url = APOLLO.resolveUrl('Reports/Outstanding?Sporttypes=' + OUTSTANDING.ddlSport.val()
                     + "&Bettypes=" + OUTSTANDING.ddlBettype.val());
                 location.href = url;
@@ -65,6 +66,8 @@
 
         viewBetList: function () {
             $.blockUI();
+            OUTSTANDING.sportTypeName = OUTSTANDING.ddlSport.find('option[value=' + OUTSTANDING.hdSportType.val() + ']').text();
+            OUTSTANDING.betTypeName = OUTSTANDING.ddlBettype.find('option[value=' + OUTSTANDING.hdBettype.val() + ']').text();
             var username = $(this).closest('tr').children('td:first').text();
             location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&username=" + username
@@ -73,8 +76,8 @@
 			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
             + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
             + "&type=outstanding")
-            + "&sportName=" + escape(OUTSTANDING.ddlSport.find(':selected').text())
-            + "&betTypeName=" + escape(OUTSTANDING.ddlBettype.find(':selected').text());
+            + "&sportName=" + escape(OUTSTANDING.sportTypeName)
+            + "&betTypeName=" + escape(OUTSTANDING.betTypeName);
         },
 
         initGrid: function (outstandingData) {
