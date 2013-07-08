@@ -13,6 +13,7 @@ namespace Apollo.Age.Wagers.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Core;
@@ -24,6 +25,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
+    using Fanex.Common;
 
     /// <summary>
     /// Wager Controller.
@@ -32,10 +34,13 @@ namespace Apollo.Age.Wagers.Controllers
     {
         protected readonly IWagersService WagerService;
         protected readonly ReportService ReportService;
+        private DateTime _wagerDate;
 
         public WagerController()
             : this(null)
         {
+            var configDate = ConfigurationManager.AppSettings["WagerDateConfig"];
+            _wagerDate = Converter.ToDateTime(configDate, DateTime.Now);
         }
 
         public WagerController(IWagersService wagerService = null)
@@ -43,15 +48,7 @@ namespace Apollo.Age.Wagers.Controllers
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
         }
-
-        /// <summary>
-        /// Get league.
-        /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">From date.</param>
-        /// <param name="sportTypes">Sport type ids.</param>
-        /// <param name="isOutright">Check to whether get league for Outright.</param>
-        /// <returns>List of league.</returns>
+        
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
@@ -68,6 +65,14 @@ namespace Apollo.Age.Wagers.Controllers
             return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
         }
 
+        /// <summary>
+        /// Get league return Json format.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">To date.</param>
+        /// <param name="sportTypes">Sport type id.</param>
+        /// <param name="isOutright">Return true is out right.</param>
+        /// <returns>Json format.</returns>
         public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
@@ -87,7 +92,7 @@ namespace Apollo.Age.Wagers.Controllers
                 });
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet); 
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -250,7 +255,7 @@ namespace Apollo.Age.Wagers.Controllers
             // AddDays(-9) : sample code for get data
             //ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
             ViewBag.Leagues = this.GetLeague(
-                isOR ? ReportService.MoveBetsDay() : new DateTime(2013, 8, 1),
+                isOR ? ReportService.MoveBetsDay() : _wagerDate,
                 toDate,
                 sportTypes,
                 isOR);
@@ -262,13 +267,15 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
+            ViewBag.WagerDate = _wagerDate;
+
             if (isEM)
             {
                 ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
             }
 
             ViewBag.isEM = isEM;
-            ViewBag.isOR = isOR;            
+            ViewBag.isOR = isOR;
 
             if (CurrentSession.AgentLevel == 0)
             {
