@@ -86,8 +86,8 @@ namespace Apollo.Age.BetList.Criterias
                     agentid = this.AgentId,
                     loggedid = this.LoggedId,
                     statusids = this.StatusIds,
-                    bettypes = this.BetTypes,
-                    sporttypes = this.SportTypes,
+                    bettypes = !string.IsNullOrEmpty(this.BetTypes) ? this.BetTypes : "0",
+                    sporttypes = !string.IsNullOrEmpty(this.SportTypes) ? this.SportTypes : "0",
                     movebetsday = this.MoveBetsDay
                 };
             }
@@ -101,8 +101,8 @@ namespace Apollo.Age.BetList.Criterias
                     agentid = this.AgentId,
                     loggedid = this.LoggedId,
                     statusids = this.StatusIds,
-                    bettypes = this.BetTypes,
-                    sporttypes = this.SportTypes
+                    bettypes = !string.IsNullOrEmpty(this.BetTypes) ? this.BetTypes : "0",
+                    sporttypes = !string.IsNullOrEmpty(this.SportTypes) ? this.SportTypes : "0",
                 };
             }
         }
