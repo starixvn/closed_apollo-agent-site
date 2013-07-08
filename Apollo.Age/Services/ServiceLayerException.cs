@@ -66,7 +66,11 @@ namespace Apollo.Age.Services
         }
         #endregion
 
-        public string SettingKey { get; set; }
+        public string SettingKey 
+        { 
+            get; 
+            set; 
+        }
 
         public override string Message
         {
