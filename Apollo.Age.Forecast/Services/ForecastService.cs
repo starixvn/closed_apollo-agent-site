@@ -384,7 +384,7 @@ namespace Apollo.Age.Forecast.Services
                         MatchId = matchId
                     });
 
-            return matchOddsViewModels.ElementAtOrDefault(0);
+            return matchOddsViewModels != null ? matchOddsViewModels.ElementAtOrDefault(0) : null;
         }
 
         /// <summary>

@@ -124,6 +124,7 @@ namespace Apollo.Age.BetList.Controllers
             model.LoggedId = CurrentSession.AgentId;
             model.StatusIds = statusIds;
             model.BetListPage = BetListPage.AccountInfo;
+            model.ToDate = ResetEndDate(model.ToDate);
 
             var mainTickets = _betListService.GetTicketResult(model);
 
