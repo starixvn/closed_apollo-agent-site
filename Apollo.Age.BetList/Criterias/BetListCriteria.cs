@@ -74,6 +74,40 @@ namespace Apollo.Age.BetList.Criterias
             return settingKey;
         }
 
+        public dynamic GetParameters()
+        {
+            if (this.BetListPage == BetListPage.Transaction)
+            {
+                return new
+                {
+                    todate = this.ToDate,
+                    fromdate = this.FromDate,
+                    custid = this.CustId,
+                    agentid = this.AgentId,
+                    loggedid = this.LoggedId,
+                    statusids = this.StatusIds,
+                    bettypes = this.BetTypes,
+                    sporttypes = this.SportTypes,
+                    movebetsday = this.MoveBetsDay
+                };
+            }
+            else
+            {
+                return new
+                {
+                    todate = this.ToDate,
+                    fromdate = this.FromDate,
+                    custid = this.CustId,
+                    agentid = this.AgentId,
+                    loggedid = this.LoggedId,
+                    statusids = this.StatusIds,
+                    bettypes = this.BetTypes,
+                    sporttypes = this.SportTypes
+                };
+            }
+        }
+                
+
         public override bool IsValid()
         {
             return this.ToDate >= this.FromDate;

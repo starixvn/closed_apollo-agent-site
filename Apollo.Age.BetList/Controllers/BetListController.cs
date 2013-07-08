@@ -739,7 +739,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns></returns>
         private DateTime ResetEndDate(DateTime dt)
         {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 58, 59));
+            return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));
         }
 
         #endregion Format Start, End date

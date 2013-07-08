@@ -273,8 +273,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        var param = criteria.GetSpParams();
-                        var dataSet = db.ExecuteDataSet(param);
+                        //var param = criteria.GetSpParams();
+                        var dataSet = db.ExecuteDataSet(criteria.GetParameters());
 
                         // Main ticket list
                         var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
