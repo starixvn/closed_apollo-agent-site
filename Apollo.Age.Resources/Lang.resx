@@ -1824,4 +1824,7 @@
   <data name="RecheckRangeOfDate" xml:space="preserve">
     <value>Please recheck the range of date!!</value>
   </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
 </root>

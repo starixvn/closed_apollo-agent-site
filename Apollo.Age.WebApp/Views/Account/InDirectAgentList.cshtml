@@ -65,13 +65,11 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
         </div>
-
         @if (hasMemberDownline)
         {
-        <div class="item">
-            --
-            <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.memberList</a>
-        </div>
+            <div class="item">
+                -- <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.memberList</a>
+            </div>
         }
     </div>
     <img src="/_GlobalResources/Images/top_04.png" alt="">
@@ -82,6 +80,9 @@
     {
         <thead>
             <tr bgcolor="#86C0A6" class="m_title_ag">
+                <th width="80">
+                    @Lang.Parent
+                </th>
                 <th width="80">
                     @Lang.enterusername
                 </th>
@@ -106,6 +107,9 @@
             @foreach (var item in agentList)
             {
                 <tr class="m_cen">
+                    <td>
+                        @ViewBag.AgentUsername
+                    </td>
                     <td>
                         @item.Username
                     </td>
