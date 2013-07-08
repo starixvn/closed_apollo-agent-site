@@ -17,7 +17,7 @@ namespace Apollo.Age.Wagers.Core.BettypeGroup
     {
         public const string Straight = "1, 3, 5";
         public const string FirstHalf = "7, 8, 15";
-        public const string RunningBall = "1, 3, 7, 8";
+        public const string RunningBall = "1, 2, 3, 5, 7, 8, 12, 15, 20";
         public const string SpecialBet = "4, 7, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 99";
         public const string CorrectScore = "4";
         public const string FirstHalfCorrectScore = "30";
