@@ -23,7 +23,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>@Lang.lblWager</title>
-    @Styles.Render("~/css/wagers");
+    @Styles.Render("~/css/wagers")
 </head>
 <body>
     <div id="function-bar">
@@ -34,10 +34,11 @@
                 <select class="za_select" name="ltype" id="groupComm">
                     <option value="soccer" @(sportName == WagersSportName.Soccer ? "selected" : string.Empty) >@Lang.soccer</option>
                     <option value="basketball" @(sportName == WagersSportName.Basketball ? "selected" : string.Empty)>@Lang.lblBkNflRugby</option>
-                    <option value="tennis" @(sportName == WagersSportName.Tennis ? "selected" : string.Empty)>@Lang.Tennis </option>
+                    <option value="tennis" @(sportName == WagersSportName.Tennis ? "selected" : string.Empty)>@Lang.Tennis
+                    </option>
                     <option value="volleyball" @(sportName == WagersSportName.Volleyball ? "selected" : string.Empty)>@Lang.lblVbBdmTt</option>
                     <option value="baseball" @(sportName == WagersSportName.Baseball ? "selected" : string.Empty)>@Lang.Baseball</option>
-                     <option value="others" @(sportName == WagersSportName.Others ? "selected" : string.Empty)>@Lang.Others</option>
+                    <option value="others" @(sportName == WagersSportName.Others ? "selected" : string.Empty)>@Lang.Others</option>
                 </select>
             </div>
         }
@@ -65,31 +66,27 @@
                 @(Lang.date):
                 @Html.DropDownList("EmDate", EmCalendar)
             </div> 
-             <div class="before-filter">
-            --</div>
+            <div class="before-filter">
+                --</div>
         }
-      
         @if (isOR == false)
         {
             @WagerHelper.RenderMenu(sportName, groupBetName, isEM)
         }
         else
-       
         {
             lableGroupBet = string.Empty;
             <div class="before-filter">
-            @Lang.dateRange :</div>
+                @Lang.dateRange :</div>
             
-            <div class="item">            
-            
-             @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
-             </div>
-             <div class="before-filter">
-            ~</div>
             <div class="item">
-           
-             @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
-             </div>
+                @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
+            </div>
+            <div class="before-filter">
+                ~</div>
+            <div class="item">
+                @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
+            </div>
             <div class="item">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />
             </div>
@@ -98,11 +95,12 @@
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
     @Html.Hidden("SportName", sportName)
-    @Html.Hidden("FromDate", new DateTime(2013, 8, 1))@*Sample data - 10 days*@
+    @Html.Hidden("FromDate", (DateTime)ViewBag.WagerDate)
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
     @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
+    @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
         <div class="pages-size">
@@ -114,8 +112,7 @@
         </div>
     </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-    @Html.Hidden("PageIndex", 0)    
+    @Html.Hidden("PageIndex", 0)
     @Scripts.Render("~/scripts/wagers")
 </body>
 </html>
-

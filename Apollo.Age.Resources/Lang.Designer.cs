@@ -4219,6 +4219,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please recheck the range of date!!.
+        /// </summary>
+        public static string RecheckRangeOfDate {
+            get {
+                return ResourceManager.GetString("RecheckRangeOfDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ref No.
         /// </summary>
         public static string refno {

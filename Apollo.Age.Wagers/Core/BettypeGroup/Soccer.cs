@@ -24,6 +24,7 @@ namespace Apollo.Age.Wagers.Core.BettypeGroup
         public const string HalfFull = "16";
         public const string Total = "2, 12, 6";
         public const string Parlay = "9, 29";
+        public const string OutRight = "10";
 
         /// <summary>
         /// Get bet type by group bet name.
