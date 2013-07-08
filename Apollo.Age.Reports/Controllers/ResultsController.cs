@@ -9,6 +9,7 @@
 //      + Added BalanceUpDay
 //      + Refactored Index (involved in implementing Index.cshtml)
 //   </change>
+//   <change who="Edward.Nguyen" date="2013.7.8">Add get date from App Setting, if is null will get DateTime.Now</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
