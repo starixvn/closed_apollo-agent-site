@@ -93,7 +93,7 @@ var Wagers = function ($) {
                     var newToDate = $('#OutrightToDate').val();
 
                     if (newFromDate > newToDate) {
-                        alert("Please recheck the range of date!!");
+                        alert($('#RecheckRangeOfDateText').val());
                         return;
                     }
 

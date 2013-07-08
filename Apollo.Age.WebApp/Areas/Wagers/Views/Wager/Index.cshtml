@@ -103,6 +103,8 @@
     @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
+    @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
+    
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
         <div class="pages-size">

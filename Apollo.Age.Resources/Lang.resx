@@ -1821,4 +1821,7 @@
   <data name="hd" xml:space="preserve">
     <value>HD</value>
   </data>
+  <data name="RecheckRangeOfDate" xml:space="preserve">
+    <value>Please recheck the range of date!!</value>
+  </data>
 </root>
