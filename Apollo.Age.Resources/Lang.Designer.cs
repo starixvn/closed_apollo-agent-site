@@ -1006,7 +1006,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GMT+8.
+        ///   Looks up a localized string similar to GMT.
         /// </summary>
         public static string GMT {
             get {

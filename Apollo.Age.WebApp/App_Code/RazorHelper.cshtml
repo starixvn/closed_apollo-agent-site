@@ -294,7 +294,7 @@
         TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
         var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
         
-    @(string.Format("--GMT-4: {0}", Formater.LongDateFormat(easternTime)))
+    @(string.Format("--{0}-4: {1}", Lang.GMT,  Formater.LongDateFormat(easternTime)))
 }
 @helper RenderWagersFilter(string title, List<League> leagues)
     {

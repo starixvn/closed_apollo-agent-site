@@ -1624,7 +1624,7 @@
     <value>Agent Commission (%)</value>
   </data>
   <data name="GMT" xml:space="preserve">
-    <value>GMT+8</value>
+    <value>GMT</value>
   </data>
   <data name="dd" xml:space="preserve">
     <value>DD</value>
