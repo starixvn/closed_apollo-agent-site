@@ -42,17 +42,17 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
 
-    var maxLabel = document.createElement("DIV");
-    maxLabel.innerHTML = Language.MAX_POSITION;
-    maxLabel.title = Language.MAX_POSITION;
-    maxLabel.className = "group-label";
-    box.appendChild(maxLabel);
-
     var presetLabel = document.createElement("DIV");
     presetLabel.innerHTML = Language.PRESET_POSITION;
     presetLabel.title = Language.PRESET_POSITION;
     presetLabel.className = "group-label";
     box.appendChild(presetLabel);
+
+    var maxLabel = document.createElement("DIV");
+    maxLabel.innerHTML = Language.MAX_POSITION;
+    maxLabel.title = Language.MAX_POSITION;
+    maxLabel.className = "group-label";
+    box.appendChild(maxLabel);
 
     var minLabel = document.createElement("DIV");
     minLabel.innerHTML = Language.MIN_POSITION;

@@ -2185,7 +2185,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent.
+        ///   Looks up a localized string similar to % Downline.
         /// </summary>
         public static string lblGivenShare {
             get {
@@ -2464,7 +2464,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent.
+        ///   Looks up a localized string similar to % Downline.
         /// </summary>
         public static string lblMaxGivenShare {
             get {
@@ -2482,7 +2482,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Upper.
+        ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string lblMaxTakenShare {
             get {
@@ -2554,7 +2554,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent Min.
+        ///   Looks up a localized string similar to % Min Downline.
         /// </summary>
         public static string lblMinGivenShare {
             get {
@@ -3058,7 +3058,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Upper.
+        ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string lblTakenShare {
             get {
