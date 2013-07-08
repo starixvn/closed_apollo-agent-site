@@ -9,7 +9,7 @@ var TOTALBETS = function ($) {
 				var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?'
                     + 'matchId=' + $(this).attr("match-id")
                     + '&betType=' + $(this).attr("bet-type")
-                    + '&leagueName=' + $(this).attr("league-name"));
+                    + '&leagueName=' + escape($(this).attr("league-name")));
 				if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 					url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
 				}
@@ -102,7 +102,7 @@ var TOTALBETS = function ($) {
 				var url = APOLLO.resolveUrl('Forecast/FC1X2?'
                 + 'matchId=' + $(this).attr("match-id")
                 + '&betType=' + $(this).attr("bet-type")
-                + '&leagueName=' + $(this).attr("league-name"));
+                + '&leagueName=' + escape($(this).attr("league-name")));
 				if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 					url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId;
 				}
