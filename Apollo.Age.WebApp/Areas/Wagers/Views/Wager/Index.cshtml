@@ -23,7 +23,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>@Lang.lblWager</title>
-    @Styles.Render("~/css/wagers");
+    @Styles.Render("~/css/wagers")
 </head>
 <body>
     <div id="function-bar">
@@ -80,12 +80,12 @@
                 @Lang.dateRange :</div>
             
             <div class="item">
-                @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
+                @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
             </div>
             <div class="before-filter">
                 ~</div>
             <div class="item">
-                @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay, maxDate: DateTime.Now.AddYears(20))
+                @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
             </div>
             <div class="item">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />

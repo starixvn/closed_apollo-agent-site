@@ -260,8 +260,8 @@ namespace Apollo.Age.Wagers.Controllers
                 sportTypes,
                 isOR);
 
-            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, groupBetName) : new List<Agent>();
-            ViewBag.GroupBetName = isOR ? string.Empty : groupBetName;
+            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOR ? Soccer.OutRight : groupBetName) : new List<Agent>();
+            ViewBag.GroupBetName = isOR ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
