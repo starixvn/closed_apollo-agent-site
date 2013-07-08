@@ -426,6 +426,7 @@
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
     <Content Include="Views\Internal\Resources\style.css" />
+    <Content Include="Views\Log\Resources\monPickr-0.0.3.css" />
     <Content Include="Views\Log\Resources\images\arrow-up-red.png" />
     <Content Include="Views\Log\Resources\images\bg-demo-docs-param.gif" />
     <Content Include="Views\Log\Resources\images\demo-spindown-closed.gif" />
