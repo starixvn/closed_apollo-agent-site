@@ -288,7 +288,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\Images\bot.jpg" />
     <Content Include="Views\Account\Resources\Images\icon-subMenu.gif" />
+    <Content Include="Views\Account\Resources\Images\top.jpg" />
     <Content Include="Views\Account\Resources\Images\top_03b.gif" />
     <Content Include="Views\Account\Resources\Images\top_04.gif" />
     <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
