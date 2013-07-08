@@ -233,6 +233,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/head.min.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
                 "~/views/account/resources/menu.js",
                 "~/views/account/resources/jquery.treeview.js",
                 "~/views/account/resources/jquery.treeview.async.js"));
