@@ -7,6 +7,7 @@
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 //   <change who="Anders.Le" date="2013.6.30">Remove property WagerService</change>
 //   <change who="Terry.Nguyen" date="2013.7.2">Add outright sporttype</change>
+//   <change who="Edward.Nguyen" date="2013.7.8">Add get date from App Setting, if is null will get DateTime.Now</change>
 // </history>
 
 namespace Apollo.Age.Wagers.Controllers

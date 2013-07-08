@@ -25,7 +25,5 @@ namespace Apollo.Age.Reports.ViewModels
         public DateTime BalanceUpDay { get; set; }
 
         public DateTime EventDate { get; set; }
-
-       
     }
 }

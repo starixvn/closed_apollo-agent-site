@@ -9,6 +9,7 @@
 //      + Added BalanceUpDay
 //      + Refactored Index (involved in implementing Index.cshtml)
 //   </change>
+//   <change who="Edward.Nguyen" date="2013.7.8">Add get date from App Setting, if is null will get DateTime.Now</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -25,6 +26,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Web;
+    using Fanex.Common;
+    using System.Configuration;
 
     /// <summary>
     /// Result controller
@@ -36,6 +39,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Get property from Result service
         /// </summary>
         private readonly ResultService _resultService;
+        private DateTime _resultDate;
 
         #region Ctors
 
@@ -45,6 +49,8 @@ namespace Apollo.Age.Reports.Controllers
         public ResultsController()
             : this(null)
         {
+            var configDate = ConfigurationManager.AppSettings["ResultDateConfig"];
+            _resultDate = Converter.ToDateTime(configDate, DateTime.Now);
         }
 
         /// <summary>
@@ -79,7 +85,7 @@ namespace Apollo.Age.Reports.Controllers
             var viewModel = new MatchResultViewModel
             {
                 BalanceUpDay = BalanceUpDay,
-                EventDate = DateTime.Now,
+                EventDate = _resultDate,
             };
 
             return View(viewModel);

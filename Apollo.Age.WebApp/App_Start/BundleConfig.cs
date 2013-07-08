@@ -66,7 +66,7 @@ namespace Apollo.Age.WebApp
             bundles.AddAndInclude(
            "~/css/viewlog",
             "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
-            "~/views/log/resources/monPickr-0.0.3.min.css");
+            "~/views/log/resources/monPickr-0.0.3.css");
 
             bundles.AddAndInclude(
          "~/css/account",
@@ -233,6 +233,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery.cookie.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
                 "~/views/account/resources/menu.js",
                 "~/views/account/resources/jquery.treeview.js",
                 "~/views/account/resources/jquery.treeview.async.js"));
