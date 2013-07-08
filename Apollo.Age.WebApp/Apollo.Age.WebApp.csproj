@@ -288,8 +288,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\Images\bg-logo.png" />
     <Content Include="Views\Account\Resources\Images\bot.jpg" />
-    <Content Include="Views\Account\Resources\Images\icon-subMenu.gif" />
+    <Content Include="Views\Account\Resources\Images\icon-subMenu.png" />
     <Content Include="Views\Account\Resources\Images\top.jpg" />
     <Content Include="Views\Account\Resources\Images\top_03b.gif" />
     <Content Include="Views\Account\Resources\Images\top_04.gif" />
@@ -328,7 +329,6 @@
     <Content Include="Views\Account\Resources\gistfile1.min.js" />
     <Content Include="Views\Account\Resources\header.js" />
     <Content Include="Views\Account\Resources\Images\ajax-loader.gif" />
-    <Content Include="Views\Account\Resources\Images\bg-logo.jpg" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-bottom.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-middle.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-top.png" />
@@ -607,7 +607,7 @@
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\sync.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
-    <Content Include="_GlobalResources\Images\top_04.gif" />
+    <Content Include="_GlobalResources\Images\top_04.png" />
     <Content Include="_GlobalResources\Images\x5.gif" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
