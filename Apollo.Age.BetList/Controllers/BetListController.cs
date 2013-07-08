@@ -426,11 +426,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
-                Title = string.Format("{0}: {1} --{2}: {3} --{4}: {5} --{6}: {7}",
-                    Lang.from,
-                    fromDate.ToString("yyyy-MM-dd"),
-                    Lang.to,
-                    toDate.ToString("yyyy-MM-dd"),
+                Title = string.Format("--{0}: {1} --{2}: {3}",
                     Lang.sport,
                     sportName,
                     Lang.bettype,
