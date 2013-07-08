@@ -655,7 +655,7 @@
     <value>Sportsbook</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>% in Agent</value>
+    <value>% Downline</value>
   </data>
   <data name="nextcombo" xml:space="preserve">
     <value>Next Combo</value>
@@ -790,7 +790,7 @@
     <value>To</value>
   </data>
   <data name="lblMinGivenShare" xml:space="preserve">
-    <value>% in Agent Min</value>
+    <value>% Min Downline</value>
   </data>
   <data name="lblAccountInformation" xml:space="preserve">
     <value>Account Information</value>
@@ -940,10 +940,10 @@
     <value>Update</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
-    <value>% in Agent</value>
+    <value>% Downline</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
-    <value>% in Upper</value>
+    <value>% Preset</value>
   </data>
   <data name="lblGroupd" xml:space="preserve">
     <value>Line D</value>
@@ -1375,7 +1375,7 @@
     <value>Last Goal</value>
   </data>
   <data name="lblMaxTakenShare" xml:space="preserve">
-    <value>% in Upper</value>
+    <value>% Preset</value>
   </data>
   <data name="dateRange" xml:space="preserve">
     <value>Date range</value>

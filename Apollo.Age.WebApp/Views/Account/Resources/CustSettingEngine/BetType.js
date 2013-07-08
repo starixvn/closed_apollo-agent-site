@@ -28,6 +28,28 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
+    //// Taken Share
+    var presetSelected = this.pt.Preset;
+    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max, 2), 0);
+    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Max, 2), 0);
+    var presetContainer = document.createElement("DIV");
+    presetContainer.className = "bet-type-select";
+    var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
+    {
+        minimum: currentPt.MinPresetSpan,
+        maximum: currentPt.MaxPresetSpan,
+        decimals: Fanex.CustSetting.PT_DECIMALS,
+        step: Fanex.CustSetting.PT_STEP,
+        value: presetSelected,
+        minWidth: this.minWidth,
+        lastLetter: Fanex.CustSetting.PT_LAST_LETTER
+    }, Fanex.CustSetting.PT_MAX_LENGTH);
+    box.appendChild(presetContainer);
+    var presetMaxSpan = document.createElement("SPAN");
+    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
+    presetMaxSpan.className = "upline-agent-share";
+    presetContainer.appendChild(presetMaxSpan);
+
     //// Given share
     var maxSelected = this.pt.Max;
     currentPt.MaxMaxSpan = this.pt.Upline.Max;
@@ -52,27 +74,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     uplineMaxSpan.className = "upline-agent-share";
     maxContainer.appendChild(uplineMaxSpan);
 
-    //// Taken Share
-    var presetSelected = this.pt.Preset;
-    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max, 2), 0);
-    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Max, 2), 0);
-    var presetContainer = document.createElement("DIV");
-    presetContainer.className = "bet-type-select";
-    var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
-    {
-        minimum: currentPt.MinPresetSpan,
-        maximum: currentPt.MaxPresetSpan,
-        decimals: Fanex.CustSetting.PT_DECIMALS,
-        step: Fanex.CustSetting.PT_STEP,
-        value: presetSelected,
-        minWidth: this.minWidth,
-        lastLetter: Fanex.CustSetting.PT_LAST_LETTER
-    }, Fanex.CustSetting.PT_MAX_LENGTH);
-    box.appendChild(presetContainer);
-    var presetMaxSpan = document.createElement("SPAN");
-    presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
-    presetMaxSpan.className = "upline-agent-share";
-    presetContainer.appendChild(presetMaxSpan);
 
     //// Min Share
     var minSelected = this.pt.Min;
@@ -481,39 +482,11 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     tableShareSetting.className = "share-setting-table";
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
+
+    // Taken
     var trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
 
-    var maxLabel = document.createElement("TD");
-    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
-    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
-    maxLabel.className = "share-setting-label";
-    trSetting.appendChild(maxLabel);
-
-    var maxSelected = currentPt.Max;
-    var maxContainer = document.createElement("TD");
-    currentPt.MinMaxSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
-    maxContainer.className = "share-setting-value";
-    trSetting.appendChild(maxContainer);
-    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
-                    {
-                        minimum: currentPt.MinMaxSpan,
-                        maximum: currentPt.Upline.Max,
-                        decimals: Fanex.CustSetting.PT_DECIMALS,
-                        step: Fanex.CustSetting.PT_STEP,
-                        value: maxSelected,
-                        minWidth: 60,
-                        lastLetter: Fanex.CustSetting.PT_LAST_LETTER
-                    }, Fanex.CustSetting.PT_MAX_LENGTH);
-
-    var uplineMaxSpan = document.createElement("SPAN");
-    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.Upline.Max);
-    uplineMaxSpan.className = "upline-agent-share";
-    maxContainer.appendChild(uplineMaxSpan);
-
-    trSetting = document.createElement("TR");
-    boxTBody.appendChild(trSetting)
-    // Share Settings
     var presetLabel = document.createElement("TD");
     presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
     presetLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
@@ -541,6 +514,38 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
+
+    // Given
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+    var maxLabel = document.createElement("TD");
+    maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
+    maxLabel.className = "share-setting-label";
+    trSetting.appendChild(maxLabel);
+
+    var maxSelected = currentPt.Max;
+    var maxContainer = document.createElement("TD");
+    currentPt.MinMaxSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
+    maxContainer.className = "share-setting-value";
+    trSetting.appendChild(maxContainer);
+    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
+                    {
+                        minimum: currentPt.MinMaxSpan,
+                        maximum: currentPt.Upline.Max,
+                        decimals: Fanex.CustSetting.PT_DECIMALS,
+                        step: Fanex.CustSetting.PT_STEP,
+                        value: maxSelected,
+                        minWidth: 60,
+                        lastLetter: Fanex.CustSetting.PT_LAST_LETTER
+                    }, Fanex.CustSetting.PT_MAX_LENGTH);
+
+    var uplineMaxSpan = document.createElement("SPAN");
+    uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.Upline.Max);
+    uplineMaxSpan.className = "upline-agent-share";
+    maxContainer.appendChild(uplineMaxSpan);
+
+    
 
     //// Preset K Change Affect to Max K
     presetSpinBox.input.onchange = function (event) {
