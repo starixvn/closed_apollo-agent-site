@@ -4,12 +4,16 @@
         ddlBettype: null,
         hdSportType: null,
         hdBettype: null,
+        SportName: null,
+        BettypeName: null,
 
         init: function () {
             OUTSTANDING.ddlSport = $("#ddlSport");
             OUTSTANDING.ddlBettype = $("#ddlBettype");
             OUTSTANDING.hdSportType = $("#hdSportType");
             OUTSTANDING.hdBettype = $("#hdBettype");
+            OUTSTANDING.SportName = $("#SportName");
+            OUTSTANDING.BettypeName = $("#BettypeName");
 
             $("#MemberOutstanding").on('click', function () {
                 var $this = $(this);
@@ -66,8 +70,8 @@
 
         viewBetList: function () {
             $.blockUI();
-            OUTSTANDING.sportTypeName = OUTSTANDING.ddlSport.find('option[value=' + OUTSTANDING.hdSportType.val() + ']').text();
-            OUTSTANDING.betTypeName = OUTSTANDING.ddlBettype.find('option[value=' + OUTSTANDING.hdBettype.val() + ']').text();
+            OUTSTANDING.sportTypeName = OUTSTANDING.SportName.val();
+            OUTSTANDING.betTypeName = OUTSTANDING.BettypeName.val();
             var username = $(this).closest('tr').children('td:first').text();
             location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&username=" + username
