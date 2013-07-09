@@ -19,7 +19,7 @@ namespace Apollo.Age.Criterias.Accounts
 
         public override bool IsValid()
         {
-            return true;
+            return AgentId > 0 && ParentId > 0;
         }
 
         public override string GetSettingKey()
