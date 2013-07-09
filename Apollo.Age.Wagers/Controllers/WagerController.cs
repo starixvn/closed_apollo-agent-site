@@ -49,7 +49,7 @@ namespace Apollo.Age.Wagers.Controllers
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
         }
-        
+
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
@@ -117,11 +117,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// </summary>
         /// <param name="sportName">Sport name.</param>
         /// <returns>List date.</returns>
-        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
+        protected List<SelectListItem> GenerateEarlyMarketDates(string sportName)
         {
             var sportId = SportId(sportName);
 
-            var listEventDate = WagerService.GetEventDate(sportId);
+            var listEventDate = WagerService.GetEventDate(sportId); ;
 
             var list = new List<SelectListItem>();
 
@@ -139,7 +139,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="sportName">Sport name.</param>
         /// <param name="groupBetName">Group bet name.</param>
         /// <returns>List agent.</returns>
-        public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
+        protected List<Agent> GetMainShareHolder(string sportName, string groupBetName)
         {
             switch (sportName)
             {
@@ -190,6 +190,8 @@ namespace Apollo.Age.Wagers.Controllers
             var title = string.Empty;
             var titleAll = string.Empty;
             var sportTypeIds = string.Empty;
+            List<SelectListItem> earlyMarketListDate = null;
+
             groupBetName = groupBetName.ToLower();
 
             if (Equals(sportName, WagersSportName.Soccer))
@@ -272,7 +274,16 @@ namespace Apollo.Age.Wagers.Controllers
 
             if (isEM)
             {
-                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+                earlyMarketListDate = GenerateEarlyMarketDates(sportName);
+
+                if (earlyMarketListDate != null && earlyMarketListDate.Any())
+                {
+                    ViewBag.EarlyMarketDates = GenerateEarlyMarketDates(sportName);
+                }
+                else
+                {
+                    return View("~/Areas/Wagers/Views/Wager/NoData.cshtml");
+                }
             }
 
             ViewBag.isEM = isEM;
