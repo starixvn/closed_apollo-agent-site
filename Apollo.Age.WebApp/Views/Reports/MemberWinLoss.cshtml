@@ -244,6 +244,9 @@ else
 @Html.Hidden("hdBettype", Model.Bettypes)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
+@Html.Hidden("SportName", Model.SportName)
+@Html.Hidden("BettypeName", Model.BettypeName)
+
 @section scripts
 {
 	@Scripts.Render("~/scripts/winlossjs")
