@@ -904,7 +904,22 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
     tableShareSetting.className = "share-setting-table";
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
+
     var trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
+    // Share Settings
+    var presetLabel = document.createElement("TD");
+    presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
+    presetLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    presetLabel.className = "share-setting-label";
+    trSetting.appendChild(presetLabel);
+
+    var presetContainer = document.createElement("TD");
+    presetContainer.className = "share-setting-value";
+    presetContainer.innerHTML = currentPt.Preset;
+    trSetting.appendChild(presetContainer);
+
+    trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
 
     var maxLabel = document.createElement("TD");
@@ -918,19 +933,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
     maxContainer.innerHTML = currentPt.Max;
     trSetting.appendChild(maxContainer);
 
-    trSetting = document.createElement("TR");
-    boxTBody.appendChild(trSetting)
-    // Share Settings
-    var presetLabel = document.createElement("TD");
-    presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    presetLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
-    presetLabel.className = "share-setting-label";
-    trSetting.appendChild(presetLabel);
-
-    var presetContainer = document.createElement("TD");
-    presetContainer.className = "share-setting-value";
-    presetContainer.innerHTML = currentPt.Preset;
-    trSetting.appendChild(presetContainer);
+    
 
     return tableShareSetting;
 };
