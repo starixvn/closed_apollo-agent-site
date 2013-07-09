@@ -134,7 +134,7 @@ if (typeof jQuery != 'undefined') {
                         window.location.href = backLink;
 
                     }
-                }, 2000);
+                }, 4000);
 
             }
         }
