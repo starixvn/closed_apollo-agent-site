@@ -121,7 +121,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var sportId = SportId(sportName);
 
-            var listEventDate = WagerService.GetEventDate(sportId);
+            var listEventDate = WagerService.GetEventDate(sportId); ;
 
             var list = new List<SelectListItem>();
 
