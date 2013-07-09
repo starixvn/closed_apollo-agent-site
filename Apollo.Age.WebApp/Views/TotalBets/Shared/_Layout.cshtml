@@ -5,6 +5,7 @@
 	var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
 	var currentAgentId = ViewBag.CurrentAgentId;
 	var mainShareHolders = (IEnumerable<Agent>)ViewBag.MainShareHolders;
+    var isSuper = ViewBag.IsSuper ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -19,10 +20,10 @@
 	<div id="page_main">
 		<div id="content_main">
 			<div id="header_main">@ViewBag.Title</div>
-			@if (currentAgentId == 0)
+			@if (isSuper)
 			{
 				@RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
-			}<span>
+			}
 			@RenderBody()
 		</div>
 	</div>
