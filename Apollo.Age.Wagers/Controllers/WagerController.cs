@@ -49,7 +49,7 @@ namespace Apollo.Age.Wagers.Controllers
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
         }
-        
+
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
@@ -75,22 +75,15 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isOutright">Return true is out right.</param>
         /// <returns>Json format.</returns>
         public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
-        {
-            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
-            var result = new List<League>();
-            result.Add(new League
+        {           
+            var result = this.GetLeague(fromDate, toDate, sportTypes, isOutright);
+            if (result != null && result.Any())
             {
-                Id = 0,
-                Name = Lang.all
-            });
-
-            foreach (var league in leagues)
-            {
-                result.Add(new League
-                {
-                    Id = league.Id,
-                    Name = CacheRef.GetLeagueName(league.Id)
-                });
+                result.Insert(0, new League
+                 {
+                     Id = 0,
+                     Name = Lang.all
+                 });
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -101,7 +94,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// </summary>
         /// <param name="sportName">Sport name.</param>
         /// <returns>Sport type id.</returns>
-        public string SportId(string sportName)
+        protected string SportId(string sportName)
         {
             string sportId = string.Empty;
             if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
@@ -117,11 +110,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// </summary>
         /// <param name="sportName">Sport name.</param>
         /// <returns>List date.</returns>
-        public List<SelectListItem> GenerateEarlyMarketCalendar(string sportName)
+        protected List<SelectListItem> GenerateEarlyMarketDates(string sportName)
         {
             var sportId = SportId(sportName);
 
-            var listEventDate = WagerService.GetEventDate(sportId);
+            var listEventDate = WagerService.GetEventDate(sportId); ;
 
             var list = new List<SelectListItem>();
 
@@ -139,7 +132,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="sportName">Sport name.</param>
         /// <param name="groupBetName">Group bet name.</param>
         /// <returns>List agent.</returns>
-        public List<Agent> GetMainShareHolder(string sportName, string groupBetName)
+        protected List<Agent> GetMainShareHolder(string sportName, string groupBetName)
         {
             switch (sportName)
             {
@@ -190,6 +183,8 @@ namespace Apollo.Age.Wagers.Controllers
             var title = string.Empty;
             var titleAll = string.Empty;
             var sportTypeIds = string.Empty;
+            List<SelectListItem> earlyMarketListDate = null;
+
             groupBetName = groupBetName.ToLower();
 
             if (Equals(sportName, WagersSportName.Soccer))
@@ -272,7 +267,16 @@ namespace Apollo.Age.Wagers.Controllers
 
             if (isEM)
             {
-                ViewBag.EmCalendar = GenerateEarlyMarketCalendar(sportName);
+                earlyMarketListDate = GenerateEarlyMarketDates(sportName);
+
+                if (earlyMarketListDate != null && earlyMarketListDate.Any())
+                {
+                    ViewBag.EarlyMarketDates = GenerateEarlyMarketDates(sportName);
+                }
+                else
+                {
+                    return View("~/Areas/Wagers/Views/Wager/NoData.cshtml");
+                }
             }
 
             ViewBag.isEM = isEM;

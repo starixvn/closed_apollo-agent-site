@@ -1827,4 +1827,7 @@
   <data name="Parent" xml:space="preserve">
     <value>Parent</value>
   </data>
+  <data name="lblWagerLeague" xml:space="preserve">
+    <value>League</value>
+  </data>
 </root>

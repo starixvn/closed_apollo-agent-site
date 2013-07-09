@@ -31,7 +31,7 @@
             builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
         }
 
-    @Html.Raw(builder.GetBetList());
+    @Html.Raw(builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId))));
 
                                    i++;
     }

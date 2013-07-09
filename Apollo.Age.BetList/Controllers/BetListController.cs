@@ -462,7 +462,7 @@ namespace Apollo.Age.BetList.Controllers
             else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
             {
                 strBetType = Convert.ToString((int)BetTypes.MixParlay);
-                title = CacheRef.GetBettype(betType);
+                title = CacheRef.GetBettype((int)BetTypes.MixParlay);
             }
             else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
             {

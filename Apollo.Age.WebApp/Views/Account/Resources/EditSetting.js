@@ -135,7 +135,7 @@ if (typeof jQuery != 'undefined') {
                 var backLink = $('#backUrl').val();
                 setTimeout(function () {
                     window.location.href = backLink;
-                }, 2000);
+                }, 4000);
 
             }
         }

@@ -48,12 +48,12 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
 
             switch (betListPage)
             {
-                case BetListPage.AccountInfo:
                 case BetListPage.Wager:
                 case BetListPage.Forecast:
                 case BetListPage.Outstanding:
                     this.Template.sportName = string.Empty;
                     break;
+                case BetListPage.AccountInfo:
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
                 case BetListPage.Report:
