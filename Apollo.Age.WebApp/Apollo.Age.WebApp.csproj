@@ -741,6 +741,7 @@
     <Content Include="Views\BetList\Outstanding.cshtml" />
     <Content Include="Views\BetList\AccountInfo.cshtml" />
     <Content Include="Views\BetList\CombinationMixParlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\NoData.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />

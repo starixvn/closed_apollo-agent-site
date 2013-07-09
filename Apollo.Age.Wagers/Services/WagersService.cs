@@ -77,6 +77,7 @@ namespace Apollo.Age.Wagers.Services
             {
                 Sporttypes = sportTypes
             };
+
             return this.GetData<DateTime>(criteria);
         }
 
