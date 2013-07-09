@@ -5,7 +5,7 @@ if (typeof jQuery != 'undefined') {
 			matchId: DEFAULT_OBJECT.matchId,
 			betType: DEFAULT_OBJECT.betType,
 			currentScore: DEFAULT_OBJECT.currentScore,
-			contentLink: APOLLO.resolveUrl('Forecast/FORECASTBYMATCHContent'),
+			contentLink: APOLLO.resolveUrl('Forecast/ForecastByMatchContent'),
 			init: function () {
 				parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.forecastString);
 				FORECASTBYMATCH.loadContentView();

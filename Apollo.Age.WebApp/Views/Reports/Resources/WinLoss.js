@@ -23,6 +23,9 @@
             WINLOSS.ToThisWeek = $("#thisWeekTo");
             WINLOSS.FromLastWeek = $("#lastWeekFrom");
             WINLOSS.ToLastWeek = $("#lastWeekTo");
+            WINLOSS.SportName = $("#SportName");
+            WINLOSS.BettypeName = $("#BettypeName");
+
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
                 if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
@@ -72,8 +75,8 @@
 
             $(".view-betlist").on("click", function () {
                 $.blockUI();
-                WINLOSS.sportTypeName = WINLOSS.ddlSport.find('option[value=' + WINLOSS.hdSportType.val() + ']').text();
-                WINLOSS.betTypeName = WINLOSS.ddlBettype.find('option[value=' + WINLOSS.hdBettype.val() + ']').text();
+                WINLOSS.sportTypeName = WINLOSS.SportName.val();
+                WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
                     + WINLOSS.hdFromDate.val() + "&toDate=" + WINLOSS.hdToDate.val()
                     + "&custId=" + $(this).attr("memberid")

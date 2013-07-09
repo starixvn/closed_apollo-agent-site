@@ -124,6 +124,7 @@ namespace Apollo.Age.BetList.Controllers
             model.LoggedId = CurrentSession.AgentId;
             model.StatusIds = statusIds;
             model.BetListPage = BetListPage.AccountInfo;
+            model.ToDate = ResetEndDate(model.ToDate);
 
             var mainTickets = _betListService.GetTicketResult(model);
 
@@ -660,13 +661,26 @@ namespace Apollo.Age.BetList.Controllers
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
-                    Result = ticket.Winlost + ticket.PlayerComm,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
                     AgentWinlossValue = ticket.AWinlost,
                     AgentCommValue = ticket.AComm,
                     AgentComm = builder.BuildAgentComm(ticket),
                     AgentShare = builder.BuildAgentShare(ticket, null)
                 };
+
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Won
+                    || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Draw
+                    || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Lose
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                {
+                    ticketText.Result = ticket.Winlost + ticket.PlayerComm;
+                }
+                else
+                {
+                    ticketText.Result = 0;
+                }
+
                 ticketTextList.Add(ticketText);
             }
 

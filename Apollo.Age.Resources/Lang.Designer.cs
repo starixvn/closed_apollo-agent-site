@@ -1006,7 +1006,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GMT+8.
+        ///   Looks up a localized string similar to GMT.
         /// </summary>
         public static string GMT {
             get {
@@ -2185,7 +2185,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent.
+        ///   Looks up a localized string similar to % Downline.
         /// </summary>
         public static string lblGivenShare {
             get {
@@ -2464,7 +2464,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent.
+        ///   Looks up a localized string similar to % Downline.
         /// </summary>
         public static string lblMaxGivenShare {
             get {
@@ -2482,7 +2482,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Upper.
+        ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string lblMaxTakenShare {
             get {
@@ -2554,7 +2554,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Agent Min.
+        ///   Looks up a localized string similar to % Min Downline.
         /// </summary>
         public static string lblMinGivenShare {
             get {
@@ -2779,7 +2779,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % Max.
+        ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string lblPercentUpper {
             get {
@@ -3058,7 +3058,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % in Upper.
+        ///   Looks up a localized string similar to % Preset.
         /// </summary>
         public static string lblTakenShare {
             get {
@@ -4071,6 +4071,15 @@ namespace Apollo.Age.Resources {
         public static string pagesize {
             get {
                 return ResourceManager.GetString("pagesize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent.
+        /// </summary>
+        public static string Parent {
+            get {
+                return ResourceManager.GetString("Parent", resourceCulture);
             }
         }
         
