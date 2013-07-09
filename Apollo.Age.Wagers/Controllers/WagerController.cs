@@ -75,22 +75,15 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isOutright">Return true is out right.</param>
         /// <returns>Json format.</returns>
         public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
-        {
-            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
-            var result = new List<League>();
-            result.Add(new League
+        {           
+            var result = this.GetLeague(fromDate, toDate, sportTypes, isOutright);
+            if (result != null && result.Any())
             {
-                Id = 0,
-                Name = Lang.all
-            });
-
-            foreach (var league in leagues)
-            {
-                result.Add(new League
-                {
-                    Id = league.Id,
-                    Name = CacheRef.GetLeagueName(league.Id)
-                });
+                result.Insert(0, new League
+                 {
+                     Id = 0,
+                     Name = Lang.all
+                 });
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -101,7 +94,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// </summary>
         /// <param name="sportName">Sport name.</param>
         /// <returns>Sport type id.</returns>
-        public string SportId(string sportName)
+        protected string SportId(string sportName)
         {
             string sportId = string.Empty;
             if (WagersSportName.WagerSportGroup().ContainsKey(sportName))

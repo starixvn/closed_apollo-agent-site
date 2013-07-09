@@ -70,7 +70,7 @@ var Wagers = function ($) {
                     Wagers.isDirectMember = ($this.val() == 0 ? false : true);
                 }
                 if (Wagers.isOR == "true") {
-                    Wagers.getLeagues();
+                    Wagers.getLeagues(true);
                 }
                 else {
                     Wagers.getWagerData();
