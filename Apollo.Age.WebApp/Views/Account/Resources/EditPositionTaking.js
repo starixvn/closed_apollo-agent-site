@@ -113,6 +113,7 @@ if (typeof jQuery != 'undefined') {
                         //noty({ text: data.ErrMsg, type: 'success' });
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
+                        try { $.unblockUI(); } catch (e) { };
                         noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -122,7 +123,9 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
+                
                 setTimeout(function () {
+                    try { $.unblockUI(); } catch (e) { };
                     if (DEFAULT_LAYOUT.reload) {
                         var url = window.location.href;
                         if (url.indexOf("&isSimpleMode=") > 0) {
@@ -143,6 +146,6 @@ if (typeof jQuery != 'undefined') {
     $(function () {
         settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
-    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    }).ajaxStart($.blockUI);
     
 }

@@ -122,6 +122,7 @@ if (typeof jQuery != 'undefined') {
                         if (data.ErrCode == 0) {
                             EDITSETTING.completeUpdate();
                         } else {
+                            try { $.unblockUI(); } catch (e) { };
                             noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -134,6 +135,7 @@ if (typeof jQuery != 'undefined') {
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
                 setTimeout(function () {
+                    try { $.unblockUI(); } catch (e) { };
                     window.location.href = backLink;
                 }, 4000);
 
@@ -143,5 +145,5 @@ if (typeof jQuery != 'undefined') {
 
     $(function () {
         EDITSETTING.init();
-    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    }).ajaxStart($.blockUI);
 }

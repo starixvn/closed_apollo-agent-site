@@ -8,15 +8,15 @@
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
     var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     titleFormat = string.Format(titleFormat, string.Empty);
+    var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
     var isMaster = (bool)ViewBag.IsMaster;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
-    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
-    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
-    var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
+    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;    
 }
 @using (Html.BeginForm())
 {       

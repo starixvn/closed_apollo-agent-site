@@ -63,13 +63,13 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
                 
                 case BetListPage.Wager:
                 case BetListPage.Forecast:
-                case BetListPage.Outstanding:
                     this.Template.sportName = string.Empty;
                     break;
                 case BetListPage.AccountInfo:
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
                 case BetListPage.Report:
+                case BetListPage.Outstanding:
                     this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
                     break;
                 default:
