@@ -239,11 +239,10 @@
     <Content Include="Areas\Wagers\Scripts\Wagers.js" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
-    <Compile Include="_BetList\BetList.aspx.cs">
+    <SplashScreen Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    </SplashScreen>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

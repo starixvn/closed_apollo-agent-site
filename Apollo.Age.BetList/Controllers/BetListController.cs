@@ -662,7 +662,6 @@ namespace Apollo.Age.BetList.Controllers
                     Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
-                    AgentWinlossValue = ticket.AWinlost,
                     AgentCommValue = ticket.AComm,
                     AgentComm = builder.BuildAgentComm(ticket),
                     AgentShare = builder.BuildAgentShare(ticket, null)
@@ -672,13 +671,15 @@ namespace Apollo.Age.BetList.Controllers
                 if (ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Won
                     || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Draw
                     || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Lose
-                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
                 {
                     ticketText.Result = ticket.Winlost + ticket.PlayerComm;
+                    ticketText.AgentWinlossValue = ticket.AWinlost;
                 }
                 else
                 {
                     ticketText.Result = 0;
+                    ticketText.AgentWinlossValue = 0;
                 }
 
                 ticketTextList.Add(ticketText);

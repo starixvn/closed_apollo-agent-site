@@ -56,7 +56,7 @@
             </div>
         }
         <div class="before-filter">
-            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 180 }, "Wagers.getWagerData($('#pager').sbPager('getCurrentPage'));")
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 180 }, "Wagers.autoRefresh();")
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">
             --</div>
