@@ -124,6 +124,9 @@ var TOTALBETS = function ($) {
 } (jQuery);
 
 $(function () {
+    $.blockUI();
+    setTimeout('$.unblockUI()', 300);
+
 	if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 		$("#ddlMainShareHolder").change(function () {
 			var $this = $(this);
