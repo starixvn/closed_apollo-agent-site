@@ -107,22 +107,22 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             //this.Template.Score.homeScore = ticket.LiveHomeScore.ToString();
             //this.Template.Score.awayScore = ticket.LiveAwayScore.ToString();
 
-            switch (betListPage)
-            {
-                case BetListPage.Wager:
-                case BetListPage.Forecast:
-                    this.Template.LeagueName.Hide();
-                    break;
-                case BetListPage.Outstanding:
-                case BetListPage.AccountInfo:
-                case BetListPage.Default:
-                case BetListPage.Cancel:
-                case BetListPage.Report:
-                case BetListPage.Transaction:
-                    this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
-                    break;
-            }
-
+            //switch (betListPage)
+            //{
+            //    case BetListPage.Wager:
+            //    case BetListPage.Forecast:
+            //        this.Template.LeagueName.Hide();
+            //        break;
+            //    case BetListPage.Outstanding:
+            //    case BetListPage.AccountInfo:
+            //    case BetListPage.Default:
+            //    case BetListPage.Cancel:
+            //    case BetListPage.Report:
+            //    case BetListPage.Transaction:
+            //        this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+            //        break;
+            //}
+            this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
             this.Template.HomeAwayId.homeid = ticket.HomeId.ToString();
             this.Template.HomeAwayId.awayid = ticket.AwayId.ToString();
 
