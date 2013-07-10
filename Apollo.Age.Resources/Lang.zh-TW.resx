@@ -123,9 +123,6 @@
   <data name="HandicapOverUnderOddEven" xml:space="preserve">
     <value>让分 大小 单双</value>
   </data>
-  <data name="lblNo" xml:space="preserve">
-    <value>單號</value>
-  </data>
   <data name="lblFTOE" xml:space="preserve">
     <value>全場單雙</value>
   </data>
@@ -141,14 +138,11 @@
   <data name="lblMemberBetList" xml:space="preserve">
     <value>會員</value>
   </data>
-  <data name="refundht" xml:space="preserve">
-    <value>HT退款</value>
-  </data>
   <data name="memberList" xml:space="preserve">
     <value>会员</value>
   </data>
-  <data name="ViewSportsbook" xml:space="preserve">
-    <value>瀏覽體育博彩</value>
+  <data name="warrior2ndBall" xml:space="preserve">
+    <value>第二顆球贏</value>
   </data>
   <data name="lbl1sthalf" xml:space="preserve">
     <value>上半场</value>
@@ -159,20 +153,17 @@
   <data name="positiontaking" xml:space="preserve">
     <value>占成</value>
   </data>
-  <data name="copyFrom" xml:space="preserve">
-    <value>从{0}复制</value>
-  </data>
   <data name="GrossTotal" xml:space="preserve">
     <value>净值</value>
-  </data>
-  <data name="gotopage" xml:space="preserve">
-    <value>轉下一頁</value>
   </data>
   <data name="lblInvalidInputDecimals" xml:space="preserve">
     <value>无法输入超过小数点第二位</value>
   </data>
   <data name="halftime" xml:space="preserve">
     <value>上半場</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>停用</value>
   </data>
   <data name="lblMainShareHolder" xml:space="preserve">
     <value>主要股东</value>
@@ -195,8 +186,8 @@
   <data name="IncorrectCaptchaMsg" xml:space="preserve">
     <value>您輸入錯誤的識別碼</value>
   </data>
-  <data name="lbl2_3" xml:space="preserve">
-    <value>2~3</value>
+  <data name="locked" xml:space="preserve">
+    <value>锁定</value>
   </data>
   <data name="UnauthorizedMsg" xml:space="preserve">
     <value>您的連線已被終止或者尚未授權</value>
@@ -215,6 +206,9 @@
   </data>
   <data name="submit" xml:space="preserve">
     <value>提交</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>其他</value>
   </data>
   <data name="lblHelp" xml:space="preserve">
     <value>帮助</value>
@@ -252,11 +246,17 @@
   <data name="lblOddEven" xml:space="preserve">
     <value>单双</value>
   </data>
+  <data name="lblRB" xml:space="preserve">
+    <value>滚球</value>
+  </data>
   <data name="lblalertMinbetCompare" xml:space="preserve">
     <value>最小单注必须大于或等于</value>
   </data>
   <data name="agent" xml:space="preserve">
     <value>代理</value>
+  </data>
+  <data name="lblTemporarilyUnavailable" xml:space="preserve">
+    <value>暫時無法使用</value>
   </data>
   <data name="lblelimination" xml:space="preserve">
     <value>消除</value>
@@ -276,9 +276,6 @@
   <data name="lbl7" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="lblDrawNoBet" xml:space="preserve">
-    <value>获胜球队</value>
-  </data>
   <data name="MotorSports" xml:space="preserve">
     <value>赛车</value>
   </data>
@@ -291,14 +288,17 @@
   <data name="events" xml:space="preserve">
     <value>賽事</value>
   </data>
-  <data name="hd" xml:space="preserve">
-    <value>主和</value>
+  <data name="lblOverEven" xml:space="preserve">
+    <value>大/雙</value>
   </data>
   <data name="lblUnauthorizedClient" xml:space="preserve">
     <value>未經授權的客戶</value>
   </data>
   <data name="ASC" xml:space="preserve">
     <value>升幕（由小到大）</value>
+  </data>
+  <data name="totalset" xml:space="preserve">
+    <value>总盘数</value>
   </data>
   <data name="ShareAmount" xml:space="preserve">
     <value>占成金额</value>
@@ -311,6 +311,9 @@
   </data>
   <data name="totalhome" xml:space="preserve">
     <value>主队总球数</value>
+  </data>
+  <data name="ViewCommission" xml:space="preserve">
+    <value>显示退水</value>
   </data>
   <data name="lblconfirm" xml:space="preserve">
     <value>确认</value>
@@ -333,14 +336,20 @@
   <data name="total23" xml:space="preserve">
     <value>2~3</value>
   </data>
+  <data name="lblVbBdmTtEm" xml:space="preserve">
+    <value>排球/羽球/乒乓早餐</value>
+  </data>
   <data name="turnover" xml:space="preserve">
     <value>投注額</value>
+  </data>
+  <data name="pagesize" xml:space="preserve">
+    <value>頁面範圍:</value>
   </data>
   <data name="ViewDetails" xml:space="preserve">
     <value>细节</value>
   </data>
   <data name="lblBetLists" xml:space="preserve">
-    <value>投注清单</value>
+    <value>下注清单</value>
   </data>
   <data name="_1x2RB1x2" xml:space="preserve">
     <value>标准盘 即时标准盘</value>
@@ -366,8 +375,11 @@
   <data name="forecastaway" xml:space="preserve">
     <value>客队预测</value>
   </data>
+  <data name="otherBetTypesOf" xml:space="preserve">
+    <value>其他投注类型{0}</value>
+  </data>
   <data name="Page" xml:space="preserve">
-    <value>页次</value>
+    <value>页</value>
   </data>
   <data name="AgencyDetailEdit" xml:space="preserve">
     <value>代理资讯</value>
@@ -399,6 +411,9 @@
   <data name="ViewBetList" xml:space="preserve">
     <value>显示投注清单</value>
   </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>排序</value>
+  </data>
   <data name="lblOdd" xml:space="preserve">
     <value>单</value>
   </data>
@@ -407,6 +422,9 @@
   </data>
   <data name="lblStraight" xml:space="preserve">
     <value>单式</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>日期</value>
   </data>
   <data name="alertIncorrectMinBet" xml:space="preserve">
     <value>错误的单注下限</value>
@@ -417,17 +435,17 @@
   <data name="view" xml:space="preserve">
     <value>观看方式</value>
   </data>
+  <data name="PercentInMember" xml:space="preserve">
+    <value>％</value>
+  </data>
   <data name="lblVbBdmTt" xml:space="preserve">
     <value>排球/羽球/乒乓</value>
   </data>
   <data name="lblMatchResult" xml:space="preserve">
     <value>赛果</value>
   </data>
-  <data name="loginlog" xml:space="preserve">
-    <value>登錄日志</value>
-  </data>
-  <data name="lblOutRight" xml:space="preserve">
-    <value>冠军</value>
+  <data name="CommissionSettingInstructions" xml:space="preserve">
+    <value>退水设定说明</value>
   </data>
   <data name="select" xml:space="preserve">
     <value>選擇</value>
@@ -457,10 +475,7 @@
     <value>總局數</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>查寻</value>
-  </data>
-  <data name="allleague" xml:space="preserve">
-    <value>所有联盟</value>
+    <value>搜寻</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
     <value>下注限制</value>
@@ -510,8 +525,20 @@
   <data name="lblViewSetting" xml:space="preserve">
     <value>瀏覽設定</value>
   </data>
+  <data name="lblInvalidRequest" xml:space="preserve">
+    <value>無效的請求</value>
+  </data>
+  <data name="lblWagerLeague" xml:space="preserve">
+    <value>选择联盟</value>
+  </data>
+  <data name="mainmenu" xml:space="preserve">
+    <value>菜单</value>
+  </data>
   <data name="total7over" xml:space="preserve">
     <value>7up</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>盘</value>
   </data>
   <data name="lbl1st1x2wager" xml:space="preserve">
     <value>上半标准盘</value>
@@ -537,8 +564,8 @@
   <data name="Actual" xml:space="preserve">
     <value>實際</value>
   </data>
-  <data name="lblOverEven" xml:space="preserve">
-    <value>大/雙</value>
+  <data name="refundht" xml:space="preserve">
+    <value>HT退款</value>
   </data>
   <data name="betstatus" xml:space="preserve">
     <value>下注狀態</value>
@@ -561,8 +588,8 @@
   <data name="ArchivedDate" xml:space="preserve">
     <value>完成日期</value>
   </data>
-  <data name="lblInvalidRequest" xml:space="preserve">
-    <value>無效的請求</value>
+  <data name="loginlog" xml:space="preserve">
+    <value>登錄日志</value>
   </data>
   <data name="lbl1x2Wager" xml:space="preserve">
     <value>标准盘</value>
@@ -572,6 +599,9 @@
   </data>
   <data name="lblComm" xml:space="preserve">
     <value>退水</value>
+  </data>
+  <data name="RBHandicapRBOverUnder" xml:space="preserve">
+    <value>即时让分 级时大小</value>
   </data>
   <data name="ClickToViewInstructions" xml:space="preserve">
     <value>点选观看说明</value>
@@ -584,9 +614,6 @@
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
     <value>占成％（足球早餐让分）</value>
-  </data>
-  <data name="strNotAccessPage" xml:space="preserve">
-    <value>對不起, 您不被允許進入此網頁.</value>
   </data>
   <data name="sportBook" xml:space="preserve">
     <value>体育</value>
@@ -606,9 +633,6 @@
   <data name="NoneMember" xml:space="preserve">
     <value>不是会员</value>
   </data>
-  <data name="lblOE" xml:space="preserve">
-    <value>單雙盤</value>
-  </data>
   <data name="mixsports" xml:space="preserve">
     <value>混合过关</value>
   </data>
@@ -627,9 +651,6 @@
   <data name="MinPTSuper" xml:space="preserve">
     <value>超級總代理最低佔成</value>
   </data>
-  <data name="lblView1stHandicapForecast" xml:space="preserve">
-    <value>瀏覽上半場亞洲盤預測圖</value>
-  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>選擇賽事</value>
   </data>
@@ -644,9 +665,6 @@
   </data>
   <data name="numbergame" xml:space="preserve">
     <value>百炼赛</value>
-  </data>
-  <data name="personalmessage" xml:space="preserve">
-    <value>个人公告</value>
   </data>
   <data name="lblAdvancedMode" xml:space="preserve">
     <value>进阶模式</value>
@@ -691,13 +709,16 @@
     <value>旧的价值</value>
   </data>
   <data name="subTotal" xml:space="preserve">
-    <value>小計</value>
+    <value>小计</value>
   </data>
-  <data name="today" xml:space="preserve">
-    <value>今日</value>
+  <data name="Agents" xml:space="preserve">
+    <value>代理</value>
   </data>
   <data name="lblLive" xml:space="preserve">
     <value>实时</value>
+  </data>
+  <data name="lblActive" xml:space="preserve">
+    <value>启用</value>
   </data>
   <data name="lblAccessDenied" xml:space="preserve">
     <value>拒絕進入</value>
@@ -747,9 +768,6 @@
   <data name="total46" xml:space="preserve">
     <value>4~6</value>
   </data>
-  <data name="lblCommissionGroup" xml:space="preserve">
-    <value>群组退水</value>
-  </data>
   <data name="refund" xml:space="preserve">
     <value>退款</value>
   </data>
@@ -762,14 +780,17 @@
   <data name="viewlog" xml:space="preserve">
     <value>浏览纪录</value>
   </data>
-  <data name="lbl1x2_1st" xml:space="preserve">
-    <value>上半标准盘</value>
+  <data name="warrior" xml:space="preserve">
+    <value>鬥士</value>
   </data>
   <data name="plsChooseMatch" xml:space="preserve">
     <value>請選擇一個場次!</value>
   </data>
-  <data name="exporttoexcel" xml:space="preserve">
-    <value>導出到Excel</value>
+  <data name="lblInvalidValueRange" xml:space="preserve">
+    <value>错误的区间，必须介于{0}和{1}</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>今日</value>
   </data>
   <data name="customer" xml:space="preserve">
     <value>客户</value>
@@ -792,14 +813,8 @@
   <data name="soccerdeadballhdp" xml:space="preserve">
     <value>足球 死球 讓球(%)</value>
   </data>
-  <data name="lbl8" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="Roulette" xml:space="preserve">
     <value>輪盤賭</value>
-  </data>
-  <data name="P2P" xml:space="preserve">
-    <value>扑克</value>
   </data>
   <data name="firstgoal" xml:space="preserve">
     <value>最先进球</value>
@@ -819,6 +834,9 @@
   <data name="Members" xml:space="preserve">
     <value>会员</value>
   </data>
+  <data name="finalscore" xml:space="preserve">
+    <value>最後比分</value>
+  </data>
   <data name="dh" xml:space="preserve">
     <value>和主</value>
   </data>
@@ -832,7 +850,7 @@
     <value>更新代理设定{0}</value>
   </data>
   <data name="lblResult" xml:space="preserve">
-    <value>有结果</value>
+    <value>赛果</value>
   </data>
   <data name="away" xml:space="preserve">
     <value>客队</value>
@@ -850,7 +868,7 @@
     <value>从{1}复制{0}占成</value>
   </data>
   <data name="TicketsCancelled" xml:space="preserve">
-    <value>交易取消</value>
+    <value>取消票劵</value>
   </data>
   <data name="lblEmWager" xml:space="preserve">
     <value>早餐注单</value>
@@ -876,9 +894,6 @@
   <data name="minBetShouldBeLessThanOrEqualToMaxBet" xml:space="preserve">
     <value>{0} - 单注投注应大于或等于最小投注金额</value>
   </data>
-  <data name="DirectMembers" xml:space="preserve">
-    <value>直接会员</value>
-  </data>
   <data name="lblDraw" xml:space="preserve">
     <value>和局</value>
   </data>
@@ -891,8 +906,8 @@
   <data name="lblMaxBet" xml:space="preserve">
     <value>最大单一下注</value>
   </data>
-  <data name="lblAccounts" xml:space="preserve">
-    <value>帐号</value>
+  <data name="lblOverUnderWager" xml:space="preserve">
+    <value>大小盘 / 注单</value>
   </data>
   <data name="lblEditSetting" xml:space="preserve">
     <value>編輯設定</value>
@@ -903,8 +918,8 @@
   <data name="ShowOldValues" xml:space="preserve">
     <value>显示旧的价值</value>
   </data>
-  <data name="finalscore" xml:space="preserve">
-    <value>最後比分</value>
+  <data name="P2P" xml:space="preserve">
+    <value>扑克</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>虚拟运动</value>
@@ -914,9 +929,6 @@
   </data>
   <data name="lbl7up" xml:space="preserve">
     <value>7up</value>
-  </data>
-  <data name="GMT" xml:space="preserve">
-    <value>北京时间</value>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>未结算</value>
@@ -933,6 +945,9 @@
   <data name="June" xml:space="preserve">
     <value>六月</value>
   </data>
+  <data name="UplineTotal" xml:space="preserve">
+    <value>上线总数</value>
+  </data>
   <data name="lbl1x2Comm" xml:space="preserve">
     <value>标准盘退水</value>
   </data>
@@ -948,9 +963,6 @@
   <data name="soccerdeadballhdpgivenshare" xml:space="preserve">
     <value>足球 死球 讓球 給予占成數 (%)</value>
   </data>
-  <data name="lblOO" xml:space="preserve">
-    <value>大/單</value>
-  </data>
   <data name="lblDeadball" xml:space="preserve">
     <value>早餐</value>
   </data>
@@ -962,12 +974,6 @@
   </data>
   <data name="lblUO" xml:space="preserve">
     <value>小/單</value>
-  </data>
-  <data name="lblScEm" xml:space="preserve">
-    <value>足球早餐</value>
-  </data>
-  <data name="lblOverUnderWager" xml:space="preserve">
-    <value>大小盘 / 注单</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>半全场</value>
@@ -986,9 +992,6 @@
   </data>
   <data name="Collapse" xml:space="preserve">
     <value>塌下</value>
-  </data>
-  <data name="AgentWinLossInstructions" xml:space="preserve">
-    <value>代理结果说明</value>
   </data>
   <data name="lblOtherEm" xml:space="preserve">
     <value>其他早餐</value>
@@ -1014,6 +1017,12 @@
   <data name="Inactive" xml:space="preserve">
     <value>不更新</value>
   </data>
+  <data name="July" xml:space="preserve">
+    <value>七月</value>
+  </data>
+  <data name="lblHandicapWager" xml:space="preserve">
+    <value>让球 / 注单</value>
+  </data>
   <data name="lblTN" xml:space="preserve">
     <value>网球</value>
   </data>
@@ -1032,12 +1041,6 @@
   <data name="lbl1stOUWager" xml:space="preserve">
     <value>上半大小盘</value>
   </data>
-  <data name="dateRange" xml:space="preserve">
-    <value>日期范围</value>
-  </data>
-  <data name="locked" xml:space="preserve">
-    <value>锁定</value>
-  </data>
   <data name="lblFT1X2" xml:space="preserve">
     <value>全场标准盘</value>
   </data>
@@ -1050,8 +1053,11 @@
   <data name="April" xml:space="preserve">
     <value>四月</value>
   </data>
+  <data name="SearchMember" xml:space="preserve">
+    <value>搜寻会员</value>
+  </data>
   <data name="thisWeek" xml:space="preserve">
-    <value>本星期</value>
+    <value>这星期</value>
   </data>
   <data name="Complete" xml:space="preserve">
     <value>完成</value>
@@ -1065,8 +1071,8 @@
   <data name="Q3" xml:space="preserve">
     <value>第3节</value>
   </data>
-  <data name="lblcurrentsession" xml:space="preserve">
-    <value>目前会话：</value>
+  <data name="lblAccounts" xml:space="preserve">
+    <value>帐号</value>
   </data>
   <data name="refundft" xml:space="preserve">
     <value>退款(全场)</value>
@@ -1083,6 +1089,9 @@
   <data name="forecasthome" xml:space="preserve">
     <value>主队预测</value>
   </data>
+  <data name="lblBs" xml:space="preserve">
+    <value>棒球</value>
+  </data>
   <data name="lblSC" xml:space="preserve">
     <value>足球</value>
   </data>
@@ -1093,7 +1102,7 @@
     <value>給予占成數</value>
   </data>
   <data name="odds" xml:space="preserve">
-    <value>賠率</value>
+    <value>赔率</value>
   </data>
   <data name="lblOddEven_1st" xml:space="preserve">
     <value>上半单双</value>
@@ -1101,11 +1110,11 @@
   <data name="copyAllHint" xml:space="preserve">
     <value>{0}占成设定到：</value>
   </data>
-  <data name="homeaway" xml:space="preserve">
-    <value>主队/客队</value>
+  <data name="ha" xml:space="preserve">
+    <value>主客</value>
   </data>
-  <data name="lblHomeDrawAwayNoBet" xml:space="preserve">
-    <value>主队/和局/客队不获胜队侮</value>
+  <data name="homeaway" xml:space="preserve">
+    <value>主场/客场</value>
   </data>
   <data name="transaction" xml:space="preserve">
     <value>交易</value>
@@ -1140,8 +1149,8 @@
   <data name="alertIncorrectMaxPerBall" xml:space="preserve">
     <value>错误的单球限额</value>
   </data>
-  <data name="lblRB" xml:space="preserve">
-    <value>滚球</value>
+  <data name="lbl1x2_1st" xml:space="preserve">
+    <value>上半标准盘</value>
   </data>
   <data name="lblAgents" xml:space="preserve">
     <value>代理</value>
@@ -1152,8 +1161,8 @@
   <data name="numbergameno" xml:space="preserve">
     <value>數字遊戲編號</value>
   </data>
-  <data name="lblActive" xml:space="preserve">
-    <value>启用</value>
+  <data name="personalmessage" xml:space="preserve">
+    <value>个人公告</value>
   </data>
   <data name="pending" xml:space="preserve">
     <value>等待中</value>
@@ -1161,11 +1170,14 @@
   <data name="alertIncorrectMaxBet" xml:space="preserve">
     <value>错误的单注限额</value>
   </data>
-  <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
-    <value>{0} - 单场投注必须大于或等于单注金额</value>
+  <data name="lblmoneylineWager" xml:space="preserve">
+    <value>独赢</value>
   </data>
-  <data name="time" xml:space="preserve">
-    <value>时间</value>
+  <data name="lblDrawNoBet" xml:space="preserve">
+    <value>获胜球队</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>总额</value>
   </data>
   <data name="Expand" xml:space="preserve">
     <value>擴大</value>
@@ -1185,6 +1197,9 @@
   <data name="Items" xml:space="preserve">
     <value>項目</value>
   </data>
+  <data name="CaptchaInstruction" xml:space="preserve">
+    <value>點選刷新頁面得到新畫面</value>
+  </data>
   <data name="ShareTakenOnMember" xml:space="preserve">
     <value>會員獲得占成數 (%)</value>
   </data>
@@ -1197,17 +1212,17 @@
   <data name="lbl1stHdp" xml:space="preserve">
     <value>上半让分盘</value>
   </data>
-  <data name="lbl9" xml:space="preserve">
-    <value>9</value>
+  <data name="gotopage" xml:space="preserve">
+    <value>轉下一頁</value>
   </data>
-  <data name="totalset" xml:space="preserve">
-    <value>总盘数</value>
+  <data name="SignIn" xml:space="preserve">
+    <value>登入</value>
   </data>
   <data name="agentwinloss" xml:space="preserve">
     <value>代理商结果</value>
   </data>
-  <data name="CommissionSettingInstructions" xml:space="preserve">
-    <value>退水设定说明</value>
+  <data name="maxBetShouldBeLessThanOrEqualToMaxPerMatch" xml:space="preserve">
+    <value>{0} - 单场投注必须大于或等于单注金额</value>
   </data>
   <data name="numberGroup" xml:space="preserve">
     <value>包牌</value>
@@ -1221,8 +1236,8 @@
   <data name="no" xml:space="preserve">
     <value>#</value>
   </data>
-  <data name="OtherBetType" xml:space="preserve">
-    <value>其他投注类型</value>
+  <data name="lblOutRight" xml:space="preserve">
+    <value>冠军</value>
   </data>
   <data name="usernamenotexisted" xml:space="preserve">
     <value>没有资讯</value>
@@ -1249,7 +1264,7 @@
     <value>小/單</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
-    <value>混合过关</value>
+    <value>系统过关</value>
   </data>
   <data name="lbl0_1" xml:space="preserve">
     <value>0~1</value>
@@ -1263,8 +1278,8 @@
   <data name="lblMaxTakenShare" xml:space="preserve">
     <value>%在上线</value>
   </data>
-  <data name="Set" xml:space="preserve">
-    <value>盘</value>
+  <data name="dateRange" xml:space="preserve">
+    <value>日期范围</value>
   </data>
   <data name="S5" xml:space="preserve">
     <value>第5盘</value>
@@ -1284,11 +1299,11 @@
   <data name="MinSingleBet" xml:space="preserve">
     <value>最小单场</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>停用</value>
+  <data name="lblcurrentsession" xml:space="preserve">
+    <value>目前会话：</value>
   </data>
-  <data name="other" xml:space="preserve">
-    <value>其他</value>
+  <data name="lbl2_3" xml:space="preserve">
+    <value>2~3</value>
   </data>
   <data name="lblSpecialbet" xml:space="preserve">
     <value>特殊玩法</value>
@@ -1301,9 +1316,6 @@
   </data>
   <data name="MessageHistory" xml:space="preserve">
     <value>公告歷史</value>
-  </data>
-  <data name="dd" xml:space="preserve">
-    <value>和和</value>
   </data>
   <data name="lblViewHandicapForecast" xml:space="preserve">
     <value>瀏覽亞洲盤預測圖</value>
@@ -1323,9 +1335,6 @@
   <data name="S3" xml:space="preserve">
     <value>第3盘</value>
   </data>
-  <data name="league" xml:space="preserve">
-    <value>联盟</value>
-  </data>
   <data name="lbl1stOddEven" xml:space="preserve">
     <value>上半单双</value>
   </data>
@@ -1338,14 +1347,11 @@
   <data name="lblView1stOverUnderForecast" xml:space="preserve">
     <value>瀏覽上半場大小盤預測圖</value>
   </data>
-  <data name="UnderMaintenance" xml:space="preserve">
-    <value>維護中</value>
+  <data name="time" xml:space="preserve">
+    <value>时间</value>
   </data>
-  <data name="mainmenu" xml:space="preserve">
-    <value>菜单</value>
-  </data>
-  <data name="lblOverUnder" xml:space="preserve">
-    <value>大小盘</value>
+  <data name="OtherBetType" xml:space="preserve">
+    <value>其他投注类型</value>
   </data>
   <data name="total01" xml:space="preserve">
     <value>0~1</value>
@@ -1353,8 +1359,8 @@
   <data name="CommBase" xml:space="preserve">
     <value>退水基础</value>
   </data>
-  <data name="July" xml:space="preserve">
-    <value>七月</value>
+  <data name="lblCommissionGroup" xml:space="preserve">
+    <value>群组退水</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
     <value>％在代理</value>
@@ -1380,8 +1386,8 @@
   <data name="lblViewOverUnderForecast" xml:space="preserve">
     <value>瀏覽大小盤預測圖</value>
   </data>
-  <data name="otherBetTypesOf" xml:space="preserve">
-    <value>其他投注类型{0}</value>
+  <data name="ViewSportsbook" xml:space="preserve">
+    <value>瀏覽體育博彩</value>
   </data>
   <data name="UnderMaintenanceMsg" xml:space="preserve">
     <value>我們正在服務器維護，網站將被從 {0} 至 {1} 無法使用。不便之處，敬請原諒！</value>
@@ -1395,8 +1401,8 @@
   <data name="lblVolleyballAll" xml:space="preserve">
     <value>排全</value>
   </data>
-  <data name="lblVbBdmTtEm" xml:space="preserve">
-    <value>排球/羽球/乒乓早餐</value>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>直接会员</value>
   </data>
   <data name="lbllastaccessed" xml:space="preserve">
     <value>上一次连线：</value>
@@ -1410,23 +1416,23 @@
   <data name="txtShowUpline" xml:space="preserve">
     <value>显示上线</value>
   </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>登入</value>
+  <data name="lblHomeDrawAwayNoBet" xml:space="preserve">
+    <value>主队/和局/客队不获胜队侮</value>
   </data>
   <data name="noInfo" xml:space="preserve">
-    <value>查无资料</value>
+    <value>没有资料</value>
   </data>
   <data name="shareSettingInstruction" xml:space="preserve">
     <value>占成设定说明</value>
   </data>
   <data name="WagerType" xml:space="preserve">
-    <value>投注种类</value>
+    <value>注单类型</value>
   </data>
   <data name="lblYes" xml:space="preserve">
     <value>是</value>
   </data>
-  <data name="warrior2ndBall" xml:space="preserve">
-    <value>第二顆球贏</value>
+  <data name="AgentWinLossInstructions" xml:space="preserve">
+    <value>代理结果说明</value>
   </data>
   <data name="lblalerMaxbetCompare" xml:space="preserve">
     <value>单注必须小于或等于</value>
@@ -1434,14 +1440,14 @@
   <data name="lblBsEm" xml:space="preserve">
     <value>棒球早餐</value>
   </data>
-  <data name="UplineTotal" xml:space="preserve">
-    <value>上线总数</value>
+  <data name="exporttoexcel" xml:space="preserve">
+    <value>導出到Excel</value>
   </data>
-  <data name="ha" xml:space="preserve">
-    <value>主客</value>
+  <data name="copyFrom" xml:space="preserve">
+    <value>从{0}复制</value>
   </data>
-  <data name="lblBs" xml:space="preserve">
-    <value>棒球</value>
+  <data name="allleague" xml:space="preserve">
+    <value>所有联盟</value>
   </data>
   <data name="Commission" xml:space="preserve">
     <value>退水</value>
@@ -1455,8 +1461,8 @@
   <data name="lblWon" xml:space="preserve">
     <value>贏</value>
   </data>
-  <data name="lblTemporarilyUnavailable" xml:space="preserve">
-    <value>暫時無法使用</value>
+  <data name="lblScEm" xml:space="preserve">
+    <value>足球早餐</value>
   </data>
   <data name="lblhalf" xml:space="preserve">
     <value>上半</value>
@@ -1497,11 +1503,14 @@
   <data name="Golf" xml:space="preserve">
     <value>高尔夫球</value>
   </data>
-  <data name="warrior" xml:space="preserve">
-    <value>鬥士</value>
-  </data>
   <data name="AgentCommission" xml:space="preserve">
     <value>代理商佣金 (%)</value>
+  </data>
+  <data name="GMT" xml:space="preserve">
+    <value>北京时间</value>
+  </data>
+  <data name="dd" xml:space="preserve">
+    <value>和和</value>
   </data>
   <data name="htft" xml:space="preserve">
     <value>半全场</value>
@@ -1542,8 +1551,8 @@
   <data name="lbl1stHalfCorrectScore" xml:space="preserve">
     <value>上半波胆</value>
   </data>
-  <data name="PercentInMember" xml:space="preserve">
-    <value>％</value>
+  <data name="lblOverUnder" xml:space="preserve">
+    <value>大小盘</value>
   </data>
   <data name="HttpError_403" xml:space="preserve">
     <value>不被允許登入</value>
@@ -1551,14 +1560,11 @@
   <data name="lblOP" xml:space="preserve">
     <value>线上操盘</value>
   </data>
-  <data name="Agents" xml:space="preserve">
-    <value>代理</value>
+  <data name="UnderMaintenance" xml:space="preserve">
+    <value>維護中</value>
   </data>
-  <data name="ViewCommission" xml:space="preserve">
-    <value>显示退水</value>
-  </data>
-  <data name="SearchMember" xml:space="preserve">
-    <value>搜寻会员</value>
+  <data name="lblOO" xml:space="preserve">
+    <value>大/單</value>
   </data>
   <data name="OE1x2DND" xml:space="preserve">
     <value>单双+标准盘和局/不是和局</value>
@@ -1569,11 +1575,11 @@
   <data name="stopped" xml:space="preserve">
     <value>停止</value>
   </data>
-  <data name="RBHandicapRBOverUnder" xml:space="preserve">
-    <value>即时让分 级时大小</value>
+  <data name="lbl9" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="CaptchaInstruction" xml:space="preserve">
-    <value>點選刷新頁面得到新畫面</value>
+  <data name="lblOE" xml:space="preserve">
+    <value>單雙盤</value>
   </data>
   <data name="Feature" xml:space="preserve">
     <value>功能</value>
@@ -1581,8 +1587,8 @@
   <data name="lblWinLoss" xml:space="preserve">
     <value>赢/输</value>
   </data>
-  <data name="lblmoneylineWager" xml:space="preserve">
-    <value>独赢</value>
+  <data name="league" xml:space="preserve">
+    <value>联盟</value>
   </data>
   <data name="Q4" xml:space="preserve">
     <value>第4节</value>
@@ -1611,17 +1617,17 @@
   <data name="lblHomeNoBet" xml:space="preserve">
     <value>主队 (不获胜球队)</value>
   </data>
-  <data name="OrderBy" xml:space="preserve">
-    <value>排序</value>
+  <data name="lbl8" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="lblbrowser" xml:space="preserve">
     <value>浏览器：</value>
   </data>
   <data name="total" xml:space="preserve">
-    <value>总入球</value>
+    <value>总额</value>
   </data>
-  <data name="pagesize" xml:space="preserve">
-    <value>頁面範圍:</value>
+  <data name="lblView1stHandicapForecast" xml:space="preserve">
+    <value>瀏覽上半場亞洲盤預測圖</value>
   </data>
   <data name="lblNA" xml:space="preserve">
     <value>N/ A</value>
@@ -1656,8 +1662,8 @@
   <data name="Othertypes" xml:space="preserve">
     <value>其他种类</value>
   </data>
-  <data name="lblHandicapWager" xml:space="preserve">
-    <value>让球 / 注单</value>
+  <data name="strNotAccessPage" xml:space="preserve">
+    <value>抱歉!您没有通过此页面的权限</value>
   </data>
   <data name="lblViewMember" xml:space="preserve">
     <value>瀏覽會員</value>
@@ -1668,13 +1674,13 @@
   <data name="specificdate" xml:space="preserve">
     <value>具體日期</value>
   </data>
-  <data name="lblInvalidValueRange" xml:space="preserve">
-    <value>错误的区间，必须介于{0}和{1}</value>
+  <data name="lblNo" xml:space="preserve">
+    <value>單號</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
     <value>最小单一下注</value>
   </data>
-  <data name="date" xml:space="preserve">
-    <value>日期</value>
+  <data name="hd" xml:space="preserve">
+    <value>主和</value>
   </data>
 </root>
