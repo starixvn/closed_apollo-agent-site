@@ -22,7 +22,16 @@
     }
     string backLink = ViewBag.BackLink ?? string.Empty;
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
-    
+    var betTypesHeader = new List<string>
+        {
+                            Lang.HandicapOverUnderOddEven, 
+                            Lang.RBHandicapRBOverUnder, 
+                            Lang._1x2RB1x2, 
+                            Lang.OtherBetType, 
+                            Lang.RBOtherBetType,
+                            Lang.MixSportParlay,
+                            Lang.lblOutRight
+                    };
 }
 @Html.Hidden("BackLink", backLink)
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
@@ -182,7 +191,7 @@
             switch (betLimit.SportId)
             {
                 case (int)SportTypes.Soccer:
-                    currentBetTypes = Constants.BetTypesHeader.Take(5).ToList();
+                    currentBetTypes = betTypesHeader.Take(5).ToList();
                     outrightBetLimit.MinBet = betLimit.MinBet;
                     outrightBetLimit.MaxBet = betLimit.MaxBet;
                     outrightBetLimit.MaxPerMatch = betLimit.MaxPerMatch;
@@ -193,18 +202,18 @@
                 case (int)SportTypes.BaseBall:
                 case (int)SportTypes.Golf:
                 case (int)SportTypes.Motorsports:
-                    currentBetTypes.Add(Constants.BetTypesHeader[0]);
-                    currentBetTypes.Add(Constants.BetTypesHeader[1]);
-                    currentBetTypes.Add(Constants.BetTypesHeader[3]);
+                    currentBetTypes.Add(betTypesHeader[0]);
+                    currentBetTypes.Add(betTypesHeader[1]);
+                    currentBetTypes.Add(betTypesHeader[3]);
                     break;
                 case (int)SportTypes.OtherSports:
                     if (betLimit.BetTypeId == 1)
                     {
-                        currentBetTypes = Constants.BetTypesHeader.Take(4).ToList();
+                        currentBetTypes = betTypesHeader.Take(4).ToList();
                     }
                     else
                     {
-                        currentBetTypes.Add(Constants.BetTypesHeader[5]);
+                        currentBetTypes.Add(betTypesHeader[5]);
                         outrightBetLimit.BetTypeId = betLimit.BetTypeId;
                         outrightBetLimit.SportId = betLimit.SportId;
                         outrightBetLimit.Name = Lang.lblOutRight;
@@ -214,7 +223,7 @@
         @RenderSportBlock(isViewOnMember, comSetting, betLimit, currentBetTypes)
         }
         currentBetTypes = new List<string>{
-                Constants.BetTypesHeader[6]
+                betTypesHeader[6]
             };
         @RenderSportBlock(isViewOnMember, comSetting, outrightBetLimit, currentBetTypes)
     }
