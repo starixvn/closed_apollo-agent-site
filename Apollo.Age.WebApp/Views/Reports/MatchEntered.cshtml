@@ -184,13 +184,14 @@
             }
         };
 
-        if (matchEnteredList != null && matchEnteredList.Any())
+
+        var matchEntered = new MatchEnteredModel();
+        foreach (var sportGroup in sportGroupList)
         {
-            var sportGroup = new SingbetSport();
-            foreach (var matchEntered in matchEnteredList)
+            if (matchEnteredList != null && matchEnteredList.Any())
             {
-                sportGroup = sportGroupList.Where(t => t.Id == (matchEntered.SportTypeId.ToString())).SingleOrDefault();
-                if (sportGroup != null)
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId.ToString() == sportGroup.Id).SingleOrDefault();
+                if (matchEntered != null)
                 {
                     <tr>
                         <td class="firstcolumn">@sportGroup.Name:</td>
@@ -200,15 +201,21 @@
                         <td>@matchEntered.TodayNonEntered</td>
                     </tr>
                 }
+                else
+                {
+                    <tr>
+                        <td class="firstcolumn">
+                            @sportGroup.Name:
+                        </td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                }
             }
-        }
-        else
-        {
-            foreach (var item in sportGroupList)
+            else
             {
                 <tr>
                     <td class="firstcolumn">
-                        @item.Name:
+                        @sportGroup.Name:
                     </td>
                     <td></td><td></td><td></td><td></td>
                 </tr>
