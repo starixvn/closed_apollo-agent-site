@@ -34,7 +34,7 @@
                 <th rowspan="2">
                     @betLimit.Name
                 </th>
-                <th colspan="@(isViewOnMember ? 0 : 4)">
+                <th class="@(isViewOnMember ? "member" : string.Empty)" colspan="@(isViewOnMember ? 0 : 4)">
                     @Lang.lblCommission
                 </th>
                 <th colspan="3">
