@@ -45,7 +45,7 @@ namespace Apollo.Age.Reports.Services
 
             if (enteredFromList != null && enteredFromList.Any())
             {
-                var sportType = -1;
+                var sportType = 0;
                 MatchEnteredModel matchEntered = null;
                 enteredToList = new List<MatchEnteredModel>();
 
@@ -58,7 +58,7 @@ namespace Apollo.Age.Reports.Services
                     }
                     else
                     {
-                        if (sportType != -1)
+                        if (sportType != 0)
                         {
                             enteredToList.Add(matchEntered);
                             matchEntered = null;
