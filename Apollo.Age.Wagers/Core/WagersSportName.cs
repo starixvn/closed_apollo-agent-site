@@ -37,12 +37,12 @@ namespace Apollo.Age.Wagers.Core
         {
             var listOfSportType = new Dictionary<string, string>();
 
-            listOfSportType.Add("soccer", SportGroup.Soccer);
-            listOfSportType.Add("basketball", SportGroup.Basketball_Football_Rugy);
-            listOfSportType.Add("volleyball", SportGroup.Volleyball_Badminton_TableTennis);
-            listOfSportType.Add("tennis", SportGroup.Tennis);
-            listOfSportType.Add("baseball", SportGroup.BaseBall);
-            listOfSportType.Add("others", SportGroup.Others);
+            listOfSportType.Add(Soccer, SportGroup.Soccer);
+            listOfSportType.Add(Basketball, SportGroup.Basketball_Football_Rugy);
+            listOfSportType.Add(Volleyball, SportGroup.Volleyball_Badminton_TableTennis);
+            listOfSportType.Add(Tennis, SportGroup.Tennis);
+            listOfSportType.Add(Baseball, SportGroup.BaseBall);
+            listOfSportType.Add(Others, SportGroup.Others);
 
             return listOfSportType;
         }
