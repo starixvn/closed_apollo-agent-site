@@ -732,7 +732,7 @@ namespace Apollo.Age.BetList.Controllers
 
                 return mainShareHolders;
             }
-
+            mainShareHolderId = agentId;
             return new List<Agent>();
         }
 
