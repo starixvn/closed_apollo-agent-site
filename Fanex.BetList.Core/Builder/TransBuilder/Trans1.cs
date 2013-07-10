@@ -63,8 +63,8 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
                 
                 case BetListPage.Wager:
                 case BetListPage.Forecast:
-                    this.Template.sportName = string.Empty;
-                    break;
+                    //this.Template.sportName = string.Empty;
+                    //break;
                 case BetListPage.AccountInfo:
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
