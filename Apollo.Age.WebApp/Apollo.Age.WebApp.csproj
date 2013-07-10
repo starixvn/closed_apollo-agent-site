@@ -677,6 +677,7 @@
     <Content Include="_GlobalResources\Js\jquery-ui.js" />
     <Content Include="_GlobalResources\Js\jquery.cookie.js" />
     <Content Include="_GlobalResources\Js\jquery.js" />
+    <Content Include="_GlobalResources\Js\jquery.min.js" />
     <Content Include="_GlobalResources\Js\jquery.signalR-1.1.0.js" />
     <Content Include="_GlobalResources\Js\jquery.signalR-1.1.0.min.js" />
     <Content Include="_GlobalResources\Js\json2.js" />
