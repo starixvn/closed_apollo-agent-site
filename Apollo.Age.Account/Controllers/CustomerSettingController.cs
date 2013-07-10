@@ -216,16 +216,16 @@ namespace Apollo.Age.Account.Controllers
             if (SportSettingService.SportList == null)
             {
                 sportList = _sportService.GetAllSportType();
-                foreach (var sportItem in sportList)
-                {
-                    sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
-                }
-
                 SportSettingService.SportList = sportList;
             }
             else
             {
                 sportList = SportSettingService.SportList;
+            }
+
+            foreach (var sportItem in sportList)
+            {
+                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);

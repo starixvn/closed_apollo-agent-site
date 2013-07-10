@@ -21,12 +21,6 @@ namespace Apollo.Age.Reports.Services
 
     public class ReportService : QueryService
     {
-        private static List<SingbetBettype> SingbetBettypeList
-        {
-            get;
-            set;
-        }
-
         private const string BalanceUpdayKey = "Apollo.Age.Reports.Services.SpecialDays";
 
         protected ICache CacheManager
@@ -64,9 +58,7 @@ namespace Apollo.Age.Reports.Services
 
         public List<SingbetBettype> GetBettype()
         {
-            if (SingbetBettypeList == null)
-            {
-                var bettypeList = new List<SingbetBettype>
+            var bettypeList = new List<SingbetBettype>
                 {
                     new SingbetBettype
                     {
@@ -155,10 +147,7 @@ namespace Apollo.Age.Reports.Services
                     },
                 };
 
-                SingbetBettypeList = bettypeList;
-            }
-
-            return SingbetBettypeList;
+            return bettypeList;
         }
     }
 }
