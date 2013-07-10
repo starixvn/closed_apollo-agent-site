@@ -232,7 +232,10 @@ if (typeof jQuery != "undefined") {
         };
     } (jQuery);
 
-	$(document).ready(function () {
+    $(document).ready(function () {
+        $.blockUI();
+        setTimeout('$.unblockUI()', 300);
+
 		BETLIST.init();
 
 		$("#btnCancel").on('click', function () {

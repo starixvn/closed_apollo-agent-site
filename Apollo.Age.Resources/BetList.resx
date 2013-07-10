@@ -117,305 +117,218 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="agentPTcomm" xml:space="preserve">
-    <value>AgentPT/ &lt;br/&gt;Comm</value>
-  </data>
-  <data name="bingo" xml:space="preserve">
-    <value>Bingo</value>
-  </data>
-  <data name="casinoGame" xml:space="preserve">
-    <value>Casino Games</value>
+  <data name="lblYes" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="choice" xml:space="preserve">
     <value>Choice</value>
   </data>
-  <data name="even" xml:space="preserve">
-    <value>Even</value>
-  </data>
-  <data name="firstgoal" xml:space="preserve">
-    <value>First Goal</value>
-  </data>
-  <data name="ft" xml:space="preserve">
-    <value>FT</value>
-  </data>
-  <data name="high" xml:space="preserve">
-    <value>High</value>
-  </data>
-  <data name="ht" xml:space="preserve">
-    <value>HT</value>
-  </data>
-  <data name="lbl1x2" xml:space="preserve">
-    <value>1 X 2</value>
-  </data>
-  <data name="lblBoth" xml:space="preserve">
-    <value>Both</value>
-  </data>
-  <data name="lblDraw" xml:space="preserve">
-    <value>Draw</value>
-  </data>
-  <data name="lblNo" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="lblOne" xml:space="preserve">
-    <value>One</value>
-  </data>
-  <data name="lblOr" xml:space="preserve">
-    <value>Or</value>
-  </data>
-  <data name="lblYes" xml:space="preserve">
-    <value>Yes</value>
-  </data>
-  <data name="lose" xml:space="preserve">
-    <value>Lose</value>
-  </data>
-  <data name="low" xml:space="preserve">
-    <value>Low</value>
-  </data>
-  <data name="masterPTcomm" xml:space="preserve">
-    <value>MasterPT/ &lt;br/&gt;Comm</value>
-  </data>
-  <data name="member" xml:space="preserve">
-    <value>Member</value>
-  </data>
-  <data name="next" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="nogoal" xml:space="preserve">
-    <value>No Goal</value>
-  </data>
-  <data name="noInfo" xml:space="preserve">
-    <value>No data available</value>
-  </data>
-  <data name="numbergameno" xml:space="preserve">
-    <value>Number Game No</value>
-  </data>
-  <data name="odd" xml:space="preserve">
-    <value>Odd</value>
-  </data>
-  <data name="odds" xml:space="preserve">
-    <value>Odds</value>
-  </data>
-  <data name="over" xml:space="preserve">
-    <value>Over</value>
-  </data>
-  <data name="pending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="race" xml:space="preserve">
-    <value>Race</value>
-  </data>
-  <data name="refno" xml:space="preserve">
-    <value>Ref No</value>
-  </data>
-  <data name="result" xml:space="preserve">
-    <value>Result</value>
-  </data>
-  <data name="stake" xml:space="preserve">
-    <value>Stake</value>
-  </data>
-  <data name="status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="superPTcomm" xml:space="preserve">
-    <value>SuperPT/ &lt;br/&gt;Comm</value>
-  </data>
-  <data name="transfer" xml:space="preserve">
-    <value>Transfer</value>
-  </data>
-  <data name="transtime" xml:space="preserve">
-    <value>Trans.Time</value>
-  </data>
-  <data name="under" xml:space="preserve">
-    <value>Under</value>
-  </data>
-  <data name="winloss" xml:space="preserve">
-    <value>Win Loss</value>
-  </data>
-  <data name="won" xml:space="preserve">
-    <value>Won</value>
-  </data>
-  <data name="correctscore" xml:space="preserve">
-    <value>Correct Score</value>
-  </data>
-  <data name="lblMemberBetList" xml:space="preserve">
-    <value>Member Bet List</value>
-  </data>
-  <data name="lblMasterWinLoseDetail" xml:space="preserve">
-    <value>Master Win Lost Detail</value>
-  </data>
-  <data name="lblMatchWinLostDetail" xml:space="preserve">
-    <value>Match Win Loss Detail</value>
-  </data>
-  <data name="lblMixParlay" xml:space="preserve">
-    <value>Mix Parlay</value>
-  </data>
-  <data name="subtotalCom" xml:space="preserve">
-    <value>Subtotal(Com.)</value>
-  </data>
-  <data name="subtotalWinlost" xml:space="preserve">
-    <value>Subtotal(winlost)</value>
-  </data>
-  <data name="total" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="place" xml:space="preserve">
-    <value>Place</value>
-  </data>
-  <data name="win" xml:space="preserve">
-    <value>Win</value>
-  </data>
-  <data name="reject" xml:space="preserve">
-    <value>Reject</value>
-  </data>
-  <data name="running" xml:space="preserve">
-    <value>Running</value>
-  </data>
-  <data name="draw" xml:space="preserve">
-    <value>Draw</value>
-  </data>
-  <data name="waiting" xml:space="preserve">
-    <value>Waiting</value>
-  </data>
-  <data name="refund" xml:space="preserve">
-    <value>Refund</value>
-  </data>
-  <data name="voided" xml:space="preserve">
-    <value>Void</value>
-  </data>
-  <data name="lblOverEven" xml:space="preserve">
-    <value>Over/Even</value>
-  </data>
-  <data name="lblOverOdd" xml:space="preserve">
-    <value>Over/Odd</value>
-  </data>
-  <data name="lblUnderEven" xml:space="preserve">
-    <value>Under/Even</value>
-  </data>
-  <data name="lblUnderOdd" xml:space="preserve">
-    <value>Under/Odd</value>
-  </data>
-  <data name="warrior2ndBall" xml:space="preserve">
-    <value>2nd ball win</value>
-  </data>
-  <data name="warrior3rdBall" xml:space="preserve">
-    <value>3rd ball win</value>
-  </data>
-  <data name="losingtickets" xml:space="preserve">
-    <value>Total of losing tickets</value>
-  </data>
-  <data name="details" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="scoreMap" xml:space="preserve">
-    <value>Score Map</value>
-  </data>
-  <data name="a" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="h" xml:space="preserve">
-    <value>H</value>
-  </data>
-  <data name="betweenXandY" xml:space="preserve">
-    <value>Between {0} and {1}</value>
-  </data>
-  <data name="points" xml:space="preserve">
-    <value>points</value>
-  </data>
-  <data name="upPoints" xml:space="preserve">
-    <value>UP points</value>
-  </data>
-  <data name="exactly" xml:space="preserve">
-    <value>Exactly</value>
-  </data>
-  <data name="set" xml:space="preserve">
-    <value>Set</value>
-  </data>
   <data name="noTiebreak" xml:space="preserve">
     <value>No Tiebreak</value>
-  </data>
-  <data name="agentComm" xml:space="preserve">
-    <value>Agent Comm</value>
-  </data>
-  <data name="agentPT" xml:space="preserve">
-    <value>Agent Share</value>
-  </data>
-  <data name="viewCommDetails" xml:space="preserve">
-    <value>View Details</value>
   </data>
   <data name="away" xml:space="preserve">
     <value>Away</value>
   </data>
-  <data name="baccarat" xml:space="preserve">
-    <value>Baccarat</value>
-  </data>
-  <data name="d" xml:space="preserve">
-    <value>D</value>
-  </data>
-  <data name="FG" xml:space="preserve">
-    <value>FG</value>
-  </data>
-  <data name="goal" xml:space="preserve">
-    <value>Goal</value>
-  </data>
-  <data name="home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="LG" xml:space="preserve">
-    <value>LG</value>
-  </data>
-  <data name="no0" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="agent" xml:space="preserve">
-    <value>Agent</value>
-  </data>
-  <data name="lblMainShareHolder" xml:space="preserve">
-    <value>Main Shareholder</value>
-  </data>
-  <data name="lblNA" xml:space="preserve">
-    <value>N/A</value>
-  </data>
-  <data name="lblNeither" xml:space="preserve">
-    <value>Neither</value>
-  </data>
-  <data name="lblNoDraw" xml:space="preserve">
-    <value>No Draw</value>
-  </data>
-  <data name="lblSystemParlay" xml:space="preserve">
-    <value>System Parlay</value>
-  </data>
-  <data name="numberGroup" xml:space="preserve">
-    <value>Number Wheel</value>
-  </data>
-  <data name="p2pGame" xml:space="preserve">
-    <value>Poker Games</value>
-  </data>
-  <data name="Roulette" xml:space="preserve">
-    <value>Roulette</value>
+  <data name="lblOr" xml:space="preserve">
+    <value>Or</value>
   </data>
   <data name="rebate" xml:space="preserve">
     <value>Rebate</value>
   </data>
-  <data name="time" xml:space="preserve">
-    <value>Time</value>
+  <data name="goal" xml:space="preserve">
+    <value>Goal</value>
   </data>
-  <data name="content" xml:space="preserve">
-    <value>Content</value>
+  <data name="firstgoal" xml:space="preserve">
+    <value>First Goal</value>
+  </data>
+  <data name="upPoints" xml:space="preserve">
+    <value>UP points</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>Agent Share</value>
+  </data>
+  <data name="numbergameno" xml:space="preserve">
+    <value>Number Game No</value>
   </data>
   <data name="discount" xml:space="preserve">
     <value>Discount</value>
   </data>
-  <data name="explain" xml:space="preserve">
-    <value>Explain</value>
+  <data name="baccarat" xml:space="preserve">
+    <value>Baccarat</value>
+  </data>
+  <data name="exactly" xml:space="preserve">
+    <value>Exactly</value>
+  </data>
+  <data name="warrior3rdBall" xml:space="preserve">
+    <value>3rd ball win</value>
+  </data>
+  <data name="agentComm" xml:space="preserve">
+    <value>Agent Comm</value>
+  </data>
+  <data name="lblUnderOdd" xml:space="preserve">
+    <value>Under/Odd</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Roulette</value>
+  </data>
+  <data name="under" xml:space="preserve">
+    <value>Under</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="lose" xml:space="preserve">
+    <value>Lose</value>
+  </data>
+  <data name="odd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="bingo" xml:space="preserve">
+    <value>Bingo</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="lblBoth" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="ht" xml:space="preserve">
+    <value>HT</value>
+  </data>
+  <data name="lblMainShareHolder" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
+  <data name="low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="refund" xml:space="preserve">
+    <value>Refund</value>
+  </data>
+  <data name="winloss" xml:space="preserve">
+    <value>Win Loss</value>
+  </data>
+  <data name="ft" xml:space="preserve">
+    <value>FT</value>
+  </data>
+  <data name="nogoal" xml:space="preserve">
+    <value>No Goal</value>
+  </data>
+  <data name="refno" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="correctscore" xml:space="preserve">
+    <value>Correct Score</value>
+  </data>
+  <data name="noInfo" xml:space="preserve">
+    <value>No data available</value>
+  </data>
+  <data name="warrior2ndBall" xml:space="preserve">
+    <value>2nd ball win</value>
+  </data>
+  <data name="subtotalCom" xml:space="preserve">
+    <value>Subtotal(Com.)</value>
+  </data>
+  <data name="over" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="draw" xml:space="preserve">
+    <value>Draw</value>
   </data>
   <data name="gameType" xml:space="preserve">
     <value>Game type</value>
   </data>
-  <data name="ticket" xml:space="preserve">
-    <value>Ticket</value>
+  <data name="lblSystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
+  <data name="lblOverEven" xml:space="preserve">
+    <value>Over/Even</value>
+  </data>
+  <data name="waiting" xml:space="preserve">
+    <value>Waiting</value>
   </data>
   <data name="amount" xml:space="preserve">
     <value>Amount</value>
+  </data>
+  <data name="agentPTcomm" xml:space="preserve">
+    <value>AgentPT/ &lt;br/&gt;Comm</value>
+  </data>
+  <data name="voided" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>Trans.Time</value>
+  </data>
+  <data name="LG" xml:space="preserve">
+    <value>LG</value>
+  </data>
+  <data name="casinoGame" xml:space="preserve">
+    <value>Casino Games</value>
+  </data>
+  <data name="explain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="viewCommDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="ticket" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
+  <data name="high" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="subtotalWinlost" xml:space="preserve">
+    <value>Subtotal(winlost)</value>
+  </data>
+  <data name="lblNeither" xml:space="preserve">
+    <value>Neither</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lblUnderEven" xml:space="preserve">
+    <value>Under/Even</value>
+  </data>
+  <data name="lblMatchWinLostDetail" xml:space="preserve">
+    <value>Match Win Loss Detail</value>
+  </data>
+  <data name="race" xml:space="preserve">
+    <value>Race</value>
+  </data>
+  <data name="numberGroup" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
+  <data name="lbl1x2" xml:space="preserve">
+    <value>1 X 2</value>
+  </data>
+  <data name="lblOne" xml:space="preserve">
+    <value>One</value>
+  </data>
+  <data name="a" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="win" xml:space="preserve">
+    <value>Win</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="won" xml:space="preserve">
+    <value>Won</value>
   </data>
   <data name="results" xml:space="preserve">
     <value>results</value>
@@ -423,13 +336,100 @@
   <data name="vs" xml:space="preserve">
     <value>VS.</value>
   </data>
+  <data name="stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="FG" xml:space="preserve">
+    <value>FG</value>
+  </data>
+  <data name="set" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="p2pGame" xml:space="preserve">
+    <value>Poker Games</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="even" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="superPTcomm" xml:space="preserve">
+    <value>SuperPT/ &lt;br/&gt;Comm</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="h" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="points" xml:space="preserve">
+    <value>points</value>
+  </data>
+  <data name="scoreMap" xml:space="preserve">
+    <value>Score Map</value>
+  </data>
+  <data name="lblMemberBetList" xml:space="preserve">
+    <value>Member Bet List</value>
+  </data>
+  <data name="lblOverOdd" xml:space="preserve">
+    <value>Over/Odd</value>
+  </data>
+  <data name="masterPTcomm" xml:space="preserve">
+    <value>MasterPT/ &lt;br/&gt;Comm</value>
+  </data>
+  <data name="d" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="losingtickets" xml:space="preserve">
+    <value>Total of losing tickets</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Content</value>
+  </data>
   <data name="feature" xml:space="preserve">
     <value>Feature</value>
+  </data>
+  <data name="betweenXandY" xml:space="preserve">
+    <value>Between {0} and {1}</value>
+  </data>
+  <data name="lblMasterWinLoseDetail" xml:space="preserve">
+    <value>Master Win Lost Detail</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>Odds</value>
+  </data>
+  <data name="lblMixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
+  </data>
+  <data name="lblDraw" xml:space="preserve">
+    <value>Draw</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="transfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="lblNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="lblNoDraw" xml:space="preserve">
+    <value>No Draw</value>
   </data>
   <data name="Comm" xml:space="preserve">
     <value>Comm</value>
   </data>
-  <data name="Share" xml:space="preserve">
-    <value>Share</value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="no0" xml:space="preserve">
+    <value>No</value>
   </data>
 </root>
