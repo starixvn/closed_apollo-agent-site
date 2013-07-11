@@ -42,6 +42,7 @@ namespace Apollo.Age.Reports.Services
         private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEntered> enteredFromList)
         {
             List<MatchEnteredModel> enteredToList = null;
+            enteredFromList = enteredFromList.OrderBy(t => t.SportType).ThenBy(t => t.EventDate).ToList();
 
             if (enteredFromList != null && enteredFromList.Any())
             {
