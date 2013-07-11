@@ -184,6 +184,12 @@
             }
         };
 
+        var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
+
+        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
+        {
+            matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+        }
 
         var matchEntered = new MatchEnteredModel();
         foreach (var sportGroup in sportGroupList)

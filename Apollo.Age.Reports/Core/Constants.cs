@@ -5,16 +5,20 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.17">Created</change>
+//   <change who="Anders.Le" date="2013.7.11">Add MatchEnteredSports</change>
 // </history>
 
 namespace Apollo.Age.Reports.Core
 {
-    public class Constants
+    using System.Collections.Generic;
+
+    public static class Constants
     {
         public const string NA = "N/A";
         public const string RefundHT = "Refund HT";
         public const string RefundFT = "Refund FT";
         public const string Refund = "Refund";
+
 
         public const string Soccer = "1";
         public const string BasketBall = "2";
@@ -23,5 +27,21 @@ namespace Apollo.Age.Reports.Core
         public const string BaseBall = "8";
         public const string Outright = "-10";
         public const string Others = "-1";
+        
+        /// <summary>
+        /// dictionary list (sportid, language key)
+        /// the order should stricky follow
+        /// </summary>
+        public static readonly Dictionary<int, string> MatchEnteredSports = new
+        Dictionary<int, string>
+        {
+            {1, "soccer"},
+            {2, "bk"},
+            {5, "tennis"},
+            {6, "Volleyball"},
+            {8, "Baseball"},
+            {-10, "lblOutRight"},
+            {-1, "InterEvent"}
+        };
     }
 }
