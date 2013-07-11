@@ -153,54 +153,19 @@
 
 @helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
     {
-        var sportGroupList = new List<SingbetSport>{
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.Soccer,
-                Name = Lang.soccer
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.BasketBall,
-                Name = Lang.BK
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.Tennis,
-                Name = Lang.Tennis
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.VolleyBall,
-                Name = Lang.Volleyball
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.BaseBall,
-                Name = Lang.Baseball
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.Outright,
-                Name = Lang.lblOutRight
-            },
-            new SingbetSport{
-                Id = Apollo.Age.Reports.Core.Constants.Others,
-                Name = Lang.InterEvent
-            }
-        };
-
         var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
-
-        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
-        {
-            matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
-        }
-
         var matchEntered = new MatchEnteredModel();
-        foreach (var sportGroup in sportGroupList)
+        
+        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
         {
             if (matchEnteredList != null && matchEnteredList.Any())
             {
-                matchEntered = matchEnteredList.Where(t => t.SportTypeId.ToString() == sportGroup.Id).SingleOrDefault();
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+                
                 if (matchEntered != null)
                 {
                     <tr>
-                        <td class="firstcolumn">@sportGroup.Name:</td>
+                        <td class="firstcolumn">@Html.Resource(pair.Value):</td>
                         <td class="winloss_yesterday">@matchEntered.YesterdayEntered</td>
                         <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered</td>
                         <td>@matchEntered.TodayEntered</td>
@@ -211,7 +176,7 @@
                 {
                     <tr>
                         <td class="firstcolumn">
-                            @sportGroup.Name:
+                            @Html.Resource(pair.Value):
                         </td>
                         <td></td><td></td><td></td><td></td>
                     </tr>
@@ -221,7 +186,7 @@
             {
                 <tr>
                     <td class="firstcolumn">
-                        @sportGroup.Name:
+                        @Html.Resource(pair.Value):
                     </td>
                     <td></td><td></td><td></td><td></td>
                 </tr>
