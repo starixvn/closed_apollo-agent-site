@@ -28,8 +28,18 @@ var Wagers = function ($) {
             Wagers.isOR = $('#IsOR').val();
             Wagers.betTypeIds = $('#BetTypeIds').val();
 
-            Wagers.fromDate = Wagers.isOR == "true" ? $('#OutrightFromDate').val() : $('#FromDate').val();
-            Wagers.toDate = $('#OutrightToDate').val();
+            if (Wagers.isOR == "true") {
+                Wagers.fromDate = $('#OutrightFromDate').val();
+                Wagers.toDate = $('#OutrightToDate').val();
+            }
+            else if (Wagers.isEM == "true") {
+                Wagers.fromDate = $('#EmDate').val();
+            }
+            else {
+                Wagers.fromDate = $('#FromDate').val();
+                Wagers.toDate = $('#ToDate').val();
+            }
+
             if (Wagers.viewOption > 0) {
                 Wagers.isDirectMember = false;
             }
@@ -59,7 +69,7 @@ var Wagers = function ($) {
                     Wagers.isDirectMember = ($this.val() == 0 ? false : true);
                 }
                 if (Wagers.isOR == "true") {
-                    Wagers.getLeagues();
+                    Wagers.getLeagues(true, 0);
                 }
                 else {
                     Wagers.getWagerData();
@@ -79,12 +89,11 @@ var Wagers = function ($) {
                     Wagers.groupComm = $(this).val();
                     Wagers.getWagerData();
                 }
-
             });
 
             $('#EmDate').on('change', function () {
                 Wagers.fromDate = $(this).val();
-                Wagers.getWagerData();
+                Wagers.getLeagues(false, 0);
             });
 
             if (Wagers.isOR == "true") {
@@ -100,7 +109,7 @@ var Wagers = function ($) {
                     if (Wagers.fromDate != newFromDate || newToDate != Wagers.toDate) {
                         Wagers.fromDate = newFromDate;
                         Wagers.toDate = newToDate;
-                        Wagers.getLeagues();
+                        Wagers.getLeagues(true, 0);
                     }
                     else {
                         Wagers.getWagerData();
@@ -109,25 +118,38 @@ var Wagers = function ($) {
             }
         },
 
-        getLeagues: function () {
+        autoRefresh: function () {
+            Wagers.getLeagues(false, Wagers.League);
+            // Wagers.getWagerData($('#pager').sbPager('getCurrentPage'));
+        },
+
+        getLeagues: function (isOutright, indexId) {
             $.ajax({
                 url: APOLLO.resolveUrl("~/wagers/wager/GetJsonLeague"),
                 data: {
                     fromDate: Wagers.fromDate,
                     toDate: Wagers.isOR == "true" ? Wagers.toDate : null,
                     sportTypes: Wagers.sportTypeIds,
-                    isOutright: true
+                    isOutright: isOutright
                 },
                 success: function (data) {
                     $('#League').empty();
                     $.each(data, function (i, item) {
-                        if (i == 0) {
+                        if (indexId == item.Id) {
                             Wagers.League = item.Id;
+
+                            $('#League').append($('<option>', {
+                                value: item.Id,
+                                text: item.Name,
+                                selected: true
+                            }));
                         }
-                        $('#League').append($('<option>', {
-                            value: item.Id,
-                            text: item.Name
-                        }));
+                        else {                           
+                            $('#League').append($('<option>', {
+                                value: item.Id,
+                                text: item.Name
+                            }));
+                        }
                     });
                     Wagers.getWagerData();
                 }
@@ -177,7 +199,6 @@ var Wagers = function ($) {
 
         initWagerBetList: function () {
             $('.wager-link').on('click', function () {
-
                 var betteam = $(this).attr('data-betTeams');
                 var live = $(this).attr('data-live');
                 var league = $(this).attr('data-league');
@@ -185,7 +206,7 @@ var Wagers = function ($) {
                 var match = $(this).attr('data-match');
 
                 var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
-                + "&toDate=" +  (Wagers.isOR == "true" ? Wagers.toDate : null)
+                + "&toDate=" + (Wagers.isOR == "true" ? Wagers.toDate : null)
                 + "&uGroup=" + (Wagers.isOR == "true" ? 'All' : Wagers.groupComm)
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
@@ -195,7 +216,6 @@ var Wagers = function ($) {
                 + "&betTeam=" + betteam
                 + "&matchId=" + match
                 + "&loggedId=" + Wagers.viewOption;
-
 
                 window.open(APOLLO.resolveUrl(url), '_blank');
             });

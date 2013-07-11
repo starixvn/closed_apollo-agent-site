@@ -274,13 +274,10 @@
         }
 }
 @helper ToServerTime(DateTime datetime)
-    {
-        if (datetime != null)
-        {
-            datetime = DateTime.Now;
-        }
+    {        
         try
-        {           
+        {
+            
     <div class="est-zone">@GetAtlanticStandardTimeZone(datetime)
     </div>
         }
@@ -291,10 +288,10 @@
 }
 @helper GetAtlanticStandardTimeZone(DateTime datetime)
     {
-        TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
-        var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
+        //TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
+        //var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
         
-    @(string.Format("--{0}-4: {1}", Lang.GMT,  Formater.LongDateFormat(easternTime)))
+    @(string.Format("--{0}-4: {1}", Lang.GMT, Formater.LongDateFormat(datetime)))
 }
 @helper RenderWagersFilter(string title, List<League> leagues)
     {

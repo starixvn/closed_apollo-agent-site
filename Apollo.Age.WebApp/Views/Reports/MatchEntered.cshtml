@@ -1,5 +1,7 @@
 ﻿@using Apollo.Age.Reports.ViewModels
 @using Apollo.Age.Entities
+@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
 
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
@@ -107,302 +109,10 @@
                 @Apollo.Age.Resources.Lang.nonentered
             </td>
         </tr>
-        @if (Model.MatchEnteredModelList != null && Model.MatchEnteredModelList.Any() && Model.MatchEnteredModelList.Count == 7)
-        {
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.soccer:
-                </td>
-                @if (Model.MatchEnteredModelList[0] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[0].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[0].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[0].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[0].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.BK:
-                </td>
-                @if (Model.MatchEnteredModelList[1] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[1].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[1].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[1].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[1].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Tennis:
-                </td>
-                @if (Model.MatchEnteredModelList[2] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[2].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[2].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[2].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[2].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Volleyball:
-                </td>
-                @if (Model.MatchEnteredModelList[3] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[3].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[3].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[3].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[3].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Baseball:
-                </td>
-                @if (Model.MatchEnteredModelList[4] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[4].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[4].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[4].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[4].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.lblOutRight:
-                </td>
-                @if (Model.MatchEnteredModelList[5] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[5].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[5].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[5].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[5].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.InterEvent:
-                </td>
-                @if (Model.MatchEnteredModelList[6] != null)
-                {
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[6].YesterdayEntered
-                    </td>
-                    <td class="winloss_yesterday">@Model.MatchEnteredModelList[6].YesterdayNonEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[6].TodayEntered
-                    </td>
-                    <td>@Model.MatchEnteredModelList[6].TodayNonEntered
-                    </td>
-                }
-                else
-                {
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                }
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.soccer:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.BK:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Tennis:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Volleyball:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.Baseball:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.lblOutRight:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="firstcolumn">
-                    @Apollo.Age.Resources.Lang.InterEvent:
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-        }
+        @RenderMatchEnteredSportRow(Model.MatchEnteredModelList)
     </table>
     <div>
         <div class="row bg-action">
-            @*<div class="item">
-                <span>@Apollo.Age.Resources.Lang.WagerState: </span>
-                <select>
-                    <option value="true">@Apollo.Age.Resources.Lang.lblResult</option>
-                    <option value="false">@Apollo.Age.Resources.Lang.NonResult</option>
-                </select>
-            </div>*@
             <div class="item">
                 @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
             </div>
@@ -439,4 +149,76 @@
             };
         } ();
     </script>
+}
+
+@helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
+    {
+        var sportGroupList = new List<SingbetSport>{
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.Soccer,
+                Name = Lang.soccer
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.BasketBall,
+                Name = Lang.BK
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.Tennis,
+                Name = Lang.Tennis
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.VolleyBall,
+                Name = Lang.Volleyball
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.BaseBall,
+                Name = Lang.Baseball
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.Outright,
+                Name = Lang.lblOutRight
+            },
+            new SingbetSport{
+                Id = Apollo.Age.Reports.Core.Constants.Others,
+                Name = Lang.InterEvent
+            }
+        };
+
+
+        var matchEntered = new MatchEnteredModel();
+        foreach (var sportGroup in sportGroupList)
+        {
+            if (matchEnteredList != null && matchEnteredList.Any())
+            {
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId.ToString() == sportGroup.Id).SingleOrDefault();
+                if (matchEntered != null)
+                {
+                    <tr>
+                        <td class="firstcolumn">@sportGroup.Name:</td>
+                        <td class="winloss_yesterday">@matchEntered.YesterdayEntered</td>
+                        <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered</td>
+                        <td>@matchEntered.TodayEntered</td>
+                        <td>@matchEntered.TodayNonEntered</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="firstcolumn">
+                            @sportGroup.Name:
+                        </td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="firstcolumn">
+                        @sportGroup.Name:
+                    </td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+            }
+        }
 }

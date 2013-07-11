@@ -9,7 +9,7 @@
     var title = (string)ViewBag.Title;
     var titleAll = (string)ViewBag.TitleAll;
     var lableGroupBet = (string)ViewBag.LableGroupBetName;
-    var EmCalendar = ViewBag.EmCalendar != null ? (List<SelectListItem>)ViewBag.EmCalendar : null;
+    var listEarlyMarketDates = (List<SelectListItem>)ViewBag.EarlyMarketDates;
     var isEM = (bool)ViewBag.isEM;
     var isOR = (bool)ViewBag.isOR;
     var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
@@ -56,15 +56,15 @@
             </div>
         }
         <div class="before-filter">
-            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 180 }, "Wagers.getWagerData($('#pager').sbPager('getCurrentPage'));")
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 180 }, "Wagers.autoRefresh();")
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">
             --</div>
-        @if (isEM && EmCalendar != null)
+        @if (isEM && listEarlyMarketDates.Any())
         {           
             <div class="item">
                 @(Lang.date):
-                @Html.DropDownList("EmDate", EmCalendar)
+                @Html.DropDownList("EmDate", listEarlyMarketDates)
             </div> 
             <div class="before-filter">
                 --</div>
@@ -101,6 +101,7 @@
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
     @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
+    @Html.Hidden("TitleGroupBetName", lableGroupBet)
     <div class="mainpage">
         @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
         <div class="pages-size">

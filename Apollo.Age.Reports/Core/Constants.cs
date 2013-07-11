@@ -15,5 +15,13 @@ namespace Apollo.Age.Reports.Core
         public const string RefundHT = "Refund HT";
         public const string RefundFT = "Refund FT";
         public const string Refund = "Refund";
+
+        public const string Soccer = "1";
+        public const string BasketBall = "2";
+        public const string Tennis = "5";
+        public const string VolleyBall = "6";
+        public const string BaseBall = "8";
+        public const string Outright = "-10";
+        public const string Others = "-1";
     }
 }

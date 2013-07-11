@@ -24,7 +24,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return ParentId >= 0 && AgentId >= 0;
+            return ParentId > 0 && AgentId > 0;
         }
     }
 }

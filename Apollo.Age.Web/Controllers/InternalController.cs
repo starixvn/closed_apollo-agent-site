@@ -237,7 +237,7 @@ namespace Apollo.Age.Web
                                                 model.AdminName,
                                                 user.Agent.Username);
 
-                                LogService.Info(doing);
+                               // LogService.Info(doing);
                                 WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
 
                                 FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);

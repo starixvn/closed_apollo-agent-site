@@ -47,22 +47,28 @@ form {
 	clear: both;
 	margin: 5px;
 }
+
 .pages-size {
 	.pull-left;		
 	text-transform: uppercase;
 	margin-top: 5px;
 	padding-left:10px;
 }
+
 #box_header, .box-header {
 	width: 795px;
 	clear: none;
-	margin: 0 0 0 5px;
+	margin: 3px 0;
+
+	.row .cell .label label {
+		margin-top: 1px;
+	}
 
 	&.report {
 		background-color: #DCDCDC;
 		border: 1px solid #000;
 		padding: 0px;
-		margin-bottom: 5px;
+		margin: 0 0 5px 5px;
 
 		.btn {
 			font-size: @fontSize;

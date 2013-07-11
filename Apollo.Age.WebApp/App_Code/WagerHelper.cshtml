@@ -13,7 +13,7 @@
 @using Apollo.Age.Wagers.ViewModels
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Wagers.ViewModels.Basketball
-@helper RenderMenu(string controller, string groupBetName, bool isEM)
+@helper RenderMenu(string controller, string groupBetName, bool isEarlyMarket)
     {
         var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
         var xDocument = WagerMenusConfiguration.MenuConfig;
@@ -34,9 +34,15 @@
                     {
                         string tempAction = itemBettype.Attribute("Action").Value;
                         string resourceKey = itemBettype.Attribute("ResourceKey").Value;
+                        
+                        // Remove Running Ball submenu in Early Market
+                        if (isEarlyMarket && tempAction.ToLower() == "runningball")
+                        {
+                            continue;
+                        }
 						
             <li class="@(string.Compare(groupBetName, tempAction, true) == 0 ? "active" : string.Empty)">
-                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey&isEM=@(isEM ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
+                <a href="~/wagers/wager?sportName=@controller&groupBetName=@tempAction&resourceKey=@resourceKey&isEM=@(isEarlyMarket ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
             </li>                           
                     }
 
