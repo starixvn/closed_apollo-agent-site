@@ -127,6 +127,7 @@ var RefreshCountDown = function ($) {
         timeout: null,
         ddlRefresh: null,
         onRefresh: null,
+        refreshNow: null,
 
         setRefreshTimeout: function (timeout) {
             if (RefreshCountDown.onRefresh) {
@@ -159,6 +160,7 @@ var RefreshCountDown = function ($) {
 $(document).ready(function () {
     RefreshCountDown.ddlRefresh = $('.btnCountDown select');
     RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
+    RefreshCountDown.refreshNow = $('#btnRefresh');
 
     // set refresh timeout by using cookie
     var refreshId = $('#refreshCountDownId').attr('refresh-id');
@@ -166,9 +168,24 @@ $(document).ready(function () {
     if (typeof timeout !== 'undefined') {
         RefreshCountDown.setRefreshTimeout(timeout);
         RefreshCountDown.ddlRefresh.val(timeout);
+        RefreshCountDown.refreshNow.prop('disabled', false);
+    }
+    else {
+        RefreshCountDown.refreshNow.prop('disabled', true);
     }
 
     RefreshCountDown.ddlRefresh.on('change', function () {
         RefreshCountDown.setCurrentTimeout();
+
+        RefreshCountDown.refreshNow.prop('disabled', $(this).val() == 0);
+    });
+
+    RefreshCountDown.refreshNow.on('click', function () {
+        $this = $(this);
+        $this.prop('disabled', true);
+        eval(RefreshCountDown.onRefresh);
+        setTimeout(function () {
+            $this.prop('disabled', false);
+        }, 15 * 1000);
     });
 });

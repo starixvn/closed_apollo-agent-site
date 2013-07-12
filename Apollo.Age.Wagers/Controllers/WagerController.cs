@@ -264,7 +264,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
             ViewBag.WagerDate = _wagerDate;
-
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; //show button Refresh Now once logged in by Super and MainShareHolder
             if (isEM)
             {
                 earlyMarketListDate = GenerateEarlyMarketDates(sportName);

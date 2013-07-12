@@ -20,6 +20,7 @@
         new string[] {"~/Betlist/Forecast?bettype=28&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(28)}
     };
     int menuItemCount = menu.Count;
+    var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -29,7 +30,7 @@
 </head>
 <body>
     <div id="function-bar">
-        @RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[1] { 180 }, "TotalBetsIndex.reloadChild();")
+        @RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180 }, "TotalBetsIndex.reloadChild();", isShowRefreshNow)
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">--</div>
         <ul class="menu">

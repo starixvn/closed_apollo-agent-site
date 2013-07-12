@@ -43,6 +43,7 @@ namespace Apollo.Age.TotalBets.Controllers
         /// <returns>View return.</returns>
         public ActionResult Index()
         {
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; //show button Refresh Now once logged in by Super and MainShareHolder
             return View();
         }
 

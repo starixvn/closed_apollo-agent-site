@@ -24,7 +24,9 @@
 }
 @helper RefreshCountDown(string refreshCountDownId,
     int[] timerArray,
-    string onRefresh = "location.reload()")
+    string onRefresh = "location.reload()",
+        bool isShowRefreshNow = false
+    )
     {
     <div id="refreshCountDownId" refresh-id=@(refreshCountDownId) class="btnCountDown">
         @Apollo.Age.Resources.Lang.Flesh:
@@ -36,6 +38,10 @@
             }
         </select>
         <input type="hidden" id="apo-on-refresh" value="@onRefresh" />
+        @if (isShowRefreshNow)
+        {
+            <input type="button" id="btnRefresh" value="Refresh Now" />        
+        }
     </div>
 }
 @*@helper RefreshCountDown(string refreshCountDownId,
