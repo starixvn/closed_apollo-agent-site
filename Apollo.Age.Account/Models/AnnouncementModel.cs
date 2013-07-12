@@ -10,7 +10,7 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System;    
+    using System;
     using System.Reflection;
 
     /// <summary>
@@ -82,10 +82,7 @@ namespace Apollo.Age.Account.Models
 
             if (GetMessageType == "private")
             {
-                if (string.IsNullOrWhiteSpace(this.BetTransId))
-                {
-                    content = content.Replace("@@", this.BetTransId);
-                }
+                content = content.Replace("@@", this.BetTransId);
             }
 
             return content;
@@ -101,7 +98,7 @@ namespace Apollo.Age.Account.Models
         {
             string content = string.Empty;
             object value = GetValue(this, langName);
-            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString())) 
+            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                 && !userLanguage.Contains("zh"))
             {
                 langName = "Contenten";
@@ -136,7 +133,7 @@ namespace Apollo.Age.Account.Models
                     }
                 }
             }
-            
+
             value = GetValue(this, langName);
             if (value != null || value != DBNull.Value)
             {
@@ -213,7 +210,7 @@ namespace Apollo.Age.Account.Models
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
 
-            return propertyInfo != null;            
+            return propertyInfo != null;
         }
     }
 }
