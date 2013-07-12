@@ -31,5 +31,7 @@
         public decimal AgentDiscountOneXTwo { get; set; }
 
         public decimal AgentDiscountOther { get; set; }
+
+        public decimal CashBalance { get; set; }
     }
 }

@@ -1830,4 +1830,7 @@
   <data name="lblWagerLeague" xml:space="preserve">
     <value>League</value>
   </data>
+  <data name="SportCredit" xml:space="preserve">
+    <value>Sport Credit</value>
+  </data>
 </root>

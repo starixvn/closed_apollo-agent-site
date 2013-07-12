@@ -84,6 +84,31 @@ table {
 	.clearfix;
 }
 
+.btnCountDown {
+	span, select {
+		float: left;
+	}
+
+	span {
+		margin-top: 2px;
+	}
+
+	.refresh {
+		margin: -1px 0 0 -1px;
+		border: 1px solid #ccc;
+		border-width: 1px 1px 2px;
+		height: 18px;
+		width: 18px;
+		cursor: pointer;
+		background: url(../images/btrefresh_new.png) no-repeat;
+
+		&.disabled {
+			background: url(../images/btRefresh_new_disabled.png) no-repeat;
+		}
+	}
+
+}
+
 #function-bar {
 	background-color: #fff;
 	border-bottom: 1px solid #333;

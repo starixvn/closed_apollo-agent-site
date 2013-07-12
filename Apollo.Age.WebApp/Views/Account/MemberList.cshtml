@@ -14,7 +14,7 @@
 
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
 
-	var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
+    var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
 }
 @using (Html.BeginForm())
 {
@@ -50,15 +50,12 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
             <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
         </div>
-		
-		@if (hasAgentDownline)
-		{
-			<div class="item">
-				--
-				<a href="~/Account/AgentList">@Lang.lblAgents</a>
-			</div>
-		}
-		
+        @if (hasAgentDownline)
+        {
+            <div class="item">
+                -- <a href="~/Account/AgentList">@Lang.lblAgents</a>
+            </div>
+        }
         <img src="/_GlobalResources/Images/top_04.png" alt="">
     </div>
     @Html.HiddenFor(m => m.AgentId)
@@ -73,6 +70,8 @@
                 <th width="60">@Lang.condition
                 </th>
                 <th width="60">@Lang.BetCondition
+                </th>
+                <th width="60">@Lang.SportCredit
                 </th>
                 <th width="80">@Lang.Feature
                 </th>
@@ -90,6 +89,9 @@
                     </td>
                     <td>
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td>
+                        @item.CashBalance
                     </td>
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">

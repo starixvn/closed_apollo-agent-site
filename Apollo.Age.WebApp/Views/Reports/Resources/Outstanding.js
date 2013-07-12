@@ -66,6 +66,17 @@
 
 
             $("#gridId").on("click", ".act-view-betlist", OUTSTANDING.viewBetList);
+
+            $('#export-excel').bind('click', function () { 
+
+                var parameters = $.param({
+                    Sporttypes: OUTSTANDING.ddlSport.val(),
+                    Bettypes: OUTSTANDING.ddlBettype.val()
+                });
+                var url = APOLLO.resolveUrl('Reports/ExportAgentOutstandingReport?' + parameters);
+                $('#exportExcelFrame').attr('src', url);
+    
+            });
         },
 
         viewBetList: function () {

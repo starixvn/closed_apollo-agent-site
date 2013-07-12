@@ -236,7 +236,9 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml" />
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Wagers\Scripts\Wagers.js" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />

@@ -2,405 +2,408 @@
 
 if (typeof jQuery != 'undefined') {
 	// Functions in this namespace require jquery and jquery-ui
-	APOLLO = function ($) {
-		return {
-			showBlockLoading: function () {
-				$.blockUI();
-			},
-			hidePopupBlockLoading: function () {
-				$("iframe").siblings('.block-loading').hide();
-			},
-			dialogOpt: {
-				position: { my: "top+20%", at: "center top", of: window },
-				modal: true,
-				width: 'auto'
-			},
-			isResizeDialog: true,
-			currentOpenDialog: null,
-			openDialog: function (target, title, options) {
-				options = options || {};
-				if (title) options.title = title;
+    APOLLO = function ($) {
+        return {
+            showBlockLoading: function () {
+                $.blockUI();
+            },
+            hidePopupBlockLoading: function () {
+                $("iframe").siblings('.block-loading').hide();
+            },
+            dialogOpt: {
+                position: { my: "top+20%", at: "center top", of: window },
+                modal: true,
+                width: 'auto'
+            },
+            isResizeDialog: true,
+            currentOpenDialog: null,
+            openDialog: function (target, title, options) {
+                options = options || {};
+                if (title) options.title = title;
 
-				if (target instanceof jQuery == false) target = $(target);
+                if (target instanceof jQuery == false) target = $(target);
 
-				APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
+                APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
-				var iframeLoading = target.find('iframe').get(0);
-				if (iframeLoading) {
-					iframeLoading.contentWindow.onload = function () {
-						APOLLO.hidePopupBlockLoading();
-					};
-				}
+                var iframeLoading = target.find('iframe').get(0);
+                if (iframeLoading) {
+                    iframeLoading.contentWindow.onload = function () {
+                        APOLLO.hidePopupBlockLoading();
+                    };
+                }
 
-				return APOLLO.currentOpenDialog;
-			},
-			openDialogFrame: function (url, title, options, singleFrame) {
-				var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
+                return APOLLO.currentOpenDialog;
+            },
+            openDialogFrame: function (url, title, options, singleFrame) {
+                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
 					accessClass = "";
-				if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
+                if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
-				if (singleFrame) { // only one instance of dialog can be opened
-					var frame = $("#apo-dialog-frame");
+                if (singleFrame) { // only one instance of dialog can be opened
+                    var frame = $("#apo-dialog-frame");
 
-					// check FC1X2 popup
-					if (typeof (url) != 'object') {
-						if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
-							accessClass = "fc1x2";
-						}
-					}
+                    // check FC1X2 popup
+                    if (typeof (url) != 'object') {
+                        if (url.substring(1, 15).toLowerCase() == 'forecast/fc1x2') {
+                            accessClass = "fc1x2";
+                        }
+                    }
 
-					if (frame.length > 0) {
-						frame.html(frameHtml);
-					} else {
-						var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
-						frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
-					}
-					return APOLLO.openDialog(frame, title, options);
-				}
+                    if (frame.length > 0) {
+                        frame.html(frameHtml);
+                    } else {
+                        var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
+                        frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+                    }
+                    return APOLLO.openDialog(frame, title, options);
+                }
 
-				// check scoremap popup
-				if (typeof (url) != 'object') {
-					if (url.substring(1, 18).toLowerCase() == 'forecast/scoremap') {
-						accessClass = "loading-scoremap";
-					}
-				}
-				var blockLoading = '<div class="block-loading ' + accessClass + '">loading............................................................</div>';
+                // check scoremap popup
+                if (typeof (url) != 'object') {
+                    if (url.substring(1, 18).toLowerCase() == 'forecast/scoremap') {
+                        accessClass = "loading-scoremap";
+                    }
+                }
+                var blockLoading = '<div class="block-loading ' + accessClass + '">loading............................................................</div>';
 
-				// multiple instances of dialog can be opened
-				return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
-			},
-			closeDialog: function (target) {
-				target.dialog("close");
-			},
-			resizeDialog: function (width, height) {
-				if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
-					APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
-				}
-			},
-			setDialogHeight: function (target, height) {
-				target.dialog("option", "height", height);
-			},
-			resolveUrl: function (url) {
-				var apoRoot = $('#ApoRoot');
+                // multiple instances of dialog can be opened
+                return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
+            },
+            closeDialog: function (target) {
+                target.dialog("close");
+            },
+            resizeDialog: function (width, height) {
+                if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
+                    APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
+                }
+            },
+            setDialogHeight: function (target, height) {
+                target.dialog("option", "height", height);
+            },
+            resolveUrl: function (url) {
+                var apoRoot = $('#ApoRoot');
 
-				if (apoRoot.length == 0) {
-					APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
-				} else {
-					if (url.substr(0, 2) == '~/') {
-						url = url.substr(2);
-					} else if (url.substr(0, 1) == '/') {
-						url = url.substr(1);
-					}
+                if (apoRoot.length == 0) {
+                    APOLLO.console.error('"ApoRoot" does not exist! Please add the following code to your page (or _Layout page): @Html.Hidden("ApoRoot", Url.Content("~/"))');
+                } else {
+                    if (url.substr(0, 2) == '~/') {
+                        url = url.substr(2);
+                    } else if (url.substr(0, 1) == '/') {
+                        url = url.substr(1);
+                    }
 
-					return apoRoot.val() + url;
-				}
-			},
+                    return apoRoot.val() + url;
+                }
+            },
 
-			generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
-			alertGeneralError: function () {
-				alert(APOLLO.generalErrorMsg);
-			},
-			handleAjaxError: function (jqXHR, textStatus, errorThrown) {
-				APOLLO.alertGeneralError();
-			},
+            generalErrorMsg: 'Your request is temporarily cannot be processed, please try again later!',
+            alertGeneralError: function () {
+                alert(APOLLO.generalErrorMsg);
+            },
+            handleAjaxError: function (jqXHR, textStatus, errorThrown) {
+                APOLLO.alertGeneralError();
+            },
 
-			console: {
-				write: function (msg, consoleFunc) {
-					if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
-						//consoleFunc(msg);
-					}
-				},
-				log: function (msg) { APOLLO.console.write(msg, console.log) },
-				info: function (msg) { APOLLO.console.write(msg, console.info) },
-				warn: function (msg) { APOLLO.console.write(msg, console.warn) },
-				error: function (msg) { APOLLO.console.write(msg, console.error) }
-			},
+            console: {
+                write: function (msg, consoleFunc) {
+                    if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
+                        //consoleFunc(msg);
+                    }
+                },
+                log: function (msg) { APOLLO.console.write(msg, console.log) },
+                info: function (msg) { APOLLO.console.write(msg, console.info) },
+                warn: function (msg) { APOLLO.console.write(msg, console.warn) },
+                error: function (msg) { APOLLO.console.write(msg, console.error) }
+            },
 
-			parseJSON: function (value) {
-				return $.parseJSON(value.replaceAll("'", "\""));
-			},
+            parseJSON: function (value) {
+                return $.parseJSON(value.replaceAll("'", "\""));
+            },
 
-			initDatePicker: function () {
-				var datePickers = $('.datepicker');
+            initDatePicker: function () {
+                var datePickers = $('.datepicker');
 
-				if (datePickers.length > 0) {
-					var isValidDate = function (dateString) {
-						// Parse the date parts to integers
-						var parts = dateString.split("-");
-						var day = parseInt(parts[2], 10);
-						var month = parseInt(parts[1], 10);
-						var year = parseInt(parts[0], 10);
+                if (datePickers.length > 0) {
+                    var isValidDate = function (dateString) {
+                        // Parse the date parts to integers
+                        var parts = dateString.split("-");
+                        var day = parseInt(parts[2], 10);
+                        var month = parseInt(parts[1], 10);
+                        var year = parseInt(parts[0], 10);
 
-						// Check the ranges of month and year
-						if (year < 1000 || year > 3000 || month == 0 || month > 12)
-							return false;
+                        // Check the ranges of month and year
+                        if (year < 1000 || year > 3000 || month == 0 || month > 12)
+                            return false;
 
-						var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                        var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-						// Adjust for leap years
-						if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-							monthLength[1] = 29;
+                        // Adjust for leap years
+                        if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                            monthLength[1] = 29;
 
-						// Check the range of the day
-						return day > 0 && day <= monthLength[month - 1];
-					};
-					var validateDate = function (target) {
-						var minDate = target.datepicker("option", "minDate");
-						var maxDate = target.datepicker("option", "maxDate");
-						var inputDate = target.val(); // the visible value on screen
-						var currentDate = target.datepicker("getDate");
-						var errMsg = '';
+                        // Check the range of the day
+                        return day > 0 && day <= monthLength[month - 1];
+                    };
+                    var validateDate = function (target) {
+                        var minDate = target.datepicker("option", "minDate");
+                        var maxDate = target.datepicker("option", "maxDate");
+                        var inputDate = target.val(); // the visible value on screen
+                        var currentDate = target.datepicker("getDate");
+                        var errMsg = '';
 
-						// if selected date is invalid
-						if (!isValidDate(inputDate)) {
-							errMsg = ApoRes.InvalidDate;
-						}
-						if (errMsg.length == 0 && currentDate < minDate) {
-							errMsg = ApoRes.DateIsOutOfRange;
-						}
-						if (errMsg.length == 0 && maxDate < currentDate) {
-							errMsg = ApoRes.DateIsOutOfRange;
-						}
+                        // if selected date is invalid
+                        if (!isValidDate(inputDate)) {
+                            errMsg = ApoRes.InvalidDate;
+                        }
+                        if (errMsg.length == 0 && currentDate < minDate) {
+                            errMsg = ApoRes.DateIsOutOfRange;
+                        }
+                        if (errMsg.length == 0 && maxDate < currentDate) {
+                            errMsg = ApoRes.DateIsOutOfRange;
+                        }
 
-						target.attr('title', errMsg).tooltip({
-							position: { my: "left top+2", at: "left bottom" },
-							tooltipClass: "warning"
-						})
+                        target.attr('title', errMsg).tooltip({
+                            position: { my: "left top+2", at: "left bottom" },
+                            tooltipClass: "warning"
+                        })
 
-						if (errMsg.length > 0) {
-							target.tooltip('open');
-							return false;
-						}
+                        if (errMsg.length > 0) {
+                            target.tooltip('open');
+                            return false;
+                        }
 
-						target.tooltip('destroy');
-						target.removeAttr('title');
-					};
-					var limitDate = function (target, limit) { // limit: mindate/maxdate
-						var _limit = target.attr(limit);
+                        target.tooltip('destroy');
+                        target.removeAttr('title');
+                    };
+                    var limitDate = function (target, limit) { // limit: mindate/maxdate
+                        var _limit = target.attr(limit);
 
-						if (_limit) { // if limit attribute exists
-							_limit = _limit.split("-");
+                        if (_limit) { // if limit attribute exists
+                            _limit = _limit.split("-");
 
-							var year = _limit[0],
+                            var year = _limit[0],
 								month = _limit[1],
 								day = _limit[2];
 
-							return new Date(year, month - 1, day);
-						}
+                            return new Date(year, month - 1, day);
+                        }
 
-						return null;
-					};
-					var shiftDate = function (target, increment) {
-						var currDate = target.datepicker('getDate');
-						var d = currDate.getDate() + increment;
-						var m = currDate.getMonth();
-						var y = currDate.getFullYear();
+                        return null;
+                    };
+                    var shiftDate = function (target, increment) {
+                        var currDate = target.datepicker('getDate');
+                        var d = currDate.getDate() + increment;
+                        var m = currDate.getMonth();
+                        var y = currDate.getFullYear();
 
-						target.datepicker('setDate', new Date(y, m, d));
-					};
+                        target.datepicker('setDate', new Date(y, m, d));
+                    };
 
-					datePickers.each(function () {
-						var $this = $(this);
+                    datePickers.each(function () {
+                        var $this = $(this);
 
-						$this.datepicker({
-							changeMonth: true,
-							changeYear: true,
-							defaultDate: new Date($this.val()),
-							dateFormat: "yy-mm-dd",
-							minDate: limitDate($this, "mindate"),
-							maxDate: limitDate($this, "maxdate"),
-							showOn: "button",
-							buttonImage: "../_globalResources/css/img/calendar.gif",
-							buttonImageOnly: true,
-							buttonText: "",
-							beforeShow: function (input, inst) {
-								inst.dpDiv.css({ marginTop: '2px' });
-							},
-							onSelect: function (dateText, inst) {
-								validateDate($this);
-							}
-						}).keydown(function (e) {
-							var arrow = { left: 37, up: 38, right: 39, down: 40 };
-							switch (e.keyCode) {
-								case arrow.up:
-									shiftDate($this, 1);
-									break;
-								case arrow.down:
-									shiftDate($this, -1);
-									break;
-							}
-						})
+                        $this.datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            defaultDate: new Date($this.val()),
+                            dateFormat: "yy-mm-dd",
+                            minDate: limitDate($this, "mindate"),
+                            maxDate: limitDate($this, "maxdate"),
+                            showOn: "button",
+                            buttonImage: "../_globalResources/css/img/calendar.gif",
+                            buttonImageOnly: true,
+                            buttonText: "",
+                            beforeShow: function (input, inst) {
+                                inst.dpDiv.css({ marginTop: '2px' });
+                            },
+                            onSelect: function (dateText, inst) {
+                                validateDate($this);
+                            }
+                        }).keydown(function (e) {
+                            var arrow = { left: 37, up: 38, right: 39, down: 40 };
+                            switch (e.keyCode) {
+                                case arrow.up:
+                                    shiftDate($this, 1);
+                                    break;
+                                case arrow.down:
+                                    shiftDate($this, -1);
+                                    break;
+                            }
+                        })
 						.blur(function () { validateDate($this) })
 						.parents('form').submit(function () { return validateDate($this) });
-					});
-				}
-			},
+                    });
+                }
+            },
 
-			initPageInfo: function () {
-				var infos = $('.infos');
+            initPageInfo: function () {
+                var infos = $('.infos');
 
-				infos.each(function () {
-					var $this = $(this),
+                infos.each(function () {
+                    var $this = $(this),
 						thisId = $this.attr('id'),
 						title = $this.attr('title'),
 						tipTitle = $this.attr('tip-title'),
 						trigger;
 
-					trigger = thisId == 'page-info'
+                    trigger = thisId == 'page-info'
 						? $('<div class="page-info" />').appendTo('#header_main')
 						: $('#' + thisId.substr(0, thisId.length - 5)); // 5 is the length of "-info";
 
-					if (trigger.length > 0) {
-						trigger.attr('title', tipTitle ? tipTitle : title)
+                    if (trigger.length > 0) {
+                        trigger.attr('title', tipTitle ? tipTitle : title)
 						.tooltip({
-							position: { my: "right-10 center", at: "center center+5" },
-							show: null,
-							hide: null
+						    position: { my: "right-10 center", at: "center center+5" },
+						    show: null,
+						    hide: null
 						})
 						.click(function () {
-							APOLLO.openDialog($this, title, { modal: false });
-							$('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
-							$('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
+						    APOLLO.openDialog($this, title, { modal: false });
+						    $('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
+						    $('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
 						});
-					}
-				});
-			},
+                    }
+                });
+            },
 
-			signOut: function () {
-				try {
-					if (parent.IsApoRoot) {
-						parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
-					}
-				} catch (err) {
-					APOLLO.console.warn(err);
-				}
-			},
+            signOut: function () {
+                try {
+                    if (parent.IsApoRoot) {
+                        parent.location = APOLLO.resolveUrl('~/Internal/SignOut');
+                    }
+                } catch (err) {
+                    APOLLO.console.warn(err);
+                }
+            },
 
-			detectBrowser: function () {
-				var matchedBrowser, browserDectect;
+            detectBrowser: function () {
+                var matchedBrowser, browserDectect;
 
-				// Use of jQuery.browser is frowned upon.
-				// More details: http://api.jquery.com/jQuery.browser
-				// jQuery.uaMatch maintained for back-compat
-				function ubMatch(ua) {
-					ua = ua.toLowerCase();
+                // Use of jQuery.browser is frowned upon.
+                // More details: http://api.jquery.com/jQuery.browser
+                // jQuery.uaMatch maintained for back-compat
+                function ubMatch(ua) {
+                    ua = ua.toLowerCase();
 
-					var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+                    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
 								/(webkit)[ \/]([\w.]+)/.exec(ua) ||
 								/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
 								/(msie) ([\w.]+)/.exec(ua) ||
 								ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
 								[];
 
-					return {
-						browserDectect: match[1] || "",
-						version: match[2] || "0"
-					};
-				};
+                    return {
+                        browserDectect: match[1] || "",
+                        version: match[2] || "0"
+                    };
+                };
 
-				matchedBrowser = ubMatch(navigator.userAgent);
-				browserDectect = {};
+                matchedBrowser = ubMatch(navigator.userAgent);
+                browserDectect = {};
 
-				if (matchedBrowser.browserDectect) {
-					browserDectect[matchedBrowser.browserDectect] = true;
-					browserDectect.version = matchedBrowser.version;
-				}
+                if (matchedBrowser.browserDectect) {
+                    browserDectect[matchedBrowser.browserDectect] = true;
+                    browserDectect.version = matchedBrowser.version;
+                }
 
-				// Chrome is Webkit, but Webkit is also Safari.
-				if (browserDectect.chrome) {
-					browserDectect.webkit = true;
-				} else if (browserDectect.webkit) {
-					browserDectect.safari = true;
-				}
-				return browserDectect;
-			},
+                // Chrome is Webkit, but Webkit is also Safari.
+                if (browserDectect.chrome) {
+                    browserDectect.webkit = true;
+                } else if (browserDectect.webkit) {
+                    browserDectect.safari = true;
+                }
+                return browserDectect;
+            },
 
-			htmlEncode: function (str) {
-				return $('<div/>').text(str).html();
-			},
-			htmlDecode: function (str) {
-				return $('<div/>').html(str).text();
-			},
+            htmlEncode: function (str) {
+                return $('<div/>').text(str).html();
+            },
+            htmlDecode: function (str) {
+                return $('<div/>').html(str).text();
+            },
 
-			initFreeHeader: function () {
-				//APOLLO.browser
-				if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
-					return;
-				}
-				var clonedHeaderRow;
-				$(".persist-area").each(function () {
-					clonedHeaderRow = $(".persist-header", this);
-					clonedHeaderRow
+            initFreeHeader: function () {
+                //APOLLO.browser
+                if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                    return;
+                }
+                var clonedHeaderRow;
+                $(".persist-area").each(function () {
+                    clonedHeaderRow = $(".persist-header", this);
+                    clonedHeaderRow
 					 .before(clonedHeaderRow.clone())
 					 .css({ "width": clonedHeaderRow.width() })
 					 .addClass("floatingHeader")
 					 .removeClass("persist-header");
-				});
+                });
 
-				$(window)
+                $(window)
 				.scroll(APOLLO.updateTableHeaders)
 				.trigger("scroll");
-				$(window).resize(function () {
-					APOLLO.updateTableHeaders();
-				});
-			},
+                $(window).resize(function () {
+                    APOLLO.updateTableHeaders();
+                });
+            },
 
-			updateTableHeaders: function () {
-				if ($(".persist-area").val() != undefined) {
-					var widthspace = $(".persist-area").width();
+            updateTableHeaders: function () {
+                if ($(".persist-area").val() != undefined) {
+                    var widthspace = $(".persist-area").width();
 
-					$('.floatingHeader').width(widthspace);
-					var left = $('table thead tr:first').position()["left"];
-					$(".persist-area").each(function () {
-						var el = $(this),
+                    $('.floatingHeader').width(widthspace);
+                    var left = $('table thead tr:first').position()["left"];
+                    $(".persist-area").each(function () {
+                        var el = $(this),
 						offset = el.offset(),
 						scrollTop = $(window).scrollTop(),
 						floatingHeader = $(".floatingHeader", this);
-						if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
-							floatingHeader.css({
-								"visibility": "visible",
-								"left": (left - $(window).scrollLeft()),
-								"z-index": "34"
-							});
-						} else {
-							floatingHeader.css({
-								"visibility": "hidden"
-							});
-						};
-					});
+                        if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
+                            floatingHeader.css({
+                                "visibility": "visible",
+                                "left": (left - $(window).scrollLeft()),
+                                "z-index": "34"
+                            });
+                        } else {
+                            floatingHeader.css({
+                                "visibility": "hidden"
+                            });
+                        };
+                    });
 
-					var i = 0;
+                    var i = 0;
 
-					var persistheader = $("table.persist-area thead.persist-header tr td");
-					var floatingheader = $("table.persist-area thead.floatingHeader tr td");
+                    var persistheader = $("table.persist-area thead.persist-header tr td");
+                    var floatingheader = $("table.persist-area thead.floatingHeader tr td");
 
-					if (persistheader.length <= 0) {
-						persistheader = $("table.persist-area thead.persist-header tr th");
-					}
+                    if (persistheader.length <= 0) {
+                        persistheader = $("table.persist-area thead.persist-header tr th");
+                    }
 
-					if (floatingheader.length <= 0) {
-						floatingheader = $("table.persist-area thead.floatingHeader tr th");
-					}
+                    if (floatingheader.length <= 0) {
+                        floatingheader = $("table.persist-area thead.floatingHeader tr th");
+                    }
 
-					persistheader.each(function () {
-						var x = $(this).width();
-						$(floatingheader[i]).width(x);
-						i++;
-					});
-				}
-			},
+                    persistheader.each(function () {
+                        var x = $(this).width();
+                        $(floatingheader[i]).width(x);
+                        i++;
+                    });
+                }
+            },
 
-			addAntiForgeryToken: function (data) {
-				data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
-				return data;
-			},
+            addAntiForgeryToken: function (data) {
+                data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
+                return data;
+            },
 
-			init: function () {
-				APOLLO.initDatePicker();
-				//APOLLO.initFreeHeader();
-			}
-		};
-	} (jQuery);
+            
+           
+
+            init: function () {                
+                APOLLO.initDatePicker();
+                //APOLLO.initFreeHeader();
+            }
+        };
+    } (jQuery);
 
 	APOLLO.browser = APOLLO.detectBrowser();
 
