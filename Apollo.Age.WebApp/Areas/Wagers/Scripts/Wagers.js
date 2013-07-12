@@ -16,6 +16,7 @@ var Wagers = function ($) {
         isOR: false,
         pageIndex: 0,
         betTypeIds: null,
+        urlActived: null,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
@@ -116,6 +117,8 @@ var Wagers = function ($) {
                     }
                 });
             }
+
+          
         },
 
         autoRefresh: function () {
@@ -144,7 +147,7 @@ var Wagers = function ($) {
                                 selected: true
                             }));
                         }
-                        else {                           
+                        else {
                             $('#League').append($('<option>', {
                                 value: item.Id,
                                 text: item.Name
@@ -220,6 +223,7 @@ var Wagers = function ($) {
                 window.open(APOLLO.resolveUrl(url), '_blank');
             });
         }
+       
     }
 } (jQuery);
 

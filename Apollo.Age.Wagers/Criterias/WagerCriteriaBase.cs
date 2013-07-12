@@ -24,6 +24,8 @@ namespace Apollo.Age.Wagers.Criterias
 
         public int LoggedId { get; set; }
 
+        public bool IsSuperView { get; set; }
+
         public DateTime FromDate { get; set; }
 
         public string UGroup { get; set; }

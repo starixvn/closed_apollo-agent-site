@@ -33,6 +33,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<StraightViewModel>(criteria).ToList();
 
@@ -51,7 +52,8 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
-            
+            criteria.IsSuperView = CurrentSession.IsSuper;
+
             var result = WagerService.GetWagerData<FirstHalfViewModel>(criteria);
 
             ViewBag.TotalItems = criteria.TotalItems;
@@ -70,6 +72,7 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Sporttypes = SportId(criteria.SportName);
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<RunningBallViewModel>(criteria);
 
@@ -88,6 +91,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Bettype = 4;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
@@ -106,6 +110,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Bettype = 30;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
@@ -124,6 +129,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<TotalViewModel>(criteria);
 
@@ -142,6 +148,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Bettype = 16;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<CorrectScoreViewModel>(criteria);
 
@@ -160,6 +167,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<ParlayViewModel>(criteria);
 
@@ -178,6 +186,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<ViewModels.Basketball.SpecialViewModel>(criteria);
 

@@ -27,6 +27,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Sporttypes = SportId(criteria.SportName);
+            criteria.IsSuperView = CurrentSession.IsSuper;
 
             var result = WagerService.GetWagerData<OutrightViewModel>(criteria);
 
