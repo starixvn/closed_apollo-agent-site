@@ -26,7 +26,7 @@ namespace Apollo.Age.Reports.Services
     {
         public OutstandingViewModel GetAgentOutStadingReport(bool isSupper, int? CurrentAgentId, int parentId, int? agentId, string sporttypes, string bettypes)
         {
-            CurrentAgentId = agentId;
+            
             var mainShareHolder = new Apollo.Age.Entities.Agent();
 
             var outstandingViewModel = new OutstandingViewModel()

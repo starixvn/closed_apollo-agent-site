@@ -44,6 +44,7 @@ namespace Apollo.Age.Reports.Controllers
 		{
 			_reportService = reportService ?? new ReportService();
 			_winLossService = _winLossService ?? new WinLossService();
+            _outstandingService = new OutstandingService();
 		}
 
 		public int? CurrentAgentId
@@ -63,6 +64,7 @@ namespace Apollo.Age.Reports.Controllers
 
 		public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
 		{
+            CurrentAgentId = agentId;
             var result = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
             return View(result);
 		}
