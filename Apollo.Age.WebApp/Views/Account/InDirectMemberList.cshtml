@@ -91,6 +91,8 @@
                 <td width="60">
                     @Lang.BetCondition
                 </td>
+                <th width="60">@Lang.SportCredit
+                </th>
                 <td width="80">
                     @Lang.Feature
                 </td>
@@ -111,6 +113,9 @@
                     </td>
                     <td>
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td>
+                        @item.CashBalance
                     </td>
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@backLink">
