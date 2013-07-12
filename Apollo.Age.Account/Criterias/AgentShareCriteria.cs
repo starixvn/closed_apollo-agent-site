@@ -32,7 +32,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            return ActorAgentId > 0 && AgentId > 0;
+            return ActorAgentId > 0;
         }
     }
 }
