@@ -31,6 +31,8 @@ namespace Apollo.Age.Reports.Controllers
 
 		private readonly IWinLossService _winLossService;
 
+        private readonly OutstandingService _outstandingService;
+
 		private int _currentAgentId;
 
 		public ReportsController()
@@ -61,45 +63,8 @@ namespace Apollo.Age.Reports.Controllers
 
 		public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
 		{
-			CurrentAgentId = agentId;
-			var mainShareHolder = new Apollo.Age.Entities.Agent();
-
-			var outstandingViewModel = new OutstandingViewModel()
-			{
-				CurrentAgentId = CurrentAgentId.Value,
-				MainShareHolder = mainShareHolder,
-				Sporttypes = sporttypes,
-				Bettypes = bettypes
-			};
-
-			if (sporttypes != null)
-			{
-				IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
-
-				if (CurrentSession.IsSuper)
-				{
-					if (modelAgentDownLine.Count() > 1)
-					{
-						mainShareHolder = modelAgentDownLine.ToList()[1];
-					}
-				}
-
-				IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
-				{
-					AgentId = CurrentAgentId.Value,
-					Sporttypes = sporttypes,
-					Bettypes = bettypes
-				});
-
-				outstandingViewModel.ListOutStanding = models;
-				outstandingViewModel.DownlinePath = modelAgentDownLine;
-				outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
-			}
-
-			outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-			outstandingViewModel.BettypeList = _reportService.GetBettype();
-
-			return View(outstandingViewModel);
+            var result = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+            return View(result);
 		}
 
 		[HttpPost]

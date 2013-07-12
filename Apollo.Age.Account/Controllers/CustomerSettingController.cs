@@ -549,6 +549,11 @@ namespace Apollo.Age.Account.Controllers
                 Language = base.CurrentSession.Language
             };
 
+            if (agentLevel != null && agentLevel.Value == 3)
+            {
+                settingContext.HasMinConstrain = true;
+            }
+
             //// If current Cust Edited Role is Member, then set Edit Role is Agent
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
@@ -582,6 +587,8 @@ namespace Apollo.Age.Account.Controllers
                 settingContext.FormId = FormType.EditPT;
                 settingContext.CustId = agentId.Value;
             }
+
+            
 
             return settingContext;
         }

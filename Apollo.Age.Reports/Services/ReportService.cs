@@ -149,5 +149,16 @@ namespace Apollo.Age.Reports.Services
 
             return bettypeList;
         }
+
+        public IEnumerable<Agent> AgentDownlinePath(int parentId, int agentId)
+        {
+            IEnumerable<Agent> models = GetData<Agent>(new AgentDownlinePathCriteria
+            {
+                ParentId = parentId,
+                AgentId = agentId
+            });
+
+            return models;
+        }
     }
 }

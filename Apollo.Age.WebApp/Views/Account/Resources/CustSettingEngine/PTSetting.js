@@ -27,6 +27,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         SPINNER_BOX_WIDTH: 45,
         PT_LAST_LETTER: '',
         COM_LAST_LETTER: '',
+        MIN_CONSTRAIN_VALUE: 50,
         Min_WIDTH_BET_TYPE_GROUP: 140,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
             if (typeof (element) != 'object') return false;
@@ -134,6 +135,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.FormId = currentContext.FormId;
             this.Language = currentContext.Language;
             this.IsSimpleMode = currentContext.IsSimpleMode;
+            this.HasMinConstrain = currentContext.HasMinConstrain;
             if (this.Language == 'cn-CN') {
                 Language = "new language";
             }
@@ -143,7 +145,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             TargetRoleId: 2,
             FormId: 1,
             Language: 'en-US',
-            IsSimpleMode: true
+            IsSimpleMode: true,
+            HasMinConstrain: false
         },
         // BetType class, need to create each bet type class for each PT form
         BetType: function (item) {
@@ -686,9 +689,10 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
 								&& (currentBetType.Pt.Max != currentPtValue.Max
-								|| currentBetType.Pt.Preset != currentPtValue.Preset)) {
+								|| currentBetType.Pt.Preset != currentPtValue.Preset
+                                || currentBetType.Pt.Min != currentPtValue.Min)) {
                                     dataChanged = true;
-                                    currentPtValue.Min = currentBetType.Pt.Min;
+                                    //currentPtValue.Min = currentBetType.Pt.Min;
                                 }
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member
