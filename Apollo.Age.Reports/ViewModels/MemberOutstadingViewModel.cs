@@ -1,0 +1,28 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="MemberOutstadingViewModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Ricky.Nguyen" date="2013.7.12">Created</change>
+// </history>
+
+namespace Apollo.Age.Reports.ViewModels
+{
+    using System.Collections.Generic;
+    using Apollo.Age.Reports.Models;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class MemberOutstadingViewModel
+    {
+        public IEnumerable<OutstandingModel> ListOutstanding { get; set; }
+
+        public OutstandingModel Total { get; set; }
+
+        public int MainShareHolderId { get; set; }
+
+        public string MainShareHolderUsername { get; set; }
+    }
+}
