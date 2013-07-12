@@ -252,7 +252,7 @@
     <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="UserId" />
     </Setting>
-    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="UserId" />
       <Mapping DataField="Username" ObjectProperty="Username" />
       <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
@@ -261,7 +261,7 @@
       <Mapping DataField="Outstanding_NG" ObjectProperty="GameOutstanding" />
       <Mapping DataField="PositionTaking_NG" ObjectProperty="GameShareAmount" />
     </Setting>
-    <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="UserId" />
       <Mapping DataField="Username" ObjectProperty="Username" />
       <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
@@ -274,7 +274,7 @@
       <Mapping DataField="sporttype" ObjectProperty="Id"/>
       <Mapping DataField="sportname" ObjectProperty="Name"/>
     </Setting>
-    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright_xtest" DbName="SVRAGE.RepDB" Plain="0" >
+    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="sporttype" ObjectProperty="SportId"/>
       <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
       <Mapping DataField="eventdate" ObjectProperty="EventDate"/>
@@ -308,13 +308,13 @@
       <Mapping DataField="calculate" ObjectProperty="Calculate"/>
       <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
     </Setting>
-    <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered_xtest" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="SVRAGE.RepDB" Plain="0" />
+    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
       <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
     </Setting>
-    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
       <Mapping DataField="CustID" ObjectProperty="MemberId"/>
       <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
@@ -386,9 +386,9 @@
   </Function>
 
   <Function Name="Agent-Apollo-DownlinesInfo">
-    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent_xtest" DbName="SVRAGE.RepDB" Plain="0" >
+    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="SVRAGE.RepDB" Plain="0" >
     </Setting>
-    <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent_xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="MemberId"/>
       <Mapping DataField="Username" ObjectProperty="Username"/>
       <Mapping DataField="Active" ObjectProperty="Status"/>
