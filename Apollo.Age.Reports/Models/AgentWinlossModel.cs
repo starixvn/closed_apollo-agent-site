@@ -36,6 +36,6 @@ namespace Apollo.Age.Reports.Models
 
         public decimal Outstanding { get; set; }
 
-        public decimal ShareAmount { get; set; }
+        public decimal OutstandingShare { get; set; }
     }
 }

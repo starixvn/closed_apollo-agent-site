@@ -140,7 +140,7 @@
                         @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.ShareAmount, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.OutstandingShare, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
@@ -207,7 +207,7 @@
             decimal totalATotal = 0;
             decimal totalUpline = 0;
             decimal totalOutstanding = 0;
-            decimal totalShareAmount = 0;
+            decimal totalOutstandingShare = 0;
             }
             @foreach (var item in list)
             {
@@ -219,7 +219,7 @@
                 totalATotal += item.ATotal;
                 totalUpline += item.UplineTotal;
                 totalOutstanding += item.Outstanding;
-                totalShareAmount += item.ShareAmount;
+                totalOutstandingShare += item.OutstandingShare;
                 
                 rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
@@ -255,7 +255,7 @@
                         @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.ShareAmount, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.OutstandingShare, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r bold">
                         @Formater.FormatNumber20(item.GrossTotal, Formater.CULT_NAME_ENG)
@@ -292,7 +292,7 @@
                     @Formater.FormatNumber20(totalOutstanding, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalShareAmount, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalOutstandingShare, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalGross, Formater.CULT_NAME_ENG)
