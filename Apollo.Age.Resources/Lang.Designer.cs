@@ -4633,6 +4633,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sport Credit.
+        /// </summary>
+        public static string SportCredit {
+            get {
+                return ResourceManager.GetString("SportCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sports.
         /// </summary>
         public static string Sports {

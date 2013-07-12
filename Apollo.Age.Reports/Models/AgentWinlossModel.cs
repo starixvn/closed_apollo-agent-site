@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.12">Created</change>
+//   <change who="Quinn.Vo" date="2013.7.12">Add Outstanding & ShareAmount</change>
 // </history>
 
 namespace Apollo.Age.Reports.Models
@@ -32,5 +33,9 @@ namespace Apollo.Age.Reports.Models
         public decimal ATotal { get; set; }
 
         public decimal UplineTotal { get; set; }
+
+        public decimal Outstanding { get; set; }
+
+        public decimal ShareAmount { get; set; }
     }
 }
