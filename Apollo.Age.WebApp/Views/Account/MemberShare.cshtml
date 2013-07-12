@@ -75,14 +75,14 @@
 				<td class="first-cell l">
 					@item.Username
 				</td>
-				@if (index == Model.MemberShareModelList.Count)
+				@if (index == 1)
 				{
 					<td>
 					</td>
 				}
 				else
 				{
-					<td class="r">
+					<td class="r @("preset" + item.AgentLevel)">
 						@Formater.DecFormat(item.TakenShare / 100.00, 2)
 					</td>
 				}
@@ -92,7 +92,7 @@
 				<td class="r">
 					@Formater.DecFormat(item.MinGiven / 100.00, 2)
 				</td>
-				<td class="r">
+				<td class="r @("memshare" + item.AgentLevel)">
 					@Formater.DecFormat(item.TakenShareMember / 100.00, 2)
 				</td>
 			</tr>
