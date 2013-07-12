@@ -29,7 +29,7 @@
     )
     {
     <div id="refreshCountDownId" refresh-id=@(refreshCountDownId) class="btnCountDown">
-        @Apollo.Age.Resources.Lang.Flesh:
+        <span>@Apollo.Age.Resources.Lang.Flesh:</span>
         <select>
             <option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
             @for (int i = 0; i < timerArray.Length; i++)
@@ -37,10 +37,13 @@
                 <option value="@timerArray[i]">@timerArray[i] @Apollo.Age.Resources.Lang.sec</option>
             }
         </select>
+
         <input type="hidden" id="apo-on-refresh" value="@onRefresh" />
         @if (isShowRefreshNow)
         {
-            <input type="button" id="btnRefresh" value="Refresh Now" />        
+            <img src="~/_GlobalResources/Images/btRefresh_new.png" id="btnRefresh" class="refresh" />
+            @*
+            <input type="button" id="btnRefresh" value="Refresh Now" />   *@     
         }
     </div>
 }
