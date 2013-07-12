@@ -89,6 +89,7 @@
     <Compile Include="Services\IWinLossService.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ReportService.cs" />
+    <Compile Include="ViewModels\MemberOutstadingViewModel.cs" />
     <Compile Include="ViewModels\OutrightResultViewModel.cs" />
     <Compile Include="ViewModels\MatchEnteredViewModel.cs" />
     <Compile Include="ViewModels\OutstandingViewModel.cs" />

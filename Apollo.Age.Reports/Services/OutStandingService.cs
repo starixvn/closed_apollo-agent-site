@@ -24,9 +24,18 @@ namespace Apollo.Age.Reports.Services
 
     public class OutstandingService : ReportService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isSupper"></param>
+        /// <param name="CurrentAgentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="agentId"></param>
+        /// <param name="sporttypes"></param>
+        /// <param name="bettypes"></param>
+        /// <returns></returns>
         public OutstandingViewModel GetAgentOutStadingReport(bool isSupper, int? CurrentAgentId, int parentId, int? agentId, string sporttypes, string bettypes)
         {
-            
             var mainShareHolder = new Apollo.Age.Entities.Agent();
 
             var outstandingViewModel = new OutstandingViewModel()
@@ -66,13 +75,63 @@ namespace Apollo.Age.Reports.Services
             return outstandingViewModel;
         }
 
-        public HSSFWorkbook ExportExcel(OutstandingCriteria outstandingCriteria)
+        public MemberOutstadingViewModel GetMemberOutstadingReport(int? CurrentAgentId, int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
+        {
+            IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new MemberOutstandingCriteria
+            {
+                AgentId = CurrentAgentId.Value,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes
+            });
+
+            //// Sum total amount
+            OutstandingModel totalModels = new OutstandingModel();
+            if (models != null && models.Any())
+            {
+                foreach (OutstandingModel item in models)
+                {
+                    totalModels.Outstanding += item.Outstanding;
+                    totalModels.ShareAmount += item.ShareAmount;
+                    totalModels.GameOutstanding += item.GameOutstanding;
+                    totalModels.GameShareAmount += item.GameShareAmount;
+                }
+            }
+
+            return new MemberOutstadingViewModel
+            {
+                ListOutstanding = models,
+				Total = totalModels,
+				MainShareHolderId = mainShareHolderId,
+				MainShareHolderUsername = mainShareHolderUsername
+            };
+        }
+
+        public HSSFWorkbook ExportAgentOutstandingReport(OutstandingViewModel outstandingViewModel)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
             ISheet sheet = hssfworkbook.CreateSheet("Out Standing Report");
 
+            if (outstandingViewModel != null
+                && outstandingViewModel.ListOutStanding != null
+                && outstandingViewModel.ListOutStanding.Any())
+            {
+                var length = outstandingViewModel.ListOutStanding.Count();
+                for (int i = 0; i < length; i++)
+                {
+                    IRow row = sheet.CreateRow(i);
+                    var userNameCell = row.CreateCell(0);
+                    userNameCell.SetCellType(CellType.STRING);
+                    userNameCell.SetCellValue(outstandingViewModel.ListOutStanding.ElementAt(i).UserName);
+                    var outstadingValue = row.CreateCell(1);
+                    outstadingValue.SetCellType(CellType.NUMERIC);
+                    outstadingValue.SetCellValue((double)outstandingViewModel.ListOutStanding.ElementAt(i).Outstanding);
+                    var shareAmountValue = row.CreateCell(2);
+                    shareAmountValue.SetCellType(CellType.NUMERIC);
+                    shareAmountValue.SetCellValue((double)outstandingViewModel.ListOutStanding.ElementAt(i).ShareAmount);
+                }
+            }
 
-            return null;
+            return hssfworkbook;
         }
     }
 }
