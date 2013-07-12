@@ -591,6 +591,7 @@
     <Content Include="_GlobalResources\Images\btDown.png" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
     <Content Include="_GlobalResources\Images\btRefresh.png" />
+    <Content Include="_GlobalResources\Images\btRefresh_new.png" />
     <Content Include="_GlobalResources\Images\down-arr.png" />
     <Content Include="_GlobalResources\Images\edit.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
