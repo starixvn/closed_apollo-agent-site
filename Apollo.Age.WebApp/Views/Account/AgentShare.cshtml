@@ -86,14 +86,14 @@
 						}
 						else
 						{
-							<td class="r @("preset" + item.AgentLevel)">
+							<td class="r">
 								@Formater.DecFormat(item.TakenShare / 100.00, 2)
 							</td>
 						}
 						<td class="r">
 							@Formater.DecFormat(item.MaxGiven / 100.00, 2)
 						</td>
-						<td class="r @("memshare" + item.AgentLevel)">
+						<td class="r">
 							@Formater.DecFormat(item.MinGiven / 100.00, 2)
 						</td>
 					</tr>
