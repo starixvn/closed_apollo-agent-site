@@ -395,25 +395,10 @@ if (typeof jQuery != 'undefined') {
                 return data;
             },
 
-            urlActived: null,
-            activeMenu: function () {
-                $('#menu-parent a').on('click', function () {
-                    $this = $(this);
-                    $iframe = $("[name=iframemain]");
-                    APOLLO.urlActived = $iframe.attr('src');
-                    if (APOLLO.urlActived == $this.attr('url')) {
-                        return;
-                    }
-                    else {
-                        $iframe.attr('src', $this.attr('url'));
-                        return;
-                    }
+            
+           
 
-                });
-            },
-
-            init: function () {
-                //APOLLO.activeMenu();
+            init: function () {                
                 APOLLO.initDatePicker();
                 //APOLLO.initFreeHeader();
             }

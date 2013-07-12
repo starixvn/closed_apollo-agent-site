@@ -236,7 +236,9 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml" />
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Wagers\Scripts\Wagers.js" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
@@ -591,7 +593,6 @@
     <Content Include="_GlobalResources\Images\btDown.png" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
     <Content Include="_GlobalResources\Images\btRefresh.png" />
-    <Content Include="_GlobalResources\Images\btRefresh_new.png" />
     <Content Include="_GlobalResources\Images\down-arr.png" />
     <Content Include="_GlobalResources\Images\edit.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
