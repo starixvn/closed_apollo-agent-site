@@ -165,8 +165,9 @@
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
 @Html.Hidden("CurrentCustId", Model.CurrentAgentId)
+
 <iframe id="exportExcelFrame" width="0" height="0" style="display: none"></iframe>
-<input type="button" value="export" id="export-excel" />
+<a href="javascript:void(0);" id="export-excel" >@Lang.exporttoexcel</a>
 @section scripts
 {
 	@Scripts.Render("~/scripts/outstandingjs")
