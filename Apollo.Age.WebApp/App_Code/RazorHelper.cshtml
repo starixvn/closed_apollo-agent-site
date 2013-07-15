@@ -28,33 +28,50 @@
         bool isShowRefreshNow = false
     )
     {
-        
-        
+
     <div id="refreshCountDownId" refresh-id=@(refreshCountDownId) class="btnCountDown">
         <span>@Apollo.Age.Resources.Lang.Flesh:</span>
-        <select>
+        <div class="btnCountDown clearfix">
+            <div id="countdownrefresh" class="btnRefresh" title="@Apollo.Age.Resources.Lang.Flesh">
+            </div>
+            <div class="btnDown" id="btndown">
+            </div>
+        </div>
+        <div id="countdownmenu" class="panelDown" style="display: none">
+            <div data-intervaltime="0" class="menuitem">@Apollo.Age.Resources.Lang.Inactive</div>
+            @for (var i = 15; i <= 75; i += 15)
+            {
+                <div data-intervaltime="@i.ToString()" class="menuitem">
+                    @(i.ToString())
+                    @Apollo.Age.Resources.Lang.sec
+                </div>
+            }
+            <div data-intervaltime="180" class="menuitem">180 @Apollo.Age.Resources.Lang.sec</div>
+        </div>
+        @if (isShowRefreshNow)
+        {
+            <span class="refresh" id="btnrefresh"></span>
+        }
+@*<select>
             <option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
             @if (timerArray == null || timerArray.Any() == false)
             {
 
                 for (var i = 15; i <= 180; i += 15)
                 {
-                <option value="@i.ToString()">@i.ToString() @Apollo.Age.Resources.Lang.sec</option>
+                    <option value="@i.ToString()">@i.ToString() @Apollo.Age.Resources.Lang.sec</option>
                 }
             }
             else
             {
                 foreach (var item in timerArray)
                 {
-                <option value="@item.ToString()">@item.ToString() @Apollo.Age.Resources.Lang.sec</option>
+                    <option value="@item.ToString()">@item.ToString() @Apollo.Age.Resources.Lang.sec</option>
                 }
             }
-        </select>
+        </select>*@
         <input type="hidden" id="apo-on-refresh" value="@onRefresh" />
-        @if (isShowRefreshNow)
-        {
-            <span class="refresh" id="btnRefresh"></span>
-        }
+        <input type="hidden" id="inactive" value="@Apollo.Age.Resources.Lang.Inactive" />
     </div>
 }
 @*@helper RefreshCountDown(string refreshCountDownId,
@@ -293,10 +310,10 @@
         }
 }
 @helper ToServerTime(DateTime datetime)
-    {        
+    {
         try
         {
-            
+
     <div class="est-zone">@GetAtlanticStandardTimeZone(datetime)
     </div>
         }
@@ -309,7 +326,7 @@
     {
         //TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Atlantic Standard Time");
         //var easternTime = TimeZoneInfo.ConvertTimeFromUtc(datetime.ToUniversalTime(), easternZone);
-        
+
     @(string.Format("--{0}-4: {1}", Lang.GMT, Formater.LongDateFormat(datetime)))
 }
 @helper RenderWagersFilter(string title, List<League> leagues)

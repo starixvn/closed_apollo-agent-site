@@ -9,6 +9,7 @@
     string initLeagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
     var fc1X2List = (IEnumerable<Forecast1X2Model>)ViewBag.FC1X2List;
+    var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
 }
 @section css
 {
@@ -16,7 +17,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCast1X2", new int[1]{180}, "UpdateForecast1x2Value();")
+    @RazorHelper.RefreshCountDown("ForeCast1X2", null, "UpdateForecast1x2Value();", isShowRefreshNow)
 }
 @if (matchId == 0)
 {
