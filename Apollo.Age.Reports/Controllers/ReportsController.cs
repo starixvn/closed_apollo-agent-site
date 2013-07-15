@@ -21,6 +21,9 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
 using Fanex.NAP.Framework.Mvc;
+    using System;
+    using Apollo.Age.Reports.Models;
+    using System.Collections.Generic;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -70,12 +73,18 @@ using Fanex.NAP.Framework.Mvc;
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            HttpContext.Session[sessionKey] = report;
+            HttpContext.Session[sessionKey] = report.ListOutStanding;
 
             return View(report);
         }
 
-        public ActionResult ExportAgentOutstandingReport(int? agentId, string sporttypes, string bettypes)
+        public ActionResult ExportOutstandingReport(int? agentId, 
+            string agentUsername, 
+            string sporttypes, 
+            string sportName,
+            string bettypes,
+            string betTypeName,
+            bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
             var sessionKey = string.Format("{0}-{1}-{2}",
@@ -83,23 +92,57 @@ using Fanex.NAP.Framework.Mvc;
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            var report = (OutstandingViewModel)HttpContext.Session[sessionKey];
-            if (report == null)
+            var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
+            if (listOutstanding == null)
             {
-                report = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+                if (isAgentOutStanding)
+                {
+                    listOutstanding = _outstandingService.GetData<OutstandingModel>(new OutstandingCriteria
+                    {
+                        AgentId = CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
+                    
+                }
+                else
+                {
+                    listOutstanding = _outstandingService.GetData<OutstandingModel>(new MemberOutstandingCriteria
+                    {
+                        AgentId = CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
+                }
             }
+            var isSupper = CurrentSession.IsSuper && (CurrentAgentId == CurrentSession.AgentId);
+            var excelResult = _outstandingService.ExportOutstandingReport(
+                isAgentOutStanding,
+                listOutstanding,
+                agentUsername,
+                sportName, 
+                betTypeName,
+                isSupper);
 
-            var excelResult = _outstandingService.ExportAgentOutstandingReport(report);
-
-            return new ExcelResult(excelResult, "OutStading.xls");
+            return new ExcelResult(excelResult, string.Format("OutStading_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
         }
+
 
         [HttpPost]
         public ActionResult MemberOutstanding(int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
         {
             CurrentAgentId = agentId;
-            //// call service to get report data here
+
+            //// call service to get listOutstanding data here
             var report = _outstandingService.GetMemberOutstadingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+
+            var sessionKey = string.Format("{0}-{1}-{2}",
+                CurrentAgentId != null ? CurrentAgentId.Value : 0,
+                !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
+                !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
+
+            HttpContext.Session[sessionKey] = report.ListOutstanding;
+            
             //// return object
             return Json(report);
         }

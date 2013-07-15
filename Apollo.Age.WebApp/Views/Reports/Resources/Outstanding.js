@@ -6,6 +6,7 @@
         hdBettype: null,
         SportName: null,
         BettypeName: null,
+        isAgentOutStanding: true,
 
         init: function () {
             OUTSTANDING.ddlSport = $("#ddlSport");
@@ -23,8 +24,11 @@
                     url: APOLLO.resolveUrl("Reports/MemberOutstanding"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify({ 'agentId': $this.attr("agentid"), 'Sporttypes': OUTSTANDING.hdSportType.val(),
-                        'Bettypes': OUTSTANDING.hdBettype.val(), 'mainShareHolderId': $this.attr("mainshareholderid"),
+                    data: JSON.stringify({
+                        'agentId': $this.attr("agentid"),
+                        'Sporttypes': OUTSTANDING.hdSportType.val(),
+                        'Bettypes': OUTSTANDING.hdBettype.val(),
+                        'mainShareHolderId': $this.attr("mainshareholderid"),
                         'mainShareHolderUsername': $this.attr("mainshareholderusername")
                     }),
                     timeout: 120000
@@ -34,6 +38,7 @@
 
                     OUTSTANDING.ddlSport.val(OUTSTANDING.hdSportType.val());
                     OUTSTANDING.ddlBettype.val(OUTSTANDING.hdBettype.val());
+                    OUTSTANDING.isAgentOutStanding = false;
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
@@ -67,15 +72,21 @@
 
             $("#gridId").on("click", ".act-view-betlist", OUTSTANDING.viewBetList);
 
-            $('#export-excel').bind('click', function () { 
-
+            $('#export-excel').bind('click', function () {
+                OUTSTANDING.sportTypeName = OUTSTANDING.SportName.val();
+                OUTSTANDING.betTypeName = OUTSTANDING.BettypeName.val();
                 var parameters = $.param({
+                    AgentId: $('#CurrentCustId').val(),
+                    AgentUsername: $('#divnavigation .currentUser span').text(),
+                    SportName: escape(OUTSTANDING.sportTypeName),
+                    BetTypeName: escape(OUTSTANDING.betTypeName),
                     Sporttypes: OUTSTANDING.ddlSport.val(),
-                    Bettypes: OUTSTANDING.ddlBettype.val()
+                    Bettypes: OUTSTANDING.ddlBettype.val(),
+                    IsAgentOutStanding: OUTSTANDING.isAgentOutStanding
                 });
-                var url = APOLLO.resolveUrl('Reports/ExportAgentOutstandingReport?' + parameters);
+                var url = APOLLO.resolveUrl('Reports/ExportOutstandingReport?' + parameters);
                 $('#exportExcelFrame').attr('src', url);
-    
+
             });
         },
 

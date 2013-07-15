@@ -21,6 +21,8 @@ namespace Apollo.Age.Reports.ViewModels
 	{
 		public int CurrentAgentId { get; set; }
 
+        public string CurrentUserName { get; set; }
+
 		public Agent MainShareHolder { get; set; }
 
 		public int AgentLevel { get; set; }

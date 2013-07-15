@@ -304,7 +304,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list Outstanding report
+        /// Bet list Outstanding listOutstanding
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="username"></param>
@@ -355,7 +355,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list winloss report
+        /// Bet list winloss listOutstanding
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="fromDate"></param>
