@@ -47,13 +47,15 @@
 {
 	if (Model.DownlinePath != null && Model.DownlinePath.Any())
 	{
-	<div id= "navigationAgent">
+	<div id= "navigationAgent" class="nav-outright">
 		@RazorHelper.Navigation(Model.DownlinePath.ToList())
 	</div>
-	<div id= "navigationMember" style="display:none">
+	<div id= "navigationMember" style="display:none" class="nav-outright">
 		@RazorHelper.Navigation(Model.DownlinePath.ToList(), true)
 	</div>
 	}
+
+    <div class="export-excel outright" id="export-excel"></div>
 
 <div id="agentOutstanding" class="clear">
 	<table class="tblRpt tblOutstanding persist-area report">
@@ -72,23 +74,23 @@
 		</thead>
 		@if (Model.ListOutStanding != null && Model.ListOutStanding.Any())
   {
-	  decimal outStandingTotal = 0;
-	  decimal shareAmountTotal = 0;
-	  decimal gameOutstandingTotal = 0;
-	  decimal gameShareAmountTotal = 0;
-	  int i = 1;
-	  string rowClass = string.Empty;
+      decimal outStandingTotal = 0;
+      decimal shareAmountTotal = 0;
+      decimal gameOutstandingTotal = 0;
+      decimal gameShareAmountTotal = 0;
+      int i = 1;
+      string rowClass = string.Empty;
 			<tbody>
 				@foreach (OutstandingModel item in Model.ListOutStanding)
-	{
-		outStandingTotal += item.Outstanding;
-		shareAmountTotal += item.ShareAmount;
-		gameOutstandingTotal += item.GameOutstanding;
-		gameShareAmountTotal += item.GameShareAmount;
-		rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+    {
+        outStandingTotal += item.Outstanding;
+        shareAmountTotal += item.ShareAmount;
+        gameOutstandingTotal += item.GameOutstanding;
+        gameShareAmountTotal += item.GameShareAmount;
+        rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-		if (item.IsAgent)
-		{
+        if (item.IsAgent)
+        {
 					<tr @Html.Raw(rowClass)>
 						<td>
 							<a href="javascript:;" name="viewagent" agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
@@ -106,9 +108,9 @@
 							@Formater.FormatNumber20(item.GameShareAmount, "en-US")
 						</td>
 					</tr>
-		}
-		else
-		{
+        }
+        else
+        {
 					<tr @Html.Raw(rowClass)>
 						<td>
 							<a href="javascript:;" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolder.Id" mainShareHolderUsername="@Model.MainShareHolder.Username" agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
@@ -126,11 +128,11 @@
 							@Formater.FormatNumber20(item.GameShareAmount, "en-US")
 						</td>
 					</tr>
-		}
-	}
+        }
+    }
 			</tbody>
-	if (Model.AgentLevel != 0)
-	{
+    if (Model.AgentLevel != 0)
+    {
 			<tfoot>
 				<tr class="total">
 					<td>
@@ -150,7 +152,7 @@
 					</td>
 				</tr>
 			</tfoot>
-	}
+    }
   }
   else
   {
