@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Reports.Models
 {
+    using System;
+
+    [Serializable]
     public class MemberWinLossModel : AgentWinLossModel
     {
         public int MemberId { get; set; }
