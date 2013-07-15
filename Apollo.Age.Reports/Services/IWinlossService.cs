@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Reports.Services
 {
-    using System;
     using System.Collections.Generic;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.ViewModels;
+    using NPOI.HSSF.UserModel;
 
     public interface IWinLossService
     {
@@ -21,5 +22,9 @@ namespace Apollo.Age.Reports.Services
         List<AgentWinLossModel> GetAgentWinLoss(AgentWinLossCriteria criteria);
 
         List<MemberWinLossModel> GetMemberWinLoss(MemberWinLossCriteria criteria);
+
+        HSSFWorkbook ExportsAgentWinLoss(AgentWinLossViewModel model);
+
+        HSSFWorkbook ExportsMemberWinLoss(MemberWinLossViewModel model);
     }
 }

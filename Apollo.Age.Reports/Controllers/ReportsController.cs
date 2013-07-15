@@ -12,15 +12,22 @@
 
 namespace Apollo.Age.Reports.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-using Fanex.NAP.Framework.Mvc;
+    using Fanex.Caching;
+    using Fanex.NAP.Framework.Mvc;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -30,6 +37,8 @@ using Fanex.NAP.Framework.Mvc;
         private readonly IWinLossService _winLossService;
 
         private readonly OutstandingService _outstandingService;
+
+        private readonly ICache _cacheManager;
 
         private int _currentAgentId;
 
@@ -43,6 +52,7 @@ using Fanex.NAP.Framework.Mvc;
             _reportService = reportService ?? new ReportService();
             _winLossService = _winLossService ?? new WinLossService();
             _outstandingService = new OutstandingService();
+            _cacheManager = CacheService.CreateInstance(CacheType.MemCache);
         }
 
         public int? CurrentAgentId
@@ -63,43 +73,84 @@ using Fanex.NAP.Framework.Mvc;
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             CurrentAgentId = agentId;
-            var report = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+            var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
 
-            var sessionKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+                Lang.agent,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            HttpContext.Session[sessionKey] = report;
+            _cacheManager.Set<IEnumerable<OutstandingModel>>(cachingKey, report.ListOutStanding);
 
             return View(report);
         }
 
-        public ActionResult ExportAgentOutstandingReport(int? agentId, string sporttypes, string bettypes)
+        public ActionResult ExportOutstandingReport(int? agentId,
+            string agentUsername,
+            string sporttypes,
+            string sportName,
+            string bettypes,
+            string betTypeName,
+            bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
-            var sessionKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+                isAgentOutStanding ? Lang.agent : Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            var report = (OutstandingViewModel)HttpContext.Session[sessionKey];
-            if (report == null)
+            var listOutstanding = _cacheManager.Get<IEnumerable<OutstandingModel>>(cachingKey);
+            if (listOutstanding == null)
             {
-                report = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+                if (isAgentOutStanding)
+                {
+                    listOutstanding = _outstandingService.GetData<OutstandingModel>(new OutstandingCriteria
+                    {
+                        AgentId = CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
+                }
+                else
+                {
+                    listOutstanding = _outstandingService.GetData<OutstandingModel>(new MemberOutstandingCriteria
+                    {
+                        AgentId = CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
+                }
             }
+            var isSupper = CurrentSession.IsSuper && (CurrentAgentId == CurrentSession.AgentId);
+            var excelResult = _outstandingService.ExportOutstandingReport(
+                isAgentOutStanding,
+                listOutstanding,
+                agentUsername,
+                HttpUtility.UrlDecode(sportName),
+                HttpUtility.UrlDecode(betTypeName),
+                isSupper);
 
-            var excelResult = _outstandingService.ExportAgentOutstandingReport(report);
-
-            return new ExcelResult(excelResult, "OutStading.xls");
+            return new ExcelResult(excelResult, string.Format("OutStading_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
         }
 
         [HttpPost]
         public ActionResult MemberOutstanding(int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
         {
             CurrentAgentId = agentId;
-            //// call service to get report data here
-            var report = _outstandingService.GetMemberOutstadingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+
+            //// call service to get listOutstanding data here
+            var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+
+            var sessionKey = string.Format("{0}-{1}-{2}-{3}",
+                Lang.member,
+                CurrentAgentId != null ? CurrentAgentId.Value : 0,
+                !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
+                !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
+
+            HttpContext.Session[sessionKey] = report.ListOutstanding;
+
             //// return object
             return Json(report);
         }
@@ -147,6 +198,9 @@ using Fanex.NAP.Framework.Mvc;
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
+            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            _cacheManager.Set<List<AgentWinLossModel>>(cacheKey, agentWinLossList);
+
             return View(model);
         }
 
@@ -172,7 +226,76 @@ using Fanex.NAP.Framework.Mvc;
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
+            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            _cacheManager.Set<List<MemberWinLossModel>>(cacheKey, memberWinLossList);
+
             return View(model);
+        }
+
+        public ActionResult ExportsAgentWinLoss(AgentWinLossViewModel model)
+        {
+            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var agentWinLossList = _cacheManager.Get<List<AgentWinLossModel>>(cacheKey);
+
+            model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
+            var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
+            model.IsSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList = _reportService.GetBettype();
+
+            if (agentWinLossList == null)
+            {
+                var criteria = new AgentWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
+
+                agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
+                _cacheManager.Set<List<AgentWinLossModel>>(cacheKey, agentWinLossList);
+            }
+
+            model.AgentWinLossList = agentWinLossList;
+            var excelResult = _winLossService.ExportsAgentWinLoss(model);
+
+            return new ExcelResult(excelResult, string.Format("AgentWinLoss_{0}_{1}", agentName, DateTime.Now.ToString("yyyy-MM-dd")));
+        }
+
+        public ActionResult ExportsMemberWinLoss(MemberWinLossViewModel model)
+        {
+            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var memberWinLossList = _cacheManager.Get<List<MemberWinLossModel>>(cacheKey);
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList = _reportService.GetBettype();
+
+            if (memberWinLossList == null)
+            {
+                var criteria = new MemberWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
+
+                memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
+                _cacheManager.Set<List<MemberWinLossModel>>(cacheKey, memberWinLossList);
+            }
+
+            model.MemberWinLossList = memberWinLossList;
+            var excelResult = _winLossService.ExportsMemberWinLoss(model);
+
+            return new ExcelResult(excelResult, string.Format("MemberWinLoss_{0}_{1}", model.AgentName, DateTime.Now.ToString("yyyy-MM-dd")));
         }
 
         #endregion Agent Win Loss Report

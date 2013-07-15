@@ -91,6 +91,7 @@
     decimal totalUpline = 0;
     decimal totalOutstanding = 0;
     decimal totalOutstandingShare = 0;
+    <div class="export-excel" id="btnExcelMemberWinLoss"></div>
     <table class="tblRpt report">
         <thead>
             <tr>
@@ -262,6 +263,8 @@ else
         </tbody>
     </table>
 }
+@Html.Hidden("agentId", Model.AgentId)
+@Html.Hidden("agentName", Model.AgentName)
 @Html.Hidden("hdSportType", Model.Sporttypes)
 @Html.Hidden("hdBettype", Model.Bettypes)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))

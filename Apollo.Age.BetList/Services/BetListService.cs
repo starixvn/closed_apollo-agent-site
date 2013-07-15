@@ -84,7 +84,7 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Get all bets by date and member from Win loss report
+        /// Get all bets by date and member from Win loss listOutstanding
         /// </summary>
         /// <param name="criteria">Criteria name</param>
         /// <returns>Ticket data</returns>

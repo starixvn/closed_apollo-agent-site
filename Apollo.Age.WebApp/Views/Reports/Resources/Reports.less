@@ -41,11 +41,17 @@
 	padding: 0 4px;
 }
 
+.nav-outright {
+	width: 795px;
+	float: left;
+}
+
 .boxNavigation {
 	min-height: 20px;
 	clear: both;
 	margin-bottom: 3px;	
-	width: 795px;
+	width: 90%;
+	float: left;
 }
 
 #resultContainer {
@@ -61,6 +67,7 @@
 		background-color: #DCDCDC;
 		border: 1px solid #000;
 		padding: 0px;
+		float: none;
 
 		.btn {
 			font-size: @fontSize;
@@ -201,6 +208,10 @@
 	.row_footer table thead th, .col_footer table thead th {
 		font-weight: normal;
 	}
+
+	.row-footer-background {
+		border-top: none;
+	}
 }
 
 /* FIX IE */
@@ -239,6 +250,10 @@
 		}
 
 		.boxNavigation {
+			margin-top: 0;
+		}
+
+		.export-excel {
 			margin-top: 0;
 		}
 	}
