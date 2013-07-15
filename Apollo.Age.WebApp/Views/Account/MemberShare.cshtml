@@ -92,16 +92,26 @@
 				<td class="r">
 					@Formater.DecFormat(item.MinGiven / 100.00, 2)
 				</td>
-				<td class="r @("memshare" + item.AgentLevel)">
+                @if (index == Model.MemberShareModelList.Count)
+                {
+                    <td class="r">
+					    @Formater.DecFormat(item.TakenShareMember / 100.00, 2)
+				    </td>
+                }
+                else
+                {
+                    <td class="r @("memshare" + item.AgentLevel)">
 					@Formater.DecFormat(item.TakenShareMember / 100.00, 2)
-				</td>
+				    </td>
+                }
+				
 			</tr>
-			}
-		}
-		else
-		{
+            }
+        }
+  else
+  {
 			@RazorHelper.ShowNoInfo(5)
-		}
+  }
 	</tbody>
 </table>
 </div>
