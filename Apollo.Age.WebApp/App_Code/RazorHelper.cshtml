@@ -37,17 +37,17 @@
             <div class="btnDown" id="btndown">
             </div>
         </div>
-        <div id="countdownmenu" class="panelDown" style="display: none">
-            <div data-intervaltime="0" class="menuitem">@Apollo.Age.Resources.Lang.Inactive</div>
+        <ul id="countdownmenu" class="panelDown" style="display: none">
+            <li data-intervaltime="0" class="menuitem">@Apollo.Age.Resources.Lang.Inactive</li>
             @for (var i = 15; i <= 75; i += 15)
             {
-                <div data-intervaltime="@i.ToString()" class="menuitem">
+                <li data-intervaltime="@i.ToString()" class="menuitem">
                     @(i.ToString())
                     @Apollo.Age.Resources.Lang.sec
-                </div>
+                </li>
             }
-            <div data-intervaltime="180" class="menuitem">180 @Apollo.Age.Resources.Lang.sec</div>
-        </div>
+            <li data-intervaltime="180" class="menuitem">180 @Apollo.Age.Resources.Lang.sec</li>
+        </ul>
         @if (isShowRefreshNow)
         {
             <span class="refresh" id="btnrefresh"></span>

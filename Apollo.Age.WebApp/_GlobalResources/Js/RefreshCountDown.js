@@ -30,7 +30,7 @@
 
         showMenuOption: function () {
             $("#btndown").on('click', function () {
-                var outerHeight = $(this).outerHeight() - 2;
+                var outerHeight = $(this).outerHeight() - 1;
                 if (RefreshCountDown.countDownMenu.css('display') == 'none') {
                     RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
                     RefreshCountDown.countDownMenu.show();
@@ -57,7 +57,8 @@
         },
 
         bindEventSubMenuOption: function () {
-            $('#countdownmenu div').on('click', function () {
+            var countdown = $('#countdownmenu li');
+            countdown.on('click', function () {
                 var $this = $(this);
                 var itemCheckedClass = 'menuitemcheck';
                 RefreshCountDown.interval = $this.attr('data-intervaltime');
@@ -66,7 +67,7 @@
                 RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
 
                 //Show/Hide submenu option
-                $('#countdownmenu div').each(function () {
+                countdown.each(function () {
                     if ($(this).hasClass(itemCheckedClass)) {
                         $(this).removeClass(itemCheckedClass);
                         return false;
