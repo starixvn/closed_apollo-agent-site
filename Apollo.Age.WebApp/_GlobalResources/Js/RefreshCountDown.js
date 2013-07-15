@@ -179,22 +179,18 @@ $(document).ready(function () {
     var timeout = $.cookie('ApoRefreshTimeout-' + refreshId);
     if (typeof timeout !== 'undefined') {
         RefreshCountDown.setRefreshTimeout(timeout);
-        RefreshCountDown.ddlRefresh.val(timeout);
-
-        RefreshCountDown.disabledRefreshCountDown(false);
-
+        RefreshCountDown.ddlRefresh.val(timeout);               
     }
-    else {
-        RefreshCountDown.disabledRefreshCountDown(true);
-    }
+
+    RefreshCountDown.disabledRefreshCountDown(false);
 
     RefreshCountDown.ddlRefresh.on('change', function () {
         RefreshCountDown.setCurrentTimeout();
-        var $this = $(this);
-        if ($this.val() == 0) {
-            clearTimeout(refreshNowTimeout);
-        }
-        RefreshCountDown.disabledRefreshCountDown($this.val() == 0);
+//        var $this = $(this);
+//        if ($this.val() == 0) {
+//            clearTimeout(refreshNowTimeout);
+//        }
+//        RefreshCountDown.disabledRefreshCountDown($this.val() == 0);
 
     });
 
