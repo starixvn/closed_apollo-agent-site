@@ -1,7 +1,7 @@
 ﻿.btnRefresh, .btnLoading {
 	height: 18px;
 	padding: 0 0 0 7px;
-    width: 40px;
+    width: 45px;
 	cursor: pointer;
 	font-size: 11px;
 	line-height: 18px;
@@ -15,6 +15,7 @@
 	/*background: url(../images/btRefresh.png) no-repeat left top;*/
 	border: 1px solid #ddd;
 	border-top-color: #ABADB3;
+	text-align: center;
 }
 
 .btnLoading {
@@ -26,7 +27,7 @@
 	position: relative;
 	left: -4px;
 	background: url(../images/btnCountDown.png) no-repeat left top;
-	width: 18px;
+	width: 19px;
 	height: 20px;
 	font-size: 11px;
 	line-height: 18px;	
@@ -38,6 +39,10 @@
 
 .btnDown:hover {
 	background: url(../images/btnCountDown-hover.png) no-repeat left top;
+	-moz-border-radius: 0; /* Firefox */
+	-webkit-border-radius: 0; /* Safari and Chrome */
+	border-radius: 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
+	width: 19px;
 }
 
 .panelDown {
@@ -49,6 +54,7 @@
 	cursor: default;
 	z-index:100;
 	margin-left: 47px;
+	display: none;
 }
 
 .menuitem {
@@ -60,8 +66,9 @@
 	color: White;
 }
 
-.menuitemcheck {
-	//background: url(../images/check.png) no-repeat 3px 4px;
+.selected {
+	background: #3399FF;
+	color: #fff;
 }
 
 .miniloading

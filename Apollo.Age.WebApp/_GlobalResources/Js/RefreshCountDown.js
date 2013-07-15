@@ -60,7 +60,7 @@
             var countdown = $('#countdownmenu li');
             countdown.on('click', function () {
                 var $this = $(this);
-                var itemCheckedClass = 'menuitemcheck';
+                var itemCheckedClass = 'selected';
                 RefreshCountDown.interval = $this.attr('data-intervaltime');
 
                 //Set value for menu time
