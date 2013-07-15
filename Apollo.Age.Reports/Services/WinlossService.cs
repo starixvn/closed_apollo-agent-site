@@ -15,8 +15,8 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
-    using NPOI.HSSF.UserModel;
     using Apollo.Age.Resources;
+    using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
@@ -48,17 +48,17 @@ namespace Apollo.Age.Reports.Services
         {
             if (model != null && model.AgentWinLossList != null && model.AgentWinLossList.Any())
             {
-                var titleString = string.Format("{0} ({1}: {2} -- {3}: {4} -- {5}: {6} -- {7}: {8})",
-                Lang.agentwinloss, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
-                Lang.sport, model.SportName, Lang.bettype, model.BettypeName);
+                var title = string.Format("{0} ({1} -- {2}: {3} -- {4}: {5} -- {6}: {7} -- {8}: {9})",
+                    Lang.agentwinloss, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
+                    Lang.sport, model.SportName, Lang.bettype, model.BettypeName);
 
                 if (model.IsSuper)
                 {
-                    return AgentWinLossViewBySuper(model.AgentWinLossList, titleString, model.AgentName);
+                    return AgentWinLossViewBySuper(model.AgentWinLossList, title, Lang.company);
                 }
                 else
                 {
-                    return AgentWinLossViewByNoneSuper(model.AgentWinLossList, titleString, model.AgentName);
+                    return AgentWinLossViewByNoneSuper(model.AgentWinLossList, title, model.AgentName);
                 }
             }
             else
@@ -72,8 +72,8 @@ namespace Apollo.Age.Reports.Services
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
             if (model != null && model.MemberWinLossList != null && model.MemberWinLossList.Any())
             {
-                var title = string.Format("{0} ({1}: {2} -- {3}: {4} -- {5}: {6} -- {7}: {8})",
-                    Lang.lblMemberWinLoss, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
+                var title = string.Format("{0} ({1} -- {2}: {3} -- {4}: {5} -- {6}: {7} -- {8}: {9})",
+                    Lang.lblMemberWinLoss, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
                     Lang.sport, model.SportName, Lang.bettype, model.BettypeName);
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);

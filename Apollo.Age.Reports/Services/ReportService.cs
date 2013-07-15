@@ -31,14 +31,6 @@ namespace Apollo.Age.Reports.Services
             }
         }
 
-        public ICache UserCacheManager
-        {
-            get 
-            {
-                return CacheService.CreateInstance(CacheType.MemCache);
-            }
-        }
-
         private dynamic SpecialDays
         {
             get
