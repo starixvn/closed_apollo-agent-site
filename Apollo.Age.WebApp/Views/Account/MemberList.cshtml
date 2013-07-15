@@ -94,7 +94,7 @@
                         @item.CashBalance
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -102,7 +102,7 @@
                             else
                             {
                                 @Lang.view
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }
