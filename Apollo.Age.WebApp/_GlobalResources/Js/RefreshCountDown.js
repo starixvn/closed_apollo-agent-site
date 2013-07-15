@@ -128,6 +128,7 @@ var RefreshCountDown = function ($) {
         ddlRefresh: null,
         onRefresh: null,
         refreshNow: null,
+        refreshNowTimeout: null,
 
         setRefreshTimeout: function (timeout) {
             if (RefreshCountDown.onRefresh) {
@@ -178,19 +179,18 @@ $(document).ready(function () {
     var timeout = $.cookie('ApoRefreshTimeout-' + refreshId);
     if (typeof timeout !== 'undefined') {
         RefreshCountDown.setRefreshTimeout(timeout);
-        RefreshCountDown.ddlRefresh.val(timeout);
-
-        RefreshCountDown.disabledRefreshCountDown(false);
-
+        RefreshCountDown.ddlRefresh.val(timeout);               
     }
-    else {
-        RefreshCountDown.disabledRefreshCountDown(true);
-    }
+
+    RefreshCountDown.disabledRefreshCountDown(false);
 
     RefreshCountDown.ddlRefresh.on('change', function () {
         RefreshCountDown.setCurrentTimeout();
-
-        RefreshCountDown.disabledRefreshCountDown($(this).val() == 0);
+//        var $this = $(this);
+//        if ($this.val() == 0) {
+//            clearTimeout(refreshNowTimeout);
+//        }
+//        RefreshCountDown.disabledRefreshCountDown($this.val() == 0);
 
     });
 
@@ -202,7 +202,7 @@ $(document).ready(function () {
 
             eval(RefreshCountDown.onRefresh);
 
-            setTimeout(function () {
+            refreshNowTimeout = setTimeout(function () {
                 RefreshCountDown.disabledRefreshCountDown(false);
             }, 15 * 1000);
         }

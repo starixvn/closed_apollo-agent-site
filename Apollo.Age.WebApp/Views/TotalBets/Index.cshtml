@@ -30,7 +30,7 @@
 </head>
 <body>
     <div id="function-bar">
-        @RazorHelper.RefreshCountDown("TOTALBETSINDEX", new int[] { 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180 }, "TotalBetsIndex.reloadChild();", isShowRefreshNow)
+        @RazorHelper.RefreshCountDown("TOTALBETSINDEX", null, "TotalBetsIndex.reloadChild();", isShowRefreshNow)
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">--</div>
         <ul class="menu">
