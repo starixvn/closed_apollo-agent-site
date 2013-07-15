@@ -17,7 +17,12 @@ namespace Apollo.Age.Reports.Controllers
     using NPOI.HSSF.UserModel;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Services.Impl;
+    using Fanex.NAP.Framework.Mvc;
+    using Apollo.Age.Reports.Core;
+    using System;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ExportsController : BaseController
     {
         private readonly ExportsServices _exportsService;
@@ -36,60 +41,71 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult ExportsAgentWinLoss(AgentWinLossViewModel model)
         {
-            model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
-            var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
-            var isSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+            //var sessionKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //var report = (AgentWinLossViewModel)HttpContext.Session[sessionKey];
 
-            model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
-
-            var criteria = new AgentWinLossCriteria
+            //if (report == null)
             {
-                AgentId = model.AgentId,
-                Sporttypes = model.Sporttypes,
-                Bettypes = model.Bettypes,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                MoveBetDay = _reportService.MoveBetsDay()
-            };
+                model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
+                var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
+                model.IsSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
-            var agentWinLossList = _reportService.GetAgentWinLoss(criteria);
-            
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
-            MemoryStream output = new MemoryStream();
-            _exportsService.ExportsAgentWinLoss(hssfworkbook, agentWinLossList, model.AgentName, model.SportName, model.BettypeName, model.FromDate, model.ToDate, isSuper);
+                model.SportList = SingbetSportService.GetSport(isOther: false);
+                model.BettypeList = _reportService.GetBettype();
 
-            hssfworkbook.Write(output);
+                var criteria = new AgentWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
 
-            return File(output.ToArray(), "application/vnd.ms-excel", "AgentWinLoss.xls");
+                var agentWinLossList = _reportService.GetAgentWinLoss(criteria);
+                model.AgentWinLossList = agentWinLossList;
+
+                //report = model;
+                //HttpContext.Session[sessionKey] = model;
+            }
+
+            var excelResult = _exportsService.ExportsAgentWinLoss(model);
+
+            return new ExcelResult(excelResult, "AgentWinLoss");
         }
 
         public ActionResult ExportsMemberWinLoss(MemberWinLossViewModel model)
         {
-            model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
+            //var sessionKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //model = (MemberWinLossViewModel)HttpContext.Session[sessionKey];
 
-            var criteria = new MemberWinLossCriteria
+            //if (model == null)
             {
-                AgentId = model.AgentId,
-                Sporttypes = model.Sporttypes,
-                Bettypes = model.Bettypes,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                MoveBetDay = _reportService.MoveBetsDay()
-            };
+                model.SportList = SingbetSportService.GetSport(isOther: false);
+                model.BettypeList = _reportService.GetBettype();
 
-            var memberWinLossList = _reportService.GetMemberWinLoss(criteria);
+                var criteria = new MemberWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
 
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
-            MemoryStream output = new MemoryStream();
-            _exportsService.ExportsMemberWinLoss(hssfworkbook, memberWinLossList, model.AgentName, model.SportName, model.BettypeName, model.FromDate, model.ToDate);
+                var memberWinLossList = _reportService.GetMemberWinLoss(criteria);
+                model.MemberWinLossList = memberWinLossList;
 
-            hssfworkbook.Write(output);
+                //HttpContext.Session[sessionKey] = model;
+            }
 
-            return File(output.ToArray(), "application/vnd.ms-excel", "MemberWinLoss.xls");
+            var excelResult = _exportsService.ExportsMemberWinLoss(model);
+
+            return new ExcelResult(excelResult, "MemberWinLoss");
         }
     }
 }

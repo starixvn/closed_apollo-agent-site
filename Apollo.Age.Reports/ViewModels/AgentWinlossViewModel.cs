@@ -15,6 +15,7 @@ namespace Apollo.Age.Reports.ViewModels
 	using Apollo.Age.Entities;
 	using Apollo.Age.Reports.Models;
 
+    [Serializable]
 	public class AgentWinLossViewModel
 	{
 		public bool IsSuper { get; set; }

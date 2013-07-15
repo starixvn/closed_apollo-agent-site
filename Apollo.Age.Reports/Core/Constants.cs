@@ -34,5 +34,7 @@ namespace Apollo.Age.Reports.Core
             {-10, "lblOutRight"},
             {-1, "InterEvent"}
         };
+
+        public const string SessionWinLossReport = "WinLossReport-{0}";
     }
 }
