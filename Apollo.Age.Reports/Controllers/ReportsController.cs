@@ -25,6 +25,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
     using Fanex.Caching;
+    using Apollo.Age.Reports.Core;
+    using Fanex.Caching;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -192,6 +194,9 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
+            //var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //_reportService.UserCacheManager.Set<AgentWinLossViewModel>(cacheKey, model);
+
             return View(model);
         }
 
@@ -217,7 +222,78 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
+            //var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //_reportService.UserCacheManager.Set<MemberWinLossViewModel>(cacheKey, model);
+
             return View(model);
+        }
+
+        public ActionResult ExportsAgentWinLoss(AgentWinLossViewModel model)
+        {
+            //var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //var report = _reportService.UserCacheManager.Get<AgentWinLossViewModel>(cacheKey);
+
+            //if (report == null)
+            {
+                model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
+                var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
+                model.IsSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+                model.SportList = SingbetSportService.GetSport(isOther: false);
+                model.BettypeList = _reportService.GetBettype();
+
+                var criteria = new AgentWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
+
+                var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
+                model.AgentWinLossList = agentWinLossList;
+
+                //_reportService.UserCacheManager.Set<AgentWinLossViewModel>(cacheKey, model);
+            }
+
+            var excelResult = _winLossService.ExportsAgentWinLoss(model);
+
+            return new ExcelResult(excelResult, "AgentWinLoss");
+        }
+
+        public ActionResult ExportsMemberWinLoss(MemberWinLossViewModel model)
+        {
+            //var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.AgentId);
+            //var report = _reportService.UserCacheManager.Get<MemberWinLossViewModel>(cacheKey);
+
+            //if (report == null)
+            {
+                model.SportList = SingbetSportService.GetSport(isOther: false);
+                model.BettypeList = _reportService.GetBettype();
+
+                var criteria = new MemberWinLossCriteria
+                {
+                    AgentId = model.AgentId,
+                    Sporttypes = model.Sporttypes,
+                    Bettypes = model.Bettypes,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    BalanceUpDay = _reportService.GetBalanceUpDay(),
+                    MoveBetDay = _reportService.MoveBetsDay()
+                };
+
+                var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
+                model.MemberWinLossList = memberWinLossList;
+
+                //_reportService.UserCacheManager.Set<MemberWinLossViewModel>(cacheKey, model);
+            }
+
+            var excelResult = _winLossService.ExportsMemberWinLoss(model);
+
+            return new ExcelResult(excelResult, "MemberWinLoss");
         }
 
         #endregion Agent Win Loss Report

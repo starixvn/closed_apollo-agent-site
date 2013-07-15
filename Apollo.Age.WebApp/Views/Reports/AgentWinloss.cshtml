@@ -77,10 +77,13 @@
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 }
+
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
+    <div style="float:right;"> <a id="btnExcelAgentWinLoss" href="javascript:;"> Excel </a> </div>
     <table class="tblRpt report">
-        @if (Model.IsSuper) {
+        @if (Model.IsSuper)
+        {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -154,7 +157,9 @@
                 </tr>
             }
         </tbody>
-        } else {
+        }
+        else
+        {
         <thead>
             <tr>
                 <th rowspan="2">
@@ -220,7 +225,7 @@
                 totalUpline += item.UplineTotal;
                 totalOutstanding += item.Outstanding;
                 totalOutstandingShare += item.OutstandingShare;
-                
+
                 rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                 <tr @Html.Raw(rowClass)>
@@ -329,6 +334,9 @@ else
         </tbody>
     </table>
 }
+
+@Html.Hidden("agentId", Model.AgentId)
+@Html.Hidden("agentName", Model.AgentName)
 @Html.Hidden("hdSportType", Model.Sporttypes)
 @Html.Hidden("hdBettype", Model.Bettypes)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))

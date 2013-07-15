@@ -25,14 +25,15 @@
             WINLOSS.ToLastWeek = $("#lastWeekTo");
             WINLOSS.SportName = $("#SportName");
             WINLOSS.BettypeName = $("#BettypeName");
+            WINLOSS.AgentId = $("#agentId");
+            WINLOSS.AgentName = $("#agentName");
 
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
                 if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + WINLOSS.BalanceUpDay.val());
                 }
-                else 
-                {
+                else {
                     $.blockUI();
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
@@ -87,6 +88,28 @@
                     + "&betTypeName=" + escape(WINLOSS.betTypeName)
                     + "&type=report");
                 location.href = url;
+            });
+
+            $("#btnExcelAgentWinLoss").on("click", function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl('Reports/ExportsAgentWinLoss?AgentId=' + WINLOSS.AgentId.val() 
+                    + "&AgentName=" + WINLOSS.AgentName.val()
+                    + "&FromDate=" + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
+                    + "&Sporttypes=" + WINLOSS.hdSportType.val()
+                    + "&Bettypes=" + WINLOSS.hdBettype.val());
+                location.href = url;
+                $.unblockUI();
+            });
+
+            $("#btnExcelMemberWinLoss").on("click", function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl('Reports/ExportsMemberWinLoss?AgentId=' + WINLOSS.AgentId.val()
+                    + "&AgentName=" + WINLOSS.AgentName.val()
+                    + "&FromDate=" + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
+                    + "&Sporttypes=" + WINLOSS.hdSportType.val()
+                    + "&Bettypes=" + WINLOSS.hdBettype.val());
+                location.href = url;
+                $.unblockUI();
             });
 
             $(".dateRange").on('click', function () {
