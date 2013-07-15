@@ -44,6 +44,7 @@ namespace Apollo.Age.Forecast.Controllers
         public ForecastController(ForecastService forecastService = null)
         {
             _forecastService = forecastService ?? new ForecastService();
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
         }
 
         #endregion Ctors

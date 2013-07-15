@@ -444,28 +444,27 @@ var HEADER = function ($) {
             );
 
             //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
-            },
+        },
         activeMenu: function () {
-        $('.toolbar ul li a').on('click', function () {
-            $this = $(this);
-            if($this.attr('actived') == 'true') return;
-                        
-            $iframe = parent.$('.mainpage iframe');
+            $('.toolbar ul li a').on('click', function () {
+                $this = $(this);
+                if ($this.attr('actived') == 'true') return;
 
-            $iframe.attr('src', $this.attr('url'));           
-            
-            $('.toolbar ul li a').each(function(){
-                
-                if($(this).attr('actived') == 'true')
-                {
-                      $(this).removeAttr('actived');
-                      return false;
-                }
+                $iframe = parent.$('.mainpage iframe');
+
+                $iframe.attr('src', $this.attr('url'));
+
+                $('.toolbar ul li a').each(function () {
+
+                    if ($(this).attr('actived') == 'true') {
+                        $(this).removeAttr('actived');
+                        return false;
+                    }
+                });
+
+                $this.attr('actived', true);
+
             });
-
-            $this.attr('actived',true);
-
-        });
-    },
+        }
     };
 } (jQuery);

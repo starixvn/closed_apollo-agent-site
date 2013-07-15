@@ -78,7 +78,6 @@ namespace Apollo.Age.Reports.Services
                     outstandingViewModel.ListOutStanding = models;
                     outstandingViewModel.DownlinePath = modelAgentDownLine;
                     outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
-                    outstandingViewModel.CurrentUserName = modelAgentDownLine.LastOrDefault().Username;
                 }
 
                 outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
