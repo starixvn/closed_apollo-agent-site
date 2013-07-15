@@ -70,6 +70,7 @@
 			foreach (var item in Model.MemberShareModelList)
 			{
 				string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+                string borderClass = index== 1 ? "no-border-top" : string.Empty;
 
 			<tr @Html.Raw(rowClass)>
 				<td class="first-cell l">
@@ -86,10 +87,10 @@
 						@Formater.DecFormat(item.TakenShare / 100.00, 2)
 					</td>
 				}
-				<td class="r @("share-lv" + (item.AgentLevel % 5 + 1))">
+				<td class="r @borderClass @("share-lv" + (item.AgentLevel % 5 + 1))">
 					@Formater.DecFormat(item.MaxGiven / 100.00, 2)
 				</td>
-				<td class="r @("share-lv" + (item.AgentLevel % 5 + 1))">
+				<td class="r @borderClass @("share-lv" + (item.AgentLevel % 5 + 1))">
 					@Formater.DecFormat(item.MinGiven / 100.00, 2)
 				</td>
 				<td class="r @("memshare" + (item.AgentLevel % 5 + 1))">

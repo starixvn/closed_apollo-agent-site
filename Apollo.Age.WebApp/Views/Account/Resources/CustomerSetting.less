@@ -22,7 +22,7 @@
 }
 
 .tb-cust-setting {
-	background-color: @backgroundCust;
+	//background-color: @backgroundCust;
 	border: 1px solid #000;
 	padding: 3px 2px;	
 	border-collapse: separate;	
@@ -56,70 +56,63 @@
 	}
 
 	tbody {
-		tr {			
+		tr {	
+			.share-lv1, .share-lv2, .share-lv3,
+			.share-lv4, .share-lv5, .share-lv6 {
+				&.no-border-top {
+					border-top: none;
+				}	
+			}
 			.preset1 {
-				background: #CDE5C3;
-				color: #000;
+				background: #DCF4D2;
 			}
 			
 			.share-lv1 {
 				border-top: 1px solid #CDE5C3;
-				color: #000;
 			}
 
 			.memshare1, .preset2 {
-				background: #98B9EA;
-				color: #000;
+				background: #d1d1d1;
 			}
 
 			.share-lv2 {
-				border-top: 1px solid #98B9EA;
-				color: #000;
+				border-top: 1px solid #d1d1d1;
 			}
 			
 			.memshare2, .preset3 {
-				background: #EA755D;
-				color: #000;
+				background: #98B9EA;
 			}
 
 			.share-lv3 {
-				border-top: 1px solid #EA755D;
-				color: #000;
+				border-top: 1px solid #98B9EA;
 			}
 			
 			.memshare3, .preset4 {
-				background: #FFE2C6;
-				color: #000;
+				background: #FFE4CE;
 			}
 
 			.share-lv4 {
 				border-top: 1px solid #FFE2C6;
-				color: #000;
 			}
 			
 			.memshare4, .preset5 {
-				background: #FFE8AF;
-				color: #000;
+				background: #D6F2FF;
 			}
 
 			.share-lv5 {
-				border-top: 1px solid #FFE8AF;
-				color: #000;
+				border-top: 1px solid #AFE7FF;
 			}
 
 			.memshare5 {
-				background: #CDE5C3;
-				color: #000;
+				background: #DCF4D2;
 			}
 
 			.preset6 {
 				background: #98B9EA;
-				color: #000;
 			}
 
 			.share-lv6 {
 				border-top: 1px solid #FFE2C6;
-				color: #000;
 			}
 			
 			
