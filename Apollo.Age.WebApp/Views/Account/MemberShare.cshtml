@@ -45,7 +45,7 @@
 </div>
 <div class="view-detail-container">
 	<div class="div-border">
-<table class="tb-cust-setting no-border-bottom" id="tableShare">
+<table class="tb-cust-setting no-border-bottom member-share" id="tableShare">
 	<thead>
 		<tr>
 			<th style="width:24%;">
@@ -70,6 +70,7 @@
 			foreach (var item in Model.MemberShareModelList)
 			{
 				string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+                string borderClass = index== 1 ? "no-border-top" : string.Empty;
 
 			<tr @Html.Raw(rowClass)>
 				<td class="first-cell l">
@@ -82,36 +83,26 @@
 				}
 				else
 				{
-					<td class="r @("preset" + item.AgentLevel)">
+					<td class="r @("preset" + (item.AgentLevel % 5 + 1))">
 						@Formater.DecFormat(item.TakenShare / 100.00, 2)
 					</td>
 				}
-				<td class="r">
+				<td class="r @borderClass border-right @("share-lv" + (item.AgentLevel % 5 + 1))">
 					@Formater.DecFormat(item.MaxGiven / 100.00, 2)
 				</td>
-				<td class="r">
+				<td class="r @borderClass @("share-lv" + (item.AgentLevel % 5 + 1))">
 					@Formater.DecFormat(item.MinGiven / 100.00, 2)
 				</td>
-                @if (index == Model.MemberShareModelList.Count)
-                {
-                    <td class="r">
-					    @Formater.DecFormat(item.TakenShareMember / 100.00, 2)
-				    </td>
-                }
-                else
-                {
-                    <td class="r @("memshare" + item.AgentLevel)">
+				<td class="r @("memshare" + (item.AgentLevel % 5 + 1))">
 					@Formater.DecFormat(item.TakenShareMember / 100.00, 2)
-				    </td>
-                }
-				
+				</td>
 			</tr>
-            }
-        }
-  else
-  {
+			}
+		}
+		else
+		{
 			@RazorHelper.ShowNoInfo(5)
-  }
+		}
 	</tbody>
 </table>
 </div>
