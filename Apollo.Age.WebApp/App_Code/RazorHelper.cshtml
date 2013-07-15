@@ -23,21 +23,29 @@
     <!--/NotFoundContent-->
 }
 @helper RefreshCountDown(string refreshCountDownId,
-    int[] timerArray,
+    List<int> timerArray = null,
     string onRefresh = "location.reload()",
         bool isShowRefreshNow = false
     )
     {
+        if (timerArray == null || timerArray.Any() == false)
+        {
+            timerArray = new List<int>();
+            for (var i = 15; i <= 180; i += 15)
+            {
+                timerArray.Add(i);
+            }
+        }
+        
     <div id="refreshCountDownId" refresh-id=@(refreshCountDownId) class="btnCountDown">
         <span>@Apollo.Age.Resources.Lang.Flesh:</span>
         <select>
             <option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
-            @for (int i = 0; i < timerArray.Length; i++)
+            @foreach(var item in timerArray)
             {
-                <option value="@timerArray[i]">@timerArray[i] @Apollo.Age.Resources.Lang.sec</option>
+                <option value="@item.ToString()">@item.ToString() @Apollo.Age.Resources.Lang.sec</option>
             }
         </select>
-
         <input type="hidden" id="apo-on-refresh" value="@onRefresh" />
         @if (isShowRefreshNow)
         {
