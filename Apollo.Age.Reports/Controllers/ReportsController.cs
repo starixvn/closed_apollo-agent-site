@@ -25,7 +25,12 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.Caching;
+<<<<<<< HEAD
     using Fanex.NAP.Framework.Mvc;
+=======
+    using Apollo.Age.Resources;
+    using System.Web;
+>>>>>>> 776805f315f293718cd7b3091e0d3de7575aeb82
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -73,7 +78,8 @@ namespace Apollo.Age.Reports.Controllers
             CurrentAgentId = agentId;
             var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
 
-            var cachingKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+                Lang.agent,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
@@ -92,7 +98,8 @@ namespace Apollo.Age.Reports.Controllers
             bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
-            var cachingKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+                isAgentOutStanding ? Lang.agent : Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
@@ -124,8 +131,8 @@ namespace Apollo.Age.Reports.Controllers
                 isAgentOutStanding,
                 listOutstanding,
                 agentUsername,
-                sportName,
-                betTypeName,
+                HttpUtility.UrlDecode(sportName),
+                HttpUtility.UrlDecode(betTypeName),
                 isSupper);
 
             return new ExcelResult(excelResult, string.Format("OutStading_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
@@ -139,7 +146,8 @@ namespace Apollo.Age.Reports.Controllers
             //// call service to get listOutstanding data here
             var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
 
-            var sessionKey = string.Format("{0}-{1}-{2}",
+            var sessionKey = string.Format("{0}-{1}-{2}-{3}",
+                Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
