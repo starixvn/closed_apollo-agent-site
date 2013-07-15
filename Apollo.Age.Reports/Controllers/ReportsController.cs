@@ -12,18 +12,19 @@
 
 namespace Apollo.Age.Reports.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-using Fanex.NAP.Framework.Mvc;
-    using System;
-    using Apollo.Age.Reports.Models;
-    using System.Collections.Generic;
+    using Fanex.NAP.Framework.Mvc;
+    using Fanex.Caching;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : BaseController
@@ -33,6 +34,8 @@ using Fanex.NAP.Framework.Mvc;
         private readonly IWinLossService _winLossService;
 
         private readonly OutstandingService _outstandingService;
+
+        private readonly ICache _cacheManager;
 
         private int _currentAgentId;
 
@@ -46,6 +49,7 @@ using Fanex.NAP.Framework.Mvc;
             _reportService = reportService ?? new ReportService();
             _winLossService = _winLossService ?? new WinLossService();
             _outstandingService = new OutstandingService();
+            _cacheManager = CacheService.CreateInstance(CacheType.MemCache);
         }
 
         public int? CurrentAgentId
@@ -66,33 +70,33 @@ using Fanex.NAP.Framework.Mvc;
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             CurrentAgentId = agentId;
-            var report = _outstandingService.GetAgentOutStadingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+            var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
 
-            var sessionKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}",
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            HttpContext.Session[sessionKey] = report.ListOutStanding;
+            _cacheManager.Set<IEnumerable<OutstandingModel>>(cachingKey, report.ListOutStanding);
 
             return View(report);
         }
 
-        public ActionResult ExportOutstandingReport(int? agentId, 
-            string agentUsername, 
-            string sporttypes, 
+        public ActionResult ExportOutstandingReport(int? agentId,
+            string agentUsername,
+            string sporttypes,
             string sportName,
             string bettypes,
             string betTypeName,
             bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
-            var sessionKey = string.Format("{0}-{1}-{2}",
+            var cachingKey = string.Format("{0}-{1}-{2}",
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
+            var listOutstanding = _cacheManager.Get<IEnumerable<OutstandingModel>>(cachingKey);
             if (listOutstanding == null)
             {
                 if (isAgentOutStanding)
@@ -103,7 +107,6 @@ using Fanex.NAP.Framework.Mvc;
                         Sporttypes = sporttypes,
                         Bettypes = bettypes
                     });
-                    
                 }
                 else
                 {
@@ -120,13 +123,12 @@ using Fanex.NAP.Framework.Mvc;
                 isAgentOutStanding,
                 listOutstanding,
                 agentUsername,
-                sportName, 
+                sportName,
                 betTypeName,
                 isSupper);
 
             return new ExcelResult(excelResult, string.Format("OutStading_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
         }
-
 
         [HttpPost]
         public ActionResult MemberOutstanding(int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
@@ -134,7 +136,7 @@ using Fanex.NAP.Framework.Mvc;
             CurrentAgentId = agentId;
 
             //// call service to get listOutstanding data here
-            var report = _outstandingService.GetMemberOutstadingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+            var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
 
             var sessionKey = string.Format("{0}-{1}-{2}",
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
@@ -142,7 +144,7 @@ using Fanex.NAP.Framework.Mvc;
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
             HttpContext.Session[sessionKey] = report.ListOutstanding;
-            
+
             //// return object
             return Json(report);
         }
