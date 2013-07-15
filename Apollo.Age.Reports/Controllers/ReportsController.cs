@@ -132,7 +132,7 @@ namespace Apollo.Age.Reports.Controllers
                 HttpUtility.UrlDecode(betTypeName),
                 isSupper);
 
-            return new ExcelResult(excelResult, string.Format("OutStading_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
+            return new ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
         }
 
         [HttpPost]
