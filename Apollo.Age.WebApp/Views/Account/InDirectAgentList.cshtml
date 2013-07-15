@@ -13,7 +13,7 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
 
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
-    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&amp;agentId={1}", parentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;    
@@ -68,7 +68,7 @@
         @if (hasMemberDownline)
         {
             <div class="item">
-                -- <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.memberList</a>
+                -- <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.memberList</a>
             </div>
         }
     </div>
@@ -142,7 +142,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@backLink">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -150,7 +150,7 @@
                             else
                             {
                                 @Lang.view
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }
