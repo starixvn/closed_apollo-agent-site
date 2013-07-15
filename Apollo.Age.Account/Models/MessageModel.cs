@@ -72,7 +72,7 @@ namespace Apollo.Age.Account.Models
         public string GetContent(string language = "")
         {
             string content = string.Empty;
-            string betTransId = string.Empty;
+            string betTransId = this.BettransID;
             switch (language)
             {
                 case "en-US":
