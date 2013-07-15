@@ -48,8 +48,8 @@ namespace Apollo.Age.Reports.Services
         {
             if (model != null && model.AgentWinLossList != null && model.AgentWinLossList.Any())
             {
-                var title = string.Format("{0} ({1} -- {2}: {3} -- {4}: {5} -- {6}: {7} -- {8}: {9})",
-                    Lang.agentwinloss, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
+                var title = string.Format("{0} {1} ({2} -- {3}: {4} -- {5}: {6} -- {7}: {8} -- {9}: {10})",
+                    Lang.agentwinloss, Lang.lblReport, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
                     Lang.sport, model.SportName, Lang.bettype, model.BettypeName);
 
                 if (model.IsSuper)
@@ -72,8 +72,8 @@ namespace Apollo.Age.Reports.Services
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
             if (model != null && model.MemberWinLossList != null && model.MemberWinLossList.Any())
             {
-                var title = string.Format("{0} ({1} -- {2}: {3} -- {4}: {5} -- {6}: {7} -- {8}: {9})",
-                    Lang.lblMemberWinLoss, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
+                var title = string.Format("{0} {1} ({2} -- {3}: {4} -- {5}: {6} -- {7}: {8} -- {9}: {10})",
+                    Lang.lblMemberWinLoss, Lang.lblReport, model.AgentName, Lang.from, ShortDateFormat(model.FromDate), Lang.to, ShortDateFormat(model.ToDate),
                     Lang.sport, model.SportName, Lang.bettype, model.BettypeName);
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
@@ -88,9 +88,9 @@ namespace Apollo.Age.Reports.Services
                 //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
                 ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
-                headerStyle.FillForegroundColor = HSSFColor.GREY_80_PERCENT.index;
+                headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
                 headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-                headerStyle.FillBackgroundColor = HSSFColor.GREY_80_PERCENT.index;
+                headerStyle.FillBackgroundColor = HSSFColor.GREY_50_PERCENT.index;
                 headerStyle.Alignment = HorizontalAlignment.CENTER;
                 headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
                 headerStyle.SetFont(font);
@@ -113,6 +113,9 @@ namespace Apollo.Age.Reports.Services
                 bodyStyle1.BorderRight = BorderStyle.DOTTED;
                 bodyStyle1.BorderBottom = BorderStyle.DOTTED;
 
+                var font2 = hssfworkbook.CreateFont();
+                font2.Color = HSSFColor.WHITE.index;
+
                 ICellStyle footerStyle = hssfworkbook.CreateCellStyle();
                 footerStyle.FillForegroundColor = footerColor.GetIndex();
                 footerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
@@ -123,6 +126,7 @@ namespace Apollo.Age.Reports.Services
                 footerStyle.BorderLeft = BorderStyle.DOTTED;
                 footerStyle.BorderRight = BorderStyle.DOTTED;
                 footerStyle.BorderBottom = BorderStyle.DOTTED;
+                footerStyle.SetFont(font2);
 
                 ICellStyle footerStyle1 = hssfworkbook.CreateCellStyle();
                 footerStyle1.FillForegroundColor = footerColor.GetIndex();
@@ -133,6 +137,7 @@ namespace Apollo.Age.Reports.Services
                 footerStyle1.BorderLeft = BorderStyle.DOTTED;
                 footerStyle1.BorderRight = BorderStyle.DOTTED;
                 footerStyle1.BorderBottom = BorderStyle.DOTTED;
+                footerStyle1.SetFont(font2);
 
                 ICell cell;
                 #endregion
@@ -426,9 +431,9 @@ namespace Apollo.Age.Reports.Services
             //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
-            headerStyle.FillForegroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            headerStyle.FillBackgroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillBackgroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.Alignment = HorizontalAlignment.CENTER;
             headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
             headerStyle.SetFont(font);
@@ -654,9 +659,9 @@ namespace Apollo.Age.Reports.Services
             //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
-            headerStyle.FillForegroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            headerStyle.FillBackgroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillBackgroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.Alignment = HorizontalAlignment.CENTER;
             headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
             headerStyle.SetFont(font);
@@ -681,6 +686,8 @@ namespace Apollo.Age.Reports.Services
 
             ICell cell;
 
+            var font2 = hssfworkbook.CreateFont();
+            font2.Color = HSSFColor.WHITE.index;
             ICellStyle footerStyle = hssfworkbook.CreateCellStyle();
             footerStyle.FillForegroundColor = footerColor.GetIndex();
             footerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
@@ -691,6 +698,7 @@ namespace Apollo.Age.Reports.Services
             footerStyle.BorderLeft = BorderStyle.DOTTED;
             footerStyle.BorderRight = BorderStyle.DOTTED;
             footerStyle.BorderBottom = BorderStyle.DOTTED;
+            footerStyle.SetFont(font2);
 
             ICellStyle footerStyle1 = hssfworkbook.CreateCellStyle();
             footerStyle1.FillForegroundColor = footerColor.GetIndex();
@@ -701,7 +709,7 @@ namespace Apollo.Age.Reports.Services
             footerStyle1.BorderLeft = BorderStyle.DOTTED;
             footerStyle1.BorderRight = BorderStyle.DOTTED;
             footerStyle1.BorderBottom = BorderStyle.DOTTED;
-
+            footerStyle1.SetFont(font2);
             #endregion
 
             #region header
