@@ -58,7 +58,7 @@
             </div>
         }
         <div class="before-filter">
-            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180 }, "Wagers.autoRefresh();", isShowRefreshNow)
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", null, "Wagers.autoRefresh();", isShowRefreshNow)
         @RazorHelper.ToServerTime(DateTime.Now)
         <div class="before-filter">
             --</div>

@@ -547,7 +547,8 @@ namespace Apollo.Age.BetList.Controllers
                 SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
                 BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
                 BetTeam = betTeam,
-                MatchId = matchId
+                MatchId = matchId,
+                IsSuperView = CurrentSession.IsSuper
             };
 
             TicketResult mainTickets = betListService.WagersTicket(criteria);
