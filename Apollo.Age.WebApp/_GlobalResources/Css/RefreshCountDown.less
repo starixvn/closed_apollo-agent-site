@@ -23,7 +23,7 @@
 }
 
 .btnDown {
-	float: right;
+	float: left;
 	position: relative;
 	left: -4px;
 	background: url(../images/btnCountDown.png) no-repeat left top;
@@ -88,4 +88,17 @@
 /*default padding, margin for tblRpt*/
 .default-tbl {
 	margin: 0;
+}
+
+/* FIX IE */
+
+.eq-ie7 {
+	.btnCountDown {
+		position: relative;
+		z-index: 100;
+
+		.panelDown{
+			left: 0;
+		}
+	}
 }
