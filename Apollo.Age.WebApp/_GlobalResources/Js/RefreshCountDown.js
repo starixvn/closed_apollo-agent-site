@@ -37,9 +37,9 @@
         },
 
         showHideMenu: function () {
-            var outerHeight = $("#ddlCountDown").outerHeight() - 1;
+            var position = $("#ddlCountDown").position();
             if (RefreshCountDown.countDownMenu.css('display') == 'none') {
-                RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
+                RefreshCountDown.countDownMenu.css('top', position.top + 20);
                 RefreshCountDown.countDownMenu.show();
             }
             else {
