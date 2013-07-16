@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.17">Created</change>
 //   <change who="Anders.Le" date="2013.7.11">Add MatchEnteredSports</change>
+//   <change who="Quinn.Vo" date="2013.7.16">Add CacheKeyAgentWinLossReport, CacheKeyMemberWinLossReport</change>
 // </history>
 
 namespace Apollo.Age.Reports.Core
@@ -19,22 +20,23 @@ namespace Apollo.Age.Reports.Core
         public const string RefundFT = "Refund FT";
         public const string Refund = "Refund";
 
+        public const string CacheKeyAgentWinLossReport = "AgentWinLossReport-{0}";
+        public const string CacheKeyMemberWinLossReport = "MemberWinLossReport-{0}";
+
         /// <summary>
-        /// dictionary list (sportid, language key)
-        /// the order should stricky follow
+        /// Dictionary list (sport id, language key).
+        /// The order should follow.
         /// </summary>
         public static readonly Dictionary<int, string> MatchEnteredSports = new
         Dictionary<int, string>
         {
-            {1, "soccer"},
-            {2, "bk"},
-            {5, "tennis"},
-            {6, "Volleyball"},
-            {8, "Baseball"},
-            {-10, "lblOutRight"},
-            {-1, "InterEvent"}
+            { 1, "soccer" },
+            { 2, "bk" },
+            { 5, "tennis" },
+            { 6, "Volleyball" },
+            { 8, "Baseball" },
+            { -10, "lblOutRight" },
+            { -1, "InterEvent" }
         };
-
-        public const string SessionWinLossReport = "WinLossReport-{0}";
     }
 }

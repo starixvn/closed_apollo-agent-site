@@ -301,7 +301,6 @@ namespace Apollo.Age.Reports.Services
             string sportName, 
             string betTypeName)
         {
-            //// UserName text
             var reportType = isAgent ? Lang.agent : Lang.member;
 
             //// Report Title
@@ -326,7 +325,6 @@ namespace Apollo.Age.Reports.Services
             font1.IsItalic = true;
             font1.Color = HSSFColor.BLUE.index;
             ICellStyle style1 = workBook.CreateCellStyle();
-            style1.Alignment = HorizontalAlignment.RIGHT;
             style1.SetFont(font1);
             informationCell.CellStyle = style1;
             informationCell.SetCellValue(string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));

@@ -8,11 +8,11 @@
 //   <change who="Terry.Nguyen" date="2013.04.07">Implement</change>
 //   <change who="Terry.Nguyen" date="2013.04.09">Get AgentID from BaseController</change>
 //   <change who="Quinn.Vo" date="2013.04.16">Add Action: MatchEntered, AgentWinLoss, MemberWinLoss</change>
+//   <change who="Quinn.Vo" date="2013.07.16">Add Action: ExportAgentWinLoss, ExportMemberWinLoss</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -75,7 +75,8 @@ namespace Apollo.Age.Reports.Controllers
             CurrentAgentId = agentId;
             var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
 
-            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+            var cachingKey = string.Format(
+                "{0}-{1}-{2}-{3}",
                 Lang.agent,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
@@ -86,7 +87,8 @@ namespace Apollo.Age.Reports.Controllers
             return View(report);
         }
 
-        public ActionResult ExportOutstandingReport(int? agentId,
+        public ActionResult ExportOutstandingReport(
+            int? agentId,
             string agentUsername,
             string sporttypes,
             string sportName,
@@ -95,7 +97,8 @@ namespace Apollo.Age.Reports.Controllers
             bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
-            var cachingKey = string.Format("{0}-{1}-{2}-{3}",
+            var cachingKey = string.Format(
+                "{0}-{1}-{2}-{3}",
                 isAgentOutStanding ? Lang.agent : Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
@@ -144,7 +147,8 @@ namespace Apollo.Age.Reports.Controllers
             //// call service to get listOutstanding data here
             var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
 
-            var sessionKey = string.Format("{0}-{1}-{2}-{3}",
+            var sessionKey = string.Format(
+                "{0}-{1}-{2}-{3}",
                 Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
@@ -199,7 +203,7 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var cacheKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
             _cacheManager.Set<List<AgentWinLossModel>>(cacheKey, agentWinLossList);
 
             return View(model);
@@ -227,7 +231,7 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var cacheKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
             _cacheManager.Set<List<MemberWinLossModel>>(cacheKey, memberWinLossList);
 
             return View(model);
@@ -235,7 +239,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult ExportAgentWinLoss(AgentWinLossViewModel model)
         {
-            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var cacheKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
             var agentWinLossList = _cacheManager.Get<List<AgentWinLossModel>>(cacheKey);
 
             model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
@@ -265,13 +269,17 @@ namespace Apollo.Age.Reports.Controllers
             model.AgentWinLossList = agentWinLossList;
             var excelResult = _winLossService.ExportAgentWinLoss(model);
 
-            return new ExcelResult(excelResult, string.Format("AgentWinLoss_{0}_{1}_{2}",
-                agentName, _winLossService.ShortDateFormat(model.FromDate), _winLossService.ShortDateFormat(model.ToDate)));
+            var fileName = string.Format(
+                "AgentWinLoss_{0}_{1}_{2}",
+                agentName, 
+                _winLossService.ShortDateFormat(model.FromDate), 
+                _winLossService.ShortDateFormat(model.ToDate));
+            return new ExcelResult(excelResult, fileName);
         }
 
         public ActionResult ExportMemberWinLoss(MemberWinLossViewModel model)
         {
-            var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
+            var cacheKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
             var memberWinLossList = _cacheManager.Get<List<MemberWinLossModel>>(cacheKey);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
@@ -297,8 +305,12 @@ namespace Apollo.Age.Reports.Controllers
             model.MemberWinLossList = memberWinLossList;
             var excelResult = _winLossService.ExportMemberWinLoss(model);
 
-            return new ExcelResult(excelResult, string.Format("MemberWinLoss_{0}_{1}_{2}", 
-                model.AgentName, _winLossService.ShortDateFormat(model.FromDate), _winLossService.ShortDateFormat(model.ToDate)));
+            var fileName = string.Format(
+                "MemberWinLoss_{0}_{1}_{2}", 
+                model.AgentName, 
+                _winLossService.ShortDateFormat(model.FromDate), 
+                _winLossService.ShortDateFormat(model.ToDate));
+            return new ExcelResult(excelResult, fileName);
         }
 
         #endregion Agent Win Loss Report
