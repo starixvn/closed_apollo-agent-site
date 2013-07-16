@@ -123,6 +123,7 @@ namespace Apollo.Age.Reports.Controllers
                     });
                 }
             }
+
             var isSupper = CurrentSession.IsSuper && (CurrentAgentId == CurrentSession.AgentId);
             var excelResult = _outstandingService.ExportOutstandingReport(
                 isAgentOutStanding,
@@ -132,7 +133,7 @@ namespace Apollo.Age.Reports.Controllers
                 HttpUtility.UrlDecode(betTypeName),
                 isSupper);
 
-            return new ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, DateTime.Now.ToString("yyyy-MM-dd")));
+            return new ExcelResult(excelResult, string.Format("Outstanding_{0}", agentUsername));
         }
 
         [HttpPost]
@@ -232,7 +233,7 @@ namespace Apollo.Age.Reports.Controllers
             return View(model);
         }
 
-        public ActionResult ExportsAgentWinLoss(AgentWinLossViewModel model)
+        public ActionResult ExportAgentWinLoss(AgentWinLossViewModel model)
         {
             var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
             var agentWinLossList = _cacheManager.Get<List<AgentWinLossModel>>(cacheKey);
@@ -262,12 +263,13 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             model.AgentWinLossList = agentWinLossList;
-            var excelResult = _winLossService.ExportsAgentWinLoss(model);
+            var excelResult = _winLossService.ExportAgentWinLoss(model);
 
-            return new ExcelResult(excelResult, string.Format("AgentWinLoss_{0}_{1}", agentName, DateTime.Now.ToString("yyyy-MM-dd")));
+            return new ExcelResult(excelResult, string.Format("AgentWinLoss_{0}_{1}_{2}",
+                agentName, _winLossService.ShortDateFormat(model.FromDate), _winLossService.ShortDateFormat(model.ToDate)));
         }
 
-        public ActionResult ExportsMemberWinLoss(MemberWinLossViewModel model)
+        public ActionResult ExportMemberWinLoss(MemberWinLossViewModel model)
         {
             var cacheKey = string.Format(Constants.SessionWinLossReport, this.CurrentSession.UserId);
             var memberWinLossList = _cacheManager.Get<List<MemberWinLossModel>>(cacheKey);
@@ -293,22 +295,12 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             model.MemberWinLossList = memberWinLossList;
-            var excelResult = _winLossService.ExportsMemberWinLoss(model);
+            var excelResult = _winLossService.ExportMemberWinLoss(model);
 
-            return new ExcelResult(excelResult, string.Format("MemberWinLoss_{0}_{1}", model.AgentName, DateTime.Now.ToString("yyyy-MM-dd")));
+            return new ExcelResult(excelResult, string.Format("MemberWinLoss_{0}_{1}_{2}", 
+                model.AgentName, _winLossService.ShortDateFormat(model.FromDate), _winLossService.ShortDateFormat(model.ToDate)));
         }
 
         #endregion Agent Win Loss Report
-
-        //private IEnumerable<Agent> AgentDownlinePath(int agentId)
-        //{
-        //    IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
-        //    {
-        //        ParentId = CurrentSession.AgentId,
-        //        AgentId = agentId
-        //    });
-
-        //    return models;
-        //}
     }
 }

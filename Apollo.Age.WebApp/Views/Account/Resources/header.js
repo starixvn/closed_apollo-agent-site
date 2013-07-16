@@ -350,7 +350,8 @@ var HEADER = function ($) {
                         parent.document.getElementById('main').setAttribute('src', url);
                     }
                     HEADER.showAccountTab();
-                } else {
+                }
+                else {
                     HEADER.hideAccountTab();
                 }
 

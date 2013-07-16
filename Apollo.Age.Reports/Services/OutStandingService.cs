@@ -159,7 +159,7 @@ namespace Apollo.Age.Reports.Services
             bool isSuper)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
-            ISheet sheet = hssfworkbook.CreateSheet("Out Standing Report");
+            ISheet sheet = hssfworkbook.CreateSheet("OutStanding Report");
 
             try
             {
@@ -167,9 +167,9 @@ namespace Apollo.Age.Reports.Services
                     && listOutStanding.Any())
                 {
 
-                    RenderExcelTitle(hssfworkbook, sheet, 2, isAgentOutStanding, currentUsername, sportName, betTypeName);
-                    RenderExcelHeader(hssfworkbook, sheet, 5);
-                    var rowIndex = 6;
+                    RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
+                    RenderExcelHeader(hssfworkbook, sheet, 4);
+                    var rowIndex = 5;
                     var length = listOutStanding.Count();
                     //create the format instance
                     IDataFormat format = hssfworkbook.CreateDataFormat();
@@ -178,10 +178,10 @@ namespace Apollo.Age.Reports.Services
                     string userName = string.Empty;
 
                     ICellStyle bodyStyle = hssfworkbook.CreateCellStyle();
-                    bodyStyle.BorderTop = BorderStyle.DOTTED;
-                    bodyStyle.BorderLeft = BorderStyle.DOTTED;
-                    bodyStyle.BorderRight = BorderStyle.DOTTED;
-                    bodyStyle.BorderBottom = BorderStyle.DOTTED;
+                    bodyStyle.BorderTop = BorderStyle.THIN;
+                    bodyStyle.BorderLeft = BorderStyle.THIN;
+                    bodyStyle.BorderRight = BorderStyle.THIN;
+                    bodyStyle.BorderBottom = BorderStyle.THIN;
 
                     for (int i = 0; i < length; i++)
                     {
@@ -325,7 +325,15 @@ namespace Apollo.Age.Reports.Services
             //// BetType and Sport Type Name
             var informationRow = sheet.CreateRow(fromRow + 1);
             ICell informationCell = informationRow.CreateCell(0);
-            informationCell.SetCellValue(string.Format("{0}: {1} -- {2}: {3} -- {4}: {5}", Lang.agent, userName, Lang.sport, sportName, Lang.WagerType, betTypeName));
+            IFont font1 = workBook.CreateFont();
+            font1.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
+            font1.IsItalic = true;
+            font1.Color = HSSFColor.BLUE.index;
+            ICellStyle style1 = workBook.CreateCellStyle();
+            style1.Alignment = HorizontalAlignment.RIGHT;
+            style1.SetFont(font1);
+            informationCell.CellStyle = style1;
+            informationCell.SetCellValue(string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));
 
             sheet.AddMergedRegion(new CellRangeAddress(fromRow + 1, fromRow + 1, 0, 2));
 
@@ -352,10 +360,10 @@ namespace Apollo.Age.Reports.Services
             headerStyle.Alignment = HorizontalAlignment.CENTER;
             headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
             headerStyle.SetFont(font1);
-            headerStyle.BorderTop = BorderStyle.DOTTED;
-            headerStyle.BorderLeft = BorderStyle.DOTTED;
-            headerStyle.BorderRight = BorderStyle.DOTTED;
-            headerStyle.BorderBottom = BorderStyle.DOTTED;
+            headerStyle.BorderTop = BorderStyle.THIN;
+            headerStyle.BorderLeft = BorderStyle.THIN;
+            headerStyle.BorderRight = BorderStyle.THIN;
+            headerStyle.BorderBottom = BorderStyle.THIN;
 
             var usernameCell = row.CreateCell(0);
             usernameCell.CellStyle = headerStyle;

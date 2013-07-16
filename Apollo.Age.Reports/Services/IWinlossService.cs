@@ -23,8 +23,10 @@ namespace Apollo.Age.Reports.Services
 
         List<MemberWinLossModel> GetMemberWinLoss(MemberWinLossCriteria criteria);
 
-        HSSFWorkbook ExportsAgentWinLoss(AgentWinLossViewModel model);
+        HSSFWorkbook ExportAgentWinLoss(AgentWinLossViewModel model);
 
-        HSSFWorkbook ExportsMemberWinLoss(MemberWinLossViewModel model);
+        HSSFWorkbook ExportMemberWinLoss(MemberWinLossViewModel model);
+
+        string ShortDateFormat(object dt);
     }
 }
