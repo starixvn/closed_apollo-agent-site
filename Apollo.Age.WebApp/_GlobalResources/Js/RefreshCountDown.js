@@ -16,7 +16,9 @@
         },
 
         startTimeout: function () {
-            RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            if (RefreshCountDown.interval > 0) {
+                RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            }
         },
 
         restartTimeout: function () {
@@ -34,10 +36,10 @@
             }
         },
 
-        showHideMenu: function ($this) {
-            var outerHeight = $this.outerHeight() - 1;
+        showHideMenu: function () {
+            var position = $("#ddlCountDown").position();
             if (RefreshCountDown.countDownMenu.css('display') == 'none') {
-                RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
+                RefreshCountDown.countDownMenu.css('top', position.top + 20);
                 RefreshCountDown.countDownMenu.show();
             }
             else {
@@ -46,8 +48,8 @@
         },
 
         bindEventButtonDown: function () {
-            $("#btndown").on('click', function () {
-                RefreshCountDown.showHideMenu($(this));
+            $("#ddlCountDown").on('click', function () {
+                RefreshCountDown.showHideMenu();
                 RefreshCountDown.bindEventSubMenuOption();
                 RefreshCountDown.bindEventMenu();
             });
@@ -57,7 +59,7 @@
             var intervalTime = timeTick;
             intervalTime--;
             RefreshCountDown.countDownRefresh.html(intervalTime);
-            
+
             if (intervalTime <= 0) {
                 intervalTime = RefreshCountDown.interval;
                 eval(RefreshCountDown.onRefresh);
@@ -69,10 +71,17 @@
         },
 
         bindEventMenu: function () {
-            RefreshCountDown.countDownMenu.on('mouseleave', function () {
-                RefreshCountDown.timoutMenu = setTimeout(function () {
-                    RefreshCountDown.showHideMenu($(this));
-                }, 100);
+
+            RefreshCountDown.timoutMenu = setTimeout(function () {
+                RefreshCountDown.showHideMenu();
+            }, 3000);
+
+            $("#countdownmenu").on('mouseover', function () {
+                if (RefreshCountDown.timoutMenu != null) {
+                    clearTimeout(RefreshCountDown.timoutMenu);
+                }
+            }).on('mouseleave', function () {
+                RefreshCountDown.countDownMenu.hide();
             });
         },
 
@@ -166,19 +175,19 @@ $(document).ready(function () {
     if (typeof cookieValue !== 'undefined') {
         RefreshCountDown.interval = cookieValue;
         RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
-        RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
-
-        RefreshCountDown.countDownMenu.find("li").each(function () {
-            var $this = $(this);
-            if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
-                $this.addClass('selected');
-                return false;
-            }
-        });
+        RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);               
     }
     else {
         RefreshCountDown.countDownRefresh.html(RefreshCountDown.inActive);
     }
+
+    RefreshCountDown.countDownMenu.find("li").each(function () {
+        var $this = $(this);
+        if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
+            $this.addClass('selected');
+            return false;
+        }
+    });
 
     RefreshCountDown.disabledRefreshCountDown(false);
     RefreshCountDown.bindEventButtonDown();

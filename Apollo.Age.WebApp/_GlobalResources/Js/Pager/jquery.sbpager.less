@@ -1,49 +1,41 @@
 ﻿/* File Created: June 25, 2013 */
 
-.sbpager
-{
+.sbpager {
 	display: inline;
-	.item-container
-	{
+
+	.item-container {
 		overflow: hidden;
 		white-space: nowrap;
 		display: inline-block;
 		float: left;
 	}
-	.move-start, .move-pre, .move-next, .move-end
-	{
+	.move-start, .move-pre, .move-next, .move-end {
 		display: inline;
 		float: left;
 	}
 	
 
 	.pager-item, .move-start, .move-pre, .move-next, .move-end{
-			border-radius: 2px 2px 2px 2px;
-			color: #000000;
-			text-align: center;
-			text-decoration: none;
-			padding-left: 10px;
-			padding-right: 10px;
-			&:hover
-			{
+		border-radius: 2px;
+		color: #000;
+		text-align: center;
+		text-decoration: none;
+		padding: 0 10px;
+
+		&:hover {
 			color: #FF0000;
 			cursor: pointer;
-			}
-
-
 		}
-	.pager-item
-	{
+	}
+	.pager-item {
 
-		&:hover
-		{
+		&:hover {
 			color: #FF0000;
 			cursor: pointer;
 		}
 	}
 
-	.selected
-		{
-			color: #FF0000 !important;
-		}
+	.selected {
+		color: #FF0000;
+	}
 }

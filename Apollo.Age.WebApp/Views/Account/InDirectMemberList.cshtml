@@ -12,7 +12,7 @@
     var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
     var isMaster = (bool)ViewBag.IsMaster;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
-    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&amp;agentId={1}", parentId, Model.AgentId)));
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;    
 }

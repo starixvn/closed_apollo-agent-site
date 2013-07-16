@@ -350,7 +350,8 @@ var HEADER = function ($) {
                         parent.document.getElementById('main').setAttribute('src', url);
                     }
                     HEADER.showAccountTab();
-                } else {
+                }
+                else {
                     HEADER.hideAccountTab();
                 }
 
@@ -457,7 +458,14 @@ var HEADER = function ($) {
 
                 var currentSubUrl = $this.attr('url');
 
-                if (HEADER.oldUrl == currentSubUrl) return;
+                // Ignore link to check for click on menu many times
+                if (HEADER.oldUrl == currentSubUrl &&
+                currentSubUrl != "/Reports/matchentered" &&
+                currentSubUrl != "/Account/AgentList") 
+                {
+                    return;
+                }
+
                 HEADER.oldUrl = currentSubUrl;
 
                 $iframe.attr('src', currentSubUrl);
