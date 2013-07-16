@@ -1,5 +1,10 @@
 ﻿@import "../../../_globalResources/css/Agent.less";
 
+.btnCountDown.refresh {
+	float: right;
+	margin: 7px 0;
+}
+
 .box-header {
 	padding: 0;
 	margin-bottom: 10px;
@@ -8,14 +13,11 @@
 		margin: 0 0 0 2px;
 	}
 }
-.tblRpt
-{
-	border-width: 1px;	
 
-	&.fc1x2 {
-		margin-top: 40px;
-	}
+.tblRpt {
+	border-width: 1px;
 }
+
 a {
 	&:hover {
 		color: @hoverLinkOrangeColor;
@@ -35,17 +37,6 @@ a {
 	}
 }
 
-.btnCountDown {
-	position: absolute;
-	top: 5px;
-	right: -4px;
-}
-
-#forecast-body .btnCountDown {
-	position: relative;
-	top: 0;
-	right: 0;
-}
 
 #forecast-body {
 	margin-top: 35px;
