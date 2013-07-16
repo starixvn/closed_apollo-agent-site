@@ -569,6 +569,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.DirectAgentList = directAgent;
             ViewBag.AgentUsername = agent != null ? agent.Username : string.Empty;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
+            ViewBag.AgentList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
+            {
+                ParentId = this.CurrentSession.AgentId,
+                AgentId = agentId
+            });
 
             return View(criteria);
         }
