@@ -454,7 +454,7 @@
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="SVRAGE.RepDB" Plain="0" />
   </Function>
 
-  <Function Name="Agent-Apollo-Admin">    
+  <Function Name="Agent-Apollo-Admin">
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB" Plain="0" />
   </Function>

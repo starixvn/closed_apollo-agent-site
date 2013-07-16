@@ -75,7 +75,7 @@ namespace Apollo.Age.Web.Services
             var endTime = maintenanceInfo.EndTime;
 
             // Check downtime from AppSetting
-            if (AppSettings.IsDownTime)
+            if (AppSettings.IsApolloDownTime)
             {
                 maintenanceInfo.IsDownTime = true;
                 maintenanceInfo.StartTime = AppSettings.StartTime;

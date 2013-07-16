@@ -30,9 +30,13 @@
 	width: 670px;
 	margin-bottom: 20px;
 
+	&.member-share {
+		background: none;
+	}
+
 	td, th {
 		font-weight: normal;
-		padding: 0;
+		padding: 0 2px;
 		text-align: center;
 		height: 17px;
 
@@ -56,7 +60,71 @@
 	}
 
 	tbody {
-		tr {
+		tr {	
+			.share-lv1, .share-lv2, .share-lv3,
+			.share-lv4, .share-lv5, .share-lv6 {
+				&.no-border-top {
+					border-top: none;
+				}
+				
+				&.border-right {
+					border-right: 1px solid #DCDCDC;
+				}	
+			}
+			.preset1 {
+				background: #DCF4D2;
+			}
+			
+			.share-lv1 {
+				border-top: 1px solid #CDE5C3;				
+			}
+
+			.memshare1, .preset2 {
+				background: #d1d1d1;
+			}
+
+			.share-lv2 {
+				border-top: 1px solid #bbb;
+			}
+			
+			.memshare2, .preset3 {
+				background: #98B9EA;
+			}
+
+			.share-lv3 {
+				border-top: 1px solid #98B9EA;
+			}
+			
+			.memshare3, .preset4 {
+				background: #FFE4CE;
+			}
+
+			.share-lv4 {
+				border-top: 1px solid #FFE2C6;
+
+			}
+			
+			.memshare4, .preset5 {
+				background: #D6F2FF;
+			}
+
+			.share-lv5 {
+				border-top: 1px solid #AFE7FF;
+			}
+
+			.memshare5 {
+				background: #DCF4D2;
+			}
+
+			.preset6 {
+				background: #98B9EA;
+			}
+
+			.share-lv6 {
+				border-top: 1px solid #FFE2C6;
+			}
+			
+			
 			td {
 				background: #FFF;
 

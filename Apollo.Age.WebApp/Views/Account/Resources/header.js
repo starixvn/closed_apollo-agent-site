@@ -346,10 +346,12 @@ var HEADER = function ($) {
                         parent.document.getElementById('main').setAttribute('src', url);
                     } else {
                         var url = "/Account/AgentList";
+                        HEADER.oldUrl = url;
                         parent.document.getElementById('main').setAttribute('src', url);
                     }
                     HEADER.showAccountTab();
-                } else {
+                }
+                else {
                     HEADER.hideAccountTab();
                 }
 
@@ -445,25 +447,21 @@ var HEADER = function ($) {
 
             //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         },
-        activeMenu: function () {
-            $('.toolbar ul li a').on('click', function () {
-                $this = $(this);
-                if ($this.attr('actived') == 'true') return;
 
+        oldUrl: null,
+
+        activeMenu: function () {
+            var toolbarMenu = $('.toolbar ul li a');
+            toolbarMenu.on('click', function () {
+                $this = $(this);
                 $iframe = parent.$('.mainpage iframe');
 
-                $iframe.attr('src', $this.attr('url'));
+                var currentSubUrl = $this.attr('url');
 
-                $('.toolbar ul li a').each(function () {
+                if (HEADER.oldUrl == currentSubUrl) return;
+                HEADER.oldUrl = currentSubUrl;
 
-                    if ($(this).attr('actived') == 'true') {
-                        $(this).removeAttr('actived');
-                        return false;
-                    }
-                });
-
-                $this.attr('actived', true);
-
+                $iframe.attr('src', currentSubUrl);
             });
         }
     };

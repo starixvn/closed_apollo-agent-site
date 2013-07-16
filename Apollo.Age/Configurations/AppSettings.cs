@@ -25,11 +25,19 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static bool IsDownTime
+        public static bool IsApolloDownTime
         {
             get
             {
-                return GetValue("IsDownTime") == "1";
+                return GetValue("IsApolloDownTime") == "1";
+            }
+        }
+
+        public static string ApolloDownTime
+        {
+            get
+            {
+                return GetValue("ApolloDownTime");
             }
         }
 
@@ -37,7 +45,7 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return GetValue("StartTime");
+                return ApolloDownTime.Split("-".ToCharArray())[0];
             }
         }
 
@@ -45,7 +53,7 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return GetValue("EndTime");
+                return ApolloDownTime.Split("-".ToCharArray())[1];
             }
         }
 

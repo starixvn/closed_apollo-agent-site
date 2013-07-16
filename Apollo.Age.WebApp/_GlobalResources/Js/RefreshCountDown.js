@@ -2,6 +2,7 @@
     return {
         interval: 0,
         timeoutCountDown: null,
+        timoutMenu: null,
         onRefresh: null,
         refreshNow: null,
         countDownRefresh: null,
@@ -15,7 +16,14 @@
         },
 
         startTimeout: function () {
-            RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            if (RefreshCountDown.interval > 0) {
+                RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            }
+        },
+
+        restartTimeout: function () {
+            RefreshCountDown.stopTimeout();
+            RefreshCountDown.startTimeout();
         },
 
         setCurrentTimeCookie: function () {
@@ -28,37 +36,51 @@
             }
         },
 
-        showMenuOption: function () {
+        showHideMenu: function ($this) {
+            var outerHeight = $this.outerHeight() - 1;
+            if (RefreshCountDown.countDownMenu.css('display') == 'none') {
+                RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
+                RefreshCountDown.countDownMenu.show();
+            }
+            else {
+                RefreshCountDown.countDownMenu.hide();
+            }
+        },
+
+        bindEventButtonDown: function () {
             $("#btndown").on('click', function () {
-                var outerHeight = $(this).outerHeight() - 1;
-                if (RefreshCountDown.countDownMenu.css('display') == 'none') {
-                    RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
-                    RefreshCountDown.countDownMenu.show();
-                }
-                else {
-                    RefreshCountDown.countDownMenu.hide();
-                }
+                RefreshCountDown.showHideMenu($(this));
                 RefreshCountDown.bindEventSubMenuOption();
+                RefreshCountDown.bindEventMenu();
             });
         },
 
         refreshCountDownTick: function (timeTick) {
             var intervalTime = timeTick;
             intervalTime--;
+            RefreshCountDown.countDownRefresh.html(intervalTime);
+
             if (intervalTime <= 0) {
                 intervalTime = RefreshCountDown.interval;
                 eval(RefreshCountDown.onRefresh);
             }
 
-            RefreshCountDown.countDownRefresh.html(intervalTime);
             RefreshCountDown.timeoutCountDown = setTimeout(function () {
                 RefreshCountDown.refreshCountDownTick(intervalTime);
             }, 1000);
         },
 
+        bindEventMenu: function () {
+            RefreshCountDown.countDownMenu.on('mouseleave', function () {
+                RefreshCountDown.timoutMenu = setTimeout(function () {
+                    RefreshCountDown.showHideMenu($(this));
+                }, 100);
+            });
+        },
+
         bindEventSubMenuOption: function () {
-            var countdown = $('#countdownmenu li');
-            countdown.on('click', function () {
+            var countDownSubMenu = RefreshCountDown.countDownMenu.find("li");
+            countDownSubMenu.on('click', function () {
                 var $this = $(this);
                 var itemCheckedClass = 'selected';
                 RefreshCountDown.interval = $this.attr('data-intervaltime');
@@ -67,7 +89,7 @@
                 RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
 
                 //Show/Hide submenu option
-                countdown.each(function () {
+                countDownSubMenu.each(function () {
                     if ($(this).hasClass(itemCheckedClass)) {
                         $(this).removeClass(itemCheckedClass);
                         return false;
@@ -77,6 +99,9 @@
 
                 if (RefreshCountDown.countDownMenu.css('display') != 'none') {
                     RefreshCountDown.countDownMenu.hide();
+                    if (RefreshCountDown.timoutMenu != null) {
+                        clearTimeout(RefreshCountDown.timoutMenu);
+                    }
                 }
                 //--------------
 
@@ -118,6 +143,7 @@
                     RefreshCountDown.disabledRefreshCountDown(true);
 
                     eval(RefreshCountDown.onRefresh);
+                    RefreshCountDown.restartTimeout();
 
                     setTimeout(function () {
                         RefreshCountDown.disabledRefreshCountDown(false);
@@ -143,13 +169,21 @@ $(document).ready(function () {
         RefreshCountDown.interval = cookieValue;
         RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
         RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
+
+        RefreshCountDown.countDownMenu.find("li").each(function () {
+            var $this = $(this);
+            if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
+                $this.addClass('selected');
+                return false;
+            }
+        });
     }
     else {
         RefreshCountDown.countDownRefresh.html(RefreshCountDown.inActive);
     }
 
     RefreshCountDown.disabledRefreshCountDown(false);
-    RefreshCountDown.showMenuOption();
+    RefreshCountDown.bindEventButtonDown();
     RefreshCountDown.bindRefreshNow();
 
 });
