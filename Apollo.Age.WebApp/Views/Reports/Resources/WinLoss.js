@@ -47,8 +47,8 @@
                 $.blockUI();
                 var url = APOLLO.resolveUrl("Reports/AgentWinLoss?FromDate="
                     + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
-                    + "&AgentId=" + $(this).attr("agentid")
-                    + "&AgentName=" + $(this).attr("agentname")
+                    + "&AgentId=" + $(this).attr("data-agentid")
+                    + "&AgentName=" + $(this).attr("data-agentname")
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()
                     + "&Bettypes=" + WINLOSS.hdBettype.val());
                 location.href = url;
@@ -58,8 +58,8 @@
                 $.blockUI();
                 var url = APOLLO.resolveUrl("Reports/MemberWinLoss?FromDate="
                     + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
-                    + "&AgentId=" + $(this).attr("agentid")
-                    + "&AgentName=" + $(this).attr("agentname")
+                    + "&AgentId=" + $(this).attr("data-agentid")
+                    + "&AgentName=" + $(this).attr("data-agentname")
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()
                     + "&Bettypes=" + WINLOSS.hdBettype.val());
                 location.href = url;
@@ -80,8 +80,8 @@
                 WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
                     + WINLOSS.hdFromDate.val() + "&toDate=" + WINLOSS.hdToDate.val()
-                    + "&custId=" + $(this).attr("memberid")
-                    + "&username=" + $(this).attr("membername")
+                    + "&custId=" + $(this).attr("data-memberid")
+                    + "&username=" + $(this).attr("data-membername")
                     + "&sportType=" + WINLOSS.hdSportType.val()
                     + "&betType=" + WINLOSS.hdBettype.val()
                     + "&sportName=" + escape(WINLOSS.sportTypeName)

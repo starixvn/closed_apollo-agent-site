@@ -54,7 +54,7 @@
                 -- <a href="~/Account/MemberList">@Lang.memberList</a>
             </div>
         }
-        <img src="/_GlobalResources/Images/top_04.png" alt="">
+        <img src="/_GlobalResources/Images/top_04.png" alt="" />
     </div>   
     @Html.HiddenFor(m => m.AgentId)    
 }
@@ -113,7 +113,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -121,7 +121,7 @@
                             else
                             {
                                 @Lang.view
-                            }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                            }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }

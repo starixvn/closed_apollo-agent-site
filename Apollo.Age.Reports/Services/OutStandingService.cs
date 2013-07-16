@@ -78,7 +78,6 @@ namespace Apollo.Age.Reports.Services
                     outstandingViewModel.ListOutStanding = models;
                     outstandingViewModel.DownlinePath = modelAgentDownLine;
                     outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
-                    outstandingViewModel.CurrentUserName = modelAgentDownLine.LastOrDefault().Username;
                 }
 
                 outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
@@ -211,10 +210,13 @@ namespace Apollo.Age.Reports.Services
                     //// If not is supper, then add total row
                     if (!isSuper)
                     {
+                        IFont font = hssfworkbook.CreateFont();
+                        font.Color = HSSFColor.WHITE.index;
                         ICellStyle footerStyle = hssfworkbook.CreateCellStyle();
                         footerStyle.FillForegroundColor = HSSFColor.DARK_RED.index;
                         footerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
                         footerStyle.FillBackgroundColor = HSSFColor.DARK_RED.index;
+                        footerStyle.SetFont(font);
                         RenderExcelBodyRows(hssfworkbook, sheet, rowIndex + length, Lang.total, totalOutstanding,
                                 totalShareAmount,
                                 numberFormat,
@@ -300,16 +302,16 @@ namespace Apollo.Age.Reports.Services
             string betTypeName)
         {
             //// UserName text
-            var userNameRow = sheet.CreateRow(fromRow - 1);
+            //var userNameRow = sheet.CreateRow(fromRow - 1);
             var reportType = isAgent ? Lang.agent : Lang.member;
-            ICell userNameCell = userNameRow.CreateCell(0);
-            userNameCell.SetCellValue(string.Format("{0}: {1}", Lang.agent, userName));
-            sheet.AddMergedRegion(new CellRangeAddress(fromRow - 1, fromRow - 1, 0, 2));
+            //ICell userNameCell = userNameRow.CreateCell(0);
+            //userNameCell.SetCellValue(string.Format("{0}: {1}", Lang.agent, userName));
+            //sheet.AddMergedRegion(new CellRangeAddress(fromRow - 1, fromRow - 1, 0, 2));
 
             //// Report Title
             var row = sheet.CreateRow(fromRow);
             ICell cell = row.CreateCell(0);
-            cell.SetCellValue(string.Format("{0} {1} {2} on {3}", reportType, Lang.outstanding, Lang.lblReport, DateTime.Now.ToString("yyyy-MM-dd")));
+            cell.SetCellValue(string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));
             ICellStyle style = workBook.CreateCellStyle();
             style.Alignment = HorizontalAlignment.CENTER;
             //create a font style
@@ -323,7 +325,7 @@ namespace Apollo.Age.Reports.Services
             //// BetType and Sport Type Name
             var informationRow = sheet.CreateRow(fromRow + 1);
             ICell informationCell = informationRow.CreateCell(0);
-            informationCell.SetCellValue(string.Format("{0}: {1}, {2}: {3}", Lang.lblReport, sportName, Lang.WagerType, betTypeName));
+            informationCell.SetCellValue(string.Format("{0}: {1} -- {2}: {3} -- {4}: {5}", Lang.agent, userName, Lang.sport, sportName, Lang.WagerType, betTypeName));
 
             sheet.AddMergedRegion(new CellRangeAddress(fromRow + 1, fromRow + 1, 0, 2));
 
@@ -340,13 +342,13 @@ namespace Apollo.Age.Reports.Services
             var row = sheet.CreateRow(fromRow);
             var font1 = workBook.CreateFont();
             font1.FontHeightInPoints = 11;
-            font1.Color = NPOI.HSSF.Util.HSSFColor.GREY_80_PERCENT.WHITE.index;
-            font1.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
+            font1.Color = NPOI.HSSF.Util.HSSFColor.WHITE.index;
+            //font1.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = workBook.CreateCellStyle();
-            headerStyle.FillForegroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            headerStyle.FillBackgroundColor = HSSFColor.GREY_80_PERCENT.index;
+            headerStyle.FillBackgroundColor = HSSFColor.GREY_50_PERCENT.index;
             headerStyle.Alignment = HorizontalAlignment.CENTER;
             headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
             headerStyle.SetFont(font1);
