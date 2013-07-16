@@ -30,14 +30,14 @@ namespace Apollo.Age.Reports.Services
         /// <summary>
         /// Get agent outstanding report
         /// </summary>
-        /// <param name="isSupper"></param>
+        /// <param name="isSuper"></param>
         /// <param name="CurrentAgentId"></param>
         /// <param name="parentId"></param>
         /// <param name="agentId"></param>
         /// <param name="sporttypes"></param>
         /// <param name="bettypes"></param>
         /// <returns></returns>
-        public OutstandingViewModel GetAgentOutStandingReport(bool isSupper, 
+        public OutstandingViewModel GetAgentOutStandingReport(bool isSuper, 
             int? CurrentAgentId, 
             int parentId, 
             int? agentId, 
@@ -60,7 +60,7 @@ namespace Apollo.Age.Reports.Services
                 {
                     IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(parentId, CurrentAgentId.Value);
 
-                    if (isSupper)
+                    if (isSuper)
                     {
                         if (modelAgentDownLine.Count() > 1)
                         {
@@ -302,11 +302,7 @@ namespace Apollo.Age.Reports.Services
             string betTypeName)
         {
             //// UserName text
-            //var userNameRow = sheet.CreateRow(fromRow - 1);
             var reportType = isAgent ? Lang.agent : Lang.member;
-            //ICell userNameCell = userNameRow.CreateCell(0);
-            //userNameCell.SetCellValue(string.Format("{0}: {1}", Lang.agent, userName));
-            //sheet.AddMergedRegion(new CellRangeAddress(fromRow - 1, fromRow - 1, 0, 2));
 
             //// Report Title
             var row = sheet.CreateRow(fromRow);
@@ -316,7 +312,7 @@ namespace Apollo.Age.Reports.Services
             style.Alignment = HorizontalAlignment.CENTER;
             //create a font style
             IFont font = workBook.CreateFont();
-            font.FontHeight = 15 * 20;
+            font.FontHeight = 300;
             style.SetFont(font);
             cell.CellStyle = style;
 
