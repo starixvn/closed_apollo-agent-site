@@ -92,7 +92,7 @@
 
             $("#btnExcelAgentWinLoss").on("click", function () {
                 $.blockUI();
-                var url = APOLLO.resolveUrl('Reports/ExportsAgentWinLoss?AgentId=' + WINLOSS.AgentId.val() 
+                var url = APOLLO.resolveUrl('Reports/ExportAgentWinLoss?AgentId=' + WINLOSS.AgentId.val() 
                     + "&AgentName=" + WINLOSS.AgentName.val()
                     + "&FromDate=" + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()
@@ -103,7 +103,7 @@
 
             $("#btnExcelMemberWinLoss").on("click", function () {
                 $.blockUI();
-                var url = APOLLO.resolveUrl('Reports/ExportsMemberWinLoss?AgentId=' + WINLOSS.AgentId.val()
+                var url = APOLLO.resolveUrl('Reports/ExportMemberWinLoss?AgentId=' + WINLOSS.AgentId.val()
                     + "&AgentName=" + WINLOSS.AgentName.val()
                     + "&FromDate=" + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()
@@ -120,7 +120,7 @@
                 + 4 : This Week
                 + 5 : Last Week
                 */
-                var rangeType = $(this).attr('range');
+                var rangeType = $(this).attr('data-range');
 
                 switch (rangeType) {
                     case "1":
