@@ -52,27 +52,21 @@
 	position: absolute;
 	text-align: left;
 	cursor: default;
-	z-index:100;
+	z-index: 100;
 	margin-left: 47px;
 	display: none;
+
+	.menuitem {
+		padding: 1px 0 1px 7px;
+
+		&.selected, &:hover {
+			background: #3399FF;
+			color: #fff;
+		}
+	}
 }
 
-.menuitem {
-	padding: 1px 0 1px 7px;
-}
-
-.menuitem:hover {
-	background-color: #3399FF;
-	color: White;
-}
-
-.selected {
-	background: #3399FF;
-	color: #fff;
-}
-
-.miniloading
-{
+.miniloading {
 	font-size: 9px;
 	margin-left: -10px;
 }
