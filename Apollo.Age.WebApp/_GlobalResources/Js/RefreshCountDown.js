@@ -36,8 +36,8 @@
             }
         },
 
-        showHideMenu: function ($this) {
-            var outerHeight = $this.outerHeight() - 1;
+        showHideMenu: function () {
+            var outerHeight = $("#ddlCountDown").outerHeight() - 1;
             if (RefreshCountDown.countDownMenu.css('display') == 'none') {
                 RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
                 RefreshCountDown.countDownMenu.show();
@@ -48,8 +48,8 @@
         },
 
         bindEventButtonDown: function () {
-            $("#btndown").on('click', function () {
-                RefreshCountDown.showHideMenu($(this));
+            $("#ddlCountDown").on('click', function () {
+                RefreshCountDown.showHideMenu();
                 RefreshCountDown.bindEventSubMenuOption();
                 RefreshCountDown.bindEventMenu();
             });
@@ -71,10 +71,17 @@
         },
 
         bindEventMenu: function () {
-            RefreshCountDown.countDownMenu.on('mouseleave', function () {
-                RefreshCountDown.timoutMenu = setTimeout(function () {
-                    RefreshCountDown.showHideMenu($(this));
-                }, 100);
+
+            RefreshCountDown.timoutMenu = setTimeout(function () {
+                RefreshCountDown.showHideMenu();
+            }, 3000);
+
+            $("#countdownmenu").on('mouseover', function () {
+                if (RefreshCountDown.timoutMenu != null) {
+                    clearTimeout(RefreshCountDown.timoutMenu);
+                }
+            }).on('mouseleave', function () {
+                RefreshCountDown.countDownMenu.hide();
             });
         },
 
