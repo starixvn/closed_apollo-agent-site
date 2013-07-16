@@ -5,6 +5,9 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.11">Created</change>
+//   <change who="Quinn.Vo" date="2013.7.16">Add function: ExportAgentWinLoss, ExportMemberWinLoss, ShortDateFormat,
+//      AgentWinLossViewBySuper, AgentWinLossViewByNoneSuper, CreateNumberCell, CreateStringCell, FormatNumber20
+//   </change>
 // </history>
 
 namespace Apollo.Age.Reports.Services
@@ -23,13 +26,22 @@ namespace Apollo.Age.Reports.Services
 
     public class WinLossService : ReportService, IWinLossService
     {
+        /// <summary>
+        /// Get List Match Entered from DB.
+        /// </summary>
+        /// <returns>List Match Entered.</returns>
         public List<MatchEnteredModel> GetMatchEntered()
         {
             var matchEnteredList = this.GetData<MatchEntered>(new MatchEnteredCriteria()).ToList();
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
-
+        
+        /// <summary>
+        /// Get List Agent Win Loss from DB.
+        /// </summary>
+        /// <param name="criteria">The input AgentWinLossCriteria.</param>
+        /// <returns>List Agent Win Loss Model.</returns>
         public List<AgentWinLossModel> GetAgentWinLoss(AgentWinLossCriteria criteria)
         {
             var agentWinLossList = this.GetData<AgentWinLossModel>(criteria).ToList();
@@ -37,6 +49,11 @@ namespace Apollo.Age.Reports.Services
             return agentWinLossList;
         }
 
+        /// <summary>
+        /// Get List Member Win Loss from DB.
+        /// </summary>
+        /// <param name="criteria">The input MemberWinLossCriteria.</param>
+        /// <returns>List Member Win Loss Model.</returns>
         public List<MemberWinLossModel> GetMemberWinLoss(MemberWinLossCriteria criteria)
         {
             var memberWinLossList = this.GetData<MemberWinLossModel>(criteria).ToList();
@@ -44,14 +61,26 @@ namespace Apollo.Age.Reports.Services
             return memberWinLossList;
         }
 
+        /// <summary>
+        /// Export Excel for Agent Win Loss.
+        /// </summary>
+        /// <param name="model">The input AgentWinLossViewModel to export Excel.</param>
+        /// <returns>Agent Win Loss Excel File.</returns>
         public HSSFWorkbook ExportAgentWinLoss(AgentWinLossViewModel model)
         {
             if (model != null && model.AgentWinLossList != null && model.AgentWinLossList.Any())
             {
                 var title = string.Format("{0} {1}", Lang.agentwinloss, Lang.lblReport);
-                var filter = string.Format("{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, Lang.dateRange, ShortDateFormat(model.FromDate), ShortDateFormat(model.ToDate),
-                    Lang.lblReport, model.SportName, Lang.WagerType, model.BettypeName);
+                var filter = string.Format(
+                    "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
+                    model.AgentName, 
+                    Lang.dateRange, 
+                    ShortDateFormat(model.FromDate), 
+                    ShortDateFormat(model.ToDate),
+                    Lang.lblReport, 
+                    model.SportName, 
+                    Lang.WagerType, 
+                    model.BettypeName);
                 if (model.IsSuper)
                 {
                     return AgentWinLossViewBySuper(model.AgentWinLossList, title, Lang.company, filter);
@@ -67,15 +96,27 @@ namespace Apollo.Age.Reports.Services
             }
         }
 
+        /// <summary>
+        /// Export Excel for Member Win Loss.
+        /// </summary>
+        /// <param name="model">The input MemberWinLossViewModel to export Excel.</param>
+        /// <returns>Member Win Loss Excel File.</returns>
         public HSSFWorkbook ExportMemberWinLoss(MemberWinLossViewModel model)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
             if (model != null && model.MemberWinLossList != null && model.MemberWinLossList.Any())
             {
                 var title = string.Format("{0} {1}", Lang.lblMemberWinLoss, Lang.lblReport);
-                var filter = string.Format("{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, Lang.dateRange, ShortDateFormat(model.FromDate), ShortDateFormat(model.ToDate),
-                    Lang.lblReport, model.SportName, Lang.WagerType, model.BettypeName);
+                var filter = string.Format(
+                    "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
+                    model.AgentName, 
+                    Lang.dateRange, 
+                    ShortDateFormat(model.FromDate), 
+                    ShortDateFormat(model.ToDate),
+                    Lang.lblReport, 
+                    model.SportName, 
+                    Lang.WagerType, 
+                    model.BettypeName);
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
 
@@ -86,7 +127,6 @@ namespace Apollo.Age.Reports.Services
                 var font = hssfworkbook.CreateFont();
                 font.FontHeightInPoints = 11;
                 font.Color = NPOI.HSSF.Util.HSSFColor.GREY_80_PERCENT.WHITE.index;
-                //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
                 ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
                 headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
@@ -143,137 +183,46 @@ namespace Apollo.Age.Reports.Services
                 IDataFormat format = hssfworkbook.CreateDataFormat();
                 var numberFormat = format.GetFormat("#,##0.00");
 
-                ICell cell;
                 #endregion
 
                 #region header
-                // header
                 var rowIndex = 4;
                 var columIndex = 0;
                 var row = sheet.CreateRow(rowIndex);
 
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.lblSoccerPT);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.BetAmount);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.CommBase);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.outstanding);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.ShareAmount);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.member);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(model.AgentName);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.UplineTotal);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.outstanding);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.ShareAmount);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.member);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, model.AgentName);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.UplineTotal);
 
                 rowIndex++;
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
 
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.lblWinLoss);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.lblComm);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.total);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.lblWinLoss);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.lblComm);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
-                cell.SetCellValue(Lang.total);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = headerStyle;
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.lblWinLoss);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.lblComm);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.total);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.lblWinLoss);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.lblComm);
+                CreateStringCell(row, columIndex++, headerStyle, Lang.total);
+                CreateStringCell(row, columIndex++, headerStyle, string.Empty);
 
                 rowIndex++;
-                //// end header
                 #endregion
 
                 #region body
@@ -307,94 +256,19 @@ namespace Apollo.Age.Reports.Services
 
                     row = sheet.CreateRow(rowIndex);
 
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle1;
-                    cell.SetCellType(CellType.STRING);
-                    cell.SetCellValue(memberWinLoss.MemberName);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)(memberWinLoss.SoccerShare / 100.00));
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)(memberWinLoss.Turnover));
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.ActualTO);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.Outstanding);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.OutstandingShare);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.WinLoss);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.MemComm);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.MemTotal);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.AWinLoss);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.AComm);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.ATotal);
-                    columIndex++;
-
-                    cell = row.CreateCell(columIndex);
-                    cell.CellStyle = bodyStyle;
-                    cell.SetCellType(CellType.NUMERIC);
-                    cell.CellStyle.DataFormat = numberFormat;
-                    cell.SetCellValue((double)memberWinLoss.UplineTotal);
+                    CreateStringCell(row, columIndex++, bodyStyle1, memberWinLoss.MemberName);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(memberWinLoss.SoccerShare / 100.00));
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.Turnover);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.ActualTO);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.Outstanding);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.OutstandingShare);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.WinLoss);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemComm);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemTotal);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.AWinLoss);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.AComm);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.ATotal);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.UplineTotal);
 
                     rowIndex++;
                 }
@@ -405,91 +279,19 @@ namespace Apollo.Age.Reports.Services
                 row = sheet.CreateRow(rowIndex);
                 columIndex = 0;
 
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle1;
-                cell.SetCellType(CellType.STRING);
-                cell.SetCellValue(Lang.total);
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalTurnover));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalActual));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalOutstanding));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalOutstandingShare));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalMWinLoss));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalMComm));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalMTotal));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalAWinLoss));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalAComm));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalATotal));
-                columIndex++;
-
-                cell = row.CreateCell(columIndex);
-                cell.CellStyle = footerStyle;
-                cell.SetCellType(CellType.NUMERIC);
-                cell.CellStyle.DataFormat = numberFormat;
-                cell.SetCellValue((double)(totalUpline));
+                CreateStringCell(row, columIndex++, footerStyle1, Lang.total);
+                CreateStringCell(row, columIndex++, footerStyle, string.Empty);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalTurnover);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalActual);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstanding);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstandingShare);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalMWinLoss);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalMComm);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalMTotal);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAWinLoss);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAComm);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalATotal);
+                CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalUpline);
                 #endregion footer
 
                 #region auto size & freePane
@@ -498,12 +300,14 @@ namespace Apollo.Age.Reports.Services
                 for (var i = 0; i < sheet.GetRow(4).LastCellNum; i++)
                 {
                     sheet.AutoSizeColumn(i);
-                    sheet.SetColumnWidth(i, (sheet.GetColumnWidth(i) + 500));
+                    var currentWidth = sheet.GetColumnWidth(i);
+                    sheet.SetColumnWidth(i, currentWidth + 500);
                 }
                 
                 #endregion
 
                 #region title
+                // row title report
                 var rowTitle = sheet.CreateRow(1);
                 var font1 = hssfworkbook.CreateFont();
                 font1.FontHeightInPoints = 14;
@@ -511,23 +315,17 @@ namespace Apollo.Age.Reports.Services
                 ICellStyle titleStyle = hssfworkbook.CreateCellStyle();
                 titleStyle.Alignment = HorizontalAlignment.CENTER;
                 titleStyle.SetFont(font1);
+                CreateStringCell(rowTitle, 0, titleStyle, title);
 
-                cell = rowTitle.CreateCell(0);
-                cell.SetCellValue(title);
-                cell.CellStyle = titleStyle;
-
+                // row filter
                 var rowFilter = sheet.CreateRow(2);
-                ICell filterCell = rowFilter.CreateCell(0);
                 IFont fontFilter = hssfworkbook.CreateFont();
                 fontFilter.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
                 fontFilter.IsItalic = true;
                 fontFilter.Color = HSSFColor.BLUE.index;
                 ICellStyle filterStyle = hssfworkbook.CreateCellStyle();
-                filterStyle.Alignment = HorizontalAlignment.RIGHT;
                 filterStyle.SetFont(fontFilter);
-                filterCell.CellStyle = filterStyle;
-                filterCell.SetCellValue(filter);
-
+                CreateStringCell(rowFilter, 0, filterStyle, filter);
                 #endregion
 
                 #region merge cell
@@ -548,6 +346,29 @@ namespace Apollo.Age.Reports.Services
             return hssfworkbook;
         }
 
+        /// <summary>
+        /// Get Date Format (year-month-day).
+        /// </summary>
+        /// <param name="dt">Object date need format.</param>
+        /// <returns>Return string date.</returns>
+        public string ShortDateFormat(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
+            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
+        }
+
+        /// <summary>
+        /// Get Excel File by View Super.
+        /// </summary>
+        /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="title">Title of File.</param>
+        /// <param name="agentName">Current Agent Name.</param>
+        /// <param name="filter">All parameters to query report.</param>
+        /// <returns>Agent Win Loss Excel File.</returns>
         private HSSFWorkbook AgentWinLossViewBySuper(IList<AgentWinLossModel> agentWinLossList, string title, string agentName, string filter)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
@@ -560,7 +381,6 @@ namespace Apollo.Age.Reports.Services
             var font = hssfworkbook.CreateFont();
             font.FontHeightInPoints = 11;
             font.Color = NPOI.HSSF.Util.HSSFColor.GREY_80_PERCENT.WHITE.index;
-            //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
             headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
@@ -588,79 +408,39 @@ namespace Apollo.Age.Reports.Services
             bodyStyle1.BorderRight = BorderStyle.THIN;
             bodyStyle1.BorderBottom = BorderStyle.THIN;
 
-            ICell cell;
+            IDataFormat format = hssfworkbook.CreateDataFormat();
+            var numberFormat = format.GetFormat("#,##0.00");
+
             #endregion
 
             #region header
-            // header
-            var rowIndex = 4; // start at row 3
+            var rowIndex = 4;
+            var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
-            cell = row.CreateCell(0);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(1);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblSoccerPT);
-
-            cell = row.CreateCell(2);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.BetAmount);
-
-            cell = row.CreateCell(3);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.CommBase);
-
-            cell = row.CreateCell(4);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.outstanding);
-
-            cell = row.CreateCell(5);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.ShareAmount);
-
-            cell = row.CreateCell(6);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(agentName);
-
-            cell = row.CreateCell(7);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(8);
-            cell.CellStyle = headerStyle;
-
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.outstanding);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.ShareAmount);
+            CreateStringCell(row, columIndex++, headerStyle, agentName);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            
             rowIndex++;
+            columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            cell = row.CreateCell(0);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(1);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(2);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(3);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(4);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(5);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(6);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblWinLoss);
-
-            cell = row.CreateCell(7);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblComm);
-
-            cell = row.CreateCell(8);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.total);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblWinLoss);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblComm);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.total);
 
             rowIndex++;
             //// end header
@@ -681,7 +461,7 @@ namespace Apollo.Age.Reports.Services
 
             foreach (var agentWinLoss in agentWinLossList)
             {
-
+                columIndex = 0;
                 totalTurnover += agentWinLoss.Turnover;
                 totalActual += agentWinLoss.ActualTO;
                 totalGross += agentWinLoss.GrossTotal;
@@ -693,52 +473,16 @@ namespace Apollo.Age.Reports.Services
                 totalOutstandingShare += agentWinLoss.OutstandingShare;
 
                 row = sheet.CreateRow(rowIndex);
-
-                cell = row.CreateCell(0);
-                cell.CellStyle = bodyStyle1;
-                if (agentWinLoss.IsAgent)
-                {
-                    cell.SetCellValue(agentWinLoss.AgentName);
-                }
-                else
-                {
-                    cell.SetCellValue(Lang.lblMemberWinLoss);
-                }
-
-                cell = row.CreateCell(1);
-                cell.CellStyle = bodyStyle;
-                if (agentWinLoss.IsAgent)
-                {
-                    cell.SetCellValue(FormatNumber20(agentWinLoss.SoccerShare / 100.00));
-                }
-
-                cell = row.CreateCell(2);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.Turnover));
-
-                cell = row.CreateCell(3);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.ActualTO));
-
-                cell = row.CreateCell(4);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.Outstanding));
-
-                cell = row.CreateCell(5);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.OutstandingShare));
-
-                cell = row.CreateCell(6);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.AWinLoss));
-
-                cell = row.CreateCell(7);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.AComm));
-
-                cell = row.CreateCell(8);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.ATotal));
+                
+                CreateStringCell(row, columIndex++, bodyStyle1, agentWinLoss.AgentName);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Outstanding);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.OutstandingShare);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
 
                 rowIndex++;
             }
@@ -752,7 +496,8 @@ namespace Apollo.Age.Reports.Services
             for (var i = 0; i < sheet.GetRow(4).LastCellNum; i++)
             {
                 sheet.AutoSizeColumn(i);
-                sheet.SetColumnWidth(i, (sheet.GetColumnWidth(i) + 500));
+                var currentWidth = sheet.GetColumnWidth(i);
+                sheet.SetColumnWidth(i, currentWidth + 500);
             }
 
             #endregion
@@ -767,21 +512,18 @@ namespace Apollo.Age.Reports.Services
             titleStyle.Alignment = HorizontalAlignment.CENTER;
             titleStyle.SetFont(font1);
 
-            cell = rowTitle.CreateCell(0);
-            cell.SetCellValue(title);
-            cell.CellStyle = titleStyle;
+            CreateStringCell(rowTitle, 0, titleStyle, title);
 
             var rowFilter = sheet.CreateRow(2);
-            ICell filterCell = rowFilter.CreateCell(0);
+           
             IFont fontFilter = hssfworkbook.CreateFont();
             fontFilter.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
             fontFilter.IsItalic = true;
             fontFilter.Color = HSSFColor.BLUE.index;
             ICellStyle filterStyle = hssfworkbook.CreateCellStyle();
-            filterStyle.Alignment = HorizontalAlignment.RIGHT;
             filterStyle.SetFont(fontFilter);
-            filterCell.CellStyle = filterStyle;
-            filterCell.SetCellValue(filter);
+
+            CreateStringCell(rowFilter, 0, filterStyle, filter);
             #endregion
 
             #region merge cell
@@ -799,6 +541,14 @@ namespace Apollo.Age.Reports.Services
             return hssfworkbook;
         }
 
+        /// <summary>
+        /// Get Excel File by View None Super.
+        /// </summary>
+        /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="title">Title of File.</param>
+        /// <param name="agentName">Current Agent Name.</param>
+        /// <param name="filter">All parameters to query report.</param>
+        /// <returns>Agent Win Loss Excel File.</returns>
         private HSSFWorkbook AgentWinLossViewByNoneSuper(IList<AgentWinLossModel> agentWinLossList, string title, string agentName, string filter)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
@@ -812,7 +562,6 @@ namespace Apollo.Age.Reports.Services
             var font = hssfworkbook.CreateFont();
             font.FontHeightInPoints = 11;
             font.Color = NPOI.HSSF.Util.HSSFColor.GREY_80_PERCENT.WHITE.index;
-            //font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = hssfworkbook.CreateCellStyle();
             headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
@@ -839,8 +588,6 @@ namespace Apollo.Age.Reports.Services
             bodyStyle1.BorderLeft = BorderStyle.THIN;
             bodyStyle1.BorderRight = BorderStyle.THIN;
             bodyStyle1.BorderBottom = BorderStyle.THIN;
-
-            ICell cell;
 
             var font2 = hssfworkbook.CreateFont();
             font2.Color = HSSFColor.WHITE.index;
@@ -874,87 +621,36 @@ namespace Apollo.Age.Reports.Services
 
             #region header
             var rowIndex = 4;
+            var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
-            cell = row.CreateCell(0);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(1);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblSoccerPT);
-
-            cell = row.CreateCell(2);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.BetAmount);
-
-            cell = row.CreateCell(3);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.CommBase);
-
-            cell = row.CreateCell(4);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.outstanding);
-
-            cell = row.CreateCell(5);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.ShareAmount);
-
-            cell = row.CreateCell(6);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.GrossTotal);
-
-            cell = row.CreateCell(7);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(agentName);
-
-            cell = row.CreateCell(8);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(9);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(10);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.UplineTotal);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.outstanding);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.ShareAmount);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.GrossTotal);
+            CreateStringCell(row, columIndex++, headerStyle, agentName);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.UplineTotal);
 
             rowIndex++;
+            columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            cell = row.CreateCell(0);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(1);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(2);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(3);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(4);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(5);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(6);
-            cell.CellStyle = headerStyle;
-
-            cell = row.CreateCell(7);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblWinLoss);
-
-            cell = row.CreateCell(8);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.lblComm);
-
-            cell = row.CreateCell(9);
-            cell.CellStyle = headerStyle;
-            cell.SetCellValue(Lang.total);
-
-            cell = row.CreateCell(10);
-            cell.CellStyle = headerStyle;
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblWinLoss);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblComm);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
 
             rowIndex++;
             #endregion
@@ -974,6 +670,7 @@ namespace Apollo.Age.Reports.Services
 
             foreach (var agentWinLoss in agentWinLossList)
             {
+                columIndex = 0;
                 totalTurnover += agentWinLoss.Turnover;
                 totalActual += agentWinLoss.ActualTO;
                 totalGross += agentWinLoss.GrossTotal;
@@ -986,59 +683,33 @@ namespace Apollo.Age.Reports.Services
 
                 row = sheet.CreateRow(rowIndex);
 
-                cell = row.CreateCell(0);
-                cell.CellStyle = bodyStyle1;
                 if (agentWinLoss.IsAgent)
                 {
-                    cell.SetCellValue(agentWinLoss.AgentName);
+                    CreateStringCell(row, columIndex++, bodyStyle1, agentWinLoss.AgentName);
                 }
                 else
                 {
-                    cell.SetCellValue(Lang.lblMemberWinLoss);
+                    CreateStringCell(row, columIndex++, bodyStyle1, Lang.lblMemberWinLoss);
                 }
 
-                cell = row.CreateCell(1);
-                cell.CellStyle = bodyStyle;
                 if (agentWinLoss.IsAgent)
                 {
-                    cell.SetCellValue(FormatNumber20(agentWinLoss.SoccerShare / 100.00));
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
+                }
+                else
+                {
+                    CreateStringCell(row, columIndex++, bodyStyle, string.Empty);
                 }
 
-                cell = row.CreateCell(2);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.Turnover));
-
-                cell = row.CreateCell(3);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.ActualTO));
-
-                cell = row.CreateCell(4);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.Outstanding));
-
-                cell = row.CreateCell(5);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.OutstandingShare));
-
-                cell = row.CreateCell(6);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.GrossTotal));
-
-                cell = row.CreateCell(7);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.AWinLoss));
-
-                cell = row.CreateCell(8);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.AComm));
-
-                cell = row.CreateCell(9);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.ATotal));
-
-                cell = row.CreateCell(10);
-                cell.CellStyle = bodyStyle;
-                cell.SetCellValue(FormatNumber20(agentWinLoss.UplineTotal));
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Outstanding);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.OutstandingShare);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.GrossTotal);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.UplineTotal);
 
                 rowIndex++;
             }
@@ -1046,50 +717,20 @@ namespace Apollo.Age.Reports.Services
             #endregion
 
             #region footer
+            columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            cell = row.CreateCell(0);
-            cell.CellStyle = footerStyle1;
-            cell.SetCellValue(Lang.total);
-
-            cell = row.CreateCell(1);
-            cell.CellStyle = footerStyle;
-
-            cell = row.CreateCell(2);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalTurnover));
-
-            cell = row.CreateCell(3);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalActual));
-
-            cell = row.CreateCell(4);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalOutstanding));
-
-            cell = row.CreateCell(5);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalOutstandingShare));
-
-            cell = row.CreateCell(6);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalGross));
-
-            cell = row.CreateCell(7);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalAWinLoss));
-
-            cell = row.CreateCell(8);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalAComm));
-
-            cell = row.CreateCell(9);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalATotal));
-
-            cell = row.CreateCell(10);
-            cell.CellStyle = footerStyle;
-            cell.SetCellValue(FormatNumber20(totalUpline));
+            CreateStringCell(row, columIndex++, footerStyle1, Lang.total);
+            CreateStringCell(row, columIndex++, footerStyle, string.Empty);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalTurnover);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalActual);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstanding);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstandingShare);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalGross);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAWinLoss);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAComm);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalATotal);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalUpline);
             #endregion footer
 
             #region auto size & freePane
@@ -1098,7 +739,8 @@ namespace Apollo.Age.Reports.Services
             for (var i = 0; i < sheet.GetRow(4).LastCellNum; i++)
             {
                 sheet.AutoSizeColumn(i);
-                sheet.SetColumnWidth(i, (sheet.GetColumnWidth(i) + 500));
+                var currentWidth = sheet.GetColumnWidth(i);
+                sheet.SetColumnWidth(i, currentWidth + 500);
             }
 
             #endregion
@@ -1111,22 +753,17 @@ namespace Apollo.Age.Reports.Services
             ICellStyle titleStyle = hssfworkbook.CreateCellStyle();
             titleStyle.Alignment = HorizontalAlignment.CENTER;
             titleStyle.SetFont(font1);
-
-            cell = rowTitle.CreateCell(0);
-            cell.SetCellValue(title);
-            cell.CellStyle = titleStyle;
+            CreateStringCell(rowTitle, 0, titleStyle, title);
 
             var rowFilter = sheet.CreateRow(2);
-            ICell filterCell = rowFilter.CreateCell(0);
             IFont fontFilter = hssfworkbook.CreateFont();
             fontFilter.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
             fontFilter.IsItalic = true;
             fontFilter.Color = HSSFColor.BLUE.index;
             ICellStyle filterStyle = hssfworkbook.CreateCellStyle();
-            filterStyle.Alignment = HorizontalAlignment.RIGHT;
             filterStyle.SetFont(fontFilter);
-            filterCell.CellStyle = filterStyle;
-            filterCell.SetCellValue(filter);
+            CreateStringCell(rowFilter, 0, filterStyle, filter);
+
             #endregion
 
             #region merge cell
@@ -1147,6 +784,42 @@ namespace Apollo.Age.Reports.Services
             return hssfworkbook;
         }
 
+        /// <summary>
+        /// Create new cell with format is number.
+        /// </summary>
+        /// <param name="row">Row need create cell.</param>
+        /// <param name="columIndex">Index of column need create cell.</param>
+        /// <param name="style">Style of cell.</param>
+        /// <param name="numberFormat">Format of number.</param>
+        /// <param name="value">Value in cell.</param>
+        private void CreateNumberCell(IRow row, int columIndex, ICellStyle style, short numberFormat, double value)
+        {
+            var cell = row.CreateCell(columIndex);
+            cell.CellStyle = style;
+            cell.SetCellType(CellType.NUMERIC);
+            cell.CellStyle.DataFormat = numberFormat;
+            cell.SetCellValue(value);
+        }
+
+        /// <summary>
+        /// Create new cell with format is string.
+        /// </summary>
+        /// <param name="row">Row need create cell.</param>
+        /// <param name="columIndex">Index of Column need create cell.</param>
+        /// <param name="style">Style of cell.</param>
+        /// <param name="value">Value in cell.</param>
+        private void CreateStringCell(IRow row, int columIndex, ICellStyle style, string value)
+        {
+            var cell = row.CreateCell(columIndex);
+            cell.CellStyle = style;
+            cell.SetCellValue(value);
+        }
+
+        /// <summary>
+        /// Get number format with 2 digit.
+        /// </summary>
+        /// <param name="obj">Input object.</param>
+        /// <returns>A string format value.</returns>
         private string FormatNumber20(object obj)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -1157,16 +830,11 @@ namespace Apollo.Age.Reports.Services
             return string.Format("{0:#,##0.00}", obj);
         }
 
-        public string ShortDateFormat(object dt)
-        {
-            if (Convert.IsDBNull(dt) || dt == null)
-            {
-                return string.Empty;
-            }
-
-            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
-        }
-
+        /// <summary>
+        /// Convert object from DB return to object map with view.
+        /// </summary>
+        /// <param name="enteredFromList">List MatchEntered object.</param>
+        /// <returns>List MatchEnteredModel object.</returns>
         private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEntered> enteredFromList)
         {
             List<MatchEnteredModel> enteredToList = null;
