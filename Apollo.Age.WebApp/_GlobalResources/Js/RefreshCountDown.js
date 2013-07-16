@@ -16,7 +16,9 @@
         },
 
         startTimeout: function () {
-            RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            if (RefreshCountDown.interval > 0) {
+                RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            }
         },
 
         restartTimeout: function () {
@@ -57,7 +59,7 @@
             var intervalTime = timeTick;
             intervalTime--;
             RefreshCountDown.countDownRefresh.html(intervalTime);
-            
+
             if (intervalTime <= 0) {
                 intervalTime = RefreshCountDown.interval;
                 eval(RefreshCountDown.onRefresh);
