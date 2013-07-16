@@ -57,6 +57,13 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static string SingbetDownTime
+        {
+            get {
+                return GetValue("SingbetDownTime");
+            }
+        }
+
         public static bool AllowInternalUpdate
         {
             get

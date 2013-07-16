@@ -11,9 +11,6 @@
 namespace Apollo.Age.Web.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading;
     using Apollo.Age.Configurations;
     using Apollo.Age.Services.Impl;
@@ -21,18 +18,21 @@ namespace Apollo.Age.Web.Services
     using Fanex.Caching;
     using Sunplus.UMControllerLibrary;
 
+    /// <summary>
+    /// Under Maintenance Service
+    /// </summary>
     public class UnderMaintenanceService : ServiceBase
-    {        
+    {
         private const int WaitInterval = 1000; // 1 second
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
 
-        private readonly UMBusiness umService;
-        private static readonly Mutex mutext = new Mutex();
+        private readonly UMBusiness _underMaintenanceService;
+        private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;
 
         public UnderMaintenanceService()
         {
-            umService = new UMBusiness();
+            _underMaintenanceService = new UMBusiness();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 
@@ -40,15 +40,15 @@ namespace Apollo.Age.Web.Services
         {
             get
             {
-                var maintenanceInfo = _cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);                    
+                var maintenanceInfo = _cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);
                 if (maintenanceInfo == null)
                 {
-                    if (mutext.WaitOne(WaitInterval))
+                    if (_threadMuText.WaitOne(WaitInterval))
                     {
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));                                
+                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));
                         }
                         catch
                         {
@@ -56,7 +56,7 @@ namespace Apollo.Age.Web.Services
                         }
                         finally
                         {
-                            mutext.ReleaseMutex();
+                            _threadMuText.ReleaseMutex();
                         }
                     }
                     else
@@ -64,10 +64,116 @@ namespace Apollo.Age.Web.Services
                         maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
                     }
                 }
+
                 return maintenanceInfo;
             }
         }
 
+        /// <summary>
+        /// Checking the day is last day in the month
+        /// </summary>
+        /// <param name="date">Now date</param>
+        /// <param name="day">day need to check</param>
+        /// <returns>return boolean</returns>
+        private bool IsLastDayInMonth(DateTime date, string day)
+        {
+            if (date.DayOfWeek.ToString().ToLower() != day.ToLower())
+            {
+                return false; // it is not monday
+            }
+
+            // the next monday is...
+            var oneWeekAfter = date.AddDays(7);
+
+            // and is it in same month?, if it is, that means its not last monday
+            return oneWeekAfter.Month != date.Month;
+        }
+
+        /// <summary>
+        /// Singbet maintenance info
+        /// </summary>
+        /// <returns>Return Under Maintenance View Model</returns>
+        private UnderMaintenanceViewModel SingbetMaintenanceInfo()
+        {
+            var singbetDowntime = AppSettings.SingbetDownTime;
+            var day = string.Empty;
+            var lastDay = string.Empty;
+            var startTime = string.Empty;
+            var endTime = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(singbetDowntime))
+            {
+                return new UnderMaintenanceViewModel
+                {
+                    IsDownTime = false
+                };
+            }
+            else
+            {
+                // Every Monday from 11:00 PM to 13:00 PM or Last Monday in a Month from 9:00 AM to 13:00 PM
+                //Monday@11:00 PM - 13:00 PM | Monday@9:00 AM - 13:00 PM
+                string[] singbetDowntimeOptions = singbetDowntime.Split("|".ToCharArray());
+                if (singbetDowntimeOptions.Length <= 0)
+                {
+                    return new UnderMaintenanceViewModel
+                    {
+                        IsDownTime = false
+                    };
+                }
+                else
+                {
+                    string[] days = singbetDowntimeOptions[0].Split("@".ToCharArray());
+                    string[] lastDays = singbetDowntimeOptions[1].Split("@".ToCharArray());
+
+                    bool isLastDayInMonth = IsLastDayInMonth(DateTime.Now, lastDays[0].Trim());
+                    if (isLastDayInMonth)
+                    {
+                        string[] times = lastDays[1].Split("-".ToCharArray());
+                        if (times.Length > 0)
+                        {
+                            startTime = times[0].ToString().Trim();
+                            endTime = times[1].ToString().Trim();
+
+                            return new UnderMaintenanceViewModel
+                            {
+                                IsDownTime = true,
+                                StartTime = startTime,
+                                EndTime = endTime
+                            };
+                        }
+                    }
+                    else
+                    {
+                        if (DateTime.Now.DayOfWeek.ToString().ToLower() == days[0].Trim().ToLower())
+                        {
+                            string[] times = days[1].Split("-".ToCharArray());
+                            if (times.Length > 0)
+                            {
+                                startTime = times[0].ToString().Trim();
+                                endTime = times[1].ToString().Trim();
+
+                                return new UnderMaintenanceViewModel
+                                {
+                                    IsDownTime = true,
+                                    StartTime = startTime,
+                                    EndTime = endTime
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+
+            return new UnderMaintenanceViewModel
+            {
+                IsDownTime = false
+            };
+        }
+
+        /// <summary>
+        /// Get IBC Maintenance Info
+        /// </summary>
+        /// <returns>Return Under Maintenance View Model</returns>
         private UnderMaintenanceViewModel GetMaintenanceInfo()
         {
             var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
@@ -93,6 +199,10 @@ namespace Apollo.Age.Web.Services
                     maintenanceInfo.StartTime = startTime;
                     maintenanceInfo.EndTime = endTime;
                 }
+                else
+                {
+                    maintenanceInfo = SingbetMaintenanceInfo();
+                }
 
                 return maintenanceInfo;
             }
@@ -101,6 +211,8 @@ namespace Apollo.Age.Web.Services
                 HandleException(ex);
                 return new UnderMaintenanceViewModel { IsDownTime = false };
             }
+
+            return new UnderMaintenanceViewModel { IsDownTime = false };
         }
     }
 }
