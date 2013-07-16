@@ -27,6 +27,12 @@
         @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
         <img alt="" src="~/_GlobalResources/Images/top_04.png">
     </div>
+    <div class="pages-size">
+        <div class="pull-left">@Lang.Page:</div>
+        <div id="pager" class="sbpager">
+        </div>
+        @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+    </div>
     <div id="box_header" class="report">
         <table>
             <tr>
@@ -111,13 +117,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="pages-size">
-        <div class="pull-left">@Lang.Page:</div>
-        <div id="pager" class="sbpager">
-        </div>
-        @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
-    </div>
+    </div>    
     }
 }
 <div id="container">
