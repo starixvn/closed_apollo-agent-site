@@ -1,7 +1,7 @@
 ﻿.btnRefresh, .btnLoading {
-	width: 50px;
-	height: 22px;
-	padding: 0px 0px 0px 17px;
+	height: 18px;
+	padding: 0 0 0 7px;
+    width: 45px;
 	cursor: pointer;
 	font-size: 11px;
 	line-height: 18px;
@@ -11,9 +11,11 @@
 	-moz-border-radius: 3px; /* Firefox */
 	-webkit-border-radius: 3px; /* Safari and Chrome */
 	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-
 	float: left;
-	background: url(../images/btRefresh.png) no-repeat left top;
+	/*background: url(../images/btRefresh.png) no-repeat left top;*/
+	border: 1px solid #ddd;
+	border-top-color: #ABADB3;
+	text-align: center;
 }
 
 .btnLoading {
@@ -21,50 +23,52 @@
 }
 
 .btnDown {
-	float: right;
+	float: left;
 	position: relative;
 	left: -4px;
-	background: url(../images/btDown.png) no-repeat left top;
-	width: 12px;
-	height: 22px;
+	background: url(../images/btnCountDown.png) no-repeat left top;
+	width: 19px;
+	height: 20px;
 	font-size: 11px;
-	line-height: 18px;
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-	opacity: 1;
-	
+	line-height: 18px;	
 	-moz-border-radius: 3px; /* Firefox */
 	-webkit-border-radius: 3px; /* Safari and Chrome */
-	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-	
+	border-radius: 3px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
+	cursor: pointer;
 }
 
 .btnDown:hover {
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
-	opacity: 0.6;
+	background: url(../images/btnCountDown-hover.png) no-repeat left top;
+	-moz-border-radius: 0; /* Firefox */
+	-webkit-border-radius: 0; /* Safari and Chrome */
+	border-radius: 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
+	width: 19px;
 }
 
 .panelDown {
 	border: solid 1px #d4d4d4;
-	background-color: #dfdfdf;
-	width: 73px; /*32*/
+	background-color: #fff;
+	width: 66px; /*32*/
 	position: absolute;
 	text-align: left;
 	cursor: default;
 	z-index:100;
+	margin-left: 47px;
+	display: none;
 }
 
 .menuitem {
-	padding: 1px 0 1px 15px;
+	padding: 1px 0 1px 7px;
 }
 
 .menuitem:hover {
-	background-color: #a0a0a0;
+	background-color: #3399FF;
 	color: White;
 }
 
-.menuitemcheck
-{
-	background: url(../images/check.png) no-repeat 3px 4px;
+.selected {
+	background: #3399FF;
+	color: #fff;
 }
 
 .miniloading
@@ -75,7 +79,6 @@
 
 .btnCountDown {
 	float: left;
-    margin-right: 4px;
 }
 
 .div_min_bottom {
@@ -85,4 +88,17 @@
 /*default padding, margin for tblRpt*/
 .default-tbl {
 	margin: 0;
+}
+
+/* FIX IE */
+
+.eq-ie7 {
+	.btnCountDown {
+		position: relative;
+		z-index: 100;
+
+		.panelDown{
+			left: 0;
+		}
+	}
 }
