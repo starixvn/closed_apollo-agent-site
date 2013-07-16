@@ -112,13 +112,7 @@
                     <td>
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
-                    <td class="text-left feature">
-                        <a href="#" class="edit-link">Demo /</a>
-                        <ul class="menu-list">
-                            <li><a href="#">edit 1</a></li>
-                            <li><a href="#">edit 1</a></li>
-                            <li><a href="#">edit 1</a></li>
-                        </ul>
+                    <td class="text-left">
                         <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
                             @if (isMaster)
                             {

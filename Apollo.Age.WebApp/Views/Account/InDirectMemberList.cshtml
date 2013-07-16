@@ -14,7 +14,8 @@
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
-    var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;    
+    var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
+    var agentList = ViewBag.AgentList != null ? (List<Agent>)ViewBag.AgentList : new List<Agent>();
 }
 @using (Html.BeginForm())
 {       
@@ -118,15 +119,31 @@
                         @item.CashBalance
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@backLink">
-                            @if (isMaster)
-                            {
-                                @Lang.edit
-                            }
-                            else
-                            {
-                                @Lang.view
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                        <div class="action">
+                            <a href="#" class="edit-link">
+                                @if (isMaster)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.view
+                                }</a>
+                            <ul class="menu-list">
+                                @if (agentList.Any())
+                                {
+                                    foreach (var itemAgent in agentList)
+                                    {
+                                        if (itemAgent.Level > AgentLevel.Super)
+                                        { 
+                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink">@itemAgent.Username</a></li>	 
+                                        }
+                                    }
+
+                                }
+                            </ul>
+                            &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                        </div>
                     </td>
                 </tr>
             }
