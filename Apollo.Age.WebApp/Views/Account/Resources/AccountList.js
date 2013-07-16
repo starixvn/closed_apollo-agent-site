@@ -34,6 +34,26 @@ var ACCOUNTLIST = function ($) {
         }
     };
 } (jQuery);
+
 $(document).ready(function () {
     ACCOUNTLIST.init();
+
+    $('.edit-link').click(function (event) {
+        $this = $(this);
+        $listMenu = $this.siblings('.menu-list');
+        if ($listMenu.is(":visible")) {
+            $listMenu.hide();
+        } else {
+            $('.feature').children('.menu-list').hide();
+            $listMenu.show();
+            //            setTimeout(function () {
+            //                $listMenu.hide();
+            //            }, 1000);      
+        }
+        event.stopPropagation();
+    });
+
+    $('body').click(function () {
+        $('.feature').children('.menu-list').hide();
+    });
 });
