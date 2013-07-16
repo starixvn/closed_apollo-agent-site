@@ -475,7 +475,7 @@ Spinner.prototype = {
 
 
         if (fractional.length > 0) {
-            while (fractional[fractional.length - 1] == '0') {
+            while (fractional.charAt(fractional.length - 1) == '0') {
                 fractional = fractional.substring(0, fractional.length - 1);
             }
         }

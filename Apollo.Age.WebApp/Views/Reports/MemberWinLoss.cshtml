@@ -7,17 +7,12 @@
 }
 @model MemberWinLossViewModel
 <div id="function-bar">
-    @*<div class="item">
-        <span>@Apollo.Age.Resources.Lang.date : @Formater.ShortDateFormat(Model.FromDate)~@Formater.ShortDateFormat(Model.ToDate)
-            -- @Apollo.Age.Resources.Lang.sport : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType
-            : @Model.BettypeName -- </span><a id="btnBack" href="javascript:;">@Apollo.Age.Resources.Lang.back</a>
-    </div>*@
     <div class="item">
         <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
     </div>
     @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
-    <img alt="" src="~/_GlobalResources/Images/top_04.png">
+    <img alt="" src="~/_GlobalResources/Images/top_04.png"/>
 </div>
 <div id="box_header" class="report">
     <table class="winloss">

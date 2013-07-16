@@ -21,7 +21,7 @@ namespace Apollo.Age.Reports.Services
 
     public class ReportService : QueryService
     {
-        private const string BalanceUpdayKey = "Apollo.Age.Reports.Services.SpecialDays";
+        private const string _BalanceUpdayKey = "Apollo.Age.Reports.Services.SpecialDays";
 
         protected ICache CacheManager
         {
@@ -35,11 +35,11 @@ namespace Apollo.Age.Reports.Services
         {
             get
             {
-                dynamic specialDays = CacheManager.Get<dynamic>(BalanceUpdayKey);
+                dynamic specialDays = CacheManager.Get<dynamic>(_BalanceUpdayKey);
                 if (specialDays == null)
                 {
                     specialDays = this.GetData<dynamic>(new GetSpecialDaysCriteria()).Single();
-                    CacheManager.Set<dynamic>(BalanceUpdayKey, specialDays, DateTime.Now.AddMinutes(5));
+                    CacheManager.Set<dynamic>(_BalanceUpdayKey, specialDays, DateTime.Now.AddMinutes(5));
                 }
 
                 return specialDays;

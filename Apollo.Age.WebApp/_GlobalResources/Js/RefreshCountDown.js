@@ -37,9 +37,9 @@
         },
 
         showHideMenu: function () {
-            var outerHeight = $("#ddlCountDown").outerHeight() - 1;
+            var position = $("#ddlCountDown").position();
             if (RefreshCountDown.countDownMenu.css('display') == 'none') {
-                RefreshCountDown.countDownMenu.css('top', outerHeight + 'px');
+                RefreshCountDown.countDownMenu.css('top', position.top + 20);
                 RefreshCountDown.countDownMenu.show();
             }
             else {
@@ -175,19 +175,19 @@ $(document).ready(function () {
     if (typeof cookieValue !== 'undefined') {
         RefreshCountDown.interval = cookieValue;
         RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
-        RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
-
-        RefreshCountDown.countDownMenu.find("li").each(function () {
-            var $this = $(this);
-            if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
-                $this.addClass('selected');
-                return false;
-            }
-        });
+        RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);               
     }
     else {
         RefreshCountDown.countDownRefresh.html(RefreshCountDown.inActive);
     }
+
+    RefreshCountDown.countDownMenu.find("li").each(function () {
+        var $this = $(this);
+        if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
+            $this.addClass('selected');
+            return false;
+        }
+    });
 
     RefreshCountDown.disabledRefreshCountDown(false);
     RefreshCountDown.bindEventButtonDown();

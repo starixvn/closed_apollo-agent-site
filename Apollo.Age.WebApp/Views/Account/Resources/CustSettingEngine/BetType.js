@@ -509,7 +509,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: presetSelected,
-                        minWidth: 60,
+                        minWidth: 120,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -539,7 +539,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: maxSelected,
-                        minWidth: 60,
+                        minWidth: 120,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -642,7 +642,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: valueSelected,
-                        minWidth: 60,
+                        minWidth: 120,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -702,7 +702,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: maxSelected,
-                        minWidth: 60,
+                        minWidth: 120,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
