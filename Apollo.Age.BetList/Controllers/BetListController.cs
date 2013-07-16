@@ -31,6 +31,7 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Common;
+    using Fanex.BetList.Core.Utils;
 
     /// <summary>
     /// BetList Controller
@@ -346,7 +347,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var viewModel = new BetListViewModel
             {
-                Title = string.Format("{0}: {1} --{2}: {3}", Lang.sport, sportName, Lang.bettype, betTypeName),
+                Title = string.Format("{0}: {1} --{2}: {3}", Lang.lblReport, sportName, Lang.WagerType, betTypeName),
                 DownlinePath = modelAgentDownLine,
                 TicketList = this.Ticket(mainTickets, BetListPage.Outstanding),
             };
@@ -428,9 +429,9 @@ namespace Apollo.Age.BetList.Controllers
             var viewModel = new BetListViewModel
             {
                 Title = string.Format("--{0}: {1} --{2}: {3}",
-                    Lang.sport,
+                    Lang.lblReport,
                     sportName,
-                    Lang.bettype,
+                    Lang.WagerType,
                     betTypeName
                 ),
                 TicketList = this.Ticket(mainTickets, BetListPage.Report),

@@ -66,7 +66,7 @@
         @if (hasAgentDownline)
         {
             <div class="item">
-                -- <a href="~/Account/IndirectAgentList?parentAgentId=@parentId&agentId=@Model.AgentId">@Lang.lblAgents</a>
+                -- <a href="~/Account/IndirectAgentList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.lblAgents</a>
             </div>
         }
         <img src="/_GlobalResources/Images/top_04.png" alt="">
@@ -79,21 +79,21 @@
     {
         <thead>
             <tr>
-                <td width="80">
+                <td class="width-80">
                     @Lang.agent
                 </td>
-                <td width="80">
+                <td class="width-80">
                     @Lang.enterusername
                 </td>
-                <td width="60">
+                <td class="width-60">
                     @Lang.condition
                 </td>
-                <td width="60">
+                <td class="width-60">
                     @Lang.BetCondition
                 </td>
-                <th width="60">@Lang.SportCredit
+                <th class="width-60">@Lang.SportCredit
                 </th>
-                <td width="80">
+                <td class="width-80">
                     @Lang.Feature
                 </td>
             </tr>
