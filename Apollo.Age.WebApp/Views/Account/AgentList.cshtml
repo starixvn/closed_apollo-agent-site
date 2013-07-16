@@ -112,16 +112,24 @@
                     <td>
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
-                    <td class="text-left feature">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                            @if (isMaster)
-                            {
-                                @Lang.edit
-                            }
-                            else
-                            {
-                                @Lang.view
-                            }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                    <td class="text-left">
+                        <div class="action">
+                            <a href="#" class="edit-link">Demo</a>
+                            <ul class="menu-list">
+                                <li><a href="#">edit 1</a></li>
+                                <li><a href="#">edit 1</a></li>
+                                <li><a href="#">edit 1</a></li>
+                            </ul>
+                            <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                                @if (isMaster)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.view
+                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                        </div>
                     </td>
                 </tr>
             }

@@ -43,17 +43,17 @@ $(document).ready(function () {
         $listMenu = $this.siblings('.menu-list');
         if ($listMenu.is(":visible")) {
             $listMenu.hide();
+            $this.removeClass('bg');
         } else {
-            $('.feature').children('.menu-list').hide();
+            $('.edit-link').removeClass('bg');
+            $('.action').children('.menu-list').hide();
+            $this.addClass('bg');
             $listMenu.show();
-            //            setTimeout(function () {
-            //                $listMenu.hide();
-            //            }, 1000);      
         }
         event.stopPropagation();
     });
 
     $('body').click(function () {
-        $('.feature').children('.menu-list').hide();
+        $('.action').children('.menu-list').hide();
     });
 });
