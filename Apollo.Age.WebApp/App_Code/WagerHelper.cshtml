@@ -42,15 +42,12 @@
                         }
                         if (string.Compare(groupBetName, tempAction, true) == 0)
                         {
-                            <li class="active">
-                                <a href="#">@resMgr.GetString(resourceKey)</a>
-                            </li>                           
+            <li class="active"><a href="#">@resMgr.GetString(resourceKey)</a> </li>                           
                         }
                         else
                         {
-                            <li>
-                                <a href="~/wagers/wager?sportName=@controller&amp;groupBetName=@tempAction&amp;resourceKey=@resourceKey&amp;isEM=@(isEarlyMarket ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
-                            </li>                           
+            <li><a href="~/wagers/wager?sportName=@controller&amp;groupBetName=@tempAction&amp;resourceKey=@resourceKey&amp;isEM=@(isEarlyMarket ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
+            </li>                           
                         }
                     }
 
@@ -68,7 +65,7 @@
         <div class="row">
             <div class="cell" style="@(isShowViewOption == 0 || isShowViewOption == 2 ? string.Empty : "display:none")">
                 <div class="label">
-                    <label for="ddlLeague">
+                    <label>
                         @if (isShowViewOption == 0)
                         {
                             @Lang.lblMainShareHolder
@@ -99,7 +96,7 @@
             </div>
             <div class="cell league-el">
                 <div class="label">
-                    <label for="ddlLeague">
+                    <label>
                         @Lang.lblWagerLeague&nbsp;:</label>
                 </div>
                 <div class="editor">

@@ -8,8 +8,7 @@
 }
 <div id="function-bar">
     <div class="item back-link">
-        @Lang.from: @Request["fromDate"]
-        --@Lang.to: @Request["toDate"]
+        @Lang.dateRange: @Request["fromDate"]~@Request["toDate"]
         @Model.Title
     </div>
     <img src="/_GlobalResources/Images/top_04.png" alt="">
