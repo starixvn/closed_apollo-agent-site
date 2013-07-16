@@ -7,10 +7,6 @@
 }
 <table id="tab-menu">
     <tr>
-        @*<td>
-			<a id="lk-menu-tab" href="javascript:;" target="menu"><i class="icon-align-justify">
-			</i>@Apollo.Age.Resources.Lang.mainmenu</a>
-		</td>*@
         <td>
             <a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user"></i>
                 @Apollo.Age.Resources.Lang.userinfo</a>
@@ -70,8 +66,7 @@
                             {
                                 if (Model.ActorAgentId != Model.ParentId)
                                 {
-                                <a href="javascript:;" id="agentDownlineLink" aid="@Model.ParentId"
-											title="@Apollo.Age.Resources.Lang.txtShowUpline" alt="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
                                     <div id="ddl-agents">
                                         <ul class="agent-list">
                                         </ul>
@@ -79,7 +74,7 @@
                                 </a>
                                 }
                                 <a class="view-agentinfo" href="javascript:;" target="menu"
-										agent-id='@Model.ParentId' agent-name='@Model.ParentName'>@Model.ParentName
+										data-agentid="@Model.ParentId" data-agentname="@Model.ParentName">@Model.ParentName
                                 </a>
                             }
                         </td>
@@ -111,7 +106,7 @@
                     else
                     {
                 <a class="lnk-agent-list" target="main"
-							href="~/Account/IndirectAgentList?parentAgentId=@Model.ParentId&agentid=@Model.CustId">
+							href="~/Account/IndirectAgentList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
                     @Apollo.Age.Resources.Lang.lblAgents
                 </a>
                     }
@@ -126,7 +121,7 @@
                     }
                     else
                     {
-                <a class="lnk-member-list" target="main" href="~/Account/IndirectMemberList?parentAgentId=@Model.ParentId&agentid=@Model.CustId">
+                <a class="lnk-member-list" target="main" href="~/Account/IndirectMemberList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
                     @Apollo.Age.Resources.Lang.memberList
                 </a>
                     }
@@ -142,15 +137,15 @@
         </div>
         <div id="agent-setting">
             <ul class="tabs">
-                <li id="custsettings" class="current"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                     <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
                 @if (!Model.IsMember)
                 {
-                    <li id="agentsTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                    <li id="agentsTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.lblAgents</span> </a></li>
                     if (Model.Level > Constants.ShareHolderLevel)
                     {
-                    <li id="membersTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                    <li id="membersTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.memberList</span> </a></li>
                     }
                 }
@@ -161,7 +156,7 @@
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&fromLeftMenu=true&reload=true">
+                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -171,18 +166,18 @@
                                 @Apollo.Age.Resources.Lang.view
                             }
                         </a>
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&agentId=@Model.ParentId&userName=@Model.Username&fromLeftMenu=true">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
-							href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
+							href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.lblComm
                         </a>
 
-                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&Username=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&amp;Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
                     }
@@ -191,7 +186,7 @@
                         if (Model.ActorAgentId != Model.CustId)
                         {
                         <a class="lnk-setting" target="main"
-							href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&fromLeftMenu=true&reload=true">
+							href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -202,18 +197,18 @@
                             }
                         </a>
                         }
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&agentLevel=@Model.Level&userName=@Model.Username&fromLeftMenu=true">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
 
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
-						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
+						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.lblComm
                         </a>
-                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&amp;Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
                     }
@@ -221,8 +216,7 @@
                 <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
                     {
-                        <iframe id='frmDownlineList' name='frmDownlineList'
-							frameborder="0" src='~/Account/AgentTreeList?agentid=@Model.CustId'></iframe>
+                        <iframe id='frmDownlineList' name='frmDownlineList' src='~/Account/AgentTreeList?agentid=@Model.CustId'></iframe>
                     }
                     else
                     {
