@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Resources
 @{
 	Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewBag.Title = "Tree View List";
 }
 @section head {
 	<link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
@@ -19,7 +20,7 @@
 		</td>
 	</tr>
 </table>
-@Html.Hidden("ApoRoot", Url.Content("~/"))
+@*@Html.Hidden("ApoRoot", Url.Content("~/"))*@
 @if ((bool)(ViewBag.HasAgentDownline))
 {
 	<div id="wrapper">

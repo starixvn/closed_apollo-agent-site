@@ -12,7 +12,7 @@
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
     </div>
     @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
-    <img alt="" src="~/_GlobalResources/Images/top_04.png">
+    <img alt="" src="~/_GlobalResources/Images/top_04.png"/>
 </div>
 <div id="box_header" class="report">
     <table class="winloss">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="cell">
                         <div class="label">
-                            <label for="dateFrom">
+                            <label for="FromDate">
                                 ~
                             </label>
                         </div>
@@ -342,13 +342,13 @@ else
 @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
 @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
 @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
-@Html.Action("Index", "Instruction", new
+@*@Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
     trigger = string.Empty,
     title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
     tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+})*@
 @section scripts
 {
     @Scripts.Render("~/scripts/winlossjs")
