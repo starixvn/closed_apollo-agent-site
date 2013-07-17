@@ -1,4 +1,5 @@
-﻿@model Apollo.Age.Web.ViewModels.UnderMaintenanceViewModel
+﻿@using Apollo.Age.Web.Mvc
+@model Apollo.Age.Web.ViewModels.UnderMaintenanceViewModel
 @{
 	Layout = null;
 	string title = Apollo.Age.Resources.Lang.UnderMaintenance;
@@ -7,10 +8,23 @@
 <html>
 <head>
 	<title>@title</title>
+    @Styles.Render("~/css/error")
 </head>
 <body>
-	<h2>@title</h2>
-    <p>@Model.UMDate</p>
-	<p>@string.Format(Apollo.Age.Resources.Lang.UnderMaintenanceMsg, Model.StartTime, Model.EndTime)</p>
+    <div class="container">
+        <div class="header">
+            <div class="icon-maintenance">
+                <img src="../_globalResources/css/img/calendar.gif" />
+            </div>
+            <div class="title">
+                <h1>OUR WEBSITE IS UNDER MAINTENANCE</h1>
+                <h2>OUR WEBSITE IS UNDER MAINTENANCE</h2>
+                <h3>OUR WEBSITE IS UNDER MAINTENANCE</h3>
+            </div>
+        </div>
+        <div class="content"></div>
+    </div>
+	@*<p>@Model.UMDate</p>
+	<p>@string.Format(Apollo.Age.Resources.Lang.UnderMaintenanceMsg, Model.StartTime, Model.EndTime)</p>*@
 </body>
 </html>

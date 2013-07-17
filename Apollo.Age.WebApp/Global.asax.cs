@@ -77,8 +77,11 @@ namespace Apollo.Age.WebApp
             {
                 var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-                if (executeFileName.IndexOf("UnderMaintenance") == -1
-                    && executeFileName.IndexOf("GetMessage") == -1)
+                if (executeFileName.IndexOf("UnderMaintenance") == -1                   
+                    && executeFileName.IndexOf(".less") == -1
+                    && executeFileName.IndexOf(".css") == -1
+                    && executeFileName.IndexOf(".js") == -1
+                    )
                 {
                     var maintenanceInfo = maintenanceService.MaintenanceInfo;
 

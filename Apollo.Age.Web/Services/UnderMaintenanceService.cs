@@ -90,6 +90,16 @@ namespace Apollo.Age.Web.Services
         }
 
         /// <summary>
+        /// Get Datetime at time zone GMT+8
+        /// </summary>
+        /// <returns>Datetime</returns>
+        private DateTime TimeInfo()
+        {
+            TimeZoneInfo timeInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
+            return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeInfo).ToUniversalTime();
+        }
+
+        /// <summary>
         /// Singbet maintenance info
         /// </summary>
         /// <returns>Return Under Maintenance View Model</returns>
@@ -100,7 +110,7 @@ namespace Apollo.Age.Web.Services
             var lastDay = string.Empty;
             var startTime = string.Empty;
             var endTime = string.Empty;
-
+            var timeZoneDate = TimeInfo();
             if (string.IsNullOrWhiteSpace(singbetDowntime))
             {
                 return new UnderMaintenanceViewModel
@@ -125,7 +135,7 @@ namespace Apollo.Age.Web.Services
                     string[] days = singbetDowntimeOptions[0].Split("@".ToCharArray());
                     string[] lastDays = singbetDowntimeOptions[1].Split("@".ToCharArray());
 
-                    bool isLastDayInMonth = IsLastDayInMonth(DateTime.Now, lastDays[0].Trim());
+                    bool isLastDayInMonth = IsLastDayInMonth(timeZoneDate, lastDays[0].Trim());
                     if (isLastDayInMonth)
                     {
                         string[] times = lastDays[1].Split("-".ToCharArray());
@@ -138,7 +148,8 @@ namespace Apollo.Age.Web.Services
                             {
                                 IsDownTime = true,
                                 StartTime = startTime,
-                                EndTime = endTime
+                                EndTime = endTime,
+                                UMDate = timeZoneDate.ToString("dd MMMM yyy") 
                             };
                         }
                     }
@@ -156,7 +167,8 @@ namespace Apollo.Age.Web.Services
                                 {
                                     IsDownTime = true,
                                     StartTime = startTime,
-                                    EndTime = endTime
+                                    EndTime = endTime,
+                                    UMDate = timeZoneDate.ToString("dd MMMM yyy") 
                                 };
                             }
                         }
