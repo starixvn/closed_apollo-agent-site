@@ -96,7 +96,7 @@
                     <td class="c">
                         @if (isAdmin && !Equals(itemLog.AdminUsername, string.Empty))
                         {
-                            @itemLog.AdminUsername
+                            <span>@itemLog.AdminUsername ( @Lang.Admin )</span>
                         }
                         else
                         {
