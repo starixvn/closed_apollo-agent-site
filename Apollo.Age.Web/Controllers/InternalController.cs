@@ -212,7 +212,7 @@ namespace Apollo.Age.Web
                     if (string.IsNullOrWhiteSpace(model.SafeCode))
                     {
 
-                        ModelState.AddModelError("Security Code", "The security code field is required");
+                        ModelState.AddModelError("Security Code", Lang.lblsecuritycodeempty);
                         return View(model);
                     }
                     else
@@ -224,7 +224,7 @@ namespace Apollo.Age.Web
                         }
                         else
                         {
-                            ModelState.AddModelError("Security Code", "Wrong security code");
+                            ModelState.AddModelError("Security Code", Lang.lblwrongsecuritycode);
                             return View(model);
                         }
                     }
