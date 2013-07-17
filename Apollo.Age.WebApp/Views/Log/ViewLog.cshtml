@@ -94,13 +94,13 @@
                         @itemLog.LogId
                     </td>
                     <td class="c">
-                        @if (isAdmin && !Equals(itemLog.AdminUsername, string.Empty))
+                        @if (isAdmin && !Equals(itemLog.AdminUsername, null))
                         {
                             <span>@itemLog.AdminUsername ( @Lang.Admin )</span>
                         }
                         else
                         {
-                            if (Equals(itemLog.AdminUsername, string.Empty))
+                            if (Equals(itemLog.AdminUsername, null))
                             { 
                             @itemLog.Username
                             }

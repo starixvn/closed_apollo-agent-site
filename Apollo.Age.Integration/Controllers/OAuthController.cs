@@ -30,7 +30,7 @@ namespace Apollo.Age.Integration.Controllers
         private const int ServerId = 1;
 
         private readonly AuthenticationService _authService;
-        private readonly UserService _userService;        
+        private readonly UserService _userService;
         private DeviceDetection _deviceService;
 
         public OAuthController()
@@ -77,22 +77,38 @@ namespace Apollo.Age.Integration.Controllers
 
                             // check whether authenticated username (from sungame agentsite) is the same with
                             // requested sso username
-                            if (user != null && user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                            if (user != null)
                             {
-                                authModel.ErrorCode = string.Empty;
-                                SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
-                                FormsAuthentication.SetAuthCookie(user.Username, true);
+                                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    authModel.ErrorCode = string.Empty;
+                                    SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
+                                    FormsAuthentication.SetAuthCookie(user.Username, true);
 
-                                // writes SSO logs
-                                // ActionID: 703 -> SSO login successful.
-                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
-                                WriteLoginLog(user.Id, 0, 703, 0, doing);
+                                    // writes SSO logs
+                                    // ActionID: 703 -> SSO login successful.
+                                    string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
+                                    WriteLoginLog(user.Id, 0, 703, 0, doing);
+                                }
+                                else
+                                {
+#if DEBUG
+                                    LogService.Error(string.Format("User {0} is not the requested user [{1}]", authModel.Username, user.Username));
+#endif
+                                    authModel.ErrorCode = ErrorCode.InvalidRequest;
+
+                                    // ActionID: 7002 -> SSO login fail.
+                                    string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).",
+                                                    authModel.Username,
+                                                    Resources.Lang.AgentNotFound);
+                                    WriteLoginLog(0, 0, 7002, 0, doing);
+                                }
                             }
                             else
                             {
-                                #if DEBUG
-                                LogService.Error(string.Format("User {0} is not found or is not the requested user [{1}]", authModel.Username, user.Username));                                    
-                                #endif
+#if DEBUG
+                                LogService.Error(string.Format("User {0} is not found", authModel.Username));
+#endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
                                 // ActionID: 7002 -> SSO login fail.

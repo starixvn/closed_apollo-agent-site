@@ -208,7 +208,7 @@
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.lblComm
                         </a>
-                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&amp;Username=@Model.Username">
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
                     }
@@ -216,7 +216,8 @@
                 <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
                     {
-                        <iframe id='frmDownlineList' name='frmDownlineList' src='~/Account/AgentTreeList?agentid=@Model.CustId'></iframe>
+                        <iframe id='frmDownlineList' name='frmDownlineList' src='~/Account/AgentTreeList?agentid=@Model.CustId'>
+                        </iframe>
                     }
                     else
                     {
