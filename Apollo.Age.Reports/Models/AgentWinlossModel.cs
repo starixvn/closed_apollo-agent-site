@@ -8,7 +8,6 @@
 //   <change who="Quinn.Vo" date="2013.7.12">Add Outstanding & ShareAmount</change>
 // </history>
 
-
 namespace Apollo.Age.Reports.Models
 {
     using System;

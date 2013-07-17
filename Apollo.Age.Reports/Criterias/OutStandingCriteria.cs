@@ -15,9 +15,9 @@ namespace Apollo.Age.Reports.Criterias
     {
         public int AgentId { get; set; }
 
-		public string Sporttypes { get; set; }
+        public string Sporttypes { get; set; }
 
-		public string Bettypes { get; set; }
+        public string Bettypes { get; set; }
 
         public override string GetSettingKey()
         {

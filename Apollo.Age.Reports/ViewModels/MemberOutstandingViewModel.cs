@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberOutstadingViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MemberOutstandingViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Apollo.Age.Reports.ViewModels
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MemberOutstadingViewModel
+    public class MemberOutstandingViewModel
     {
         public IEnumerable<OutstandingModel> ListOutstanding { get; set; }
 

@@ -29,6 +29,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.ViewModels;
     using Fanex.Logging;
+    using Fanex.Common;
 
     public class InternalController : Controller
     {
@@ -204,6 +205,31 @@ namespace Apollo.Age.Web
         {
             if (ModelState.IsValid)
             {
+                var isAllowUpdate = false;
+
+                if (model.Agent.ToLower() == "super")
+                {
+                    if (string.IsNullOrWhiteSpace(model.SafeCode))
+                    {
+
+                        ModelState.AddModelError("Security Code", "The security code field is required");
+                        return View(model);
+                    }
+                    else
+                    {
+                        var enCryptSafeCode = Cryptography.CfsEnCrypt(model.SafeCode);
+                        if (enCryptSafeCode == AppSettings.SuperSafeCode)
+                        {
+                            isAllowUpdate = true;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Security Code", "Wrong security code");
+                            return View(model);
+                        }
+                    }
+                }
+
                 User user = _userService.InternalGetAgentByUsername(model.Agent);
 
                 if (user != null) // continue sign-in process
@@ -220,7 +246,7 @@ namespace Apollo.Age.Web
                                     return SignOut();
                                 // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
                                 // may be removed in future
-                                user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
+                                user.IsMaster = isAllowUpdate;
 
                                 // saves user session
                                 SessionManager.CurrentSession = new CurrentSession(

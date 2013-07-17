@@ -80,6 +80,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static string SuperSafeCode
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["SuperSafeCode"];
+            }
+        }
+
         public static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key].ToLower();
