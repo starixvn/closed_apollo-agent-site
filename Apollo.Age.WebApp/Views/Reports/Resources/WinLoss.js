@@ -67,7 +67,7 @@
 
             $(".navigation").on('click', function () {
                 $.blockUI();
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid") + "&AgentName=" + $(this).html()
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("data-agentid") + "&AgentName=" + $(this).html()
                     + '&FromDate=' + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()
                     + "&Bettypes=" + WINLOSS.hdBettype.val());
