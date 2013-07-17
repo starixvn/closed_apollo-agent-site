@@ -78,7 +78,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
          "~/css/error",
-          "~/views/error/resources/index.less");
+          "~/views/error/resources/Index.less");
 
             #endregion css
 
