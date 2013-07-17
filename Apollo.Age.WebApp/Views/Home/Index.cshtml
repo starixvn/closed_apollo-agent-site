@@ -11,7 +11,7 @@
     <link href="~/views/home/resources/index.less" rel="stylesheet" type="text/css" />
 }
 <div class="@headerClass">
-    <iframe src="~/Account/TopBar" id="frHeader" name="frHeader"></iframe>
+    <iframe src="~/Account/TopBar" id="frHeader" name="frHeader" frameborder="0" scrolling="no"></iframe>
 </div>
 <div class="@menuClass">
     @*@Html.Action("MiniMenu", "Account")*@
@@ -19,7 +19,7 @@
 </div>
 <div class="@mainPageClass">
     @*<div id="btn-mini-menu" class="collapse" title="@Apollo.Age.Resources.Lang.Collapse"></div>*@
-    <iframe id="main" name="main">
+    <iframe id="main" name="main" frameborder="0">
     </iframe>
 </div>
 @section scripts

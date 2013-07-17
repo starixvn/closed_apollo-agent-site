@@ -23,7 +23,7 @@
 		@Html.TextBoxFor(m => m.Agent, new { @class = "input-text", autocomplete = "off" })
 	</p>	
    <p>
-		@Html.LabelFor(m => m.SafeCode)
+		@Html.LabelFor(m => m.SafeCode, Lang.lblsecuritycode)
 		@Html.TextBoxFor(m => m.SafeCode, new { @class = "input-safecode", autocomplete = "off", maxlength = "6" })
 	</p>
     if (!ViewData.ModelState.IsValid)
