@@ -1,0 +1,51 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Configurations
+@model Apollo.Age.Web.ViewModels.SafeCodeViewModel
+@{
+	string title = "Security Code for Super";
+	ViewBag.Title = title;
+}
+
+@section css {
+	<link href="~/views/internal/resources/style.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="login-box">
+@using (Html.BeginForm())
+{
+	<h1>@title</h1>	
+    @Html.AntiForgeryToken()
+	@Html.HiddenFor(m => m.Language)
+	@Html.HiddenFor(m => m.AdminId)
+	@Html.HiddenFor(m => m.AdminName)
+    @Html.HiddenFor(m => m.Agent)
+   <p>
+		@Html.LabelFor(m => m.SecurityCode, Lang.lblsecuritycode)
+		@Html.TextBoxFor(m => m.SecurityCode, new { @class = "input-safecode", autocomplete = "off", maxlength = "6" })
+	</p>
+    if (!ViewData.ModelState.IsValid)
+    {
+		@Html.ValidationSummary()
+    }
+	<p>
+		<input type="submit" value="@Lang.submit &rarr;" />
+	</p>
+}
+</div>
+
+@section scripts {
+	<script type="text/javascript">
+	    function preventBack() {
+	        window.history.forward();
+	    }
+
+	    setTimeout("preventBack()", 0);
+
+	    window.onunload = function () { null };
+
+	    window.onload = function () {
+	        document.getElementById('SecurityCode').focus();
+	    };
+
+	</script>
+}
