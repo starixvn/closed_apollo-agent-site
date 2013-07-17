@@ -76,6 +76,10 @@ namespace Apollo.Age.WebApp
           "~/views/account/resources/customerlist.less",
           "~/views/account/resources/customerSetting.less");
 
+            bundles.AddAndInclude(
+         "~/css/error",
+          "~/views/error/resources/index.less");
+
             #endregion css
 
             #region js
