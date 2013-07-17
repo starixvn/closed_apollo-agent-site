@@ -1,8 +1,8 @@
 ﻿/* File Created: June 25, 2013 */
 
-.sbpager {
+.sbpager
+{
 	display: inline;
-
 	.item-container {
 		overflow: hidden;
 		white-space: nowrap;
@@ -12,15 +12,15 @@
 	.move-start, .move-pre, .move-next, .move-end {
 		display: inline;
 		float: left;
-	}
-	
+	}	
 
-	.pager-item, .move-start, .move-pre, .move-next, .move-end{
-		border-radius: 2px;
+	.pager-item, .move-start, .move-pre, .move-next, .move-end {
+		border-radius: 2px 2px 2px 2px;
 		color: #000;
 		text-align: center;
 		text-decoration: none;
-		padding: 0 10px;
+		padding-left: 10px;
+		padding-right: 10px;
 
 		&:hover {
 			color: #FF0000;
@@ -29,15 +29,14 @@
 	}
 
 	.pager-item {
-		float: left;
-
-		&:hover {
+		&:hover
+		{
 			color: #FF0000;
 			cursor: pointer;
 		}
 	}
 
 	.selected {
-		color: #FF0000;
+		color: #FF0000 !important;
 	}
 }
