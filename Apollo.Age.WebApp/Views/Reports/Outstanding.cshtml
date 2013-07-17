@@ -16,12 +16,6 @@
         @RazorHelper.RenderSportDropDownList(Model.SportList, Model.Sporttypes)
     </div>
 	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding)
-
-	@*<div class="item">
-    <span>@Apollo.Age.Resources.Lang.sport : @Model.SportName -- @Apollo.Age.Resources.Lang.WagerType
-        : @Model.BettypeName -- </span><a id="btnBack" href="javascript:;">@Apollo.Age.Resources.Lang.back</a>
-    </div>*@
-
     <img alt="" src="~/_GlobalResources/Images/top_04.png">
 </div>
 
@@ -61,8 +55,7 @@
 	<table class="tblRpt tblOutstanding persist-area report">
 		<thead class="persist-header">
 			<tr>
-				<th rowspan="2" style="width: 150px;">
-				</th>
+				<th style="width: 150px;"></th>
 				<th style="width: 200px;">
 					@Apollo.Age.Resources.Lang.outstanding
 				</th>
@@ -93,19 +86,13 @@
         {
 					<tr @Html.Raw(rowClass)>
 						<td>
-							<a href="javascript:;" name="viewagent" agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+							<a href="javascript:;" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
 						</td>
 						<td class="r">
 							@Formater.FormatNumber20(item.Outstanding, "en-US")
 						</td>
 						<td class="r">
 							@Formater.FormatNumber20(item.ShareAmount, "en-US")
-						</td>
-						<td class="r" style="display: none">
-							@Formater.FormatNumber20(item.GameOutstanding, "en-US")
-						</td>
-						<td class="r" style="display: none">
-							@Formater.FormatNumber20(item.GameShareAmount, "en-US")
 						</td>
 					</tr>
         }
@@ -113,19 +100,13 @@
         {
 					<tr @Html.Raw(rowClass)>
 						<td>
-							<a href="javascript:;" id="MemberOutstanding" mainShareHolderId="@Model.MainShareHolder.Id" mainShareHolderUsername="@Model.MainShareHolder.Username" agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
+							<a href="javascript:;" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
 						</td>
 						<td class="r">
 							@Formater.FormatNumber20(item.Outstanding, "en-US")
 						</td>
 						<td class="r">
 							@Formater.FormatNumber20(item.ShareAmount, "en-US")
-						</td>
-						<td class="r" style="display: none">
-							@Formater.FormatNumber20(item.GameOutstanding, "en-US")
-						</td>
-						<td class="r" style="display: none">
-							@Formater.FormatNumber20(item.GameShareAmount, "en-US")
 						</td>
 					</tr>
         }
@@ -143,12 +124,6 @@
 					</td>
 					<td class="r">
 						@Formater.FormatNumber20(shareAmountTotal, "en-US")
-					</td>
-					<td class="r" style="display: none">
-						@Formater.FormatNumber20(gameOutstandingTotal, "en-US")
-					</td>
-					<td class="r" style="display: none">
-						@Formater.FormatNumber20(gameShareAmountTotal, "en-US")
 					</td>
 				</tr>
 			</tfoot>

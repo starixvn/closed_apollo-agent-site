@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>@Page.Title</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/css/account")
     @RenderSection("css", required: false)
 </head>
@@ -10,7 +10,7 @@
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
 	@Html.Partial("_ApoRes")
-    @Scripts.Render("~/scripts/treeviewjs")
+    @Scripts.Render("~/scripts/agenttreeviewjs")
     @RenderSection("foot", required: false)
 </body>
 </html>

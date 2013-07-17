@@ -366,7 +366,7 @@ if (typeof jQuery != "undefined") {
 
 				$.blockUI();
 				if (type == "report") {
-					var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("agentid")
+				    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("data-agentid")
                                                     + "&AgentName=" + $(this).html()
 					                                + '&FromDate=' + fromDate
                                                     + '&ToDate=' + toDate
@@ -374,7 +374,7 @@ if (typeof jQuery != "undefined") {
                                                     + '&Bettypes=' + betType);
 					location.href = url;
 				} else if (type == "outstanding") {
-					var url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("agentid")
+	                var url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("data-agentid")
                                                     + '&Sporttypes=' + sportType
                                                     + '&Bettypes=' + betType);
 					location.href = url;

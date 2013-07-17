@@ -5,8 +5,8 @@ var DOWNLINE = function ($) {
     return {
         initAgentdownline: function () { 
             $('#treeview_list').on('click', '.view-agentinfo', function () {
-                var agentId = $(this).attr("agent-id");
-                var agentName = $(this).attr("agent-name");
+                var agentId = $(this).attr("data-agentid");
+                var agentName = $(this).attr("data-agentname");
                 $.cookie('searching-id', agentId, { path: '/' });
                 $.cookie('searching-name', agentName, { path: '/' });
                 $.cookie('searching-ismember', false, { path: '/' });
@@ -17,8 +17,8 @@ var DOWNLINE = function ($) {
         },
         initMemberdownline: function() {
             $('#members-list').on('click', '.view-memberinfo', function () {
-                var memberId = $(this).attr("member-id");
-                var memberName = $(this).attr("member-name");
+                var memberId = $(this).attr("data-memberid");
+                var memberName = $(this).attr("data-membername");
                 $.cookie('searching-id', memberId, { path: '/' });
                 $.cookie('searching-name', memberName, { path: '/' });
                 $.cookie('searching-ismember', true, { path: '/' });
