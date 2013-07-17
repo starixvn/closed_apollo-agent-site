@@ -15,15 +15,78 @@
 
 .container {
 	background: #fff;
+	font-size: 12px;
+	
+    .header, content {
+	    float: left;
+	    padding: 0 10%;
+    }
 
 	.header {
+		height: 211px;
+		float: left;
+		margin: auto;
+
 		.icon-maintenance {
-			background: url(images/icon-maintenance.gif) no-repeat center;
+			float: left;         
+            height: 161px;
+            width: 268px;
+			margin-top: 35px;
+			margin: 35px 0 0 128px;
+			background: url(images/icon-maintenance.png) no-repeat center;
 		}
 
 		.title {
-			h1, h2, h3 {
+			margin: 80px 0 0 10px;
+			float: left;
+			width: 540px;
+
+			.zh-CN, .en-US, .th-TH {
 				color: #413C15;
+				font-weight: bold;
+			}
+			
+			.zh-CN {
+				font-size: 42px;
+			}
+
+			.en-US {
+				font-size: 24px;
+			}
+
+			.th-TH {
+				font-size: 23px;
+			}
+		}
+	}
+
+	.content {
+		float: left;
+		background: url(images/bg-maintenance.png) repeat-x center;
+		height: 221px;
+		width: 100%;
+
+		.content-container {
+			margin: auto;
+			width: 1187px;
+
+			.col {
+				width: 365px;
+				float: left;
+				border-left: 1px dotted #fff;
+				color: #fff;
+				padding: 0 10px 0 20px;
+				margin: 38px 0 0 0;
+
+				.title {
+					font-size: 27px;
+					font-weight: bold;
+					text-shadow: -1px -1px #5E2B00;
+				}
+
+				&:first-child {
+					border-left: none;				
+				}
 			}
 		}
 	}
