@@ -62,8 +62,8 @@ var ACCOUNT = function ($) {
             });
 
             ACCOUNT.ageDownLink.on('click', '.view-agentinfo', function () {
-                var agentId = $(this).attr("agent-id");
-                var agentName = $(this).attr("agent-name");
+                var agentId = $(this).attr("data-agentid");
+                var agentName = $(this).attr("data-agentname");
                 $.cookie('searching-id', agentId, { path: '/' });
                 $.cookie('searching-name', agentName, { path: '/' });
                 $.cookie('searching-ismember', false, { path: '/' });
@@ -73,8 +73,8 @@ var ACCOUNT = function ($) {
             });
 
             $('.view-agentinfo').bind('click', function () {
-                var agentId = $(this).attr("agent-id");
-                var agentName = $(this).attr("agent-name");
+                var agentId = $(this).attr("data-agentid");
+                var agentName = $(this).attr("data-agentname");
                 $.cookie('searching-id', agentId, { path: '/' });
                 $.cookie('searching-name', agentName, { path: '/' });
                 $.cookie('searching-ismember', false, { path: '/' });
@@ -88,7 +88,7 @@ var ACCOUNT = function ($) {
             });
 
             $(".show-section").bind('click', function () {
-                ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("agent-id"));
+                ACCOUNT.showSectionTab(this.parentNode.id, $(this).attr("data-agentid"));
             });
 
             ACCOUNT.txtUsername.bind('click', function () {
@@ -115,7 +115,7 @@ var ACCOUNT = function ($) {
                 }
                 else {
                     var $this = $(this);
-                    agentID = $this.attr('aid');
+                    agentID = $this.attr('data-agentid');
                     $this.addClass("is-active");
                     agentList = ACCOUNT.ddlAgents.find('.agent-list');
 
@@ -127,8 +127,8 @@ var ACCOUNT = function ($) {
                                 agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
                                 for (var i = 1; i < data.length; ++i) {
                                     agentList.append(
-                                        "<li><a class='view-agentinfo' href='javascript:;'" + "agent-id='" + data[i].Id
-                                            + "'agent-name='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                        "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
+                                            + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
                                     );
                                 }
                             }

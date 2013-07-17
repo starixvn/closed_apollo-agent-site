@@ -230,11 +230,18 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/blockui/jquery.blockui.js",
                 "~/_globalresources/js/core.js"));
 
-            bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
+            bundles.Add(new ScriptBundle("~/scripts/agenttreeviewjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery.cookie.js",
                 "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/menu.js",
+                "~/views/account/resources/downlineinfo.js",
+                "~/views/account/resources/jquery.treeview.js",
+                "~/views/account/resources/jquery.treeview.async.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
                 "~/views/account/resources/menu.js",
                 "~/views/account/resources/jquery.treeview.js",
                 "~/views/account/resources/jquery.treeview.async.js"));

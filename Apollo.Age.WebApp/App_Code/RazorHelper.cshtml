@@ -160,13 +160,13 @@
 @helper Navigation(List<Apollo.Age.Entities.Agent> Model)
     {
     <div class="boxNavigation">
-        <ul id="divnavigation">
+        <ul>
             @foreach (Apollo.Age.Entities.Agent item in Model)
             {
                 var last = Model.LastOrDefault();
                 if (last != null && !last.Equals(item))
                 {
-                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                <li><a href="javascript:void(0);" class="navigation" data-agentlevel="@item.Level" data-agentid="@item.Id">@item.Username</a>
                 </li>
                 }
                 else
@@ -182,18 +182,18 @@
         if (linkLastItem)
         {
     <div class="boxNavigation">
-        <ul id="divnavigation">
+        <ul>
             @foreach (Apollo.Age.Entities.Agent item in Model)
             {
                 var last = Model.LastOrDefault();
                 if (last != null && !last.Equals(item))
                 {
-                <li><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                <li><a href="javascript:void(0);" class="navigation" data-agentlevel="@item.Level" data-agentid="@item.Id">@item.Username</a>
                 </li>
                 }
                 else
                 {
-                <li class="currentUser"><a href="javascript:void(0);" name="navigation" class="navigation" agentlevel="@item.Level" agentid="@item.Id">@item.Username</a>
+                <li class="currentUser"><a href="javascript:void(0);" class="navigation" data-agentlevel="@item.Level" data-agentid="@item.Id">@item.Username</a>
                 </li>
                 }
             }

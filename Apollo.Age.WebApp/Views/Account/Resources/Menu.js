@@ -52,7 +52,7 @@ var MENU = function ($) {
 			var agentList = $("#agent-list");
 
 			if (agentList.length > 0) {
-				var agentId = agentList.attr("agent-id");
+			    var agentId = agentList.attr("data-agentid");
 				agentList.treeview({
 					url: MENU.apoRoot + "Account/GetDataByNode",
 					link: "<a href='" + MENU.apoRoot + "Account/IndirectAgentList?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",

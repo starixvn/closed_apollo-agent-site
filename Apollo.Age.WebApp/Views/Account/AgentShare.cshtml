@@ -15,7 +15,7 @@
 		{
 			<div class="cell">
 				<div class="label">
-					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Lang.sport):</label>
+					<label for="ddlSportType">@Lang.sport:</label>
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", @class="sport-type" })
@@ -26,7 +26,7 @@
 		{
 			<div class="cell">
 				<div class="label">
-					<label for="ddlBetType">@Html.LabelFor(m => m.BetType, Lang.bettype):</label>
+					<label for="ddlBetType">@Lang.bettype:</label>
 				</div>
 				<div class="editor">
 					@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,

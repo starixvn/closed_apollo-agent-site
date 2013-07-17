@@ -25,11 +25,11 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify({
-                        'agentId': $this.attr("agentid"),
+                        'agentId': $this.attr("data-agentid"),
                         'Sporttypes': OUTSTANDING.hdSportType.val(),
                         'Bettypes': OUTSTANDING.hdBettype.val(),
-                        'mainShareHolderId': $this.attr("mainshareholderid"),
-                        'mainShareHolderUsername': $this.attr("mainshareholderusername")
+                        'mainShareHolderId': $this.attr("data-mainshareholderid"),
+                        'mainShareHolderUsername': $this.attr("data-mainshareholderusername")
                     }),
                     timeout: 120000
                 })
@@ -46,16 +46,16 @@
                 return false;
             });
 
-            $("[name='navigation']").on('click', function () {
+            $(".navigation").on('click', function () {
                 $.blockUI();
-                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
+                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("data-agentid")
 				+ "&Sporttypes=" + OUTSTANDING.hdSportType.val()
                     + "&Bettypes=" + OUTSTANDING.hdBettype.val());
             });
 
-            $("[name='viewagent']").on('click', function () {
+            $(".viewoutstading").on('click', function () {
                 $.blockUI();
-                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("agentid")
+                location.href = APOLLO.resolveUrl("Reports/Outstanding?agentId=" + $(this).attr("data-agentid")
 				+ "&Sporttypes=" + OUTSTANDING.hdSportType.val()
                     + "&Bettypes=" + OUTSTANDING.hdBettype.val()
 					);
