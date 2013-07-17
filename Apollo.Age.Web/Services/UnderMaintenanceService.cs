@@ -209,10 +209,9 @@ namespace Apollo.Age.Web.Services
             catch (Exception ex)
             {
                 HandleException(ex);
+
                 return new UnderMaintenanceViewModel { IsDownTime = false };
             }
-
-            return new UnderMaintenanceViewModel { IsDownTime = false };
         }
     }
 }

@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.5.3">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.17">add more property UMDate</change>
 // </history>
 
 namespace Apollo.Age.Web.ViewModels
@@ -23,6 +24,7 @@ namespace Apollo.Age.Web.ViewModels
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
             StartTime = nowHour.ToShortTimeString();
             EndTime = nowHour.AddHours(1).ToShortTimeString();
+            UMDate = DateTime.Now.ToString("dd MMMM yyyy");
         }
 
         public bool IsDownTime { get; set; }
@@ -30,5 +32,7 @@ namespace Apollo.Age.Web.ViewModels
         public string StartTime { get; set; }
 
         public string EndTime { get; set; }
+
+        public string UMDate { get; set; }
     }
 }
