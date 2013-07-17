@@ -1833,4 +1833,7 @@
   <data name="SportCredit" xml:space="preserve">
     <value>Sport Credit</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
 </root>

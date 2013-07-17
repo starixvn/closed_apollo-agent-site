@@ -21,6 +21,8 @@ namespace Apollo.Age.Account.Models
 
         public string Username { get; set; }
 
+        public string AdminUsername { get; set; }
+
         public int ActionTypeId { get; set; }
 
         public string ActionName { get; set; }
