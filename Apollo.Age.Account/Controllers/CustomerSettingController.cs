@@ -546,7 +546,8 @@ namespace Apollo.Age.Account.Controllers
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
                 FormSetting = (int)formSettingType,
                 FormId = FormType.EditPT,
-                Language = base.CurrentSession.Language
+                Language = base.CurrentSession.Language,
+                AdminId = base.CurrentSession.AdminId
             };
 
             if (agentLevel != null && agentLevel.Value == 3)
