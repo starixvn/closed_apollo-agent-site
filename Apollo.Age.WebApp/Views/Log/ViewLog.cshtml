@@ -5,6 +5,7 @@
     ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
     var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
+    var isAdmin = (bool)ViewBag.IsAdmin;
 }
 @section head {
     <link href="~/views/log/resources/log.less" rel="stylesheet" type="text/css">
@@ -93,7 +94,21 @@
                         @itemLog.LogId
                     </td>
                     <td class="c">
-                        @itemLog.Username
+                        @if (isAdmin && !Equals(itemLog.AdminUsername, null))
+                        {
+                            <span>@itemLog.AdminUsername ( @Lang.Admin )</span>
+                        }
+                        else
+                        {
+                            if (Equals(itemLog.AdminUsername, null))
+                            { 
+                            @itemLog.Username
+                            }
+                            else
+                            { 
+                            @Lang.Admin
+                            }
+                        }
                         <p>@itemLog.LogDate.ToShortDateString()</p>
                         <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>

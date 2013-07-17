@@ -69,7 +69,10 @@
                             </li>
                             <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                 <ul class="sub-menu">
-                                    <li><a url="~/Account/LogLogin" target="main">@Lang.lblLogin</a></li>
+                                    @if (Model.IsInternalSignIn)
+                                    { 
+                                        <li><a url="~/Account/LogLogin" target="main">@Lang.lblLogin</a></li>
+                                    }
                                     <li><a url="~/Log/ViewLog" target="main">@Lang.setting</a></li>
                                 </ul>
                             </li>

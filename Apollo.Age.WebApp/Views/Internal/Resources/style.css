@@ -1,4 +1,5 @@
-﻿body {
+﻿body
+{
     margin: 0;
     padding: 0;
     font-family: Arial, Sans-Serif;
@@ -6,7 +7,8 @@
     color: #333;
 }
 
-.login-box {
+.login-box
+{
     width: 400px;
     margin: 200px auto 0;
     padding: 20px;
@@ -23,7 +25,8 @@
     text-shadow: 1px 1px 0 #f0f0f0;
 }
 
-h1 {
+h1
+{
     border-bottom: 1px solid #999;
     padding: 0 0 15px;
     margin: 0;
@@ -33,24 +36,28 @@ h1 {
     text-align: right;
 }
 
-p {
+p
+{
     margin: 0;
     padding: 0;
     padding-top: 20px;
 }
 
-.username {
+.username
+{
     border-top: 1px solid #fff;
 }
 
-label {
+label
+{
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
     width: 90px;
 }
 
-.validation-summary-errors {
+.validation-summary-errors
+{
     display: block;
     background-color: #ff5c5c;
     box-shadow: 0 1px 0 #ffc2c2 inset;
@@ -63,23 +70,33 @@ label {
     line-height: 1.6;
 }
 
-.validation-summary-errors ul {
+.validation-summary-errors ul
+{
     list-style-type: none;
     padding: 0;
 }
 
-.input-text {
+.input-text
+{
     width: 220px;
 }
 
-#img-captcha {
+.input-safecode
+{
+    width: 100px;    
+}
+
+#img-captcha
+{
     cursor: pointer;
 }
-.input-captcha {
+.input-captcha
+{
     width: 160px;
 }
 
-input[type=button], input[type=submit] {
+input[type=button], input[type=submit]
+{
     padding: 5px 20px;
     background: #3b3b3b;
     background: -moz-linear-gradient(top,#a3a3a3 0%,#3b3b3b 50%,#242424 50%,#000000);
@@ -93,15 +110,18 @@ input[type=button], input[type=submit] {
     text-shadow: 0px -1px 0px rgba(000,000,000,1), 0px 1px 0px rgba(255,255,255,0.2);
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover
+{
     opacity: .9;
 }
 
-input[type=submit]:active {
+input[type=submit]:active
+{
     position: relative;
     top: 1px;
 }
 
-.login-box p img, .login-box p input, .login-box p label {
+.login-box p img, .login-box p input, .login-box p label
+{
     vertical-align: middle;
 }

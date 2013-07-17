@@ -89,6 +89,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             ViewBag.LogData = results;
+            ViewBag.IsAdmin = this.CurrentSession.AdminId > 0;
 
             return View(criteria);
         }

@@ -3,7 +3,8 @@
 @{
 	Layout = null;
 	string title = Apollo.Age.Resources.Lang.UnderMaintenance;
-}
+    string UMtime = Model.StartTime.ToUpper() + "~" + Model.EndTime.ToUpper() + "(GMT +08:00)";
+    }
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -13,18 +14,35 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="icon-maintenance">
-                <img src="../_globalResources/css/img/calendar.gif" />
-            </div>
+            <div class="icon-maintenance"></div>
             <div class="title">
-                <h1>OUR WEBSITE IS UNDER MAINTENANCE</h1>
-                <h2>OUR WEBSITE IS UNDER MAINTENANCE</h2>
-                <h3>OUR WEBSITE IS UNDER MAINTENANCE</h3>
+                <div class="zh-CN">我们的网站正在维护</div>
+                <div class="en-US">OUR WEBSITE IS UNDER MAINTENANCE</div>
+                <div class="th-TH">เว็บไซต์ของเราที่อยู่ภายใต้การบำรุงรักษา</div>
             </div>
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div class="content-container">
+                <div class="col">
+                    <div class="title">SYSTEM MAINTENANCE</div>
+                    <p>We apologize for the inconvenience which this may acuse. If you have any query, please contact us at:</p>
+                    <p><strong>Service Discruption Period</strong> - @Model.UMDate.ToUpper()</p>
+                    <p><strong>@UMtime</strong></p>
+                </div>
+                <div class="col">
+                    <div class="title">SYSTEM MAINTENANCE</div>
+                    <p>We apologize for the inconvenience which this may acuse. If you have any query, please contact us at:</p>
+                    <p><strong>Service Discruption Period</strong> - @Model.UMDate.ToUpper()</p>
+                    <p><strong>@UMtime</strong></p>
+                </div>
+                <div class="col">
+                    <div class="title">SYSTEM MAINTENANCE</div>
+                    <p>We apologize for the inconvenience which this may acuse. If you have any query, please contact us at:</p>
+                    <p><strong>Service Discruption Period</strong> - @Model.UMDate.ToUpper()</p>
+                    <p><strong>@UMtime</strong></p>
+                </div
+            </div>
+        </div>
     </div>
-	@*<p>@Model.UMDate</p>
-	<p>@string.Format(Apollo.Age.Resources.Lang.UnderMaintenanceMsg, Model.StartTime, Model.EndTime)</p>*@
 </body>
 </html>

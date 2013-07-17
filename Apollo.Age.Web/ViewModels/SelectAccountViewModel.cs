@@ -16,8 +16,8 @@ namespace Apollo.Age.Web.ViewModels
         [Required]
         public string Agent { get; set; }
 
-        [Display(Name = "Allow Update")]
-        public bool AllowUpdate { get; set; }
+        [Display(Name = "Security Code")]
+        public string SafeCode { get; set; }
 
         public string Language { get; set; }
 

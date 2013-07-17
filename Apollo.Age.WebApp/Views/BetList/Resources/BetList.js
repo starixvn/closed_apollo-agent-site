@@ -189,6 +189,8 @@ if (typeof jQuery != "undefined") {
                 if ($('#IsTransactionsBetList').val() === '1') {
                     BETLIST.initPager(BETLIST.pageIndex);
                 }
+
+                BETLIST.initEditLink();
             },
 
             getBetListData: function () {
@@ -206,6 +208,7 @@ if (typeof jQuery != "undefined") {
                     },
                     success: function (data) {
                         $('#container').html(data);
+                        BETLIST.initEditLink();
                     },
                     complete: function () {
                         $.unblockUI();
@@ -233,6 +236,38 @@ if (typeof jQuery != "undefined") {
                     $.blockUI();
                     $("form:first").submit();
                 }
+            },
+            initEditLink: function () {
+                $(".view-detail").click(function () {
+                    var fromDate = toDate = type = "";
+
+                    if (typeof ($("#fromDate").val()) !== 'undefined') {
+                        fromDate = $("#fromDate").val();
+                    }
+                    if (typeof ($("#toDate").val()) !== 'undefined') {
+                        toDate = $("#toDate").val();
+                    }
+                    if (typeof ($("#type").val()) !== 'undefined') {
+                        type = $("#type").val();
+                    }
+
+                    var $this = $(this),
+				    transId = $this.attr("tid"),
+				    fromDate = fromDate,
+				    toDate = toDate,
+				    type = type,
+				    params = "?transid=" + transId +
+					    "&fromdate=" + fromDate +
+					    "&toDate=" + toDate +
+					    "&type=" + type;
+
+                    var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
+                    APOLLO.isResizeDialog = false;
+                    APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
+							    title, { width: 400, height: 500, modal: false });
+
+                    return false;
+                });
             }
         };
     } (jQuery);
@@ -249,39 +284,11 @@ if (typeof jQuery != "undefined") {
 			return false;
 		});
 
-		var viewDetailsLinks = $(".view-detail");
 		var submit = $(".act-submit");
 
-		viewDetailsLinks.click(function () {
-			var fromDate = toDate = type = "";
-
-			if (typeof ($("#fromDate").val()) !== 'undefined') {
-				fromDate = $("#fromDate").val();
-			}
-			if (typeof ($("#toDate").val()) !== 'undefined') {
-				toDate = $("#toDate").val();
-			}
-			if (typeof ($("#type").val()) !== 'undefined') {
-				type = $("#type").val();
-			}
-
-			var $this = $(this),
-				transId = $this.attr("tid"),
-				fromDate = fromDate,
-				toDate = toDate,
-				type = type,
-				params = "?transid=" + transId +
-					"&fromdate=" + fromDate +
-					"&toDate=" + toDate +
-					"&type=" + type;
-
-			var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
-			APOLLO.isResizeDialog = false;
-			APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
-							title, { width: 400, height: 500, modal: false });
-
-			return false;
-		});
+		
+			
+		
 
 		if (submit.length > 0) {
 			submit.click(function () {
