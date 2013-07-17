@@ -12,35 +12,32 @@ namespace Apollo.Age.Reports.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Models;
+    using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using NPOI.HSSF.UserModel;
-    using Apollo.Age.Reports.Criterias;
-    using NPOI.SS.UserModel;
-    using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Reports.Models;
     using NPOI.HSSF.Util;
-    using Apollo.Age.Resources;
+    using NPOI.SS.UserModel;
     using NPOI.SS.Util;
-
 
     public class OutstandingService : ReportService
     {
         /// <summary>
-        /// Get agent outstanding report
+        /// Get agent outstanding report.
         /// </summary>
-        /// <param name="isSuper"></param>
-        /// <param name="CurrentAgentId"></param>
-        /// <param name="parentId"></param>
-        /// <param name="agentId"></param>
-        /// <param name="sporttypes"></param>
-        /// <param name="bettypes"></param>
-        /// <returns></returns>
-        public OutstandingViewModel GetAgentOutStandingReport(bool isSuper, 
-            int? CurrentAgentId, 
+        /// <param name="isSuper">Is super or no.</param>
+        /// <param name="currentAgentId">Current Agent Id.</param>
+        /// <param name="parentId">Agent Id of user login.</param>
+        /// <param name="sporttypes">Sport type group.</param>
+        /// <param name="bettypes">Bet type group.</param>
+        /// <returns>Outstanding ViewModel.</returns>
+        public OutstandingViewModel GetAgentOutStandingReport(
+            bool isSuper, 
+            int? currentAgentId, 
             int parentId, 
-            int? agentId, 
             string sporttypes, 
             string bettypes)
         {
@@ -48,7 +45,7 @@ namespace Apollo.Age.Reports.Services
 
             var outstandingViewModel = new OutstandingViewModel()
             {
-                CurrentAgentId = CurrentAgentId.Value,
+                CurrentAgentId = currentAgentId.Value,
                 MainShareHolder = mainShareHolder,
                 Sporttypes = sporttypes,
                 Bettypes = bettypes
@@ -58,7 +55,7 @@ namespace Apollo.Age.Reports.Services
             {
                 if (sporttypes != null)
                 {
-                    IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(parentId, CurrentAgentId.Value);
+                    IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(parentId, currentAgentId.Value);
 
                     if (isSuper)
                     {
@@ -70,7 +67,7 @@ namespace Apollo.Age.Reports.Services
 
                     IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new OutstandingCriteria
                     {
-                        AgentId = CurrentAgentId.Value,
+                        AgentId = currentAgentId.Value,
                         Sporttypes = sporttypes,
                         Bettypes = bettypes
                     });
@@ -92,22 +89,21 @@ namespace Apollo.Age.Reports.Services
         }
 
         /// <summary>
-        /// Get Member outstanding report
+        /// Get Member outstanding report.
         /// </summary>
-        /// <param name="CurrentAgentId"></param>
-        /// <param name="agentId"></param>
-        /// <param name="sporttypes"></param>
-        /// <param name="bettypes"></param>
-        /// <param name="mainShareHolderId"></param>
-        /// <param name="mainShareHolderUsername"></param>
-        /// <returns></returns>
-        public MemberOutstadingViewModel GetMemberOutstandingReport(int? CurrentAgentId, int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
+        /// <param name="currentAgentId">Current Agent Id.</param>
+        /// <param name="sporttypes">Sport type group.</param>
+        /// <param name="bettypes">Bet type group.</param>
+        /// <param name="mainShareHolderId">Main ShareHolder Id.</param>
+        /// <param name="mainShareHolderUsername">Main ShareHolder Name.</param>
+        /// <returns>Member Outstanding ViewModel.</returns>
+        public MemberOutstandingViewModel GetMemberOutstandingReport(int? currentAgentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
         {
             try
             {
                 IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new MemberOutstandingCriteria
                 {
-                    AgentId = CurrentAgentId.Value,
+                    AgentId = currentAgentId.Value,
                     Sporttypes = sporttypes,
                     Bettypes = bettypes
                 });
@@ -125,7 +121,7 @@ namespace Apollo.Age.Reports.Services
                     }
                 }
 
-                return new MemberOutstadingViewModel
+                return new MemberOutstandingViewModel
                 {
                     ListOutstanding = models,
                     Total = totalModels,
@@ -136,20 +132,20 @@ namespace Apollo.Age.Reports.Services
             catch (Exception ex)
             {
                 HandleException(ex);
-                return new MemberOutstadingViewModel();
+                return new MemberOutstandingViewModel();
             }
         }
 
         /// <summary>
-        /// Export Outstanding report excel file
+        /// Export Outstanding report excel file.
         /// </summary>
-        /// <param name="isAgentOutStanding"></param>
-        /// <param name="listOutStanding"></param>
-        /// <param name="currentUsername"></param>
-        /// <param name="sportName"></param>
-        /// <param name="betTypeName"></param>
-        /// <param name="isSuper"></param>
-        /// <returns></returns>
+        /// <param name="isAgentOutStanding">Is Agent OutStanding.</param>
+        /// <param name="listOutStanding">List OutStanding data.</param>
+        /// <param name="currentUsername">Current username.</param>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="betTypeName">Bet type name.</param>
+        /// <param name="isSuper">Is super or no.</param>
+        /// <returns>Outstanding Excel file.</returns>
         public HSSFWorkbook ExportOutstandingReport(
             bool isAgentOutStanding,
             IEnumerable<OutstandingModel> listOutStanding,
@@ -166,12 +162,11 @@ namespace Apollo.Age.Reports.Services
                 if (listOutStanding != null
                     && listOutStanding.Any())
                 {
-
                     RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
                     RenderExcelHeader(hssfworkbook, sheet, 4);
                     var rowIndex = 5;
                     var length = listOutStanding.Count();
-                    //create the format instance
+                    //// create the format instance
                     IDataFormat format = hssfworkbook.CreateDataFormat();
                     var numberFormat = format.GetFormat("#,##0.00");
                     double totalOutstanding = 0, totalShareAmount = 0, currentOutStanding = 0, currentShareAmount = 0;
@@ -196,12 +191,17 @@ namespace Apollo.Age.Reports.Services
                         {
                             userName = currentOutstanding.UserName;
                         }
+
                         currentOutStanding = (double)currentOutstanding.Outstanding;
                         currentShareAmount = (double)currentOutstanding.ShareAmount;
-                        RenderExcelBodyRows(hssfworkbook, sheet, rowIndex + i, userName, currentOutStanding,
+                        RenderExcelBodyRows(
+                            hssfworkbook, 
+                            sheet, 
+                            rowIndex + i, 
+                            userName, 
+                            currentOutStanding,
                             currentShareAmount,
                             numberFormat,
-                            false,
                             bodyStyle);
                         totalOutstanding += currentOutStanding;
                         totalShareAmount += currentShareAmount;
@@ -217,13 +217,16 @@ namespace Apollo.Age.Reports.Services
                         footerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
                         footerStyle.FillBackgroundColor = HSSFColor.DARK_RED.index;
                         footerStyle.SetFont(font);
-                        RenderExcelBodyRows(hssfworkbook, sheet, rowIndex + length, Lang.total, totalOutstanding,
-                                totalShareAmount,
-                                numberFormat,
-                                true,
-                                footerStyle);
+                        RenderExcelBodyRows(
+                            hssfworkbook, 
+                            sheet, 
+                            rowIndex + length, 
+                            Lang.total, 
+                            totalOutstanding,
+                            totalShareAmount,
+                            numberFormat,
+                            footerStyle);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -235,17 +238,16 @@ namespace Apollo.Age.Reports.Services
         }
 
         /// <summary>
-        /// Render Excel Outstanding Report body rows
+        /// Render Excel Outstanding Report body rows.
         /// </summary>
-        /// <param name="workBook"></param>
-        /// <param name="sheet"></param>
-        /// <param name="rowIndex"></param>
-        /// <param name="userName"></param>
-        /// <param name="outstandingAmount"></param>
-        /// <param name="shareAmount"></param>
-        /// <param name="numberFormat"></param>
-        /// <param name="isTotal"></param>
-        /// <param name="cellStyle"></param>
+        /// <param name="workBook">HSSF Workbook.</param>
+        /// <param name="sheet">Excel worksheet.</param>
+        /// <param name="rowIndex">Row index.</param>
+        /// <param name="userName">User name.</param>
+        /// <param name="outstandingAmount">Outstanding Amount.</param>
+        /// <param name="shareAmount">Share Amount.</param>
+        /// <param name="numberFormat">Number Format.</param>
+        /// <param name="cellStyle">Cell Style.</param>
         private void RenderExcelBodyRows(
             HSSFWorkbook workBook,
             ISheet sheet,
@@ -254,8 +256,7 @@ namespace Apollo.Age.Reports.Services
             double outstandingAmount,
             double shareAmount,
             short numberFormat,
-            bool isTotal,
-            ICellStyle cellStyle )
+            ICellStyle cellStyle)
         {
             IRow row = sheet.CreateRow(rowIndex);
             var userNameCell = row.CreateCell(0);
@@ -284,16 +285,17 @@ namespace Apollo.Age.Reports.Services
         }
 
         /// <summary>
-        /// Render Outstanding Report Title
+        /// Render Outstanding Report Title.
         /// </summary>
-        /// <param name="workBook"></param>
-        /// <param name="sheet"></param>
-        /// <param name="fromRow"></param>
-        /// <param name="isAgent"></param>
-        /// <param name="userName"></param>
-        /// <param name="sportName"></param>
-        /// <param name="betTypeName"></param>
-        private void RenderExcelTitle(HSSFWorkbook workBook, 
+        /// <param name="workBook">HSSF Workbook.</param>
+        /// <param name="sheet">Excel worksheet.</param>
+        /// <param name="fromRow">Row start.</param>
+        /// <param name="isAgent">Is Agent or Member.</param>
+        /// <param name="userName">User name.</param>
+        /// <param name="sportName">Sport group name.</param>
+        /// <param name="betTypeName">Bet type group name.</param>
+        private void RenderExcelTitle(
+            HSSFWorkbook workBook, 
             ISheet sheet, 
             int fromRow, 
             bool isAgent,
@@ -309,7 +311,7 @@ namespace Apollo.Age.Reports.Services
             cell.SetCellValue(string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));
             ICellStyle style = workBook.CreateCellStyle();
             style.Alignment = HorizontalAlignment.CENTER;
-            //create a font style
+            //// create a font style
             IFont font = workBook.CreateFont();
             font.FontHeight = 300;
             style.SetFont(font);
@@ -330,22 +332,20 @@ namespace Apollo.Age.Reports.Services
             informationCell.SetCellValue(string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));
 
             sheet.AddMergedRegion(new CellRangeAddress(fromRow + 1, fromRow + 1, 0, 2));
-
         }
 
         /// <summary>
-        /// Render Outstanding header report
+        /// Render Outstanding header report.
         /// </summary>
-        /// <param name="workBook"></param>
-        /// <param name="sheet"></param>
-        /// <param name="fromRow"></param>
+        /// <param name="workBook">HSSF Workbook.</param>
+        /// <param name="sheet">Excel worksheet.</param>
+        /// <param name="fromRow">Row start.</param>
         private void RenderExcelHeader(HSSFWorkbook workBook, ISheet sheet, int fromRow)
         {
             var row = sheet.CreateRow(fromRow);
             var font1 = workBook.CreateFont();
             font1.FontHeightInPoints = 11;
             font1.Color = NPOI.HSSF.Util.HSSFColor.WHITE.index;
-            //font1.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
 
             ICellStyle headerStyle = workBook.CreateCellStyle();
             headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
@@ -375,6 +375,5 @@ namespace Apollo.Age.Reports.Services
             sheet.SetColumnWidth(1, 35 * 256);
             sheet.SetColumnWidth(2, 35 * 256);
         }
-
     }
 }

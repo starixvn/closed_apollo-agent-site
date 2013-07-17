@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SingbetBettypeConstant.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BettypeGroup.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 namespace Apollo.Age.Reports.Core
 {
     /// <summary>
-    /// Hard code group bet types
+    /// Hard code group bet types.
     /// </summary>
     public class BettypeGroup
     {
