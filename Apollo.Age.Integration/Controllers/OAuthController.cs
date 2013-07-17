@@ -132,11 +132,13 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public void SignOut()
         {
-            //write log
-            // ActionId: 704 - sso logout successful
-            string doing = string.Format("SSO log out via Agent: [{0}] - Result: Successful.", SessionManager.CurrentSession.Username);
-            WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, 0, doing);
-
+            if (SessionManager.CurrentSession != null)
+            {
+                //write log
+                // ActionId: 704 - sso logout successful
+                string doing = string.Format("SSO log out via Agent: [{0}] - Result: Successful.", SessionManager.CurrentSession.Username);
+                WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, 0, doing);
+            }
             Session.Abandon();
             Response.Cookies.Clear();
             // FormsAuthentication.SignOut();
