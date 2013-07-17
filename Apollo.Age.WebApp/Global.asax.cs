@@ -81,6 +81,8 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".less") == -1
                     && executeFileName.IndexOf(".css") == -1
                     && executeFileName.IndexOf(".js") == -1
+                    && executeFileName.IndexOf(".gif") == -1
+                    && executeFileName.IndexOf(".png") == -1
                     )
                 {
                     var maintenanceInfo = maintenanceService.MaintenanceInfo;
