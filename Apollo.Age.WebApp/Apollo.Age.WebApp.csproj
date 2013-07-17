@@ -382,6 +382,8 @@
     <Content Include="Views\BetList\Resources\Images\q_Icon_2.png" />
     <Content Include="Views\BetList\Resources\Images\ScoreMapWL.png" />
     <Content Include="Views\BetList\Resources\Paging.js" />
+    <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
+    <Content Include="Views\Error\Resources\images\icon-maintenance.gif" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
     <Content Include="Views\Forecast\Resources\FC1X2.js" />
     <Content Include="Views\Forecast\Resources\FCByMatch.js" />
