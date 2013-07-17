@@ -209,15 +209,24 @@ namespace Apollo.Age.Web
 
                 if (model.Agent.ToLower() == "super")
                 {
-                    var enCryptSafeCode = Cryptography.CfsEnCrypt(model.SafeCode);
-                    if (enCryptSafeCode == AppSettings.SuperSafeCode)
+                    if (string.IsNullOrWhiteSpace(model.SafeCode))
                     {
-                        isAllowUpdate = true;
+
+                        ModelState.AddModelError("Security Code", "The security code field is required");
+                        return View(model);
                     }
                     else
                     {
-                        ModelState.AddModelError("Security Code", "wrong security code...");
-                        return View(model);
+                        var enCryptSafeCode = Cryptography.CfsEnCrypt(model.SafeCode);
+                        if (enCryptSafeCode == AppSettings.SuperSafeCode)
+                        {
+                            isAllowUpdate = true;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Security Code", "Wrong security code");
+                            return View(model);
+                        }
                     }
                 }
 
