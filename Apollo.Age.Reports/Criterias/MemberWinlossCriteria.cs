@@ -9,34 +9,34 @@
 
 namespace Apollo.Age.Reports.Criterias
 {
-	using System;
-	using Fanex.NAP.Framework.Data;
+    using System;
+    using Fanex.NAP.Framework.Data;
 
-	public class MemberWinLossCriteria : CriteriaBase
-	{
-		public int AgentId { get; set; }
+    public class MemberWinLossCriteria : CriteriaBase
+    {
+        public int AgentId { get; set; }
 
-		public string Sporttypes { get; set; }
+        public string Sporttypes { get; set; }
 
-		public string Bettypes { get; set; }
+        public string Bettypes { get; set; }
 
-		public DateTime FromDate { get; set; }
+        public DateTime FromDate { get; set; }
 
-		public DateTime ToDate { get; set; }
+        public DateTime ToDate { get; set; }
 
-		public DateTime BalanceUpDay { get; set; }
+        public DateTime BalanceUpDay { get; set; }
 
-		public DateTime MoveBetDay { get; set; }
+        public DateTime MoveBetDay { get; set; }
 
-		public override string GetSettingKey()
-		{
-			return "Age_Rpt_WinLoss_Member";
-		}
+        public override string GetSettingKey()
+        {
+            return "Age_Rpt_WinLoss_Member";
+        }
 
-		public override bool IsValid()
-		{
-			var check = AgentId > 0 && FromDate <= DateTime.Now && FromDate <= ToDate && BalanceUpDay <= FromDate && BalanceUpDay <= ToDate;
-			return check;
-		}
-	}
+        public override bool IsValid()
+        {
+            var check = AgentId > 0 && FromDate <= DateTime.Now && FromDate <= ToDate && BalanceUpDay <= FromDate && BalanceUpDay <= ToDate;
+            return check;
+        }
+    }
 }

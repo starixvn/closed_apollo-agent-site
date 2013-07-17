@@ -73,7 +73,7 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             CurrentAgentId = agentId;
-            var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, agentId, sporttypes, bettypes);
+            var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, sporttypes, bettypes);
 
             var cachingKey = string.Format(
                 "{0}-{1}-{2}-{3}",
@@ -145,7 +145,7 @@ namespace Apollo.Age.Reports.Controllers
             CurrentAgentId = agentId;
 
             //// call service to get listOutstanding data here
-            var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, agentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+            var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
 
             var sessionKey = string.Format(
                 "{0}-{1}-{2}-{3}",
