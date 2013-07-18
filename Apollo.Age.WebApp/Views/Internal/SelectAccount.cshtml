@@ -2,7 +2,7 @@
 @using Apollo.Age.Configurations
 @model Apollo.Age.Web.ViewModels.SelectAccountViewModel
 @{
-    string title = "Sign In as Agent/Super";
+    string title = Lang.SignInAsAgent;
     ViewBag.Title = title;
 }
 @section css {
@@ -27,12 +27,8 @@
             <div id="supertab">
                  <p>
 		            @Html.LabelFor(m => m.SafeCode, Lang.lblsecuritycode)
-		            @Html.TextBoxFor(m => m.SafeCode, new { @class = "input-safecode", autocomplete = "off", maxlength = "6" })
-	            </p>
-                <p>
-                    @Html.LabelFor(m => m.AllowUpdate)
-                    @Html.CheckBoxFor(m => m.AllowUpdate);
-                </p>
+		            @Html.TextBoxFor(m => m.SafeCode, new { @class = "input-safecode", autocomplete = "off", maxlength = "6", type="password" })
+	            </p>               
             </div>
              <p>
                     <input type="submit" value="@Lang.Continue &rarr;" />
