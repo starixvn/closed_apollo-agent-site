@@ -353,8 +353,8 @@ var HEADER = function ($) {
                 }
                 else {
                     HEADER.hideAccountTab();
+                    parent.$('#btn-mini-menu').hide();
                 }
-
                 event.stopPropagation();
             });
 
@@ -405,8 +405,30 @@ var HEADER = function ($) {
             // hide left navigation
             if (leftMenu.is(':visible')) {
                 HEADER.hideLeftNavigation(leftMenu, mainPage);
+                parent.$('#btn-mini-menu').hide();
             } else { //show left navigation
                 HEADER.showLeftNavigation(leftMenu, mainPage);
+
+                var leftNav = parent.$('.menu'),
+                    menuIcon = parent.$('.tab-menu-icon'),
+                    btnMiniMenu = parent.$('#btn-mini-menu'),
+                    iframeLeft = parent.$('#menu');
+
+                if (leftNav.hasClass('mini-menu')) {
+                    leftNav.removeClass('mini-menu');
+                    menuIcon.hide();
+                    if (btnMiniMenu.hasClass('collapse')) {
+                        btnMiniMenu.removeClass('collapse').addClass('expand').show();
+                    } else {
+                        btnMiniMenu.removeClass('expand').addClass('collapse').show();
+                    }
+                    iframeLeft.show();
+                } else {
+                    if (btnMiniMenu.hasClass('expand')) {
+                        btnMiniMenu.removeClass('expand');
+                    }
+                    btnMiniMenu.addClass('collapse').show();
+                }
             }
         },
 
@@ -461,8 +483,7 @@ var HEADER = function ($) {
                 // Ignore link to check for click on menu many times
                 if (HEADER.oldUrl == currentSubUrl &&
                 currentSubUrl != "/Reports/matchentered" &&
-                currentSubUrl != "/Account/AgentList") 
-                {
+                currentSubUrl != "/Account/AgentList") {
                     return;
                 }
 
