@@ -523,9 +523,7 @@ namespace Apollo.Age.Reports.Services
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 1, 1));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 2, 2));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 3, 3));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 4, 4));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 5, 5));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 6, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 4, 6));
             #endregion
 
             return hssfworkbook;
@@ -618,8 +616,6 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
             CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
             CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyle, Lang.outstanding);
-            CreateStringCell(row, columIndex++, headerStyle, Lang.ShareAmount);
             CreateStringCell(row, columIndex++, headerStyle, Lang.GrossTotal);
             CreateStringCell(row, columIndex++, headerStyle, agentName);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -630,8 +626,6 @@ namespace Apollo.Age.Reports.Services
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -689,7 +683,6 @@ namespace Apollo.Age.Reports.Services
 
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
-                
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.GrossTotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
@@ -750,17 +743,15 @@ namespace Apollo.Age.Reports.Services
             #endregion
 
             #region merge cell
-            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 10));
-            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 10));
+            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 8));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 1, 1));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 2, 2));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 3, 3));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 4, 4));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 5, 5));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 6, 6));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 7, 9));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 10, 10));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 5, 7));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 8, 8));
 
             #endregion
 
