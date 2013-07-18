@@ -452,12 +452,20 @@ namespace Apollo.Age.Account.Controllers
                 });
             }
 
-            if (commissionSetting != null 
-                && commissionSetting.CommissionItems.Any()
-                && commissionSetting.CommissionItems[0].SportId == (int)SportTypes.Soccer
-                && commissionSetting.CommissionItems[0].BetTypeId == (int)BetTypes.Handicap)
+            if (commissionSetting != null )
             {
-                RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                if (commissionSetting.CommissionItems != null
+                    && commissionSetting.CommissionItems.Any()
+                    && commissionSetting.CommissionItems[0].SportId == (int)SportTypes.Soccer
+                    && commissionSetting.CommissionItems[0].BetTypeId == (int)BetTypes.Handicap)
+                {
+                    RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                }
+
+                if (!string.IsNullOrEmpty(commissionSetting.UserGroup))
+                {
+                    commissionSetting.UserGroup = RevertCommGroupName(commissionSetting.UserGroup);
+                }
             }
 
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
