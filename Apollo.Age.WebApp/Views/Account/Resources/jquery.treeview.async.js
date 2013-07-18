@@ -50,7 +50,7 @@
             }
         if(showRoot)
         {
-            $.getJSON(settings.rootLink, null, function (response) {
+            $.getJSON(settings.rootLink + "?v=" + Math.random(), null, function (response) {
                 $.each(response, createNode, [child]);
                 $(container).treeview({ add: child });
             });
