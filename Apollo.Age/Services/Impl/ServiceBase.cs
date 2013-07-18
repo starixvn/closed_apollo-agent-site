@@ -9,43 +9,47 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ServiceBase
     {
+        /// <summary>
+        /// Handle Exception.
+        /// </summary>
+        /// <param name="ex">Exception.</param>
         protected void HandleException(Exception ex)
         {
             Fanex.Logging.LogService.Error(ex.Message, ex);
         }
 
-        #region Group Commission Reverting
+        #region Commission Group Reverting
 
         /// <summary>
-        /// Revert Group Commission Name.
+        /// Revert Commission Group Name.
         /// </summary>
-        /// <param name="groupCommName"> Input group commission name normally (a,b,c,d).</param>
-        /// <returns>Return group commission name that need to revert(d,c,b,a).</returns>
-        protected string RevertGroupCommName(string groupCommName)
+        /// <param name="commGroupName"> Input commission group name normally (a,b,c,d).</param>
+        /// <returns>Return commission group name that need to revert(d,c,b,a).</returns>
+        protected string RevertCommGroupName(string commGroupName)
         {
-            switch (groupCommName.ToLower())
+            switch (commGroupName.ToLower())
             {
                 case "a":
                     {
                         return "D";
                     }
+
                 case "b":
                     {
                         return "C";
                     }
+
                 case "c":
                     {
                         return "B";
                     }
+
                 default:
                     {
                         return "A";
@@ -53,6 +57,6 @@ namespace Apollo.Age.Services.Impl
             }
         }
 
-        #endregion
+        #endregion Commission Group Reverting
     }
 }
