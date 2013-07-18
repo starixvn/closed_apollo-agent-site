@@ -10,7 +10,7 @@
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
-                <td class="r red-num vertical-middle" data-bettype="@((int)BetTypes.HT_FT)">
+                <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.HT_FT)">
                     @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
             </tr>
