@@ -649,7 +649,7 @@ namespace Apollo.Age.Account.Controllers
                 if (memberInfo != null)
                 {
                     commissionSetting.UserGroup = RevertCommGroupName(memberInfo.UGroup);
-                    settingContext.CanEditComGroup = settingContext.AdminId > 0 || !memberInfo.IsUGroupChanged;
+                    settingContext.CanEditComGroup = settingContext.AdminId > 0 || CurrentSession.IsSuper || !memberInfo.IsUGroupChanged;
                 }
             }
 
