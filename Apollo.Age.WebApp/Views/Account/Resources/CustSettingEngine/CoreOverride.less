@@ -370,8 +370,18 @@ body, .pt-grid {
 	text-align: center !important;
 }
 
-.noty_message.error {
-	background: #F47575
+.noty_message {
+	&.error {
+		background: #F47575;
+
+		.noty_text {
+			text-shadow: none;
+		}
+	}
+
+	&.success {
+		background: #C6FFD3;
+	}
 }
 /* FIX IE */
 

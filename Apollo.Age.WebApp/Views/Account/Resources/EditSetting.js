@@ -84,7 +84,10 @@ if (typeof jQuery != 'undefined') {
                     if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
                     && dataObject.betLimits.length == 0
                     && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined') {
-                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                        noty({ 
+                            text: DEFAULT_LAYOUT.noChangeMessage, type: 'success',
+                            template: '<div class="noty_message success"><span class="noty_text"></span></div>',
+                            timeout: 5000 });
                         return;
                     }
 
@@ -126,8 +129,8 @@ if (typeof jQuery != 'undefined') {
                             //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
                             noty({ 
                                 text: data.ErrMsg,
-                                type: 'error',                               
-                                template: '<div class="noty_message error"><span class="noty_text error"></span></div>',
+                                type: 'error',                            
+                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
                                 buttons: true,
                                 buttons: [{
                                      addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
