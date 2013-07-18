@@ -21,16 +21,25 @@
                 <p class="username">
                     @Html.LabelFor(m => m.Agent, Lang.agent)
                     @Html.TextBoxFor(m => m.Agent, new { @class = "input-text", autocomplete = "off" })
-                </p>
-                if (!ViewData.ModelState.IsValid) {
-                @Html.ValidationSummary()
-                }
-                <p>
-                    <input type="submit" value="@Lang.Continue &rarr;" />
-                </p>
+                </p>                
+               
             </div>
             <div id="supertab">
+                 <p>
+		            @Html.LabelFor(m => m.SafeCode, Lang.lblsecuritycode)
+		            @Html.TextBoxFor(m => m.SafeCode, new { @class = "input-safecode", autocomplete = "off", maxlength = "6" })
+	            </p>
+                <p>
+                    @Html.LabelFor(m => m.AllowUpdate)
+                    @Html.CheckBoxFor(m => m.AllowUpdate);
+                </p>
             </div>
+             <p>
+                    <input type="submit" value="@Lang.Continue &rarr;" />
+                </p>
+            @if (!ViewData.ModelState.IsValid) {
+                     @Html.ValidationSummary()
+                }
         </div>
     }
 </div>

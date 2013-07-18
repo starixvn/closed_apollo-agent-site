@@ -42,12 +42,12 @@
                         }
                         if (string.Compare(groupBetName, tempAction, true) == 0)
                         {
-            <li class="active"><a href="#">@resMgr.GetString(resourceKey)</a> </li>                           
+            <li class="active"><a href="#">@resMgr.GetString(resourceKey)</a> </li>
                         }
                         else
                         {
             <li><a href="~/wagers/wager?sportName=@controller&amp;groupBetName=@tempAction&amp;resourceKey=@resourceKey&amp;isEM=@(isEarlyMarket ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
-            </li>                           
+            </li>
                         }
                     }
 
@@ -155,10 +155,10 @@
                 @Lang.lblhomeandguest
             </th>
             @foreach (string columnName in columnNames)
-            {     
+            {
                 <th class="nowrap">
                     @columnName
-                </th>            
+                </th>
             }
         </tr>
     </thead>
@@ -169,31 +169,31 @@
     </tbody>
 }
 @helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
-    {         
+    {
         var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
 
         if (!ReferenceEquals(groupBet, null) && groupBet.Any())
         {
-            var firstModel = groupBet.FirstOrDefault();    
-    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), groupBet.Sum(m => m.StakeBefore), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)    
+            var firstModel = groupBet.FirstOrDefault();
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), groupBet.Sum(m => m.StakeBefore), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)
         }
         else
         {
-    <span>0/0</span>                   
-        } 
+    <span>0/0</span>
+        }
 }
 @helper RenderColumn(SpecialViewModel item)
     {
         if (item != null)
-        {    
+        {
     @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
         }
         else
-        { 
+        {
     <br />
         }
 @*
-    Type : 
+    Type :
         + 0 : All
         + 1 : Home
         + 2 : Away
@@ -201,15 +201,20 @@
 *@
 }
 @helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId)
-    {    
-        var columnData = betCount.ToString() + "/" + Math.Round(stakebefore).ToString() + "/" + Math.Round(stake).ToString();
+    {
+        string columnData = "{0}/{1}/{2}";
         if (betCount != 0
-            && stake != 0)
-        { 
-            <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">@columnData</a>   
+            && stake != 0
+            && stakebefore != 0)
+        {
+            columnData = string.Format(columnData, betCount.ToString(), "<font color='#FFBC00'><b>" + Math.Round(stakebefore).ToString() + "</b></font>", Math.Round(stake).ToString());
+    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">
+        @(new HtmlString(columnData))
+    </a>
         }
         else
         {
-            <span>@columnData</span>
-        }        
+            columnData = string.Format(columnData, betCount.ToString(), Math.Round(stakebefore).ToString(), Math.Round(stake).ToString());
+    <span>@columnData</span>
+        }
 }
