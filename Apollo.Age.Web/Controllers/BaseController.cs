@@ -38,6 +38,7 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
         }
+
         #region Override functions
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -74,6 +75,7 @@ namespace Apollo.Age.Web
             }
         }
         #endregion
+
         #region Auth
 
         private void CheckAuthentication()
@@ -165,6 +167,7 @@ namespace Apollo.Age.Web
         }
 
         #endregion
+
         #region PROPERTIES
         protected ICurrentSession CurrentSession
         {
@@ -201,6 +204,38 @@ namespace Apollo.Age.Web
             }
         }
         #endregion
+        #endregion
+
+        #region Group Commission Reverting
+
+        /// <summary>
+        /// Revert Group Commission Name.
+        /// </summary>
+        /// <param name="groupCommName"> Input group commission name normally (a,b,c,d).</param>
+        /// <returns>Return group commission name that need to revert(d,c,b,a).</returns>
+        public string RevertGroupCommName(string groupCommName)
+        {
+            switch (groupCommName.ToLower())
+            {
+                case "a":
+                    {
+                        return "D";
+                    }
+                case "b":
+                    {
+                        return "C";
+                    }
+                case "c":
+                    {
+                        return "B";
+                    }
+                default:
+                    {
+                        return "A";
+                    }
+            }
+        }
+
         #endregion
     }
 }
