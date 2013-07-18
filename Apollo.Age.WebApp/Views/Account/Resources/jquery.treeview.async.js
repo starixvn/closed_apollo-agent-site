@@ -50,7 +50,7 @@
             }
         if(showRoot)
         {
-            $.getJSON(settings.rootLink + "?v=" + Math.random(), null, function (response) {
+            $.getJSON(settings.rootLink, null, function (response) {
                 $.each(response, createNode, [child]);
                 $(container).treeview({ add: child });
             });
@@ -58,6 +58,7 @@
         else
         {
             $.getJSON(settings.url+"?agentId=" + root, null, function (response) {
+            
                 $.each(response, createNode, [child]);
                 $(container).treeview({ add: child });
             });

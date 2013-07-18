@@ -422,8 +422,6 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
             CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
             CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyle, Lang.outstanding);
-            CreateStringCell(row, columIndex++, headerStyle, Lang.ShareAmount);
             CreateStringCell(row, columIndex++, headerStyle, agentName);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -432,8 +430,6 @@ namespace Apollo.Age.Reports.Services
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -456,8 +452,6 @@ namespace Apollo.Age.Reports.Services
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
-            decimal totalOutstanding = 0;
-            decimal totalOutstandingShare = 0;
 
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -469,8 +463,6 @@ namespace Apollo.Age.Reports.Services
                 totalAComm += agentWinLoss.AComm;
                 totalATotal += agentWinLoss.ATotal;
                 totalUpline += agentWinLoss.UplineTotal;
-                totalOutstanding += agentWinLoss.Outstanding;
-                totalOutstandingShare += agentWinLoss.OutstandingShare;
 
                 row = sheet.CreateRow(rowIndex);
                 
@@ -478,8 +470,6 @@ namespace Apollo.Age.Reports.Services
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Outstanding);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.OutstandingShare);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
@@ -527,8 +517,8 @@ namespace Apollo.Age.Reports.Services
             #endregion
 
             #region merge cell
-            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 8));
-            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 6));
+            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 6));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 1, 1));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 2, 2));
@@ -665,8 +655,6 @@ namespace Apollo.Age.Reports.Services
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
-            decimal totalOutstanding = 0;
-            decimal totalOutstandingShare = 0;
 
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -678,8 +666,6 @@ namespace Apollo.Age.Reports.Services
                 totalAComm += agentWinLoss.AComm;
                 totalATotal += agentWinLoss.ATotal;
                 totalUpline += agentWinLoss.UplineTotal;
-                totalOutstanding += agentWinLoss.Outstanding;
-                totalOutstandingShare += agentWinLoss.OutstandingShare;
 
                 row = sheet.CreateRow(rowIndex);
 
@@ -703,8 +689,7 @@ namespace Apollo.Age.Reports.Services
 
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Outstanding);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.OutstandingShare);
+                
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.GrossTotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
@@ -724,8 +709,6 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, footerStyle, string.Empty);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalTurnover);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalActual);
-            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstanding);
-            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalOutstandingShare);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalGross);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAWinLoss);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAComm);

@@ -31,6 +31,8 @@ namespace Apollo.Age.Wagers.Controllers
     /// <summary>
     /// Wager Controller.
     /// </summary>
+    ///
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class WagerController : BaseController
     {
         protected readonly IWagersService WagerService;
