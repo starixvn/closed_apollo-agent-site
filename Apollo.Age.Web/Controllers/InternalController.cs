@@ -31,7 +31,7 @@ namespace Apollo.Age.Web
     using Fanex.Logging;
 
     /// <summary>
-    /// Internal Login Controller
+    /// Internal Login Controller.
     /// </summary>
     public class InternalController : Controller
     {
@@ -45,7 +45,7 @@ namespace Apollo.Age.Web
         private const string AgentName = "AgentName";
         private const int ServerId = 2;
         private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        private readonly int _RandomStringLength = _RandomString.Length;
+        private readonly int _randomStringLength = _RandomString.Length;
 
         #endregion Const
 
@@ -64,20 +64,12 @@ namespace Apollo.Age.Web
 
         #endregion Ctors
 
-        /// <summary>
-        /// Get infor logged in by internal or not.
-        /// </summary>
-        private bool IsInternalSignIn
-        {
-            get { return SessionManager.CurrentSession != null && SessionManager.CurrentSession.IsInternalSignIn; }
-        }
-
         #endregion Services
 
         /// <summary>
         /// Index Action.
         /// </summary>
-        /// <returns>Redirect to Sigin action.</returns>
+        /// <returns>Redirect to Sign in action.</returns>
         public ActionResult Index()
         {
             return RedirectToAction("SignIn");
@@ -190,7 +182,7 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Post ReCheckIn.
         /// </summary>
-        /// <returns>Return Json.</returns>
+        /// <returns>Return true or false.</returns>
         [HttpPost]
         public JsonResult ReCheckIn()
         {
@@ -241,7 +233,7 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Post Select Account Action.
         /// </summary>
-        /// <param name="model">Input View Model</param>
+        /// <param name="model">Input View Model.</param>
         /// <returns>Redirect to home page or Safe code page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -294,7 +286,7 @@ namespace Apollo.Age.Web
         /// Post Action SafeCode.
         /// </summary>
         /// <param name="model">Input View Model.</param>
-        /// <returns>Redirect to Home Page</returns>
+        /// <returns>Redirect to Home Page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SafeCode(SafeCodeViewModel model)
@@ -338,11 +330,10 @@ namespace Apollo.Age.Web
 
             var captcha = this.GetRandomString(3);
 
-            /// saves answer
-          
+            // Saves answer          
             Session[ApolloSessionCaptcha] = captcha;
 
-            FileContentResult img = null; /// image stream
+            FileContentResult img = null; // Image stream
 
             using (var mem = new MemoryStream())
             using (var bmp = GenerateNoise(55, 23))
@@ -351,7 +342,7 @@ namespace Apollo.Age.Web
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
                 gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
-                /// add noise
+                // Add noise
                 if (noisy)
                 {
                     int i, r, x, y;
@@ -366,10 +357,10 @@ namespace Apollo.Age.Web
                     }
                 }
 
-                /// add captcha
+                // Add captcha
                 gfx.DrawString(captcha.ToString(), new Font("Consolas", 13), Brushes.Crimson, 5, 2);
 
-                /// render as JPEG
+                // Render as JPEG
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
                 img = this.File(mem.GetBuffer(), "image/png");
             }
@@ -412,16 +403,17 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Function Get User Info Login.
         /// </summary>
-        /// <param name="agentName">Agent UserName.</param>
-        /// <param name="adminId">Admin Id.</param>
-        /// <param name="adminName">Admin Name.</param>
-        /// <param name="language">Language.</param>
-        /// <param name="isAllowUpdate">Allow Update.</param>
-        /// <returns></returns>
+        /// <param name="agentName">Input AgentUserName.</param>
+        /// <param name="adminId">Input AdminId.</param>
+        /// <param name="adminName">Input AdminName.</param>
+        /// <param name="language">Input Language.</param>
+        /// <param name="isAllowUpdate">Input AllowUpdate.</param>
+        /// <returns>Return Action Result.</returns>
         private ActionResult UserInfo(string agentName, int adminId, string adminName, string language, bool isAllowUpdate)
         {
             User user = _userService.InternalGetAgentByUsername(agentName);
-            /// continue sign-in process.
+
+            // Continue sign-in process.
             if (user != null)
             {
                 var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
@@ -438,21 +430,22 @@ namespace Apollo.Age.Web
                             {
                                 return SignOut();
                             }
-                            /// AppSettings.AllowInternalUpdate is a workaround solution for internal testing and.
-                            /// may be removed in future.
+
+                            // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and.
+                            // May be removed in future.
                             user.IsMaster = isAllowUpdate;
 
-                            /// saves user session
+                            // Saves user session
                             SessionManager.CurrentSession = new CurrentSession(
                                 user: user,
                                 adminId: adminId,
                                 adminName: adminName,
                                 onUserId: onUserId,
-                                isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc).
+                                isInternalSignIn: true, // Users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc).
                                 language: language);
 
-                            /// Write log internal login.
-                            /// ActionId: 701 - Select Account successful.
+                            // Write log internal login.
+                            // ActionId: 701 - Select Account successful.
                             string doing = string.Format(
                                 "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
                                             adminName,
@@ -482,8 +475,8 @@ namespace Apollo.Age.Web
             }
             else
             {
-                /// Write log internal login.
-                /// ActionId: 6001 - Select Account fail.
+                // Write log internal login.
+                // ActionId: 6001 - Select Account fail.
                 string doing = string.Format(
                     "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
                                 adminName,
@@ -498,12 +491,12 @@ namespace Apollo.Age.Web
         }
 
         /// <summary>
-        /// Write log
+        /// Write log login.
         /// </summary>
-        /// <param name="agentId">Agent Id</param>
-        /// <param name="agentUserId">Agent User Id</param>
-        /// <param name="actionId">Action Id</param>
-        /// <param name="doing">Doing</param>
+        /// <param name="agentId">Input AgentId.</param>
+        /// <param name="agentUserId">Input AgentUserId.</param>
+        /// <param name="actionId">Input ActionId.</param>
+        /// <param name="doing">Input Doing.</param>
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
@@ -534,23 +527,23 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Get Random string for captcha.
         /// </summary>
-        /// <param name="seed">input seed.</param>
-        /// <param name="length">input length of captcha.</param>
-        /// <returns>return string captcha.</returns>
+        /// <param name="seed">Input seed.</param>
+        /// <param name="length">Input length of captcha.</param>
+        /// <returns>Return string captcha.</returns>
         private string GetRandomString(int seed, int length = 4)
         {
-            //use the following string to control your set of alphabetic characters to choose from
-            //for example, you could include uppercase too
-            //const string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            // Use the following string to control your set of alphabetic characters to choose from
+            // For example, you could include uppercase too
+            // Const string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-            //// Random is not truly random,
-            //// so we try to encourage better randomness by always changing the seed value
+            // Random is not truly random,
+            // So we try to encourage better randomness by always changing the seed value
             Random rnd = new Random(seed + DateTime.Now.Millisecond);
             string result = string.Empty;
 
             for (int i = 0; i < length; i++)
             {
-                result += _RandomString[rnd.Next(0, _RandomStringLength)];
+                result += _RandomString[rnd.Next(0, _randomStringLength)];
             }                       
 
             return result;
@@ -561,9 +554,9 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Generate Noise.
         /// </summary>
-        /// <param name="width">input width image</param>
-        /// <param name="height">input height image</param>
-        /// <returns>return bitmap</returns>
+        /// <param name="width">Input width image.</param>
+        /// <param name="height">Input height image.</param>
+        /// <returns>Return bitmap.</returns>
         private Bitmap GenerateNoise(int width, int height)
         {
             var finalBmp = new Bitmap(width, height);
