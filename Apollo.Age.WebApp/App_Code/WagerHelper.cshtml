@@ -202,12 +202,16 @@
 }
 @helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId)
     {
-        string columnData = "{0}/{1}/{2}";
+        string columnData = "{0}<span class='split'>/</span>{1}<span class='split'>/</span>{2}";
         if (betCount != 0
             && stake != 0
             && stakebefore != 0)
         {
-            columnData = string.Format(columnData, betCount.ToString(), "<font color='#FFBC00'><b>" + Math.Round(stakebefore).ToString() + "</b></font>", Math.Round(stake).ToString());
+            columnData = string.Format(
+                columnData, 
+                betCount.ToString(), 
+                Math.Round(stakebefore).ToString(), 
+                Math.Round(stake).ToString());
     <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">
         @(new HtmlString(columnData))
     </a>
@@ -215,6 +219,6 @@
         else
         {
             columnData = string.Format(columnData, betCount.ToString(), Math.Round(stakebefore).ToString(), Math.Round(stake).ToString());
-    <span>@columnData</span>
+    @(new HtmlString(columnData))
         }
 }
