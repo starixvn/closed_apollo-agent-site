@@ -243,73 +243,22 @@ namespace Apollo.Age.Web
             {
                 var isAllowUpdate = false;
 
+                // Hard code for Super account.
                 if (model.Agent.ToLower() == "super")
                 {
-                    TempData[AgentName] = model.Agent;
-                    TempData[Language] = model.Language;
-                    TempData[AdminName] = model.AdminName;
-                    TempData[AdminId] = model.AdminId;
-
-                    return RedirectToAction("SafeCode");
-                }
-                else
-                {
-                    return UserInfo(model.Agent, model.AdminId, model.AdminName, model.Language, isAllowUpdate);
-                }
-            }
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Get Safe Code Action.
-        /// </summary>
-        /// <returns>Return View Model.</returns>
-        [HttpGet]
-        public ActionResult SafeCode()
-        {
-            if (TempData[AgentName] == null && SessionManager.CurrentSession == null)
-            {
-                return Redirect(FormsAuthentication.LoginUrl);
-            }
-
-            return View(new SafeCodeViewModel
-            {
-                AdminId = Convert.ToInt32(TempData[AdminId]),
-                AdminName = TempData[AdminName].ToString(),
-                Agent = TempData[AgentName].ToString(),
-                Language = TempData[Language].ToString()
-            });
-        }
-
-        /// <summary>
-        /// Post Action SafeCode.
-        /// </summary>
-        /// <param name="model">Input View Model.</param>
-        /// <returns>Redirect to Home Page.</returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SafeCode(SafeCodeViewModel model)
-        {
-            bool isAllowUpdate = false;
-            if (ModelState.IsValid)
-            {
-                if (string.IsNullOrWhiteSpace(model.SecurityCode))
-                {
-                    ModelState.AddModelError("Security Code", Lang.lblsecuritycodeempty);
-                    return View(model);
-                }
-                else
-                {
-                    var encryptSafeCode = Cryptography.CfsEnCrypt(model.SecurityCode);
-                    if (encryptSafeCode == AppSettings.SuperSafeCode)
+                    if (string.IsNullOrWhiteSpace(model.SafeCode) == false)
                     {
-                        isAllowUpdate = true;
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Security Code", Lang.lblwrongsecuritycode);
-                        return View(model);
+                        var encryptSafeCode = Cryptography.CfsEnCrypt(model.SafeCode);
+                        if (encryptSafeCode == AppSettings.SuperSafeCode)
+                        {
+                            // Allow Update once Customer has Security code.
+                            isAllowUpdate = true;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("SafeCode", Lang.lblwrongsecuritycode);
+                            return View(model);
+                        }
                     }
                 }
 
@@ -330,7 +279,7 @@ namespace Apollo.Age.Web
 
             var captcha = this.GetRandomString(3);
 
-            // Saves answer          
+            // Saves answer
             Session[ApolloSessionCaptcha] = captcha;
 
             FileContentResult img = null; // Image stream
@@ -544,7 +493,7 @@ namespace Apollo.Age.Web
             for (int i = 0; i < length; i++)
             {
                 result += _RandomString[rnd.Next(0, _randomStringLength)];
-            }                       
+            }
 
             return result;
         }
