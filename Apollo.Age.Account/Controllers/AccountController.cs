@@ -29,7 +29,6 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
-    //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class AccountController : BaseController
     {
         #region Const for paging
@@ -225,6 +224,7 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetDataByNode(int agentId)
         {
             var criteria = new AgentDownlineCriteria()
@@ -236,6 +236,7 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetRootNode()
         {
             var criteria = new AgentDownlineCriteria()
@@ -254,6 +255,7 @@ namespace Apollo.Age.Account.Controllers
             return Json(rootList.Select(x => new { x.Id, x.Username, x.HasAgentDownline }), JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
             var criteria = new GetAgentByUsernameCriteria()
@@ -268,6 +270,7 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetMemberByUsername(string username)
         {
             var criteria = new GetMemberByUsernameCriteria()
