@@ -41,14 +41,14 @@
     $.fn.sbPager.defaults =
     {
         currentPage: 0,
-        numPageDisplay: 8,
+        numPageDisplay: 7,
         itemPerPage: 0,
         totalItem: 0,
         prevText: '<',
         nextText: '>',
         startText: '<<',
         endText: '>>',
-        itemWidth: 28,
+        itemWidth: 35,
         callback: function () { return false; }
     };
 
@@ -57,7 +57,7 @@
     Fanex.SBPager = function (pager, options) {
         this.$pager = $(pager);
         this.options = options;
-
+        this.totalPage = 0;
         this.initialize();
 
         return this.$pager;
@@ -90,7 +90,7 @@
                 html.push('<a href="javascript:void(0);" class="move-start">' + options.startText + '</a>');
                 html.push('<a href="javascript:void(0);" class="move-pre">' + options.prevText + '</a>');
             }
-            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth - 5) + 'px">');
+            html.push('<div class="item-container" style="width:' + (numDisplayItem * options.itemWidth) + 'px">');
             for (var i = 0; i < numItem; i++) {
                 currentItem = i + 1;
                 itemHtml = '<a href="javascript:void(0);" class="pager-item' + (i == options.currentPage ? ' selected' : '') + '" index="' + i + '">' + currentItem + '</a>';
@@ -102,7 +102,7 @@
                 html.push('<a href="javascript:void(0);" class="move-end">' + options.endText + '</a>');
             }
 
-
+            me.totalPage = numItem;
             var pagerHtml = html.join('');
             me.$pager.empty().append(pagerHtml);
 
@@ -147,8 +147,8 @@
                 .bind('click', function (e) {
                     var $this = $(this);
                     me.$pager.find('.pager-item').removeClass('selected');
-                    me.$itemContainer.scrollLeft(9999);
-                    
+                    me.$itemContainer.scrollLeft(me.totalPage * options.itemWidth);
+
                     me.$itemContainer.find(':last-child').addClass('selected').trigger('click');
                 });
             me.$pager.find('.move-pre')
