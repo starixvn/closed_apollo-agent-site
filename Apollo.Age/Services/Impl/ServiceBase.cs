@@ -22,5 +22,6 @@ namespace Apollo.Age.Services.Impl
         {
             Fanex.Logging.LogService.Error(ex.Message, ex);
         }
+
     }
 }
