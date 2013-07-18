@@ -100,6 +100,7 @@
     <Compile Include="Criterias\UpdateReadMessageCriteria.cs" />
     <Compile Include="Entities\BetTypeSetting.cs" />
     <Compile Include="Entities\SportSetting.cs" />
+    <Compile Include="Entities\AgentTreeViewNode.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />

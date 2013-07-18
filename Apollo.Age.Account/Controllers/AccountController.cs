@@ -27,8 +27,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.Account.Entities;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class AccountController : BaseController
     {
         #region Const for paging
@@ -245,14 +247,34 @@ namespace Apollo.Age.Account.Controllers
             };
 
             var agentList = _accountService.GetDirectDownline(criteria);
-            var hasAgentDownline = agentList == null ? false : (agentList.Count > 0);
+            List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
+            bool hasAgentDownline = false;
 
-            var agent = new Agent { Id = this.CurrentSession.AgentId, Username = this.CurrentSession.AgentName, HasAgentDownline = hasAgentDownline };
+            if (agentList != null && agentList.Any())
+            {
+                hasAgentDownline = true;
+                agentList.ForEach(t=> childList.Add(
+                    new AgentTreeViewNode
+                    {
+                        Id = t.Id, 
+                        Username = t.Username, 
+                        HasAgentDownline = t.HasAgentDownline
+                    }
+                ));
+            }
 
-            var rootList = new List<Agent>();
-            rootList.Add(agent);
+            var root = new AgentTreeViewNode { 
+                Id = this.CurrentSession.AgentId, 
+                Username = this.CurrentSession.AgentName, 
+                HasAgentDownline = hasAgentDownline, 
+                Children = childList,
+                Expanded = true
+            };
 
-            return Json(rootList.Select(x => new { x.Id, x.Username, x.HasAgentDownline }), JsonRequestBehavior.AllowGet);
+            var rootList = new List<AgentTreeViewNode>();
+            rootList.Add(root);
+
+            return Json(rootList, JsonRequestBehavior.AllowGet);
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
