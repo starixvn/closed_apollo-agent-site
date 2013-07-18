@@ -21,8 +21,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     /// <summary>
     /// TODO: Update summary.
-    /// </summary>
-    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    /// </summary>    
     public class SoccerController : WagerController
     {
         /// <summary>

@@ -29,8 +29,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Apollo.Age.Account.Entities;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
-    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [SessionState(SessionStateBehavior.ReadOnly)]    
     public class AccountController : BaseController
     {
         #region Const for paging
