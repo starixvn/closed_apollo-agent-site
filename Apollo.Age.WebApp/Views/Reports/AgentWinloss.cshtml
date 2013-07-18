@@ -91,12 +91,6 @@
                     <th rowspan="2">
                         @Apollo.Age.Resources.Lang.CommBase
                     </th>
-                    <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.outstanding
-                    </th>
-                    <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.ShareAmount
-                    </th>
                     <th colspan="3">
                         @Apollo.Age.Resources.Lang.company
                     </th>
@@ -134,12 +128,6 @@
                             @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
-                        </td>
-                        <td class="r">
-                            @Formater.FormatNumber20(item.OutstandingShare, Formater.CULT_NAME_ENG)
-                        </td>
-                        <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
@@ -166,12 +154,6 @@
                     </th>
                     <th rowspan="2">
                         @Apollo.Age.Resources.Lang.CommBase
-                    </th>
-                    <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.outstanding
-                    </th>
-                    <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.ShareAmount
                     </th>
                     <th rowspan="2">
                         @Apollo.Age.Resources.Lang.GrossTotal
@@ -205,8 +187,7 @@
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
-            decimal totalOutstanding = 0;
-            decimal totalOutstandingShare = 0;
+
                 }
                 @foreach (var item in list)
                 {
@@ -217,8 +198,6 @@
                     totalAComm += item.AComm;
                     totalATotal += item.ATotal;
                     totalUpline += item.UplineTotal;
-                    totalOutstanding += item.Outstanding;
-                    totalOutstandingShare += item.OutstandingShare;
 
                     rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
@@ -250,12 +229,6 @@
                         <td class="r">
                             @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
                         </td>
-                        <td class="r">
-                            @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
-                        </td>
-                        <td class="r">
-                            @Formater.FormatNumber20(item.OutstandingShare, Formater.CULT_NAME_ENG)
-                        </td>
                         <td class="r bold">
                             @Formater.FormatNumber20(item.GrossTotal, Formater.CULT_NAME_ENG)
                         </td>
@@ -286,12 +259,6 @@
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(totalOutstanding, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(totalOutstandingShare, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalGross, Formater.CULT_NAME_ENG)
