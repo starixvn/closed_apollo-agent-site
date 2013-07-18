@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.6.30">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
@@ -29,6 +30,22 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public decimal Total46Stake { get; set; }
 
         public decimal Total7OverStake { get; set; }
+
+        public decimal HomeStakeBeforeOE { get; set; }
+
+        public decimal AwayStakeBeforeOE { get; set; }
+
+        public decimal HomeStakeBeforeHTOE { get; set; }
+
+        public decimal AwayStakeBeforeHTOE { get; set; }
+
+        public decimal Total01StakeBefore { get; set; }
+
+        public decimal Total23StakeBefore { get; set; }
+
+        public decimal Total46StakeBefore { get; set; }
+
+        public decimal Total7OverStakeBefore { get; set; }
 
         public int HomeCountOE { get; set; }
 

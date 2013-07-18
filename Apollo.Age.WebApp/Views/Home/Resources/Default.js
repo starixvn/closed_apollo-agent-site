@@ -15,17 +15,17 @@
             MiniMenu.tabAccount = MiniMenu.menuTab.find('.account');
             MiniMenu.tabSearch = MiniMenu.menuTab.find('.search');
 
-            if ($.cookie('miniMenu') == 1) MiniMenu.collapse(); // check collapse or expand
+            //if ($.cookie('miniMenu') == 1) MiniMenu.collapse(); // check collapse or expand
 
             MiniMenu.btnToggle.click(function () {
                 var $this = $(this);
 
                 if ($this.hasClass('collapse')) {
                     MiniMenu.collapse();
-                    $.cookie('miniMenu', 1);
+                    //$.cookie('miniMenu', 1);
                 } else {
                     MiniMenu.expand();
-                    $.cookie('miniMenu', 0);
+                    //$.cookie('miniMenu', 0);
                 }
             });
 
@@ -82,7 +82,7 @@
 
             // changes size of menu
             MiniMenu.menu.animate(
-                 { width: '30px' },
+                 { width: '22px' },
                  {
                      duration: 50,
                      specialEasing: {
@@ -94,7 +94,7 @@
 
                          $this.addClass('mini-menu').find('iframe').hide();
                          MiniMenu.menuTab.show();
-                         MiniMenu.mainPage.animate({ left: '31px' }, 100).addClass('max-mainpage');
+                         MiniMenu.mainPage.animate({ left: '22px' }, 100).addClass('max-mainpage');
                      }
                  }
             );
@@ -135,7 +135,8 @@
 } (jQuery);
 
 $(document).ready(function () {
-    window.IsApoRoot = true;
+   
+    window.IsApoRoot = true;   
 
     // Check IE7
     if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
@@ -149,4 +150,8 @@ $(document).ready(function () {
     MiniMenu.init();
 
     $('#main').attr('src', APOLLO.resolveUrl('message/newmessage'));
+
+    if ($('.mainpage').length > 0) {        
+        parent.$('#btn-mini-menu').hide();
+    }
 });
