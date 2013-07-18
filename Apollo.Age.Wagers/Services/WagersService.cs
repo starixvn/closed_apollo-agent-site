@@ -55,6 +55,9 @@ namespace Apollo.Age.Wagers.Services
         /// <returns>List wagers.</returns>
         public IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria)
         {
+            // Revert Comm Group Name.
+            criteria.UGroup = RevertCommGroupName(criteria.UGroup);
+
             var result = this.GetData<T>(criteria);
 
             if (!ReferenceEquals(result, null))

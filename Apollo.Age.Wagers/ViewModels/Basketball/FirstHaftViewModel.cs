@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Basketball
@@ -25,6 +26,18 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public decimal HomeStakeHTOE { get; set; }
 
         public decimal AwayStakeHTOE { get; set; }
+
+        public decimal HomeStakeBeforeHTHDP { get; set; }
+
+        public decimal AwayStakeBeforeHTHDP { get; set; }
+
+        public decimal HomeStakeBeforeHTOU { get; set; }
+
+        public decimal AwayStakeBeforeHTOU { get; set; }
+
+        public decimal HomeStakeBeforeHTOE { get; set; }
+
+        public decimal AwayStakeBeforeHTOE { get; set; }
 
         public int HomeCountHTHDP { get; set; }
 

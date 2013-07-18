@@ -11,7 +11,7 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="r red-num vertical-middle" data-bettype="@((int)BetTypes.Correct_Score)">
-                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
             </tr>
         )

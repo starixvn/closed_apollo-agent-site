@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.7.1">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
@@ -17,6 +18,10 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public decimal Stake9 { get; set; }
 
         public decimal Stake29 { get; set; }
+
+        public decimal StakeBefore9 { get; set; }
+
+        public decimal StakeBefore29 { get; set; }
 
         public int Count9 { get; set; }
 

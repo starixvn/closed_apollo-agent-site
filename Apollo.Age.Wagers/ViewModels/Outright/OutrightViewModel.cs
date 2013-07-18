@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.7.2">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Outright
@@ -34,6 +35,8 @@ namespace Apollo.Age.Wagers.ViewModels.Outright
         public short Bettype { get; set; }
 
         public decimal Stake { get; set; }
+
+        public decimal StakeBefore { get; set; }
 
         public string BetTeam { get; set; }
 
