@@ -23,5 +23,9 @@ namespace Apollo.Age.Reports.Models
         public decimal MemComm { get; set; }
 
         public decimal MemTotal { get; set; }
+
+        public decimal Outstanding { get; set; }
+
+        public decimal OutstandingShare { get; set; }
     }
 }

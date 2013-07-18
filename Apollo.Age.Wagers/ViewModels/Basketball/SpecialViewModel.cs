@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Edward.Nguyen" date="2013.6.30">Created</change>
 //   <change who="Anders.Le" date="2013.7.4">Remove MatchId property</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Basketball
@@ -20,6 +21,8 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
         public int Bettype { get; set; }
 
         public decimal Stake { get; set; }
+
+        public decimal StakeBefore { get; set; }
 
         public long Count { get; set; }
 

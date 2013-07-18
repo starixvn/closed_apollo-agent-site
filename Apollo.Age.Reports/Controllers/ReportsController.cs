@@ -30,6 +30,7 @@ namespace Apollo.Age.Reports.Controllers
     using Fanex.NAP.Framework.Mvc;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
     {
         private readonly ReportService _reportService;

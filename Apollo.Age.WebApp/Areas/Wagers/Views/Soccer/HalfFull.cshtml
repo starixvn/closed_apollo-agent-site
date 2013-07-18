@@ -5,13 +5,13 @@
 @using Apollo.Age.Enumerations
 @model List<CorrectScoreViewModel>
 <table class="tblRpt soccer half-full @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblWagersGolds)
+    @WagerHelper.RederHeaderColumn(Lang.lblGolds)
     <tbody>
         @Model.List(
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
-                <td class="r red-num vertical-middle" data-bettype="@((int)BetTypes.HT_FT)">
-                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator, item.LeagueId, item.MatchId)
+                <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.HT_FT)">
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
             </tr>
         )

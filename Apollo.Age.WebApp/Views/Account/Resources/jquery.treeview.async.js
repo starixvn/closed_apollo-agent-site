@@ -58,6 +58,7 @@
         else
         {
             $.getJSON(settings.url+"?agentId=" + root, null, function (response) {
+            
                 $.each(response, createNode, [child]);
                 $(container).treeview({ add: child });
             });

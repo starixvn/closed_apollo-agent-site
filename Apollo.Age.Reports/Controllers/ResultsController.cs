@@ -33,6 +33,7 @@ namespace Apollo.Age.Reports.Controllers
     /// Result controller
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ResultsController : BaseController
     {
         /// <summary>

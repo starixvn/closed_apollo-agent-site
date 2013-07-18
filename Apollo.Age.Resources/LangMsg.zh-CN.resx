@@ -127,7 +127,7 @@
     <value>澳大利亚赛狗赌注设置更新成功</value>
   </data>
   <data name="ValidateFromToDate" xml:space="preserve">
-    <value>日期區間錯誤!!</value>
+    <value>日期区间错误！</value>
   </data>
   <data name="succ_106" xml:space="preserve">
     <value>投注设定已更新成功</value>
@@ -178,7 +178,7 @@
     <value>暂停状态已更新成功</value>
   </data>
   <data name="MessageValidateWithArchivedDate" xml:space="preserve">
-    <value>日期區間錯誤!!</value>
+    <value>日期区间错误！</value>
   </data>
   <data name="succ_112" xml:space="preserve">
     <value>南非赛马赌注设置更新成功</value>

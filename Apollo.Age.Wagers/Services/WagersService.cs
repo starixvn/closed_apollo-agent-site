@@ -41,6 +41,7 @@ namespace Apollo.Age.Wagers.Services
                 SportTypes = sportTypes,
                 IsOutright = isOutright,
                 ToDate = toDate
+                
             };
 
             return this.GetData<League>(criteria);
@@ -54,6 +55,9 @@ namespace Apollo.Age.Wagers.Services
         /// <returns>List wagers.</returns>
         public IEnumerable<T> GetWagerData<T>(WagerCriteriaBase criteria)
         {
+            // Revert Comm Group Name.
+            criteria.UGroup = RevertCommGroupName(criteria.UGroup);
+
             var result = this.GetData<T>(criteria);
 
             if (!ReferenceEquals(result, null))

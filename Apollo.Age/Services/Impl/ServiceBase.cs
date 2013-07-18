@@ -9,19 +9,59 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class ServiceBase
     {
+        /// <summary>
+        /// Handle Exception.
+        /// </summary>
+        /// <param name="ex">Exception.</param>
         protected void HandleException(Exception ex)
         {
             Fanex.Logging.LogService.Error(ex.Message, ex);
         }
 
+        #region Commission Group Reverting
+
+        /// <summary>
+        /// Revert Commission Group Name.
+        /// </summary>
+        /// <param name="commGroupName"> Input commission group name normally (a,b,c,d).</param>
+        /// <returns>Return commission group name that need to revert(d,c,b,a).</returns>
+        protected string RevertCommGroupName(string commGroupName)
+        {
+            switch (commGroupName.ToLower())
+            {
+                case "a":
+                    {
+                        return "D";
+                    }
+
+                case "b":
+                    {
+                        return "C";
+                    }
+
+                case "c":
+                    {
+                        return "B";
+                    }
+
+                case "d":
+                    {
+                        return "A";
+                    }
+
+                default:
+                    {
+                        return "All";
+                    }
+            }
+        }
+
+        #endregion Commission Group Reverting
     }
 }
