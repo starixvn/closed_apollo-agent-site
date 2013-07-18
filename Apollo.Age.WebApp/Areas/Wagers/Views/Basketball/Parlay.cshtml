@@ -12,10 +12,10 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="r red-num  vertical-middle" data-bettype="@((int)BetTypes.MixParlay)">
-                    @WagerHelper.RenderColumnData("0", item.Count9, item.Stake9, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.Count9, item.Stake9, item.StakeBefore9, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
                 <td class="r red-num  vertical-middle" data-bettype="@((int)BetTypes.Combine_Mix_Parlay)">
-                    @WagerHelper.RenderColumnData("0", item.Count29, item.Stake29, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.Count29, item.Stake29, item.StakeBefore29, item.LiveIndicator, item.LeagueId, item.MatchId)
                 </td>
             </tr>
         )

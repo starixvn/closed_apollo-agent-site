@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add Stake Before</change>
 // </history>
 
 namespace Apollo.Age.Wagers.ViewModels.Soccer
@@ -14,6 +15,20 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
     /// </summary>
     public class StraightViewModel : WagerViewModel
     {
+        public decimal HomeStakeBeforeHDP { get; set; }
+
+        public decimal AwayStakeBeforeHDP { get; set; }
+
+        public decimal HomeStakeBeforeOU { get; set; }
+
+        public decimal AwayStakeBeforeOU { get; set; }
+
+        public decimal StakeBefore1 { get; set; }
+
+        public decimal StakeBeforeX { get; set; }
+
+        public decimal StakeBefore2 { get; set; }
+
         public decimal HomeStakeHDP { get; set; }
 
         public decimal AwayStakeHDP { get; set; }

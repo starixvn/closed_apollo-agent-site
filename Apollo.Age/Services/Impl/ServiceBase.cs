@@ -50,9 +50,14 @@ namespace Apollo.Age.Services.Impl
                         return "B";
                     }
 
-                default:
+                case "d":
                     {
                         return "A";
+                    }
+
+                default:
+                    {
+                        return "All";
                     }
             }
         }
