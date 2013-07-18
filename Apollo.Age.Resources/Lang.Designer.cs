@@ -2950,6 +2950,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The security code field is required.
+        /// </summary>
+        public static string lblsecuritycodeempty {
+            get {
+                return ResourceManager.GetString("lblsecuritycodeempty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server Error.
         /// </summary>
         public static string lblServerError {
@@ -3468,6 +3477,15 @@ namespace Apollo.Age.Resources {
         public static string lblWon {
             get {
                 return ResourceManager.GetString("lblWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong security code.
+        /// </summary>
+        public static string lblwrongsecuritycode {
+            get {
+                return ResourceManager.GetString("lblwrongsecuritycode", resourceCulture);
             }
         }
         

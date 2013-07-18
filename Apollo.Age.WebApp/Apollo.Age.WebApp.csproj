@@ -594,7 +594,11 @@
     <Content Include="_GlobalResources\Images\breadcrumb.gif" />
     <Content Include="_GlobalResources\Images\btDown.png" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
+    <Content Include="_GlobalResources\Images\btnCountDown-hover.png" />
+    <Content Include="_GlobalResources\Images\btnCountDown.png" />
     <Content Include="_GlobalResources\Images\btRefresh.png" />
+    <Content Include="_GlobalResources\Images\btRefresh_new.png" />
+    <Content Include="_GlobalResources\Images\btRefresh_new_disabled.png" />
     <Content Include="_GlobalResources\Images\down-arr.png" />
     <Content Include="_GlobalResources\Images\edit.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
@@ -1049,6 +1053,7 @@
     <Content Include="Views\Message\Resources\Announcement.less" />
     <Content Include="Views\Results\Shared\_Layout.cshtml" />
     <Content Include="Views\BetList\Transactions.cshtml" />
+    <Content Include="Views\Internal\SafeCode.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

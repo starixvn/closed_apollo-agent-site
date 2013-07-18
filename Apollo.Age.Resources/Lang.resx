@@ -1839,4 +1839,10 @@
   <data name="lblsecuritycode" xml:space="preserve">
     <value>Security Code</value>
   </data>
+  <data name="lblsecuritycodeempty" xml:space="preserve">
+    <value>The security code field is required</value>
+  </data>
+  <data name="lblwrongsecuritycode" xml:space="preserve">
+    <value>Wrong security code</value>
+  </data>
 </root>
