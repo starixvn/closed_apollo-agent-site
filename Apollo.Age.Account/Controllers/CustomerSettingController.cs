@@ -550,7 +550,8 @@ namespace Apollo.Age.Account.Controllers
                 AdminId = base.CurrentSession.AdminId
             };
 
-            if (agentLevel != null && agentLevel.Value == 3)
+            //// If Current is Share Holder, then constrain min
+            if (agentLevel != null && agentLevel.Value == 2)
             {
                 settingContext.HasMinConstrain = true;
             }
