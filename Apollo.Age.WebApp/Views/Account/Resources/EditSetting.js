@@ -123,7 +123,18 @@ if (typeof jQuery != 'undefined') {
                             EDITSETTING.completeUpdate();
                         } else {
                             try { $.unblockUI(); } catch (e) { };
-                            noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                            //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                            noty({ 
+                                text: data.ErrMsg,
+                                type: 'error',                               
+                                template: '<div class="noty_message error"><span class="noty_text error"></span></div>',
+                                buttons: true,
+                                buttons: [{
+                                     addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+		                                $noty.close();
+		                            }
+		                        }]
+                            });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);

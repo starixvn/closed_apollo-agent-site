@@ -42,8 +42,7 @@ if (typeof jQuery != 'undefined') {
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 
                 //// Register Event
-                $("#btnSubmitFooter").unbind('click').click(function () {
-
+                $("#btnSubmitFooter").unbind('click').click(function () {                    
                     if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
 
                         var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
@@ -56,7 +55,7 @@ if (typeof jQuery != 'undefined') {
                             noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
                             return;
                         }
-                        
+
                         var stringConfirm = "";
                         if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
                             stringConfirm = Language.CONFIRM_WRITE_MEMBER;
@@ -96,7 +95,7 @@ if (typeof jQuery != 'undefined') {
 
             },
             updatePositionTakingSetting: function (postionTakingValue) {
-                
+
 
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
@@ -123,7 +122,7 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
-                
+
                 setTimeout(function () {
                     try { $.unblockUI(); } catch (e) { };
                     if (DEFAULT_LAYOUT.reload) {
