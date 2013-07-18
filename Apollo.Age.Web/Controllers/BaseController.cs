@@ -38,6 +38,7 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
         }
+
         #region Override functions
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -74,6 +75,7 @@ namespace Apollo.Age.Web
             }
         }
         #endregion
+
         #region Auth
 
         private void CheckAuthentication()
@@ -165,6 +167,7 @@ namespace Apollo.Age.Web
         }
 
         #endregion
+
         #region PROPERTIES
         protected ICurrentSession CurrentSession
         {
@@ -202,5 +205,7 @@ namespace Apollo.Age.Web
         }
         #endregion
         #endregion
+
+        
     }
 }
