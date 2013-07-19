@@ -37,18 +37,18 @@
                         <th style="width: 80px;">
                             @BetList.result
                         </th>
-                         <th style="width: 60px;">
-                @BetList.result
-            </th>
+                        <th style="width: 60px;">
+                            @BetList.result
+                        </th>
                         <th style="width: 80px;">
                             @BetList.agentPT
                         </th>
                         <th style="width: 80px;">
                             @BetList.agentComm
                         </th>
-                           <th style="width: 50px;">
-                @BetList.feature
-            </th>
+                        <th style="width: 50px;">
+                            @BetList.feature
+                        </th>
                     </tr>
                 </thead>
                 @if (Model.TicketList != null && Model.TicketList.Any())
@@ -77,18 +77,18 @@
                                 <td class='r'>
                                     0.00
                                 </td>
-                                 <td class='r'>
-                        @Html.Raw(item.Status)
-                    </td>
+                                <td class='r'>
+                                    @Html.Raw(item.Status)
+                                </td>
                                 <td class='r'>
                                     @Html.Raw(item.AgentShare)
                                 </td>
                                 <td class='r'>
                                     @Html.Raw(item.AgentComm)
                                 </td>
-                                  <td class='r'>
-                        <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
-                    </td>
+                                <td class='r'>
+                                    <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                                </td>
                             </tr>
                         }
                         <tr>
@@ -102,16 +102,16 @@
                             <td class="r result">
                                 0.00
                             </td>
+                            <td class='r total'>
+                            </td>
                             <td class='r result'>
                                 0.00
                             </td>
-                            <td class='r total'>
-                </td>
                             <td class="r result">
                                 0.00
                             </td>
-                             <td class='r total'>
-                </td>
+                            <td class='r total'>
+                            </td>
                         </tr>
                     </tbody>
 
