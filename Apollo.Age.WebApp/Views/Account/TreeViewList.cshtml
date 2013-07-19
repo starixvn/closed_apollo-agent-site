@@ -9,7 +9,7 @@
 <table id="tab-menu">
 	<tr>
 		<td class="active">
-			<a><i class="icon-user"></i>@Lang.userinfo</a>
+			<a><i class="icon-user"></i>@Lang.userinfo<a  id="lklRefresh" href="#" class="icon-search"></a></a>
 		</td>
 		<td>
 			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.search</a>
@@ -31,10 +31,10 @@ else
 @section foot {
     @Scripts.Render("~/scripts/treeviewjs")
 	<script type="text/javascript">
-		$(document).ready(function () {
-		    $.blockUI.defaults.css.left = "10px";
-		    $(document).ajaxStart($.blockUI);
-		    $(document).ajaxStop($.unblockUI);
-		})
+	    $(document).ready(function () {
+	        $.blockUI.defaults.css.left = "10px";
+	        $(document).ajaxStart($.blockUI);
+	        $(document).ajaxStop($.unblockUI);
+	    })
 	</script>
 }

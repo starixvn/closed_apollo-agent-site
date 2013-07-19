@@ -203,7 +203,7 @@ namespace Apollo.Age.BetList.Controllers
             var balanceUpDay = _reportService.GetBalanceUpDay();
             int agentId, custId;
             int errorCode;
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.TrimEnd() : CurrentSession.AgentName;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : CurrentSession.AgentName;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
@@ -654,6 +654,11 @@ namespace Apollo.Age.BetList.Controllers
             var tickets = ticketResult.TicketList;
             foreach (var ticket in tickets)
             {
+                if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
+                {
+                    ticket.AgentLevel = CurrentSession.AgentLevel;
+                }
+
                 var ticketText = new TicketText
                 {
                     TransId = ticket.TransId,
@@ -701,6 +706,11 @@ namespace Apollo.Age.BetList.Controllers
             var ticketTextList = new List<TicketText>();
             foreach (var ticket in tickets)
             {
+                if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
+                {
+                    ticket.AgentLevel = CurrentSession.AgentLevel;
+                }
+
                 var ticketText = new TicketText
                 {
                     UserName = ticket.UserName,

@@ -170,6 +170,7 @@ var ACCOUNT = function ($) {
                     $("#custsettings-content").hide();
                     $("#agentsTab-content").show();
                     $("#membersTab-content").hide();
+                    ACCOUNT.bindAgentsList(agentId);
                     break;
                 case "membersTab":
                     $("#membersTab").addClass("current");
@@ -182,6 +183,17 @@ var ACCOUNT = function ($) {
                     break;
             }
         },
+
+        bindAgentsList: function (agentId) {
+            var link = APOLLO.resolveUrl("Account/AgentTreeList?agentId=" + agentId),
+            iframe = document.createElement('iframe');
+
+            iframe.frameBorder = 0;
+            iframe.setAttribute("src", link);
+
+            $("#agentsTab-content").html(iframe);
+        },
+
         bindMembersList: function (agentId) {
             var link = APOLLO.resolveUrl("Account/MemberDownline?agentId=" + agentId),
             iframe = document.createElement('iframe');

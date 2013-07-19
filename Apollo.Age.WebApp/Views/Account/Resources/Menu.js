@@ -2,68 +2,71 @@
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
 
 var MENU = function ($) {
-	return {
-		menu: null,
-		tabmenu: null,
-		apoRoot: null,
+    return {
+        menu: null,
+        tabmenu: null,
+        apoRoot: null,
 
-		init: function () {
-			MENU.menu = $('#menu');
-			MENU.tabmenu = $('#tab-menu');
-			MENU.apoRoot = $('#ApoRoot').val();
+        init: function () {
+            MENU.menu = $('#menu');
+            MENU.tabmenu = $('#tab-menu');
+            MENU.apoRoot = $('#ApoRoot').val();
 
-			MENU.tabmenu.on('click', '#lk-menu-tab', function () {
-				location.href = APOLLO.resolveUrl("Account/Menu");
-			});
+            MENU.tabmenu.on('click', '#lk-menu-tab', function () {
+                location.href = APOLLO.resolveUrl("Account/Menu");
+            });
 
-			MENU.tabmenu.on('click', '#lk-tree-tab', function () {
-				location.href = APOLLO.resolveUrl("Account/TreeViewList");
-			});
+            MENU.tabmenu.on('click', '#lk-tree-tab', function () {
+                location.href = APOLLO.resolveUrl("Account/TreeViewList");
+            });
 
-			MENU.tabmenu.on('click', '#lk-acc-tab', function () {
-				var custId = $.cookie('searching-id');
-				var username = $.cookie('searching-name');
-				var isMember = $.cookie('searching-ismember');
+            MENU.tabmenu.on('click', '#lk-acc-tab', function () {
+                var custId = $.cookie('searching-id');
+                var username = $.cookie('searching-name');
+                var isMember = $.cookie('searching-ismember');
 
-				var url = "Account/AccountInfo";
-				if ((custId != undefined || username != undefined) && isMember != undefined) {
-					if ($.cookie('searching-id') != "-1" || username.length > 0) {
-						if (isMember.toBoolean()) {
-							url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
-						}
-						else {
-							url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
-						}
-					}
-				}
+                var url = "Account/AccountInfo";
+                if ((custId != undefined || username != undefined) && isMember != undefined) {
+                    if ($.cookie('searching-id') != "-1" || username.length > 0) {
+                        if (isMember.toBoolean()) {
+                            url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+                        }
+                        else {
+                            url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+                        }
+                    }
+                }
 
-				location.href = APOLLO.resolveUrl(url);
-			});
+                location.href = APOLLO.resolveUrl(url);
+            });
 
-			// add loading image
-			$('.submenu a[target=main]').on('click', function () {
-				parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
-			});
+            $('#lklRefresh').bind('click', function () {
+                location.reload();
+            });
 
-			MENU.loadAgentList();
-		},
+            // add loading image
+            $('.submenu a[target=main]').on('click', function () {
+                parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+            });
 
-		loadAgentList: function () {
-			var agentList = $("#agent-list");
+            MENU.loadAgentList();
+        },
 
-			if (agentList.length > 0) {
-			    var agentId = agentList.attr("data-agentid");
-				agentList.treeview({
-					url: MENU.apoRoot + "Account/GetDataByNode",
-					link: "<a href='" + MENU.apoRoot + "Account/IndirectAgentList?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",
+        loadAgentList: function () {
+            var agentList = $("#agent-list");
+            if (agentList.length > 0) {
+                var agentId = agentList.attr("data-agentid");
+                agentList.treeview({
+                    url: MENU.apoRoot + "Account/GetDataByNode",
+                    link: "<a href='" + MENU.apoRoot + "Account/IndirectAgentList?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",
                     linkdirectAgents: "<a href='" + MENU.apoRoot + "Account/AgentList' target='main'>{1}</a>",
-					agentId: agentId,
-					showRoot: true,
-					rootLink: MENU.apoRoot + "Account/GetRootNode"
-				});
-			}
-		}
-	};
+                    agentId: agentId,
+                    showRoot: true,
+                    rootLink: MENU.apoRoot + "Account/GetRootNode"
+                });
+            }
+        }
+    };
 } (jQuery);
 
 $(document).ready(function () {
