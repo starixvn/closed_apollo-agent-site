@@ -1,5 +1,7 @@
 ﻿@using Apollo.Age.Account.Models;
 @using Apollo.Age;
+@using Apollo.Age.Entities;
+
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
@@ -40,16 +42,42 @@
                                 @Apollo.Age.Resources.Lang.agent:
                             </td>
                         }
+                        
                         <td class="agent-name">
+                        @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
+                            {
+                                <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                        <div id="ddl-agents">
+                                            <ul class="agent-list">
+                                            </ul>
+                                        </div>
+                                    </a>
+                            }
                             @Model.Username
                         </td>
                     </tr>
-                    @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count < 5)
+
+                    @if (Model.AgentPathList != null && Model.AgentPathList.Any())
                     {
-                        foreach (var item in Model.AgentPathList)
+                        var keyLang = string.Empty;
+                        var item = new Agent();
+                        var count = Model.AgentPathList.Count > 4 ? 4 : Model.AgentPathList.Count; //4: is only show 4 level
+                        for (int i = 0; i < count; i++)
                         {
+                            item = Model.AgentPathList[i];
+                            var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == item.Level).SingleOrDefault();
+                            if (langAgent.Value == null)
+                            {
+                                // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
+                                keyLang = Constants.AgentLevelDictionary[4];
+                            }
+                            else
+                            {
+                                keyLang = langAgent.Value;
+                            }
+                            
                             <tr>
-                                <td class="parent-lbl">@Apollo.Age.Resources.Lang.lblParentname:</td>
+                                <td class="parent-lbl">@Html.Resource(keyLang):</td>
                                 <td class="parent-name">
                                     @if (item.Level == AgentLevel.Super)
                                     {
@@ -57,7 +85,7 @@
                                     }
                                     else
                                     {
-                                        <a class="view-agentinfo" href="javascript:;" target="menu"
+                                        <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                         </a>
                                     }

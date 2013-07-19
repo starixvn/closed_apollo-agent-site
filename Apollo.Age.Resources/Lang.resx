@@ -1848,4 +1848,16 @@
   <data name="lblGeneralInfo" xml:space="preserve">
     <value>General Info</value>
   </data>
+  <data name="lblMainAgent" xml:space="preserve">
+    <value>Main A</value>
+  </data>
+  <data name="lblMainSH" xml:space="preserve">
+    <value>Main SH</value>
+  </data>
+  <data name="lblShareholder" xml:space="preserve">
+    <value>SH</value>
+  </data>
+  <data name="lblSuper" xml:space="preserve">
+    <value>Super</value>
+  </data>
 </root>
