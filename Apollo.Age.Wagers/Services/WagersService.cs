@@ -41,7 +41,7 @@ namespace Apollo.Age.Wagers.Services
                 SportTypes = sportTypes,
                 IsOutright = isOutright,
                 ToDate = toDate
-                
+
             };
 
             return this.GetData<League>(criteria);

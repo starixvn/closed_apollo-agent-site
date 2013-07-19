@@ -20,6 +20,9 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Resources;
+    using Apollo.Age.Services.Impl;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -29,15 +32,18 @@ namespace Apollo.Age.Account.Controllers
 
         private IAccountService _accountService;
 
+        private ServiceBase _serviceBase;
+
         public LogController()
-            : this(null, null)
+            : this(null, null, null)
         {
         }
 
-        public LogController(ILogRunSpService logService, IAccountService accountService)
+        public LogController(ILogRunSpService logService, IAccountService accountService, ServiceBase serviceBase)
         {
             _logService = logService ?? new LogRunSpService();
             _accountService = accountService ?? new AccountService();
+            _serviceBase = serviceBase ?? new ServiceBase();
         }
 
         public ViewResult ViewLog(
@@ -235,8 +241,8 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            ViewBag.OldGroup = oldGroup;
-            ViewBag.Group = group;
+            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertCommGroupName(oldGroup) : oldData;
+            ViewBag.Group = !string.IsNullOrWhiteSpace(group) ? _logService.RevertCommGroupName(group) : group;
 
             return View(list);
         }
@@ -438,10 +444,69 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="oldData"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public ViewResult LogActionType5(string oldData, string data)
+        public ViewResult LogActionType5(string data)
         {
+            var list = new List<LogSettingViewModel>();
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                var xmlData = XDocument.Parse(data);
+                var general = xmlData.Descendants("z");
 
-            return View();
+                foreach (var item in general)
+                {
+                    var username = item.Attribute("u");
+                    if (!ReferenceEquals(username, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.lblUserName,
+                            Value = username.Value
+                        });
+                    }
+
+                    var agent = item.Attribute("a");
+                    if (!ReferenceEquals(agent, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.agent,
+                            Value = agent.Value
+                        });
+                    }
+
+                    var parent = item.Attribute("p");
+                    if (!ReferenceEquals(parent, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.Parent,
+                            Value = parent.Value
+                        });
+                    }
+
+                    var isMaster = item.Attribute("im");
+                    if (!ReferenceEquals(isMaster, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.IsMaster,
+                            Value = string.Compare(isMaster.Value.ToString(), "1") == 0 ? Lang.lblYes : Lang.lblNo
+                        });
+                    }
+
+                    var currency = item.Attribute("c");
+                    if (!ReferenceEquals(currency, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.Currency,
+                            Value = currency.Value
+                        });
+                    }
+                }
+            }
+
+            return View(list);
         }
     }
 }

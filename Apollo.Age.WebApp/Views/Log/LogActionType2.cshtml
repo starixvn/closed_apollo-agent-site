@@ -3,7 +3,7 @@
 @using Apollo.Age.Resources
 @{   
     var list = (List<DiscountModel>)Model;
-    var oldGroup = string.IsNullOrWhiteSpace(ViewBag.OldGroup) ? Lang.lblNA : ViewBag.OldGroup;
+    var oldGroup = ViewBag.OldGroup;
     var group = ViewBag.Group;
 }
 @if (!ReferenceEquals(list, null) && list.Any())
@@ -26,7 +26,7 @@
                     <span class="valuechanged">@group</span>
                     <div class="line">
                     </div>
-                    <span class="valueold">@oldGroup</span>
+                    <span class="valueold">@(string.IsNullOrWhiteSpace(oldGroup) ? Lang.lblNA : oldGroup)</span>
                   
                 }
                 else

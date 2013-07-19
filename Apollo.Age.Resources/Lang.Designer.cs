@@ -682,6 +682,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string customer {
@@ -1236,6 +1245,15 @@ namespace Apollo.Age.Resources {
         public static string InvalidUsernameOrPassword {
             get {
                 return ResourceManager.GetString("InvalidUsernameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Master.
+        /// </summary>
+        public static string IsMaster {
+            get {
+                return ResourceManager.GetString("IsMaster", resourceCulture);
             }
         }
         
@@ -5088,6 +5106,15 @@ namespace Apollo.Age.Resources {
         public static string usernamenotexisted {
             get {
                 return ResourceManager.GetString("usernamenotexisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         

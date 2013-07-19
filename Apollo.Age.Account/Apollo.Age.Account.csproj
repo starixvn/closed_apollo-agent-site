@@ -126,6 +126,7 @@
     <Compile Include="Services\SportSettingService.cs" />
     <Compile Include="Models\AgentLogLoginModel.cs" />
     <Compile Include="ViewModels\AgentShareViewModel.cs" />
+    <Compile Include="ViewModels\LogSettingViewModel.cs" />
     <Compile Include="ViewModels\ViewCommissionViewModel.cs" />
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
