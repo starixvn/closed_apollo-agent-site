@@ -27,10 +27,6 @@ namespace Apollo.Age.Account.Core
 
         public const string LastPostTimeKey = "lastPostTime";
 
-        public const int MainShareHolderLevel = 1;
-
-        public const int ShareHolderLevel = 2;
-
         public const int LogActionDiscount = 2;
 
         public const int LogActionBetSetting = 3;

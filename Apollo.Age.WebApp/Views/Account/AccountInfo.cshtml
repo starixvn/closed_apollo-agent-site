@@ -44,41 +44,66 @@
                             @Model.Username
                         </td>
                     </tr>
-                    <tr>
-                        @if (Model.IsMember)
+                    @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count < 5)
+                    {
+                        foreach (var item in Model.AgentPathList)
                         {
-                            <td class="parent-lbl">
-                                @Apollo.Age.Resources.Lang.agent:
-                            </td>
+                            <tr>
+                                <td class="parent-lbl">@Apollo.Age.Resources.Lang.lblParentname:</td>
+                                <td class="parent-name">
+                                    @if (item.Level == AgentLevel.Super)
+                                    {
+                                        @item.Username
+                                    }
+                                    else
+                                    {
+                                        <a class="view-agentinfo" href="javascript:;" target="menu"
+									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
                         }
-                        else
-                        {
-                            <td class="parent-lbl">
-                                @Apollo.Age.Resources.Lang.lblParentname:
-                            </td>
-                        }
-                        <td class="parent-name">
-                            @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId || Model.Level == Constants.MainShareHolderLevel))
+                    }
+                    else
+                    {
+                        <tr>
+                            @if (Model.IsMember)
                             {
-                                @Model.ParentName
+                                <td class="parent-lbl">
+                                    @Apollo.Age.Resources.Lang.agent:
+                                </td>
                             }
                             else
                             {
-                                if (Model.ActorAgentId != Model.ParentId)
-                                {
-                                <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
-                                    <div id="ddl-agents">
-                                        <ul class="agent-list">
-                                        </ul>
-                                    </div>
-                                </a>
-                                }
-                                <a class="view-agentinfo" href="javascript:;" target="menu"
-										data-agentid="@Model.ParentId" data-agentname="@Model.ParentName">@Model.ParentName
-                                </a>
+                                <td class="parent-lbl">
+                                    @Apollo.Age.Resources.Lang.lblParentname:
+                                </td>
                             }
-                        </td>
-                    </tr>
+                            <td class="parent-name">
+                                @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId))
+                                {
+                                    @Model.ParentName
+                                }
+                                else
+                                {
+                                    if (Model.ActorAgentId != Model.ParentId)
+                                    {
+                                    <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                        <div id="ddl-agents">
+                                            <ul class="agent-list">
+                                            </ul>
+                                        </div>
+                                    </a>
+                                    }
+
+                                    <a class="view-agentinfo" href="javascript:;" target="menu"
+										data-agentid="@Model.ParentId" data-agentname="@Model.ParentName">@Model.ParentName
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
             }
@@ -111,7 +136,7 @@
                 </a>
                     }
                 }
-                if (Model.HasMemberDownline && Model.Level > Constants.ShareHolderLevel)
+                if (Model.HasMemberDownline && Model.Level > AgentLevel.Shareholder)
                 {
                     if (Model.ActorAgentId == Model.CustId)
                     {
@@ -143,7 +168,7 @@
                 {
                     <li id="agentsTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.lblAgents</span> </a></li>
-                    if (Model.Level > Constants.ShareHolderLevel)
+                    if (Model.Level > AgentLevel.Shareholder)
                     {
                     <li id="membersTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.memberList</span> </a></li>

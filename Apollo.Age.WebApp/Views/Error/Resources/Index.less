@@ -47,7 +47,7 @@
 			}
 			
 			.zh-CN {
-				font-size: 42px;
+				font-size: 40px;
 			}
 
 			.en-US {
@@ -68,26 +68,51 @@
 
 		.content-container {
 			margin: auto;
-			width: 1187px;
+			width: 1181px;
+			padding-left: 55px;
 
 			.col {
-				width: 365px;
+				width: 363px;
 				float: left;
 				border-left: 1px dotted #fff;
 				color: #fff;
 				padding: 0 10px 0 20px;
 				margin: 38px 0 0 0;
+				height: 145px;
 
 				.title {
-					font-size: 27px;
+					font-size: 29px;
 					font-weight: bold;
 					text-shadow: -1px -1px #5E2B00;
 				}
 
 				&:first-child {
-					border-left: none;				
+					border-left: none;		
+				}
+
+				p {
+					margin-right: 75px;
+
+					&.thailand {
+						margin-right: 65px;
+					}
 				}
 			}
+		}
+	}
+}
+
+.eq-ie7 {
+	.container .content .content-container .col {
+		height: 170px;
+		margin-top: 30px;
+
+		p {
+			margin-bottom: 0;
+		}
+
+		.title.thailand {
+			font-size: 25px;
 		}
 	}
 }

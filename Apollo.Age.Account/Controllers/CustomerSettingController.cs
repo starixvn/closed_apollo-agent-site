@@ -100,8 +100,8 @@ namespace Apollo.Age.Account.Controllers
             if (customerInfo != null)
             {
                 model.Username = customerInfo.Username;
-                model.Group = customerInfo.Group;
-                model.CommissionList = model.IsMember
+                model.Group = customerInfo.Group != null ? RevertCommGroupName(customerInfo.Group) : customerInfo.Group;
+                var commissionList = model.IsMember
                     ? _accountService.GetCommissionToMember(
                     new GetCommissionToMemberCriteria
                     {
@@ -116,6 +116,14 @@ namespace Apollo.Age.Account.Controllers
                         AgentId = customerInfo.CustId,
                         Username = customerInfo.Username
                     });
+
+                var commissionModelList = new List<CustomerCommissionModel>();
+                if(commissionList != null && commissionList.Any())
+                {
+                    commissionList.ToList().ForEach(t => commissionModelList.Add(RevertCommGroupValue(t)));
+                }
+
+                model.CommissionList = commissionModelList;
             }
 
             return View("~/Views/Account/ViewCommission.cshtml", model);
@@ -701,8 +709,20 @@ namespace Apollo.Age.Account.Controllers
             }
             return string.Empty;
         }
-        
 
+        private CustomerCommissionModel RevertCommGroupValue(CustomerCommissionModel commissionModel)
+        {
+            var tempDiscountA = commissionModel.DiscountA;
+            var tempDiscountB = commissionModel.DiscountB;
+            var tempDiscountC = commissionModel.DiscountC;
+            var tempDiscountD = commissionModel.DiscountD;
+            commissionModel.DiscountA = tempDiscountD;
+            commissionModel.DiscountB = tempDiscountC;
+            commissionModel.DiscountC = tempDiscountB;
+            commissionModel.DiscountD = tempDiscountA;
+
+            return commissionModel;
+        }
         #endregion Helpers
     }
 }
