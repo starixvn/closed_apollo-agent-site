@@ -1845,4 +1845,7 @@
   <data name="lblwrongsecuritycode" xml:space="preserve">
     <value>Wrong security code</value>
   </data>
+  <data name="lblGeneralInfo" xml:space="preserve">
+    <value>General Info</value>
+  </data>
 </root>
