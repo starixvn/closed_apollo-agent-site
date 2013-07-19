@@ -503,6 +503,45 @@ namespace Apollo.Age.Account.Controllers
                             Value = currency.Value
                         });
                     }
+
+                    var type = item.Attribute("t");
+                    var typeName = string.Empty;
+                    if (!ReferenceEquals(type, null))
+                    {
+                        if (string.Compare(type.Value, "1") == 0)
+                        {
+                            typeName = Lang.status;
+                        }
+                        else
+                        {
+                            typeName = Lang.betstatus;
+                        }
+                    }
+
+                    var status = item.Attribute("s");
+                    if (!ReferenceEquals(status, null))
+                    {
+                        var statusName = string.Empty;
+
+                        switch (status.Value)
+                        {
+                            case "1":
+                                statusName = Lang.lblActive;
+                                break;
+                            case "2":
+                                statusName = Lang.stopped;
+                                break;
+                            default:
+                                statusName = Lang.locked;
+                                break;
+                        }
+
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = typeName,
+                            Value = statusName
+                        });
+                    }
                 }
             }
 
