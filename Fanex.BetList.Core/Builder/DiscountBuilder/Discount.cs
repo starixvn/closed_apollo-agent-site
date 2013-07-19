@@ -49,7 +49,7 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
                 case BetListPage.Wager:
                 case BetListPage.Forecast:
                 case BetListPage.Outstanding:
-                    Template.ugroup = ticket.UGroup.ToUpper();
+                    Template.ugroup = RevertCommGroupName(ticket.UGroup);
                     break;
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
@@ -73,6 +73,22 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             Template.username = ticket.UserName;
 
             return Template;
+        }
+
+        private string RevertCommGroupName(string groupName)
+        {
+            switch (groupName.ToLower())
+            {
+                case "a":
+                    return "D";
+                case "b":
+                    return "C";
+                case "c":
+                    return "B";
+                case "d":
+                    return "A";
+            }
+            return string.Empty;
         }
     }
 }

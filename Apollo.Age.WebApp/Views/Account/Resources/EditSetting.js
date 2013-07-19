@@ -40,6 +40,8 @@ if (typeof jQuery != 'undefined') {
                 EDITSETTING.initOthers(false);
                 EDITSETTING.initForMode();
                 $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
+                    // remove the messages when open the other message
+                    $('#noty_top_layout_container').remove();
                     EDITSETTING.saveSetting();
                 });
                 //                $("#simple-mode").unbind("click").click(function () {
@@ -84,7 +86,11 @@ if (typeof jQuery != 'undefined') {
                     if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
                     && dataObject.betLimits.length == 0
                     && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined') {
-                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                        noty({
+                            text: DEFAULT_LAYOUT.noChangeMessage, type: 'success',
+                            template: '<div class="noty_message success"><span class="noty_text"></span></div>',
+                            timeout: 5000
+                        });
                         return;
                     }
 
@@ -123,7 +129,18 @@ if (typeof jQuery != 'undefined') {
                             EDITSETTING.completeUpdate();
                         } else {
                             try { $.unblockUI(); } catch (e) { };
-                            noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                            //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                            noty({
+                                text: data.ErrMsg,
+                                type: 'error',
+                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
+                                buttons: true,
+                                buttons: [{
+                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+                                        $noty.close();
+                                    }
+                                }]
+                            });
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
