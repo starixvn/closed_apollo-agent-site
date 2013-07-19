@@ -60,59 +60,65 @@
 }
 @helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders, int isShowViewOption)
     {
-    <div id="header_main">@title</div>
+        
+@*<div id="header_main">@title</div>*@
     <div class="box-header" id="main-shareholder-box">
         <div class="row">
-            <div class="cell" style="@(isShowViewOption == 0 || isShowViewOption == 2 ? string.Empty : "display:none")">
-                <div class="label">
-                    <label>
-                        @if (isShowViewOption == 0)
-                        {
-                            @Lang.lblMainShareHolder
-                        }
-                        else
-                        {
-                            @Lang.view
-                        }
-                        :
-                    </label>
-                </div>
-                <div class="editor">
-                    <select id="ViewOption" class="za_select">
-                        @if (isShowViewOption == 0)
-                        {
-                            foreach (var mainShareHolder in mainShareHolders)
+            <table class="cond-search">
+                <tr>
+                    <td id="header_main">@title
+                    </td>
+                    <td style="@(isShowViewOption == 0 || isShowViewOption == 2 ? string.Empty : "display:none")">
+                        <span>
+                            @if (isShowViewOption == 0)
                             {
-                            <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
+                                @Lang.lblMainShareHolder
                             }
-                        }
-                        else
-                        {
-                            <option value="0">@Lang.lblallmembers</option>
-                            <option value="-1">@Lang.DirectMembers</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="cell league-el">
-                <div class="label">
-                    <label>
-                        @Lang.lblWagerLeague&nbsp;:</label>
-                </div>
-                <div class="editor">
-                    <select id="League" class="za_select league">
-                        <option value="0">@Lang.all</option>
-                        @if (!ReferenceEquals(leagues, null)
+                            else
+                            {
+                                @Lang.view
+                            }
+                            :
+                        </span>
+                        <select id="ViewOption" class="za_select">
+                            @if (isShowViewOption == 0)
+                            {
+                                foreach (var mainShareHolder in mainShareHolders)
+                                {
+                                <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="0">@Lang.lblallmembers</option>
+                                <option value="-1">@Lang.DirectMembers</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <span>
+                            @Lang.lblWagerLeague&nbsp;:</span>
+                        <select id="League" class="za_select league">
+                            <option value="0">@Lang.all</option>
+                            @if (!ReferenceEquals(leagues, null)
                             && leagues.Any())
-                        {
-                            foreach (var item in leagues)
                             {
-                            <option value="@item.Id">@item.Name</option>
+                                foreach (var item in leagues)
+                                {
+                                <option value="@item.Id">@item.Name</option>
+                                }
                             }
-                        }
-                    </select>
-                </div>
-            </div>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="pages-size">
+                            <div class="pull-left">@Lang.Page:</div>
+                            <div id="pager" class="sbpager">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 }
@@ -208,9 +214,9 @@
             && stakebefore != 0)
         {
             columnData = string.Format(
-                columnData, 
-                betCount.ToString(), 
-                Math.Round(stakebefore).ToString(), 
+                columnData,
+                betCount.ToString(),
+                Math.Round(stakebefore).ToString(),
                 Math.Round(stake).ToString());
     <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">
         @(new HtmlString(columnData))
