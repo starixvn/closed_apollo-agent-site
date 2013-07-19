@@ -43,6 +43,10 @@ if (typeof jQuery != 'undefined') {
 
                 //// Register Event
                 $("#btnSubmitFooter").unbind('click').click(function () {
+
+                    // remove the messages when open the other message
+                    $('#noty_top_layout_container').remove();
+
                     if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
 
                         var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
@@ -68,7 +72,8 @@ if (typeof jQuery != 'undefined') {
                                 text: DEFAULT_LAYOUT.noChangeMessage,
                                 type: 'success',
                                 template: '<div class="noty_message success"><span class="noty_text"></span></div>',
-                                timeout: 5000 });
+                                timeout: 5000
+                            });
                             return;
                         }
 
@@ -112,7 +117,9 @@ if (typeof jQuery != 'undefined') {
             },
             updatePositionTakingSetting: function (postionTakingValue) {
 
-
+                // remove the messages when open the other message
+                $('#noty_top_layout_container').remove();
+               
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
                     type: 'POST',
