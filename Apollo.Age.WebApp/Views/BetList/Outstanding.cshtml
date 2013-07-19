@@ -37,6 +37,9 @@
             <th style="width: 90px;">
                 @BetList.result
             </th>
+             <th style="width: 80px;">
+                @BetList.result
+            </th>
             <th style="width: 90px;">
                 @BetList.agentPT
             </th>
@@ -74,6 +77,9 @@
                 <td class='r'>
                     0.00
                 </td>
+                 <td class='r'>
+                        @Html.Raw(item.Status)
+                    </td>
                 <td class='r'>
                     @Html.Raw(item.AgentShare)
                 </td>
@@ -95,6 +101,8 @@
                 </td>
                 <td class="r out-standing-result">
                     0.00
+                </td>
+                <td class='r total'>
                 </td>
                 <td class='r result'>
                     0.00
