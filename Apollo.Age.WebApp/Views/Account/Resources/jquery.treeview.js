@@ -85,6 +85,12 @@
                         classes += this + "-hitarea ";
                     });
                     $(this).addClass(classes);
+
+                    // Add 2013-07-19 for show tree 2 level
+                    if($(this).parent().hasClass("open"))
+                    {
+                        $(this).parent().removeClass("hasChildren");
+                    }
                 });
             }
 
