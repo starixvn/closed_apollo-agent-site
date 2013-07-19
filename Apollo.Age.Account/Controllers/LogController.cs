@@ -431,5 +431,17 @@ namespace Apollo.Age.Account.Controllers
 
             return View(list);
         }
+
+        /// <summary>
+        /// Log action for general info
+        /// </summary>
+        /// <param name="oldData"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public ViewResult LogActionType5(string oldData, string data)
+        {
+
+            return View();
+        }
     }
 }
