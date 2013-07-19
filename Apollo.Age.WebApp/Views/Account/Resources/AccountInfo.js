@@ -187,9 +187,9 @@ var ACCOUNT = function ($) {
         bindAgentsList: function (agentId) {
             var link = APOLLO.resolveUrl("Account/AgentTreeList?agentId=" + agentId),
             iframe = document.createElement('iframe');
-
             iframe.frameBorder = 0;
             iframe.setAttribute("src", link);
+            iframe.setAttribute("id", "frmDownlineList");
 
             $("#agent-treeview").html(iframe);
         },

@@ -9,7 +9,7 @@
 <table id="tab-menu">
 	<tr>
 		<td class="active">
-			<a><i class="icon-user"></i>@Lang.userinfo<a  id="lklRefresh" href="#" class="icon-search"></a></a>
+			<a><i class="icon-user"></i>@Lang.userinfo</a>
 		</td>
 		<td>
 			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.search</a>
@@ -19,6 +19,8 @@
 @if ((bool)(ViewBag.HasAgentDownline))
 {
 	<div id="wrapper">
+        <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
+
 		<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
 		</ul>
 	</div>
