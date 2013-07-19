@@ -10,8 +10,7 @@
 namespace Apollo.Age.Account.Models
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Apollo.Age.Entities;
 
     public class CustomerInfoModel
     {
@@ -36,5 +35,7 @@ namespace Apollo.Age.Account.Models
         public string ParentName { get; set; }
 
         public bool IsMaster { get; set; }
+
+        public List<Agent> AgentPathList { get; set; }
     }
 }
