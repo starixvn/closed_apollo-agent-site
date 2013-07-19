@@ -191,7 +191,7 @@ var ACCOUNT = function ($) {
             iframe.frameBorder = 0;
             iframe.setAttribute("src", link);
 
-            $("#agentsTab-content").html(iframe);
+            $("#agent-treeview").html(iframe);
         },
 
         bindMembersList: function (agentId) {
