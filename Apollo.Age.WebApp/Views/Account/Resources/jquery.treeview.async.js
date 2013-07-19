@@ -33,7 +33,7 @@
                 if (this.Expanded) {
                     current.addClass("open");
                 }
-                if (this.HasAgentDownline || this.children && this.children.length) {
+                if (this.HasAgentDownline || this.Children && this.Children.length) {
                     var branch = $("<ul/>").appendTo(current);
                     if (this.HasAgentDownline) {
                         current.addClass("hasChildren");

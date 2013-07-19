@@ -29,7 +29,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Pager;
     using Apollo.Age.Account.Entities;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]    
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
         #region Const for paging
@@ -233,7 +233,9 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             };
 
+            List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
             var agentList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
+            
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 

@@ -321,6 +321,8 @@ RegisterStartUp(InitHeader);
 
 var HEADER = function ($) {
     return {
+        IsLoadTreeView : false,
+
         init: function () {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
                 setTimeout(function () { HEADER.reCheckIn(); }, 30000);
@@ -401,7 +403,6 @@ var HEADER = function ($) {
         showAccountTab: function () {
             var leftMenu = parent.$('.menu');
             var mainPage = parent.$('.mainpage');
-
             // hide left navigation
             if (leftMenu.is(':visible')) {
                 HEADER.hideLeftNavigation(leftMenu, mainPage);
@@ -467,6 +468,11 @@ var HEADER = function ($) {
                 }
             );
 
+            if(!HEADER.IsLoadTreeView)
+            {
+                parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("Account/TreeViewList");
+                HEADER.IsLoadTreeView = true;
+            }
             //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         },
 
