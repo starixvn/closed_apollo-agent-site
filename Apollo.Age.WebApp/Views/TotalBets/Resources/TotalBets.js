@@ -38,7 +38,7 @@ var TOTALBETS = function ($) {
 				}
 
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
-					width: 930,
+					width: 1000,
 					height: 720,
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
@@ -62,7 +62,7 @@ var TOTALBETS = function ($) {
 				}
 
 				APOLLO.openDialogFrame(url, title, {
-					width: 930,
+				    width: 1000,
 					height: 770,
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
@@ -86,7 +86,7 @@ var TOTALBETS = function ($) {
 				}
 
 				APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
-					width: 930,
+				    width: 1000,
 					height: 770,
 					position: { my: "top+40", at: "center top", of: window },
 					close: function (event, ui) {
