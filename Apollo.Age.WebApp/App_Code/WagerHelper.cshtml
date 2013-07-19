@@ -204,8 +204,8 @@
     {
         string columnData = "{0}<span class='split'>/</span>{1}<span class='split'>/</span>{2}";
         if (betCount != 0
-            && stake != 0
-            && stakebefore != 0)
+            || stake != 0
+            || stakebefore != 0)
         {
             columnData = string.Format(
                 columnData, 
