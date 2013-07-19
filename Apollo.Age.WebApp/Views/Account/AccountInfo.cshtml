@@ -44,15 +44,7 @@
                         }
                         
                         <td class="agent-name">
-                        @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
-                            {
-                                <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
-                                        <div id="ddl-agents">
-                                            <ul class="agent-list">
-                                            </ul>
-                                        </div>
-                                    </a>
-                            }
+                        
                             @Model.Username
                         </td>
                     </tr>
@@ -85,6 +77,15 @@
                                     }
                                     else
                                     {
+                                        if (i==3 && Model.AgentPathList.Count > 4)
+                                        {
+                                        <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@item.Id" title="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                                <div id="ddl-agents">
+                                                    <ul class="agent-list">
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        }
                                         <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                         </a>
