@@ -9,6 +9,22 @@ a {
 	}
 }
 
+.cond-search {
+	width: auto;
+
+	td {
+		white-space: nowrap;
+		padding: 0 5px;
+
+		span, select {
+			vertical-align: middle;
+		}
+		.sbpager .item-container {
+			float: none;
+		}
+	}
+}
+
 #function-bar {
 	input.datepicker {
 		border: 1px solid #000;		
@@ -25,7 +41,7 @@ a {
 	color: #000099;
 	display: block;
 	float: left;
-	margin: 2px 10px 5px 5px;
+	margin: 3px 10px 0 5px;
 	padding: 2px 0;
 }
 
@@ -40,7 +56,7 @@ a {
 	}
 
 	.league {
-		max-width: 450px;
+		//max-width: 450px;
 	}
 }
 
@@ -273,6 +289,16 @@ a {
 .eq-ie7 {
 	.box-header .league {
 		width: 450px;
+	}
+
+	.cond-search {
+		#header_main {
+			padding-top: 1px;
+		}
+
+		.sbpager {
+			display: block;
+		}
 	}
 }
 
