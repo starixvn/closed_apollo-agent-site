@@ -17,7 +17,7 @@ namespace Apollo.Age.Account.Models
         public int SportType { get; set; }
 
         public int BetType { get; set; }
-       
+
         public decimal GroupA { get; set; }
 
         public decimal GroupB { get; set; }
@@ -26,12 +26,12 @@ namespace Apollo.Age.Account.Models
 
         public decimal GroupD { get; set; }
 
-        public decimal OldGroupA { get; set; }
+        public decimal? OldGroupA { get; set; }
 
-        public decimal OldGroupB { get; set; }
+        public decimal? OldGroupB { get; set; }
 
-        public decimal OldGroupC { get; set; }
+        public decimal? OldGroupC { get; set; }
 
-        public decimal OldGroupD { get; set; }
+        public decimal? OldGroupD { get; set; }
     }
 }

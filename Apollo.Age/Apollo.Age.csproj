@@ -85,6 +85,7 @@
     <Compile Include="Enumerations\AgentLevel.cs" />
     <Compile Include="Enumerations\CustomerStatus.cs" />
     <Compile Include="Enumerations\CustomerType.cs" />
+    <Compile Include="Enumerations\LogActionType.cs" />
     <Compile Include="Enumerations\MessageTypes.cs" />
     <Compile Include="Enumerations\SportTypes.cs" />
     <Compile Include="Enumerations\StringValueAttribute.cs" />

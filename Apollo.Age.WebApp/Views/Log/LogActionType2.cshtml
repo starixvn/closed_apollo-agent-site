@@ -3,7 +3,7 @@
 @using Apollo.Age.Resources
 @{   
     var list = (List<DiscountModel>)Model;
-    var oldGroup = ViewBag.OldGroup;
+    var oldGroup = string.IsNullOrWhiteSpace(ViewBag.OldGroup) ? Lang.lblNA : ViewBag.OldGroup;
     var group = ViewBag.Group;
 }
 @if (!ReferenceEquals(list, null) && list.Any())
@@ -15,7 +15,7 @@
             <td class="colW1">
                 @Lang.group
             </td>
-            <td  class="colW1" colspan="2">
+            <td class="colW1" colspan="2">
                 @Lang.membercomm
             </td>
         </tr>
@@ -144,9 +144,9 @@
     </table>
     }
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Formater.DecFormat(oldValue * 100, 2).ToString();
+        string strOld = oldValue != null ? Formater.DecFormat((decimal)oldValue * 100, 2).ToString() : Lang.lblNA;
         string strNew = Formater.DecFormat(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)

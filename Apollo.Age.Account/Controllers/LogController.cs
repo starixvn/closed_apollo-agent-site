@@ -179,6 +179,7 @@ namespace Apollo.Age.Account.Controllers
                                 GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
                             };
 
+                            // Log action for update
                             for (int i = 0; i < list.Count; i++)
                             {
                                 var itemOld = list[i];
@@ -187,6 +188,12 @@ namespace Apollo.Age.Account.Controllers
                                 {
                                     list[i].GroupA = model.GroupA;
                                 }
+                            }
+
+                            // Log action for insert
+                            if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                list.Add(model);
                             }
                         }
                     }
@@ -204,6 +211,7 @@ namespace Apollo.Age.Account.Controllers
                                 GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
                             };
 
+                            // Log action for update
                             for (int i = 0; i < list.Count; i++)
                             {
                                 var itemOld = list[i];
@@ -215,6 +223,12 @@ namespace Apollo.Age.Account.Controllers
                                     list[i].GroupC = model.GroupC;
                                     list[i].GroupD = model.GroupD;
                                 }
+                            }
+
+                            // Log action for insert
+                            if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                list.Add(model);
                             }
                         }
                     }
@@ -280,11 +294,16 @@ namespace Apollo.Age.Account.Controllers
 
                     string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
 
+                    // Log action is update
                     if (list.ContainsKey(key))
                     {
                         list[key].MinBet = model.MinBet;
                         list[key].MaxBet = model.MaxBet;
                         list[key].MaxPerMatch = model.MaxPerMatch;
+                    }
+                    else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                    {
+                        list.Add(key, model);
                     }
                 }
             }
@@ -369,11 +388,16 @@ namespace Apollo.Age.Account.Controllers
 
                         string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
+                        // Log action for update
                         if (list.ContainsKey(key))
                         {
                             list[key].MaxUpper = model.MaxUpper;
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
+                        }
+                        else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                        {
+                            list.Add(key, model);
                         }
                     }
                     else
@@ -393,6 +417,10 @@ namespace Apollo.Age.Account.Controllers
                             list[key].MaxUpper = model.MaxUpper;
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
+                        }
+                        else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                        {
+                            list.Add(key, model);
                         }
                     }
                 }
