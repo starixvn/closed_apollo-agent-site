@@ -155,6 +155,17 @@ namespace Apollo.Age.Account.Controllers
                 agentInfo.ActorAgentId = this.CurrentSession.AgentId;
                 agentInfo.IsMember = false;
                 agentInfo.IsMaster = this.CurrentSession.IsMaster;
+
+                if (this.CurrentSession.AgentId != agentInfo.CustId)
+                {
+                    var agentPathList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
+                    {
+                        ParentId = this.CurrentSession.AgentId,
+                        AgentId = agentInfo.CustId
+                    });
+
+                    agentInfo.AgentPathList = agentPathList.Where(t => t.Id != agentInfo.CustId).OrderByDescending(t => t.Level).ToList();
+                }
             }
 
             return View("AccountInfo", agentInfo);
@@ -186,6 +197,17 @@ namespace Apollo.Age.Account.Controllers
                 memberInfo.ActorAgentId = this.CurrentSession.AgentId;
                 memberInfo.IsMember = true;
                 memberInfo.IsMaster = this.CurrentSession.IsMaster;
+
+                if (this.CurrentSession.AgentId != memberInfo.CustId)
+                {
+                    var agentPathList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
+                    {
+                        ParentId = this.CurrentSession.AgentId,
+                        AgentId = memberInfo.ParentId
+                    });
+
+                    memberInfo.AgentPathList = agentPathList.OrderByDescending(t => t.Level).ToList();
+                }
             }
 
             return View("AccountInfo", memberInfo);
