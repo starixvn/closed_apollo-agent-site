@@ -77,7 +77,7 @@ function InitBetList() {
 		}
 
 		if (parent.APOLLO.isResizeDialog) {
-			parent.APOLLO.resizeDialog(900, heightPopup);
+			parent.APOLLO.resizeDialog(1000, heightPopup);
 		}
 	}
 
