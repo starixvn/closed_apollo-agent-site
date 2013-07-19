@@ -105,12 +105,14 @@
     @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
     @Html.Hidden("TitleGroupBetName", lableGroupBet)
     <div class="mainpage">
-        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
-        <div class="pages-size">
-            <div class="pull-left">@Lang.Page:</div>
-            <div id="pager" class="sbpager">
-            </div>
-        </div>
+        
+                @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
+                    @*<div class="pages-size">
+                        <div class="pull-left">@Lang.Page:</div>
+                        <div id="pager" class="sbpager">
+                        </div>
+                    </div>*@
+                
         <div id="container">
         </div>
     </div>
