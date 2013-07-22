@@ -79,7 +79,6 @@
 					padding: 0 2px;
 
 					.action {
-						position: relative;
 
 						.edit-link {
 							background: url(images/btn-arrow.png)  no-repeat right center;
@@ -90,11 +89,17 @@
 							}
 						}
 
+						.list {
+							display: none;
+							position: relative;
+							z-index: 100;
+						}
+
 						.menu-list {
 							position: absolute;
-							background-color: #FCD5B5;
-							display: none;
-							top: 15px;
+							background-color: #FCD5B5;							
+							top: 0;
+							left: 0;
 							z-index: 100;
 
 							li {

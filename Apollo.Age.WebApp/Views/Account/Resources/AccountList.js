@@ -40,13 +40,13 @@ $(document).ready(function () {
 
     $('.edit-link').click(function (event) {
         $this = $(this);
-        $listMenu = $this.siblings('.menu-list');
+        $listMenu = $this.siblings('.list');
         if ($listMenu.is(":visible")) {
             $listMenu.hide();
             $this.removeClass('bg');
         } else {
             $('.edit-link').removeClass('bg');
-            $('.action').children('.menu-list').hide();
+            $('.action').children('.list').hide();
             $this.addClass('bg');
             $listMenu.show();
         }
@@ -54,6 +54,7 @@ $(document).ready(function () {
     });
 
     $('body').click(function () {
-        $('.action').children('.menu-list').hide();
+        $('.edit-link').removeClass('bg');
+        $('.action').children('.list').hide();
     });
 });
