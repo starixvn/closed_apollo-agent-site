@@ -126,7 +126,7 @@
                         </tr>
                     }
 
-                    @if (Model.AgentPathList.Count > 4)
+                    @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
                             {
                             <tr>
                                 <td class="parent-lbl"></td>

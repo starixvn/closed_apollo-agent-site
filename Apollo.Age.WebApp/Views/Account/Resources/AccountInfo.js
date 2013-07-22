@@ -131,13 +131,23 @@ var ACCOUNT = function ($) {
                         success: function (data) {
                             if (data.length > 0) {
                                 agentList.html("");
-                                for (var i = data.length - 1; i > 0; i--) {
-                                    agentList.append(
-                                        "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
-                                            + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
-                                    );
+                                if (data[0].Level == 0) {
+                                    for (var i = data.length - 1; i > 0; i--) {
+                                        agentList.append(
+                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
+                                                + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                        );
+                                    }
+                                    agentList.append("<li class='root-agent'>" + data[0].Username + "</li>");
                                 }
-                                agentList.append("<li class='root-agent'>" + data[0].Username + "</li>");
+                                else {
+                                    for (var i = data.length - 1; i >= 0; i--) {
+                                        agentList.append(
+                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
+                                                + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                        );
+                                    }
+                                }
                             }
                         }
                     });
