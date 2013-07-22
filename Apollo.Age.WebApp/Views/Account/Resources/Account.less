@@ -380,19 +380,20 @@ html, body {
 
 			#agentsTab-content, #membersTab-content {
 				height: 100%;
+				overflow: hidden;
 
                 #agent-treeview{
                     height: 100%;
                     iframe {
-					width: 203px;
-					height: 98%;
-					margin: 5px 0 0 5px;
+						width: 203px;
+						height: 98%;
+						margin: 5px 0 0 5px;
 				    }
                 }
 				iframe {
 					width: 203px;
 					height: 98%;
-					margin: 5px 0 0 5px;
+					margin: 5px 0 0 5px;					
 				}
 			}
 
@@ -405,9 +406,7 @@ html, body {
 
 .no-data-agent, .no-data {
 	text-align: center;
-	font-weight: bold;
 	padding: 10px;
-	color: @hoverLinkYellowColor;
 }
 
 /* AUTO-COMPLETE */
