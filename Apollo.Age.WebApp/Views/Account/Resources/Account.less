@@ -209,7 +209,7 @@ html, body {
 
 			#ddl-agents {
 				position: absolute;
-				top: 24px;
+				top: 22px;
 				right: -5px;
 				z-index: 199;
 				display: none;
@@ -231,7 +231,9 @@ html, body {
 
 						.icon-stop {
 							background-image: url("../../../_globalresources/css/img/glyphicons-halflings-red.png");
-							margin: 0 2px 0 -6px;
+							margin: 1px 2px 0 -6px;
+							width: 10px;
+							height: 10px;
 						}
 					}
 				}
@@ -248,14 +250,14 @@ html, body {
 				&:after {
 					border-color: rgba(238, 238, 238, 0);
 					border-bottom-color: @grayLighter;
-					border-width: 10px;
+					border-width: 8px;
 					right: 10px;
 					margin-left: -10px;
 				}
 				&:before {
 					border-color: rgba(85, 85, 85, 0);
 					border-bottom-color: @gray;
-					border-width: 11px;
+					border-width: 9px;
 					right: 9px;
 					margin-left: -11px;
 				}
@@ -522,11 +524,6 @@ html, body {
 	}
 
 	#wrapper {
-		
-		.cust-info #agentDownlineLink {
-			background: url(img/down-arr.png) @white no-repeat center 4px;
-		}
-		
 		#agent-setting {
 			position: fixed;
 			top: 170px;
