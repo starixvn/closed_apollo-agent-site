@@ -15,7 +15,7 @@
             <td class="colW1">
                 @Lang.group
             </td>
-            <td  class="colW1" colspan="2">
+            <td class="colW1" colspan="2">
                 @Lang.membercomm
             </td>
         </tr>
@@ -26,7 +26,7 @@
                     <span class="valuechanged">@group</span>
                     <div class="line">
                     </div>
-                    <span class="valueold">@oldGroup</span>
+                    <span class="valueold">@(string.IsNullOrWhiteSpace(oldGroup) ? Lang.lblNA : oldGroup)</span>
                   
                 }
                 else
@@ -144,15 +144,15 @@
     </table>
     }
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Formater.DecFormat(oldValue * 100, 2).ToString();
+        string strOld = oldValue != null ? Formater.DecFormat((decimal)oldValue * 100, 2).ToString() : Lang.lblNA;
         string strNew = Formater.DecFormat(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
         { 
     <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>           
-    <span>| </span><span class="valueold">@strOld</span>           
+    <span class="valueold">| @strOld</span>           
         }
         else
         { <span class="valueold">@strOld</span>

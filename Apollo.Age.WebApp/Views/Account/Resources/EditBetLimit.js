@@ -43,7 +43,7 @@ if (typeof jQuery != 'undefined') {
                     BETLIMIT.initOthers(false);
                 });
             },
-            updateBetLimit: function () {
+            updateBetLimit: function () {                
                 if (BETLIMIT.betLimitElement.Validate()) {
                     $.ajax({
                         url: APOLLO.resolveUrl('CustomerSetting/UpdateBetLimit'),

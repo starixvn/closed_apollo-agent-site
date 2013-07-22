@@ -26,25 +26,30 @@
 
     function load(settings, root, child, container, showRoot) {
         function createNode(parent) {
-                var current = $("<li/>").attr("id", this.Id).html("<span>" + (this.Id == undefined ? "" : stringFormat((showRoot? settings.linkdirectAgents : settings.link) , this.Id, this.Username, this.Username, root))  + "</span>").appendTo(parent);
-                if (this.classes) {
-                    current.children("span").addClass(this.classes);
-                }
-                if (this.expanded) {
-                    current.addClass("open");
-                }
-                if (this.HasAgentDownline || this.children && this.children.length) {
-                    var branch = $("<ul/>").appendTo(current);
-                    if (this.HasAgentDownline) {
-                        current.addClass("hasChildren");
-                        createNode.call({
-                            text: "&nbsp;",
-                            classes: "",
-                            children: []
-                        }, branch);
+                if (this.Id != undefined)
+                {
+                    var current = $("<li/>").attr("id", this.Id).html("<span>" + stringFormat((showRoot? settings.linkdirectAgents : settings.link) , this.Id, this.Username, this.Username, root)  + "</span>").appendTo(parent);
+
+                    if (this.Classes) {
+                        current.children("span").addClass(this.Classes);
                     }
-                    if (this.children && this.children.length) {
-                        $.each(this.children, createNode, [branch])
+                    if (this.Expanded) {
+                        current.addClass("open");
+                    }
+                    if (this.HasAgentDownline || this.Children && this.Children.length) {
+                        var branch = $("<ul/>").appendTo(current);
+                        if (this.HasAgentDownline) {
+                            current.addClass("hasChildren");
+                            createNode.call({
+                                text: "&nbsp;",
+                                classes: "",
+                                children: []
+                            }, branch);
+                        }
+                        if (this.Children && this.Children.length) {
+                            showRoot = false;
+                            $.each(this.Children, createNode, [branch])
+                        }
                     }
                 }
             }
@@ -58,7 +63,6 @@
         else
         {
             $.getJSON(settings.url+"?agentId=" + root, null, function (response) {
-            
                 $.each(response, createNode, [child]);
                 $(container).treeview({ add: child });
             });

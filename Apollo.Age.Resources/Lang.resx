@@ -1845,4 +1845,28 @@
   <data name="lblwrongsecuritycode" xml:space="preserve">
     <value>Wrong security code</value>
   </data>
+  <data name="lblGeneralInfo" xml:space="preserve">
+    <value>General Info</value>
+  </data>
+  <data name="IsMaster" xml:space="preserve">
+    <value>Is Master</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+   <data name="lblMainAgent" xml:space="preserve">
+    <value>Main A</value>
+  </data>
+  <data name="lblMainSH" xml:space="preserve">
+    <value>Main SH</value>
+  </data>
+  <data name="lblShareholder" xml:space="preserve">
+    <value>SH</value>
+  </data>
+  <data name="lblSuper" xml:space="preserve">
+    <value>Super</value>
+  </data>
 </root>

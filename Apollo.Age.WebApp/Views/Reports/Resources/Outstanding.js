@@ -77,7 +77,7 @@
                 OUTSTANDING.betTypeName = OUTSTANDING.BettypeName.val();
                 var parameters = $.param({
                     AgentId: $('#CurrentCustId').val(),
-                    AgentUsername: $('#divnavigation .currentUser span').text(),
+                    AgentUsername: $('.boxNavigation .currentUser span').text(),
                     SportName: escape(OUTSTANDING.sportTypeName),
                     BetTypeName: escape(OUTSTANDING.betTypeName),
                     Sporttypes: OUTSTANDING.ddlSport.val(),

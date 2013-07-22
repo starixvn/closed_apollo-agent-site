@@ -35,10 +35,11 @@
                 <div class="editor">
                     @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
                {
-                new SelectListItem{Value ="0",Text=Lang.all},
-                new SelectListItem{Value ="2",Text=Lang.lblCommission},
-                new SelectListItem{Value ="3",Text=Lang.lblBetSetting},
-                new SelectListItem{Value ="4",Text=Lang.positiontaking}
+                new SelectListItem{Value =((int)LogActionType.All).ToString(),Text=Lang.all},
+                new SelectListItem{Value =((int)LogActionType.Commission).ToString(),Text=Lang.lblCommission},
+                new SelectListItem{Value =((int)LogActionType.BetLimit).ToString(),Text=Lang.lblBetSetting},
+                new SelectListItem{Value =((int)LogActionType.PositionTaking).ToString(),Text=Lang.positiontaking},
+                new SelectListItem{Value =((int)LogActionType.GeneralInfo).ToString(),Text=Lang.lblGeneralInfo}
                })
                 </div>
             </div>
@@ -113,19 +114,7 @@
                         <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
-                        @*@Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))*@
-                        @switch (itemLog.ActionTypeId)
-                        {
-                            case 2:
-                            @Viewlog._2
-                       break;
-                            case 3:
-                            @Viewlog._3
-                       break;
-                            default:
-                            @Viewlog._4
-                       break;
-                        }
+                        @itemLog.ActionName
                     </td>
                     <td class="message_content">
                         @Html.Action("LogActionType" + itemLog.ActionTypeId.ToString(), "Log", new

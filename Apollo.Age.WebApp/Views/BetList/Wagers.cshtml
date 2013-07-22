@@ -29,6 +29,18 @@
                 <th style="width: 90px;">
                     @BetList.result
                 </th>
+                <th style="width: 80px;">
+                @BetList.status
+            </th>
+                <th style="width: 90px;">
+                    @BetList.agentPT
+                </th>
+                <th style="width: 90px;">
+                    @BetList.agentComm
+                </th>
+                 <th style="width: 50px;">
+                @BetList.feature
+            </th>
             </tr>
         </thead>
         @if (Model.TicketList != null && Model.TicketList.Any())
@@ -57,6 +69,18 @@
                         <td class='r'>
                             0.00
                         </td>
+                         <td class='c'>
+                        @Html.Raw(item.Status)
+                    </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentShare)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentComm)
+                        </td>
+                           <td class='r'>
+                        <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                    </td>
                     </tr>
                 }
                 <tr>
@@ -67,9 +91,19 @@
                     <td class="r total">
                         @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
                     </td>
+                    <td class='r result'>
+                        0.00
+                    </td>
+                    <td class='r total'>
+                </td>
+                    <td class='r result'>
+                        0.00
+                    </td>
                     <td class="r result">
                         0.00
                     </td>
+                     <td class='r total'>
+                </td>
                 </tr>
             </tbody>
 

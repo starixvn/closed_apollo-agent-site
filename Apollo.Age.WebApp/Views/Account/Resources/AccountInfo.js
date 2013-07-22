@@ -14,6 +14,12 @@ var ACCOUNT = function ($) {
             ACCOUNT.ageDownLink = $("#agentDownlineLink");
             ACCOUNT.ddlAgents = $("#ddl-agents");
             ACCOUNT.enterUsernameValue = $("#enterUsernameValue");
+
+            // Set posituon for agent tab
+            var heightSearchBox = $('.search-box').height(),
+                heightButton = $('.btn-list').height(),
+                topAgentList = heightSearchBox + heightButton + 30;
+            $('#agent-setting').css({ 'top': topAgentList });
         },
 
         getAccountInfo: function (custId, username) {
@@ -84,7 +90,7 @@ var ACCOUNT = function ($) {
             });
 
             $(".search-button").bind('click', function () {
-                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username
+                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username                
             });
 
             $(".show-section").bind('click', function () {
@@ -124,12 +130,23 @@ var ACCOUNT = function ($) {
                         type: 'GET',
                         success: function (data) {
                             if (data.length > 0) {
-                                agentList.html("<li class='root-agent'>" + data[0].Username + "</li>");
-                                for (var i = 1; i < data.length; ++i) {
-                                    agentList.append(
-                                        "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
-                                            + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
-                                    );
+                                agentList.html("");
+                                if (data[0].Level == 0) {
+                                    for (var i = data.length - 1; i > 0; i--) {
+                                        agentList.append(
+                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
+                                                + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                        );
+                                    }
+                                    agentList.append("<li class='root-agent'>" + data[0].Username + "</li>");
+                                }
+                                else {
+                                    for (var i = data.length - 1; i >= 0; i--) {
+                                        agentList.append(
+                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
+                                                + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                        );
+                                    }
                                 }
                             }
                         }
@@ -170,6 +187,7 @@ var ACCOUNT = function ($) {
                     $("#custsettings-content").hide();
                     $("#agentsTab-content").show();
                     $("#membersTab-content").hide();
+                    ACCOUNT.bindAgentsList(agentId);
                     break;
                 case "membersTab":
                     $("#membersTab").addClass("current");
@@ -182,6 +200,17 @@ var ACCOUNT = function ($) {
                     break;
             }
         },
+
+        bindAgentsList: function (agentId) {
+            var link = APOLLO.resolveUrl("Account/AgentTreeList?agentId=" + agentId),
+            iframe = document.createElement('iframe');
+            iframe.frameBorder = 0;
+            iframe.setAttribute("src", link);
+            iframe.setAttribute("id", "frmDownlineList");
+
+            $("#agent-treeview").html(iframe);
+        },
+
         bindMembersList: function (agentId) {
             var link = APOLLO.resolveUrl("Account/MemberDownline?agentId=" + agentId),
             iframe = document.createElement('iframe');

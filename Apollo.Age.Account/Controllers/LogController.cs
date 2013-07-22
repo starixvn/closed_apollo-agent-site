@@ -19,8 +19,14 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
+    using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Resources;
+    using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Log controller.
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class LogController : BaseController
@@ -29,17 +35,32 @@ namespace Apollo.Age.Account.Controllers
 
         private IAccountService _accountService;
 
+        private ServiceBase _serviceBase;
+
         public LogController()
-            : this(null, null)
+            : this(null, null, null)
         {
         }
 
-        public LogController(ILogRunSpService logService, IAccountService accountService)
+        public LogController(ILogRunSpService logService, IAccountService accountService, ServiceBase serviceBase)
         {
             _logService = logService ?? new LogRunSpService();
             _accountService = accountService ?? new AccountService();
+            _serviceBase = serviceBase ?? new ServiceBase();
         }
 
+        /// <summary>
+        /// View log action.
+        /// </summary>
+        /// <param name="isAgent">Customer is agent.</param>
+        /// <param name="username">Username of customer.</param>
+        /// <param name="actionTypeId">Log action type id.</param>
+        /// <param name="from">View log from date.</param>
+        /// <param name="to">View log to date.</param>
+        /// <param name="showOldValue">Is show old value before update.</param>
+        /// <param name="pageSize">Page size of view.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <returns>View log details from date to date.</returns>
         public ViewResult ViewLog(
             bool isAgent = true,
             string username = "",
@@ -95,11 +116,11 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Log action for discount
+        /// Log action for discount.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action view for discount.</returns>
         public ViewResult LogActionType2(string oldData, string data)
         {
             var oldGroup = string.Empty;
@@ -179,6 +200,7 @@ namespace Apollo.Age.Account.Controllers
                                 GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
                             };
 
+                            // Log action for update
                             for (int i = 0; i < list.Count; i++)
                             {
                                 var itemOld = list[i];
@@ -187,6 +209,12 @@ namespace Apollo.Age.Account.Controllers
                                 {
                                     list[i].GroupA = model.GroupA;
                                 }
+                            }
+
+                            // Log action for insert
+                            if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                list.Add(model);
                             }
                         }
                     }
@@ -204,6 +232,7 @@ namespace Apollo.Age.Account.Controllers
                                 GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
                             };
 
+                            // Log action for update
                             for (int i = 0; i < list.Count; i++)
                             {
                                 var itemOld = list[i];
@@ -216,23 +245,29 @@ namespace Apollo.Age.Account.Controllers
                                     list[i].GroupD = model.GroupD;
                                 }
                             }
+
+                            // Log action for insert
+                            if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                list.Add(model);
+                            }
                         }
                     }
                 }
             }
 
-            ViewBag.OldGroup = oldGroup;
-            ViewBag.Group = group;
+            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertCommGroupName(oldGroup) : oldData;
+            ViewBag.Group = !string.IsNullOrWhiteSpace(group) ? _logService.RevertCommGroupName(group) : group;
 
             return View(list);
         }
 
         /// <summary>
-        /// Log action for bet setting
+        /// Log action for bet setting.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action view for bet setting.</returns>
         public ViewResult LogActionType3(string oldData, string data)
         {
             var list = new Dictionary<string, BetSettingModel>();
@@ -280,11 +315,17 @@ namespace Apollo.Age.Account.Controllers
 
                     string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
 
+                    // Log action is update
                     if (list.ContainsKey(key))
                     {
                         list[key].MinBet = model.MinBet;
                         list[key].MaxBet = model.MaxBet;
                         list[key].MaxPerMatch = model.MaxPerMatch;
+                    }
+                    else if (string.IsNullOrWhiteSpace(oldData))
+                    {
+                        // Log action for insert
+                        list.Add(key, model);
                     }
                 }
             }
@@ -293,13 +334,13 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Log action for share
+        /// Log action for share.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <param name="agentLevel"></param>
-        /// <param name="isAgent"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <param name="agentLevel">Agent level.</param>
+        /// <param name="isAgent">Customer is agent.</param>
+        /// <returns>Log action view for position taking.</returns>
         public ViewResult LogActionType4(string oldData, string data, int agentLevel, bool isAgent)
         {
             var list = new Dictionary<string, PositionTakingModel>();
@@ -369,11 +410,17 @@ namespace Apollo.Age.Account.Controllers
 
                         string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
+                        // Log action for update
                         if (list.ContainsKey(key))
                         {
                             list[key].MaxUpper = model.MaxUpper;
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
+                        }
+                        else if (string.IsNullOrWhiteSpace(oldData))
+                        {
+                            // Log action for insert
+                            list.Add(key, model);
                         }
                     }
                     else
@@ -394,6 +441,11 @@ namespace Apollo.Age.Account.Controllers
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
                         }
+                        else if (string.IsNullOrWhiteSpace(oldData))
+                        {
+                            // Log action for insert
+                            list.Add(key, model);
+                        }
                     }
                 }
             }
@@ -402,6 +454,142 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsAgent = isAgent;
 
             return View(list);
+        }
+
+        /// <summary>
+        /// Log action for general info.
+        /// </summary>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action for general information.</returns>
+        public ViewResult LogActionType5(string oldData, string data)
+        {
+            var list = new List<LogSettingViewModel>();
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                var xmlData = XDocument.Parse(data);
+                var general = xmlData.Descendants("z");
+
+                foreach (var item in general)
+                {
+                    var username = item.Attribute("u");
+                    if (!ReferenceEquals(username, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.lblUserName,
+                            Value = username.Value
+                        });
+                    }
+
+                    var agent = item.Attribute("a");
+                    if (!ReferenceEquals(agent, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.agent,
+                            Value = agent.Value
+                        });
+                    }
+
+                    var parent = item.Attribute("p");
+                    if (!ReferenceEquals(parent, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.Parent,
+                            Value = parent.Value
+                        });
+                    }
+
+                    var isMaster = item.Attribute("im");
+                    if (!ReferenceEquals(isMaster, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.IsMaster,
+                            Value = string.Compare(isMaster.Value.ToString(), "1") == 0 ? Lang.lblYes : Lang.lblNo
+                        });
+                    }
+
+                    var currency = item.Attribute("c");
+                    if (!ReferenceEquals(currency, null))
+                    {
+                        list.Add(new LogSettingViewModel
+                        {
+                            FieldName = Lang.Currency,
+                            Value = currency.Value
+                        });
+                    }
+
+                    var type = item.Attribute("t");
+                    var typeName = Lang.status;
+                    if (!ReferenceEquals(type, null))
+                    {
+                        if (string.Compare(type.Value, "1") == 0)
+                        {
+                            typeName = Lang.status;
+                        }
+                        else
+                        {
+                            typeName = Lang.betstatus;
+                        }
+                    }
+
+                    var status = item.Attribute("s");
+                    if (!ReferenceEquals(status, null))
+                    {
+                        string statusName = GetStringStatus(status.Value);
+
+                        if (!ReferenceEquals(oldData, null))
+                        {
+                            var xmlOldData = XDocument.Parse(oldData);
+                            var generalOld = xmlOldData.Descendants("z");
+
+                            foreach (var itemOld in generalOld)
+                            {
+                                var statusOld = itemOld.Attribute("s");
+                                if (!ReferenceEquals(statusOld, null))
+                                {
+                                    list.Add(new LogSettingViewModel
+                                    {
+                                        FieldName = typeName,
+                                        Value = statusName,
+                                        OldValue = GetStringStatus(statusOld.Value)
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return View(list);
+        }
+
+        /// <summary>
+        /// To string status by status id.
+        /// </summary>
+        /// <param name="value">Status id.</param>
+        /// <returns>Name of status.</returns>
+        private string GetStringStatus(string value)
+        {
+            var statusName = string.Empty;
+
+            switch (value)
+            {
+                case "1":
+                    statusName = Lang.lblActive;
+                    break;
+                case "2":
+                    statusName = Lang.stopped;
+                    break;
+                default:
+                    statusName = Lang.locked;
+                    break;
+            }
+
+            return statusName;
         }
     }
 }

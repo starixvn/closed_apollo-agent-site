@@ -19,6 +19,8 @@
 @if ((bool)(ViewBag.HasAgentDownline))
 {
 	<div id="wrapper">
+        <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
+
 		<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
 		</ul>
 	</div>
@@ -31,10 +33,10 @@ else
 @section foot {
     @Scripts.Render("~/scripts/treeviewjs")
 	<script type="text/javascript">
-		$(document).ready(function () {
-		    $.blockUI.defaults.css.left = "10px";
-		    $(document).ajaxStart($.blockUI);
-		    $(document).ajaxStop($.unblockUI);
-		})
+	    $(document).ready(function () {
+	        $.blockUI.defaults.css.left = "10px";
+	        $(document).ajaxStart($.blockUI);
+	        $(document).ajaxStop($.unblockUI);
+	    })
 	</script>
 }

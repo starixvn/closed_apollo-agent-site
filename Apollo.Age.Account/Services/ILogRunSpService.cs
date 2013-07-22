@@ -18,5 +18,7 @@ namespace Apollo.Age.Account.Services
     public interface ILogRunSpService
     {
         IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria);
+
+        string RevertCommGroupName(string group);
     }
 }

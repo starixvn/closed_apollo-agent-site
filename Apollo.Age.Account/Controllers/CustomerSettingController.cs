@@ -12,6 +12,7 @@
 
 namespace Apollo.Age.Account.Controllers
 {
+    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -30,6 +31,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Enumerations;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -98,8 +100,8 @@ namespace Apollo.Age.Account.Controllers
             if (customerInfo != null)
             {
                 model.Username = customerInfo.Username;
-                model.Group = customerInfo.Group;
-                model.CommissionList = model.IsMember
+                model.Group = customerInfo.Group != null ? RevertCommGroupName(customerInfo.Group) : customerInfo.Group;
+                var commissionList = model.IsMember
                     ? _accountService.GetCommissionToMember(
                     new GetCommissionToMemberCriteria
                     {
@@ -114,6 +116,14 @@ namespace Apollo.Age.Account.Controllers
                         AgentId = customerInfo.CustId,
                         Username = customerInfo.Username
                     });
+
+                var commissionModelList = new List<CustomerCommissionModel>();
+                if(commissionList != null && commissionList.Any())
+                {
+                    commissionList.ToList().ForEach(t => commissionModelList.Add(RevertCommGroupValue(t)));
+                }
+
+                model.CommissionList = commissionModelList;
             }
 
             return View("~/Views/Account/ViewCommission.cshtml", model);
@@ -365,7 +375,8 @@ namespace Apollo.Age.Account.Controllers
 
         public ActionResult GetMemberSetting(int memberId, int? agentId)
         {
-            string javascriptString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
+            var memberInfo = _customerSettingService.GetMemberInfo(memberId);
+            string javascriptString = this.GetSettingScript(memberId, agentId, null, memberInfo != null ? memberInfo.UGroup : string.Empty);
             return JavaScript(javascriptString);
         }
 
@@ -447,6 +458,22 @@ namespace Apollo.Age.Account.Controllers
                     ErrCode = 0,
                     ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
                 });
+            }
+
+            if (commissionSetting != null )
+            {
+                if (commissionSetting.CommissionItems != null
+                    && commissionSetting.CommissionItems.Any()
+                    && commissionSetting.CommissionItems[0].SportId == (int)SportTypes.Soccer
+                    && commissionSetting.CommissionItems[0].BetTypeId == (int)BetTypes.Handicap)
+                {
+                    RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                }
+
+                if (!string.IsNullOrEmpty(commissionSetting.UserGroup))
+                {
+                    commissionSetting.UserGroup = RevertCommGroupName(commissionSetting.UserGroup);
+                }
             }
 
             Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
@@ -599,11 +626,7 @@ namespace Apollo.Age.Account.Controllers
         {
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All);
 
-            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
-            {
-                commissionSetting.UserGroup = ugroup;
-            }
+            CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
@@ -621,9 +644,21 @@ namespace Apollo.Age.Account.Controllers
         private CommissionSetting GetCommissionSetting(SettingContext settingContext)
         {
             CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+
+            if (commissionSetting.CommissionItems.Any())
+            {
+                RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                RevertCommGroupValue(commissionSetting.CommissionItems[0].Upline);
+            }
+
             if (settingContext.TargetRoleId == (int)Role.Member)
             {
-                commissionSetting.UserGroup = _customerSettingService.GetMemberGroup(settingContext.TargetCustId);
+                var memberInfo = _customerSettingService.GetMemberInfo(settingContext.TargetCustId);
+                if (memberInfo != null)
+                {
+                    commissionSetting.UserGroup = RevertCommGroupName(memberInfo.UGroup);
+                    settingContext.CanEditComGroup = settingContext.AdminId > 0 || CurrentSession.IsSuper || !memberInfo.IsUGroupChanged;
+                }
             }
 
             return commissionSetting;
@@ -643,8 +678,51 @@ namespace Apollo.Age.Account.Controllers
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetPositionTakingLanguage(positionTakingSetting);
             return positionTakingSetting;
-        }     
+        }
 
+
+        private void RevertCommGroupValue(
+            CommissionItem commissionItem)
+        {
+            var tempDiscountA = commissionItem.DiscountA;
+            var tempDiscountB = commissionItem.DiscountB;
+            var tempDiscountC = commissionItem.DiscountC;
+            var tempDiscountD = commissionItem.DiscountD;
+            commissionItem.DiscountA = tempDiscountD;
+            commissionItem.DiscountB = tempDiscountC;
+            commissionItem.DiscountC = tempDiscountB;
+            commissionItem.DiscountD = tempDiscountA;
+        }
+
+        private string RevertCommGroupName(string groupName)
+        {
+            switch (groupName.ToLower())
+            {
+                case "a":
+                    return "d";
+                case "b":
+                    return "c";
+                case "c":
+                    return "b";
+                case "d":
+                    return "a";
+            }
+            return string.Empty;
+        }
+
+        private CustomerCommissionModel RevertCommGroupValue(CustomerCommissionModel commissionModel)
+        {
+            var tempDiscountA = commissionModel.DiscountA;
+            var tempDiscountB = commissionModel.DiscountB;
+            var tempDiscountC = commissionModel.DiscountC;
+            var tempDiscountD = commissionModel.DiscountD;
+            commissionModel.DiscountA = tempDiscountD;
+            commissionModel.DiscountB = tempDiscountC;
+            commissionModel.DiscountC = tempDiscountB;
+            commissionModel.DiscountD = tempDiscountA;
+
+            return commissionModel;
+        }
         #endregion Helpers
     }
 }

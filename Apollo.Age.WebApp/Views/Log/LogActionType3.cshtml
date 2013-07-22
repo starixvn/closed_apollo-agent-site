@@ -53,15 +53,15 @@
         }
     </table>
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue, 0).ToString("#,#");
-        string strNew = Math.Round(newValue, 0).ToString("#,#");
+        string strOld = oldValue != null ? Math.Round((decimal)oldValue, 0).ToString() : Lang.lblNA;
+        string strNew = Math.Round(newValue, 0).ToString();
 
         if (oldValue != newValue)
         { 
     <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>
-    <span>| </span><span class="valueold">@strOld</span>
+    <span class="valueold">| @strOld</span>
             
         }
         else

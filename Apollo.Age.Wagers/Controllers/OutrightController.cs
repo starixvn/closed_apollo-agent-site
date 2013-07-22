@@ -15,8 +15,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     /// <summary>
     /// Outright Controller.
-    /// </summary>
-    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    /// </summary>    
     public class OutrightController : WagerController
     {
         /// <summary>

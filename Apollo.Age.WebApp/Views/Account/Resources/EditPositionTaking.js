@@ -44,19 +44,39 @@ if (typeof jQuery != 'undefined') {
                 //// Register Event
                 $("#btnSubmitFooter").unbind('click').click(function () {
 
+                    // remove the messages when open the other message
+                    $('#noty_top_layout_container').remove();
+
                     if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
 
                         var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
                         if (postionTakingValue == null) {
-                            noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                            //noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
+                            noty({
+                                text: Language.OUTRANGE_SIMPLE_MODE_ERROR,
+                                type: 'error',
+                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
+                                buttons: true,
+                                buttons: [{
+                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+                                        $noty.close();
+                                    }
+                                }]
+                            });
                             return;
                         }
 
                         if (!EDITPOSITIONTAKING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
-                            noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                            //noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                            noty({
+                                text: DEFAULT_LAYOUT.noChangeMessage,
+                                type: 'success',
+                                template: '<div class="noty_message success"><span class="noty_text"></span></div>',
+                                timeout: 5000
+                            });
                             return;
                         }
-                        
+
                         var stringConfirm = "";
                         if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
                             stringConfirm = Language.CONFIRM_WRITE_MEMBER;
@@ -96,8 +116,10 @@ if (typeof jQuery != 'undefined') {
 
             },
             updatePositionTakingSetting: function (postionTakingValue) {
-                
 
+                // remove the messages when open the other message
+                $('#noty_top_layout_container').remove();
+               
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
                     type: 'POST',
@@ -114,7 +136,18 @@ if (typeof jQuery != 'undefined') {
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
                         try { $.unblockUI(); } catch (e) { };
-                        noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                        //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                        noty({
+                            text: data.ErrMsg,
+                            type: 'error',
+                            template: '<div class="noty_message error"><span class="noty_text"></span></div>',
+                            buttons: true,
+                            buttons: [{
+                                addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+                                    $noty.close();
+                                }
+                            }]
+                        });
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
@@ -123,7 +156,7 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
-                
+
                 setTimeout(function () {
                     try { $.unblockUI(); } catch (e) { };
                     if (DEFAULT_LAYOUT.reload) {
@@ -147,5 +180,5 @@ if (typeof jQuery != 'undefined') {
         settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
         EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
     }).ajaxStart($.blockUI);
-    
+
 }

@@ -27,25 +27,19 @@ namespace Apollo.Age.Account.Core
 
         public const string LastPostTimeKey = "lastPostTime";
 
-        public const int MainShareHolderLevel = 1;
-
-        public const int ShareHolderLevel = 2;
-
         public const int LogActionDiscount = 2;
 
         public const int LogActionBetSetting = 3;
 
         public const int LogActionPositionTaking = 4;
 
-        //public static readonly IList<string> BetTypesHeader = new List<string>
-        //{
-        //                    Lang.HandicapOverUnderOddEven, 
-        //                    Lang.RBHandicapRBOverUnder, 
-        //                    Lang._1x2RB1x2, 
-        //                    Lang.OtherBetType, 
-        //                    Lang.RBOtherBetType,
-        //                    Lang.MixSportParlay,
-        //                    Lang.lblOutRight
-        //            };
+        public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
+        {
+            { 0, "lblSuper" },
+            { 1, "lblMainSH" },
+            { 2, "lblShareholder" },
+            { 3, "lblMainAgent" },
+            { 4, "agent" }
+        };
     }
 }

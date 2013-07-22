@@ -136,6 +136,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.Language = currentContext.Language;
             this.IsSimpleMode = currentContext.IsSimpleMode;
             this.HasMinConstrain = currentContext.HasMinConstrain;
+            this.CanEditComGroup = currentContext.CanEditComGroup;
             if (this.Language == 'cn-CN') {
                 Language = "new language";
             }
@@ -146,7 +147,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             FormId: 1,
             Language: 'en-US',
             IsSimpleMode: true,
-            HasMinConstrain: false
+            HasMinConstrain: false,
+            CanEditComGroup: false
         },
         // BetType class, need to create each bet type class for each PT form
         BetType: function (item) {

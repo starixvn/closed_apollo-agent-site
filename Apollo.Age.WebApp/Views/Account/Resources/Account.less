@@ -142,11 +142,13 @@ html, body {
 			font-size: 1em;
 			color: @gray;
 		}
+
 		select {
-			width: 78px;
+			width: 75px;
 			height: 22px;
 			margin-right: 2px;
 		}
+
 		.btn {
 			width: 26px;
 			height: 22px;
@@ -159,6 +161,7 @@ html, body {
 			.box-shadow(none);
 			i { background-image: url(../../../_globalResources/css/img/glyphicons-halflings-gray.png); }
 		}
+
 		.errMsg {
 			margin-top: 5px;
 			padding: 0 10px;
@@ -171,6 +174,18 @@ html, body {
 	.cust-info {
 		margin-top: 5px;
 		width: 202px;
+
+        tr {
+            border-top : 1px dotted @borderLightColor;
+
+			td {
+				padding: 3px 0;
+			}
+
+			&:first-child {
+				border-top: none;
+			}
+        }
 
 		.agent-lbl, .parent-lbl {
 			
@@ -188,8 +203,6 @@ html, body {
 		}
 
 		#agentDownlineLink {
-			background: url(img/down-arr.png) no-repeat center 4px;			
-			display: inline-block;
 			width: 16px;
 			height: 16px;
 			position: relative;
@@ -359,6 +372,14 @@ html, body {
 			#agentsTab-content, #membersTab-content {
 				height: 100%;
 
+                #agent-treeview{
+                    height: 100%;
+                    iframe {
+					width: 203px;
+					height: 98%;
+					margin: 5px 0 0 5px;
+				    }
+                }
 				iframe {
 					width: 203px;
 					height: 98%;
@@ -394,6 +415,15 @@ html, body {
 }
 
 /* TREE VIEW */
+
+.icon-repeat {
+	float: right;
+    margin-right: 5px;
+	position: absolute;
+	right: 0;
+	top: 1px;
+}
+
 .treeview {
 	
 	li {

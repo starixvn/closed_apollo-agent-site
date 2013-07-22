@@ -27,9 +27,9 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.Account.Entities;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
-    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class AccountController : BaseController
     {
         #region Const for paging
@@ -155,6 +155,17 @@ namespace Apollo.Age.Account.Controllers
                 agentInfo.ActorAgentId = this.CurrentSession.AgentId;
                 agentInfo.IsMember = false;
                 agentInfo.IsMaster = this.CurrentSession.IsMaster;
+
+                if (this.CurrentSession.AgentId != agentInfo.CustId)
+                {
+                    var agentPathList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
+                    {
+                        ParentId = this.CurrentSession.AgentId,
+                        AgentId = agentInfo.CustId
+                    });
+
+                    agentInfo.AgentPathList = agentPathList.Where(t => t.Id != agentInfo.CustId).OrderByDescending(t => t.Level).ToList();
+                }
             }
 
             return View("AccountInfo", agentInfo);
@@ -186,6 +197,17 @@ namespace Apollo.Age.Account.Controllers
                 memberInfo.ActorAgentId = this.CurrentSession.AgentId;
                 memberInfo.IsMember = true;
                 memberInfo.IsMaster = this.CurrentSession.IsMaster;
+
+                if (this.CurrentSession.AgentId != memberInfo.CustId)
+                {
+                    var agentPathList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
+                    {
+                        ParentId = this.CurrentSession.AgentId,
+                        AgentId = memberInfo.ParentId
+                    });
+
+                    memberInfo.AgentPathList = agentPathList.OrderByDescending(t => t.Level).ToList();
+                }
             }
 
             return View("AccountInfo", memberInfo);
@@ -225,6 +247,7 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetDataByNode(int agentId)
         {
             var criteria = new AgentDownlineCriteria()
@@ -232,10 +255,13 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             };
 
+            List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
             var agentList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
+            
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetRootNode()
         {
             var criteria = new AgentDownlineCriteria()
@@ -244,16 +270,37 @@ namespace Apollo.Age.Account.Controllers
             };
 
             var agentList = _accountService.GetDirectDownline(criteria);
-            var hasAgentDownline = agentList == null ? false : (agentList.Count > 0);
+            List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
+            bool hasAgentDownline = false;
 
-            var agent = new Agent { Id = this.CurrentSession.AgentId, Username = this.CurrentSession.AgentName, HasAgentDownline = hasAgentDownline };
+            if (agentList != null && agentList.Any())
+            {
+                hasAgentDownline = true;
+                agentList.ForEach(t=> childList.Add(
+                    new AgentTreeViewNode
+                    {
+                        Id = t.Id, 
+                        Username = t.Username, 
+                        HasAgentDownline = t.HasAgentDownline
+                    }
+                ));
+            }
 
-            var rootList = new List<Agent>();
-            rootList.Add(agent);
+            var root = new AgentTreeViewNode { 
+                Id = this.CurrentSession.AgentId, 
+                Username = this.CurrentSession.AgentName, 
+                HasAgentDownline = hasAgentDownline, 
+                Children = childList,
+                Expanded = true
+            };
 
-            return Json(rootList.Select(x => new { x.Id, x.Username, x.HasAgentDownline }), JsonRequestBehavior.AllowGet);
+            var rootList = new List<AgentTreeViewNode>();
+            rootList.Add(root);
+
+            return Json(rootList, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
             var criteria = new GetAgentByUsernameCriteria()
@@ -268,6 +315,7 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetMemberByUsername(string username)
         {
             var criteria = new GetMemberByUsernameCriteria()
