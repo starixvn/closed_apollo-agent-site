@@ -22,5 +22,7 @@ namespace Apollo.Age.Account.ViewModels
         public string FieldName { get; set; }
 
         public string Value { get; set; }
+
+        public string OldValue { get; set; }
     }
 }

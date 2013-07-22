@@ -27,7 +27,15 @@
                 @item.FieldName
             </td>
             <td class="colW2">
-                @item.Value
+                <span class="valuechanged">@item.Value</span>
+                @if (!string.IsNullOrWhiteSpace(item.OldValue))
+                {
+                    <span class="valueold">| @item.OldValue</span>      
+                }
+                else
+                { 
+                    <span class="valueold">| @Lang.lblNA</span>      
+                }
             </td>
             <td class="colW2">
             </td>
@@ -38,7 +46,7 @@
             <td class="no-border-right colW2">
             </td>
         </tr>
-            count++;
+                count++;
         }
     }
 </table>
