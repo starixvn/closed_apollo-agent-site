@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.3.26">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
@@ -20,7 +19,6 @@ namespace Apollo.Age.Repositories.Impl
     /// TODO: Update summary.
     /// </summary>
     public class RepositoryBase<T> : ReadonlyRepository<T>
-    {
-       
+    {       
     }
 }

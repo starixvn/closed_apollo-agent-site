@@ -12,6 +12,9 @@ namespace Apollo.Age.Account.Criterias
     using System.Configuration;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Agent list criteria class.
+    /// </summary>
     public class AgentListCriteria : CriteriaBase
     {
         private string _username = string.Empty;
@@ -73,11 +76,19 @@ namespace Apollo.Age.Account.Criterias
             }
         }
 
+        /// <summary>
+        /// Get setting key of agent list.
+        /// </summary>
+        /// <returns>Return setting key Age_Agent_GetByAgent.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_GetByAgent";
         }
 
+        /// <summary>
+        /// Check criteria is valid.
+        /// </summary>
+        /// <returns>Return true.</returns>
         public override bool IsValid()
         {
             return true;

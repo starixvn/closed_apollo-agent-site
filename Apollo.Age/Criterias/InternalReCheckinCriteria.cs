@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ReCheckinCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="InternalReCheckinCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -21,13 +21,24 @@ namespace Apollo.Age.Criterias
     public class InternalReCheckinCriteria : CriteriaBase
     {
         public int OnUserId { get; set; }
+
         public byte IsKickedOut { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns> Setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_Admin_ReCheckIn";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsValid()
         {
             return OnUserId >= 0;
