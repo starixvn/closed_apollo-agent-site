@@ -5,7 +5,7 @@
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    ViewBag.Title = "Search";
+    ViewBag.Title = @Apollo.Age.Resources.Lang.search;
 }
 <table id="tab-menu">
     <tr>
@@ -38,13 +38,24 @@
                         }
                         else
                         {
+                            var keyLang = string.Empty;
+                            var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == Model.Level).SingleOrDefault();
+                            if (langAgent.Value == null)
+                            {
+                                // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
+                                keyLang = Constants.AgentLevelDictionary[4];
+                            }
+                            else
+                            {
+                                keyLang = langAgent.Value;
+                            }
+                            
                             <td class="agent-lbl">
-                                @Apollo.Age.Resources.Lang.agent:
+                                @Html.Resource(keyLang):
                             </td>
                         }
                         
                         <td class="agent-name">
-                        
                             @Model.Username
                         </td>
                     </tr>
@@ -97,8 +108,20 @@
                             }
                             else
                             {
+                                var keyLang = string.Empty;
+                                var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == (Model.Level -1)).SingleOrDefault();
+                                if (langAgent.Value == null)
+                                {
+                                    // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
+                                    keyLang = Constants.AgentLevelDictionary[4];
+                                }
+                                else
+                                {
+                                    keyLang = langAgent.Value;
+                                }
+                                
                                 <td class="parent-lbl">
-                                    @Apollo.Age.Resources.Lang.lblParentname:
+                                    @Html.Resource(keyLang):
                                 </td>
                             }
                             <td class="parent-name">
@@ -293,13 +316,7 @@
         }
     }
 </div>
-@section foot
-{
-    <script src="~/_globalresources/js/jquery-ui.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/core.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/accountinfo.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/menu.js" type="text/javascript"></script>
-}
+
 @helper SearchBox()
     {
         if (Model == null)

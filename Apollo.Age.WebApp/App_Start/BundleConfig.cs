@@ -36,6 +36,7 @@ namespace Apollo.Age.WebApp
             bundles.AddAndInclude(
                 "~/css/reports",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+                "~/_globalresources/js/fanex.grid/fanex.grid.less",
                 "~/views/reports/resources/reports.less");
 
             bundles.AddAndInclude(
@@ -69,20 +70,46 @@ namespace Apollo.Age.WebApp
             "~/views/log/resources/monPickr-0.0.3.css");
 
             bundles.AddAndInclude(
-         "~/css/account",
-          "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
-          "~/views/account/resources/treeview.css",
-          "~/views/account/resources/account.less",
-          "~/views/account/resources/customerlist.less",
-          "~/views/account/resources/customerSetting.less");
+             "~/css/account",
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+              "~/views/account/resources/treeview.css",
+              "~/views/account/resources/account.less",
+              "~/views/account/resources/customerlist.less",
+              "~/views/account/resources/customerSetting.less");
 
             bundles.AddAndInclude(
-         "~/css/error",
-          "~/views/error/resources/Index.less");
+            "~/css/viewcustsetting",
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+            "~/views/account/resources/customerSetting.less");
 
             bundles.AddAndInclude(
-     "~/css/log-login",
-      "~/views/account/resources/loglogin.less");
+             "~/css/error",
+              "~/views/error/resources/Index.less");
+
+            bundles.AddAndInclude(
+             "~/css/custsettinglayout",
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+              "~/views/account/resources/custSettingengine/core.less",
+              "~/views/account/resources/custSettingengine/coreoverride.less");
+
+            bundles.AddAndInclude(
+             "~/css/index",
+              "~/views/home/resources/index.less");
+
+            bundles.AddAndInclude(
+             "~/css/log-login",
+              "~/views/account/resources/loglogin.less");
+
+            bundles.AddAndInclude(
+           "~/css/editsettinglayout",
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+            "~/views/account/resources/custSettingengine/core.less",
+            "~/views/account/resources/custSettingengine/coreoverride.less",
+            "~/views/account/resources/customersetting.less");
+
+            bundles.AddAndInclude(
+             "~/css/sbpager",
+              "~/_GlobalResources/Js/Pager/jquery.sbpager.less");
             #endregion css
 
             #region js
@@ -184,9 +211,12 @@ namespace Apollo.Age.WebApp
             bundles.Add(new ScriptBundle("~/scripts/accountjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/jquery.cookie.js",
                 "~/_globalresources/js/blockui/jquery.blockui.js",
-                "~/_globalresources/js/core.js"));
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/menu.js",
+                "~/views/account/resources/accountinfo.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/resultjs").Include(
                "~/_globalresources/js/head.js",
@@ -249,7 +279,6 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/jquery.treeview.async.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
-                "~/views/account/resources/menu.js",
                 "~/views/account/resources/jquery.treeview.js",
                 "~/views/account/resources/jquery.treeview.async.js"));
 
@@ -294,6 +323,9 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/jquery.cookie.js",
                 "~/_globalresources/js/refreshcountdown.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/scripts/sbpager").Include(
+            "~/_GlobalResources/Js/Pager/jquery.sbpager.js"));
 
             #endregion js
 
