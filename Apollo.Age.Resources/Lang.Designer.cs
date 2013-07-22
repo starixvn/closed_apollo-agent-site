@@ -2464,7 +2464,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main A.
+        ///   Looks up a localized string similar to Main Agent.
         /// </summary>
         public static string lblMainAgent {
             get {

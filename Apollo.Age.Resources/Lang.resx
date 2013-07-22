@@ -1857,8 +1857,8 @@
   <data name="Value" xml:space="preserve">
     <value>Value</value>
   </data>
-   <data name="lblMainAgent" xml:space="preserve">
-    <value>Main A</value>
+  <data name="lblMainAgent" xml:space="preserve">
+    <value>Main Agent</value>
   </data>
   <data name="lblMainSH" xml:space="preserve">
     <value>Main SH</value>
