@@ -8,11 +8,11 @@
 }
 @section css
 {
-    <link href="~/_GlobalResources/Js/Pager/jquery.sbpager.less" rel="stylesheet" />
+    @Styles.Render("~/css/sbpager")
 }
 @section scripts
 {
-    <script src="~/_GlobalResources/Js/Pager/jquery.sbpager.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/sbpager")
 }
 @Html.Hidden("IsTransactionsBetList", "1")
 @using (Html.BeginForm())
