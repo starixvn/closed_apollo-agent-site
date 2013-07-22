@@ -505,7 +505,7 @@ namespace Apollo.Age.Account.Controllers
                     }
 
                     var type = item.Attribute("t");
-                    var typeName = string.Empty;
+                    var typeName = Lang.status;
                     if (!ReferenceEquals(type, null))
                     {
                         if (string.Compare(type.Value, "1") == 0)
