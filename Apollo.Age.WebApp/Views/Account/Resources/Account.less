@@ -175,14 +175,14 @@ html, body {
 		margin-top: 5px;
 		width: 202px;
 
-        tr {
-            border-top : 1px dotted @borderLightColor;
+        tr {            
 
 			td {
 				padding: 3px 0;
+				border-top : 1px dotted @borderLightColor;
 			}
 
-			&:first-child {
+			&:first-child td{
 				border-top: none;
 			}
         }
@@ -209,7 +209,7 @@ html, body {
 
 			#ddl-agents {
 				position: absolute;
-				top: 24px;
+				top: 22px;
 				right: -5px;
 				z-index: 199;
 				display: none;
@@ -231,7 +231,9 @@ html, body {
 
 						.icon-stop {
 							background-image: url("../../../_globalresources/css/img/glyphicons-halflings-red.png");
-							margin: 0 2px 0 -6px;
+							margin: 1px 2px 0 -6px;
+							width: 10px;
+							height: 10px;
 						}
 					}
 				}
@@ -248,14 +250,14 @@ html, body {
 				&:after {
 					border-color: rgba(238, 238, 238, 0);
 					border-bottom-color: @grayLighter;
-					border-width: 10px;
+					border-width: 8px;
 					right: 10px;
 					margin-left: -10px;
 				}
 				&:before {
 					border-color: rgba(85, 85, 85, 0);
 					border-bottom-color: @gray;
-					border-width: 11px;
+					border-width: 9px;
 					right: 9px;
 					margin-left: -11px;
 				}
@@ -378,19 +380,20 @@ html, body {
 
 			#agentsTab-content, #membersTab-content {
 				height: 100%;
+				overflow: hidden;
 
                 #agent-treeview{
                     height: 100%;
                     iframe {
-					width: 203px;
-					height: 98%;
-					margin: 5px 0 0 5px;
+						width: 203px;
+						height: 98%;
+						margin: 5px 0 0 5px;
 				    }
                 }
 				iframe {
 					width: 203px;
 					height: 98%;
-					margin: 5px 0 0 5px;
+					margin: 5px 0 0 5px;					
 				}
 			}
 
@@ -403,9 +406,7 @@ html, body {
 
 .no-data-agent, .no-data {
 	text-align: center;
-	font-weight: bold;
 	padding: 10px;
-	color: @hoverLinkYellowColor;
 }
 
 /* AUTO-COMPLETE */
@@ -522,11 +523,6 @@ html, body {
 	}
 
 	#wrapper {
-		
-		.cust-info #agentDownlineLink {
-			background: url(img/down-arr.png) @white no-repeat center 4px;
-		}
-		
 		#agent-setting {
 			position: fixed;
 			top: 170px;

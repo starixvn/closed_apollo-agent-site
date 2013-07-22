@@ -256,7 +256,7 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertGroupName(oldGroup) : oldData;
+            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertGroupName(oldGroup) : oldGroup;
             ViewBag.Group = !string.IsNullOrWhiteSpace(group) ? _logService.RevertGroupName(group) : group;
 
             return View(list);
