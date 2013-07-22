@@ -209,13 +209,13 @@ html, body {
 
 			#ddl-agents {
 				position: absolute;
-				top: 26px;
-				right: -13px;
+				top: 24px;
+				right: -5px;
 				z-index: 199;
 				display: none;
 				padding: 5px;
-				background-color: @grayLighter;
-				border: 1px solid @gray;
+				background-color: #F4F4F4;
+				border: 1px solid @borderColor;
 
 				li {
 					display: block;
@@ -225,7 +225,14 @@ html, body {
 					a { text-align: left }
 
 					&.root-agent {
-						border-bottom: 1px solid @grayLight;
+						//border-top: 1px solid @grayLight;
+						color: #BB0000;
+						list-style-type: disc;
+
+						.icon-stop {
+							background-image: url("../../../_globalresources/css/img/glyphicons-halflings-red.png");
+							margin: 0 2px 0 -6px;
+						}
 					}
 				}
 
