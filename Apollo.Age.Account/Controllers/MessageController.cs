@@ -23,12 +23,15 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Message controller.
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class MessageController : BaseController
     {
         /// <summary>
-        /// For temp.
+        /// For temp, set site list is 3000 and 3300.
         /// </summary>
         private const string SiteList = "3000,3300";
         private const int SiteId = 3300;        
@@ -45,6 +48,12 @@ namespace Apollo.Age.Account.Controllers
             this._messageService = messageService ?? new MessageService();
         }
 
+        /// <summary>
+        /// Get announcement.
+        /// </summary>
+        /// <param name="content">Content search.</param>
+        /// <param name="modeDate">Search mode date.</param>
+        /// <returns>View announcement.</returns>
         [ValidateInput(false)]
         public ViewResult Announcement(string content = "", int modeDate = 0)
         {
@@ -91,11 +100,20 @@ namespace Apollo.Age.Account.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Portal action.
+        /// </summary>
+        /// <returns>View portal action.</returns>
         public ViewResult Portal()
         {
             return View();
         }
 
+        /// <summary>
+        /// Get new message.
+        /// </summary>
+        /// <param name="criteria">View model get new message.</param>
+        /// <returns>Content new message.</returns>
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
             int isPublic = 0;
@@ -151,6 +169,11 @@ namespace Apollo.Age.Account.Controllers
 
         #region Ajax request
 
+        /// <summary>
+        /// Set private message is read.
+        /// </summary>
+        /// <param name="messageId">Message id.</param>
+        /// <returns>Message is updated.</returns>
         [HttpPost]
         public ActionResult SetReadPriMsg(int messageId)
         {
@@ -164,6 +187,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(null);
         }
 
+        /// <summary>
+        /// Update read private messages.
+        /// </summary>
+        /// <returns>Message is read.</returns>
         [HttpPost]
         public ActionResult UpdatePriMsg()
         {
@@ -175,6 +202,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(null);
         }
 
+        /// <summary>
+        /// Get message for ajax.
+        /// </summary>
+        /// <returns>Content of message.</returns>
         [HttpPost]
         public ActionResult GetMessage()
         {

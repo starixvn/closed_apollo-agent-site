@@ -63,5 +63,7 @@ namespace Apollo.Age.BetList.ViewModels
         public List<SingbetBettype> BettypeList { get; set; }
 
         public List<TicketText> TicketList { get; set; }
+
+        public bool FromPaging { get; set; }
     }
 }

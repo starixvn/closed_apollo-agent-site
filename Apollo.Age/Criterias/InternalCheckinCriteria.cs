@@ -23,8 +23,7 @@ namespace Apollo.Age.Criterias
 
         public int OnUserId { get; set; }
 
-        public string Ip { get; set; }
-               
+        public string Ip { get; set; }               
 
         public override string GetSettingKey()
         {

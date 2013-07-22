@@ -9,6 +9,7 @@
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote, GetSuggestValues, GetAgentDownlinePath</change>
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: MemberDownline </change>
 //   <change who="Anders.Le" date="2013.4.23">Rename namespace of pager</change>
+//   <change who="Edward.Nguyen" date="2013.7.22">Member and Agent list</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
@@ -20,6 +21,7 @@ namespace Apollo.Age.Account.Controllers
     using System.Web.Security;
     using System.Web.SessionState;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Criterias.Accounts;
@@ -27,8 +29,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
-    using Apollo.Age.Account.Entities;
 
+    /// <summary>
+    /// Account controllers.
+    /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class AccountController : BaseController
     {
@@ -331,6 +335,16 @@ namespace Apollo.Age.Account.Controllers
 
         #region Agent List
 
+        /// <summary>
+        /// Get direct agent list view action.
+        /// </summary>
+        /// <param name="agentId">Search agent id.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <param name="username">Search username of agent.</param>
+        /// <param name="status">Filter by agent status.</param>
+        /// <param name="oldPageIndex">Old page index.</param>
+        /// <param name="orderType">Filter order by username.</param>
+        /// <returns>Agent list view action.</returns>
         [HttpGet]
         public ActionResult AgentList(int agentId = -1, int pageIndex = 0, string username = "", int status = 1, int oldPageIndex = 0, int orderType = 1)
         {
@@ -374,6 +388,11 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
+        /// <summary>
+        /// Get direct agent list view action.
+        /// </summary>
+        /// <param name="criteria">View model get agent list.</param>
+        /// <returns>Agent list view action.</returns>
         [HttpPost]
         public ActionResult AgentList(AgentListCriteria criteria)
         {
@@ -399,6 +418,17 @@ namespace Apollo.Age.Account.Controllers
                 });
         }
 
+        /// <summary>
+        /// Get indirect agent list view action.
+        /// </summary>
+        /// <param name="parentAgentId">Parent agent id.</param>
+        /// <param name="agentId">Search agent id.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <param name="username">Search agent username.</param>
+        /// <param name="status">Filter status of agent.</param>
+        /// <param name="oldPageIndex">Old page index.</param>
+        /// <param name="orderType">Filter order by username.</param>
+        /// <returns>Indirect agent list view action.</returns>
         [HttpGet]
         public ActionResult IndirectAgentList(
             int parentAgentId,
@@ -458,6 +488,11 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
+        /// <summary>
+        /// Get indirect agent list view action.
+        /// </summary>
+        /// <param name="criteria">View model get indirect agent list.</param>
+        /// <returns>Indirect agent list view action.</returns>
         [HttpPost]
         public ActionResult IndirectAgentList(AgentListCriteria criteria)
         {
@@ -488,6 +523,16 @@ namespace Apollo.Age.Account.Controllers
 
         #region Member List
 
+        /// <summary>
+        /// Get direct member list.
+        /// </summary>
+        /// <param name="agentId">Search agent id.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <param name="username">Search username of member.</param>
+        /// <param name="status">Filter status of agent.</param>
+        /// <param name="oldPageIndex">Old page index.</param>
+        /// <param name="orderType">Filter order by username.</param>
+        /// <returns>Direct member list view action.</returns>
         [HttpGet]
         public ActionResult MemberList(
             int agentId = -1,
@@ -537,6 +582,11 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
+        /// <summary>
+        /// Get direct member list.
+        /// </summary>
+        /// <param name="criteria">View model get direct member list.</param>
+        /// <returns>Direct member list view action.</returns>
         [HttpPost]
         public ActionResult MemberList(CustomerListCriteria criteria)
         {
@@ -562,6 +612,17 @@ namespace Apollo.Age.Account.Controllers
             });
         }
 
+        /// <summary>
+        /// Get indirect member list view action.
+        /// </summary>
+        /// <param name="parentAgentId">Parent agent id.</param>
+        /// <param name="agentId">Search agent id.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <param name="username">Search member username.</param>
+        /// <param name="status">Filter status of agent.</param>
+        /// <param name="oldPageIndex">Old page index.</param>
+        /// <param name="orderType">Filter order by username.</param>
+        /// <returns>Indirect member list view action.</returns>
         [HttpGet]
         public ActionResult IndirectMemberList(
             int parentAgentId,
@@ -627,6 +688,11 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
+        /// <summary>
+        /// Get indirect member list view action.
+        /// </summary>
+        /// <param name="criteria">View model get indirect member list.</param>
+        /// <returns>Indirect member list view action.</returns>
         [HttpPost]
         public ActionResult IndirectMemberList(CustomerListCriteria criteria)
         {

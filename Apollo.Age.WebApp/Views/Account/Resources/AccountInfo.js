@@ -19,6 +19,15 @@ var ACCOUNT = function ($) {
             var heightSearchBox = $('.search-box').height(),
                 heightButton = $('.btn-list').height(),
                 topAgentList = heightSearchBox + heightButton + 30;
+            // Check IE
+            var version = 999; // we assume a sane browser
+            if (navigator.appVersion.indexOf("MSIE") != -1) {
+                // bah, IE again, lets downgrade version number
+                version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+                if (version == 7) {
+                    topAgentList = topAgentList + 40;
+                }
+            }
             $('#agent-setting').css({ 'top': topAgentList });
         },
 
@@ -138,7 +147,7 @@ var ACCOUNT = function ($) {
                                                 + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
                                         );
                                     }
-                                    agentList.append("<li class='root-agent'>" + data[0].Username + "</li>");
+                                    agentList.append("<li class='root-agent'><i class='icon-stop'></i>" + data[0].Username + "</li>");
                                 }
                                 else {
                                     for (var i = data.length - 1; i >= 0; i--) {

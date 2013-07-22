@@ -19,11 +19,14 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Web;
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Web;
 
+    /// <summary>
+    /// Log controller.
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class LogController : BaseController
@@ -46,6 +49,18 @@ namespace Apollo.Age.Account.Controllers
             _serviceBase = serviceBase ?? new ServiceBase();
         }
 
+        /// <summary>
+        /// View log action.
+        /// </summary>
+        /// <param name="isAgent">Customer is agent.</param>
+        /// <param name="username">Username of customer.</param>
+        /// <param name="actionTypeId">Log action type id.</param>
+        /// <param name="from">View log from date.</param>
+        /// <param name="to">View log to date.</param>
+        /// <param name="showOldValue">Is show old value before update.</param>
+        /// <param name="pageSize">Page size of view.</param>
+        /// <param name="pageIndex">Current page index.</param>
+        /// <returns>View log details from date to date.</returns>
         public ViewResult ViewLog(
             bool isAgent = true,
             string username = "",
@@ -101,11 +116,11 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Log action for discount
+        /// Log action for discount.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action view for discount.</returns>
         public ViewResult LogActionType2(string oldData, string data)
         {
             var oldGroup = string.Empty;
@@ -241,18 +256,18 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertCommGroupName(oldGroup) : oldData;
-            ViewBag.Group = !string.IsNullOrWhiteSpace(group) ? _logService.RevertCommGroupName(group) : group;
+            ViewBag.OldGroup = !string.IsNullOrWhiteSpace(oldGroup) ? _logService.RevertGroupName(oldGroup) : oldData;
+            ViewBag.Group = !string.IsNullOrWhiteSpace(group) ? _logService.RevertGroupName(group) : group;
 
             return View(list);
         }
 
         /// <summary>
-        /// Log action for bet setting
+        /// Log action for bet setting.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action view for bet setting.</returns>
         public ViewResult LogActionType3(string oldData, string data)
         {
             var list = new Dictionary<string, BetSettingModel>();
@@ -307,8 +322,9 @@ namespace Apollo.Age.Account.Controllers
                         list[key].MaxBet = model.MaxBet;
                         list[key].MaxPerMatch = model.MaxPerMatch;
                     }
-                    else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                    else if (string.IsNullOrWhiteSpace(oldData))
                     {
+                        // Log action for insert
                         list.Add(key, model);
                     }
                 }
@@ -318,13 +334,13 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Log action for share
+        /// Log action for share.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <param name="agentLevel"></param>
-        /// <param name="isAgent"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <param name="agentLevel">Agent level.</param>
+        /// <param name="isAgent">Customer is agent.</param>
+        /// <returns>Log action view for position taking.</returns>
         public ViewResult LogActionType4(string oldData, string data, int agentLevel, bool isAgent)
         {
             var list = new Dictionary<string, PositionTakingModel>();
@@ -401,8 +417,9 @@ namespace Apollo.Age.Account.Controllers
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
                         }
-                        else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                        else if (string.IsNullOrWhiteSpace(oldData))
                         {
+                            // Log action for insert
                             list.Add(key, model);
                         }
                     }
@@ -424,8 +441,9 @@ namespace Apollo.Age.Account.Controllers
                             list[key].MaxGiven = model.MaxGiven;
                             list[key].MinGiven = model.MinGiven;
                         }
-                        else if (string.IsNullOrWhiteSpace(oldData))    // Log action for insert
+                        else if (string.IsNullOrWhiteSpace(oldData))
                         {
+                            // Log action for insert
                             list.Add(key, model);
                         }
                     }
@@ -439,11 +457,11 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Log action for general info
+        /// Log action for general info.
         /// </summary>
-        /// <param name="oldData"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="oldData">Data before update.</param>
+        /// <param name="data">Date after update.</param>
+        /// <returns>Log action for general information.</returns>
         public ViewResult LogActionType5(string oldData, string data)
         {
             var list = new List<LogSettingViewModel>();
@@ -549,6 +567,11 @@ namespace Apollo.Age.Account.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// To string status by status id.
+        /// </summary>
+        /// <param name="value">Status id.</param>
+        /// <returns>Name of status.</returns>
         private string GetStringStatus(string value)
         {
             var statusName = string.Empty;

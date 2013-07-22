@@ -8,12 +8,15 @@
 // </history>
 namespace Apollo.Age.BetList.Criterias
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
     /// Ticket result for bet list
     /// </summary>
+    [Serializable]
     public class TicketResult
     {
         /// <summary>
@@ -28,5 +31,15 @@ namespace Apollo.Age.BetList.Criterias
         public IList<ITicket> TicketList { get; set; }
 
         public List<ITicketData> TicketDataList { get; set; }
+
+        public TicketResult Clone()
+        {
+            return new TicketResult
+            {
+                TicketList = this.TicketList.ToList(),
+                TicketDataList = this.TicketDataList.ToList()
+            };
+        }
+                
     }
 }

@@ -36,7 +36,6 @@ namespace Apollo.Age.BetList.Controllers
     /// <summary>
     /// BetList Controller
     /// </summary>
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListController : BaseController
     {
         private const string _StringEmpty = "";
@@ -177,7 +176,8 @@ namespace Apollo.Age.BetList.Controllers
                 BetTypes = betTypes,
                 Username = userName,
                 UserType = userType,
-                PageIndex = pageIndex
+                PageIndex = pageIndex,
+                FromPaging = true
             };
 
             return this.Transactions(viewModel);
@@ -227,8 +227,31 @@ namespace Apollo.Age.BetList.Controllers
                     MoveBetsDay = _reportService.MoveBetsDay()
                 };
 
-                TicketResult mainTickets;
-                mainTickets = betListService.GetTicketResult(criteria);
+                //// Cache Key
+                var sessionKey = string.Format("TransactionsReport{0}-{1}-{2}", 
+                    criteria.LoggedId,
+                    criteria.AgentId,
+                    criteria.CustId
+                    );
+
+                TicketResult mainTickets = null;
+                var getFromDB = true;
+                if (model.FromPaging == true)
+                {
+                    var resultFromSession = HttpContext.Session[sessionKey] as TicketResult;
+                    if (resultFromSession != null)
+                    {
+                        mainTickets = resultFromSession.Clone();
+                        getFromDB = false;
+                    }
+                }
+
+                if (getFromDB)
+                {
+                    mainTickets = betListService.GetTicketResult(criteria);
+                    HttpContext.Session[sessionKey] = mainTickets.Clone();
+                }
+
                 ViewBag.TotalItems = mainTickets.TicketList.Count();
 
                 mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
