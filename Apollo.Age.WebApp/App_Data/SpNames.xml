@@ -11,7 +11,7 @@
       <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
       <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
     </Setting>
-    <Setting Key="Age_Agent_GetByUserName" SpName="Age_Agent_GetByUserName" DbName="SVRCUST.CustDB" Plain="0" >
+    <Setting Key="Age_Agent_GetByUserName" SpName="Age_Agent_GetByUserName" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
       <Mapping DataField="Username" ObjectProperty="Username"/>
       <Mapping DataField="AgentId" ObjectProperty="Id"/>
