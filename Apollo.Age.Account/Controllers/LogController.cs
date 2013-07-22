@@ -444,7 +444,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="oldData"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public ViewResult LogActionType5(string data)
+        public ViewResult LogActionType5(string oldData, string data)
         {
             var list = new List<LogSettingViewModel>();
             if (!string.IsNullOrWhiteSpace(data))
@@ -505,7 +505,7 @@ namespace Apollo.Age.Account.Controllers
                     }
 
                     var type = item.Attribute("t");
-                    var typeName = string.Empty;
+                    var typeName = Lang.status;
                     if (!ReferenceEquals(type, null))
                     {
                         if (string.Compare(type.Value, "1") == 0)
@@ -521,31 +521,52 @@ namespace Apollo.Age.Account.Controllers
                     var status = item.Attribute("s");
                     if (!ReferenceEquals(status, null))
                     {
-                        var statusName = string.Empty;
+                        string statusName = GetStringStatus(status.Value);
 
-                        switch (status.Value)
+                        if (!ReferenceEquals(oldData, null))
                         {
-                            case "1":
-                                statusName = Lang.lblActive;
-                                break;
-                            case "2":
-                                statusName = Lang.stopped;
-                                break;
-                            default:
-                                statusName = Lang.locked;
-                                break;
+                            var xmlOldData = XDocument.Parse(oldData);
+                            var generalOld = xmlOldData.Descendants("z");
+
+                            foreach (var itemOld in generalOld)
+                            {
+                                var statusOld = itemOld.Attribute("s");
+                                if (!ReferenceEquals(statusOld, null))
+                                {
+                                    list.Add(new LogSettingViewModel
+                                    {
+                                        FieldName = typeName,
+                                        Value = statusName,
+                                        OldValue = GetStringStatus(statusOld.Value)
+                                    });
+                                }
+                            }
                         }
-
-                        list.Add(new LogSettingViewModel
-                        {
-                            FieldName = typeName,
-                            Value = statusName
-                        });
                     }
                 }
             }
 
             return View(list);
+        }
+
+        private string GetStringStatus(string value)
+        {
+            var statusName = string.Empty;
+
+            switch (value)
+            {
+                case "1":
+                    statusName = Lang.lblActive;
+                    break;
+                case "2":
+                    statusName = Lang.stopped;
+                    break;
+                default:
+                    statusName = Lang.locked;
+                    break;
+            }
+
+            return statusName;
         }
     }
 }
