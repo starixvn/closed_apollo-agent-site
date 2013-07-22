@@ -10,6 +10,13 @@ var VIEWCOMM = function ($) {
             VIEWCOMM.isMember = $("#IsMember");
 
             VIEWCOMM.bindAutocomplete();
+
+            $("#btnSubmit").bind('click', function () {
+                var url = "CustomerSetting/ViewCommission?IsMember=" + VIEWCOMM.isMember.val()
+                        + "&Id=-1&Username=" + VIEWCOMM.userName.val();
+
+                location.href = APOLLO.resolveUrl(url);
+            });
         },
         bindAutocomplete: function () {
             VIEWCOMM.userName.autocomplete({

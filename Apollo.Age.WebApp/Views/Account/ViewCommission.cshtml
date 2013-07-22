@@ -8,24 +8,21 @@
 }
 @model ViewCommissionViewModel
 
-@using (Html.BeginForm())
-{
-	<div id="box_header">
-		<div class="row">
-			<div class="cell">
-				<div class="editor">
-					@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem>
-					{
-						new SelectListItem { Value = "false", Text = Lang.agent },
-						new SelectListItem { Value = "true", Text = Lang.member }
-					})
-					@Html.TextBoxFor(m => m.Username, new { style = "width: 200px" })
-					<input type="submit" id="btnSubmit" class="btn" value="@Lang.submit" />
-				</div>
+<div id="box_header">
+	<div class="row">
+		<div class="cell">
+			<div class="editor">
+				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem>
+				{
+					new SelectListItem { Value = "false", Text = Lang.agent },
+					new SelectListItem { Value = "true", Text = Lang.member }
+				})
+				@Html.TextBoxFor(m => m.Username, new { style = "width: 200px" })
+				<input type="button" id="btnSubmit" class="btn" value="@Lang.submit" />
 			</div>
 		</div>
 	</div>
-}
+</div>
 
 <div class="view-detail-container">
 	<div class="div-border">
