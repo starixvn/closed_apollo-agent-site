@@ -77,15 +77,7 @@
                                     }
                                     else
                                     {
-                                        if (i==3 && Model.AgentPathList.Count > 4)
-                                        {
-                                        <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@item.Id" title="@Apollo.Age.Resources.Lang.txtShowUpline">
-                                                <div id="ddl-agents">
-                                                    <ul class="agent-list">
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                        }
+                                        
                                         <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                         </a>
@@ -133,6 +125,23 @@
                             </td>
                         </tr>
                     }
+
+                    @if (Model.AgentPathList.Count > 4)
+                            {
+                            <tr>
+                                <td class="parent-lbl"></td>
+                                <td class="parent-name">
+                                    <a href="javascript:void(0)" id="agentDownlineLink1" data-agentid="@Model.AgentPathList[4].Id">
+                                        More
+                                        <div id="ddl-agents">
+                                            <ul class="agent-list">
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                                
+                                }
                 </tbody>
             </table>
             }
