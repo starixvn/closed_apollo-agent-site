@@ -292,6 +292,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Account\Resources\Images\bg-logo.png" />
     <Content Include="Views\Account\Resources\Images\bot.jpg" />
+    <Content Include="Views\Account\Resources\Images\btn-arrow.png" />
     <Content Include="Views\Account\Resources\Images\icon-subMenu.png" />
     <Content Include="Views\Account\Resources\Images\top.jpg" />
     <Content Include="Views\Account\Resources\Images\top_03b.gif" />
