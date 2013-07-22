@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="TreeViewNode.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentTreeViewNode.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,11 +9,11 @@
 
 namespace Apollo.Age.Account.Entities
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
+    /// <summary>
+    /// Agent tree view node.
+    /// </summary>
     public class AgentTreeViewNode
     {
         public int Id { get; set; }
