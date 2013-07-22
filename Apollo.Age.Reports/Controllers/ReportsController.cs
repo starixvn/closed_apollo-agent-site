@@ -17,7 +17,6 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -28,7 +27,6 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
 
-    //[SessionState(SessionStateBehavior.ReadOnly)]
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
     {
