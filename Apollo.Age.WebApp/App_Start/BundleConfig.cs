@@ -71,7 +71,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
              "~/css/account",
-              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",          
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
               "~/views/account/resources/treeview.css",
               "~/views/account/resources/account.less",
               "~/views/account/resources/customerlist.less",
@@ -93,19 +93,19 @@ namespace Apollo.Age.WebApp
               "~/views/account/resources/custSettingengine/coreoverride.less");
 
             bundles.AddAndInclude(
-         "~/css/index",
-          "~/views/home/resources/index.less");
+             "~/css/index",
+              "~/views/home/resources/index.less");
 
             bundles.AddAndInclude(
-     "~/css/log-login",
-      "~/views/account/resources/loglogin.less");
-            
-              bundles.AddAndInclude(
-             "~/css/editsettinglayout",
-              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
-              "~/views/account/resources/custSettingengine/core.less",
-              "~/views/account/resources/custSettingengine/coreoverride.less",
-              "~/views/account/resources/customersetting.less");
+             "~/css/log-login",
+              "~/views/account/resources/loglogin.less");
+
+            bundles.AddAndInclude(
+           "~/css/editsettinglayout",
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+            "~/views/account/resources/custSettingengine/core.less",
+            "~/views/account/resources/custSettingengine/coreoverride.less",
+            "~/views/account/resources/customersetting.less");
 
             bundles.AddAndInclude(
              "~/css/sbpager",
