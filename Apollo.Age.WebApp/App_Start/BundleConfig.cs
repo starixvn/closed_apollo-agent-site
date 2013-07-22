@@ -69,17 +69,33 @@ namespace Apollo.Age.WebApp
             "~/views/log/resources/monPickr-0.0.3.css");
 
             bundles.AddAndInclude(
-         "~/css/account",
-          "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",          
-          "~/views/account/resources/treeview.css",
-          "~/views/account/resources/account.less",
-          "~/views/account/resources/customerlist.less",
-          "~/views/account/resources/customerSetting.less");
+             "~/css/account",
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",          
+              "~/views/account/resources/treeview.css",
+              "~/views/account/resources/account.less",
+              "~/views/account/resources/customerlist.less",
+              "~/views/account/resources/customerSetting.less");
 
             bundles.AddAndInclude(
-         "~/css/error",
-          "~/views/error/resources/Index.less");
+             "~/css/error",
+              "~/views/error/resources/Index.less");
 
+            bundles.AddAndInclude(
+             "~/css/custsettinglayout",
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+              "~/views/account/resources/custSettingengine/core.less",
+              "~/views/account/resources/custSettingengine/coreoverride.less");
+
+            bundles.AddAndInclude(
+             "~/css/editsettinglayout",
+              "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+              "~/views/account/resources/custSettingengine/core.less",
+              "~/views/account/resources/custSettingengine/coreoverride.less",
+              "~/views/account/resources/customersetting.less");
+
+            bundles.AddAndInclude(
+             "~/css/sbpager",
+              "~/_GlobalResources/Js/Pager/jquery.sbpager.less");
             #endregion css
 
             #region js
@@ -291,6 +307,9 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/jquery.cookie.js",
                 "~/_globalresources/js/refreshcountdown.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/scripts/sbpager").Include(
+            "~/_GlobalResources/Js/Pager/jquery.sbpager.js"));
 
             #endregion js
 
