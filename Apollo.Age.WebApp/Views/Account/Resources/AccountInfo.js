@@ -14,6 +14,12 @@ var ACCOUNT = function ($) {
             ACCOUNT.ageDownLink = $("#agentDownlineLink");
             ACCOUNT.ddlAgents = $("#ddl-agents");
             ACCOUNT.enterUsernameValue = $("#enterUsernameValue");
+
+            // Set posituon for agent tab
+            var heightSearchBox = $('.search-box').height(),
+                heightButton = $('.btn-list').height(),
+                topAgentList = heightSearchBox + heightButton + 30;
+            $('#agent-setting').css({ 'top': topAgentList });
         },
 
         getAccountInfo: function (custId, username) {
@@ -84,7 +90,7 @@ var ACCOUNT = function ($) {
             });
 
             $(".search-button").bind('click', function () {
-                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username
+                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username                
             });
 
             $(".show-section").bind('click', function () {
