@@ -62,7 +62,6 @@ namespace Apollo.Age.Services
 
         public static string GetRouletteBetItem(object itemId)
         {
-
             return RefData.GetRouletteBetItem(itemId.ToString(), CurrentLanguage, string.Empty);
         }
 
@@ -73,7 +72,6 @@ namespace Apollo.Age.Services
 
         public static string GetLeagueName(object leagueId)
         {
-
             return RefData.GetLeagueName(leagueId.ToString(), CurrentLanguage, string.Empty);
         }
 

@@ -9,13 +9,8 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System;
- 
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
-    using Fanex.Logging;
-    using Apollo.Age.Enumerations;
-    using Apollo.Age.Criterias;
 
     /// <summary>
     /// TODO: Update summary.
@@ -28,6 +23,5 @@ namespace Apollo.Age.Services.Impl
         {
             _userRepository = new UserRepository();
         }
-
     }
 }

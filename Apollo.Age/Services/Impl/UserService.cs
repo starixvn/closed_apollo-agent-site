@@ -57,21 +57,27 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId)
+        /// <summary>
+        /// Validates a username and password against credentials stored in NAP database.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             criteria.Password = Cryptography.CfsEnCode(criteria.Password);
 
-            return _userRepository.AuthenticateNapUser(criteria, ref AdminId);
+            return _userRepository.AuthenticateNapUser(criteria, ref adminId);
         }
 
         /// <summary>
-        ///
+        /// Gets the user status.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent id.</param>
+        /// <param name="agentUserId">The agent user id.</param>
+        /// <returns> User status.</returns>
         public int GetUserStatus(int agentId, int agentUserId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -90,16 +96,19 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return -1;
         }
 
         /// <summary>
-        ///
+        /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <param name="isMaster"></param>
-        /// <returns></returns>
+        /// <param name="actorAgentId">The actor agent id.</param>
+        /// <param name="custId">The cust id.</param>
+        /// <param name="customerType">Type of the customer.</param>
+        /// <returns>
+        ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType)
         {
             try
@@ -115,9 +124,23 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return false;
         }
 
+        /// <summary>
+        /// Writes the log internal login.
+        /// </summary>
+        /// <param name="agentId">The agent id.</param>
+        /// <param name="agentUserId">The agent user id.</param>
+        /// <param name="serverId">The server id.</param>
+        /// <param name="actionId">The action id.</param>
+        /// <param name="doing">The doing.</param>
+        /// <param name="loginIp">The login ip.</param>
+        /// <param name="domainName">Name of the domain.</param>
+        /// <param name="browserName">Name of the browser.</param>
+        /// <param name="platform">The platform.</param>
+        /// <param name="countryCode">The country code.</param>
         public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
         {
             try
@@ -142,6 +165,11 @@ namespace Apollo.Age.Services.Impl
             }
         }
 
+        /// <summary>
+        /// Internals the get agent by username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public User InternalGetAgentByUsername(string username)
         {
             User user = null;
@@ -162,6 +190,13 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
+        /// <summary>
+        /// Return OnUserId.
+        /// </summary>
+        /// <param name="adminId"> Admin user id.</param>
+        /// <param name="netSessionId"> Session Id. </param>
+        /// <param name="ip"> Requested IP</param>
+        /// <returns><c>true</c> if check in successfull; otherwise, <c>false</c>.</returns>
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
             Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
@@ -180,9 +215,15 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return 0;
         }
 
+        /// <summary>
+        /// Return IsKickOut
+        /// </summary>
+        /// <param name="onUserId"> Authenticated User Id.</param>
+        /// <returns></returns>
         public bool InternalReCheckIn(int onUserId)
         {
             Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
@@ -200,9 +241,17 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return false;
         }
 
+        /// <summary>
+        /// Return OnUserId.
+        /// </summary>
+        /// <param name="onUserId">User id of current loginned user.</param>
+        /// <returns>
+        /// Result of logins.
+        /// </returns>
         public int InternalLogout(int onUserId)
         {
             Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
