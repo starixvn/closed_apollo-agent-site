@@ -271,7 +271,7 @@ namespace Apollo.Age.BetList.Controllers
             int agentId, custId;
             int errorCode;
 
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.TrimEnd() : CurrentSession.AgentName;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : CurrentSession.AgentName;
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
