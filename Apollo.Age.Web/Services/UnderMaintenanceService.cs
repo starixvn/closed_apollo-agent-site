@@ -48,7 +48,7 @@ namespace Apollo.Age.Web.Services
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromSeconds(1)); //TimeSpan.FromMinutes(0));
+                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1)); //TimeSpan.FromMinutes(0));
                         }
                         catch
                         {
