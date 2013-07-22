@@ -53,7 +53,7 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
-    $('body').click(function () {
+    $('html, body').click(function () {
         $('.edit-link').removeClass('bg');
         $('.action').children('.list').hide();
     });
