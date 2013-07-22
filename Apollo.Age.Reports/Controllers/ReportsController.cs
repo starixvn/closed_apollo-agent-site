@@ -26,10 +26,9 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-    using Fanex.Caching;
     using Fanex.NAP.Framework.Mvc;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
+    //[SessionState(SessionStateBehavior.ReadOnly)]
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
     {
@@ -38,8 +37,6 @@ namespace Apollo.Age.Reports.Controllers
         private readonly IWinLossService _winLossService;
 
         private readonly OutstandingService _outstandingService;
-
-        private readonly ICache _cacheManager;
 
         private int _currentAgentId;
 
@@ -53,7 +50,6 @@ namespace Apollo.Age.Reports.Controllers
             _reportService = reportService ?? new ReportService();
             _winLossService = _winLossService ?? new WinLossService();
             _outstandingService = new OutstandingService();
-            _cacheManager = CacheService.CreateInstance(CacheType.MemCache);
         }
 
         public int? CurrentAgentId
@@ -76,15 +72,15 @@ namespace Apollo.Age.Reports.Controllers
             CurrentAgentId = agentId;
             var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, sporttypes, bettypes);
 
-            var cachingKey = string.Format(
+            var sessionKey = string.Format(
                 "{0}-{1}-{2}-{3}",
                 Lang.agent,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            _cacheManager.Set<IEnumerable<OutstandingModel>>(cachingKey, report.ListOutStanding);
-
+            HttpContext.Session[sessionKey] = report.ListOutStanding;
+            
             return View(report);
         }
 
@@ -98,14 +94,15 @@ namespace Apollo.Age.Reports.Controllers
             bool isAgentOutStanding)
         {
             CurrentAgentId = agentId;
-            var cachingKey = string.Format(
+            var sessionKey = string.Format(
                 "{0}-{1}-{2}-{3}",
                 isAgentOutStanding ? Lang.agent : Lang.member,
                 CurrentAgentId != null ? CurrentAgentId.Value : 0,
                 !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
                 !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
 
-            var listOutstanding = _cacheManager.Get<IEnumerable<OutstandingModel>>(cachingKey);
+            var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
+
             if (listOutstanding == null)
             {
                 if (isAgentOutStanding)
@@ -204,8 +201,9 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var cacheKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
-            _cacheManager.Set<List<AgentWinLossModel>>(cacheKey, agentWinLossList);
+            var sessionKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
+
+            HttpContext.Session[sessionKey] = agentWinLossList;
 
             return View(model);
         }
@@ -232,16 +230,16 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var cacheKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
-            _cacheManager.Set<List<MemberWinLossModel>>(cacheKey, memberWinLossList);
+            var sessionKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
+            HttpContext.Session[sessionKey] = memberWinLossList;
 
             return View(model);
         }
 
         public ActionResult ExportAgentWinLoss(AgentWinLossViewModel model)
         {
-            var cacheKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
-            var agentWinLossList = _cacheManager.Get<List<AgentWinLossModel>>(cacheKey);
+            var sessionKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
+            var agentWinLossList = (List<AgentWinLossModel>)HttpContext.Session[sessionKey];
 
             model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
             var agentName = string.IsNullOrWhiteSpace(model.AgentName) ? this.CurrentSession.AgentName : model.AgentName;
@@ -264,7 +262,7 @@ namespace Apollo.Age.Reports.Controllers
                 };
 
                 agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
-                _cacheManager.Set<List<AgentWinLossModel>>(cacheKey, agentWinLossList);
+                HttpContext.Session[sessionKey] = agentWinLossList;
             }
 
             model.AgentWinLossList = agentWinLossList;
@@ -280,8 +278,8 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult ExportMemberWinLoss(MemberWinLossViewModel model)
         {
-            var cacheKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
-            var memberWinLossList = _cacheManager.Get<List<MemberWinLossModel>>(cacheKey);
+            var sessionKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
+            var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
             model.BettypeList = _reportService.GetBettype();
@@ -300,7 +298,7 @@ namespace Apollo.Age.Reports.Controllers
                 };
 
                 memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
-                _cacheManager.Set<List<MemberWinLossModel>>(cacheKey, memberWinLossList);
+                HttpContext.Session[sessionKey] = memberWinLossList;
             }
 
             model.MemberWinLossList = memberWinLossList;
