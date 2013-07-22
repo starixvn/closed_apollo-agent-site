@@ -48,7 +48,7 @@ namespace Apollo.Age.Web.Services
                         try
                         {
                             maintenanceInfo = GetMaintenanceInfo();
-                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1));
+                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromSeconds(1)); //TimeSpan.FromMinutes(0));
                         }
                         catch
                         {
@@ -95,8 +95,10 @@ namespace Apollo.Age.Web.Services
         /// <returns>Datetime</returns>
         private DateTime TimeInfo()
         {
-            TimeZoneInfo timeInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
-            return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeInfo).ToUniversalTime();
+            //TimeZoneInfo timeInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
+            //return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeInfo).ToUniversalTime();
+            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Taipei Standard Time");
+
         }
 
         /// <summary>
@@ -144,18 +146,24 @@ namespace Apollo.Age.Web.Services
                             startTime = times[0].ToString().Trim();
                             endTime = times[1].ToString().Trim();
 
-                            return new UnderMaintenanceViewModel
+                            DateTime timeStart = Convert.ToDateTime(startTime);
+                            DateTime timeEnd = Convert.ToDateTime(endTime);
+
+                            if (timeStart <= timeZoneDate && timeZoneDate <= timeEnd)
                             {
-                                IsDownTime = true,
-                                StartTime = startTime,
-                                EndTime = endTime,
-                                UMDate = timeZoneDate.ToString("dd MMMM yyy") 
-                            };
+                                return new UnderMaintenanceViewModel
+                                {
+                                    IsDownTime = true,
+                                    StartTime = startTime,
+                                    EndTime = endTime,
+                                    UMDate = timeZoneDate.ToString("dd MMMM yyy")
+                                };
+                            }
                         }
                     }
                     else
                     {
-                        if (DateTime.Now.DayOfWeek.ToString().ToLower() == days[0].Trim().ToLower())
+                        if (timeZoneDate.DayOfWeek.ToString().ToLower() == days[0].Trim().ToLower())
                         {
                             string[] times = days[1].Split("-".ToCharArray());
                             if (times.Length > 0)
@@ -163,13 +171,18 @@ namespace Apollo.Age.Web.Services
                                 startTime = times[0].ToString().Trim();
                                 endTime = times[1].ToString().Trim();
 
-                                return new UnderMaintenanceViewModel
+                                DateTime timeStart = Convert.ToDateTime(startTime);
+                                DateTime timeEnd = Convert.ToDateTime(endTime);
+                                if (timeStart < timeZoneDate && timeZoneDate < timeEnd)
                                 {
-                                    IsDownTime = true,
-                                    StartTime = startTime,
-                                    EndTime = endTime,
-                                    UMDate = timeZoneDate.ToString("dd MMMM yyy") 
-                                };
+                                    return new UnderMaintenanceViewModel
+                                    {
+                                        IsDownTime = true,
+                                        StartTime = startTime,
+                                        EndTime = endTime,
+                                        UMDate = timeZoneDate.ToString("dd MMMM yyy")
+                                    };
+                                }
                             }
                         }
                     }
