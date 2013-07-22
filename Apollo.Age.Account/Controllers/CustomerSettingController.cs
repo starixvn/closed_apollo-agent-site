@@ -67,6 +67,8 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="model">Username: text which user input to search, IsMember: is agent or member.</param>
         /// <returns>View Commission</returns>
+        /// 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
@@ -137,6 +139,8 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) agent.
         /// </summary>
         /// <param name="username">selected agent username.</param>
+        /// 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult AgentShare(
             int? agentId, 
             string userName, 
@@ -209,6 +213,8 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
+        /// 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult MemberShare(
             int? memberId, 
             string userName, 
