@@ -19,12 +19,12 @@ namespace Apollo.Age.Web.Services
     using Sunplus.UMControllerLibrary;
 
     /// <summary>
-    /// Under Maintenance Service
+    /// Under Maintenance Service.
     /// </summary>
     public class UnderMaintenanceService : ServiceBase
     {
-        private const int WaitInterval = 1000; // 1 second
-        private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key
+        private const int WaitInterval = 1000; // 1 second.
+        private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key.
 
         private readonly UMBusiness _underMaintenanceService;
         private readonly Mutex _threadMuText = new Mutex();
@@ -70,41 +70,38 @@ namespace Apollo.Age.Web.Services
         }
 
         /// <summary>
-        /// Checking the day is last day in the month
+        /// Checking the day is last day in the month.
         /// </summary>
-        /// <param name="date">Now date</param>
-        /// <param name="day">day need to check</param>
-        /// <returns>return boolean</returns>
+        /// <param name="date">Now date.</param>
+        /// <param name="day">Day need to check.</param>
+        /// <returns>Return boolean.</returns>
         private bool IsLastDayInMonth(DateTime date, string day)
         {
             if (date.DayOfWeek.ToString().ToLower() != day.ToLower())
             {
-                return false; // it is not monday
+                return false; // It is not monday.
             }
 
-            // the next monday is...
+            // The next monday is...
             var oneWeekAfter = date.AddDays(7);
 
-            // and is it in same month?, if it is, that means its not last monday
+            // And is it in same month?, if it is, that means its not last monday.
             return oneWeekAfter.Month != date.Month;
         }
 
         /// <summary>
-        /// Get Datetime at time zone GMT+8
+        /// Get date time at time zone GMT+8.
         /// </summary>
-        /// <returns>Datetime</returns>
+        /// <returns>Return date time.</returns>
         private DateTime TimeInfo()
         {
-            //TimeZoneInfo timeInfo = TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
-            //return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeInfo).ToUniversalTime();
             return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Taipei Standard Time");
-
         }
 
         /// <summary>
-        /// Singbet maintenance info
+        /// Singbet maintenance info.
         /// </summary>
-        /// <returns>Return Under Maintenance View Model</returns>
+        /// <returns>Return Under Maintenance View Model.</returns>
         private UnderMaintenanceViewModel SingbetMaintenanceInfo()
         {
             var singbetDowntime = AppSettings.SingbetDownTime;
@@ -196,16 +193,16 @@ namespace Apollo.Age.Web.Services
         }
 
         /// <summary>
-        /// Get IBC Maintenance Info
+        /// Get IBC Maintenance Info.
         /// </summary>
-        /// <returns>Return Under Maintenance View Model</returns>
+        /// <returns>Return Under Maintenance View Model.</returns>
         private UnderMaintenanceViewModel GetMaintenanceInfo()
         {
             var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
             var startTime = maintenanceInfo.StartTime;
             var endTime = maintenanceInfo.EndTime;
 
-            // Check downtime from AppSetting
+            // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
                 maintenanceInfo.IsDownTime = true;
@@ -215,7 +212,7 @@ namespace Apollo.Age.Web.Services
                 return maintenanceInfo;
             }
 
-            // Check downtime from library
+            // Check downtime from library.
             try
             {
                 maintenanceInfo.IsDownTime = false; // umService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
