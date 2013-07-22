@@ -142,11 +142,13 @@ html, body {
 			font-size: 1em;
 			color: @gray;
 		}
+
 		select {
 			width: 75px;
 			height: 22px;
 			margin-right: 2px;
 		}
+
 		.btn {
 			width: 26px;
 			height: 22px;
@@ -159,6 +161,7 @@ html, body {
 			.box-shadow(none);
 			i { background-image: url(../../../_globalResources/css/img/glyphicons-halflings-gray.png); }
 		}
+
 		.errMsg {
 			margin-top: 5px;
 			padding: 0 10px;
@@ -172,8 +175,16 @@ html, body {
 		margin-top: 5px;
 		width: 202px;
 
-        tr{
-            border-bottom : 1px solid @grayLight;
+        tr {
+            border-top : 1px dotted @borderLightColor;
+
+			td {
+				padding: 3px 0;
+			}
+
+			&:first-child {
+				border-top: none;
+			}
         }
 
 		.agent-lbl, .parent-lbl {
