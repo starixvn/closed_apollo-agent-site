@@ -70,7 +70,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
          "~/css/account",
-          "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",          
+          "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
           "~/views/account/resources/treeview.css",
           "~/views/account/resources/account.less",
           "~/views/account/resources/customerlist.less",
@@ -80,6 +80,9 @@ namespace Apollo.Age.WebApp
          "~/css/error",
           "~/views/error/resources/Index.less");
 
+            bundles.AddAndInclude(
+     "~/css/log-login",
+      "~/views/account/resources/loglogin.less");
             #endregion css
 
             #region js
