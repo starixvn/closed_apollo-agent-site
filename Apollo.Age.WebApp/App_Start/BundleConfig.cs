@@ -70,16 +70,25 @@ namespace Apollo.Age.WebApp
             "~/views/log/resources/monPickr-0.0.3.css");
 
             bundles.AddAndInclude(
-         "~/css/account",
-          "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
-          "~/views/account/resources/treeview.css",
-          "~/views/account/resources/account.less",
-          "~/views/account/resources/customerlist.less",
-          "~/views/account/resources/customerSetting.less");
+            "~/css/account",
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+            "~/views/account/resources/treeview.css",
+            "~/views/account/resources/account.less",
+            "~/views/account/resources/customerlist.less",
+            "~/views/account/resources/customerSetting.less");
+
+            bundles.AddAndInclude(
+            "~/css/viewcustsetting",
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+            "~/views/account/resources/customerSetting.less");
 
             bundles.AddAndInclude(
          "~/css/error",
           "~/views/error/resources/Index.less");
+
+            bundles.AddAndInclude(
+         "~/css/index",
+          "~/views/home/resources/index.less");
 
             bundles.AddAndInclude(
      "~/css/log-login",
