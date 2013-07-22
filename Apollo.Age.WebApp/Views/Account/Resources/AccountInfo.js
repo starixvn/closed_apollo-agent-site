@@ -138,7 +138,7 @@ var ACCOUNT = function ($) {
                                                 + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
                                         );
                                     }
-                                    agentList.append("<li class='root-agent'>" + data[0].Username + "</li>");
+                                    agentList.append("<li class='root-agent'><i class='icon-stop'></i>" + data[0].Username + "</li>");
                                 }
                                 else {
                                     for (var i = data.length - 1; i >= 0; i--) {

@@ -15,6 +15,9 @@ namespace Apollo.Age.Configurations
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Provide static accessing function for setting key from app setting.config.
+    /// </summary>
     public static class AppSettings
     {     
         public static string UnderMaintenanceUrl
@@ -59,7 +62,8 @@ namespace Apollo.Age.Configurations
 
         public static string SingbetDownTime
         {
-            get {
+            get 
+            {
                 return GetValue("SingbetDownTime");
             }
         }

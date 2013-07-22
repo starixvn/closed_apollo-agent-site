@@ -16,9 +16,9 @@ namespace Apollo.Age.Services.Impl
     public class ServiceBase
     {
         /// <summary>
-        /// Handle Exception.
+        /// Handle exception by using Fanex Logging Lib to write log.
         /// </summary>
-        /// <param name="ex">Exception.</param>
+        /// <param name="ex">Exception param.</param>
         protected void HandleException(Exception ex)
         {
             Fanex.Logging.LogService.Error(ex.Message, ex);
