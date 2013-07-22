@@ -36,6 +36,7 @@ namespace Apollo.Age.WebApp
             bundles.AddAndInclude(
                 "~/css/reports",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+                "~/_globalresources/js/fanex.grid/fanex.grid.less",
                 "~/views/reports/resources/reports.less");
 
             bundles.AddAndInclude(
@@ -184,9 +185,12 @@ namespace Apollo.Age.WebApp
             bundles.Add(new ScriptBundle("~/scripts/accountjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/jquery.cookie.js",
                 "~/_globalresources/js/blockui/jquery.blockui.js",
-                "~/_globalresources/js/core.js"));
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/menu.js",
+                "~/views/account/resources/accountinfo.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/resultjs").Include(
                "~/_globalresources/js/head.js",
@@ -249,7 +253,6 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/jquery.treeview.async.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/treeviewjs").Include(
-                "~/views/account/resources/menu.js",
                 "~/views/account/resources/jquery.treeview.js",
                 "~/views/account/resources/jquery.treeview.async.js"));
 
