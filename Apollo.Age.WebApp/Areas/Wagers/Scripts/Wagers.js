@@ -208,7 +208,8 @@ var Wagers = function ($) {
                 var bettype = $(this).parents('td').attr('data-bettype');
                 var match = $(this).attr('data-match');
 
-                var url = "~/Betlist/Wagers?"                
+                var url = "~/Betlist/Wagers?fromDate=" + Wagers.fromDate
+                + "&toDate=" + (Wagers.isOR == "true" ? Wagers.toDate : null)
                 + "&uGroup=" + (Wagers.isOR == "true" ? 'All' : Wagers.groupComm)
                 + "&isDirectMem=" + Wagers.isDirectMember
                 + "&liveIndicator=" + live
