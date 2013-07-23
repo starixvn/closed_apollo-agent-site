@@ -607,7 +607,15 @@ namespace Apollo.Age.Account.Controllers
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-            else if (!base.CurrentSession.IsMaster)
+            
+            if (settingContext.TargetRoleId == (int)Role.Member
+            && agentId != null)
+            {
+                settingContext.FormId = FormType.EditPT;
+                settingContext.CustId = agentId.Value;
+            }
+
+            if (!base.CurrentSession.IsMaster)
             {
                 //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
@@ -616,15 +624,6 @@ namespace Apollo.Age.Account.Controllers
                     settingContext.CustId = agentId.Value;
                 }
             }
-            else if (base.CurrentSession.IsSuper
-            && settingContext.TargetRoleId == (int)Role.Member
-            && agentId != null)
-            {
-                settingContext.FormId = FormType.EditPT;
-                settingContext.CustId = agentId.Value;
-            }
-
-            
 
             return settingContext;
         }
