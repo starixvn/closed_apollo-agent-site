@@ -11,8 +11,6 @@
     @RenderBody()
     @Html.Hidden("ApoRoot", Url.Content("~/"))
     @Html.Partial("_ApoRes")
-    @Html.Hidden("fromDate", Request["fromDate"])
-    @Html.Hidden("toDate", Request["toDate"])
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {

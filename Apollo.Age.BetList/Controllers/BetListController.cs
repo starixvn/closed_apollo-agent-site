@@ -628,21 +628,20 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="toDate">to date</param>
         /// <param name="type">page type</param>
         /// <returns>Return view</returns>
-        public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
+        public ViewResult ViewDetail(long transId, string fromDate = _StringEmpty, string toDate = _StringEmpty, string type = _StringEmpty)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
             var balanceUpDay = this._reportService.GetBalanceUpDay();
             var moveBetsDay = this._reportService.MoveBetsDay();
             var viewModel = new BetListViewModel();
-            var currentFromDate = string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate);
-            var currentToDate = string.IsNullOrEmpty(toDate) ? (currentFromDate > DateTime.Now ? currentFromDate : DateTime.Now) : Convert.ToDateTime(toDate);
+
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
                 TransId = transId,
-                FromDate = ResetStartDate(currentFromDate),
-                ToDate = ResetEndDate(currentToDate),
+                FromDate = ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
+                ToDate = ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
