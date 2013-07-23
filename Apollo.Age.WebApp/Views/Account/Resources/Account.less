@@ -411,8 +411,12 @@ html, body {
 						border-top: 1px dotted @borderLightColor;
 						padding: 3px 16px 3px 12px;
 
-						a:hover {
-							color: @hoverLinkOrangeColor;
+						a {
+							white-space: nowrap;
+
+							&:hover {
+								color: @hoverLinkOrangeColor;
+							}
 						}
 
 						&:first-child {
