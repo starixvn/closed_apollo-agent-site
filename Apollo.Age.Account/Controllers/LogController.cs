@@ -20,6 +20,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
@@ -110,7 +111,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             ViewBag.LogData = results;
-            ViewBag.IsAdmin = this.CurrentSession.AdminId > 0;
+            ViewBag.IsAdmin = this.CurrentSession.AdminId > 0 || this.CurrentSession.AgentLevel == (int)AgentLevel.Super;
 
             return View(criteria);
         }
