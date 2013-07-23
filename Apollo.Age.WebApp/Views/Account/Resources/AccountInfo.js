@@ -29,6 +29,7 @@ var ACCOUNT = function ($) {
                 }
             }
             $('#agent-setting').css({ 'top': topAgentList });
+            $('#agent-setting').show();
         },
 
         getAccountInfo: function (custId, username) {
