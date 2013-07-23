@@ -128,8 +128,7 @@
                                 else
                                 {
                                     @Lang.view
-                                }</a>                            
-                            &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                             <div class="list">
                                 <ul class="menu-list">
                                     @if (agentList.Any())
@@ -138,13 +137,13 @@
                                         {
                                             if (itemAgent.Level > AgentLevel.Super)
                                             { 
-                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink">@itemAgent.Username</a></li>	 
+                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
                                             }
                                         }
 
                                     }
                                 </ul>
-                            </div>                            
+                            </div>
                         </div>
                     </td>
                 </tr>

@@ -38,21 +38,7 @@
                         }
                         else
                         {
-                            var keyLang = string.Empty;
-                            var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == Model.Level).SingleOrDefault();
-                            if (langAgent.Value == null)
-                            {
-                                // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
-                                keyLang = Constants.AgentLevelDictionary[4];
-                            }
-                            else
-                            {
-                                keyLang = langAgent.Value;
-                            }
-                            
-                            <td class="agent-lbl">
-                                @Html.Resource(keyLang):
-                            </td>
+                            @RenderAgentLevelName(Model.Level, "agent-lbl")
                         }
                         
                         <td class="agent-name">
@@ -62,25 +48,13 @@
 
                     @if (Model.AgentPathList != null && Model.AgentPathList.Any())
                     {
-                        var keyLang = string.Empty;
                         var item = new Agent();
                         var count = Model.AgentPathList.Count > 4 ? 4 : Model.AgentPathList.Count; //4: is only show 4 level
                         for (int i = 0; i < count; i++)
                         {
                             item = Model.AgentPathList[i];
-                            var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == item.Level).SingleOrDefault();
-                            if (langAgent.Value == null)
-                            {
-                                // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
-                                keyLang = Constants.AgentLevelDictionary[4];
-                            }
-                            else
-                            {
-                                keyLang = langAgent.Value;
-                            }
-                            
                             <tr>
-                                <td class="parent-lbl">@Html.Resource(keyLang):</td>
+                                @RenderAgentLevelName(item.Level, "parent-lbl")
                                 <td class="parent-name">
                                     @if (item.Level == AgentLevel.Super)
                                     {
@@ -88,7 +62,6 @@
                                     }
                                     else
                                     {
-                                        
                                         <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                         </a>
@@ -108,21 +81,7 @@
                             }
                             else
                             {
-                                var keyLang = string.Empty;
-                                var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == (Model.Level -1)).SingleOrDefault();
-                                if (langAgent.Value == null)
-                                {
-                                    // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
-                                    keyLang = Constants.AgentLevelDictionary[4];
-                                }
-                                else
-                                {
-                                    keyLang = langAgent.Value;
-                                }
-                                
-                                <td class="parent-lbl">
-                                    @Html.Resource(keyLang):
-                                </td>
+                                @RenderAgentLevelName((Model.Level - 1), "parent-lbl")
                             }
                             <td class="parent-name">
                                 @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId))
@@ -150,7 +109,7 @@
                     }
 
                     @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
-                            {
+                    {
                             <tr>
                                 <td class="parent-lbl"></td>
                                 <td class="parent-name">
@@ -164,7 +123,7 @@
                                 </td>
                             </tr>
                                 
-                                }
+                    }
                 </tbody>
             </table>
             }
@@ -343,4 +302,23 @@
         <i class="icon-search"></i>
     </button>
     <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
+}
+
+@helper RenderAgentLevelName(int agentLevel, string classObject = "")
+    {
+        var keyLang = string.Empty;
+        var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == agentLevel).SingleOrDefault();
+        if (langAgent.Value == null)
+        {
+            // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
+            keyLang = Constants.AgentLevelDictionary[4];
+        }
+        else
+        {
+            keyLang = langAgent.Value;
+        }
+
+    <td class="@classObject">
+        @Html.Resource(keyLang):
+    </td>
 }

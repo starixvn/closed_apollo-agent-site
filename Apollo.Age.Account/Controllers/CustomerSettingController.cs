@@ -308,7 +308,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, string agentUsername = "", bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -319,6 +319,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsEditAgent = false;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.AgentUsername = agentUsername;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 

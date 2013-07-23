@@ -102,6 +102,11 @@ if (typeof jQuery != 'undefined') {
                     return false;
                 });
 
+                $('#back-link').unbind('click').bind('click', function () {
+                    history.go(-1);
+                    return false;
+                });
+
                 $("#simple-mode").unbind("click").click(function () {
 
                     EDITPOSITIONTAKING.initOthers(true);

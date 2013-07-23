@@ -7,6 +7,8 @@
     var isEditAgent = (bool)ViewBag.IsEditAgent;
     var linkBack = (string)ViewBag.BackLink;
     var isMaster = ViewBag.IsMaster ?? false;
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+    var agentUsername = ViewBag.AgentUsername ?? string.Empty;
 }
 @section header
 {
@@ -21,9 +23,13 @@
                 @(Lang.MemberDetailEdit )
             }
             @(isMaster ? Lang.edit.ToLower() : string.Empty)
-            &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername : <strong>@userName</strong> &nbsp;&nbsp;&nbsp;&nbsp;-- <a href="javascript:void(0);"
-                id="simple-mode" style="display: none;">@Lang.simplemode</a> <a href="javascript:void(0);"
-                    id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Lang.agent : Html.Raw(string.Format("{0}: <strong>{1}</strong> --{2}", Lang.agent, agentUsername, Lang.member))): <strong>@userName</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+            -- <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
+            <a href="javascript:void(0);" id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
+            @if (!isMaster && !fromLeftMenu)
+            {
+                @:-- <a href="javascript:void(0);" id="back-link">@Lang.back</a>
+            }
         </div>
         <img src="/_GlobalResources/Images/top_04.png" class="end-function-bar">
     </div>
