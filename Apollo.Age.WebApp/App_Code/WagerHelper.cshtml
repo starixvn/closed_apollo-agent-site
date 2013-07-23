@@ -78,8 +78,7 @@
                             {
                                 @Lang.view
                             }
-                            :
-                        </span>
+                            : </span>
                         <select id="ViewOption" class="za_select">
                             @if (isShowViewOption == 0)
                             {
@@ -224,7 +223,7 @@
         }
         else
         {
-            columnData = string.Format(columnData, betCount.ToString(), Math.Round(stakebefore).ToString(), Math.Round(stake).ToString());
+            columnData = string.Format(columnData, betCount.ToString(), Math.Round(stakebefore, 0, MidpointRounding.AwayFromZero).ToString(), Math.Round(stake, 0, MidpointRounding.AwayFromZero).ToString());
     @(new HtmlString(columnData))
         }
 }
