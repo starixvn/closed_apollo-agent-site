@@ -7,6 +7,8 @@ var ACCOUNT = function ($) {
         ageDownLink: null,
         ddlAgents: null,
         enterUsernameValue: null,
+        agentListTime: null,
+        agentListSettingTime: null,
 
         init: function () {
             ACCOUNT.txtUsername = $("#txtUsername");
@@ -124,7 +126,7 @@ var ACCOUNT = function ($) {
             });
 
             ACCOUNT.ageDownLink.click(function (event) {
-
+                clearTimeout(ACCOUNT.agentListTime);
                 if (ACCOUNT.ageDownLink.hasClass("is-active")) {
                     ACCOUNT.ageDownLink.removeClass("is-active");
                     ACCOUNT.ddlAgents.fadeOut('fast');
@@ -164,10 +166,12 @@ var ACCOUNT = function ($) {
 
                     ACCOUNT.ddlAgents.fadeIn('fast');
                     event.stopPropagation();
+                    ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 6000);
                 }
             });
 
             $('body, html').on('click', function () {
+                clearTimeout(ACCOUNT.agentListTime);
                 if (ACCOUNT.ageDownLink.hasClass("is-active")) {
                     ACCOUNT.ageDownLink.removeClass("is-active");
                     ACCOUNT.ddlAgents.fadeOut('fast');
@@ -229,6 +233,33 @@ var ACCOUNT = function ($) {
             iframe.setAttribute("src", link);
 
             $("#membersTab-content").html(iframe);
+        },
+
+        showAgentListSetting: function () {
+            $('.edit-link').on('click', function (event) {
+                clearTimeout(ACCOUNT.agentListSettingTime);
+                var $this = $(this),
+                    $listMenu = $('.list');
+                if ($listMenu.css('display') == 'block') {
+                    $listMenu.fadeOut('fast');
+                    $this.removeClass('bg');
+                } else {
+                    $this.addClass('bg');
+                    $listMenu.fadeIn('fast');
+                    ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 6000);
+                }
+                event.stopPropagation();
+            });
+
+            $('html, body').click(function () {
+                clearTimeout(ACCOUNT.agentListSettingTime);
+                ACCOUNT.hideAgentListSetting();
+            });
+        },
+
+        hideAgentListSetting: function () {
+            $('.edit-link').removeClass('bg');
+            $('.list').fadeOut('fast');
         }
     }
 } (jQuery);
@@ -236,4 +267,5 @@ var ACCOUNT = function ($) {
 $(function () {
     ACCOUNT.init();
     ACCOUNT.initSearchClick();
+    ACCOUNT.showAgentListSetting();
 });
