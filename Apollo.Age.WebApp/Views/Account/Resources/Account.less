@@ -376,6 +376,50 @@ html, body {
 						color: @hoverLinkOrangeColor;
 					}
 				}
+
+				.edit-link {
+					background: url(images/tab-arrow_down.png)  no-repeat right 7px;
+					padding: 2px 13px 2px 0;
+					float: left;
+
+					&:hover {
+						color: @hoverLinkOrangeColor;
+					}
+
+					&.bg {
+						//background-color: #FCD5B5;
+						color: @textColor;
+					}
+				}
+
+				.list {
+					display: none;
+					position: relative;
+					z-index: 100;
+					float: left;
+				}
+
+				.menu-list {
+					position: absolute;
+					background-color: #F4F4F4;
+					border: 1px solid @borderColor;					
+					top: 7px;
+					left: 5px;
+					z-index: 100;
+
+					li {
+						border-top: 1px dotted @borderLightColor;
+						padding: 3px 16px 3px 12px;
+
+						a:hover {
+							color: @hoverLinkOrangeColor;
+						}
+
+						&:first-child {
+							border-top: none;
+						}
+					}
+				}
 			}
 
 			#agentsTab-content, #membersTab-content {

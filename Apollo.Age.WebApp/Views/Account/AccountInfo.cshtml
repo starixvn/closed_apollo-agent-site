@@ -200,8 +200,7 @@
                     @if (Model.IsMember)
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
-                        <a class="lnk-setting edit-link" target="main"
-                            href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
+                        <a class="edit-link" href="javascript:;">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.edit
@@ -215,11 +214,12 @@
                             <ul class="menu-list">
                                 @if (Model.AgentPathList.Any())
                                 {
-                                    foreach (var itemAgent in Model.AgentPathList)
+                                    var listAgent = Model.AgentPathList.OrderBy(t=>t.Level);
+                                    foreach (var itemAgent in listAgent)
                                     {
                                         if (itemAgent.Level > AgentLevel.Super)
                                         { 
-                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">@itemAgent.Username</a></li>	 
+                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true" target="main">@itemAgent.Username</a></li>	 
                                         }
                                     }
 
