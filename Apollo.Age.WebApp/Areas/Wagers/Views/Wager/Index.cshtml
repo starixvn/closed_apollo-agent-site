@@ -97,7 +97,7 @@
     </div>
     @Html.Hidden("GroupBetName", groupBetName)
     @Html.Hidden("SportName", sportName)
-    @Html.Hidden("FromDate", (DateTime)ViewBag.WagerDate)
+    @Html.Hidden("FromDate", ((DateTime)ViewBag.WagerDate).ToShortDateString())
     @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
     @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
     @Html.Hidden("IsEM", isEM.ToString().ToLower())
