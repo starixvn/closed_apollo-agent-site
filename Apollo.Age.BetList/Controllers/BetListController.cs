@@ -628,7 +628,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="toDate">to date</param>
         /// <param name="type">page type</param>
         /// <returns>Return view</returns>
-        public ViewResult ViewDetail(long transId, string fromDate = _StringEmpty, string toDate = _StringEmpty, string type = _StringEmpty)
+        public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
