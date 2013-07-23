@@ -244,7 +244,7 @@ if (typeof jQuery != "undefined") {
                     if (typeof ($("#fromDate").val()) !== 'undefined') {
                         fromDate = $("#fromDate").val();
                     }
-                    if (typeof ($("#toDate").val()) !== 'undefined') {
+                    if (typeof ($("#toDate").val()) !== 'undefined' && $("#toDate").val() != 'null') {
                         toDate = $("#toDate").val();
                     }
                     if (typeof ($("#type").val()) !== 'undefined') {
