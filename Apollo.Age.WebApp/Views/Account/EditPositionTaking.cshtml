@@ -24,6 +24,10 @@
             &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername : <strong>@userName</strong> &nbsp;&nbsp;&nbsp;&nbsp;-- <a href="javascript:void(0);"
                 id="simple-mode" style="display: none;">@Lang.simplemode</a> <a href="javascript:void(0);"
                     id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
+            @if(!isMaster)
+            {
+                @:-- <a href="javascript:void(0);" id="back-link">@Lang.back</a>
+            }
         </div>
         <img src="/_GlobalResources/Images/top_04.png" class="end-function-bar">
     </div>
