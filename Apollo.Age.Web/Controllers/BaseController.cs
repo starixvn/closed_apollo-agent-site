@@ -132,9 +132,10 @@ namespace Apollo.Age.Web
                 {
                     if (Request.IsAjaxRequest())
                     {
+                        Response.ContentType = "text/plain";
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        Response.Write(LanguageManager.GetResourceData("lblAccountWasStopped"));
-                        Response.Buffer = false;
+                        Response.Write(Resources.Lang.lblAccountWasStopped);//LanguageManager.GetResourceData("lblAccountWasStopped"));
+                        Response.BufferOutput = true;
                         Response.ClearContent();
                         Response.ClearHeaders();
                         Response.Flush();
@@ -154,11 +155,20 @@ namespace Apollo.Age.Web
             var response = filterContext.HttpContext.Response;
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                response.Clear();
-                response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                response.StatusDescription = string.Empty;
-                response.Write(Resources.Lang.UnauthorizedMsg);
-                response.End();
+                //response.Clear();
+                //response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                //response.StatusDescription = string.Empty;
+                //response.Write(Resources.Lang.UnauthorizedMsg);
+                //response.End();
+                Response.ContentType = "text/plain";
+                Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                Response.Write(Resources.Lang.UnauthorizedMsg);
+                Response.BufferOutput = true;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                Response.Flush();
+                Response.Close();
+                Response.End();
             }
             else
             {

@@ -57,6 +57,10 @@ namespace Apollo.Age.Account.Services
             }
         }
 
+        /// <summary>
+        /// Get all sport type from customer setting xml file.
+        /// </summary>
+        /// <returns>Sport setting list.</returns>
         public List<SportSetting> GetAllSportType()
         {
             var sportList = new List<SportSetting>();
@@ -69,7 +73,7 @@ namespace Apollo.Age.Account.Services
                 if (sportTypeNode.Attributes[_ATTRIBUTE_SPORT_ID].Value != null
                     && sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value != null)
                 {
-                    var isLive = Converter.ToBool(sportTypeNode.Attributes[_ATTRIBUTE_SPORT_LIVE].Value);
+                    var live = Converter.ToBool(sportTypeNode.Attributes[_ATTRIBUTE_SPORT_LIVE].Value);
                     var sportId = Converter.To<short>(sportTypeNode.Attributes[_ATTRIBUTE_SPORT_ID].Value);
 
                     var sport = sportList.Where(t => t.Id == sportId).SingleOrDefault();
@@ -122,22 +126,22 @@ namespace Apollo.Age.Account.Services
                                     Id = betTypeId,
                                     Name = betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     ResourceKey = betTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
-                                    IsLive = isLive,
+                                    IsLive = live,
                                     IsDead = false
                                 };
                             }
                             else
                             {
-                                betType.IsDead = isLive;
-                                betType.IsLive = !isLive;
+                                betType.IsDead = live;
+                                betType.IsLive = !live;
 
                                 betType = new BetTypeSetting()
                                 {
                                     Id = betTypeId,
                                     Name = betTypeNode.Attributes[_ATTRIBUTE_BETTYPE_NAME].Value.ToString(),
                                     ResourceKey = betTypeNode.Attributes[_ATTRIBUTE_RESOURCE_KEY].Value.ToString(),
-                                    IsLive = isLive,
-                                    IsDead = !isLive
+                                    IsLive = live,
+                                    IsDead = !live
                                 };
                             }
 
@@ -151,7 +155,13 @@ namespace Apollo.Age.Account.Services
             return sportList;
         }
 
-        public List<BetTypeSetting> GetBetTypeBySport(short sportId, bool isMixSportParlay)
+        /// <summary>
+        /// Get bet type by sport.
+        /// </summary>
+        /// <param name="sportId">Input sport id.</param>
+        /// <param name="mixSportParlay">Is Mix Sport Parlay or no.</param>
+        /// <returns>Bet type setting list.</returns>
+        public List<BetTypeSetting> GetBetTypeBySport(short sportId, bool mixSportParlay)
         {
             var betTypeList = new List<BetTypeSetting>();
 
@@ -160,7 +170,7 @@ namespace Apollo.Age.Account.Services
                 SportList = GetAllSportType();
             }
 
-            var sport = SportList.Where(t => (t.Id == sportId && t.IsMixSportParlay == isMixSportParlay)).SingleOrDefault();
+            var sport = SportList.Where(t => (t.Id == sportId && t.IsMixSportParlay == mixSportParlay)).SingleOrDefault();
 
             if (sport != null)
             {

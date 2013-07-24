@@ -42,13 +42,15 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
 
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
 
-            if (status.Equals(BetStatus.Running) || status.Equals(BetStatus.Waiting))
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
             {
-                Template.AgentPTValue.Visible = false;
+                Template.AgentPTValue.agentPT_value = ConvertByBetType.PtValue(ticket.AWinlost);
             }
             else
             {
-                Template.AgentPTValue.agentPT_value = ConvertByBetType.PtValue(ticket.AWinlost);
+                Template.AgentPTValue.Visible = false;
             }
 
             return Template;

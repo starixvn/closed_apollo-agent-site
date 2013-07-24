@@ -114,6 +114,12 @@ namespace Apollo.Age.Account.Controllers
             return View(this.CurrentSession);
         }
 
+        /// <summary>
+        /// Get member down line.
+        /// </summary>
+        /// <param name="agentId">Input Agent id.</param>
+        /// <param name="page">Input Page index.</param>
+        /// <returns>Member down line.</returns>
         public ActionResult MemberDownline(int agentId, int? page)
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
@@ -132,6 +138,12 @@ namespace Apollo.Age.Account.Controllers
             return View(memberList.ToPagedList(currentPageIndex, _PageSize, totalPage * _PageSize));
         }
 
+        /// <summary>
+        /// Get agent info for left menu.
+        /// </summary>
+        /// <param name="username">Parameter User name.</param>
+        /// <param name="agentId">Parameter agent id.</param>
+        /// <returns>Agent info.</returns>
         [ValidateInput(false)]
         public ActionResult AgentInfo(string username, int agentId)
         {
@@ -175,6 +187,12 @@ namespace Apollo.Age.Account.Controllers
             return View("AccountInfo", agentInfo);
         }
 
+        /// <summary>
+        /// Get member info for left menu.
+        /// </summary>
+        /// <param name="username">Parameter User name.</param>
+        /// <param name="custId">Parameter member id.</param>
+        /// <returns>Member info.</returns>
         [ValidateInput(false)]
         public ActionResult MemberInfo(string username, int custId)
         {
@@ -217,18 +235,31 @@ namespace Apollo.Age.Account.Controllers
             return View("AccountInfo", memberInfo);
         }
 
+        /// <summary>
+        /// Blank page for left menu when click from menu.
+        /// </summary>
+        /// <returns>Account Info.</returns>
         public ActionResult AccountInfo()
         {
             CustomerInfoModel customerInfo = null;
             return View(customerInfo);
         }
 
+        /// <summary>
+        /// Get agent list (tree) of agent which searched.
+        /// </summary>
+        /// <param name="agentId">Parent agent id.</param>
+        /// <returns>Agent tree list.</returns>
         public ViewResult AgentTreeList(int agentId)
         {
             ViewBag.AgentId = agentId;
             return View();
         }
 
+        /// <summary>
+        /// Get tree view list for account tab.
+        /// </summary>
+        /// <returns>Tree view list.</returns>
         public ViewResult TreeViewList()
         {
             var criteria = new AgentDownlineCriteria()
@@ -251,6 +282,11 @@ namespace Apollo.Age.Account.Controllers
             return Redirect("~/_Authorization/SignIn.aspx");
         }
 
+        /// <summary>
+        /// Get child node of a agent.
+        /// </summary>
+        /// <param name="agentId">Parent agent id.</param>
+        /// <returns>List agent direct down line.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetDataByNode(int agentId)
         {
@@ -265,6 +301,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get agent root node and agent direct down line list of root node (account tab).
+        /// </summary>
+        /// <returns>Tree view default.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetRootNode()
         {
@@ -280,17 +320,16 @@ namespace Apollo.Age.Account.Controllers
             if (agentList != null && agentList.Any())
             {
                 hasAgentDownline = true;
-                agentList.ForEach(t=> childList.Add(
-                    new AgentTreeViewNode
+                agentList.ForEach(t => childList.Add(new AgentTreeViewNode
                     {
                         Id = t.Id, 
                         Username = t.Username, 
                         HasAgentDownline = t.HasAgentDownline
-                    }
-                ));
+                    }));
             }
 
-            var root = new AgentTreeViewNode { 
+            var root = new AgentTreeViewNode 
+            { 
                 Id = this.CurrentSession.AgentId, 
                 Username = this.CurrentSession.AgentName, 
                 HasAgentDownline = hasAgentDownline, 
@@ -304,6 +343,12 @@ namespace Apollo.Age.Account.Controllers
             return Json(rootList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get agent down line list by user name.
+        /// </summary>
+        /// <param name="username">User name is searched.</param>
+        /// <param name="excludeactor">Exclude actor or no.</param>
+        /// <returns>Agent down line list.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
@@ -319,6 +364,11 @@ namespace Apollo.Age.Account.Controllers
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get member down line list by user name.
+        /// </summary>
+        /// <param name="username">User name is searched.</param>
+        /// <returns>Member down line list.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetMemberByUsername(string username)
         {
@@ -738,6 +788,11 @@ namespace Apollo.Age.Account.Controllers
             return View(models);
         }
 
+        /// <summary>
+        /// Get agent down line path (from login agent to agent is searched).
+        /// </summary>
+        /// <param name="agentId">Agent is searched.</param>
+        /// <returns>Agent down line path.</returns>
         public JsonResult GetAgentDownlinePath(int? agentId)
         {
             var criteria = new AgentDownlinePathCriteria()

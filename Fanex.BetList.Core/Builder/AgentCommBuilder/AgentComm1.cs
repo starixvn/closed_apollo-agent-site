@@ -40,13 +40,15 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         {
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
 
-            if (status.Equals(BetStatus.Running) || status.Equals(BetStatus.Waiting))
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
             {
-                Template.AgentCommValue.Visible = false;
+                Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
             }
             else
             {
-                Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
+                Template.AgentCommValue.Visible = false;
             }
 
             if (ticket.AgentLevel == 0)

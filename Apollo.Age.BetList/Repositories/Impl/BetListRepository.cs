@@ -42,10 +42,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     var dataSet = db.ExecuteDataSet(new
                     {
                         criteria.TransId,
-                        criteria.LoggedId,
-                        criteria.FromDate,
-                        criteria.ToDate,
-                        criteria.MoveBetsDay
+                        criteria.LoggedId
                     });
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return this.ReadTicket(mainTable);
@@ -72,14 +69,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     if (criteria.ToDate < preBalanceUpDay)
                     {
-                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
                     }
                     else
                     {
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
-                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
 
-                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
 
                         // Merge two table bettrans
                         mainOldTable.Merge(mainNewTable);
@@ -88,7 +85,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 }
                 else
                 {
-                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
                 }
 
                 // Main ticket list
@@ -642,7 +639,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(new
+                    {
+                        criteria.TransId,
+                        criteria.LoggedId
+                    });
 
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();

@@ -44,6 +44,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberList(ref criteria);
         }
 
+        /// <summary>
+        /// Get agent down line list by user name.
+        /// </summary>
+        /// <param name="criteria">Input GetAgentByUsernameCriteria.</param>
+        /// <returns>Agent down line list.</returns>
         public List<Agent> GetAgentByUsername(GetAgentByUsernameCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -51,6 +56,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetAgentByUsername(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get member down line list by user name.
+        /// </summary>
+        /// <param name="criteria">Input GetMemberByUsernameCriteria.</param>
+        /// <returns>Member down line list.</returns>
         public List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -58,6 +68,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberByUsername(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get info of a agent.
+        /// </summary>
+        /// <param name="criteria">Input GetAgentInfoCriteria.</param>
+        /// <returns>CustomerInfoModel (info of agent).</returns>
         public CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -65,6 +80,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
+        /// <summary>
+        /// Get info of a member.
+        /// </summary>
+        /// <param name="criteria">Input GetMemberInfoCriteria.</param>
+        /// <returns>CustomerInfoModel (info of member).</returns>
         public CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "actorAgentId");
@@ -72,6 +92,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
+        /// <summary>
+        /// Get member direct down line list.
+        /// </summary>
+        /// <param name="criteria">Input MemberDownLineCriteria.</param>
+        /// <returns>Member list.</returns>
         public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
@@ -81,6 +106,11 @@ namespace Apollo.Age.Account.Services
             return memberList;
         }
 
+        /// <summary>
+        /// Get agent down line path list.
+        /// </summary>
+        /// <param name="criteria">Input AgentDownLinePathCriteria.</param>
+        /// <returns>Agent list.</returns>
         public List<Agent> GetAgentDownlinePath(AgentDownlinePathCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ParentId, "parentId");
@@ -89,6 +119,11 @@ namespace Apollo.Age.Account.Services
             return _agentRepository.Fetch(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get agent direct down line list.
+        /// </summary>
+        /// <param name="criteria">Input AgentDownLineCriteria.</param>
+        /// <returns>Agent list.</returns>
         public List<Agent> GetDirectDownline(AgentDownlineCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
@@ -96,6 +131,11 @@ namespace Apollo.Age.Account.Services
             return _agentRepository.Fetch(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get agent share model list.
+        /// </summary>
+        /// <param name="criteria">Input AgentShareCriteria.</param>
+        /// <returns>AgentShareModel list.</returns>
         public List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -105,6 +145,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetAgentShare(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get member share model list.
+        /// </summary>
+        /// <param name="criteria">Input MemberShareCriteria.</param>
+        /// <returns>MemberShareCriteria list.</returns>
         public List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -114,6 +159,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberShare(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get Commission to member list.
+        /// </summary>
+        /// <param name="criteria">Input GetCommissionToMemberCriteria.</param>
+        /// <returns>CustomerCommissionModel list.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -121,6 +171,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCommissionToMember(criteria);
         }
 
+        /// <summary>
+        /// Get Commission to agent list.
+        /// </summary>
+        /// <param name="criteria">Input GetCommissionToAgentCriteria.</param>
+        /// <returns>CustomerCommissionModel list.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
