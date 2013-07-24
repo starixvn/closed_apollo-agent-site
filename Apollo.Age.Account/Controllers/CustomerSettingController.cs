@@ -12,10 +12,10 @@
 
 namespace Apollo.Age.Account.Controllers
 {
-    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -24,6 +24,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Fanex.Common;
@@ -31,7 +32,6 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.Enumerations;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -67,7 +67,6 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="model">Username: text which user input to search, IsMember: is agent or member.</param>
         /// <returns>View Commission</returns>
-        /// 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
@@ -139,7 +138,6 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) agent.
         /// </summary>
         /// <param name="username">selected agent username.</param>
-        /// 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult AgentShare(
             int? agentId, 
@@ -213,7 +211,6 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
-        /// 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult MemberShare(
             int? memberId, 
@@ -278,6 +275,12 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
 
+        /// <summary>
+        /// Get bet type by sport.
+        /// </summary>
+        /// <param name="sportId">Parameter sport id.</param>
+        /// <param name="isMixSportParlay">Is mix sport parlay or no.</param>
+        /// <returns>Bet type list.</returns>
         public JsonResult GetBetType(short sportId, bool isMixSportParlay)
         {
             var view = new AgentShareViewModel();
@@ -686,7 +689,6 @@ namespace Apollo.Age.Account.Controllers
             return positionTakingSetting;
         }
 
-
         private void RevertCommGroupValue(
             CommissionItem commissionItem)
         {
@@ -713,6 +715,7 @@ namespace Apollo.Age.Account.Controllers
                 case "d":
                     return "a";
             }
+
             return string.Empty;
         }
 

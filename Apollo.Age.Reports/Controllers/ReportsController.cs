@@ -65,6 +65,13 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Outstanding Report
 
+        /// <summary>
+        /// Get Agent Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <returns>Outstanding ViewResult.</returns>
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             CurrentAgentId = agentId;
@@ -82,6 +89,17 @@ namespace Apollo.Age.Reports.Controllers
             return View(report);
         }
 
+        /// <summary>
+        /// Export excel Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="agentUsername">Agent user name.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <param name="betTypeName">Bet type name.</param>
+        /// <param name="isAgentOutStanding">Is agent Outstanding.</param>
+        /// <returns>Excel Outstanding report.</returns>
         public ActionResult ExportOutstandingReport(
             int? agentId,
             string agentUsername,
@@ -135,6 +153,15 @@ namespace Apollo.Age.Reports.Controllers
             return new ExcelResult(excelResult, string.Format("Outstanding_{0}", agentUsername));
         }
 
+        /// <summary>
+        /// Get member Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <param name="mainShareHolderId">Main ShareHolder Id.</param>
+        /// <param name="mainShareHolderUsername">Main ShareHolder name.</param>
+        /// <returns>Member Outstanding report.</returns>
         [HttpPost]
         public ActionResult MemberOutstanding(int? agentId, string sporttypes, string bettypes, int mainShareHolderId, string mainShareHolderUsername)
         {
@@ -160,6 +187,10 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Agent Win Loss Report
 
+        /// <summary>
+        /// Get MatchEntered report.
+        /// </summary>
+        /// <returns>MatchEntered ViewResult.</returns>
         public ViewResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
@@ -171,6 +202,11 @@ namespace Apollo.Age.Reports.Controllers
             return View(matchEnteredViewModel);
         }
 
+        /// <summary>
+        /// Get agent win loss report.
+        /// </summary>
+        /// <param name="model">Input AgentWinLossViewModel.</param>
+        /// <returns>AgentWinLoss ViewResult.</returns>
         public ViewResult AgentWinLoss(AgentWinLossViewModel model)
         {
             model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
@@ -206,6 +242,11 @@ namespace Apollo.Age.Reports.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Get member win loss report.
+        /// </summary>
+        /// <param name="model">Input MemberWinLossViewModel.</param>
+        /// <returns>MemberWinLoss ViewResult.</returns>
         public ViewResult MemberWinLoss(MemberWinLossViewModel model)
         {
             var criteria = new MemberWinLossCriteria
@@ -234,6 +275,11 @@ namespace Apollo.Age.Reports.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Export excel agent win loss report.
+        /// </summary>
+        /// <param name="model">Input AgentWinLossViewModel.</param>
+        /// <returns>Excel file agent win loss.</returns>
         public ActionResult ExportAgentWinLoss(AgentWinLossViewModel model)
         {
             var sessionKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -274,6 +320,11 @@ namespace Apollo.Age.Reports.Controllers
             return new ExcelResult(excelResult, fileName);
         }
 
+        /// <summary>
+        /// Export excel member win loss report.
+        /// </summary>
+        /// <param name="model">Input MemberWinLossViewModel.</param>
+        /// <returns>Excel file member win loss.</returns>
         public ActionResult ExportMemberWinLoss(MemberWinLossViewModel model)
         {
             var sessionKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
