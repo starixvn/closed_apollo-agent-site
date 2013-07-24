@@ -215,7 +215,7 @@ namespace Apollo.Age.Web.Services
             // Check downtime from library.
             try
             {
-                if (AppSettings.DisabledUnderMainternanceAPI)
+                if (AppSettings.DisabledUnderMaintenanceAPI)
                 {
                     maintenanceInfo.IsDownTime = false;
                 }

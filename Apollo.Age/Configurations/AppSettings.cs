@@ -92,11 +92,11 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static bool DisabledUnderMainternanceAPI
+        public static bool DisabledUnderMaintenanceAPI
         {
             get
             {
-                return GetValue("DisabledUnderMainternanceAPI") == "1";
+                return GetValue("DisabledUnderMaintenanceAPI") == "1";
             }
         }
 
