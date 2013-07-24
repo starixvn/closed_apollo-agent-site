@@ -212,8 +212,7 @@
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="Age_BetList_AgentDetail" SpName="Age_BetList_AgentDetail" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_BetList_AgentDetail_Winloss" SpName="Age_BetList_AgentDetail_Winloss" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_BetList_AgentDetail_Winloss_Old" SpName="Age_BetList_AgentDetail_Winloss_Old" DbName="SVRARC.ArchiveDB" Plain="0" />
+    <Setting Key="Age_BetList_AgentDetail_Old" SpName="Age_BetList_AgentDetail_Old" DbName="SVRARC.ArchiveDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Customer Setting">
