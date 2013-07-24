@@ -59,11 +59,11 @@
                                     }
                                 }
                                 <tr class="@(!string.IsNullOrEmpty(status) ? "outright-status" : string.Empty) ">
-                                    <td style="width: 279px" >@subItem.TeamName
+                                    <td style="width: 276px;" >@subItem.TeamName
                                     </td>
-                                    <td style="width: 102px" class="c">@status
+                                    <td style="width: 103px;" class="c">@status
                                     </td>
-                                    <td style="width: 143px" class="c nowrap" data-bettype="@((int)BetTypes.Outright)">
+                                    <td style="width: 143px;" class="c nowrap" data-bettype="@((int)BetTypes.Outright)">
                                      @WagerHelper.RenderColumnData(subItem.BetTeam, subItem.BetCount, subItem.Stake, subItem.StakeBefore, subItem.LiveIndicator, subItem.LeagueId, subItem.MatchId)                                    
                                     </td>
                                 </tr>
