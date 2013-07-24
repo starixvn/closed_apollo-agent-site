@@ -341,7 +341,7 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(javascriptString);
         }
 
-        [HttpPost, CustomValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
@@ -396,13 +396,13 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(javascriptString);
         }
 
-        [HttpPost, CustomValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
-        [HttpPost, CustomValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
