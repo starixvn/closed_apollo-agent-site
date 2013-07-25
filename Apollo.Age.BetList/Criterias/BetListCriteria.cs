@@ -55,6 +55,26 @@ namespace Apollo.Age.BetList.Criterias
         [SpParam(Ignored = true)]
         public BetListPage BetListPage { get; set; }
 
+        public int RptType
+        {
+            get
+            {
+                switch (this.BetListPage)
+                {
+                    case BetListPage.AccountInfo:
+                        return (int)ReportType.AccountInfo;
+                    case BetListPage.Transaction:
+                        return (int)ReportType.Transaction;
+                    case BetListPage.Outstanding:
+                        return (int)ReportType.Outstanding;
+                    case BetListPage.Cancel:
+                        return (int)ReportType.TicketCancelled;
+                }
+
+                return (int)ReportType.AccountInfo;
+            }
+        }
+
         public override string GetSettingKey()
         {
             string settingKey = string.Empty;
@@ -103,14 +123,23 @@ namespace Apollo.Age.BetList.Criterias
                     statusids = this.StatusIds,
                     bettypes = !string.IsNullOrEmpty(this.BetTypes) ? this.BetTypes : "0",
                     sporttypes = !string.IsNullOrEmpty(this.SportTypes) ? this.SportTypes : "0",
+                    rpttype = this.RptType
                 };
             }
         }
-                
+
 
         public override bool IsValid()
         {
             return this.ToDate >= this.FromDate;
         }
+    }
+
+    public enum ReportType : int
+    {
+        AccountInfo = 0,
+        Transaction = 1,
+        Outstanding = 2,
+        TicketCancelled = 3
     }
 }

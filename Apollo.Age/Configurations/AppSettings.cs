@@ -92,6 +92,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static bool DisabledUnderMaintenanceAPI
+        {
+            get
+            {
+                return GetValue("DisabledUnderMaintenanceAPI") == "1";
+            }
+        }
+
         public static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key].ToLower();

@@ -201,7 +201,7 @@ namespace Apollo.Age.Web.Services
             var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
             var startTime = maintenanceInfo.StartTime;
             var endTime = maintenanceInfo.EndTime;
-
+            
             // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
@@ -215,7 +215,15 @@ namespace Apollo.Age.Web.Services
             // Check downtime from library.
             try
             {
-                maintenanceInfo.IsDownTime = false; // umService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                if (AppSettings.DisabledUnderMaintenanceAPI)
+                {
+                    maintenanceInfo.IsDownTime = false;
+                }
+                else
+                {
+                    maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                }
+
                 if (maintenanceInfo.IsDownTime)
                 {
                     maintenanceInfo.StartTime = startTime;
