@@ -76,13 +76,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             var report = _outstandingService.GetAgentOutStandingReport(CurrentSession.IsSuper, CurrentAgentId, CurrentSession.AgentId, sporttypes, bettypes);
-
-            var sessionKey = string.Format(
-                "{0}-{1}-{2}-{3}",
-                Lang.agent,
-                CurrentAgentId != null ? CurrentAgentId.Value : 0,
-                !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
-                !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
+            var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
             
@@ -111,11 +105,8 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             var sessionKey = string.Format(
-                "{0}-{1}-{2}-{3}",
-                isAgentOutStanding ? Lang.agent : Lang.member,
-                CurrentAgentId != null ? CurrentAgentId.Value : 0,
-                !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
-                !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
+                isAgentOutStanding ? Constants.SessionKeyAgentOutstandingReport : Constants.SessionKeyMemberOutstandingReport, 
+                this.CurrentSession.UserId);
 
             var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
 
@@ -169,13 +160,7 @@ namespace Apollo.Age.Reports.Controllers
 
             //// call service to get listOutstanding data here
             var report = _outstandingService.GetMemberOutstandingReport(CurrentAgentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
-
-            var sessionKey = string.Format(
-                "{0}-{1}-{2}-{3}",
-                Lang.member,
-                CurrentAgentId != null ? CurrentAgentId.Value : 0,
-                !string.IsNullOrEmpty(sporttypes) ? sporttypes : string.Empty,
-                !string.IsNullOrEmpty(bettypes) ? bettypes : string.Empty);
+            var sessionKey = string.Format(Constants.SessionKeyMemberOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutstanding;
 
@@ -235,7 +220,7 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var sessionKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
+            var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = agentWinLossList;
 
@@ -269,7 +254,7 @@ namespace Apollo.Age.Reports.Controllers
             model.BettypeList = _reportService.GetBettype();
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
 
-            var sessionKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
+            var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = memberWinLossList;
 
             return View(model);
@@ -282,7 +267,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Excel file agent win loss.</returns>
         public ActionResult ExportAgentWinLoss(AgentWinLossViewModel model)
         {
-            var sessionKey = string.Format(Constants.CacheKeyAgentWinLossReport, this.CurrentSession.UserId);
+            var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
             var agentWinLossList = (List<AgentWinLossModel>)HttpContext.Session[sessionKey];
 
             model.AgentId = model.AgentId == 0 ? this.CurrentSession.AgentId : model.AgentId;
@@ -327,7 +312,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Excel file member win loss.</returns>
         public ActionResult ExportMemberWinLoss(MemberWinLossViewModel model)
         {
-            var sessionKey = string.Format(Constants.CacheKeyMemberWinLossReport, this.CurrentSession.UserId);
+            var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
