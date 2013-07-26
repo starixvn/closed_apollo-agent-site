@@ -256,7 +256,7 @@
     <value>網全</value>
   </data>
   <data name="lblOddEven" xml:space="preserve">
-    <value>單雙</value>
+    <value>單雙盤</value>
   </data>
   <data name="lblRB" xml:space="preserve">
     <value>滾球</value>
@@ -400,7 +400,7 @@
     <value>單球上限</value>
   </data>
   <data name="lbl1stOU" xml:space="preserve">
-    <value>上半大小盤</value>
+    <value>上半場大小盤</value>
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>早盤</value>
@@ -700,7 +700,7 @@
     <value>帳號</value>
   </data>
   <data name="lblHandicapFC" xml:space="preserve">
-    <value>讓分</value>
+    <value>讓球</value>
   </data>
   <data name="lblhomeandguest" xml:space="preserve">
     <value>隊伍</value>
@@ -1168,7 +1168,7 @@
     <value>錯誤的單球限額</value>
   </data>
   <data name="lbl1x2_1st" xml:space="preserve">
-    <value>上半標準盤</value>
+    <value>上半場.標準盤</value>
   </data>
   <data name="lblAgents" xml:space="preserve">
     <value>代理</value>
@@ -1228,7 +1228,7 @@
     <value>昨日之前</value>
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
-    <value>上半讓分</value>
+    <value>上半場讓球</value>
   </data>
   <data name="lblBrowsingHistoryDeletionTool" xml:space="preserve">
     <value>浏览历史记录删除工具</value>
@@ -1360,7 +1360,7 @@
     <value>第3盤</value>
   </data>
   <data name="lbl1stOddEven" xml:space="preserve">
-    <value>上半單雙</value>
+    <value>上半場.單雙盤</value>
   </data>
   <data name="lblPostdate" xml:space="preserve">
     <value>增加日期</value>
@@ -1627,7 +1627,7 @@
     <value>第1盤</value>
   </data>
   <data name="lblDrawNoBet" xml:space="preserve">
-    <value>和局/不是和局</value>
+    <value>獲勝球隊</value>
   </data>
   <data name="May" xml:space="preserve">
     <value>五月</value>

@@ -48,9 +48,25 @@ var ACCOUNTLIST = function ($) {
                     ACCOUNTLIST.hideMenuLayout();
                     $this.addClass('bg');
                     $listMenu.fadeIn('fast');
-                    ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 6000);
+                    //ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 10000);
                 }
                 event.stopPropagation();
+            });
+
+            $('.edit-link').on('mouseover', function (event) {
+                clearTimeout(ACCOUNTLIST.agentListSettingTime);
+            });
+
+            $('.edit-link').on('mouseout', function (event) {
+                ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 10000);
+            });
+
+            $('.menu-list').on('mouseover', function (event) {
+                clearTimeout(ACCOUNTLIST.agentListSettingTime);
+            });
+
+            $('.menu-list').on('mouseout', function (event) {
+                ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 10000);
             });
 
             $('html, body').click(function () {
