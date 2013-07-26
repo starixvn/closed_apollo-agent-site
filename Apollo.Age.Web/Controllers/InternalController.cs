@@ -29,6 +29,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Web.ViewModels;
     using Fanex.Common;
     using Fanex.Logging;
+    using Apollo.Age.Web.Services;
 
     /// <summary>
     /// Internal Login Controller.
@@ -53,6 +54,7 @@ namespace Apollo.Age.Web
 
         private readonly IUserService _userService;
         private DeviceDetection _deviceService;
+        private UnderMaintenanceService _underMaintenanceService;
 
         #region Ctors
 
@@ -60,6 +62,7 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
             _deviceService = new DeviceDetection();
+            _underMaintenanceService = new UnderMaintenanceService();
         }
 
         #endregion Ctors
@@ -186,15 +189,48 @@ namespace Apollo.Age.Web
         [HttpPost]
         public JsonResult ReCheckIn()
         {
-            var result = false;
-            if (SessionManager.CurrentSession != null)
-            {
-                result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+            bool isDowntime = false;
+            isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;
+            if (isDowntime)
+            {               
+                return Json(new
+                {
+                    isKickout = false,
+                    isDowntime = true,
+                    urlReturn = ApoURLs.URLs.UnderMaintenance
+
+                });
             }
+            else
+            {
+                var result = false;
+                if (SessionManager.CurrentSession != null)
+                {
+                    result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+                }
+
+                return Json(new
+                {
+                    isKickout = result,
+                    isDowntime = false,
+                    urlReturn = string.Empty 
+                });
+            }
+        }
+
+        /// <summary>
+        /// Post ReCheck Under Maintenance Service.
+        /// </summary>
+        /// <returns>Return true or false and url returned.</returns>
+        public JsonResult ReCheckUMService()
+        {
+            bool isDowntime = false;
+            isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;          
 
             return Json(new
             {
-                isKickout = result
+                isDownTime = isDowntime,
+                urlReturn = ApoURLs.URLs.UnderMaintenance
             });
         }
 
