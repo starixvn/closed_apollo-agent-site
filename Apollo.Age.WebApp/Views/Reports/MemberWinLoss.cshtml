@@ -86,6 +86,8 @@
     decimal totalUpline = 0;
     decimal totalOutstanding = 0;
     decimal totalOutstandingShare = 0;
+    decimal totalEffectiveStake = 0;
+    
     <div class="export-excel" id="btnExcelMemberWinLoss"></div>
     <table class="tblRpt report">
         <thead>
@@ -100,6 +102,9 @@
                 </th>
                 <th rowspan="2">
                     @Apollo.Age.Resources.Lang.CommBase
+                </th>
+                <th rowspan="2">
+                    @Apollo.Age.Resources.Lang.lblEffectiveStake
                 </th>
                 <th rowspan="2">
                     @Apollo.Age.Resources.Lang.outstanding
@@ -152,6 +157,7 @@
                 totalUpline += item.UplineTotal;
                 totalOutstanding += item.Outstanding;
                 totalOutstandingShare += item.OutstandingShare;
+                totalEffectiveStake += item.ActualTOAfter;
                 rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                 <tr @Html.Raw(rowClass)>
@@ -168,6 +174,9 @@
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">
+                        @Formater.FormatNumber20(item.ActualTOAfter, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
@@ -204,13 +213,16 @@
                 <td>
                     @Apollo.Age.Resources.Lang.total
                 </td>
-                <td>
+                <td> 
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalTurnover, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalEffectiveStake, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalOutstanding, Formater.CULT_NAME_ENG)

@@ -1869,4 +1869,7 @@
   <data name="lblSuper" xml:space="preserve">
     <value>Super</value>
   </data>
+  <data name="lblEffectiveStake" xml:space="preserve">
+    <value>Effective Stake</value>
+  </data>
 </root>
