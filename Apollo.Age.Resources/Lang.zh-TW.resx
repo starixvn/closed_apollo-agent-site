@@ -409,7 +409,7 @@
     <value>6</value>
   </data>
   <data name="NonResult" xml:space="preserve">
-    <value>無結果</value>
+    <value>無賽果</value>
   </data>
   <data name="ViewBetList" xml:space="preserve">
     <value>顯示投注清單</value>
@@ -862,7 +862,7 @@
     <value>更新代理設定 {0}</value>
   </data>
   <data name="lblResult" xml:space="preserve">
-    <value>結果</value>
+    <value>賽果</value>
   </data>
   <data name="away" xml:space="preserve">
     <value>客隊</value>
