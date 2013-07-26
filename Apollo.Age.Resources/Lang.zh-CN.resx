@@ -208,7 +208,7 @@
     <value>会员清单</value>
   </data>
   <data name="lblOddEven_1st" xml:space="preserve">
-    <value>上半单双</value>
+    <value>上半场.单双盘</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
     <value>我的设定</value>
