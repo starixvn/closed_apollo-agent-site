@@ -73,30 +73,30 @@ namespace Apollo.Age.WebApp
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
-            try
-            {
-                var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
+        //    try
+        //    {
+        //        var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-                if (executeFileName.IndexOf("UnderMaintenance") == -1                   
-                    && executeFileName.IndexOf(".less") == -1
-                    && executeFileName.IndexOf(".css") == -1
-                    && executeFileName.IndexOf(".js") == -1
-                    && executeFileName.IndexOf(".gif") == -1
-                    && executeFileName.IndexOf(".png") == -1
-                    )
-                {
-                    var maintenanceInfo = maintenanceService.MaintenanceInfo;
+        //        if (executeFileName.IndexOf("UnderMaintenance") == -1                   
+        //            && executeFileName.IndexOf(".less") == -1
+        //            && executeFileName.IndexOf(".css") == -1
+        //            && executeFileName.IndexOf(".js") == -1
+        //            && executeFileName.IndexOf(".gif") == -1
+        //            && executeFileName.IndexOf(".png") == -1
+        //            )
+        //        {
+        //            //var maintenanceInfo = maintenanceService.MaintenanceInfo;
 
-                    if (maintenanceInfo.IsDownTime)
-                    {
-                        Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogService.Error(ex.Message, ex);
-            }
+        //            if (maintenanceService.MaintenanceInfo.IsDownTime)
+        //            {
+        //                Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogService.Error(ex.Message, ex);
+        //    }
         }
     }
 }

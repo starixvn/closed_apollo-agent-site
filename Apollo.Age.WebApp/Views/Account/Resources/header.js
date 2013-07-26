@@ -325,7 +325,10 @@ var HEADER = function ($) {
 
         init: function () {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
-                setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                setTimeout(function () { HEADER.reCheckIn(); }, 1000);
+            }
+            else {
+                setTimeout(function () { HEADER.reCheckUM(); }, 1000);
             }
             HEADER.signOut();
 
@@ -386,13 +389,40 @@ var HEADER = function ($) {
             })
                 .done(function (result) {
                     if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
-                        if (result.isKickout) {
-                            alert(LANGUAGES.AlerSignonMessage);
-                            APOLLO.signOut();
+                        if (result.isDowntime) {
+                            parent.location.href = APOLLO.resolveUrl(result.urlReturn);
                         }
                         else {
-                            setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                            if (result.isKickout) {
+                                alert(LANGUAGES.AlerSignonMessage);
+                                APOLLO.signOut();
+                            }
+                            else {
+                                setTimeout(function () { HEADER.reCheckIn(); }, 30000);
+                            }
                         }
+                    }
+                })
+                .fail(function (event, jqXHR, ajaxSettings) {
+                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+                });
+        },
+
+        reCheckUM: function () {
+            $.ajax({
+                type: "POST",
+                url: APOLLO.resolveUrl("~/Internal/ReCheckUMService"),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                timeout: 120000
+            })
+                .done(function (result) {
+                    if (result.isDownTime) {
+                        parent.location.href = APOLLO.resolveUrl(result.urlReturn);
+                    }
+                    else {
+                        setTimeout(function () { HEADER.reCheckUM(); }, 30000);
                     }
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
