@@ -321,7 +321,7 @@ RegisterStartUp(InitHeader);
 
 var HEADER = function ($) {
     return {
-        IsLoadTreeView : false,
+        IsLoadTreeView: false,
 
         init: function () {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
@@ -468,10 +468,12 @@ var HEADER = function ($) {
                 }
             );
 
-            if(!HEADER.IsLoadTreeView)
-            {
+            if (!HEADER.IsLoadTreeView) {
                 parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("Account/TreeViewList");
                 HEADER.IsLoadTreeView = true;
+            }
+            else {
+                parent.document.getElementById('menu').contentWindow.ACCOUNT.reloadButtonRefresh();
             }
             //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         },

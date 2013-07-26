@@ -49,13 +49,16 @@ var ACCOUNT = function ($) {
             location.href = APOLLO.resolveUrl(url);
         },
 
+        reloadButtonRefresh: function () {
+            $("#lklRefresh").fadeIn('fast', function () {
+                $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
+            });
+        },
+
         initSearchClick: function () {
             ACCOUNT.showSectionTab("custsettings", 1); // 1: default is show setting tab
-
             $("#wrapper").scroll(function () {
-                $("#lklRefresh").fadeIn('fast', function () {
-                    $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
-                });
+                ACCOUNT.reloadButtonRefresh();
             });
 
             ACCOUNT.txtUsername.autocomplete({
