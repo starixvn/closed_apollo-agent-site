@@ -17,6 +17,7 @@ namespace Apollo.Age.Web.Services
     using Apollo.Age.Web.ViewModels;
     using Fanex.Caching;
     using Sunplus.UMControllerLibrary;
+    using System.Text;
 
     /// <summary>
     /// Under Maintenance Service.
@@ -201,7 +202,7 @@ namespace Apollo.Age.Web.Services
             var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
             var startTime = maintenanceInfo.StartTime;
             var endTime = maintenanceInfo.EndTime;
-
+            
             // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
@@ -215,7 +216,28 @@ namespace Apollo.Age.Web.Services
             // Check downtime from library.
             try
             {
-                maintenanceInfo.IsDownTime = false; // umService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                StringBuilder logTest = new StringBuilder();
+
+                if (AppSettings.DisabledUnderMaintenanceAPI)
+                {
+                    maintenanceInfo.IsDownTime = false;
+                }
+                else
+                {
+                    maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+
+                    logTest.Append("Status: " + maintenanceInfo.IsDownTime.ToString());
+
+                    logTest.Append("- StartTime: " + startTime.ToString());
+
+                    logTest.Append("- EndTime: " + endTime.ToString());
+
+
+                    var exx = new Exception(logTest.ToString());
+                    HandleException(exx);
+
+                }
+
                 if (maintenanceInfo.IsDownTime)
                 {
                     maintenanceInfo.StartTime = startTime;

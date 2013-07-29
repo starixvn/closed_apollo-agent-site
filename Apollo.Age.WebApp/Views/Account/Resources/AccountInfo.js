@@ -49,8 +49,17 @@ var ACCOUNT = function ($) {
             location.href = APOLLO.resolveUrl(url);
         },
 
+        reloadButtonRefresh: function () {
+            $("#lklRefresh").fadeIn('fast', function () {
+                $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
+            });
+        },
+
         initSearchClick: function () {
             ACCOUNT.showSectionTab("custsettings", 1); // 1: default is show setting tab
+            $("#wrapper").scroll(function () {
+                ACCOUNT.reloadButtonRefresh();
+            });
 
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
@@ -125,6 +134,14 @@ var ACCOUNT = function ($) {
                 }
             });
 
+            ACCOUNT.ageDownLink.on('mouseover', function () {
+                clearTimeout(ACCOUNT.agentListTime);
+            });
+
+            ACCOUNT.ageDownLink.on('mouseout', function () {
+                ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 10000);
+            });
+
             ACCOUNT.ageDownLink.click(function (event) {
                 clearTimeout(ACCOUNT.agentListTime);
                 if (ACCOUNT.ageDownLink.hasClass("is-active")) {
@@ -166,7 +183,7 @@ var ACCOUNT = function ($) {
 
                     ACCOUNT.ddlAgents.fadeIn('fast');
                     event.stopPropagation();
-                    ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 6000);
+                    //ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 10000);
                 }
             });
 
@@ -246,9 +263,25 @@ var ACCOUNT = function ($) {
                 } else {
                     $this.addClass('bg');
                     $listMenu.fadeIn('fast');
-                    ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 6000);
+                    //ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 6000);
                 }
                 event.stopPropagation();
+            });
+
+            $('.edit-link').on('mouseover', function (event) {
+                clearTimeout(ACCOUNT.agentListSettingTime);
+            });
+
+            $('.edit-link').on('mouseout', function (event) {
+                ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
+            });
+
+            $('.menu-list').on('mouseover', function (event) {
+                clearTimeout(ACCOUNT.agentListSettingTime);
+            });
+
+            $('.menu-list').on('mouseout', function (event) {
+                ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
             });
 
             $('html, body').click(function () {
@@ -265,7 +298,9 @@ var ACCOUNT = function ($) {
 } (jQuery);
 
 $(function () {
+    $.blockUI();
     ACCOUNT.init();
     ACCOUNT.initSearchClick();
     ACCOUNT.showAgentListSetting();
+    $.unblockUI();
 });

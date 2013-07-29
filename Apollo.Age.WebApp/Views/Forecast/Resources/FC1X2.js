@@ -8,7 +8,7 @@ if (typeof jQuery != 'undefined') {
 			cuurentLeagueName: DEFAULT_OBJECT.initLeagueName,
 			link: APOLLO.resolveUrl('Forecast/FC1X2Matches'),
 			init: function () {
-				parent.$(".ui-dialog .ui-dialog-title").text("FORECAST");
+			    parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.forecastString);
 				if (FC1X2.matchId > 0) {
 					if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
 						$("#main-shareholder-box").hide();

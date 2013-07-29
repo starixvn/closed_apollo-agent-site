@@ -208,7 +208,7 @@
     <value>会员清单</value>
   </data>
   <data name="lblOddEven_1st" xml:space="preserve">
-    <value>上半单双</value>
+    <value>上半场.单双盘</value>
   </data>
   <data name="lblViewAllSetting" xml:space="preserve">
     <value>我的设定</value>
@@ -256,7 +256,7 @@
     <value>网全</value>
   </data>
   <data name="lblOddEven" xml:space="preserve">
-    <value>单双</value>
+    <value>单双盘</value>
   </data>
   <data name="lblRB" xml:space="preserve">
     <value>滚球</value>
@@ -400,7 +400,7 @@
     <value>单球上限</value>
   </data>
   <data name="lbl1stOU" xml:space="preserve">
-    <value>上半大小盘</value>
+    <value>上半場大小盤</value>
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>早盤</value>
@@ -409,7 +409,7 @@
     <value>6</value>
   </data>
   <data name="NonResult" xml:space="preserve">
-    <value>无结果</value>
+    <value>无赛果</value>
   </data>
   <data name="ViewBetList" xml:space="preserve">
     <value>显示投注清单</value>
@@ -700,7 +700,7 @@
     <value>帐号</value>
   </data>
   <data name="lblHandicapFC" xml:space="preserve">
-    <value>让分</value>
+    <value>让球</value>
   </data>
   <data name="lblhomeandguest" xml:space="preserve">
     <value>队伍</value>
@@ -862,7 +862,7 @@
     <value>更新代理设定{0}</value>
   </data>
   <data name="lblResult" xml:space="preserve">
-    <value>结果</value>
+    <value>赛果</value>
   </data>
   <data name="away" xml:space="preserve">
     <value>客队</value>
@@ -1168,7 +1168,7 @@
     <value>错误的单球限额</value>
   </data>
   <data name="lbl1x2_1st" xml:space="preserve">
-    <value>上半标准盘</value>
+    <value>上半场.标准盘</value>
   </data>
   <data name="lblAgents" xml:space="preserve">
     <value>代理</value>
@@ -1228,7 +1228,7 @@
     <value>昨日之前</value>
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
-    <value>上半让分</value>
+    <value>上半场让球</value>
   </data>
   <data name="lblBrowsingHistoryDeletionTool" xml:space="preserve">
     <value>瀏覽歷史記錄刪除工具</value>
@@ -1360,7 +1360,7 @@
     <value>第3盘</value>
   </data>
   <data name="lbl1stOddEven" xml:space="preserve">
-    <value>上半单双</value>
+    <value>上半场.单双盘</value>
   </data>
   <data name="lblPostdate" xml:space="preserve">
     <value>增加日期</value>
@@ -1627,7 +1627,7 @@
     <value>第1盘</value>
   </data>
   <data name="lblDrawNoBet" xml:space="preserve">
-    <value>和局/不是和局</value>
+    <value>获胜球队</value>
   </data>
   <data name="May" xml:space="preserve">
     <value>五月</value>

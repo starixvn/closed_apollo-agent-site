@@ -52,6 +52,14 @@ namespace Apollo.Age.Wagers.Controllers
             ReportService = new ReportService();
         }
 
+        /// <summary>
+        /// Get all leagues.
+        /// </summary>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
+        /// <param name="sportTypes">Input sport type.</param>
+        /// <param name="isOutright">Input the status of Outright.</param>
+        /// <returns>Return list of Leagues.</returns>
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
@@ -77,15 +85,15 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isOutright">Return true is out right.</param>
         /// <returns>Json format.</returns>
         public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
-        {           
+        {
             var result = this.GetLeague(fromDate, toDate, sportTypes, isOutright);
             if (result != null && result.Any())
             {
                 result.Insert(0, new League
-                 {
-                     Id = 0,
-                     Name = Lang.all
-                 });
+                {
+                    Id = 0,
+                    Name = Lang.all
+                });
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -116,7 +124,7 @@ namespace Apollo.Age.Wagers.Controllers
         {
             var sportId = SportId(sportName);
 
-            var listEventDate = WagerService.GetEventDate(sportId); ;
+            var listEventDate = WagerService.GetEventDate(sportId);
 
             var list = new List<SelectListItem>();
 
@@ -170,15 +178,15 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="sportName">Sport name.</param>
         /// <param name="groupBetName">Group bet name.</param>
         /// <param name="resourceKey">Resource key of group bet name.</param>
-        /// <param name="isEM">Is early market.</param>
-        /// <param name="isOR">Is outright wagers.</param>
+        /// <param name="isEarlyMarket">Is early market.</param>
+        /// <param name="isOutright">Is outright wagers.</param>
         /// <returns>View result.</returns>
         public ActionResult Index(
             string sportName,
             string groupBetName = "Straight",
             string resourceKey = "lblStraight",
-            bool isEM = false,
-            bool isOR = false)
+            bool isEarlyMarket = false,
+            bool isOutright = false)
         {
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -245,29 +253,28 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.MoveBetDate = ReportService.MoveBetsDay();
             DateTime? toDate = null;
 
-            if (isOR)
+            if (isOutright)
             {
                 toDate = DateTime.Now.Date;
             }
 
-            // AddDays(-9) : sample code for get data
-            //ViewBag.Leagues = this.GetLeague(new DateTime(2013, 8, 1), sportTypes, isOR);
             ViewBag.Leagues = this.GetLeague(
-                isOR ? ReportService.MoveBetsDay() : _wagerDate,
+                isOutright ? ReportService.MoveBetsDay() : _wagerDate,
                 toDate,
                 sportTypes,
-                isOR);
+                isOutright);
 
-            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOR ? Soccer.OutRight : groupBetName) : new List<Agent>();
-            ViewBag.GroupBetName = isOR ? Soccer.OutRight : groupBetName;
+            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName) : new List<Agent>();
+            ViewBag.GroupBetName = isOutright ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
             ViewBag.WagerDate = _wagerDate;
-            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; //show button Refresh Now once logged in by Super and MainShareHolder
-            if (isEM)
+            //Show button Refresh Now once logged in by Super and MainShareHolder.
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
+            if (isEarlyMarket)
             {
                 earlyMarketListDate = GenerateEarlyMarketDates(sportName);
 
@@ -281,8 +288,8 @@ namespace Apollo.Age.Wagers.Controllers
                 }
             }
 
-            ViewBag.isEM = isEM;
-            ViewBag.isOR = isOR;
+            ViewBag.isEM = isEarlyMarket;
+            ViewBag.isOR = isOutright;
 
             if (CurrentSession.AgentLevel == 0)
             {

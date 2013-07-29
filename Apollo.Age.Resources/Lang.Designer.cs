@@ -2068,6 +2068,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Effective Stake.
+        /// </summary>
+        public static string lblEffectiveStake {
+            get {
+                return ResourceManager.GetString("lblEffectiveStake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E.I.
         /// </summary>
         public static string lblEI {
