@@ -15,6 +15,14 @@
     var count = 0;
     
     <table class="tblRpt">
+        @if (!isAgent)
+        { 
+            <tr class="sub-title">
+                <td colspan="6">
+                    @Lang.agent: <strong>@ViewBag.Agent</strong>
+                </td>
+            </tr>
+        }
         @foreach (var itemSportType in xmlSportType)
         {
             var sportId = itemSportType.Attribute("id").Value;

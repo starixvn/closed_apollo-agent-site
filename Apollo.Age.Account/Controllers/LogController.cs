@@ -390,62 +390,70 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
+            string agent = string.Empty;
+
             if (!string.IsNullOrWhiteSpace(data))
             {
-                var xmlData = XDocument.Parse(data);
-                var positionTaking = xmlData.Descendants("z");
+                var xmlDataRoot = XDocument.Parse(data);
+                var xmlData = xmlDataRoot.Descendants("r");
 
-                foreach (var item in positionTaking)
+                foreach (var itemRoot in xmlData)
                 {
-                    if (isAgent)
+                    var positionTaking = itemRoot.Descendants("z");
+                    agent = !isAgent ? itemRoot.Attribute("a").Value : string.Empty;
+
+                    foreach (var item in positionTaking)
                     {
-                        var model = new PositionTakingModel
+                        if (isAgent)
                         {
-                            SportType = Convert.ToInt32(item.Attribute("s").Value),
-                            BetType = Convert.ToInt32(item.Attribute("b").Value),
-                            IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                            MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                            MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                            MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
-                        };
+                            var model = new PositionTakingModel
+                            {
+                                SportType = Convert.ToInt32(item.Attribute("s").Value),
+                                BetType = Convert.ToInt32(item.Attribute("b").Value),
+                                IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                                MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
+                                MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
+                                MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
+                            };
 
-                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                            string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                        // Log action for update
-                        if (list.ContainsKey(key))
-                        {
-                            list[key].MaxUpper = model.MaxUpper;
-                            list[key].MaxGiven = model.MaxGiven;
-                            list[key].MinGiven = model.MinGiven;
+                            // Log action for update
+                            if (list.ContainsKey(key))
+                            {
+                                list[key].MaxUpper = model.MaxUpper;
+                                list[key].MaxGiven = model.MaxGiven;
+                                list[key].MinGiven = model.MinGiven;
+                            }
+                            else if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                // Log action for insert
+                                list.Add(key, model);
+                            }
                         }
-                        else if (string.IsNullOrWhiteSpace(oldData))
+                        else
                         {
-                            // Log action for insert
-                            list.Add(key, model);
-                        }
-                    }
-                    else
-                    {
-                        var model = new PositionTakingModel
-                        {
-                            SportType = Convert.ToInt32(item.Attribute("s").Value),
-                            BetType = Convert.ToInt32(item.Attribute("b").Value),
-                            IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                            MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
-                        };
+                            var model = new PositionTakingModel
+                            {
+                                SportType = Convert.ToInt32(item.Attribute("s").Value),
+                                BetType = Convert.ToInt32(item.Attribute("b").Value),
+                                IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
+                                MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
+                            };
 
-                        string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                            string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                        if (list.ContainsKey(key))
-                        {
-                            list[key].MaxUpper = model.MaxUpper;
-                            list[key].MaxGiven = model.MaxGiven;
-                            list[key].MinGiven = model.MinGiven;
-                        }
-                        else if (string.IsNullOrWhiteSpace(oldData))
-                        {
-                            // Log action for insert
-                            list.Add(key, model);
+                            if (list.ContainsKey(key))
+                            {
+                                list[key].MaxUpper = model.MaxUpper;
+                                list[key].MaxGiven = model.MaxGiven;
+                                list[key].MinGiven = model.MinGiven;
+                            }
+                            else if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                // Log action for insert
+                                list.Add(key, model);
+                            }
                         }
                     }
                 }
@@ -453,6 +461,7 @@ namespace Apollo.Age.Account.Controllers
 
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsAgent = isAgent;
+            ViewBag.Agent = agent;
 
             return View(list);
         }
