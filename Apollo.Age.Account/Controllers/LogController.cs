@@ -518,7 +518,7 @@ namespace Apollo.Age.Account.Controllers
                         list.Add(new LogSettingViewModel
                         {
                             FieldName = Lang.IsMaster,
-                            Value = string.Compare(isMaster.Value.ToString(), "1") == 0 ? Lang.lblYes : Lang.lblNo
+                            Value = string.Compare(isMaster.Value.ToString(), "1") == 0 ? Lang.lblNo : Lang.lblYes
                         });
                     }
 
