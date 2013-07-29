@@ -27,7 +27,5 @@ namespace Apollo.Age.Reports.Models
         public decimal Outstanding { get; set; }
 
         public decimal OutstandingShare { get; set; }
-
-        public decimal ActualTOAfter { get; set; }
     }
 }

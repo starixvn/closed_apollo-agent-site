@@ -36,5 +36,7 @@ namespace Apollo.Age.Reports.Models
         public decimal ATotal { get; set; }
 
         public decimal UplineTotal { get; set; }
+
+        public decimal ActualTOAfter { get; set; }
     }
 }

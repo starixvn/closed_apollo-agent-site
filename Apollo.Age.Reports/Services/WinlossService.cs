@@ -429,6 +429,7 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
             CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
             CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblEffectiveStake);
             CreateStringCell(row, columIndex++, headerStyle, agentName);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -437,6 +438,7 @@ namespace Apollo.Age.Reports.Services
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -452,24 +454,10 @@ namespace Apollo.Age.Reports.Services
             #region body
 
             //// Add data rows
-            decimal totalTurnover = 0;
-            decimal totalActual = 0;
-            decimal totalGross = 0;
-            decimal totalAWinLoss = 0;
-            decimal totalAComm = 0;
-            decimal totalATotal = 0;
-            decimal totalUpline = 0;
-
             foreach (var agentWinLoss in agentWinLossList)
             {
                 columIndex = 0;
-                totalTurnover += agentWinLoss.Turnover;
-                totalActual += agentWinLoss.ActualTO;
-                totalGross += agentWinLoss.GrossTotal;
-                totalAWinLoss += agentWinLoss.AWinLoss;
-                totalAComm += agentWinLoss.AComm;
-                totalATotal += agentWinLoss.ATotal;
-                totalUpline += agentWinLoss.UplineTotal;
+              
 
                 row = sheet.CreateRow(rowIndex);
                 
@@ -477,6 +465,7 @@ namespace Apollo.Age.Reports.Services
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTOAfter);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
@@ -524,13 +513,14 @@ namespace Apollo.Age.Reports.Services
             #endregion
 
             #region merge cell
-            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 6));
-            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 6));
+            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 7));
+            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 7));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 1, 1));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 2, 2));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 3, 3));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 4, 6));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 4, 4));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 5, 7));
             #endregion
 
             return hssfworkbook;
@@ -623,6 +613,7 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle, Lang.lblSoccerPT);
             CreateStringCell(row, columIndex++, headerStyle, Lang.BetAmount);
             CreateStringCell(row, columIndex++, headerStyle, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyle, Lang.lblEffectiveStake);
             CreateStringCell(row, columIndex++, headerStyle, Lang.GrossTotal);
             CreateStringCell(row, columIndex++, headerStyle, agentName);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -633,6 +624,7 @@ namespace Apollo.Age.Reports.Services
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
+            CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle, string.Empty);
@@ -656,6 +648,7 @@ namespace Apollo.Age.Reports.Services
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
+            decimal totalEffectiveStake = 0;
 
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -667,6 +660,7 @@ namespace Apollo.Age.Reports.Services
                 totalAComm += agentWinLoss.AComm;
                 totalATotal += agentWinLoss.ATotal;
                 totalUpline += agentWinLoss.UplineTotal;
+                totalEffectiveStake += agentWinLoss.ActualTOAfter;
 
                 row = sheet.CreateRow(rowIndex);
 
@@ -690,6 +684,7 @@ namespace Apollo.Age.Reports.Services
 
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.Turnover);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTO);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ActualTOAfter);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.GrossTotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
@@ -709,6 +704,7 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, footerStyle, string.Empty);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalTurnover);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalActual);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalEffectiveStake);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalGross);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAWinLoss);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAComm);
@@ -750,15 +746,16 @@ namespace Apollo.Age.Reports.Services
             #endregion
 
             #region merge cell
-            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 8));
-            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 9));
+            sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 9));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 1, 1));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 2, 2));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 3, 3));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 4, 4));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 5, 7));
-            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 8, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 5, 5));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 4, 6, 8));
+            sheet.AddMergedRegion(new CellRangeAddress(4, 5, 9, 9));
 
             #endregion
 

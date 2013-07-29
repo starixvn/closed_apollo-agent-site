@@ -1,6 +1,7 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Resources
 @{
-    ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
+    ViewBag.Title = Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
@@ -8,17 +9,17 @@
 @model AgentWinLossViewModel
 <div id="function-bar">
     <div class="item">
-        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
+        <label for="ddlSport">@Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
     </div>
-    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
+    @RazorHelper.RenderReportLinks(Lang.lblWinLoss)
     <img alt="" src="~/_GlobalResources/Images/top_04.png"/>
 </div>
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.dateRange:
+                @Lang.dateRange:
             </td>
             <td class="secondcolumn">
                 <div class="row">
@@ -38,18 +39,18 @@
                         </div>
                     </div>
                     <div class="cell">
-                        <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                        <input class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                        <input class="btn dateRange" data-range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
-                        <input class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-                        <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                        <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
+                        <input class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
+                        <input class="btn dateRange" data-range="3" type="button" value="@Lang.tomorrow" />
+                        <input class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
+                        <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
                     </div>
                 </div>
             </td>
         </tr>
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.WagerType:
+                @Lang.WagerType:
             </td>
             <td class="secondcolumn">
                 @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
@@ -59,11 +60,11 @@
     <div>
         <div class="row bg-action">
             <div class="item">
-                @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+                @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
             </div>
             <div class="item btn-action">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
             </div>
         </div>
     </div>
@@ -83,27 +84,30 @@
                     <th rowspan="2">
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.lblSoccerPT
+                        @Lang.lblSoccerPT
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.BetAmount
+                        @Lang.BetAmount
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.CommBase
+                        @Lang.CommBase
+                    </th>
+                    <th rowspan="2">
+                        @Lang.lblEffectiveStake
                     </th>
                     <th colspan="3">
-                        @Apollo.Age.Resources.Lang.company
+                        @Lang.company
                     </th>
                 </tr>
                 <tr>
                     <th>
-                        @Apollo.Age.Resources.Lang.lblWinLoss
+                        @Lang.lblWinLoss
                     </th>
                     <th>
-                        @Apollo.Age.Resources.Lang.lblComm
+                        @Lang.lblComm
                     </th>
                     <th>
-                        @Apollo.Age.Resources.Lang.total
+                        @Lang.total
                     </th>
                 </tr>
             </thead>
@@ -128,6 +132,9 @@
                             @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
+                            @Formater.FormatNumber20(item.ActualTOAfter, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
@@ -147,33 +154,36 @@
                     <th rowspan="2">
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.lblSoccerPT
+                        @Lang.lblSoccerPT
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.BetAmount
+                        @Lang.BetAmount
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.CommBase
+                        @Lang.CommBase
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.GrossTotal
+                        @Lang.lblEffectiveStake
+                    </th>
+                    <th rowspan="2">
+                        @Lang.GrossTotal
                     </th>
                     <th colspan="3">
                         @Model.AgentName
                     </th>
                     <th rowspan="2">
-                        @Apollo.Age.Resources.Lang.UplineTotal
+                        @Lang.UplineTotal
                     </th>
                 </tr>
                 <tr>
                     <th>
-                        @Apollo.Age.Resources.Lang.lblWinLoss
+                        @Lang.lblWinLoss
                     </th>
                     <th>
-                        @Apollo.Age.Resources.Lang.lblComm
+                        @Lang.lblComm
                     </th>
                     <th>
-                        @Apollo.Age.Resources.Lang.total
+                        @Lang.total
                     </th>
                 </tr>
             </thead>
@@ -187,7 +197,8 @@
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpline = 0;
-
+            decimal totalEffectiveStake = 0;
+            
                 }
                 @foreach (var item in list)
                 {
@@ -198,6 +209,7 @@
                     totalAComm += item.AComm;
                     totalATotal += item.ATotal;
                     totalUpline += item.UplineTotal;
+                    totalEffectiveStake += item.ActualTOAfter;
 
                     rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
@@ -217,7 +229,7 @@
                         {
                             <td>
                                 <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:;">
-                                    @Apollo.Age.Resources.Lang.lblMemberWinLoss
+                                    @Lang.lblMemberWinLoss
                                 </a>
                             </td>
                             <td>
@@ -228,6 +240,9 @@
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.ActualTOAfter, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r bold">
                             @Formater.FormatNumber20(item.GrossTotal, Formater.CULT_NAME_ENG)
@@ -250,7 +265,7 @@
             <tfoot>
                 <tr class="total">
                     <td>
-                        @Apollo.Age.Resources.Lang.total
+                        @Lang.total
                     </td>
                     <td>
                     </td>
@@ -259,6 +274,9 @@
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">
+                        @Formater.FormatNumber20(totalEffectiveStake, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalGross, Formater.CULT_NAME_ENG)
@@ -285,12 +303,12 @@ else
     <table class="tblRpt report none-result">
         <thead>
             <th>
-                @Apollo.Age.Resources.Lang.NodataSearch
+                @Lang.NodataSearch
             </th>
         </thead>
         <tbody>
             <td class="text-center row-exit">
-                <a href="javascript:;" id="lnkExit">@Apollo.Age.Resources.Lang.lblExit</a>
+                <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
             </td>
         </tbody>
     </table>
@@ -313,8 +331,8 @@ else
 {
     key = "AgentWinLossPageInfo",
     trigger = string.Empty,
-    title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    title = Lang.AgentWinLossInstructions,
+    tipTitle = Lang.ClickToViewInstructions
 })*@
 @section scripts
 {
@@ -322,8 +340,8 @@ else
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
-                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate"
+                MessageValidateDate: "@LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate"
             };
         } ();
     </script>
