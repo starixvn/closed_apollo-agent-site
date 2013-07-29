@@ -1872,4 +1872,7 @@
   <data name="lblEffectiveStake" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="gmt8" xml:space="preserve">
+    <value>GMT+8</value>
+  </data>
 </root>

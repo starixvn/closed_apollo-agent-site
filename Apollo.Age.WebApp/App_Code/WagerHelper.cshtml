@@ -150,8 +150,11 @@
     {
     <thead>
         <tr class="RptHeader">
-            <th style="width: 90px;">
-                @Lang.TimeGMT8
+            <th class="width-90">
+                @*@Lang.TimeGMT8*@
+                @Lang.time
+                <br />
+                (@Lang.gmt8)
             </th>
             <th>
                 @Lang.league
@@ -184,7 +187,7 @@
         }
         else
         {
-        <span>0<span class='split'>/</span>0<span class='split'>/</span>0</span>
+    <span>0<span class='split'>/</span>0<span class='split'>/</span>0</span>
         }
 }
 @helper RenderColumn(SpecialViewModel item)
