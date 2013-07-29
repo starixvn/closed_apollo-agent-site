@@ -247,7 +247,7 @@
     <value>和局</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
-    <value>组合串关</value>
+    <value>串关</value>
   </data>
   <data name="lblOverEven" xml:space="preserve">
     <value>大/双</value>

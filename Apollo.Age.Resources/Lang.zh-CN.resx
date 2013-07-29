@@ -400,7 +400,7 @@
     <value>单球上限</value>
   </data>
   <data name="lbl1stOU" xml:space="preserve">
-    <value>上半場大小盤</value>
+    <value>上半场大小盘</value>
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>早盤</value>
@@ -985,7 +985,7 @@
     <value>小/单</value>
   </data>
   <data name="TimeGMT8" xml:space="preserve">
-    <value>时间</value>
+    <value>时间 (北京时间 + 8)</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>半全场</value>
@@ -1123,7 +1123,7 @@
     <value>赔率</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
-    <value>混合过关</value>
+    <value>串关</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0}占成设定到：</value>
@@ -1204,7 +1204,7 @@
     <value>C.上锁</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
-    <value>过关</value>
+    <value>混合过关</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>滚球游戏</value>
@@ -1519,7 +1519,7 @@
     <value>3</value>
   </data>
   <data name="HomeGuest" xml:space="preserve">
-    <value>队伍</value>
+    <value>主/客</value>
   </data>
   <data name="Golf" xml:space="preserve">
     <value>高尔夫球</value>

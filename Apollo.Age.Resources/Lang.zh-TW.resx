@@ -985,7 +985,7 @@
     <value>小/單</value>
   </data>
   <data name="TimeGMT8" xml:space="preserve">
-    <value>時間</value>
+    <value>時間 (北京時間 + 8)</value>
   </data>
   <data name="lblHalfFull" xml:space="preserve">
     <value>半全場</value>
@@ -1123,7 +1123,7 @@
     <value>賠率</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
-    <value>混合過關</value>
+    <value>串關</value>
   </data>
   <data name="copyAllHint" xml:space="preserve">
     <value>{0}佔成設定到:</value>
@@ -1204,7 +1204,7 @@
     <value>C.上鎖</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
-    <value>過關</value>
+    <value>混合過關</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>滾球遊戲</value>
@@ -1519,7 +1519,7 @@
     <value>3</value>
   </data>
   <data name="HomeGuest" xml:space="preserve">
-    <value>隊伍</value>
+    <value>主/客</value>
   </data>
   <data name="Golf" xml:space="preserve">
     <value>高爾夫球</value>
