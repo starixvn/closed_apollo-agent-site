@@ -1710,7 +1710,4 @@
   <data name="hd" xml:space="preserve">
     <value>主和</value>
   </data>
-  <data name="gmt8" xml:space="preserve">
-    <value>北京時間 + 8</value>
-  </data>
 </root>

@@ -1033,15 +1033,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GMT+8.
-        /// </summary>
-        public static string gmt8 {
-            get {
-                return ResourceManager.GetString("gmt8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Golf.
         /// </summary>
         public static string Golf {
