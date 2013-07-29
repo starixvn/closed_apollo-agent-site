@@ -106,5 +106,7 @@ var VIEWSHARE = function ($) {
 } (jQuery);
 
 $(document).ready(function () {
+    $.blockUI();
     VIEWSHARE.init();
+    $.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

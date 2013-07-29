@@ -56,6 +56,8 @@ var VIEWCOMM = function ($) {
     }
 } (jQuery);
 
-$(function () {
+$(document).ready(function () {
+    $.blockUI();
     VIEWCOMM.init();
-});
+    $.unblockUI();
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);

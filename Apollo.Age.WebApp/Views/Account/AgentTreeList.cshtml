@@ -8,6 +8,8 @@
 @section foot {
     <script type="text/javascript">
         $(document).ready(function () {
+            $.blockUI.defaults.css.left = "10px";
+            $(document).ajaxStart($.blockUI);
             var treeList = $("#treeview_list"),
                 agentId = treeList.attr("data-agentid");
 
@@ -19,6 +21,7 @@
             });
 
             DOWNLINE.initAgentdownline();
+            $(document).ajaxStop($.unblockUI);
         });
     </script>
 }

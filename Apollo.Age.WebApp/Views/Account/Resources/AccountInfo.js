@@ -297,10 +297,10 @@ var ACCOUNT = function ($) {
     }
 } (jQuery);
 
-$(function () {
+$(document).ready(function () {
     $.blockUI();
     ACCOUNT.init();
     ACCOUNT.initSearchClick();
     ACCOUNT.showAgentListSetting();
     $.unblockUI();
-});
+}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
