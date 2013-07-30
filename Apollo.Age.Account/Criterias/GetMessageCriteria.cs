@@ -16,7 +16,7 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class GetMessageCriteria : CriteriaBase
-    {    
+    {
         [SpParam(SqlParamName = "TargetId")]
         public int CustId { get; set; }
 
@@ -40,9 +40,6 @@ namespace Apollo.Age.Account.Criterias
         public int MatchId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int IsPublic { get; set; }
-
-        [SpParam(Ignored = true)]
         public string PageQuery { get; set; }
 
         [SpParam(Ignored = true)]
@@ -55,39 +52,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override string GetSettingKey()
         {
-            string settingKey = string.Empty;
-
-            switch (this.IsPublic)
-            {
-                case 0:
-                    settingKey = "Dot_Msg_GetPrivateMessage";
-                    break;
-
-                case 1:
-                    settingKey = "Dot_Msg_GetPublicMessage";
-                    break;
-
-                default:
-                    switch (this.Special)
-                    {
-                        case 0:
-                            settingKey = "Dot_Msg_GetNotSpecialMessage";
-                            break;
-
-                        case 1:
-                            settingKey = "Dot_Msg_GetSpecialMessage";
-                            break;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(settingKey))
-                    {
-                        settingKey = "Dot_Msg_GetMessage";
-                    }                    
-
-                    break;
-            }
-
-            return settingKey;
+            return "Dot_Msg_GetMessage";
         }
     }
 }
