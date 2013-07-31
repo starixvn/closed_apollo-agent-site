@@ -77,6 +77,10 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Criterias\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
+    <Compile Include="Criterias\GetPrivateMessageCriteria.cs" />
+    <Compile Include="Criterias\GetPubMessageCriteria.cs" />
+    <Compile Include="Criterias\GetSpecialMessageCriteria.cs" />
+    <Compile Include="Criterias\GetNotSpecialMessageCriteria.cs" />
     <Compile Include="Criterias\GetAgentInfoCriteria.cs" />
     <Compile Include="Criterias\AgentListCriteria.cs" />
     <Compile Include="Criterias\AgentShareCriteria.cs" />

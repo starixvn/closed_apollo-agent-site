@@ -34,7 +34,7 @@ namespace Apollo.Age.Account.Controllers
         /// For temp, set site list is 3000 and 3300.
         /// </summary>
         private const string SiteList = "3000,3300";
-        private const int SiteId = 3300;        
+        private const int SiteId = 3300;
 
         private MessageService _messageService;
 
@@ -116,7 +116,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Content new message.</returns>
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
-            int isPublic = 0;
+            int publicMessage = 0;
             int special = 0;
             int maxSize = 50;
 
@@ -140,7 +140,7 @@ namespace Apollo.Age.Account.Controllers
             if (string.Compare(criteria.PageQuery, Constants.Special) == 0
                 || string.Compare(criteria.PageQuery, Constants.AllSpecial) == 0)
             {
-                isPublic = 2;
+                publicMessage = 2;
                 special = 1;
                 criteria.From = null;
                 criteria.To = null;
@@ -148,24 +148,117 @@ namespace Apollo.Age.Account.Controllers
 
             if (string.Compare(criteria.PageQuery, Constants.Normal) == 0)
             {
-                isPublic = 1;
+                publicMessage = 1;
                 special = 0;
             }
 
             if (string.Compare(criteria.PageQuery, Constants.Private) == 0)
             {
-                isPublic = 0;
+                publicMessage = 0;
                 special = 2;
             }
 
-            criteria.IsPublic = isPublic;
             criteria.Special = special;
             criteria.IsAgent = true;
 
-            ViewBag.Messages = (_messageService.GetMessage(criteria) ?? new List<MessageModel>()).ToList();
+            IEnumerable<MessageModel> listMessage = null;
+
+            switch (publicMessage)
+            {
+                case 0:
+                    listMessage = GetPrivateMessage(criteria);
+                    break;
+                case 1:
+                    listMessage = GetPublicMessage(criteria);
+                    break;
+                default:
+                    switch (criteria.Special)
+                    {
+                        case 0:
+                            listMessage = GetNotSpecialMessage(criteria);
+                            break;
+                        case 1:
+                            listMessage = GetSpecialMessage(criteria);
+                            break;
+                    }
+
+                    if (listMessage == null)
+                    {
+                        listMessage = _messageService.GetMessage(criteria);
+                    }
+
+                    break;
+            }
+
+            ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
 
             return View(criteria);
         }
+
+        #region Private
+
+        private IEnumerable<MessageModel> GetPrivateMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPrivateMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetPublicMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPubMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetNotSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetNotSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+        #endregion
 
         #region Ajax request
 
