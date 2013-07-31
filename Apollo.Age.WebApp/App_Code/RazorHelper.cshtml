@@ -392,12 +392,13 @@
         }
     </td>
 }
-@helper RenderReportLinks(string currentLink)
+@helper RenderReportLinks(string currentLink, string reportclass = "menu report-winloss")
     {
         var classWinloss = string.Empty;
         var classOutstanding = string.Empty;
         var classTransaction = string.Empty;
         var classTicketsCancelled = string.Empty;
+        var classSportCredit = string.Empty;
 
         if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
         {
@@ -411,15 +412,20 @@
         {
             classTransaction = "class=active";
         }
-        else
+        else if (currentLink.ToUpper().Equals(Lang.TicketsCancelled.ToUpper()))
         {
             classTicketsCancelled = "class=active";
         }
+        else
+        {
+            classSportCredit = "class=active"; 
+        }
 
-    <ul class="menu report-winloss">
+    <ul class="@reportclass">
         <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>
         <li @classOutstanding><a href="~/reports/outstanding">@Lang.outstanding</a></li>
         <li @classTransaction><a href="~/betList/transactions">@Lang.transaction</a></li>
         <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.TicketsCancelled</a></li>
+        <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
     </ul>
 }

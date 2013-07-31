@@ -1,0 +1,115 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Reports.ViewModels
+@{
+    ViewBag.Title = Lang.lblLineSportCredit;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+}
+@model SportCreditViewModel
+
+<div id="function-bar">
+    @RazorHelper.RenderReportLinks(Lang.lblLineSportCredit, "menu report-sportcredit")
+    <img alt="" src="~/_GlobalResources/Images/top_04.png"/>
+</div>
+
+<div id="box_header" class="report">
+    <table class="outstanding">
+        <tr>
+            <td class="firstcolumn">
+                @Lang.enterusername:
+            </td>
+            <td class="secondcolumn">
+                <input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
+            </td>
+        </tr>
+    </table>
+	<div>
+        <div class="row bg-action">
+            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+            <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+        </div>
+    </div>
+</div>
+<br />
+@if (Model.SportCreditModelList != null && Model.SportCreditModelList.Any())
+{
+    var keyLang = string.Empty;
+    decimal totalOutstandingCredit = 0;
+    decimal totalRemainingCredit = 0;
+    
+    <table class="tblRpt report tblSportCredit">
+        <thead>
+            <tr>
+                <td>@Lang.lblLevel</td>
+                <td>@Lang.lblTotalOutstandingCredit</td>
+                <td>@Lang.lblTotalRemainingCredit</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SportCreditModelList)
+            {
+                totalOutstandingCredit += item.OutstandingCredit;
+                totalRemainingCredit += item.RemainingCredit;
+                
+                var langAgent = Apollo.Age.Reports.Core.Constants.ReportAgentLevelDictionary.Where(t => (t.Key != 4 && t.Key == item.AgentLevel)).SingleOrDefault();
+                if (langAgent.Value == null)
+                {
+                    // is not exits in Constants.ReportAgentLevelDictionary is it's Agent (key = 4)
+                    keyLang = Apollo.Age.Reports.Core.Constants.ReportAgentLevelDictionary[4];
+                }
+                else
+                {
+                    keyLang = langAgent.Value;
+                }
+                
+                <tr>
+                    @if (item.AgentLevel > AgentLevel.MainAgent)
+                    {
+                        <td>
+                            @(Html.Resource(keyLang) + item.AgentLevel)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.Resource(keyLang)
+                        </td>
+                    }
+                    
+                    <td>@Formater.FormatNumber20(item.OutstandingCredit, Formater.CULT_NAME_ENG)</td>
+                    <td>@Formater.FormatNumber20(item.RemainingCredit, Formater.CULT_NAME_ENG)</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="total">
+                <td>@Lang.total</td>
+                <td>@Formater.FormatNumber20(totalOutstandingCredit, Formater.CULT_NAME_ENG)</td>
+                <td>@Formater.FormatNumber20(totalRemainingCredit, Formater.CULT_NAME_ENG)</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <table class="tblRpt report none-result">
+        <thead>
+            <tr>
+                <th>
+                    @Lang.NodataSearch
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center row-exit">
+                    <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+	@Scripts.Render("~/scripts/sportcreditjs")
+}

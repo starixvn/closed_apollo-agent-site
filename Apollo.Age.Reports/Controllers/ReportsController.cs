@@ -30,10 +30,8 @@ namespace Apollo.Age.Reports.Controllers
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
     {
-        private readonly ReportService _reportService;
-
-        private readonly IWinLossService _winLossService;
-
+        private readonly SportCreditService _sportCreditService;
+        private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
 
         private int _currentAgentId;
@@ -43,10 +41,13 @@ namespace Apollo.Age.Reports.Controllers
         {
         }
 
-        public ReportsController(OutstandingService reportService = null)
+        public ReportsController(
+            OutstandingService outstandingService = null,
+            WinLossService winlossService = null,
+            SportCreditService sportCreditService = null)
         {
-            _reportService = reportService ?? new ReportService();
-            _winLossService = _winLossService ?? new WinLossService();
+            _sportCreditService = sportCreditService ?? new SportCreditService();
+            _winLossService = winlossService ?? new WinLossService();
             _outstandingService = new OutstandingService();
         }
 
@@ -179,9 +180,9 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
-            matchEnteredViewModel.BalanceUpDay = _reportService.GetBalanceUpDay();
+            matchEnteredViewModel.BalanceUpDay = _winLossService.GetBalanceUpDay();
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-            matchEnteredViewModel.BettypeList = _reportService.GetBettype();
+            matchEnteredViewModel.BettypeList = _winLossService.GetBettype();
             matchEnteredViewModel.MatchEnteredModelList = _winLossService.GetMatchEntered();
 
             return View(matchEnteredViewModel);
@@ -205,20 +206,20 @@ namespace Apollo.Age.Reports.Controllers
                 Bettypes = model.Bettypes,
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                MoveBetDay = _reportService.MoveBetsDay()
+                BalanceUpDay = _winLossService.GetBalanceUpDay(),
+                MoveBetDay = _winLossService.MoveBetsDay()
             };
 
             var agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
-            var modelAgentDownLine = _reportService.AgentDownlinePath(CurrentSession.AgentId, model.AgentId).ToList();
+            var modelAgentDownLine = _winLossService.AgentDownlinePath(CurrentSession.AgentId, model.AgentId).ToList();
 
             model.IsSuper = isSuper;
             model.AgentName = agentName;
             model.AgentWinLossList = agentWinLossList;
             model.DownlinePath = modelAgentDownLine;
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
-            model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.BettypeList = _winLossService.GetBettype();
+            model.BalanceUpDay = _winLossService.GetBalanceUpDay();
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
 
@@ -241,18 +242,18 @@ namespace Apollo.Age.Reports.Controllers
                 Bettypes = model.Bettypes,
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                MoveBetDay = _reportService.MoveBetsDay()
+                BalanceUpDay = _winLossService.GetBalanceUpDay(),
+                MoveBetDay = _winLossService.MoveBetsDay()
             };
 
             var memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
-            var modelAgentDownLine = _reportService.AgentDownlinePath(CurrentSession.AgentId, model.AgentId).ToList();
+            var modelAgentDownLine = _winLossService.AgentDownlinePath(CurrentSession.AgentId, model.AgentId).ToList();
 
             model.MemberWinLossList = memberWinLossList;
             model.DownlinePath = modelAgentDownLine;
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
-            model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.BettypeList = _winLossService.GetBettype();
+            model.BalanceUpDay = _winLossService.GetBalanceUpDay();
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = memberWinLossList;
@@ -275,7 +276,7 @@ namespace Apollo.Age.Reports.Controllers
             model.IsSuper = model.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
+            model.BettypeList = _winLossService.GetBettype();
 
             if (agentWinLossList == null)
             {
@@ -286,8 +287,8 @@ namespace Apollo.Age.Reports.Controllers
                     Bettypes = model.Bettypes,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    BalanceUpDay = _reportService.GetBalanceUpDay(),
-                    MoveBetDay = _reportService.MoveBetsDay()
+                    BalanceUpDay = _winLossService.GetBalanceUpDay(),
+                    MoveBetDay = _winLossService.MoveBetsDay()
                 };
 
                 agentWinLossList = _winLossService.GetAgentWinLoss(criteria);
@@ -316,7 +317,7 @@ namespace Apollo.Age.Reports.Controllers
             var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
+            model.BettypeList = _winLossService.GetBettype();
 
             if (memberWinLossList == null)
             {
@@ -327,8 +328,8 @@ namespace Apollo.Age.Reports.Controllers
                     Bettypes = model.Bettypes,
                     FromDate = model.FromDate,
                     ToDate = model.ToDate,
-                    BalanceUpDay = _reportService.GetBalanceUpDay(),
-                    MoveBetDay = _reportService.MoveBetsDay()
+                    BalanceUpDay = _winLossService.GetBalanceUpDay(),
+                    MoveBetDay = _winLossService.MoveBetsDay()
                 };
 
                 memberWinLossList = _winLossService.GetMemberWinLoss(criteria);
@@ -347,5 +348,23 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Agent Win Loss Report
+
+        public ActionResult SportCredit(string username)
+        {
+            var criteria = new SportCreditCriteria {
+                LoggedId = this.CurrentSession.AgentId,
+                Username = username
+            };
+
+            var sportCreditList = _sportCreditService.GetSportCredits(criteria);
+
+            var model = new SportCreditViewModel
+            {
+                Username = username,
+                SportCreditModelList = sportCreditList
+            };
+
+            return View(model);
+        }
     }
 }

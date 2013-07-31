@@ -144,6 +144,14 @@ namespace Apollo.Age.WebApp
                "~/views/reports/resources/reports.js",
                "~/views/reports/resources/winloss.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/sportcreditjs").Include(
+               "~/_globalresources/js/head.js",
+               "~/_globalresources/js/jquery.js",
+               "~/_globalresources/js/jquery-ui.js",
+               "~/_globalresources/js/blockui/jquery.blockui.js",
+               "~/_globalresources/js/core.js",
+               "~/views/reports/resources/reports.js",
+               "~/views/reports/resources/sportcredit.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/outstandingjs").Include(
                 "~/_globalresources/js/head.js",

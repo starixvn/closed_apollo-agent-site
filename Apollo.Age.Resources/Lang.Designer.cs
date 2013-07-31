@@ -2446,6 +2446,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string lblLevel {
+            get {
+                return ResourceManager.GetString("lblLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Sport Credits.
+        /// </summary>
+        public static string lblLineSportCredit {
+            get {
+                return ResourceManager.GetString("lblLineSportCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live!.
         /// </summary>
         public static string lblLive {
@@ -2505,6 +2523,15 @@ namespace Apollo.Age.Resources {
         public static string lblMainShareHolder {
             get {
                 return ResourceManager.GetString("lblMainShareHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Shareholder.
+        /// </summary>
+        public static string lblMainShareholderLevel {
+            get {
+                return ResourceManager.GetString("lblMainShareholderLevel", resourceCulture);
             }
         }
         
@@ -3040,6 +3067,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shareholder.
+        /// </summary>
+        public static string lblShareholderLevel {
+            get {
+                return ResourceManager.GetString("lblShareholderLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share %.
         /// </summary>
         public static string lblShareSetting {
@@ -3261,6 +3297,24 @@ namespace Apollo.Age.Resources {
         public static string lblTnEm {
             get {
                 return ResourceManager.GetString("lblTnEm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Outstanding Credit.
+        /// </summary>
+        public static string lblTotalOutstandingCredit {
+            get {
+                return ResourceManager.GetString("lblTotalOutstandingCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Remaining Credit.
+        /// </summary>
+        public static string lblTotalRemainingCredit {
+            get {
+                return ResourceManager.GetString("lblTotalRemainingCredit", resourceCulture);
             }
         }
         
