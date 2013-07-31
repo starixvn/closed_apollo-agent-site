@@ -1872,4 +1872,7 @@
   <data name="lblEffectiveStake" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="AccountSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>
