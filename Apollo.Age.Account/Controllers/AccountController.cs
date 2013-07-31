@@ -262,16 +262,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Tree view list.</returns>
         public ViewResult TreeViewList()
         {
-            var criteria = new AgentDownlineCriteria()
-            {
-                AgentId = this.CurrentSession.AgentId
-            };
-            var agentList = _accountService.GetDirectDownline(criteria);
-
-            var hasAgentDownline = agentList == null ? false : (agentList.Count > 0);
-
             ViewBag.AgentId = this.CurrentSession.AgentId;
-            ViewBag.HasAgentDownline = hasAgentDownline;
             return View();
         }
 

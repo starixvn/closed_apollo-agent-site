@@ -14,18 +14,11 @@
 		</td>
 	</tr>
 </table>
-@if ((bool)(ViewBag.HasAgentDownline))
-{
-	<div id="wrapper">
-        <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
-		<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
-		</ul>
-	</div>
-}
-else
-{
-	<div class="no-data">@Lang.NoneAgent</div>
-}
+<div id="wrapper">
+    <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
+	<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
+	</ul>
+</div>
 
 @section foot {
     @Scripts.Render("~/scripts/treeviewjs")
