@@ -84,7 +84,7 @@ var Wagers = function ($) {
 
             $('#groupComm').on('change', function () {
                 if (Wagers.isOR == "true") {
-                    location.href = APOLLO.resolveUrl("~/wagers/wager?sportname=" + $(this).val() + "&isOR=true");
+                    location.href = APOLLO.resolveUrl("~/wagers/wager?sportname=" + $(this).val() + "&isOutright=true");
                 }
                 else {
                     Wagers.groupComm = $(this).val();
@@ -176,7 +176,7 @@ var Wagers = function ($) {
                     sportTypes: Wagers.sportTypeIds,
                     sportName: Wagers.sportName,
                     pageIndex: Wagers.pageIndex,
-                    isEM: Wagers.isEM
+                    isEarlyMarket: Wagers.isEM
                 },
                 success: function (data) {
                     $('#container').html(data);
