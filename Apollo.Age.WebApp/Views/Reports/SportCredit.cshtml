@@ -75,16 +75,16 @@
                         </td>
                     }
                     
-                    <td>@Formater.FormatNumber20(item.OutstandingCredit, Formater.CULT_NAME_ENG)</td>
-                    <td>@Formater.FormatNumber20(item.RemainingCredit, Formater.CULT_NAME_ENG)</td>
+                    <td class="r">@Formater.FormatNumber20(item.OutstandingCredit, Formater.CULT_NAME_ENG)</td>
+                    <td class="r">@Formater.FormatNumber20(item.RemainingCredit, Formater.CULT_NAME_ENG)</td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr class="total">
                 <td>@Lang.total</td>
-                <td>@Formater.FormatNumber20(totalOutstandingCredit, Formater.CULT_NAME_ENG)</td>
-                <td>@Formater.FormatNumber20(totalRemainingCredit, Formater.CULT_NAME_ENG)</td>
+                <td class="r">@Formater.FormatNumber20(totalOutstandingCredit, Formater.CULT_NAME_ENG)</td>
+                <td class="r">@Formater.FormatNumber20(totalRemainingCredit, Formater.CULT_NAME_ENG)</td>
             </tr>
         </tfoot>
     </table>
