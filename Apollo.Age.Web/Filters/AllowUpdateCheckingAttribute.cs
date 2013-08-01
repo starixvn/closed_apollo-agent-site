@@ -10,9 +10,6 @@
 namespace Apollo.Age.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
     using Fanex.Logging;
 
@@ -34,6 +31,7 @@ namespace Apollo.Age.Web.Filters
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             base.OnActionExecuted(filterContext);
         }
     }
