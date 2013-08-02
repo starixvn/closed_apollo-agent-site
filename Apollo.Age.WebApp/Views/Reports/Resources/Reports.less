@@ -3,6 +3,13 @@
 
 .tblRpt tbody td {
 	border-width: 0 1px 0 0;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.tblRpt tfoot td {
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 #function-bar {	
@@ -179,7 +186,7 @@
 	}
 	tbody td {
 		background: #CCC;
-
+        
 		&.row-exit {
 			height: 20px;
 		}
@@ -280,4 +287,54 @@
 .tblRpt.tblSportCredit
 {
     width: 795px;
+}
+
+.tblRpt.tblWinLoss
+{
+    thead {
+        .namecolor{
+			background-color: #FFFFFF;
+            color: #000000;
+            font-weight: bold;
+		}
+        .sharecolor{
+            background-color: #DDD9C4;
+            color: #000000;
+            font-weight: bold;
+        }
+        .membercolor{
+            background-color: #C5D9F1;
+            color: #000000;
+            font-weight: bold;
+        }
+        .downlinecolor{
+            background-color: #F2DCDB;
+            color: #000000;
+            font-weight: bold;
+        }
+        .agentcolor{
+            background-color: #E4DFEC;
+            color: #000000;
+            font-weight: bold;
+        }
+        .uplinecolor{
+            background-color: #B7DEE8;
+            color: #000000;
+            font-weight: bold;
+        }
+        .oustandingcolor{
+            background-color: #FFF000;
+            color: #000000;
+            font-weight: bold;
+            width: 100px;
+        }
+	}
+
+    tfoot{
+        tr{
+            td{
+                font-weight: bold;
+            }
+        }
+    }
 }

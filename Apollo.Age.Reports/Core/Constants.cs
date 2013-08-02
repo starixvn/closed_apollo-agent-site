@@ -44,7 +44,7 @@ namespace Apollo.Age.Reports.Core
         Dictionary<int, string>
         {
             { 0, "lblSuper" },
-            { 1, "lblMainShareholderLevel" },
+            { 1, "lblMainShareHolder" },
             { 2, "lblShareholderLevel" },
             { 3, "lblMainAgent" },
             { 4, "agent" }

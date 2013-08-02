@@ -76,89 +76,95 @@
 @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
 {
     var list = Model.MemberWinLossList;
-    decimal totalTurnover = 0;
-    decimal totalActual = 0;
-    decimal totalMWinLoss = 0;
-    decimal totalMComm = 0;
-    decimal totalMTotal = 0;
+    decimal totalBetAmount = 0;
+    decimal totalBetCount = 0;
+    decimal totalCommBase = 0;
+    decimal totalMemWinLoss = 0;
+    decimal totalMemComm = 0;
+    decimal totalMemTotal = 0;
     decimal totalAWinLoss = 0;
     decimal totalAComm = 0;
     decimal totalATotal = 0;
-    decimal totalUpline = 0;
-    decimal totalOutstanding = 0;
-    decimal totalOutstandingShare = 0;
-    decimal totalEffectiveStake = 0;
+    decimal totalUpLineEffectiveStake = 0;
+    decimal totalUpLineWinLoss = 0;
+    decimal totalOutstandingAmount = 0;
+    decimal totalOutstandingShareAmount = 0;
     
     <div class="export-excel" id="btnExcelMemberWinLoss"></div>
-    <table class="tblRpt report">
+    <table class="tblRpt report tblWinLoss">
         <thead>
             <tr>
-                <th rowspan="2">
+                <th class="namecolor" rowspan="2">
                 </th>
-                <th rowspan="2">
+                <th class="sharecolor" rowspan="2">
                     @Lang.lblSoccerPT
                 </th>
-                <th rowspan="2">
-                    @Lang.BetAmount
-                </th>
-                <th rowspan="2">
-                    @Lang.CommBase
-                </th>
-                <th rowspan="2">
-                    @Lang.lblEffectiveStake
-                </th>
-                <th rowspan="2">
-                    @Lang.outstanding
-                </th>
-                <th rowspan="2">
-                    @Lang.ShareAmount
-                </th>
-                <th colspan="3">
+                <th class="membercolor" colspan="5">
                     @Lang.member
                 </th>
-                <th colspan="3">
+                <th class="agentcolor" colspan="3">
                     @Model.AgentName
                 </th>
-                <th rowspan="2">
-                    @Lang.UplineTotal
+                <th class="uplinecolor" colspan="2">
+                    @Lang.lblUpline
+                </th>
+                <th class="oustandingcolor" rowspan="2">
+                    @Lang.lblOutstandingAmount
+                </th>
+                <th class="oustandingcolor" rowspan="2">
+                    @Lang.lblOutstandingShareAmount
                 </th>
             </tr>
             <tr>
-                <th>
-                    @Lang.lblWinLoss
+                <th class="membercolor">
+                    @Lang.BetAmount/@Lang.lblBetCount
                 </th>
-                <th>
+                <th class="membercolor">
+                    @Lang.CommBase
+                </th>
+                <th class="membercolor">
+                    @Lang.lblWinLossReport
+                </th>
+                <th class="membercolor">
                     @Lang.lblComm
                 </th>
-                <th>
+                <th class="membercolor">
                     @Lang.total
                 </th>
-                <th>
-                    @Lang.lblWinLoss
+                <th class="agentcolor">
+                    @Lang.lblWinLossReport
                 </th>
-                <th>
+                <th class="agentcolor">
                     @Lang.lblComm
                 </th>
-                <th>
+                <th class="agentcolor">
                     @Lang.total
+                </th>
+                <th class="uplinecolor">
+                    @Lang.lblEffectiveStake
+                </th>
+                <th class="uplinecolor">
+                    @Lang.lblWinLossReport
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in list)
             {
-                totalTurnover += item.Turnover;
-                totalActual += item.ActualTO;
-                totalMWinLoss += item.WinLoss;
-                totalMComm += item.MemComm;
-                totalMTotal += item.MemTotal;
+                totalBetAmount += item.BetAmount;
+                totalBetCount += item.BetCount;
+                totalCommBase += item.CommBase;
+                totalMemWinLoss += item.MemWinLoss;
+                totalMemComm += item.MemComm;
+                totalMemTotal += item.MemTotal;
                 totalAWinLoss += item.AWinLoss;
                 totalAComm += item.AComm;
                 totalATotal += item.ATotal;
-                totalUpline += item.UplineTotal;
-                totalOutstanding += item.Outstanding;
-                totalOutstandingShare += item.OutstandingShare;
-                totalEffectiveStake += item.ActualTOAfter;
+                totalUpLineEffectiveStake += item.UpLineEffectiveStake;
+                totalUpLineWinLoss += item.UpLineWinLoss;
+                totalOutstandingAmount += item.OutstandingAmount;
+                totalOutstandingShareAmount += item.OutstandingShareAmount;
+                
                 rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                 <tr @Html.Raw(rowClass)>
@@ -171,41 +177,41 @@
                         @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.ActualTOAfter, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.Outstanding, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.OutstandingShare, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.WinLoss, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r">
-                        @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.UplineTotal, Formater.CULT_NAME_ENG)
-                    </td>
+                            @item.BetAmount/@item.BetCount
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.MemWinLoss, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.UpLineEffectiveStake, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.UpLineWinLoss, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.OutstandingAmount, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.OutstandingShareAmount, Formater.CULT_NAME_ENG)
+                        </td>
                 </tr>
             }
         </tbody>
@@ -217,28 +223,19 @@
                 <td> 
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalTurnover, Formater.CULT_NAME_ENG)
+                    @totalBetAmount/@totalBetCount
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalEffectiveStake, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemWinLoss, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalOutstanding, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemComm, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalOutstandingShare, Formater.CULT_NAME_ENG)
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(totalMWinLoss, Formater.CULT_NAME_ENG)
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(totalMComm, Formater.CULT_NAME_ENG)
-                </td>
-                <td class="r">
-                    @Formater.FormatNumber20(totalMTotal, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemTotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
@@ -250,7 +247,16 @@
                     @Formater.FormatNumber20(totalATotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalUpline, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalUpLineEffectiveStake, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalUpLineWinLoss, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalOutstandingAmount, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalOutstandingShareAmount, Formater.CULT_NAME_ENG)
                 </td>
             </tr>
         </tfoot>

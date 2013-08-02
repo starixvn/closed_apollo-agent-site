@@ -1893,4 +1893,22 @@
   <data name="lblTotalRemainingCredit" xml:space="preserve">
     <value>Total Remaining Credit</value>
   </data>
+  <data name="lblBetCount" xml:space="preserve">
+    <value>Bet Count</value>
+  </data>
+  <data name="lblDownline" xml:space="preserve">
+    <value>Downline</value>
+  </data>
+  <data name="lblOutstandingAmount" xml:space="preserve">
+    <value>Outstanding Amount</value>
+  </data>
+  <data name="lblOutstandingShareAmount" xml:space="preserve">
+    <value>Outstanding Share Amount</value>
+  </data>
+  <data name="lblUpline" xml:space="preserve">
+    <value>Upline</value>
+  </data>
+  <data name="lblWinLossReport" xml:space="preserve">
+    <value>Win Loss</value>
+  </data>
 </root>
