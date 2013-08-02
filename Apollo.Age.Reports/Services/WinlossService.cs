@@ -282,12 +282,12 @@ namespace Apollo.Age.Reports.Services
                 // row title report
                 var rowTitle = sheet.CreateRow(1);
                 var font1 = CreateFont(HSSFColor.BLACK.index, 14, true);
-                var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1);
+                var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1, isBorder: false);
                 CreateStringCell(rowTitle, 0, titleStyle, title);
 
                 var rowFilter = sheet.CreateRow(2);
-                var fontFilter = CreateFont(HSSFColor.BLUE.index, 14, true, true);
-                var filterStyle = CreateStyle(font: fontFilter);
+                var fontFilter = CreateFont(HSSFColor.BLUE.index, 11, true, true);
+                var filterStyle = CreateStyle(font: fontFilter, isBorder: false);
                 CreateStringCell(rowFilter, 0, filterStyle, filter);
 
                 #endregion
@@ -378,9 +378,9 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle1, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle2, Lang.BetAmount + "/" + Lang.lblBetCount);
             CreateStringCell(row, columIndex++, headerStyle2, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyle2, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyle2, Lang.total);
             CreateStringCell(row, columIndex++, headerStyle3, Lang.lblEffectiveStake);
-            CreateStringCell(row, columIndex++, headerStyle3, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyle3, Lang.total);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.lblWinLossReport);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.lblComm);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.total);
@@ -430,12 +430,12 @@ namespace Apollo.Age.Reports.Services
 
             var rowTitle = sheet.CreateRow(1);
             var font1 = CreateFont(HSSFColor.BLACK.index, 14, isBold: true);
-            var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1);
+            var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1, isBorder: false);
             CreateStringCell(rowTitle, 0, titleStyle, title);
 
             var rowFilter = sheet.CreateRow(2);
             var fontFilter = CreateFont(HSSFColor.BLUE.index, 11, isBold: true, isItalic: true);
-            var filterStyle = CreateStyle(font: fontFilter);
+            var filterStyle = CreateStyle(font: fontFilter, isBorder: false);
             CreateStringCell(rowFilter, 0, filterStyle, filter);
             #endregion
 
@@ -512,9 +512,9 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyle1, string.Empty);
             CreateStringCell(row, columIndex++, headerStyle2, Lang.BetAmount + "/" + Lang.lblBetCount);
             CreateStringCell(row, columIndex++, headerStyle2, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyle2, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyle2, Lang.total);
             CreateStringCell(row, columIndex++, headerStyle3, Lang.lblEffectiveStake);
-            CreateStringCell(row, columIndex++, headerStyle3, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyle3, Lang.total);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.lblWinLossReport);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.lblComm);
             CreateStringCell(row, columIndex++, headerStyle4, Lang.total);
@@ -618,12 +618,12 @@ namespace Apollo.Age.Reports.Services
             #region title
             var rowTitle = sheet.CreateRow(1);
             var font1 = CreateFont(HSSFColor.BLACK.index, 14, true);
-            var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1);
+            var titleStyle = CreateStyle(align: HorizontalAlignment.CENTER, font: font1, isBorder: false);
             CreateStringCell(rowTitle, 0, titleStyle, title);
 
             var rowFilter = sheet.CreateRow(2);
-            var fontFilter = CreateFont(HSSFColor.BLUE.index, 14, true, true);
-            var filterStyle = CreateStyle(font: fontFilter);
+            var fontFilter = CreateFont(HSSFColor.BLUE.index, 11, true, true);
+            var filterStyle = CreateStyle(font: fontFilter, isBorder: false);
             CreateStringCell(rowFilter, 0, filterStyle, filter);
 
             #endregion
@@ -682,7 +682,7 @@ namespace Apollo.Age.Reports.Services
         /// <param name="align">Horizontal Alignment.</param>
         /// <param name="font">Font of style.</param>
         /// <returns>New style.</returns>
-        private ICellStyle CreateStyle(short backgroundColor = -1, HorizontalAlignment align = HorizontalAlignment.LEFT, IFont font = null)
+        private ICellStyle CreateStyle(short backgroundColor = -1, HorizontalAlignment align = HorizontalAlignment.LEFT, IFont font = null, bool isBorder = true)
         {
             ICellStyle style = _hssfworkbook.CreateCellStyle();
             if (backgroundColor != -1)
@@ -699,10 +699,14 @@ namespace Apollo.Age.Reports.Services
                 style.SetFont(font);
             }
 
-            style.BorderTop = BorderStyle.THIN;
-            style.BorderLeft = BorderStyle.THIN;
-            style.BorderRight = BorderStyle.THIN;
-            style.BorderBottom = BorderStyle.THIN;
+            if (isBorder)
+            {
+                style.BorderTop = BorderStyle.THIN;
+                style.BorderLeft = BorderStyle.THIN;
+                style.BorderRight = BorderStyle.THIN;
+                style.BorderBottom = BorderStyle.THIN;
+            }
+
             return style;
         }
 
