@@ -139,7 +139,9 @@
                             @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @item.BetAmount/@item.BetCount
+                            @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
+                            <span class='split'>/</span>
+                            @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
@@ -217,7 +219,7 @@
                         @Lang.lblEffectiveStake
                     </th>
                     <th class="uplinecolor">
-                        @Lang.lblWinLossReport
+                        @Lang.total
                     </th>
                 </tr>
             </thead>
@@ -277,7 +279,9 @@
                             </td>
                         }
                         <td class="r">
-                            @item.BetAmount/@item.BetCount
+                            @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
+                            <span class='split'>/</span>
+                            @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
@@ -285,24 +289,12 @@
                         <td class="r">
                             @Formater.FormatNumber20(item.MemWinLoss, Formater.CULT_NAME_ENG)
                         </td>
-                        @if (item.IsAgent)
-                        {
-                            <td class="r">
-                                @Formater.FormatNumber20(item.DownLineEffectiveStake, Formater.CULT_NAME_ENG)
-                            </td>
-                            <td class="r">
-                                @Formater.FormatNumber20(item.DownLineWinLoss, Formater.CULT_NAME_ENG)
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="r">
-                                @Lang.lblNA
-                            </td>
-                            <td class="r">
-                                @Lang.lblNA
-                            </td>
-                        }
+                        <td class="r">
+                            @Formater.FormatNumber20(item.DownLineEffectiveStake, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(item.DownLineWinLoss, Formater.CULT_NAME_ENG)
+                        </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                         </td>
@@ -329,7 +321,9 @@
                     <td>
                     </td>
                     <td class="r">
-                        @totalBetAmount/@totalBetCount
+                        @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
+                        <span class='split'>/</span>
+                        @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
