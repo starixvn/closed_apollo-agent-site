@@ -104,6 +104,32 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.alertGeneralError();
             },
 
+            showMessage: function (message, type, timeOut) {
+                switch (type) {
+                    case 'success':
+                        noty({
+                            text: message,
+                            type: type,
+                            template: '<div class="noty_message success"><span class="noty_text"></span></div>',
+                            timeout: timeOut || 5000
+                        });
+                        break;
+                    case 'error':
+                        noty({
+                                text: message,
+                                type: type,
+                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
+                                buttons: true,
+                                buttons: [{
+                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+                                        $noty.close();
+                                    }
+                                }]
+                            });
+                        break;
+                }
+            },
+
             console: {
                 write: function (msg, consoleFunc) {
                     if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
@@ -395,10 +421,10 @@ if (typeof jQuery != 'undefined') {
                 return data;
             },
 
-            
-           
 
-            init: function () {                
+
+
+            init: function () {
                 APOLLO.initDatePicker();
                 //APOLLO.initFreeHeader();
             }

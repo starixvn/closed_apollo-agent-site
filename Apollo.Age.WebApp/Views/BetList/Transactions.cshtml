@@ -19,13 +19,35 @@
 {
     if (!Request.IsAjaxRequest())
     {
+@*<table class="tbl-function-bar clearfix">
+        <tr>
+            <td>
+                <label for="ddlSport">@Lang.lblReport:</label>
+                @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
+            </td>
+            <td>@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
+            </td>
+            <td class="end no-border-bottom">
+                
+            </td>
+            <td class="no-border-bottom">
+                <div class="pages-size">
+                    <div class="pull-left">@Lang.Page:</div>
+                    <div id="pager" class="sbpager">
+                    </div>
+                    @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+                </div>
+            </td>
+        </tr>
+    </table>*@
     <div id="function-bar">
         <div class="item">
             <label for="ddlSport">@Lang.lblReport:</label>
             @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
         </div>
         @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
-        <img alt="" src="~/_GlobalResources/Images/top_04.png">
+        @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
+        <div class="end"></div>
     </div>
     <div class="pages-size">
         <div class="pull-left">@Lang.Page:</div>
@@ -102,7 +124,6 @@
                 </td>
                 <td>
                     <input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
-                    
                 </td>
             </tr>
         </table>

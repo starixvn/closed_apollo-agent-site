@@ -15,7 +15,8 @@ namespace Apollo.Age.Web.Filters
 
     public class AllowUpdateCheckingAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
             {
@@ -24,6 +25,7 @@ namespace Apollo.Age.Web.Filters
                     if (SessionManager.CurrentSession.IsMaster == false)
                     {
                         CommonChecking.DoUnAuthorized(filterContext);
+                        return;
                     }
                 }
             }
@@ -32,7 +34,7 @@ namespace Apollo.Age.Web.Filters
                 Logger.Log.Error(ex.Message, ex);
             }
 
-            base.OnActionExecuted(filterContext);
+            base.OnActionExecuting(filterContext);
         }
     }
 }

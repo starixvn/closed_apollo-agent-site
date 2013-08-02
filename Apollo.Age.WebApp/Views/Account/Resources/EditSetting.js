@@ -26,47 +26,21 @@ if (typeof jQuery != 'undefined') {
 
                 APOLLO.initPageInfo();
             },
-            initForMode: function () {
-                //                if (EDITSETTING.currentIsSimpleMode) {
-                //                    $("#btnSubmitHeader").hide();
-                //                }
-                //                else {
-                //                    $("#btnSubmitHeader").show();
-                //                }
-            },
             init: function () {
                 $('#page_main').addClass('setting-width');
                 EDITSETTING.currentIsSimpleMode = false;
                 EDITSETTING.initOthers(false);
-                EDITSETTING.initForMode();
                 $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
                     // remove the messages when open the other message
                     $('#noty_top_layout_container').remove();
                     EDITSETTING.saveSetting();
                 });
-                //                $("#simple-mode").unbind("click").click(function () {
-
-                //                    $(this).hide();
-                //                    $("#advanced-mode").show();
-                //                    $('#edit-warning').show();
-                //                    EDITSETTING.currentIsSimpleMode = true;
-                //                    EDITSETTING.initOthers(true);
-                //                });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
                     history.go(-1);
                     return false;
                 });
 
-                //                $("#advanced-mode").unbind("click").click(function () {
-
-                //                    $(this).hide();
-                //                    $("#simple-mode").show();
-                //                    $('#edit-warning').hide();
-
-                //                    EDITSETTING.currentIsSimpleMode = false;
-                //                    EDITSETTING.initOthers(false);
-                //                });
                 if (DEFAULT_LAYOUT.isMaster) {
                     $('#tbl-edit').show();
                 }
@@ -86,11 +60,7 @@ if (typeof jQuery != 'undefined') {
                     if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
                     && dataObject.betLimits.length == 0
                     && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined') {
-                        noty({
-                            text: DEFAULT_LAYOUT.noChangeMessage, type: 'success',
-                            template: '<div class="noty_message success"><span class="noty_text"></span></div>',
-                            timeout: 5000
-                        });
+                        APOLLO.showMessage(DEFAULT_LAYOUT.noChangeMessage, 'success');
                         return;
                     }
 
@@ -123,6 +93,7 @@ if (typeof jQuery != 'undefined') {
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(dataObject),
+                        cache: false,
                         headers: APOLLO.addAntiForgeryToken({})
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
@@ -130,20 +101,15 @@ if (typeof jQuery != 'undefined') {
                         } else {
                             try { $.unblockUI(); } catch (e) { };
                             //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
-                            noty({
-                                text: data.ErrMsg,
-                                type: 'error',
-                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
-                                buttons: true,
-                                buttons: [{
-                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
-                                        $noty.close();
-                                    }
-                                }]
-                            });
+                            APOLLO.showMessage(data.ErrMsg, 'error');
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        if (jqXHR.responseText) {
+                            APOLLO.showMessage(jqXHR.responseText, 'error');
+                        }
+                        else {
+                            APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        }
                         try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
                     });
