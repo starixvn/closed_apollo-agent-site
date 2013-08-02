@@ -17,7 +17,7 @@ var ACCOUNTLIST = function ($) {
             }),
             $("#fundout").on('click', function () {
                 APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Account/FundOut?memberId=" + $(this).attr('data-memberid') + "&sportCredit=" + $(this).attr('data-sportcredit')), BASELANGUAGES.fundout + " - " + $(this).attr('data-membername'), {
-                    width: 380,
+                    width: 300,
                     height: 80,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
