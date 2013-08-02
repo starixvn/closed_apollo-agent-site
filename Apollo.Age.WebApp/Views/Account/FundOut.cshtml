@@ -1,0 +1,33 @@
+﻿@using Apollo.Age.Account.ViewModels
+@using Apollo.Age.Resources
+@model FundOutViewModel
+@{
+    ViewBag.Title = "FundOut";
+}
+@section css
+{
+    <link href="~/_GlobalResources/Css/Agent.less" rel="Stylesheet" type="text/css" />
+}
+<table class="tblRpt default-tbl" cellpadding="0" cellspacing="1" border="0" style="width: 100%;">
+    <tr class="even_row" align="center">
+        <td>
+            @Lang.Amount
+        </td>
+        <td align="left">
+            @Html.TextBoxFor(m => m.SportCredit, new { @class = "input-text", autocomplete = "off", id = "txtSportCredit" })
+            @Html.HiddenFor(m => m.MemberId)
+            @Html.HiddenFor(m => m.SportCredit)
+        </td>
+        <td>
+            <input id="btnSubmit" type="button" value="Submit" />
+        </td>
+    </tr>   
+</table>
+<script type="text/javascript">
+    var BASELANGUAGES = function () {
+        return {            
+            fundoutamountmessage: "@Lang.fundoutamountmessage"
+        };
+    } ();
+    </script>
+@Scripts.Render("~/scripts/fundout")	

@@ -335,6 +335,15 @@ namespace Apollo.Age.WebApp
             bundles.Add(new ScriptBundle("~/scripts/sbpager").Include(
             "~/_GlobalResources/Js/Pager/jquery.sbpager.js"));
 
+            bundles.Add(new ScriptBundle("~/scripts/fundout").Include(
+                "~/_globalresources/js/head.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/Core.js",
+                "~/_globalresources/js/BlockUI/jquery.blockUI.js",
+                 "~/views/account/resources/fundout.js"               
+            ));
+
             #endregion js
 
             bundles.FileSetOrderList.Clear();

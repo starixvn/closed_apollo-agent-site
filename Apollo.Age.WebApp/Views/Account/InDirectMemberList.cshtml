@@ -16,6 +16,7 @@
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
     var agentList = ViewBag.AgentList != null ? (List<Agent>)ViewBag.AgentList : new List<Agent>();
+    var allowFundOut = (bool)ViewBag.AllowFundOut;
 }
 @using (Html.BeginForm())
 {       
@@ -117,7 +118,14 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @item.CashBalance
+                        @if (allowFundOut && item.CashBalance > 0)
+                        {
+                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                        }
+                        else
+                        {
+                           @item.CashBalance
+                        }
                     </td>
                     <td class="text-left">
                         <div class="action">
