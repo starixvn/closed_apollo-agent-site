@@ -251,6 +251,7 @@
     <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="UserId" />
     </Setting>
+    
     <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="UserId" />
       <Mapping DataField="Username" ObjectProperty="Username" />
@@ -320,6 +321,10 @@
       <Mapping DataField="PlayerComm" ObjectProperty="MemComm"/>
       <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
       <Mapping DataField="WinLost" ObjectProperty="WinLoss"/>
+    </Setting>
+    <Setting Key="Age_Rpt_LineSportCredits" SpName="Age_Rpt_LineSportCredits" DbName="SVRAGE.RepDB" Plain="0">
+      <Mapping DataField="Outstanding" ObjectProperty="OutstandingCredit" />
+      <Mapping DataField="Remaining" ObjectProperty="RemainingCredit" />
     </Setting>
   </Function>
 

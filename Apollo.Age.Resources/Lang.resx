@@ -1872,4 +1872,25 @@
   <data name="lblEffectiveStake" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="AccountSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="lblLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="lblLineSportCredit" xml:space="preserve">
+    <value>Line Sport Credits</value>
+  </data>
+  <data name="lblMainShareholderLevel" xml:space="preserve">
+    <value>Main Shareholder</value>
+  </data>
+  <data name="lblShareholderLevel" xml:space="preserve">
+    <value>Shareholder</value>
+  </data>
+  <data name="lblTotalOutstandingCredit" xml:space="preserve">
+    <value>Total Outstanding Credit</value>
+  </data>
+  <data name="lblTotalRemainingCredit" xml:space="preserve">
+    <value>Total Remaining Credit</value>
+  </data>
 </root>

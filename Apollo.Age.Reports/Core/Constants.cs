@@ -39,5 +39,15 @@ namespace Apollo.Age.Reports.Core
             { -10, "lblOutRight" },
             { -1, "InterEvent" }
         };
+
+        public static readonly Dictionary<int, string> ReportAgentLevelDictionary = new
+        Dictionary<int, string>
+        {
+            { 0, "lblSuper" },
+            { 1, "lblMainShareholderLevel" },
+            { 2, "lblShareholderLevel" },
+            { 3, "lblMainAgent" },
+            { 4, "agent" }
+        };
     }
 }

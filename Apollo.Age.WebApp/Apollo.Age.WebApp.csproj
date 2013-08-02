@@ -458,6 +458,7 @@
     <Content Include="Views\Message\Resources\PortalPage.js" />
     <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
+    <Content Include="Views\Reports\Resources\SportCredit.js" />
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Result.js" />
     <Content Include="Views\TotalBets\Resources\Index.js" />
@@ -1056,6 +1057,7 @@
     <Content Include="Views\Results\Shared\_Layout.cshtml" />
     <Content Include="Views\BetList\Transactions.cshtml" />
     <Content Include="Views\Log\LogActionType5.cshtml" />
+    <Content Include="Views\Reports\SportCredit.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

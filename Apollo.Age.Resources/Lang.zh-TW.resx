@@ -478,7 +478,7 @@
     <value>總局數</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>帳號查詢</value>
+    <value>搜尋</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
     <value>投注限額</value>
@@ -1291,7 +1291,7 @@
     <value>0~1</value>
   </data>
   <data name="status" xml:space="preserve">
-    <value>結果</value>
+    <value>狀態</value>
   </data>
   <data name="lastgoal" xml:space="preserve">
     <value>最後進球</value>
@@ -1534,7 +1534,7 @@
     <value>和和</value>
   </data>
   <data name="htft" xml:space="preserve">
-    <value>半全場</value>
+    <value>半場.全場</value>
   </data>
   <data name="lblWarningEditSetting" xml:space="preserve">
     <value>注意: 如果在簡單模式,你的設定將套用到所有運動項目</value>
@@ -1651,7 +1651,7 @@
     <value>瀏覽器:</value>
   </data>
   <data name="total" xml:space="preserve">
-    <value>總入球</value>
+    <value>總額</value>
   </data>
   <data name="lblView1stHandicapForecast" xml:space="preserve">
     <value>瀏覽上半場亞洲盤預測圖</value>
@@ -1709,5 +1709,44 @@
   </data>
   <data name="hd" xml:space="preserve">
     <value>主和</value>
+  </data>
+  <data name="AccountSearch" xml:space="preserve">
+    <value>帳號查詢</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>貨幣</value>
+  </data>
+  <data name="IsMaster" xml:space="preserve">
+    <value>分身帳號</value>
+  </data>
+  <data name="lblallmembers" xml:space="preserve">
+    <value>所有的會員</value>
+  </data>
+  <data name="lblEffectiveStake" xml:space="preserve">
+    <value>有效金額</value>
+  </data>
+  <data name="lblGeneralInfo" xml:space="preserve">
+    <value>一般資訊</value>
+  </data>
+  <data name="lblGolds" xml:space="preserve">
+    <value>半全場</value>
+  </data>
+  <data name="lblMainAgent" xml:space="preserve">
+    <value>主要代理</value>
+  </data>
+  <data name="lblMainSH" xml:space="preserve">
+    <value>主要股東</value>
+  </data>
+  <data name="lblShareholder" xml:space="preserve">
+    <value>股東</value>
+  </data>
+  <data name="lblSuper" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>使用者名稱</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>價值</value>
   </data>
 </root>
