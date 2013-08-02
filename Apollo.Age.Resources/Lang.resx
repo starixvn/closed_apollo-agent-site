@@ -1893,4 +1893,10 @@
   <data name="lblTotalRemainingCredit" xml:space="preserve">
     <value>Total Remaining Credit</value>
   </data>
+  <data name="fundout" xml:space="preserve">
+    <value>Fund Out</value>
+  </data>
+  <data name="fundoutamountmessage" xml:space="preserve">
+    <value>Fund out amount must be between 0 to {0}.</value>
+  </data>
 </root>

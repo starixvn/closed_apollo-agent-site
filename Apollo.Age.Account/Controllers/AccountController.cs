@@ -10,6 +10,7 @@
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: MemberDownline </change>
 //   <change who="Anders.Le" date="2013.4.23">Rename namespace of pager</change>
 //   <change who="Edward.Nguyen" date="2013.7.22">Member and Agent list</change>
+//   <change who="Terry.Nguyen" date="2013.8.1">Checking Allow FundOut for Super, MainShareHolder and ShareHolder</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
@@ -29,6 +30,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.Account.ViewModels;
 
     /// <summary>
     /// Account controllers.
@@ -288,7 +290,7 @@ namespace Apollo.Age.Account.Controllers
 
             List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
             var agentList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
-            
+
             return Json(agentList, JsonRequestBehavior.AllowGet);
         }
 
@@ -313,17 +315,17 @@ namespace Apollo.Age.Account.Controllers
                 hasAgentDownline = true;
                 agentList.ForEach(t => childList.Add(new AgentTreeViewNode
                     {
-                        Id = t.Id, 
-                        Username = t.Username, 
+                        Id = t.Id,
+                        Username = t.Username,
                         HasAgentDownline = t.HasAgentDownline
                     }));
             }
 
-            var root = new AgentTreeViewNode 
-            { 
-                Id = this.CurrentSession.AgentId, 
-                Username = this.CurrentSession.AgentName, 
-                HasAgentDownline = hasAgentDownline, 
+            var root = new AgentTreeViewNode
+            {
+                Id = this.CurrentSession.AgentId,
+                Username = this.CurrentSession.AgentName,
+                HasAgentDownline = hasAgentDownline,
                 Children = childList,
                 Expanded = true
             };
@@ -620,6 +622,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
 
+            // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
+            ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             return View(criteria);
         }
 
@@ -726,6 +730,9 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             });
 
+            // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
+            ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
+
             return View(criteria);
         }
 
@@ -799,6 +806,30 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
+        
+        public ActionResult FundOut(decimal memberId, decimal sportCredit)
+        {
+            var model = new FundOutViewModel() {
+                MemberId = memberId,
+                SportCredit = sportCredit
+            };
+
+            return View(model);
+        }
+
+        public JsonResult PostFundOut(decimal memberId, decimal sportCredit)
+        {
+
+
+            return Json(
+                new
+                {
+                    ErrCode = 0,
+                    ErrMsg = string.Empty
+                },
+                JsonRequestBehavior.AllowGet
+            );
+        }
         #region Ultil
 
         private List<SelectListItem> GetListPage(int numPages, int currentPage)

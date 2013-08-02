@@ -1006,6 +1006,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fund Out.
+        /// </summary>
+        public static string fundout {
+            get {
+                return ResourceManager.GetString("fundout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fund out amount must be between 0 to {0}..
+        /// </summary>
+        public static string fundoutamountmessage {
+            get {
+                return ResourceManager.GetString("fundoutamountmessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game.
         /// </summary>
         public static string Game {
