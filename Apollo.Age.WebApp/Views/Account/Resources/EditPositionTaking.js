@@ -51,29 +51,12 @@ if (typeof jQuery != 'undefined') {
 
                         var postionTakingValue = EDITPOSITIONTAKING.positionTakingElement.Save();
                         if (postionTakingValue == null) {
-                            //noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
-                            noty({
-                                text: Language.OUTRANGE_SIMPLE_MODE_ERROR,
-                                type: 'error',
-                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
-                                buttons: true,
-                                buttons: [{
-                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
-                                        $noty.close();
-                                    }
-                                }]
-                            });
+                            APOLLO.showMessage(Language.OUTRANGE_SIMPLE_MODE_ERROR, 'error');
                             return;
                         }
 
                         if (!EDITPOSITIONTAKING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
-                            //noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
-                            noty({
-                                text: DEFAULT_LAYOUT.noChangeMessage,
-                                type: 'success',
-                                template: '<div class="noty_message success"><span class="noty_text"></span></div>',
-                                timeout: 5000
-                            });
+                            APOLLO.showMessage(DEFAULT_LAYOUT.noChangeMessage, 'success');
                             return;
                         }
 
@@ -124,7 +107,7 @@ if (typeof jQuery != 'undefined') {
 
                 // remove the messages when open the other message
                 $('#noty_top_layout_container').remove();
-               
+
                 $.ajax({
                     url: APOLLO.resolveUrl('CustomerSetting/UpdatePositionTaking'),
                     type: 'POST',
@@ -134,6 +117,7 @@ if (typeof jQuery != 'undefined') {
                         settingContext: EDITPOSITIONTAKING.settingContext,
                         positionTakingSetting: postionTakingValue
                     }),
+                    cache: false,
                     headers: APOLLO.addAntiForgeryToken({})
                 }).done(function (data) {
                     if (data.ErrCode == 0) {
@@ -141,21 +125,15 @@ if (typeof jQuery != 'undefined') {
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
                         try { $.unblockUI(); } catch (e) { };
-                        //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
-                        noty({
-                            text: data.ErrMsg,
-                            type: 'error',
-                            template: '<div class="noty_message error"><span class="noty_text"></span></div>',
-                            buttons: true,
-                            buttons: [{
-                                addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
-                                    $noty.close();
-                                }
-                            }]
-                        });
+                        APOLLO.showMessage(data.ErrMsg, 'error');
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    if (jqXHR.responseText) {
+                        APOLLO.showMessage(jqXHR.responseText, 'error');
+                    }
+                    else {
+                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                    }
                     try { $.unblockUI(); } catch (e) { };
                 });
             },
@@ -173,7 +151,6 @@ if (typeof jQuery != 'undefined') {
                     }
                     else {
                         window.location.href = backLink;
-
                     }
                 }, 4000);
 
