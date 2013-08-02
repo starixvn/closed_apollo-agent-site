@@ -23,7 +23,9 @@
             </div>
         </li>
     </ul>
-    <img src="~/_GlobalResources/Images/top_04.png" alt="" />
+    @*<img src="~/_GlobalResources/Images/top_04.png" alt="" />*@
+    <div class="end"></div>
+
     <input type="hidden" name="todayValue" id="todayValue" value="@Formater.FormatShortDateNoZeroLeading(Model.EventDate)"/>
     <input type="hidden" name="yesterdayValue" id="yesterdayValue" value="@Formater.FormatShortDateNoZeroLeading(Model.EventDate.AddDays(-1))"/>
     <input type="hidden" name="lbltoday" id="lbltoday" value="@Lang.today"/>
