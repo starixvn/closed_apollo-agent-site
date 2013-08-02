@@ -18,7 +18,7 @@ var ACCOUNTLIST = function ($) {
             $("#fundout").on('click', function () {
                 APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Account/FundOut?memberId=" + $(this).attr('data-memberid') + "&sportCredit=" + $(this).attr('data-sportcredit')), BASELANGUAGES.fundout + " - " + $(this).attr('data-membername'), {
                     width: 380,
-                    height: 100,
+                    height: 80,
                     position: { my: "top+50", at: "center top", of: window },
                     close: function (event, ui) {
                         //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);

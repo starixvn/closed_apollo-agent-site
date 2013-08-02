@@ -110,6 +110,12 @@ namespace Apollo.Age.WebApp
             bundles.AddAndInclude(
              "~/css/sbpager",
               "~/_GlobalResources/Js/Pager/jquery.sbpager.less");
+
+            bundles.AddAndInclude(
+                "~/css/fundout",
+                "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+                "~/_globalresources/css/agent.less");
+
             #endregion css
 
             #region js
