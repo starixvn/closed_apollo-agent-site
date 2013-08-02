@@ -290,6 +290,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\fundout.js" />
     <Content Include="Views\Account\Resources\Images\bg-logo.png" />
     <Content Include="Views\Account\Resources\Images\bot.jpg" />
     <Content Include="Views\Account\Resources\Images\btn-arrow.png" />
@@ -753,6 +754,7 @@
     <Content Include="Views\BetList\AccountInfo.cshtml" />
     <Content Include="Views\BetList\CombinationMixParlay.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\NoData.cshtml" />
+    <Content Include="Views\Account\FundOut.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />

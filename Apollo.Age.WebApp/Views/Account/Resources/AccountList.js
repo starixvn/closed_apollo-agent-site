@@ -14,7 +14,18 @@ var ACCOUNTLIST = function ($) {
                 if (txtUsername.val() == '') {
                     txtUsername.val(APOLLO.htmlDecode(BASELANGUAGES.EnterUsername));
                 }
-            })
+            }),
+            $("#fundout").on('click', function () {
+                APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Account/FundOut?memberId=" + $(this).attr('data-memberid') + "&sportCredit=" + $(this).attr('data-sportcredit')), BASELANGUAGES.fundout + " - " + $(this).attr('data-membername'), {
+                    width: 300,
+                    height: 80,
+                    position: { my: "top+50", at: "center top", of: window },
+                    close: function (event, ui) {
+                        //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+
+                    }
+                });
+            });
         },
         initStatus: function (status, uplineStatus) {
             if (status == 1) {

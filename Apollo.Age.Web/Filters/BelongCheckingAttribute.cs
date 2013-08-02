@@ -50,19 +50,19 @@ namespace Apollo.Age.Web.Filters
                 {
                     if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
                     {
-                        DoUnAuthorized(filterContext);
+                       CommonChecking.DoUnAuthorized(filterContext);
                     }
                 }
                 else if (agentId > 0)
                 {
                     if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
                     {
-                        DoUnAuthorized(filterContext);
+                        CommonChecking.DoUnAuthorized(filterContext);
                     }
                 }
                 else
                 {
-                    DoUnAuthorized(filterContext);
+                    CommonChecking.DoUnAuthorized(filterContext);
                 }
             }
             catch (Exception ex)
@@ -73,21 +73,21 @@ namespace Apollo.Age.Web.Filters
             base.OnActionExecuting(filterContext);
         }
 
-        private void DoUnAuthorized(ActionExecutingContext filterContext)
-        {
-            var response = filterContext.HttpContext.Response;
-            if (filterContext.HttpContext.Request.IsAjaxRequest())
-            {
-                response.Clear();
-                response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                response.StatusDescription = string.Empty;
-                response.Write(Resources.Lang.UnauthorizedMsg);
-                response.End();
-            }
-            else
-            {
-                response.Redirect(ApoURLs.URLs.AccessDenied);
-            }
-        }
+        //private void DoUnAuthorized(ActionExecutingContext filterContext)
+        //{
+        //    var response = filterContext.HttpContext.Response;
+        //    if (filterContext.HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        response.Clear();
+        //        response.StatusCode = (int)HttpStatusCode.Unauthorized;
+        //        response.StatusDescription = string.Empty;
+        //        response.Write(Resources.Lang.UnauthorizedMsg);
+        //        response.End();
+        //    }
+        //    else
+        //    {
+        //        response.Redirect(ApoURLs.URLs.AccessDenied);
+        //    }
+        //}
     }
 }

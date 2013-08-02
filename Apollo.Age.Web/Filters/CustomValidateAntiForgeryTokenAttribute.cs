@@ -26,7 +26,6 @@ namespace Apollo.Age.Web.Filters
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
-
             //  Ajax POSTs and normal form posts have to be treated differently when it comes
             //  to validating the AntiForgeryToken
             if (request.IsAjaxRequest())

@@ -15,6 +15,8 @@
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
 
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
+
+    var allowFundOut = (bool)ViewBag.AllowFundOut;
 }
 @using (Html.BeginForm())
 {
@@ -56,7 +58,9 @@
                 -- <a href="~/Account/AgentList">@Lang.lblAgents</a>
             </div>
         }
-        <img src="/_GlobalResources/Images/top_04.png" alt="">
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+        <div class="end">
+        </div>
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
@@ -91,7 +95,14 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
+                         @if (allowFundOut && item.CashBalance > 0 )
+                         {
+                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                         }
+                         else
+                         {
                         @item.CashBalance
+                         }
                     </td>
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">

@@ -128,10 +128,15 @@ table {
 #function-bar {
 	background-color: #fff;
 	border-bottom: 1px solid #333;
-	padding: 0 0 0 5px;
-	height: 23px;
+	padding: 0 30px 0 5px;
+	min-height: 23px;
 	float: left;
 	clear: both;
+	position: relative;
+
+	#more-link {
+		padding-right: 30px;
+	}
 
 	.menu, .pager {
 		margin: 3px 0;
@@ -164,7 +169,7 @@ table {
 		.sub-menu {
 			position: absolute;
 			top: 20px;
-			right: -8px;
+			right: 17px;
 			padding: 5px;
 			background: #fff;
 			border: 1px solid #333;
@@ -213,6 +218,16 @@ table {
 			color: #f00;
 			cursor: text;
 		}
+	}
+
+	.end {
+		background: url(../images/top_04.png) no-repeat left bottom;
+		position: absolute;
+		right: 0;		
+		bottom: -1px;
+		float: right;
+		height: 24px;
+		width: 30px;
 	}
 }
 
@@ -1059,6 +1074,73 @@ table {
 	width:80px;
 }
 
+.fundout {
+	margin: 8px 0 0;
+	width: 260px;
+	padding: 0 3px;
+
+	* {
+		vertical-align: middle;
+	}
+
+	input[type="text"], input[type="button"] { 
+		font-size: 11px;
+	}
+
+	input[type="text"] {
+		border: 1px solid #000;		
+		height: 16px;
+		margin-left: 2px;
+		padding: 0 2px;
+		width: 144px;
+	}
+
+	input[type="button"] {
+		height: 20px;
+	}
+}
+/* Filter */
+/*.tbl-function-bar {
+	margin-bottom: 5px;
+	td {
+		border-bottom: 1px solid #333;
+		white-space: nowrap;
+
+		&.no-border-bottom {
+			border-bottom: none;
+		}
+
+		&.end {
+			background: url(../images/top_04.png) no-repeat left bottom;
+			padding: 0 14px;
+
+			img {
+				margin-top: 2px;
+			}
+		}
+	}
+
+	* {
+		white-space: nowrap;
+	}
+
+	.menu {
+		
+		&.report-winloss {
+			width: 355px;
+			margin: 2px 155px 0 97px;
+		}
+
+		li {
+			float: left;
+			margin-right: 10px;
+		}
+	}
+
+	.pages-size * {
+		white-space: nowrap;
+	}
+}*/
 
 /* FIX IE */
 .eq-ie8 {

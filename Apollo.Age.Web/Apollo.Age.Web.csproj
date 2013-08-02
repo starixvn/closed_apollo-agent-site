@@ -74,8 +74,10 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Filters\AllowUpdateCheckingAttribute.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\CommonChecking.cs" />
     <Compile Include="Filters\CustomValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Filters\P3PAttribute.cs" />
     <Compile Include="Filters\InternalCheckingAttribute.cs" />
