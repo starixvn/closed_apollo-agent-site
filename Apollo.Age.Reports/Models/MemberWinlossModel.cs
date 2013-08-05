@@ -19,18 +19,6 @@ namespace Apollo.Age.Reports.Models
         public string MemberName { get; set; }
 
         /// <summary>
-        /// Gets or sets Member Commission.
-        /// </summary>
-        /// <value>The Member Commission.</value>
-        public decimal MemComm { get; set; }
-
-        /// <summary>
-        /// Gets or sets Member Total.
-        /// </summary>
-        /// <value>The Member Commission.</value>
-        public decimal MemTotal { get; set; }
-
-        /// <summary>
         /// Gets or sets Outstanding Amount.
         /// </summary>
         /// <value>The OutstandingAmount.</value>

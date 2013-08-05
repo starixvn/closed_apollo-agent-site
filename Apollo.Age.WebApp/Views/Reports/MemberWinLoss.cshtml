@@ -87,7 +87,7 @@
     decimal totalAComm = 0;
     decimal totalATotal = 0;
     decimal totalUpLineEffectiveStake = 0;
-    decimal totalUpLineWinLoss = 0;
+    decimal totalUpLineTotal = 0;
     decimal totalOutstandingAmount = 0;
     decimal totalOutstandingShareAmount = 0;
     
@@ -155,14 +155,14 @@
                 totalBetAmount += item.BetAmount;
                 totalBetCount += item.BetCount;
                 totalCommBase += item.CommBase;
-                totalMemWinLoss += item.MemWinLoss;
-                totalMemComm += item.MemComm;
-                totalMemTotal += item.MemTotal;
+                totalMemWinLoss += item.MemberWinLoss;
+                totalMemComm += item.MemberComm;
+                totalMemTotal += item.MemberTotal;
                 totalAWinLoss += item.AWinLoss;
                 totalAComm += item.AComm;
                 totalATotal += item.ATotal;
                 totalUpLineEffectiveStake += item.UpLineEffectiveStake;
-                totalUpLineWinLoss += item.UpLineWinLoss;
+                totalUpLineTotal += item.UpLineTotal;
                 totalOutstandingAmount += item.OutstandingAmount;
                 totalOutstandingShareAmount += item.OutstandingShareAmount;
                 
@@ -186,13 +186,13 @@
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.MemWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.MemberWinLoss, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.MemberComm, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.MemberTotal, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
@@ -207,7 +207,7 @@
                             @Formater.FormatNumber20(item.UpLineEffectiveStake, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.UpLineWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.UpLineTotal, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.OutstandingAmount, Formater.CULT_NAME_ENG)
@@ -255,7 +255,7 @@
                     @Formater.FormatNumber20(totalUpLineEffectiveStake, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalUpLineWinLoss, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalUpLineTotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalOutstandingAmount, Formater.CULT_NAME_ENG)

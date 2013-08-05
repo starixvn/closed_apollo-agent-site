@@ -309,24 +309,24 @@
       <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
     </Setting>
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss_Xtest" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
-      <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
-      <Mapping DataField="TurnOver" ObjectProperty="BetAmount"/>
-      <Mapping DataField="ActualTO" ObjectProperty="CommBase"/>
-      <Mapping DataField="WinLost" ObjectProperty="MemWinLoss"/>
+      <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
+      <Mapping DataField="PlayerComm" ObjectProperty="MemberComm"/>
       <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
       <Mapping DataField="DownlineEffStake" ObjectProperty="DownLineEffectiveStake"/>
-      <Mapping DataField="DownlineWinlost" ObjectProperty="DownLineWinLoss"/>
+      <Mapping DataField="GrossTotal" ObjectProperty="DownLineTotal"/>
       <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
-      <Mapping DataField="UplineWinlost" ObjectProperty="UpLineWinLoss"/>
     </Setting>
-    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="SVRAGE.RepDB" Plain="0">
-      <Mapping DataField="Username" ObjectProperty="MemberName"/>
-      <Mapping DataField="CustID" ObjectProperty="MemberId"/>
-      <Mapping DataField="PositionTaking" ObjectProperty="SoccerShare"/>
-      <Mapping DataField="PlayerComm" ObjectProperty="MemComm"/>
+    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+      <Mapping DataField="MemberId" ObjectProperty="CustId"/>
+      <Mapping DataField="Username" ObjectProperty="AgentName"/>
+      <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
+      <Mapping DataField="PlayerComm" ObjectProperty="MemberComm"/>
       <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
     </Setting>
     <Setting Key="Age_Rpt_LineSportCredits" SpName="Age_Rpt_LineSportCredits" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Outstanding" ObjectProperty="OutstandingCredit" />

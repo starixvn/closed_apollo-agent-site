@@ -213,14 +213,14 @@ namespace Apollo.Age.Reports.Services
                     totalBetAmount += memberWinLoss.BetAmount;
                     totalBetCount += memberWinLoss.BetCount;
                     totalCommBase += memberWinLoss.CommBase;
-                    totalMemWinLoss += memberWinLoss.MemWinLoss;
-                    totalMemComm += memberWinLoss.MemComm;
-                    totalMemTotal += memberWinLoss.MemTotal;
+                    totalMemWinLoss += memberWinLoss.MemberWinLoss;
+                    totalMemComm += memberWinLoss.MemberComm;
+                    totalMemTotal += memberWinLoss.MemberTotal;
                     totalAWinLoss += memberWinLoss.AWinLoss;
                     totalAComm += memberWinLoss.AComm;
                     totalATotal += memberWinLoss.ATotal;
                     totalUpLineEffectiveStake += memberWinLoss.UpLineEffectiveStake;
-                    totalUpLineWinLoss += memberWinLoss.UpLineWinLoss;
+                    totalUpLineWinLoss += memberWinLoss.UpLineTotal;
                     totalOutstandingAmount += memberWinLoss.OutstandingAmount;
                     totalOutstandingShareAmount += memberWinLoss.OutstandingShareAmount;
 
@@ -230,14 +230,14 @@ namespace Apollo.Age.Reports.Services
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(memberWinLoss.SoccerShare / 100.00));
                     CreateStringCell(row, columIndex++, bodyStyle, FormatNumber20(memberWinLoss.BetAmount) + "/" + FormatNumber(memberWinLoss.BetCount));
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.CommBase);
-                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemWinLoss);
-                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemComm);
-                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemTotal);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemberWinLoss);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemberComm);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.MemberTotal);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.AWinLoss);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.AComm);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.ATotal);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.UpLineEffectiveStake);
-                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.UpLineWinLoss);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.UpLineTotal);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.OutstandingAmount);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)memberWinLoss.OutstandingShareAmount);
 
@@ -401,9 +401,9 @@ namespace Apollo.Age.Reports.Services
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
                 CreateStringCell(row, columIndex++, bodyStyle, FormatNumber20(agentWinLoss.BetAmount) + "/" + FormatNumber(agentWinLoss.BetCount));
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.CommBase);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.MemWinLoss);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.MemberTotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineWinLoss);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineTotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
@@ -530,14 +530,14 @@ namespace Apollo.Age.Reports.Services
             decimal totalBetAmount = 0;
             decimal totalBetCount = 0;
             decimal totalCommBase = 0;
-            decimal totalMemWinLoss = 0;
+            decimal totalMemTotal = 0;
             decimal totalDownLineEffectiveStake = 0;
-            decimal totalDownLineWinLoss = 0;
+            decimal totalDownLineTotal = 0;
             decimal totalAWinLoss = 0;
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpLineEffectiveStake = 0;
-            decimal totalUpLineWinLoss = 0;
+            decimal totalUpLineTotal = 0;
 
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -545,14 +545,14 @@ namespace Apollo.Age.Reports.Services
                 totalBetAmount += agentWinLoss.BetAmount;
                 totalBetCount += agentWinLoss.BetCount;
                 totalCommBase += agentWinLoss.CommBase;
-                totalMemWinLoss += agentWinLoss.MemWinLoss;
+                totalMemTotal += agentWinLoss.MemberTotal;
                 totalDownLineEffectiveStake += agentWinLoss.DownLineEffectiveStake;
-                totalDownLineWinLoss += agentWinLoss.DownLineWinLoss;
+                totalDownLineTotal += agentWinLoss.DownLineTotal;
                 totalAWinLoss += agentWinLoss.AWinLoss;
                 totalAComm += agentWinLoss.AComm;
                 totalATotal += agentWinLoss.ATotal;
                 totalUpLineEffectiveStake += agentWinLoss.UpLineEffectiveStake;
-                totalUpLineWinLoss += agentWinLoss.UpLineWinLoss;
+                totalUpLineTotal += agentWinLoss.UpLineTotal;
 
                 row = sheet.CreateRow(rowIndex);
 
@@ -560,24 +560,28 @@ namespace Apollo.Age.Reports.Services
                 {
                     CreateStringCell(row, columIndex++, bodyStyle1, agentWinLoss.AgentName);
                     CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
+                    CreateStringCell(row, columIndex++, bodyStyle, FormatNumber20(agentWinLoss.BetAmount) + "/" + FormatNumber(agentWinLoss.BetCount));
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.CommBase);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.MemberTotal);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineTotal);
                 }
                 else
                 {
                     CreateStringCell(row, columIndex++, bodyStyle1, Lang.lblMemberWinLoss);
                     CreateStringCell(row, columIndex++, bodyStyle, Lang.lblNA);
+                    CreateStringCell(row, columIndex++, bodyStyle, FormatNumber20(agentWinLoss.BetAmount) + "/" + FormatNumber(agentWinLoss.BetCount));
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.CommBase);
+                    CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.MemberTotal);
+                    CreateStringCell(row, columIndex++, bodyStyle, Lang.lblNA);
+                    CreateStringCell(row, columIndex++, bodyStyle, Lang.lblNA);
                 }
-
-                CreateStringCell(row, columIndex++, bodyStyle, FormatNumber20(agentWinLoss.BetAmount) + "/" + FormatNumber(agentWinLoss.BetCount));
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.CommBase);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.MemWinLoss);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.DownLineWinLoss);
 
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AWinLoss);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.AComm);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.ATotal);
                 CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.UpLineEffectiveStake);
-                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.UpLineWinLoss);
+                CreateNumberCell(row, columIndex++, bodyStyle, numberFormat, (double)agentWinLoss.UpLineTotal);
 
                 rowIndex++;
             }
@@ -592,14 +596,14 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, footerStyle, string.Empty);
             CreateStringCell(row, columIndex++, footerStyle, FormatNumber20(totalBetAmount) + "/" + FormatNumber(totalBetCount));
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalCommBase);
-            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalMemWinLoss);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalMemTotal);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalDownLineEffectiveStake);
-            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalDownLineWinLoss);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalDownLineTotal);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAWinLoss);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalAComm);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalATotal);
             CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalUpLineEffectiveStake);
-            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalUpLineWinLoss);
+            CreateNumberCell(row, columIndex++, footerStyle, numberFormat, (double)totalUpLineTotal);
             
             #endregion footer
 

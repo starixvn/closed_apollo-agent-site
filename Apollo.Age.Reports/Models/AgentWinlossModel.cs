@@ -50,7 +50,19 @@ namespace Apollo.Age.Reports.Models
         /// Gets or sets Member WinLoss.
         /// </summary>
         /// <value>The Member WinLoss.</value>
-        public decimal MemWinLoss { get; set; }
+        public decimal MemberWinLoss { get; set; }
+
+        /// <summary>
+        /// Gets or sets Member Commission.
+        /// </summary>
+        /// <value>The Member Commission.</value>
+        public decimal MemberComm { get; set; }
+
+        /// <summary>
+        /// Gets or sets Member Total.
+        /// </summary>
+        /// <value>The Member Commission.</value>
+        public decimal MemberTotal { get; set; }
 
         #endregion
 
@@ -81,7 +93,7 @@ namespace Apollo.Age.Reports.Models
         /// <value>The DownLineEffectiveStake.</value>
         public decimal DownLineEffectiveStake { get; set; }
 
-        public decimal DownLineWinLoss { get; set; }
+        public decimal DownLineTotal { get; set; }
         #endregion
 
         #region UpLine
@@ -95,7 +107,7 @@ namespace Apollo.Age.Reports.Models
         /// Gets or sets UpLineWinLoss.
         /// </summary>
         /// <value>The UpLineEffectiveStake.</value>
-        public decimal UpLineWinLoss { get; set; }
+        public decimal UpLineTotal { get; set; }
         #endregion
     }
 }
