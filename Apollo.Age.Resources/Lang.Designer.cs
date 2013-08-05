@@ -3481,6 +3481,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string lblview {
+            get {
+                return ResourceManager.GetString("lblview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View 1st Handicap Forecast.
         /// </summary>
         public static string lblView1stHandicapForecast {
@@ -4948,7 +4957,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submit.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string submit {
             get {

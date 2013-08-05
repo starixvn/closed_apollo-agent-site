@@ -769,7 +769,7 @@
     <value>单注</value>
   </data>
   <data name="Pages" xml:space="preserve">
-    <value>页</value>
+    <value>页次</value>
   </data>
   <data name="soccerdeadballhdptakenshare" xml:space="preserve">
     <value>足球 死球 让球 获得占成数(%)</value>
@@ -1784,5 +1784,8 @@
   </data>
   <data name="lblWinLossReport" xml:space="preserve">
     <value>输赢</value>
+  </data>
+  <data name="lblview" xml:space="preserve">
+    <value>显示</value>
   </data>
 </root>
