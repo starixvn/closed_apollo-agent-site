@@ -57,7 +57,10 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
+          
+
             var authModel = new AuthModel();
+
 
             if (!string.IsNullOrWhiteSpace(error))
             {
@@ -73,6 +76,14 @@ namespace Apollo.Age.Integration.Controllers
 
                         if (authModel != null && authModel.IsValid)
                         {
+                            
+                            // username is empty or user is disallowed sso
+                            if (!_userService.AllowLineAccountSSO(username))
+                            {
+                                authModel.ErrorCode = ErrorCode.ComingSoon;
+                                return View(authModel);
+                            }
+
                             Entities.User user = _userService.GetUserByUsername(authModel.Username);
 
                             // check whether authenticated username (from sungame agentsite) is the same with
@@ -140,9 +151,15 @@ namespace Apollo.Age.Integration.Controllers
         }
 
         [AllowAnonymous]
-        public ViewResult Error(string errorCode)
+        public ViewResult Error(string error_code)
         {
-            return View((object)errorCode);
+            return View((object)error_code);
+        }
+
+        [AllowAnonymous]
+        public ViewResult ComingSoon()
+        {
+            return View();
         }
 
         [AllowAnonymous]

@@ -231,5 +231,22 @@ namespace Apollo.Age.Repositories.Impl
                 throw ex;
             }
         }
+
+
+        public bool CheckBelongToUpline(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var currentParams = criteria.GetSpParams();
+                    objectDb.ExecuteNonQuery(currentParams);
+
+                    return Converter.ToBool(currentParams["allowed"]);
+                }
+            }
+
+            return false;
+        }
     }
 }
