@@ -20,8 +20,10 @@ namespace Apollo.Age.Services.Interface
         User GetUserById(int userId);
         
         User GetUserByUsername(string username);
-
+                
         User InternalGetAgentByUsername(string username);
+
+        bool AllowLineAccountSSO(string username);
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database

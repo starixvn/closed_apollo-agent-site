@@ -126,6 +126,8 @@ namespace Apollo.Age.Integration.Services
                     return Lang.lblUnsupportedResponseType;
                 case ErrorCode.ServerError:
                     return Lang.lblServerError;
+                case ErrorCode.ComingSoon:
+                    return Lang.comingsoon;
                 case ErrorCode.TemporarilyUnavailable:
                 default:
                     return Lang.lblTemporarilyUnavailable;

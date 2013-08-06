@@ -1917,6 +1917,9 @@
   <data name="fundoutamountmessage" xml:space="preserve">
     <value>Fund out amount must be between 0 to {0}.</value>
   </data>
+  <data name="comingsoon" xml:space="preserve">
+    <value>Coming Soon</value>
+  </data>
   <data name="lblTotalWager" xml:space="preserve">
     <value>Total</value>
   </data>

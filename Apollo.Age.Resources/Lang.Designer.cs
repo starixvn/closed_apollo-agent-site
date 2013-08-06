@@ -538,6 +538,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coming Soon.
+        /// </summary>
+        public static string comingsoon {
+            get {
+                return ResourceManager.GetString("comingsoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comm Base.
         /// </summary>
         public static string CommBase {

@@ -7,6 +7,7 @@
 //   <change who="???" date="???">Created</change>
 //   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
 //   <change who="Ricky.Nguyen" date="2013.5.10">Added IsKickOut, HasPermissionOnUpdating</change>
+//   <change who="Terry.Nguyen" date="2013.8.5">Added AllowLineAccountSSO for checking sso in one line</change>
 // </history>
 
 namespace Apollo.Age.Services.Impl
@@ -22,7 +23,7 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common.Helper;
     using Fanex.Logging;
 
-    public class UserService : IUserService
+    public class UserService : QueryService, IUserService
     {
         private readonly IUserRepository _userRepository;
 
@@ -56,6 +57,8 @@ namespace Apollo.Age.Services.Impl
 
             return user;
         }
+
+
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database.
@@ -270,6 +273,27 @@ namespace Apollo.Age.Services.Impl
             }
 
             return 0;
+        }
+
+
+        public bool AllowLineAccountSSO(string username)
+        {
+            bool isAllowed = false;
+            try
+            {
+                isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
+                {
+                    Username = username,
+                    Allowed = false
+                });
+
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return isAllowed;
         }
     }
 }

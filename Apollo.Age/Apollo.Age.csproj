@@ -60,6 +60,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Core\SportGroup.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\CheckBelongToUplinesCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalLogoutCriteria.cs" />
     <Compile Include="Criterias\InternalReCheckinCriteria.cs" />
