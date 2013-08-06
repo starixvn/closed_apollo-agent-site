@@ -3382,6 +3382,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string lblTotalWager {
+            get {
+                return ResourceManager.GetString("lblTotalWager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to U/E.
         /// </summary>
         public static string lblUE {

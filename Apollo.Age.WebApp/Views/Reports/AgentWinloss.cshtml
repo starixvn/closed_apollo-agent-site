@@ -147,13 +147,13 @@
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.MemWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.MemberTotal, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.DownLineEffectiveStake, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.DownLineWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.DownLineTotal, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
@@ -229,14 +229,14 @@
             decimal totalBetAmount = 0;
             decimal totalBetCount = 0;
             decimal totalCommBase = 0;
-            decimal totalMemWinLoss = 0;
+            decimal totalMemTotal = 0;
             decimal totalDownLineEffectiveStake = 0;
-            decimal totalDownLineWinLoss = 0;
+            decimal totalDownLineTotal = 0;
             decimal totalAWinLoss = 0;
             decimal totalAComm = 0;
             decimal totalATotal = 0;
             decimal totalUpLineEffectiveStake = 0;
-            decimal totalUpLineWinLoss = 0;
+            decimal totalUpLineTotal = 0;
             
                 }
                 @foreach (var item in list)
@@ -244,14 +244,14 @@
                     totalBetAmount += item.BetAmount;
                     totalBetCount += item.BetCount;
                     totalCommBase += item.CommBase;
-                    totalMemWinLoss += item.MemWinLoss;
+                    totalMemTotal += item.MemberTotal;
                     totalDownLineEffectiveStake += item.DownLineEffectiveStake;
-                    totalDownLineWinLoss += item.DownLineWinLoss;
+                    totalDownLineTotal += item.DownLineTotal;
                     totalAWinLoss += item.AWinLoss;
                     totalAComm += item.AComm;
                     totalATotal += item.ATotal;
                     totalUpLineEffectiveStake += item.UpLineEffectiveStake;
-                    totalUpLineWinLoss += item.UpLineWinLoss;
+                    totalUpLineTotal += item.UpLineTotal;
 
                     rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
@@ -287,14 +287,27 @@
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.MemWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.MemberTotal, Formater.CULT_NAME_ENG)
                         </td>
-                        <td class="r">
-                            @Formater.FormatNumber20(item.DownLineEffectiveStake, Formater.CULT_NAME_ENG)
-                        </td>
-                        <td class="r">
-                            @Formater.FormatNumber20(item.DownLineWinLoss, Formater.CULT_NAME_ENG)
-                        </td>
+                        @if (item.IsAgent)
+                        {
+                            <td class="r">
+                                @Formater.FormatNumber20(item.DownLineEffectiveStake, Formater.CULT_NAME_ENG)
+                            </td>
+                            <td class="r">
+                                @Formater.FormatNumber20(item.DownLineTotal, Formater.CULT_NAME_ENG)
+                            </td>
+                        }
+                        else
+                        {
+                             <td class="r">
+                                @Lang.lblNA
+                            </td>
+                            <td class="r">
+                                @Lang.lblNA
+                            </td>
+                        }
+
                         <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                         </td>
@@ -308,7 +321,7 @@
                             @Formater.FormatNumber20(item.UpLineEffectiveStake, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.UpLineWinLoss, Formater.CULT_NAME_ENG)
+                            @Formater.FormatNumber20(item.UpLineTotal, Formater.CULT_NAME_ENG)
                         </td>
                     </tr>
                 }
@@ -329,13 +342,13 @@
                         @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(totalMemWinLoss, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(totalMemTotal, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalDownLineEffectiveStake, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(totalDownLineWinLoss, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(totalDownLineTotal, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
@@ -350,7 +363,7 @@
                         @Formater.FormatNumber20(totalUpLineEffectiveStake, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(totalUpLineWinLoss, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(totalUpLineTotal, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
             </tfoot>

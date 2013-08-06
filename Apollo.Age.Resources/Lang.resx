@@ -1920,4 +1920,10 @@
   <data name="comingsoon" xml:space="preserve">
     <value>Coming Soon</value>
   </data>
+  <data name="lblTotalWager" xml:space="preserve">
+    <value>Total</value>
+  </data>
+
+
+
 </root>

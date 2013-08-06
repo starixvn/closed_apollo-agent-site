@@ -142,7 +142,7 @@
     <value>HT退款</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>会员</value>
+    <value>会员数</value>
   </data>
   <data name="warrior2ndBall" xml:space="preserve">
     <value>第二颗球赢</value>
@@ -247,7 +247,7 @@
     <value>三月</value>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>细节</value>
+    <value>详细设定</value>
   </data>
   <data name="agentwinloss" xml:space="preserve">
     <value>代理商结果</value>
@@ -331,7 +331,7 @@
     <value>确认</value>
   </data>
   <data name="nonentered" xml:space="preserve">
-    <value>未完成</value>
+    <value>无结果</value>
   </data>
   <data name="lbldomain" xml:space="preserve">
     <value>网域：</value>
@@ -424,7 +424,7 @@
     <value>目前状态</value>
   </data>
   <data name="lblStraight" xml:space="preserve">
-    <value>单式全部</value>
+    <value>单式</value>
   </data>
   <data name="date" xml:space="preserve">
     <value>日期</value>
@@ -478,7 +478,7 @@
     <value>总局数</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>搜寻</value>
+    <value>查询</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
     <value>投注限额</value>
@@ -649,7 +649,7 @@
     <value>双</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>取消投注</value>
+    <value>取消单分析</value>
   </data>
   <data name="lblParlay" xml:space="preserve">
     <value>过关</value>
@@ -1210,7 +1210,7 @@
     <value>滚球游戏</value>
   </data>
   <data name="condition" xml:space="preserve">
-    <value>条件</value>
+    <value>帐号条件</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>项目</value>
@@ -1519,7 +1519,7 @@
     <value>3</value>
   </data>
   <data name="HomeGuest" xml:space="preserve">
-    <value>主/客</value>
+    <value>队伍</value>
   </data>
   <data name="Golf" xml:space="preserve">
     <value>高尔夫球</value>
@@ -1636,7 +1636,7 @@
     <value>即时注单</value>
   </data>
   <data name="entered" xml:space="preserve">
-    <value>完成</value>
+    <value>有结果</value>
   </data>
   <data name="lblHomeNoBet" xml:space="preserve">
     <value>主队（不获胜球队）</value>
@@ -1681,7 +1681,7 @@
     <value>此网页不存在，请检查网址</value>
   </data>
   <data name="lblExit" xml:space="preserve">
-    <value>注销</value>
+    <value>离开</value>
   </data>
   <data name="completed" xml:space="preserve">
     <value>已完場</value>
@@ -1748,5 +1748,41 @@
   </data>
   <data name="Value" xml:space="preserve">
     <value>价值</value>
+  </data>
+  <data name="lblBetCount" xml:space="preserve">
+    <value>投注计算</value>
+  </data>
+  <data name="lblDownline" xml:space="preserve">
+    <value>下线</value>
+  </data>
+  <data name="lblLevel" xml:space="preserve">
+    <value>阶层</value>
+  </data>
+  <data name="lblLineSportCredit" xml:space="preserve">
+    <value>总计下线体育点数</value>
+  </data>
+  <data name="lblOutstandingAmount" xml:space="preserve">
+    <value>未结算总额</value>
+  </data>
+  <data name="lblOutstandingShareAmount" xml:space="preserve">
+    <value>未结算占成总额</value>
+  </data>
+  <data name="lblShareholderLevel" xml:space="preserve">
+    <value>股东</value>
+  </data>
+  <data name="lblTotalOutstandingCredit" xml:space="preserve">
+    <value>未结算信用额度总额</value>
+  </data>
+  <data name="lblTotalRemainingCredit" xml:space="preserve">
+    <value>剩余信用额度总额</value>
+  </data>
+  <data name="lblTotalWager" xml:space="preserve">
+    <value>总入球</value>
+  </data>
+  <data name="lblUpline" xml:space="preserve">
+    <value>上线</value>
+  </data>
+  <data name="lblWinLossReport" xml:space="preserve">
+    <value>输赢</value>
   </data>
 </root>

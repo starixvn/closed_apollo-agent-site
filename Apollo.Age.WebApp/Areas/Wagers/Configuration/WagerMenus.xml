@@ -8,7 +8,7 @@
         <BetType Action="Correctscore" ResourceKey="correctscore" />
         <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
         <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
-        <BetType Action="Total" ResourceKey="total" />
+        <BetType Action="Total" ResourceKey="lblTotalWager" />
         <BetType Action="Parlay" ResourceKey="lblParlay" />
     </Sport>
     <Sport Controller="Basketball" ResourceKey="">
