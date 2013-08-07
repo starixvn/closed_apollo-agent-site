@@ -200,7 +200,8 @@ namespace Sunplus.Agent.UI._BetList
 
             username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
-            moveBetsDay = minDate = reportService.MoveBetsDay().AddDays(1);
+            moveBetsDay = reportService.MoveBetsDay();
+            minDate = reportService.MoveBetsDay().AddDays(1);
             fromDate = GetDateTimeRequest("fromDate", moveBetsDay);
             toDate = GetDateTimeRequest("toDate", DateTime.Now);
             mainShareHolderId = GetStringRequest("mainShareHolderId", string.Empty);

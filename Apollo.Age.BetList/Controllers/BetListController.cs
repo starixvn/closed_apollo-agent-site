@@ -71,7 +71,7 @@ namespace Apollo.Age.BetList.Controllers
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
 
-            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+            var moveBetsDay = _reportService.MoveBetsDay();
 
             // List ticket
             var betListService = new BetListService();
@@ -116,7 +116,7 @@ namespace Apollo.Age.BetList.Controllers
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
 
-            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+            var moveBetsDay = _reportService.MoveBetsDay();
 
             // List ticket
             var betListService = new BetListService();
@@ -348,7 +348,7 @@ namespace Apollo.Age.BetList.Controllers
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
 
-            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+            var moveBetsDay = _reportService.MoveBetsDay();
 
             // List ticket
             var betListService = new BetListService();
@@ -421,7 +421,7 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             var balanceUpDay = _reportService.GetBalanceUpDay();
-            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+            var moveBetsDay = _reportService.MoveBetsDay();
             var betListService = new BetListService();
             var criteria = new BetListCriteria
             {
