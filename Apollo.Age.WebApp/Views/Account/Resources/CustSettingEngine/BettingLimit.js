@@ -29,15 +29,15 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             // Validate each sport type
             if (copiedItem == null) { // Copy checkbox was ticked
                 if (validateExpr.test(item.maxPerMatchElement.value) == false) {
-                    Fanex.ValidateMessage(item.maxPerMatchElement, Language.INCORRECT_MAX_PER_MATCH);
+                    Fanex.ValidateMessage(item.maxPerMatchElement, Language.INCORRECT_MAX_PER_MATCH, 0, 100);
                     return false;
                 }
                 if (validateExpr.test(item.maxBetElement.value) == false) {
-                    Fanex.ValidateMessage(item.maxBetElement, Language.INCORRECT_MAX_BET);
+                    Fanex.ValidateMessage(item.maxBetElement, Language.INCORRECT_MAX_BET, 0, 100);
                     return false;
                 }
                 if (validateExpr.test(item.minBetElement.value) == false) {
-                    Fanex.ValidateMessage(item.minBetElement, Language.INCORRECT_MIN_BET);
+                    Fanex.ValidateMessage(item.minBetElement, Language.INCORRECT_MIN_BET, 0, 100);
                     return false;
                 }
                 
