@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Resources;
 @{
-    ViewBag.Title = "Edit Share Setting " + ViewBag.UserName;
+    ViewBag.Title = string.Format(Lang.lblEditShareSetting, ViewBag.UserName);
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
     var userName = (string)ViewBag.UserName ?? string.Empty;
     var custId = (int)ViewBag.CustId;
