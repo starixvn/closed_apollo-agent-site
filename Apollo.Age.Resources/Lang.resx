@@ -1923,7 +1923,10 @@
   <data name="lblTotalWager" xml:space="preserve">
     <value>Total</value>
   </data>
-
-
-
+  <data name="lblEditShareSetting" xml:space="preserve">
+    <value>Edit Share Setting {0}</value>
+  </data>
+  <data name="lblViewAccountDetail" xml:space="preserve">
+    <value>View Agent Details</value>
+  </data>
 </root>
