@@ -259,8 +259,8 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
                 maxDate = DateTime.Now;
-                moveBetsDay = reportService.MoveBetsDay().AddDays(1);
-                minDate = moveBetsDay;
+                moveBetsDay = reportService.MoveBetsDay();
+                minDate = reportService.MoveBetsDay().AddDays(1);
 
                 statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }

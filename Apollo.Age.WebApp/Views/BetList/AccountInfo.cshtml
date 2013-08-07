@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: Model.FromDate, maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -28,7 +28,7 @@
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: Model.FromDate, maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
