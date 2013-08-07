@@ -71,7 +71,7 @@ namespace Apollo.Age.BetList.Controllers
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
 
-            var moveBetsDay = _reportService.MoveBetsDay();
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
             // List ticket
             var betListService = new BetListService();
@@ -116,7 +116,7 @@ namespace Apollo.Age.BetList.Controllers
                    (int)Apollo.Age.Enumerations.BetStatus.Won,
                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
 
-            var moveBetsDay = _reportService.MoveBetsDay();
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
             // List ticket
             var betListService = new BetListService();
