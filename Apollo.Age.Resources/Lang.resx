@@ -220,7 +220,7 @@
     <value>Basketball All</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Search</value>
   </data>
   <data name="lblHelp" xml:space="preserve">
     <value>Help</value>
@@ -1925,6 +1925,9 @@
   </data>
   <data name="lblEditShareSetting" xml:space="preserve">
     <value>Edit Share Setting {0}</value>
+     </data
+  <data name="lblview" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="lblViewAccountDetail" xml:space="preserve">
     <value>View Agent Details</value>
