@@ -322,7 +322,7 @@
       <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
     </Setting>
     <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
-      <Mapping DataField="MemberId" ObjectProperty="CustId"/>
+      <Mapping DataField="CustId" ObjectProperty="MemberId"/>
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
       <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
       <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
