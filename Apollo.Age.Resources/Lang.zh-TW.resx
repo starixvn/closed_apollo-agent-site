@@ -217,7 +217,7 @@
     <value>籃全</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>搜尋</value>
+    <value>查詢</value>
   </data>
   <data name="lblHelp" xml:space="preserve">
     <value>幫助</value>
@@ -616,7 +616,7 @@
     <value>優勝冠軍賽果</value>
   </data>
   <data name="lblCommissionSetting" xml:space="preserve">
-    <value>退水</value>
+    <value>退水設定</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
     <value>佔成 % (足球 早餐 讓分)</value>
@@ -769,7 +769,7 @@
     <value>單注</value>
   </data>
   <data name="Pages" xml:space="preserve">
-    <value>頁</value>
+    <value>頁次</value>
   </data>
   <data name="soccerdeadballhdptakenshare" xml:space="preserve">
     <value>足球 死球 讓球 獲得占成數(%)</value>
@@ -1318,7 +1318,7 @@
     <value>更新</value>
   </data>
   <data name="MinSingleBet" xml:space="preserve">
-    <value>最小單場</value>
+    <value>最小單注限額</value>
   </data>
   <data name="lblcurrentsession" xml:space="preserve">
     <value>目前Session:</value>
@@ -1468,7 +1468,7 @@
     <value>所有聯盟</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>退水</value>
+    <value>退水設定</value>
   </data>
   <data name="Agency" xml:space="preserve">
     <value>總代理</value>
@@ -1705,7 +1705,7 @@
     <value>否</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>單注下限</value>
+    <value>最小單注限額</value>
   </data>
   <data name="hd" xml:space="preserve">
     <value>主和</value>
@@ -1784,5 +1784,8 @@
   </data>
   <data name="lblWinLossReport" xml:space="preserve">
     <value>輸贏</value>
+  </data>
+  <data name="lblview" xml:space="preserve">
+    <value>顯示</value>
   </data>
 </root>

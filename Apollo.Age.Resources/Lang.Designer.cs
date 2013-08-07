@@ -2122,6 +2122,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Share Setting {0}.
+        /// </summary>
+        public static string lblEditShareSetting {
+            get {
+                return ResourceManager.GetString("lblEditShareSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Effective Stake.
         /// </summary>
         public static string lblEffectiveStake {
@@ -3490,6 +3499,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string lblview {
+            get {
+                return ResourceManager.GetString("lblview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View 1st Handicap Forecast.
         /// </summary>
         public static string lblView1stHandicapForecast {
@@ -3504,6 +3522,15 @@ namespace Apollo.Age.Resources {
         public static string lblView1stOverUnderForecast {
             get {
                 return ResourceManager.GetString("lblView1stOverUnderForecast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Agent Details.
+        /// </summary>
+        public static string lblViewAccountDetail {
+            get {
+                return ResourceManager.GetString("lblViewAccountDetail", resourceCulture);
             }
         }
         
@@ -4957,7 +4984,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Submit.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string submit {
             get {
