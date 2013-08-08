@@ -45,8 +45,8 @@ var Log = function ($) {
                 fromDayLabel: Log.fromDayLable.val(),
                 toDayLabel: Log.toDayLable.val(),
                 month: Log.fromDate.val(),
-                fromDay: parseInt(Log.fromDate.val().substring(3, 5)),
-                toDay: parseInt(Log.toDate.val().substring(3, 5)),
+                fromDay: parseInt(Log.fromDate.val().split("/")[1], 10),
+                toDay: parseInt(Log.toDate.val().split("/")[1], 10),
                 afterChangeMonth: function () {
                     Log.fromDate.val(Log.monthDateTime.monPickr("getFromDate", "MM/dd/yyyy"));
                     Log.toDate.val(Log.monthDateTime.monPickr("getToDate", "MM/dd/yyyy"));

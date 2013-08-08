@@ -36,18 +36,21 @@ namespace Apollo.Age.Account.Controllers
 
         private IAccountService _accountService;
 
+        private UserService _userServicel;
+
         private ServiceBase _serviceBase;
 
         public LogController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
-        public LogController(ILogRunSpService logService, IAccountService accountService, ServiceBase serviceBase)
+        public LogController(ILogRunSpService logService, IAccountService accountService, ServiceBase serviceBase, UserService userService)
         {
             _logService = logService ?? new LogRunSpService();
             _accountService = accountService ?? new AccountService();
             _serviceBase = serviceBase ?? new ServiceBase();
+            _userServicel = userService ?? new UserService();
         }
 
         /// <summary>
@@ -99,14 +102,9 @@ namespace Apollo.Age.Account.Controllers
             {
                 if (criteria.IsAgent)
                 {
-                    var agentInfo = _accountService.GetAgentInfo(new GetAgentInfoCriteria
-                    {
-                        ActorAgentId = this.CurrentSession.AgentId,
-                        ExcludeActor = false,
-                        Username = criteria.Username
-                    });
+                    var agentInfo = _userServicel.InternalGetAgentByUsername(criteria.Username);
 
-                    ViewBag.AgentLevel = agentInfo.Level;
+                    ViewBag.AgentLevel = agentInfo.Agent.Level;
                 }
             }
 
