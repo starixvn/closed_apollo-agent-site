@@ -3013,6 +3013,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select at least one member..
+        /// </summary>
+        public static string lblPleaseSelectAtLeast {
+            get {
+                return ResourceManager.GetString("lblPleaseSelectAtLeast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post date.
         /// </summary>
         public static string lblPostdate {

@@ -47,7 +47,10 @@ var ACCOUNTLIST = function ($) {
                 usernames.push(memberCheckbox.data('member-username'));
             });
 
-
+            if (memberIds.length == 0) {
+                alert(BASELANGUAGES.lblSelectAtLeast);
+                return;
+            }
 
             //window.location.href = link + '&memberIds=' + memberIds;
             window.location.href = link
