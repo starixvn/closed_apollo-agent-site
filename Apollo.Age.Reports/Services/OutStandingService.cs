@@ -155,6 +155,7 @@ namespace Apollo.Age.Reports.Services
             bool isSuper)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+            CustomizeColor(hssfworkbook);
             ISheet sheet = hssfworkbook.CreateSheet("OutStanding Report");
 
             try
@@ -172,11 +173,10 @@ namespace Apollo.Age.Reports.Services
                     double totalOutstanding = 0, totalShareAmount = 0, currentOutStanding = 0, currentShareAmount = 0;
                     string userName = string.Empty;
 
-                    ICellStyle bodyStyle = hssfworkbook.CreateCellStyle();
-                    bodyStyle.BorderTop = BorderStyle.THIN;
-                    bodyStyle.BorderLeft = BorderStyle.THIN;
-                    bodyStyle.BorderRight = BorderStyle.THIN;
-                    bodyStyle.BorderBottom = BorderStyle.THIN;
+                    var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+                    var bodyStyleLeft = CreateStyle(hssfworkbook);
+
+                    sheet.CreateFreezePane(0, rowIndex);
 
                     for (int i = 0; i < length; i++)
                     {
@@ -196,13 +196,14 @@ namespace Apollo.Age.Reports.Services
                         currentShareAmount = (double)currentOutstanding.ShareAmount;
                         RenderExcelBodyRows(
                             hssfworkbook, 
-                            sheet, 
+                            sheet,
                             rowIndex + i, 
                             userName, 
                             currentOutStanding,
                             currentShareAmount,
                             numberFormat,
-                            bodyStyle);
+                            bodyStyleLeft, 
+                            bodyStyleRight);
                         totalOutstanding += currentOutStanding;
                         totalShareAmount += currentShareAmount;
                     }
@@ -210,22 +211,20 @@ namespace Apollo.Age.Reports.Services
                     //// If not is supper, then add total row
                     if (!isSuper)
                     {
-                        IFont font = hssfworkbook.CreateFont();
-                        font.Color = HSSFColor.WHITE.index;
-                        ICellStyle footerStyle = hssfworkbook.CreateCellStyle();
-                        footerStyle.FillForegroundColor = HSSFColor.DARK_RED.index;
-                        footerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-                        footerStyle.FillBackgroundColor = HSSFColor.DARK_RED.index;
-                        footerStyle.SetFont(font);
+                        var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
+                        var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
+                        var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
+
                         RenderExcelBodyRows(
                             hssfworkbook, 
-                            sheet, 
+                            sheet,
                             rowIndex + length, 
                             Lang.total, 
                             totalOutstanding,
                             totalShareAmount,
                             numberFormat,
-                            footerStyle);
+                            footerStyleLeft,
+                            footerStyleRight);
                     }
                 }
             }
@@ -256,32 +255,13 @@ namespace Apollo.Age.Reports.Services
             double outstandingAmount,
             double shareAmount,
             short numberFormat,
-            ICellStyle cellStyle)
+            ICellStyle bodyStyleLeft,
+            ICellStyle bodyStyleRight)
         {
             IRow row = sheet.CreateRow(rowIndex);
-            var userNameCell = row.CreateCell(0);
-            var outstadingValue = row.CreateCell(1);
-            var shareAmountValue = row.CreateCell(2);
-
-            if (cellStyle != null)
-            {
-                userNameCell.CellStyle = cellStyle;
-                outstadingValue.CellStyle = cellStyle;
-                shareAmountValue.CellStyle = cellStyle;
-            }
-            //// Username Cell
-            userNameCell.SetCellType(CellType.STRING);
-            userNameCell.SetCellValue(userName);
-
-            //// Outstanding Value Cell
-            outstadingValue.SetCellType(CellType.NUMERIC);
-            outstadingValue.SetCellValue(outstandingAmount);
-            outstadingValue.CellStyle.DataFormat = numberFormat;
-
-            //// Share Amount Cell
-            shareAmountValue.SetCellType(CellType.NUMERIC);
-            shareAmountValue.SetCellValue(shareAmount);
-            shareAmountValue.CellStyle.DataFormat = numberFormat;
+            CreateStringCell(row, 0, bodyStyleLeft, userName);
+            CreateNumberCell(row, 1, bodyStyleRight, numberFormat, outstandingAmount);
+            CreateNumberCell(row, 2, bodyStyleRight, numberFormat, shareAmount);
         }
 
         /// <summary>
@@ -307,29 +287,17 @@ namespace Apollo.Age.Reports.Services
 
             //// Report Title
             var row = sheet.CreateRow(fromRow);
-            ICell cell = row.CreateCell(0);
-            cell.SetCellValue(string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));
-            ICellStyle style = workBook.CreateCellStyle();
-            style.Alignment = HorizontalAlignment.CENTER;
-            //// create a font style
-            IFont font = workBook.CreateFont();
-            font.FontHeight = 300;
-            style.SetFont(font);
-            cell.CellStyle = style;
 
+            var rowTitle = sheet.CreateRow(rownum: 1);
+            var fontTitle = CreateFont(workBook, HSSFColor.BLACK.index, 14, true);
+            var styleTitle = CreateStyle(workBook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
+            CreateStringCell(row, 0, styleTitle, string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));
             sheet.AddMergedRegion(new CellRangeAddress(fromRow, fromRow, 0, 2));
 
-            //// BetType and Sport Type Name
-            var informationRow = sheet.CreateRow(fromRow + 1);
-            ICell informationCell = informationRow.CreateCell(0);
-            IFont font1 = workBook.CreateFont();
-            font1.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
-            font1.IsItalic = true;
-            font1.Color = HSSFColor.BLUE.index;
-            ICellStyle style1 = workBook.CreateCellStyle();
-            style1.SetFont(font1);
-            informationCell.CellStyle = style1;
-            informationCell.SetCellValue(string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));
+            var rowFilter = sheet.CreateRow(rownum: 2);
+            var fontFilter = CreateFont(workBook, HSSFColor.BLUE.index, 11, true, true);
+            var styleFilter = CreateStyle(workBook, font: fontFilter, isBorder: false);
+            CreateStringCell(rowFilter, 0, styleFilter, string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));
 
             sheet.AddMergedRegion(new CellRangeAddress(fromRow + 1, fromRow + 1, 0, 2));
         }
@@ -343,33 +311,16 @@ namespace Apollo.Age.Reports.Services
         private void RenderExcelHeader(HSSFWorkbook workBook, ISheet sheet, int fromRow)
         {
             var row = sheet.CreateRow(fromRow);
-            var font1 = workBook.CreateFont();
-            font1.FontHeightInPoints = 11;
-            font1.Color = NPOI.HSSF.Util.HSSFColor.WHITE.index;
-
-            ICellStyle headerStyle = workBook.CreateCellStyle();
-            headerStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
-            headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            headerStyle.FillBackgroundColor = HSSFColor.GREY_50_PERCENT.index;
-            headerStyle.Alignment = HorizontalAlignment.CENTER;
-            headerStyle.VerticalAlignment = VerticalAlignment.CENTER;
-            headerStyle.SetFont(font1);
-            headerStyle.BorderTop = BorderStyle.THIN;
-            headerStyle.BorderLeft = BorderStyle.THIN;
-            headerStyle.BorderRight = BorderStyle.THIN;
-            headerStyle.BorderBottom = BorderStyle.THIN;
+            var font = CreateFont(workBook, HSSFColor.WHITE.index, 11);
+            var headerStyle = CreateStyle(workBook, HSSFColor.BROWN.index, HorizontalAlignment.CENTER, font);
 
             var usernameCell = row.CreateCell(0);
             usernameCell.CellStyle = headerStyle;
             usernameCell.SetCellValue(string.Empty);
 
-            var outStandingCell = row.CreateCell(1);
-            outStandingCell.CellStyle = headerStyle;
-            outStandingCell.SetCellValue(Lang.outstanding);
-
-            var shareAmountCell = row.CreateCell(2);
-            shareAmountCell.CellStyle = headerStyle;
-            shareAmountCell.SetCellValue(Lang.ShareAmount);
+            CreateStringCell(row, 0, headerStyle, string.Empty);
+            CreateStringCell(row, 1, headerStyle, Lang.outstanding);
+            CreateStringCell(row, 2, headerStyle, Lang.ShareAmount);
 
             sheet.SetColumnWidth(0, 35 * 256);
             sheet.SetColumnWidth(1, 35 * 256);
