@@ -311,7 +311,16 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, string agentUsername = "", bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult EditMemberPositionTaking(
+            int memberId, 
+            string userName, 
+            int agentId, 
+            string agentUsername = "", 
+            bool reload = false, 
+            bool isSimpleMode = true, 
+            string backLink = "", 
+            bool fromLeftMenu = false,
+            string memberIds = "")
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -323,12 +332,17 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsEditAgent = false;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.AgentUsername = agentUsername;
+            ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
+        public ActionResult GetPositionTaking(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel,
+            string targetCustIds = "")
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking, targetCustIds);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetPositionTakingLanguage(positionTakingSetting);
@@ -363,17 +377,27 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        public ActionResult EditMemberSetting(int memberId, string userName, int? agentId, bool fromLeftMenu = false)
+        public ActionResult EditMemberSetting(
+            int memberId, 
+            string userName, 
+            int? agentId, 
+            bool fromLeftMenu = false,
+            string memberIds = "")
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool fromLeftMenu = false)
+        public ActionResult EditAgentSetting(
+            int agentId, 
+            int agentLevel, 
+            string userName, 
+            bool fromLeftMenu = false)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
@@ -383,16 +407,16 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
-        public ActionResult GetMemberSetting(int memberId, int? agentId)
+        public ActionResult GetMemberSetting(int memberId, int? agentId, string memberIds = "")
         {
             var memberInfo = _customerSettingService.GetMemberInfo(memberId);
-            string javascriptString = this.GetSettingScript(memberId, agentId, null, memberInfo != null ? memberInfo.UGroup : string.Empty);
+            string javascriptString = this.GetSettingScript(memberId, agentId, null, memberInfo != null ? memberInfo.UGroup : string.Empty, memberIds);
             return JavaScript(javascriptString);
         }
 
         public ActionResult GetAgentSetting(int agentId, int agentLevel)
         {
-            string javascriptString = this.GetSettingScript(agentId, null, (int?)agentLevel, null);
+            string javascriptString = this.GetSettingScript(agentId, null, (int?)agentLevel, null, null);
             return JavaScript(javascriptString);
         }
 
@@ -416,11 +440,16 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewOnMember = false;
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = true;
-            SettingContext settingContext = this.GetCurrentSettingContext(CurrentSession.AgentId, base.CurrentSession.AgentId, CurrentSession.AgentLevel, FormSettingType.All);
+            SettingContext settingContext = this.GetCurrentSettingContext(CurrentSession.AgentId, base.CurrentSession.AgentId, CurrentSession.AgentLevel, FormSettingType.All, string.Empty);
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewAgentDetails(int agentId, int agentLevel, string userName, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult ViewAgentDetails(
+            int agentId, 
+            int agentLevel, 
+            string userName, 
+            string backLink = "", 
+            bool fromLeftMenu = false)
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -430,11 +459,17 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All);
+            SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All, string.Empty);
             return ViewAccountDetails(settingContext);
         }
 
-        public ActionResult ViewMemberDetails(int memberId, string userName, int? agentId, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult ViewMemberDetails(
+            int memberId, 
+            string userName, 
+            int? agentId, 
+            string backLink = "", 
+            bool fromLeftMenu = false,
+            string memberIds = "")
         {
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -443,8 +478,9 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewMySetting = false;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.MemberIds = memberIds;
             ViewBag.CanEdit = base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
-            SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All);
+            SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
             return ViewAccountDetails(settingContext);
         }
 
@@ -572,7 +608,12 @@ namespace Apollo.Age.Account.Controllers
             }
         }
 
-        private SettingContext GetCurrentSettingContext(int targetCustId, int? agentId, int? agentLevel, FormSettingType formSettingType)
+        private SettingContext GetCurrentSettingContext(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel, 
+            FormSettingType formSettingType,
+            string memberIds)
         {
             SettingContext settingContext = new SettingContext
             {
@@ -584,7 +625,8 @@ namespace Apollo.Age.Account.Controllers
                 FormSetting = (int)formSettingType,
                 FormId = FormType.EditPT,
                 Language = base.CurrentSession.Language,
-                AdminId = base.CurrentSession.AdminId
+                AdminId = base.CurrentSession.AdminId,
+                TargetCustIds = memberIds
             };
 
             //// If Current is Share Holder, then constrain min
@@ -628,12 +670,22 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(memberIds))
+            {
+                settingContext.FormId = FormType.EditMultiple;
+            }
+
             return settingContext;
         }
 
-        private string GetSettingScript(int targetCustId, int? agentId, int? agentLevel, string ugroup)
+        private string GetSettingScript(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel, 
+            string ugroup,
+            string targetCustIds)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All, targetCustIds);
 
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 

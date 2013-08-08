@@ -9,6 +9,7 @@
     var isMaster = ViewBag.IsMaster ?? false;
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentUsername = ViewBag.AgentUsername ?? string.Empty;
+    var memberIds = ViewBag.MemberIds ?? string.Empty;
 }
 @section header
 {
@@ -89,8 +90,6 @@ else
 }
 @section scripts
 {
-    <script type="text/javascript">
-    </script>
     @if (isEditAgent)
     {
         <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
@@ -98,7 +97,7 @@ else
     else
     {
         
-        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)&targetCustIds=@(memberIds)" type="text/javascript"></script>
     }
     @Scripts.Render("~/scripts/editpositiontakingjs")
 }

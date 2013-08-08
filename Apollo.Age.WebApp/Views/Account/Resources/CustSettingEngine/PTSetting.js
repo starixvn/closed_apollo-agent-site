@@ -14,7 +14,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             EDIT_PT: 1,
             EDIT_NON_DIRECT: 2,
             VIEW_SETTING: 3,
-            SHADOW_VIEW: 4
+            SHADOW_VIEW: 4,
+            EDIT_MULTIPLE: 5
         },
         PT_STEP10: 1,
         PT_STEP100: 10,

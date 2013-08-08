@@ -368,7 +368,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
 
 
-        var isEditNonDirectMember = context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
+        var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId != Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             box.appendChild(boxTBody);

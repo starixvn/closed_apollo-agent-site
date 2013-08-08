@@ -26,6 +26,34 @@ var ACCOUNTLIST = function ($) {
                     }
                 });
             });
+
+            $('#editShareMultiple,#viewDetailMultiple,#tblMemberList .edit-multiple-member').click(function () {
+                ACCOUNTLIST.editMultiple(this);
+            });
+        },
+        editMultiple: function (domObject) {
+            var $this = $(domObject);
+            var link = $this.data('edit-multiple-link'),
+                    memberIds = [],
+                    memberId = '',
+                    usernames = [];
+
+            $('#tblMemberList .cb-edit-multiple:checked').each(function () {
+                var memberCheckbox = $(this);
+                if (memberId == '') {
+                    memberId = memberCheckbox.val();
+                }
+                memberIds.push(memberCheckbox.val());
+                usernames.push(memberCheckbox.data('member-username'));
+            });
+
+
+
+            //window.location.href = link + '&memberIds=' + memberIds;
+            window.location.href = link
+            + '&memberIds=' + memberIds.join(',')
+            + '&memberId=' + memberId
+            + '&username=' + usernames.join(',%20');
         },
         initStatus: function (status, uplineStatus) {
             if (status == 1) {

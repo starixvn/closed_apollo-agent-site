@@ -8,6 +8,7 @@
 	var memberId = ViewBag.MemberId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
     string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu));
+    string memberIds = ViewBag.MemberIds ?? string.Empty;
 }
 
 @section header
@@ -68,6 +69,6 @@
             };
         }();
 	</script>
-	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
+	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)&memberIds=@(memberIds)" type="text/javascript"></script>
 	@Scripts.Render("~/scripts/editsettingjs")
 }

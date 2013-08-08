@@ -12,9 +12,10 @@
     var canEdit = (bool)ViewBag.CanEdit;
     var isViewMySetting = (bool)ViewBag.IsViewMySetting;
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+    var memberIds = ViewBag.MemberIds ?? string.Empty;
     if (isViewOnMember)
     {
-        editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}&fromLeftMenu={3}", custId, userName, ViewBag.AgentId, fromLeftMenu));
+        editLink = Url.Content(string.Format("~/CustomerSetting/EditMemberSetting?memberId={0}&userName={1}&agentId={2}&fromLeftMenu={3}&memberIds={4}", custId, userName, ViewBag.AgentId, fromLeftMenu, memberIds));
     }
     else
     {
