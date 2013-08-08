@@ -31,11 +31,13 @@
     </div>
 </div>
 <br />
-@if (Model.SportCreditModelList != null && Model.SportCreditModelList.Any())
+@if (Model.Username != null)
 {
-    var keyLang = string.Empty;
-    decimal totalOutstandingCredit = 0;
-    decimal totalRemainingCredit = 0;
+    if (Model.SportCreditModelList != null && Model.SportCreditModelList.Any())
+    {
+        var keyLang = string.Empty;
+        decimal totalOutstandingCredit = 0;
+        decimal totalRemainingCredit = 0;
     
     <table class="tblRpt report tblSportCredit">
         <thead>
@@ -50,7 +52,7 @@
             {
                 totalOutstandingCredit += item.OutstandingCredit;
                 totalRemainingCredit += item.RemainingCredit;
-                
+
                 var langAgent = Apollo.Age.Reports.Core.Constants.ReportAgentLevelDictionary.Where(t => (t.Key != 4 && t.Key == item.AgentLevel)).SingleOrDefault();
                 if (langAgent.Value == null)
                 {
@@ -89,9 +91,9 @@
             </tr>
         </tfoot>
     </table>
-}
-else
-{
+    }
+    else
+    {
     <table class="tblRpt report none-result">
         <thead>
             <tr>
@@ -108,6 +110,7 @@ else
             </tr>
         </tbody>
     </table>
+    }
 }
 
 @section scripts
