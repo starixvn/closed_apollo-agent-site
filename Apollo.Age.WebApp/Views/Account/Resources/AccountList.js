@@ -30,6 +30,27 @@ var ACCOUNTLIST = function ($) {
             $('#editShareMultiple,#viewDetailMultiple,#tblMemberList .edit-multiple-member').click(function () {
                 ACCOUNTLIST.editMultiple(this);
             });
+
+            $('#cbAllMember').click(function () {
+                var $this = $(this);
+                if ($this.is(':checked')) {
+                    $('#tblMemberList .cb-edit-multiple').prop('checked', true);
+                }
+                else {
+                    $('#tblMemberList .cb-edit-multiple').prop('checked', false);
+                }
+            });
+
+            $('#tblMemberList .cb-edit-multiple').click(function () {
+                var $this = $(this);
+                if (!$this.is(':checked')) {
+                    $('#cbAllMember').prop('checked', false);
+                }
+
+                if ($('#tblMemberList .cb-edit-multiple').length == $('#tblMemberList .cb-edit-multiple:checked').length) {
+                    $('#cbAllMember').prop('checked', true);
+                }
+            });
         },
         editMultiple: function (domObject) {
             var $this = $(domObject);

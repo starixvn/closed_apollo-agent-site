@@ -95,6 +95,7 @@
                                     @Lang.lblview
                                 }</a> &nbsp;/&nbsp; 
                                 <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+                                <input type="checkbox" id="cbAllMember"/>
                             <div class="list">
                                 <ul class="menu-list">
                                     @if (agentList.Any())
