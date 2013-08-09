@@ -47,9 +47,12 @@ var ACCOUNTLIST = function ($) {
                 usernames.push(memberCheckbox.data('member-username'));
             });
 
+            //// No Choosing, then alert message
             if (memberIds.length == 0) {
                 alert(BASELANGUAGES.lblSelectAtLeast);
                 return;
+            } else if (memberIds.length == 1) { //// If edit just only one member, go to edit single page
+                memberIds = [];
             }
 
             //window.location.href = link + '&memberIds=' + memberIds;

@@ -21,14 +21,15 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
     this.Save = function () {
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
+        var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+        if (currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
 
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
         var editItems = [];
 
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        if (currentContext.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             var currentGroupAValue = spinBoxItems[0].getValue();
             var currentGroupBValue = spinBoxItems[3].getValue();
             var currentGroupCValue = spinBoxItems[1].getValue();
@@ -72,15 +73,15 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 };
             }
         } else {
-            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
+            if (!currentContext.CanEditComGroup) {
                 this.currentGroup = undefined;
             }
             else {
                 this.currentGroup = this.groupSelect.value;
             }
-
+            var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
             var currentGroupValue = spinBoxItems[0].getValue();
-            if (items[0].Discount != currentGroupValue) {
+            if (items[0].Discount != currentGroupValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[0].SportId,
                     BetTypeId: items[0].BetTypeId,
@@ -88,7 +89,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var currentOthersValue = spinBoxItems[2].getValue();
-            if (items[1].Discount != currentOthersValue) {
+            if (items[1].Discount != currentOthersValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[1].SportId,
                     BetTypeId: items[1].BetTypeId,
@@ -96,7 +97,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var current1x2Value = spinBoxItems[1].getValue();
-            if (items[2].Discount != current1x2Value) {
+            if (items[2].Discount != current1x2Value || isEditMultiple) {
                 editItems.push({
                     SportId: items[2].SportId,
                     BetTypeId: items[2].BetTypeId,
@@ -105,7 +106,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
             if (this.hasNumberGameSection) {
                 var currentGameValue = spinBoxItems[3].getValue();
-                if (items[3].Discount != currentGameValue) {
+                if (items[3].Discount != currentGameValue || isEditMultiple) {
                     editItems.push({
                         SportId: items[3].SportId,
                         BetTypeId: items[3].BetTypeId,
@@ -156,14 +157,14 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 if (!spinBoxItems[6].isValid()) return false;
             }
         } else {
-//            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
-//                this.currentGroup = undefined;
-//            }
-//            else {
-//                this.currentGroup = this.groupSelect.value;
-//                var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
-//            }
-            
+            //            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
+            //                this.currentGroup = undefined;
+            //            }
+            //            else {
+            //                this.currentGroup = this.groupSelect.value;
+            //                var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
+            //            }
+
 
             if (!spinBoxItems[0].isValid()) {
                 return false;

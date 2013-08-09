@@ -304,7 +304,8 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     // Get updated data
     this.Save = function () {
         this.pt.Value = ptSpinBox.getValue();
-        if (this.oldPt.Value != this.pt.Value) {
+        if (this.oldPt.Value != this.pt.Value
+        || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
             return {
                 Id: this.id,
                 Pt: this.pt

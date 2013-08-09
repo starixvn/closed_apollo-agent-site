@@ -668,6 +668,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.Save = function () {
                 var result = [];
                 var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+                var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
                 if (currentContext.IsSimpleMode == true) {
                     var currentPtValue = this.SaveSimpleMode();
                     var dataChanged = false;
@@ -703,7 +704,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     dataChanged = true;
                                 }
 
-                                if (dataChanged == true) {
+                                if (dataChanged == true || isEditMultiple) {
 
                                     //                                    if (typeof (currentBetType.Pt.Max) != 'undefined'
                                     //                                    && typeof (currentBetType.Pt.Min) != 'undefined'

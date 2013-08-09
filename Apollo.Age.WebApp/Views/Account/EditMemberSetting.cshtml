@@ -7,8 +7,9 @@
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 	var memberId = ViewBag.MemberId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu));
     string memberIds = ViewBag.MemberIds ?? string.Empty;
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
+    
 }
 
 @section header
