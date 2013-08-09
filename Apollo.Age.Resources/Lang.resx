@@ -1935,4 +1935,10 @@
   <data name="lblPleaseSelectAtLeast" xml:space="preserve">
     <value>Please select at least one member.</value>
   </data>
+  <data name="lblUpdateSuccessMultiple" xml:space="preserve">
+    <value>Update successfully following member(s):</value>
+  </data>
+  <data name="lblUpdateError" xml:space="preserve">
+    <value>Update error message(s):</value>
+  </data>
 </root>

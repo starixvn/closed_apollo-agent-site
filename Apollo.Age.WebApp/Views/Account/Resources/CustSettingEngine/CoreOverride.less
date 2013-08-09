@@ -371,11 +371,19 @@ body, .pt-grid {
 }
 
 .noty_message {
-	&.error {
+	&.error, &.error-multiple {
 		background: #F47575;
 
 		.noty_text {
 			text-shadow: none;
+		}
+	}
+
+	&.errormultiple {
+		text-align: left !important;
+
+		.successMessage{
+			color: #328636;
 		}
 	}
 

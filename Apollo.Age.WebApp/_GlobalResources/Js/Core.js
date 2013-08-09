@@ -104,7 +104,7 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.alertGeneralError();
             },
 
-            showMessage: function (message, type, timeOut) {
+            showMessage: function (message, type, timeOut, isMultple) {
                 switch (type) {
                     case 'success':
                         noty({
@@ -118,7 +118,8 @@ if (typeof jQuery != 'undefined') {
                         noty({
                                 text: message,
                                 type: type,
-                                template: '<div class="noty_message error"><span class="noty_text"></span></div>',
+                                errorType: 'single',
+                                template: '<div class="noty_message error' + (isMultple? ' errormultiple':'') + '"><span class="noty_text"></span></div>',
                                 buttons: true,
                                 buttons: [{
                                     addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
@@ -127,6 +128,7 @@ if (typeof jQuery != 'undefined') {
                                 }]
                             });
                         break;
+
                 }
             },
 
