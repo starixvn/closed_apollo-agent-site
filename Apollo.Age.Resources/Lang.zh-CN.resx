@@ -202,7 +202,7 @@
     <value>您的连线已被终止或者尚未授权</value>
   </data>
   <data name="NodataSearch" xml:space="preserve">
-    <value>没有数据可以搜寻</value>
+    <value>查无任何资料</value>
   </data>
   <data name="lblPlayerList" xml:space="preserve">
     <value>会员清单</value>
