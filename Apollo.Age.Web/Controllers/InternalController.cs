@@ -189,50 +189,64 @@ namespace Apollo.Age.Web
         [HttpPost]
         public JsonResult ReCheckIn()
         {
-            bool isDowntime = false;
-            isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;
-            if (isDowntime)
-            {               
-                return Json(new
-                {
-                    isKickout = false,
-                    isDowntime = true,
-                    urlReturn = ApoURLs.URLs.UnderMaintenance
+            //bool isDowntime = false;
+            //isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;
+            //if (isDowntime)
+            //{               
+            //    return Json(new
+            //    {
+            //        isKickout = false,
+            //        isDowntime = true,
+            //        urlReturn = ApoURLs.URLs.UnderMaintenance
 
-                });
-            }
-            else
+            //    });
+            //}
+            //else
+            //{
+            //    var result = false;
+            //    if (SessionManager.CurrentSession != null)
+            //    {
+            //        result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
+            //    }
+
+            //    return Json(new
+            //    {
+            //        isKickout = result,
+            //        isDowntime = false,
+            //        urlReturn = string.Empty 
+            //    });
+            //}
+
+            var result = false;
+            if (SessionManager.CurrentSession != null)
             {
-                var result = false;
-                if (SessionManager.CurrentSession != null)
-                {
-                    result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
-                }
-
-                return Json(new
-                {
-                    isKickout = result,
-                    isDowntime = false,
-                    urlReturn = string.Empty 
-                });
+                result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
             }
-        }
-
-        /// <summary>
-        /// Post ReCheck Under Maintenance Service.
-        /// </summary>
-        /// <returns>Return true or false and url returned.</returns>
-        public JsonResult ReCheckUMService()
-        {
-            bool isDowntime = false;
-            isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;          
 
             return Json(new
-            {
-                isDownTime = isDowntime,
-                urlReturn = ApoURLs.URLs.UnderMaintenance
+            {                
+                isKickout = result
             });
         }
+
+        //#region Will be removed
+        ///// <summary>
+        ///// Post ReCheck Under Maintenance Service.
+        ///// </summary>
+        ///// <returns>Return true or false and url returned.</returns>
+        //public JsonResult ReCheckUMService()
+        //{
+        //    bool isDowntime = false;
+        //    isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;          
+
+        //    return Json(new
+        //    {
+        //        isDownTime = isDowntime,
+        //        urlReturn = ApoURLs.URLs.UnderMaintenance
+        //    });
+        //}
+
+        //#endregion
 
         /// <summary>
         /// Get Select Account Action.

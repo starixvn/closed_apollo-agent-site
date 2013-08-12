@@ -18,6 +18,9 @@ namespace Apollo.Age.Web.Services
     using Fanex.Caching;
     using Sunplus.UMControllerLibrary;
     using System.Text;
+    using System.Net.NetworkInformation;
+    using System.Net;
+    using System.Net.Sockets;
 
     /// <summary>
     /// Under Maintenance Service.
@@ -70,127 +73,170 @@ namespace Apollo.Age.Web.Services
             }
         }
 
+        //#region Will be Removed
+        ///// <summary>
+        ///// Checking the day is last day in the month.
+        ///// </summary>
+        ///// <param name="date">Now date.</param>
+        ///// <param name="day">Day need to check.</param>
+        ///// <returns>Return boolean.</returns>
+        //private bool IsLastDayInMonth(DateTime date, string day)
+        //{
+        //    if (date.DayOfWeek.ToString().ToLower() != day.ToLower())
+        //    {
+        //        return false; // It is not monday.
+        //    }
+
+        //    // The next monday is...
+        //    var oneWeekAfter = date.AddDays(7);
+
+        //    // And is it in same month?, if it is, that means its not last monday.
+        //    return oneWeekAfter.Month != date.Month;
+        //}
+
+        ///// <summary>
+        ///// Get date time at time zone GMT+8.
+        ///// </summary>
+        ///// <returns>Return date time.</returns>
+        //private DateTime TimeInfo()
+        //{
+        //    return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Taipei Standard Time");
+        //}
+
+        ///// <summary>
+        ///// Singbet maintenance info.
+        ///// </summary>
+        ///// <returns>Return Under Maintenance View Model.</returns>
+        //private UnderMaintenanceViewModel SingbetMaintenanceInfo()
+        //{
+        //    var singbetDowntime = AppSettings.SingbetDownTime;
+        //    var day = string.Empty;
+        //    var lastDay = string.Empty;
+        //    var startTime = string.Empty;
+        //    var endTime = string.Empty;
+        //    var timeZoneDate = TimeInfo();
+        //    if (string.IsNullOrWhiteSpace(singbetDowntime))
+        //    {
+        //        return new UnderMaintenanceViewModel
+        //        {
+        //            IsDownTime = false
+        //        };
+        //    }
+        //    else
+        //    {
+        //        // Every Monday from 11:00 PM to 13:00 PM or Last Monday in a Month from 9:00 AM to 13:00 PM
+        //        //Monday@11:00 PM - 13:00 PM | Monday@9:00 AM - 13:00 PM
+        //        string[] singbetDowntimeOptions = singbetDowntime.Split("|".ToCharArray());
+        //        if (singbetDowntimeOptions.Length <= 0)
+        //        {
+        //            return new UnderMaintenanceViewModel
+        //            {
+        //                IsDownTime = false
+        //            };
+        //        }
+        //        else
+        //        {
+        //            string[] days = singbetDowntimeOptions[0].Split("@".ToCharArray());
+        //            string[] lastDays = singbetDowntimeOptions[1].Split("@".ToCharArray());
+
+        //            bool isLastDayInMonth = IsLastDayInMonth(timeZoneDate, lastDays[0].Trim());
+        //            if (isLastDayInMonth)
+        //            {
+        //                string[] times = lastDays[1].Split("-".ToCharArray());
+        //                if (times.Length > 0)
+        //                {
+        //                    startTime = times[0].ToString().Trim();
+        //                    endTime = times[1].ToString().Trim();
+
+        //                    DateTime timeStart = Convert.ToDateTime(startTime);
+        //                    DateTime timeEnd = Convert.ToDateTime(endTime);
+
+        //                    if (timeStart <= timeZoneDate && timeZoneDate <= timeEnd)
+        //                    {
+        //                        return new UnderMaintenanceViewModel
+        //                        {
+        //                            IsDownTime = true,
+        //                            StartTime = startTime,
+        //                            EndTime = endTime,
+        //                            UMDate = timeZoneDate.ToString("dd MMMM yyy")
+        //                        };
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (timeZoneDate.DayOfWeek.ToString().ToLower() == days[0].Trim().ToLower())
+        //                {
+        //                    string[] times = days[1].Split("-".ToCharArray());
+        //                    if (times.Length > 0)
+        //                    {
+        //                        startTime = times[0].ToString().Trim();
+        //                        endTime = times[1].ToString().Trim();
+
+        //                        DateTime timeStart = Convert.ToDateTime(startTime);
+        //                        DateTime timeEnd = Convert.ToDateTime(endTime);
+        //                        if (timeStart < timeZoneDate && timeZoneDate < timeEnd)
+        //                        {
+        //                            return new UnderMaintenanceViewModel
+        //                            {
+        //                                IsDownTime = true,
+        //                                StartTime = startTime,
+        //                                EndTime = endTime,
+        //                                UMDate = timeZoneDate.ToString("dd MMMM yyy")
+        //                            };
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return new UnderMaintenanceViewModel
+        //    {
+        //        IsDownTime = false
+        //    };
+        //}
+        //#endregion
+
         /// <summary>
-        /// Checking the day is last day in the month.
+        /// Checking status of Server before open socket.
         /// </summary>
-        /// <param name="date">Now date.</param>
-        /// <param name="day">Day need to check.</param>
-        /// <returns>Return boolean.</returns>
-        private bool IsLastDayInMonth(DateTime date, string day)
+        /// <param name="IpAddress">Input Ip address.</param>
+        /// <param name="timeout">Time out.</param>
+        /// <returns>Return true or false.</returns>
+        private static bool GetPingResponse(string IpAddress, int timeout = 3000)
         {
-            if (date.DayOfWeek.ToString().ToLower() != day.ToLower())
-            {
-                return false; // It is not monday.
-            }
+            var ping = new Ping();
+            IPAddress ipAddress = IPAddress.Parse(IpAddress);
 
-            // The next monday is...
-            var oneWeekAfter = date.AddDays(7);
-
-            // And is it in same month?, if it is, that means its not last monday.
-            return oneWeekAfter.Month != date.Month;
+            var reply = ping.Send(ipAddress, timeout);
+            return reply.Status == IPStatus.Success;
         }
 
         /// <summary>
-        /// Get date time at time zone GMT+8.
+        /// Checking the status of tcp server.
         /// </summary>
-        /// <returns>Return date time.</returns>
-        private DateTime TimeInfo()
+        /// <param name="hostURL">Input Ip Address.</param>
+        /// <param name="port">Input port</param>
+        /// <returns>Return true or false.</returns>
+        private static bool PingHost(string hostURL, int port)
         {
-            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "Taipei Standard Time");
-        }
-
-        /// <summary>
-        /// Singbet maintenance info.
-        /// </summary>
-        /// <returns>Return Under Maintenance View Model.</returns>
-        private UnderMaintenanceViewModel SingbetMaintenanceInfo()
-        {
-            var singbetDowntime = AppSettings.SingbetDownTime;
-            var day = string.Empty;
-            var lastDay = string.Empty;
-            var startTime = string.Empty;
-            var endTime = string.Empty;
-            var timeZoneDate = TimeInfo();
-            if (string.IsNullOrWhiteSpace(singbetDowntime))
+            try
             {
-                return new UnderMaintenanceViewModel
+                if (GetPingResponse(hostURL, 180))
                 {
-                    IsDownTime = false
-                };
-            }
-            else
-            {
-                // Every Monday from 11:00 PM to 13:00 PM or Last Monday in a Month from 9:00 AM to 13:00 PM
-                //Monday@11:00 PM - 13:00 PM | Monday@9:00 AM - 13:00 PM
-                string[] singbetDowntimeOptions = singbetDowntime.Split("|".ToCharArray());
-                if (singbetDowntimeOptions.Length <= 0)
-                {
-                    return new UnderMaintenanceViewModel
-                    {
-                        IsDownTime = false
-                    };
+                    TcpClient client = new TcpClient(hostURL, port);
+                    if (client.Connected)
+                        return true;
+                    return false;
                 }
-                else
-                {
-                    string[] days = singbetDowntimeOptions[0].Split("@".ToCharArray());
-                    string[] lastDays = singbetDowntimeOptions[1].Split("@".ToCharArray());
-
-                    bool isLastDayInMonth = IsLastDayInMonth(timeZoneDate, lastDays[0].Trim());
-                    if (isLastDayInMonth)
-                    {
-                        string[] times = lastDays[1].Split("-".ToCharArray());
-                        if (times.Length > 0)
-                        {
-                            startTime = times[0].ToString().Trim();
-                            endTime = times[1].ToString().Trim();
-
-                            DateTime timeStart = Convert.ToDateTime(startTime);
-                            DateTime timeEnd = Convert.ToDateTime(endTime);
-
-                            if (timeStart <= timeZoneDate && timeZoneDate <= timeEnd)
-                            {
-                                return new UnderMaintenanceViewModel
-                                {
-                                    IsDownTime = true,
-                                    StartTime = startTime,
-                                    EndTime = endTime,
-                                    UMDate = timeZoneDate.ToString("dd MMMM yyy")
-                                };
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (timeZoneDate.DayOfWeek.ToString().ToLower() == days[0].Trim().ToLower())
-                        {
-                            string[] times = days[1].Split("-".ToCharArray());
-                            if (times.Length > 0)
-                            {
-                                startTime = times[0].ToString().Trim();
-                                endTime = times[1].ToString().Trim();
-
-                                DateTime timeStart = Convert.ToDateTime(startTime);
-                                DateTime timeEnd = Convert.ToDateTime(endTime);
-                                if (timeStart < timeZoneDate && timeZoneDate < timeEnd)
-                                {
-                                    return new UnderMaintenanceViewModel
-                                    {
-                                        IsDownTime = true,
-                                        StartTime = startTime,
-                                        EndTime = endTime,
-                                        UMDate = timeZoneDate.ToString("dd MMMM yyy")
-                                    };
-                                }
-                            }
-                        }
-                    }
-                }
+                return false;
             }
-
-            return new UnderMaintenanceViewModel
+            catch
             {
-                IsDownTime = false
-            };
+
+                return false;
+            }
         }
 
         /// <summary>
@@ -202,7 +248,7 @@ namespace Apollo.Age.Web.Services
             var maintenanceInfo = new UnderMaintenanceViewModel { IsDownTime = false };
             var startTime = maintenanceInfo.StartTime;
             var endTime = maintenanceInfo.EndTime;
-            
+
             // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
@@ -216,7 +262,7 @@ namespace Apollo.Age.Web.Services
             // Check downtime from library.
             try
             {
-                StringBuilder logTest = new StringBuilder();
+                //StringBuilder logTest = new StringBuilder();
 
                 if (AppSettings.DisabledUnderMaintenanceAPI)
                 {
@@ -224,17 +270,19 @@ namespace Apollo.Age.Web.Services
                 }
                 else
                 {
-                    maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                    string[] arrAddress = AppSettings.UnderMaintenanceUrl.Split(":".ToCharArray());
+                    string serverIP = "10.40.41.112";
+                    int port = 8990;
+                    if (arrAddress.Length > 0)
+                    {
+                        serverIP = arrAddress[1].Replace("//", "");
+                        port = Convert.ToInt32(arrAddress[2].Substring(0, arrAddress[2].IndexOf("/")));
+                    }
 
-                    logTest.Append("Status: " + maintenanceInfo.IsDownTime.ToString());
-
-                    logTest.Append("- StartTime: " + startTime.ToString());
-
-                    logTest.Append("- EndTime: " + endTime.ToString());
-
-
-                    var exx = new Exception(logTest.ToString());
-                    HandleException(exx);
+                    if (PingHost(serverIP, port))
+                    {
+                        maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                    }
 
                 }
 
@@ -242,10 +290,6 @@ namespace Apollo.Age.Web.Services
                 {
                     maintenanceInfo.StartTime = startTime;
                     maintenanceInfo.EndTime = endTime;
-                }
-                else
-                {
-                    maintenanceInfo = SingbetMaintenanceInfo();
                 }
 
                 return maintenanceInfo;

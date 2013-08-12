@@ -77,7 +77,13 @@ namespace Apollo.Age.WebApp
             {
                 var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-                if (executeFileName.IndexOf("Betlist/Wagers") != -1)
+                if (executeFileName.IndexOf("UnderMaintenance") == -1
+                    && executeFileName.IndexOf(".less") == -1
+                    && executeFileName.IndexOf(".css") == -1
+                    && executeFileName.IndexOf(".js") == -1
+                    && executeFileName.IndexOf(".gif") == -1
+                    && executeFileName.IndexOf(".png") == -1
+                    )
                 {
                     if (maintenanceService.MaintenanceInfo.IsDownTime)
                     {

@@ -131,6 +131,8 @@ namespace Apollo.Age.Integration.Controllers
                         }
                         else
                         {
+                            LogService.Error("Authorization fail.");
+
                             authModel.ErrorCode = ErrorCode.InvalidRequest;
                         }
                     }
