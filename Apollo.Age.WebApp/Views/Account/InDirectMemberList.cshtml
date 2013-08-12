@@ -72,47 +72,47 @@
                 -- <a href="~/Account/IndirectAgentList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.lblAgents</a>
             </div>
         }
-        @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
-        <div class="end"></div>
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+        <div class="end">
+        </div>
     </div>     
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
+<div id="divEditMultiple" class="action edit-multiple-indirect-link">
+    <a href="javascript:;" class="edit-link">
+        @if (isMaster)
+        {
+            @Lang.edit
+        }
+        else
+        {
+            @Lang.lblview
+        }</a> &nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+    <div class="list">
+        <ul class="menu-list">
+            @if (agentList.Any())
+            {
+                foreach (var itemAgent in agentList)
+                {
+                    if (itemAgent.Level > AgentLevel.Super)
+                    { 
+                <li><a class="edit-multiple-member" href="javascript:void(0);" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@itemAgent.Id&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
+                    }
+                }
+
+            }
+        </ul>
+    </div>
+</div>
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-            <td class="width-60">
-                        <div class="action">
-                            <a href="javascript:;" class="edit-link">
-                                @if (isMaster)
-                                {
-                                    @Lang.edit
-                                }
-                                else
-                                {
-                                    @Lang.lblview
-                                }</a> &nbsp;/&nbsp; 
-                                <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
-                                <input type="checkbox" id="cbAllMember"/>
-                            <div class="list">
-                                <ul class="menu-list">
-                                    @if (agentList.Any())
-                                    {
-                                        foreach (var itemAgent in agentList)
-                                        {
-                                            if (itemAgent.Level > AgentLevel.Super)
-                                            { 
-                                        <li><a class="edit-multiple-member" href="javascript:void(0);" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@itemAgent.Id&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
-                                            }
-                                        }
-
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </td>
+                <td class="width-70">
+                    <input type="checkbox" id="cbAllMember" />
+                </td>
                 <td class="width-80">
                     @Lang.agent
                 </td>
@@ -154,11 +154,11 @@
                     <td>
                         @if (allowFundOut && item.CashBalance > 0)
                         {
-                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
                         }
                         else
                         {
-                           @item.CashBalance
+                            @item.CashBalance
                         }
                     </td>
                     <td class="text-left nowrap">

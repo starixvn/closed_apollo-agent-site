@@ -27,7 +27,7 @@ var ACCOUNTLIST = function ($) {
                 });
             });
 
-            $('#editShareMultiple,#viewDetailMultiple,#tblMemberList .edit-multiple-member').click(function () {
+            $('#editShareMultiple,#viewDetailMultiple,#divEditMultiple .edit-multiple-member').click(function () {
                 ACCOUNTLIST.editMultiple(this);
             });
 
