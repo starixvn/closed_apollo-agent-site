@@ -30,7 +30,6 @@
         </div>
     </div>
 </div>
-<br />
 @if (Model.Username != null)
 {
     if (Model.SportCreditModelList != null && Model.SportCreditModelList.Any())
@@ -38,7 +37,8 @@
         var keyLang = string.Empty;
         decimal totalOutstandingCredit = 0;
         decimal totalRemainingCredit = 0;
-    
+    <div id="navigationAgent" class="nav-outright"><br /></div>
+    <div class="export-excel outright" id="export-excel"></div>
     <table class="tblRpt report tblSportCredit">
         <thead>
             <tr>
