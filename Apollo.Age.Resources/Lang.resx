@@ -1925,11 +1925,14 @@
   </data>
   <data name="lblEditShareSetting" xml:space="preserve">
     <value>Edit Share Setting {0}</value>
-     </data>
+  </data>
   <data name="lblview" xml:space="preserve">
     <value>View</value>
   </data>
   <data name="lblViewAccountDetail" xml:space="preserve">
     <value>View Agent Details</value>
+  </data>
+  <data name="lblViewShareSetting" xml:space="preserve">
+    <value>View share setting {0}</value>
   </data>
 </root>
