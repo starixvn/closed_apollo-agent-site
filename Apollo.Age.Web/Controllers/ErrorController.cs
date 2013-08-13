@@ -80,5 +80,10 @@ namespace Apollo.Age.Web
         {
             return View();
         }
+
+        public ActionResult WhoAmI()
+        {
+            return View();
+        }
     }
 }

@@ -1060,6 +1060,7 @@
     <Content Include="Views\BetList\Transactions.cshtml" />
     <Content Include="Views\Log\LogActionType5.cshtml" />
     <Content Include="Views\Reports\SportCredit.cshtml" />
+    <Content Include="Views\Error\WhoAmI.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
