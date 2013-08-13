@@ -365,7 +365,41 @@ namespace Apollo.Age.Reports.Controllers
                 SportCreditModelList = sportCreditList
             };
 
+            var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
+            HttpContext.Session[sessionKey] = sportCreditList;
+
             return View(model);
+        }
+
+        public ActionResult ExportSportCredit(string username)
+        {
+            var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
+            var sportCreditList = (List<SportCreditModel>)HttpContext.Session[sessionKey];
+
+            if (sportCreditList == null)
+            {
+                var criteria = new SportCreditCriteria
+                {
+                    LoggedId = this.CurrentSession.AgentId,
+                    Username = username
+                };
+
+                sportCreditList = _sportCreditService.GetSportCredits(criteria);
+                HttpContext.Session[sessionKey] = sportCreditList;
+            }
+
+
+            var model = new SportCreditViewModel
+            {
+                Username = username,
+                SportCreditModelList = sportCreditList
+            };
+
+            var excelResult = _sportCreditService.ExportSportCredit(model);
+
+            var fileName = string.Format("LineSportCredit_{0}", model.Username);
+
+            return new ExcelResult(excelResult, fileName);
         }
     }
 }
