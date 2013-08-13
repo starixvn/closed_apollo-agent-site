@@ -198,46 +198,46 @@ namespace Apollo.Age.Web.Services
         //}
         //#endregion
 
-        /// <summary>
-        /// Checking status of Server before open socket.
-        /// </summary>
-        /// <param name="IpAddress">Input Ip address.</param>
-        /// <param name="timeout">Time out.</param>
-        /// <returns>Return true or false.</returns>
-        private static bool GetPingResponse(string IpAddress, int timeout = 3000)
-        {
-            var ping = new Ping();
-            IPAddress ipAddress = IPAddress.Parse(IpAddress);
+        ///// <summary>
+        ///// Checking status of Server before open socket.
+        ///// </summary>
+        ///// <param name="IpAddress">Input Ip address.</param>
+        ///// <param name="timeout">Time out.</param>
+        ///// <returns>Return true or false.</returns>
+        //private static bool GetPingResponse(string IpAddress, int timeout = 3000)
+        //{
+        //    var ping = new Ping();
+        //    IPAddress ipAddress = IPAddress.Parse(IpAddress);
 
-            var reply = ping.Send(ipAddress, timeout);
-            return reply.Status == IPStatus.Success;
-        }
+        //    var reply = ping.Send(ipAddress, timeout);
+        //    return reply.Status == IPStatus.Success;
+        //}
 
-        /// <summary>
-        /// Checking the status of tcp server.
-        /// </summary>
-        /// <param name="hostURL">Input Ip Address.</param>
-        /// <param name="port">Input port</param>
-        /// <returns>Return true or false.</returns>
-        private static bool PingHost(string hostURL, int port)
-        {
-            try
-            {
-                if (GetPingResponse(hostURL, 180))
-                {
-                    TcpClient client = new TcpClient(hostURL, port);
-                    if (client.Connected)
-                        return true;
-                    return false;
-                }
-                return false;
-            }
-            catch
-            {
+        ///// <summary>
+        ///// Checking the status of tcp server.
+        ///// </summary>
+        ///// <param name="hostURL">Input Ip Address.</param>
+        ///// <param name="port">Input port</param>
+        ///// <returns>Return true or false.</returns>
+        //private static bool PingHost(string hostURL, int port)
+        //{
+        //    try
+        //    {
+        //        if (GetPingResponse(hostURL, 180))
+        //        {
+        //            TcpClient client = new TcpClient(hostURL, port);
+        //            if (client.Connected)
+        //                return true;
+        //            return false;
+        //        }
+        //        return false;
+        //    }
+        //    catch
+        //    {
 
-                return false;
-            }
-        }
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Get IBC Maintenance Info.
@@ -270,20 +270,21 @@ namespace Apollo.Age.Web.Services
                 }
                 else
                 {
-                    string[] arrAddress = AppSettings.UnderMaintenanceUrl.Split(":".ToCharArray());
-                    string serverIP = "10.40.41.112";
-                    int port = 8990;
-                    if (arrAddress.Length > 0)
-                    {
-                        serverIP = arrAddress[1].Replace("//", "");
-                        port = Convert.ToInt32(arrAddress[2].Substring(0, arrAddress[2].IndexOf("/")));
-                    }
+                    //string[] arrAddress = AppSettings.UnderMaintenanceUrl.Split(":".ToCharArray());
+                    //string serverIP = "10.40.41.112";
+                    //int port = 8990;
+                    //if (arrAddress.Length > 0)
+                    //{
+                    //    serverIP = arrAddress[1].Replace("//", "");
+                    //    port = Convert.ToInt32(arrAddress[2].Substring(0, arrAddress[2].IndexOf("/")));
+                    //}
 
-                    if (PingHost(serverIP, port))
-                    {
-                        maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
-                    }
+                    //if (PingHost(serverIP, port))
+                    //{
+                    //    maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
+                    //}
 
+                    maintenanceInfo.IsDownTime = _underMaintenanceService.isUnderMaintainence(Sites.Agency, AppSettings.UnderMaintenanceUrl, ref startTime, ref endTime);
                 }
 
                 if (maintenanceInfo.IsDownTime)
