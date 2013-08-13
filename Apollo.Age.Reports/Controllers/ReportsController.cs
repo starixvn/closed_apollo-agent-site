@@ -351,7 +351,8 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult SportCredit(string username)
         {
-            var criteria = new SportCreditCriteria {
+            var criteria = new SportCreditCriteria 
+            {
                 LoggedId = this.CurrentSession.AgentId,
                 Username = username
             };
