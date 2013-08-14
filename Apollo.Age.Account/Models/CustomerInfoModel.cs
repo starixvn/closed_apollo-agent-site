@@ -36,6 +36,8 @@ namespace Apollo.Age.Account.Models
 
         public bool IsMaster { get; set; }
 
+        public bool IsSuper { get; set; }
+
         public List<Agent> AgentPathList { get; set; }
     }
 }

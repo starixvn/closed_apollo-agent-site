@@ -90,7 +90,7 @@ namespace Apollo.Age.Account.Controllers
                     CustId = model.Id,
                     Username = model.Username
                 })
-                : _accountService.GetAgentInfo(new GetAgentInfoCriteria
+                : _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
                 {
                     ActorAgentId = CurrentSession.AgentId,
                     AgentId = model.Id,
@@ -307,7 +307,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -378,7 +378,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -426,7 +426,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
@@ -587,6 +587,8 @@ namespace Apollo.Age.Account.Controllers
                 AdminId = base.CurrentSession.AdminId
             };
 
+            var isEditMember = settingContext.TargetRoleId == (int)Role.Member;
+
             //// If Current is Share Holder, then constrain min
             if (agentLevel != null && agentLevel.Value == 2)
             {
@@ -594,7 +596,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// If current Cust Edited Role is Member, then set Edit Role is Agent
-            if (settingContext.TargetRoleId == (int)Role.Member)
+            if (isEditMember)
             {
                 settingContext.RoleId = (int)Role.Agent;
             }
@@ -606,19 +608,20 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// View Current Agent Setting
-            if (base.CurrentSession.AgentId == targetCustId && settingContext.TargetRoleId != (int)Role.Member)
+            if (base.CurrentSession.AgentId == targetCustId 
+                && !isEditMember)
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-            
-            if (settingContext.TargetRoleId == (int)Role.Member
-            && agentId != null)
+
+            if (isEditMember && agentId != null && base.CurrentSession.IsSuper)
             {
                 settingContext.FormId = FormType.EditPT;
                 settingContext.CustId = agentId.Value;
             }
 
-            if (!base.CurrentSession.IsMaster)
+            if (!base.CurrentSession.IsMaster
+                || (!isEditMember && !_accountService.IsDirectAgent(base.CurrentSession.AgentId, targetCustId, base.CurrentSession.IsSuper)))
             {
                 //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;

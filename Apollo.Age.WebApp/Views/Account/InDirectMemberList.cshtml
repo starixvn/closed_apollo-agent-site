@@ -11,6 +11,7 @@
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
     var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
     var isMaster = (bool)ViewBag.IsMaster;
+    var isSuper = ViewBag.IsSupper ?? false;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
@@ -128,32 +129,46 @@
                         }
                     </td>
                     <td class="text-left nowrap">
-                        <div class="action">
-                            <a href="javascript:;" class="edit-link">
-                                @if (isMaster)
-                                {
-                                    @Lang.edit
-                                }
-                                else
-                                {
-                                    @Lang.lblview
-                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
-                            <div class="list">
-                                <ul class="menu-list">
-                                    @if (agentList.Any())
-                                    {
-                                        foreach (var itemAgent in agentList)
-                                        {
-                                            if (itemAgent.Level > AgentLevel.Super)
-                                            { 
-                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
-                                            }
-                                        }
+                        @{
+                        var editText = string.Empty;
+                        if (isMaster)
+                        {
+                            editText = Lang.edit;
+                        }
+                        else
+                        {
+                            editText = Lang.lblview;
+                        }
+                        if (isSuper)
+                        {
+                                <div class="action">
+                                    <a href="javascript:;" class="edit-link">
+                                       @editText</a> &nbsp;/&nbsp;  
+                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                                    <div class="list">
+                                        <ul class="menu-list">
+                                            @if (agentList.Any())
+                                            {
+                                                foreach (var itemAgent in agentList)
+                                                {
+                                                    if (itemAgent.Level > AgentLevel.Super)
+                                                    { 
+                                                <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
+                                                    }
+                                                }
 
-                                    }
-                                </ul>
-                            </div>
-                        </div>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                        }
+                        else
+                        {
+                                 <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=">@editText</a>
+                            @:&nbsp;/&nbsp;  
+                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                        }
+                    }   
                     </td>
                 </tr>
             }
