@@ -16,13 +16,12 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Extension;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
     using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
-    using NPOI.SS.Util;
 
     /// <summary>
     /// Service for SportCredit.
@@ -60,9 +59,8 @@ namespace Apollo.Age.Reports.Services
 
             //// Assign data
             var templateSheet = hssfworkbook.GetSheet("sheet1");
-            var sheet = hssfworkbook.CloneSheet(0);
-            hssfworkbook.SetSheetName(1, Lang.lblLineSportCredit);
-
+            var sheet = hssfworkbook.CloneSheet("sheet1", Lang.lblLineSportCredit);
+            
             //// render title
             var title = string.Format("{0} {1}", Lang.lblLineSportCredit, Lang.lblReport);
             var rowTitle = sheet.GetRow(_RowTitle);
@@ -95,8 +93,8 @@ namespace Apollo.Age.Reports.Services
             {
                 totalOutstanding += (double)item.OutstandingCredit;
                 totalRemaining += (double)item.RemainingCredit;
-
-                CopyRow(hssfworkbook, templateSheet, sheet, _RowStartBody, rowIndex);
+                
+                sheet.CopyRow(templateSheet, _RowStartBody, rowIndex);
                 var row = sheet.GetRow(rowIndex);
 
                 var cellLevel = row.GetCell(0);
@@ -131,7 +129,7 @@ namespace Apollo.Age.Reports.Services
             //// end render body
 
             //// render footer
-            CopyRow(hssfworkbook, templateSheet, sheet, _RowFooter, rowIndex);
+            sheet.CopyRow(templateSheet, _RowFooter, rowIndex);
 
             var rowFooter = sheet.GetRow(rowIndex);
 
@@ -147,104 +145,10 @@ namespace Apollo.Age.Reports.Services
             //// remove sheet & row template
             var rowBodyTemplate = sheet.GetRow(rowIndex + 1);
             var rowFooterTemplate = sheet.GetRow(rowIndex + 2);
-            sheet.RemoveRow(rowBodyTemplate);
-            sheet.RemoveRow(rowFooterTemplate);
+
             hssfworkbook.RemoveSheetAt(0);
 
             return hssfworkbook;
-        }
-
-        private void CopyRow(HSSFWorkbook workbook, ISheet sourceSheet, ISheet destinationSheet, int sourceRowNum, int destinationRowNum)
-        {
-            // Get the source / new row
-            var newRow = destinationSheet.GetRow(destinationRowNum);
-            var sourceRow = sourceSheet.GetRow(sourceRowNum);
-
-            // If the row exist in destination, push down all rows by 1 else create a new row
-            if (newRow != null)
-            {
-                destinationSheet.ShiftRows(destinationRowNum, destinationSheet.LastRowNum, 1);
-            }
-            else
-            {
-                newRow = destinationSheet.CreateRow(destinationRowNum);
-            }
-
-            // Loop through source columns to add to new row
-            for (int i = 0; i < sourceRow.LastCellNum; i++)
-            {
-                // Grab a copy of the old/new cell
-                var oldCell = sourceRow.GetCell(i);
-                var newCell = newRow.CreateCell(i);
-
-                // If the old cell is null jump to next cell
-                if (oldCell == null)
-                {
-                    newCell = null;
-                    continue;
-                }
-
-                // Copy style from old cell and apply to new cell
-                var newCellStyle = workbook.CreateCellStyle();
-                newCellStyle.CloneStyleFrom(oldCell.CellStyle);
-                newCell.CellStyle = newCellStyle;
-
-                // If there is a cell comment, copy
-                if (newCell.CellComment != null)
-                {
-                    newCell.CellComment = oldCell.CellComment;
-                }
-
-                // If there is a cell hyperlink, copy
-                if (oldCell.Hyperlink != null)
-                {
-                    newCell.Hyperlink = oldCell.Hyperlink;
-                }
-
-                // Set the cell data type
-                newCell.SetCellType(oldCell.CellType);
-
-                // Set the cell data value
-                switch (oldCell.CellType)
-                {
-                    case CellType.BLANK:
-                        newCell.SetCellValue(oldCell.StringCellValue);
-                        break;
-                    case CellType.BOOLEAN:
-                        newCell.SetCellValue(oldCell.BooleanCellValue);
-                        break;
-                    case CellType.ERROR:
-                        newCell.SetCellErrorValue(oldCell.ErrorCellValue);
-                        break;
-                    case CellType.FORMULA:
-                        newCell.SetCellFormula(oldCell.CellFormula);
-                        break;
-                    case CellType.NUMERIC:
-                        newCell.SetCellValue(oldCell.NumericCellValue);
-                        break;
-                    case CellType.STRING:
-                        newCell.SetCellValue(oldCell.RichStringCellValue);
-                        break;
-                    case CellType.Unknown:
-                        newCell.SetCellValue(oldCell.StringCellValue);
-                        break;
-                }
-            }
-
-            // If there are are any merged regions in the source row, copy to new row
-            for (int i = 0; i < sourceSheet.NumMergedRegions; i++)
-            {
-                CellRangeAddress cellRangeAddress = sourceSheet.GetMergedRegion(i);
-                if (cellRangeAddress.FirstRow == sourceRow.RowNum)
-                {
-                    CellRangeAddress newCellRangeAddress = new CellRangeAddress(
-                        newRow.RowNum,
-                        newRow.RowNum + (cellRangeAddress.FirstRow - cellRangeAddress.LastRow),
-                        cellRangeAddress.FirstColumn,
-                        cellRangeAddress.LastColumn);
-                        destinationSheet.AddMergedRegion(newCellRangeAddress);
-                }
-            }
         }
     }
 }
