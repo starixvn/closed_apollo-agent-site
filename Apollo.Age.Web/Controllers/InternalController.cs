@@ -294,11 +294,11 @@ namespace Apollo.Age.Web
                 var isAllowUpdate = false;
 
                 // Hard code for Super account.
-                if (model.Agent.ToLower() == "super")
-                    //|| model.Agent.ToLower() == "age-ed--191-192"
-                    //|| model.Agent.ToLower() == "age-ed--192-193"
-                    //|| model.Agent.ToLower() == "age-ed--193-194"
-                    //|| model.Agent.ToLower() == "age-ed--0-180")
+                if (model.Agent.ToLower() == "super"
+                    || model.Agent.ToLower() == "age-ed--191-192"
+                    || model.Agent.ToLower() == "age-ed--192-193"
+                    || model.Agent.ToLower() == "age-ed--193-194"
+                    || model.Agent.ToLower() == "age-ed--0-180")
                 {
                     if (string.IsNullOrWhiteSpace(model.SafeCode) == false)
                     {

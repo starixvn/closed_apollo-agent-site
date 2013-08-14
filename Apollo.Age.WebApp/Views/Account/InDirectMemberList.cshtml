@@ -18,7 +18,6 @@
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
     var agentList = ViewBag.AgentList != null ? (List<Agent>)ViewBag.AgentList : new List<Agent>();
     var allowFundOut = (bool)ViewBag.AllowFundOut;
-    var actorAgentUsername = ViewBag.ActorAgentUsername ?? string.Empty;
 }
 @using (Html.BeginForm())
 {       
@@ -165,7 +164,7 @@
                         }
                         else
                         {
-                                 <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@actorAgentUsername">@editText</a>
+                                 <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=">@editText</a>
                             @:&nbsp;/&nbsp;  
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                         }
