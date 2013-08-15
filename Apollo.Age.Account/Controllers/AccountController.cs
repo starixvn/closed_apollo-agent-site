@@ -189,6 +189,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             agentInfo.IsSuper = base.CurrentSession.IsSuper;
+            
 
             return View("AccountInfo", agentInfo);
         }
@@ -239,6 +240,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             memberInfo.IsSuper = base.CurrentSession.IsSuper;
+            memberInfo.ActorAgentUsername = base.CurrentSession.AgentName;
 
             return View("AccountInfo", memberInfo);
         }
@@ -739,6 +741,7 @@ namespace Apollo.Age.Account.Controllers
 
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
+            ViewBag.ActorAgentUsername = this.CurrentSession.AgentName;
 
             return View(criteria);
         }
