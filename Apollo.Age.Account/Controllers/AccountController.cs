@@ -157,7 +157,7 @@ namespace Apollo.Age.Account.Controllers
                 ExcludeActor = false
             });
 
-            var isDirectAgent = _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            var isDirectAgent = _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentInfo != null ? agentInfo.CustId : -1, base.CurrentSession.IsSuper);
 
             if (agentInfo == null)
             {
