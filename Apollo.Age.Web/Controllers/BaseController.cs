@@ -99,14 +99,14 @@ namespace Apollo.Age.Web
                     int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
-                        if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
+                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
                         {
                            CommonChecking.DoUnAuthorized(filterContext);
                         }
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
-                        if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
+                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent))
                         {
                             CommonChecking.DoUnAuthorized(filterContext);
                         }
