@@ -24,6 +24,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Interface;
     using Fanex.Common;
     using Fanex.Logging;
+    using Apollo.Age.Web.Filters;
 
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login
@@ -100,20 +101,20 @@ namespace Apollo.Age.Web
                     {
                         if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
                         {
-                            DoUnAuthorized(filterContext);
+                           CommonChecking.DoUnAuthorized(filterContext);
                         }
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
                         if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
                         {
-                            DoUnAuthorized(filterContext);
+                            CommonChecking.DoUnAuthorized(filterContext);
                         }
                     }
                 }
                 else
                 {
-                    DoUnAuthorized(filterContext);
+                    CommonChecking.DoUnAuthorized(filterContext);
                 }
             }
             catch (Exception ex)
@@ -150,31 +151,31 @@ namespace Apollo.Age.Web
             }
         }
 
-        private void DoUnAuthorized(ActionExecutingContext filterContext)
-        {
-            var response = filterContext.HttpContext.Response;
-            if (filterContext.HttpContext.Request.IsAjaxRequest())
-            {
-                //response.Clear();
-                //response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                //response.StatusDescription = string.Empty;
-                //response.Write(Resources.Lang.UnauthorizedMsg);
-                //response.End();
-                Response.ContentType = "text/plain";
-                Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                Response.Write(Resources.Lang.UnauthorizedMsg);
-                Response.BufferOutput = true;
-                Response.ClearContent();
-                Response.ClearHeaders();
-                Response.Flush();
-                Response.Close();
-                Response.End();
-            }
-            else
-            {
-                response.Redirect(ApoURLs.URLs.AccessDenied);
-            }
-        }
+        //private void DoUnAuthorized(ActionExecutingContext filterContext)
+        //{
+        //    var response = filterContext.HttpContext.Response;
+        //    if (filterContext.HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        //response.Clear();
+        //        //response.StatusCode = (int)HttpStatusCode.Unauthorized;
+        //        //response.StatusDescription = string.Empty;
+        //        //response.Write(Resources.Lang.UnauthorizedMsg);
+        //        //response.End();
+        //        Response.ContentType = "text/plain";
+        //        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+        //        Response.Write(Resources.Lang.UnauthorizedMsg);
+        //        Response.BufferOutput = true;
+        //        Response.ClearContent();
+        //        Response.ClearHeaders();
+        //        Response.Flush();
+        //        Response.Close();
+        //        Response.End();
+        //    }
+        //    else
+        //    {
+        //        response.Redirect(ApoURLs.URLs.AccessDenied);
+        //    }
+        //}
 
         #endregion
 

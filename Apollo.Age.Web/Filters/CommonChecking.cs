@@ -14,6 +14,10 @@ namespace Apollo.Age.Web.Filters
 
     public static class CommonChecking
     {
+        /// <summary>
+        /// Return page access denied once user dose not permission.
+        /// </summary>
+        /// <param name="filterContext">Input Action Executed Context.</param>
         public static void DoUnAuthorized(ActionExecutedContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
@@ -31,6 +35,10 @@ namespace Apollo.Age.Web.Filters
             }
         }
 
+        /// <summary>
+        /// Return page access denied once user dose not permission.
+        /// </summary>
+        /// <param name="filterContext">Input Action Executing Context.</param>
         public static void DoUnAuthorized(ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
