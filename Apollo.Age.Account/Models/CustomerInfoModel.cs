@@ -16,6 +16,8 @@ namespace Apollo.Age.Account.Models
     {
         public int ActorAgentId { get; set; }
 
+        public string ActorAgentUsername { get; set; }
+
         public bool IsMember { get; set; }
 
         public int CustId { get; set; }
