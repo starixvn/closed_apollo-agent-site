@@ -358,7 +358,7 @@ var HEADER = function ($) {
                 }
                 else {
                     HEADER.hideAccountTab();
-                    parent.$('#btn-mini-menu').hide();
+                    parent.document.getElementById('btn-mini-menu').style.display = 'none';
                 }
                 event.stopPropagation();
             });
