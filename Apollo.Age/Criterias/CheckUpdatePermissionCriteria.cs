@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CheckDownlineBelongToAgentCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CheckUpdatePermissionCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -17,7 +17,7 @@ namespace Apollo.Age.Criterias
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CheckDownlineBelongToAgentCriteria : CriteriaBase
+    public class CheckUpdatePermissionCriteria : CriteriaBase
     {
         public int ActorAgentId { get; set; }
 
@@ -29,7 +29,7 @@ namespace Apollo.Age.Criterias
 
         public override string GetSettingKey()
         {
-            return "Age_Agent_CheckDownlineBelongToAgent";
+            return "AgentAdmin_Age_Agent_CheckUpdatePermission";
         }
 
         public override bool IsValid()

@@ -16,8 +16,6 @@ namespace Apollo.Age.Account.Models
     {
         public int ActorAgentId { get; set; }
 
-        public string ActorAgentUsername { get; set; }
-
         public bool IsMember { get; set; }
 
         public int CustId { get; set; }
@@ -37,8 +35,6 @@ namespace Apollo.Age.Account.Models
         public string ParentName { get; set; }
 
         public bool IsMaster { get; set; }
-
-        public bool IsSuper { get; set; }
 
         public List<Agent> AgentPathList { get; set; }
     }

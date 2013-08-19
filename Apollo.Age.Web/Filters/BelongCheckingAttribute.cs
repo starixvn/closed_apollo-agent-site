@@ -48,14 +48,14 @@ namespace Apollo.Age.Web.Filters
                 int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"]) : 0;
                 if (memberId > 0)
                 {
-                    if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, memberId, CustomerType.Member))
                     {
                        CommonChecking.DoUnAuthorized(filterContext);
                     }
                 }
                 else if (agentId > 0)
                 {
-                    if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent))
+                    if (!_userService.HasPermissionOnUpdating(currentSession.AgentId, agentId, CustomerType.Agent))
                     {
                         CommonChecking.DoUnAuthorized(filterContext);
                     }
