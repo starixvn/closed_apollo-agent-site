@@ -3625,6 +3625,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View share setting {0}.
+        /// </summary>
+        public static string lblViewShareSetting {
+            get {
+                return ResourceManager.GetString("lblViewShareSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Volleyball A.
         /// </summary>
         public static string lblVolleyballA {

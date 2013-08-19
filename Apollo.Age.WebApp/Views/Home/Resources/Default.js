@@ -152,6 +152,6 @@ $(document).ready(function () {
     $('#main').attr('src', APOLLO.resolveUrl('message/newmessage'));
 
     if ($('.mainpage').length > 0) {        
-        parent.$('#btn-mini-menu').hide();
+       $('#btn-mini-menu').hide();
     }
 });

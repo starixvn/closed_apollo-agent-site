@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Resources;
 @{
-    ViewBag.Title = string.Format(Lang.lblEditShareSetting, ViewBag.UserName);
+    
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
     var userName = (string)ViewBag.UserName ?? string.Empty;
     var custId = (int)ViewBag.CustId;
@@ -9,6 +9,7 @@
     var isMaster = ViewBag.IsMaster ?? false;
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentUsername = ViewBag.AgentUsername ?? string.Empty;
+    ViewBag.Title = isMaster ? string.Format(Lang.lblEditShareSetting, ViewBag.UserName) : string.Format(Lang.lblViewShareSetting, ViewBag.UserName);
 }
 @section header
 {
