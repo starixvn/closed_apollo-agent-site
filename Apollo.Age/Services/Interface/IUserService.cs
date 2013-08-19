@@ -34,6 +34,8 @@ namespace Apollo.Age.Services.Interface
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
 
+        bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType);
+
         void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode);
 
         /// <summary>

@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Reports.Models
 {
+    using System;
+
+    [Serializable]
     public class SportCreditModel
     {
         public short AgentLevel { get; set; }

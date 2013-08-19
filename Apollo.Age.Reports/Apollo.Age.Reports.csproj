@@ -83,6 +83,7 @@
     <Compile Include="Criterias\ResultGetLeagueBySportCriteria.cs" />
     <Compile Include="Criterias\ResultGetSportCriteria.cs" />
     <Compile Include="Criterias\SportCreditCriteria.cs" />
+    <Compile Include="Extension\HSSFSheetExtensions.cs" />
     <Compile Include="Models\AgentWinLossModel.cs" />
     <Compile Include="Models\OutrightResultModel.cs" />
     <Compile Include="Models\OutstandingModel.cs" />

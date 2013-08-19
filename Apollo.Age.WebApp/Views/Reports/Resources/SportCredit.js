@@ -15,6 +15,12 @@
                     location.href = url;
                 }
             });
+            $('#export-excel').on('click', function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl('Reports/ExportSportCredit?username=' + $("#Username").val().trim());
+                location.href = url;
+                $.unblockUI();
+            });
         }
     };
 } (jQuery);
