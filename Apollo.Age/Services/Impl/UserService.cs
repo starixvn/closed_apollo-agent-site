@@ -116,35 +116,7 @@ namespace Apollo.Age.Services.Impl
         {
             try
             {
-                return _userRepository.CheckPermission(new CheckDownlineBelongToAgentCriteria
-                {
-                    ActorAgentId = actorAgentId,
-                    ObjectId = custId,
-                    ObjectTypeId = (int)customerType
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Determines whether [has permission on updating] [the specified actor agent id].
-        /// </summary>
-        /// <param name="actorAgentId">The actor agent id.</param>
-        /// <param name="custId">The cust id.</param>
-        /// <param name="customerType">Type of the customer.</param>
-        /// <returns>
-        ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType)
-        {
-            try
-            {
-                return _userRepository.CheckPermission(new CheckDownlineBelongToAgentCriteria
+                return _userRepository.HasPermissionOnUpdating(new CheckUpdatePermissionCriteria
                 {
                     ActorAgentId = actorAgentId,
                     ObjectId = custId,

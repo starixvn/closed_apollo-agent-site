@@ -22,7 +22,6 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using System;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -70,48 +69,15 @@ namespace Apollo.Age.Account.Services
         }
 
         /// <summary>
-        /// Get full info of a agent.
+        /// Get info of a agent.
         /// </summary>
-        /// <param name="criteria">Input GetAgentAllInfoCriteria.</param>
+        /// <param name="criteria">Input GetAgentInfoCriteria.</param>
         /// <returns>CustomerInfoModel (info of agent).</returns>
-        public CustomerInfoModel GetAgentInfo(GetAgentAllInfoCriteria criteria)
+        public CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetCustomerInfo(criteria);
-        }
-
-        /// <summary>
-        /// Check current agent is child direct agent.
-        /// </summary>
-        /// <param name="logginAgentId">Current Loggin agent.</param>
-        /// <param name="checkingAgentId">Agent need to check.</param>
-        /// <param name="isSupper">If supper, then full permission.</param>
-        /// <returns>Checking agent is valid direct downline or not.</returns>
-        public bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSupper = false)
-        {
-            if (isSupper)
-            {
-                return isSupper;
-            }
-
-            try
-            {
-                var agentInfo = _accountRepository.GetCustomerInfo(new GetAgentInfoCriteria
-                    {
-                        AgentId = checkingAgentId
-                    });
-                if (agentInfo != null && agentInfo.ParentId == logginAgentId)
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-
-            return false;
         }
 
         /// <summary>
