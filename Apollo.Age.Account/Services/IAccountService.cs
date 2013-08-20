@@ -26,7 +26,7 @@ namespace Apollo.Age.Account.Services
 
         List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria);
 
-        CustomerInfoModel GetAgentInfo(GetAgentAllInfoCriteria criteria);
+        CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria);
 
         CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria);
 
@@ -45,7 +45,5 @@ namespace Apollo.Age.Account.Services
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
 
         IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
-
-        bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSuper = false);
     }
 }

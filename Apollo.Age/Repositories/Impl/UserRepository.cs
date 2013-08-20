@@ -87,7 +87,7 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>
         ///   <c>true</c> if [has permission on updating] [the specified criteria]; otherwise, <c>false</c>.
         /// </returns>
-        public bool CheckPermission(ICriteria criteria)
+        public bool HasPermissionOnUpdating(ICriteria criteria)
         {
             if (criteria.IsValid())
             {

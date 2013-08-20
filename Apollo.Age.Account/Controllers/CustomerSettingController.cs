@@ -33,9 +33,6 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Customer Setting Controller
-    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
@@ -93,7 +90,7 @@ namespace Apollo.Age.Account.Controllers
                     CustId = model.Id,
                     Username = model.Username
                 })
-                : _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
+                : _accountService.GetAgentInfo(new GetAgentInfoCriteria
                 {
                     ActorAgentId = CurrentSession.AgentId,
                     AgentId = model.Id,
@@ -300,17 +297,6 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Edit Agent Position Taking.
-        /// </summary>
-        /// <param name="agentId">Agent Id need be edited.</param>
-        /// <param name="userName">Agent username.</param>
-        /// <param name="agentLevel">Agent level.</param>
-        /// <param name="reload">After edit, reload page or not.</param>
-        /// <param name="isSimpleMode">Current mode is simple mode or not</param>
-        /// <param name="backLink">Back link for after editing</param>
-        /// <param name="fromLeftMenu">Link from left menu or not</param>
-        /// <returns>Action result.</returns>
         public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = agentId;
@@ -321,22 +307,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        /// <summary>
-        /// Edit member position taking
-        /// </summary>
-        /// <param name="memberId">Member id need be edited</param>
-        /// <param name="userName">Member user name.</param>
-        /// <param name="agentId">Cross edit agent.</param>
-        /// <param name="agentUsername">Agent user name.</param>
-        /// <param name="reload">Reload page or not</param>
-        /// <param name="isSimpleMode">Current mode is simple mode or not</param>
-        /// <param name="backLink">Back link after editing.</param>
-        /// <param name="fromLeftMenu">From left menu.</param>
-        /// <returns>Action result</returns>
         public ActionResult EditMemberPositionTaking(int memberId, string userName, int agentId, string agentUsername = "", bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
         {
             ViewBag.CustId = memberId;
@@ -352,13 +326,6 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        /// <summary>
-        /// Get Position taking result.
-        /// </summary>
-        /// <param name="targetCustId">Target cust id is member or agent.</param>
-        /// <param name="agentId">Agent id for edit cross.</param>
-        /// <param name="agentLevel">Agent level.</param>
-        /// <returns>Action result.</returns>
         public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
         {
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
@@ -374,12 +341,6 @@ namespace Apollo.Age.Account.Controllers
             return JavaScript(javascriptString);
         }
 
-        /// <summary>
-        /// Update postion taking setting.
-        /// </summary>
-        /// <param name="settingContext">Current setting context.</param>
-        /// <param name="positionTakingSetting">Position taking update.</param>
-        /// <returns>Action result.</returns>
         [HttpPost, AllowUpdateChecking]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
@@ -391,16 +352,6 @@ namespace Apollo.Age.Account.Controllers
 
         #region Setting
 
-        /// <summary>
-        /// Edit All Setting of customer.
-        /// </summary>
-        /// <param name="custId">Cust id need be edited</param>
-        /// <param name="userName">User name.</param>
-        /// <param name="agentId">Agent id for edit cross level.</param>
-        /// <param name="agentLevel">Agent level.</param>
-        /// <param name="userGroup">User group for edit member.</param>
-        /// <param name="showHeader">Show header or not.</param>
-        /// <returns>Action result.</returns>
         public ActionResult EditAllSetting(int custId, string userName, int? agentId, int? agentLevel, string userGroup, bool showHeader = false)
         {
             ViewBag.CustId = custId;
@@ -427,7 +378,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -475,7 +426,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
@@ -636,8 +587,6 @@ namespace Apollo.Age.Account.Controllers
                 AdminId = base.CurrentSession.AdminId
             };
 
-            var isEditMember = settingContext.TargetRoleId == (int)Role.Member;
-
             //// If Current is Share Holder, then constrain min
             if (agentLevel != null && agentLevel.Value == 2)
             {
@@ -645,7 +594,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// If current Cust Edited Role is Member, then set Edit Role is Agent
-            if (isEditMember)
+            if (settingContext.TargetRoleId == (int)Role.Member)
             {
                 settingContext.RoleId = (int)Role.Agent;
             }
@@ -657,20 +606,19 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// View Current Agent Setting
-            if (base.CurrentSession.AgentId == targetCustId 
-                && !isEditMember)
+            if (base.CurrentSession.AgentId == targetCustId && settingContext.TargetRoleId != (int)Role.Member)
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-
-            if (isEditMember && agentId != null && base.CurrentSession.IsSuper)
+            
+            if (settingContext.TargetRoleId == (int)Role.Member
+            && agentId != null)
             {
                 settingContext.FormId = FormType.EditPT;
                 settingContext.CustId = agentId.Value;
             }
 
-            if (!base.CurrentSession.IsMaster
-                || (!isEditMember && !_accountService.IsDirectAgent(base.CurrentSession.AgentId, targetCustId, base.CurrentSession.IsSuper)))
+            if (!base.CurrentSession.IsMaster)
             {
                 //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;

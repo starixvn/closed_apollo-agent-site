@@ -20,14 +20,14 @@ namespace Apollo.Age.Web.ViewModels
     {
         public UnderMaintenanceViewModel()
         {
-            Status = false;
+            IsDownTime = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
             StartTime = nowHour.ToShortTimeString();
             EndTime = nowHour.AddHours(1).ToShortTimeString();
             UMDate = DateTime.Now.ToString("dd MMMM yyyy");
         }
 
-        public bool Status { get; set; }
+        public bool IsDownTime { get; set; }
 
         public string StartTime { get; set; }
 

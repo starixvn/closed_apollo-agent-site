@@ -85,7 +85,7 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".png") == -1
                     )
                 {
-                    if (maintenanceService.MaintenanceInfo.Status)
+                    if (maintenanceService.MaintenanceInfo.IsDownTime)
                     {
                         Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
                     }

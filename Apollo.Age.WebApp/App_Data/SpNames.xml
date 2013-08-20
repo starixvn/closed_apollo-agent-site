@@ -222,9 +222,7 @@
       <Mapping DataField="AgentId" ObjectProperty="CustId" />
       <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
-    <Setting Key="Age_Agent_GetInfo" SpName="Age_Agent_GetInfo" DbName="SVRAGE.RepDB" Plain="0">
-      <Mapping DataField="AgentId" ObjectProperty="CustId" />
-    </Setting>
+
     <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="ParentId" />
       <Mapping DataField="UGroup" ObjectProperty="Group" />
@@ -470,7 +468,7 @@
 
   <Function Name="Agent-Apollo-Admin">
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Agent_CheckDownlineBelongToAgent" SpName="Age_Agent_CheckDownlineBelongToAgent" DbName="SVRAGE.RepDB" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Setting">

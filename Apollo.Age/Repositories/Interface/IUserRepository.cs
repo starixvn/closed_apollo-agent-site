@@ -22,7 +22,7 @@ namespace Apollo.Age.Repositories.Interface
         int InternalCheckIn(InternalCheckinCriteria criteria);
         int InternalLogout(InternalLogoutCriteria criteria);       
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
-        bool CheckPermission(ICriteria criteria);
+        bool HasPermissionOnUpdating(ICriteria criteria);
         bool CheckBelongToUpline(ICriteria criteria);
     }
 }

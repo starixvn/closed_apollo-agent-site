@@ -200,42 +200,32 @@
                     @if (Model.IsMember)
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
-                        var editText = string.Empty;
-                        if (Model.IsMaster)
-                        {
-                            editText = Apollo.Age.Resources.Lang.edit;
-                        }
-                        else
-                        {
-                            editText = Apollo.Age.Resources.Lang.lblview;
-                        }
-
-
-                        if (Model.IsSuper)
-                        {
-                            <a class="edit-link" href="javascript:;">@editText</a>
-                            <div class="list">
-                                <ul class="menu-list">
-                                    @if (Model.AgentPathList.Any())
+                        <a class="edit-link" href="javascript:;">
+                            @if (Model.IsMaster)
+                            {
+                                @Apollo.Age.Resources.Lang.edit
+                            }
+                            else
+                            {
+                                @Apollo.Age.Resources.Lang.lblview
+                            }
+                        </a>
+                        <div class="list">
+                            <ul class="menu-list">
+                                @if (Model.AgentPathList.Any())
+                                {
+                                    var listAgent = Model.AgentPathList.OrderBy(t=>t.Level);
+                                    foreach (var itemAgent in listAgent)
                                     {
-                                        var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
-                                        foreach (var itemAgent in listAgent)
-                                        {
-                                            if (itemAgent.Level > AgentLevel.Super)
-                                            { 
-                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
-                                            }
+                                        if (itemAgent.Level > AgentLevel.Super)
+                                        { 
+                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
                                         }
-
                                     }
-                                </ul>
-                            </div>
-                        }
-                        else
-                        {
-                            <a class="lnk-setting" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ActorAgentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ActorAgentUsername" target="main">@editText</a>
-                        }
-                        
+
+                                }
+                            </ul>
+                        </div>
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
