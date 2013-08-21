@@ -572,6 +572,18 @@ namespace Apollo.Age.Web
             return finalBmp;
         }
 
+        protected override void HandleUnknownAction(string actionName)
+        {
+            try
+            {
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
+            }
+        } 
+
         #endregion Helpers
     }
 }
