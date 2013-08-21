@@ -436,6 +436,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
+            ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
+
             return View(criteria);
         }
 
