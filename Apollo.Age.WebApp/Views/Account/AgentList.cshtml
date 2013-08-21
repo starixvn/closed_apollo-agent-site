@@ -11,6 +11,7 @@
     var isMaster = (bool)ViewBag.IsMaster;
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+    var AgentLevel = (int)ViewBag.AgentLevel;
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
 }
@@ -54,8 +55,9 @@
                 -- <a href="~/Account/MemberList">@Lang.memberList</a>
             </div>
         }
-        @*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
-        <div class="end"></div>
+@*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
+        <div class="end">
+        </div>
     </div>   
     @Html.HiddenFor(m => m.AgentId)    
 }
@@ -64,15 +66,16 @@
     {
         <thead>
             <tr>
-                <th class="width-80">@Lang.enterusername
+                <th class="width-80">
+                    @RazorHelper.RenderAgentListHeader(AgentLevel + 1)
                 </th>
-                <th class="width-60">@Lang.agent
+                <th class="width-60">@RazorHelper.RenderAgentListHeader(AgentLevel + 1, true)
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
-                <th class="width-60">@Lang.condition
+                <th class="width-60">@Lang.status
                 </th>
-                <th class="width-60">@Lang.BetCondition
+                <th class="width-60">@Lang.betstatus
                 </th>
                 <th class="width-60">@Lang.Feature
                 </th>

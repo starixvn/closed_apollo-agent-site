@@ -418,7 +418,7 @@
         }
         else
         {
-            classSportCredit = "class=active"; 
+            classSportCredit = "class=active";
         }
 
     <ul class="@reportclass">
@@ -428,4 +428,32 @@
         <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.TicketsCancelled</a></li>
         <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
     </ul>
+}
+@helper RenderAgentListHeader(int currentLevel, bool isReplaceUpline = false)
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                {
+    <span>@Lang.lblMainShareHolder</span>
+                    break;
+                }
+            case 2:
+                {
+    <span>@Lang.lblShareholderLevel</span>
+                    break;
+                }
+
+            case 3:
+                {
+    <span>@Lang.lblMainAgent</span>
+                    break;
+                }
+
+            default:
+                {
+    <span>@(isReplaceUpline ? Lang.agent : Lang.lblUpline)</span>
+                    break;
+                }
+        }
 }

@@ -16,7 +16,9 @@
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
-    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;    
+    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
+    var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).First() : -1) ;   
+    var uplineLevel = (int)(currentLevel - 1);
 }
 @using (Html.BeginForm())
 {       
@@ -83,22 +85,22 @@
         <thead>
             <tr class="m_title_ag">
                 <th class="width-80">
-                    @Lang.Parent
+                    @RazorHelper.RenderAgentListHeader(uplineLevel)
                 </th>
                 <th class="width-80">
-                    @Lang.enterusername
+                     @RazorHelper.RenderAgentListHeader(currentLevel,true)
                 </th>
                 <th class="width-60">
-                    @Lang.agent
+                    @Lang.lblDownline
                 </th>
                 <th class="width-70">
                     @Lang.member
                 </th>
                 <th class="width-60">
-                    @Lang.condition
+                    @Lang.status
                 </th>
                 <th class="width-60">
-                    @Lang.BetCondition
+                    @Lang.betstatus
                 </th>
                 <th class="width-80">
                     @Lang.Feature
