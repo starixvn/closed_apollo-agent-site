@@ -51,7 +51,7 @@ namespace Apollo.Age.Web
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
            // return View(maintenanceInfo);
 
-            if (maintenanceInfo.IsDownTime)
+            if (maintenanceInfo.Status)
             {
                 return View(maintenanceInfo);
             }
