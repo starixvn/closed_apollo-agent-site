@@ -67,9 +67,10 @@
         <thead>
             <tr>
                 <th class="width-80">
-                    @RazorHelper.RenderAgentListHeader(AgentLevel + 1)
+                    @RazorHelper.RenderAgentListHeader(AgentLevel + 1, true)
                 </th>
-                <th class="width-60">@RazorHelper.RenderAgentListHeader(AgentLevel + 1, true)
+                <th class="width-60">
+                    @Lang.lblDownline
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
