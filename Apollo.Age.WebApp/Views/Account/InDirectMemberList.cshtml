@@ -19,6 +19,9 @@
     var agentList = ViewBag.AgentList != null ? (List<Agent>)ViewBag.AgentList : new List<Agent>();
     var allowFundOut = (bool)ViewBag.AllowFundOut;
     var actorAgentUsername = ViewBag.ActorAgentUsername ?? string.Empty;
+
+    var agentLevel = (int)ViewBag.AgentLevel; 
+    
 }
 @using (Html.BeginForm())
 {       
@@ -85,7 +88,7 @@
         <thead>
             <tr>
                 <td class="width-80">
-                    @Lang.agent
+                  @RazorHelper.RenderAgentListHeader(agentLevel, true)
                 </td>
                 <td class="width-80">
                     @Lang.member

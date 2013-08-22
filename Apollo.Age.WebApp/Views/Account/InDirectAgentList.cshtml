@@ -17,7 +17,7 @@
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
-    var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).First() : -1) ;   
+    var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).FirstOrDefault(): -1) ;   
     var uplineLevel = (int)(currentLevel - 1);
 }
 @using (Html.BeginForm())

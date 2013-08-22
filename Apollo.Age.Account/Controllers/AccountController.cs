@@ -733,6 +733,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
             ViewBag.AgentUsername = agent != null ? agent.Username : string.Empty;
+            ViewBag.AgentLevel = agent != null ? (int)agent.Level : -1;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.IsSupper = base.CurrentSession.IsSuper;
             ViewBag.AgentList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria

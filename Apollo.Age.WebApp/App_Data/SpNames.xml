@@ -232,6 +232,7 @@
 
     <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
     <Setting Key="Age_Agent_GetAgentDownlinePath" SpName="Age_Agent_GetAgentDownlinePath" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="AgentId" ObjectProperty="Id" />
