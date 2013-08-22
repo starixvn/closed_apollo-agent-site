@@ -629,10 +629,18 @@ Spinner.prototype = {
         if (this.options.minimum > maxValue) maxValue = this.options.minimum;
         if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
+
+        if (this.getValue() > maxValue) {
+            this.setValue(maxValue);
+        }
     },
     updateMinValue: function (mixValue) {
         if (mixValue < 0) mixValue = 0;
         this.options.minimum = mixValue;
+
+        if (this.getValue() < mixValue) {
+            this.setValue(mixValue);
+        }
     },
     isValid: function (hideMessage) {
         var value = this.getValue();
