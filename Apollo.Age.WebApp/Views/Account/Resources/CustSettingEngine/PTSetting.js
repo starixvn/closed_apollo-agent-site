@@ -685,10 +685,10 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 dataChanged = false;
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder
-								&& (currentBetType.Pt.Max != currentPtValue.Max
-                                || currentBetType.Pt.Min != currentPtValue.Min)) {
+                                    && currentBetType.Pt.Max != currentPtValue.Max) {
                                     dataChanged = true;
-                                }
+                                    currentPtValue.Min = currentBetType.Pt.Min;
+                                } 
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
 								&& (currentBetType.Pt.Max != currentPtValue.Max
