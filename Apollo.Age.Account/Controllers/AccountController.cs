@@ -157,7 +157,7 @@ namespace Apollo.Age.Account.Controllers
                 ExcludeActor = false
             });
 
-            var isDirectAgent = _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentInfo != null ? agentInfo.CustId : -1, base.CurrentSession.IsSuper);
+            //var isDirectAgent = _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentInfo != null ? agentInfo.CustId : -1, base.CurrentSession.IsSuper);
 
             if (agentInfo == null)
             {
@@ -167,14 +167,14 @@ namespace Apollo.Age.Account.Controllers
                     CustId = -1,
                     IsMember = false,
                     Username = username,
-                    IsMaster = this.CurrentSession.IsMaster && isDirectAgent
+                    IsMaster = this.CurrentSession.IsMaster //&& isDirectAgent
                 };
             }
             else
             {
                 agentInfo.ActorAgentId = this.CurrentSession.AgentId;
                 agentInfo.IsMember = false;
-                agentInfo.IsMaster = this.CurrentSession.IsMaster && isDirectAgent;
+                agentInfo.IsMaster = this.CurrentSession.IsMaster; //&& isDirectAgent;
 
                 if (this.CurrentSession.AgentId != agentInfo.CustId)
                 {
@@ -188,7 +188,7 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            agentInfo.IsSuper = base.CurrentSession.IsSuper;
+            //agentInfo.IsSuper = base.CurrentSession.IsSuper;
             
 
             return View("AccountInfo", agentInfo);
@@ -535,7 +535,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
-            ViewBag.IsMaster = this.CurrentSession.IsMaster && base.CurrentSession.IsSuper;
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;//&& base.CurrentSession.IsSuper;
             ViewBag.AgentUsername = agentInfo.Username;
 
             return View(criteria);

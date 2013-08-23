@@ -472,6 +472,7 @@
   <Function Name="Agent-Apollo-Admin">
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="Age_Agent_CheckDownlineBelongToAgent" SpName="Age_Agent_CheckDownlineBelongToAgent" DbName="SVRAGE.RepDB" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Setting">
