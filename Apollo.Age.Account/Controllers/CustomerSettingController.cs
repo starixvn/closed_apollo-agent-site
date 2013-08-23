@@ -321,7 +321,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -427,7 +427,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -475,7 +475,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
@@ -657,20 +657,18 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// View Current Agent Setting
-            if (base.CurrentSession.AgentId == targetCustId 
-                && !isEditMember)
+            if (base.CurrentSession.AgentId == targetCustId && settingContext.TargetRoleId != (int)Role.Member)
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
 
-            if (isEditMember && agentId != null && base.CurrentSession.IsSuper)
+            if (isEditMember && agentId != null)
             {
                 settingContext.FormId = FormType.EditPT;
                 settingContext.CustId = agentId.Value;
             }
 
-            if (!base.CurrentSession.IsMaster
-                || (!isEditMember && !_accountService.IsDirectAgent(base.CurrentSession.AgentId, targetCustId, base.CurrentSession.IsSuper)))
+            if (!base.CurrentSession.IsMaster)
             {
                 //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
