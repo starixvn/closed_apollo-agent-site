@@ -642,6 +642,12 @@ Spinner.prototype = {
             this.setValue(mixValue);
         }
     },
+    getMaxValue: function () {
+        return this.options.maximum;
+    },
+    getMinValue: function () {
+        return this.options.minimum;
+    },
     isValid: function (hideMessage) {
         var value = this.getValue();
         if (!this.digitsValid(value)) {
