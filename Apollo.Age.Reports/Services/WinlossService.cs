@@ -36,7 +36,7 @@ namespace Apollo.Age.Reports.Services
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
-        
+
         /// <summary>
         /// Get List Agent Win Loss from DB.
         /// </summary>
@@ -73,13 +73,13 @@ namespace Apollo.Age.Reports.Services
                 var title = string.Format("{0} {1}", Lang.agentwinloss, Lang.lblReport);
                 var filter = string.Format(
                     "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, 
-                    Lang.dateRange, 
-                    ShortDateFormat(model.FromDate), 
+                    model.AgentName,
+                    Lang.dateRange,
+                    ShortDateFormat(model.FromDate),
                     ShortDateFormat(model.ToDate),
-                    Lang.lblReport, 
-                    model.SportName, 
-                    Lang.WagerType, 
+                    Lang.lblReport,
+                    model.SportName,
+                    Lang.WagerType,
                     model.BettypeName);
                 if (model.IsSuper)
                 {
@@ -110,17 +110,17 @@ namespace Apollo.Age.Reports.Services
                 var title = string.Format("{0} {1}", Lang.lblMemberWinLoss, Lang.lblReport);
                 var filter = string.Format(
                     "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, 
-                    Lang.dateRange, 
-                    ShortDateFormat(model.FromDate), 
+                    model.AgentName,
+                    Lang.dateRange,
+                    ShortDateFormat(model.FromDate),
                     ShortDateFormat(model.ToDate),
-                    Lang.lblReport, 
-                    model.SportName, 
-                    Lang.WagerType, 
+                    Lang.lblReport,
+                    model.SportName,
+                    Lang.WagerType,
                     model.BettypeName);
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
-                
+
                 #region declare style of cell
                 CustomizeColor(hssfworkbook);
 
@@ -200,7 +200,7 @@ namespace Apollo.Age.Reports.Services
                 decimal totalUpLineWinLoss = 0;
                 decimal totalOutstandingAmount = 0;
                 decimal totalOutstandingShareAmount = 0;
-                
+
                 foreach (var memberWinLoss in model.MemberWinLossList)
                 {
                     columIndex = 0;
@@ -269,7 +269,7 @@ namespace Apollo.Age.Reports.Services
                     var currentWidth = sheet.GetColumnWidth(i);
                     sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
                 }
-                
+
                 #endregion
 
                 #region title
@@ -300,21 +300,6 @@ namespace Apollo.Age.Reports.Services
             }
 
             return hssfworkbook;
-        }
-
-        /// <summary>
-        /// Get Date Format (year-month-day).
-        /// </summary>
-        /// <param name="dt">Object date need format.</param>
-        /// <returns>Return string date.</returns>
-        public string ShortDateFormat(object dt)
-        {
-            if (Convert.IsDBNull(dt) || dt == null)
-            {
-                return string.Empty;
-            }
-
-            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
         }
 
         /// <summary>
@@ -364,7 +349,7 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyleBlack, agentName);
             CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
             CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-            
+
             rowIndex++;
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
@@ -391,7 +376,7 @@ namespace Apollo.Age.Reports.Services
             {
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
-                
+
                 CreateStringCell(row, columIndex++, bodyStyleLeft, agentWinLoss.AgentName);
                 CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
                 CreateStringCell(row, columIndex++, bodyStyleRight, FormatNumber20(agentWinLoss.BetAmount) + " / " + FormatNumber(agentWinLoss.BetCount));
@@ -460,7 +445,7 @@ namespace Apollo.Age.Reports.Services
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
-            
+
             #region declare style of cell
             CustomizeColor(hssfworkbook);
             var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
@@ -600,7 +585,7 @@ namespace Apollo.Age.Reports.Services
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalATotal);
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineEffectiveStake);
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineTotal);
-            
+
             #endregion footer
 
             #region auto size & freePane
