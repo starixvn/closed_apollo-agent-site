@@ -142,9 +142,10 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
         //// Update New Min Range
         var newMinValue = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValue, 2), 0);
-        minSpinBox.setValue(newMinValue);
         minSpinBox.updateMaxValue(maxValue);
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, maxValue);
+        minSpinBox.setValue(newMinValue);
+        
 
     }
     //// Max K Change affect To Min K and Preset K
@@ -441,8 +442,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     var presetSelected = currentPt.Preset;
     //    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Max, 2), 0);
     //    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - currentPt.Max, 2), 0);
-    currentPt.MaxPresetSpan = currentPt.Upline.Max;
-    currentPt.MinPresetSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
+    //currentPt.MaxPresetSpan = currentPt.Upline.Max;
+    //currentPt.MinPresetSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
+    currentPt.MaxPresetSpan = currentPt.Upline.Max - currentPt.Upline.Min;
+    currentPt.MinPresetSpan = 0;
     var presetContainer = document.createElement("TD");
     presetContainer.className = "share-setting-value";
     trSetting.appendChild(presetContainer);
@@ -547,7 +550,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         }
 
         //// Update Max Taken Value
-        currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(currentPt.MaxPresetSpan - presetValueCorrect, 2), 0);
+        currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - presetValueCorrect, 2), 0);
         currentPt.MinMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValueCorrect, 2), 0, currentPt.Upline.Min);
         maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
         maxSpinBox.updateMaxValue(currentPt.MaxMaxSpan);
@@ -555,9 +558,9 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         var maxValue = maxSpinBox.getValue();
         //// Update Min Taken
         var newMinValue = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValueCorrect, 2), 0);
-        minSpinBox.setValue(newMinValue);
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, maxValue);
         minSpinBox.updateMaxValue(maxValue);
+        minSpinBox.setValue(newMinValue);
     }
     //// Max K Change affect To Min K and Preset K
     maxSpinBox.input.onchange = function (event) {
@@ -567,7 +570,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
 
         currentPt.MaxMinSpan = maxSpinBox.getValue();
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
-        uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
+        uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
     }
 
 
@@ -942,20 +945,20 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
     tableShareSetting.className = "share-setting-table";
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
-    
+
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
     maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
     maxLabel.className = "share-setting-label";
-    
+
     trSetting.appendChild(maxLabel);
     var valueContainer = document.createElement("TD");
     valueContainer.className = "share-setting-value";
     valueContainer.innerHTML = currentPt.Max;
     trSetting.appendChild(valueContainer);
-    return tableShareSetting; 
+    return tableShareSetting;
 };
 
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
