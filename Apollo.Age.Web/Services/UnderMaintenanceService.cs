@@ -113,11 +113,11 @@ namespace Apollo.Age.Web.Services
                     umInfo = JsonConvert.DeserializeObject<UnderMaintenanceViewModel>(response.Content.ReadAsStringAsync().Result);
                 }
 
-                if (umInfo.Status)
-                {
-                    umInfo.StartTime = startTime;
-                    umInfo.EndTime = endTime;
-                }
+                //if (umInfo.Status)
+                //{
+                //    umInfo.StartTime = startTime;
+                //    umInfo.EndTime = endTime;
+                //}
 
                 return umInfo;
             }
