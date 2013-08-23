@@ -407,8 +407,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 var betTypesLength = betTypes.length;
                                 for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                     var betType = betTypes[betTypeIndex];
-                                    var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
-                                    while (reload <= 1) {
+//                                    var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
+//                                    while (reload <= 1) {
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                                         }
@@ -440,8 +440,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                         if (betType.ptSpinBox) {
                                             betType.ptSpinBox.input.onchange();
                                         }
-                                        reload++;
-                                    }
+//                                        reload++;
+//                                    }
                                 }
                                 clearInterval(Validators.intervalAnimate);
                                 Validators.hide();
@@ -816,8 +816,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 158, -10, height, 10000, true);
             },
             this.UpdateCopyValue = function (currentCopyBetType, betType) {
-                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
-                while (reload <= 1) {
+//                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
+//                while (reload <= 1) {
                     if (betType.presetSpinBox) {
                         betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                     }
@@ -847,8 +847,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     if (betType.ptSpinBox) {
                         betType.ptSpinBox.input.onchange();
                     }
-                    reload++;
-                }
+//                    reload++;
+//                }
             };
             this.Render = function (owner) {
                 var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
