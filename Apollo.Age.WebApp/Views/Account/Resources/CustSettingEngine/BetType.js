@@ -190,9 +190,10 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     }
 
     this.Validate = function () {
+        if (!presetSpinBox.isValid()) return false;
         if (!maxSpinBox.isValid()) return false;
         if (!minSpinBox.isValid()) return false;
-        if (!presetSpinBox.isValid()) return false;
+        
         return true;
     };
 
@@ -596,8 +597,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     }
 
     this.Validate = function () {
-        if (!maxSpinBox.isValid()) return false;
         if (!presetSpinBox.isValid()) return false;
+        if (!maxSpinBox.isValid()) return false;
         if (!minSpinBox.isValid()) return false;
         return true;
     };
