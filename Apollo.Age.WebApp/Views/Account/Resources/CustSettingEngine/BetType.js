@@ -163,7 +163,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         currentPt.MaxMinSpan = maxValue;
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
-        minSpinBox.setValue(currentPt.MaxMinSpan);
+        minSpinBox.setValue(Math.min(currentPt.MinMaxSpan, currentPt.MaxMinSpan));
     }
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
@@ -583,7 +583,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
 
         currentPt.MaxMinSpan = maxSpinBox.getValue();
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
-        minSpinBox.setValue(currentPt.MaxMinSpan);
+        minSpinBox.setValue(Math.min(currentPt.MinMaxSpan, currentPt.MaxMinSpan));
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
     }
 
