@@ -22,16 +22,16 @@ namespace Apollo.Age.Web.ViewModels
         {
             Status = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
-            StartTime = nowHour.ToShortTimeString();
-            EndTime = nowHour.AddHours(1).ToShortTimeString();
+            Start_Time = nowHour.ToShortTimeString();
+            End_Time = nowHour.AddHours(1).ToShortTimeString();
             UMDate = DateTime.Now.ToString("dd MMMM yyyy");
         }
 
         public bool Status { get; set; }
 
-        public string StartTime { get; set; }
+        public string Start_Time { get; set; }
 
-        public string EndTime { get; set; }
+        public string End_Time { get; set; }
 
         public string UMDate { get; set; }
     }

@@ -86,15 +86,15 @@ namespace Apollo.Age.Web.Services
         private UnderMaintenanceViewModel GetMaintenanceInfo()
         {
             var umInfo = new UnderMaintenanceViewModel { Status = false };
-            var startTime = umInfo.StartTime;
-            var endTime = umInfo.EndTime;
+            var startTime = umInfo.Start_Time;
+            var endTime = umInfo.End_Time;
 
             // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
                 umInfo.Status = true;
-                umInfo.StartTime = AppSettings.StartTime;
-                umInfo.EndTime = AppSettings.EndTime;
+                umInfo.Start_Time = AppSettings.StartTime;
+                umInfo.End_Time = AppSettings.EndTime;
 
                 return umInfo;
             }
