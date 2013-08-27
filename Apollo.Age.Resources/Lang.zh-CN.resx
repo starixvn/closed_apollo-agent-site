@@ -1815,4 +1815,10 @@
   <data name="Name" xml:space="preserve">
     <value>名称</value>
   </data>
+  <data name="lblRemarks" xml:space="preserve">
+    <value>备 注</value>
+  </data>
+  <data name="lblRemarksViewShare" xml:space="preserve">
+    <value>票单占成正常是你下线的设定占成(第 一栏),但若下线票单占成及自己设定占成的总和低于你的最小占成,票 单占成便需补足差额,等如(最 小占成-下线票单占成总和)</value>
+  </data>
 </root>

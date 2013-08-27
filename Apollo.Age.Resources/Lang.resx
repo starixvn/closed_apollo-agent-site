@@ -1938,4 +1938,11 @@
   <data name="lblEffectiveStake2" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="lblRemarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="lblRemarksViewShare" xml:space="preserve">
+    <value>"% on Member" normally is equal to "% Preset" of direct downline. However, if the sum of "% on Member" of all downline and 
+"% Preset" of driect downline is less your "% Min Downline", your "% on Member" would be equal to ("% Min Downline - sum of % on Member of all downline)</value>
+  </data>
 </root>
