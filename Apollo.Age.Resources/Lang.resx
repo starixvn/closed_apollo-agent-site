@@ -454,7 +454,7 @@
     <value>View</value>
   </data>
   <data name="PercentInMember" xml:space="preserve">
-    <value>%</value>
+    <value>% on Member</value>
   </data>
   <data name="lblVbBdmTt" xml:space="preserve">
     <value>V.B / BDM / TT</value>
@@ -655,7 +655,7 @@
     <value>Sportsbook</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>% Downline</value>
+    <value>% Max Downline</value>
   </data>
   <data name="nextcombo" xml:space="preserve">
     <value>Next Combo</value>
@@ -940,7 +940,7 @@
     <value>Update</value>
   </data>
   <data name="lblGivenShare" xml:space="preserve">
-    <value>% Downline</value>
+    <value>% Max Downline</value>
   </data>
   <data name="lblTakenShare" xml:space="preserve">
     <value>% Preset</value>
@@ -1934,5 +1934,8 @@
   </data>
   <data name="lblViewShareSetting" xml:space="preserve">
     <value>View share setting {0}</value>
+  </data>
+  <data name="lblEffectiveStake2" xml:space="preserve">
+    <value>Effective Stake</value>
   </data>
 </root>
