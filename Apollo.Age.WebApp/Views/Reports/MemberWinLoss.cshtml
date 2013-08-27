@@ -93,7 +93,7 @@
     
     <div class="export-excel" id="btnExcelMemberWinLoss"></div>
     <table class="tblRpt report tblWinLoss">
-        <thead>
+        <thead class="header-member">
             <tr>
                 <th class="namecolor" rowspan="2">
                 </th>
@@ -229,7 +229,7 @@
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
-                    <span class='split'>/</span>
+                    <span class='split-footer'>/</span>
                     @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
