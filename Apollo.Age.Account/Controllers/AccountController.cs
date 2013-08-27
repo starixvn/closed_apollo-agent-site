@@ -634,6 +634,7 @@ namespace Apollo.Age.Account.Controllers
 
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
+            ViewBag.AgentUserName = this.CurrentSession.AgentName;
             return View(criteria);
         }
 

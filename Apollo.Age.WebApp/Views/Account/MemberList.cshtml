@@ -19,6 +19,8 @@
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
 
     var allowFundOut = (bool)ViewBag.AllowFundOut;
+
+    var agentUsername = ViewBag.AgentUserName ?? string.Empty;
 }
 @using (Html.BeginForm())
 {
@@ -67,7 +69,7 @@
     @Html.HiddenFor(m => m.AgentId)
 }
 <div  id="divEditMultiple" class="edit-multiple-link">
-    <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
+    <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
         @if (isMaster)
         {
             @Lang.edit
@@ -75,14 +77,14 @@
         else
         {
             @Lang.lblview
-        }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+        }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
 </div>
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                 <th class="width-50">
+                 <th class="width-40">
                     <input type="checkbox" id="cbAllMember" />
                 </th>
                 <th class="width-80">@Lang.enterusername
@@ -125,7 +127,7 @@
                         }
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -133,7 +135,7 @@
                             else
                             {
                                 @Lang.lblview
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                     </td>
                 </tr>
             }
