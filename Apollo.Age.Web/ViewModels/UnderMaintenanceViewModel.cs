@@ -25,6 +25,7 @@ namespace Apollo.Age.Web.ViewModels
             Start_Time = nowHour.ToShortTimeString();
             End_Time = nowHour.AddHours(1).ToShortTimeString();
             UMDate = DateTime.Now.ToString("dd MMMM yyyy");
+
         }
 
         public bool Status { get; set; }
