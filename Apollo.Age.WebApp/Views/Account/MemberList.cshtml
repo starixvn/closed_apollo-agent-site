@@ -14,6 +14,8 @@
 
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
 
+    var firstMember = memberList.FirstOrDefault() ?? new MemberListModel();
+
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
 
     var allowFundOut = (bool)ViewBag.AllowFundOut;
@@ -64,13 +66,28 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
-<table class="tblRpt memberList">
+<div  id="divEditMultiple" class="edit-multiple-link">
+    <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
+        @if (isMaster)
+        {
+            @Lang.edit
+        }
+        else
+        {
+            @Lang.lblview
+        }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+</div>
+<table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                <th class="width-80">@Lang.member
+                 <th class="width-50">
+                    <input type="checkbox" id="cbAllMember" />
                 </th>
+                <th class="width-80">@Lang.enterusername
+                </th>
+
                 <th class="width-60">@Lang.status
                 </th>
                 <th class="width-60">@Lang.betstatus
@@ -86,6 +103,9 @@
             {
                 <tr>
                     <td>
+                        <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
+                    </td>
+                    <td>
                         @item.Username
                     </td>
                     <td>
@@ -95,14 +115,14 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                         @if (allowFundOut && item.CashBalance > 0 )
-                         {
-                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
-                         }
-                         else
-                         {
-                        @item.CashBalance
-                         }
+                        @if (allowFundOut && item.CashBalance > 0)
+                        {
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                        }
+                        else
+                        {
+                            @item.CashBalance
+                        }
                     </td>
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">

@@ -206,6 +206,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     return box;
 };
 
+Fanex.CustSetting.BetType.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_2 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     var currentPt = this.pt;
@@ -265,7 +266,8 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     // Get updated data
     this.Save = function () {
         this.pt.Value = ptSpinBox.getValue();
-        if (this.oldPt.Value != this.pt.Value) {
+        if (this.oldPt.Value != this.pt.Value
+        || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
             return {
                 Id: this.id,
                 Pt: this.pt
@@ -653,6 +655,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     return tableShareSetting;
 };
 
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_5 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_2 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     //box.appendChild(tableShareSetting);

@@ -3022,6 +3022,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select at least one member..
+        /// </summary>
+        public static string lblPleaseSelectAtLeast {
+            get {
+                return ResourceManager.GetString("lblPleaseSelectAtLeast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post date.
         /// </summary>
         public static string lblPostdate {
@@ -3487,6 +3496,24 @@ namespace Apollo.Age.Resources {
         public static string lblUO {
             get {
                 return ResourceManager.GetString("lblUO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update error message(s):.
+        /// </summary>
+        public static string lblUpdateError {
+            get {
+                return ResourceManager.GetString("lblUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update successfully following member(s):.
+        /// </summary>
+        public static string lblUpdateSuccessMultiple {
+            get {
+                return ResourceManager.GetString("lblUpdateSuccessMultiple", resourceCulture);
             }
         }
         

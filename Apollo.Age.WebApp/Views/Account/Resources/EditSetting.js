@@ -100,8 +100,44 @@ if (typeof jQuery != 'undefined') {
                             EDITSETTING.completeUpdate();
                         } else {
                             try { $.unblockUI(); } catch (e) { };
-                            //noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
-                            APOLLO.showMessage(data.ErrMsg, 'error');
+                            var mainMessage = data.ErrMsg;
+                            if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+                                //
+                                var arrayMessage = data.ErrMsg.split('^^'),
+                                    errorMessage = '',
+                                    successMessage = '';
+                                for (var i = 0; i < arrayMessage.length; i++) {
+                                    var innerMessage = arrayMessage[i].split('##');
+//                                    errorMessage += '<br/> + ';
+//                                    successMessage += '<br/> + ';
+                                    for (var j = 0; j < innerMessage.length; j++) {
+                                        if (j == 0) {
+                                            $.each(innerMessage[j].split(';'), function (i, val) {
+                                                if (val != '') {
+                                                    errorMessage += ' + ' + val + '<br/>';
+                                                }
+                                            });
+
+                                        }
+                                        else {
+                                            $.each(innerMessage[j].split(';'), function (i, val) {
+                                                if (val != '') {
+                                                    successMessage += ' + ' + val + '<br/>';
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                                mainMessage = Language.UPDATE_ERROR + '<br/>' + errorMessage;
+                                if (successMessage != '') {
+                                    mainMessage += '<br/><div class="successMessage">' + Language.UPDATE_MULTIPLE_SUCCESS + '<br/>' + successMessage + '</div>';
+                                }
+
+                                APOLLO.showMessage(mainMessage, 'error', null, true);
+                            }
+                            else {
+                                APOLLO.showMessage(mainMessage, 'error');
+                            }
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         if (jqXHR.responseText) {

@@ -14,7 +14,8 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             EDIT_PT: 1,
             EDIT_NON_DIRECT: 2,
             VIEW_SETTING: 3,
-            SHADOW_VIEW: 4
+            SHADOW_VIEW: 4,
+            EDIT_MULTIPLE: 5
         },
         PT_STEP10: 1,
         PT_STEP100: 10,
@@ -657,6 +658,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.Save = function () {
                 var result = [];
                 var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+                var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
                 if (currentContext.IsSimpleMode == true) {
                     var currentPtValue = this.SaveSimpleMode();
                     var dataChanged = false;
@@ -692,7 +694,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     dataChanged = true;
                                 }
 
-                                if (dataChanged == true) {
+                                if (dataChanged == true || isEditMultiple) {
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
                                 }
                                 else {

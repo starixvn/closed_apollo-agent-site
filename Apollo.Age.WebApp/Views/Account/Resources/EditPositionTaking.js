@@ -125,7 +125,39 @@ if (typeof jQuery != 'undefined') {
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
                         try { $.unblockUI(); } catch (e) { };
-                        APOLLO.showMessage(data.ErrMsg, 'error');
+                        var mainMessage = data.ErrMsg;
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+                            var arrayMessage = data.ErrMsg.split('##'),
+                                    errorMessage = '',
+                                    successMessage = '';
+                            for (var i = 0; i < arrayMessage.length; i++) {
+                                var innerMessage = arrayMessage[i];
+                                if (i == 0) {
+                                    $.each(innerMessage.split(';'), function (i, val) {
+                                        if (val != '') {
+                                            errorMessage += ' + ' + val + '<br/>';
+                                        }
+                                    });
+
+                                }
+                                else {
+                                    $.each(innerMessage.split(';'), function (i, val) {
+                                        if (val != '') {
+                                            successMessage += ' + ' + val + '<br/>';
+                                        }
+                                    });
+                                }
+                            }
+                            mainMessage = Language.UPDATE_ERROR + '<br/>' + errorMessage;
+                            if (successMessage != '') {
+                                mainMessage += '<br/><div class="successMessage">' + Language.UPDATE_MULTIPLE_SUCCESS + '<br/>' + successMessage + '</div>';
+                            }
+
+                            APOLLO.showMessage(mainMessage, 'error', null, true);
+                        }
+                        else {
+                            APOLLO.showMessage(mainMessage, 'error');
+                        }
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.responseText) {
