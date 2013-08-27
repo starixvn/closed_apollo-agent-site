@@ -693,17 +693,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 }
 
                                 if (dataChanged == true) {
-
-                                    //                                    if (typeof (currentBetType.Pt.Max) != 'undefined'
-                                    //                                    && typeof (currentBetType.Pt.Min) != 'undefined'
-                                    //                                    && currentPtValue.Max < currentBetType.Pt.Min) {
-                                    //                                        return null;
-                                    //                                    }
-                                    //                                    else {
-                                    //                                        currentPtValue.Min = currentBetType.Pt.Min;
-                                    //                                    }
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
-
                                 }
                                 else {
                                     currentBetType.Pt = null;
