@@ -53,8 +53,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
     //// Given share
     var maxSelected = this.pt.Max;
-    //    currentPt.MaxMaxSpan = this.pt.Upline.Max;
-    //    currentPt.MinMaxSpan = Math.max(this.pt.Upline.Min, this.pt.Min);
     currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Preset, 2), 0); ;
     currentPt.MinMaxSpan = Math.max(0, Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Preset, 2), this.pt.Upline.Min);
 
