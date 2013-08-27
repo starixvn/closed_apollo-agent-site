@@ -118,6 +118,15 @@
 </table>
 </div>
 </div>
+
+@if (Model.MemberShareModelList != null && Model.MemberShareModelList.Any())
+{
+    <div class="remarks-viewshare">
+    <b>@Lang.lblRemarks: </b>
+    <span>@Lang.lblRemarksViewShare</span>
+    </div>
+}
+
 @section scripts
 {
 	@Scripts.Render("~/scripts/viewsharesettingjs")
