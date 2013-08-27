@@ -180,7 +180,7 @@ namespace Apollo.Age.Reports.Services
                 CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblWinLossReport);
                 CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblComm);
                 CreateStringCell(row, columIndex++, headerStyleAgent, Lang.total);
-                CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake);
+                CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake2);
                 CreateStringCell(row, columIndex++, headerStyleUpline, Lang.total);
                 CreateStringCell(row, columIndex++, headerStyleOutstanding, string.Empty);
                 CreateStringCell(row, columIndex++, headerStyleOutstanding, string.Empty);
@@ -507,7 +507,7 @@ namespace Apollo.Age.Reports.Services
             CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblWinLossReport);
             CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblComm);
             CreateStringCell(row, columIndex++, headerStyleAgent, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake);
+            CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake2);
             CreateStringCell(row, columIndex++, headerStyleUpline, Lang.total);
 
             rowIndex++;
