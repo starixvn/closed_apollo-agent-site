@@ -30,8 +30,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
     //// Taken Share
     var presetSelected = this.pt.Preset;
-    //    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max, 2), 0);
-    //    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Max, 2), 0);
     currentPt.MaxPresetSpan = this.pt.Upline.Max - this.pt.Upline.Min;
     currentPt.MinPresetSpan = 0;
 
@@ -55,8 +53,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
     //// Given share
     var maxSelected = this.pt.Max;
-    //    currentPt.MaxMaxSpan = this.pt.Upline.Max;
-    //    currentPt.MinMaxSpan = Math.max(this.pt.Upline.Min, this.pt.Min);
     currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Preset, 2), 0); ;
     currentPt.MinMaxSpan = Math.max(0, Fanex.RoundNumber(this.pt.Upline.MinGiven - this.pt.Preset, 2), this.pt.Upline.Min);
 
@@ -100,14 +96,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
     uplineMinSpan.className = "upline-agent-share";
     minContainer.appendChild(uplineMinSpan);
-
-    //// Constrain
-
-    //    var updateConstrainAfterEdited = function () {
-    //        var maxValue = maxSpinBox.getValue();
-    //        var minValue = minSpinBox.getValue();
-    //        var presetValue = presetSpinBox.getValue();
-    //    }
 
     //// Preset K Change Affect to Max K
     presetSpinBox.input.onchange = function (event) {
@@ -453,10 +441,6 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     trSetting.appendChild(presetLabel);
 
     var presetSelected = currentPt.Preset;
-    //    currentPt.MaxPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Max, 2), 0);
-    //    currentPt.MinPresetSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - currentPt.Max, 2), 0);
-    //currentPt.MaxPresetSpan = currentPt.Upline.Max;
-    //currentPt.MinPresetSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
     currentPt.MaxPresetSpan = currentPt.Upline.Max - currentPt.Upline.Min;
     currentPt.MinPresetSpan = 0;
     var presetContainer = document.createElement("TD");
@@ -489,7 +473,6 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
 
     var maxSelected = currentPt.Max;
     var maxContainer = document.createElement("TD");
-    //    currentPt.MinMaxSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
     currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Preset, 2), 0);
     currentPt.MinMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - currentPt.Preset, 2), 0, currentPt.Upline.Min);
     maxContainer.className = "share-setting-value";
@@ -522,7 +505,6 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     var minSelected = currentPt.Min;
     var minContainer = document.createElement("TD");
     currentPt.MaxMinSpan = currentPt.Max;
-    //Fanex.CustSetting.CURRENT_CONTEXT.HasMinConstrain ? Math.max(currentPt.Min, Fanex.CustSetting.MIN_CONSTRAIN_VALUE) : currentPt.Min
     currentPt.MinMinSpan = Fanex.CustSetting.CURRENT_CONTEXT.HasMinConstrain ? Fanex.CustSetting.MIN_CONSTRAIN_VALUE : 0;
     minContainer.className = "share-setting-value";
     trSetting.appendChild(minContainer);

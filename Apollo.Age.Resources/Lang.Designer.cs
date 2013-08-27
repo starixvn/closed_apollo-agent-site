@@ -2140,6 +2140,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Effective Stake.
+        /// </summary>
+        public static string lblEffectiveStake2 {
+            get {
+                return ResourceManager.GetString("lblEffectiveStake2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E.I.
         /// </summary>
         public static string lblEI {
@@ -2293,7 +2302,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % Downline.
+        ///   Looks up a localized string similar to % Max Downline.
         /// </summary>
         public static string lblGivenShare {
             get {
@@ -2617,7 +2626,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to % Downline.
+        ///   Looks up a localized string similar to % Max Downline.
         /// </summary>
         public static string lblMaxGivenShare {
             get {
@@ -4399,7 +4408,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %.
+        ///   Looks up a localized string similar to % on Member.
         /// </summary>
         public static string PercentInMember {
             get {
