@@ -407,35 +407,24 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 var betTypesLength = betTypes.length;
                                 for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                     var betType = betTypes[betTypeIndex];
-                                    var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
-                                    while (reload <= 1) {
+                                    if (betType.id != currentCopyBetType.id) {
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
-                                        }
-                                        if (betType.maxSpinBox) {
-                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
-                                        }
-                                        if (betType.minSpinBox) {
-                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
-                                        }
-                                        if (betType.ptSpinBox) {
-                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
-                                        }
-
-                                        if (betType.presetSpinBox) {
                                             betType.presetSpinBox.input.onchange();
                                         }
                                         if (betType.maxSpinBox) {
+                                            betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
                                             betType.maxSpinBox.input.onchange();
                                         }
                                         if (betType.minSpinBox) {
+                                            betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
                                             betType.minSpinBox.input.onchange();
                                         }
-                                        
                                         if (betType.ptSpinBox) {
+                                            betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
                                             betType.ptSpinBox.input.onchange();
                                         }
-                                        reload++;
+
                                     }
                                 }
                                 clearInterval(Validators.intervalAnimate);
@@ -688,7 +677,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     && currentBetType.Pt.Max != currentPtValue.Max) {
                                     dataChanged = true;
                                     currentPtValue.Min = currentBetType.Pt.Min;
-                                } 
+                                }
 
                                 if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
 								&& (currentBetType.Pt.Max != currentPtValue.Max
@@ -811,35 +800,26 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 158, -10, height, 10000, true);
             },
             this.UpdateCopyValue = function (currentCopyBetType, betType) {
-                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
-                while (reload <= 1) {
+                //                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
+                //                while (reload <= 1) {
+                if (betType.id != currentCopyBetType.id) {
                     if (betType.presetSpinBox) {
                         betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
-                    }
-                    if (betType.maxSpinBox) {
-                        betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
-                    }
-                    if (betType.minSpinBox) {
-                        betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
-                    }
-                    
-                    if (betType.ptSpinBox) {
-                        betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
-                    }
-
-                    if (betType.presetSpinBox) {
                         betType.presetSpinBox.input.onchange();
                     }
                     if (betType.maxSpinBox) {
+                        betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
                         betType.maxSpinBox.input.onchange();
                     }
                     if (betType.minSpinBox) {
+                        betType.minSpinBox.setValue(currentCopyBetType.minSpinBox.getValue(), true);
                         betType.minSpinBox.input.onchange();
                     }
+
                     if (betType.ptSpinBox) {
+                        betType.ptSpinBox.setValue(currentCopyBetType.ptSpinBox.getValue(), true);
                         betType.ptSpinBox.input.onchange();
                     }
-                    reload++;
                 }
             };
             this.Render = function (owner) {
@@ -930,7 +910,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
                                     return;
                                 }
-                                
+
                                 if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
                                     return;
                                 }
@@ -969,7 +949,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 if (currentCopyBetType.minSpinBox && !currentCopyBetType.minSpinBox.isValid()) {
                                     return;
                                 }
-                                
+
                                 if (currentCopyBetType.ptSpinBox && !currentCopyBetType.ptSpinBox.isValid()) {
                                     return;
                                 }

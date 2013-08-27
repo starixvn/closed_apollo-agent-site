@@ -136,8 +136,9 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - presetValue, 2), 0);
         currentPt.MinMaxSpan = Math.max(0, Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValue, 2), currentPt.Upline.Min);
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.MaxMaxSpan);
-        maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
         maxSpinBox.updateMaxValue(currentPt.MaxMaxSpan);
+        maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
+        maxSpinBox.setValue(currentPt.MaxMaxSpan);
         maxValue = maxSpinBox.getValue();
 
         //// Update New Min Range
@@ -145,7 +146,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         minSpinBox.updateMaxValue(maxValue);
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, maxValue);
         minSpinBox.setValue(newMinValue);
-        
+
 
     }
     //// Max K Change affect To Min K and Preset K
@@ -162,7 +163,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         currentPt.MaxMinSpan = maxValue;
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
-
+        minSpinBox.setValue(Math.min(minSpinBox.getValue(), currentPt.MaxMinSpan));
     }
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
@@ -177,10 +178,22 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box.maxSpinBox = maxSpinBox;
     box.presetSpinBox = presetSpinBox;
 
+    box.updateRangeOfMaxForCopy = function (minValue, maxValue) {
+        uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, maxValue);
+        maxSpinBox.updateMaxValue(maxValue);
+        maxSpinBox.updateMinValue(minValue);
+    }
+
+    box.updateRangeOfMinForCopy = function (minValue, maxValue) {
+        uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, maxValue);
+        minSpinBox.updateMaxValue(maxValue);
+    }
+
     this.Validate = function () {
+        if (!presetSpinBox.isValid()) return false;
         if (!maxSpinBox.isValid()) return false;
         if (!minSpinBox.isValid()) return false;
-        if (!presetSpinBox.isValid()) return false;
+        
         return true;
     };
 
@@ -552,9 +565,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         //// Update Max Taken Value
         currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.Max - presetValueCorrect, 2), 0);
         currentPt.MinMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValueCorrect, 2), 0, currentPt.Upline.Min);
-        maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
         maxSpinBox.updateMaxValue(currentPt.MaxMaxSpan);
+        maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.MaxMaxSpan);
+        maxSpinBox.setValue(currentPt.MaxMaxSpan);
         var maxValue = maxSpinBox.getValue();
         //// Update Min Taken
         var newMinValue = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - presetValueCorrect, 2), 0);
@@ -570,6 +584,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
 
         currentPt.MaxMinSpan = maxSpinBox.getValue();
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
+        minSpinBox.setValue(Math.min(minSpinBox.getValue(), currentPt.MaxMinSpan));
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
     }
 
@@ -582,8 +597,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     }
 
     this.Validate = function () {
-        if (!maxSpinBox.isValid()) return false;
         if (!presetSpinBox.isValid()) return false;
+        if (!maxSpinBox.isValid()) return false;
         if (!minSpinBox.isValid()) return false;
         return true;
     };
