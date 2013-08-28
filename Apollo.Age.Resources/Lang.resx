@@ -1935,11 +1935,20 @@
   <data name="lblViewShareSetting" xml:space="preserve">
     <value>View share setting {0}</value>
   </data>
+  <data name="lblPleaseSelectAtLeast" xml:space="preserve">
+    <value>Please select at least one member.</value>
+  </data>
   <data name="lblEffectiveStake2" xml:space="preserve">
     <value>Effective Stake</value>
   </data>
+  <data name="lblUpdateSuccessMultiple" xml:space="preserve">
+    <value>Update successfully following member(s):</value>
+  </data>
   <data name="lblRemarks" xml:space="preserve">
     <value>Remarks</value>
+  </data>
+  <data name="lblUpdateError" xml:space="preserve">
+    <value>Update error message(s):</value>
   </data>
   <data name="lblRemarksViewShare" xml:space="preserve">
     <value>"% on Member" normally is equal to "% Preset" of direct downline. However, if the sum of "% on Member" of all downline and 

@@ -26,6 +26,61 @@ var ACCOUNTLIST = function ($) {
                     }
                 });
             });
+
+            $('#editShareMultiple,#viewDetailMultiple,#divEditMultiple .edit-multiple-member').click(function () {
+                ACCOUNTLIST.editMultiple(this);
+            });
+
+            $('#cbAllMember').click(function () {
+                var $this = $(this);
+                if ($this.is(':checked')) {
+                    $('#tblMemberList .cb-edit-multiple').prop('checked', true);
+                }
+                else {
+                    $('#tblMemberList .cb-edit-multiple').prop('checked', false);
+                }
+            });
+
+            $('#tblMemberList .cb-edit-multiple').click(function () {
+                var $this = $(this);
+                if (!$this.is(':checked')) {
+                    $('#cbAllMember').prop('checked', false);
+                }
+
+                if ($('#tblMemberList .cb-edit-multiple').length == $('#tblMemberList .cb-edit-multiple:checked').length) {
+                    $('#cbAllMember').prop('checked', true);
+                }
+            });
+        },
+        editMultiple: function (domObject) {
+            var $this = $(domObject);
+            var link = $this.data('edit-multiple-link'),
+                    memberIds = [],
+                    memberId = '',
+                    usernames = [];
+
+            $('#tblMemberList .cb-edit-multiple:checked').each(function () {
+                var memberCheckbox = $(this);
+                if (memberId == '') {
+                    memberId = memberCheckbox.val();
+                }
+                memberIds.push(memberCheckbox.val());
+                usernames.push(memberCheckbox.data('member-username'));
+            });
+
+            //// No Choosing, then alert message
+            if (memberIds.length == 0) {
+                alert(BASELANGUAGES.lblSelectAtLeast);
+                return;
+            } else if (memberIds.length == 1) { //// If edit just only one member, go to edit single page
+                memberIds = [];
+            }
+
+            //window.location.href = link + '&memberIds=' + memberIds;
+            window.location.href = link
+            + '&memberIds=' + memberIds.join(',')
+            + '&memberId=' + memberId
+            + '&username=' + usernames.join(',%20');
         },
         initStatus: function (status, uplineStatus) {
             if (status == 1) {

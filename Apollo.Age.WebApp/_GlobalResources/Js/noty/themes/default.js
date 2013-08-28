@@ -141,6 +141,10 @@
 				case 'error':
 					this.$bar.css({backgroundColor: 'red', borderColor: 'darkred', color: '#FFF'});
 					this.$message.css({fontWeight: 'bold'});
+                    if(this.options.errorType && this.options.errorType == 'multiple')
+                    {
+                        this.$message.css({textAlign: 'left'});
+                    }
 					this.$buttons.css({borderTop: '1px solid darkred'}); break;
 				case 'information':
 					this.$bar.css({backgroundColor: '#57B7E2', borderColor: '#0B90C4', color: '#002a63'});

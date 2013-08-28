@@ -40,8 +40,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     Fanex.ValidateMessage(item.minBetElement, Language.INCORRECT_MIN_BET, 0, 100);
                     return false;
                 }
-                
-                
+
+
                 // Check min bet < max bet < max per match
                 var minBet = parseFloat(item.minBetElement.value, true);
                 var maxBet = parseFloat(item.maxBetElement.value, true);
@@ -56,12 +56,12 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     Fanex.ValidateMessage(item.maxPerMatchElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
                     return false;
                 }
-                
+
                 if (minBet > maxBet) {
                     Fanex.ValidateMessage(item.maxBetElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_BET.Format(item.Name));
                     return false;
                 }
-                
+
                 if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.MainShareHolder) {
                     // Check maxpermatch_min < maxpermatch < maxpermatch_max
                     if (typeof (item.MaxPerMatchMin) != 'undefined' && maxPerMatch > item.MaxPerMatchMin) {
@@ -80,8 +80,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                         Fanex.ValidateMessage(item.minBetElement, Language.MIN_BET_GREATER_THAN_MIN_MIN_BET.Format(''.FormatNumber(item.MinBetMax)));
                         return false;
                     }
-                    
-                    
+
+
                 }
             }
             else {
@@ -142,19 +142,24 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     };
     this.Save = function () {
         var bettingLimits = [];
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
-        if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode) {
+        var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+        if (currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return null;
+
+        var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
+        if (currentContext.IsSimpleMode) {
             //Fanex.RoundNumber(parseFloat(this.items[copiedItem.SportId].minBetElement.value, true), 1)
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
             var maxBetValue = Fanex.RoundNumber(parseFloat(this.items[0].maxBetElement.value, true), 1);
             var maxPerMatchValue = Fanex.RoundNumber(parseFloat(this.items[0].maxPerMatchElement.value, true), 1);
+            
 
             var c = this.items.length;
             for (var i = 0; i < c; i++) {
                 var item = this.items[i];
                 if (minBetValue != item.MinBet
                     || maxBetValue != item.MaxBet
-                    || maxPerMatchValue != item.MaxPerMatch) {
+                    || maxPerMatchValue != item.MaxPerMatch
+                    || isEditMultiple) {
                     bettingLimits.push({
                         SportId: item.SportId,
                         BetTypeId: item.BetTypeId,
@@ -188,7 +193,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     if (minBetValue != item.MinBet
 					|| maxBetValue != item.MaxBet
 					|| maxPerMatchValue != item.MaxPerMatch
-					|| maxPerBall != item.MaxPerBall) {
+					|| maxPerBall != item.MaxPerBall
+                    || isEditMultiple) {
                         bettingLimitItem = {
                             SportId: item.SportId,
                             BetTypeId: item.BetTypeId,
@@ -217,7 +223,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                         maxPerBall = 0;
                         if (minBetValue != item.MinBet
 					|| maxBetValue != item.MaxBet
-					|| maxPerMatchValue != item.MaxPerMatch) {
+					|| maxPerMatchValue != item.MaxPerMatch
+                    || isEditMultiple) {
                             bettingLimitItem = {
                                 SportId: item.SportId,
                                 BetTypeId: item.BetTypeId,
@@ -294,8 +301,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             minBetHeader.innerHTML = Language.MIN_BET;
             minBetHeader.className = "betting-limit-header-top";
             box.appendChild(minBetHeader);
-            
-            
+
+
             if (hasNumberGame) {
                 var maxPerBallHeader = document.createElement("DIV");
                 maxPerBallHeader.innerHTML = Language.MAX_PER_BALL;
@@ -493,9 +500,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     }
                 }
 
-                
 
-                
+
+
                 item.element = box2;
                 box.appendChild(box2);
                 var clear = document.createElement("DIV");
@@ -588,9 +595,9 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             false,
             "min");
 
-            
 
-            
+
+
 
             container.appendChild(box);
             owner.appendChild(container);
@@ -608,7 +615,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
         else {
             betSettingContainer.className = "bet-limit-value-" + suffixClass;
             var divText = document.createElement("DIV");
-            divText.innerHTML = minMaxText +':';
+            divText.innerHTML = minMaxText + ':';
             divText.title = minMaxText + ' ';
             divText.className = "div-bet-limit-value-" + suffixClass;
             betSettingContainer.appendChild(divText);

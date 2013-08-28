@@ -509,6 +509,8 @@
       <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
     </Setting>
     <Setting Key="PlayerSetting_Age_Customer_GetInfo" SpName="Age_Customer_GetInfo" DbName="SVRAGE.RepDB"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdatePositionTakingMultiple" SpName="Age_Customer_UpdatePositionTakingMultiple" DbName="SVRCUST.CustDB"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdateSettingMultiple" SpName="Age_Customer_UpdateSettingMultiple" DbName="SVRCUST.CustDB"  TimeOut="600"/>
   </Function>
 
   <Function Name="Agent-Apollo-BalanceUpDay">

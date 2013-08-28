@@ -10,6 +10,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_4 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 = 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     // There is no decorating for this implementation
