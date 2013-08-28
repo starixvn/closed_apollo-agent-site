@@ -20,7 +20,8 @@ if (typeof jQuery != 'undefined') {
 
 
                 if (isSimpleMode) {
-                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass("simple-mode-share-setting-width");
+                    var simpleModeWidthClass = settingContext.TargetRoleId == 2 ? "simple-mode-share-setting-preset-width" : "simple-mode-share-setting-width";
+                    $("#page_main").removeClass("advanced-mode-share-setting-width").addClass(simpleModeWidthClass);
                     $("#simple-mode").hide();
                     $("#advanced-mode").show();
                     if (DEFAULT_LAYOUT.isMaster) {
@@ -37,7 +38,7 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.initPageInfo();
             },
             init: function (settingContext, positionTakingSetting, isUpdateAllSetting) {
-                $('#page_main').addClass("simple-mode-share-setting-width");
+                //$('#page_main').addClass("simple-mode-share-setting-width");
 
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);
 

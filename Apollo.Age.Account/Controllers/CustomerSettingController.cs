@@ -311,7 +311,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">Back link for after editing</param>
         /// <param name="fromLeftMenu">Link from left menu or not</param>
         /// <returns>Action result.</returns>
-        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false)
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
         {
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -322,6 +322,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.ParentUsername = parentUsername;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 

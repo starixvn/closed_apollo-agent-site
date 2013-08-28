@@ -11,6 +11,7 @@
     var agentUsername = ViewBag.AgentUsername ?? string.Empty;
     ViewBag.Title = isMaster ? string.Format(Lang.lblEditShareSetting, ViewBag.UserName) : string.Format(Lang.lblViewShareSetting, ViewBag.UserName);
     var memberIds = ViewBag.MemberIds ?? string.Empty;
+    var parentUsername = ViewBag.ParentUsername ?? string.Empty;
 }
 @section header
 {
@@ -89,8 +90,14 @@ else
 })
 
 }
+
+
 @section scripts
 {
+    <script type="text/javascript">
+        Language.apllyPresetSimpleMode = "@string.Format(Lang.ApplyPresetSimpleMode, parentUsername)"; 
+        Language.apllyPresetAdvancedMode = "@Lang.AppyPresetAdvancedMode"; 
+    </script>
     @if (isEditAgent)
     {
         <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>

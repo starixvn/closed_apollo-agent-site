@@ -286,6 +286,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply % Preset to all Members of Agent {0}.
+        /// </summary>
+        public static string ApplyPresetSimpleMode {
+            get {
+                return ResourceManager.GetString("ApplyPresetSimpleMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to all Members.
+        /// </summary>
+        public static string AppyPresetAdvancedMode {
+            get {
+                return ResourceManager.GetString("AppyPresetAdvancedMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apr.
         /// </summary>
         public static string April {

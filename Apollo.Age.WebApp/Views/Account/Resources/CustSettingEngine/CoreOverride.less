@@ -35,13 +35,13 @@ body, .pt-grid {
 	margin-top: 1px;
 }
 
-.pt-sport-label, .pt-sport-label2, .bet-type-select, .bet-type-label, .bet-type-select-label {
+.pt-sport-label, .pt-sport-label2, .bet-type-select, .bet-type-select-preset, .bet-type-label, .bet-type-select-label {
 	border-left: 1px solid @borderSetting;
 	border-top: 1px solid @borderSetting;
 	color: #333;
 	
 }
-.bet-type-select
+.bet-type-select, .bet-type-select-preset
 {
 	background: @inputSettingColor;
 }
@@ -88,7 +88,7 @@ body, .pt-grid {
 	background-color: @white;
 }
 
-.bet-type-header, .group-label, .group-label2, .group-set-label {
+.bet-type-header, .group-label, .group-label-preset, .group-label2, .group-set-label {
 	background-color: @headerLeftBackgourndSetting;
 	border-left: 1px solid @borderSetting;
 	border-top: 1px solid @borderSetting;	
@@ -196,6 +196,7 @@ body, .pt-grid {
 	.share-setting-table tr td {
 		border: 1px solid @borderSetting;
 		background-color: @inputSettingColor;
+		vertical-align: top;
 	}
 
 	.share-setting-label, .bet-setting-label {
@@ -396,7 +397,7 @@ body, .pt-grid {
 .ie {
 	.commission-setting-table, .commission-setting-table-player,
 	.simple-mode-container .bet-limit-table, .betting-limit-item4,
-	.bet-type-select, .simple-mode-container .share-setting-table tr td {
+	.bet-type-select, .bet-type-select-preset, .simple-mode-container .share-setting-table tr td {
 		background: #DCDCDC;
 	}
 

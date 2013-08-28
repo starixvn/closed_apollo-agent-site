@@ -14,8 +14,8 @@
     var AgentLevel = (int)ViewBag.AgentLevel;
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
-    
-     
+
+    var parentUsername = ViewBag.AgentUsername ?? string.Empty;
 }
 @using (Html.BeginForm())
 {       
@@ -120,7 +120,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@parentUsername&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
                             @if (isMaster)
                             {
                                 @Lang.edit
