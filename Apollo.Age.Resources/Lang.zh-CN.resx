@@ -265,7 +265,7 @@
     <value>最小单注必须大于或等于</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>下线总代</value>
+    <value>代理</value>
   </data>
   <data name="lblTemporarilyUnavailable" xml:space="preserve">
     <value>暂时无法使用</value>
@@ -682,7 +682,7 @@
     <value>进阶模式</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>总代理</value>
+    <value>下線代理</value>
   </data>
   <data name="lblMemberWinLoss" xml:space="preserve">
     <value>会员结果</value>
@@ -1135,7 +1135,7 @@
     <value>主队/客队</value>
   </data>
   <data name="transaction" xml:space="preserve">
-    <value>交易</value>
+    <value>退水</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>占成</value>
@@ -1147,7 +1147,7 @@
     <value>代理未结束交易</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>下线代理</value>
+    <value>代理</value>
   </data>
   <data name="ExtraTime" xml:space="preserve">
     <value>加时</value>
