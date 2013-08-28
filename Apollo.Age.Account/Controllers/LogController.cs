@@ -411,7 +411,8 @@ namespace Apollo.Age.Account.Controllers
                                 IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
                                 MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
                                 MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                                MinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
+                                MinGiven = Convert.ToDecimal(item.Attribute("mi").Value),
+                                IsApply = item.Attribute("ia").Value.ToString() == "1" ? true : false
                             };
 
                             string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
@@ -422,6 +423,7 @@ namespace Apollo.Age.Account.Controllers
                                 list[key].MaxUpper = model.MaxUpper;
                                 list[key].MaxGiven = model.MaxGiven;
                                 list[key].MinGiven = model.MinGiven;
+                                list[key].IsApply = model.IsApply;
                             }
                             else if (string.IsNullOrWhiteSpace(oldData))
                             {
