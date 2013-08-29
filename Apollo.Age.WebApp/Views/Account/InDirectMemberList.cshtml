@@ -157,14 +157,15 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @if (allowFundOut && item.CashBalance > 0)
+                       @* @if (allowFundOut && item.CashBalance > 0)
                         {
-                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
                         }
                         else
                         {
-                            @item.CashBalance
-                        }
+                            @Formater.DecFormat(item.CashBalance, 2)
+                        }*@
+                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     <td class="text-left nowrap">
                         <div class="action">
