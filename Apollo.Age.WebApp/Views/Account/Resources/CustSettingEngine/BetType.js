@@ -13,6 +13,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
+    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
     box = document.createElement("DIV");
     var currentPt = this.pt;
     // Bet type header
@@ -21,7 +22,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     header.title = this.title;
     //ja-JP
     header.className = "bet-type-header";
-    if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'ja-JP'
+    if (currentContext.Language == 'ja-JP'
     && this.id == 8 && this.sportId == 1) {
         header.className += " minimize-fontsize";
     }
@@ -34,7 +35,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     currentPt.MinPresetSpan = 0;
 
     var presetContainer = document.createElement("DIV");
-    presetContainer.className = "bet-type-select";
+    presetContainer.className = "bet-type-select-preset";
     var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
     {
         minimum: currentPt.MinPresetSpan,
@@ -50,6 +51,22 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
+
+    //// Preset Checkbox
+    presetContainer.appendChild(document.createElement("BR"));
+
+    //var presetLabel = document.createElement('LABEL');
+    var presetOnMember = document.createElement("INPUT");
+    presetOnMember.id = "chbApplyPreset";
+    presetOnMember.type = "checkbox";
+    presetOnMember.className = "preset-input";
+    presetOnMember.checked = false;
+    presetContainer.appendChild(presetOnMember);
+    //class= for=>  </label>
+    //    presetLabel.className = "preset-label";
+    //    presetLabel.setAttribute("for", "chbApplyPreset");
+    //    presetLabel.innerHTML = ;
+    //    presetContainer.appendChild(presetLabel);
 
     //// Given share
     var maxSelected = this.pt.Max;
@@ -165,6 +182,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box.minSpinBox = minSpinBox;
     box.maxSpinBox = maxSpinBox;
     box.presetSpinBox = presetSpinBox;
+    box.presetOnMember = presetOnMember;
 
     box.updateRangeOfMaxForCopy = function (minValue, maxValue) {
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, maxValue);
@@ -181,7 +199,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         if (!presetSpinBox.isValid()) return false;
         if (!maxSpinBox.isValid()) return false;
         if (!minSpinBox.isValid()) return false;
-        
+
         return true;
     };
 
@@ -190,9 +208,12 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         this.pt.Min = minSpinBox.getValue();
         this.pt.Max = maxSpinBox.getValue();
         this.pt.Preset = presetSpinBox.getValue();
-        if (this.oldPt.Min != this.pt.Min
+        this.pt.IsApplyMember = presetOnMember.checked;
+        var isChangePt = this.oldPt.Min != this.pt.Min
         || this.oldPt.Max != this.pt.Max
-        || this.oldPt.Preset != this.pt.Preset) {
+        || this.oldPt.Preset != this.pt.Preset;
+        this.pt.IsChangePt = isChangePt;
+        if (isChangePt || this.pt.IsApplyMember) {
             return {
                 Id: this.id,
                 Pt: this.pt
@@ -266,8 +287,11 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     // Get updated data
     this.Save = function () {
         this.pt.Value = ptSpinBox.getValue();
-        if (this.oldPt.Value != this.pt.Value
-        || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+
+        var isChangePt = this.oldPt.Value != this.pt.Value || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
+        this.pt.IsChangePt = isChangePt;
+
+        if (isChangePt) {
             return {
                 Id: this.id,
                 Pt: this.pt
@@ -405,8 +429,9 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     this.Save = function () {
         this.pt.Min = minSpinBox.getValue();
         this.pt.Max = maxSpinBox.getValue();
-        if (this.oldPt.Min != this.pt.Min
-            || this.oldPt.Max != this.pt.Max) {
+        var isChangePt = this.oldPt.Min != this.pt.Min || this.oldPt.Max != this.pt.Max;
+        this.pt.IsChangePt = isChangePt;
+        if (isChangePt) {
             this.pt.Preset = Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Max, 2);
             return {
                 Id: this.id,
@@ -463,6 +488,23 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     presetMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinPresetSpan, currentPt.MaxPresetSpan);
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
+
+    //// Checkbox apply preset value to all members
+    presetContainer.appendChild(document.createElement("BR"));
+    var presetOnMember = document.createElement("INPUT");
+    presetOnMember.id = "chbApplyPreset";
+    presetOnMember.type = "checkbox";
+    presetOnMember.checked = false;
+    presetContainer.appendChild(presetOnMember);
+
+    var presetLabel = document.createElement('Label');
+    //class= for=>  </label>
+    presetLabel.className = "preset-label";
+    presetLabel.setAttribute("for", "chbApplyPreset");
+    presetLabel.innerHTML = Language.apllyPresetSimpleMode;
+    presetContainer.appendChild(presetLabel);
+    //<input id="democheckbox" type="checkbox" value="aaa">
+    //
 
     // Given
     trSetting = document.createElement("TR");
@@ -592,10 +634,13 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         var presetValue = presetSpinBox.getValue();
         var maxValue = maxSpinBox.getValue();
         var minValue = minSpinBox.getValue();
+        var isApplyMember = presetOnMember.checked;
         return {
             Max: maxValue,
             Preset: presetValue,
-            Min: minValue
+            Min: minValue,
+            IsApplyMember: isApplyMember,
+            IsChangePt: true
         };
     };
 
@@ -649,7 +694,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     this.SaveSimpleMode = function () {
         var maxValue = maxSpinBox.getValue();
         return {
-            Max: maxValue
+            Max: maxValue,
+            IsChangePt: true
         };
     };
     return tableShareSetting;
@@ -709,7 +755,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     this.SaveSimpleMode = function () {
         var value = valueSpinBox.getValue();
         return {
-            Value: value
+            Value: value,
+            IsChangePt: true
         };
     };
 
