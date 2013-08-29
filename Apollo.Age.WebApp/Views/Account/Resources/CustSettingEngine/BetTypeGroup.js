@@ -36,7 +36,9 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) { 
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
+    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+    var isViewMode = currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");
     emptyLabel.innerHTML = "&nbsp;";
@@ -44,9 +46,9 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     box.appendChild(emptyLabel);
 
     var presetLabel = document.createElement("DIV");
-    presetLabel.innerHTML = Language.PRESET_POSITION + '<br/>' + Language.apllyPresetAdvancedMode + ':';
+    presetLabel.innerHTML = Language.PRESET_POSITION + (isViewMode ? '' : '<br/>' + Language.apllyPresetAdvancedMode + ':');
     presetLabel.title = Language.PRESET_POSITION;
-    presetLabel.className = "group-label-preset";
+    presetLabel.className = isViewMode ? "group-label" : "group-label-preset";
     box.appendChild(presetLabel);
 
     var maxLabel = document.createElement("DIV");
