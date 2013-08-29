@@ -117,14 +117,15 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @if (allowFundOut && item.CashBalance > 0)
+                       @* @if (allowFundOut && item.CashBalance > 0)
                         {
                             <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
                         }
                         else
                         {
                             @Formater.DecFormat(item.CashBalance, 2)
-                        }
+                        }*@
+                        @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     <td class="text-left">
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
