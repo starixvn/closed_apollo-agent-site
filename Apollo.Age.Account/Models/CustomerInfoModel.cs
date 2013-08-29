@@ -40,8 +40,6 @@ namespace Apollo.Age.Account.Models
 
         public bool IsSuper { get; set; }
 
-        public bool IsMainShareHolder { get; set; }
-
         public List<Agent> AgentPathList { get; set; }
     }
 }

@@ -322,9 +322,8 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     minContainer.className = "bet-type-select";
     box.appendChild(minContainer);
     currentPt.MaxMinSpan = this.pt.Max;
-    currentPt.MinMinSpan = Fanex.CustSetting.CURRENT_CONTEXT.HasMinConstrain ? Fanex.CustSetting.MIN_CONSTRAIN_VALUE : 0;
     var minSpinBox = Fanex.CustSetting.PT_RenderSpinner(minContainer, {
-        minimum: currentPt.MinMinSpan,
+        minimum: 0,
         maximum: currentPt.MaxMinSpan,
         decimals: Fanex.CustSetting.PT_DECIMALS,
         step: Fanex.CustSetting.PT_STEP,
@@ -333,7 +332,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
     }, Fanex.CustSetting.PT_MAX_LENGTH);
     var uplineMinSpan = document.createElement("SPAN");
-    uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
+    uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
     uplineMinSpan.className = "upline-agent-share";
     minContainer.appendChild(uplineMinSpan);
     //// Max K Change affect To Min K and Preset K
@@ -355,7 +354,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         }
         currentPt.MaxMinSpan = maxValueCorrect;
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
-        uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
+        uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
         minSpinBox.input.onchange();
     }
     //// Min K Change affect To Max K
@@ -389,7 +388,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         if (maxSpinBox.isValid(true) && currentPt.MaxMinSpan != maxSpinBox.getValue()) {
             //// Update New Min Range
             currentPt.MaxMinSpan = maxSpinBox.getValue();
-            uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
+            uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
             minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
         }
     }

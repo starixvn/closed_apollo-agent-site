@@ -245,26 +245,23 @@
                     }
                     else
                     {
-                        if(!Model.IsMainShareHolder)
+                        if (Model.ActorAgentId != Model.CustId)
                         {
-                            if (Model.ActorAgentId != Model.CustId)
+                        <a class="lnk-setting" target="main"
+							href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
+                            @if (Model.IsMaster)
                             {
-                            <a class="lnk-setting" target="main"
-							    href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
-                                @if (Model.IsMaster)
-                                {
-                                    @Apollo.Age.Resources.Lang.edit
-                                }
-                                else
-                                {
-                                    @Apollo.Age.Resources.Lang.lblview
-                                }
-                            </a>
+                                @Apollo.Age.Resources.Lang.edit
                             }
-                            <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
-                                @Apollo.Age.Resources.Lang.ViewDetails
-                            </a>
+                            else
+                            {
+                                @Apollo.Age.Resources.Lang.lblview
+                            }
+                        </a>
                         }
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
+                            @Apollo.Age.Resources.Lang.ViewDetails
+                        </a>
 
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share

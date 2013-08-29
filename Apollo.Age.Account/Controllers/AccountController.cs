@@ -189,7 +189,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //agentInfo.IsSuper = base.CurrentSession.IsSuper;
-            agentInfo.IsMainShareHolder = agentInfo.Level == 1;
+            
 
             return View("AccountInfo", agentInfo);
         }
@@ -437,7 +437,6 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
-            ViewBag.IsViewMainShareHolderList = this.CurrentSession.IsSuper && criteria.AgentId == this.CurrentSession.AgentId;
 
             return View(criteria);
         }
