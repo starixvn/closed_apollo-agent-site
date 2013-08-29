@@ -28,6 +28,7 @@ namespace Apollo.Age.WebApp
             routes.MapRoute("Unauthorized", "Unauthorized", new { controller = "Error", action = "Unauthorized" });
             routes.MapRoute("UnderMaintenance", "UnderMaintenance", new { controller = "Error", action = "UnderMaintenance" });
             routes.MapRoute("WhoAmI", "WhoAmI", new { controller = "Error", action = "WhoAmI" });
+            routes.MapRoute("RedirectToUM", "RedirectToUM", new { controller = "Error", action = "RedirectToUM" });
 
             routes.MapRoute(
                 "Default", // Route name

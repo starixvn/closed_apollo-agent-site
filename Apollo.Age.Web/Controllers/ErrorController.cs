@@ -85,5 +85,10 @@ namespace Apollo.Age.Web
         {
             return View();
         }
+
+        public ActionResult RedirectToUM()
+        {
+            return View();
+        }
     }
 }

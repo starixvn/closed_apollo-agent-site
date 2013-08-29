@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "RedirectToUM";
+    Layout = null;
+    var url = Url.Action("UnderMaintenance");
+}
+
+<script language="javascript" type="text/javascript">
+    window.top.location.href = '@url';
+</script>
