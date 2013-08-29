@@ -588,8 +588,9 @@ namespace Apollo.Age.Account.Controllers
             switch (agentLevel)
             {
                 case 0:
-                    return (int)Role.Super;
                 case 1:
+                    return (int)Role.Super;
+                case 2:
                     return (int)Role.MainShareHolder;
                 default:
                     return (int)Role.Agent;

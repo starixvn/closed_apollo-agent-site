@@ -14,8 +14,8 @@
     var AgentLevel = (int)ViewBag.AgentLevel;
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
-    
-     
+
+    var isViewMainShareHolderList = ViewBag.IsViewMainShareHolderList ?? false;
 }
 @using (Html.BeginForm())
 {       
@@ -80,8 +80,11 @@
                 </th>
                 <th class="width-60">@Lang.betstatus
                 </th>
-                <th class="width-60">@Lang.Feature
-                </th>
+                @if (!isViewMainShareHolderList)
+                {
+                    <th class="width-60">@Lang.Feature
+                    </th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -119,17 +122,20 @@
                     <td>
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
-                    <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                            @if (isMaster)
-                            {
-                                @Lang.edit
-                            }
-                            else
-                            {
-                                @Lang.lblview
-                            }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
-                    </td>
+                    @if (!isViewMainShareHolderList)
+                    {
+                        <td class="text-left">
+                            <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                                @if (isMaster)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.lblview
+                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
