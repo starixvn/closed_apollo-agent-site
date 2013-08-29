@@ -805,17 +805,17 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
-    //// Given share
-    var maxContainer = document.createElement("DIV");
-    maxContainer.className = "bet-type-select-label";
-    maxContainer.innerHTML = this.pt.Max;
-    box.appendChild(maxContainer);
-
     //// Taken Share
     var presetContainer = document.createElement("DIV");
     presetContainer.className = "bet-type-select-label";
     presetContainer.innerHTML = this.pt.Preset;
     box.appendChild(presetContainer);
+
+    //// Given share
+    var maxContainer = document.createElement("DIV");
+    maxContainer.className = "bet-type-select-label";
+    maxContainer.innerHTML = this.pt.Max;
+    box.appendChild(maxContainer);
 
     //// Min Share
     var minContainer = document.createElement("DIV");
@@ -932,7 +932,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
 
     var minContainer = document.createElement("TD");
     minContainer.className = "share-setting-value";
-    minContainer.innerHTML = currentPt.Max;
+    minContainer.innerHTML = currentPt.Min;
     trSetting.appendChild(minContainer);
 
     return tableShareSetting;
