@@ -314,7 +314,7 @@
       <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
     </Setting>
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
       <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
       <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
@@ -324,7 +324,7 @@
       <Mapping DataField="GrossTotal" ObjectProperty="DownLineTotal"/>
       <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
     </Setting>
-    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="MemberId"/>
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
       <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
