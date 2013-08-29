@@ -532,8 +532,12 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
+            //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            //{
+            //    settingContext.FormId = FormType.EditPT;
+            //}
             return ViewAccountDetails(settingContext);
         }
 
