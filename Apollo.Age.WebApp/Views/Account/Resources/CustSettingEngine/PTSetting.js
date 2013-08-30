@@ -24,7 +24,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         PT_MAX_LENGTH: 5,
         COMMISSION_STEP: 0.01,
         COMMISSION_DECIMALS: 2,
-        MIN_PT_BOX_WIDTH: 144,
+        MIN_PT_BOX_WIDTH: 161,
         SPINNER_BOX_WIDTH: 45,
         PT_LAST_LETTER: '',
         COM_LAST_LETTER: '',
