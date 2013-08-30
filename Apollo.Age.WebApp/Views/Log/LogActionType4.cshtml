@@ -4,9 +4,9 @@
 @using Fanex.CustSetting.Core
 @{    
     var template = _Configuration.PositionTakingGridConfig;
-    var agentLevel = (int)ViewBag.AgentLevel;
-    var isAgent = (bool)ViewBag.IsAgent;
-    var list = (Dictionary<string, PositionTakingModel>)Model;   
+    var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
+    var isAgent = ViewBag.IsAgent != null ? (bool)ViewBag.IsAgent : false;
+    var list = Model != null ? (Dictionary<string, PositionTakingModel>)Model : new Dictionary<string, PositionTakingModel>();   
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {
