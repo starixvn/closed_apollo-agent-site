@@ -29,6 +29,15 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
+    //// Upline setting lable
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select spinBox";
+    box.appendChild(uplineSettingContainer);
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    uplineSettingContainer.appendChild(uplineSettingSpan);
+
     //// Taken Share
     var presetSelected = this.pt.Preset;
     currentPt.MaxPresetSpan = this.pt.Upline.Max - this.pt.Upline.Min;
@@ -60,7 +69,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     presetOnMember.id = "chbApplyPreset";
     presetOnMember.type = "checkbox";
     presetOnMember.className = "preset-input";
-    presetOnMember.checked = false;
+    presetOnMember.checked = true;
     presetContainer.appendChild(presetOnMember);
     //class= for=>  </label>
     //    presetLabel.className = "preset-label";
@@ -245,6 +254,15 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
+    //// Upline setting lable
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select spinBox";
+    box.appendChild(uplineSettingContainer);
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    uplineSettingContainer.appendChild(uplineSettingSpan);
+
     //// Given Share
     var ptSelected = this.pt.Value;
     var ptContainer = document.createElement("DIV");
@@ -319,6 +337,16 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     }
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
+
+    //// Upline setting lable    
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select";
+    box.appendChild(uplineSettingContainer);
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    uplineSettingContainer.appendChild(uplineSettingSpan);
+
     //// Given Share
     var maxSelected = this.pt.Max;
     currentPt.MaxMaxSpan = this.pt.Upline.Max;
@@ -340,6 +368,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.MaxMaxSpan);
     uplineMaxSpan.className = "upline-agent-share";
     maxContainer.appendChild(uplineMaxSpan);
+
     //// Min Given Share
     var minSelected = this.pt.Min;
     var minContainer = document.createElement("DIV");
@@ -457,9 +486,26 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
 
-    // Taken
+    //// Upline setting lable
     var trSetting = document.createElement("TR");
-    boxTBody.appendChild(trSetting)
+    boxTBody.appendChild(trSetting);
+    var uplineSettingLabel = document.createElement("TD");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingLabel);
+
+    var uplineSettingContainer = document.createElement("TD");
+    uplineSettingContainer.className = "bet-type-select spinBox";
+    trSetting.appendChild(uplineSettingContainer);
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    uplineSettingContainer.appendChild(uplineSettingSpan);
+
+    // Taken
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting);
 
     var presetLabel = document.createElement("TD");
     presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
@@ -494,7 +540,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     var presetOnMember = document.createElement("INPUT");
     presetOnMember.id = "chbApplyPreset";
     presetOnMember.type = "checkbox";
-    presetOnMember.checked = false;
+    presetOnMember.checked = true;
     presetContainer.appendChild(presetOnMember);
 
     var presetLabel = document.createElement('Label');
@@ -657,6 +703,25 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     tableShareSetting.appendChild(boxTBody);
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
+
+    //// Upline setting lable    
+    var uplineSettingContainer = document.createElement("TD");
+    uplineSettingContainer.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingContainer.title = Language.UPLINE_SETTING;
+    uplineSettingContainer.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingContainer);
+
+    var valueUplineSettingContainer = document.createElement("TD");
+    valueUplineSettingContainer.className = "share-setting-value";
+    trSetting.appendChild(valueUplineSettingContainer);
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    valueUplineSettingContainer.appendChild(uplineSettingSpan);
+
+
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
     maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
@@ -714,6 +779,24 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
 
+    var uplineSettingLabel = document.createElement("TD");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingLabel);
+    
+    var uplineSettingContainer = document.createElement("TD");
+    uplineSettingContainer.className = "share-setting-value";
+    trSetting.appendChild(uplineSettingContainer);    
+
+    var uplineSettingSpan = document.createElement("SPAN");
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    uplineSettingSpan.className = "upline-agent-share";
+    uplineSettingContainer.appendChild(uplineSettingSpan);
+
+    // On member
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.PERCENT_IN_MEMBER;
     maxLabel.title = Language.PERCENT_IN_MEMBER;
@@ -851,6 +934,12 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
+    //// Upline Setting Lable
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select-label";
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    box.appendChild(uplineSettingContainer);
+
     //// Taken Share
     var presetContainer = document.createElement("DIV");
     presetContainer.className = "bet-type-select-label";
@@ -887,6 +976,12 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
 
+    //// Upline Setting Lable
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select-label";
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    box.appendChild(uplineSettingContainer);
+
     //// Given Share
     var ptContainer = document.createElement("DIV");
     ptContainer.className = "bet-type-select-label";
@@ -909,6 +1004,12 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
     header.className = "bet-type-header";
     box.appendChild(header); // Header bet type name
     header.style.minWidth = this.minWidth + 'px';
+
+    //// Upline Setting Lable
+    var uplineSettingContainer = document.createElement("DIV");
+    uplineSettingContainer.className = "bet-type-select-label";
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    box.appendChild(uplineSettingContainer);
 
     var maxContainer = document.createElement("DIV");
     maxContainer.className = "bet-type-select-label";
@@ -940,8 +1041,27 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
     tableShareSetting.appendChild(boxTBody);
 
     var trSetting = document.createElement("TR");
-    boxTBody.appendChild(trSetting)
+    boxTBody.appendChild(trSetting);
+
+    //// Upline Setting Lable
+    var uplineSettingLabel = document.createElement("TD");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingLabel);
+
+    var uplineSettingContainer = document.createElement("TD");
+    uplineSettingContainer.className = "share-setting-value";
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    trSetting.appendChild(uplineSettingContainer);
+
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting);
+
     // Share Settings
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting);
+
     var presetLabel = document.createElement("TD");
     presetLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
     presetLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
@@ -995,6 +1115,19 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
 
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
+    var uplineSettingLabel = document.createElement("TD");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingLabel);
+
+    var valueUplineSettingContainer = document.createElement("TD");
+    valueUplineSettingContainer.className = "share-setting-value";
+    valueUplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max); ;
+    trSetting.appendChild(valueUplineSettingContainer);
+
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.SIMPLE_MODE_MAX_POSITION;
     maxLabel.title = Language.SIMPLE_MODE_MAX_POSITION;
@@ -1019,6 +1152,24 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
 
+    //// Upline Setting Lable
+    var uplineSettingLabel = document.createElement("TD");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "share-setting-label";
+    trSetting.appendChild(uplineSettingLabel);
+
+    var uplineSettingContainer = document.createElement("TD");
+    uplineSettingContainer.className = "share-setting-value";
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    trSetting.appendChild(uplineSettingContainer);
+
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting);
+
+    // on member
+    trSetting = document.createElement("TR");
+    boxTBody.appendChild(trSetting)
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.PERCENT_IN_MEMBER;
     maxLabel.title = Language.PERCENT_IN_MEMBER;

@@ -1,5 +1,5 @@
 ﻿if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
-	Fanex = {};
+    Fanex = {};
 }
 if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting namespace
     Fanex.CustSetting = {
@@ -84,6 +84,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             }
             digits = digits || 2;
             return ' [' + Fanex.RoundNumber(minShare, digits) + ' - ' + Fanex.RoundNumber(maxShare, digits) + ']';
+        },
+        BuildUplineShareString: function (minShare, maxShare, digits) {
+            if (maxShare < minShare) {
+                maxShare = minShare;
+            }
+            digits = digits || 2;
+            return ' ' + Language.MIN + ' = ' + Fanex.RoundNumber(minShare, digits) + ' || ' + Language.MAX + ' = ' + Fanex.RoundNumber(maxShare, digits);
         },
         PT_RenderSpinner: function (spinBoxElement, spinOptions, maxLength) {
             spinBoxElement.style.width = spinOptions.minWidth + 'px';
