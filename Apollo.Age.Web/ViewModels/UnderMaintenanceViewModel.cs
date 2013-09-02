@@ -20,19 +20,19 @@ namespace Apollo.Age.Web.ViewModels
     {
         public UnderMaintenanceViewModel()
         {
-            Status = false;
+            status = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
-            Start_Time = nowHour.ToShortTimeString();
-            End_Time = nowHour.AddHours(1).ToShortTimeString();
+            start_time = nowHour.ToShortTimeString();
+            end_time = nowHour.AddHours(1).ToShortTimeString();
             UMDate = DateTime.Now.ToString("dd MMMM yyyy");
 
         }
 
-        public bool Status { get; set; }
+        public bool status { get; set; }
 
-        public string Start_Time { get; set; }
+        public string start_time { get; set; }
 
-        public string End_Time { get; set; }
+        public string end_time { get; set; }
 
         public string UMDate { get; set; }
     }
