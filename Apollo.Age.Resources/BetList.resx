@@ -432,4 +432,7 @@
   <data name="no0" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="TransDiscount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
 </root>

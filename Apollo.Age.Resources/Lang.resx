@@ -1969,4 +1969,13 @@
   <data name="lblMin" xml:space="preserve">
     <value>Min</value>
   </data>
+  <data name="lblViewMaxDownline" xml:space="preserve">
+    <value>% Max Downline</value>
+  </data>
+  <data name="lblViewMinDownline" xml:space="preserve">
+    <value>% Min Downline</value>
+  </data>
+  <data name="lblViewOnMember" xml:space="preserve">
+    <value>% on Member</value>
+  </data>
 </root>

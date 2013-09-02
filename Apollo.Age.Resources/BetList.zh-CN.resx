@@ -435,4 +435,7 @@
   <data name="under" xml:space="preserve">
     <value>小</value>
   </data>
+  <data name="TransDiscount" xml:space="preserve">
+    <value>退水</value>
+  </data>
 </root>

@@ -1135,7 +1135,7 @@
     <value>主隊/客隊</value>
   </data>
   <data name="transaction" xml:space="preserve">
-    <value>退水</value>
+    <value>交易</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>佔成</value>
@@ -1816,10 +1816,11 @@
     <value>名稱</value>
   </data>
   <data name="lblRemarks" xml:space="preserve">
-    <value>備 註</value>
+    <value>備註</value>
   </data>
   <data name="lblRemarksViewShare" xml:space="preserve">
-    <value>票單佔成正常是你下線的設定占成(第 一欄),但若下線票單佔成及自己設定佔成的總和低於你的最小佔成,票 單佔成便需補足差額,等如(最 小佔成-下線票單佔成總和)</value>
+    <value>票單佔成』正常是＝你下線的『設定佔成』(第一欄) 。	
+ 但若下線 《『票單佔成』＋ 自己『設定佔成』》 的總和低於你的『最小佔成』, 票單佔成』 便需補足差額 ：即 《『最小佔成』－ 下線『票單佔成』總和》。</value>
   </data>
   <data name="lblMax" xml:space="preserve">
     <value>最大</value>
@@ -1832,5 +1833,14 @@
   </data>
   <data name="ApplyPresetSimpleMode" xml:space="preserve">
     <value>所有(代理 {0})之會員立刻生效</value>
+  </data>
+  <data name="lblViewMaxDownline" xml:space="preserve">
+    <value>最大佔成%</value>
+  </data>
+  <data name="lblViewMinDownline" xml:space="preserve">
+    <value>最小佔成%</value>
+  </data>
+  <data name="lblViewOnMember" xml:space="preserve">
+    <value>票單佔成%</value>
   </data>
 </root>
