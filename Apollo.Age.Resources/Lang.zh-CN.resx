@@ -1135,7 +1135,7 @@
     <value>主队/客队</value>
   </data>
   <data name="transaction" xml:space="preserve">
-    <value>退水</value>
+    <value>交易</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>占成</value>
@@ -1816,10 +1816,11 @@
     <value>名称</value>
   </data>
   <data name="lblRemarks" xml:space="preserve">
-    <value>备 注</value>
+    <value>備註</value>
   </data>
   <data name="lblRemarksViewShare" xml:space="preserve">
-    <value>票单占成正常是你下线的设定占成(第 一栏),但若下线票单占成及自己设定占成的总和低于你的最小占成,票 单占成便需补足差额,等如(最 小占成-下线票单占成总和)</value>
+    <value>票單佔成』正常是＝你下線的『設定佔成』(第一欄) 。	
+ 但若下線 《『票單佔成』＋ 自己『設定佔成』》 的總和低於你的『最小佔成』, 票單佔成』 便需補足差額 ：即 《『最小佔成』－ 下線『票單佔成』總和》。</value>
   </data>
   <data name="lblMax" xml:space="preserve">
     <value>最大</value>
@@ -1833,7 +1834,16 @@
   <data name="ApplyPresetSimpleMode" xml:space="preserve">
     <value>所有(代理 {0})之會員立刻生效</value>
   </data>
-  <data name="AppyPresetAdvancedMode" xml:space="preserve">
+  <data name="lblViewMaxDownline" xml:space="preserve">
+    <value>最大佔成%</value>
+  </data>
+  <data name="lblViewMinDownline" xml:space="preserve">
+    <value>最小佔成%</value>
+  </data>
+  <data name="lblViewOnMember" xml:space="preserve">
+    <value>票單佔成%</value>
+  </data>
+   <data name="AppyPresetAdvancedMode" xml:space="preserve">
     <value>所有會員立刻生效</value>
   </data>
   <data name="lblEditMaxPosition" xml:space="preserve">
@@ -1841,7 +1851,7 @@
   </data>
   <data name="lblEditMinPosition" xml:space="preserve">
     <value>下線最小佔成%</value>
-  </data>
+</data>
   <data name="lblEditPresetPosition" xml:space="preserve">
     <value>設定佔成%</value>
   </data>

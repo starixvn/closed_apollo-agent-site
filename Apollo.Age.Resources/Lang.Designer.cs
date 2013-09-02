@@ -3716,6 +3716,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Max Downline.
+        /// </summary>
+        public static string lblViewMaxDownline {
+            get {
+                return ResourceManager.GetString("lblViewMaxDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Member.
         /// </summary>
         public static string lblViewMember {
@@ -3739,6 +3748,24 @@ namespace Apollo.Age.Resources {
         public static string lblViewMemberSetting {
             get {
                 return ResourceManager.GetString("lblViewMemberSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Min Downline.
+        /// </summary>
+        public static string lblViewMinDownline {
+            get {
+                return ResourceManager.GetString("lblViewMinDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % on Member.
+        /// </summary>
+        public static string lblViewOnMember {
+            get {
+                return ResourceManager.GetString("lblViewOnMember", resourceCulture);
             }
         }
         
