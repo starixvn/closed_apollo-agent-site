@@ -1,5 +1,5 @@
 ﻿if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
-	Fanex = {};
+    Fanex = {};
 }
 if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting namespace
     Fanex.CustSetting = {
@@ -24,12 +24,12 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         PT_MAX_LENGTH: 5,
         COMMISSION_STEP: 0.01,
         COMMISSION_DECIMALS: 2,
-        MIN_PT_BOX_WIDTH: 144,
+        MIN_PT_BOX_WIDTH: 173,
         SPINNER_BOX_WIDTH: 45,
         PT_LAST_LETTER: '',
         COM_LAST_LETTER: '',
         MIN_CONSTRAIN_VALUE: 50,
-        Min_WIDTH_BET_TYPE_GROUP: 140,
+        Min_WIDTH_BET_TYPE_GROUP: 135,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
             if (typeof (element) != 'object') return false;
             var count = element.childNodes.length;
@@ -84,6 +84,13 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             }
             digits = digits || 2;
             return ' [' + Fanex.RoundNumber(minShare, digits) + ' - ' + Fanex.RoundNumber(maxShare, digits) + ']';
+        },
+        BuildUplineShareString: function (minShare, maxShare, digits) {
+            if (maxShare < minShare) {
+                maxShare = minShare;
+            }
+            digits = digits || 2;
+            return ' ' + Language.MIN + ' = ' + Fanex.RoundNumber(minShare, digits) + ' || ' + Language.MAX + ' = ' + Fanex.RoundNumber(maxShare, digits);
         },
         PT_RenderSpinner: function (spinBoxElement, spinOptions, maxLength) {
             spinBoxElement.style.width = spinOptions.minWidth + 'px';

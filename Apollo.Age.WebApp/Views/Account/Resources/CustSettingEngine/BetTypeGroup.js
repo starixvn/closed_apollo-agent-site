@@ -20,6 +20,13 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
 
+    // Upline setting lable
+    var uplineSettingLabel = document.createElement("DIV");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "group-label";
+    box.appendChild(uplineSettingLabel);
+
     var ptLabel = document.createElement("DIV");
     ptLabel.innerHTML = Language.PERCENT_IN_MEMBER;
     ptLabel.title = Language.PERCENT_IN_MEMBER;
@@ -40,10 +47,18 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
     var isViewMode = currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
+
     var emptyLabel = document.createElement("DIV");
     emptyLabel.innerHTML = "&nbsp;";
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
+
+    // Upline setting lable
+    var uplineSettingLabel = document.createElement("DIV");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "group-label";
+    box.appendChild(uplineSettingLabel);
 
     var presetLabel = document.createElement("DIV");
     presetLabel.innerHTML = Language.PRESET_POSITION + (isViewMode ? '' : '<br/>' + Language.apllyPresetAdvancedMode + ':');
@@ -77,6 +92,13 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
     emptyLabel.innerHTML = "&nbsp;";
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
+
+    // Upline setting lable
+    var uplineSettingLabel = document.createElement("DIV");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
+    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.className = "group-label";
+    box.appendChild(uplineSettingLabel);
 
     var minLabel = document.createElement("DIV");
     minLabel.innerHTML = Language.MAX_POSITION;

@@ -1960,4 +1960,13 @@
   <data name="AppyPresetAdvancedMode" xml:space="preserve">
     <value>Apply to all Members</value>
   </data>
+  <data name="lblUplineSetting" xml:space="preserve">
+    <value>Upline Setting:</value>
+  </data>
+  <data name="lblMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="lblMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
 </root>

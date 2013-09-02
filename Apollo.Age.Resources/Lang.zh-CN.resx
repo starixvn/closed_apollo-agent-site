@@ -1821,4 +1821,16 @@
   <data name="lblRemarksViewShare" xml:space="preserve">
     <value>票单占成正常是你下线的设定占成(第 一栏),但若下线票单占成及自己设定占成的总和低于你的最小占成,票 单占成便需补足差额,等如(最 小占成-下线票单占成总和)</value>
   </data>
+  <data name="lblMax" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="lblMin" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="lblUplineSetting" xml:space="preserve">
+    <value>上线设定:</value>
+  </data>
+  <data name="ApplyPresetSimpleMode" xml:space="preserve">
+    <value>所有(代理 {0})之會員立刻生效</value>
+  </data>
 </root>
