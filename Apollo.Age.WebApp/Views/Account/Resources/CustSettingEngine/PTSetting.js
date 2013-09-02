@@ -24,12 +24,12 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         PT_MAX_LENGTH: 5,
         COMMISSION_STEP: 0.01,
         COMMISSION_DECIMALS: 2,
-        MIN_PT_BOX_WIDTH: 170,
+        MIN_PT_BOX_WIDTH: 173,
         SPINNER_BOX_WIDTH: 45,
         PT_LAST_LETTER: '',
         COM_LAST_LETTER: '',
         MIN_CONSTRAIN_VALUE: 50,
-        Min_WIDTH_BET_TYPE_GROUP: 140,
+        Min_WIDTH_BET_TYPE_GROUP: 135,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
             if (typeof (element) != 'object') return false;
             var count = element.childNodes.length;

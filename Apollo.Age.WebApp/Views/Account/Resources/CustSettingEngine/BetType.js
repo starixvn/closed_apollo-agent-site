@@ -259,7 +259,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     uplineSettingContainer.className = "bet-type-select spinBox";
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
-    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.Min, this.pt.Upline.Max);
     uplineSettingSpan.className = "upline-agent-share";
     uplineSettingContainer.appendChild(uplineSettingSpan);
 
