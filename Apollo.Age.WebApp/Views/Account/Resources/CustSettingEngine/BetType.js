@@ -412,7 +412,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         currentPt.MaxMinSpan = maxValueCorrect;
         minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
-        minSpinBox.input.onchange();
+        //minSpinBox.input.onchange();
     }
     //// Min K Change affect To Max K
     minSpinBox.input.onchange = function (event) {
@@ -420,7 +420,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         if (minSpinBox.isValid()) {
             var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
             if (minValue <= checkMinValue && minValue <= currentPt.Upline.Max) {
-                maxSpinBox.updateMinValue(minValue);
+                maxSpinBox.updateMinValueWithNoReset(minValue);
             };
         }
         if (!maxSpinBox.isValid()) {
@@ -440,13 +440,13 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
         }
         minValueCorrect = Math.max(minValueCorrect, currentPt.Upline.Min);
         currentPt.MinMaxSpan = minValueCorrect;
-        maxSpinBox.updateMinValue(currentPt.MinMaxSpan);
+        maxSpinBox.updateMinValueWithNoReset(currentPt.MinMaxSpan);
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.MaxMaxSpan);
         if (maxSpinBox.isValid(true) && currentPt.MaxMinSpan != maxSpinBox.getValue()) {
             //// Update New Min Range
             currentPt.MaxMinSpan = maxSpinBox.getValue();
             uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(0, currentPt.MaxMinSpan);
-            minSpinBox.updateMaxValue(currentPt.MaxMinSpan);
+            minSpinBox.updateMaxValueWithNoReset(currentPt.MaxMinSpan);
         }
     }
     box.id = "e$" + this.suffixId;
