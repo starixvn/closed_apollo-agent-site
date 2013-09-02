@@ -71,6 +71,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     presetOnMember.type = "checkbox";
     presetOnMember.className = "preset-input";
     presetOnMember.checked = true;
+    presetOnMember.defaultChecked = true;
     presetContainer.appendChild(presetOnMember);
     //class= for=>  </label>
     //    presetLabel.className = "preset-label";
@@ -544,6 +545,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     presetOnMember.id = "chbApplyPreset";
     presetOnMember.type = "checkbox";
     presetOnMember.checked = true;
+    presetOnMember.defaultChecked = true;
     presetContainer.appendChild(presetOnMember);
 
     var presetLabel = document.createElement('Label');
