@@ -335,10 +335,17 @@ namespace Apollo.Age.Web.Mvc
 
             switch (status)
             {
-                case 1:
-                    result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
+                case (int)CustomerStatus.Active:
+                    if (uplineStatus == (int)CustomerStatus.Stopped)
+                    {
+                        result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
+                    }
+                    else
+                    {
+                        result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
+                    }
                     break;
-                case 2:
+                case (int)CustomerStatus.Stopped:
                     result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));
                     break;
                 default:
