@@ -32,6 +32,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     //// Upline setting lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select spinBox";
+    uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
     uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
@@ -257,6 +258,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     //// Upline setting lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select spinBox";
+    uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
     uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.Min, this.pt.Upline.Max);
@@ -341,6 +343,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     //// Upline setting lable    
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select";
+    uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
     uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
@@ -526,7 +529,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: presetSelected,
-                        minWidth: 120,
+                        minWidth: 400,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -574,7 +577,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: maxSelected,
-                        minWidth: 120,
+                        minWidth: 400,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -605,7 +608,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: minSelected,
-                        minWidth: 120,
+                        minWidth: 400,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
@@ -739,7 +742,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
     decimals: Fanex.CustSetting.PT_DECIMALS,
     step: Fanex.CustSetting.PT_STEP,
     value: valueSelected,
-    minWidth: 120,
+    minWidth: 200,
     lastLetter: Fanex.CustSetting.PT_LAST_LETTER
 }, Fanex.CustSetting.PT_MAX_LENGTH);
     var uplineMaxSpan = document.createElement("SPAN");
@@ -814,7 +817,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
                         decimals: Fanex.CustSetting.PT_DECIMALS,
                         step: Fanex.CustSetting.PT_STEP,
                         value: maxSelected,
-                        minWidth: 120,
+                        minWidth: 200,
                         lastLetter: Fanex.CustSetting.PT_LAST_LETTER
                     }, Fanex.CustSetting.PT_MAX_LENGTH);
 
