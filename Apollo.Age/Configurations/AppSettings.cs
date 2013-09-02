@@ -102,7 +102,7 @@ namespace Apollo.Age.Configurations
 
         public static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key].ToLower();
+            return ConfigurationManager.AppSettings[key].ToString();
         }
     }
 }

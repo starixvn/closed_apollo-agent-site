@@ -86,10 +86,10 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".png") == -1
                     )
                 {
-                    if (maintenanceService.MaintenanceInfo.Status)
+                    if (maintenanceService.MaintenanceInfo.status)
                     {
                         Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
-                        
+
                     }
                 }
             }

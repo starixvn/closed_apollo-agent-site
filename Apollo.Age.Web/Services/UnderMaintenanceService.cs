@@ -25,6 +25,8 @@ namespace Apollo.Age.Web.Services
     using System.Net.Http.Headers;
     using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using System.IO;
+    using System.Web.Helpers;
 
     /// <summary>
     /// Under Maintenance Service.
@@ -37,13 +39,15 @@ namespace Apollo.Age.Web.Services
         private readonly UMBusiness _underMaintenanceService;
         private readonly Mutex _threadMuText = new Mutex();
         private readonly ICache _cacheManager;
-        private readonly HttpClient _client;
+       //private readonly HttpClient _client;
+        private HttpWebRequest request;
 
         public UnderMaintenanceService()
         {
             _underMaintenanceService = new UMBusiness();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
-            _client = new HttpClient();
+           // _client = new HttpClient();
+            
         }
 
         public UnderMaintenanceViewModel MaintenanceInfo
@@ -62,7 +66,7 @@ namespace Apollo.Age.Web.Services
                         }
                         catch
                         {
-                            maintenanceInfo = new UnderMaintenanceViewModel { Status = false };
+                            maintenanceInfo = new UnderMaintenanceViewModel { status = false };
                         }
                         finally
                         {
@@ -71,7 +75,7 @@ namespace Apollo.Age.Web.Services
                     }
                     else
                     {
-                        maintenanceInfo = new UnderMaintenanceViewModel { Status = false };
+                        maintenanceInfo = new UnderMaintenanceViewModel { status = false };
                     }
                 }
 
@@ -85,16 +89,16 @@ namespace Apollo.Age.Web.Services
         /// <returns>Return Under Maintenance View Model.</returns>
         private UnderMaintenanceViewModel GetMaintenanceInfo()
         {
-            var umInfo = new UnderMaintenanceViewModel { Status = false };
-            var startTime = umInfo.Start_Time;
-            var endTime = umInfo.End_Time;
+            var umInfo = new UnderMaintenanceViewModel { status = false };
+            var startTime = umInfo.start_time;
+            var endTime = umInfo.end_time;
 
             // Check downtime from AppSetting.
             if (AppSettings.IsApolloDownTime)
             {
-                umInfo.Status = true;
-                umInfo.Start_Time = AppSettings.StartTime;
-                umInfo.End_Time = AppSettings.EndTime;
+                umInfo.status = true;
+                umInfo.start_time = AppSettings.StartTime;
+                umInfo.end_time = AppSettings.EndTime;
 
                 return umInfo;
             }
@@ -105,19 +109,32 @@ namespace Apollo.Age.Web.Services
 
                 if (AppSettings.DisabledUnderMaintenanceAPI)
                 {
-                    umInfo.Status = false;
+                    umInfo.status = false;
                 }
                 else
                 {
-                    HttpResponseMessage response = _client.GetAsync(AppSettings.UnderMaintenanceUrl).Result;
-                    umInfo = JsonConvert.DeserializeObject<UnderMaintenanceViewModel>(response.Content.ReadAsStringAsync().Result);
-                }
+                    request = (HttpWebRequest)WebRequest.Create(AppSettings.UnderMaintenanceUrl);
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    request.Method = WebRequestMethods.Http.Get; // it is required                    
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
 
-                //if (umInfo.Status)
-                //{
-                //    umInfo.StartTime = startTime;
-                //    umInfo.EndTime = endTime;
-                //}
+                        Stream dataStream = response.GetResponseStream();
+                        // read response stream and parse to JsonResponseModel
+                        using (StreamReader reader = new StreamReader(dataStream))
+                        {
+                            string jsonString = reader.ReadToEnd();
+                            if (!string.IsNullOrWhiteSpace(jsonString))
+                            {
+                                umInfo = Json.Decode<UnderMaintenanceViewModel>(jsonString);
+                            }
+
+                            //Fanex.Logging.LogService.Error(jsonString);
+                        }
+                    }
+                                        
+                }
 
                 return umInfo;
             }
@@ -125,7 +142,7 @@ namespace Apollo.Age.Web.Services
             {
                 HandleException(ex);
 
-                return new UnderMaintenanceViewModel { Status = false };
+                return new UnderMaintenanceViewModel { status = false };
             }
         }
     }
