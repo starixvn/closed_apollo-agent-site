@@ -1830,4 +1830,7 @@
   <data name="lblUplineSetting" xml:space="preserve">
     <value>上线设定:</value>
   </data>
+  <data name="ApplyPresetSimpleMode" xml:space="preserve">
+    <value>所有(代理 {0})之會員立刻生效</value>
+  </data>
 </root>
