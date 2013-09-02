@@ -439,7 +439,7 @@
     <value>观看方式</value>
   </data>
   <data name="PercentInMember" xml:space="preserve">
-    <value>％</value>
+    <value>設定佔成%</value>
   </data>
   <data name="lblVbBdmTt" xml:space="preserve">
     <value>排球/羽球/乒乓</value>
@@ -619,7 +619,7 @@
     <value>退水设定</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>占成％（足球早餐让分）</value>
+    <value>占成％（體育</value>
   </data>
   <data name="sportBook" xml:space="preserve">
     <value>体育</value>
@@ -973,7 +973,7 @@
     <value>足球 死球 让球 给予占成数 (%)</value>
   </data>
   <data name="lblDeadball" xml:space="preserve">
-    <value>早餐</value>
+    <value>早餐,讓球</value>
   </data>
   <data name="lblHOUL" xml:space="preserve">
     <value>让球/大小盘/滚球</value>
@@ -1828,9 +1828,24 @@
     <value>最小</value>
   </data>
   <data name="lblUplineSetting" xml:space="preserve">
-    <value>上线设定:</value>
+    <value>可佔成預設值%:</value>
   </data>
   <data name="ApplyPresetSimpleMode" xml:space="preserve">
     <value>所有(代理 {0})之會員立刻生效</value>
+  </data>
+  <data name="AppyPresetAdvancedMode" xml:space="preserve">
+    <value>所有會員立刻生效</value>
+  </data>
+  <data name="lblEditMaxPosition" xml:space="preserve">
+    <value>下線最大佔成%</value>
+  </data>
+  <data name="lblEditMinPosition" xml:space="preserve">
+    <value>下線最小佔成%</value>
+  </data>
+  <data name="lblEditPresetPosition" xml:space="preserve">
+    <value>設定佔成%</value>
+  </data>
+  <data name="lblEditSettingLive" xml:space="preserve">
+    <value>滾球</value>
   </data>
 </root>
