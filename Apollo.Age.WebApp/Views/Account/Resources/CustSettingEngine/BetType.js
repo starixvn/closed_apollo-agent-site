@@ -790,7 +790,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     trSetting.appendChild(uplineSettingContainer);    
 
     var uplineSettingSpan = document.createElement("SPAN");
-    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.Min, this.currentPtValue.Upline.Max);
     uplineSettingSpan.className = "upline-agent-share";
     uplineSettingContainer.appendChild(uplineSettingSpan);
 
