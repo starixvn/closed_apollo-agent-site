@@ -797,7 +797,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (this.copiedItem.sportId == 2) {
                     top += 15;
                 }
-                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 25, top - 158, -10, height, 10000, true);
+                Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 60, top - 182, -10, height, 10000, true);
             },
             this.UpdateCopyValue = function (currentCopyBetType, betType) {
                 //                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);

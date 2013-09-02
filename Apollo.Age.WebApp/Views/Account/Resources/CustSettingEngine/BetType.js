@@ -979,7 +979,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
     //// Upline Setting Lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select-label";
-    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.Min, this.pt.Upline.Max);
     box.appendChild(uplineSettingContainer);
 
     //// Given Share
@@ -1161,7 +1161,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
 
     var uplineSettingContainer = document.createElement("TD");
     uplineSettingContainer.className = "share-setting-value";
-    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.MinGiven, this.currentPtValue.Upline.Max);
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.currentPtValue.Upline.Min, this.currentPtValue.Upline.Max);
     trSetting.appendChild(uplineSettingContainer);
 
     trSetting = document.createElement("TR");

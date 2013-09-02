@@ -1978,4 +1978,18 @@
   <data name="lblViewOnMember" xml:space="preserve">
     <value>% on Member</value>
   </data>
+
+ <data name="lblEditMaxPosition" xml:space="preserve">
+    <value>% Max Downline</value>
+  </data>
+  <data name="lblEditMinPosition" xml:space="preserve">
+    <value>% Min Downline</value>
+  </data>
+  <data name="lblEditPresetPosition" xml:space="preserve">
+    <value>% Preset</value>
+  </data>
+  <data name="lblEditSettingLive" xml:space="preserve">
+    <value>Live!</value>
+  </data>
+
 </root>
