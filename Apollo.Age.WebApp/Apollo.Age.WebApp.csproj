@@ -1118,6 +1118,10 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
+      <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
+      <Name>Apollo.UMService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj">
       <Project>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</Project>
       <Name>Fanex.Age.UI.Components</Name>
