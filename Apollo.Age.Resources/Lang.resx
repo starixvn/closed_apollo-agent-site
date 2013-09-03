@@ -1870,7 +1870,7 @@
     <value>Super</value>
   </data>
   <data name="lblEffectiveStake" xml:space="preserve">
-    <value>Effective Stake</value>
+    <value>Effective Stake#1</value>
   </data>
   <data name="AccountSearch" xml:space="preserve">
     <value>Search</value>
@@ -1939,7 +1939,7 @@
     <value>Please select at least one member.</value>
   </data>
   <data name="lblEffectiveStake2" xml:space="preserve">
-    <value>Effective Stake</value>
+    <value>Effective Stake#2</value>
   </data>
   <data name="lblUpdateSuccessMultiple" xml:space="preserve">
     <value>Update successfully following member(s):</value>
@@ -1978,8 +1978,7 @@
   <data name="lblViewOnMember" xml:space="preserve">
     <value>% on Member</value>
   </data>
-
- <data name="lblEditMaxPosition" xml:space="preserve">
+  <data name="lblEditMaxPosition" xml:space="preserve">
     <value>% Max Downline</value>
   </data>
   <data name="lblEditMinPosition" xml:space="preserve">
@@ -1991,5 +1990,7 @@
   <data name="lblEditSettingLive" xml:space="preserve">
     <value>Live!</value>
   </data>
-
+  <data name="lblUplineSettingText" xml:space="preserve">
+    <value>Upline Setting [Min - Max]</value>
+  </data>
 </root>
