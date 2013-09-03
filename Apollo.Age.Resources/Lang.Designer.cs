@@ -2149,7 +2149,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Stake.
+        ///   Looks up a localized string similar to Effective Stake#1.
         /// </summary>
         public static string lblEffectiveStake {
             get {
@@ -2158,7 +2158,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Stake.
+        ///   Looks up a localized string similar to Effective Stake#2.
         /// </summary>
         public static string lblEffectiveStake2 {
             get {
