@@ -130,52 +130,54 @@ namespace Apollo.Age.Account.Controllers
 
             try
             {
-
                 if (!string.IsNullOrWhiteSpace(oldData))
                 {
                     var xmlData = XDocument.Parse(oldData);
                     var groupXml = xmlData.Descendants("r");
 
-                    foreach (var itemGroup in groupXml)
+                    if (!ReferenceEquals(groupXml, null) && groupXml.Any())
                     {
-                        var discountXml = itemGroup.Descendants("z");
-
-                        if (!ReferenceEquals(itemGroup.Attribute("g"), null))
+                        foreach (var itemGroup in groupXml)
                         {
-                            oldGroup = itemGroup.Attribute("g").Value.ToString();
+                            var discountXml = itemGroup.Descendants("z");
 
-                            foreach (var itemDiscount in discountXml)
+                            if (!ReferenceEquals(itemGroup.Attribute("g"), null))
                             {
-                                var model = new DiscountModel
-                                {
-                                    SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
-                                    GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value),
-                                    OldGroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
-                                };
+                                oldGroup = itemGroup.Attribute("g").Value.ToString();
 
-                                list.Add(model);
+                                foreach (var itemDiscount in discountXml)
+                                {
+                                    var model = new DiscountModel
+                                    {
+                                        SportType = itemDiscount.Attribute("s") != null ? Convert.ToInt32(itemDiscount.Attribute("s").Value) : 0,
+                                        BetType = itemDiscount.Attribute("b") != null ? Convert.ToInt32(itemDiscount.Attribute("b").Value) : 0,
+                                        GroupA = itemDiscount.Attribute("d") != null ? Convert.ToDecimal(itemDiscount.Attribute("d").Value) : 0,
+                                        OldGroupA = itemDiscount.Attribute("d") != null ? Convert.ToDecimal(itemDiscount.Attribute("d").Value) : 0
+                                    };
+
+                                    list.Add(model);
+                                }
                             }
-                        }
-                        else
-                        {
-                            foreach (var itemDiscount in discountXml)
+                            else
                             {
-                                var model = new DiscountModel
+                                foreach (var itemDiscount in discountXml)
                                 {
-                                    SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
-                                    GroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
-                                    OldGroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
-                                    GroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
-                                    OldGroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
-                                    GroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
-                                    OldGroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
-                                    GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value),
-                                    OldGroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
-                                };
+                                    var model = new DiscountModel
+                                    {
+                                        SportType = itemDiscount.Attribute("s") != null ? Convert.ToInt32(itemDiscount.Attribute("s").Value) : 0,
+                                        BetType = itemDiscount.Attribute("b") != null ? Convert.ToInt32(itemDiscount.Attribute("b").Value) : 0,
+                                        GroupA = itemDiscount.Attribute("ga") != null ? Convert.ToDecimal(itemDiscount.Attribute("ga").Value) : 0,
+                                        OldGroupA = itemDiscount.Attribute("ga") != null ? Convert.ToDecimal(itemDiscount.Attribute("ga").Value) : 0,
+                                        GroupB = itemDiscount.Attribute("gb") != null ? Convert.ToDecimal(itemDiscount.Attribute("gb").Value) : 0,
+                                        OldGroupB = itemDiscount.Attribute("gb") != null ? Convert.ToDecimal(itemDiscount.Attribute("gb").Value) : 0,
+                                        GroupC = itemDiscount.Attribute("gc") != null ? Convert.ToDecimal(itemDiscount.Attribute("gc").Value) : 0,
+                                        OldGroupC = itemDiscount.Attribute("gc") != null ? Convert.ToDecimal(itemDiscount.Attribute("gc").Value) : 0,
+                                        GroupD = itemDiscount.Attribute("gd") != null ? Convert.ToDecimal(itemDiscount.Attribute("gd").Value) : 0,
+                                        OldGroupD = itemDiscount.Attribute("gd") != null ? Convert.ToDecimal(itemDiscount.Attribute("gd").Value) : 0
+                                    };
 
-                                list.Add(model);
+                                    list.Add(model);
+                                }
                             }
                         }
                     }
@@ -186,73 +188,76 @@ namespace Apollo.Age.Account.Controllers
                     var xmlData = XDocument.Parse(data);
                     var groupXml = xmlData.Descendants("r");
 
-                    foreach (var itemGroup in groupXml)
+                    if (!ReferenceEquals(groupXml, null) && groupXml.Any())
                     {
-                        var discountXml = itemGroup.Descendants("z");
-
-                        if (!ReferenceEquals(itemGroup.Attribute("g"), null))
+                        foreach (var itemGroup in groupXml)
                         {
-                            group = itemGroup.Attribute("g").Value.ToString();
+                            var discountXml = itemGroup.Descendants("z");
 
-                            foreach (var itemDiscount in discountXml)
+                            if (!ReferenceEquals(itemGroup.Attribute("g"), null))
                             {
-                                var model = new DiscountModel
-                                {
-                                    SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
-                                    GroupA = Convert.ToDecimal(itemDiscount.Attribute("d").Value)
-                                };
+                                group = itemGroup.Attribute("g").Value.ToString();
 
-                                // Log action for update
-                                for (int i = 0; i < list.Count; i++)
+                                foreach (var itemDiscount in discountXml)
                                 {
-                                    var itemOld = list[i];
-                                    if (itemOld.SportType == model.SportType
-                                        && itemOld.BetType == model.BetType)
+                                    var model = new DiscountModel
                                     {
-                                        list[i].GroupA = model.GroupA;
-                                    }
-                                }
+                                        SportType = itemDiscount.Attribute("s") != null ? Convert.ToInt32(itemDiscount.Attribute("s").Value) : 0,
+                                        BetType = itemDiscount.Attribute("b") != null ? Convert.ToInt32(itemDiscount.Attribute("b").Value) : 0,
+                                        GroupA = itemDiscount.Attribute("d") != null ? Convert.ToDecimal(itemDiscount.Attribute("d").Value) : 0
+                                    };
 
-                                // Log action for insert
-                                if (string.IsNullOrWhiteSpace(oldData))
-                                {
-                                    list.Add(model);
+                                    // Log action for update
+                                    for (int i = 0; i < list.Count; i++)
+                                    {
+                                        var itemOld = list[i];
+                                        if (itemOld.SportType == model.SportType
+                                            && itemOld.BetType == model.BetType)
+                                        {
+                                            list[i].GroupA = model.GroupA;
+                                        }
+                                    }
+
+                                    // Log action for insert
+                                    if (string.IsNullOrWhiteSpace(oldData))
+                                    {
+                                        list.Add(model);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            foreach (var itemDiscount in discountXml)
+                            else
                             {
-                                var model = new DiscountModel
+                                foreach (var itemDiscount in discountXml)
                                 {
-                                    SportType = Convert.ToInt32(itemDiscount.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(itemDiscount.Attribute("b").Value),
-                                    GroupA = Convert.ToDecimal(itemDiscount.Attribute("ga").Value),
-                                    GroupB = Convert.ToDecimal(itemDiscount.Attribute("gb").Value),
-                                    GroupC = Convert.ToDecimal(itemDiscount.Attribute("gc").Value),
-                                    GroupD = Convert.ToDecimal(itemDiscount.Attribute("gd").Value)
-                                };
-
-                                // Log action for update
-                                for (int i = 0; i < list.Count; i++)
-                                {
-                                    var itemOld = list[i];
-                                    if (itemOld.SportType == model.SportType
-                                        && itemOld.BetType == model.BetType)
+                                    var model = new DiscountModel
                                     {
-                                        list[i].GroupA = model.GroupA;
-                                        list[i].GroupB = model.GroupB;
-                                        list[i].GroupC = model.GroupC;
-                                        list[i].GroupD = model.GroupD;
-                                    }
-                                }
+                                        SportType = itemDiscount.Attribute("s") != null ? Convert.ToInt32(itemDiscount.Attribute("s").Value) : 0,
+                                        BetType = itemDiscount.Attribute("b") != null ? Convert.ToInt32(itemDiscount.Attribute("b").Value) : 0,
+                                        GroupA = itemDiscount.Attribute("ga") != null ? Convert.ToDecimal(itemDiscount.Attribute("ga").Value) : 0,
+                                        GroupB = itemDiscount.Attribute("gb") != null ? Convert.ToDecimal(itemDiscount.Attribute("gb").Value) : 0,
+                                        GroupC = itemDiscount.Attribute("gc") != null ? Convert.ToDecimal(itemDiscount.Attribute("gc").Value) : 0,
+                                        GroupD = itemDiscount.Attribute("gd") != null ? Convert.ToDecimal(itemDiscount.Attribute("gd").Value) : 0
+                                    };
 
-                                // Log action for insert
-                                if (string.IsNullOrWhiteSpace(oldData))
-                                {
-                                    list.Add(model);
+                                    // Log action for update
+                                    for (int i = 0; i < list.Count; i++)
+                                    {
+                                        var itemOld = list[i];
+                                        if (itemOld.SportType == model.SportType
+                                            && itemOld.BetType == model.BetType)
+                                        {
+                                            list[i].GroupA = model.GroupA;
+                                            list[i].GroupB = model.GroupB;
+                                            list[i].GroupC = model.GroupC;
+                                            list[i].GroupD = model.GroupD;
+                                        }
+                                    }
+
+                                    // Log action for insert
+                                    if (string.IsNullOrWhiteSpace(oldData))
+                                    {
+                                        list.Add(model);
+                                    }
                                 }
                             }
                         }
@@ -282,29 +287,31 @@ namespace Apollo.Age.Account.Controllers
 
             try
             {
-
                 if (!string.IsNullOrWhiteSpace(oldData))
                 {
                     var xmlData = XDocument.Parse(oldData);
                     var betSetting = xmlData.Descendants("z");
 
-                    foreach (var item in betSetting)
+                    if (!ReferenceEquals(betSetting, null) && betSetting.Any())
                     {
-                        var model = new BetSettingModel
+                        foreach (var item in betSetting)
                         {
-                            SportType = Convert.ToInt32(item.Attribute("s").Value),
-                            BetType = Convert.ToInt32(item.Attribute("b").Value),
-                            OldMinBet = Convert.ToDecimal(item.Attribute("mib").Value),
-                            MinBet = Convert.ToDecimal(item.Attribute("mib").Value),
-                            OldMaxBet = Convert.ToDecimal(item.Attribute("mab").Value),
-                            MaxBet = Convert.ToDecimal(item.Attribute("mab").Value),
-                            OldMaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
-                            MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value)
-                        };
+                            var model = new BetSettingModel
+                            {
+                                SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                OldMinBet = item.Attribute("mib") != null ? Convert.ToDecimal(item.Attribute("mib").Value) : 0,
+                                MinBet = item.Attribute("mib") != null ? Convert.ToDecimal(item.Attribute("mib").Value) : 0,
+                                OldMaxBet = item.Attribute("mab") != null ? Convert.ToDecimal(item.Attribute("mab").Value) : 0,
+                                MaxBet = item.Attribute("mab") != null ? Convert.ToDecimal(item.Attribute("mab").Value) : 0,
+                                OldMaxPerMatch = item.Attribute("mam") != null ? Convert.ToDecimal(item.Attribute("mam").Value) : 0,
+                                MaxPerMatch = item.Attribute("mam") != null ? Convert.ToDecimal(item.Attribute("mam").Value) : 0
+                            };
 
-                        string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+                            string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
 
-                        list.Add(key, model);
+                            list.Add(key, model);
+                        }
                     }
                 }
 
@@ -313,30 +320,33 @@ namespace Apollo.Age.Account.Controllers
                     var xmlData = XDocument.Parse(data);
                     var betSetting = xmlData.Descendants("z");
 
-                    foreach (var item in betSetting)
+                    if (!ReferenceEquals(betSetting, null) && betSetting.Any())
                     {
-                        var model = new BetSettingModel
+                        foreach (var item in betSetting)
                         {
-                            SportType = Convert.ToInt32(item.Attribute("s").Value),
-                            BetType = Convert.ToInt32(item.Attribute("b").Value),
-                            MinBet = Convert.ToDecimal(item.Attribute("mib").Value),
-                            MaxBet = Convert.ToDecimal(item.Attribute("mab").Value),
-                            MaxPerMatch = Convert.ToDecimal(item.Attribute("mam").Value),
-                        };
+                            var model = new BetSettingModel
+                            {
+                                SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                MinBet = item.Attribute("mib") != null ? Convert.ToDecimal(item.Attribute("mib").Value) : 0,
+                                MaxBet = item.Attribute("mab") != null ? Convert.ToDecimal(item.Attribute("mab").Value) : 0,
+                                MaxPerMatch = item.Attribute("mam") != null ? Convert.ToDecimal(item.Attribute("mam").Value) : 0
+                            };
 
-                        string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
+                            string key = string.Format("{0}_{1}", model.SportType.ToString(), model.BetType.ToString());
 
-                        // Log action is update
-                        if (list.ContainsKey(key))
-                        {
-                            list[key].MinBet = model.MinBet;
-                            list[key].MaxBet = model.MaxBet;
-                            list[key].MaxPerMatch = model.MaxPerMatch;
-                        }
-                        else if (string.IsNullOrWhiteSpace(oldData))
-                        {
-                            // Log action for insert
-                            list.Add(key, model);
+                            // Log action is update
+                            if (list.ContainsKey(key))
+                            {
+                                list[key].MinBet = model.MinBet;
+                                list[key].MaxBet = model.MaxBet;
+                                list[key].MaxPerMatch = model.MaxPerMatch;
+                            }
+                            else if (string.IsNullOrWhiteSpace(oldData))
+                            {
+                                // Log action for insert
+                                list.Add(key, model);
+                            }
                         }
                     }
                 }
@@ -363,47 +373,49 @@ namespace Apollo.Age.Account.Controllers
 
             try
             {
-
                 if (!string.IsNullOrWhiteSpace(oldData))
                 {
                     var xmlData = XDocument.Parse(oldData);
                     var positionTaking = xmlData.Descendants("z");
 
-                    foreach (var item in positionTaking)
+                    if (!ReferenceEquals(positionTaking, null) && positionTaking.Any())
                     {
-                        if (isAgent)
+                        foreach (var item in positionTaking)
                         {
-                            var model = new PositionTakingModel
+                            if (isAgent)
                             {
-                                SportType = Convert.ToInt32(item.Attribute("s").Value),
-                                BetType = Convert.ToInt32(item.Attribute("b").Value),
-                                IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                                MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                                OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                                MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                                OldMaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                                MinGiven = Convert.ToDecimal(item.Attribute("mi").Value),
-                                OldMinGiven = Convert.ToDecimal(item.Attribute("mi").Value)
-                            };
+                                var model = new PositionTakingModel
+                                {
+                                    SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                    BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                    IsLive = item.Attribute("i") != null ? (item.Attribute("i").Value.ToString() == "1" ? true : false) : false,
+                                    MaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0,
+                                    OldMaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0,
+                                    MaxGiven = item.Attribute("ma") != null ? Convert.ToDecimal(item.Attribute("ma").Value) : 0,
+                                    OldMaxGiven = item.Attribute("ma") != null ? Convert.ToDecimal(item.Attribute("ma").Value) : 0,
+                                    MinGiven = item.Attribute("mi") != null ? Convert.ToDecimal(item.Attribute("mi").Value) : 0,
+                                    OldMinGiven = item.Attribute("mi") != null ? Convert.ToDecimal(item.Attribute("mi").Value) : 0
+                                };
 
-                            string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                            list.Add(key, model);
-                        }
-                        else
-                        {
-                            var model = new PositionTakingModel
+                                list.Add(key, model);
+                            }
+                            else
                             {
-                                SportType = Convert.ToInt32(item.Attribute("s").Value),
-                                BetType = Convert.ToInt32(item.Attribute("b").Value),
-                                IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                                MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                                OldMaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
-                            };
+                                var model = new PositionTakingModel
+                                {
+                                    SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                    BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                    IsLive = item.Attribute("i") != null ? (item.Attribute("i").Value.ToString() == "1" ? true : false) : false,
+                                    MaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0,
+                                    OldMaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0
+                                };
 
-                            string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                            list.Add(key, model);
+                                list.Add(key, model);
+                            }
                         }
                     }
                 }
@@ -418,61 +430,65 @@ namespace Apollo.Age.Account.Controllers
                     foreach (var itemRoot in xmlData)
                     {
                         var positionTaking = itemRoot.Descendants("z");
-                        agent = !isAgent ? itemRoot.Attribute("a").Value : string.Empty;
 
-                        foreach (var item in positionTaking)
+                        if (!ReferenceEquals(positionTaking, null) && positionTaking.Any())
                         {
-                            if (isAgent)
+                            agent = itemRoot.Attribute("a") != null ? (!isAgent ? itemRoot.Attribute("a").Value : string.Empty) : string.Empty;
+
+                            foreach (var item in positionTaking)
                             {
-                                var model = new PositionTakingModel
+                                if (isAgent)
                                 {
-                                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value),
-                                    MaxGiven = Convert.ToDecimal(item.Attribute("ma").Value),
-                                    MinGiven = Convert.ToDecimal(item.Attribute("mi").Value),
-                                    IsApply = item.Attribute("ia").Value.ToString() == "1" ? true : false
-                                };
+                                    var model = new PositionTakingModel
+                                    {
+                                        SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                        BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                        IsLive = item.Attribute("i") != null ? (item.Attribute("i").Value.ToString() == "1" ? true : false) : false,
+                                        MaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0,
+                                        MaxGiven = item.Attribute("ma") != null ? Convert.ToDecimal(item.Attribute("ma").Value) : 0,
+                                        MinGiven = item.Attribute("mi") != null ? Convert.ToDecimal(item.Attribute("mi").Value) : 0,
+                                        IsApply = item.Attribute("ia") != null ? (item.Attribute("ia").Value.ToString() == "1" ? true : false) : false
+                                    };
 
-                                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                                    string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                                // Log action for update
-                                if (list.ContainsKey(key))
-                                {
-                                    list[key].MaxUpper = model.MaxUpper;
-                                    list[key].MaxGiven = model.MaxGiven;
-                                    list[key].MinGiven = model.MinGiven;
-                                    list[key].IsApply = model.IsApply;
+                                    // Log action for update
+                                    if (list.ContainsKey(key))
+                                    {
+                                        list[key].MaxUpper = model.MaxUpper;
+                                        list[key].MaxGiven = model.MaxGiven;
+                                        list[key].MinGiven = model.MinGiven;
+                                        list[key].IsApply = model.IsApply;
+                                    }
+                                    else if (string.IsNullOrWhiteSpace(oldData))
+                                    {
+                                        // Log action for insert
+                                        list.Add(key, model);
+                                    }
                                 }
-                                else if (string.IsNullOrWhiteSpace(oldData))
+                                else
                                 {
-                                    // Log action for insert
-                                    list.Add(key, model);
-                                }
-                            }
-                            else
-                            {
-                                var model = new PositionTakingModel
-                                {
-                                    SportType = Convert.ToInt32(item.Attribute("s").Value),
-                                    BetType = Convert.ToInt32(item.Attribute("b").Value),
-                                    IsLive = item.Attribute("i").Value.ToString() == "1" ? true : false,
-                                    MaxUpper = Convert.ToDecimal(item.Attribute("p").Value)
-                                };
+                                    var model = new PositionTakingModel
+                                    {
+                                        SportType = item.Attribute("s") != null ? Convert.ToInt32(item.Attribute("s").Value) : 0,
+                                        BetType = item.Attribute("b") != null ? Convert.ToInt32(item.Attribute("b").Value) : 0,
+                                        IsLive = item.Attribute("i") != null ? (item.Attribute("i").Value.ToString() == "1" ? true : false) : false,
+                                        MaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0
+                                    };
 
-                                string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
+                                    string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
 
-                                if (list.ContainsKey(key))
-                                {
-                                    list[key].MaxUpper = model.MaxUpper;
-                                    list[key].MaxGiven = model.MaxGiven;
-                                    list[key].MinGiven = model.MinGiven;
-                                }
-                                else if (string.IsNullOrWhiteSpace(oldData))
-                                {
-                                    // Log action for insert
-                                    list.Add(key, model);
+                                    if (list.ContainsKey(key))
+                                    {
+                                        list[key].MaxUpper = model.MaxUpper;
+                                        list[key].MaxGiven = model.MaxGiven;
+                                        list[key].MinGiven = model.MinGiven;
+                                    }
+                                    else if (string.IsNullOrWhiteSpace(oldData))
+                                    {
+                                        // Log action for insert
+                                        list.Add(key, model);
+                                    }
                                 }
                             }
                         }
@@ -503,7 +519,6 @@ namespace Apollo.Age.Account.Controllers
 
             try
             {
-
                 if (!string.IsNullOrWhiteSpace(data))
                 {
                     var xmlData = XDocument.Parse(data);
