@@ -3608,6 +3608,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upline Setting [Min - Max].
+        /// </summary>
+        public static string lblUplineSettingText {
+            get {
+                return ResourceManager.GetString("lblUplineSettingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string lblUserName {

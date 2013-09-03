@@ -35,7 +35,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
-    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
     uplineSettingSpan.className = "upline-agent-share";
     uplineSettingContainer.appendChild(uplineSettingSpan);
 
@@ -262,7 +262,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
-    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.Min, this.pt.Upline.Max);
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.Min, this.pt.Upline.Max);
     uplineSettingSpan.className = "upline-agent-share";
     uplineSettingContainer.appendChild(uplineSettingSpan);
 
@@ -347,7 +347,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
     uplineSettingContainer.style.minWidth = this.minWidth + 'px';
     box.appendChild(uplineSettingContainer);
     var uplineSettingSpan = document.createElement("SPAN");
-    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
     uplineSettingSpan.className = "upline-agent-share";
     uplineSettingContainer.appendChild(uplineSettingSpan);
 
@@ -942,7 +942,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
     //// Upline Setting Lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select-label";
-    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
     box.appendChild(uplineSettingContainer);
 
     //// Taken Share
@@ -984,7 +984,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
     //// Upline Setting Lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select-label";
-    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.Min, this.pt.Upline.Max);
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.Min, this.pt.Upline.Max);
     box.appendChild(uplineSettingContainer);
 
     //// Given Share
@@ -1013,7 +1013,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
     //// Upline Setting Lable
     var uplineSettingContainer = document.createElement("DIV");
     uplineSettingContainer.className = "bet-type-select-label";
-    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildUplineShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
+    uplineSettingContainer.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(this.pt.Upline.MinGiven, this.pt.Upline.Max);
     box.appendChild(uplineSettingContainer);
 
     var maxContainer = document.createElement("DIV");
