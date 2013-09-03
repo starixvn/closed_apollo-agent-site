@@ -22,8 +22,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
 
     // Upline setting lable
     var uplineSettingLabel = document.createElement("DIV");
-    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
-    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
     uplineSettingLabel.className = "group-label";
     box.appendChild(uplineSettingLabel);
 
@@ -55,8 +55,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
 
     // Upline setting lable
     var uplineSettingLabel = document.createElement("DIV");
-    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
-    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
     uplineSettingLabel.className = "group-label";
     box.appendChild(uplineSettingLabel);
 
@@ -95,8 +95,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
 
     // Upline setting lable
     var uplineSettingLabel = document.createElement("DIV");
-    uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
-    uplineSettingLabel.title = Language.UPLINE_SETTING;
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
     uplineSettingLabel.className = "group-label";
     box.appendChild(uplineSettingLabel);
 

@@ -1843,7 +1843,7 @@
   <data name="lblViewOnMember" xml:space="preserve">
     <value>票單佔成%</value>
   </data>
-   <data name="AppyPresetAdvancedMode" xml:space="preserve">
+  <data name="AppyPresetAdvancedMode" xml:space="preserve">
     <value>所有會員立刻生效</value>
   </data>
   <data name="lblEditMaxPosition" xml:space="preserve">
@@ -1851,11 +1851,14 @@
   </data>
   <data name="lblEditMinPosition" xml:space="preserve">
     <value>下線最小佔成%</value>
-</data>
+  </data>
   <data name="lblEditPresetPosition" xml:space="preserve">
     <value>設定佔成%</value>
   </data>
   <data name="lblEditSettingLive" xml:space="preserve">
     <value>滾球</value>
+  </data>
+  <data name="lblUplineSettingText" xml:space="preserve">
+    <value>可佔成預設值% [最小 - 最大]</value>
   </data>
 </root>

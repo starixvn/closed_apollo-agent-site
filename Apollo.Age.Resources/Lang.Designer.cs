@@ -2185,7 +2185,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Stake.
+        ///   Looks up a localized string similar to Effective Stake#1.
         /// </summary>
         public static string lblEffectiveStake {
             get {
@@ -2194,7 +2194,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Effective Stake.
+        ///   Looks up a localized string similar to Effective Stake#2.
         /// </summary>
         public static string lblEffectiveStake2 {
             get {
@@ -3604,6 +3604,15 @@ namespace Apollo.Age.Resources {
         public static string lblUplineSetting {
             get {
                 return ResourceManager.GetString("lblUplineSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upline Setting [Min - Max].
+        /// </summary>
+        public static string lblUplineSettingText {
+            get {
+                return ResourceManager.GetString("lblUplineSettingText", resourceCulture);
             }
         }
         
