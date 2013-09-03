@@ -1,35 +1,35 @@
 ﻿@{
-	var isShowHeader = ViewBag.IsShowHeader ?? false;
-	var isMaster = ViewBag.IsMaster ?? false;
-	var isSimpleMode = ViewBag.IsSimpleMode ?? true;
+    var isShowHeader = ViewBag.IsShowHeader ?? false;
+    var isMaster = ViewBag.IsMaster ?? false;
+    var isSimpleMode = ViewBag.IsSimpleMode ?? true;
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title</title>
-	@Styles.Render("~/css/custsettinglayout")
-	@RenderSection("css", required: false)
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/custsettinglayout")
+    @RenderSection("css", required: false)
 </head>
 <body>
-	<div id="page_main">
-		@if (isShowHeader)
-		{
-			<div id="header_main" class="
+    <div id="page_main">
+        @if (isShowHeader)
+        {
+            <div id="header_main" class="
             @if (isMaster)
             {
                 @: frozen-header-main
             }">
-				@ViewBag.Title
-			</div>
-		}
-		<div id="content_main">
-			<div class="setting-mode 
+                @ViewBag.Title
+            </div>
+        }
+        <div id="content_main">
+            <div class="setting-mode 
             @if (isMaster)
             {
-                if(isShowHeader)
+                if (isShowHeader)
                 {
                     @: frozen-mode-no-popup
                 }
@@ -39,25 +39,25 @@
                 }
             }
             ">
-				<span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
-				| <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
+                <span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
+                | <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
                 @if (isMaster)
                 {
-					    <button id="btnSubmitHeader" class="btn" style="display:none;">
-						    @Apollo.Age.Resources.Lang.update</button>
+                    <button id="btnSubmitHeader" class="btn" style="display: none;">
+                        @Apollo.Age.Resources.Lang.update</button>
                 }
-			</div>
-			@if (!isMaster)
-   {
-				<div id="settingContainer">
-					@RenderBody()
-				</div>
-   }
-   else
-   {
+            </div>
+            @if (!isMaster)
+            {
+                <div id="settingContainer">
+                    @RenderBody()
+                </div>
+            }
+            else
+            {
                 
-				<div id="settingContainer" class="
-                @if(isShowHeader)
+                <div id="settingContainer" class="
+                @if (isShowHeader)
                 {
                     @: setting-container-frozen-no-popup
                 }
@@ -66,28 +66,27 @@
                     @: setting-container-frozen
                 }
                 ">
-					<div class="edit-setting-warning">
-						@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
-					@RenderBody()
-				</div>
-       if (ViewBag.IsMaster)
-       {
-				    <div class="btnLeft">
-					    <button id="btnSubmitFooter" class="btn">
-						    @Apollo.Age.Resources.Lang.update</button>
-				    </div>
-       }
-   }
-		</div>
-	</div>
-    <div id="forgery-token-div" style="display:none;">
+                    <div class="edit-setting-warning">
+                        @Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
+                    @RenderBody()
+                </div>
+                if (ViewBag.IsMaster)
+                {
+                <div class="btnLeft">
+                    <button id="btnSubmitFooter" class="btn">
+                        @Apollo.Age.Resources.Lang.update</button>
+                </div>
+                }
+            }
+        </div>
+    </div>
+    <div id="forgery-token-div" style="display: none;">
         @Html.AntiForgeryToken()
     </div>
-	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
-	@Scripts.Render("~/scripts/custsettingjs")
-
-	<script type="text/javascript">
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    @Scripts.Render("~/scripts/custsettingjs")
+    <script type="text/javascript">
 		var DEFAULT_LAYOUT = function () {
 			return {
 				isSimpleMode : @(isSimpleMode ? "true" : "false"),
@@ -153,13 +152,11 @@
 			GROUP: "@(Apollo.Age.Resources.Lang.group)",
 			AGENT_SHARE: "@(Apollo.Age.Resources.Lang.lblAgentShare)",
 			SPORT_BOOK: "@(Apollo.Age.Resources.Lang.sportBook)",
-			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare)",
-			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare)",
 			INVALID_RANGE: "@(Apollo.Age.Resources.Lang.lblInvalidValueRange)",
 			OUTRANGE_SIMPLE_MODE_ERROR: "@(Apollo.Age.Resources.Lang.lblPleaseCheckConstrainMaxMin)",
 			INVALID_INPUT_DECIMAIL_POINT: "@(Apollo.Age.Resources.Lang.lblInvalidInputDecimals)"
 		};
-	</script>
-	@RenderSection("scripts", required: false)
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -2113,11 +2113,38 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Max Downline.
+        /// </summary>
+        public static string lblEditMaxPosition {
+            get {
+                return ResourceManager.GetString("lblEditMaxPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Member Setting - {0}.
         /// </summary>
         public static string lblEditMemberSetting {
             get {
                 return ResourceManager.GetString("lblEditMemberSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Min Downline.
+        /// </summary>
+        public static string lblEditMinPosition {
+            get {
+                return ResourceManager.GetString("lblEditMinPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Preset.
+        /// </summary>
+        public static string lblEditPresetPosition {
+            get {
+                return ResourceManager.GetString("lblEditPresetPosition", resourceCulture);
             }
         }
         
@@ -2136,6 +2163,15 @@ namespace Apollo.Age.Resources {
         public static string lblEditSetting {
             get {
                 return ResourceManager.GetString("lblEditSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live!.
+        /// </summary>
+        public static string lblEditSettingLive {
+            get {
+                return ResourceManager.GetString("lblEditSettingLive", resourceCulture);
             }
         }
         
@@ -2635,6 +2671,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        public static string lblMax {
+            get {
+                return ResourceManager.GetString("lblMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Single Bet.
         /// </summary>
         public static string lblMaxBet {
@@ -2721,6 +2766,15 @@ namespace Apollo.Age.Resources {
         public static string lblMessage {
             get {
                 return ResourceManager.GetString("lblMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        public static string lblMin {
+            get {
+                return ResourceManager.GetString("lblMin", resourceCulture);
             }
         }
         
@@ -3545,6 +3599,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upline Setting:.
+        /// </summary>
+        public static string lblUplineSetting {
+            get {
+                return ResourceManager.GetString("lblUplineSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string lblUserName {
@@ -3653,6 +3716,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to % Max Downline.
+        /// </summary>
+        public static string lblViewMaxDownline {
+            get {
+                return ResourceManager.GetString("lblViewMaxDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Member.
         /// </summary>
         public static string lblViewMember {
@@ -3676,6 +3748,24 @@ namespace Apollo.Age.Resources {
         public static string lblViewMemberSetting {
             get {
                 return ResourceManager.GetString("lblViewMemberSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Min Downline.
+        /// </summary>
+        public static string lblViewMinDownline {
+            get {
+                return ResourceManager.GetString("lblViewMinDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % on Member.
+        /// </summary>
+        public static string lblViewOnMember {
+            get {
+                return ResourceManager.GetString("lblViewOnMember", resourceCulture);
             }
         }
         

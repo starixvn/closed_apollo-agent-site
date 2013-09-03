@@ -1960,4 +1960,36 @@
   <data name="AppyPresetAdvancedMode" xml:space="preserve">
     <value>Apply to all Members</value>
   </data>
+  <data name="lblUplineSetting" xml:space="preserve">
+    <value>Upline Setting:</value>
+  </data>
+  <data name="lblMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="lblMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="lblViewMaxDownline" xml:space="preserve">
+    <value>% Max Downline</value>
+  </data>
+  <data name="lblViewMinDownline" xml:space="preserve">
+    <value>% Min Downline</value>
+  </data>
+  <data name="lblViewOnMember" xml:space="preserve">
+    <value>% on Member</value>
+  </data>
+
+ <data name="lblEditMaxPosition" xml:space="preserve">
+    <value>% Max Downline</value>
+  </data>
+  <data name="lblEditMinPosition" xml:space="preserve">
+    <value>% Min Downline</value>
+  </data>
+  <data name="lblEditPresetPosition" xml:space="preserve">
+    <value>% Preset</value>
+  </data>
+  <data name="lblEditSettingLive" xml:space="preserve">
+    <value>Live!</value>
+  </data>
+
 </root>

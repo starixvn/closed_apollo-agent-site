@@ -15,6 +15,7 @@
 </head>
 <body>
     @RenderSection("header", required: false)
+    <div style="clear:both;"></div>
     <div id="edit-warning" class="edit-setting-warning clear" style="display: none;">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
     <div id="page_main" class="settingContainer">
         @RenderBody()
@@ -54,14 +55,14 @@
 			MAX_PER_MATCH: "@(Apollo.Age.Resources.Lang.lblMaxPerMatch)",
 			MAX_PER_BALL: "@(Apollo.Age.Resources.Lang.maxperball)",
 			DEAD_BALL: "@(Apollo.Age.Resources.Lang.lblDeadball)",
-			LIVE: "@(Apollo.Age.Resources.Lang.lblLive)",
+			LIVE: "@(Apollo.Age.Resources.Lang.lblEditSettingLive)",
 			DEAD_BALL_VN: "@(Apollo.Age.Resources.Lang.lblDeadball)",
-			LIVE_VN: "@(Apollo.Age.Resources.Lang.lblLive)",
-			MIN_POSITION: "@(Apollo.Age.Resources.Lang.lblMinGivenShare):",
-			MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblMaxGivenShare):",
-			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare):",
-			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
-			PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
+			LIVE_VN: "@(Apollo.Age.Resources.Lang.lblEditSettingLive)",
+			MIN_POSITION: "@(Apollo.Age.Resources.Lang.lblEditMinPosition):",
+			MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblEditMaxPosition):",
+			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblEditMaxPosition):",
+			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblEditPresetPosition):",
+			PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblEditPresetPosition):",
 			POSITION_TAKING: "@(Apollo.Age.Resources.Lang.positiontaking):",
 			COPY_FROM: "@(Apollo.Age.Resources.Lang.copyFrom)",
 			COPY_ALL_OTHER_POSITION_TAKING_FROM: "@(Apollo.Age.Resources.Lang.copyAllPositionTakingFrom)",
@@ -105,8 +106,6 @@
 			GROUP: "@(Apollo.Age.Resources.Lang.group)",
 			AGENT_SHARE: "@(Apollo.Age.Resources.Lang.lblAgentShare):",
 			SPORT_BOOK: "@(Apollo.Age.Resources.Lang.sportBook)",
-			SIMPLE_MODE_MAX_POSITION: "@(Apollo.Age.Resources.Lang.lblGivenShare):",
-			SIMPLE_MODE_PRESET_POSITION: "@(Apollo.Age.Resources.Lang.lblTakenShare):",
 			INVALID_RANGE: "@(Apollo.Age.Resources.Lang.lblInvalidValueRange)",
 			OUTRANGE_SIMPLE_MODE_ERROR: "@(Apollo.Age.Resources.Lang.lblPleaseCheckConstrainMaxMin)",
 			INVALID_INPUT_DECIMAIL_POINT: "@(Apollo.Age.Resources.Lang.lblInvalidInputDecimals)",
@@ -114,7 +113,10 @@
             CONFIRM_WRITE_MEMBER: "@(Apollo.Age.Resources.Lang.ConfirmWriteMember)",
             PERCENT_IN_MEMBER: "@(Apollo.Age.Resources.Lang.PercentInMember):",
             UPDATE_MULTIPLE_SUCCESS: "@(Apollo.Age.Resources.Lang.lblUpdateSuccessMultiple)",
-            UPDATE_ERROR: "@(Apollo.Age.Resources.Lang.lblUpdateError)"
+            UPDATE_ERROR: "@(Apollo.Age.Resources.Lang.lblUpdateError)",
+            UPLINE_SETTING:"@(Apollo.Age.Resources.Lang.lblUplineSetting)",
+            MIN: "@(Apollo.Age.Resources.Lang.lblMin)",
+            MAX: "@(Apollo.Age.Resources.Lang.lblMax)"
 		};
     </script>
     @RenderSection("scripts", required: false)
