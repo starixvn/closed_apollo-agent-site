@@ -333,17 +333,17 @@ namespace Apollo.Age.Web.Mvc
             string format = "<span class=\"{0}\">{1}</span>";
             MvcHtmlString result = null;
 
+            if (uplineStatus == (int)CustomerStatus.Stopped)
+            {
+                result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
+
+                return result;
+            }
+
             switch (status)
             {
                 case (int)CustomerStatus.Active:
-                    if (uplineStatus == (int)CustomerStatus.Stopped)
-                    {
-                        result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
-                    }
-                    else
-                    {
-                        result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
-                    }
+                    result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
                     break;
                 case (int)CustomerStatus.Stopped:
                     result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));

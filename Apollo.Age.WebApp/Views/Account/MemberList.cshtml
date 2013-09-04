@@ -28,9 +28,10 @@
         <div class="item">
             <label>@Lang.member</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					               new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">

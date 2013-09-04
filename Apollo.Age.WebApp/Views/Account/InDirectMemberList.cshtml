@@ -43,9 +43,10 @@
                 }
             </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -119,7 +120,7 @@
                     <input type="checkbox" id="cbAllMember" />
                 </td>
                 <td class="width-80">
-                  @RazorHelper.RenderAgentListHeader(agentLevel, true)
+                    @RazorHelper.RenderAgentListHeader(agentLevel, true)
                 </td>
                 <td class="width-80">
                     @Lang.member
@@ -157,7 +158,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                       @* @if (allowFundOut && item.CashBalance > 0)
+                        @* @if (allowFundOut && item.CashBalance > 0)
                         {
                             <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
                         }
@@ -165,7 +166,7 @@
                         {
                             @Formater.DecFormat(item.CashBalance, 2)
                         }*@
-                         @Formater.DecFormat(item.CashBalance, 2)
+                        @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     <td class="text-left nowrap">
                         <div class="action">
@@ -188,7 +189,7 @@
                                             { 
                                         <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
                                             }
-                                              }
+                                        }
 
                                     }
                                 </ul>
