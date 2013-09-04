@@ -14,9 +14,13 @@
 
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
 
+    var firstMember = memberList.FirstOrDefault() ?? new MemberListModel();
+
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
 
     var allowFundOut = (bool)ViewBag.AllowFundOut;
+
+    var agentUsername = ViewBag.AgentUserName ?? string.Empty;
 }
 @using (Html.BeginForm())
 {
@@ -24,9 +28,10 @@
         <div class="item">
             <label>@Lang.member</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					               new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -64,18 +69,33 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
-<table class="tblRpt memberList">
+<div  id="divEditMultiple" class="edit-multiple-link">
+    <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+        @if (isMaster)
+        {
+            @Lang.edit
+        }
+        else
+        {
+            @Lang.lblview
+        }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+</div>
+<table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                <th">@Lang.enterusername
+                 <th class="width-60">
+                    <input type="checkbox" id="cbAllMember" />
                 </th>
-                <th class="width-80">@Lang.condition
+                <th class="width-80">@Lang.enterusername
                 </th>
-                <th class="width-80">@Lang.BetCondition
+
+                <th class="width-60">@Lang.status
                 </th>
-                <th class="width-80">@Lang.SportCredit
+                <th class="width-60">@Lang.betstatus
+                </th>
+                <th class="width-60">@Lang.SportCredit
                 </th>
                 <th class="width-80">@Lang.Feature
                 </th>
@@ -86,6 +106,9 @@
             {
                 <tr>
                     <td>
+                        <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
+                    </td>
+                    <td>
                         @item.Username
                     </td>
                     <td>
@@ -95,17 +118,18 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                         @if (allowFundOut && item.CashBalance > 0 )
-                         {
-                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
-                         }
-                         else
-                         {
-                        @item.CashBalance
-                         }
+                       @* @if (allowFundOut && item.CashBalance > 0)
+                        {
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
+                        }
+                        else
+                        {
+                            @Formater.DecFormat(item.CashBalance, 2)
+                        }*@
+                        @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)">
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -113,7 +137,7 @@
                             else
                             {
                                 @Lang.lblview
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                     </td>
                 </tr>
             }

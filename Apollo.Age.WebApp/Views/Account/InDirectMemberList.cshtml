@@ -11,14 +11,18 @@
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
     var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
     var isMaster = (bool)ViewBag.IsMaster;
-    var isSuper = ViewBag.IsSupper ?? false;
+    //var isSuper = ViewBag.IsSupper ?? false;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
+    var firstMember = memberList.FirstOrDefault() ?? new MemberListModel();
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
     var agentList = ViewBag.AgentList != null ? (List<Agent>)ViewBag.AgentList : new List<Agent>();
     var allowFundOut = (bool)ViewBag.AllowFundOut;
-    var actorAgentUsername = ViewBag.ActorAgentUsername ?? string.Empty;
+    //var actorAgentUsername = ViewBag.ActorAgentUsername ?? string.Empty;
+
+    var agentLevel = (int)ViewBag.AgentLevel; 
+    
 }
 @using (Html.BeginForm())
 {       
@@ -39,9 +43,10 @@
                 }
             </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -73,30 +78,60 @@
                 -- <a href="~/Account/IndirectAgentList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.lblAgents</a>
             </div>
         }
-        @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
-        <div class="end"></div>
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+        <div class="end">
+        </div>
     </div>     
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
-<table class="tblRpt memberList">
+<div id="divEditMultiple" class="action edit-multiple-indirect-link">
+    <a href="javascript:;" class="edit-link">
+        @if (isMaster)
+        {
+            @Lang.edit
+        }
+        else
+        {
+            @Lang.lblview
+        }</a> &nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+    <div class="list">
+        <ul class="menu-list">
+            @if (agentList.Any())
+            {
+                foreach (var itemAgent in agentList)
+                {
+                    if (itemAgent.Level > AgentLevel.Super)
+                    { 
+                <li><a class="edit-multiple-member" href="javascript:void(0);" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@itemAgent.Id&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
+                    }
+                }
+
+            }
+        </ul>
+    </div>
+</div>
+<table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                <td>
-                    @Lang.agent
-                </td>
-                <td>
-                    @Lang.enterusername
+                <td class="width-80">
+                    <input type="checkbox" id="cbAllMember" />
                 </td>
                 <td class="width-80">
-                    @Lang.condition
+                    @RazorHelper.RenderAgentListHeader(agentLevel, true)
                 </td>
                 <td class="width-80">
-                    @Lang.BetCondition
+                    @Lang.member
                 </td>
-                <th class="width-80">@Lang.SportCredit
+                <td class="width-60">
+                    @Lang.status
+                </td>
+                <td class="width-60">
+                    @Lang.betstatus
+                </td>
+                <th class="width-60">@Lang.SportCredit
                 </th>
                 <td class="width-80">
                     @Lang.Feature
@@ -107,6 +142,9 @@
             @foreach (var item in memberList)
             {
                 <tr class="m_cen">
+                    <td>
+                        <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
+                    </td>
                     <td>
                         @ViewBag.AgentUsername
                     </td>
@@ -120,56 +158,43 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @if (allowFundOut && item.CashBalance > 0)
+                        @* @if (allowFundOut && item.CashBalance > 0)
                         {
-                           <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@item.CashBalance</span>
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
                         }
                         else
                         {
-                           @item.CashBalance
-                        }
+                            @Formater.DecFormat(item.CashBalance, 2)
+                        }*@
+                        @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     <td class="text-left nowrap">
-                        @{
-                        var editText = string.Empty;
-                        if (isMaster)
-                        {
-                            editText = Lang.edit;
-                        }
-                        else
-                        {
-                            editText = Lang.lblview;
-                        }
-                        if (isSuper)
-                        {
-                                <div class="action">
-                                    <a href="javascript:;" class="edit-link">
-                                       @editText</a> &nbsp;/&nbsp;  
-                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
-                                    <div class="list">
-                                        <ul class="menu-list">
-                                            @if (agentList.Any())
-                                            {
-                                                foreach (var itemAgent in agentList)
-                                                {
-                                                    if (itemAgent.Level > AgentLevel.Super)
-                                                    { 
-                                                <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
-                                                    }
-                                                }
-
+                        <div class="action">
+                            <a href="javascript:;" class="edit-link">
+                                @if (isMaster)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.lblview
+                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                            <div class="list">
+                                <ul class="menu-list">
+                                    @if (agentList.Any())
+                                    {
+                                        foreach (var itemAgent in agentList)
+                                        {
+                                            if (itemAgent.Level > AgentLevel.Super)
+                                            { 
+                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
                                             }
-                                        </ul>
-                                    </div>
-                                </div>
-                        }
-                        else
-                        {
-                                 <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@actorAgentUsername">@editText</a>
-                            @:&nbsp;/&nbsp;  
-                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
-                        }
-                    }   
+                                        }
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             }

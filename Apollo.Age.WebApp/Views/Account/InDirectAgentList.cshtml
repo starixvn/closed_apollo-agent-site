@@ -16,7 +16,9 @@
     var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
-    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;    
+    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
+    var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).FirstOrDefault() : -1);
+    var uplineLevel = (int)(currentLevel - 1);
 }
 @using (Html.BeginForm())
 {       
@@ -37,9 +39,10 @@
                 }
             </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-                                     new SelectListItem { Value = "1", Text = Lang.lblActive },
-                                    new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+                                    new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
                                 }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -71,9 +74,10 @@
                 -- <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.memberList</a>
             </div>
         }
-        <div class="end"></div>
+        <div class="end">
+        </div>
     </div>
-    @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
     
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
@@ -82,23 +86,23 @@
     {
         <thead>
             <tr class="m_title_ag">
-                <th>
-                    @Lang.Parent
+                <th class="width-80">
+                    @RazorHelper.RenderAgentListHeader(uplineLevel)
                 </th>
-                <th>
-                    @Lang.enterusername
+                <th class="width-80">
+                    @RazorHelper.RenderAgentListHeader(currentLevel, true)
                 </th>
                 <th class="width-60">
-                    @Lang.agent
+                    @Lang.lblDownline
                 </th>
                 <th class="width-70">
                     @Lang.member
                 </th>
-                <th>
-                    @Lang.condition
+                <th class="width-60">
+                    @Lang.status
                 </th>
-                <th>
-                    @Lang.BetCondition
+                <th class="width-60">
+                    @Lang.betstatus
                 </th>
                 <th class="width-80">
                     @Lang.Feature
@@ -144,7 +148,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@backLink">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@ViewBag.AgentUsername&amp;backLink=@backLink">
                             @if (isMaster)
                             {
                                 @Lang.edit
@@ -153,7 +157,7 @@
                             {
                                 @Lang.lblview
                             }
-                            </a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                        </a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
                     </td>
                 </tr>
             }
