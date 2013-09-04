@@ -2,7 +2,7 @@
 @using Apollo.Age.Resources
 @{   
     var xmlBetSetting = _Configuration.BettingLimitSportNameConfig;
-    var list = (Dictionary<string, BetSettingModel>)Model;  
+    var list = Model != null ? (Dictionary<string, BetSettingModel>)Model : new Dictionary<string, BetSettingModel>();  
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {

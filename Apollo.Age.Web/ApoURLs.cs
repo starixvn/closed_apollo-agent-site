@@ -77,5 +77,12 @@ namespace Apollo.Age.Web
             get { return (string)this["UnderMaintenance"]; }
             set { this["UnderMaintenance"] = value; }
         }
+
+        [ConfigurationProperty("RedirectToUM", IsRequired = true)]
+        public string RedirectToUM
+        {
+            get { return (string)this["RedirectToUM"]; }
+            set { this["RedirectToUM"] = value; }
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Apollo.Age.Configurations
     using System.Configuration;
     using System.Linq;
     using System.Text;
+    using Fanex.Common;
 
     /// <summary>
     /// Provide static accessing function for setting key from app setting.config.
@@ -100,9 +101,18 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static DateTime ResultDateConfig
+        {
+            get
+            {
+                var resultDate = GetValue("ResultDateConfig");
+                return Converter.ToDateTime(resultDate, DateTime.Now);
+            }
+        }
+
         public static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key].ToLower();
+            return ConfigurationManager.AppSettings[key].ToString();
         }
     }
 }

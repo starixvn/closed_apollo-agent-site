@@ -232,6 +232,7 @@
 
     <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
     </Setting>
     <Setting Key="Age_Agent_GetAgentDownlinePath" SpName="Age_Agent_GetAgentDownlinePath" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="AgentId" ObjectProperty="Id" />
@@ -313,7 +314,7 @@
       <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
     </Setting>
     <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="SVRAGE.RepDB" Plain="0" />
-    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="Username" ObjectProperty="AgentName"/>
       <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
       <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
@@ -323,7 +324,7 @@
       <Mapping DataField="GrossTotal" ObjectProperty="DownLineTotal"/>
       <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
     </Setting>
-    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member_Xtest" DbName="SVRAGE.RepDB" Plain="0">
+    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="SVRAGE.RepDB" Plain="0">
       <Mapping DataField="CustId" ObjectProperty="MemberId"/>
       <Mapping DataField="Username" ObjectProperty="MemberName"/>
       <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
@@ -471,6 +472,7 @@
   <Function Name="Agent-Apollo-Admin">
     <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB" Plain="0" />
     <Setting Key="Age_Agent_CheckDownlineBelongToAgent" SpName="Age_Agent_CheckDownlineBelongToAgent" DbName="SVRAGE.RepDB" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-Setting">
@@ -507,6 +509,8 @@
       <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
     </Setting>
     <Setting Key="PlayerSetting_Age_Customer_GetInfo" SpName="Age_Customer_GetInfo" DbName="SVRAGE.RepDB"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdatePositionTakingMultiple" SpName="Age_Customer_UpdatePositionTakingMultiple" DbName="SVRCUST.CustDB"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdateSettingMultiple" SpName="Age_Customer_UpdateSettingMultiple" DbName="SVRCUST.CustDB"  TimeOut="600"/>
   </Function>
 
   <Function Name="Agent-Apollo-BalanceUpDay">

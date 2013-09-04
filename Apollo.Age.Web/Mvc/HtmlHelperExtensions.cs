@@ -333,12 +333,19 @@ namespace Apollo.Age.Web.Mvc
             string format = "<span class=\"{0}\">{1}</span>";
             MvcHtmlString result = null;
 
+            if (uplineStatus == (int)CustomerStatus.Stopped)
+            {
+                result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
+
+                return result;
+            }
+
             switch (status)
             {
-                case 1:
+                case (int)CustomerStatus.Active:
                     result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
                     break;
-                case 2:
+                case (int)CustomerStatus.Stopped:
                     result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));
                     break;
                 default:

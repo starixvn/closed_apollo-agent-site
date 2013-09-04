@@ -7,7 +7,9 @@
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 	var memberId = ViewBag.MemberId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu));
+    string memberIds = ViewBag.MemberIds ?? string.Empty;
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
+    
 }
 
 @section header
@@ -16,7 +18,7 @@
         <div class="item detail-information">
         @Lang.MemberDetailEdit 
         @(isMaster ? Lang.edit.ToLower() : string.Empty)
-        &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername: <strong>@userName</strong>  
+        &nbsp;&nbsp;&nbsp;&nbsp;-- <strong>@userName</strong>  
         @*-- <a href="javascript:void(0);" id="simple-mode" style="display:none;">@Lang.simplemode</a>
         <a href="javascript:void(0);" id="advanced-mode">@Lang.lblAdvancedMode</a>*@
      </div>
@@ -68,6 +70,6 @@
             };
         }();
 	</script>
-	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)" type="text/javascript"></script>
+	<script src="~/customersetting/getmembersetting?memberId=@(memberId)&agentId=@(ViewBag.CurentParentAgentId)&memberIds=@(memberIds)" type="text/javascript"></script>
 	@Scripts.Render("~/scripts/editsettingjs")
 }

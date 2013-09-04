@@ -1,16 +1,16 @@
 ﻿@using Apollo.Age.Web.Mvc
-@model Apollo.Age.Web.ViewModels.UnderMaintenanceViewModel
+@model Apollo.UMService.Model.UnderMaintenanceModel
 @{
 	Layout = null;
 	string title = Apollo.Age.Resources.Lang.UnderMaintenance;
-    string UMtime = Model.StartTime.ToUpper() + "~" + Model.EndTime.ToUpper() + "(GMT +08:00)";
+    string UMtime = Model.start_time.ToUpper() + "~" + Model.end_time.ToUpper() + "(GMT +08:00)";
     }
 <!DOCTYPE HTML>
 <html>
 <head>
 	<title>@title</title>
     <script src="~/_globalresources/js/head.js"></script>
-    @Styles.Render("~/css/error")
+    <link href="~/views/error/resources/Index.less" rel="stylesheet"/>
 </head>
 <body>
     <div class="container">
@@ -41,7 +41,7 @@
                     <p class="thailand">ขออภัยในความไม่สะดวก หากท่านมีข้อสงสัย โปรดติดต่อได้ที่:</p>
                     <p class="thailand"><strong>ช่วงเวลางดให้บริการ</strong> - @Model.UMDate.ToUpper()</p>
                     <p class="thailand"><strong>@UMtime</strong></p>
-                </div
+                </div>
             </div>
         </div>
     </div>

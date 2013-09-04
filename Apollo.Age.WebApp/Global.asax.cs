@@ -77,7 +77,8 @@ namespace Apollo.Age.WebApp
             {
                 var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-                if (executeFileName.IndexOf("UnderMaintenance") == -1
+                if (executeFileName.IndexOf("RedirectToUM") == -1
+                    && executeFileName.IndexOf("UnderMaintenance") == -1
                     && executeFileName.IndexOf(".less") == -1
                     && executeFileName.IndexOf(".css") == -1
                     && executeFileName.IndexOf(".js") == -1
@@ -85,9 +86,10 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".png") == -1
                     )
                 {
-                    if (maintenanceService.MaintenanceInfo.Status)
+                    if (maintenanceService.MaintenanceInfo.status)
                     {
-                        Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
+                        Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
+
                     }
                 }
             }

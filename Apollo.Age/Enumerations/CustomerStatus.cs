@@ -19,6 +19,7 @@ namespace Apollo.Age.Enumerations
     {
         Active = 1,
         Stopped = 2,
-        Locked = 3
+        Locked = 3,
+        CLock = 4
     }
 }

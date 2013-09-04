@@ -26,6 +26,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
+    using System;
 
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
@@ -80,7 +81,7 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
-            
+
             return View(report);
         }
 
@@ -106,7 +107,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             CurrentAgentId = agentId;
             var sessionKey = string.Format(
-                isAgentOutStanding ? Constants.SessionKeyAgentOutstandingReport : Constants.SessionKeyMemberOutstandingReport, 
+                isAgentOutStanding ? Constants.SessionKeyAgentOutstandingReport : Constants.SessionKeyMemberOutstandingReport,
                 this.CurrentSession.UserId);
 
             var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
@@ -142,7 +143,7 @@ namespace Apollo.Age.Reports.Controllers
                 HttpUtility.UrlDecode(betTypeName),
                 isSupper);
 
-            return new ExcelResult(excelResult, string.Format("Outstanding_{0}", agentUsername));
+            return new ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, _outstandingService.ShortDateFormat(DateTime.Now)));
         }
 
         /// <summary>
@@ -300,8 +301,8 @@ namespace Apollo.Age.Reports.Controllers
 
             var fileName = string.Format(
                 "AgentWinLoss_{0}_{1}_{2}",
-                agentName, 
-                _winLossService.ShortDateFormat(model.FromDate), 
+                agentName,
+                _winLossService.ShortDateFormat(model.FromDate),
                 _winLossService.ShortDateFormat(model.ToDate));
             return new ExcelResult(excelResult, fileName);
         }
@@ -340,9 +341,9 @@ namespace Apollo.Age.Reports.Controllers
             var excelResult = _winLossService.ExportMemberWinLoss(model);
 
             var fileName = string.Format(
-                "MemberWinLoss_{0}_{1}_{2}", 
-                model.AgentName, 
-                _winLossService.ShortDateFormat(model.FromDate), 
+                "MemberWinLoss_{0}_{1}_{2}",
+                model.AgentName,
+                _winLossService.ShortDateFormat(model.FromDate),
                 _winLossService.ShortDateFormat(model.ToDate));
             return new ExcelResult(excelResult, fileName);
         }
@@ -351,7 +352,7 @@ namespace Apollo.Age.Reports.Controllers
 
         public ActionResult SportCredit(string username)
         {
-            var criteria = new SportCreditCriteria 
+            var criteria = new SportCreditCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
                 Username = username
@@ -397,7 +398,7 @@ namespace Apollo.Age.Reports.Controllers
 
             var excelResult = _sportCreditService.ExportSportCredit(model);
 
-            var fileName = string.Format("LineSportCredit_{0}", model.Username);
+            var fileName = string.Format("LineSportCredit_{0}_{1}", model.Username, _sportCreditService.ShortDateFormat(DateTime.Now));
 
             return new ExcelResult(excelResult, fileName);
         }

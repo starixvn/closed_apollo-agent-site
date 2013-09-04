@@ -26,6 +26,8 @@ namespace Apollo.Age.Account.Models
 
         public decimal MinGiven { get; set; }
 
+        public bool IsApply { get; set; }
+
         public decimal? OldMaxUpper { get; set; }
 
         public decimal? OldMaxGiven { get; set; }

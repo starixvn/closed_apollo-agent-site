@@ -67,7 +67,7 @@
     <Compile Include="Criterias\InternalGetAgentByUsernameCriteria.cs" />
     <Compile Include="Criterias\InternalLogLoginCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
-    <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
+    <Compile Include="Criterias\CheckDownlineBelongToAgentCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="Entities\Agent.cs" />

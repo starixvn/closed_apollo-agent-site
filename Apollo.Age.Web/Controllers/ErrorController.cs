@@ -51,7 +51,7 @@ namespace Apollo.Age.Web
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
            // return View(maintenanceInfo);
 
-            if (maintenanceInfo.Status)
+            if (maintenanceInfo.status)
             {
                 return View(maintenanceInfo);
             }
@@ -82,6 +82,11 @@ namespace Apollo.Age.Web
         }
 
         public ActionResult WhoAmI()
+        {
+            return View();
+        }
+
+        public ActionResult RedirectToUM()
         {
             return View();
         }

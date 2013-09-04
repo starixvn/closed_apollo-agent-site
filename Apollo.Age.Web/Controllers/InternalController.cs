@@ -26,10 +26,10 @@ namespace Apollo.Age.Web
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
+    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
     using Fanex.Common;
     using Fanex.Logging;
-    using Apollo.Age.Web.Services;
 
     /// <summary>
     /// Internal Login Controller.
@@ -156,8 +156,8 @@ namespace Apollo.Age.Web
                     TempData[AdminName] = model.Username;
                     TempData[AdminId] = _adminId;
 
-                    //Write log
-                    //ActionId: 700 - Login successful
+                    // Write log.
+                    // ActionId: 700 - Login successful.
                     string doing = string.Format(
                         "Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.",
                         model.Username);
@@ -167,8 +167,8 @@ namespace Apollo.Age.Web
                 }
                 else
                 {
-                    //Write log
-                    //ActionId: 6000 - Login fail
+                    // Write log.
+                    // ActionId: 6000 - Login fail.
                     string doing = string.Format(
                         "Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .",
                                     model.Username,
@@ -189,34 +189,6 @@ namespace Apollo.Age.Web
         [HttpPost]
         public JsonResult ReCheckIn()
         {
-            //bool isDowntime = false;
-            //isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;
-            //if (isDowntime)
-            //{               
-            //    return Json(new
-            //    {
-            //        isKickout = false,
-            //        isDowntime = true,
-            //        urlReturn = ApoURLs.URLs.UnderMaintenance
-
-            //    });
-            //}
-            //else
-            //{
-            //    var result = false;
-            //    if (SessionManager.CurrentSession != null)
-            //    {
-            //        result = _userService.InternalReCheckIn(SessionManager.CurrentSession.OnUserId);
-            //    }
-
-            //    return Json(new
-            //    {
-            //        isKickout = result,
-            //        isDowntime = false,
-            //        urlReturn = string.Empty 
-            //    });
-            //}
-
             var result = false;
             if (SessionManager.CurrentSession != null)
             {
@@ -224,29 +196,10 @@ namespace Apollo.Age.Web
             }
 
             return Json(new
-            {                
+            {
                 isKickout = result
             });
         }
-
-        //#region Will be removed
-        ///// <summary>
-        ///// Post ReCheck Under Maintenance Service.
-        ///// </summary>
-        ///// <returns>Return true or false and url returned.</returns>
-        //public JsonResult ReCheckUMService()
-        //{
-        //    bool isDowntime = false;
-        //    isDowntime = _underMaintenanceService.MaintenanceInfo.IsDownTime;          
-
-        //    return Json(new
-        //    {
-        //        isDownTime = isDowntime,
-        //        urlReturn = ApoURLs.URLs.UnderMaintenance
-        //    });
-        //}
-
-        //#endregion
 
         /// <summary>
         /// Get Select Account Action.
@@ -255,7 +208,7 @@ namespace Apollo.Age.Web
         [HttpGet]
         public ActionResult SelectAccount()
         {
-            // admin name must exist to continue the sign-in process
+            // Admin name must exist to continue the sign-in process.
             if (TempData[AdminName] == null && SessionManager.CurrentSession == null)
             {
                 return Redirect(FormsAuthentication.LoginUrl);
@@ -332,7 +285,7 @@ namespace Apollo.Age.Web
             // Saves answer
             Session[ApolloSessionCaptcha] = captcha;
 
-            FileContentResult img = null; // Image stream
+            FileContentResult img = null; // Image stream.
 
             using (var mem = new MemoryStream())
             using (var bmp = GenerateNoise(55, 23))
@@ -341,7 +294,7 @@ namespace Apollo.Age.Web
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
                 gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // Add noise
+                // Add noise.
                 if (noisy)
                 {
                     int i, r, x, y;
@@ -356,10 +309,10 @@ namespace Apollo.Age.Web
                     }
                 }
 
-                // Add captcha
+                // Add captcha.
                 gfx.DrawString(captcha.ToString(), new Font("Consolas", 13), Brushes.Crimson, 5, 2);
 
-                // Render as JPEG
+                // Render as JPEG.
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
                 img = this.File(mem.GetBuffer(), "image/png");
             }
@@ -398,6 +351,107 @@ namespace Apollo.Age.Web
 
             return Redirect(FormsAuthentication.LoginUrl);
         }
+
+        #region Helpers
+
+        /// <summary>
+        /// Handle Unknown Action.
+        /// </summary>
+        /// <param name="actionName">Input Action Name.</param>
+        protected override void HandleUnknownAction(string actionName)
+        {
+            try
+            {
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
+            }
+        }
+
+        /// <summary>
+        /// Generate Noise.
+        /// </summary>
+        /// <param name="width">Input width image.</param>
+        /// <param name="height">Input height image.</param>
+        /// <returns>Return bitmap.</returns>
+        private Bitmap GenerateNoise(int width, int height)
+        {
+            var finalBmp = new Bitmap(width, height);
+            Random r = new Random();
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int num = r.Next(0, 256);
+                    finalBmp.SetPixel(x, y, Color.FromArgb(175, 172, 137));
+                }
+            }
+
+            return finalBmp;
+        }
+
+        /// <summary>
+        /// Write log login.
+        /// </summary>
+        /// <param name="agentId">Input AgentId.</param>
+        /// <param name="agentUserId">Input AgentUserId.</param>
+        /// <param name="actionId">Input ActionId.</param>
+        /// <param name="doing">Input Doing.</param>
+        private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
+        {
+            Task task = Task.Factory.StartNew(() =>
+            {
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    ServerId,
+                    actionId,
+                    doing,
+                    _deviceService.ClientIp,
+                    _deviceService.DomainName,
+                    _deviceService.BrowserName,
+                    _deviceService.Platform,
+                    _deviceService.CountryCode);
+            });
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                LogService.Error(ex.Message);
+                throw ex.Flatten();
+            }
+        }
+
+        /// <summary>
+        /// Get Random string for captcha.
+        /// </summary>
+        /// <param name="seed">Input seed.</param>
+        /// <param name="length">Input length of captcha.</param>
+        /// <returns>Return string captcha.</returns>
+        private string GetRandomString(int seed, int length = 4)
+        {
+            // Use the following string to control your set of alphabetic characters to choose from
+            // For example, you could include uppercase too
+            // Const string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            // Random is not truly random,
+            // So we try to encourage better randomness by always changing the seed value
+            Random rnd = new Random(seed + DateTime.Now.Millisecond);
+            string result = string.Empty;
+
+            for (int i = 0; i < length; i++)
+            {
+                result += _RandomString[rnd.Next(0, _randomStringLength)];
+            }
+
+            return result;
+        }
+
+        #endregion Helpers
 
         /// <summary>
         /// Function Get User Info Login.
@@ -488,90 +542,5 @@ namespace Apollo.Age.Web
 
             return View();
         }
-
-        /// <summary>
-        /// Write log login.
-        /// </summary>
-        /// <param name="agentId">Input AgentId.</param>
-        /// <param name="agentUserId">Input AgentUserId.</param>
-        /// <param name="actionId">Input ActionId.</param>
-        /// <param name="doing">Input Doing.</param>
-        private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
-        {
-            Task task = Task.Factory.StartNew(() =>
-            {
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    ServerId,
-                    actionId,
-                    doing,
-                    _deviceService.ClientIp,
-                    _deviceService.DomainName,
-                    _deviceService.BrowserName,
-                    _deviceService.Platform,
-                    _deviceService.CountryCode);
-            });
-            try
-            {
-                task.Wait();
-            }
-            catch (AggregateException ex)
-            {
-                LogService.Error(ex.Message);
-                throw ex.Flatten();
-            }
-        }
-
-        /// <summary>
-        /// Get Random string for captcha.
-        /// </summary>
-        /// <param name="seed">Input seed.</param>
-        /// <param name="length">Input length of captcha.</param>
-        /// <returns>Return string captcha.</returns>
-        private string GetRandomString(int seed, int length = 4)
-        {
-            // Use the following string to control your set of alphabetic characters to choose from
-            // For example, you could include uppercase too
-            // Const string alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-            // Random is not truly random,
-            // So we try to encourage better randomness by always changing the seed value
-            Random rnd = new Random(seed + DateTime.Now.Millisecond);
-            string result = string.Empty;
-
-            for (int i = 0; i < length; i++)
-            {
-                result += _RandomString[rnd.Next(0, _randomStringLength)];
-            }
-
-            return result;
-        }
-
-        #region Helpers
-
-        /// <summary>
-        /// Generate Noise.
-        /// </summary>
-        /// <param name="width">Input width image.</param>
-        /// <param name="height">Input height image.</param>
-        /// <returns>Return bitmap.</returns>
-        private Bitmap GenerateNoise(int width, int height)
-        {
-            var finalBmp = new Bitmap(width, height);
-            Random r = new Random();
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    int num = r.Next(0, 256);
-                    finalBmp.SetPixel(x, y, Color.FromArgb(175, 172, 137));
-                }
-            }
-
-            return finalBmp;
-        }
-
-        #endregion Helpers
     }
 }

@@ -274,6 +274,26 @@ namespace Apollo.Age.Reports.Services
             palette.SetColorAtIndex(HSSFColor.BLUE_GREY.index, (byte)141, (byte)200, (byte)245);
             palette.SetColorAtIndex(HSSFColor.BROWN.index, (byte)104, (byte)119, (byte)128);
             palette.SetColorAtIndex(HSSFColor.RED.index, (byte)153, (byte)0, (byte)0);
+
+            palette.SetColorAtIndex(HSSFColor.DARK_RED.index, (byte)193, (byte)0, (byte)0);
+            palette.SetColorAtIndex(HSSFColor.GREY_25_PERCENT.index, (byte)219, (byte)229, (byte)238);
+            palette.SetColorAtIndex(HSSFColor.GREY_50_PERCENT.index, (byte)196, (byte)217, (byte)238);
+            palette.SetColorAtIndex(HSSFColor.GREEN.index, (byte)0, (byte)128, (byte)129);
+        }
+
+        /// <summary>
+        /// Get Date Format (year-month-day).
+        /// </summary>
+        /// <param name="dt">Object date need format.</param>
+        /// <returns>Return string date.</returns>
+        public string ShortDateFormat(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
+            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
         }
     }
 }

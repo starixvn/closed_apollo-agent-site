@@ -74,6 +74,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="UMControllerLibrary">
@@ -102,7 +103,6 @@
     <Compile Include="ViewModels\SafeCodeViewModel.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
-    <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />
     <Compile Include="Pager\PagedList.cs" />
@@ -127,6 +127,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
+      <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
+      <Name>Apollo.UMService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

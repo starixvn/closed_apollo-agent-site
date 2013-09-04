@@ -439,7 +439,7 @@
     <value>观看方式</value>
   </data>
   <data name="PercentInMember" xml:space="preserve">
-    <value>％</value>
+    <value>設定佔成%</value>
   </data>
   <data name="lblVbBdmTt" xml:space="preserve">
     <value>排球/羽球/乒乓</value>
@@ -550,7 +550,7 @@
     <value>5</value>
   </data>
   <data name="lblPercentUpper" xml:space="preserve">
-    <value>％在现在</value>
+    <value>设定占成</value>
   </data>
   <data name="setting" xml:space="preserve">
     <value>设定</value>
@@ -619,13 +619,13 @@
     <value>退水设定</value>
   </data>
   <data name="lblShareSettingSimpleMode" xml:space="preserve">
-    <value>占成％（足球早餐让分）</value>
+    <value>占成％（體育</value>
   </data>
   <data name="sportBook" xml:space="preserve">
     <value>体育</value>
   </data>
   <data name="lblMaxGivenShare" xml:space="preserve">
-    <value>％在下线</value>
+    <value>下线最大占成</value>
   </data>
   <data name="nextcombo" xml:space="preserve">
     <value>下一球组合</value>
@@ -682,7 +682,7 @@
     <value>进阶模式</value>
   </data>
   <data name="enterusername" xml:space="preserve">
-    <value>使用者名称</value>
+    <value>下線代理</value>
   </data>
   <data name="lblMemberWinLoss" xml:space="preserve">
     <value>会员结果</value>
@@ -736,7 +736,7 @@
     <value>拒绝进入</value>
   </data>
   <data name="BetCondition" xml:space="preserve">
-    <value>投注条件</value>
+    <value>投注状态</value>
   </data>
   <data name="Volleyball" xml:space="preserve">
     <value>排球</value>
@@ -748,7 +748,7 @@
     <value>到</value>
   </data>
   <data name="lblMinGivenShare" xml:space="preserve">
-    <value>％在最下线</value>
+    <value>下线最小占成</value>
   </data>
   <data name="lblAccountInformation" xml:space="preserve">
     <value>账号资料</value>
@@ -829,7 +829,7 @@
     <value>最先进球</value>
   </data>
   <data name="Parent" xml:space="preserve">
-    <value>上层</value>
+    <value>股东</value>
   </data>
   <data name="lblip" xml:space="preserve">
     <value>IP地址是：</value>
@@ -973,7 +973,7 @@
     <value>足球 死球 让球 给予占成数 (%)</value>
   </data>
   <data name="lblDeadball" xml:space="preserve">
-    <value>早餐</value>
+    <value>早餐,讓球</value>
   </data>
   <data name="lblHOUL" xml:space="preserve">
     <value>让球/大小盘/滚球</value>
@@ -1210,7 +1210,7 @@
     <value>滚球游戏</value>
   </data>
   <data name="condition" xml:space="preserve">
-    <value>帐号条件</value>
+    <value>账户状态</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>项目</value>
@@ -1378,7 +1378,7 @@
     <value>0~1</value>
   </data>
   <data name="CommBase" xml:space="preserve">
-    <value>退水基础</value>
+    <value>有效金额</value>
   </data>
   <data name="lblCommissionGroup" xml:space="preserve">
     <value>群组退水</value>
@@ -1723,7 +1723,7 @@
     <value>所有的会员</value>
   </data>
   <data name="lblEffectiveStake" xml:space="preserve">
-    <value>有效金额</value>
+    <value>有效金额#1</value>
   </data>
   <data name="lblGeneralInfo" xml:space="preserve">
     <value>一般信息</value>
@@ -1732,10 +1732,10 @@
     <value>半全场</value>
   </data>
   <data name="lblMainAgent" xml:space="preserve">
-    <value>主要代理</value>
+    <value>总代理</value>
   </data>
   <data name="lblMainSH" xml:space="preserve">
-    <value>主要股东</value>
+    <value>大股东</value>
   </data>
   <data name="lblShareholder" xml:space="preserve">
     <value>股东</value>
@@ -1750,7 +1750,7 @@
     <value>价值</value>
   </data>
   <data name="lblBetCount" xml:space="preserve">
-    <value>投注计算</value>
+    <value>注单数</value>
   </data>
   <data name="lblDownline" xml:space="preserve">
     <value>下线</value>
@@ -1787,5 +1787,78 @@
   </data>
   <data name="lblview" xml:space="preserve">
     <value>显示</value>
+  </data>
+  <data name="fundout" xml:space="preserve">
+    <value>转出金额</value>
+  </data>
+  <data name="fundoutamountmessage" xml:space="preserve">
+    <value>转出金额总额需介于0 到 {0}之间</value>
+  </data>
+  <data name="lblEditShareSetting" xml:space="preserve">
+    <value>编辑占成设定</value>
+  </data>
+  <data name="lblEffectiveStake2" xml:space="preserve">
+    <value>有效金额#2</value>
+  </data>
+  <data name="lblUpdateError" xml:space="preserve">
+    <value>更新错误讯息:</value>
+  </data>
+  <data name="lblUpdateSuccessMultiple" xml:space="preserve">
+    <value>成功更新下列会员:</value>
+  </data>
+  <data name="lblViewAccountDetail" xml:space="preserve">
+    <value>显示代理细项</value>
+  </data>
+  <data name="lblViewShareSetting" xml:space="preserve">
+    <value>显示占成设定 {0}</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="lblRemarks" xml:space="preserve">
+    <value>備註</value>
+  </data>
+  <data name="lblRemarksViewShare" xml:space="preserve">
+    <value>票單佔成』正常是＝你下線的『設定佔成』(第一欄) 。	
+ 但若下線 《『票單佔成』＋ 自己『設定佔成』》 的總和低於你的『最小佔成』, 票單佔成』 便需補足差額 ：即 《『最小佔成』－ 下線『票單佔成』總和》。</value>
+  </data>
+  <data name="lblMax" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="lblMin" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="lblUplineSetting" xml:space="preserve">
+    <value>可佔成預設值%:</value>
+  </data>
+  <data name="ApplyPresetSimpleMode" xml:space="preserve">
+    <value>所有(代理 {0})之會員立刻生效</value>
+  </data>
+  <data name="lblViewMaxDownline" xml:space="preserve">
+    <value>最大佔成%</value>
+  </data>
+  <data name="lblViewMinDownline" xml:space="preserve">
+    <value>最小佔成%</value>
+  </data>
+  <data name="lblViewOnMember" xml:space="preserve">
+    <value>票單佔成%</value>
+  </data>
+  <data name="AppyPresetAdvancedMode" xml:space="preserve">
+    <value>所有會員立刻生效</value>
+  </data>
+  <data name="lblEditMaxPosition" xml:space="preserve">
+    <value>下線最大佔成%</value>
+  </data>
+  <data name="lblEditMinPosition" xml:space="preserve">
+    <value>下線最小佔成%</value>
+  </data>
+  <data name="lblEditPresetPosition" xml:space="preserve">
+    <value>設定佔成%</value>
+  </data>
+  <data name="lblEditSettingLive" xml:space="preserve">
+    <value>滾球</value>
+  </data>
+  <data name="lblUplineSettingText" xml:space="preserve">
+    <value>可佔成預設值% [最小 - 最大]</value>
   </data>
 </root>

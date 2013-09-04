@@ -1062,6 +1062,7 @@
     <Content Include="Views\Log\LogActionType5.cshtml" />
     <Content Include="Views\Reports\SportCredit.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
+    <Content Include="Views\Error\RedirectToUM.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -1116,6 +1117,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
+      <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
+      <Name>Apollo.UMService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj">
       <Project>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</Project>

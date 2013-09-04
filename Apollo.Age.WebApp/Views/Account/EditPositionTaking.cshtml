@@ -10,6 +10,8 @@
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentUsername = ViewBag.AgentUsername ?? string.Empty;
     ViewBag.Title = isMaster ? string.Format(Lang.lblEditShareSetting, ViewBag.UserName) : string.Format(Lang.lblViewShareSetting, ViewBag.UserName);
+    var memberIds = ViewBag.MemberIds ?? string.Empty;
+    var parentUsername = ViewBag.ParentUsername ?? string.Empty;
 }
 @section header
 {
@@ -88,9 +90,13 @@ else
 })
 
 }
+
+
 @section scripts
 {
     <script type="text/javascript">
+        Language.apllyPresetSimpleMode = "@string.Format(Lang.ApplyPresetSimpleMode, userName)"; 
+        Language.apllyPresetAdvancedMode = "@Lang.AppyPresetAdvancedMode"; 
     </script>
     @if (isEditAgent)
     {
@@ -99,7 +105,7 @@ else
     else
     {
         
-        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)&targetCustIds=@(memberIds)" type="text/javascript"></script>
     }
     @Scripts.Render("~/scripts/editpositiontakingjs")
 }

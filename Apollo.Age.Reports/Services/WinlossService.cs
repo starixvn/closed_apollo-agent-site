@@ -36,7 +36,7 @@ namespace Apollo.Age.Reports.Services
 
             return ConvertToMatchEnteredModel(matchEnteredList);
         }
-        
+
         /// <summary>
         /// Get List Agent Win Loss from DB.
         /// </summary>
@@ -73,13 +73,13 @@ namespace Apollo.Age.Reports.Services
                 var title = string.Format("{0} {1}", Lang.agentwinloss, Lang.lblReport);
                 var filter = string.Format(
                     "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, 
-                    Lang.dateRange, 
-                    ShortDateFormat(model.FromDate), 
+                    model.AgentName,
+                    Lang.dateRange,
+                    ShortDateFormat(model.FromDate),
                     ShortDateFormat(model.ToDate),
-                    Lang.lblReport, 
-                    model.SportName, 
-                    Lang.WagerType, 
+                    Lang.lblReport,
+                    model.SportName,
+                    Lang.WagerType,
                     model.BettypeName);
                 if (model.IsSuper)
                 {
@@ -110,32 +110,35 @@ namespace Apollo.Age.Reports.Services
                 var title = string.Format("{0} {1}", Lang.lblMemberWinLoss, Lang.lblReport);
                 var filter = string.Format(
                     "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName, 
-                    Lang.dateRange, 
-                    ShortDateFormat(model.FromDate), 
+                    model.AgentName,
+                    Lang.dateRange,
+                    ShortDateFormat(model.FromDate),
                     ShortDateFormat(model.ToDate),
-                    Lang.lblReport, 
-                    model.SportName, 
-                    Lang.WagerType, 
+                    Lang.lblReport,
+                    model.SportName,
+                    Lang.WagerType,
                     model.BettypeName);
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
-                
+
                 #region declare style of cell
                 CustomizeColor(hssfworkbook);
 
                 var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
                 var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
 
-                var headerStyleWhite = CreateStyle(hssfworkbook, HSSFColor.BROWN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-                var headerStyleBlack = CreateStyle(hssfworkbook, HSSFColor.BLUE_GREY.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+                var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+                var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+                var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+                var headerStyleUpline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+                var headerStyleOutstanding = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
 
                 var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
                 var bodyStyleLeft = CreateStyle(hssfworkbook);
 
                 var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-                var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
-                var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
+                var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.RIGHT, fontFooter);
+                var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.LEFT, fontFooter);
 
                 IDataFormat format = hssfworkbook.CreateDataFormat();
                 var numberFormat = format.GetFormat("#,##0.00");
@@ -148,39 +151,39 @@ namespace Apollo.Age.Reports.Services
                 var columIndex = 0;
                 var row = sheet.CreateRow(rowIndex);
 
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblSoccerPT);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.member);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleBlack, model.AgentName);
-                CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblUpline);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblOutstandingAmount);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblOutstandingShareAmount);
+                CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleShare, Lang.lblSoccerPT);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.member);
+                CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleAgent, model.AgentName);
+                CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblUpline);
+                CreateStringCell(row, columIndex++, headerStyleUpline, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleOutstanding, Lang.lblOutstandingAmount);
+                CreateStringCell(row, columIndex++, headerStyleOutstanding, Lang.lblOutstandingShareAmount);
 
                 rowIndex++;
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
 
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.BetAmount + " / " + Lang.lblBetCount);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.CommBase);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblWinLossReport);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblComm);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-                CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblWinLossReport);
-                CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblComm);
-                CreateStringCell(row, columIndex++, headerStyleBlack, Lang.total);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblEffectiveStake);
-                CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-                CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.lblWinLossReport);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.lblComm);
+                CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
+                CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblWinLossReport);
+                CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblComm);
+                CreateStringCell(row, columIndex++, headerStyleAgent, Lang.total);
+                CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake2);
+                CreateStringCell(row, columIndex++, headerStyleUpline, Lang.total);
+                CreateStringCell(row, columIndex++, headerStyleOutstanding, string.Empty);
+                CreateStringCell(row, columIndex++, headerStyleOutstanding, string.Empty);
 
                 rowIndex++;
                 #endregion
@@ -200,7 +203,7 @@ namespace Apollo.Age.Reports.Services
                 decimal totalUpLineWinLoss = 0;
                 decimal totalOutstandingAmount = 0;
                 decimal totalOutstandingShareAmount = 0;
-                
+
                 foreach (var memberWinLoss in model.MemberWinLossList)
                 {
                     columIndex = 0;
@@ -269,7 +272,7 @@ namespace Apollo.Age.Reports.Services
                     var currentWidth = sheet.GetColumnWidth(i);
                     sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
                 }
-                
+
                 #endregion
 
                 #region title
@@ -303,21 +306,6 @@ namespace Apollo.Age.Reports.Services
         }
 
         /// <summary>
-        /// Get Date Format (year-month-day).
-        /// </summary>
-        /// <param name="dt">Object date need format.</param>
-        /// <returns>Return string date.</returns>
-        public string ShortDateFormat(object dt)
-        {
-            if (Convert.IsDBNull(dt) || dt == null)
-            {
-                return string.Empty;
-            }
-
-            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
-        }
-
-        /// <summary>
         /// Get Excel File by View Super.
         /// </summary>
         /// <param name="agentWinLossList">List Data need Export.</param>
@@ -337,9 +325,11 @@ namespace Apollo.Age.Reports.Services
             var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
             var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
 
-            var headerStyleWhite = CreateStyle(hssfworkbook, HSSFColor.BROWN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleBlack = CreateStyle(hssfworkbook, HSSFColor.BLUE_GREY.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-
+            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            
             var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
             var bodyStyleLeft = CreateStyle(hssfworkbook);
 
@@ -354,31 +344,31 @@ namespace Apollo.Age.Reports.Services
             var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblSoccerPT);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.member);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblDownline);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleBlack, agentName);
-            CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-            
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleShare, Lang.lblSoccerPT);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.member);
+            CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblDownline);
+            CreateStringCell(row, columIndex++, headerStyleDownline, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleAgent, agentName);
+            CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+
             rowIndex++;
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.BetAmount + " / " + Lang.lblBetCount);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblEffectiveStake);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblWinLossReport);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblComm);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblComm);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.total);
 
             rowIndex++;
             //// end header
@@ -391,7 +381,7 @@ namespace Apollo.Age.Reports.Services
             {
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
-                
+
                 CreateStringCell(row, columIndex++, bodyStyleLeft, agentWinLoss.AgentName);
                 CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
                 CreateStringCell(row, columIndex++, bodyStyleRight, FormatNumber20(agentWinLoss.BetAmount) + " / " + FormatNumber(agentWinLoss.BetCount));
@@ -460,21 +450,24 @@ namespace Apollo.Age.Reports.Services
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
-            
+
             #region declare style of cell
             CustomizeColor(hssfworkbook);
             var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
             var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
 
-            var headerStyleWhite = CreateStyle(hssfworkbook, HSSFColor.BROWN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleBlack = CreateStyle(hssfworkbook, HSSFColor.BLUE_GREY.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleUpline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
 
             var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
             var bodyStyleLeft = CreateStyle(hssfworkbook);
 
             var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-            var styleFooterRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
-            var styleFooterLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
+            var styleFooterRight = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.RIGHT, fontFooter);
+            var styleFooterLeft = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.LEFT, fontFooter);
 
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
@@ -487,35 +480,35 @@ namespace Apollo.Age.Reports.Services
             var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblSoccerPT);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.member);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblDownline);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleBlack, agentName);
-            CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleBlack, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblUpline);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleShare, Lang.lblSoccerPT);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.member);
+            CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleMember, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblDownline);
+            CreateStringCell(row, columIndex++, headerStyleDownline, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleAgent, agentName);
+            CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleAgent, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblUpline);
+            CreateStringCell(row, columIndex++, headerStyleUpline, string.Empty);
 
             rowIndex++;
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, string.Empty);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.BetAmount + " / " + Lang.lblBetCount);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.CommBase);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblEffectiveStake);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblWinLossReport);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.lblComm);
-            CreateStringCell(row, columIndex++, headerStyleBlack, Lang.total);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.lblEffectiveStake);
-            CreateStringCell(row, columIndex++, headerStyleWhite, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
+            CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
+            CreateStringCell(row, columIndex++, headerStyleDownline, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblWinLossReport);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.lblComm);
+            CreateStringCell(row, columIndex++, headerStyleAgent, Lang.total);
+            CreateStringCell(row, columIndex++, headerStyleUpline, Lang.lblEffectiveStake2);
+            CreateStringCell(row, columIndex++, headerStyleUpline, Lang.total);
 
             rowIndex++;
             #endregion
@@ -600,7 +593,7 @@ namespace Apollo.Age.Reports.Services
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalATotal);
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineEffectiveStake);
             CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineTotal);
-            
+
             #endregion footer
 
             #region auto size & freePane

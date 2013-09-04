@@ -642,6 +642,21 @@ Spinner.prototype = {
             this.setValue(mixValue);
         }
     },
+    updateMinValueWithNoReset: function (mixValue) {
+        if (mixValue < 0) mixValue = 0;
+        this.options.minimum = mixValue;
+    },
+    updateMaxValueWithNoReset: function (maxValue) {
+        if (this.options.minimum > maxValue) maxValue = this.options.minimum;
+        if (maxValue < 0) maxValue = 0;
+        this.options.maximum = maxValue;
+    },
+    getMaxValue: function () {
+        return this.options.maximum;
+    },
+    getMinValue: function () {
+        return this.options.minimum;
+    },
     isValid: function (hideMessage) {
         var value = this.getValue();
         if (!this.digitsValid(value)) {
