@@ -29,7 +29,7 @@ namespace Apollo.UMService
         private string _umUrlFormat = "{0}?site={1}";
         private static ManualResetEvent allDone = new ManualResetEvent(false);
         private const int BUFFER_SIZE = 1024;
-        private const int DefaultTimeout = 1 * 60 * 1000; // 2 minutes timeout 
+        private const int DefaultTimeout = 30000; // 0.5 minutes timeout 
 
         public UMBusiness()
         {
@@ -107,11 +107,12 @@ namespace Apollo.UMService
                 IAsyncResult asynchronousInputRead = responseStream.BeginRead(myRequestState.BufferRead, 0, BUFFER_SIZE, new AsyncCallback(ReadCallBack), myRequestState);
                 return;
             }
-            catch (WebException e)
+            catch
             {
-            }
+                allDone.Set();
 
-            allDone.Set();
+                throw;
+            }
         }
 
         private void ReadCallBack(IAsyncResult asyncResult)
@@ -139,13 +140,16 @@ namespace Apollo.UMService
                     }
 
                     responseStream.Close();
+
+                    allDone.Set();
                 }
             }
-            catch (WebException e)
+            catch
             {
-            }
+                allDone.Set();
 
-            allDone.Set();
+                throw;
+            }
         }
     }
 }
