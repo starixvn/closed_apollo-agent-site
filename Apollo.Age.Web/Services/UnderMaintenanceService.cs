@@ -56,6 +56,11 @@ namespace Apollo.Age.Web.Services
                     else
                     {
                         underMaintenanceInfo = _underMaintenanceBusiness.GetMaintainenceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
+
+                        if (underMaintenanceInfo == null)
+                        {
+                            return new UnderMaintenanceModel();
+                        }
                     }
 
                     return underMaintenanceInfo;

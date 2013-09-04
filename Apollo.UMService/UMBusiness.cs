@@ -74,7 +74,10 @@ namespace Apollo.UMService
             allDone.WaitOne();
 
             // Release the HttpWebResponse resource.
-            myRequestState.Response.Close();
+            if (myRequestState.Response != null)
+            {
+                myRequestState.Response.Close();
+            }
         }
 
         // Abort the request if the timer fires. 
@@ -111,7 +114,7 @@ namespace Apollo.UMService
             {
                 allDone.Set();
 
-                throw;
+                //throw we;
             }
         }
 
@@ -148,7 +151,7 @@ namespace Apollo.UMService
             {
                 allDone.Set();
 
-                throw;
+                //throw we;
             }
         }
     }
