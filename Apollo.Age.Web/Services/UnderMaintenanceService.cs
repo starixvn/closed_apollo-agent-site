@@ -21,29 +21,29 @@ namespace Apollo.Age.Web.Services
     /// </summary>
     public class UnderMaintenanceService : ServiceBase
     {
-        private UMBusiness _umBusiness;
+        private UMBusiness _underMaintenanceBusiness;
 
         public UnderMaintenanceService()
         {
-            _umBusiness = new UMBusiness();
+            _underMaintenanceBusiness = new UMBusiness();
         }
 
         public UnderMaintenanceModel MaintenanceInfo
         {
             get
             {
-                var umInfo = new UnderMaintenanceModel { status = false };
-                var startTime = umInfo.start_time;
-                var endTime = umInfo.end_time;
+                var underMaintenanceInfo = new UnderMaintenanceModel { status = false };
+                var startTime = underMaintenanceInfo.start_time;
+                var endTime = underMaintenanceInfo.end_time;
 
                 // Check downtime from AppSetting.
                 if (AppSettings.IsApolloDownTime)
                 {
-                    umInfo.status = true;
-                    umInfo.start_time = AppSettings.StartTime;
-                    umInfo.end_time = AppSettings.EndTime;
+                    underMaintenanceInfo.status = true;
+                    underMaintenanceInfo.start_time = AppSettings.StartTime;
+                    underMaintenanceInfo.end_time = AppSettings.EndTime;
 
-                    return umInfo;
+                    return underMaintenanceInfo;
                 }
 
                 // Check downtime from library.
@@ -51,14 +51,14 @@ namespace Apollo.Age.Web.Services
                 {
                     if (AppSettings.DisabledUnderMaintenanceAPI)
                     {
-                        umInfo.status = false;
+                        underMaintenanceInfo.status = false;
                     }
                     else
                     {
-                        umInfo = _umBusiness.GetMaintainenceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
+                        underMaintenanceInfo = _underMaintenanceBusiness.GetMaintainenceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
                     }
 
-                    return umInfo;
+                    return underMaintenanceInfo;
                 }
                 catch (Exception ex)
                 {
