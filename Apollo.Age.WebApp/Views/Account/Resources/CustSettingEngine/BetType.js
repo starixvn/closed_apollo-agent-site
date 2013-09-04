@@ -70,6 +70,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     presetOnMember.id = "chbApplyPreset";
     presetOnMember.type = "checkbox";
     presetOnMember.className = "preset-input";
+    presetOnMember.disabled = true;
     presetOnMember.checked = true;
     presetOnMember.defaultChecked = true;
     presetContainer.appendChild(presetOnMember);
@@ -535,6 +536,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     presetOnMember.id = "chbApplyPreset";
     presetOnMember.type = "checkbox";
     presetOnMember.checked = true;
+    presetOnMember.disabled = true;
     presetOnMember.defaultChecked = true;
     presetContainer.appendChild(presetOnMember);
 
