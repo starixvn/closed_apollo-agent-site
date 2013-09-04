@@ -11,8 +11,11 @@
     var isMaster = (bool)ViewBag.IsMaster;
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+    var AgentLevel = (int)ViewBag.AgentLevel;
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
+
+    var parentUsername = ViewBag.AgentUsername ?? string.Empty;
 }
 @using (Html.BeginForm())
 {       
@@ -20,9 +23,10 @@
         <div class="item">
             <label>@Lang.agent</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+					            new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					            new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -54,8 +58,9 @@
                 -- <a href="~/Account/MemberList">@Lang.memberList</a>
             </div>
         }
-        @*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
-        <div class="end"></div>
+@*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
+        <div class="end">
+        </div>
     </div>   
     @Html.HiddenFor(m => m.AgentId)    
 }
@@ -64,15 +69,17 @@
     {
         <thead>
             <tr>
-                <th>@Lang.enterusername
+                <th>
+                    @RazorHelper.RenderAgentListHeader(AgentLevel + 1, true)
                 </th>
-                <th class="width-60">@Lang.agent
+                <th class="width-60">
+                    @Lang.lblDownline
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
-                <th>@Lang.condition
+                <th>@Lang.status
                 </th>
-                <th>@Lang.BetCondition
+                <th>@Lang.betstatus
                 </th>
                 <th class="width-80">@Lang.Feature
                 </th>
@@ -114,7 +121,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@parentUsername&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
                             @if (isMaster)
                             {
                                 @Lang.edit
