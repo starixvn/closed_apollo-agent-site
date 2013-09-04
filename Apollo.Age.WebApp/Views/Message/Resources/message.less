@@ -27,8 +27,9 @@
 .tblRpt.message {
 	margin-top: 0;
 	border-color: #000;
-	border-style:solid none none solid;
+	border-style: solid none none solid;
 	border-width: 2px 1px 1px;
+	position: relative;
 
 	tbody td {
 		white-space: normal;
@@ -41,8 +42,13 @@
 		text-align: left;
 		background: #900;
 		font-weight: bolder;
+		padding: 5px 0;
 				
-		ul {				
+		ul {
+			position: absolute;
+			top: 2px;
+			left: 8px;
+						
 			li {					
 				float: left;
 				//font-weight: normal;
