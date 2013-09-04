@@ -12,25 +12,24 @@ namespace Apollo.UMService
     using System;
     using System.IO;
     using System.Net;
+    using System.Text;
     using System.Threading;
     using System.Web.Helpers;
     using Apollo.UMService.Model;
     using Fanex.Caching;
-    using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.begingetresponse.aspx
     /// </summary>
     public class UMBusiness
     {
-        private const int WaitInterval = 1000; // 1 second.
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key.        
         private readonly ICache _cacheManager;
         private HttpWebRequest _request;
         private string _umUrlFormat = "{0}?site={1}";
         private static ManualResetEvent allDone = new ManualResetEvent(false);
         private const int BUFFER_SIZE = 1024;
-        private const int DefaultTimeout = 2 * 60 * 1000; // 2 minutes timeout 
+        private const int DefaultTimeout = 1 * 60 * 1000; // 2 minutes timeout 
 
         public UMBusiness()
         {
@@ -46,14 +45,13 @@ namespace Apollo.UMService
             {
                 umCtrlUrl = string.Format(_umUrlFormat, umCtrlUrl, siteName);
 
-                umInfo = this.GetMaintainenceInfo(umCtrlUrl);
-                //_cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromMinutes(0)); //TimeSpan.FromMinutes(0));
+                this.GetMaintainenceInfo(umCtrlUrl);
             }
 
             return umInfo;
         }
 
-        private UnderMaintenanceModel GetMaintainenceInfo(string umCtrlUrl)
+        private void GetMaintainenceInfo(string umCtrlUrl)
         {
             var umInfo = new UnderMaintenanceModel();
 
@@ -77,8 +75,6 @@ namespace Apollo.UMService
 
             // Release the HttpWebResponse resource.
             myRequestState.Response.Close();
-
-            return umInfo;
         }
 
         // Abort the request if the timer fires. 
@@ -122,15 +118,16 @@ namespace Apollo.UMService
         {
             try
             {
-
                 RequestState myRequestState = (RequestState)asyncResult.AsyncState;
                 Stream responseStream = myRequestState.StreamResponse;
                 int read = responseStream.EndRead(asyncResult);
-                // Read the HTML page and then print it to the console. 
+
+                // Read the HTML page and then cache to memory cache
                 if (read > 0)
                 {
                     myRequestState.RequestData.Append(Encoding.ASCII.GetString(myRequestState.BufferRead, 0, read));
                     IAsyncResult asynchronousResult = responseStream.BeginRead(myRequestState.BufferRead, 0, BUFFER_SIZE, new AsyncCallback(ReadCallBack), myRequestState);
+
                     return;
                 }
                 else
@@ -138,7 +135,7 @@ namespace Apollo.UMService
                     if (myRequestState.RequestData.Length > 1)
                     {
                         var umInfo = Json.Decode<UnderMaintenanceModel>(myRequestState.RequestData.ToString());
-                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromSeconds(10));
+                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromMinutes(1));
                     }
 
                     responseStream.Close();
