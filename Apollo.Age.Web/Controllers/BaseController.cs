@@ -25,6 +25,7 @@ namespace Apollo.Age.Web
     using Fanex.Common;
     using Fanex.Logging;
     using Apollo.Age.Web.Filters;
+    using Fanex.Caching;
 
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login
@@ -34,10 +35,12 @@ namespace Apollo.Age.Web
     public class BaseController : Controller
     {
         private readonly IUserService _userService;
-
+        private readonly ICache _cacheManager;
+        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus"; // Cache Key. 
         public BaseController()
         {
             _userService = new UserService();
+            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 
         #region Override functions
@@ -101,7 +104,7 @@ namespace Apollo.Age.Web
                     {
                         if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
                         {
-                           CommonChecking.DoUnAuthorized(filterContext);
+                            CommonChecking.DoUnAuthorized(filterContext);
                         }
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
@@ -127,7 +130,13 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                var userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
+                int userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+
+                if (userStatus == 0)
+                {
+                    userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
+                    _cacheManager.Set<int>(KickOutStatusCacheKey, userStatus, TimeSpan.FromSeconds(30));
+                }
 
                 if (userStatus >= (int)CustomerStatus.Stopped)
                 {
@@ -150,32 +159,6 @@ namespace Apollo.Age.Web
                 }
             }
         }
-
-        //private void DoUnAuthorized(ActionExecutingContext filterContext)
-        //{
-        //    var response = filterContext.HttpContext.Response;
-        //    if (filterContext.HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        //response.Clear();
-        //        //response.StatusCode = (int)HttpStatusCode.Unauthorized;
-        //        //response.StatusDescription = string.Empty;
-        //        //response.Write(Resources.Lang.UnauthorizedMsg);
-        //        //response.End();
-        //        Response.ContentType = "text/plain";
-        //        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-        //        Response.Write(Resources.Lang.UnauthorizedMsg);
-        //        Response.BufferOutput = true;
-        //        Response.ClearContent();
-        //        Response.ClearHeaders();
-        //        Response.Flush();
-        //        Response.Close();
-        //        Response.End();
-        //    }
-        //    else
-        //    {
-        //        response.Redirect(ApoURLs.URLs.AccessDenied);
-        //    }
-        //}
 
         #endregion
 
@@ -217,6 +200,6 @@ namespace Apollo.Age.Web
         #endregion
         #endregion
 
-        
+
     }
 }
