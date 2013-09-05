@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ControllerBase.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BaseController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -22,21 +22,21 @@ namespace Apollo.Age.Web
     using Apollo.Age.Enumerations;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using Fanex.Common;
-    using Fanex.Logging;
     using Apollo.Age.Web.Filters;
     using Fanex.Caching;
+    using Fanex.Common;
+    using Fanex.Logging;
 
     /// <summary>
-    /// This class override OnActionExecuting to check authentication, authorization, duplicated login
-    /// All non-anonymous controller MUST inherit from this base controller
-    /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// This class override OnActionExecuting to check authentication, authorization, duplicated login.
+    /// All non-anonymous controller MUST inherit from this base controller.
+    /// </summary>    
     public class BaseController : Controller
     {
+        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus"; // Cache Key.
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
-        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus"; // Cache Key. 
+
         public BaseController()
         {
             _userService = new UserService();
@@ -44,6 +44,11 @@ namespace Apollo.Age.Web
         }
 
         #region Override functions
+
+        /// <summary>
+        /// Override Action Executing for checking Authentication, Validate down line and Kick out user.
+        /// </summary>
+        /// <param name="filterContext">Input filter Context.</param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             bool actionIsMarkedWithAllowAnonymous = filterContext.ActionDescriptor.IsDefined(
@@ -67,6 +72,10 @@ namespace Apollo.Age.Web
             base.OnActionExecuting(filterContext);
         }
 
+        /// <summary>
+        /// Handle Unknown Action.
+        /// </summary>
+        /// <param name="actionName">Input Action Name.</param>
         protected override void HandleUnknownAction(string actionName)
         {
             try
@@ -78,10 +87,73 @@ namespace Apollo.Age.Web
                 Response.Redirect(ApoURLs.URLs.Error + "?err=404");
             }
         }
-        #endregion
+
+        #endregion Override functions
+
+        #region PROPERTIES
+
+        /// <summary>
+        /// Get Current Session.
+        /// </summary>
+        protected ICurrentSession CurrentSession
+        {
+            get { return SessionManager.CurrentSession; }
+        }
+
+        /// <summary>
+        /// Get Resource Data.
+        /// </summary>
+        /// <param name="key">Input a Key.</param>
+        /// <returns>Return resource value.</returns>
+        protected string GetResourceData(string key)
+        {
+            return LanguageManager.GetResourceData(key);
+        }
+
+        #region Controller Util
+
+        /// <summary>
+        /// Get Current Action.
+        /// </summary>
+        protected string CurrentAction
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
+            }
+        }
+
+        /// <summary>
+        /// Get Current Controller.
+        /// </summary>
+        protected string CurrentController
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
+            }
+        }
+
+        /// <summary>
+        /// Get Current Area.
+        /// </summary>
+        protected string CurrentArea
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
+            }
+        }
+
+        #endregion Controller Util
+
+        #endregion PROPERTIES
 
         #region Auth
 
+        /// <summary>
+        /// Checking Authentication.
+        /// </summary>
         private void CheckAuthentication()
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
@@ -90,6 +162,10 @@ namespace Apollo.Age.Web
             }
         }
 
+        /// <summary>
+        /// Checking Validate Down line.
+        /// </summary>
+        /// <param name="filterContext">Input filter Context.</param>
         private void CheckValidDownline(ActionExecutingContext filterContext)
         {
             try
@@ -98,8 +174,11 @@ namespace Apollo.Age.Web
                 {
                     var currentSession = SessionManager.CurrentSession;
 
-                    int agentId = filterContext.ActionParameters.ContainsKey("agentId") ? Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
-                    int memberId = filterContext.ActionParameters.ContainsKey("memberId") ? Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
+                    int agentId = filterContext.ActionParameters.ContainsKey("agentId") ?
+                        Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
+                    int memberId = filterContext.ActionParameters.ContainsKey("memberId") ?
+                        Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
+
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
                         if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
@@ -126,6 +205,10 @@ namespace Apollo.Age.Web
             }
         }
 
+        /// <summary>
+        /// Checking Kick Out.
+        /// </summary>
+        /// <param name="filterContext">Input filter context.</param>
         private void CheckKickOut(ActionExecutingContext filterContext)
         {
             if (!ReferenceEquals(CurrentSession, null))
@@ -144,7 +227,7 @@ namespace Apollo.Age.Web
                     {
                         Response.ContentType = "text/plain";
                         Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        Response.Write(Resources.Lang.lblAccountWasStopped);//LanguageManager.GetResourceData("lblAccountWasStopped"));
+                        Response.Write(Resources.Lang.lblAccountWasStopped);
                         Response.BufferOutput = true;
                         Response.ClearContent();
                         Response.ClearHeaders();
@@ -160,46 +243,6 @@ namespace Apollo.Age.Web
             }
         }
 
-        #endregion
-
-        #region PROPERTIES
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.CurrentSession; }
-        }
-
-        protected string GetResourceData(string key)
-        {
-            return LanguageManager.GetResourceData(key);
-        }
-
-        #region Controller Util
-        protected string CurrentAction
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
-            }
-        }
-
-        protected string CurrentController
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
-            }
-        }
-
-        protected string CurrentArea
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
-            }
-        }
-        #endregion
-        #endregion
-
-
+        #endregion Auth
     }
 }
