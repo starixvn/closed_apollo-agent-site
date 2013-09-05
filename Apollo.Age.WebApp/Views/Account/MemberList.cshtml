@@ -69,6 +69,8 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
+@if (!ReferenceEquals(memberList, null) && memberList.Any())
+{
 <div  id="divEditMultiple" class="edit-multiple-link">
     <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
         @if (isMaster)
@@ -80,6 +82,7 @@
             @Lang.lblview
         }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
 </div>
+}
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {

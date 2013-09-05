@@ -220,7 +220,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         this.pt.Min = minSpinBox.getValue();
         this.pt.Max = maxSpinBox.getValue();
         this.pt.Preset = presetSpinBox.getValue();
-        this.pt.IsApplyMember = presetOnMember.checked;
+        this.pt.IsApplyMember = true; //presetOnMember.checked;
         var isChangePt = this.oldPt.Min != this.pt.Min
         || this.oldPt.Max != this.pt.Max
         || this.oldPt.Preset != this.pt.Preset;
@@ -677,7 +677,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         var presetValue = presetSpinBox.getValue();
         var maxValue = maxSpinBox.getValue();
         var minValue = minSpinBox.getValue();
-        var isApplyMember = presetOnMember.checked;
+        var isApplyMember = true;// presetOnMember.checked;
         return {
             Max: maxValue,
             Preset: presetValue,

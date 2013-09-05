@@ -85,6 +85,8 @@
     @Html.HiddenFor(m => m.AgentId)
     @Html.HiddenFor(m => m.ParentAgentId)   
 }
+@if (!ReferenceEquals(memberList, null) && memberList.Any())
+{
 <div id="divEditMultiple" class="action edit-multiple-indirect-link">
     <a href="javascript:;" class="edit-link">
         @if (isMaster)
@@ -111,6 +113,7 @@
         </ul>
     </div>
 </div>
+}
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
