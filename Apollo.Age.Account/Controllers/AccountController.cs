@@ -397,7 +397,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Agent list view action.</returns>
         [HttpGet]
-        public ActionResult AgentList(int agentId = -1, int pageIndex = 0, string username = "", int status = 1, int oldPageIndex = 0, int orderType = 1)
+        public ActionResult AgentList(int agentId = -1, int pageIndex = 0, string username = "", int status = 0, int oldPageIndex = 0, int orderType = 1)
         {
             AgentListCriteria criteria = new AgentListCriteria()
             {
@@ -489,7 +489,7 @@ namespace Apollo.Age.Account.Controllers
             int agentId,
             int pageIndex = 0,
             string username = "",
-            int status = 1,
+            int status = 0,
             int oldPageIndex = 0,
             int orderType = 1)
         {
@@ -592,7 +592,7 @@ namespace Apollo.Age.Account.Controllers
             int agentId = -1,
             int pageIndex = 0,
             string username = "",
-            int status = 1,
+            int status = 0,
             int oldPageIndex = 0,
             int orderType = 1)
         {
@@ -686,7 +686,7 @@ namespace Apollo.Age.Account.Controllers
             int agentId,
             int pageIndex = 0,
             string username = "",
-            int status = 1,
+            int status = 0,
             int oldPageIndex = 0,
             int orderType = 1)
         {

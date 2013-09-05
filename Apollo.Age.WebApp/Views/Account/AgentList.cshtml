@@ -23,6 +23,7 @@
         <div class="item">
             <label>@Lang.agent</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+                                new SelectListItem { Value = "0", Text = Lang.all },
 					            new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
 					            new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
                                 new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
