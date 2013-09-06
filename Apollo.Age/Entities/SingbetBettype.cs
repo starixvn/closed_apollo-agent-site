@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Entities
 {
+    /// <summary>
+    /// This class is bet type model.
+    /// </summary>
     public class SingbetBettype
     {
         public string Id { get; set; }

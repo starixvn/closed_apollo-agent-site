@@ -16,13 +16,61 @@ namespace Apollo.Age.Repositories.Interface
 
     public interface IUserRepository : IRepository<User>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         byte InternalReCheckIn(InternalReCheckinCriteria criteria);
-        int GetUserStatus(ICriteria criteria);        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        int GetUserStatus(ICriteria criteria);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         int WritelogInternalLogin(InternalLogLoginCriteria criteria);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         int InternalCheckIn(InternalCheckinCriteria criteria);
-        int InternalLogout(InternalLogoutCriteria criteria);       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        int InternalLogout(InternalLogoutCriteria criteria);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         bool CheckPermission(ICriteria criteria);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         bool CheckBelongToUpline(ICriteria criteria);
     }
 }

@@ -17,10 +17,15 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// This class for retrieve agent.
     /// </summary>
     public class AgentRepository : RepositoryBase<Agent>, IAgentRepository
     {
+        /// <summary>
+        /// Query agent from criteria.
+        /// </summary>
+        /// <param name="criteria">Input a criteria.</param>
+        /// <returns>Return list of agent.</returns>
         public override Agent Get(ICriteria criteria)
         {
             try
@@ -42,20 +47,35 @@ namespace Apollo.Age.Repositories.Impl
                 throw;
             }
         }
-        
+
+        /// <summary>
+        /// Delete action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Delete(Agent entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Insert action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Insert(Agent entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Update action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Update(Agent entity)
         {
             throw new NotImplementedException();
-        }      
+        }
     }
 }

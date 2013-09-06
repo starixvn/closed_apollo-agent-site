@@ -256,11 +256,11 @@ namespace Apollo.Age.Reports.Controllers
             {
                 case SportGroup.Soccer:
                     return SportTypes.Soccer.ToString();
-                case SportGroup.Basketball_Football_Rugy:
+                case SportGroup.BasketballFootballRugy:
                     return SportTypes.BasketBall.ToString();
                 case SportGroup.Tennis:
                     return SportTypes.Tennis.ToString();
-                case SportGroup.Volleyball_Badminton_TableTennis:
+                case SportGroup.VolleyballBadmintonTableTennis:
                     return SportTypes.Badminton.ToString();
                 case SportGroup.BaseBall:
                     return SportTypes.BaseBall.ToString();

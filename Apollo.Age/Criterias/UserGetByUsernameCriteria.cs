@@ -22,11 +22,19 @@ namespace Apollo.Age.Criterias
     {
         public string Username { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns> Setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_AgentUser_GetByUserName";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
             return !string.IsNullOrWhiteSpace(Username);

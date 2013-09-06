@@ -65,13 +65,21 @@ namespace Apollo.Age.Criterias
             {
                 _betType = value;
             }
-        }        
+        }
 
+        /// <summary>
+        /// Override Get Store Procedure Name.
+        /// </summary>
+        /// <returns>Return Store Procedure Name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_GetAllMainShareHolder";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
             return true;

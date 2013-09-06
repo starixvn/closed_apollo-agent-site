@@ -14,6 +14,9 @@ namespace Apollo.Age.Entities
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// This class is sport type model.
+    /// </summary>
     public class SingbetSport
     {
         public string Id { get; set; }

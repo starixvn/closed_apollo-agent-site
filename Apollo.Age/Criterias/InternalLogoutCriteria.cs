@@ -9,10 +9,6 @@
 
 namespace Apollo.Age.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -21,12 +17,20 @@ namespace Apollo.Age.Criterias
     public class InternalLogoutCriteria : CriteriaBase
     {
         public int OnUserId { get; set; }
-       
+
+        /// <summary>
+        /// Override Get Store Procedure Name.
+        /// </summary>
+        /// <returns>Return Store Procedure Name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Admin_Logout";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
             return OnUserId >= 0;

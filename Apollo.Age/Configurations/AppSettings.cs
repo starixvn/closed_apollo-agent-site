@@ -59,15 +59,7 @@ namespace Apollo.Age.Configurations
             {
                 return ApolloDownTime.Split("-".ToCharArray())[1];
             }
-        }
-
-        //public static string SingbetDownTime
-        //{
-        //    get 
-        //    {
-        //        return GetValue("SingbetDownTime");
-        //    }
-        //}
+        }               
 
         public static bool AllowInternalUpdate
         {
@@ -110,6 +102,11 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        /// <summary>
+        /// Gets value from a key.
+        /// </summary>
+        /// <param name="key">Input a key.</param>
+        /// <returns>Return value.</returns>
         public static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key].ToString();

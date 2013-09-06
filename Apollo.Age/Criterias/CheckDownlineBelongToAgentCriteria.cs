@@ -27,11 +27,19 @@ namespace Apollo.Age.Criterias
 
         public bool HasPermission { get; set; }
 
+        /// <summary>
+        /// Override Get Store Procedure Name.
+        /// </summary>
+        /// <returns>Return Store Procedure Name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_CheckDownlineBelongToAgent";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
             return this.ActorAgentId >= 0 || this.ObjectId >= 0;
