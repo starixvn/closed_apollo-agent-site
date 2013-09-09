@@ -3140,7 +3140,7 @@ namespace Apollo.Age.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &quot;% on Member&quot; normally is equal to &quot;% Preset&quot; of direct downline. However, if the sum of &quot;% on Member&quot; of all downline and 
-        ///&quot;% Preset&quot; of driect downline is less your &quot;% Min Downline&quot;, your &quot;% on Member&quot; would be equal to (&quot;% Min Downline - sum of % on Member of all downline).
+        ///&quot;% Preset&quot; of direct downline is less your &quot;% Min Downline&quot;, your &quot;% on Member&quot; would be equal to (&quot;% Min Downline - sum of % on Member of all downline).
         /// </summary>
         public static string lblRemarksViewShare {
             get {
