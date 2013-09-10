@@ -32,7 +32,7 @@ namespace Apollo.Age.Services.Impl
                 },
                 new SingbetSport
                 {
-                    Id = SportGroup.Basketball_Football_Rugy,
+                    Id = SportGroup.BasketballFootballRugy,
                     Name = Lang.lblBkNflRugby
                 },
                 new SingbetSport
@@ -42,7 +42,7 @@ namespace Apollo.Age.Services.Impl
                 },
                 new SingbetSport
                 {
-                    Id = SportGroup.Volleyball_Badminton_TableTennis,
+                    Id = SportGroup.VolleyballBadmintonTableTennis,
                     Name = Lang.lblVbBdmTt
                 },
                 new SingbetSport

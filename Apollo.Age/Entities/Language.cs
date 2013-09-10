@@ -27,6 +27,10 @@ namespace Apollo.Age.Services
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// Override string.
+        /// </summary>
+        /// <returns>Return string.</returns>
         public override string ToString()
         {
             return base.ToString(); 

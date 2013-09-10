@@ -11,138 +11,66 @@
 namespace Apollo.Age.Web.Services
 {
     using System;
-    using System.Threading;
     using Apollo.Age.Configurations;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Web.ViewModels;
-    using Fanex.Caching;
-    using Sunplus.UMControllerLibrary;
-    using System.Text;
-    using System.Net.NetworkInformation;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using Newtonsoft.Json.Linq;
-    using Newtonsoft.Json;
-    using System.IO;
-    using System.Web.Helpers;
+    using Apollo.UMService;
+    using Apollo.UMService.Model;
 
     /// <summary>
     /// Under Maintenance Service.
     /// </summary>
     public class UnderMaintenanceService : ServiceBase
     {
-        private const int WaitInterval = 1000; // 1 second.
-        private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key.
-
-        private readonly UMBusiness _underMaintenanceService;
-        private readonly Mutex _threadMuText = new Mutex();
-        private readonly ICache _cacheManager;
-       //private readonly HttpClient _client;
-        private HttpWebRequest request;
+        private UMBusiness _underMaintenanceBusiness;
 
         public UnderMaintenanceService()
         {
-            _underMaintenanceService = new UMBusiness();
-            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
-           // _client = new HttpClient();
-            
+            _underMaintenanceBusiness = new UMBusiness();
         }
 
-        public UnderMaintenanceViewModel MaintenanceInfo
+        public UnderMaintenanceModel MaintenanceInfo
         {
             get
             {
-                var maintenanceInfo = _cacheManager.Get<UnderMaintenanceViewModel>(MaintenanceCacheKey);
-                if (maintenanceInfo == null)
+                var underMaintenanceInfo = new UnderMaintenanceModel { status = false };
+                var startTime = underMaintenanceInfo.start_time;
+                var endTime = underMaintenanceInfo.end_time;
+
+                // Check downtime from AppSetting.
+                if (AppSettings.IsApolloDownTime)
                 {
-                    if (_threadMuText.WaitOne(WaitInterval))
+                    underMaintenanceInfo.status = true;
+                    underMaintenanceInfo.start_time = AppSettings.StartTime;
+                    underMaintenanceInfo.end_time = AppSettings.EndTime;
+
+                    return underMaintenanceInfo;
+                }
+
+                // Check downtime from library.
+                try
+                {
+                    if (AppSettings.DisabledUnderMaintenanceAPI)
                     {
-                        try
-                        {
-                            maintenanceInfo = GetMaintenanceInfo();
-                            _cacheManager.Set<UnderMaintenanceViewModel>(MaintenanceCacheKey, maintenanceInfo, TimeSpan.FromMinutes(1)); //TimeSpan.FromMinutes(0));
-                        }
-                        catch
-                        {
-                            maintenanceInfo = new UnderMaintenanceViewModel { status = false };
-                        }
-                        finally
-                        {
-                            _threadMuText.ReleaseMutex();
-                        }
+                        underMaintenanceInfo.status = false;
                     }
                     else
                     {
-                        maintenanceInfo = new UnderMaintenanceViewModel { status = false };
-                    }
-                }
+                        underMaintenanceInfo = _underMaintenanceBusiness.GetMaintainenceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
 
-                return maintenanceInfo;
-            }
-        }
-
-        /// <summary>
-        /// Get IBC Maintenance Info.
-        /// </summary>
-        /// <returns>Return Under Maintenance View Model.</returns>
-        private UnderMaintenanceViewModel GetMaintenanceInfo()
-        {
-            var umInfo = new UnderMaintenanceViewModel { status = false };
-            var startTime = umInfo.start_time;
-            var endTime = umInfo.end_time;
-
-            // Check downtime from AppSetting.
-            if (AppSettings.IsApolloDownTime)
-            {
-                umInfo.status = true;
-                umInfo.start_time = AppSettings.StartTime;
-                umInfo.end_time = AppSettings.EndTime;
-
-                return umInfo;
-            }
-
-            // Check downtime from library.
-            try
-            {
-
-                if (AppSettings.DisabledUnderMaintenanceAPI)
-                {
-                    umInfo.status = false;
-                }
-                else
-                {
-                    request = (HttpWebRequest)WebRequest.Create(AppSettings.UnderMaintenanceUrl);
-                    request.Credentials = CredentialCache.DefaultCredentials;
-                    request.Method = WebRequestMethods.Http.Get; // it is required                    
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-
-                        Stream dataStream = response.GetResponseStream();
-                        // read response stream and parse to JsonResponseModel
-                        using (StreamReader reader = new StreamReader(dataStream))
+                        if (underMaintenanceInfo == null)
                         {
-                            string jsonString = reader.ReadToEnd();
-                            if (!string.IsNullOrWhiteSpace(jsonString))
-                            {
-                                umInfo = Json.Decode<UnderMaintenanceViewModel>(jsonString);
-                            }
-
-                            //Fanex.Logging.LogService.Error(jsonString);
+                            return new UnderMaintenanceModel();
                         }
                     }
-                                        
+
+                    return underMaintenanceInfo;
                 }
+                catch (Exception ex)
+                {
+                    HandleException(ex);
 
-                return umInfo;
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-
-                return new UnderMaintenanceViewModel { status = false };
+                    return new UnderMaintenanceModel { status = false };
+                }
             }
         }
     }

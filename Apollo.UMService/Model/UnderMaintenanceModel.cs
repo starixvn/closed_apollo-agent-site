@@ -1,5 +1,4 @@
-﻿
-// --------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------
 // <copyright file="UnderMaintenanceViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
@@ -7,18 +6,22 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.5.3">Created</change>
 //   <change who="Terry.Nguyen" date="2013.7.17">add more property UMDate</change>
+//   <change who="Edward.Nguyen" date="2013.9.3">Move from Web to</change>
 // </history>
 
-namespace Apollo.Age.Web.ViewModels
+namespace Apollo.UMService.Model
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class UnderMaintenanceViewModel
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class UnderMaintenanceModel
     {
-        public UnderMaintenanceViewModel()
+        public UnderMaintenanceModel()
         {
             status = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);

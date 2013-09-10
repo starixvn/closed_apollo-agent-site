@@ -4,15 +4,10 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Anders.Le" date="2013.3.18">Created</change>
+//   <change who="Terry.Nguyen" date="2013.9.5">Created</change>
 // </history>
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -20,6 +15,6 @@ namespace Apollo.Age.Entities
     {
         TId Id { get; set; }
 
-        TName Username { get; set; }        
+        TName Username { get; set; }
     }
 }

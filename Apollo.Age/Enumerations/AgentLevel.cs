@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Enumerations
 {
+    /// <summary>
+    /// This class is hard code for Agent level.
+    /// </summary>
     public static class AgentLevel
     {
         public static int Super = 0;

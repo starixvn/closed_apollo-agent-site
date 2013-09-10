@@ -219,10 +219,10 @@ namespace Apollo.Age.Wagers.Controllers
                     sportTypeIds = SportGroup.Soccer;
                     break;
                 case WagersSportName.Basketball:
-                    sportTypes = SportGroup.Basketball_Football_Rugy;
+                    sportTypes = SportGroup.BasketballFootballRugy;
                     title = Lang.Basketball;
                     titleAll = Lang.BasketballAll;
-                    sportTypeIds = SportGroup.Basketball_Football_Rugy;
+                    sportTypeIds = SportGroup.BasketballFootballRugy;
                     break;
                 case WagersSportName.Tennis:
                     sportTypes = SportGroup.Tennis;
@@ -231,10 +231,10 @@ namespace Apollo.Age.Wagers.Controllers
                     sportTypeIds = SportGroup.Tennis;
                     break;
                 case WagersSportName.Volleyball:
-                    sportTypes = SportGroup.Volleyball_Badminton_TableTennis;
+                    sportTypes = SportGroup.VolleyballBadmintonTableTennis;
                     title = Lang.Volleyball;
                     titleAll = Lang.lblVolleyballAll;
-                    sportTypeIds = SportGroup.Volleyball_Badminton_TableTennis;
+                    sportTypeIds = SportGroup.VolleyballBadmintonTableTennis;
                     break;
                 case WagersSportName.Baseball:
                     sportTypes = SportGroup.BaseBall;

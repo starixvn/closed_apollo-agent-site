@@ -28,9 +28,11 @@
         <div class="item">
             <label>@Lang.member</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-					               new SelectListItem { Value = "1", Text = Lang.lblActive },
-					                new SelectListItem { Value = "2", Text = Lang.stopped },
-                                    new SelectListItem { Value = "3", Text = Lang.locked }
+                                    new SelectListItem { Value = "0", Text = Lang.all },
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
 				                }, new { @class = "za_select" })
         </div>
         <div class="item">
@@ -68,6 +70,8 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
+@if (!ReferenceEquals(memberList, null) && memberList.Any())
+{
 <div  id="divEditMultiple" class="edit-multiple-link">
     <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
         @if (isMaster)
@@ -79,24 +83,24 @@
             @Lang.lblview
         }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
 </div>
+}
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                 <th class="width-60">
+                 <th class="width-140">
                     <input type="checkbox" id="cbAllMember" />
                 </th>
-                <th class="width-80">@Lang.enterusername
+                <th>@Lang.enterusername
                 </th>
-
-                <th class="width-60">@Lang.status
+                <th class="width-80">@Lang.status
                 </th>
-                <th class="width-60">@Lang.betstatus
+                <th class="width-80">@Lang.betstatus
                 </th>
-                <th class="width-60">@Lang.SportCredit
+                <th class="width-80">@Lang.SportCredit
                 </th>
-                <th class="width-80">@Lang.Feature
+                <th class="width-140">@Lang.Feature
                 </th>
             </tr>
         </thead>

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="CheckBelongToUplines.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CheckBelongToUplinesCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,23 +9,33 @@
 
 namespace Apollo.Age.Criterias
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// This class check belong to up line.
+    /// </summary>
     public class CheckBelongToUplinesCriteria : CriteriaBase
     {
         public string Username { get; set; }
 
         public bool Allowed { get; set; }
 
+        /// <summary>
+        /// Override Get Store Procedure Name.
+        /// </summary>
+        /// <returns>Return Store Procedure Name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_CheckBelongToUplines";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
-            return !string.IsNullOrWhiteSpace(Username); 
+            return !string.IsNullOrWhiteSpace(Username);
         }
     }
 }

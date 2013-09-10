@@ -7,13 +7,8 @@
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Repositories.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 

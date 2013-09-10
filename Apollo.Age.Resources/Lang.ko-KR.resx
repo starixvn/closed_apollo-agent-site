@@ -4158,4 +4158,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="dateRange" xml:space="preserve">
     <value>날짜 범위</value>
   </data>
+  <data name="lblwinlossnote1" xml:space="preserve">
+    <value>"Effective Stake" after share given to the company (the selected agent and upline) by downline</value>
+  </data>
+  <data name="lblwinlossnote2" xml:space="preserve">
+    <value>"Effective Stake" after share given to upline by the selected agent</value>
+  </data>
 </root>

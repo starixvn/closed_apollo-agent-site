@@ -1952,7 +1952,7 @@
   </data>
   <data name="lblRemarksViewShare" xml:space="preserve">
     <value>"% on Member" normally is equal to "% Preset" of direct downline. However, if the sum of "% on Member" of all downline and 
-"% Preset" of driect downline is less your "% Min Downline", your "% on Member" would be equal to ("% Min Downline - sum of % on Member of all downline)</value>
+"% Preset" of direct downline is less your "% Min Downline", your "% on Member" would be equal to ("% Min Downline - sum of % on Member of all downline)</value>
   </data>
   <data name="ApplyPresetSimpleMode" xml:space="preserve">
     <value>Apply % Preset to all Members of Agent {0}</value>
@@ -1978,8 +1978,7 @@
   <data name="lblViewOnMember" xml:space="preserve">
     <value>% on Member</value>
   </data>
-
- <data name="lblEditMaxPosition" xml:space="preserve">
+  <data name="lblEditMaxPosition" xml:space="preserve">
     <value>% Max Downline</value>
   </data>
   <data name="lblEditMinPosition" xml:space="preserve">
@@ -1991,5 +1990,13 @@
   <data name="lblEditSettingLive" xml:space="preserve">
     <value>Live!</value>
   </data>
-
+  <data name="lblUplineSettingText" xml:space="preserve">
+    <value>Upline Setting [Min - Max]</value>
+  </data>
+  <data name="lblwinlossnote1" xml:space="preserve">
+    <value>"Effective Stake" after share given to the company (the selected agent and upline) by downline</value>
+  </data>
+  <data name="lblwinlossnote2" xml:space="preserve">
+    <value>"Effective Stake" after share given to upline by the selected agent</value>
+  </data>
 </root>

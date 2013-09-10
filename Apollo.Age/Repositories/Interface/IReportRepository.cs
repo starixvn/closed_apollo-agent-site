@@ -9,14 +9,9 @@
 
 namespace Apollo.Age.Repositories.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Fanex.NAP.Framework.Data;    
+    using Fanex.NAP.Framework.Data;
 
     public interface IReportRepository<T> : IReadonlyRepository<T>
     {
     }
-
 }

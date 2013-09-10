@@ -3140,7 +3140,7 @@ namespace Apollo.Age.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &quot;% on Member&quot; normally is equal to &quot;% Preset&quot; of direct downline. However, if the sum of &quot;% on Member&quot; of all downline and 
-        ///&quot;% Preset&quot; of driect downline is less your &quot;% Min Downline&quot;, your &quot;% on Member&quot; would be equal to (&quot;% Min Downline - sum of % on Member of all downline).
+        ///&quot;% Preset&quot; of direct downline is less your &quot;% Min Downline&quot;, your &quot;% on Member&quot; would be equal to (&quot;% Min Downline - sum of % on Member of all downline).
         /// </summary>
         public static string lblRemarksViewShare {
             get {
@@ -3608,6 +3608,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upline Setting [Min - Max].
+        /// </summary>
+        public static string lblUplineSettingText {
+            get {
+                return ResourceManager.GetString("lblUplineSettingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string lblUserName {
@@ -3883,6 +3892,24 @@ namespace Apollo.Age.Resources {
         public static string lblWinLoss {
             get {
                 return ResourceManager.GetString("lblWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share given to the company (the selected agent and upline) by downline.
+        /// </summary>
+        public static string lblwinlossnote1 {
+            get {
+                return ResourceManager.GetString("lblwinlossnote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share given to upline by the selected agent.
+        /// </summary>
+        public static string lblwinlossnote2 {
+            get {
+                return ResourceManager.GetString("lblwinlossnote2", resourceCulture);
             }
         }
         

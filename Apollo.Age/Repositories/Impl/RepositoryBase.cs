@@ -16,8 +16,9 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Repository base.
     /// </summary>
+    /// <typeparam name="T">Input a parameter optional.</typeparam>
     public class RepositoryBase<T> : ReadonlyRepository<T>
     {       
     }
