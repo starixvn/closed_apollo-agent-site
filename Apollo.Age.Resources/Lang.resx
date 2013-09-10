@@ -1952,7 +1952,7 @@
   </data>
   <data name="lblRemarksViewShare" xml:space="preserve">
     <value>"% on Member" normally is equal to "% Preset" of direct downline. However, if the sum of "% on Member" of all downline and 
-"% Preset" of driect downline is less your "% Min Downline", your "% on Member" would be equal to ("% Min Downline - sum of % on Member of all downline)</value>
+"% Preset" of direct downline is less your "% Min Downline", your "% on Member" would be equal to ("% Min Downline - sum of % on Member of all downline)</value>
   </data>
   <data name="ApplyPresetSimpleMode" xml:space="preserve">
     <value>Apply % Preset to all Members of Agent {0}</value>
