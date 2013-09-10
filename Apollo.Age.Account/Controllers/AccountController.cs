@@ -6,7 +6,8 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.3.29">Created</change>
 //   <change who="Lewis.Le" date="2013.4.4">Added action: Menu</change>
-//   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote, GetSuggestValues, GetAgentDownlinePath</change>
+//   <change who="Quinn.Vo" date="2013.4.9">Added action: AccountInfo, AgentTreeList, TreeViewList, GetDataByNote,
+//                                          GetSuggestValues, GetAgentDownlinePath</change>
 //   <change who="Quinn.Vo" date="2013.4.9">Added action: MemberDownline </change>
 //   <change who="Anders.Le" date="2013.4.23">Rename namespace of pager</change>
 //   <change who="Edward.Nguyen" date="2013.7.22">Member and Agent list</change>
@@ -25,12 +26,12 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
+    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
-    using Apollo.Age.Account.ViewModels;
 
     /// <summary>
     /// Account controllers.
@@ -39,9 +40,11 @@ namespace Apollo.Age.Account.Controllers
     public class AccountController : BaseController
     {
         #region Const for paging
+
         private const int _PageIndex = 0; // Current index page
         private const int _PageSize = 50; // Maximum items in a page
-        #endregion
+
+        #endregion Const for paging
 
         private readonly IAccountService _accountService;
         private int _agentId;
@@ -92,16 +95,28 @@ namespace Apollo.Age.Account.Controllers
             }
         }
 
+        /// <summary>
+        /// Top bar action.
+        /// </summary>
+        /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
             return View(CurrentSession);
         }
 
+        /// <summary>
+        /// Contact action.
+        /// </summary>
+        /// <returns>Return view model.</returns>
         public ActionResult ContactUs()
         {
             return View();
         }
 
+        /// <summary>
+        /// Menu action.
+        /// </summary>
+        /// <returns>Current session.</returns>
         public ActionResult Menu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
@@ -109,6 +124,10 @@ namespace Apollo.Age.Account.Controllers
             return View(this.CurrentSession);
         }
 
+        /// <summary>
+        /// Mini menu action.
+        /// </summary>
+        /// <returns>Current session.</returns>
         public ActionResult MiniMenu()
         {
             ViewBag.RootNode = SiteMap.RootNode;
@@ -157,8 +176,6 @@ namespace Apollo.Age.Account.Controllers
                 ExcludeActor = false
             });
 
-            //var isDirectAgent = _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentInfo != null ? agentInfo.CustId : -1, base.CurrentSession.IsSuper);
-
             if (agentInfo == null)
             {
                 agentInfo = new CustomerInfoModel()
@@ -167,14 +184,14 @@ namespace Apollo.Age.Account.Controllers
                     CustId = -1,
                     IsMember = false,
                     Username = username,
-                    IsMaster = this.CurrentSession.IsMaster //&& isDirectAgent
+                    IsMaster = this.CurrentSession.IsMaster
                 };
             }
             else
             {
                 agentInfo.ActorAgentId = this.CurrentSession.AgentId;
                 agentInfo.IsMember = false;
-                agentInfo.IsMaster = this.CurrentSession.IsMaster; //&& isDirectAgent;
+                agentInfo.IsMaster = this.CurrentSession.IsMaster;
 
                 if (this.CurrentSession.AgentId != agentInfo.CustId)
                 {
@@ -187,9 +204,6 @@ namespace Apollo.Age.Account.Controllers
                     agentInfo.AgentPathList = agentPathList.Where(t => t.Id != agentInfo.CustId).OrderByDescending(t => t.Level).ToList();
                 }
             }
-
-            //agentInfo.IsSuper = base.CurrentSession.IsSuper;
-            
 
             return View("AccountInfo", agentInfo);
         }
@@ -239,8 +253,8 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            memberInfo.IsSuper = base.CurrentSession.IsSuper;
-            memberInfo.ActorAgentUsername = base.CurrentSession.AgentName;
+            memberInfo.IsSuper = this.CurrentSession.IsSuper;
+            memberInfo.ActorAgentUsername = this.CurrentSession.AgentName;
 
             return View("AccountInfo", memberInfo);
         }
@@ -276,6 +290,10 @@ namespace Apollo.Age.Account.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Sign out action.
+        /// </summary>
+        /// <returns>Redirect to Sign in page.</returns>
         public ActionResult SignOut()
         {
             Session.Abandon();
@@ -397,7 +415,13 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Agent list view action.</returns>
         [HttpGet]
-        public ActionResult AgentList(int agentId = -1, int pageIndex = 0, string username = "", int status = 0, int oldPageIndex = 0, int orderType = 1)
+        public ActionResult AgentList(
+            int agentId = -1,
+            int pageIndex = 0,
+            string username = "",
+            int status = 0,
+            int oldPageIndex = 0,
+            int orderType = 1)
         {
             AgentListCriteria criteria = new AgentListCriteria()
             {
@@ -536,7 +560,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentList = models;
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.DirectAgentList = directAgent;
-            ViewBag.IsMaster = this.CurrentSession.IsMaster;//&& base.CurrentSession.IsSuper;
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentUsername = agentInfo.Username;
 
             return View(criteria);
@@ -573,7 +597,7 @@ namespace Apollo.Age.Account.Controllers
             });
         }
 
-        #endregion
+        #endregion Agent List
 
         #region Member List
 
@@ -709,18 +733,7 @@ namespace Apollo.Age.Account.Controllers
 
             IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
-            /* Order type
-           * ASC : 1
-           * DES : 2
-           */
-            if (criteria.OrderType == 1)
-            {
-                models = models.OrderBy(m => m.Username).ToList();
-            }
-            else
-            {
-                models = models.OrderByDescending(m => m.Username).ToList();
-            }
+            models = criteria.OrderType == 1 ? models.OrderBy(m => m.Username).ToList() : models.OrderByDescending(m => m.Username).ToList();
 
             List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
             {
@@ -728,7 +741,6 @@ namespace Apollo.Age.Account.Controllers
             });
 
             var agent = directAgent.Where(m => m.Id == criteria.AgentId).FirstOrDefault();
-
             ViewBag.HasAgentDownline = agentInfo != null ? agentInfo.HasAgentDownline : false;
             ViewBag.ParentId = parentAgentId;
             ViewBag.MemberList = models;
@@ -737,14 +749,14 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentUsername = agent != null ? agent.Username : string.Empty;
             ViewBag.AgentLevel = agent != null ? (int)agent.Level : -1;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
-            ViewBag.IsSupper = base.CurrentSession.IsSuper;
+            ViewBag.IsSupper = this.CurrentSession.IsSuper;
             ViewBag.AgentList = _accountService.GetAgentDownlinePath(new AgentDownlinePathCriteria
             {
                 ParentId = this.CurrentSession.AgentId,
                 AgentId = agentId
             });
 
-            // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
+            // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit.
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.ActorAgentUsername = this.CurrentSession.AgentName;
 
@@ -782,8 +794,12 @@ namespace Apollo.Age.Account.Controllers
             });
         }
 
-        #endregion
+        #endregion Member List
 
+        /// <summary>
+        /// Write log log-in action.
+        /// </summary>
+        /// <returns>View model.</returns>
         [InternalChecking]
         public ActionResult LogLogin()
         {
@@ -821,10 +837,16 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
-        
+        /// <summary>
+        /// Fund out action.
+        /// </summary>
+        /// <param name="memberId">Input member id.</param>
+        /// <param name="sportCredit">Input sport credit.</param>
+        /// <returns>View model.</returns>
         public ActionResult FundOut(decimal memberId, decimal sportCredit)
         {
-            var model = new FundOutViewModel() {
+            var model = new FundOutViewModel()
+            {
                 MemberId = memberId,
                 SportCredit = sportCredit
             };
@@ -832,21 +854,31 @@ namespace Apollo.Age.Account.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Insert fund out to database.
+        /// </summary>
+        /// <param name="memberId">Input member Id.</param>
+        /// <param name="sportCredit">Input sport credit.</param>
+        /// <returns>Error code and error message.</returns>
         public JsonResult PostFundOut(decimal memberId, decimal sportCredit)
         {
-
-
             return Json(
                 new
                 {
                     ErrCode = 0,
                     ErrMsg = string.Empty
                 },
-                JsonRequestBehavior.AllowGet
-            );
+                JsonRequestBehavior.AllowGet);
         }
+
         #region Ultil
 
+        /// <summary>
+        /// Get list of page.
+        /// </summary>
+        /// <param name="numPages">Input a number of page that need to paging.</param>
+        /// <param name="currentPage">Input current page.</param>
+        /// <returns>List of page.</returns>
         private List<SelectListItem> GetListPage(int numPages, int currentPage)
         {
             var listPage = new List<SelectListItem>();
@@ -863,6 +895,6 @@ namespace Apollo.Age.Account.Controllers
             return listPage;
         }
 
-        #endregion
+        #endregion Ultil
     }
 }
