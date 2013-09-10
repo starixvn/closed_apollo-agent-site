@@ -3896,7 +3896,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share to upline.
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share given to the company (the selected agent and upline) by downline.
         /// </summary>
         public static string lblwinlossnote1 {
             get {
@@ -3905,7 +3905,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Effective Stake&quot; to company.
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share given to upline by the selected agent.
         /// </summary>
         public static string lblwinlossnote2 {
             get {
