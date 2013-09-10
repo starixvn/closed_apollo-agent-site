@@ -70,14 +70,15 @@
         </div>
     </div>
 </div>
-<div>
-    <div>
-        Note:
-        <div>#1: @Lang.lblwinlossnote1</div>
-        <div>#2: @Lang.lblwinlossnote2</div>
-    </div>
-    
+
+<div class="notes">
+    <div class="title-notes">Notes:</div>
+    <ul class="list">
+        <li>#1: @Lang.lblwinlossnote1</li>
+        <li>#2: @Lang.lblwinlossnote2</li>
+    </ul>    
 </div>
+
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath, true)
