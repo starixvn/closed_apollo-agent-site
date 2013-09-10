@@ -17,6 +17,7 @@ namespace Apollo.UMService
     using System.Web.Helpers;
     using Apollo.UMService.Model;
     using Fanex.Caching;
+    using Fanex.Logging;
 
     /// <summary>
     /// http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.begingetresponse.aspx
@@ -139,7 +140,9 @@ namespace Apollo.UMService
                     if (myRequestState.RequestData.Length > 1)
                     {
                         var umInfo = Json.Decode<UnderMaintenanceModel>(myRequestState.RequestData.ToString());
-                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromMinutes(1));
+                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromSeconds(1));
+
+                       // LogService.Info(umInfo.status.ToString() + " - " + umInfo.start_time + " - " + umInfo.end_time);
                     }
 
                     responseStream.Close();

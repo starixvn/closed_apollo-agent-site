@@ -4156,4 +4156,10 @@
   <data name="dateRange" xml:space="preserve">
     <value>ช่วงวันที่</value>
   </data>
+  <data name="lblwinlossnote1" xml:space="preserve">
+    <value>"Effective Stake" after share to upline</value>
+  </data>
+  <data name="lblwinlossnote2" xml:space="preserve">
+    <value>"Effective Stake" to company</value>
+  </data>
 </root>

@@ -3896,6 +3896,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; after share to upline.
+        /// </summary>
+        public static string lblwinlossnote1 {
+            get {
+                return ResourceManager.GetString("lblwinlossnote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Effective Stake&quot; to company.
+        /// </summary>
+        public static string lblwinlossnote2 {
+            get {
+                return ResourceManager.GetString("lblwinlossnote2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Win Loss.
         /// </summary>
         public static string lblWinLossReport {
