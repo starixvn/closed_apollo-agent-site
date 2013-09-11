@@ -16,7 +16,6 @@
 namespace Apollo.Age.Web
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Web.Mvc;
     using Apollo.Age.Enumerations;
@@ -30,10 +29,12 @@ namespace Apollo.Age.Web
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login.
     /// All non-anonymous controller MUST inherit from this base controller.
-    /// </summary>    
+    /// </summary>
     public class BaseController : Controller
     {
-        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus"; // Cache Key.
+        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus";
+        private const string CheckDownlineAgentCacheKey = "Fanex.Cache.Apollo.DownlineAgent";
+        private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
 
@@ -173,25 +174,27 @@ namespace Apollo.Age.Web
                 if (SessionManager.CurrentSession != null)
                 {
                     var currentSession = SessionManager.CurrentSession;
-
                     int agentId = filterContext.ActionParameters.ContainsKey("agentId") ?
                         Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
                     int memberId = filterContext.ActionParameters.ContainsKey("memberId") ?
                         Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
+                    bool isDownline = false;
 
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
-                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
-                        {
-                            CommonChecking.DoUnAuthorized(filterContext);
-                        }
+                        isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member);
+
+                       // _cacheManager.Get<bool>(CheckDownlineAgentCacheKey);
+
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
-                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent))
-                        {
-                            CommonChecking.DoUnAuthorized(filterContext);
-                        }
+                        isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent);
+                    }
+
+                    if (!isDownline)
+                    {
+                        CommonChecking.DoUnAuthorized(filterContext);
                     }
                 }
                 else

@@ -140,7 +140,7 @@ namespace Apollo.UMService
                     if (myRequestState.RequestData.Length > 1)
                     {
                         var umInfo = Json.Decode<UnderMaintenanceModel>(myRequestState.RequestData.ToString());
-                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromSeconds(1));
+                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, umInfo, TimeSpan.FromSeconds(30));
 
                        // LogService.Info(umInfo.status.ToString() + " - " + umInfo.start_time + " - " + umInfo.end_time);
                     }
