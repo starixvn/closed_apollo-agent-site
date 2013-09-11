@@ -16,6 +16,7 @@
 namespace Apollo.Age.Web
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Web.Mvc;
     using Apollo.Age.Enumerations;
@@ -25,6 +26,8 @@ namespace Apollo.Age.Web
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Logging;
+
+    [SuppressMessage("CSharp.Nexcel.NexcelCustom", "SP2101:CSharp.Nexcel.NexcelCustom", Justification = "Reviewed.")]
 
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login.
@@ -42,6 +45,65 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+        }
+
+        #region PROPERTIES
+
+        /// <summary>
+        /// Gets Current Session.
+        /// </summary>
+        protected ICurrentSession CurrentSession
+        {
+            get { return SessionManager.CurrentSession; }
+        }
+
+        #region Controller Util
+
+        /// <summary>
+        /// Gets Current Action.
+        /// </summary>
+        protected string CurrentAction
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
+            }
+        }
+
+        /// <summary>
+        /// Gets Current Controller.
+        /// </summary>
+        protected string CurrentController
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
+            }
+        }
+
+        /// <summary>
+        /// Gets Current Area.
+        /// </summary>
+        protected string CurrentArea
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
+            }
+        }
+
+        #endregion Controller Util
+
+        #endregion PROPERTIES
+
+        /// <summary>
+        /// Gets Resource Data.
+        /// </summary>
+        /// <param name="key">Input a Key.</param>
+        /// <returns>Return resource value.</returns>
+        protected string GetResourceData(string key)
+        {
+            return LanguageManager.GetResourceData(key);
         }
 
         #region Override functions
@@ -90,65 +152,6 @@ namespace Apollo.Age.Web
         }
 
         #endregion Override functions
-
-        #region PROPERTIES
-
-        /// <summary>
-        /// Get Current Session.
-        /// </summary>
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.CurrentSession; }
-        }
-
-        /// <summary>
-        /// Get Resource Data.
-        /// </summary>
-        /// <param name="key">Input a Key.</param>
-        /// <returns>Return resource value.</returns>
-        protected string GetResourceData(string key)
-        {
-            return LanguageManager.GetResourceData(key);
-        }
-
-        #region Controller Util
-
-        /// <summary>
-        /// Get Current Action.
-        /// </summary>
-        protected string CurrentAction
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
-            }
-        }
-
-        /// <summary>
-        /// Get Current Controller.
-        /// </summary>
-        protected string CurrentController
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
-            }
-        }
-
-        /// <summary>
-        /// Get Current Area.
-        /// </summary>
-        protected string CurrentArea
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
-            }
-        }
-
-        #endregion Controller Util
-
-        #endregion PROPERTIES
 
         #region Auth
 
