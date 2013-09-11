@@ -182,19 +182,37 @@ namespace Apollo.Age.Web
 
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
-                        isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member);
+                        if (_cacheManager.Contains(CheckDownlineAgentCacheKey))
+                        {
+                            isDownline = _cacheManager.Get<bool>(CheckDownlineAgentCacheKey);
+                        }
+                        else
+                        {
+                            isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member);
+                            _cacheManager.Set<bool>(CheckDownlineAgentCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                        }
 
-                       // _cacheManager.Get<bool>(CheckDownlineAgentCacheKey);
-
+                        if (!isDownline)
+                        {
+                            CommonChecking.DoUnAuthorized(filterContext);
+                        }
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
-                        isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent);
-                    }
+                        if (_cacheManager.Contains(CheckDownlineMemberCacheKey))
+                        {
+                            isDownline = _cacheManager.Get<bool>(CheckDownlineMemberCacheKey);
+                        }
+                        else
+                        {
+                            isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent);
+                            _cacheManager.Set<bool>(CheckDownlineMemberCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                        }
 
-                    if (!isDownline)
-                    {
-                        CommonChecking.DoUnAuthorized(filterContext);
+                        if (!isDownline)
+                        {
+                            CommonChecking.DoUnAuthorized(filterContext);
+                        }
                     }
                 }
                 else
@@ -216,9 +234,13 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                int userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+                int userStatus = -1;
 
-                if (userStatus == 0)
+                if (_cacheManager.Contains(KickOutStatusCacheKey))
+                {
+                    userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+                }
+                else
                 {
                     userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
                     _cacheManager.Set<int>(KickOutStatusCacheKey, userStatus, TimeSpan.FromSeconds(30));
