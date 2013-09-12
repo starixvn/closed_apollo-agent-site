@@ -658,19 +658,22 @@ Spinner.prototype = {
         return this.options.minimum;
     },
     isValid: function (hideMessage) {
-        var value = this.getValue();
-        if (!this.digitsValid(value)) {
-            if (hideMessage == true) {
+        var value = parseFloat(this.input.value);
+        if (isNaN(value)) {
+            if (!hideMessage) {
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
             }
-            else {
+            return false;
+        }
+
+        if (!this.digitsValid(value)) {
+            if (!hideMessage) {
                 Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
             }
             return false;
         }
         if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
-            if (hideMessage == true) {
-            }
-            else {
+            if (!hideMessage) {
                 Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
             }
             return false;
