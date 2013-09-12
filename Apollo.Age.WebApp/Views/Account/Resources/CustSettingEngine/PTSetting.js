@@ -704,6 +704,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
 
                                 if (dataChanged == true || isEditMultiple || currentPtValue.IsApplyMember) {
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
+                                    currentBetType.Pt.IsChangePt = dataChanged || isEditMultiple;
                                 }
                                 else {
                                     currentBetType.Pt = null;
