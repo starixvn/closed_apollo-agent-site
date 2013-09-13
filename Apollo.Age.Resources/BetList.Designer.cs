@@ -664,15 +664,6 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rebate.
-        /// </summary>
-        public static string OutstandingRebate {
-            get {
-                return ResourceManager.GetString("OutstandingRebate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Over.
         /// </summary>
         public static string over {
@@ -1011,15 +1002,6 @@ namespace Apollo.Age.Resources {
         public static string winloss {
             get {
                 return ResourceManager.GetString("winloss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Discount.
-        /// </summary>
-        public static string WinLossAndTicketCancelDisscount {
-            get {
-                return ResourceManager.GetString("WinLossAndTicketCancelDisscount", resourceCulture);
             }
         }
         

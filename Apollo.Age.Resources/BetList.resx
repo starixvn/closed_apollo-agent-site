@@ -435,10 +435,4 @@
   <data name="TransDiscount" xml:space="preserve">
     <value>Discount</value>
   </data>
-  <data name="OutstandingRebate" xml:space="preserve">
-    <value>Rebate</value>
-  </data>
-  <data name="WinLossAndTicketCancelDisscount" xml:space="preserve">
-    <value>Discount</value>
-  </data>
 </root>

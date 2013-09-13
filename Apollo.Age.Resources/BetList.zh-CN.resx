@@ -133,7 +133,7 @@
     <value>或者</value>
   </data>
   <data name="rebate" xml:space="preserve">
-    <value>回扣</value>
+    <value>退水</value>
   </data>
   <data name="lblNoDraw" xml:space="preserve">
     <value>不是和局</value>
@@ -397,7 +397,7 @@
     <value>特性</value>
   </data>
   <data name="discount" xml:space="preserve">
-    <value>折扣</value>
+    <value>退水</value>
   </data>
   <data name="lblMasterWinLoseDetail" xml:space="preserve">
     <value>总代理输赢细节</value>
@@ -436,12 +436,6 @@
     <value>小</value>
   </data>
   <data name="TransDiscount" xml:space="preserve">
-    <value>退水</value>
-  </data>
-  <data name="OutstandingRebate" xml:space="preserve">
-    <value>退水</value>
-  </data>
-  <data name="WinLossAndTicketCancelDisscount" xml:space="preserve">
     <value>退水</value>
   </data>
 </root>
