@@ -27,13 +27,17 @@ namespace Apollo.Age.Web
     using Fanex.Common;
     using Fanex.Logging;
 
+    [SuppressMessage("CSharp.Nexcel.NexcelCustom", "SP2101:CSharp.Nexcel.NexcelCustom", Justification = "Reviewed.")]
+
     /// <summary>
     /// This class override OnActionExecuting to check authentication, authorization, duplicated login.
     /// All non-anonymous controller MUST inherit from this base controller.
-    /// </summary>    
+    /// </summary>
     public class BaseController : Controller
     {
-        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus"; // Cache Key.
+        private const string KickOutStatusCacheKey = "Fanex.Cache.Apollo.KickoutStatus";
+        private const string CheckDownlineAgentCacheKey = "Fanex.Cache.Apollo.DownlineAgent";
+        private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
 
@@ -41,6 +45,65 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+        }
+
+        #region PROPERTIES
+
+        /// <summary>
+        /// Gets Current Session.
+        /// </summary>
+        protected ICurrentSession CurrentSession
+        {
+            get { return SessionManager.CurrentSession; }
+        }
+
+        #region Controller Util
+
+        /// <summary>
+        /// Gets Current Action.
+        /// </summary>
+        protected string CurrentAction
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
+            }
+        }
+
+        /// <summary>
+        /// Gets Current Controller.
+        /// </summary>
+        protected string CurrentController
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
+            }
+        }
+
+        /// <summary>
+        /// Gets Current Area.
+        /// </summary>
+        protected string CurrentArea
+        {
+            get
+            {
+                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
+            }
+        }
+
+        #endregion Controller Util
+
+        #endregion PROPERTIES
+
+        /// <summary>
+        /// Gets Resource Data.
+        /// </summary>
+        /// <param name="key">Input a Key.</param>
+        /// <returns>Return resource value.</returns>
+        protected string GetResourceData(string key)
+        {
+            return LanguageManager.GetResourceData(key);
         }
 
         #region Override functions
@@ -90,65 +153,6 @@ namespace Apollo.Age.Web
 
         #endregion Override functions
 
-        #region PROPERTIES
-
-        /// <summary>
-        /// Get Current Session.
-        /// </summary>
-        protected ICurrentSession CurrentSession
-        {
-            get { return SessionManager.CurrentSession; }
-        }
-
-        /// <summary>
-        /// Get Resource Data.
-        /// </summary>
-        /// <param name="key">Input a Key.</param>
-        /// <returns>Return resource value.</returns>
-        protected string GetResourceData(string key)
-        {
-            return LanguageManager.GetResourceData(key);
-        }
-
-        #region Controller Util
-
-        /// <summary>
-        /// Get Current Action.
-        /// </summary>
-        protected string CurrentAction
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("action");
-            }
-        }
-
-        /// <summary>
-        /// Get Current Controller.
-        /// </summary>
-        protected string CurrentController
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.GetRequiredString("controller");
-            }
-        }
-
-        /// <summary>
-        /// Get Current Area.
-        /// </summary>
-        protected string CurrentArea
-        {
-            get
-            {
-                return HttpContext.Request.RequestContext.RouteData.Values["area"] as string;
-            }
-        }
-
-        #endregion Controller Util
-
-        #endregion PROPERTIES
-
         #region Auth
 
         /// <summary>
@@ -173,22 +177,42 @@ namespace Apollo.Age.Web
                 if (SessionManager.CurrentSession != null)
                 {
                     var currentSession = SessionManager.CurrentSession;
-
                     int agentId = filterContext.ActionParameters.ContainsKey("agentId") ?
                         Converter.ToInt(filterContext.ActionParameters["agentId"], -1) : -1;
                     int memberId = filterContext.ActionParameters.ContainsKey("memberId") ?
                         Converter.ToInt(filterContext.ActionParameters["memberId"], -1) : -1;
+                    bool isDownline = false;
 
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
-                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
+                        if (_cacheManager.Contains(CheckDownlineAgentCacheKey))
+                        {
+                            isDownline = _cacheManager.Get<bool>(CheckDownlineAgentCacheKey);
+                        }
+                        else
+                        {
+                            isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member);
+                            _cacheManager.Set<bool>(CheckDownlineAgentCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                        }
+
+                        if (!isDownline)
                         {
                             CommonChecking.DoUnAuthorized(filterContext);
                         }
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
-                        if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent))
+                        if (_cacheManager.Contains(CheckDownlineMemberCacheKey))
+                        {
+                            isDownline = _cacheManager.Get<bool>(CheckDownlineMemberCacheKey);
+                        }
+                        else
+                        {
+                            isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent);
+                            _cacheManager.Set<bool>(CheckDownlineMemberCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                        }
+
+                        if (!isDownline)
                         {
                             CommonChecking.DoUnAuthorized(filterContext);
                         }
@@ -213,9 +237,13 @@ namespace Apollo.Age.Web
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
-                int userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+                int userStatus = -1;
 
-                if (userStatus == 0)
+                if (_cacheManager.Contains(KickOutStatusCacheKey))
+                {
+                    userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+                }
+                else
                 {
                     userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
                     _cacheManager.Set<int>(KickOutStatusCacheKey, userStatus, TimeSpan.FromSeconds(30));

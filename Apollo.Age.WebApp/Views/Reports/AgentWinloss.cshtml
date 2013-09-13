@@ -14,7 +14,8 @@
     </div>
     @RazorHelper.RenderReportLinks(Lang.lblWinLoss)
     @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
-    <div class="end"></div>
+    <div class="end">
+    </div>
 </div>
 <div id="box_header" class="report">
     <table class="winloss">
@@ -68,24 +69,26 @@
                 <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
             </div>
         </div>
-    </div>    
+    </div>
 </div>
-
-<div class="notes">
-    <div class="title-notes">@Lang.lblRemarks:</div>
-    <ul class="list">
-        <li>#1: @Lang.lblwinlossnote1</li>
-        <li>#2: @Lang.lblwinlossnote2</li>
-    </ul>    
-</div>
-
+@if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
+{
+    <div class="notes">
+        <div class="title-notes">@Lang.lblRemarks:</div>
+        <ul class="list">
+            <li>#1: @Lang.lblwinlossnote1</li>
+            <li>#2: @Lang.lblwinlossnote2</li>
+        </ul>
+    </div>
+}
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 }
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
-    <div class="export-excel" id="btnExcelAgentWinLoss"></div>
+    <div class="export-excel" id="btnExcelAgentWinLoss">
+    </div>
     <table class="tblRpt report tblWinLoss">
         @if (Model.IsSuper)
         {
@@ -313,14 +316,13 @@
                         }
                         else
                         {
-                             <td class="r">
+                            <td class="r">
                                 @Lang.lblNA
                             </td>
                             <td class="r">
                                 @Lang.lblNA
                             </td>
                         }
-
                         <td class="r">
                             @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                         </td>
