@@ -6,11 +6,5 @@
 }
 <script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
-    if (parent.IsSSO == true) {
-        parent.location.href = '@url';
-    }
-    else {
-        location.href = '@url';
-    }
-    
+    parent.location.href = '@url';    
 </script>
