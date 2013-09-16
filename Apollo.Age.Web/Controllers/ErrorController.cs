@@ -25,7 +25,6 @@ namespace Apollo.Age.Web
             {
                 LanguageManager.SetCulture(SessionManager.CurrentSession.Language);
             }
-
         }
 
         public ActionResult Index(string err)
@@ -35,9 +34,11 @@ namespace Apollo.Age.Web
                 case "403":
                     ViewBag.ErrorMessage = Lang.HttpError_403;
                     break;
+
                 case "404":
                     ViewBag.ErrorMessage = Lang.HttpError_404;
                     break;
+
                 default:
                     ViewBag.ErrorMessage = Lang.HttpError_Default;
                     break;
@@ -49,7 +50,7 @@ namespace Apollo.Age.Web
         public ActionResult UnderMaintenance()
         {
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
-           // return View(maintenanceInfo);
+            // return View(maintenanceInfo);
 
             if (maintenanceInfo.status)
             {
@@ -78,6 +79,12 @@ namespace Apollo.Age.Web
 
         public ActionResult AccountStopped()
         {
+            bool isInternal = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isInternal = SessionManager.CurrentSession.IsInternalSignIn;                
+            }
+            ViewBag.IsInternal = isInternal;
             return View();
         }
 

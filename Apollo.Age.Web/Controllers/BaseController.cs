@@ -26,6 +26,7 @@ namespace Apollo.Age.Web
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Logging;
+using Apollo.Age.Web.Services;
 
     [SuppressMessage("CSharp.Nexcel.NexcelCustom", "SP2101:CSharp.Nexcel.NexcelCustom", Justification = "Reviewed.")]
 
@@ -40,11 +41,13 @@ namespace Apollo.Age.Web
         private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
+                
 
         public BaseController()
         {
             _userService = new UserService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+        
         }
 
         #region PROPERTIES
@@ -125,6 +128,7 @@ namespace Apollo.Age.Web
                 CheckAuthentication();
                 CheckValidDownline(filterContext);
                 CheckKickOut(filterContext);
+        
             }
 
             if (CurrentSession != null)
@@ -164,7 +168,7 @@ namespace Apollo.Age.Web
             {
                 Response.Redirect(ApoURLs.URLs.Unauthorized);
             }
-        }
+        }               
 
         /// <summary>
         /// Checking Validate Down line.
@@ -185,14 +189,16 @@ namespace Apollo.Age.Web
 
                     if (memberId >= 0 && memberId != currentSession.AgentId)
                     {
-                        if (_cacheManager.Contains(CheckDownlineAgentCacheKey))
+                        string cacheKey = CheckDownlineAgentCacheKey + CurrentSession.AgentId.ToString() + memberId.ToString();
+
+                        if (_cacheManager.Contains(cacheKey))
                         {
-                            isDownline = _cacheManager.Get<bool>(CheckDownlineAgentCacheKey);
+                            isDownline = _cacheManager.Get<bool>(cacheKey);
                         }
                         else
                         {
                             isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member);
-                            _cacheManager.Set<bool>(CheckDownlineAgentCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                            _cacheManager.Set<bool>(cacheKey, isDownline, TimeSpan.FromSeconds(5));
                         }
 
                         if (!isDownline)
@@ -202,14 +208,16 @@ namespace Apollo.Age.Web
                     }
                     else if (agentId >= 0 && agentId != currentSession.AgentId)
                     {
-                        if (_cacheManager.Contains(CheckDownlineMemberCacheKey))
+                        string cacheKey = CheckDownlineAgentCacheKey + CurrentSession.AgentId.ToString() + agentId.ToString();
+
+                        if (_cacheManager.Contains(cacheKey))
                         {
-                            isDownline = _cacheManager.Get<bool>(CheckDownlineMemberCacheKey);
+                            isDownline = _cacheManager.Get<bool>(cacheKey);
                         }
                         else
                         {
                             isDownline = _userService.CheckDownlineBelongToAgent(currentSession.AgentId, agentId, CustomerType.Agent);
-                            _cacheManager.Set<bool>(CheckDownlineMemberCacheKey, isDownline, TimeSpan.FromSeconds(30));
+                            _cacheManager.Set<bool>(cacheKey, isDownline, TimeSpan.FromSeconds(30));
                         }
 
                         if (!isDownline)
@@ -238,35 +246,38 @@ namespace Apollo.Age.Web
             if (!ReferenceEquals(CurrentSession, null))
             {
                 int userStatus = -1;
-
-                if (_cacheManager.Contains(KickOutStatusCacheKey))
+                string cacheKey = KickOutStatusCacheKey + CurrentSession.AgentId.ToString() + CurrentSession.UserId.ToString();
+                if (_cacheManager.Contains(cacheKey))
                 {
-                    userStatus = _cacheManager.Get<int>(KickOutStatusCacheKey);
+                    userStatus = _cacheManager.Get<int>(cacheKey);
                 }
                 else
                 {
                     userStatus = _userService.GetUserStatus(CurrentSession.AgentId, CurrentSession.UserId);
-                    _cacheManager.Set<int>(KickOutStatusCacheKey, userStatus, TimeSpan.FromSeconds(30));
+                    _cacheManager.Set<int>(cacheKey, userStatus, TimeSpan.FromSeconds(5));
                 }
 
                 if (userStatus >= (int)CustomerStatus.Stopped)
-                {
-                    if (Request.IsAjaxRequest())
-                    {
-                        Response.ContentType = "text/plain";
-                        Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        Response.Write(Resources.Lang.lblAccountWasStopped);
-                        Response.BufferOutput = true;
-                        Response.ClearContent();
-                        Response.ClearHeaders();
-                        Response.Flush();
-                        Response.Close();
-                        Response.End();
-                    }
-                    else
-                    {
-                        Response.Redirect(ApoURLs.URLs.AccountStopped, false);
-                    }
+                {                   
+                    Response.Redirect(ApoURLs.URLs.AccountStopped, false);
+
+                    //if (Request.IsAjaxRequest())
+                    //{
+                    //    Response.ContentType = "text/plain";
+                    //    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    //    Response.Write(Resources.Lang.lblAccountWasStopped);
+                    //    Response.BufferOutput = true;
+                    //    Response.ClearContent();
+                    //    Response.ClearHeaders();
+                    //    Response.Flush();
+                    //    Response.Close();
+                    //    Response.End();
+                    //}
+                    //else
+                    //{
+                        
+                    //    Response.Redirect(ApoURLs.URLs.AccountStopped, false);
+                    //}
                 }
             }
         }

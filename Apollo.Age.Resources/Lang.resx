@@ -1351,7 +1351,7 @@
     <value>Volleyball A</value>
   </data>
   <data name="lblAccountWasStopped" xml:space="preserve">
-    <value>Your Account was stopped!</value>
+    <value>Your account has been suspended temporarily. Please contact your agent for enquiries</value>
   </data>
   <data name="lblEI" xml:space="preserve">
     <value>E.I</value>
