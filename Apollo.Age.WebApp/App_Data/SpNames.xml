@@ -21,7 +21,7 @@
       <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
       <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
     </Setting>
-    <Setting Key="Age_Agent_CheckBelongToUplines" SpName="Age_Agent_CheckBelongToUplines" DbName="SVRAGE.RepDB" Plain="0" ></Setting>
+    <Setting Key="Age_Agent_CheckBelongToUplines" SpName="Age_Agent_CheckBelongToUplinesForAgent" DbName="SVRAGE.RepDB" Plain="0" ></Setting>
     
     <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="SVRCSD.bodb_NAP" />
     <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="SVRONUSER.OnlineDB" Plain="0" />
