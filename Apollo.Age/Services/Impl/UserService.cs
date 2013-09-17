@@ -285,7 +285,7 @@ namespace Apollo.Age.Services.Impl
         /// </returns>
         public int InternalLogout(int onUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
             try
             {
                 var result = _userRepository.InternalLogout(new InternalLogoutCriteria
