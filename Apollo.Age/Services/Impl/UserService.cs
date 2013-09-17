@@ -257,7 +257,7 @@ namespace Apollo.Age.Services.Impl
         /// <returns></returns>
         public bool InternalReCheckIn(int onUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
             try
             {
                 var result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
