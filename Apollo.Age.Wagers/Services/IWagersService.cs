@@ -25,7 +25,7 @@ namespace Apollo.Age.Wagers.Services
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">Sport type id.</param>
         /// <returns>List league.</returns>
-        IEnumerable<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false);
+        IEnumerable<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false, bool isShowDataTest = false);
 
         /// <summary>
         /// Get main shareholder.

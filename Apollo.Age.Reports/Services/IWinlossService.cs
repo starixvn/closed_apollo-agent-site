@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.Services
 
     public interface IWinLossService
     {
-        List<MatchEnteredModel> GetMatchEntered();
+        List<MatchEnteredModel> GetMatchEntered(bool isShowDataTest);
 
         List<AgentWinLossModel> GetAgentWinLoss(AgentWinLossCriteria criteria);
 

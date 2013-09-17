@@ -25,6 +25,8 @@ namespace Apollo.Age.Wagers.Criterias
 
         public DateTime? ToDate { get; set; }
 
+        public bool isShowAll { get; set; }
+
         /// <summary>
         /// Get setting key.
         /// </summary>

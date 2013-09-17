@@ -81,7 +81,7 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return ConfigurationManager.AppSettings["SuperSafeCode"];
+                return GetValue("SuperSafeCode");
             }
         }
 
@@ -99,6 +99,14 @@ namespace Apollo.Age.Configurations
             {
                 var resultDate = GetValue("ResultDateConfig");
                 return Converter.ToDateTime(resultDate, DateTime.Now);
+            }
+        }
+
+        public static int CurrencyTesting
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("CurrencyTesting"));
             }
         }
 

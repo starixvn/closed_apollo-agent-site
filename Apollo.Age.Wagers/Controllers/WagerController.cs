@@ -27,6 +27,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Fanex.Common;
+    using Apollo.Age.Configurations;
 
     /// <summary>
     /// Wager Controller.
@@ -62,7 +63,12 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>Return list of Leagues.</returns>
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
-            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright);
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+            var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright, isShowDataTest);
             var result = new List<League>();
             foreach (var league in leagues)
             {

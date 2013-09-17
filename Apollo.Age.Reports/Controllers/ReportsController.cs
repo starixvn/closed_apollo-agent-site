@@ -27,6 +27,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
+    using Apollo.Age.Configurations;
     
     /// <summary>
     /// Reports Controller.
@@ -201,7 +202,13 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
-            matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered();
+
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+            matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
             return this.View(matchEnteredViewModel);
         }

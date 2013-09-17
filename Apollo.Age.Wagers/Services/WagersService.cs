@@ -33,14 +33,16 @@ namespace Apollo.Age.Wagers.Services
             DateTime fromDate,
             DateTime? toDate = null,
             string sportTypes = null,
-            bool isOutright = false)
+            bool isOutright = false,
+            bool isShowDataTest = false)
         {
             var criteria = new GetLeagueCriteria
             {
                 FromDate = fromDate,
                 SportTypes = sportTypes,
                 IsOutright = isOutright,
-                ToDate = toDate
+                ToDate = toDate,
+                isShowAll = isShowDataTest
 
             };
 

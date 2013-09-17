@@ -103,8 +103,15 @@ namespace Apollo.Age.Reports.Controllers
             string sportTypes,
             int sportId)
         {
+
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            { 
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId,isShowDataTest);
 
             var listLeague = new List<League>();
 
@@ -135,8 +142,14 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Json data.</returns>
         public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
             var sports = new List<Sport>();
             if (matchResults != null && matchResults.Any())
@@ -161,8 +174,14 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Action Result.</returns>
         public ActionResult GetMatchResult(DateTime date, string sportTypes)
         {
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
             if (matchResults != null && matchResults.Any())
             {
@@ -185,8 +204,14 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Action Result.</returns>
         public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
             if (matchResults != null && matchResults.Any())
             {
@@ -216,11 +241,16 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Json Result.</returns>
         public JsonResult GetSportOutright(DateTime date)
         {
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = GetBalanceUpDay,
                 FromDate = date,
-                OutrightResult = _resultService.GetOutrightResult(date)
+                OutrightResult = _resultService.GetOutrightResult(date, isShowDataTest)
             };
 
             return Json(viewModel.SportList, JsonRequestBehavior.AllowGet);
@@ -234,7 +264,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Action Result.</returns>
         public ActionResult Outright(DateTime date, int sportId = 0)
         {
-            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date);
+            var isShowDataTest = false;
+            if (CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            }
+
+            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date, isShowDataTest);
             if (outrightResults != null && outrightResults.Any())
             {
                 outrightResults = outrightResults.Where(x => x.SportId == (byte)sportId);

@@ -33,9 +33,12 @@ namespace Apollo.Age.Reports.Services
         /// Get List Match Entered from DB.
         /// </summary>
         /// <returns>List Match Entered.</returns>
-        public List<MatchEnteredModel> GetMatchEntered()
+        public List<MatchEnteredModel> GetMatchEntered(bool isShowDataTest)
         {
-            var matchEnteredList = this.GetData<MatchEntered>(new MatchEnteredCriteria()).ToList();
+            var criterias = new MatchEnteredCriteria() {
+                isShowAll = isShowDataTest
+            };
+            var matchEnteredList = this.GetData<MatchEntered>(criterias).ToList();
 
             return this.ConvertToMatchEnteredModel(matchEnteredList);
         }

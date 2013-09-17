@@ -36,26 +36,27 @@ namespace Apollo.Age.Reports.Services
             return sports;
         }
 
-        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType = 0, string language = "E", bool isSowTestData = false)
+        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType = 0, string language = "E", bool isShowDataTest = false)
         {
             var leagues = GetData<League>(new ResultGetLeagueBySportCriteria
             {
                 EventDate = eventDate,
                 SportType = sportType,
-                IsShowAll = isSowTestData,
+                IsShowAll = isShowDataTest,
                 BalanceUpDay = GetBalanceUpDay()
             });
 
             return leagues;
         }
 
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId)
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
                     {
                         FromDate = fromDate,
                         Sporttypes = sportTypes,
-                        BalanceUpDay = GetBalanceUpDay()
+                        BalanceUpDay = GetBalanceUpDay(),
+                        IsTest = isShowDataTest
                     };
 
             var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "_"));
@@ -73,13 +74,13 @@ namespace Apollo.Age.Reports.Services
             return matchResult;
         }
 
-        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate)
+        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, bool isShowDataTest)
         {
             var criteria = new GetOutrightResultCriteria
             {
                 FromDate = fromDate,
-                IsShowAll = true,
-                BalanceUpDay = GetBalanceUpDay()
+                IsShowAll = isShowDataTest,
+                BalanceUpDay = GetBalanceUpDay(),                
             };
             var cacheKey = fromDate.ToString("yyyyMMdd");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
