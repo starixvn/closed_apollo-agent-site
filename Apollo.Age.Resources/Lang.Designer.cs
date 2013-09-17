@@ -1663,7 +1663,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Account was stopped!.
+        ///   Looks up a localized string similar to Your account has been suspended temporarily. Please contact your agent for enquiries.
         /// </summary>
         public static string lblAccountWasStopped {
             get {

@@ -1,13 +1,28 @@
 @{
-	Layout = null;
-	string title = Apollo.Age.Resources.Lang.lblAccountWasStopped;
+    Layout = null;
+    string title = Apollo.Age.Resources.Lang.lblAccountWasStopped;
+    var isInternal = (bool)ViewBag.IsInternal;
 }
+
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>@title</title>
+    <title>@title</title>
 </head>
-<body>
-	<h1>@title</h1>
+<body>       
+    @if (isInternal)
+    { 
+        <script type="text/javascript">
+            alert('@title');
+            parent.location.href='@Url.Action("SignOut", "Internal")';
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            alert('@title');
+            parent.location.href='@Url.Action("SignOut", "OAuth")';
+        </script>
+    }
 </body>
 </html>

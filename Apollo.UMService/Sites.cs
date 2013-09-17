@@ -14,8 +14,8 @@ namespace Apollo.UMService
     /// </summary>
     public static class Sites
     {
-        public const string Agent = "Apollo";
-
+        public const string Agent = "Agent";
+        public const string Apollo = "Apollo";
         public const string CSD = "CSD";
     }
 }
