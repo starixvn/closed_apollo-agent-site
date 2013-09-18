@@ -36,19 +36,7 @@ namespace Apollo.Age.Reports.Services
             return sports;
         }
 
-        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType = 0, string language = "E", bool isShowDataTest = false)
-        {
-            var leagues = GetData<League>(new ResultGetLeagueBySportCriteria
-            {
-                EventDate = eventDate,
-                SportType = sportType,
-                IsShowAll = isShowDataTest,
-                BalanceUpDay = GetBalanceUpDay()
-            });
-
-            return leagues;
-        }
-
+      
         public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria

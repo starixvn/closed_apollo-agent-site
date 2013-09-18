@@ -285,10 +285,7 @@
       <Mapping DataField="eventdate" ObjectProperty="EventDate"/>
       <Mapping DataField="teamid" ObjectProperty="TeamId"/>
       <Mapping DataField="status" ObjectProperty="Status"/>
-    </Setting>
-    <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="SVRAGE.RepDB" Plain="0" >
-      <Mapping DataField="leagueid" ObjectProperty="Id"/>
-    </Setting>
+    </Setting>   
     <Setting Key="Age_Result_MatchSelBySport" SpName="Age_Result_MatchSelBySport" DbName="SVRAGE.RepDB" Plain="0" >
       <Mapping DataField="sporttype" ObjectProperty="SportId"/>
       <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>

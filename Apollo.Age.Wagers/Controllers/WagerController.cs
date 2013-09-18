@@ -286,7 +286,7 @@ namespace Apollo.Age.Wagers.Controllers
 
                 if (earlyMarketListDate != null && earlyMarketListDate.Any())
                 {
-                    ViewBag.EarlyMarketDates = GenerateEarlyMarketDates(sportName);
+                    ViewBag.EarlyMarketDates = earlyMarketListDate;
                 }
                 else
                 {
