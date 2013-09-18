@@ -107,7 +107,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -145,7 +145,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -177,7 +177,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -207,7 +207,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -244,7 +244,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
             var viewModel = new OutrightResultViewModel
             {
@@ -267,7 +267,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date, isShowDataTest);

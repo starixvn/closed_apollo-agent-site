@@ -10,10 +10,7 @@
 namespace Apollo.Age.Configurations
 {
     using System;
-    using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
-    using System.Text;
     using Fanex.Common;
     using Fanex.Logging;
 
@@ -103,18 +100,16 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static int[] CurrencyTesting
+        public static int CurrencyTesting
         {
             get
             {
-                string[] currency = null;
-
                 if (!string.IsNullOrWhiteSpace(GetValue("CurrencyTesting")))
                 {
-                    currency = GetValue("CurrencyTesting").Split(',');
+                    return Convert.ToInt32(GetValue("CurrencyTesting"));
                 }
 
-                return Array.ConvertAll<string, int>(currency, int.Parse);
+                return -1;
             }
         }
 

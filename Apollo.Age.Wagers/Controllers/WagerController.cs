@@ -66,7 +66,7 @@ namespace Apollo.Age.Wagers.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright, isShowDataTest);
             var result = new List<League>();

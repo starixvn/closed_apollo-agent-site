@@ -206,7 +206,7 @@ namespace Apollo.Age.Reports.Controllers
             var isShowDataTest = false;
             if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper ;
             }
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
