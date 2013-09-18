@@ -15,6 +15,7 @@ namespace Apollo.Age.Configurations
     using System.Linq;
     using System.Text;
     using Fanex.Common;
+    using Fanex.Logging;
 
     /// <summary>
     /// Provide static accessing function for setting key from app setting.config.
@@ -110,6 +111,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static bool DisableEditOnMember
+        {
+            get
+            {
+                return GetValue("DisableEditOnMember") == "1";
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>
@@ -117,7 +126,15 @@ namespace Apollo.Age.Configurations
         /// <returns>Return value.</returns>
         public static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key].ToString();
+            try
+            {
+                return ConfigurationManager.AppSettings[key].ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+                return string.Empty;
+            }
         }
     }
 }

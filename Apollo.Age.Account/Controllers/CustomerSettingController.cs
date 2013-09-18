@@ -32,6 +32,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Configurations;
 
     /// <summary>
     /// Customer Setting Controller
@@ -351,6 +352,10 @@ namespace Apollo.Age.Account.Controllers
             string memberIds = "")
       
         {
+            if (AppSettings.DisableEditOnMember)
+            {
+                return Redirect("~/Error?err=404");
+            }
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
