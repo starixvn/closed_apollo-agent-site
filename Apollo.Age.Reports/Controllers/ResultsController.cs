@@ -105,9 +105,9 @@ namespace Apollo.Age.Reports.Controllers
         {
 
             var isShowDataTest = false;
-            if (CurrentSession != null)
-            { 
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -143,9 +143,9 @@ namespace Apollo.Age.Reports.Controllers
         public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -175,9 +175,9 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult GetMatchResult(DateTime date, string sportTypes)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -205,9 +205,9 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
 
             IEnumerable<MatchResultModel> matchResults =
@@ -242,9 +242,9 @@ namespace Apollo.Age.Reports.Controllers
         public JsonResult GetSportOutright(DateTime date)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
             var viewModel = new OutrightResultViewModel
             {
@@ -265,9 +265,9 @@ namespace Apollo.Age.Reports.Controllers
         public ActionResult Outright(DateTime date, int sportId = 0)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
 
             IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date, isShowDataTest);

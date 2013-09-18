@@ -64,9 +64,9 @@ namespace Apollo.Age.Wagers.Controllers
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null)
+            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId;
+                isShowDataTest = AppSettings.CurrencyTesting.Contains(CurrentSession.CurrencyId);
             }
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright, isShowDataTest);
             var result = new List<League>();
@@ -286,7 +286,7 @@ namespace Apollo.Age.Wagers.Controllers
 
                 if (earlyMarketListDate != null && earlyMarketListDate.Any())
                 {
-                    ViewBag.EarlyMarketDates = GenerateEarlyMarketDates(sportName);
+                    ViewBag.EarlyMarketDates = earlyMarketListDate;
                 }
                 else
                 {
