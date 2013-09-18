@@ -41,7 +41,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
     //// Taken Share
     var presetSelected = this.pt.Preset;
-    currentPt.MaxPresetSpan = this.pt.Upline.Max - this.pt.Upline.Min;
+    currentPt.MaxPresetSpan = Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Upline.Min, 2);
     currentPt.MinPresetSpan = 0;
 
     var presetContainer = document.createElement("DIV");
@@ -509,7 +509,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     trSetting.appendChild(presetLabel);
 
     var presetSelected = currentPt.Preset;
-    currentPt.MaxPresetSpan = currentPt.Upline.Max - currentPt.Upline.Min;
+    currentPt.MaxPresetSpan = Fanex.RoundNumber(currentPt.Upline.Max - currentPt.Upline.Min, 2);
     currentPt.MinPresetSpan = 0;
     var presetContainer = document.createElement("TD");
     presetContainer.className = "share-setting-value";
