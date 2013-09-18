@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Entities
 @using Apollo.Age.Resources
+@using Apollo.Age.Configurations
 @model CustomerListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
@@ -89,7 +90,10 @@
 @if (!ReferenceEquals(memberList, null) && memberList.Any())
 {
 <div id="divEditMultiple" class="action edit-multiple-indirect-link">
-    <a href="javascript:;" class="edit-link">
+    
+     @if(!AppSettings.DisableEditOnMember)
+     {
+         <a href="javascript:;" class="edit-link">
         @if (isMaster)
         {
             @Lang.edit
@@ -97,7 +101,12 @@
         else
         {
             @Lang.lblview
-        }</a> &nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+        }</a> 
+         @:&nbsp;/&nbsp; 
+    }
+    <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
+     @if (!AppSettings.DisableEditOnMember)
+     {
     <div class="list">
         <ul class="menu-list">
             @if (agentList.Any())
@@ -113,6 +122,7 @@
             }
         </ul>
     </div>
+     }
 </div>
 }
 <table id="tblMemberList" class="tblRpt memberList">
@@ -172,8 +182,10 @@
                         }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    <td class="text-left nowrap">
+                    <td class="text-center nowrap">
                         <div class="action">
+                        @if (!AppSettings.DisableEditOnMember)
+                        {
                             <a href="javascript:;" class="edit-link">
                                 @if (isMaster)
                                 {
@@ -182,7 +194,12 @@
                                 else
                                 {
                                     @Lang.lblview
-                                }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                                }</a> 
+                            @:&nbsp;/&nbsp; 
+                            }
+                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
+                            @if (!AppSettings.DisableEditOnMember)
+                            {
                             <div class="list">
                                 <ul class="menu-list">
                                     @if (agentList.Any())
@@ -198,6 +215,7 @@
                                     }
                                 </ul>
                             </div>
+                            }
                         </div>
                     </td>
                 </tr>

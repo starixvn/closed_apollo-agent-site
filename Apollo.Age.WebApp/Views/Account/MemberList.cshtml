@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Entities
 @using Apollo.Age.Resources
+@using Apollo.Age.Configurations
 @model CustomerListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
@@ -73,7 +74,9 @@
 @if (!ReferenceEquals(memberList, null) && memberList.Any())
 {
 <div  id="divEditMultiple" class="edit-multiple-link">
-    <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+    @if(!AppSettings.DisableEditOnMember)
+    {
+        <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
         @if (isMaster)
         {
             @Lang.edit
@@ -81,7 +84,10 @@
         else
         {
             @Lang.lblview
-        }</a>&nbsp;/&nbsp; <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+        }</a>
+        @:&nbsp;/&nbsp; 
+    }
+    <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
 </div>
 }
 <table id="tblMemberList" class="tblRpt memberList">
@@ -131,7 +137,9 @@
                         }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    <td class="text-left">
+                    <td class="text-center">
+                        @if(!AppSettings.DisableEditOnMember)
+                        {
                         <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
                             @if (isMaster)
                             {
@@ -140,7 +148,10 @@
                             else
                             {
                                 @Lang.lblview
-                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+                            }</a>
+                            @:&nbsp;/&nbsp; 
+                        }
+                        <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                     </td>
                 </tr>
             }

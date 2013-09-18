@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Account.Models;
 @using Apollo.Age;
 @using Apollo.Age.Entities;
-
+@using Apollo.Age.Configurations;
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
@@ -200,33 +200,35 @@
                     @if (Model.IsMember)
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
-                        <a class="edit-link" href="javascript:;">
-                            @if (Model.IsMaster)
-                            {
-                                @Apollo.Age.Resources.Lang.edit
-                            }
-                            else
-                            {
-                                @Apollo.Age.Resources.Lang.lblview
-                            }
-                        </a>
-                         <div class="list">
-                            <ul class="menu-list">
-                                @if (Model.AgentPathList.Any())
+                        if(!AppSettings.DisableEditOnMember)
+                        {
+                            <a class="edit-link" href="javascript:;">
+                                @if (Model.IsMaster)
                                 {
-                                    var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
-                                    foreach (var itemAgent in listAgent)
-                                    {
-                                        if (itemAgent.Level > AgentLevel.Super)
-                                        { 
-                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
-                                        }
-                                    }
-
+                                    @Apollo.Age.Resources.Lang.edit
                                 }
-                            </ul>
-                        </div>
+                                else
+                                {
+                                    @Apollo.Age.Resources.Lang.lblview
+                                }
+                            </a>
+                             <div class="list">
+                                <ul class="menu-list">
+                                    @if (Model.AgentPathList.Any())
+                                    {
+                                        var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
+                                        foreach (var itemAgent in listAgent)
+                                        {
+                                            if (itemAgent.Level > AgentLevel.Super)
+                                            { 
+                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
+                                            }
+                                        }
 
+                                    }
+                                </ul>
+                            </div>
+                            }
                         
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
