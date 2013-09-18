@@ -20,7 +20,7 @@ namespace Apollo.Age.Configurations
     /// Provide static accessing function for setting key from app setting.config.
     /// </summary>
     public static class AppSettings
-    {     
+    {
         public static string UnderMaintenanceUrl
         {
             get
@@ -59,7 +59,7 @@ namespace Apollo.Age.Configurations
             {
                 return ApolloDownTime.Split("-".ToCharArray())[1];
             }
-        }               
+        }
 
         public static bool AllowInternalUpdate
         {
@@ -102,11 +102,18 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static int CurrencyTesting
+        public static int[] CurrencyTesting
         {
             get
             {
-                return Convert.ToInt32(GetValue("CurrencyTesting"));
+                string[] currency = null;
+
+                if (!string.IsNullOrWhiteSpace(GetValue("CurrencyTesting")))
+                {
+                    currency = GetValue("CurrencyTesting").Split(',');
+                }
+
+                return Array.ConvertAll<string, int>(currency, int.Parse);
             }
         }
 
