@@ -263,13 +263,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 toDate = DateTime.Now.Date;
             }
-
-            ViewBag.Leagues = this.GetLeague(
-                isOutright ? ReportService.MoveBetsDay() : _wagerDate,
-                toDate,
-                sportTypes,
-                isOutright);
-
+          
             ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOutright ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
@@ -277,7 +271,7 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-            ViewBag.WagerDate = _wagerDate;
+            
             //Show button Refresh Now once logged in by Super and MainShareHolder.
             ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
             if (isEarlyMarket)
@@ -287,13 +281,25 @@ namespace Apollo.Age.Wagers.Controllers
                 if (earlyMarketListDate != null && earlyMarketListDate.Any())
                 {
                     ViewBag.EarlyMarketDates = earlyMarketListDate;
+
+                    _wagerDate = Convert.ToDateTime(earlyMarketListDate[0].Value);
                 }
                 else
                 {
                     return View("~/Areas/Wagers/Views/Wager/NoData.cshtml");
                 }
             }
+            else {
+                _wagerDate = DateTime.Now;
+            }
 
+            ViewBag.Leagues = this.GetLeague(
+              isOutright ? ReportService.MoveBetsDay() : _wagerDate,
+              toDate,
+              sportTypes,
+              isOutright);
+
+            ViewBag.WagerDate = _wagerDate;
             ViewBag.isEM = isEarlyMarket;
             ViewBag.isOR = isOutright;
 
