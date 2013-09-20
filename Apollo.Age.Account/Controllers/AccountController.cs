@@ -205,6 +205,10 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
+            //// Get Top Member 
+            var topMember = _accountService.GetTopMember(agentInfo.CustId);
+            ViewBag.TopMember = topMember;
+
             return View("AccountInfo", agentInfo);
         }
 

@@ -2131,6 +2131,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Member Share.
+        /// </summary>
+        public static string lblEditMemberShare {
+            get {
+                return ResourceManager.GetString("lblEditMemberShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % Min Downline.
         /// </summary>
         public static string lblEditMinPosition {
@@ -2748,6 +2757,15 @@ namespace Apollo.Age.Resources {
         public static string lblMemberOutstanding {
             get {
                 return ResourceManager.GetString("lblMemberOutstanding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Share.
+        /// </summary>
+        public static string lblMemberShare {
+            get {
+                return ResourceManager.GetString("lblMemberShare", resourceCulture);
             }
         }
         
@@ -3757,6 +3775,15 @@ namespace Apollo.Age.Resources {
         public static string lblViewMemberSetting {
             get {
                 return ResourceManager.GetString("lblViewMemberSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Member Share.
+        /// </summary>
+        public static string lblViewMemberShare {
+            get {
+                return ResourceManager.GetString("lblViewMemberShare", resourceCulture);
             }
         }
         

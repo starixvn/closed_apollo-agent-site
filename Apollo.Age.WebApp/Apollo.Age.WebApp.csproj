@@ -756,6 +756,7 @@
     <Content Include="Areas\Wagers\Views\Wager\NoData.cshtml" />
     <Content Include="Views\Account\FundOut.cshtml" />
     <Content Include="ExcelTemplates\LineSportCreditTemplate.xls" />
+    <Content Include="Views\Account\EditAllMemberShare.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />

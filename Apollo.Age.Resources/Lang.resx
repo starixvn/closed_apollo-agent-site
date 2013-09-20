@@ -1999,4 +1999,13 @@
   <data name="lblwinlossnote2" xml:space="preserve">
     <value>"Effective Stake" after share given to upline by the selected agent</value>
   </data>
+  <data name="lblEditMemberShare" xml:space="preserve">
+    <value>Edit Member Share</value>
+  </data>
+  <data name="lblMemberShare" xml:space="preserve">
+    <value>Member Share</value>
+  </data>
+  <data name="lblViewMemberShare" xml:space="preserve">
+    <value>View Member Share</value>
+  </data>
 </root>
