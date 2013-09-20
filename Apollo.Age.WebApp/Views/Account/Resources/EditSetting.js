@@ -153,10 +153,10 @@ if (typeof jQuery != 'undefined') {
             },
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
-                setTimeout(function () {
+                //setTimeout(function () {
                     try { $.unblockUI(); } catch (e) { };
                     window.location.href = backLink;
-                }, 4000);
+                //}, 4000);
 
             }
         }
