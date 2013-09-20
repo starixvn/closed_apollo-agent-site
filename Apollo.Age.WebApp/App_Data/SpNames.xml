@@ -498,7 +498,7 @@
     <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="SVRCUST.CustDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB"   TimeOut="600"/>
-    <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Customer_UpdatePositionTaking_xtest" DbName="SVRCUST.CustDB"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking" DbName="SVRCUST.CustDB"   TimeOut="600"/>
     <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB" TimeOut="600"/>
     <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer" DbName="SVRCUST.CustDB"  TimeOut="600">
       <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />

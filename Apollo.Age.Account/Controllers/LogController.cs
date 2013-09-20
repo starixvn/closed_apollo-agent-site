@@ -378,6 +378,21 @@ namespace Apollo.Age.Account.Controllers
                     var xmlData = XDocument.Parse(oldData);
                     var positionTaking = xmlData.Descendants("z");
 
+                    // Check view log for update all direct member of agent
+                    var xmlDirectMember = xmlData.Descendants("r");
+                    if (!ReferenceEquals(xmlDirectMember, null))
+                    {
+                        foreach (var itemRoot in xmlDirectMember)
+                        {
+                            if (itemRoot.Attribute("a") != null)
+                            {
+                                isAgent = false;
+                            }
+
+                            break;
+                        }
+                    }
+
                     if (!ReferenceEquals(positionTaking, null) && positionTaking.Any())
                     {
                         foreach (var item in positionTaking)
