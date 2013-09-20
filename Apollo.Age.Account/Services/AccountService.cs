@@ -223,5 +223,34 @@ namespace Apollo.Age.Account.Services
 
             return _accountRepository.GetAgentLogLogin(criteria);
         }
+
+        public MemberListModel GetTopMember(int agentId)
+        {
+            try
+            {
+                var memberListCriteria = new CustomerListCriteria
+                {
+                    AgentId = agentId,
+                    PageIndex = 0,
+                    UserName = string.Empty,
+                    OrderType = 1
+                };
+
+                IEnumerable<MemberListModel> memberList = GetCustomerList(ref memberListCriteria);
+
+                if (memberList.Any())
+                {
+                    return memberList.ElementAt(0);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
+        }
+
     }
 }

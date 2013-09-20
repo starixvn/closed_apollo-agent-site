@@ -47,5 +47,7 @@ namespace Apollo.Age.Account.Services
         IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
 
         bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSuper = false);
+
+        MemberListModel GetTopMember(int agentId);
     }
 }

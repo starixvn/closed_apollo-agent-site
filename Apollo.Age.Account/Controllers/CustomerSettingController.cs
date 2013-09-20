@@ -328,6 +328,39 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
+        /// Edit all member share of agent.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="agentUserName"></param>
+        /// <returns></returns>
+        public ActionResult EditAllMemberShare(int agentId, 
+            string agentUserName,
+            bool reload = false, 
+            bool isSimpleMode = true, 
+            string backLink = "", 
+            bool fromLeftMenu = false)
+        {
+            var topMember = _accountService.GetTopMember(agentId);
+
+            if (topMember != null)
+            {
+                return EditMemberPositionTaking(
+                    topMember.MemberId,
+                    topMember.Username,
+                    agentId,
+                    agentUserName,
+                    reload,
+                    isSimpleMode,
+                    backLink,
+                    fromLeftMenu,
+                    string.Empty);
+            }
+
+            return View("~/Views/Account/EditAllMemberShare.cshtml");
+        }
+                
+
+        /// <summary>
         /// Edit member position taking
         /// </summary>
         /// <param name="memberId">Member id need be edited</param>
@@ -339,7 +372,6 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">Back link after editing.</param>
           /// <param name="fromLeftMenu">From left menu.</param>
         /// <returns>Action result</returns>
-
         public ActionResult EditMemberPositionTaking(
             int memberId, 
             string userName, 
@@ -352,10 +384,10 @@ namespace Apollo.Age.Account.Controllers
             string memberIds = "")
       
         {
-            if (AppSettings.DisableEditOnMember)
-            {
-                return Redirect("~/Error?err=404");
-            }
+            //if (AppSettings.DisableEditOnMember)
+            //{
+            //    return Redirect("~/Error?err=404");
+            //}
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;

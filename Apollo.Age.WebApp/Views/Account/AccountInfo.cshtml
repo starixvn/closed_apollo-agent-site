@@ -6,6 +6,7 @@
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
     ViewBag.Title = @Apollo.Age.Resources.Lang.AccountSearch;
+    var topMember = (MemberListModel)ViewBag.TopMember;
 }
 <table id="tab-menu">
     <tr>
@@ -200,7 +201,7 @@
                     @if (Model.IsMember)
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
-                        if(!AppSettings.DisableEditOnMember)
+                        if (!AppSettings.DisableEditOnMember)
                         {
                             <a class="edit-link" href="javascript:;">
                                 @if (Model.IsMaster)
@@ -228,7 +229,20 @@
                                     }
                                 </ul>
                             </div>
+                        }
+                        else
+                        {
+                          @*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
+                            @if (Model.IsMaster)
+                            {
+                                @Apollo.Age.Resources.Lang.lblEditMemberShare
                             }
+                            else
+                            {
+                                @Apollo.Age.Resources.Lang.lblViewMemberShare
+                            }
+                            </a>*@
+                        }
                         
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
@@ -264,7 +278,14 @@
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
+                        if (Model.Level > AgentLevel.Shareholder)
+                        {
+                            <a class="lnk-setting" target="main" 
+                            href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
 
+                                @Apollo.Age.Resources.Lang.lblMemberShare
+                            </a>
+                        }
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share
                         </a>
@@ -275,6 +296,8 @@
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
+                        
+                        
                     }
                 </div>
                 <div id="agentsTab-content">

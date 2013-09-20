@@ -82,7 +82,7 @@
                 </th>
                 <th class="width-80">@Lang.betstatus
                 </th>
-                <th class="width-140">@Lang.Feature
+                <th class="width-200">@Lang.Feature
                 </th>
             </tr>
         </thead>
@@ -131,6 +131,14 @@
                             {
                                 @Lang.lblview
                             }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+
+                            @if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                            {
+                                @:&nbsp;/&nbsp; 
+                                <a  href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)" >
+                                    @Apollo.Age.Resources.Lang.lblMemberShare
+                                </a>
+                            }
                     </td>
                 </tr>
             }
