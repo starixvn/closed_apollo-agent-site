@@ -121,6 +121,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static int ShowEstimateTimeWhenGreaterThan
+        {
+            get
+            {
+                return Converter.ToInt(GetValue("ShowEstimateTimeWhenGreaterThan"));
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>

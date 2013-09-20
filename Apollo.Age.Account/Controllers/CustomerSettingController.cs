@@ -327,6 +327,13 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
+        [HttpPost]
+        public ActionResult CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        {
+            var totalSeconds = _accountService.CalculateUpdateAgentPositionTakingTime(settingContext, positionTakingSetting);
+            return Json(totalSeconds);
+        }
+                
         /// <summary>
         /// Edit all member share of agent.
         /// </summary>

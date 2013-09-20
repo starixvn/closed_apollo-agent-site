@@ -39,5 +39,7 @@ namespace Apollo.Age.Account.Repositories.Interface
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
 
         IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
+
+        int CalculateUpdateAgentPositionTakingTime(GetUpdatePositionTakingEstimatedTimeCriteria criteria);
     }
 }

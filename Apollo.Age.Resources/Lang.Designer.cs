@@ -889,6 +889,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The updating process will be completed in {0} minute(s) and {1} second(s). Do you want to continue update?.
+        /// </summary>
+        public static string EstimateTime {
+            get {
+                return ResourceManager.GetString("EstimateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event.
         /// </summary>
         public static string events {

@@ -94,6 +94,7 @@
     <Compile Include="Criterias\GetMemberByUsernameCriteria.cs" />
     <Compile Include="Criterias\GetMessageCriteria.cs" />
     <Compile Include="Criterias\GetMemberInfoCriteria.cs" />
+    <Compile Include="Criterias\GetUpdatePositionTakingEstimatedTimeCriteria.cs" />
     <Compile Include="Criterias\MemberShareCriteria.cs" />
     <Compile Include="Criterias\SetPriMessageReadCriteria.cs" />
     <Compile Include="Criterias\CustomerListCriteria.cs" />

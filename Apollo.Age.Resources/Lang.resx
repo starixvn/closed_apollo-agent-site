@@ -2008,4 +2008,7 @@
   <data name="lblViewMemberShare" xml:space="preserve">
     <value>View Member Share</value>
   </data>
+  <data name="EstimateTime" xml:space="preserve">
+    <value>The updating process will be completed in {0} minute(s) and {1} second(s). Do you want to continue update?</value>
+  </data>
 </root>

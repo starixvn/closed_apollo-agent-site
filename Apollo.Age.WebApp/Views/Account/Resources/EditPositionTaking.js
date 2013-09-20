@@ -61,17 +61,43 @@ if (typeof jQuery != 'undefined') {
                             return;
                         }
 
-                        var stringConfirm = "";
                         if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
-                            stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                            var confirmMember = confirm(Language.CONFIRM_WRITE_MEMBER);
+                            if (confirmMember == true) {
+                                EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
+                            }
                         }
                         else {
-                            stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                            var confirmAgent = confirm(Language.CONFIRM_WRITE_AGENT);
+                            if (confirmAgent == true) {
+                                EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);                              
+                            }
+//                            $.ajax({
+//                                url: APOLLO.resolveUrl('CustomerSetting/CalculateUpdateAgentPositionTakingTime'),
+//                                type: 'POST',
+//                                contentType: "application/json; charset=utf-8",
+//                                dataType: "json",
+//                                data: JSON.stringify({
+//                                    settingContext: EDITPOSITIONTAKING.settingContext,
+//                                    positionTakingSetting: postionTakingValue
+//                                }),
+//                                cache: false
+//                            }).done(function (data) {
+//                                try { $.unblockUI(); } catch (e) { };
+//                                if (data != '') {
+//                                    var confirmEstimate = confirm(data);
+//                                    if (confirmEstimate == true) {
+//                                        EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
+//                                    }
+//                                }
+//                            }).fail(function (jqXHR, textStatus, errorThrown) {
+//                                try { $.unblockUI(); } catch (e) { };
+//                            });
                         }
-                        var c = confirm(stringConfirm);
-                        if (c == true) {
-                            EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
-                        }
+
+                        // 
+
+
                     }
 
                 });
@@ -174,17 +200,17 @@ if (typeof jQuery != 'undefined') {
                 var backLink = $('#backUrl').val();
 
                 //setTimeout(function () {
-                    try { $.unblockUI(); } catch (e) { };
-                    if (DEFAULT_LAYOUT.reload) {
-                        var url = window.location.href;
-                        if (url.indexOf("&isSimpleMode=") > 0) {
-                            url = url.substring(0, url.indexOf("&isSimpleMode="));
-                        }
-                        window.location.href = url + '&isSimpleMode=' + EDITPOSITIONTAKING.currentIsSimpleMode;
+                try { $.unblockUI(); } catch (e) { };
+                if (DEFAULT_LAYOUT.reload) {
+                    var url = window.location.href;
+                    if (url.indexOf("&isSimpleMode=") > 0) {
+                        url = url.substring(0, url.indexOf("&isSimpleMode="));
                     }
-                    else {
-                        window.location.href = backLink;
-                    }
+                    window.location.href = url + '&isSimpleMode=' + EDITPOSITIONTAKING.currentIsSimpleMode;
+                }
+                else {
+                    window.location.href = backLink;
+                }
                 //}, 4000);
 
             }

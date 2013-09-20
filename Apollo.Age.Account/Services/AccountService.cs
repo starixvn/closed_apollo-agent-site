@@ -23,6 +23,9 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
     using System;
+    using Fanex.CustSetting.ViewData;
+    using Apollo.Age.Configurations;
+    using Apollo.Age.Resources;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -252,5 +255,44 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
+
+        public string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        {
+            try
+            {
+                GetUpdatePositionTakingEstimatedTimeCriteria criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
+
+                foreach (var sportType in positionTakingSetting.SportTypes)
+                {
+                    foreach (var betTypeGroup in sportType.BetTypeGroups)
+                    {
+                        foreach (var betType in betTypeGroup.BetTypes)
+                        {
+                            if (betType.Pt.IsChangePt)
+                            {
+                                criteria.NumOfChange++;
+                            }
+                        }
+                    }
+                }
+
+                if (criteria.NumOfChange > 0)
+                {
+                    criteria.AgentId = settingContext.TargetCustId;
+                    var totalSeconds = _accountRepository.CalculateUpdateAgentPositionTakingTime(criteria);
+                    if (totalSeconds > AppSettings.ShowEstimateTimeWhenGreaterThan)
+                    {
+                        return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return string.Empty;
+        }
     }
 }
