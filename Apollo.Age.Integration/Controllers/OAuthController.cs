@@ -21,7 +21,6 @@ namespace Apollo.Age.Integration.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
-    using Apollo.Age.Web.Services;
     using Fanex.Logging;
 
     [AllowAnonymous]
@@ -57,10 +56,7 @@ namespace Apollo.Age.Integration.Controllers
         [AllowAnonymous]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
-          
-
             var authModel = new AuthModel();
-
 
             if (!string.IsNullOrWhiteSpace(error))
             {
@@ -76,7 +72,6 @@ namespace Apollo.Age.Integration.Controllers
 
                         if (authModel != null && authModel.IsValid)
                         {
-                            
                             // username is empty or user is disallowed sso
                             if (!_userService.AllowLineAccountSSO(username))
                             {
@@ -131,14 +126,11 @@ namespace Apollo.Age.Integration.Controllers
                         }
                         else
                         {
-                            LogService.Error("Authorization fail.");
-
                             authModel.ErrorCode = ErrorCode.InvalidRequest;
                         }
                     }
                     else
                     {
-                        LogService.Error("Authorization code is empty");
                         authModel.ErrorCode = ErrorCode.InvalidRequest;
                     }
                 }
