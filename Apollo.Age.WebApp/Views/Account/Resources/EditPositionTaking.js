@@ -173,7 +173,7 @@ if (typeof jQuery != 'undefined') {
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
 
-                setTimeout(function () {
+                //setTimeout(function () {
                     try { $.unblockUI(); } catch (e) { };
                     if (DEFAULT_LAYOUT.reload) {
                         var url = window.location.href;
@@ -185,7 +185,7 @@ if (typeof jQuery != 'undefined') {
                     else {
                         window.location.href = backLink;
                     }
-                }, 4000);
+                //}, 4000);
 
             }
         }

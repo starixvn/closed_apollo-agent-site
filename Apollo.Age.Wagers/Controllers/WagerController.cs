@@ -17,6 +17,7 @@ namespace Apollo.Age.Wagers.Controllers
     using System.Configuration;
     using System.Linq;
     using System.Web.Mvc;
+    using Apollo.Age.Configurations;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Services;
@@ -27,12 +28,10 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Fanex.Common;
-    using Apollo.Age.Configurations;
 
     /// <summary>
     /// Wager Controller.
     /// </summary>
-    ///
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class WagerController : BaseController
     {
@@ -68,6 +67,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
+
             var leagues = WagerService.GetLeague(fromDate, toDate, sportTypes, isOutright, isShowDataTest);
             var result = new List<League>();
             foreach (var league in leagues)
@@ -83,99 +83,32 @@ namespace Apollo.Age.Wagers.Controllers
         }
 
         /// <summary>
-        /// Get league return Json format.
+        /// Get league return JSON format.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
         /// <param name="sportTypes">Sport type id.</param>
         /// <param name="isOutright">Return true is out right.</param>
-        /// <returns>Json format.</returns>
-        public JsonResult GetJsonLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
+        /// <returns>Return value with JSON format.</returns>
+        public JsonResult GetJsonLeague(
+            DateTime fromDate,
+            DateTime? toDate = null,
+            string sportTypes = null,
+            bool isOutright = false)
         {
             var result = this.GetLeague(fromDate, toDate, sportTypes, isOutright);
             if (result != null && result.Any())
             {
-                result.Insert(0, new League
-                {
-                    Id = 0,
-                    Name = Lang.all
-                });
+                result.Insert(
+                    0,
+                    new League
+                    {
+                        Id = 0,
+                        Name = Lang.all
+                    });
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Get sport type id by sport name.
-        /// </summary>
-        /// <param name="sportName">Sport name.</param>
-        /// <returns>Sport type id.</returns>
-        protected string SportId(string sportName)
-        {
-            string sportId = string.Empty;
-            if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
-            {
-                sportId = WagersSportName.WagerSportGroup()[sportName];
-            }
-
-            return sportId;
-        }
-
-        /// <summary>
-        /// Get date for early market wagers.
-        /// </summary>
-        /// <param name="sportName">Sport name.</param>
-        /// <returns>List date.</returns>
-        protected List<SelectListItem> GenerateEarlyMarketDates(string sportName)
-        {
-            var sportId = SportId(sportName);
-
-            var listEventDate = WagerService.GetEventDate(sportId);
-
-            var list = new List<SelectListItem>();
-
-            foreach (var date in listEventDate)
-            {
-                list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Get list main share holder.
-        /// </summary>
-        /// <param name="sportName">Sport name.</param>
-        /// <param name="groupBetName">Group bet name.</param>
-        /// <returns>List agent.</returns>
-        protected List<Agent> GetMainShareHolder(string sportName, string groupBetName)
-        {
-            switch (sportName)
-            {
-                case WagersSportName.Soccer:
-                    {
-                        if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
-                        {
-                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()];
-                        }
-
-                        break;
-                    }
-
-                default:
-                    {
-                        if (Basketball.ListOfBettype().ContainsKey(groupBetName.ToLower()))
-                        {
-                            groupBetName = Basketball.ListOfBettype()[groupBetName.ToLower()];
-                        }
-
-                        break;
-                    }
-            }
-
-            var mainShareHolders = WagerService.GetMainShareHolder(groupBetName);
-
-            return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
         }
 
         /// <summary>
@@ -224,30 +157,35 @@ namespace Apollo.Age.Wagers.Controllers
                     titleAll = Lang.lblsoccerAll;
                     sportTypeIds = SportGroup.Soccer;
                     break;
+
                 case WagersSportName.Basketball:
                     sportTypes = SportGroup.BasketballFootballRugy;
                     title = Lang.Basketball;
                     titleAll = Lang.BasketballAll;
                     sportTypeIds = SportGroup.BasketballFootballRugy;
                     break;
+
                 case WagersSportName.Tennis:
                     sportTypes = SportGroup.Tennis;
                     title = Lang.Tennis;
                     titleAll = Lang.lblTennisAll;
                     sportTypeIds = SportGroup.Tennis;
                     break;
+
                 case WagersSportName.Volleyball:
                     sportTypes = SportGroup.VolleyballBadmintonTableTennis;
                     title = Lang.Volleyball;
                     titleAll = Lang.lblVolleyballAll;
                     sportTypeIds = SportGroup.VolleyballBadmintonTableTennis;
                     break;
+
                 case WagersSportName.Baseball:
                     sportTypes = SportGroup.BaseBall;
                     title = Lang.Baseball;
                     titleAll = Lang.lblBaseballAll;
                     sportTypeIds = SportGroup.BaseBall;
                     break;
+
                 default:
                     sportTypes = SportGroup.Others;
                     sportTypeIds = SportGroup.Others;
@@ -263,7 +201,7 @@ namespace Apollo.Age.Wagers.Controllers
             {
                 toDate = DateTime.Now.Date;
             }
-          
+
             ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName) : new List<Agent>();
             ViewBag.GroupBetName = isOutright ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
@@ -271,8 +209,8 @@ namespace Apollo.Age.Wagers.Controllers
             ViewBag.TitleAll = titleAll;
             ViewBag.LableGroupBetName = GetResourceData(resourceKey);
             ViewBag.SportTypes = sportTypeIds;
-            
-            //Show button Refresh Now once logged in by Super and MainShareHolder.
+
+            // Show button Refresh Now once logged in by Super and MainShareHolder.
             ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
             if (isEarlyMarket)
             {
@@ -289,7 +227,8 @@ namespace Apollo.Age.Wagers.Controllers
                     return View("~/Areas/Wagers/Views/Wager/NoData.cshtml");
                 }
             }
-            else {
+            else
+            {
                 _wagerDate = DateTime.Now;
             }
 
@@ -317,6 +256,79 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// Get list main share holder.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="groupBetName">Group bet name.</param>
+        /// <returns>List agent.</returns>
+        protected List<Agent> GetMainShareHolder(string sportName, string groupBetName)
+        {
+            switch (sportName)
+            {
+                case WagersSportName.Soccer:
+                    {
+                        if (Soccer.ListOfBettype().ContainsKey(groupBetName.ToLower()))
+                        {
+                            groupBetName = Soccer.ListOfBettype()[groupBetName.ToLower()];
+                        }
+
+                        break;
+                    }
+
+                default:
+                    {
+                        if (Basketball.ListOfBettype().ContainsKey(groupBetName.ToLower()))
+                        {
+                            groupBetName = Basketball.ListOfBettype()[groupBetName.ToLower()];
+                        }
+
+                        break;
+                    }
+            }
+
+            var mainShareHolders = WagerService.GetMainShareHolder(groupBetName);
+
+            return mainShareHolders != null ? mainShareHolders.ToList() : new List<Agent>();
+        }
+
+        /// <summary>
+        /// Get sport type id by sport name.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <returns>Sport type id.</returns>
+        protected string SportId(string sportName)
+        {
+            string sportId = string.Empty;
+            if (WagersSportName.WagerSportGroup().ContainsKey(sportName))
+            {
+                sportId = WagersSportName.WagerSportGroup()[sportName];
+            }
+
+            return sportId;
+        }
+
+        /// <summary>
+        /// Get date for early market wagers.
+        /// </summary>
+        /// <param name="sportName">Sport name.</param>
+        /// <returns>List date.</returns>
+        protected List<SelectListItem> GenerateEarlyMarketDates(string sportName)
+        {
+            var sportId = SportId(sportName);
+
+            var listEventDate = WagerService.GetEventDate(sportId);
+
+            var list = new List<SelectListItem>();
+
+            foreach (var date in listEventDate)
+            {
+                list.Add(new SelectListItem() { Text = date.ToString("yyyy-MM-dd"), Value = date.ToString("yyyy-MM-dd") });
+            }
+
+            return list;
         }
     }
 }
