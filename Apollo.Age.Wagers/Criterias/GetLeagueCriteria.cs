@@ -25,12 +25,12 @@ namespace Apollo.Age.Wagers.Criterias
 
         public DateTime? ToDate { get; set; }
 
-        public bool isShowAll { get; set; }
+        public bool IsShowAll { get; set; }
 
         /// <summary>
         /// Get setting key.
         /// </summary>
-        /// <returns>Age_Wagers_SelLeague key.</returns>
+        /// <returns>Store procedure name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Wagers_SelLeague";
