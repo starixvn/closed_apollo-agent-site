@@ -1867,4 +1867,13 @@
   <data name="lblwinlossnote2" xml:space="preserve">
     <value>交公司實貨量</value>
   </data>
+  <data name="lblEditMemberShare" xml:space="preserve">
+    <value>修改會員佔成</value>
+  </data>
+  <data name="lblMemberShare" xml:space="preserve">
+    <value>會員佔成</value>
+  </data>
+  <data name="lblViewMemberShare" xml:space="preserve">
+    <value>查看會員佔成</value>
+  </data>
 </root>
