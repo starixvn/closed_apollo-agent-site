@@ -20,11 +20,14 @@ namespace Apollo.Age.Wagers.Services
     public interface IWagersService
     {
         /// <summary>
-        /// Get league.
+        /// Get list of League.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="sportTypes">Sport type id.</param>
-        /// <returns>List league.</returns>
+        /// <param name="fromDate">Input From Date.</param>
+        /// <param name="toDate">Input To Date.</param>
+        /// <param name="sportTypes">Input Sport Types.</param>
+        /// <param name="isOutright">For Outright or not.</param>
+        /// <param name="isShowDataTest">Show data test or not.</param>
+        /// <returns>List of League.</returns>
         IEnumerable<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false, bool isShowDataTest = false);
 
         /// <summary>

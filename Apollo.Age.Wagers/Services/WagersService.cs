@@ -28,6 +28,7 @@ namespace Apollo.Age.Wagers.Services
         /// <param name="toDate">Valid to date.</param>
         /// <param name="sportTypes">List of sport type id.</param>
         /// <param name="isOutright">Is outright sport.</param>
+        /// <param name="isShowDataTest">Show data test or not.</param>
         /// <returns>Return a list of league which having match/even happens.</returns>
         public IEnumerable<League> GetLeague(
             DateTime fromDate,
@@ -42,8 +43,7 @@ namespace Apollo.Age.Wagers.Services
                 SportTypes = sportTypes,
                 IsOutright = isOutright,
                 ToDate = toDate,
-                isShowAll = isShowDataTest
-
+                IsShowAll = isShowDataTest
             };
 
             return this.GetData<League>(criteria);

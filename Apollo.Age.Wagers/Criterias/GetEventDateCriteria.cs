@@ -21,7 +21,7 @@ namespace Apollo.Age.Wagers.Criterias
         /// <summary>
         /// Get setting key.
         /// </summary>
-        /// <returns>Age_Wagers_SelDateBySports key.</returns>
+        /// <returns>Return a store procedure name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Wagers_SelDateBySports";
