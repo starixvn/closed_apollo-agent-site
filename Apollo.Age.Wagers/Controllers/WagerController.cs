@@ -63,7 +63,7 @@ namespace Apollo.Age.Wagers.Controllers
         public List<League> GetLeague(DateTime fromDate, DateTime? toDate = null, string sportTypes = null, bool isOutright = false)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }

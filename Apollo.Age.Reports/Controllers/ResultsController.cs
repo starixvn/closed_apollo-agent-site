@@ -65,7 +65,7 @@ namespace Apollo.Age.Reports.Controllers
         #endregion Ctors
 
         /// <summary>
-        /// Get Balance Up Day.
+        /// Gets Balance Up Day.
         /// </summary>
         protected DateTime GetBalanceUpDay
         {
@@ -77,8 +77,8 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// By Default is Match Action.
         /// </summary>
-        /// <param name="sportId">Sport Id.</param>
-        /// <returns>View Model.</returns>
+        /// <param name="sportId">Input Sport Id.</param>
+        /// <returns>Return a View Model.</returns>
         [HttpGet]
         public ActionResult Match(byte sportId = 1)
         {
@@ -94,24 +94,23 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all leagues by sport.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <param name="sportTypes">Sport Type.</param>
-        /// <param name="sportId">Sport Id.</param>
-        /// <returns>Json result.</returns>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <param name="sportId">Input a Sport Id.</param>
+        /// <returns>Return a JSON result.</returns>
         public JsonResult GetLeagueBySport(
             DateTime date,
             string sportTypes,
             int sportId)
         {
-
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId,isShowDataTest);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
             var listLeague = new List<League>();
 
@@ -137,13 +136,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all sports by match.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <param name="sportTypes">Sport types.</param>
-        /// <returns>Json data.</returns>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport types.</param>
+        /// <returns>Return JSON data.</returns>
         public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
@@ -169,13 +168,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all Match.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <param name="sportTypes">Sport Type.</param>
-        /// <returns>Action Result.</returns>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <returns>Return a view with exactly path.</returns>
         public ActionResult GetMatchResult(DateTime date, string sportTypes)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
@@ -197,15 +196,15 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all others.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <param name="sportTypes">Sport Types.</param>
-        /// <param name="sportId">Sport ID.</param>
-        /// <param name="leagueId">League ID.</param>
-        /// <returns>Action Result.</returns>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Types.</param>
+        /// <param name="sportId">Input a Sport ID.</param>
+        /// <param name="leagueId">Input a League ID.</param>
+        /// <returns>Return a view with exactly path.</returns>
         public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
@@ -237,15 +236,16 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get all outright.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <returns>Json Result.</returns>
+        /// <param name="date">Input a Date.</param>
+        /// <returns>Return JSON Result.</returns>
         public JsonResult GetSportOutright(DateTime date)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
+
             var viewModel = new OutrightResultViewModel
             {
                 BalanceUpDay = GetBalanceUpDay,
@@ -257,15 +257,15 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// By default is outright
+        /// By default is outright.
         /// </summary>
-        /// <param name="date">Date.</param>
-        /// <param name="sportId">Sport ID.</param>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportId">Input a Sport ID.</param>
         /// <returns>Action Result.</returns>
         public ActionResult Outright(DateTime date, int sportId = 0)
         {
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
@@ -284,8 +284,8 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Return action name by spotTypes.
         /// </summary>
-        /// <param name="sportTypes">Sport Type.</param>
-        /// <returns>Sport ID.</returns>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <returns>Return Sport ID.</returns>
         private string GetViewBySport(string sportTypes)
         {
             switch (sportTypes)

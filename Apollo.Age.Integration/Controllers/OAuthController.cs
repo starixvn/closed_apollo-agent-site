@@ -23,6 +23,9 @@ namespace Apollo.Age.Integration.Controllers
     using Apollo.Age.Web.Filters;
     using Fanex.Logging;
 
+    /// <summary>
+    /// Authentication Controller Class.
+    /// </summary>
     [AllowAnonymous]
     public class OAuthController : Controller
     {
@@ -44,6 +47,12 @@ namespace Apollo.Age.Integration.Controllers
             _deviceService = new DeviceDetection();
         }
 
+        /// <summary>
+        /// Index page to get some property.
+        /// </summary>
+        /// <param name="user_id">Input a user id.</param>
+        /// <param name="lang">Input language.</param>
+        /// <returns>Return view.</returns>
         [AllowAnonymous]
         public ViewResult Index(string user_id, string lang)
         {
@@ -52,6 +61,15 @@ namespace Apollo.Age.Integration.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get code from API.
+        /// </summary>
+        /// <param name="code">Input a code.</param>
+        /// <param name="error">Input a default error.</param>
+        /// <param name="state">Input a default state.</param>
+        /// <param name="username">Input a username.</param>
+        /// <param name="language">Input a language.</param>
+        /// <returns>Return a view.</returns>
         [P3P]
         [AllowAnonymous]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
@@ -144,18 +162,30 @@ namespace Apollo.Age.Integration.Controllers
             return View(authModel);
         }
 
+        /// <summary>
+        /// Error action.
+        /// </summary>
+        /// <param name="error_code">Input a error code.</param>
+        /// <returns>Return a page error.</returns>
         [AllowAnonymous]
         public ViewResult Error(string error_code)
         {
             return View((object)error_code);
         }
 
+        /// <summary>
+        /// Coming soon action.
+        /// </summary>
+        /// <returns>Return coming soon page view.</returns>
         [AllowAnonymous]
         public ViewResult ComingSoon()
         {
             return View();
         }
 
+        /// <summary>
+        /// Sign out action.
+        /// </summary>
         [AllowAnonymous]
         public void SignOut()
         {
@@ -168,9 +198,16 @@ namespace Apollo.Age.Integration.Controllers
             }
             Session.Abandon();
             Response.Cookies.Clear();
-            // FormsAuthentication.SignOut();
         }
 
+        /// <summary>
+        /// Write log in log.
+        /// </summary>
+        /// <param name="agentId">Input a agent id.</param>
+        /// <param name="agentUserId">Input a agent user id.</param>
+        /// <param name="actionId">Input a action id.</param>
+        /// <param name="serverId">Input a server id.</param>
+        /// <param name="doing">Input a doing.</param>
         private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
