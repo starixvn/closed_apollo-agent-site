@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="OAuthSection.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="OAuthSettings.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,21 +10,22 @@
 
 namespace Apollo.Age.Integration.Configurations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Configuration;
 
     /// <summary>
     /// Define open authentication section
-    /// <example>http://haacked.com/archive/2007/03/11/custom-configuration-sections-in-3-easy-steps.aspx</example>
+    /// <see href="http://haacked.com/archive/2007/03/11/custom-configuration-sections-in-3-easy-steps.aspx"/>
     /// </summary>
     public class OAuthSettings : ConfigurationSection
     {
-        //private const string UrlPattern = @"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$";
         private static OAuthSettings settings = ConfigurationManager.GetSection("Apollo.Age.OAuthSettings") as OAuthSettings;
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
         public static OAuthSettings Settings
         {
             get
@@ -36,8 +37,14 @@ namespace Apollo.Age.Integration.Configurations
 
                 return settings;
             }
-        }        
+        }
 
+        /// <summary>
+        /// Gets or sets the application identifier.
+        /// </summary>
+        /// <value>
+        /// The application identifier.
+        /// </value>
         [ConfigurationProperty("AppId", IsRequired = true)]
         public string AppId
         {
@@ -45,6 +52,12 @@ namespace Apollo.Age.Integration.Configurations
             set { this["AppId"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the application secret.
+        /// </summary>
+        /// <value>
+        /// The application secret.
+        /// </value>
         [ConfigurationProperty("AppSecret", IsRequired = true)]
         public string AppSecret
         {
@@ -53,10 +66,12 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// Authorize endpoint
+        /// Gets or sets Authorize endpoint.
         /// </summary>
+        /// <value>
+        /// The authorize URL.
+        /// </value>
         [ConfigurationProperty("AuthorizeUrl", IsRequired = true)]
-        //[RegexStringValidator(UrlPattern)]
         public string AuthorizeUrl
         {
             get { return (string)this["AuthorizeUrl"]; }
@@ -64,8 +79,11 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// The url client submit to in order to get authentication token
+        /// Gets or sets the url client submit to in order to get authentication token.
         /// </summary>
+        /// <value>
+        /// The token URL.
+        /// </value>
         [ConfigurationProperty("TokenUrl", IsRequired = true)]
         public string TokenUrl
         {
@@ -74,8 +92,11 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// The redirect url required by authorization server
+        /// Gets or sets the redirect url required by authorization server.
         /// </summary>
+        /// <value>
+        /// The redirect URI.
+        /// </value>
         [ConfigurationProperty("RedirectUri", IsRequired = true)]
         public string RedirectUri
         {
@@ -84,8 +105,11 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// Path to TGP script which handle the initial step of single sign on
+        /// Gets or sets path to TGP script which handle the initial step of single sign on.
         /// </summary>
+        /// <value>
+        /// The TGP script source.
+        /// </value>
         [ConfigurationProperty("TgpScriptSrc", IsRequired = true)]
         public string TgpScriptSrc
         {
@@ -94,8 +118,11 @@ namespace Apollo.Age.Integration.Configurations
         }
 
         /// <summary>
-        /// The url user will be redirected to after single sign on sucessfull login
+        /// Gets or sets the default URL.
         /// </summary>
+        /// <value>
+        /// The default URL.
+        /// </value>
         [ConfigurationProperty("DefaultUrl", IsRequired = true)]
         public string DefaultUrl
         {
