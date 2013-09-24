@@ -20,15 +20,14 @@
         <div class="item detail-information">
             @if (isEditAgent)
             {
-                @(Lang.AgencyDetailEdit)
-                @(isMaster ? Lang.edit.ToLower() : string.Empty)
+                @(string.Format("{0} {1}", Lang.AgencyDetailEdit, isMaster ? Lang.edit.ToLower() : string.Empty))
             }
             else
             {
                 @(isMaster ? Lang.lblEditMemberShare : Lang.lblViewMemberShare)
             }
             
-            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Lang.agent : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername))) 
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Lang.agent : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername)) ):  <strong>@userName</strong>
             @*: <strong>@(AppSettings.DisableEditOnMember ? Lang.all : userName)</strong>*@
              &nbsp;&nbsp;&nbsp;&nbsp;<span id="modeMark">--</span> <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
             <a href="javascript:void(0);" id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
