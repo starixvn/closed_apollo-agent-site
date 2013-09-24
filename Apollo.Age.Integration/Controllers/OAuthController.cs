@@ -122,7 +122,8 @@ namespace Apollo.Age.Integration.Controllers
                                     authModel.ErrorCode = ErrorCode.InvalidRequest;
 
                                     // ActionID: 7002 -> SSO login fail.
-                                    string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).",
+                                    string doing = string.Format(
+                                                    "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
                                                     authModel.Username,
                                                     Resources.Lang.AgentNotFound);
                                     WriteLoginLog(0, 0, 7002, 0, doing);
@@ -136,7 +137,8 @@ namespace Apollo.Age.Integration.Controllers
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
                                 // ActionID: 7002 -> SSO login fail.
-                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Fail({1}).",
+                                string doing = string.Format(
+                                                "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
                                                 authModel.Username,
                                                 Resources.Lang.AgentNotFound);
                                 WriteLoginLog(0, 0, 7002, 0, doing);
@@ -191,11 +193,12 @@ namespace Apollo.Age.Integration.Controllers
         {
             if (SessionManager.CurrentSession != null)
             {
-                //write log
+                // Write log.
                 // ActionId: 704 - sso logout successful
                 string doing = string.Format("SSO log out via Agent: [{0}] - Result: Successful.", SessionManager.CurrentSession.Username);
                 WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, 0, doing);
             }
+
             Session.Abandon();
             Response.Cookies.Clear();
         }

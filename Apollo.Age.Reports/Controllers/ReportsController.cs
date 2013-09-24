@@ -203,11 +203,8 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
 
-            var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
-            {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper ;
-            }
+            var isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+           
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
             return this.View(matchEnteredViewModel);

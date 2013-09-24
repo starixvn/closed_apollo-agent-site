@@ -77,7 +77,7 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".png") == -1
                     )
                 {
-                    if (maintenanceService.MaintenanceInfo.status)
+                    if (maintenanceService.MaintenanceInfo.Status)
                     {
                         Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
                     }

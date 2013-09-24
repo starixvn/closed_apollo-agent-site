@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="UnderMaintenanceViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UnderMaintenanceModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,9 +12,6 @@
 namespace Apollo.UMService.Model
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,19 +20,18 @@ namespace Apollo.UMService.Model
     {
         public UnderMaintenanceModel()
         {
-            status = false;
+            Status = false;
             var nowHour = DateTime.Today.AddHours(DateTime.Now.Hour);
-            start_time = nowHour.ToShortTimeString();
-            end_time = nowHour.AddHours(1).ToShortTimeString();
+            Start_time = nowHour.ToShortTimeString();
+            End_time = nowHour.AddHours(1).ToShortTimeString();
             UMDate = DateTime.Now.ToString("dd MMMM yyyy");
-
         }
 
-        public bool status { get; set; }
+        public bool Status { get; set; }
 
-        public string start_time { get; set; }
+        public string Start_time { get; set; }
 
-        public string end_time { get; set; }
+        public string End_time { get; set; }
 
         public string UMDate { get; set; }
     }

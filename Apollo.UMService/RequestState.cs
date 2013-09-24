@@ -18,8 +18,16 @@ namespace Apollo.UMService
     /// </summary>
     public class RequestState
     {
-        // This class stores the State of the request. 
+        // This class stores the State of the request.
         private const int BUFFERSIZE = 1024;
+
+        public RequestState()
+        {
+            BufferRead = new byte[BUFFERSIZE];
+            RequestData = new StringBuilder(string.Empty);
+            Request = null;
+            StreamResponse = null;
+        }
 
         public StringBuilder RequestData { get; set; }
 
@@ -30,13 +38,5 @@ namespace Apollo.UMService
         public HttpWebResponse Response { get; set; }
 
         public Stream StreamResponse { get; set; }
-
-        public RequestState()
-        {
-            BufferRead = new byte[BUFFERSIZE];
-            RequestData = new StringBuilder(string.Empty);
-            Request = null;
-            StreamResponse = null;
-        }
     }
 }
