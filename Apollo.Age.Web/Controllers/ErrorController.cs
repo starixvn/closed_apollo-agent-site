@@ -52,7 +52,7 @@ namespace Apollo.Age.Web
             var maintenanceInfo = maintenanceService.MaintenanceInfo;
             // return View(maintenanceInfo);
 
-            if (maintenanceInfo.status)
+            if (maintenanceInfo.Status)
             {
                 return View(maintenanceInfo);
             }
