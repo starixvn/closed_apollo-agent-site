@@ -41,5 +41,7 @@ namespace Apollo.Age.Account.Repositories.Interface
         IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
 
         int CalculateUpdateAgentPositionTakingTime(GetUpdatePositionTakingEstimatedTimeCriteria criteria);
+
+        bool HasMember(ICriteria criteria);
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerSettingController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Criterias\AgentCheckDirectMemberCriteria.cs" />
     <Compile Include="Criterias\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\GetAgentAllInfoCriteria.cs" />

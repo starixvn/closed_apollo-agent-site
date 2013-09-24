@@ -218,8 +218,14 @@ if (typeof jQuery != 'undefined') {
     } (jQuery);
 
     $(function () {
-        settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
-        EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
+        if (positionTakingSetting.SportTypes && positionTakingSetting.SportTypes.length > 0) {
+            settingContext.IsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
+            EDITPOSITIONTAKING.init(settingContext, positionTakingSetting);
+        }
+        else {
+            $('#ptContainer, #modeMark').hide();
+            $('#noInfoDiv').show();
+        }
     }).ajaxStart($.blockUI);
 
 }

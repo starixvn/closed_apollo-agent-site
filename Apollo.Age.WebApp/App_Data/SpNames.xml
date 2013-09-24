@@ -491,6 +491,7 @@
     </Setting>
     <Setting Key="Age_Agent_GetDiscountToCustomer" SpName="Age_Agent_GetDiscountToCustomer" DbName="SVRCUST.CustDB"   TimeOut="600"/>
     <Setting Key="Age_Agent_GetUpdatePositionTakingEstimatedTime" SpName="Age_Agent_GetUpdatePositionTakingEstimatedTime" DbName="SVRCUST.CustDB"   TimeOut="600"/>
+    <Setting Key="Age_Agent_CheckDirectMember" SpName="Age_Agent_CheckDirectMember" DbName="SVRAGE.RepDB"   TimeOut="600"/>
     
   </Function>
 

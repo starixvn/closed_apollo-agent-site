@@ -52,5 +52,7 @@ namespace Apollo.Age.Account.Services
         MemberListModel GetTopMember(int agentId);
 
         string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting);
+
+        bool HasMember(int agentId);
     }
 }
