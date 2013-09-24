@@ -27,7 +27,7 @@
                 @(isMaster ? Lang.lblEditMemberShare : Lang.lblViewMemberShare)
             }
             
-            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Lang.agent : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername)) ):  <strong>@userName</strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Html.Raw(string.Format("{0}:  <strong>{1}</strong>", Lang.agent, userName)) : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername)) )
             @*: <strong>@(AppSettings.DisableEditOnMember ? Lang.all : userName)</strong>*@
              &nbsp;&nbsp;&nbsp;&nbsp;<span id="modeMark">--</span> <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
             <a href="javascript:void(0);" id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
