@@ -75,7 +75,7 @@
             });
 
             $(".view-betlist").on("click", function () {
-                $.blockUI();
+                ///$.blockUI();
                 WINLOSS.sportTypeName = WINLOSS.SportName.val();
                 WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
@@ -87,12 +87,19 @@
                     + "&sportName=" + escape(WINLOSS.sportTypeName)
                     + "&betTypeName=" + escape(WINLOSS.betTypeName)
                     + "&type=report");
-                location.href = url;
+
+                APOLLO.openDialogFrame(url, LANGUAGES.BetListString, {
+                    width: 1000,
+                    height: 770,
+                    position: { my: "top+40", at: "center top", of: window },
+                });
+
+                //location.href = url;
             });
 
             $("#btnExcelAgentWinLoss").on("click", function () {
                 $.blockUI();
-                var url = APOLLO.resolveUrl('Reports/ExportAgentWinLoss?AgentId=' + WINLOSS.AgentId.val() 
+                var url = APOLLO.resolveUrl('Reports/ExportAgentWinLoss?AgentId=' + WINLOSS.AgentId.val()
                     + "&AgentName=" + WINLOSS.AgentName.val()
                     + "&FromDate=" + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
                     + "&Sporttypes=" + WINLOSS.hdSportType.val()

@@ -304,6 +304,7 @@ else
 @Html.Hidden("hdBettype", Model.Bettypes)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
+@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
 @section scripts
@@ -312,7 +313,8 @@ else
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                MessageValidateDate: "@LangMsg.ValidateFromToDate"
+                MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
+                BetListString: "@Lang.lblBetLists.ToUpper()",
             };
         } ();
     </script>

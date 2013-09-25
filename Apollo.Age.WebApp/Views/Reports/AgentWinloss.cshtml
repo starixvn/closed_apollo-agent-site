@@ -74,11 +74,21 @@
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
     <div class="notes">
-        <div class="title-notes">@Lang.lblRemarks:</div>
+        <table>
+            <tr>
+                <td class="title-notes">@Lang.lblRemarks:</td>
+                <td class="list">#1: @Lang.lblwinlossnote1</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="list">#2: @Lang.lblwinlossnote2</td>
+            </tr>
+        </table>
+        @*<div class="title-notes">@Lang.lblRemarks:</div>
         <ul class="list">
             <li>#1: @Lang.lblwinlossnote1</li>
             <li>#2: @Lang.lblwinlossnote2</li>
-        </ul>
+        </ul>*@
     </div>
 }
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
@@ -431,7 +441,6 @@ else
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                MessageValidateDate: "@LangMsg.ValidateFromToDate",
                 MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate"
             };
         } ();

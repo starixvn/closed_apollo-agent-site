@@ -447,18 +447,9 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets = betListService.GetTicketResult(criteria);
             }
 
-            var modelAgentDownLine = betListService.GetAgentUpLineOfMember(CurrentSession.AgentId, custId);
-
             var viewModel = new BetListViewModel
             {
-                Title = string.Format("--{0}: {1} --{2}: {3}",
-                    Lang.lblReport,
-                    sportName,
-                    Lang.WagerType,
-                    betTypeName
-                ),
                 TicketList = this.Ticket(mainTickets, BetListPage.Report),
-                DownlinePath = modelAgentDownLine
             };
             return this.View(viewModel);
         }
