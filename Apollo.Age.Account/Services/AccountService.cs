@@ -26,6 +26,7 @@ namespace Apollo.Age.Account.Services
     using Fanex.CustSetting.ViewData;
     using Apollo.Age.Configurations;
     using Apollo.Age.Resources;
+    using Fanex.NAP.Framework.Data;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -293,6 +294,30 @@ namespace Apollo.Age.Account.Services
             }
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Check current agent has member or not.
+        /// </summary>
+        /// <param name="agentId">Current agent id.</param>
+        /// <returns>Has member or not.</returns>
+        public bool HasMember(int agentId)
+        {
+            try
+            {
+                var checkDirectMemberCriteria = new AgentCheckDirectMemberCriteria
+                {
+                    AgentId = agentId
+                };
+
+                return _accountRepository.HasMember(checkDirectMemberCriteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
         }
     }
 }

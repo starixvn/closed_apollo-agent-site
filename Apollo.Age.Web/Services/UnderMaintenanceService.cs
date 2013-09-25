@@ -32,16 +32,16 @@ namespace Apollo.Age.Web.Services
         {
             get
             {
-                var underMaintenanceInfo = new UnderMaintenanceModel { status = false };
-                var startTime = underMaintenanceInfo.start_time;
-                var endTime = underMaintenanceInfo.end_time;
+                var underMaintenanceInfo = new UnderMaintenanceModel { Status = false };
+                var startTime = underMaintenanceInfo.Start_time;
+                var endTime = underMaintenanceInfo.End_time;
 
                 // Check downtime from AppSetting.
                 if (AppSettings.IsApolloDownTime)
                 {
-                    underMaintenanceInfo.status = true;
-                    underMaintenanceInfo.start_time = AppSettings.StartTime;
-                    underMaintenanceInfo.end_time = AppSettings.EndTime;
+                    underMaintenanceInfo.Status = true;
+                    underMaintenanceInfo.Start_time = AppSettings.StartTime;
+                    underMaintenanceInfo.End_time = AppSettings.EndTime;
 
                     return underMaintenanceInfo;
                 }
@@ -51,11 +51,11 @@ namespace Apollo.Age.Web.Services
                 {
                     if (AppSettings.DisabledUnderMaintenanceAPI)
                     {
-                        underMaintenanceInfo.status = false;
+                        underMaintenanceInfo.Status = false;
                     }
                     else
                     {
-                        underMaintenanceInfo = _underMaintenanceBusiness.GetMaintainenceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
+                        underMaintenanceInfo = _underMaintenanceBusiness.GetMaintenanceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
 
                         if (underMaintenanceInfo == null)
                         {
@@ -69,7 +69,7 @@ namespace Apollo.Age.Web.Services
                 {
                     HandleException(ex);
 
-                    return new UnderMaintenanceModel { status = false };
+                    return new UnderMaintenanceModel { Status = false };
                 }
             }
         }

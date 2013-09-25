@@ -347,13 +347,9 @@ namespace Apollo.Age.Account.Controllers
             string backLink = "", 
             bool fromLeftMenu = false)
         {
-            var topMember = _accountService.GetTopMember(agentId);
-
-            if (topMember != null)
+            if (_accountService.HasMember(agentId))
             {
                 return EditMemberPositionTaking(
-                    topMember.MemberId,
-                    topMember.Username,
                     agentId,
                     agentUserName,
                     reload,
@@ -380,8 +376,6 @@ namespace Apollo.Age.Account.Controllers
           /// <param name="fromLeftMenu">From left menu.</param>
         /// <returns>Action result</returns>
         public ActionResult EditMemberPositionTaking(
-            int memberId, 
-            string userName, 
             int agentId, 
             string agentUsername = "", 
             bool reload = false, 
@@ -395,8 +389,8 @@ namespace Apollo.Age.Account.Controllers
             //{
             //    return Redirect("~/Error?err=404");
             //}
-            ViewBag.CustId = memberId;
-            ViewBag.UserName = userName;
+            ViewBag.CustId = 0;
+            ViewBag.UserName = string.Empty;
             ViewBag.AgentId = agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;

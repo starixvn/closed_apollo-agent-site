@@ -20,17 +20,16 @@
         <div class="item detail-information">
             @if (isEditAgent)
             {
-                @(Lang.AgencyDetailEdit)
-                @(isMaster ? Lang.edit.ToLower() : string.Empty)
+                @(string.Format("{0} {1}", Lang.AgencyDetailEdit, isMaster ? Lang.edit.ToLower() : string.Empty))
             }
             else
             {
                 @(isMaster ? Lang.lblEditMemberShare : Lang.lblViewMemberShare)
             }
             
-            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Lang.agent : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername))) 
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Html.Raw(string.Format("{0}:  <strong>{1}</strong>", Lang.agent, userName)) : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername)) )
             @*: <strong>@(AppSettings.DisableEditOnMember ? Lang.all : userName)</strong>*@
-             &nbsp;&nbsp;&nbsp;&nbsp;-- <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
+             &nbsp;&nbsp;&nbsp;&nbsp;<span id="modeMark">--</span> <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
             <a href="javascript:void(0);" id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
             @if (!isMaster && !fromLeftMenu)
             {
@@ -43,6 +42,13 @@
 }
 @Html.Hidden("backUrl", linkBack)
 <div id="ptContainer">
+</div>
+<div style="display:none;" id="noInfoDiv">
+    <h3 style="display:inline;">@Lang.noInfo</h3> 
+    @if (!fromLeftMenu)
+    {
+        <a href="javascript:void(0);"  onClick="history.go(-1)">@Lang.back</a>
+    }
 </div>
 @if (isEditAgent)
 {

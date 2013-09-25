@@ -204,10 +204,11 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
 
             var isShowDataTest = false;
-            if (CurrentSession != null && AppSettings.CurrencyTesting != null)
+            if (SessionManager.CurrentSession != null)
             {
-                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper ;
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
+           
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
             return this.View(matchEnteredViewModel);

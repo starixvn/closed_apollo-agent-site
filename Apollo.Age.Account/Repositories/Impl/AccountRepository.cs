@@ -295,5 +295,25 @@ namespace Apollo.Age.Account.Repositories.Impl
 
             return 0;
         }
+
+        /// <summary>
+        /// Check agent has member or not.
+        /// </summary>
+        /// <param name="criteria">Criteria for get data.</param>
+        /// <returns>Has member or not.</returns>
+        public bool HasMember(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            if (criteria.IsValid())
+            {
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    return (int)db.ExecuteScalar(criteria.GetSpParams()) == 1;
+                }
+            }
+
+            return false;
+        }
     }
 }
