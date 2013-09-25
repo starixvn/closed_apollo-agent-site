@@ -1994,10 +1994,10 @@
     <value>Upline Setting [Min - Max]</value>
   </data>
   <data name="lblwinlossnote1" xml:space="preserve">
-    <value>"Effective Stake" after share given to the company (the selected agent and upline) by downline</value>
+    <value>"Effective Stake#1" after share given to the company (the selected agent and upline) by downline</value>
   </data>
   <data name="lblwinlossnote2" xml:space="preserve">
-    <value>"Effective Stake" after share given to upline by the selected agent</value>
+    <value>"Effective Stake#2" after share given to upline by the selected agent</value>
   </data>
   <data name="lblEditMemberShare" xml:space="preserve">
     <value>Edit Member Share</value>
