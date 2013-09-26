@@ -14,9 +14,41 @@ namespace Apollo.Age.Enumerations
     /// </summary>
     public static class AgentLevel
     {
-        public static int Super = 0;
-        public static int MainShareholder = 1;
-        public static int Shareholder = 2;
-        public static int MainAgent = 3;
+        private static int _super = 0;
+        private static int _mainshareholder = 0;
+        private static int _shareholder = 0;
+        private static int _mainagent = 0;
+
+        public static int Super
+        {
+            get
+            {
+                return _super;
+            }
+        }
+
+        public static int MainShareholder
+        {
+            get
+            {
+                return _mainshareholder;
+            }
+        }
+
+        public static int Shareholder
+        {
+            get
+            {
+                return _shareholder;
+            }
+        }
+
+        public static int MainAgent
+        {
+            get
+            {
+                return _mainagent;
+            }
+        }
     }
 }

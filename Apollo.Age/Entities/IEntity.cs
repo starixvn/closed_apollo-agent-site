@@ -9,8 +9,10 @@
 namespace Apollo.Age.Entities
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Entity interface.
     /// </summary>
+    /// <typeparam name="TId">The type of the identifier.</typeparam>
+    /// <typeparam name="TName">The type of the name.</typeparam>
     public interface IEntity<TId, TName>
     {
         TId Id { get; set; }
