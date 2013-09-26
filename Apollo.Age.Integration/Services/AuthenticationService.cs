@@ -119,6 +119,7 @@ namespace Apollo.Age.Integration.Services
                 OAuthSettings.Settings.AppSecret);
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(OAuthSettings.Settings.TokenUrl);
+            request.KeepAlive = false;
             request.Method = WebRequestMethods.Http.Post; // It is required.
             request.ContentType = "application/x-www-form-urlencoded";
 
