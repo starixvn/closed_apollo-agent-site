@@ -158,7 +158,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     new string[]
                                                     {
                                                         homeName,
-                                                        ticket.IsNeutral ? " (N) " : string.Empty
+                                                        ticket.IsNeutral ? " (N) " : " (H)"
                                                     }
                                                 );
 
