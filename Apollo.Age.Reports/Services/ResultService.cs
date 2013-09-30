@@ -11,8 +11,6 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -38,52 +36,51 @@ namespace Apollo.Age.Reports.Services
             return sports;
         }
 
-        public IEnumerable<League> GetLeagueBySport(DateTime eventDate, byte sportType = 0, string language = "E", bool isSowTestData = false)
-        {
-            var leagues = GetData<League>(new ResultGetLeagueBySportCriteria
-            {
-                EventDate = eventDate,
-                SportType = sportType,
-                IsShowAll = isSowTestData,
-                BalanceUpDay = GetBalanceUpDay()
-            });
-
-            return leagues;
-        }
-
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime date, byte sportType, int custId, int leagueId = 0, string language = "E")
+      
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
                     {
-                        EventDate = date,
-                        SportId = sportType,
-                        LeagueId = leagueId,
-                        Language = language,
-                        BalanceUpDay = GetBalanceUpDay()
+                        FromDate = fromDate,
+                        Sporttypes = sportTypes,
+                        BalanceUpDay = GetBalanceUpDay(),
+                        IsTest = isShowDataTest
                     };
 
-            var matchResult = GetData<MatchResultModel>(criteria);
+            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "_")) + (isShowDataTest ? "_1" : "_0");
+            var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
+            if (matchResult == null)
+            {
+                matchResult = GetData<MatchResultModel>(criteria);
+
+                if (sportTypes == Apollo.Age.Core.SportGroup.Others && matchResult != null)
+                {
+                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
+                }
+            }
 
             return matchResult;
         }
 
-        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, DateTime toDate)
+        public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, bool isShowDataTest)
         {
             var criteria = new GetOutrightResultCriteria
             {
                 FromDate = fromDate,
-                ToDate = toDate,
-                IsShowAll = true,
-                BalanceUpDay = GetBalanceUpDay()  
+                IsShowAll = isShowDataTest,
+                BalanceUpDay = GetBalanceUpDay(),                
             };
-            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), toDate.ToString("yyyyMMdd"));
+            var cacheKey = fromDate.ToString("yyyyMMdd") + (isShowDataTest ? "_1" : "_0");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
             if (result == null)
             {
-                result =  GetData<OutrightResultModel>(criteria);
-                CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
-            }           
+                result = GetData<OutrightResultModel>(criteria);
+                if (result != null)
+                {
+                    CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
+                }
+            }
 
             return result;
         }
@@ -104,7 +101,7 @@ namespace Apollo.Age.Reports.Services
         {
             var criteria = new GetResultByParlayCriteria
             {
-                 RefNo = refNo
+                RefNo = refNo
             };
 
             var parlayResult = GetData<MatchResultModel>(criteria);

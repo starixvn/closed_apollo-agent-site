@@ -2,41 +2,47 @@
 @import "../../../_globalResources/css/calendar.less";
 
 #box_header {
-	margin-bottom: 0;	
+	margin-bottom: 5px;	
+}
+
+#content_main {
+	position: relative;
 }
 
 .show-old-value {
-	background: none repeat scroll 0 0 #0084B4;
-    border: 1px solid #fff;
-    padding: 2px 5px 2px 3px;
+	background: none repeat scroll 0 0 #ECE9D8;
+    border: 1px solid #000;
+    padding-right: 2px;
     position: fixed;
-    right: 11px;
-    top: 45px;
+    right: 7px;
+    top: 3px;
+	display: none;
 
 	* {		
 		vertical-align: middle;
 	}
 
 	label {
-		color:  @white;
+		color:  @black;
 		cursor: pointer;
 	}
 }
 
 .top-link {
-	background: url(images/top-white.png) #0084B4 no-repeat 4px 7px;
-	border: 1px solid #fff;
-	height: 24px;
+	//background: url(images/top-white.png) #0084B4 no-repeat 4px 7px;
+	background: url(images/arrow-up-red.png) #ECE9D8 no-repeat 4px;	
+	border: 1px solid #000;
+	height: 17px;
 	width: 60px;
     position: fixed;
-    right: 11px;
+    right: 8px;
     bottom: 0;
 	display: none;
-	padding: 5px 0 0 23px;
+	padding: 1px 0 0 23px;
 	cursor: pointer;
 
 	a {
-		color: @white;		
+		color: #0000EE;		
 	}
 }
 
@@ -75,6 +81,10 @@
 					background: #ccc;
 				}
 
+				&.bg-green td{
+					background: #84968B;
+				}
+
 				&.sub-title {
 					td {
 						border-width: 1px 0;
@@ -97,7 +107,7 @@
 	}
 
 	tr.sub-title td {
-		background: #ccc;
+		background: #84968B;
 	}
 
 	.tbList {
@@ -109,7 +119,7 @@
 		ul {				
 			li {					
 				float: left;
-				font-weight: normal;
+				//font-weight: normal;
 				padding: 8px 20px 10px 0;
 
 				a {
@@ -119,7 +129,7 @@
 					color: #fff;
 
 					span {							
-						font-weight: normal;												
+						//font-weight: normal;												
 						padding: 2px 0px;
 						float: none;							
 					}
@@ -143,12 +153,13 @@
 	}
 
 	.valueold {
-		color: #457777;
+		//color: #457777;
+		color: #000;
 	}
 
 	.colW {
-		background-color: #F3F3F3;
-		font-weight: normal;
+		background-color: #BDD1DE;
+		//font-weight: normal;
 		padding-left: 5px;
 		text-align: left;
 		text-transform: capitalize;
@@ -157,8 +168,8 @@
 	}
 
 	.colW1 {
-		background-color: #F3F3F3;
-		font-weight: normal;
+		background-color: #BDD1DE;
+		//font-weight: normal;
 		padding-left: 5px;
 		text-align: center;
 		text-transform: capitalize;
@@ -167,8 +178,7 @@
 	}
 
 	.colW2 {
-		text-transform: capitalize;
-		width: 100px;
+		width: 122px;
 		text-align: center;
 		white-space: nowrap;
 	}
@@ -176,14 +186,14 @@
 	.colW3 {
 		background-color: #F3F3F3;
 		text-transform: capitalize;
-		width: 100px;
+		width: 116px;
 		text-align: center;
 		white-space: nowrap;
+		padding-left: 5px;
 	}
 
 	.headerSportTypeDetail {
 		background-color: #D3D6DB;
-		font-weight: bold;
 		height: 20px;
 		text-align: left;
 		text-transform: capitalize;
@@ -192,7 +202,7 @@
 
 	.left-text {
 		text-align: left;
-		background: #F3F3F3;
+		background: #BDD1DE;
 	}
 }
 
@@ -214,10 +224,18 @@ div.line {
 }
 
 #box_header {
+	input[type="text"] {
+		padding: 0 3px;
+		height: 17px;
+	}
+
+	.btn {
+		height: 20px;
+	}
+
 	.monpickr-wrap, .daypickr-wrap {
 		input[type="text"] {
-			height: 9px;
-			margin-top: 1px;
+			height: 13px;
 		}
 	}
 
@@ -225,13 +243,13 @@ div.line {
 		margin-left: 1px;
 	}
 
-	.btn {
-		height: 23px;
-	}
-
 	.monpickr-arrows {
 		padding: 1px;
-		height: 19px;
+		height: 15px;
+	}
+
+	.monpickr-arrows .monpickr-prev, .monpickr-arrows .monpickr-next, .monpickr-arrows .monpickr-down {
+		top: -1px;
 	}
 
 	.daypickr {
@@ -240,7 +258,6 @@ div.line {
 
 	.monpickr-label {
 		margin: 0 10px;
-		font-weight: bold;
 		font-size: 1em;
 	}
 
@@ -278,27 +295,28 @@ div.line {
 
 .eq-ie7, .eq-ie8  {
 	#box_header {
-		.monpickr-wrap, .daypickr-wrap {
+		.editor {
 			input[type="text"] {
-				height: 12px;
-				margin-top: 1px;
-				padding-top: 1px;
+				height: 15px;
+				padding-top: 3px;
 			}
+
+			select {
+				height: 20px;
+			}
+		}
+
+		.label select {
+			height: 20px;
 		}
 	}
 }
 
 .eq-ie7  {
+
 	#box_header {
 		.monpickr-arrows {
 			height: 16px;
-		}
-
-		.monpickr-wrap, .daypickr-wrap {
-			input[type="text"] {
-				height: 9px;
-				padding-top: 0;
-			}
 		}
 
 		.monpickr-arrows {
@@ -311,9 +329,13 @@ div.line {
 			padding: 2px;
 		}
 	}
+}
 
-	.show-old-value  {
-		top: 52px;
+.eq-ie8 {
+	#box_header .monpickr-wrap input[type="text"],
+	#box_header .daypickr-wrap input[type="text"] {
+		height: 12px;
+		margin-top: 0;
 	}
 }
 

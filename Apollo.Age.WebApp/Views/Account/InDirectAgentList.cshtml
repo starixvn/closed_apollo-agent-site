@@ -1,0 +1,194 @@
+﻿@using Apollo.Age.Entities;
+@using Apollo.Age.Web;
+@using Apollo.Age
+@using Apollo.Age.Resources
+@model AgentListCriteria
+@{
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
+    ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
+    var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
+    var isMaster = (bool)ViewBag.IsMaster;
+    var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
+
+    var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
+    Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+
+    var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
+    var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).FirstOrDefault() : -1);
+    var uplineLevel = (int)(currentLevel - 1);
+}
+@using (Html.BeginForm())
+{       
+    <div id="function-bar">
+        <div class="item">
+            <label>@Lang.agent</label>:
+            <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                @foreach (var item in driectAgentList)
+                {
+                    if (item.Id == Model.AgentId)
+                    { 
+                    <option value="@item.Id" selected="selected">@item.Username</option>
+                    }
+                    else
+                    {
+                    <option value="@item.Id">@item.Username</option>
+                    }
+                }
+            </select>
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+                                    new SelectListItem { Value = "0", Text = Lang.all },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
+                                }, new { @class = "za_select" })
+        </div>
+        <div class="item">
+            --<label>@Lang.OrderBy</label>:
+            @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+                                    new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+                                }, new { @class = "za_select" })
+            @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+                                    new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "2", Text = Lang.DES }
+                                }, new { @class = "za_select" })
+        </div>
+        @if (!ReferenceEquals(agentList, null) && agentList.Any())
+        { 
+            <div class="item">
+                --<label>@Lang.Page</label>:
+                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
+            </div>
+        }
+        <div class="item">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+            <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
+        </div>
+        @if (hasMemberDownline)
+        {
+            <div class="item">
+                -- <a href="~/Account/IndirectMemberList?parentAgentId=@parentId&amp;agentId=@Model.AgentId">@Lang.memberList</a>
+            </div>
+        }
+        <div class="end">
+        </div>
+    </div>
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+    
+    @Html.HiddenFor(m => m.ParentAgentId)   
+}
+<table class="tblRpt directAgentList">
+    @if (!ReferenceEquals(agentList, null) && agentList.Any())
+    {
+        <thead>
+            <tr class="m_title_ag">
+                <th>
+                    @RazorHelper.RenderAgentListHeader(uplineLevel)
+                </th>
+                <th>
+                    @RazorHelper.RenderAgentListHeader(currentLevel, true)
+                </th>
+                <th class="width-60">
+                    @Lang.lblDownline
+                </th>
+                <th class="width-70">
+                    @Lang.member
+                </th>
+                <th class="width-80">
+                    @Lang.status
+                </th>
+                <th class="width-80">
+                    @Lang.betstatus
+                </th>
+                <th class="width-200">
+                    @Lang.Feature
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in agentList)
+            {
+                <tr class="m_cen">
+                    <td>
+                        @ViewBag.AgentUsername
+                    </td>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @if (item.NumberOfAgent != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.NumberOfMember != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                    </td>
+                    <td>
+                        @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td class="text-left">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@ViewBag.AgentUsername&amp;backLink=@backLink">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.lblview
+                            }
+                        </a>
+                        &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+
+                        @if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                            {
+                                @:&nbsp;/&nbsp; 
+                                <a  href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&backLink=@backLink">
+                                    @Apollo.Age.Resources.Lang.lblMemberShare
+                                </a>
+                            }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <th class="none-result">
+                @Lang.NoneAgent
+            </th>
+        </thead>
+    }
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.za_select').change(function () {
+                $('#submit').click();
+            });
+        });
+    </script>
+}

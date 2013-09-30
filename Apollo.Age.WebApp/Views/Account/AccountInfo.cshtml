@@ -1,20 +1,21 @@
 ﻿@using Apollo.Age.Account.Models;
 @using Apollo.Age;
+@using Apollo.Age.Entities;
+@using Apollo.Age.Configurations;
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewBag.Title = @Apollo.Age.Resources.Lang.AccountSearch;
+    var topMember = (MemberListModel)ViewBag.TopMember;
 }
 <table id="tab-menu">
     <tr>
         <td>
-            <a id="lk-menu-tab" href="javascript:;" target="menu"><i class="icon-align-justify">
-            </i>@Apollo.Age.Resources.Lang.mainmenu</a>
-        </td>
-        <td>
-            <a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user"></i>@Apollo.Age.Resources.Lang.userinfo</a>
+            <a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user"></i>
+                @Apollo.Age.Resources.Lang.userinfo</a>
         </td>
         <td class="active">
-            <a><i class="icon-search"></i>@Apollo.Age.Resources.Lang.search</a>
+            <a><i class="icon-search"></i>@Apollo.Age.Resources.Lang.AccountSearch</a>
         </td>
     </tr>
 </table>
@@ -38,50 +39,92 @@
                         }
                         else
                         {
-                            <td class="agent-lbl">
-                                @Apollo.Age.Resources.Lang.agent:
-                            </td>
+                            @RenderAgentLevelName(Model.Level, "agent-lbl")
                         }
+                        
                         <td class="agent-name">
                             @Model.Username
                         </td>
                     </tr>
-                    <tr>
-                        @if (Model.IsMember)
+
+                    @if (Model.AgentPathList != null && Model.AgentPathList.Any())
+                    {
+                        var item = new Agent();
+                        var count = Model.AgentPathList.Count > 4 ? 4 : Model.AgentPathList.Count; //4: is only show 4 level
+                        for (int i = 0; i < count; i++)
                         {
-                            <td class="parent-lbl">
-                                @Apollo.Age.Resources.Lang.agent:
-                            </td>
+                            item = Model.AgentPathList[i];
+                            <tr>
+                                @RenderAgentLevelName(item.Level, "parent-lbl")
+                                <td class="parent-name">
+                                    @if (item.Level == AgentLevel.Super)
+                                    {
+                                        @item.Username
+                                    }
+                                    else
+                                    {
+                                        <a class="view-agentinfo" href="#" target="menu"
+									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
                         }
-                        else
-                        {
-                            <td class="parent-lbl">
-                                @Apollo.Age.Resources.Lang.lblParentname:
-                            </td>
-                        }
-                        <td class="parent-name">
-                            @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId || Model.Level == Constants.MainShareHolderLevel))
+                    }
+                    else
+                    {
+                        <tr>
+                            @if (Model.IsMember)
                             {
-                                @Model.ParentName
+                                <td class="parent-lbl">
+                                    @Apollo.Age.Resources.Lang.agent:
+                                </td>
                             }
                             else
                             {
-                                if (Model.ActorAgentId != Model.ParentId)
-                                {
-                                <a href="javascript:;" id="agentDownlineLink" aid="@Model.ParentId"
-                                        title="@Apollo.Age.Resources.Lang.txtShowUpline" alt="@Apollo.Age.Resources.Lang.txtShowUpline">
-                                    <div id="ddl-agents">
-                                        <ul class="agent-list">
-                                        </ul>
-                                    </div>
-                                </a>
-                                }
-                                <a class="view-agentinfo" href="javascript:;" target="menu"
-                                    agent-id='@Model.ParentId' agent-name='@Model.ParentName'>@Model.ParentName
-                                </a>
+                                @RenderAgentLevelName((Model.Level - 1), "parent-lbl")
                             }
-                        </td>
-                    </tr>
+                            <td class="parent-name">
+                                @if (!Model.IsMember && (Model.ActorAgentId == Model.CustId))
+                                {
+                                    @Model.ParentName
+                                }
+                                else
+                                {
+                                    if (Model.ActorAgentId != Model.ParentId)
+                                    {
+                                    <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                        <div id="ddl-agents">
+                                            <ul class="agent-list">
+                                            </ul>
+                                        </div>
+                                    </a>
+                                    }
+
+                                    <a class="view-agentinfo" href="javascript:;" target="menu"
+										data-agentid="@Model.ParentId" data-agentname="@Model.ParentName">@Model.ParentName
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                    @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
+                    {
+                            <tr>
+                                <td class="parent-lbl"></td>
+                                <td class="parent-name">
+                                    <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@Model.AgentPathList[4].Id">
+                                        @Lang.more &#187;
+                                        <div id="ddl-agents">
+                                            <ul class="agent-list">
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                                
+                    }
                 </tbody>
             </table>
             }
@@ -95,42 +138,60 @@
     {
         if (Model.CustId > 0)
         {
-        <div class="clearfix">
+        <div class="clearfix btn-list">
             @if (!Model.IsMember)
             {
                 if (Model.HasAgentDownline)
                 {
-                <a class="lnk-agent-list"
-                            target="main" href="~/Account/AgentList?agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.lblAgentList
+                    if (Model.ActorAgentId == Model.CustId)
+                    {
+                <a class="lnk-agent-list" target="main" href="~/Account/AgentList">
+                    @Apollo.Age.Resources.Lang.lblAgents
                 </a>
+                    }
+                    else
+                    {
+                <a class="lnk-agent-list" target="main"
+							href="~/Account/IndirectAgentList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
+                    @Apollo.Age.Resources.Lang.lblAgents
+                </a>
+                    }
                 }
-                if (Model.HasMemberDownline && Model.Level > Constants.ShareHolderLevel)
+                if (Model.HasMemberDownline && Model.Level > AgentLevel.Shareholder)
                 {
-                <a class="lnk-member-list"
-                            target="main" href="~/Account/MemberList?agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.lblPlayerList
+                    if (Model.ActorAgentId == Model.CustId)
+                    {
+                <a class="lnk-member-list" target="main" href="~/Account/MemberList">
+                    @Apollo.Age.Resources.Lang.memberList
                 </a>
+                    }
+                    else
+                    {
+                <a class="lnk-member-list" target="main" href="~/Account/IndirectMemberList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
+                    @Apollo.Age.Resources.Lang.memberList
+                </a>
+                    }
                 }
             }
-            @if (Model.IsMember)
+            else
             {
-                <a class="lnk-betlist" target="main" href="~/_BetList/BetListOnMember.aspx?custId=@Model.CustId&username=@Model.Username&type=accountinfo">
+                <a class="lnk-betlist" target="main"
+					href="~/BetList/AccountInfo?custId=@Model.CustId">
                     @Apollo.Age.Resources.Lang.lblBetLists
                 </a>
             }
         </div>
         <div id="agent-setting">
             <ul class="tabs">
-                <li id="custsettings" class="current"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                     <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
                 @if (!Model.IsMember)
                 {
-                    <li id="agentsTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                    <li id="agentsTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.lblAgents</span> </a></li>
-                    if (Model.Level > Constants.ShareHolderLevel)
+                    if (Model.Level > AgentLevel.Shareholder)
                     {
-                    <li id="membersTab"><a class="show-section" agent-id="@Model.CustId" href="javascript:void(0);">
+                    <li id="membersTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                         <span>@Apollo.Age.Resources.Lang.memberList</span> </a></li>
                     }
                 }
@@ -140,75 +201,113 @@
                     @if (Model.IsMember)
                     {
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/EditMemberSetting?memberId=@Model.CustId&userName=@Model.Username&showHeader=true&userGroup=@group&agentId=@Model.ParentId">
+                        if (!AppSettings.DisableEditOnMember)
+                        {
+                            <a class="edit-link" href="javascript:;">
+                                @if (Model.IsMaster)
+                                {
+                                    @Apollo.Age.Resources.Lang.edit
+                                }
+                                else
+                                {
+                                    @Apollo.Age.Resources.Lang.lblview
+                                }
+                            </a>
+                             <div class="list">
+                                <ul class="menu-list">
+                                    @if (Model.AgentPathList.Any())
+                                    {
+                                        var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
+                                        foreach (var itemAgent in listAgent)
+                                        {
+                                            if (itemAgent.Level > AgentLevel.Super)
+                                            { 
+                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
+                                            }
+                                        }
+
+                                    }
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                          @*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.lblEditSB
+                                @Apollo.Age.Resources.Lang.lblEditMemberShare
                             }
                             else
                             {
-                                @Apollo.Age.Resources.Lang.ViewSportsbook
+                                @Apollo.Age.Resources.Lang.lblViewMemberShare
                             }
-                        </a>
-
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.ViewShare
-                        </a>
-
-                        <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.ViewCommission
-                        </a>
+                            </a>*@
+                        }
                         
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
+                            @Apollo.Age.Resources.Lang.ViewDetails
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&amp;userName=@Model.Username">
+                            @Apollo.Age.Resources.Lang.Share
+                        </a>
+                        <a class="lnk-setting" target="main"
+							href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
+                            @Apollo.Age.Resources.Lang.lblComm
+                        </a>
+
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
                     }
                     else
                     {
-                        if (Model.ActorAgentId == Model.CustId)
-                        {
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/MySetting">
-                            @Apollo.Age.Resources.Lang.lblViewAllSetting
-                        </a>
-                        }
-                        else
+                        if (Model.ActorAgentId != Model.CustId)
                         {
                         <a class="lnk-setting" target="main"
-                                href="~/CustomerSetting/EditAgentSetting?agentId=@Model.CustId&userName=@Model.Username&agentLevel=@Model.Level&showHeader=true">
+							href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.lblEditSB
+                                @Apollo.Age.Resources.Lang.edit
                             }
                             else
                             {
-                                @Apollo.Age.Resources.Lang.ViewSportsbook
+                                @Apollo.Age.Resources.Lang.lblview
                             }
                         </a>
                         }
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
+                            @Apollo.Age.Resources.Lang.ViewDetails
+                        </a>
+                        if (Model.Level > AgentLevel.Shareholder)
+                        {
+                            <a class="lnk-setting" target="main" 
+                            href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
 
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.ViewShare
+                                @Apollo.Age.Resources.Lang.lblMemberShare
+                            </a>
+                        }
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
+                            @Apollo.Age.Resources.Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
-                            href="~/CustomerSetting/ViewCommission?id=@Model.CustId&isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.ViewCommission
+						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
+                            @Apollo.Age.Resources.Lang.lblComm
                         </a>
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>
+                        
+                        
                     }
                 </div>
                 <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
                     {
-                        <iframe id='frmDownlineList' name='frmDownlineList'
-                            frameborder="0" src='~/Account/AgentTreeList?agentid=@Model.CustId'></iframe>
+                        <div id="agent-treeview"></div>
                     }
                     else
                     {
-                        <div class="no-data">@Apollo.Age.Resources.Lang.noInfo</div>
+                        <div class="no-data">@Apollo.Age.Resources.Lang.NoneAgent</div>
                     }
                 </div>
                 <div id="membersTab-content">
@@ -218,37 +317,50 @@
         }
     }
 </div>
-@section foot
-{
-    <script src="~/_globalresources/js/jquery-ui.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/core.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/accountinfo.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/menu.js" type="text/javascript"></script>
-}
+
 @helper SearchBox()
     {
         if (Model == null)
         {
     @Html.DropDownList("IsMember", new List<SelectListItem> {
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
-        }, new { id = "ddlIsMember" })
+			new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
+			new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
+		}, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"
-            value="@Apollo.Age.Resources.Lang.enterusername" name="userName" />
+			value="@Apollo.Age.Resources.Lang.enterusername" name="userName" />
         }
         else
         {
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-            new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-            new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
-        }, new { id = "ddlIsMember" })
+			new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
+			new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
+		}, new { id = "ddlIsMember" })
 
     <input maxlength="50" id="txtUsername" type="text"
-            value="@Model.Username" name="userName" />
+			value="@Model.Username" name="userName" />
         }
     <button type="button" class="btn search-button">
         <i class="icon-search"></i>
     </button>
     <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
+}
+
+@helper RenderAgentLevelName(int agentLevel, string classObject = "")
+    {
+        var keyLang = string.Empty;
+        var langAgent = Constants.AgentLevelDictionary.Where(t => t.Key == agentLevel).SingleOrDefault();
+        if (langAgent.Value == null)
+        {
+            // is not exits in Constants.AgentLevelDictionary is it's Agent (key = 4)
+            keyLang = Constants.AgentLevelDictionary[4];
+        }
+        else
+        {
+            keyLang = langAgent.Value;
+        }
+
+    <td class="@classObject">
+        @Html.Resource(keyLang):
+    </td>
 }

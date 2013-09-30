@@ -112,77 +112,75 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="succ_101" xml:space="preserve">
-    <value>会员资料已更新成功</value>
-    <comment>Customer information is updated successfully</comment>
-  </data>
-  <data name="succ_102" xml:space="preserve">
-    <value>关闭状态已更新成功</value>
-    <comment>Closed status is updated successfully</comment>
-  </data>
-  <data name="succ_103" xml:space="preserve">
-    <value>暂停状态已更新成功</value>
-    <comment>Suspended status is updated successfully</comment>
+  <data name="succ_108" xml:space="preserve">
+    <value>开启金融状态已更新成功</value>
   </data>
   <data name="succ_104" xml:space="preserve">
     <value>信用额度已更新成功</value>
-    <comment>Credit is updated successfully</comment>
   </data>
-  <data name="succ_105" xml:space="preserve">
-    <value>佣金已更新成功</value>
-    <comment>Commission is updated successfully</comment>
+  <data name="succ_119" xml:space="preserve">
+    <value>澳大利亚赛狗赌注设置更新成功</value>
+  </data>
+  <data name="ValidateFromToDate" xml:space="preserve">
+    <value>日期区间错误！</value>
   </data>
   <data name="succ_106" xml:space="preserve">
     <value>投注设定已更新成功</value>
-    <comment>Bet Setting is updated successfully</comment>
   </data>
-  <data name="succ_107" xml:space="preserve">
-    <value>占成数设定已更新成功</value>
-    <comment>Position taking is updated successfully</comment>
+  <data name="succ_115" xml:space="preserve">
+    <value>成功开启/关闭澳大利亚赛狗</value>
   </data>
-  <data name="succ_108" xml:space="preserve">
-    <value>开启金融状态已更新成功</value>
-    <comment>Finance enabled status is updated successfully</comment>
+  <data name="succ_117" xml:space="preserve">
+    <value>澳大利亚赛马赌注设置更新成功</value>
   </data>
-  <data name="succ_109" xml:space="preserve">
-    <value>成功开启/关闭南非赛马</value>
+  <data name="succ_102" xml:space="preserve">
+    <value>关闭状态已更新成功</value>
   </data>
-  <data name="succ_110" xml:space="preserve">
+  <data name="succ_111" xml:space="preserve">
     <value>成功开启/关闭英国/爱尔兰赛马</value>
   </data>
   <data name="succ_113" xml:space="preserve">
     <value>成功开启/关闭澳大利亚赛马</value>
   </data>
-  <data name="succ_114" xml:space="preserve">
-    <value>成功开启/关闭英国/爱尔兰赛狗</value>
-  </data>
-  <data name="succ_115" xml:space="preserve">
-    <value>成功开启/关闭澳大利亚赛狗</value>
-  </data>
-  <data name="succ_116" xml:space="preserve">
-    <value>成功开启/关闭澳大利亚马车</value>
-  </data>
-  <data name="succ_111" xml:space="preserve">
-    <value>成功开启/关闭英国/爱尔兰赛马</value>
-  </data>
-  <data name="succ_112" xml:space="preserve">
-    <value>南非赛马赌注设置更新成功</value>
-  </data>
-  <data name="succ_117" xml:space="preserve">
-    <value>澳大利亚赛马赌注设置更新成功</value>
+  <data name="succ_109" xml:space="preserve">
+    <value>成功开启/关闭南非赛马</value>
   </data>
   <data name="succ_118" xml:space="preserve">
     <value>英国/爱尔兰赛狗赌注设置更新成功</value>
   </data>
-  <data name="succ_119" xml:space="preserve">
-    <value>澳大利亚赛狗赌注设置更新成功</value>
+  <data name="succ_105" xml:space="preserve">
+    <value>佣金已更新成功</value>
   </data>
   <data name="succ_120" xml:space="preserve">
     <value>澳大利亚马车赌注设置更新成功</value>
+  </data>
+  <data name="succ_114" xml:space="preserve">
+    <value>成功开启/关闭英国/爱尔兰赛狗</value>
+  </data>
+  <data name="succ_107" xml:space="preserve">
+    <value>占成数设定已更新成功</value>
+  </data>
+  <data name="succ_116" xml:space="preserve">
+    <value>成功开启/关闭澳大利亚马车</value>
+  </data>
+  <data name="succ_101" xml:space="preserve">
+    <value>会员资料已更新成功</value>
+  </data>
+  <data name="succ_110" xml:space="preserve">
+    <value>成功开启/关闭英国/爱尔兰赛马</value>
+  </data>
+  <data name="succ_103" xml:space="preserve">
+    <value>暂停状态已更新成功</value>
+  </data>
+  <data name="MessageValidateWithArchivedDate" xml:space="preserve">
+    <value>日期区间错误！</value>
+  </data>
+  <data name="succ_112" xml:space="preserve">
+    <value>南非赛马赌注设置更新成功</value>
   </data>
 </root>

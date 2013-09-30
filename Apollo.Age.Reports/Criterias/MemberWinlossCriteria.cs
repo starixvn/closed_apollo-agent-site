@@ -16,11 +16,17 @@ namespace Apollo.Age.Reports.Criterias
     {
         public int AgentId { get; set; }
 
+        public string Sporttypes { get; set; }
+
+        public string Bettypes { get; set; }
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
+
+        public DateTime MoveBetDay { get; set; }
 
         public override string GetSettingKey()
         {
@@ -29,8 +35,8 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            var minDate = DateTime.Now.Date.AddMonths(-3);
-            return (FromDate <= DateTime.Now && ToDate <= DateTime.Now && FromDate <= ToDate && minDate <= FromDate);
+            var check = AgentId > 0 && FromDate <= DateTime.Now && FromDate <= ToDate && BalanceUpDay <= FromDate && BalanceUpDay <= ToDate;
+            return check;
         }
     }
 }

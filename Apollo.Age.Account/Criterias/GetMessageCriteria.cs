@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetMessageCriteriaCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetMessageCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,48 +9,14 @@
 
 namespace Apollo.Age.Account.Criterias
 {
-    using Fanex.NAP.Framework.Data;
     using System;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class GetMessageCriteria : CriteriaBase
     {
-        public override string GetSettingKey()
-        {
-            string settingKey = string.Empty;
-
-            switch (this.IsPublic)
-            {
-                case 0:
-                    settingKey = "Dot_Msg_GetPrivateMessage";
-                    break;
-
-                case 1:
-                    settingKey = "Dot_Msg_GetPublicMessage";
-                    break;
-
-                default:
-                    switch (this.Special)
-                    {
-                        case 0:
-                            settingKey = "Dot_Msg_GetNotSpecialMessage";
-                            break;
-
-                        case 1:
-                            settingKey = "Dot_Msg_GetSpecialMessage";
-                            break;
-
-                    }
-                    settingKey = (string.IsNullOrEmpty(settingKey) ? "Dot_Msg_GetMessage" : settingKey);
-                    break;
-
-            }
-
-            return settingKey;
-        }
-
         [SpParam(SqlParamName = "TargetId")]
         public int CustId { get; set; }
 
@@ -74,9 +40,6 @@ namespace Apollo.Age.Account.Criterias
         public int MatchId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int IsPublic { get; set; }
-
-        [SpParam(Ignored = true)]
         public string PageQuery { get; set; }
 
         [SpParam(Ignored = true)]
@@ -84,11 +47,12 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            var checkDate = false;
+            return CustId >= 0;
+        }
 
-            checkDate = From <= To && ((DateTime)To - (DateTime)From).Days <= DateTime.Now.DayOfYear;
-
-            return CustId > 0 && checkDate;
+        public override string GetSettingKey()
+        {
+            return "Dot_Msg_GetMessage";
         }
     }
 }

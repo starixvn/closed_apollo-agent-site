@@ -1,0 +1,114 @@
+﻿@using Apollo.Age.Account.ViewModels
+@using Apollo.Age
+@using Apollo.Age.Resources
+
+@{
+	ViewBag.Title = Lang.ViewShare;
+	Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
+	int index = 0;
+}
+@model AgentShareViewModel
+
+<div id="box_header">
+	<div class="row">
+		@if (Model.SportList.Any())
+		{
+			<div class="cell">
+				<div class="label">
+					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Lang.sport):</label>
+				</div>
+				<div class="editor">
+					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", @class="sport-type" })
+				</div>
+			</div>
+		}
+		@if (Model.BetTypeList.Any())
+		{
+			<div class="cell">
+				<div class="label">
+					<label for="ddlBetType">@Html.LabelFor(m => m.BetType, Lang.bettype):</label>
+				</div>
+				<div class="editor">
+					@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
+					new { id = "ddlBetType", @class="bet-type"})
+				</div>
+			</div>
+		}
+
+		<div class="cell">
+            <div class="editor">
+                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+					new SelectListItem { Value = "false", Text = Lang.agent },
+					new SelectListItem { Value = "true", Text = Lang.member }
+				}, new { id = "ddlIsMember" })				
+				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", @class="username" })
+            </div>
+			<div class="editor">                
+				<input id="btnSubmit" class="btn" type="button" value="@Lang.submit" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="view-detail-container">
+	<div class="div-border">
+		<table id="tableShare" class="tb-cust-setting no-border-bottom">
+			<thead>
+				<tr>
+					<th style="width:25%;">
+					</th>
+					<th style="width:25%;">
+						@Lang.lblPercentUpper
+					</th>
+					<th style="width:25%;">
+						@Lang.lblMaxGivenShare
+					</th>
+					<th style="width:25%;">
+						@Lang.lblMinGivenShare
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.AgentShareModelList != null && Model.AgentShareModelList.Any())
+				{
+					foreach (var item in Model.AgentShareModelList)
+					{
+						string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
+
+					<tr @Html.Raw(rowClass)>
+						<td class="first-cell l">
+							@item.Username
+						</td>
+						@if (index == Model.AgentShareModelList.Count)
+						{
+							<td>
+							</td>
+						}
+						else
+						{
+							<td class="r">
+								@Formater.DecFormat(item.TakenShare / 100.00, 2)
+							</td>
+						}
+						<td class="r">
+							@Formater.DecFormat(item.MaxGiven / 100.00, 2)
+						</td>
+						<td class="r">
+							@Formater.DecFormat(item.MinGiven / 100.00, 2)
+						</td>
+					</tr>
+					}
+				}
+				else
+				{
+					@RazorHelper.ShowNoInfo(4)
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@section scripts
+{
+	@Scripts.Render("~/scripts/viewsharesettingjs")
+}

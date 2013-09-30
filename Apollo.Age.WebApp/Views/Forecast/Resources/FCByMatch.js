@@ -5,7 +5,7 @@ if (typeof jQuery != 'undefined') {
 			matchId: DEFAULT_OBJECT.matchId,
 			betType: DEFAULT_OBJECT.betType,
 			currentScore: DEFAULT_OBJECT.currentScore,
-			contentLink: APOLLO.resolveUrl('Forecast/FORECASTBYMATCHContent'),
+			contentLink: APOLLO.resolveUrl('Forecast/ForecastByMatchContent'),
 			init: function () {
 				parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.forecastString);
 				FORECASTBYMATCH.loadContentView();
@@ -28,13 +28,13 @@ if (typeof jQuery != 'undefined') {
 				//// Register View BestList
 				$('#forecast-body .view-bet-list').click(function () {
 					var $this = $(this);
-					var url = APOLLO.resolveUrl('_BetList/BetList.aspx?matchId=' + $this.attr("match-id")
+					var url = APOLLO.resolveUrl('Betlist/Forecast?matchId=' + $this.attr("match-id")
 						+ '&betType=' + $this.attr("bet-type")
 						+ '&type=BettypeMatch'
 						+ '&leagueName=' + DEFAULT_OBJECT.leagueName);
 					parent.$(".ui-dialog .ui-dialog-title").text(DEFAULT_LAYOUT.betListString);
 					if (DEFAULT_OBJECT.currentMainShareHolderId > 0) {
-						url += "&mainShareHolderId=" + DEFAULT_OBJECT.currentMainShareHolderId +"&isForecast=true";
+						url += "&mainShareHolderId=" + DEFAULT_OBJECT.currentMainShareHolderId + "&isForecast=true";
 					}
 					location.href = url;
 				});

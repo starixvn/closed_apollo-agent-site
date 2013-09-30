@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Wagers>
+    <Sport Controller="Soccer" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+        <BetType Action="Correctscore" ResourceKey="correctscore" />
+        <BetType Action="FirstHalfCorrectScore" ResourceKey="lbl1stHalfCorrectScore" />
+        <BetType Action="HalfFull" ResourceKey="lblHalfFull" />
+        <BetType Action="Total" ResourceKey="lblTotalWager" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+    </Sport>
+    <Sport Controller="Basketball" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+    </Sport>
+    <Sport Controller="Tennis" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+    </Sport>
+    <Sport Controller="Volleyball" ResourceKey="Straight">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+    </Sport>
+    <Sport Controller="Baseball" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+    </Sport>
+    <Sport Controller="Others" ResourceKey="">
+        <BetType Action="Straight" ResourceKey="lblStraight" />
+        <BetType Action="FirstHalf" ResourceKey="lbl1sthalf" />
+        <BetType Action="RunningBall" ResourceKey="lblRB" />
+        <BetType Action="Parlay" ResourceKey="lblParlay" />
+        <BetType Action="Specialbet" ResourceKey="lblSpecialbet" />
+    </Sport>
+   
+</Wagers>

@@ -10,8 +10,12 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Handicap Model.
+    /// </summary>
     public class HandicapModel
     {
         public int LeagueId { get; set; }
@@ -60,11 +64,13 @@ namespace Apollo.Age.TotalBets.Models
 
         public int BetCountHalfTimeOverUnder { get; set; }
 
+        public DateTime? KickOffTime { get; set; }
+
         public string HomeTeam
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 

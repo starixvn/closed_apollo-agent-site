@@ -1,0 +1,162 @@
+﻿@using Apollo.Age.Entities;
+@using Apollo.Age.Web;
+@using Apollo.Age
+@using Apollo.Age.Resources
+@model AgentListCriteria
+@{
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
+    ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
+    var isMaster = (bool)ViewBag.IsMaster;
+    var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
+
+    var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectagentlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
+    Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+}
+@using (Html.BeginForm())
+{       
+    <div id="function-bar">
+        <div class="item">
+            <label>@Lang.agent</label>:
+            <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                @foreach (var item in driectAgentList)
+                {
+                    if (item.Id == Model.AgentId)
+                    { 
+                    <option value="@item.Id" selected="selected">@item.Username</option>
+                    }
+                    else
+                    {
+                    <option value="@item.Id">@item.Username</option>
+                    }
+                }
+            </select>
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.Close },
+                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+				                }, new { @class = "za_select" })
+        </div>
+        <div class="item">
+            --<label>@Lang.OrderBy</label>:
+            @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+            @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "2", Text = Lang.DES }
+				                }, new { @class = "za_select" })
+        </div>
+        @if (!ReferenceEquals(agentList, null) && agentList.Any())
+        { 
+            <div class="item">
+                --<label>@Lang.Page</label>:
+                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
+            </div>
+        }
+        <div class="item">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+            <input type="submit" class="za_button" value="@Lang.SearchAgent" id="submit">
+        </div>
+    </div>     
+    <img src="/_GlobalResources/Images/top_04.gif" alt="">
+    @Html.HiddenFor(m => m.ParentAgentId)   
+}
+<table class="tblRpt directAgentList">
+    @if (!ReferenceEquals(agentList, null) && agentList.Any())
+    {
+        <thead>
+            <tr bgcolor="#86C0A6" class="m_title_ag">
+                <th width="80">
+                    @Lang.enterusername
+                </th>
+                <th width="60">
+                    @Lang.agent
+                </th>
+                <th width="70">
+                    @Lang.member
+                </th>
+                <th width="60">
+                    @Lang.condition
+                </th>
+                <th width="60">
+                    @Lang.BetCondition
+                </th>
+                <th width="80">
+                    @Lang.Feature
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in agentList)
+            {
+                <tr class="m_cen">
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @if (item.NumberOfAgent != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.NumberOfMember != 0)
+                        { 
+                            @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
+                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                        }
+                        else
+                        {
+                            <span>0</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                    </td>
+                    <td>
+                        @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td class="text-left">
+                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username&backLink=@backLink">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.view
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&agentLevel=@item.AgentLevel&userName=@item.Username">@Lang.Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <th class="none-result">
+                @Lang.NoneAgent
+            </th>
+        </thead>
+    }
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.za_select').change(function () {
+                $('#submit').click();
+            });
+        });
+    </script>
+}

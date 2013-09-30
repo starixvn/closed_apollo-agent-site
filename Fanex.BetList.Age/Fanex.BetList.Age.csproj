@@ -57,7 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BetListExcelBuilderExt\BetListExcelBuilderExt.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
     <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT1.cs" />

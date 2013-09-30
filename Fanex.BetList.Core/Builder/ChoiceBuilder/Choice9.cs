@@ -29,8 +29,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
-        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap)
+        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
         {
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
             string mixParlay = string.Join(

@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.BetList.Core">
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper">
-      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
@@ -47,6 +41,7 @@
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -63,18 +58,29 @@
     <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />
     <Compile Include="Criterias\TicketResult.cs" />
     <Compile Include="Criterias\TicketText.cs" />
+    <Compile Include="Criterias\WagersCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BetListRepository.cs" />
     <Compile Include="Repositories\Interface\IBetListRepository.cs" />
     <Compile Include="Services\BetListService.cs" />
     <Compile Include="Services\IBetListService.cs" />
+    <Compile Include="ViewModels\BetListReportViewModel.cs" />
     <Compile Include="ViewModels\BetListViewModel.cs" />
+    <Compile Include="ViewModels\MixParlayViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
       <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
       <Name>Apollo.Age.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
+      <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
+      <Name>Apollo.Age.TotalBets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
@@ -83,6 +89,14 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
+      <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
+      <Name>Fanex.BetList.Core.TicketHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
+      <Name>Fanex.BetList.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

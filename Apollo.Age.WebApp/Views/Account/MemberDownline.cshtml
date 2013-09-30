@@ -2,13 +2,14 @@
 @model IPagedList<Apollo.Age.Entities.Member>
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewBag.Title = @Lang.memberList;
 }
 <ul id="members-list">
     @if (Model.Any())
     {
         foreach (var member in Model)
         {
-        <li><a class='view-memberinfo' href='javascript:;' member-id='@member.Id' member-name='@member.Username' target='menu'>
+        <li><a class='view-memberinfo' href='javascript:;' data-memberid='@member.Id' data-membername='@member.Username' target='menu'>
             @member.Username
         </a></li>
         }
@@ -16,7 +17,7 @@
     else
     {
         <li>
-            <div class="no-data">@Apollo.Age.Resources.Lang.noInfo</div>
+            <div class="no-data">@Apollo.Age.Resources.Lang.NoneMember</div>
         </li>
     }
 </ul>

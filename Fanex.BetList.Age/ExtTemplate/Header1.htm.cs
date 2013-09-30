@@ -13,43 +13,45 @@ namespace Fanex.BetList.Age
 	{
 		public class Header1_Template : Template
 		{
-			protected static string s0 = "<thead class=\"persist-header\"><tr>";
-			public Header1_No_Block No = new Header1_No_Block();
-			public Header1_Member_Block Member = new Header1_Member_Block();
-			protected static string s1 = "<th style=\"width: 120px;\">";
-			protected static string s2{get{return Apollo.Age.Resources.BetList.transtime;}}
-			protected static string s3 = "</th><th>";
-			protected static string s4{get{return Apollo.Age.Resources.BetList.choice;}}
-			protected static string s5 = "</th><th style=\"width: 50px;\">";
-			protected static string s6{get{return Apollo.Age.Resources.BetList.odds;}}
-			protected static string s7 = "</th><th style=\"width: 50px;\">";
-			protected static string s8{get{return Apollo.Age.Resources.BetList.stake;}}
-			protected static string s9 = "</th>";
+			protected static string s0 = "<thead class=\"persist-header\"><tr><th style=\"width: 70px;\">";
+			protected static string s1{get{return Apollo.Age.Resources.BetList.time;}}
+			protected static string s2 = "</th><th style=\"width: 120px;\">";
+			public string headerMember = "{headerMember}";
+			protected static string s3 = "</th><th style=\"width: 130px;\">";
+			public string headerTrans = "{headerTrans}";
+			protected static string s4 = "</th><th>";
+			protected static string s5{get{return Apollo.Age.Resources.BetList.choice;}}
+			protected static string s6 = "</th><th style=\"width: 50px;\">";
+			protected static string s7{get{return Apollo.Age.Resources.BetList.amount;}}
+			protected static string s8 = "</th><th style=\"width: 50px;\">";
+			protected static string s9{get{return Apollo.Age.Resources.BetList.result;}}
+			protected static string s10 = "</th>";
 			public Header1_Winloss_Block Winloss = new Header1_Winloss_Block();
 			public Header1_Status_Block Status = new Header1_Status_Block();
 			public Header1_Agent_Block Agent = new Header1_Agent_Block();
-			protected static string s10 = "</tr></thead>";
+			protected static string s11 = "</tr></thead>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s0);
-					if(null != No) No.ToString(ref bd);
-					if(null != Member) Member.ToString(ref bd);
 					bd.Append(s1);
 					bd.Append(s2);
+					bd.Append(headerMember);
 					bd.Append(s3);
+					bd.Append(headerTrans);
 					bd.Append(s4);
 					bd.Append(s5);
 					bd.Append(s6);
 					bd.Append(s7);
 					bd.Append(s8);
 					bd.Append(s9);
+					bd.Append(s10);
 					if(null != Winloss) Winloss.ToString(ref bd);
 					if(null != Status) Status.ToString(ref bd);
 					if(null != Agent) Agent.ToString(ref bd);
-					bd.Append(s10);
+					bd.Append(s11);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -62,24 +64,10 @@ namespace Fanex.BetList.Age
 
 		}
 
-		public class Header1_No_Block: Block
+		public class Header1_Winloss_Block: Block
 		{
-			protected static string s11 = "<th style=\"width: 20px;\">#</th>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s11);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class Header1_Member_Block: Block
-		{
-			protected static string s12 = "<th style=\"width: 110px;\">";
-			protected static string s13{get{return Apollo.Age.Resources.BetList.member;}}
+			protected static string s12 = "<th style=\"width: 55px;\">";
+			protected static string s13{get{return Apollo.Age.Resources.BetList.winloss;}}
 			protected static string s14 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -94,10 +82,10 @@ namespace Fanex.BetList.Age
 			}
 		}
 
-		public class Header1_Winloss_Block: Block
+		public class Header1_Status_Block: Block
 		{
-			protected static string s15 = "<th style=\"width: 55px;\">";
-			protected static string s16{get{return Apollo.Age.Resources.BetList.winloss;}}
+			protected static string s15 = "<th style=\"width: 70px;\">";
+			protected static string s16{get{return Apollo.Age.Resources.BetList.status;}}
 			protected static string s17 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -112,11 +100,13 @@ namespace Fanex.BetList.Age
 			}
 		}
 
-		public class Header1_Status_Block: Block
+		public class Header1_Agent_Block: Block
 		{
-			protected static string s18 = "<th style=\"width: 70px;\">";
-			protected static string s19{get{return Apollo.Age.Resources.BetList.status;}}
-			protected static string s20 = "</th>";
+			protected static string s18 = "<th style=\"width: 85px;\">";
+			protected static string s19{get{return Apollo.Age.Resources.BetList.agentPT;}}
+			protected static string s20 = "</th><th style=\"width: 80px;\">";
+			protected static string s21{get{return Apollo.Age.Resources.BetList.agentComm;}}
+			protected static string s22 = "</th>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -125,28 +115,8 @@ namespace Fanex.BetList.Age
 					bd.Append(s18);
 					bd.Append(s19);
 					bd.Append(s20);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class Header1_Agent_Block: Block
-		{
-			protected static string s21 = "<th style=\"width: 85px;\">";
-			protected static string s22{get{return Apollo.Age.Resources.BetList.agentPT;}}
-			protected static string s23 = "</th><th style=\"width: 80px;\">";
-			protected static string s24{get{return Apollo.Age.Resources.BetList.agentComm;}}
-			protected static string s25 = "</th>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
 					bd.Append(s21);
 					bd.Append(s22);
-					bd.Append(s23);
-					bd.Append(s24);
-					bd.Append(s25);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

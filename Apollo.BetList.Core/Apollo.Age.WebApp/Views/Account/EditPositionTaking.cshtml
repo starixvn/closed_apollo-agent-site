@@ -1,0 +1,97 @@
+﻿@using Apollo.Age.Resources;
+@{
+    ViewBag.Title = "Edit Share Setting " + ViewBag.UserName;
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+    var userName = (string)ViewBag.UserName ?? string.Empty;
+    var custId = (int)ViewBag.CustId;
+    var isEditAgent = (bool)ViewBag.IsEditAgent;
+    var linkBack = (string)ViewBag.BackLink;
+    var isMaster = ViewBag.IsMaster ?? false;
+}
+@section header
+{
+    <div id="function-bar">
+        <div class="item detail-information">
+            @if (isEditAgent)
+            {
+                @(Lang.AgencyDetailEdit)
+            }
+            else
+            {
+                @(Lang.MemberDetailEdit )
+            }
+            @(isMaster ? Lang.edit.ToLower() : string.Empty)
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.enterusername : <strong>@userName</strong> &nbsp;&nbsp;&nbsp;&nbsp;-- <a href="javascript:void(0);"
+                id="simple-mode" style="display: none;">@Lang.simplemode</a> <a href="javascript:void(0);"
+                    id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
+        </div>
+        <img src="/_GlobalResources/Images/top_04.gif" class="end-function-bar">
+    </div>
+}
+@Html.Hidden("backUrl", linkBack)
+<div id="ptContainer">
+</div>
+@if (isEditAgent)
+{
+    @Html.Action("Index", "Instruction", new
+{
+    key = "AgentShareSetting",
+    trigger = "agent-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "AgentShareSettingAdv",
+    trigger = "agent-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MainShareHolderShareSettingAdv",
+    trigger = "mainshareholder-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MainShareHolderShareSetting",
+    trigger = "mainshareholder-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+}
+else
+{
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MemberShareSetting",
+    trigger = "member-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MemberShareSettingAdv",
+    trigger = "member-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+}
+@section scripts
+{
+    <script type="text/javascript">
+    </script>
+    @if (isEditAgent)
+    {
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+    }
+    else
+    {
+        
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+    }
+    @Scripts.Render("~/scripts/editpositiontakingjs")
+}

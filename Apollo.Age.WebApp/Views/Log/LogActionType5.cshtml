@@ -1,0 +1,52 @@
+﻿@using Apollo.Age.Account.ViewModels
+@model List<LogSettingViewModel>
+<table class="tblRpt">
+    @if (!ReferenceEquals(Model, null) && Model.Any())
+    {
+        int count = 1;
+        <tr class="colW bg-green no-border-top">
+            <td class="colW1">
+                @Lang.Name
+            </td>
+            <td class="colW1">
+                @Lang.Value
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="colW1">
+            </td>
+            <td class="no-border-right colW1">
+            </td>
+        </tr>
+        foreach (var item in Model)
+        {
+        <tr class="@(count == Model.Count ? "have-border-bottom" : string.Empty)">
+            <td class="colW">
+                @item.FieldName
+            </td>
+            <td class="colW2">
+                <span class="valuechanged">@item.Value</span>
+                @if (!string.IsNullOrWhiteSpace(item.OldValue))
+                {
+                    <span class="valueold">| @item.OldValue</span>      
+                }
+                else
+                { 
+                    <span class="valueold">| @Lang.lblNA</span>      
+                }
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="no-border-right colW2">
+            </td>
+        </tr>
+                count++;
+        }
+    }
+</table>

@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lbl1x2;
+    ViewBag.Title = Lang.lbl1x2;
 
     var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     int matchId = ViewBag.MatchId != null ? (int)ViewBag.MatchId : 0;
@@ -9,6 +9,7 @@
     string initLeagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
     var fc1X2List = (IEnumerable<Forecast1X2Model>)ViewBag.FC1X2List;
+    var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
 }
 @section css
 {
@@ -16,7 +17,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "UpdateForecast1x2Value();")
+    @RazorHelper.RefreshCountDown("ForeCast1X2", null, "UpdateForecast1x2Value();", isShowRefreshNow)
 }
 @if (matchId == 0)
 {
@@ -27,7 +28,7 @@
                 @if (leagues != null && leagues.Any())
                 {
                     <div class="label">
-                        <label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
+                        <label for="ddlLeague">@Lang.league</label>
                     </div>
                     <div class="editor">
                         <select id='ddlLeague' name='ddlLeague' style="width: 280px">
@@ -52,7 +53,7 @@
                 else
                 {
                     <label>
-                       @Apollo.Age.Resources.Lang.noInfo</label>
+                       @Lang.noInfo</label>
                 }
             </div>
         </div>
@@ -61,14 +62,14 @@
 }
 @if (matchId != 0 || (leagues != null && leagues.Any()))
 {
-    <table class="tblRpt">
+    <table class="tblRpt fc1x2">
         <thead>
             <tr>
                 <th colspan="2">
-                    @Apollo.Age.Resources.Lang.lblTeam
+                    @Lang.homeaway
                 </th>
                 <th colspan="3">
-                    @Apollo.Age.Resources.Lang.lbl1x2
+                    @Lang.lbl1x2
                 </th>
             </tr>
         </thead>

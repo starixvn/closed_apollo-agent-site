@@ -1,10 +1,146 @@
-﻿@import "../../../_globalResources/css/Agent.less";
-@import "../../../_globalResources/css/calendar.less";
+﻿@import "../../../_GlobalResources/css/Agent.less";
+@import "../../../_GlobalResources/css/calendar.less";
 
-#header_main #exporttoexcel {
-	position: absolute;
-	right: 10px;
-	top: 10px;
+#header_main {
+	color: #000099;
+	display: block;
+	float: left;
+	margin: 2px 10px 5px 5px;
+	padding: 2px 0;
+
+	#exporttoexcel {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+}
+
+#function-bar {	
+	clear: both;
+	margin-bottom: 5px;
+
+	.item {
+		margin-top: 1px;
+
+		#ddlSport {
+			height: 20px;
+		}
+
+		&.back-link {
+			margin-right: 400px;
+		}
+	}
+
+	.menu.report-winloss {
+		margin: 2px 71px 0 80px;
+		width: 429px;
+
+		li {
+			margin-right: 8px;
+		}
+	}
+}
+
+.boxNavigation {
+	clear: both;
+	margin: 5px;
+}
+
+.pages-size {
+	.pull-left;		
+	text-transform: uppercase;	
+	margin: 8px 0 3px 0;
+	padding-left:10px;
+}
+
+#box_header, .box-header {
+	width: 795px;
+	clear: none;
+	margin: 3px 0;
+
+	.row .cell .label label {
+		margin-top: 1px;
+	}
+
+	&.report {
+		background-color: #DCDCDC;
+		border: 1px solid #000;
+		padding: 0px;
+		margin: 0 0 5px 5px;
+
+		.btn {
+			font-size: @fontSize;
+			height: 21px;
+			padding-bottom: 1px;
+		}
+
+		.row {
+			background-color: #C9DBDF;
+			padding: 0 3px;
+			margin-bottom: 1px;
+
+			&.bg-action {
+				background: @white;
+				text-align: center;
+				padding: 6px 0 4px 0;
+
+				.item {
+					float: right;
+					margin: 0 5px;
+
+					&.btn-action {
+						width: 200px;
+						padding-right: 150px;
+
+						input {
+							margin-right: 20px;
+						}
+
+						.btn {
+							padding: 0 8px;
+							height: 20px;
+							float: left;
+						}
+					}
+
+					&.action-center{
+						padding-right: 220px;
+					}
+				}				
+			}
+		}
+
+		.winloss_firstcolumn{
+			background-color:#577176;
+			text-align: right;
+			width: 100px;
+			color: white;
+		}
+
+		table {
+			width: 100%;
+
+			tr{
+				td{
+					border: 1px solid #DCDCDC;
+					background-color: #C9DBDF;
+					padding: 2px 3px;
+					height: 23px;
+
+					.user-type {
+						margin: 0 0 1px 0;
+						font-size: 12px;
+						height: 18px;
+					}	
+					
+					.txt-username {
+						width: 136px;
+						height: 11px;
+					}				
+				}
+			}
+		}
+	}
 }
 
 .bl_evt {
@@ -21,20 +157,18 @@
 
 .bl_underdog, .underdog {
 	color: #01122B;
-	font-weight: bold;
 	text-align: right;
 }
 
 .total .bl_underdog
 {
 	color:white;
-	font-weight: bold;
 	text-align: right;
 }
 
-.favorite, .bl_favorite {
-	font-weight: bold;
-	color: #B50000;
+.game-type-odd
+{
+	color:@green;
 }
 
 .colorHandicap, .handicap {
@@ -49,10 +183,6 @@
 	color: #06C;
 }
 
-.bl_status, .status {
-	font-weight: bold;
-}
-
 .div_result, .result {
 	cursor: pointer;
 	color: rgb(27, 164, 237);
@@ -61,22 +191,21 @@
 .line {
 	margin-top: 5px;
 	margin-bottom: 5px;
-	border-bottom: 1px solid #A0A0A0;
+	border-bottom: 1px solid #006255;
 	width: 100%;
 	overflow: hidden;
 	text-align: left;
 }
 
-.bl_num, .handicap .odds {
-	color: #039;
-	font-size: 8pt;
+.bl_num, .handicap {
+	color: #2804C0;
+	font-size: 9pt;
+	font-weight: bold;
 }
 
-.bl_ip {
-	color: #434343;
-	font-size: 7pt;
-	font-weight: normal;
-	text-align: center;
+.ip, .view-detail {
+	padding-top:3px;
+	color: @linkColor;
 }
 
 .firstGoal {
@@ -97,24 +226,11 @@
 
 .bl_match {
 	color: @black;
-	font-weight: normal;
 	line-height: 15px;
 }
 
 .bl_oddtype, .oddstype {
 	color: #586985;
-}
-
-.handicap.custom {
-	font-weight: bold;
-}
-
-.blue {
-	color: #2673CE;
-}
-
-.div_pt {
-	background: none repeat scroll 0% 0% rgb(245, 227, 227);
 }
 
 .div_horline {
@@ -169,27 +285,13 @@
 	cursor: pointer;
 }
 
-
-/* Report for result */
-
-#box_header {
-	margin-bottom: 10px;
-
-	.row {
-		margin-bottom: 0;
-	}
-
-	img.img-calendar {
-		margin-left: 4px;
-	}	
-}
-
 #spDateTimeSearch {
 	float: left;
 }
 
 .tblRpt {
-	margin-top: 10px;
+	width: 99%;
+	margin: 0 0.5%;
 
 	&.border-tbl td {
 		border-width: 1px;
@@ -197,18 +299,21 @@
 
 	.red-color {
 		color: #B50000;
+		white-space: nowrap;
 	}
 
+	thead{
+		th{
+			height:23px;
+		}
+	}
 	tbody {
 
 		td {
+			padding:3px;
 			white-space: normal;
-			vertical-align: top;
+			vertical-align: middle;
 			border-width: 0 1px 0 0;
-
-			.time {
-				font-size: 0.9em;
-			}
 		}
 
 		tr {
@@ -216,29 +321,62 @@
 			&.subtotal {
 				td {
 					background: lighten(@primaryColor, 35%);
-					font-weight: bold;
 					height: 24px;
 				}
 			}
 
 			&.outstanding td {				
 				background: #ddd;
-				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
-		}		
-	}
-	
-	tfoot {
-		tr {
 
-			&.total td {
-				font-weight: bold;
+			&.bl_footertotal {
+				background: @rowTotalBackground;
+				color: @white;
+
+				td {
+					border-right: 1px solid @borderColor;
+				}
+
+				&:hover {
+					background: @rowTotalBackground;
+				}
 
 				.red-color {
 					color: #FF4C4C;
+					white-space: nowrap;
 				}
-			}		
+
+			}
+			.total {
+				background: #DCDCDC;
+			}
+			.result {
+				background: #990000;
+				color: #fff;
+			}
+		}		
+	}
+
+	&.betlist {
+		margin: 0 5px;
+
+		.total {
+				background:#DAE9F2;
+		}
+
+		.result {
+			background:#000033;
+			color:#fff;
+		}
+
+		.out-standing-result {
+			background:#990000;
+			color:#fff;
+		}
+
+		tfoot .total.no-result td {
+			border-color: #000;
 		}
 	}
 }
@@ -248,37 +386,16 @@
 	width: 20px;
 }
 
-#spData .tblRpt {
-	width: 394px;
-	margin: 10px 10px 10px 15px;
-	tr {
-
-		td {
-			vertical-align: middle;
-
-			.bl_underdog {
-				font-weight: normal;
-			}
-
-			.bold {
-				font-weight: normal !important;
-			}
-		}
-
-		&.total {
-			.bl_underdog {
-				font-weight: bold;
-			}
-
-			.bold {
-				font-weight: bold !important;
-			}
-		}
-	}
-}
-
 .ui-dialog #dialog-details {
 	overflow: auto;
+}
+
+.block-loading {
+	&.loading-scoremap {
+		left: 460px;
+		position: fixed;
+		top: 277px;
+	}
 }
 
 /* FIX IE */
@@ -287,5 +404,34 @@
 	 #dialog-details .tblRpt {
 		width: 394px;
 		margin: 10px 0 10px 15px;
+	}
+		
+	#box_header.report {
+		width: 800px;
+
+		.row.bg-action .item.btn-action .btn {
+			padding: 0;
+		}	
+		
+		.btn {
+			padding: 0;
+		}		
+	}
+}
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
+	}	
+}
+
+.ie {
+	#box_header.report .btn, .box-header.report .btn {
+		height: 20px;
+		float: left;
 	}
 }

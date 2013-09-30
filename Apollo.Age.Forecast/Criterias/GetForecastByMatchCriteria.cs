@@ -41,6 +41,7 @@ namespace Apollo.Age.Forecast.Criterias
                     // 1x2
                     return "Age_Forecast_5_15_GetByMatch";
             }
+
             return string.Empty;
         }
 

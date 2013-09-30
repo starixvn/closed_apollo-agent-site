@@ -1,0 +1,49 @@
+﻿/* File Created: June 25, 2013 */
+
+.sbpager
+{
+	display: inline;
+	.item-container {
+		overflow: hidden;
+		white-space: nowrap;
+		display: inline-block;
+		float: left;
+	}
+	.move-start, .move-pre, .move-next, .move-end {
+		display: inline;
+		float: left;
+	}	
+
+	.pager-item, .move-start, .move-pre, .move-next, .move-end {
+		border-radius: 2px 2px 2px 2px;
+		color: #000;
+		text-align: center;
+		text-decoration: none;
+
+		&:hover {
+			color: #FF0000;
+			cursor: pointer;
+		}
+	}
+	
+	.move-start, .move-pre, .move-next, .move-end {
+		padding-left: 10px;
+		padding-right: 10px; 
+	}
+
+	.pager-item {
+		display: inline-block;
+		width: 35px;
+
+		&:hover
+		{
+		
+			color: #FF0000;
+			cursor: pointer;
+		}
+	}
+
+	.selected {
+		color: #FF0000 !important;
+	}
+}

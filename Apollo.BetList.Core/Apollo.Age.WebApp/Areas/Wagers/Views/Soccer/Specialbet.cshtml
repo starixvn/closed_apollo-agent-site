@@ -1,0 +1,37 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@model List<SpecialViewModel>
+@{
+    var list = Model != null ? Model : new List<SpecialViewModel>();
+    List<SpecialViewModel> listBet = list.DistinctBy(m => m.Bettype).OrderBy(m => m.Bettype).ToList();
+
+    string[] arrBet = new string[listBet.Count()];
+    int countBet = 0;
+    foreach (SpecialViewModel item in listBet)
+    {
+        arrBet[countBet++] = item.BetName;
+    }
+
+    var groupMatch = list.GroupBy(m => m.MatchId);
+}
+<table class="tblRpt @ViewBag.SportName @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
+    @WagerHelper.RederHeaderColumn(arrBet)
+    @*/RenderHeader*@
+    <tbody>
+        @foreach (var item in groupMatch)
+        {
+            var listMatch = item.OrderBy(m => m.Bettype).ToList();
+            <tr class="c">
+                @WagerHelper.RenderBaseColumns(listMatch.FirstOrDefault(), Lang.lblDraw)
+                @for (int i = 0; i < countBet; i++)
+                {
+                    <td class="border-right r red-num">
+                        @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype)
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

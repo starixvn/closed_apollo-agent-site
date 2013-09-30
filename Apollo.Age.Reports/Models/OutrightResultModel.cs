@@ -10,11 +10,11 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Outright result model
+    /// </summary>
     public class OutrightResultModel
     {
         public byte SportId { get; set; }

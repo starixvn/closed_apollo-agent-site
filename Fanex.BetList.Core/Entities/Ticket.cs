@@ -20,6 +20,8 @@ namespace Fanex.BetList.Core.Entities
     {
         #region ITicket Members
 
+        public string UGroup { get; set; }
+
         public int SportTypeId { get; set; }
 
         public string UserName { get; set; }
@@ -123,6 +125,12 @@ namespace Fanex.BetList.Core.Entities
         public string CommStatus { get; set; }
 
         public DateTime EventDate { get; set; }
+
+        public decimal PlayerDiscount { get; set; }
+
+        public int FinalHomeScore { get; set; }
+
+        public int FinalAwayScore { get; set; }
 
         #endregion ITicket Members
     }

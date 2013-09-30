@@ -4,9 +4,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title - Reports</title>
-	<link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-	<link href="~/views/reports/resources/reports.less" rel="stylesheet" type="text/css" />
-	@RenderSection("css", required: false)
+    @RenderSection("css", required: false)
+	@Styles.Render("~/css/reports")	
 </head>
 <body>
 	
@@ -20,7 +19,6 @@
 	</div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
 	@Html.Partial("_ApoRes")
-	@Scripts.Render("~/scripts/reportjs")
 	@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,7 +1,10 @@
-﻿@{
+﻿@using Apollo.Age.Entities
+@using Apollo.Age.Resources
+
+@{
 	var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
 	var currentAgentId = ViewBag.CurrentAgentId;
-	var mainShareHolders = (IEnumerable<Apollo.Age.Entities.Agent>)ViewBag.MainShareHolders;
+	var mainShareHolders = (IEnumerable<Agent>)ViewBag.MainShareHolders;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -9,14 +12,10 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title - Forecast</title>
-	<link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-	<link href="~/_globalresources/css/refreshcountdown.less" rel="stylesheet" type="text/css" />
-	<link href="~/_globalresources/js/errormsg/errormsg.less" rel="stylesheet" type="text/css" />
-
+	@Styles.Render("~/css/forecast")
 	@RenderSection("css", required: false)
 </head>
 <body>
-	
 	<div id="page_main">
 		<div id="header_main">
 			<span id="leagueName">@ViewBag.Title</span>
@@ -39,8 +38,8 @@
 			return {
 				currentMainShareHolderId: @(currentMainShareHolderId),
 				currentActionLink: '@Url.Action(null)',
-				betListString: '@Apollo.Age.Resources.Lang.lblBetLists.ToUpper()',
-				forecastString: '@Apollo.Age.Resources.Lang.lblForecast.ToUpper()'
+				betListString: '@Lang.lblBetLists.ToUpper()',
+				forecastString: '@Lang.lblForecast.ToUpper()'
 			};
 		}();
 	</script>

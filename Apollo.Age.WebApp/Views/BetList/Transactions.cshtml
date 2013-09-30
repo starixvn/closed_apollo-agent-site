@@ -1,0 +1,252 @@
+﻿@using Fanex.BetList.Core.TicketHelper;
+@using Fanex.BetList.Core.Factories;
+@using Fanex.BetList.Core.Utils;
+@model Apollo.Age.BetList.ViewModels.BetListReportViewModel
+@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/BetList/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.lblBetLists;
+}
+@section css
+{
+    @Styles.Render("~/css/sbpager")
+}
+@section scripts
+{
+    @Scripts.Render("~/scripts/sbpager")
+}
+@Html.Hidden("IsTransactionsBetList", "1")
+@using (Html.BeginForm())
+{
+    if (!Request.IsAjaxRequest())
+    {
+@*<table class="tbl-function-bar clearfix">
+        <tr>
+            <td>
+                <label for="ddlSport">@Lang.lblReport:</label>
+                @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
+            </td>
+            <td>@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
+            </td>
+            <td class="end no-border-bottom">
+                
+            </td>
+            <td class="no-border-bottom">
+                <div class="pages-size">
+                    <div class="pull-left">@Lang.Page:</div>
+                    <div id="pager" class="sbpager">
+                    </div>
+                    @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+                </div>
+            </td>
+        </tr>
+    </table>*@
+    <div id="function-bar">
+        <div class="item">
+            <label for="ddlSport">@Lang.lblReport:</label>
+            @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
+        </div>
+        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
+        @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
+        <div class="end"></div>
+    </div>
+    <div class="pages-size">
+        <div class="pull-left">@Lang.Page:</div>
+        <div id="pager" class="sbpager">
+        </div>
+        @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+    </div>
+    <div id="box_header" class="report clear">
+        <table>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.dateRange:
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="cell">
+                            <div class="editor">
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="label">
+                                <label for="dateFrom">
+                                    ~
+                                </label>
+                            </div>
+                            <div class="editor">
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                            @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+                            @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
+                            @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
+                            @Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
+                            @Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
+                            @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
+                            @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
+                            @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.WagerType:
+                </td>
+                <td>
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes")
+                </td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @{
+        var dllUserType = new List<SelectListItem>{new SelectListItem
+                   {
+                       Text = Lang.agent,
+                       Value = "1",
+                       Selected = (1 == Model.UserType)
+
+                   }, new SelectListItem
+                   {
+                       Text = Lang.member,
+                       Value = "0",
+                       Selected = (0 == Model.UserType)
+                   }};
+                    }
+                    @Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
+                </td>
+                <td>
+                    <input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
+                </td>
+            </tr>
+        </table>
+        <div>
+            <div class="row bg-action">
+                <div class="item">
+                    @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+                </div>
+                <div class="item btn-action">
+                    <input id="btnSubmit" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                    <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                </div>
+            </div>
+        </div>
+    </div>    
+    }
+}
+<div id="container">
+    <table class="tblRpt betlist">
+        <thead class="persist-header">
+            <tr>
+                <th style="width: 70px;">
+                    @BetList.time
+                </th>
+                <th style="width: 170px;">
+                    @BetList.TransDiscount
+                </th>
+                <th style="width: 170px;">
+                    @BetList.gameType
+                </th>
+                <th>
+                    @BetList.explain
+                </th>
+                <th style="width: 100px;">
+                    @BetList.amount
+                </th>
+                <th style="width: 90px;">
+                    @BetList.result
+                </th>
+                <th style="width: 80px;">
+                    @BetList.status
+                </th>
+                <th style="width: 90px;">
+                    @BetList.agentPT
+                </th>
+                <th style="width: 90px;">
+                    @BetList.agentComm
+                </th>
+                <th style="width: 60px;">
+                    @BetList.feature
+                </th>
+            </tr>
+        </thead>
+        @if (Model.TicketList != null && Model.TicketList.Any())
+        {
+            var i = 0;
+            decimal totalAmount = 0;
+            decimal totalResult = 0;
+            decimal totalAgentWinloss = 0;
+            decimal totalAgentComm = 0;
+            <tbody>
+                @foreach (var item in Model.TicketList)
+                {
+                    i++;
+                    totalAmount += item.Stake;
+                    totalResult += item.Result;
+                    totalAgentComm += item.AgentCommValue;
+                    totalAgentWinloss += item.AgentWinlossValue;
+                    <tr>
+                        <td class='c'>
+                            @Html.Raw(item.TransTime)
+                        </td>
+                        <td class='c'>@Html.Raw(item.Discount)
+                        </td>
+                        <td class='c'>@Html.Raw(item.GameType)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.Choice)
+                        </td>
+                        <td class='r'>
+                            @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='r'>
+                            @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='c'>
+                            @Html.Raw(item.Status)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentShare)
+                        </td>
+                        <td class='r'>
+                            @Html.Raw(item.AgentComm)
+                        </td>
+                        <td class='r'>
+                            <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3" class="total">
+                    </td>
+                    <td class="r total">@i
+                    </td>
+                    <td class="r total">
+                        @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r result">
+                        @Formater.FormatNumber20(totalResult, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class='r total'>
+                    </td>
+                    <td class='r result'>
+                        @Formater.FormatNumber20(totalAgentWinloss, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class='r result'>
+                        @Formater.FormatNumber20(totalAgentComm, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class='r total'>
+                    </td>
+                </tr>
+            </tbody>
+
+        }
+    </table>
+</div>

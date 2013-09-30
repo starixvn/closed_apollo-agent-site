@@ -15,12 +15,20 @@ namespace Apollo.Age.Entities
     using System.Text;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// This class to override equals.
+    /// </summary>
     public class League
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// Override equals.
+        /// </summary>
+        /// <param name="obj">Input a object.</param>
+        /// <returns>Return true or false.</returns>
         public override bool Equals(object obj)
         {
             if (obj is League)
@@ -31,6 +39,10 @@ namespace Apollo.Age.Entities
             return false;
         }
 
+        /// <summary>
+        /// Override get hash code.
+        /// </summary>
+        /// <returns>Return a integer value.</returns>
         public override int GetHashCode()
         {
             return (int)Id;

@@ -20,19 +20,24 @@ namespace Apollo.Age.Services.Interface
         User GetUserById(int userId);
         
         User GetUserByUsername(string username);
-
+                
         User InternalGetAgentByUsername(string username);
+
+        bool AllowLineAccountSSO(string username);
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database
         /// </summary>
-        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int AdminId);
+        bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
 
         int GetUserStatus(int agentId, int agentUserId);
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
 
+        bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType);
+
         void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode);
+
         /// <summary>
         /// Return OnUserId
         /// </summary>
@@ -41,17 +46,19 @@ namespace Apollo.Age.Services.Interface
         /// <param name="ip"></param>
         /// <returns></returns>
         int InternalCheckIn(int adminId, string netSessionId, string ip);
+
         /// <summary>
         /// Return IsKickOut
         /// </summary>
-        /// <param name="adminId"></param>
+        /// <param name="onUserId"></param>
         /// <returns></returns>
         bool InternalReCheckIn(int onUserId);
+
         /// <summary>
         /// Return OnUserId
         /// </summary>
-        /// <param name="onUserId"></param>
-        /// <returns></returns>
+        /// <param name="onUserId">User id of current loginned user</param>
+        /// <returns>result of login</returns>
         int InternalLogout(int onUserId);
     }
 }

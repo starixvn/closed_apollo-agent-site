@@ -22,14 +22,18 @@ namespace Apollo.Age.Entities
         public short Level { get; set; }
 
         /// <summary>
-        ///  alias of Agent property
+        /// Gets or sets the parent alias of Agent property.
         /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
         public Agent Parent
         {
             get
             {
                 return this.Agent;
             }
+
             set
             {
                 this.Agent = value;

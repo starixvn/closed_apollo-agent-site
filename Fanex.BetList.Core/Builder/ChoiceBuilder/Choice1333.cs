@@ -26,18 +26,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData);
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            this.Template.Handicap.handicap = null;
+            //this.Template.Handicap.handicap = null;
             bool team1 = ticket.BetTeam == "1";
             bool team2 = ticket.BetTeam == "2";
 
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             this.Template.betTeam = team1 ? this.Template.homeTeam : team2 ? awayName : Apollo.Age.Resources.BetList.lblNeither;
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

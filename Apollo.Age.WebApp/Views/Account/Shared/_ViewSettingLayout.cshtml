@@ -4,8 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
-	<link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-	<link href="~/views/account/resources/viewsetting.less" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/css/viewcustsetting")
 	@RenderSection("css", required: false)
 </head>
 <body>
@@ -20,7 +19,6 @@
 	</div>
 	@Html.Hidden("ApoRoot", Url.Content("~/"))
 	@Html.Partial("_ApoRes")
-	@Scripts.Render("~/scripts/viewsettingjs")
 	@RenderSection("scripts", required: false)
 </body>
 </html>

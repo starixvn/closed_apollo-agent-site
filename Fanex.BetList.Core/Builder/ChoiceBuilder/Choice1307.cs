@@ -29,19 +29,20 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData);
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
             bool betOver = ticket.BetTeam == "1";
             bool betUnder = ticket.BetTeam == "2";
 
             this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(Apollo.Age.Resources.BetList.betweenXandY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
-            this.Template.Handicap.handicap = betOver ? ConvertByBetType.Hdp(ticket.Handicap1) : betUnder ? ConvertByBetType.Hdp(ticket.Handicap2) : null;
-            this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            //this.Template.Handicap.handicap = betOver ? ConvertByBetType.Hdp(ticket.Handicap1) : betUnder ? ConvertByBetType.Hdp(ticket.Handicap2) : null;
+            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
 
             // Update betTeamClassName
-            this.Template.betTeamClassName = betOver ? BL_FAVORITE : BL_UNDER_DOG;
+            //this.Template.betTeamClassName = betOver ? BL_FAVORITE : BL_UNDER_DOG;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

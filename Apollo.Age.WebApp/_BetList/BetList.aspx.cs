@@ -5,6 +5,7 @@
 // ---------------------------------------------------------------------------------
 // <history>
 //      <change who="Kaden.Trinh" date="2013.01.12">Create</change>
+//      <change who="Kaden.Trinh" date="2013.06.26">Change for new requirement</change>
 // </history>
 // ---------------------------------------------------------------------------------
 
@@ -56,8 +57,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             #region INIT
 
-            bool isShowAgentPT = true,
-                 isShowMember = true;
+            bool isShowAgentPT = true;
 
             var ticketResult = View as TicketResult;
             var tickets = ticketResult.TicketList;
@@ -67,20 +67,15 @@ namespace Sunplus.Agent.UI._BetList
 
             #region Customize
 
-            short excelColumns = 11;
             Header1_Template betlistHeader = new Header1_Template();
+            betlistHeader.headerTrans = BetList.ticket;
+            betlistHeader.headerMember = BetList.rebate;
 
             if (!isShowAgentPT)
             {
-                excelColumns--;
                 betlistHeader.Agent.Hide();
             }
 
-            if (!isShowMember)
-            {
-                excelColumns--;
-                betlistHeader.Member.Hide();
-            }
             betlistHeader.Winloss.Hide();
 
             #endregion Customize
@@ -92,12 +87,7 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(betlistHeader);
             content.Append("<tbody>");
 
-            var forecastService = new ForecastService();
-            var listBetType = forecastService.GetListScoreMapBetType();
-            bool isShowScoremap;
             int index = 0;
-            bool isAdminCanViewVNIP = true;
-
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
             var factory = new BetListHTMLFactory();
@@ -105,27 +95,17 @@ namespace Sunplus.Agent.UI._BetList
 
             foreach (ITicket ticket in tickets)
             {
-                ticket.AgentLevel = Convert.ToInt32(CurrentSession.AgentLevel);
-                isShowScoremap = listBetType.Contains(ticket.BetTypeId) && ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Running);
-
                 ticketHelper.Index = ++index;
+                ticket.AgentLevel = Convert.ToInt32(CurrentSession.AgentLevel);
 
-                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                       .AddNo(index, "<td class='c'>", "</td>");
+                builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"));
 
-                if (isShowMember)
-                {
-                    builder.AddMember(ticket, "<td class='l'>", "</td>");
-                }
+                builder.AddTime(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
+                builder.AddDiscount(ticket, "<td class='c'>", "</td>", BetListPage.Forecast);
 
-                builder.AddTrans(ticket, "<td class='c'>", "</td>")
-                       .AddChoice(ticket, ticketHelper, ticketData, "<td class='bl_evt'>", "</td>", isShowScoremap)
-                       .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
+                builder.AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>", funcGetOddsTypeName, BetListPage.Forecast)
+                       .AddChoice(ticket, ticketHelper, ticketData, "<td class='bl_evt'>", "</td>", false)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
-
-                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
-                builder.AddAgentPT(ticket, ticketData, "<td class='r'>", "</td>");
-                builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
 
                 builder.Append("</tr>");
             }
@@ -163,7 +143,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 LoggedId = loggedId,
                 AgentId = mainShareHolderId,
-                Bettypes = bettype,
+                BetTypes = bettype,
                 MatchId = matchId,
                 LiveIndicator = live,
                 BetTeam = betTeam
@@ -201,7 +181,7 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (type.Equals("mixparlay"))
             {
-                bettype = Convert.ToString((int)BetTypes.Mix_Parlay);
+                bettype = Convert.ToString((int)BetTypes.MixParlay);
                 title = CacheRef.GetBettype(bettype).ToUpper();
             }
             else if (type.Equals("combmixparlaybetlist"))

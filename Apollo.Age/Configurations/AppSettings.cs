@@ -10,18 +10,15 @@
 namespace Apollo.Age.Configurations
 {
     using System;
-    using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
-    using System.Text;
+    using Fanex.Common;
+    using Fanex.Logging;
 
+    /// <summary>
+    /// Provide static accessing function for setting key from app setting.config.
+    /// </summary>
     public static class AppSettings
     {
-        public static string GetValue(string key)
-        {
-            return ConfigurationManager.AppSettings[key].ToLower();
-        }
-
         public static string UnderMaintenanceUrl
         {
             get
@@ -30,11 +27,19 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static bool IsDownTime
+        public static bool IsApolloDownTime
         {
             get
             {
-                return GetValue("IsDownTime") == "1";
+                return GetValue("IsApolloDownTime") == "1";
+            }
+        }
+
+        public static string ApolloDownTime
+        {
+            get
+            {
+                return GetValue("ApolloDownTime");
             }
         }
 
@@ -42,7 +47,7 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return GetValue("StartTime");
+                return ApolloDownTime.Split("-".ToCharArray())[0];
             }
         }
 
@@ -50,7 +55,7 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return GetValue("EndTime");
+                return ApolloDownTime.Split("-".ToCharArray())[1];
             }
         }
 
@@ -61,11 +66,84 @@ namespace Apollo.Age.Configurations
                 return GetValue("AllowInternalUpdate") == "1";
             }
         }
+
         public static bool AllowMultipleSignIn
         {
             get
             {
                 return GetValue("AllowMultipleSignIn") == "1";
+            }
+        }
+
+        public static string SuperSafeCode
+        {
+            get
+            {
+                return GetValue("SuperSafeCode");
+            }
+        }
+
+        public static bool DisabledUnderMaintenanceAPI
+        {
+            get
+            {
+                return GetValue("DisabledUnderMaintenanceAPI") == "1";
+            }
+        }
+
+        public static DateTime ResultDateConfig
+        {
+            get
+            {
+                var resultDate = GetValue("ResultDateConfig");
+                return Converter.ToDateTime(resultDate, DateTime.Now);
+            }
+        }
+
+        public static int CurrencyTesting
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(GetValue("CurrencyTesting")))
+                {
+                    return Convert.ToInt32(GetValue("CurrencyTesting"));
+                }
+
+                return -1;
+            }
+        }
+
+        public static bool DisableEditOnMember
+        {
+            get
+            {
+                return GetValue("DisableEditOnMember") == "1";
+            }
+        }
+
+        public static int ShowEstimateTimeWhenGreaterThan
+        {
+            get
+            {
+                return Converter.ToInt(GetValue("ShowEstimateTimeWhenGreaterThan"));
+            }
+        }
+
+        /// <summary>
+        /// Gets value from a key.
+        /// </summary>
+        /// <param name="key">Input a key.</param>
+        /// <returns>Return value.</returns>
+        public static string GetValue(string key)
+        {
+            try
+            {
+                return ConfigurationManager.AppSettings[key].ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+                return string.Empty;
             }
         }
     }

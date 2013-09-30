@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="ILogService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ILogRunSpService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -18,5 +18,7 @@ namespace Apollo.Age.Account.Services
     public interface ILogRunSpService
     {
         IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria);
+
+        string RevertGroupName(string group);
     }
 }

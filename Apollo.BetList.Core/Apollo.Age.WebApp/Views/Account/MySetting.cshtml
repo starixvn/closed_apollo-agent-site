@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = string.Format(Apollo.Age.Resources.Lang.lblFormatAgentSetting, ViewBag.UserName);
+    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+    var agentId = ViewBag.AgentId ?? 0;
+}
+<div id="commissionSettingContainer">
+</div>
+<div id="bettingLimitContainer">
+</div>
+<div id="ptContainer">
+</div>
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentCommissionSetting",
+	trigger = "view-agent-commission-info-button",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentBetSetting",
+    trigger = "view-agent-bet-limit-info-button",
+	title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentShareSetting",
+    trigger = "view-agent-share-setting-info-button",
+	title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentCommissionSettingAdv",
+    trigger = "view-agent-commission-info-button-adv",
+	title =  Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentBetSettingAdv",
+    trigger = "view-agent-bet-limit-info-button-adv",
+	title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewAgentShareSettingAdv",
+    trigger = "view-agent-share-setting-info-button-adv",
+	title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderBetSetting",
+    trigger = "view-mainshareholder-bet-limit-info-button",
+	title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderShareSetting",
+    trigger = "view-mainshareholder-share-setting-info-button",
+	title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderBetSettingAdv",
+    trigger = "view-mainshareholder-bet-limit-info-button-adv",
+	title = Apollo.Age.Resources.Lang.BetSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderShareSettingAdv",
+    trigger = "view-mainshareholder-share-setting-info-button-adv",
+	title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderCommissionSetting",
+    trigger = "view-mainshareholder-commission-info-button",
+    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
+@Html.Action("Index", "Instruction", new {
+    key = "ViewMainShareHolderCommissionSettingAdv",
+    trigger = "view-mainshareholder-commission-info-button-adv",
+    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
+	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+@section scripts
+{
+    <script type="text/javascript">
+        var agentId = @(agentId);
+    </script>
+    <script src="~/customersetting/getagentsetting?agentId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+    <script src="~/views/account/resources/editsetting.js" type="text/javascript"></script>
+}

@@ -13,8 +13,14 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Agent commission
+    /// </summary>
     public class AgentComm1 : IAgentComm
     {
+        /// <summary>
+        /// Template
+        /// </summary>
         public AgentComm_Template Template { get; set; }
 
         /// <summary>
@@ -30,18 +36,21 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public AgentComm_Template Render(ITicket ticket, bool hideLinkDetail = false)
+        public AgentComm_Template Render(ITicket ticket)
         {
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
 
-            if (status.Equals(BetStatus.Running) || status.Equals(BetStatus.Waiting))
-            {
-                Template.AgentCommValue.Visible = false;
-            }
-            else
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
             {
                 Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
             }
+            else
+            {
+                Template.AgentCommValue.Visible = false;
+            }
+
             if (ticket.AgentLevel == 0)
             {
                 Template.AgentComm.agentComm_setting = Apollo.Age.Resources.BetList.lblNA;
@@ -50,14 +59,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             {
                 Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
             }
-            if (hideLinkDetail)
-            {
-                Template.ViewDetail.Visible = false;
-            }
-            else
-            {
-                Template.ViewDetail.transId = ticket.TransId.ToString();
-            }
+
             return Template;
         }
     }

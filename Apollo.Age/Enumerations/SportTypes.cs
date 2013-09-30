@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Sports.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportTypes.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,16 +7,10 @@
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Enumerations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// Sunplus.Agent.Model.BL.Definitions
+    /// 
     /// </summary>
     public enum SportTypes : int
     {
@@ -125,5 +119,5 @@ namespace Apollo.Age.Enumerations
         P2P = 253,
         [StringValue("Others")]
         Others = 1000
-    }
+    }    
 }

@@ -12,6 +12,9 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
 
+    /// <summary>
+    /// Agent share
+    /// </summary>
     public class AgentShare1233 : AgentShare33
     {
         /// <summary>

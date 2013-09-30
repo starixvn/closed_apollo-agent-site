@@ -1,122 +1,194 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Entities
+@using Apollo.Age.Reports.Models
+@using Apollo.Age.Reports.Core
+
 @{
-	ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
-	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
-@model List<MatchEnteredViewModel>
-
-<div id="box_header">
-	<div class="row">
-		@{
-			var maxDate = DateTime.Now;
-			var minDate = maxDate.AddMonths(-3);
-		}
-		<div class="cell">
-			<div class="label">
-				<label for="dateFrom">
-					@Apollo.Age.Resources.Lang.from
-				</label>
-			</div>
-			<div class="editor">
-				@Html.DatePicker("FromDate", maxDate, minDate, maxDate)
-			</div>
-		</div>
-		<div class="cell">
-			<div class="label">
-				<label for="dateFrom">
-					@Apollo.Age.Resources.Lang.to
-				</label>
-			</div>
-			<div class="editor">
-				@Html.DatePicker("ToDate", maxDate, minDate, maxDate)
-			</div>
-		</div>
-		<div class="cell">
-			<div class="editor">
-				<input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Generate" />
-			</div>
-		</div>
-	</div>
+@model MatchEnteredViewModel
+<div id="function-bar">
+    <div class="item">
+        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
+        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
+    </div>
+    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
+    @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
+    <div class="end"></div>
 </div>
-
-<table class="tblRpt" style="width: auto; min-width: 700px;">
-	<thead>
-		<tr>
-			<td rowspan="2">
-				@Apollo.Age.Resources.Lang.Sports
-			</td>
-			<td colspan="2">
-				@Formater.FormatShortDateNoZeroLeading(DateTime.Now.AddDays(-1))
-			</td>
-			<td colspan="2">
-				@Formater.FormatShortDateNoZeroLeading(DateTime.Now)
-			</td>
-		</tr>
-		<tr>
-			<td style="width: 120px;">
-				@Apollo.Age.Resources.Lang.entered
-			</td>
-			<td style="width: 120px;">
-				@Apollo.Age.Resources.Lang.nonentered
-			</td>
-			<td style="width: 120px;">
-				@Apollo.Age.Resources.Lang.entered
-			</td>
-			<td style="width: 120px;">
-				@Apollo.Age.Resources.Lang.nonentered
-			</td>
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model != null && Model.Any())
-		{
-			int i = 1;
-			string rowClass = string.Empty;
-
-			foreach (var item in Model)
-			{
-				rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
-			<tr @Html.Raw(rowClass)>
-				<td>
-					@item.SportTypeName
-				</td>
-				<td class="fcnum r">
-					@item.YesterdayEntered
-				</td>
-				<td class="fcnum r">
-					@item.YesterdayNonEntered
-				</td>
-				<td class="fcnum r">
-					@item.TodayEntered
-				</td>
-				<td class="fcnum r">
-					@item.TodayNonEntered
-				</td>
-			</tr>
-			}
-		}
-		else
-		{
-			@RazorHelper.ShowNoInfo(5)
-		}
-	</tbody>
-</table>
-
-@Html.Action("Index", "Instruction", new {
-	key = "AgentWinLossPageInfo",
-	trigger = string.Empty,
-	title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
-
+<div id="box_header" class="report">
+    <table class="winloss">
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.dateRange:
+            </td>
+            <td colspan="4">
+                <div class="row">
+                    <div class="cell">
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="FromDate">~</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                        <input  class="btn dateRange" data-range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                        <input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                        <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.WagerType:
+            </td>
+            <td colspan="4">
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: "0", className: "bettype")
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.date:
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+                @if (Model.CheckIsCompleted(isToday: false))
+                {
+                    <span class="winloss_complete">
+                        @Apollo.Age.Resources.Lang.Complete
+                    </span>
+                }
+                else
+                {
+                    <span class="winloss_incomplete">
+                        @Apollo.Age.Resources.Lang.InComplete
+                    </span>
+                }
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now)
+                @if (Model.CheckIsCompleted(isToday: true))
+                {
+                    <span class="winloss_complete">
+                        @Apollo.Age.Resources.Lang.Complete
+                    </span>
+                }
+                else
+                {
+                    <span class="winloss_incomplete">
+                        @Apollo.Age.Resources.Lang.InComplete
+                    </span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.result:
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+        </tr>
+        @RenderMatchEnteredSportRow(Model.MatchEnteredModelList)
+    </table>
+    <div>
+        <div class="row bg-action">
+            <div class="item">
+                @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+            </div>
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
+@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
+@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
+@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
+@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
+@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+@*@Html.Action("Index", "Instruction", new
+{
+    key = "AgentWinLossPageInfo",
+    trigger = string.Empty,
+    title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})*@
 @section scripts
 {
-	<script src="~/views/reports/resources/winloss.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		var LANGUAGES = function () {
-			return {
-				MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate"
-			};
-		} ();
-	</script>
+    @Scripts.Render("~/scripts/winlossjs")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate"
+            };
+        } ();
+    </script>
+}
+
+@helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
+    {
+        var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
+        var matchEntered = new MatchEnteredModel();
+        
+        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
+        {
+            if (matchEnteredList != null && matchEnteredList.Any())
+            {
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+                
+                if (matchEntered != null)
+                {
+                    <tr>
+                        <td class="firstcolumn">@Html.Resource(pair.Value):</td>
+                        <td class="winloss_yesterday">@matchEntered.YesterdayEntered</td>
+                        <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered</td>
+                        <td>@matchEntered.TodayEntered</td>
+                        <td>@matchEntered.TodayNonEntered</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td class="firstcolumn">
+                            @Html.Resource(pair.Value):
+                        </td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="firstcolumn">
+                        @Html.Resource(pair.Value):
+                    </td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+            }
+        }
 }

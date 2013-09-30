@@ -1,108 +1,131 @@
 ﻿@using Apollo.Age.Account.ViewModels
 @using Apollo.Age
 @{
-	ViewBag.Title = Apollo.Age.Resources.Lang.ViewShare;
-	Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
-	int index = 0;
+    ViewBag.Title = Apollo.Age.Resources.Lang.ViewShare;
+    Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
+    int index = 0;
 }
 @model MemberShareViewModel
 <div id="box_header">
-	<div class="row">
-		@if (Model.SportList.Any())
-		{
-			<div class="cell">
-				<div class="label">
-					<label for="ddlSportType">@Html.LabelFor(m => m.SportType, @Apollo.Age.Resources.Lang.sport)</label>
-				</div>
-				<div class="editor">
-					@Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
-				</div>
-			</div>
-		}
-		@if (Model.BetTypeList.Any())
-		{
-			<div class="cell">
-				<div class="label">
-					<label for="ddlBetType">@Html.LabelFor(m => m.BetType, @Apollo.Age.Resources.Lang.bettype)</label>
-				</div>
-				<div class="editor">
-					@Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
-					new { id = "ddlBetType", style = "width: 160px" })
-				</div>
-			</div>
-		}
-		<div class="cell">
-			<div class="editor">
-				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
+    <div class="row">
+        @if (Model.SportList.Any())
+        {
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlSportType">@Apollo.Age.Resources.Lang.sport:</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
+                </div>
+            </div>
+        }
+        @if (Model.BetTypeList.Any())
+        {
+            <div class="cell">
+                <div class="label">
+                    <label for="ddlBetType">@Apollo.Age.Resources.Lang.bettype:</label>
+                </div>
+                <div class="editor">
+                    @Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
+                    new { id = "ddlBetType", style = "width: 160px" })
+                </div>
+            </div>
+        }
+        <div class="cell">
+            <div class="editor">
+                @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
 					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
 					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
 				}, new { id = "ddlIsMember" })
-				@Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
-				<input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.submit" />
-			</div>
-		</div>
-	</div>
+                @Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.submit" />
+            </div>
+        </div>
+    </div>
 </div>
-<table class="tbl-cust-setting no-border-bottom" id="tableShare">
-	<thead>
-		<tr>
-			<th>
-			</th>
-			<th>
-				@Apollo.Age.Resources.Lang.lblTakenShare
-			</th>
-			<th>
-				@Apollo.Age.Resources.Lang.lblMaxTakenShare
-			</th>
-			<th>
-				@Apollo.Age.Resources.Lang.lblMinGivenShare
-			</th>
-			<th>
-				@Apollo.Age.Resources.Lang.ShareTakenOnMember
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model.MemberShareModelList != null && Model.MemberShareModelList.Any())
-		{
-			foreach (var item in Model.MemberShareModelList)
-			{
-				string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+<div class="view-detail-container">
+    <div class="div-border">
+        <table class="tb-cust-setting no-border-bottom member-share" id="tableShare">
+            <thead>
+                <tr>
+                    <th style="width: 24%;">
+                    </th>
+                    <th style="width: 19%;">
+                        @Apollo.Age.Resources.Lang.lblPercentUpper
+                    </th>
+                    <th style="width: 19%;">
+                        @Apollo.Age.Resources.Lang.lblViewMaxDownline
+                    </th>
+                    <th style="width: 19%;">
+                        @Apollo.Age.Resources.Lang.lblViewMinDownline
+                    </th>
+                    <th style="width: 19%;">
+                        @Apollo.Age.Resources.Lang.lblViewOnMember
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.MemberShareModelList != null && Model.MemberShareModelList.Any())
+                {
+                    foreach (var item in Model.MemberShareModelList)
+                    {
+                        string rowClass = index++ % 2 != 0 ? "class='alt'" : string.Empty;
+                        string borderClass = index == 1 ? "no-border-top" : string.Empty;
 
-			<tr @Html.Raw(rowClass)>
-				<td class="em-row l">
-					@item.Username
-				</td>
-				@if (index == Model.MemberShareModelList.Count)
-				{
-					<td>
-					</td>
-				}
-				else
-				{
-					<td class="r">
-						@Formater.FormatNumber20(item.TakenShare / 100.00, Formater.CULT_NAME_ENG)
-					</td>
-				}
-				<td class="r">
-					@Formater.FormatNumber20(item.MaxGiven / 100.00, Formater.CULT_NAME_ENG)
-				</td>
-				<td class="r">
-					@Formater.FormatNumber20(item.MinGiven / 100.00, Formater.CULT_NAME_ENG)
-				</td>
-				<td class="r">
-					@Formater.FormatNumber20(item.TakenShareMember / 100.00, Formater.CULT_NAME_ENG)
-				</td>
-			</tr>
-			}
-		}
-		else
-		{
-			@RazorHelper.ShowNoInfo(5)
-		}
-	</tbody>
-</table>
+                    <tr @Html.Raw(rowClass)>
+                        <td class="first-cell l">
+                            @item.Username
+                        </td>
+                        @if (index == 1)
+                        {
+                            <td>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="r @("preset" + (item.AgentLevel % 5 + 1))">
+                                @Formater.DecFormat(item.TakenShare / 100.00, 2)
+                            </td>
+                        }
+                        <td class="r @borderClass border-right @("share-lv" + (item.AgentLevel % 5 + 1))">
+                            @Formater.DecFormat(item.MaxGiven / 100.00, 2)
+                        </td>
+                        <td class="r @borderClass @("share-lv" + (item.AgentLevel % 5 + 1))">
+                            @Formater.DecFormat(item.MinGiven / 100.00, 2)
+                        </td>
+                        @if (index == Model.MemberShareModelList.Count)
+                        {
+                            <td class="r">
+                                @Formater.DecFormat(item.TakenShareMember / 100.00, 2)
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="r @("memshare" + (item.AgentLevel % 5 + 1))">
+                                @Formater.DecFormat(item.TakenShareMember / 100.00, 2)
+                            </td>
+                        }
+                    </tr>
+                    }
+                }
+                else
+                {
+                    @RazorHelper.ShowNoInfo(5)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@if (Model.MemberShareModelList != null && Model.MemberShareModelList.Any())
+{
+    <div class="notes">
+        <div class="title-notes">@Lang.lblRemarks:</div>
+        <div class="list">
+            @Lang.lblRemarksViewShare
+        </div>
+    </div>
+}
 @section scripts
 {
-	<script src="~/views/account/resources/viewshare.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/viewsharesettingjs")
 }

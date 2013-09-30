@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apollo.Age.Wagers</RootNamespace>
+    <AssemblyName>Apollo.Age.Wagers</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.60, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\WagerMenusConfiguration.cs" />
+    <Compile Include="Controllers\OutrightController.cs" />
+    <Compile Include="Controllers\WagerController.cs" />
+    <Compile Include="Controllers\BasketballController.cs" />
+    <Compile Include="Controllers\SoccerController.cs" />
+    <Compile Include="Core\BettypeGroup\Basketball.cs" />
+    <Compile Include="Core\BettypeGroup\Soccer.cs" />
+    <Compile Include="Core\WagersSportName.cs" />
+    <Compile Include="Criterias\Basketball\BasketballCriteria.cs" />
+    <Compile Include="Criterias\GetEventDateCriteria.cs" />
+    <Compile Include="Criterias\GetLeagueCriteria.cs" />
+    <Compile Include="Criterias\GetMainShareHolderCriteria.cs" />
+    <Compile Include="Criterias\Outright\OutrightCriteria.cs" />
+    <Compile Include="Criterias\RunningBallCriteria.cs" />
+    <Compile Include="Criterias\Soccer\SoccerCriteria.cs" />
+    <Compile Include="Criterias\Soccer\CorrectScoreCriteria.cs" />
+    <Compile Include="Criterias\WagerCriteriaBase.cs" />
+    <Compile Include="Entities\WagerSport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IWagersService.cs" />
+    <Compile Include="Services\WagersService.cs" />
+    <Compile Include="ViewModels\Basketball\ParlayViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
+    <Compile Include="ViewModels\Outright\OutrightViewModel.cs" />
+    <Compile Include="ViewModels\RunningBallViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\ParlayViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\SpecialViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\TotalViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\FirstHalfViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\CorrectScoreViewModel.cs" />
+    <Compile Include="ViewModels\Soccer\StraightViewModel.cs" />
+    <Compile Include="ViewModels\WagerViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
+      <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
+      <Name>Apollo.Age.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
+      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
+      <Name>Apollo.Age.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
+      <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
+      <Name>Apollo.Age</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -45,8 +45,8 @@ var Log = function ($) {
                 fromDayLabel: Log.fromDayLable.val(),
                 toDayLabel: Log.toDayLable.val(),
                 month: Log.fromDate.val(),
-                fromDay: parseInt(Log.fromDate.val().substring(3, 5)),
-                toDay: parseInt(Log.toDate.val().substring(3, 5)),
+                fromDay: parseInt(Log.fromDate.val().split("/")[1], 10),
+                toDay: parseInt(Log.toDate.val().split("/")[1], 10),
                 afterChangeMonth: function () {
                     Log.fromDate.val(Log.monthDateTime.monPickr("getFromDate", "MM/dd/yyyy"));
                     Log.toDate.val(Log.monthDateTime.monPickr("getToDate", "MM/dd/yyyy"));
@@ -139,13 +139,13 @@ var Log = function ($) {
 $(document).ready(function () {
     Log.init();
     Log.initSearchClick();
-
+    $('.show-old-value').show();
     //format css
     $('.monpickr-wrap-parent, #monthDateTime').width(107);
     $('.monpickr-selected-month').width(60);
     $('.daypickr-selected-day').width(20);
     $('.monpickr-dropdown').width(105);
     $('#dSubmit').on('click', function () {
-        $.blockUI();       
+        $.blockUI();
     });
 });

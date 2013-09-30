@@ -21,14 +21,15 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.currentDisableMaxSpanText = ' [0]';
     this.groupSelect = null;
     this.Save = function () {
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
+        var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+        if (currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
 
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
         var editItems = [];
 
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        if (currentContext.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             var currentGroupAValue = spinBoxItems[0].getValue();
             var currentGroupBValue = spinBoxItems[3].getValue();
             var currentGroupCValue = spinBoxItems[1].getValue();
@@ -72,10 +73,15 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 };
             }
         } else {
-            this.currentGroup = this.groupSelect.value;
-
+            if (!currentContext.CanEditComGroup) {
+                this.currentGroup = undefined;
+            }
+            else {
+                this.currentGroup = this.groupSelect.value;
+            }
+            var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
             var currentGroupValue = spinBoxItems[0].getValue();
-            if (items[0].Discount != currentGroupValue) {
+            if (items[0].Discount != currentGroupValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[0].SportId,
                     BetTypeId: items[0].BetTypeId,
@@ -83,7 +89,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var currentOthersValue = spinBoxItems[2].getValue();
-            if (items[1].Discount != currentOthersValue) {
+            if (items[1].Discount != currentOthersValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[1].SportId,
                     BetTypeId: items[1].BetTypeId,
@@ -91,7 +97,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var current1x2Value = spinBoxItems[1].getValue();
-            if (items[2].Discount != current1x2Value) {
+            if (items[2].Discount != current1x2Value || isEditMultiple) {
                 editItems.push({
                     SportId: items[2].SportId,
                     BetTypeId: items[2].BetTypeId,
@@ -100,7 +106,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
             if (this.hasNumberGameSection) {
                 var currentGameValue = spinBoxItems[3].getValue();
-                if (items[3].Discount != currentGameValue) {
+                if (items[3].Discount != currentGameValue || isEditMultiple) {
                     editItems.push({
                         SportId: items[3].SportId,
                         BetTypeId: items[3].BetTypeId,
@@ -151,8 +157,14 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 if (!spinBoxItems[6].isValid()) return false;
             }
         } else {
-            this.currentGroup = this.groupSelect.value;
-            var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
+            //            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
+            //                this.currentGroup = undefined;
+            //            }
+            //            else {
+            //                this.currentGroup = this.groupSelect.value;
+            //                var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
+            //            }
+
 
             if (!spinBoxItems[0].isValid()) {
                 return false;
@@ -257,7 +269,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var comContainer = document.createElement("DIV");
         comContainer.className = 'commission-spin-box';
         comContainer2.appendChild(comContainer);
-        tdValue.appendChild(comContainer2);
+        tdValue.appendChild(comContainer);
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING
         || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
             comContainer.innerHTML = " " + discount;
@@ -334,7 +346,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         if (context.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
             saveButton.id = "member-commission-info-button";
         } else if (context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
-            
+
             saveButton.id = "mainshareholder-commission-info-button";
         }
         else {
@@ -357,7 +369,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
 
 
-        var isEditNonDirectMember = context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT;
+        var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId != Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
         if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             box.appendChild(boxTBody);
@@ -384,13 +396,18 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         else {
             box.className = "commission-setting-table-player";
 
+
             //// Header Text
             var headerTHead = document.createElement("THEAD");
             var headerTr = document.createElement("TR");
+
+            if (context.CanEditComGroup) {
+                var tdComText = document.createElement("TH");
+                tdComText.innerHTML = Language.MEMBER_GROUP;
+                headerTr.appendChild(tdComText);
+            }
+
             var tdComName = document.createElement("TH");
-            tdComName.innerHTML = Language.MEMBER_GROUP;
-            headerTr.appendChild(tdComName);
-            tdComName = document.createElement("TH");
             tdComName.innerHTML = Language.COMM_FOR_MEMBER;
             //tdComName.setAttribute("COLSPAN", 2);
             tdComName.colSpan = 2;
@@ -402,37 +419,39 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
             //// User Group
             var trGroup = document.createElement("TR");
-            var tdGroupText = document.createElement("TD");
-            tdGroupText.innerHTML = Language.GROUP;
-            tdGroupText.className = "user-group";
-            if (this.hasNumberGameSection) {
-                //.setAttribute("ROWSPAN", 4);
-                tdGroupText.rowSpan = 4;
-            }
-            else {
-                tdGroupText.rowSpan = 3;
-            }
-            trGroup.appendChild(tdGroupText);
-            if (isEditNonDirectMember) {
-                tdGroupText.innerHTML += ' ' + this.currentGroup.toUpperCase();
-            }
-            else {
-                var groupSelect = document.createElement("SELECT");
-                var groupCount = this.group.length;
-                for (var groupIndex = 0; groupIndex < groupCount; groupIndex++) {
-                    var currentGroup = this.group[groupIndex];
-                    var option = document.createElement("OPTION");
-                    option.setAttribute("value", currentGroup);
-                    option.innerHTML = currentGroup;
-                    groupSelect.appendChild(option);
+            if (context.CanEditComGroup) {
+                var tdGroupText = document.createElement("TD");
+                tdGroupText.innerHTML = Language.GROUP + ':';
+                tdGroupText.className = "user-group";
+                if (this.hasNumberGameSection) {
+                    //.setAttribute("ROWSPAN", 4);
+                    tdGroupText.rowSpan = 4;
                 }
-                groupSelect.value = this.currentGroup.toUpperCase();
-                this.groupSelect = groupSelect;
-                tdGroupText.appendChild(groupSelect);
+                else {
+                    tdGroupText.rowSpan = 3;
+                }
+                trGroup.appendChild(tdGroupText);
+                if (isEditNonDirectMember) {
+                    tdGroupText.innerHTML += ' ' + this.currentGroup.toUpperCase();
+                }
+                else {
+                    var groupSelect = document.createElement("SELECT");
+                    var groupCount = this.group.length;
+                    for (var groupIndex = 0; groupIndex < groupCount; groupIndex++) {
+                        var currentGroup = this.group[groupIndex];
+                        var option = document.createElement("OPTION");
+                        option.setAttribute("value", currentGroup);
+                        option.innerHTML = currentGroup;
+                        groupSelect.appendChild(option);
+                    }
+                    groupSelect.value = this.currentGroup.toUpperCase();
+                    this.groupSelect = groupSelect;
+                    tdGroupText.appendChild(groupSelect);
+                }
             }
 
             var tdGroupText1 = document.createElement("TD");
-            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE + ' &nbsp; ';
+            tdGroupText1.innerHTML = Language.ASIAN_HDC_OU_OE + ': &nbsp; ';
             tdGroupText1.className = "group-name";
             trGroup.appendChild(tdGroupText1);
 
@@ -459,7 +478,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             //// Onchange Group
             var self = this;
             var saveItems = this.items;
-            if (!isEditNonDirectMember) {
+            if (!isEditNonDirectMember && context.CanEditComGroup) {
                 groupSelect.onchange = function (event) {
                     var currentValue = this.value;
                     var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
@@ -478,10 +497,10 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             boxTBody.appendChild(trGroup);
             box.appendChild(boxTBody);
             //// Other Com
-            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ' &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
-            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ' &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language._1X2 + ': &nbsp; ', this.items[2].Discount, this.items[2].Upline.DiscountA, true));
+            boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.OTHERS_COM + ': &nbsp; ', this.items[1].Discount, this.items[1].Upline.DiscountA, true));
             if (hasNumberGameSection) {
-                boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ' &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
+                boxTBody.appendChild(this.RenderPlayerCom(isEditNonDirectMember, Language.NUMBER_GAME + ': &nbsp; ', this.items[3].Discount, this.items[3].Upline.DiscountA));
             }
 
             container.appendChild(bodyContainer);

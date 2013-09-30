@@ -6,8 +6,6 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.5">Created</change>
 // </history>
-
-
 namespace Apollo.Age.Account.Criterias
 {
     using System;
@@ -20,32 +18,34 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class GetCustomerMessageCriteria : CriteriaBase
-    {
-        public override string GetSettingKey()
-        {
-            return "Age_Msg_GetByCustomer";
-        }
-
+    {      
         [SpParam(SqlParamName = "targetID")]
         public int CustomerId { get; set; }
 
         [SpParam(SqlParamName = "targetID2")]
         public string SiteIds { get; set; }
 
-        [SpParam(SqlParamName = "lastPostTime")]
+        public DateTime? StartDate { get; set; }
+
         public DateTime LastPostTime { get; set; }
 
         public bool IsAgent { get; set; }
 
-        [SpParam(SqlParamName = "totalMessage")]
-        public int TotalMessage { get; set; }
+        public string Content { get; set; }
+
+        public string Language { get; set; }
 
         [SpParam(SqlParamName = "IsTest")]
         public bool IsTest { get; set; }
 
         public override bool IsValid()
         {
-            return this.CustomerId > 0 && !string.IsNullOrWhiteSpace(SiteIds);
+            return this.CustomerId >= 0 && !string.IsNullOrWhiteSpace(SiteIds);
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Age_Msg_GetByCustomer";
         }
     }
 }

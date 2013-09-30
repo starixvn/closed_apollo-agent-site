@@ -16,8 +16,16 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// This class for retrieve member.
+    /// </summary>
     public class MemberRepository : RepositoryBase<Member>, IMemberRepository
     {
+        /// <summary>
+        /// Query member from criteria.
+        /// </summary>
+        /// <param name="criteria">Input a criteria.</param>
+        /// <returns>Return list of member.</returns>
         public override Member Get(ICriteria criteria)
         {
             try
@@ -40,16 +48,31 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Delete action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Delete(Member entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Insert action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Insert(Member entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Update action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Update(Member entity)
         {
             throw new NotImplementedException();

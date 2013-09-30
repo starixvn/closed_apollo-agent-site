@@ -2,23 +2,23 @@
 @using Apollo.Age.Resources
 @{   
     var xmlBetSetting = _Configuration.BettingLimitSportNameConfig;
-    var list = (Dictionary<string, BetSettingModel>)Model;  
+    var list = Model != null ? (Dictionary<string, BetSettingModel>)Model : new Dictionary<string, BetSettingModel>();  
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {
     var itemBetSetting = xmlBetSetting.Descendants("Name");
     <table class="tblRpt">
-        <tr class="no-border-top bg-gray">
+        <tr class="no-border-top bg-green">
             <td class="colW1">
             </td>
             <td class="colW1">
-                @Lang.lblMinBet
+                @Lang.lblMaxPerMatch
             </td>
             <td class="colW1">
                 @Lang.lblMaxBet
             </td>
             <td class="colW1">
-                @Lang.lblMaxPerMatch
+                @Lang.lblMinBet
             </td>
             <td class="colW1">
             </td>
@@ -37,13 +37,13 @@
                     @Html.Resource(resourcekey)
                 </td>
                 <td class="colW2">
-                    @ToString(item.OldMinBet, item.MinBet)
+                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
                 </td>
                 <td class="colW2">
                     @ToString(item.OldMaxBet, item.MaxBet)
                 </td>
                 <td class="colW2">
-                    @ToString(item.OldMaxPerMatch, item.MaxPerMatch)
+                    @ToString(item.OldMinBet, item.MinBet)
                 </td>
                 <td class="colW2">
                 </td>
@@ -53,15 +53,15 @@
         }
     </table>
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue, 0).ToString("#,#");
-        string strNew = Math.Round(newValue, 0).ToString("#,#");
+        string strOld = oldValue != null ? Math.Round((decimal)oldValue, 0).ToString() : Lang.lblNA;
+        string strNew = Math.Round(newValue, 0).ToString();
 
         if (oldValue != newValue)
         { 
     <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>
-    <span>| </span><span class="valueold">@strOld</span>
+    <span class="valueold">| @strOld</span>
             
         }
         else

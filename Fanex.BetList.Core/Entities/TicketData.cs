@@ -9,8 +9,12 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+
 namespace Fanex.BetList.Core.Entities
 {
+    using System;
+
+    [Serializable]
     public class TicketData : ITicketData
     {
         #region ITicketData Members

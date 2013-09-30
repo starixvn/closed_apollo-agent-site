@@ -2,28 +2,6 @@
 
 #page_main {	
 	width: 99%;
-
-	#header_main {
-		display: block;
-		padding: 18px 0 0px;
-		margin-bottom: 10px;
-		width: 100%;
-
-		.header-title {
-			display: inline;
-		}	
-
-		.edit-setting {	
-			margin: 2px 0 0 2px;
-			cursor: pointer;			
-			padding: 0;
-
-			&:hover {
-				opacity: 0.7;
-			}
-		}
-	}
-
 	#content_main {
 		#box_header {
 			margin: 10px 0;
@@ -37,6 +15,7 @@
 
 		.boxNavigation {
 			margin-bottom: 10px;
+			clear: both;
 		}
 
 		.edit-setting {
@@ -68,19 +47,132 @@
 			
 		}
 
-		.freegrid  {
-			.active {
-				color: @green;
+		#function-bar {
+			margin-bottom: 5px;
+
+			.za_select, .za_text {
+				font-size: @fontSize;
 			}
 
-			.stop {
-				color: @red;
+			.za_select {				
+				height: 18px;
 			}
 
-			.lock {
-				color: @red;
+			.za_text {
+				border: 1px solid #000;
+				height: 16px;
+				padding: 0 2px;
+				width: 96px;
 			}
-		}		
+
+			.za_button {
+				font-size: 11px;
+				height: 20px;
+			}
+		}
+
+		.tblRpt {
+			.fundout {
+				cursor: pointer;
+				color: #0000EE;
+			}
+
+			&.agentList, &.memberList, &.directAgentList {
+				td {
+					text-align: center;
+					padding: 0 2px;
+
+				}
+			}
+
+			.close {
+				background: #FF0000;
+			}
+
+			.suspended{
+				background: #FF9900;
+			}	
+		}
+		
+		.edit-member-share
+		{
+			padding-left: 25px;
+			position: absolute;
+			text-align: center;
+			top: 28px;
+		}
+
+		.edit-multiple-link, .edit-multiple-indirect-link
+		{
+			clear: both;
+			width: 160px;
+			text-align: center;
+		}
+		
+		.width-40
+		{
+			width: 40px;
+		}
+
+		.width-50
+		{
+			width: 50px;
+		}
+
+		.width-70
+		{
+			width: 70px;
+		}
+
+		.width-140
+		{
+			width: 140px;
+		}
+		
+		.width-200
+		{
+			width: 200px;
+		}
+
+		.action {
+
+				.edit-link {
+					background: url(images/btn-arrow.png)  no-repeat right center;
+					padding: 2px 19px 2px 12px;
+
+					&.bg {
+						background-color: #FCD5B5;
+					}
+				}
+
+				.list {
+					display: none;
+					position: relative;
+					z-index: 100;
+				}
+
+				.menu-list {
+					position: absolute;
+					background-color: #FCD5B5;							
+					top: 0;
+					left: 0;
+					z-index: 100;
+
+					li {
+						border-top: 1px solid #5A85BA;
+						padding: 3px 16px 3px 12px;
+
+						a {
+							color: #0066CC;
+							white-space: nowrap;
+						}
+
+						&:first-child {
+							border-top: none;
+						}
+					}
+				}
+			}	
 	}
 }
 

@@ -9,16 +9,25 @@
 
 namespace Apollo.Age.Reports.Models
 {
+    using System;
+
+    [Serializable]
     public class MemberWinLossModel : AgentWinLossModel
     {
         public int MemberId { get; set; }
 
         public string MemberName { get; set; }
 
-        public decimal WinLoss { get; set; }
+        /// <summary>
+        /// Gets or sets Outstanding Amount.
+        /// </summary>
+        /// <value>The OutstandingAmount.</value>
+        public decimal OutstandingAmount { get; set; }
 
-        public decimal MemComm { get; set; }
-
-        public decimal MemTotal { get; set; }
+        /// <summary>
+        /// Gets or sets Outstanding Share Amount.
+        /// </summary>
+        /// <value>The OutstandingShareAmount.</value>
+        public decimal OutstandingShareAmount { get; set; }
     }
 }

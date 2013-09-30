@@ -36,10 +36,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <DesktopBuildPackageLocation>..\..\..\Release\Apollo\Agent\Apollo.Age.WebApp.zip</DesktopBuildPackageLocation>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Core, Version=1.6.28.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BundleTransformer.Core.1.6.28\lib\net40\BundleTransformer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Less">
+      <HintPath>..\packages\BundleTransformer.Less.1.6.26\lib\net40\BundleTransformer.Less.dll</HintPath>
     </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
@@ -49,17 +59,6 @@
     </Reference>
     <Reference Include="DotNetOpenAuth.Core">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4883.26344, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.17936, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex.Caching.dll</HintPath>
@@ -82,29 +81,11 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="IBCDBLibrary">
-      <HintPath>..\Dependencies\IBCDBLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCDLL">
-      <HintPath>..\Dependencies\IBCDLL.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCFile">
-      <HintPath>..\Dependencies\IBCFile.dll</HintPath>
-    </Reference>
     <Reference Include="IBCMessage">
       <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
     </Reference>
-    <Reference Include="IBCUtils">
-      <HintPath>..\Dependencies\IBCUtils.dll</HintPath>
-    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPIDBLibrary">
-      <HintPath>..\Dependencies\LVAPIDBLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="LVAPILibrary">
-      <HintPath>..\Dependencies\LVAPILibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
@@ -162,6 +143,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -185,9 +169,6 @@
     <Reference Include="System.Net.Http">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
       <Private>True</Private>
@@ -253,11 +234,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_BetList\BetList.aspx.cs">
+    <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Wagers\Scripts\Wagers.js" />
+    <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
+    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
+    <SplashScreen Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    </SplashScreen>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,8 +254,8 @@
     <Compile Include="_BetList\BetListOnMember.htm.cs" />
     <Compile Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListTransaction.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
@@ -284,7 +272,6 @@
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="App_Code\Formater.cs" />
-    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -303,6 +290,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\fundout.js" />
+    <Content Include="Views\Account\Resources\Images\bg-logo.png" />
+    <Content Include="Views\Account\Resources\Images\bot.jpg" />
+    <Content Include="Views\Account\Resources\Images\btn-arrow.png" />
+    <Content Include="Views\Account\Resources\Images\icon-subMenu.png" />
+    <Content Include="Views\Account\Resources\Images\tab-arrow_down.png" />
+    <Content Include="Views\Account\Resources\Images\top.jpg" />
+    <Content Include="Views\Account\Resources\Images\top_03b.gif" />
+    <Content Include="Views\Account\Resources\Images\top_04.gif" />
+    <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
     <Content Include="Views\Account\Resources\AccountInfo.js" />
     <Content Include="Views\Account\Resources\AccountList.js" />
     <Content Include="Views\Account\Resources\AgentList.js" />
@@ -350,13 +347,16 @@
     <Content Include="Views\Account\Resources\Images\edit-menu.gif" />
     <Content Include="Views\Account\Resources\Images\edit.png" />
     <Content Include="Views\Account\Resources\Images\edit_disabled.gif" />
+    <Content Include="Views\Account\Resources\Images\icon-close.gif" />
     <Content Include="Views\Account\Resources\Images\icon-edit-setting.png" />
+    <Content Include="Views\Account\Resources\Images\icon-help.png" />
     <Content Include="Views\Account\Resources\Images\icon-root.png" />
     <Content Include="Views\Account\Resources\Images\icon-sub-menu.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info-hover.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info.png" />
     <Content Include="Views\Account\Resources\Images\loader3.gif" />
     <Content Include="Views\Account\Resources\Images\magnifier.png" />
+    <Content Include="Views\Account\Resources\Images\qa_phone.png" />
     <Content Include="Views\Account\Resources\Images\title.jpg" />
     <Content Include="Views\Account\Resources\Images\treeview-1.png" />
     <Content Include="Views\Account\Resources\Images\treeview-default-line.gif" />
@@ -374,6 +374,7 @@
     <Content Include="Views\Account\Resources\treeview.css" />
     <Content Include="Views\Account\Resources\ViewComm.js" />
     <Content Include="Views\Account\Resources\ViewShare.js" />
+    <Content Include="Views\BetList\Resources\BetList.js" />
     <Content Include="Views\BetList\Resources\Images\bgHeader.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_conts.jpg" />
     <Content Include="Views\BetList\Resources\Images\bg_popup.jpg" />
@@ -383,6 +384,9 @@
     <Content Include="Views\BetList\Resources\Images\q_Icon2_1.png" />
     <Content Include="Views\BetList\Resources\Images\q_Icon_2.png" />
     <Content Include="Views\BetList\Resources\Images\ScoreMapWL.png" />
+    <Content Include="Views\BetList\Resources\Paging.js" />
+    <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
+    <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
     <Content Include="Views\Forecast\Resources\FC1X2.js" />
     <Content Include="Views\Forecast\Resources\FCByMatch.js" />
@@ -398,10 +402,41 @@
     <Content Include="Views\Forecast\Resources\Images\Loading.gif" />
     <Content Include="Views\Forecast\Resources\Images\Refresh.png" />
     <Content Include="Views\Forecast\Resources\ScoreMap.js" />
+    <Content Include="Views\HiddenTool\Resources\Images\01.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\01_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\02.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\02_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\03.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\03_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\04.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\04_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\05.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\05_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06_1.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\07.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\07_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\08.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\08_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\09.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\09_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\10.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\11.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\11_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\12.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\12_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\13.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\14.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\15.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\16.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\17_s.gif" />
     <Content Include="Views\Home\Resources\Default.js" />
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
     <Content Include="Views\Internal\Resources\style.css" />
+    <Content Include="Views\Log\Resources\monPickr-0.0.3.css" />
+    <Content Include="Views\Log\Resources\images\arrow-up-red.png" />
     <Content Include="Views\Log\Resources\images\bg-demo-docs-param.gif" />
     <Content Include="Views\Log\Resources\images\demo-spindown-closed.gif" />
     <Content Include="Views\Log\Resources\images\demo-spindown-open.gif" />
@@ -422,10 +457,12 @@
     <Content Include="Views\Message\Images\onlinelist.png" />
     <Content Include="Views\Message\Images\statistic.png" />
     <Content Include="Views\Message\Resources\PortalPage.js" />
+    <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
+    <Content Include="Views\Reports\Resources\SportCredit.js" />
     <Content Include="Views\Reports\Resources\WinLoss.js" />
-    <Content Include="Views\Results\Resources\Match.js" />
-    <Content Include="Views\Results\Resources\Outright.js" />
+    <Content Include="Views\Results\Resources\Result.js" />
+    <Content Include="Views\TotalBets\Resources\Index.js" />
     <Content Include="Views\TotalBets\Resources\TotalBets.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -448,7 +485,9 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="_BetList\BetList.aspx" />
     <Content Include="_BetList\BetListOnMember.aspx" />
     <Content Include="_BetList\BetListOnMember.htm" />
@@ -478,6 +517,7 @@
     <Content Include="_Components\AGEWnd\x.jpg" />
     <Content Include="_GlobalResources\Css\Footer.css" />
     <Content Include="_GlobalResources\Css\img\arrow_down.png" />
+    <Content Include="_GlobalResources\Css\img\calendar.gif" />
     <Content Include="_GlobalResources\Css\img\cal\calendar.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_10.png" />
     <Content Include="_GlobalResources\Css\img\cal\calendar_2.png" />
@@ -558,7 +598,12 @@
     <Content Include="_GlobalResources\Images\breadcrumb.gif" />
     <Content Include="_GlobalResources\Images\btDown.png" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
+    <Content Include="_GlobalResources\Images\btnCountDown-hover.png" />
+    <Content Include="_GlobalResources\Images\btnCountDown.png" />
     <Content Include="_GlobalResources\Images\btRefresh.png" />
+    <Content Include="_GlobalResources\Images\btRefresh_new.png" />
+    <Content Include="_GlobalResources\Images\btRefresh_new_disabled.png" />
+    <Content Include="_GlobalResources\Images\down-arr.png" />
     <Content Include="_GlobalResources\Images\edit.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
     <Content Include="_GlobalResources\Images\error2.png" />
@@ -569,12 +614,12 @@
     <Content Include="_GlobalResources\Images\lastGoal.gif" />
     <Content Include="_GlobalResources\Images\letter_icoconts.png" />
     <Content Include="_GlobalResources\Images\loader.gif" />
-    <Content Include="_GlobalResources\Images\loader3.gif" />
     <Content Include="_GlobalResources\Images\more.gif" />
     <Content Include="_GlobalResources\Images\sticky-arrow.png" />
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\sync.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
+    <Content Include="_GlobalResources\Images\top_04.png" />
     <Content Include="_GlobalResources\Images\x5.gif" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
@@ -665,6 +710,60 @@
     <Content Include="_GlobalResources\Js\noty\layouts\topRight.js" />
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
+    <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <Content Include="Areas\Wagers\Views\Web.config" />
+    <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
+    <Content Include="Views\HiddenTool\Index.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
+    <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
+    <Content Include="Views\TotalBets\Index.cshtml" />
+    <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
+    <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
+    <Content Include="Views\Account\ContactUs.cshtml" />
+    <Content Include="Views\Account\Resources\header.less" />
+    <Content Include="Views\Results\Others.cshtml" />
+    <Content Include="Views\Account\IndirectAgentList.cshtml" />
+    <Content Include="Views\Account\IndirectMemberList.cshtml" />
+    <Content Include="Views\Account\ViewAccountDetails.cshtml" />
+    <Content Include="Areas\Wagers\Styles\Wagers.less" />
+    <Content Include="Views\Account\Shared\_EditSettingLayout.cshtml" />
+    <Content Include="Areas\Wagers\Views\Basketball\FirstHalf.cshtml" />
+    <Content Include="Areas\Wagers\Views\Basketball\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Basketball\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Correctscore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalf.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\FirstHalfCorrectScore.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\HalfFull.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Parlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Straight.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
+    <Content Include="App_Code\WagerHelper.cshtml" />
+    <Content Include="Views\Account\Resources\CustomerSetting.less" />
+    <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
+    <Content Include="Areas\Wagers\Views\LangTemp.cshtml" />
+    <Content Include="Views\Account\LangTemp.cshtml" />
+    <Content Include="Views\Account\Resources\CustomerSetting.less" />
+    <Content Include="Views\BetList\Forecast.cshtml" />
+    <Content Include="Views\BetList\MixParlay.cshtml" />
+    <Content Include="Views\Account\Shared\_ViewDetailsLayout.cshtml" />
+    <Content Include="Views\BetList\Outstanding.cshtml" />
+    <Content Include="Views\BetList\AccountInfo.cshtml" />
+    <Content Include="Views\BetList\CombinationMixParlay.cshtml" />
+    <Content Include="Areas\Wagers\Views\Wager\NoData.cshtml" />
+    <Content Include="Views\Account\FundOut.cshtml" />
+    <Content Include="ExcelTemplates\LineSportCreditTemplate.xls" />
+    <Content Include="Views\Account\EditAllMemberShare.cshtml" />
+    <None Include="Views\BetList\Resources\ErrorPage.less" />
+    <None Include="Views\BetList\Resources\Paging.less" />
+    <Content Include="Views\BetList\Winloss.cshtml" />
+    <Content Include="Views\BetList\TicketCancel.cshtml" />
+    <Content Include="Views\BetList\Wagers.cshtml" />
+    <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
+    <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
     <Content Include="_GlobalResources\Js\shortcut.js" />
@@ -690,7 +789,6 @@
     <Content Include="Views\Account\EditCommission.cshtml" />
     <Content Include="Views\Account\EditMemberSetting.cshtml" />
     <Content Include="Views\Account\EditPositionTaking.cshtml" />
-    <Content Include="Views\Account\EditSetting.cshtml" />
     <Content Include="Views\Account\LogLogin.cshtml" />
     <Content Include="Views\Account\MemberDownline.cshtml" />
     <Content Include="Views\Account\MemberList.cshtml" />
@@ -700,9 +798,9 @@
     <Content Include="Views\Account\MySetting.cshtml" />
     <Content Include="Views\Account\Resources\Account.less" />
     <Content Include="Views\Account\Resources\CustomerList.less" />
-    <None Include="Views\Account\Resources\CustSettingEngine\Core.less" />
-    <None Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
-    <Content Include="Views\Account\Resources\header.less" />
+    <Content Include="Views\Account\Resources\CustSettingEngine\Core.less" />
+    <Content Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
+    <Content Include="Views\Account\Resources\ContactUs.less" />
     <Content Include="Views\Account\Resources\LogLogin.less" />
     <Content Include="Views\Account\Resources\MiniAccount.less" />
     <Content Include="Views\Account\Resources\ViewSetting.less" />
@@ -714,7 +812,6 @@
     <Content Include="Views\Account\Shared\_ViewSettingLayout.cshtml" />
     <Content Include="Views\Account\TopBar.cshtml" />
     <Content Include="Views\Account\TreeViewList.cshtml" />
-    <Content Include="Views\Account\TreeViewList.testdefer.cshtml" />
     <Content Include="Views\Account\ViewCommission.cshtml" />
     <Content Include="Views\BetList\Resources\BetList.less" />
     <Content Include="Views\BetList\Shared\_Layout.cshtml" />
@@ -884,14 +981,8 @@
     <Content Include="Views\Results\Badminton.cshtml" />
     <Content Include="Views\Results\BaseBall.cshtml" />
     <Content Include="Views\Results\BasketBall.cshtml" />
-    <Content Include="Views\Results\Billard.cshtml" />
-    <Content Include="Views\Results\IceHockey.cshtml" />
     <Content Include="Views\Results\Match.cshtml" />
-    <Content Include="Views\Results\MatchResult.cshtml" />
-    <Content Include="Views\Results\OtherSports.cshtml" />
     <Content Include="Views\Results\Outright.cshtml" />
-    <Content Include="Views\Results\OutrightResult.cshtml" />
-    <Content Include="Views\Results\ParlayResult.cshtml" />
     <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />
@@ -906,7 +997,9 @@
     <Content Include="Views\TotalBets\Resources\TotalBets.less" />
     <Content Include="Views\TotalBets\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\TotalGoal.cshtml" />
-    <Content Include="Web.AppSettings.config" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.ConnectionString.config">
       <SubType>Designer</SubType>
     </Content>
@@ -964,6 +1057,13 @@
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderCommissionSettingAdv.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSetting.cshtml" />
     <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSettingAdv.cshtml" />
+    <Content Include="Views\Message\Resources\Announcement.less" />
+    <Content Include="Views\Results\Shared\_Layout.cshtml" />
+    <Content Include="Views\BetList\Transactions.cshtml" />
+    <Content Include="Views\Log\LogActionType5.cshtml" />
+    <Content Include="Views\Reports\SportCredit.cshtml" />
+    <Content Include="Views\Error\WhoAmI.cshtml" />
+    <Content Include="Views\Error\RedirectToUM.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -987,6 +1087,10 @@
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
       <Name>Apollo.Age.Forecast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj">
+      <Project>{1909258B-93B9-4E7D-A896-C57D8B22254F}</Project>
+      <Name>Apollo.Age.HiddenTool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
       <Name>Apollo.Age.Integration</Name>
@@ -1003,6 +1107,10 @@
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Wagers\Apollo.Age.Wagers.csproj">
+      <Project>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</Project>
+      <Name>Apollo.Age.Wagers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
       <Name>Apollo.Age.Web</Name>
@@ -1011,6 +1119,10 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
+      <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
+      <Name>Apollo.UMService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj">
       <Project>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</Project>
       <Name>Fanex.Age.UI.Components</Name>
@@ -1018,6 +1130,18 @@
     <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
+      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
+      <Name>Fanex.BetList.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
+      <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
+      <Name>Fanex.BetList.Core.TicketHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+      <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
+      <Name>Fanex.BetList.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,269 +1,228 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Resources
+@{
+	Layout = null;
+}
 @model IEnumerable<MatchResultModel>
-<table class="tblRpt">
-    <thead>
-        @if ((bool)@ViewBag.IsParlay)
-        {
-            <tr>
-                <th class="summary-header" colspan="15">
-                    <span class="sport-header">@Model.ToList()[0].SportName</span> &nbsp;- 
-                    <span>@Model.ToList()[0].LeagueName</span>
-                </th>
-            </tr> 
-        }
-        <tr class="RptHeader">
-            <td columnname="kickofftime" class="width-80">
-                @Apollo.Age.Resources.Lang.kickofftime
-            </td>
-            <td>
-                @Apollo.Age.Resources.Lang.match
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl1
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl2
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl3
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl4
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl5
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl6
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl7
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl8
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lbl9
-            </td>
-            <td style="width: 50px;">
-                @Apollo.Age.Resources.Lang.lblEI
-            </td>
-            <td class="nowrap" style="width: 70px;">
-                @Apollo.Age.Resources.Lang.lblHTScore
-            </td>
-            <td class="nowrap" style="width: 70px;">
-                @Apollo.Age.Resources.Lang.finalscore
-            </td>
-            <td class="nowrap" style="width: 60px;">
-                @Apollo.Age.Resources.Lang.status
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            var currentLeagueId = 0;
-            var eventStatus = string.Empty;
-            var betStatus = string.Empty;
 
-            var ieHome = "-";
-            var ieAway = "-";
+<table class="tblRpt baseball">
+	<thead>
+		<tr>
+			<td columnname="kickofftime" style="width: 50px">
+				@Lang.time
+			</td>
+			<td style="width: 300px">
+				@Lang.league
+			</td>
+			<td style="width: 200px">
+				@Lang.HomeGuest
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl1
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl2
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl3
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl4
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl5
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl6
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl7
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl8
+			</td>
+			<td style="width: 50px">
+				@Lang.lbl9
+			</td>
+			<td style="width: 50px">
+				@Lang.lblEI
+			</td>
+			<td class="nowrap" style="width: 70px">
+				@Lang.lblhalf
+			</td>
+			<td class="nowrap" style="width: 70px">
+				@Lang.lblfinal
+			</td>
+			<td class="nowrap" style="width: 100px">
+				@Lang.status
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			var currentLeagueId = 0;
+			var eventStatus = string.Empty;
+			var betStatus = string.Empty;
 
-            List<string> homeSet = null;
-            List<string> awaySet = null;
-            
-            foreach (var item in Model)
-            {
-                eventStatus = string.Empty;
-                betStatus = string.Empty;
+			var ieHome = "-";
+			var ieAway = "-";
 
-                ieHome = "-";
-                ieAway = "-";
+			List<string> homeSet = null;
+			List<string> awaySet = null;
+			
+			foreach (var item in Model)
+			{
+				eventStatus = string.Empty;
+				betStatus = string.Empty;
 
-                homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-" };
-                awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-" }; 
+				ieHome = "-";
+				ieAway = "-";
 
-                betStatus = item.BetStatus;
+				homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" };
+				awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" }; 
 
-                if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
-                {
+				betStatus = item.BetStatus;
 
-                    string[] listOfBetStatus = betStatus.Split(',');
-                    if (listOfBetStatus.Count() > 1)
-                    {
-                        string[] splitBetStatus = null;
-                        foreach (string betstatus in listOfBetStatus)
-                        {
-                            splitBetStatus = betstatus.Split('-');
-                            if (splitBetStatus != null)
-                            {
-                                homeSet.Add(splitBetStatus[0]);
-                                awaySet.Add(splitBetStatus[1]);
-                            }
-                        }
-                        if (listOfBetStatus.Count() < 10)
-                        {
-                            homeSet.Add("-1");
-                            awaySet.Add("-1");
-                        }
+				if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
+				{
 
-                        ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
-                        ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
-                    }
+					string[] listOfBetStatus = betStatus.Split(',');
+					if (listOfBetStatus.Count() > 1)
+					{
+						string[] splitBetStatus = null;
+						int i = 0;
+						foreach (string betstatus in listOfBetStatus)
+						{
+							splitBetStatus = betstatus.Split('-');
+							if (splitBetStatus != null)
+							{                               
+								homeSet[i] = splitBetStatus[0];
+								awaySet[i] = splitBetStatus[1];
+								i++;
+							}
+						}
+						if (homeSet.Count() >= 10 && awaySet.Count() >= 10)
+						{
+							ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
+							ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
+						}
+						
+					}
 
-                }
-                
-                if (!(bool)@ViewBag.IsParlay)
-                {
-                    if (currentLeagueId != item.LeagueId)
-                    {
-                        currentLeagueId = item.LeagueId;
-                        <tr class="league">
-                            <td colspan="10">
-                                @item.LeagueName
-                            </td>
-                        </tr>
-                    }
-                }
+				}
+				
+			   
 
-            <tr class="c">
-                <td rowspan="2" class="width-80">
-                    @RazorHelper.RenderDatetimeFormated2line(item.KickoffTime)
-                </td>
-                <td class="l">
-                    @if(item.FinalHomeScore > item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.HomeTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.HomeTeam)
-                    }
-                    
-                </td>
-                <td>
-                    @homeSet[0]
-                </td>
-                <td>
-                    @homeSet[1]
-                </td>
-                <td>
-                    @homeSet[2]
-                </td>
-                <td>
-                    @homeSet[3]
-                </td>
-                <td>
-                    @homeSet[4]
-                </td>
-                <td>
-                    @homeSet[5]
-                </td>
-                <td>
-                    @homeSet[6]
-                </td>
-                <td>
-                    @homeSet[7]
-                </td>
-                <td>
-                    @homeSet[8]
-                </td>
-                <td>
-                    @ieHome
-                </td>
-                <td>
-                    @if (item.HalfTimeHomeScore == null)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        @item.HalfTimeHomeScore
-                    }
-                </td>
-                <td>
-                    @if (item.FinalHomeScore == null)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        @item.FinalHomeScore
-                    }
-                </td>
-                <td rowspan="2" class="border-right">
-                    @item.EventStatusTranslation
-                </td>
-            </tr>
-            <tr class="c">
-                <td class="l">
-                    @if (item.FinalHomeScore < item.FinalAwayScore)
-                    {
-                        <b>@Html.Raw(item.AwayTeam)</b>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.AwayTeam)
-                    }
-                </td>
-                <td>
-                    @awaySet[0]
-                </td>
-                <td>
-                    @awaySet[1]
-                </td>
-                <td>
-                    @awaySet[2]
-                </td>
-                <td>
-                    @awaySet[3]
-                </td>
-                <td>
-                    @awaySet[4]
-                </td>
-                <td>
-                    @awaySet[5]
-                </td>
-                <td>
-                    @awaySet[6]
-                </td>
-                <td>
-                    @awaySet[7]
-                </td>
-                <td>
-                    @awaySet[8]
-                </td>
-                <td>
-                    @ieAway
-                </td>
-                <td>
-                    @if (item.HalfTimeAwayScore == null)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        @item.HalfTimeAwayScore
-                    }
-                </td>
-                <td>
-                    @if (item.FinalAwayScore == null)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        @item.FinalAwayScore
-                    }
-                </td>
-            </tr>
+			<tr class="c">
+				<td>
+					@Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+				</td>
+				 <td class="l">
+					@item.LeagueName
+				</td>
+				<td class="l">
+					@Html.Raw(item.HomeTeam)
+					<br />
+					 @Html.Raw(item.AwayTeam)
+				</td>
+				<td>
+					@homeSet[0]
+					<br />
+					 @awaySet[0]
+				</td>
+				<td>
+					@homeSet[1]
+					<br />
+					 @awaySet[1]
+				</td>
+				<td>
+					@homeSet[2]
+					<br />
+					 @awaySet[2]
+				</td>
+				<td>
+					@homeSet[3]
+					<br />
+					 @awaySet[3]
+				</td>
+				<td>
+					@homeSet[4]
+					<br />
+					 @awaySet[4]
+				</td>
+				<td>
+					@homeSet[5]
+					<br />
+					 @awaySet[5]
+				</td>
+				<td>
+					@homeSet[6]
+					<br />
+					 @awaySet[6]
+				</td>
+				<td>
+					@homeSet[7]
+					<br />
+					 @awaySet[7]
+				</td>
+				<td>
+					@homeSet[8]
+					<br />
+					 @awaySet[8]
+				</td>
+				<td>
+					@ieHome
+					<br />
+					 @ieAway
+				</td>
+				<td>
+					@if (item.HalfTimeHomeScore == null)
+					{
+						<span>-</span>
+					}
+					else
+					{
+						@item.HalfTimeHomeScore
+					}
+					<br />
+					 @if (item.HalfTimeAwayScore == null)
+					{
+						<span>-</span>
+					}
+					else
+					{
+						@item.HalfTimeAwayScore
+					}
+				</td>
+				<td>
+					@if (item.FinalHomeScore == null)
+					{
+						<span>-</span>
+					}
+					else
+					{
+						@item.FinalHomeScore
+					}
+					<br />
+					 @if (item.FinalAwayScore == null)
+					{
+						<span>-</span>
+					}
+					else
+					{
+						@item.FinalAwayScore
+					}
+				</td>
+				<td class="border-right">
+					@item.EventStatusTranslation
+				</td>
+			</tr>
+		   
 
-            }
-        }
-        else
-        {
-            @RazorHelper.ShowNoInfo(colspan: 15);
-        }
-    </tbody>
+			}
+		}
+	
+	</tbody>
 </table>

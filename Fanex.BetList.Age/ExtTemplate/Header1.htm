@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <th style="width: 20px;">
-                #
+                Time
             </th>
             <th style="width: 110px;">
                 Member
@@ -45,27 +45,23 @@
     <!--/HiddenBlock-->
     <thead class="persist-header">
         <tr>
-            <!--No-->
-            <th style="width: 20px;">
-                #
+            <th style="width: 70px;">
+                {static:Apollo.Age.Resources.BetList.time}
             </th>
-            <!--/No-->
-            <!--Member-->
-            <th style="width: 110px;">
-                {static:Apollo.Age.Resources.BetList.member}
-            </th>
-            <!--/Member-->
             <th style="width: 120px;">
-                {static:Apollo.Age.Resources.BetList.transtime}
+                {headerMember}
+            </th>
+            <th style="width: 130px;">
+                {headerTrans}
             </th>
             <th>
                 {static:Apollo.Age.Resources.BetList.choice}
             </th>
             <th style="width: 50px;">
-                {static:Apollo.Age.Resources.BetList.odds}
+                {static:Apollo.Age.Resources.BetList.amount}
             </th>
             <th style="width: 50px;">
-                {static:Apollo.Age.Resources.BetList.stake}
+                {static:Apollo.Age.Resources.BetList.result}
             </th>
             <!--Winloss-->
             <th style="width: 55px;">

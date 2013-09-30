@@ -22,65 +22,56 @@
 @helper ShowMatch(int index, FirstGoalModel item)
 {    
     <tr>
-        <td class="c" rowspan="2">
-            @index
+         @Html.FormatShowTime(item.ShowTime)
+        <td class="c" >
+            @item.LeagueName
         </td>
-        <td class="c bl_time" rowspan="2">
-            @Html.Raw(item.ShowTime)
-        </td>
-        <td>
+        <td class="no-border-bottom  valign-top home-away-team">
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.HomeTeam
             </a>
-        </td>
-        <td class="fcnum r">
-            @RazorHelper.FormatPositiveNumber(item.WinLostHomeFG, numDecimals: 2)
-        </td>
-        <td class="fcnum r">
-            @RazorHelper.FormatPositiveNumber(item.WinLostHomeLG, numDecimals: 2)
-        </td>
-        <td rowspan="2" class="fcnum r">
-            @RazorHelper.FormatPositiveNumber(item.WinLostNoGoal, numDecimals: 2)
-        </td>
-    </tr>
-    <tr>
-        <td>
+            <br />
             <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
                 @item.AwayTeam
             </a>
         </td>
         <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.WinLostHomeFG, numDecimals: 2)
+            <br />
             @RazorHelper.FormatPositiveNumber(item.WinLostAwayFG, numDecimals: 2)
         </td>
         <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.WinLostHomeLG, numDecimals: 2)
+            <br />
             @RazorHelper.FormatPositiveNumber(item.WinLostAwayLG, numDecimals: 2)
         </td>
-        
-    </tr>           
+        <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.WinLostNoGoal, numDecimals: 2)
+           
+        </td>
+    </tr>         
 }
-
-@RazorHelper.RefreshCountDown("FirstGoal", 90, 45, "ReloadPage();")
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td style="width: 20px;">
-                #
+            <td style="width: 5%;">
+                  @Apollo.Age.Resources.Lang.time
             </td>
-            <td style="width: 120px;">
-                @Apollo.Age.Resources.Lang.time
+            <td style="width: 25%;">
+                @Apollo.Age.Resources.Lang.league
             </td>
-            <td style="width: 200px;">
+            <td style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
-            <td style="width: 100px;">
+            <td >
                 @Apollo.Age.Resources.Lang.firstgoal
             </td>
-            <td style="width: 100px;">
+            <td >
                 @Apollo.Age.Resources.Lang.lastgoal
             </td>
-            <td style="width: 100px;">
+            <td >
                 @Apollo.Age.Resources.Lang.nogoal
             </td>
         </tr>
@@ -95,7 +86,7 @@
             {
                 rowIndex++;
 
-                @ShowLeague(currentLeagueId, item)
+                //@ShowLeague(currentLeagueId, item)
                 @ShowMatch(rowIndex, item)
 
                 currentLeagueId = item.LeagueId;
@@ -103,7 +94,7 @@
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 6)
+            //@RazorHelper.ShowNoInfo(colspan: 6)
         }
     </tbody>
 </table>

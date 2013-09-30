@@ -207,8 +207,8 @@
   <data name="refno" xml:space="preserve">
     <value>배팅 번호</value>
   </data>
-  <data name="results" xml:space="preserve">
-    <value>결과 확인</value>
+  <data name="result" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="stake" xml:space="preserve">
     <value>배팅 금액</value>
@@ -392,5 +392,35 @@
   </data>
   <data name="Roulette" xml:space="preserve">
     <value>Roulette</value>
+  </data>
+  <data name="rebate" xml:space="preserve">
+    <value>Rebate</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="explain" xml:space="preserve">
+    <value>Explain</value>
+  </data>
+  <data name="gameType" xml:space="preserve">
+    <value>Game type</value>
+  </data>
+  <data name="ticket" xml:space="preserve">
+    <value>Ticket</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="vs" xml:space="preserve">
+    <value>VS.</value>
+  </data>
+  <data name="feature" xml:space="preserve">
+    <value>Feature</value>
   </data>
 </root>

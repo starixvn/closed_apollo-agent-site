@@ -117,67 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="succ_101" xml:space="preserve">
-    <value>Customer information is updated successfully</value>
-  </data>
-  <data name="succ_102" xml:space="preserve">
-    <value>Closed status is updated successfully</value>
-  </data>
-  <data name="succ_103" xml:space="preserve">
-    <value>Suspended status is updated successfully</value>
+  <data name="succ_108" xml:space="preserve">
+    <value>Enable status FI is updated successfully</value>
   </data>
   <data name="succ_104" xml:space="preserve">
     <value>Credit is updated successfully</value>
   </data>
-  <data name="succ_105" xml:space="preserve">
-    <value>Commission is updated successfully</value>
+  <data name="succ_119" xml:space="preserve">
+    <value>Aust Greyhound Bet Setting is updated successfully</value>
+  </data>
+  <data name="ValidateFromToDate" xml:space="preserve">
+    <value>The From date must be less than the To date</value>
   </data>
   <data name="succ_106" xml:space="preserve">
     <value>Bet Setting is updated successfully</value>
   </data>
-  <data name="succ_107" xml:space="preserve">
-    <value>Position taking is updated successfully</value>
-  </data>
-  <data name="succ_108" xml:space="preserve">
-    <value>Enable status FI is updated successfully</value>
-  </data>
-  <data name="succ_109" xml:space="preserve">
-    <value>Enable/Disable SA Racing status updated successfully</value>
-  </data>
-  <data name="succ_110" xml:space="preserve">
-    <value>Enable/Disable UK/Irish Racing status updated successfully</value>
-  </data>
-  <data name="succ_111" xml:space="preserve">
-    <value>UK/Irish Racing Bet Setting is updated successfully</value>
-  </data>
-  <data name="succ_112" xml:space="preserve">
-    <value>SA Racing Bet Setting is updated successfully</value>
-  </data>
-  <data name="succ_113" xml:space="preserve">
-    <value>Enable/Disable Aust Racing status updated successfully</value>
-  </data>
-  <data name="succ_114" xml:space="preserve">
-    <value>Enable/Disable UK/Irish Greyhounds status updated successfully</value>
-  </data>
   <data name="succ_115" xml:space="preserve">
     <value>Enable/Disable Aust Greyhound status updated successfully</value>
-  </data>
-  <data name="succ_116" xml:space="preserve">
-    <value>Enable/Disable Aust Harness status updated successfully</value>
   </data>
   <data name="succ_117" xml:space="preserve">
     <value>Aust Racing Bet Setting is updated successfully</value>
   </data>
+  <data name="succ_102" xml:space="preserve">
+    <value>Closed status is updated successfully</value>
+  </data>
+  <data name="succ_111" xml:space="preserve">
+    <value>UK/Irish Racing Bet Setting is updated successfully</value>
+  </data>
+  <data name="succ_113" xml:space="preserve">
+    <value>Enable/Disable Aust Racing status updated successfully</value>
+  </data>
+  <data name="succ_109" xml:space="preserve">
+    <value>Enable/Disable SA Racing status updated successfully</value>
+  </data>
   <data name="succ_118" xml:space="preserve">
     <value>UK/Irish Greyhound Bet Setting is updated successfully</value>
   </data>
-  <data name="succ_119" xml:space="preserve">
-    <value>Aust Greyhound Bet Setting is updated successfully</value>
+  <data name="succ_105" xml:space="preserve">
+    <value>Commission is updated successfully</value>
   </data>
   <data name="succ_120" xml:space="preserve">
     <value>Aust Harness Bet Setting is updated successfully</value>
   </data>
-  <data name="ValidateFromToDate" xml:space="preserve">
-    <value>The From date must be less than the To date</value>
+  <data name="succ_114" xml:space="preserve">
+    <value>Enable/Disable UK/Irish Greyhounds status updated successfully</value>
+  </data>
+  <data name="succ_107" xml:space="preserve">
+    <value>Position taking is updated successfully</value>
+  </data>
+  <data name="succ_116" xml:space="preserve">
+    <value>Enable/Disable Aust Harness status updated successfully</value>
+  </data>
+  <data name="succ_101" xml:space="preserve">
+    <value>Customer information is updated successfully</value>
+  </data>
+  <data name="succ_110" xml:space="preserve">
+    <value>Enable/Disable UK/Irish Racing status updated successfully</value>
+  </data>
+  <data name="succ_103" xml:space="preserve">
+    <value>Suspended status is updated successfully</value>
+  </data>
+  <data name="MessageValidateWithArchivedDate" xml:space="preserve">
+    <value>Date range cannot be less than Archived Date</value>
+  </data>
+  <data name="succ_112" xml:space="preserve">
+    <value>SA Racing Bet Setting is updated successfully</value>
   </data>
 </root>

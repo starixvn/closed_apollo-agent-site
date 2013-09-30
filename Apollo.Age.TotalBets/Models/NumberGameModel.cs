@@ -11,6 +11,9 @@ namespace Apollo.Age.TotalBets.Models
 {
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Number Game Model.
+    /// </summary>
     public class NumberGameModel
     {
         public string ShowTime { get; set; }

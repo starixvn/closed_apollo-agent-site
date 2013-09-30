@@ -11,12 +11,13 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class OutstandingCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
+
+        public string Sporttypes { get; set; }
+
+        public string Bettypes { get; set; }
 
         public override string GetSettingKey()
         {
@@ -25,7 +26,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return AgentId >= 0;
+            return AgentId > 0;
         }
     }
 }

@@ -27,13 +27,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData);
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            this.Template.Score = null;
-            this.Template.VS = null;
-            this.Template.Handicap.handicap = null;
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
 
             string betId = ticket.BetId.ToString();
             if (betId == "0")
@@ -59,7 +57,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             betTeam += " <span style='color:#555555'>37.5</span> ";
 
             this.Template.betTeam = betTeam + liveScore;
-            this.Template.betTeamClassName = BL_FAVORITE;
 
             this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }

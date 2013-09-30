@@ -15,7 +15,7 @@ namespace Apollo.Age.Integration.Models
     using System.Text;
 
     /// <summary>
-    /// It contains error code returned from OAuth service of sungame
+    /// It contains error code returned from authentication service of sungame
     /// </summary>
     public static class ErrorCode
     {
@@ -25,5 +25,6 @@ namespace Apollo.Age.Integration.Models
         public const string UnsupportedResponseType = "unsupported_response_type";
         public const string ServerError = "server_error";
         public const string TemporarilyUnavailable = "temporarily_unavailable";
+        public const string ComingSoon = "coming_soon";
     }
 }

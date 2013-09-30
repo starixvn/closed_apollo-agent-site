@@ -58,15 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\SportGroup.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\CheckBelongToUplinesCriteria.cs" />
     <Compile Include="Criterias\InternalCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalLogoutCriteria.cs" />
     <Compile Include="Criterias\InternalReCheckinCriteria.cs" />
     <Compile Include="Criterias\InternalGetAgentByUsernameCriteria.cs" />
     <Compile Include="Criterias\InternalLogLoginCriteria.cs" />
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
-    <Compile Include="Criterias\CheckUpdatePermissionCriteria.cs" />
+    <Compile Include="Criterias\CheckDownlineBelongToAgentCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="Entities\Agent.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\SingbetBettype.cs" />
+    <Compile Include="Entities\SingbetSport.cs" />
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\BetStatus.cs" />
@@ -83,12 +86,10 @@
     <Compile Include="Enumerations\AgentLevel.cs" />
     <Compile Include="Enumerations\CustomerStatus.cs" />
     <Compile Include="Enumerations\CustomerType.cs" />
+    <Compile Include="Enumerations\LogActionType.cs" />
     <Compile Include="Enumerations\MessageTypes.cs" />
     <Compile Include="Enumerations\SportTypes.cs" />
     <Compile Include="Enumerations\StringValueAttribute.cs" />
-    <Compile Include="Formater.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\AgentRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
@@ -101,19 +102,27 @@
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
     <Compile Include="Services\CacheRef.cs" />
     <Compile Include="Services\Impl\AgentService.cs" />
+    <Compile Include="Services\Impl\CachingService.cs" />
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\MemberService.cs" />
     <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
+    <Compile Include="Services\Impl\SingbetSportService.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IAgentService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
+    <Compile Include="Services\ServiceLayerException.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

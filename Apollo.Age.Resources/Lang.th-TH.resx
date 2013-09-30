@@ -4153,4 +4153,13 @@
   <data name="lblAccountWasLocked" xml:space="preserve">
     <value>Your Account was locked!</value>
   </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>ช่วงวันที่</value>
+  </data>
+  <data name="lblwinlossnote1" xml:space="preserve">
+    <value>"Effective Stake" after share given to the company (the selected agent and upline) by downline</value>
+  </data>
+  <data name="lblwinlossnote2" xml:space="preserve">
+    <value>"Effective Stake" after share given to upline by the selected agent</value>
+  </data>
 </root>

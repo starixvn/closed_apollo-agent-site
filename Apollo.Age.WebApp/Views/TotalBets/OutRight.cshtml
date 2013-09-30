@@ -10,19 +10,21 @@
         { 
     <!--LeagueContents-->
     <tr class="league">
-        <td colspan="4" class="league">
+        <td colspan="3" class="league">
             @item.LeagueName
         </td>
     </tr>
         }            
 }
-@RazorHelper.RefreshCountDown("OutRight", 90, 60, "ReloadPage();")
+
 <table class="tblRpt  persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            <td style="width: 5%;">
-                #
-            </td>
+           @* <td style="width: 5%;">
+                @Apollo.Age.Resources.Lang.time
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT)
+            </td>*@
             <td style="width: 45%;">
                 @Apollo.Age.Resources.Lang.lblTeam
             </td>
@@ -50,10 +52,12 @@
             @ShowLeague(currentLeagueId, item)  
             <!--MatchContents-->
             <tr class="r">
-                <td class="w-order">
-                    @rowIndex
-                </td>
-                <td class="l">
+                @*<td class="c" rowspan="2">
+                        @if(item.KickOffTime != null){
+                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
+                        }
+                    </td>*@
+                <td class="l  valign-top  home-away">
                     <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
                         href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOutRight"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.TeamName
                     </a>
@@ -70,7 +74,7 @@
             }
             else
             { 
-            @RazorHelper.ShowNoInfo(colspan: 4)
+            //@RazorHelper.ShowNoInfo(colspan: 4)
             }     
         }
     </tbody>

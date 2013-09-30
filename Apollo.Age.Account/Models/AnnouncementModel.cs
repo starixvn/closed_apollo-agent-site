@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Announcement.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AnnouncementModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System;    
+    using System;
     using System.Reflection;
 
     /// <summary>
@@ -40,7 +40,7 @@ namespace Apollo.Age.Account.Models
 
         public string ContentES { get; set; }
 
-        public string ContentIT { get; set; }
+        public string ContentVN { get; set; }
 
         public string ContentJP { get; set; }
 
@@ -82,10 +82,7 @@ namespace Apollo.Age.Account.Models
 
             if (GetMessageType == "private")
             {
-                if (string.IsNullOrWhiteSpace(this.BetTransId))
-                {
-                    content = content.Replace("@@", this.BetTransId);
-                }
+                content = content.Replace("@@", this.BetTransId);
             }
 
             return content;
@@ -101,7 +98,7 @@ namespace Apollo.Age.Account.Models
         {
             string content = string.Empty;
             object value = GetValue(this, langName);
-            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString())) 
+            if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                 && !userLanguage.Contains("zh"))
             {
                 langName = "Contenten";
@@ -109,8 +106,8 @@ namespace Apollo.Age.Account.Models
 
             if (userLanguage.Contains("zh"))
             {
-                var Content_cs = this.ContentCS;
-                var Content_ch = this.ContentCH;
+                var contentCS = this.ContentCS;
+                var contentCH = this.ContentCH;
 
                 if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))
                 {
@@ -136,7 +133,7 @@ namespace Apollo.Age.Account.Models
                     }
                 }
             }
-            
+
             value = GetValue(this, langName);
             if (value != null || value != DBNull.Value)
             {
@@ -192,6 +189,7 @@ namespace Apollo.Age.Account.Models
             {
                 return propertyInfo.GetValue(obj, null);
             }
+
             return null;
         }
 
@@ -204,15 +202,15 @@ namespace Apollo.Age.Account.Models
                     return propertyInfo;
                 }
             }
+
             return null;
         }
 
         private bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
-            if (propertyInfo != null)
-                return true;
-            return false;
+
+            return propertyInfo != null;
         }
     }
 }

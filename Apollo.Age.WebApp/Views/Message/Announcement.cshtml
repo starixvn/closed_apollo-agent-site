@@ -1,54 +1,73 @@
 ﻿@model IEnumerable<AnnouncementModel>
+@using Apollo.Age.Resources
 @{
-	Layout = null;
-	var userLang = ViewBag.UserLang as string;
+    Layout = null;
+    var userLang = ViewBag.UserLang as string;
+    int modeDate = ViewBag.ModeDate;     
 }
-@if (Model != null && Model.Any())
-{
-	var lastPostDate = ViewBag.LastPostTime.Date;
-	var index = 0;
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <title>@Lang.announcement</title>
+    <link href="~/Views/Message/Resources/Announcement.less" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    @using (Html.BeginForm("Announcement", "Message", FormMethod.Get))
+    { 
+        <table class="persist-area his_body">
+            <thead class="persist-header">
+                <tr>
+                    <th colspan="3" class="box_title">
+                        <span class="title">@Lang.announcement</span>
+                    </th>
+                </tr>
+                <tr class="m_title_date">
+                    <th class="page width-50per" colspan="3">
+                        <ul class="list">
+                            <li>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</li>
+                        </ul>
+                        <div class="search">
+                            @Html.TextBox("content", "", new { @class = "ccroll_input" })
+                            <input type="submit" class="ccroll_btn" value="@Lang.search" id="submit"/>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="m_title_his">
+                    <th class="width-40">
+                        @Lang.lblNo.
+                    </th>
+                    <th class="width-70">
+                        @Lang.times
+                    </th>
+                    <th class="his_info">
+                        @Lang.news
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    var index = 0;
 
-	foreach (var msg in Model)
-	{
-		index++;
-		
-		if (msg.PostTime.Date != lastPostDate)
-		{
-	<div class="divGroupDate">
-		@msg.PostTime.Date.ToShortDateString()
-	</div>
-		}
-
-		string ccs =
-			(msg.IsRead ? msg.GetMessageType : string.Format("{0}_unread", msg.GetMessageType)) +
-			(index % 2 == 0 ? " evenRow" : " oddRow");
-		
-	<div class="@ccs message clear" id="@msg.MessageId.ToString()" IsRead="@(msg.IsRead ? 1 : 0)">
-		<div class="divTime">
-			<div class="toogleIcon"></div>
-			<div class="time">
-				@msg.PostTime.ToLongTimeString()
-			</div>
-		</div>
-		<div class="divContent">
-			<div class="text_exposed_show small">
-				@msg.GetSmallContent(userLang)
-			</div>
-			<div class="text_exposed_hide full">
-				@msg.GetFullContent(userLang)
-			</div>
-		</div>
-	</div>
-		{ lastPostDate = msg.PostTime.Date; }
-
-	}
-	<div id="divMore">
-		@Apollo.Age.Resources.Lang.more
-	</div>
-}
-else
-{
-	<div class="no-info">
-		@Apollo.Age.Resources.Lang.noInfo
-	</div>
-}
+                    foreach (var msg in Model)
+                    {
+                    <tr class="m_cen">
+                        <td style="width: 40px" class="text-center">@(++index)
+                        </td>
+                        <td style="width: 70px" class="text-center">@msg.PostTime.ToString("yy-MM-dd")
+                        </td>
+                        <td class="his_info">@msg.GetFullContent(userLang)
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        @Html.Hidden("modeDate", modeDate)    
+    }
+</body>
+</html>

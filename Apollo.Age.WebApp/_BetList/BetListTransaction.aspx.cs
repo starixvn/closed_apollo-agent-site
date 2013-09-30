@@ -77,7 +77,7 @@ namespace Sunplus.Agent.UI._BetList
             bool isShowScoremap;
 
             int index = 0;
-            bool isAdminCanViewVNIP = true;
+           // bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
@@ -92,6 +92,7 @@ namespace Sunplus.Agent.UI._BetList
 
             Fanex.BetList.Age.ExtTemplate.OpenBetList_Template betlistOpenTag = new Fanex.BetList.Age.ExtTemplate.OpenBetList_Template();
             Header1_Template betlistHeader = new Header1_Template();
+
             if (!isShowAgentPT)
             {
                 betlistHeader.Agent.Hide();
@@ -109,9 +110,8 @@ namespace Sunplus.Agent.UI._BetList
                 ticketHelper.Index = index;
 
                 builder.Append(string.Format("<tr id='{0}' {1}>", ticket.TransId, index % 2 == 0 ? string.Empty : "class='alt'"))
-                       .AddNo(index + ((this.pageIndex - 1) * this.pageSize), "<td class='w-order'>", "</td>")
                        .AddMember(ticket, "<td class='l'>", "</td>")
-                       .AddTrans(ticket, "<td class='c'>", "</td>")
+                       .AddTrans(ticket, ticketHelper, "<td class='c'>", "</td>", funcGetOddsTypeName, BetListPage.Report)
                        .AddChoice(ticket, ticketHelper, ticketData, "<td class='r bl_evt'><div>", "</div></td>", isShowScoremap)
                        .AddOdds(ticket, ticketData, "<td class='bl_underdog'>", "</td>", funcGetOddsTypeName)
                        .AddStake(ticket, "<td class='bl_underdog'>", "</td>");
@@ -120,8 +120,6 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     builder.AddWinLoss(ticket, "<td class='r nowrap'>", "</td>");
                 }
-
-                builder.AddStatus(ticket, ticketHelper, ticketData, "<td class='c'>", "</td>", isAdminCanViewVNIP);
 
                 if (isShowAgentPT)
                 {
@@ -220,19 +218,19 @@ namespace Sunplus.Agent.UI._BetList
                     LoggedId = CurrentSession.AgentId,
                     AgentId = agentId,
                     CustId = custId,
-                    FromDate = Formater.ResetStartDate(fromDate),
-                    ToDate = Formater.ResetEndDate(toDate),
+                    FromDate = ResetStartDate(fromDate),
+                    ToDate = ResetEndDate(toDate),
                     StatusIds = statusIds,
                     MoveBetsDay = moveBetsDay
                 };
 
                 if (pageType.Equals("transaction"))
                 {
-                    mainTickets = betListService.GetAllBetsTransactionByDateAndMem(criteria);
+                    mainTickets = betListService.GetTicketResult(criteria);
                 }
                 else
                 {
-                    mainTickets = betListService.GetAllBetsByDateAndMem(criteria);
+                    mainTickets = betListService.GetTicketResult(criteria);
                 }
 
                 // Paging
@@ -261,8 +259,8 @@ namespace Sunplus.Agent.UI._BetList
                 tpl.title = Apollo.Age.Resources.Lang.voidandreject;
                 isShowAgentPT = isShowWinLost = false;
                 maxDate = DateTime.Now;
-                moveBetsDay = reportService.MoveBetsDay().AddDays(1);
-                minDate = moveBetsDay;
+                moveBetsDay = reportService.MoveBetsDay();
+                minDate = reportService.MoveBetsDay().AddDays(1);
 
                 statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             }
@@ -318,6 +316,20 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.CurrentSession;
             }
-        }       
+        }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
     }
 }

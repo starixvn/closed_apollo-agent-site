@@ -92,75 +92,75 @@ function UpdateCountPrivateMsg() {
     });
 }
 
-var publicMessageId = 0; // public message
-var privateMessageId = 0; // private message
-function GetMessages() {
-    function completedGetMessages(results) {
-        //Result Format:
-        //{
-        // public_message:{'id','2 test message here','normal'},
-        // private_message:{'id','2 test message here'},
-        // unread_private_messages:'0'
-        //}
-        try {
-            var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
-            var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
-            var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
+//var publicMessageId = 0; // public message
+//var privateMessageId = 0; // private message
+//function GetMessages() {
+//    function completedGetMessages(results) {
+//        //Result Format:
+//        //{
+//        // public_message:{'id','2 test message here','normal'},
+//        // private_message:{'id','2 test message here'},
+//        // unread_private_messages:'0'
+//        //}
+//        try {
+//            var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
+//            var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
+//            var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
 
-            //Update count of private messages
-            var countText = document.getElementById('privateMsgLnk').innerHTML;
-            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
+//            //Update count of private messages
+//            var countText = document.getElementById('privateMsgLnk').innerHTML;
+//            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
 
-            var MSGID = 0,
-                MSGCONTENT = 1,
-                MSGTYPE = 2;
-            var objDiv = age.createElement('div');
+//            var MSGID = 0,
+//                MSGCONTENT = 1,
+//                MSGTYPE = 2;
+//            var objDiv = age.createElement('div');
 
-            //Process Public Message: show new public message and its link to message form
-            var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
-            var balloonPopupContent = "";
-            url += publicMessage[MSGTYPE];
+//            //Process Public Message: show new public message and its link to message form
+//            var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
+//            var balloonPopupContent = "";
+//            url += publicMessage[MSGTYPE];
 
-            if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
-                document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
+//            if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
+//                document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
 
-                if (publicMessageId > 0) {
-                    balloonPopupContent = publicMessage[MSGCONTENT];
-                }
-                publicMessageId = publicMessage[MSGID];
-            }
+//                if (publicMessageId > 0) {
+//                    balloonPopupContent = publicMessage[MSGCONTENT];
+//                }
+//                publicMessageId = publicMessage[MSGID];
+//            }
 
-            //Process Private Message: show new private message
-            if ((privateMessage[MSGID] != null) && (privateMessageId != privateMessage[MSGID])) {
-                document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
-                if (privateMessageId > 0) {
-                    balloonPopupContent = privateMessage[MSGCONTENT];
-                }
-                privateMessageId = privateMessage[MSGID];
-            }
+//            //Process Private Message: show new private message
+//            if ((privateMessage[MSGID] != null) && (privateMessageId != privateMessage[MSGID])) {
+//                document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
+//                if (privateMessageId > 0) {
+//                    balloonPopupContent = privateMessage[MSGCONTENT];
+//                }
+//                privateMessageId = privateMessage[MSGID];
+//            }
 
-            //Process Balloon Pop-up: show new public and private messages if existed
-            if (balloonPopupContent != "") {
-                SetContentPopupTop(balloonPopupContent);
-                ShowPopupTop(0);
-                timeOutId = setTimeout("ShowPopupTop(1)", (30 * 1000));
-            }
+//            //Process Balloon Pop-up: show new public and private messages if existed
+//            if (balloonPopupContent != "") {
+//                SetContentPopupTop(balloonPopupContent);
+//                ShowPopupTop(0);
+//                timeOutId = setTimeout("ShowPopupTop(1)", (30 * 1000));
+//            }
 
-            age.ApplyScroller();
-        } catch (e) { }
+//            age.ApplyScroller();
+//        } catch (e) { }
 
-        setTimeout(GetMessages, (60 * 1000));
-    }
+//        setTimeout(GetMessages, (60 * 1000));
+//    }
 
-    $.ajax({
-        url: APOLLO.resolveUrl('~/Message/GetMessage'),
-        type: 'POST',
-        dataType: 'JSON',
-        success: completedGetMessages,
-        error: function (xhr, status, err) {
-        }
-    });
-}
+//    $.ajax({
+//        url: APOLLO.resolveUrl('~/Message/GetMessage'),
+//        type: 'POST',
+//        dataType: 'JSON',
+//        success: completedGetMessages,
+//        error: function (xhr, status, err) {
+//        }
+//    });
+//}
 
 function ReplaceAll(source, stringToFind, stringToReplace) {
     var temp = source;
@@ -255,7 +255,7 @@ function HideTooltipIntroNickname() {
 
 // Start up
 function InitHeader() {
-    setTimeout(function () { GetMessages(); HEADER.init(); }, 100);
+    setTimeout(function () { HEADER.init(); }, 100);
 }
 
 // Change to message page
@@ -317,20 +317,67 @@ function SelectTopMenu(url) {
     else ClearActiveTab();
 }
 
+RegisterStartUp(InitHeader);
+
 var HEADER = function ($) {
     return {
+        IsLoadTreeView: false,
+
         init: function () {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
-                setTimeout(function () { HEADER.reCheckIn(); }, 30000);
-
+                setTimeout(function () { HEADER.reCheckIn(); }, 1000);
             }
+//            else {
+//                setTimeout(function () { HEADER.reCheckUM(); }, 1000);
+//            }
             HEADER.signOut();
+
+            // show sub-menu
+            $('.menu-list').click(function () {
+                var $this = $(this);
+                if ($this.next('.sub-menu').is(':visible')) {
+                    $('.sub-menu').hide();
+                } else {
+                    $('.sub-menu').hide();
+                    $this.next('.sub-menu').show();
+                }
+            });
+
+            // show or hide left navigation
+            $('.toolbar').on('click', 'li', function (event) {
+                if ($(this).attr('id') == 'account-link') {
+                    if (!DEFAULTS.IsMaster) {
+                        var url = "/CustomerSetting/MySetting";
+                        parent.document.getElementById('main').setAttribute('src', url);
+                    } else {
+                        var url = "/Account/AgentList";
+                        HEADER.oldUrl = url;
+                        parent.document.getElementById('main').setAttribute('src', url);
+                    }
+                    HEADER.showAccountTab();
+                }
+                else {
+                    HEADER.hideAccountTab();
+                    parent.$('#btn-mini-menu').hide();
+                }
+                event.stopPropagation();
+            });
+
+            // show contact us page
+            $('#contact-us').click(function () {
+                var contactWindow = window.open(APOLLO.resolveUrl('~/Account/ContactUs'), '_blank', 'scrollbars=1,width=800,height=428');
+                contactWindow.focus();
+            });
+
+            HEADER.activeMenu();
         },
+
         signOut: function () {
-            $("#signout").on("click", function () {                
+            $("#signout").on("click", function () {
                 APOLLO.signOut();
             });
         },
+
         reCheckIn: function () {
             $.ajax({
                 type: "POST",
@@ -342,6 +389,12 @@ var HEADER = function ($) {
             })
                 .done(function (result) {
                     if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
+//                        if (result.isDowntime) {
+//                            parent.location.href = APOLLO.resolveUrl(result.urlReturn);
+//                        }
+//                        else {
+//                            
+//                        }
                         if (result.isKickout) {
                             alert(LANGUAGES.AlerSignonMessage);
                             APOLLO.signOut();
@@ -354,8 +407,129 @@ var HEADER = function ($) {
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
+        },
+
+//        reCheckUM: function () {
+//            $.ajax({
+//                type: "POST",
+//                url: APOLLO.resolveUrl("~/Internal/ReCheckUMService"),
+//                contentType: "application/json; charset=utf-8",
+//                dataType: "json",
+//                async: false,
+//                timeout: 120000
+//            })
+//                .done(function (result) {
+//                    if (result.isDownTime) {
+//                        parent.location.href = APOLLO.resolveUrl(result.urlReturn);
+//                    }
+//                    else {
+//                        setTimeout(function () { HEADER.reCheckUM(); }, 30000);
+//                    }
+//                })
+//                .fail(function (event, jqXHR, ajaxSettings) {
+//                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
+//                });
+//        },
+
+        showAccountTab: function () {
+            var leftMenu = parent.$('.menu');
+            var mainPage = parent.$('.mainpage');
+            // hide left navigation
+            if (leftMenu.is(':visible')) {
+                HEADER.hideLeftNavigation(leftMenu, mainPage);
+                parent.$('#btn-mini-menu').hide();
+            } else { //show left navigation
+                HEADER.showLeftNavigation(leftMenu, mainPage);
+
+                var leftNav = parent.$('.menu'),
+                    menuIcon = parent.$('.tab-menu-icon'),
+                    btnMiniMenu = parent.$('#btn-mini-menu'),
+                    iframeLeft = parent.$('#menu');
+
+                if (leftNav.hasClass('mini-menu')) {
+                    leftNav.removeClass('mini-menu');
+                    menuIcon.hide();
+                    if (btnMiniMenu.hasClass('collapse')) {
+                        btnMiniMenu.removeClass('collapse').addClass('expand').show();
+                    } else {
+                        btnMiniMenu.removeClass('expand').addClass('collapse').show();
+                    }
+                    iframeLeft.show();
+                } else {
+                    if (btnMiniMenu.hasClass('expand')) {
+                        btnMiniMenu.removeClass('expand');
+                    }
+                    btnMiniMenu.addClass('collapse').show();
+                }
+            }
+        },
+
+        hideAccountTab: function () {
+            HEADER.hideLeftNavigation(parent.$('.menu'), parent.$('.mainpage'));
+        },
+
+        hideLeftNavigation: function (leftMenu, mainPage) {
+            leftMenu.hide().animate(
+                { width: "0" },
+                {
+                    duration: 10,
+                    specialEasing: {
+                        width: 'linear',
+                        height: 'easeOutBounce'
+                    },
+                    complete: function () {
+                        mainPage.animate({ left: '0' }, 50);
+                    }
+                }
+            );
+        },
+
+        showLeftNavigation: function (leftMenu, mainPage) {
+            leftMenu.show().animate(
+                { width: "220px" },
+                {
+                    duration: 10,
+                    specialEasing: {
+                        width: 'linear',
+                        height: 'easeOutBounce'
+                    },
+                    complete: function () {
+                        mainPage.animate({ left: '221px' }, 50);
+                    }
+                }
+            );
+
+            if (!HEADER.IsLoadTreeView) {
+                parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("Account/TreeViewList");
+                HEADER.IsLoadTreeView = true;
+            }
+//            else {
+//                parent.document.getElementById('menu').contentWindow.ACCOUNT.reloadButtonRefresh();
+//            }
+            //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
+        },
+
+        oldUrl: null,
+
+        activeMenu: function () {
+            var toolbarMenu = $('.toolbar ul li a');
+            toolbarMenu.on('click', function () {
+                $this = $(this);
+                $iframe = parent.$('.mainpage iframe');
+
+                var currentSubUrl = $this.attr('url');
+
+                // Ignore link to check for click on menu many times
+                if (HEADER.oldUrl == currentSubUrl &&
+                currentSubUrl != "/Reports/matchentered" &&
+                currentSubUrl != "/Account/AgentList") {
+                    return;
+                }
+
+                HEADER.oldUrl = currentSubUrl;
+
+                $iframe.attr('src', currentSubUrl);
+            });
         }
     };
 } (jQuery);
-
-RegisterStartUp(InitHeader);

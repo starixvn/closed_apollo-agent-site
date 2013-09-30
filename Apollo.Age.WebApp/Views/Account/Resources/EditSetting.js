@@ -6,7 +6,6 @@ if (typeof jQuery != 'undefined') {
             settingContext: null,
             commissionSettingElement: null,
             betLimitElement: null,
-            positionTakingElement: null,
 
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
@@ -25,90 +24,55 @@ if (typeof jQuery != 'undefined') {
                 bettingLimitContainer.innerHTML = "";
                 EDITSETTING.betLimitElement.Render(bettingLimitContainer);
 
-                //// Position Taking
-                EDITSETTING.positionTakingElement = new Fanex.CustSetting.PTGrid(positionTakingSetting);
-                var positionTakingContainer = document.getElementById('ptContainer');
-                positionTakingContainer.innerHTML = "";
-                EDITSETTING.positionTakingElement.Render(positionTakingContainer);
-
                 APOLLO.initPageInfo();
             },
-            initForMode: function () {
-                if (EDITSETTING.currentIsSimpleMode) {
-                    $("setting-mode #simple-mode").removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
-                    $("#settingContainer .edit-setting-warning").show();
-                    $("#btnSubmitHeader").hide();
-                }
-                else {
-                    $(".setting-mode #advanced-mode").removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
-                    $("#settingContainer .edit-setting-warning").hide();
-                    $("#btnSubmitHeader").show();
-                }
-            },
             init: function () {
-                EDITSETTING.currentIsSimpleMode = DEFAULT_LAYOUT.isSimpleMode;
-                EDITSETTING.initOthers(DEFAULT_LAYOUT.isSimpleMode);
-                EDITSETTING.initForMode();
+                $('#page_main').addClass('setting-width');
+                EDITSETTING.currentIsSimpleMode = false;
+                EDITSETTING.initOthers(false);
                 $("#btnSubmitFooter, #btnSubmitHeader").unbind("click").click(function () {
+                    // remove the messages when open the other message
+                    $('#noty_top_layout_container').remove();
                     EDITSETTING.saveSetting();
                 });
-                $(".setting-mode #simple-mode").unbind("click").click(function () {
-                    if (EDITSETTING.currentIsSimpleMode) return;
-                    $(this).removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
-                    $("#settingContainer .edit-setting-warning").show();
-                    $("#btnSubmitHeader").hide();
-                    EDITSETTING.currentIsSimpleMode = true;
-                    EDITSETTING.initOthers(true);
-                    EDITSETTING.setDialogHeight(true);
+
+                $("#btnCancelFooter").unbind('click').click(function () {
+                    history.go(-1);
+                    return false;
                 });
 
-                $(".setting-mode #advanced-mode").unbind("click").click(function () {
-                    if (EDITSETTING.currentIsSimpleMode == false) return;
-                    $(this).removeClass("active-mode").addClass("deactive-mode");
-                    $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
-                    $("#settingContainer .edit-setting-warning").hide();
-                    EDITSETTING.currentIsSimpleMode = false;
-                    EDITSETTING.initOthers(false);
-                    EDITSETTING.setDialogHeight(false);
-                    $("#btnSubmitHeader").show();
-                });
+                if (DEFAULT_LAYOUT.isMaster) {
+                    $('#tbl-edit').show();
+                }
+                $('#btnCancelFooter').show();
             },
             saveSetting: function () {
                 if (EDITSETTING.commissionSettingElement.Validate()
-                && EDITSETTING.betLimitElement.Validate()
-                && EDITSETTING.positionTakingElement.Validate()) {
+                && EDITSETTING.betLimitElement.Validate()) {
                     var commissionSettingValue = EDITSETTING.commissionSettingElement.Save();
-                    //                    if (commissionSettingValue == null && Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) {
-                    //                        noty({ text: Language.INVALID_COMMISSION_MESSAGE, type: 'error', timeout: 5000 });
-                    //                        return;
-                    //                    }
-
-                    var postionTakingValue = EDITSETTING.positionTakingElement.Save();
-                    if (postionTakingValue == null) {
-                        noty({ text: Language.OUTRANGE_SIMPLE_MODE_ERROR, type: 'error', timeout: 5000 });
-                        return;
-                    }
 
                     var dataObject = {
                         settingContext: EDITSETTING.settingContext,
-                        positionTakingSetting: postionTakingValue,
                         commissionSetting: commissionSettingValue,
                         betLimits: EDITSETTING.betLimitElement.Save()
                     };
 
-                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
-                    && !EDITSETTING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
-                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
+                    && dataObject.betLimits.length == 0
+                    && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined') {
+                        APOLLO.showMessage(DEFAULT_LAYOUT.noChangeMessage, 'success');
                         return;
                     }
-                    else if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
-                    && dataObject.betLimits.length == 0
-                    && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined'
-                    && !EDITSETTING.positionTakingElement.CheckChangeData(postionTakingValue.SportTypes)) {
-                        noty({ text: DEFAULT_LAYOUT.noChangeMessage, type: 'success', timeout: 5000 });
+
+                    var stringConfirm = "";
+                    if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        stringConfirm = Language.CONFIRM_WRITE_MEMBER;
+                    }
+                    else {
+                        stringConfirm = Language.CONFIRM_WRITE_AGENT;
+                    }
+                    var c = confirm(stringConfirm);
+                    if (c == false) {
                         return;
                     }
 
@@ -122,74 +86,83 @@ if (typeof jQuery != 'undefined') {
                         url += "UpdateAgentSetting";
                     }
 
-                    $("#btnSubmitFooter").attr("disabled", "disabled");
+
                     $.ajax({
                         url: url,
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(dataObject),
+                        cache: false,
                         headers: APOLLO.addAntiForgeryToken({})
                     }).done(function (data) {
                         if (data.ErrCode == 0) {
-                            noty({ text: data.ErrMsg, type: 'success', timeout: 5000 });
                             EDITSETTING.completeUpdate();
                         } else {
-                            noty({ text: data.ErrMsg, type: 'error', timeout: 5000 });
+                            try { $.unblockUI(); } catch (e) { };
+                            var mainMessage = data.ErrMsg;
+                            if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+                                //
+                                var arrayMessage = data.ErrMsg.split('^^'),
+                                    errorMessage = '',
+                                    successMessage = '';
+                                for (var i = 0; i < arrayMessage.length; i++) {
+                                    var innerMessage = arrayMessage[i].split('##');
+//                                    errorMessage += '<br/> + ';
+//                                    successMessage += '<br/> + ';
+                                    for (var j = 0; j < innerMessage.length; j++) {
+                                        if (j == 0) {
+                                            $.each(innerMessage[j].split(';'), function (i, val) {
+                                                if (val != '') {
+                                                    errorMessage += ' + ' + val + '<br/>';
+                                                }
+                                            });
+
+                                        }
+                                        else {
+                                            $.each(innerMessage[j].split(';'), function (i, val) {
+                                                if (val != '') {
+                                                    successMessage += ' + ' + val + '<br/>';
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                                mainMessage = Language.UPDATE_ERROR + '<br/>' + errorMessage;
+                                if (successMessage != '') {
+                                    mainMessage += '<br/><div class="successMessage">' + Language.UPDATE_MULTIPLE_SUCCESS + '<br/>' + successMessage + '</div>';
+                                }
+
+                                APOLLO.showMessage(mainMessage, 'error', null, true);
+                            }
+                            else {
+                                APOLLO.showMessage(mainMessage, 'error');
+                            }
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        if (jqXHR.responseText) {
+                            APOLLO.showMessage(jqXHR.responseText, 'error');
+                        }
+                        else {
+                            APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        }
                         try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
-                        $("#btnSubmitFooter").removeAttr("disabled");
                     });
                 }
             },
             completeUpdate: function (result) {
-                setTimeout(function () {
+                var backLink = $('#backUrl').val();
+                //setTimeout(function () {
+                    try { $.unblockUI(); } catch (e) { };
+                    window.location.href = backLink;
+                //}, 4000);
 
-                    if (typeof (parent.MEMBERLIST) != 'undefined') {
-                        parent.MEMBERLIST.loadMemberList();
-                    }
-                    else if (typeof (parent.AGENTLIST) != 'undefined') {
-                        parent.AGENTLIST.loadAgentList();
-                    }
-                    else {
-                        var url = window.location.href;
-                        if (url.indexOf("&isSimpleMode=") > 0) {
-                            url = url.substring(0, url.indexOf("&isSimpleMode="));
-                        }
-                        window.location.href = url + '&isSimpleMode=' + EDITSETTING.currentIsSimpleMode;
-                    }
-                }, 4500);
-            },
-            setDialogHeight: function (isSimpleMode) {
-                var currentList = null;
-                if (typeof (parent.MEMBERLIST) != 'undefined') {
-                    currentList = parent.MEMBERLIST;
-                }
-                else if (typeof (parent.AGENTLIST) != 'undefined') {
-                    currentList = parent.AGENTLIST;
-                }
-                if (currentList != null) {
-                    if (isSimpleMode == true) {
-                        currentList.currentPopUp.dialog("option", {
-                            height: 470,
-                            position: { my: "top+25%", at: "center top", of: parent.window }
-                        });
-                    }
-                    else {
-                        currentList.currentPopUp.dialog("option", {
-                            height: 720,
-                            position: { my: "top+10", at: "center top", of: parent.window }
-                        });
-                    }
-                }
             }
         }
     } (jQuery);
 
     $(function () {
         EDITSETTING.init();
-    }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    }).ajaxStart($.blockUI);
 }

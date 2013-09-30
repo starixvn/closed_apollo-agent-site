@@ -180,7 +180,7 @@
             Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 5000, false);
         }
         else {
-            Validators.show(elementInput, errorMessage, xpos, pointerx, -45, 38, 18, 5000, false);
+            Validators.show(elementInput, errorMessage, -150, 210, -45, 38, 18, 5000, false);
         }
         Validators.animate(elementInput);
     };
@@ -474,11 +474,11 @@ Spinner.prototype = {
         }
 
 
-        //        if (fractional.length > 0) {
-        //            while (fractional[fractional.length - 1] == '0') {
-        //                fractional = fractional.substring(0, fractional.length - 1);
-        //            }
-        //        }
+        if (fractional.length > 0) {
+            while (fractional.charAt(fractional.length - 1) == '0') {
+                fractional = fractional.substring(0, fractional.length - 1);
+            }
+        }
 
         // set the value
         this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
@@ -629,26 +629,52 @@ Spinner.prototype = {
         if (this.options.minimum > maxValue) maxValue = this.options.minimum;
         if (maxValue < 0) maxValue = 0;
         this.options.maximum = maxValue;
+
+        if (this.getValue() > maxValue) {
+            this.setValue(maxValue);
+        }
     },
     updateMinValue: function (mixValue) {
         if (mixValue < 0) mixValue = 0;
         this.options.minimum = mixValue;
+
+        if (this.getValue() < mixValue) {
+            this.setValue(mixValue);
+        }
+    },
+    updateMinValueWithNoReset: function (mixValue) {
+        if (mixValue < 0) mixValue = 0;
+        this.options.minimum = mixValue;
+    },
+    updateMaxValueWithNoReset: function (maxValue) {
+        if (this.options.minimum > maxValue) maxValue = this.options.minimum;
+        if (maxValue < 0) maxValue = 0;
+        this.options.maximum = maxValue;
+    },
+    getMaxValue: function () {
+        return this.options.maximum;
+    },
+    getMinValue: function () {
+        return this.options.minimum;
     },
     isValid: function (hideMessage) {
-        var value = this.getValue();
-        if (!this.digitsValid(value)) {
-            if (hideMessage == true) {
+        var value = parseFloat(this.input.value);
+        if (isNaN(value)) {
+            if (!hideMessage) {
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
             }
-            else {
-                Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -160, 175);
+            return false;
+        }
+
+        if (!this.digitsValid(value)) {
+            if (!hideMessage) {
+                Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
             }
             return false;
         }
         if ((value < this.options.minimum || value > this.options.maximum) && (this.options.minimum <= this.options.maximum)) {
-            if (hideMessage == true) {
-            }
-            else {
-                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -140, 155);
+            if (!hideMessage) {
+                Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
             }
             return false;
         }
@@ -671,17 +697,17 @@ Spinner.prototype = {
             if (hideMessage == true) {
             }
             else {
-                Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -160, 175);
+                Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
             }
             return false;
         }
         return true;
     },
     alertRangeMessage: function () {
-        Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -140, 155);
+        Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
     },
     alertDigitsInvalid: function () {
-        Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -160, 175);
+        Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
     }
 };
 

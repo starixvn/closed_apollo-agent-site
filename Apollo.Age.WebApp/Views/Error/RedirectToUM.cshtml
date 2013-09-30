@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "RedirectToUM";
+    Layout = null;
+    var url = Url.Action("UnderMaintenance");
+    var ssoUrl = Request.Url.Host + url;
+}
+<script src="~/_GlobalResources/Js/jquery.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    parent.location.href = '@url';    
+</script>

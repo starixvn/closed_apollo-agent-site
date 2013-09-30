@@ -10,8 +10,12 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Total Goal Model.
+    /// </summary>
     public class TotalGoalModel
     {
         public int MatchId { get; set; }
@@ -21,34 +25,42 @@ namespace Apollo.Age.TotalBets.Models
         public int AwayId { get; set; }
 
         /// <summary>
-        /// BetTeam in 0-1
+        /// Gets or sets BetTeam in 0-1.      
         /// </summary>
+        /// <value>Decimal value.</value>
         public decimal Total01 { get; set; }
 
         /// <summary>
-        /// BetTeam in 2-3
+        /// Gets or sets BetTeam in 2-3.
         /// </summary>
+        /// <value>Decimal value.</value>
         public decimal Total23 { get; set; }
 
         /// <summary>
-        /// BetTeam in 4-6
+        /// Gets or sets BetTeam in 4-6. 
         /// </summary>
+        /// <value>Decimal value.</value>
         public decimal Total46 { get; set; }
 
         /// <summary>
-        /// BetTeam in 7 - Over
+        /// Gets or sets BetTeam in 7 - Over.
         /// </summary>
+        /// <value>Decimal value.</value>
         public decimal Total7Over { get; set; }
 
         public bool IsNeutral { get; set; }
 
         public bool Closed { get; set; }
 
+        public string ShowTime { get; set; }
+
+        public DateTime? KickOffTime { get; set; }
+
         public string HomeTeam
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 

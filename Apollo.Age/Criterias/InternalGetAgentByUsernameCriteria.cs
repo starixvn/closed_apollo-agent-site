@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LoginByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="InternalGetAgentByUsernameCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,10 +9,6 @@
 
 namespace Apollo.Age.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -22,11 +18,19 @@ namespace Apollo.Age.Criterias
     {
         public string Username { get; set; }
 
+        /// <summary>
+        /// Override Get Store Procedure Name.
+        /// </summary>
+        /// <returns>Return Store Procedure Name.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_GetByUserName";
         }
 
+        /// <summary>
+        /// Override check is validate parameter.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         public override bool IsValid()
         {
             return !string.IsNullOrWhiteSpace(Username);

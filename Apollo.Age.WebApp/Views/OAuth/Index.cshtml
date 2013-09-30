@@ -12,6 +12,11 @@
 	<script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>
 	<script src="@OAuthSettings.Settings.TgpScriptSrc" type="text/javascript"></script>
 	<script type="text/javascript">
+	    // delete cookies
+	    document.cookie = 'searching-id' + '="-1";-1; path=/';
+	    document.cookie = 'searching-name' + '="";-1; path=/';
+	    document.cookie = 'searching-ismember' + '="false";-1; path=/';
+
 		TGP.authorize_endpoint = "@OAuthSettings.Settings.AuthorizeUrl";
 
 		TGP.authorize({

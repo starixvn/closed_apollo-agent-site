@@ -15,19 +15,27 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class SetPriMessageReadCriteria : CriteriaBase
-    {
-        public override string GetSettingKey()
+    {       
+        public int UserId 
         {
-            return "Dot_Msg_SetPriMsgRead";
+            get; 
+            set; 
         }
 
-        public int UserId { get; set; }
-
-        public string Username { get; set; }
+        public string Username 
+        { 
+            get; 
+            set; 
+        }
 
         public override bool IsValid()
         {
             return UserId > 0;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Dot_Msg_SetPriMsgRead";
         }
     }
 }

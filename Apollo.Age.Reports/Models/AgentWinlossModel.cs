@@ -5,10 +5,14 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.12">Created</change>
+//   <change who="Quinn.Vo" date="2013.7.12">Add Outstanding & ShareAmount</change>
 // </history>
 
 namespace Apollo.Age.Reports.Models
 {
+    using System;
+
+    [Serializable]
     public class AgentWinLossModel
     {
         public bool IsAgent { get; set; }
@@ -17,20 +21,93 @@ namespace Apollo.Age.Reports.Models
 
         public string AgentName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the value of SoccerShare.
+        /// </summary>
+        /// <value>The SoccerShare.</value> 
         public short SoccerShare { get; set; }
 
-        public decimal Turnover { get; set; }
+        #region Member
+        /// <summary>
+        /// Gets or sets BetAmount.
+        /// </summary>
+        /// <value>The Turnover.</value> 
+        public decimal BetAmount { get; set; }
 
-        public decimal ActualTO { get; set; }
+        /// <summary>
+        /// Gets or sets BetCount.
+        /// </summary>
+        /// <value>The BetCount.</value>
+        public long BetCount { get; set; }
 
-        public decimal GrossTotal { get; set; }
+        /// <summary>
+        /// Gets or sets Commission Base.
+        /// </summary>
+        /// <value>The ActualTO.</value>
+        public decimal CommBase { get; set; }
 
+        /// <summary>
+        /// Gets or sets Member WinLoss.
+        /// </summary>
+        /// <value>The Member WinLoss.</value>
+        public decimal MemberWinLoss { get; set; }
+
+        /// <summary>
+        /// Gets or sets Member Commission.
+        /// </summary>
+        /// <value>The Member Commission.</value>
+        public decimal MemberComm { get; set; }
+
+        /// <summary>
+        /// Gets or sets Member Total.
+        /// </summary>
+        /// <value>The Member Commission.</value>
+        public decimal MemberTotal { get; set; }
+
+        #endregion
+
+        #region Agent
+        /// <summary>
+        /// Gets or sets Agent WinLoss.
+        /// </summary>
+        /// <value>The AWinLoss.</value>
         public decimal AWinLoss { get; set; }
 
+        /// <summary>
+        /// Gets or sets Agent Commission.
+        /// </summary>
+        /// <value>The ACommission.</value>
         public decimal AComm { get; set; }
 
+        /// <summary>
+        /// Gets or sets Agent Total.
+        /// </summary>
+        /// <value>The ATotal.</value>
         public decimal ATotal { get; set; }
+        #endregion
 
-        public decimal UplineTotal { get; set; }
+        #region Downline
+        /// <summary>
+        /// Gets or sets DownLine Effective Stake.
+        /// </summary>
+        /// <value>The DownLineEffectiveStake.</value>
+        public decimal DownLineEffectiveStake { get; set; }
+
+        public decimal DownLineTotal { get; set; }
+        #endregion
+
+        #region UpLine
+        /// <summary>
+        /// Gets or sets UpLine Effective Stake.
+        /// </summary>
+        /// <value>The UpLineEffectiveStake.</value>
+        public decimal UpLineEffectiveStake { get; set; }
+
+        /// <summary>
+        /// Gets or sets UpLineWinLoss.
+        /// </summary>
+        /// <value>The UpLineEffectiveStake.</value>
+        public decimal UpLineTotal { get; set; }
+        #endregion
     }
 }

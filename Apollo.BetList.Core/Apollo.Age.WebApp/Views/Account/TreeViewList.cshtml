@@ -1,0 +1,49 @@
+﻿@using Apollo.Age.Resources
+@{
+	Layout = "~/Views/Account/Shared/_Layout.cshtml";
+}
+@section head {
+	<link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
+}
+<table id="tab-menu">
+	<tr>
+		@*<td>
+			<a id="lk-menu-tab" href="javascript:;" target="menu"><i class="icon-align-justify">
+			</i>@Lang.mainmenu</a>
+		</td>*@
+		<td class="active">
+			<a><i class="icon-user"></i>@Lang.userinfo</a>
+		</td>
+		<td>
+			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.search</a>
+		</td>
+	</tr>
+</table>
+@Html.Hidden("ApoRoot", Url.Content("~/"))
+@if ((bool)(ViewBag.HasAgentDownline))
+{
+	<div id="wrapper">
+		<ul id="agent-list" class="tree-sub" agent-id="@ViewBag.AgentId">
+		</ul>
+	</div>	
+	
+	@section foot {
+		<script src="~/views/account/resources/menu.js" type="text/javascript"></script>
+		<script type="text/javascript" src="~/views/account/resources/jquery.treeview.js"></script>
+		<script type="text/javascript" src="~/views/account/resources/jquery.treeview.async.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$.blockUI.defaults.css.left = "10px";
+				$(document).ajaxStart($.blockUI);
+				$(document).ajaxStop($.unblockUI);
+			})
+		</script>
+	}
+}
+else
+{
+	<div class="no-data">@Lang.NoneAgent</div>
+	@section foot {
+		<script src="~/views/account/resources/Menu.js" type="text/javascript"></script>
+	}
+}

@@ -16,6 +16,9 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Agent Share
+    /// </summary>
     public class AgentShare33 : AgentShare1
     {
         protected int winBetId, placeBetId;

@@ -23,6 +23,7 @@ namespace Fanex.Age.UI.Components
         private int _PageCount = 0;
         private int _PageIndex = 0;
         private int _RowCount = 0;
+
         public int PageIndex
         {
             get { return _PageIndex; }
@@ -33,7 +34,7 @@ namespace Fanex.Age.UI.Components
             get { return _PageCount; }
         }
 
-        protected int PageSize = 500; 
+        protected int PageSize = 500;
         protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
 
         #endregion Definition
@@ -49,8 +50,7 @@ namespace Fanex.Age.UI.Components
         public Paging_Control(IElement parent, string id, string url, int rowCount)
             : this(parent, id, -1, url, rowCount) { }
 
-
-        public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount) 
+        public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount)
             : this(parent, id, pageSize, url, rowCount, true) { }
 
         public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount, bool isSelPageSize)
@@ -178,9 +178,8 @@ namespace Fanex.Age.UI.Components
             tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
 
             ShowHidePageSize();
-
         }
-             
+
         protected void ShowHidePageSize()
         {
             if (PageCount == 0) tpl.pageclass = "pagingHiden";
@@ -217,7 +216,6 @@ namespace Fanex.Age.UI.Components
 
         public override string ToString()
         {
-            
             return tpl.ToString();
         }
 
@@ -233,4 +231,3 @@ namespace Fanex.Age.UI.Components
         #endregion
     }
 }
-

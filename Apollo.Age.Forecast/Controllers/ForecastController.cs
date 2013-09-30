@@ -25,6 +25,9 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Services;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Forecast Function controller
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ForecastController : BaseController
@@ -32,6 +35,7 @@ namespace Apollo.Age.Forecast.Controllers
         private readonly ForecastService _forecastService;
 
         #region Ctors
+
         public ForecastController()
             : this(null)
         {
@@ -40,8 +44,10 @@ namespace Apollo.Age.Forecast.Controllers
         public ForecastController(ForecastService forecastService = null)
         {
             _forecastService = forecastService ?? new ForecastService();
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
         }
-        #endregion
+
+        #endregion Ctors
 
         #region Forecast 1X2
 
@@ -151,7 +157,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
-            return View(_forecastService.GetForecastMatcheValue(currentAgentId,this.CurrentSession.AgentId, matchId, betType, currentScore));
+            return View(_forecastService.GetForecastMatcheValue(currentAgentId, this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
         /// <summary>
@@ -256,17 +262,17 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
         public ViewResult ScoreMapResult(
-            string matchIds, 
+            string matchIds,
             string liveBetTypes,
-            string deadBallBetTypes, 
+            string deadBallBetTypes,
             int mainShareHolderId = 0)
         {
             int currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             var scoreMapResult = _forecastService.GetScoreMapResults(
-                currentAgentId, 
+                currentAgentId,
                 this.CurrentSession.AgentId,
-                matchIds, 
-                liveBetTypes, 
+                matchIds,
+                liveBetTypes,
                 deadBallBetTypes);
 
             return View(scoreMapResult);
@@ -275,6 +281,7 @@ namespace Apollo.Age.Forecast.Controllers
         #endregion Score Map
 
         #region Helpers
+
         /// <summary>
         /// Get Current Agent Id
         /// If MainShareholderId > 0 and Current Login user is Super then set first is selected
@@ -287,7 +294,7 @@ namespace Apollo.Age.Forecast.Controllers
             if (this.CurrentSession.IsSuper)
             {
                 //// Should Use Cache, fix later
-                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria 
+                var mainShareHolders = _forecastService.GetData<Agent>(new GetAllMainShareHolderCriteria
                 {
                     Bettypes = betType
                 });
@@ -309,6 +316,7 @@ namespace Apollo.Age.Forecast.Controllers
 
             return agentId;
         }
-        #endregion
+
+        #endregion Helpers
     }
 }

@@ -149,7 +149,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         }
                     }
 
-                    if (winlostdate != ticket.WinLostDate.ToString("M/d/yyyy"))
+                    if (winlostdate != ticket.WinLostDate.ToString("yyyy-mm-dd"))
                     {
                         var row = ticketList.Where(s => s.WinLostDate == ticket.WinLostDate);
 
@@ -162,7 +162,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         {
                             rowBlock.WinlostDate.rowSpan = string.Empty;
                         }
-                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("M/d/yyyy"); ;
+                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd"); ;
                         rowBlock.WinlostDate.Show();
                     }
                     else
@@ -172,7 +172,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
 
                     subWinlostSum += ticket.WinLost + ticket.PlayerComm;
                     template.RowData.Append(rowBlock);
-                    winlostdate = ticket.WinLostDate.ToString("M/d/yyyy");
+                    winlostdate = ticket.WinLostDate.ToString("yyyy-mm-dd");
 
                     //Get Sub Total by Day
                     if (i + 1 == numRow)
@@ -182,10 +182,10 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     else
                     {
                         var drTemp = ticketList[i + 1];
-                        winlostNextDate = drTemp.WinLostDate.ToString("M/d/yyyy");
+                        winlostNextDate = drTemp.WinLostDate.ToString("yyyy-mm-dd");
                     }
 
-                    this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("M/d/yyyy"), winlostNextDate);
+                    this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("yyyy-mm-dd"), winlostNextDate);
                     i++;
                 }
 

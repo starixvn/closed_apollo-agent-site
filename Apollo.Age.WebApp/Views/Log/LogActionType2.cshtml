@@ -1,19 +1,21 @@
-﻿@using Apollo.Age.Resources
+﻿@using Apollo.Age.Account.Core;
+@using Fanex.CustSetting.ViewData;
+@using Apollo.Age.Resources
 @{   
-    var list = (List<DiscountModel>)Model;
-    var oldGroup = ViewBag.OldGroup;
-    var group = ViewBag.Group;
+    var list = Model != null ? (List<DiscountModel>)Model : new List<DiscountModel>();
+    var oldGroup = ViewBag.OldGroup != null ? ViewBag.OldGroup : string.Empty;
+    var group = ViewBag.Group != null ? ViewBag.Group : string.Empty;
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {
     if (!string.IsNullOrWhiteSpace(oldGroup) || !string.IsNullOrWhiteSpace(group))
     {
     <table class="tblRpt">
-        <tr class="colW bg-gray">
-            <td>
+        <tr class="colW bg-green">
+            <td class="colW1">
                 @Lang.group
             </td>
-            <td colspan="2">
+            <td class="colW1" colspan="2">
                 @Lang.membercomm
             </td>
         </tr>
@@ -24,7 +26,7 @@
                     <span class="valuechanged">@group</span>
                     <div class="line">
                     </div>
-                    <span class="valueold">@oldGroup</span>
+                    <span class="valueold">@(string.IsNullOrWhiteSpace(oldGroup) ? Lang.lblNA : oldGroup)</span>
                   
                 }
                 else
@@ -104,13 +106,13 @@
                 @Lang.lblGroupa (%)
             </td>
             <td class="colW2">
-                @ToString(groupNormal.OldGroupA, groupNormal.GroupA)
+                @ToString(groupNormal.OldGroupD, groupNormal.GroupD)
             </td>
             <td class="colW3 left-text">
                 @Lang.lblGroupc (%)
             </td>
             <td class="colW2">
-                @ToString(groupNormal.OldGroupC, groupNormal.GroupC)
+                @ToString(groupNormal.OldGroupB, groupNormal.GroupB)
             </td>
             <td class="colW2 left-text">
                 @Lang.lbl1x2Comm (%)
@@ -124,13 +126,13 @@
                 @Lang.lblGroupb (%)
             </td>
             <td class="colW2">
-                @ToString(groupNormal.OldGroupB, groupNormal.GroupB)
+                @ToString(groupNormal.OldGroupC, groupNormal.GroupC)
             </td>
             <td class="colW3 left-text">
                 @Lang.lblGroupd (%)
             </td>
             <td class="colW2">
-                @ToString(groupNormal.OldGroupD, groupNormal.GroupD)
+                @ToString(groupNormal.OldGroupA, groupNormal.GroupA)
             </td>
             <td class="colW2 left-text">
                 @Lang.lblOtherComm (%)
@@ -142,15 +144,15 @@
     </table>
     }
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue * 100, 2).ToString();
-        string strNew = Math.Round(newValue * 100, 2).ToString();
+        string strOld = oldValue != null ? Formater.DecFormat((decimal)oldValue * 100, 2).ToString() : Lang.lblNA;
+        string strNew = Formater.DecFormat(newValue * 100, 2).ToString();
 
         if (oldValue != newValue)
         { 
     <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>           
-    <span>| </span><span class="valueold">@strOld</span>           
+    <span class="valueold">| @strOld</span>           
         }
         else
         { <span class="valueold">@strOld</span>

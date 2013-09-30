@@ -1434,13 +1434,13 @@
     <value>合計</value>
   </data>
   <data name="total01" xml:space="preserve">
-    <value>0-1</value>
+    <value>0~1</value>
   </data>
   <data name="total23" xml:space="preserve">
-    <value>2-3</value>
+    <value>2~3</value>
   </data>
   <data name="total46" xml:space="preserve">
-    <value>4-6</value>
+    <value>4~6</value>
   </data>
   <data name="total7over" xml:space="preserve">
     <value>7 オーバー</value>
@@ -4199,5 +4199,14 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="lblAccountWasLocked" xml:space="preserve">
     <value>Your Account was locked!</value>
+  </data>
+  <data name="dateRange" xml:space="preserve">
+    <value>日付範囲</value>
+  </data>
+  <data name="lblwinlossnote1" xml:space="preserve">
+    <value>"Effective Stake" after share given to the company (the selected agent and upline) by downline</value>
+  </data>
+  <data name="lblwinlossnote2" xml:space="preserve">
+    <value>"Effective Stake" after share given to upline by the selected agent</value>
   </data>
 </root>

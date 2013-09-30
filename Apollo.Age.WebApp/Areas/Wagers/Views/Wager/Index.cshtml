@@ -1,0 +1,124 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
+@using Apollo.Age.Entities
+@using Apollo.Age.Web.Mvc
+@{
+    Layout = null;
+    var groupBetName = (string)ViewBag.GroupBetName;
+    var sportName = (string)ViewBag.SportName;
+    var title = (string)ViewBag.Title;
+    var titleAll = (string)ViewBag.TitleAll;
+    var lableGroupBet = (string)ViewBag.LableGroupBetName;
+    var listEarlyMarketDates = (List<SelectListItem>)ViewBag.EarlyMarketDates;
+    var isEM = (bool)ViewBag.isEM;
+    var isOR = (bool)ViewBag.isOR;
+    var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
+    var moveBetDate = (DateTime)ViewBag.MoveBetDate;
+    var isShowViewOption = (int)ViewBag.IsShowViewOption;
+    var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
+
+}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>@Lang.lblWager</title>
+    @Styles.Render("~/css/wagers")
+</head>
+<body>
+    <div id="function-bar">
+        @if (isOR)
+        {
+            <div class="item">
+                @Lang.lblOutRight.
+                <select class="za_select" name="ltype" id="groupComm">
+                    <option value="soccer" @(sportName == WagersSportName.Soccer ? "selected" : string.Empty) >@Lang.soccer</option>
+                    <option value="basketball" @(sportName == WagersSportName.Basketball ? "selected" : string.Empty)>@Lang.lblBkNflRugby</option>
+                    <option value="tennis" @(sportName == WagersSportName.Tennis ? "selected" : string.Empty)>@Lang.Tennis
+                    </option>
+                    <option value="volleyball" @(sportName == WagersSportName.Volleyball ? "selected" : string.Empty)>@Lang.lblVbBdmTt</option>
+                    <option value="baseball" @(sportName == WagersSportName.Baseball ? "selected" : string.Empty)>@Lang.Baseball</option>
+                    <option value="others" @(sportName == WagersSportName.Others ? "selected" : string.Empty)>@Lang.Others</option>
+                </select>
+            </div>
+        }
+        else
+        {
+            <div class="item">
+                @Lang.lblOP.
+                <select class="za_select" name="ltype" id="groupComm">
+                    <option value="All">@titleAll</option>
+                    <option value="A">@title A</option>
+                    <option value="B">@title B </option>
+                    <option value="C">@title C </option>
+                    <option value="D">@title D </option>
+                </select>
+            </div>
+        }
+        <div class="before-filter">
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", null, "Wagers.autoRefresh();", isShowRefreshNow)
+        @RazorHelper.ToServerTime(DateTime.Now)
+        <div class="before-filter">
+            --</div>
+        @if (isEM && listEarlyMarketDates.Any())
+        {
+            <div class="item">
+                @(Lang.date):
+                @Html.DropDownList("EmDate", listEarlyMarketDates)
+            </div>
+            <div class="before-filter">
+                --</div>
+        }
+        @if (isOR == false)
+        {
+            @WagerHelper.RenderMenu(sportName, groupBetName, isEM)
+        }
+        else
+        {
+            lableGroupBet = string.Empty;
+            <div class="before-filter">
+                @Lang.dateRange :</div>
+
+            <div class="item">
+                @Html.DatePicker("OutrightFromDate", moveBetDate, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
+            </div>
+            <div class="before-filter">
+                ~</div>
+            <div class="item">
+                @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: moveBetDate, maxDate: DateTime.Now.AddYears(20))
+            </div>
+            <div class="item">
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />
+            </div>
+        }
+        @*<img alt="" src="~/_GlobalResources/Images/top_04.png" />*@
+        <div class="end"></div>
+    </div>
+    @Html.Hidden("GroupBetName", groupBetName)
+    @Html.Hidden("SportName", sportName)
+    @Html.Hidden("FromDate", ((DateTime)ViewBag.WagerDate).ToShortDateString())
+    @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
+    @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
+    @Html.Hidden("IsEM", isEM.ToString().ToLower())
+    @Html.Hidden("IsOR", isOR.ToString().ToLower())
+    @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
+    @Html.Hidden("TitleGroupBetName", lableGroupBet)
+    <div class="mainpage">
+        
+                @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)
+                    @*<div class="pages-size">
+                        <div class="pull-left">@Lang.Page:</div>
+                        <div id="pager" class="sbpager">
+                        </div>
+                    </div>*@
+                
+        <div id="container">
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Hidden("PageIndex", 0)
+    @Scripts.Render("~/scripts/wagers")
+</body>
+</html>

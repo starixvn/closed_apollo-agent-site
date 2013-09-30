@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "WhoAmI";
+    Layout = null;
+}
+Domain: @Request.ServerVariables["Server_Name"]
+<br />
+ServerIP: @Request.ServerVariables["LOCAL_ADDR"]
+<br />
+Port: @Request.ServerVariables["SERVER_PORT"]
+<br />
+Server Time: @String.Format("{0:M/d/yyyy - HH:mm:ss tt}", DateTime.Now)

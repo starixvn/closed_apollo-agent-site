@@ -13,6 +13,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
 {
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
+    using Fanex.BetList.Core.Utils;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
 
@@ -27,38 +28,56 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         public Trans_Template Template { get; set; }
 
         /// <summary>
-        /// Renders the specified ticket.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
-        public virtual Trans_Template Render(ITicket ticket)
-        {
-            Template.transTime = ticket.TransDate.ToString();
-
-            // For Mixparlay (Trans9) to reuse
-            Template.TransTime.refNo = ticket.TransId.ToString();
-
-            return Template;
-        }
-
-        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper)
-        {
-            Render(ticket);
-
-            string refNo = Template.TransTime.refNo;
-
-            string transTime = string.Join(null, new string[] { Apollo.Age.Resources.BetList.refno, ": ", refNo });
-            IRichTextString rtfTrans = new HSSFRichTextString(string.Join(null, new string[] { transTime, "\n", Template.transTime }));
-
-            return rtfTrans;
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Trans1" /> class.
         /// </summary>
         public Trans1()
         {
             this.Template = new Trans_Template();
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <returns></returns>
+        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
+        {
+            object oddsType = new object();
+
+            if (string.IsNullOrEmpty(ticket.OddsType))
+            {
+                oddsType = 0;
+            }
+            else
+            {
+                oddsType = ticket.OddsType;
+            }
+
+            this.Template.oddsName = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
+            this.Template.transId = ticket.TransId.ToString();
+            this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+
+
+            switch (betListPage)
+            {
+                
+                case BetListPage.Wager:
+                case BetListPage.Forecast:
+                    //this.Template.sportName = string.Empty;
+                    //break;
+                case BetListPage.AccountInfo:
+                case BetListPage.Cancel:
+                case BetListPage.Transaction:
+                case BetListPage.Report:
+                case BetListPage.Outstanding:
+                    this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
+                    break;
+                default:
+                    this.Template.sportName = string.Empty;
+                    break;
+            }
+
+            return Template;
         }
     }
 }

@@ -2,28 +2,23 @@
 <a class="scoremap" href="javascript:OpenScoreMap({matchId},{betTypeId},{liveindicator},{custId})"
     title="{static:Apollo.Age.Resources.BetList.scoreMap}"></a>
 <!--/ScoreMapIcon-->
-<span class="{betTeamClassName}">{betTeam}
-    <!--Handicap-->
-    <span class='handicap'>&nbsp;{handicap}<!--Odds--><span class="odds"> @ {odds}</span><!--/Odds--></span>
-    <!--/Handicap-->
-    <!--OddMixParlay-->
-    <!--/OddMixParlay-->
-    <!--Score-->
-    <span class="{scoreClassName:favorite}">&nbsp;[{homeScore}-{awayScore}]</span>
-    <!--/Score-->
-</span>
-<div class="bettype bold">
-    &nbsp;{betTypeName}</div>
-<div class="match">
-    {homeTeam}{home_firstGoal_lastGoal}
-    <!--VS-->
-    &nbsp;-vs-&nbsp;
-    <!--/VS-->
-    {awayTeam}{away_firstGoal_lastGoal}
-</div>
+<!--LeagueName-->
 <div class="league">
-    <span class="sport">{sportTypeName}</span>
-    <!--LeagueName-->
-    &nbsp;{leagueName}
-    <!--/LeagueName-->
+    {leagueName}
 </div>
+<!--/LeagueName-->
+<!--HomeAwayId-->
+<div>
+    [{homeid}] vs [{awayid}]</div>
+    <!--/HomeAwayId-->
+<div>
+    {homeTeam} <span class="handicap">{handicap}</span> {awayTeam} 
+    <!--LiveScore-->
+    <span class="red-color"> {liveHomeScore}:{liveAwayScore}</span>
+    <!--/LiveScore-->
+</div>
+<div>
+    <!--Score-->
+    <span class="game-type-odd"><b>{finalHomeScore}:{finalAwayScore}</b>&nbsp;</span>
+    <!--/Score-->
+    <span class="red-color">{betTeam}</span> @ <span class="red-color"><b>{odds}</b></span></div>

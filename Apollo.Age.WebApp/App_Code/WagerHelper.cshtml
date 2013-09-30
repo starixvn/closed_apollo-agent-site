@@ -1,0 +1,232 @@
+﻿@using System.Web.Mvc
+@using Apollo.Age.Wagers.Entities
+@using Apollo.Age.Wagers.Services
+@using Apollo.Age.Entities
+@using Fanex.Logging
+@using Apollo.Age.Resources
+@using Apollo.Age.Core
+@using Apollo.Age.Services
+@using Apollo.Age.Wagers.Configuration
+@using System.Xml.Linq
+@using Apollo.Age.Web
+@using System.Resources
+@using Apollo.Age.Wagers.ViewModels
+@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@helper RenderMenu(string controller, string groupBetName, bool isEarlyMarket)
+    {
+        var resMgr = new ResourceManager(typeof(Apollo.Age.Resources.Lang));
+        var xDocument = WagerMenusConfiguration.MenuConfig;
+        var xWagers = xDocument.Descendants("Wagers");
+    <ul id="menu-child" class="menu">
+        @foreach (var itemWager in xWagers)
+        {
+            var xSport = itemWager.Descendants("Sport");
+
+            foreach (var itemSport in xSport)
+            {
+                string currentController = itemSport.Attribute("Controller").Value;
+
+                if (string.Compare(currentController, controller, true) == 0)
+                {
+                    var xBettype = itemSport.Descendants("BetType");
+                    foreach (var itemBettype in xBettype)
+                    {
+                        string tempAction = itemBettype.Attribute("Action").Value;
+                        string resourceKey = itemBettype.Attribute("ResourceKey").Value;
+
+                        // Remove Running Ball submenu in Early Market
+                        if (isEarlyMarket && tempAction.ToLower() == "runningball")
+                        {
+                            continue;
+                        }
+                        if (string.Compare(groupBetName, tempAction, true) == 0)
+                        {
+            <li class="active"><a href="#">@resMgr.GetString(resourceKey)</a> </li>
+                        }
+                        else
+                        {
+            <li><a href="~/wagers/wager?sportName=@controller&amp;groupBetName=@tempAction&amp;resourceKey=@resourceKey&amp;isEarlyMarket=@(isEarlyMarket ? "true" : "false")" target="main">@resMgr.GetString(resourceKey)</a>
+            </li>
+                        }
+                    }
+
+                    break;
+                }
+
+            }
+        }
+    </ul>
+}
+@helper RenderFilter(string title, List<League> leagues, List<Agent> mainShareHolders, int isShowViewOption)
+    {
+        
+@*<div id="header_main">@title</div>*@
+    <div class="box-header" id="main-shareholder-box">
+        <div class="row">
+            <table class="cond-search">
+                <tr>
+                    <td id="header_main">@title
+                    </td>
+                    <td style="@(isShowViewOption == 0 || isShowViewOption == 2 ? string.Empty : "display:none")">
+                        <span>
+                            @if (isShowViewOption == 0)
+                            {
+                                @Lang.lblMainShareHolder
+                            }
+                            else
+                            {
+                                @Lang.view
+                            }
+                            : </span>
+                        <select id="ViewOption" class="za_select">
+                            @if (isShowViewOption == 0)
+                            {
+                                foreach (var mainShareHolder in mainShareHolders)
+                                {
+                                <option value="@mainShareHolder.Id">@mainShareHolder.Username</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="0">@Lang.lblallmembers</option>
+                                <option value="-1">@Lang.DirectMembers</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <span>
+                            @Lang.lblWagerLeague&nbsp;:</span>
+                        <select id="League" class="za_select league">
+                            <option value="0">@Lang.all</option>
+                            @if (!ReferenceEquals(leagues, null)
+                            && leagues.Any())
+                            {
+                                foreach (var item in leagues)
+                                {
+                                <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <div class="pages-size">
+                            <div class="pull-left">@Lang.Page:</div>
+                            <div id="pager" class="sbpager">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+@helper RenderBaseColumns(WagerViewModel item, string draw = "")
+    {
+        var showTime = item.ShowTime;
+        showTime = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font><br/>").TrimEnd('M');
+        var format = new HtmlString(showTime.Length > 12 ? showTime : showTime.Replace(" ", "<br/>"));
+    <td class="width-40 show-time">
+        @format
+        @*@if (item.LiveIndicator)
+        {
+            <span class="red-num">@Lang.RunningBall</span>
+        }*@
+    </td>
+    <td class="l" style="min-width: 300px">
+        @item.LeagueName
+    </td>
+    <td class="l nowrap">
+        @item.HomeName
+        <br />
+        @item.AwayName
+        <br />
+        <span class="pull-right text-green">
+            @draw
+        </span>
+    </td>
+}
+@helper RederHeaderColumn(params string[] columnNames)
+    {
+    <thead>
+        <tr class="RptHeader">
+            <th class="width-90">
+                @*@Lang.TimeGMT8*@
+                @Lang.time
+                <br />
+                (@Lang.GMT+8)
+            </th>
+            <th>
+                @Lang.league
+            </th>
+            <th class="nowrap">
+                @Lang.lblhomeandguest
+            </th>
+            @foreach (string columnName in columnNames)
+            {
+                <th class="nowrap">
+                    @columnName
+                </th>
+            }
+        </tr>
+    </thead>
+}
+@helper RenderBody(WagerViewModel item, Func<dynamic, HelperResult> template)
+    {
+    <tbody>
+    </tbody>
+}
+@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
+    {
+        var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
+
+        if (!ReferenceEquals(groupBet, null) && groupBet.Any())
+        {
+            var firstModel = groupBet.FirstOrDefault();
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), groupBet.Sum(m => m.StakeBefore), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)
+        }
+        else
+        {
+    <span>0<span class='split'>/</span>0<span class='split'>/</span>0</span>
+        }
+}
+@helper RenderColumn(SpecialViewModel item)
+    {
+        if (item != null)
+        {
+    @RenderColumnData(item.BetTeam, (int)item.Count, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
+        }
+        else
+        {
+    <br />
+        }
+@*
+    Type :
+        + 0 : All
+        + 1 : Home
+        + 2 : Away
+        + 3 : Draw
+*@
+}
+@helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId)
+    {
+        string columnData = "{0}<span class='split'>/</span>{1}<span class='split'>/</span>{2}";
+        if (betCount != 0
+            || stake != 0
+            || stakebefore != 0)
+        {
+            columnData = string.Format(
+                columnData,
+                betCount.ToString(),
+                Math.Round(stakebefore).ToString(),
+                Math.Round(stake).ToString());
+    <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">
+        @(new HtmlString(columnData))
+    </a>
+        }
+        else
+        {
+            columnData = string.Format(columnData, betCount.ToString(), Math.Round(stakebefore, 0, MidpointRounding.AwayFromZero).ToString(), Math.Round(stake, 0, MidpointRounding.AwayFromZero).ToString());
+    @(new HtmlString(columnData))
+        }
+}

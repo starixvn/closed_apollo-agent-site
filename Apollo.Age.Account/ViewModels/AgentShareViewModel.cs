@@ -33,7 +33,7 @@ namespace Apollo.Age.Account.ViewModels
             get
             {
                 // hard code with Mix Sports Parlay: SportType == 99 && BetType == 9
-                return (this.SportType == (short)SportTypes.OtherSports && this.BetType == (short)BetTypes.Mix_Parlay) 
+                return (this.SportType == (short)SportTypes.OtherSports && this.BetType == (short)BetTypes.MixParlay) 
                     ? ("1-" + this.SportType.ToString()) : ("0-" + this.SportType.ToString());
             }
         }

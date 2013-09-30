@@ -9,17 +9,24 @@
 
 namespace Apollo.Age.Reports.Services
 {
-    using System;
     using System.Collections.Generic;
+    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
+    using NPOI.HSSF.UserModel;
 
     public interface IWinLossService
     {
-        List<MatchEnteredViewModel> GetMatchEntered();
+        List<MatchEnteredModel> GetMatchEntered(bool isShowDataTest);
 
-        List<AgentWinLossModel> GetAgentWinLoss(int agentId, DateTime fromDate, DateTime toDate);
+        List<AgentWinLossModel> GetAgentWinLoss(AgentWinLossCriteria criteria);
 
-        List<MemberWinLossModel> GetMemberWinLoss(int agentId, DateTime fromDate, DateTime toDate);
+        List<MemberWinLossModel> GetMemberWinLoss(MemberWinLossCriteria criteria);
+
+        HSSFWorkbook ExportAgentWinLoss(AgentWinLossViewModel model);
+
+        HSSFWorkbook ExportMemberWinLoss(MemberWinLossViewModel model);
+
+        string ShortDateFormat(object dt);
     }
 }

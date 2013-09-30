@@ -1,0 +1,67 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="Time.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Kaden.Trinh" date="2013.06.26">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+namespace Fanex.BetList.Core.Builder.TimeBuilder
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Templates;
+    using Fanex.BetList.Core.Utils;
+
+    public class Time : ITime
+    {
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        public Time_Template Template { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Time" /> class.
+        /// </summary>
+        public Time()
+        {
+            this.Template = new Time_Template();
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">Link from page</param>
+        /// <returns></returns>
+        public virtual Time_Template Render(ITicket ticket, BetListPage page)
+        {
+            switch (page)
+            {
+                case BetListPage.Wager:
+                case BetListPage.Forecast:
+                    Template.transDate = Formatter.FormatDateTime22(ticket.TransDate);
+                    break;
+                case BetListPage.Cancel:
+                case BetListPage.Transaction:
+                case BetListPage.AccountInfo:
+                case BetListPage.Report:
+                case BetListPage.Outstanding:
+                    Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
+                    break;
+                default:
+                    Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
+                    break;
+            }
+
+            return Template;
+        }
+    }
+}

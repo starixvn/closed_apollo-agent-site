@@ -45,10 +45,8 @@ namespace Fanex.BetList.Core.Utils
         public const string DECIMAL_FORMAT4_VI = "{0:#.##0,####}";
         public const string DECIMAL_FORMAT40_VI = "{0:#.##0,0000}";
 
-
         public Formatter()
         {
-
         }
 
         #region Decimal
@@ -103,7 +101,7 @@ namespace Fanex.BetList.Core.Utils
             else
             {
                 int a = (int)Math.Pow(10, decDigits);
-                //Returns the largest integer less than or equal number 
+                //Returns the largest integer less than or equal number
                 if (value < 0) //If the value is negative, then we use Ceiling() function instead of Floor() function
                     return string.Format(DECIMAL_FORMAT2, (Math.Ceiling(value * a) / a));
                 return string.Format(DECIMAL_FORMAT2, (Math.Floor(value * a) / a));
@@ -122,7 +120,7 @@ namespace Fanex.BetList.Core.Utils
             return DecFormat(Convert.ToDecimal(value), decDigits, chop);
         }
 
-        #endregion
+        #endregion Decimal
 
         #region Float
 
@@ -148,7 +146,7 @@ namespace Fanex.BetList.Core.Utils
             return FloatFormat(Convert.ToSingle(value), decDigits);
         }
 
-        #endregion
+        #endregion Float
 
         #region Double
 
@@ -174,7 +172,7 @@ namespace Fanex.BetList.Core.Utils
             return DoubleFormat(Convert.ToDouble(value), decDigits);
         }
 
-        #endregion
+        #endregion Double
 
         #region Number
 
@@ -190,6 +188,7 @@ namespace Fanex.BetList.Core.Utils
                 return _engCult;
             }
         }
+
         public static CultureInfo ViCult
         {
             get
@@ -197,6 +196,7 @@ namespace Fanex.BetList.Core.Utils
                 return _viCult;
             }
         }
+
         /// <summary>
         /// Format number with 1 decimal, automatically remove redundant '0'
         /// </summary>
@@ -209,8 +209,8 @@ namespace Fanex.BetList.Core.Utils
             if (culture == CULT_NAME_VI)
                 return string.Format(DECIMAL_FORMAT1_VI, obj);
             return string.Format(DECIMAL_FORMAT1, obj);
-
         }
+
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
         /// </summary>
@@ -223,8 +223,8 @@ namespace Fanex.BetList.Core.Utils
             if (culture == CULT_NAME_VI)
                 return string.Format(DECIMAL_FORMAT2_VI, obj);
             return string.Format(DECIMAL_FORMAT2, obj);
-
         }
+
         public static string FormatNumber20(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -243,13 +243,13 @@ namespace Fanex.BetList.Core.Utils
         {
             if (Convert.IsDBNull(obj) || obj == null)
                 return "0";
-            return string.Format(DECIMAL_FORMAT3, obj);            
+            return string.Format(DECIMAL_FORMAT3, obj);
         }
 
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
         /// And do not include comma
-        /// </summary>        
+        /// </summary>
         public static string FormatNumber2C(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -267,6 +267,7 @@ namespace Fanex.BetList.Core.Utils
                 return string.Format(DECIMAL_FORMAT30_VI, obj);
             return string.Format(DECIMAL_FORMAT30, obj);
         }
+
         /// <summary>
         /// Format number with 3 decimal, automatically remove redundant '0'
         /// And do not include comma
@@ -283,6 +284,7 @@ namespace Fanex.BetList.Core.Utils
                 return string.Format(DECIMAL_FORMAT3C_VI, obj);
             return string.Format(DECIMAL_FORMAT3C, obj);
         }
+
         /// <summary>
         /// Format number with 3 decimal, automatically remove redundant '0'
         /// </summary>
@@ -338,18 +340,18 @@ namespace Fanex.BetList.Core.Utils
             return string.Format(DECIMAL_FORMAT40, obj);
         }
 
-
         /// <summary>
         /// Formats the sign number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>System.String.</returns>
-        public static string FormatSignNumber(int number)
+        public static string FormatSignNumber(decimal number, byte decDigits = 0)
         {
-            if (number > 0) return "+" + number.ToString();
-            else return number.ToString();
+            if (number > 0) return "+" + DecFormat(number, decDigits);
+            else return DecFormat(number, decDigits);
         }
-        #endregion
+
+        #endregion Number
 
         #region Date
 
@@ -363,7 +365,7 @@ namespace Fanex.BetList.Core.Utils
         public static string LongDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy HH:mm:ss}", dt);
+            return string.Format(cult, "{0:yyyy-M-dd HH:mm:ss}", dt);
         }
 
         /// <summary>
@@ -374,7 +376,7 @@ namespace Fanex.BetList.Core.Utils
         public static string ShortDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy}", dt);
+            return string.Format(cult, "{0:yyyy-M-dd}", dt);
         }
 
         /// <summary>
@@ -385,7 +387,7 @@ namespace Fanex.BetList.Core.Utils
         public static string FullDateFormat(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy hh:mm:ss tt}", dt);
+            return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
         }
 
         /// <summary>
@@ -396,7 +398,7 @@ namespace Fanex.BetList.Core.Utils
         public static string FullDateFormat2Ln(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
-            return string.Format(cult, "{0:MM/dd/yyyy<br/>hh:mm:ss tt}", dt);
+            return string.Format(cult, "{0:yyyy-M-dd<br/>hh:mm:ss tt}", dt);
         }
 
         /// <summary>
@@ -420,7 +422,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd hh:mm");
+                return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
             }
             catch
             {
@@ -477,7 +479,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd/yyyy");
+                return Convert.ToDateTime(dt).ToString("yyyy-M-dd");
             }
             catch
             {
@@ -515,7 +517,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd/yyyy hh:mm:ss tt");
+                return Convert.ToDateTime(dt).ToString("yyyy-M-dd hh:mm:ss tt");
             }
             catch
             {
@@ -534,7 +536,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd/yyyy hh:mm tt");
+                return Convert.ToDateTime(dt).ToString("yyyy-M-dd hh:mm tt");
             }
             catch
             {
@@ -553,7 +555,7 @@ namespace Fanex.BetList.Core.Utils
                 return "";
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM/dd/yyyy HH:mm:ss");
+                return Convert.ToDateTime(dt).ToString("yyyy-M-dd HH:mm:ss");
             }
             catch
             {
@@ -574,9 +576,9 @@ namespace Fanex.BetList.Core.Utils
             {
                 DateTime dt2 = Convert.ToDateTime(dt);
                 if ((dt2.Hour == 12 || dt2.Hour == 0) && dt2.Minute == 0)
-                    return dt2.ToString("MM/dd/yyyy");
+                    return dt2.ToString("yyyy-M-dd");
                 else
-                    return dt2.ToString("MM/dd/yyyy hh:mm:ss tt");
+                    return dt2.ToString("yyyy-M-dd hh:mm:ss tt");
             }
             catch
             {
@@ -604,7 +606,7 @@ namespace Fanex.BetList.Core.Utils
             return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
         }
 
-        #endregion
+        #endregion Date
 
         #region String
 
@@ -639,6 +641,18 @@ namespace Fanex.BetList.Core.Utils
             return TruncateWithTip(value, maxLength, false);
         }
 
-        #endregion
+        #endregion String
+
+        public static string FormatHandicap(decimal handicapValue)
+        {
+            if ((handicapValue * 10) % 5 == 0)
+            {
+                return string.Format(" {0}", Formatter.DecFormat(handicapValue, 1, true));
+            }
+            else
+            {
+                return string.Format(" {0}/{1}", Formatter.DecFormat(handicapValue - (decimal)0.25, 1, true), Formatter.DecFormat(handicapValue + (decimal)0.25, 1, true));
+            }
+        }
     }
 }

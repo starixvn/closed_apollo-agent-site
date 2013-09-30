@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Terry.Nguyen" date="2013.5.8">Created</change>
+//   <change who="Terry.Nguyen" date="2013.7.18">Add AllowUpdate and SafeCode</change>
 // </history>
 
 namespace Apollo.Age.Web.ViewModels
@@ -16,13 +17,14 @@ namespace Apollo.Age.Web.ViewModels
         [Required]
         public string Agent { get; set; }
 
-        [Display(Name = "Allow Update")]
-        public bool AllowUpdate { get; set; }
+        [Display(Name = "Security Code")]
+        public string SafeCode { get; set; }
 
         public string Language { get; set; }
 
         public string AdminName { get; set; }
 
         public int AdminId { get; set; }
+                
     }
 }

@@ -1,0 +1,27 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.ViewModels.Basketball
+@using Apollo.Age.Web.Mvc
+@model List<RunningBallViewModel>
+<table class="tblRpt @ViewBag.SportName running-ball @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                , Lang.lblOverUnderWager)
+    @*/RenderHeader*@
+    <tbody>
+        @Model.List(
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item)
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator)
+                </td>
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
+                </td>
+            </tr>
+            )
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

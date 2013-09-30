@@ -24,7 +24,7 @@ namespace Apollo.Age.BetList.Services
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
-        private IBetListRepository betListRepository;
+        private IBetListRepository _betListRepository;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BetListService" /> class.
@@ -40,7 +40,7 @@ namespace Apollo.Age.BetList.Services
         /// <param name="betListRepository">BetList Repository</param>
         public BetListService(IBetListRepository betListRepository)
         {
-            this.betListRepository = this.betListRepository ?? new BetListRepository();
+            this._betListRepository = this._betListRepository ?? new BetListRepository();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>List Ticket</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
-            return this.betListRepository.GetDetailAgentComm(criteria);
+            return this._betListRepository.GetDetailAgentComm(criteria);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>List Ticket</returns>
         public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
         {
-            return this.betListRepository.GetDetailWinLossAgentComm(criteria);
+            return this._betListRepository.GetDetailWinLossAgentComm(criteria);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
-            return this.betListRepository.GetMixParlayDetailTicket(criteria);
+            return this._betListRepository.GetMixParlayDetailTicket(criteria);
         }
 
         /// <summary>
@@ -80,38 +80,17 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
-            return this.betListRepository.GetRunningByBettype(criteria);
+            return this._betListRepository.GetRunningByBettype(criteria);
         }
 
         /// <summary>
-        /// Get all bets by date and member
-        /// For only agent (Member Outstanding bet list)
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
-        {
-            return this.betListRepository.GetAllBetsByDateAndMem(criteria);
-        }
-
-        /// <summary>
-        /// Get all bets by date and member from Win loss report
+        /// Get all bets by date and member from Win loss listOutstanding
         /// </summary>
         /// <param name="criteria">Criteria name</param>
         /// <returns>Ticket data</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
-            return this.betListRepository.GetWinLossByDateAndMem(criteria);
-        }
-
-        /// <summary>
-        /// BetList transaction
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
-        {
-            return this.betListRepository.GetAllBetsTransactionByDateAndMem(criteria);
+            return this._betListRepository.GetWinLossByDateAndMem(criteria);
         }
 
         /// <summary>
@@ -121,7 +100,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket data</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
-            return this.betListRepository.GetRunningByBettypeAndMatch(criteria);
+            return this._betListRepository.GetRunningByBettypeAndMatch(criteria);
         }
 
         /// <summary>
@@ -131,7 +110,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>SystemParlay data</returns>
         public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
         {
-            return this.betListRepository.GetCombinationMixParlayDetail(criteria);
+            return this._betListRepository.GetCombinationMixParlayDetail(criteria);
         }
 
         /// <summary>
@@ -145,18 +124,34 @@ namespace Apollo.Age.BetList.Services
         /// <param name="errorCode">Output error code</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
-            this.betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
+            this._betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
         }
 
         /// <summary>
-        /// Get Agent Upline of member
+        /// Get Agent up line of member
         /// </summary>
         /// <param name="parentId">Logged id</param>
         /// <param name="custId">customer id</param>
         /// <returns></returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
-            return this.betListRepository.GetAgentUpLineOfMember(parentId, custId);
+            return this._betListRepository.GetAgentUpLineOfMember(parentId, custId);
+        }
+
+        /// <summary>
+        /// Get data betlist on Wagers page
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult WagersTicket(WagersCriteria criteria)
+        {
+            criteria.UGroup = base.RevertCommGroupName(criteria.UGroup);
+            return this._betListRepository.WagersTicket(criteria);
+        }
+
+        public TicketResult GetTicketResult(BetListCriteria criteria)
+        {
+            return this._betListRepository.GetTicketResult(criteria);
         }
     }
 }

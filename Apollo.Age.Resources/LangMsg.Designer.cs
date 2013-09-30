@@ -61,6 +61,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date range cannot be less than Archived Date.
+        /// </summary>
+        public static string MessageValidateWithArchivedDate {
+            get {
+                return ResourceManager.GetString("MessageValidateWithArchivedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer information is updated successfully.
         /// </summary>
         public static string succ_101 {

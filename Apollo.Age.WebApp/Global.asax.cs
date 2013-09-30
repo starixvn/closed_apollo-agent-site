@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Apollo.Age.Web;
 using Apollo.Age.Web.Services;
 using Fanex.Data.Configuration;
 using Fanex.Logging;
-using Apollo.Age.Web;
 
 namespace Apollo.Age.WebApp
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : HttpApplication
@@ -23,16 +20,9 @@ namespace Apollo.Age.WebApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            #region Registration
-            
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AuthConfig.RegisterAuth();
-
-            #endregion
-
             maintenanceService = new UnderMaintenanceService();
             DbSettingProviderManager.Current.Start();
         }
@@ -59,6 +49,7 @@ namespace Apollo.Age.WebApp
             var serverError = Server.GetLastError() as HttpException;
             string errorCode = string.Empty;
 
+            // Do not log http exception
             if (serverError != null)
             {
                 errorCode = serverError.GetHttpCode().ToString();
@@ -66,8 +57,8 @@ namespace Apollo.Age.WebApp
 
             if (!Request.IsLocal)
             {
-                //Server.ClearError();
-                //Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
+                Server.ClearError();
+                Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
             }
         }
 
@@ -77,15 +68,18 @@ namespace Apollo.Age.WebApp
             {
                 var executeFileName = Request.AppRelativeCurrentExecutionFilePath;
 
-                if (executeFileName.IndexOf("UnderMaintenance") == -1
-                    && executeFileName.IndexOf("GetMessage") == -1)
+                if (executeFileName.IndexOf("RedirectToUM") == -1
+                    && executeFileName.IndexOf("UnderMaintenance") == -1
+                    && executeFileName.IndexOf(".less") == -1
+                    && executeFileName.IndexOf(".css") == -1
+                    && executeFileName.IndexOf(".js") == -1
+                    && executeFileName.IndexOf(".gif") == -1
+                    && executeFileName.IndexOf(".png") == -1
+                    )
                 {
-                    var maintenanceInfo = maintenanceService.MaintenanceInfo;
-
-                    if (maintenanceInfo.IsDownTime)
+                    if (maintenanceService.MaintenanceInfo.Status)
                     {
-                        Response.Redirect(ApoURLs.URLs.UnderMaintenance, false);
-                       
+                        Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
                     }
                 }
             }
@@ -94,6 +88,5 @@ namespace Apollo.Age.WebApp
                 LogService.Error(ex.Message, ex);
             }
         }
-
     }
 }

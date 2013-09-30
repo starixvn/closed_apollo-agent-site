@@ -96,27 +96,25 @@ namespace Apollo.Age.WebApp
 
 		public class BetListTransaction_Filter_Block: Block
 		{
-			protected static string s26 = "<div id=\"box_header\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s27{get{return Apollo.Age.Resources.Lang.from;}}
+			protected static string s26 = "<div id=\"box_header\" class=\"report\"><div class=\"row\"><div class=\"cell\"><div class=\"label\"><label>";
+			protected static string s27{get{return Apollo.Age.Resources.Lang.dateRange;}}
 			protected static string s28 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"fromDate\" name=\"fromDate\" class=\"datepicker\" value=\"";
 			public string valueFromDate = "{valueFromDate}";
 			protected static string s29 = "\"mindate=\"";
 			public string valueMinDate = "{valueMinDate}";
 			protected static string s30 = "\" maxdate=\"";
 			public string valueMaxDate = "{valueMaxDate}";
-			protected static string s31 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label>";
-			protected static string s32{get{return Apollo.Age.Resources.Lang.to;}}
-			protected static string s33 = "</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
+			protected static string s31 = "\" /></div></div><div class=\"cell\"><div class=\"label\"><label>~</label></div><div class=\"editor\"><input type=\"text\" id=\"toDate\" name=\"toDate\" class=\"datepicker\" value=\"";
 			public string valueToDate = "{valueToDate}";
-			protected static string s34 = "\"mindate=\"";
+			protected static string s32 = "\"mindate=\"";
 			protected string t1_valueMinDate;
-			protected static string s35 = "\" maxdate=\"";
+			protected static string s33 = "\" maxdate=\"";
 			protected string t2_valueMaxDate;
-			protected static string s36 = "\" /></div></div>";
+			protected static string s34 = "\" /></div></div>";
 			public BetListTransaction_Filter_User_Block User = new BetListTransaction_Filter_User_Block();
-			protected static string s37 = "<div class=\"cell\"><div class=\"editor\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
-			protected static string s38{get{return Apollo.Age.Resources.Lang.Generate;}}
-			protected static string s39 = "\"></div></div></div></div>";
+			protected static string s35 = "</div><div class=\"row bg-action\"><input type=\"button\" class=\"btn act-submit\" id=\"dSubmit\" value=\"";
+			protected static string s36{get{return Apollo.Age.Resources.Lang.search;}}
+			protected static string s37 = "\"></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -131,18 +129,16 @@ namespace Apollo.Age.WebApp
 					bd.Append(s30);
 					bd.Append(valueMaxDate);
 					bd.Append(s31);
-					bd.Append(s32);
-					bd.Append(s33);
 					bd.Append(valueToDate);
-					bd.Append(s34);
+					bd.Append(s32);
 					bd.Append(valueMinDate);
-					bd.Append(s35);
+					bd.Append(s33);
 					bd.Append(valueMaxDate);
-					bd.Append(s36);
+					bd.Append(s34);
 					if(null != User) User.ToString(ref bd);
+					bd.Append(s35);
+					bd.Append(s36);
 					bd.Append(s37);
-					bd.Append(s38);
-					bd.Append(s39);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -150,21 +146,21 @@ namespace Apollo.Age.WebApp
 
 		public class BetListTransaction_Filter_User_Block: Block
 		{
-			protected static string s40 = "<div class=\"cell\"><div class=\"editor\">";
+			protected static string s38 = "<div class=\"cell\"><div class=\"editor\">";
 			public string option_user = "{option_user}";
-			protected static string s41 = "</div></div><div class=\"cell\"><div class=\"editor\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
+			protected static string s39 = "</div></div><div class=\"cell\"><div class=\"editor\"><input type=\"text\" id=\"username\" name=\"username\" value=\"";
 			public string username = "{username}";
-			protected static string s42 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div></div>";
+			protected static string s40 = "\" maxlength=\"50\"style=\"width: 120px;\" autocomplete=\"off\" class=\"ui-autocomplete-input\" /></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s40);
+					bd.Append(s38);
 					bd.Append(option_user);
-					bd.Append(s41);
+					bd.Append(s39);
 					bd.Append(username);
-					bd.Append(s42);
+					bd.Append(s40);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -172,29 +168,29 @@ namespace Apollo.Age.WebApp
 
 		public class BetListTransaction_HiddenFields_Block: Block
 		{
-			protected static string s43 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
+			protected static string s41 = "<input type=\"hidden\" id=\"ApoRoot\" value=\"";
 			public string ApoRoot = "{ApoRoot}";
-			protected static string s44 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
+			protected static string s42 = "\" /><input type=\"hidden\" id=\"MainShareHolderId\" value=\"";
 			public string MainShareHolderId = "{MainShareHolderId}";
-			protected static string s45 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
+			protected static string s43 = "\" /><input type=\"hidden\" id=\"MainShareHolderUsername\" value=\"";
 			public string MainShareHolderUsername = "{MainShareHolderUsername}";
-			protected static string s46 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
+			protected static string s44 = "\" /><input type=\"hidden\" id=\"type\" name=\"type\" value=\"";
 			public string pageType = "{pageType}";
-			protected static string s47 = "\" />";
+			protected static string s45 = "\" />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(s43);
+					bd.Append(s41);
 					bd.Append(ApoRoot);
-					bd.Append(s44);
+					bd.Append(s42);
 					bd.Append(MainShareHolderId);
-					bd.Append(s45);
+					bd.Append(s43);
 					bd.Append(MainShareHolderUsername);
-					bd.Append(s46);
+					bd.Append(s44);
 					bd.Append(pageType);
-					bd.Append(s47);
+					bd.Append(s45);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}

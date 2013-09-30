@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberInfoCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetMemberInfoCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -21,7 +21,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            return true;
+            return ActorAgentId > 0;
         }
 
         public override string GetSettingKey()

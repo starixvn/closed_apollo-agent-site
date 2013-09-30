@@ -12,7 +12,7 @@
 namespace Fanex.BetList.Core.Builder.StatusBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
@@ -39,77 +39,41 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <param name="ticketData">The ticket data (Status33 - Win/Place)</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public virtual Status_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
+        public virtual Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-            Template.result = ticketBetStatus;
             string result = string.Empty;
 
             switch (ticketBetStatus)
             {
                 case BetStatus.Running:
-                    result = Apollo.Age.Resources.BetList.running;
+                    result = BetList.running;
                     break;
                 case BetStatus.Reject:
-                    result = Apollo.Age.Resources.BetList.reject;
+                    result = BetList.reject;
                     break;
                 case BetStatus.Won:
-                    result = Apollo.Age.Resources.BetList.won;
+                    result = BetList.won;
                     break;
                 case BetStatus.Lose:
-                    result = Apollo.Age.Resources.BetList.lose;
+                    result = BetList.lose;
                     break;
                 case BetStatus.Draw:
-                    result = Apollo.Age.Resources.BetList.draw;
+                    result = BetList.draw;
                     break;
                 case BetStatus.Waiting:
-                    result = Apollo.Age.Resources.BetList.waiting;
+                    result = BetList.waiting;
                     break;
                 case BetStatus.Void:
-                    result = Apollo.Age.Resources.BetList.voided;
+                    result = BetList.voided;
                     break;
                 case BetStatus.Refund:
-                    result = Apollo.Age.Resources.BetList.refund;
+                    result = BetList.refund;
                     break;
             }
 
-            if (string.Empty != result)
-            {
-                Template.result = result;
-            }
-
-            if (ticketBetStatus.Equals(BetStatus.Running) || ticketBetStatus.Equals(BetStatus.Waiting) || ticketBetStatus.Equals(BetStatus.Void) || ticketBetStatus.Equals(BetStatus.Reject) || ticketBetStatus.Equals(BetStatus.Refund))
-            {
-                Template.StatusResult.Hide();
-            }
-            else
-            {
-                Template.StatusResult.matchId = ticket.MatchId.ToString();
-                Template.StatusResult.betType = ticket.BetTypeId.ToString();
-                Template.StatusResult.race = string.IsNullOrEmpty(ticket.Race) ? "0" : ticket.Race;
-                Template.StatusResult.refNo = ticket.TransId.ToString();
-                Template.StatusResult.sportType = ticket.SportTypeId.ToString();
-                Template.StatusResult.league = ticket.LeagueId.ToString();
-                Template.StatusResult.userName = ticket.UserName;
-
-                Template.StatusResult.winlostDate = Formatter.FullDateFormat(ticket.WinlostDate);
-            }
-
-            if (isShowVNIP == false)
-            {
-                if (ticketHelper.IsVnIp(ticket.IP))
-                {
-                    Template.ShowIPVN.Hide();
-                }
-                else
-                {
-                    Template.ShowIPVN.betIp = ticket.IP;
-                }
-            }
-            else
-            {
-                Template.ShowIPVN.betIp = ticket.IP;
-            }
+            Template.result = result;
+            Template.betIp = ticket.IP;
 
             return Template;
         }
@@ -123,18 +87,15 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns></returns>
-        public virtual IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
+        public virtual IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
         {
-            Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            Render(ticket, ticketData);
 
             string status = Template.result;
             rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
 
-            if (Template.ShowIPVN.Visible)
-            {
-                status = string.Join(null, new string[] { "\n", Template.ShowIPVN.betIp });
-                rtfHelper.RTFRenderer.AddText(status);
-            }
+            status = string.Join(null, new string[] { "\n", Template.betIp });
+            rtfHelper.RTFRenderer.AddText(status);
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

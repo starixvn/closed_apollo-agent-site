@@ -7,6 +7,7 @@
 //   <change who="???" date="???">Created</change>
 //   <change who="Lewis.Le" date="2013.5.3">Added AuthenticateNapUser</change>
 //   <change who="Ricky.Nguyen" date="2013.5.10">Added IsKickOut, HasPermissionOnUpdating</change>
+//   <change who="Terry.Nguyen" date="2013.8.5">Added AllowLineAccountSSO for checking sso in one line</change>
 // </history>
 
 namespace Apollo.Age.Services.Impl
@@ -22,7 +23,7 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common.Helper;
     using Fanex.Logging;
 
-    public class UserService : IUserService
+    public class UserService : QueryService, IUserService
     {
         private readonly IUserRepository _userRepository;
 
@@ -57,21 +58,29 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
-        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria,  ref int AdminId)
+
+
+        /// <summary>
+        /// Validates a username and password against credentials stored in NAP database.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
+        public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             criteria.Password = Cryptography.CfsEnCode(criteria.Password);
 
-            return _userRepository.AuthenticateNapUser(criteria,ref AdminId);
+            return _userRepository.AuthenticateNapUser(criteria, ref adminId);
         }
 
         /// <summary>
-        ///
+        /// Gets the user status.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent id.</param>
+        /// <param name="agentUserId">The agent user id.</param>
+        /// <returns> User status.</returns>
         public int GetUserStatus(int agentId, int agentUserId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -90,21 +99,24 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return -1;
         }
 
         /// <summary>
-        ///
+        /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="agentUserId"></param>
-        /// <param name="isMaster"></param>
-        /// <returns></returns>
+        /// <param name="actorAgentId">The actor agent id.</param>
+        /// <param name="custId">The cust id.</param>
+        /// <param name="customerType">Type of the customer.</param>
+        /// <returns>
+        ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType)
         {
             try
             {
-                return _userRepository.HasPermissionOnUpdating(new CheckUpdatePermissionCriteria
+                return _userRepository.CheckPermission(new CheckDownlineBelongToAgentCriteria
                 {
                     ActorAgentId = actorAgentId,
                     ObjectId = custId,
@@ -115,35 +127,80 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return false;
         }
 
-       
-        public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
+        /// <summary>
+        /// Determines whether [has permission on updating] [the specified actor agent id].
+        /// </summary>
+        /// <param name="actorAgentId">The actor agent id.</param>
+        /// <param name="custId">The cust id.</param>
+        /// <param name="customerType">Type of the customer.</param>
+        /// <returns>
+        ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType)
         {
-             try
-             {
-                 var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
-                 {
-                     AgentId = agentId,
-                     AgentUserId = agentUserId,
-                     ServerId = serverId,
-                     ActionId = actionId,
-                     Doing = doing,
-                     LoginIp = loginIp,
-                     Platform = platform,
-                     CountryCode = countryCode,
-                     BrowserName = browserName,
-                     DomainName = domainName
-                 });
-             }
-             catch (Exception ex)
-             {
-                 Logger.Log.Error(ex.Message, ex);
-             }
+            try
+            {
+                return _userRepository.CheckPermission(new CheckDownlineBelongToAgentCriteria
+                {
+                    ActorAgentId = actorAgentId,
+                    ObjectId = custId,
+                    ObjectTypeId = (int)customerType
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// Writes the log internal login.
+        /// </summary>
+        /// <param name="agentId">The agent id.</param>
+        /// <param name="agentUserId">The agent user id.</param>
+        /// <param name="serverId">The server id.</param>
+        /// <param name="actionId">The action id.</param>
+        /// <param name="doing">The doing.</param>
+        /// <param name="loginIp">The login ip.</param>
+        /// <param name="domainName">Name of the domain.</param>
+        /// <param name="browserName">Name of the browser.</param>
+        /// <param name="platform">The platform.</param>
+        /// <param name="countryCode">The country code.</param>
+        public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
+        {
+            try
+            {
+                var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+                {
+                    AgentId = agentId,
+                    AgentUserId = agentUserId,
+                    ServerId = serverId,
+                    ActionId = actionId,
+                    Doing = doing,
+                    LoginIp = loginIp,
+                    Platform = platform,
+                    CountryCode = countryCode,
+                    BrowserName = browserName,
+                    DomainName = domainName
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+        }
 
+        /// <summary>
+        /// Internals the get agent by username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public User InternalGetAgentByUsername(string username)
         {
             User user = null;
@@ -164,13 +221,20 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
-
+        /// <summary>
+        /// Return OnUserId.
+        /// </summary>
+        /// <param name="adminId"> Admin user id.</param>
+        /// <param name="netSessionId"> Session Id. </param>
+        /// <param name="ip"> Requested IP</param>
+        /// <returns><c>true</c> if check in successfull; otherwise, <c>false</c>.</returns>
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
             Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
             try
             {
-                var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria { 
+                var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria
+                {
                     UserId = adminId,
                     OnUserId = 0,
                     NetSessionId = netSessionId,
@@ -180,14 +244,20 @@ namespace Apollo.Age.Services.Impl
             }
             catch (Exception ex)
             {
-                Logger.Log.Error(ex.Message, ex);  
+                Logger.Log.Error(ex.Message, ex);
             }
+
             return 0;
         }
 
+        /// <summary>
+        /// Return IsKickOut
+        /// </summary>
+        /// <param name="onUserId"> Authenticated User Id.</param>
+        /// <returns></returns>
         public bool InternalReCheckIn(int onUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
             try
             {
                 var result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
@@ -202,12 +272,20 @@ namespace Apollo.Age.Services.Impl
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return false;
         }
 
+        /// <summary>
+        /// Return OnUserId.
+        /// </summary>
+        /// <param name="onUserId">User id of current loginned user.</param>
+        /// <returns>
+        /// Result of logins.
+        /// </returns>
         public int InternalLogout(int onUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "adminid");
+            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
             try
             {
                 var result = _userRepository.InternalLogout(new InternalLogoutCriteria
@@ -223,6 +301,27 @@ namespace Apollo.Age.Services.Impl
             }
 
             return 0;
+        }
+
+
+        public bool AllowLineAccountSSO(string username)
+        {
+            bool isAllowed = false;
+            try
+            {
+                isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
+                {
+                    Username = username,
+                    Allowed = false
+                });
+
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+            return isAllowed;
         }
     }
 }

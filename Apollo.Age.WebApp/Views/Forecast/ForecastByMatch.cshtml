@@ -2,12 +2,13 @@
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblForecast;
     var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
+    var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
 }
 @section css
 {
     <link href="~/views/forecast/resources/fc.less" rel="Stylesheet" type="text/css" />
 }
-@RazorHelper.RefreshCountDown("ForeCast1X2", 15, 0, "UpdateForecastValue();")
+@RazorHelper.RefreshCountDown("ForeCast1X2", null, "UpdateForecastValue();", isShowRefreshNow)
 <div id="forecast-body">
 </div>
 @section scripts {

@@ -16,13 +16,13 @@ namespace Apollo.Age.Forecast.Models
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class MatchOddsModel
     {
-        public decimal Hdp1 { get; set; }
+        public double Hdp1 { get; set; }
 
-        public decimal Hdp2 { get; set; }
+        public double Hdp2 { get; set; }
 
-        public decimal Odds1a { get; set; }
+        public double Odds1a { get; set; }
 
-        public decimal Odds2a { get; set; }
+        public double Odds2a { get; set; }
 
         public int LiveHomeScore { get; set; }
 
@@ -42,7 +42,12 @@ namespace Apollo.Age.Forecast.Models
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                if (this.IsNeutral)
+                {
+                    return CacheRef.GetTeamName(this.HomeId) + "(N)";
+                }
+
+                return CacheRef.GetTeamName(this.HomeId);
             }
         }
 

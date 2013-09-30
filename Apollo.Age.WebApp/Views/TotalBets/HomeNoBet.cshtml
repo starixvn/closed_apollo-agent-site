@@ -32,14 +32,18 @@
     }
     
     <tr @classRow>
-        <td class="c">
-            @index
-        </td>
+        @Html.FormatShowTime(item.ShowTime)
         @ShowTime(item)
-        <td>
-            @item.HomeTeam -vs- @item.AwayTeam
+        <td class="c">
+            @item.LeagueName
         </td>
-        <td class="r">
+        <td  class="no-border-bottom  valign-top home-away-team">
+            @item.HomeTeam
+            <br />
+            @item.AwayTeam
+        </td>
+        
+        <td class="r" >
             @if(item.BetCountHNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
@@ -49,7 +53,7 @@
             }
             
         </td>
-        <td class="r">
+        <td class="r" >
             @if(item.BetCountDNB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
@@ -58,7 +62,7 @@
                 </a>
             }
         </td>
-        <td class="r">
+        <td class="r" >
             @if(item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
@@ -67,37 +71,41 @@
                 </a>
             }
         </td>
-    </tr>        
+    </tr>   
+   
 }
 
 @helper ShowTime(HomeNoBetModel item)
     {
-    <td class="c bl_time">
+    <td class="c bl_time" >
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
-            <br />
-            <i class="red-num">@Apollo.Age.Resources.Lang.lblLive</i>
         }
-        else
+        @*else
         {
             @Html.Raw(item.ShowTime)
-        }
+        }*@
     </td>
 }
 
-@RazorHelper.RefreshCountDown("HomeNoBet", 15, 15, "ReloadPage();")
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td rowspan="2" style="width: 20px;">
-                #
-            </td>
-            <td rowspan="2" style="width: 110px;">
+            <td rowspan="2" style="width: 9%;">
+                @*@Apollo.Age.Resources.Lang.TimeGMT8*@
                 @Apollo.Age.Resources.Lang.time
+                <br />
+                (@Apollo.Age.Resources.Lang.GMT+8)
             </td>
-            <td rowspan="2" style="width: 366px;">
-                @Apollo.Age.Resources.Lang.events
+            <td rowspan="2" style="width: 7%;">
+                @Apollo.Age.Resources.Lang.lblScore
+            </td>
+            <td rowspan="2" style="width: 25%;"">
+                 @Apollo.Age.Resources.Lang.league
+            </td>
+            <td rowspan="2" style="width: 15%;">
+                @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="3">
                 @Apollo.Age.Resources.Lang.fulltime
@@ -125,7 +133,7 @@
             {
                 rowIndex++;
 
-                @ShowLeague(currentLeagueId, item)
+                //@ShowLeague(currentLeagueId, item)
                 @ShowMatch(rowIndex, item)
 
                 currentLeagueId = item.LeagueId;
@@ -133,7 +141,7 @@
         }
         else
         {
-            @RazorHelper.ShowNoInfo(colspan: 6)
+            //@RazorHelper.ShowNoInfo(colspan: 6)
         }
     </tbody>
 </table>

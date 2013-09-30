@@ -13,11 +13,11 @@ namespace Fanex.BetList.Core
 	{
 		public class Status_Template : Template
 		{
-			protected static string s0 = "<div class=\"status\">";
+			protected static string s0 = "<div>";
 			public string result = "{result}";
-			protected static string s1 = "</div>";
-			public Status_StatusResult_Block StatusResult = new Status_StatusResult_Block();
-			public Status_ShowIPVN_Block ShowIPVN = new Status_ShowIPVN_Block();
+			protected static string s1 = "</div><div class=\"ip\">";
+			public string betIp = "{betIp}";
+			protected static string s2 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -26,8 +26,8 @@ namespace Fanex.BetList.Core
 					bd.Append(s0);
 					bd.Append(result);
 					bd.Append(s1);
-					if(null != StatusResult) StatusResult.ToString(ref bd);
-					if(null != ShowIPVN) ShowIPVN.ToString(ref bd);
+					bd.Append(betIp);
+					bd.Append(s2);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -38,82 +38,6 @@ namespace Fanex.BetList.Core
 				return bd.ToString();
 			}
 
-		}
-
-		public class Status_StatusResult_Block: Block
-		{
-			protected static string s2 = "<div class=\"result\" onclick=\"ViewResult(";
-			public string matchId = "{matchId}";
-			protected static string s3 = ", ";
-			public string race = "0";
-			protected static string s4 = ", ";
-			public string betType = "{betType}";
-			protected static string s5 = ", ";
-			public string sportType = "{sportType}";
-			protected static string s6 = ", ";
-			public string refNo = "{refNo}";
-			protected static string s7 = ", '";
-			public string userName = "{userName}";
-			protected static string s8 = "', '";
-			public string winlostDate = "{winlostDate}";
-			protected static string s9 = "', ";
-			public string refNo_MixParlay = "0";
-			protected static string s10 = ", ";
-			public string league = "{league}";
-			protected static string s11 = ", ";
-			public string isoutright = "0";
-			protected static string s12 = ");\">";
-			protected static string s13{get{return Apollo.Age.Resources.BetList.results;}}
-			protected static string s14 = "</div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s2);
-					bd.Append(matchId);
-					bd.Append(s3);
-					bd.Append(race);
-					bd.Append(s4);
-					bd.Append(betType);
-					bd.Append(s5);
-					bd.Append(sportType);
-					bd.Append(s6);
-					bd.Append(refNo);
-					bd.Append(s7);
-					bd.Append(userName);
-					bd.Append(s8);
-					bd.Append(winlostDate);
-					bd.Append(s9);
-					bd.Append(refNo_MixParlay);
-					bd.Append(s10);
-					bd.Append(league);
-					bd.Append(s11);
-					bd.Append(isoutright);
-					bd.Append(s12);
-					bd.Append(s13);
-					bd.Append(s14);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
-		}
-
-		public class Status_ShowIPVN_Block: Block
-		{
-			protected static string s15 = "<div>";
-			public string betIp = "{betIp}";
-			protected static string s16 = "</div>";
-			public override void ToString(ref StringBuilder bd)
-			{
-				if(!Visible) return;
-				if(RenderChild)
-				{
-					bd.Append(s15);
-					bd.Append(betIp);
-					bd.Append(s16);
-				}
-				if(IsAssigned){bd.Append(Value);}
-			}
 		}
 
 	}

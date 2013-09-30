@@ -1,57 +1,32 @@
-﻿@{
-    Layout = "~/Views/Account/Shared/_Layout.cshtml";
+﻿@using Apollo.Age.Resources
+@{
+	Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewBag.Title = @Lang.userinfo;
 }
-@section head {
-    <link href="~/Views/Account/Resources/treeview.css" rel="stylesheet" type="text/css" />
-}
+
 <table id="tab-menu">
-    <tr>
-        <td>
-            <a id="lk-menu-tab" href="javascript:;" target="menu"><i class="icon-align-justify">
-            </i>@Apollo.Age.Resources.Lang.mainmenu</a>
-        </td>
-        <td class="active">
-            <a><i class="icon-user"></i>@Apollo.Age.Resources.Lang.userinfo</a>
-        </td>
-        <td>
-            <a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Apollo.Age.Resources.Lang.search</a>
-        </td>
-    </tr>
+	<tr>
+		<td class="active">
+			<a><i class="icon-user"></i>@Lang.userinfo</a>
+		</td>
+		<td>
+			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.AccountSearch</a>
+		</td>
+	</tr>
 </table>
-@if ((bool)(ViewBag.HasAgentDownline))
-{
-    <div id="wrapper">
-        <ul id="agent-list" class="tree-sub" agent-id="@ViewBag.AgentId">
-        </ul>
-    </div>
+<div id="wrapper">
+    <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
+	<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
+	</ul>
+</div>
 
-    @section foot {
-        <script src="~/views/account/resources/menu.js" type="text/javascript"></script>
-        <script type="text/javascript" src="~/views/account/resources/jquery.treeview.js"></script>
-        <script type="text/javascript" src="~/views/account/resources/jquery.treeview.async.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(document).ajaxStart($.blockUI);
-                var agentList = $("#agent-list"),
-                    agentId = agentList.attr("agent-id"),
-                    appRoot = "@Url.Content("~/")";
-
-                
-                agentList.treeview({
-                    url: appRoot + "Account/GetDataByNode",
-                    link: "<a href='" + appRoot + "Account/AgentList?agentid={0}' target='main'>{1}</a>",
-                    agentId: agentId
-                });
-
-                $(document).ajaxStop($.unblockUI);
-            })
-        </script>
-    }
-}
-else
-{
-    <div class="no-data">@Apollo.Age.Resources.Lang.noInfo</div>
-    @section foot {
-        <script src="~/views/account/resources/Menu.js" type="text/javascript"></script>
-    }
+@section foot {
+    @Scripts.Render("~/scripts/treeviewjs")
+	<script type="text/javascript">
+	    $(document).ready(function () {
+	        $.blockUI.defaults.css.left = "10px";
+	        $(document).ajaxStart($.blockUI);
+	        $(document).ajaxStop($.unblockUI);
+	    })
+	</script>
 }

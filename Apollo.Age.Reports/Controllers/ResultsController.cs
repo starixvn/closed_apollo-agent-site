@@ -9,6 +9,7 @@
 //      + Added BalanceUpDay
 //      + Refactored Index (involved in implementing Index.cshtml)
 //   </change>
+//   <change who="Edward.Nguyen" date="2013.7.8">Add get date from App Setting, if is null will get DateTime.Now</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -18,26 +19,44 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Apollo.Age.Configurations;
+    using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Services;
     using Apollo.Age.Web;
-    using Fanex.Common.Extensions;
 
+    /// <summary>
+    /// Result controller.
+    /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ResultsController : BaseController
     {
+        /// <summary>
+        /// Get property from Result service.
+        /// </summary>
         private readonly ResultService _resultService;
+
+        private DateTime _resultDate;
 
         #region Ctors
 
-        public ResultsController() : this(null) 
-        { 
+        /// <summary>
+        /// Constructor default.
+        /// </summary>
+        public ResultsController()
+            : this(null)
+        {
+            _resultDate = AppSettings.ResultDateConfig;
         }
 
+        /// <summary>
+        /// Constructor Controller.
+        /// </summary>
+        /// <param name="resultService">Result Service.</param>
         public ResultsController(ResultService resultService = null)
         {
             _resultService = resultService ?? new ResultService();
@@ -45,153 +64,216 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Ctors
 
-        protected DateTime BalanceUpDay
+        /// <summary>
+        /// Gets Balance Up Day.
+        /// </summary>
+        protected DateTime GetBalanceUpDay
         {
             get { return _resultService.GetBalanceUpDay(); }
         }
 
         #region Match Results
 
+        /// <summary>
+        /// By Default is Match Action.
+        /// </summary>
+        /// <param name="sportId">Input Sport Id.</param>
+        /// <returns>Return a View Model.</returns>
         [HttpGet]
-        public ActionResult Match()
-        {
-            return Match(DateTime.Now);
-        }
-
-        [HttpPost]
-        public ActionResult Match(DateTime eventDate)
+        public ActionResult Match(byte sportId = 1)
         {
             var viewModel = new MatchResultViewModel
             {
-                BalanceUpDay = BalanceUpDay,
-                SportList = _resultService.GetResultSports(eventDate),
-                EventDate = eventDate
+                BalanceUpDay = GetBalanceUpDay,
+                EventDate = _resultDate,
             };
 
             return View(viewModel);
         }
 
-        public JsonResult MatchLeague(DateTime date, byte sportId)
+        /// <summary>
+        /// Get all leagues by sport.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <param name="sportId">Input a Sport Id.</param>
+        /// <returns>Return a JSON result.</returns>
+        public JsonResult GetLeagueBySport(
+            DateTime date,
+            string sportTypes,
+            int sportId)
         {
-            // not add select all item yet
-            var leaguesBySport = _resultService.GetLeagueBySport(date, sportId);
-            List<League> leagues = new List<League>();
-            if (leaguesBySport != null && leaguesBySport.Count() > 1)
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
             {
-                leagues.Add(new League { Id = 0, Name = Resources.Lang.allleague });
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            leaguesBySport.ForEach((item) => leagues.Add(new League
-            {
-                Id = item.Id,
-                Name = CacheRef.GetLeagueName(item.Id)
-            }));
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
-            return Json(leagues, JsonRequestBehavior.AllowGet);
+            var listLeague = new List<League>();
+
+            if (matchResults != null && matchResults.Any())
+            {
+                listLeague = matchResults.Where(item => item.SportId == sportId)
+                    .Select(item => new League { Id = item.LeagueId, Name = item.LeagueName })
+                    .Distinct().ToList();
+
+                if (listLeague != null && listLeague.Count() > 1)
+                {
+                    listLeague.Insert(0, new League { Id = 0, Name = Resources.Lang.allleague });
+                }
+            }
+            else
+            {
+                listLeague.Add(new League { Id = -1, Name = string.Empty });
+            }
+
+            return Json(listLeague, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ResultByLeague(DateTime date, byte sportId, int leagueId = -1)
+        /// <summary>
+        /// Get all sports by match.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport types.</param>
+        /// <returns>Return JSON data.</returns>
+        public JsonResult GetSportByMatch(DateTime date, string sportTypes)
         {
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+            }
+
             IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportId, this.CurrentSession.UserId, leagueId);
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
+
+            var sports = new List<Sport>();
+            if (matchResults != null && matchResults.Any())
+            {
+                sports = matchResults
+                       .Select(item => new Sport { Id = (byte)item.SportId, Name = item.SportName })
+                       .Distinct().ToList();
+            }
+            else
+            {
+                sports.Add(new Sport { Id = 01, Name = string.Empty });
+            }
+
+            return Json(sports, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Get all Match.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <returns>Return a view with exactly path.</returns>
+        public ActionResult GetMatchResult(DateTime date, string sportTypes)
+        {
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+            }
+
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
             if (matchResults != null && matchResults.Any())
             {
                 matchResults = matchResults.OrderBy(match => match.LeagueId);
             }
 
-            string viewName = GetViewBySport(sportId);
+            string viewName = GetViewBySport(sportTypes);
             ViewBag.IsParlay = false;
 
             return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult ResultByMatch(int matchId, byte sportId)
+        /// <summary>
+        /// Get all others.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportTypes">Input a Sport Types.</param>
+        /// <param name="sportId">Input a Sport ID.</param>
+        /// <param name="leagueId">Input a League ID.</param>
+        /// <returns>Return a view with exactly path.</returns>
+        public ActionResult GetOtherResult(DateTime date, string sportTypes, int sportId, int leagueId = 0)
         {
-            IEnumerable<MatchResultModel> results = _resultService.GetResultByMatch(matchId);
-
-            if (results != null && results.Any())
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
             {
-                results = results.OrderBy(match => match.LeagueId);
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            string sportName = GetViewBySport(sportId);
+            IEnumerable<MatchResultModel> matchResults =
+                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
 
-            ViewBag.ViewSport = string.Format("~/Views/Results/{0}.cshtml", sportName);
-            ViewBag.IsParlay = false;
+            if (matchResults != null && matchResults.Any())
+            {
+                if (leagueId == 0)
+                {
+                    matchResults = matchResults.Where(item => item.SportId == sportId).Distinct();
+                }
+                else
+                {
+                    matchResults = matchResults.Where(item => item.SportId == sportId && item.LeagueId == leagueId).Distinct();
+                }
+            }
 
-            return View("~/Views/Results/MatchResult.cshtml", results);
+            string viewName = GetViewBySport(sportTypes);
+
+            return View(string.Format("~/Views/Results/{0}.cshtml", viewName), matchResults);
         }
 
-        public ActionResult ParlayResult(long refNo)
-        {
-            IEnumerable<MatchResultModel> results = _resultService.GetResultByParlay(refNo);
-
-            foreach (var result in results)
-            {
-                result.ViewName = GetViewBySport(result.SportId);
-            }
-
-            if (results != null && results.Any())
-            {
-                results = results.OrderBy(match => match.LeagueId);
-            }
-
-            ViewBag.IsParlay = true;
-
-            return View("~/Views/Results/ParlayResult.cshtml", results);
-        }
         #endregion Match Results
 
         #region Outright Results
 
-        [HttpGet]
-        public ActionResult Outright()
+        /// <summary>
+        /// Get all outright.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <returns>Return JSON Result.</returns>
+        public JsonResult GetSportOutright(DateTime date)
         {
-            return Outright(DateTime.Now, DateTime.Now);
-        }
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+            }
 
-        [HttpPost]
-        public ActionResult Outright(DateTime fromDate, DateTime toDate)
-        {
             var viewModel = new OutrightResultViewModel
             {
-                BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
+                BalanceUpDay = GetBalanceUpDay,
+                FromDate = date,
+                OutrightResult = _resultService.GetOutrightResult(date, isShowDataTest)
             };
 
-            return View(viewModel);
+            return Json(viewModel.SportList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult OutrightLeague(DateTime fromDate, DateTime toDate, byte sportId)
+        /// <summary>
+        /// By default is outright.
+        /// </summary>
+        /// <param name="date">Input a Date.</param>
+        /// <param name="sportId">Input a Sport ID.</param>
+        /// <returns>Action Result.</returns>
+        public ActionResult Outright(DateTime date, int sportId = 0)
         {
-            var viewModel = new OutrightResultViewModel
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
             {
-                BalanceUpDay = BalanceUpDay,
-                FromDate = fromDate,
-                ToDate = toDate,
-                SportId = sportId,
-                OutrightResult = _resultService.GetOutrightResult(fromDate, toDate)
-            };
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+            }
 
-            return Json(viewModel.LeagueList, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult OutrightResult(DateTime fromDate, DateTime toDate, byte sportId = 0, int leagueId = 0)
-        {
-            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(fromDate, toDate);
+            IEnumerable<OutrightResultModel> outrightResults = _resultService.GetOutrightResult(date, isShowDataTest);
             if (outrightResults != null && outrightResults.Any())
             {
-                if (leagueId != 0)
-                {
-                    outrightResults = outrightResults.Where(x => x.LeagueId == leagueId);
-                }
-                else
-                {
-                    outrightResults = outrightResults.Where(x => x.SportId == sportId);
-                }
+                outrightResults = outrightResults.Where(x => x.SportId == (byte)sportId);
             }
 
             return View(outrightResults);
@@ -199,44 +281,31 @@ namespace Apollo.Age.Reports.Controllers
 
         #endregion Outright Results
 
-        private string GetViewBySport(byte sportId)
+        /// <summary>
+        /// Return action name by spotTypes.
+        /// </summary>
+        /// <param name="sportTypes">Input a Sport Type.</param>
+        /// <returns>Return Sport ID.</returns>
+        private string GetViewBySport(string sportTypes)
         {
-            switch (sportId)
+            switch (sportTypes)
             {
-                case (byte)SportTypes.Soccer:
+                case SportGroup.Soccer:
                     return SportTypes.Soccer.ToString();
-                case (byte)SportTypes.BasketBall:
-                case (byte)SportTypes.Netball:
-                case (byte)SportTypes.FootBall:
-                case (byte)SportTypes.Rugby:
+                case SportGroup.BasketballFootballRugy:
                     return SportTypes.BasketBall.ToString();
-                case (byte)SportTypes.IceHockey:
-                case (byte)SportTypes.FieldHockey:
-                    return SportTypes.IceHockey.ToString();
-                case (byte)SportTypes.Tennis:
+                case SportGroup.Tennis:
                     return SportTypes.Tennis.ToString();
-                case (byte)SportTypes.BaseBall:
-                    return SportTypes.BaseBall.ToString();
-                case (byte)SportTypes.VolleyBall:
-                case (byte)SportTypes.Badminton:
-                case (byte)SportTypes.Squash:
+                case SportGroup.VolleyballBadmintonTableTennis:
                     return SportTypes.Badminton.ToString();
-                case (byte)SportTypes.Golf:
-                case (byte)SportTypes.Motorsports:
-                case (byte)SportTypes.Billard:
-                case (byte)SportTypes.Cycling:
-                case (byte)SportTypes.Fencing:
-                case (byte)SportTypes.Judo:
-                case (byte)SportTypes.ModernPentathlon:
-                case (byte)SportTypes.Rowing:
-                case (byte)SportTypes.Sailing:
-                case (byte)SportTypes.Shooting:
-                case (byte)SportTypes.Taekwondo:
-                case (byte)SportTypes.Triathlon:
-                case (byte)SportTypes.Wrestling:
-                    return SportTypes.Billard.ToString();
+                case SportGroup.BaseBall:
+                    return SportTypes.BaseBall.ToString();
+                case SportGroup.Others:
+                    return SportTypes.Others.ToString();
+                case SportGroup.Outright:
+                    return "Outright";
                 default:
-                    return SportTypes.OtherSports.ToString();
+                    return SportTypes.Soccer.ToString();
             }
         }
     }

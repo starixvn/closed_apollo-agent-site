@@ -1,6 +1,9 @@
 ﻿@model ICurrentSession
+@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
 @{
     Layout = null;
+    var topMember = ViewBag.TopMember;
 }
 <!DOCTYPE html>
 <html>
@@ -13,17 +16,83 @@
     @if (Model != null)
     {
         <div id="news_main">
-            @if (Model.IsInternalSignIn)
-            {
-                <div class="login-bg clearfix">
-                    <div class="login-info">
-                        <span class="username">@Model.Username<span> (@Model.AdminName)</span></span> <a id="signout"
-                            href="#">@Apollo.Age.Resources.Lang.SignOut</a>
+            <div class="login-bg clearfix">
+                @{ string sso = Model.IsInternalSignIn ? string.Empty : "sso"; }
+                <div class="left @sso">
+                </div>
+                <div class="right">
+                    @if (Model.IsInternalSignIn)
+                    {
+                        <div class="login-info clearfix">
+                            <div class="username">@Lang.lblLogin--@Model.Username<span> (@Model.AdminName)</span></div>
+                            <ul class="link">
+                                <li><a href="javascript:;" id="contact-us">@Lang.lblContactUs</a></li>
+                                <li>|<a id="signout" class="logout" href="#">@Lang.SignOut</a></li>
+                            </ul>
+                        </div>
+                    }
+                    <div class="toolbar @sso">
+                        <ul>
+                            <li id="wager-link"><span class="menu-list border-link">[@Lang.lblWager]</span>
+                                <ul class="sub-menu">
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Soccer" target="main">@Lang.lblSC</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Basketball" target="main">@Lang.lblBkNflRugby</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Tennis" target="main">@Lang.lblTN</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Volleyball" target="main">@Lang.lblVbBdmTt</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Baseball" target="main">@Lang.lblBs</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@WagersSportName.Others" target="main">@Lang.other</a></li>
+                                </ul>
+                            </li>
+                            <li id="emwager-link"><span class="menu-list border-link">[@Lang.lblEmWager]</span>
+                                <ul class="sub-menu">
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Soccer)&isEarlyMarket=true" target="main">@Lang.lblScEm</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Basketball)&isEarlyMarket=true" target="main">@Lang.lblBkNflRugbyEm</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Tennis)&isEarlyMarket=true" target="main">@Lang.lblTnEm</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Volleyball)&isEarlyMarket=true" target="main">@Lang.lblVbBdmTtEm</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Baseball)&isEarlyMarket=true" target="main">@Lang.lblBsEm</a></li>
+                                    <li><a url="~/wagers/wager?sportname=@(WagersSportName.Others)&isEarlyMarket=true" target="main">@Lang.lblOtherEm</a></li>
+                                </ul>
+                            </li>
+                            <li id="outright-link"><span class="menu-list border-link"><a url="~/wagers/wager?sportname=@WagersSportName.Soccer&isOutright=true" target="main">
+                                [@Lang.lblOutRight]</a> </span></li>
+                            <li id="forecast-link"><span class="menu-list border-link"><a url="~/totalBets" target="main">
+                                [@Lang.lblForecast]</a> </span></li>
+                            <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
+                                <ul class="sub-menu">
+                                    <li><a url="~/Account/AgentList" target="main">@Lang.Agents</a></li>
+                                    @if (Model.AgentLevel > AgentLevel.Shareholder)
+                                    {
+                                        <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
+                                        <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username" 
+                                        target="main">@Lang.lblMemberShare</a></li>
+                                    }
+                                    <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
+                                    <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>
+                                </ul>
+                            </li>
+                            <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
+                                <ul class="sub-menu">
+                                    @if (Model.IsInternalSignIn)
+                                    { 
+                                        <li><a url="~/Account/LogLogin" target="main">@Lang.lblLogin</a></li>
+                                    }
+                                    <li><a url="~/Log/ViewLog" target="main">@Lang.setting</a></li>
+                                </ul>
+                            </li>
+                            <li id="report-link"><a url="~/Reports/matchentered" target="main" class="menu-list txtRed">
+                                [@Lang.lblReport]</a> </li>
+                            <li id="result-link"><a url="~/results/match" target="main" class="menu-list txtRed">
+                                [@Lang.lblResult]</a> </li>
+                            <li id="hideurl-link"><a url="~/hiddentool/index" target="main" class="menu-list txtRed">
+                                [@Lang.lblHiddenUrlTool]</a> </li>
+                            <li id="message-link"><a url="~/message/newmessage" target="main" class="menu-list txtRed">
+                                [@Lang.announcement]</a> </li>
+                        </ul>
                     </div>
                 </div>
-                @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
-            }
-            <div id="text_news_out">
+            </div>
+            @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
+            @*<div id="text_news_out">
                 <div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
                     <div id="scroller" class="news-scroller">
                         <a id="topnews" href="javascript:;"></a>
@@ -32,24 +101,22 @@
                 <span id="button_top" class="icon-envelope" onclick="Change2Menu('Message/NewMessage?PageQuery=private', this)">
                     <a id="privateMsgLnk">&nbsp;&nbsp;(0)</a> </span><a class="home-page" href="~/Message/Portal"
                         target="main"><span class="icon-home icon-white"></span></a>
-            </div>
+            </div>*@
         </div>
-
         <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
         <input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
-        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />  
-        <script src="~/_globalresources/js/jquery.js" type="text/javascript"></script>		
-        <script src="~/_globalresources/js/core.js" type="text/javascript"></script>	 
-        <script src="~/views/account/resources/header.js" type="text/javascript"></script>
+        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />       
+        
+        @Scripts.Render("~/scripts/topbarjs")
         <script type="text/javascript">
-		     var DEFAULTS = {
-		         IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
-                 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower()
-                         
+             var DEFAULTS = {
+                 IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
+                 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower(),
+                 IsMaster: @Model.IsSuper.ToString().ToLower()	 
              };
-			 var LANGUAGES = {
-				AlerSignonMessage : "@Apollo.Age.Resources.Lang.stringSessionLogged"
-			 };
+             var LANGUAGES = {
+                AlerSignonMessage : "@Apollo.Age.Resources.Lang.stringSessionLogged"
+             };
         </script>
     }
 </body>

@@ -12,19 +12,24 @@
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
-    using System.Data;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Repositories.Interface;
     using Fanex.Common;
-    using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Logging;
 
+    /// <summary>
+    /// This class for retrieve user.
+    /// </summary>
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
+        /// <summary>
+        /// Gets the specified criteria.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a user.</returns>
         public override User Get(ICriteria criteria)
         {
             try
@@ -38,8 +43,7 @@ namespace Apollo.Age.Repositories.Impl
                                 return u;
                             },
                             splitOn: "AgentId",
-                            parameters: criteria.GetSpParams()
-                        );
+                            parameters: criteria.GetSpParams());
 
                     return user;
                 }
@@ -50,6 +54,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Gets the user status.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a user status.</returns>
         public int GetUserStatus(ICriteria criteria)
         {
             int userStatus = (int)CustomerStatus.Locked;
@@ -59,30 +68,26 @@ namespace Apollo.Age.Repositories.Impl
                 {
                     using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        //IDataReader reader = objectDb.ExecuteReader(criteria.GetSpParams());
-
-                        //if (reader.Read())
-                        //{
-                        //    return reader.ToInt("CurrentStatus");
-                        //}
-                        //else
-                        //{
-                        //    return (int)CustomerStatus.Locked;
-                        //}                        
                         userStatus = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
                     }
                 }
             }
             catch (Exception ex)
             {
-               // LogService.Critical(ex.Message + "IN Repository", ex);
                 throw ex;
             }
 
             return userStatus;
         }
 
-        public bool HasPermissionOnUpdating(ICriteria criteria)
+        /// <summary>
+        /// Determines whether [has permission on updating] [the specified criteria].
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        ///   <c>true</c> if [has permission on updating] [the specified criteria]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CheckPermission(ICriteria criteria)
         {
             if (criteria.IsValid())
             {
@@ -94,36 +99,52 @@ namespace Apollo.Age.Repositories.Impl
                     return Converter.ToBool(currentParams["haspermission"]);
                 }
             }
+
             return false;
         }
 
+        /// <summary>
+        /// Delete action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Delete(User entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Insert action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Insert(User entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Update action from command result.
+        /// </summary>
+        /// <param name="entity">Input a agent.</param>
+        /// <returns>Return result.</returns>
         public ICommandResult Update(User entity)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Authenticates the nap user.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="adminId">The admin id.</param>
+        /// <returns>Return true or false.</returns>
         public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             try
             {
                 using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    //IDataReader reader = db.ExecuteReader(criteria.GetSpParams());
-                    //if (reader.Read())
-                    //{
-                    //    AdminId = Convert.ToInt32(reader["UserId"]);
-                    //}
-
                     adminId = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
 
                     return adminId != 0;
@@ -135,6 +156,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Write logs the internal login.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a number.</returns>
         public int WritelogInternalLogin(InternalLogLoginCriteria criteria)
         {
             try
@@ -150,6 +176,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Internals the check in.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a user id.</returns>
         public int InternalCheckIn(InternalCheckinCriteria criteria)
         {
             try
@@ -162,7 +193,7 @@ namespace Apollo.Age.Repositories.Impl
                     return Convert.ToInt32(param["onuserid"]);
                 }
 
-               // return 0;
+                // return 0;
             }
             catch (Exception ex)
             {
@@ -170,6 +201,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Internals the re check in.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return true or false.</returns>
         public byte InternalReCheckIn(InternalReCheckinCriteria criteria)
         {
             try
@@ -181,8 +217,6 @@ namespace Apollo.Age.Repositories.Impl
 
                     return Convert.ToByte(param["iskickedout"]);
                 }
-
-                //return 0;
             }
             catch (Exception ex)
             {
@@ -190,6 +224,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Internals the logout.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a user id that customer is checked in.</returns>
         public int InternalLogout(InternalLogoutCriteria criteria)
         {
             try
@@ -206,6 +245,27 @@ namespace Apollo.Age.Repositories.Impl
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Check belong with up line.
+        /// </summary>
+        /// <param name="criteria">Input a criteria.</param>
+        /// <returns>Return true or false.</returns>
+        public bool CheckBelongToUpline(ICriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var currentParams = criteria.GetSpParams();
+                    objectDb.ExecuteNonQuery(currentParams);
+
+                    return Converter.ToBool(currentParams["allowed"]);
+                }
+            }
+
+            return false;
         }
     }
 }

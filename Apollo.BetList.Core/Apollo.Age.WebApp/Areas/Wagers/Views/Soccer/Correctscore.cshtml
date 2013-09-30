@@ -1,0 +1,19 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@using Apollo.Age.Web.Mvc
+@model List<CorrectScoreViewModel>
+<table class="tblRpt soccer correct-score @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
+    @WagerHelper.RederHeaderColumn(Lang.correctscore)
+    <tbody>
+        @Model.List(
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item)
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.LiveIndicator)
+                </td>
+            </tr>
+        )
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

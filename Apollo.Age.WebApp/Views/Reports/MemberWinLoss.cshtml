@@ -1,122 +1,192 @@
 ﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Resources
 @{
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblMemberWinLoss;
+    ViewBag.Title = Lang.lblMemberWinLoss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
 }
 @model MemberWinLossViewModel
-<div id="box_header">
-    <div class="row">
-        @{
-            var maxDate = DateTime.Now;
-            var minDate = maxDate.AddMonths(-3);
-        }
-        <div class="cell">
-            <div class="label">
-                @Html.LabelFor(m => m.FromDate, @Apollo.Age.Resources.Lang.from)
+<div id="function-bar">
+    <div class="item">
+        <label for="ddlSport">@Lang.lblReport:</label>
+        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
+    </div>
+    @RazorHelper.RenderReportLinks(Lang.lblWinLoss)
+    @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
+    <div class="end">
+    </div>
+</div>
+<div id="box_header" class="report">
+    <table class="winloss">
+        <tr>
+            <td class="firstcolumn">
+                @Lang.dateRange:
+            </td>
+            <td class="secondcolumn">
+                <div class="row">
+                    <div class="cell">
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="FromDate">
+                                ~
+                            </label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
+                        <input  class="btn dateRange" data-range="3" type="button" value="@Lang.tomorrow" />
+                        <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
+                        <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Lang.WagerType:
+            </td>
+            <td class="secondcolumn">
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+            </td>
+        </tr>
+    </table>
+    <div>
+        <div class="row bg-action">
+            <div class="item">
+                @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
             </div>
-            <div class="editor">
-                @Html.DatePickerFor(m => m.FromDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <div class="label">
-                @Html.LabelFor(m => m.ToDate, @Apollo.Age.Resources.Lang.to)
-            </div>
-            <div class="editor">
-                @Html.DatePickerFor(m => m.ToDate, minDate, maxDate)
-            </div>
-        </div>
-        <div class="cell">
-            <div class="editor">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Generate" />
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
             </div>
         </div>
     </div>
 </div>
+
+@if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
+{
+    <div class="notes">
+        <div class="title-notes">@Lang.lblRemarks:</div>
+        <ul class="list">
+            <li>#1: @Lang.lblwinlossnote1</li>
+            <li>#2: @Lang.lblwinlossnote2</li>
+        </ul>
+    </div>
+}
+
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath, true)
 }
-<table class="tblRpt">
-    <thead>
-        <tr>
-            <th rowspan="2">
-            </th>
-            <th rowspan="2">
-                @Apollo.Age.Resources.Lang.lblSoccerPT
-            </th>
-            <th colspan="2">
-                @Apollo.Age.Resources.Lang.turnover
-            </th>
-            <th colspan="3">
-                @Apollo.Age.Resources.Lang.member
-            </th>
-            <th colspan="3">
-                @Model.AgentName
-            </th>
-            <th rowspan="2">
-                @Apollo.Age.Resources.Lang.UplineTotal
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @Apollo.Age.Resources.Lang.total
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.Actual
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.lblWinLoss
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.lblComm
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.total
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.lblWinLoss
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.lblComm
-            </th>
-            <th>
-                @Apollo.Age.Resources.Lang.total
-            </th>
-        </tr>
-    </thead>
-    @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
-    {
-        var list = Model.MemberWinLossList;
-        decimal totalTurnover = 0;
-        decimal totalActual = 0;
-        decimal totalMWinLoss = 0;
-        decimal totalMComm = 0;
-        decimal totalMTotal = 0;
-        decimal totalAWinLoss = 0;
-        decimal totalAComm = 0;
-        decimal totalATotal = 0;
-        decimal totalUpline = 0;
-
+@if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
+{
+    var list = Model.MemberWinLossList;
+    decimal totalBetAmount = 0;
+    decimal totalBetCount = 0;
+    decimal totalCommBase = 0;
+    decimal totalMemWinLoss = 0;
+    decimal totalMemComm = 0;
+    decimal totalMemTotal = 0;
+    decimal totalAWinLoss = 0;
+    decimal totalAComm = 0;
+    decimal totalATotal = 0;
+    decimal totalUpLineEffectiveStake = 0;
+    decimal totalUpLineTotal = 0;
+    decimal totalOutstandingAmount = 0;
+    decimal totalOutstandingShareAmount = 0;
+    
+    <div class="export-excel" id="btnExcelMemberWinLoss">
+    </div>
+    <table class="tblRpt report tblWinLoss">
+        <thead class="header-member">
+            <tr>
+                <th class="namecolor" rowspan="2">
+                </th>
+                <th class="sharecolor" rowspan="2">
+                    @Lang.lblSoccerPT
+                </th>
+                <th class="membercolor" colspan="5">
+                    @Lang.member
+                </th>
+                <th class="agentcolor" colspan="3">
+                    @Model.AgentName
+                </th>
+                <th class="uplinecolor" colspan="2">
+                    @Lang.lblUpline
+                </th>
+                <th class="oustandingcolor" rowspan="2">
+                    @Lang.lblOutstandingAmount
+                </th>
+                <th class="oustandingcolor" rowspan="2">
+                    @Lang.lblOutstandingShareAmount
+                </th>
+            </tr>
+            <tr>
+                <th class="membercolor">
+                    @Lang.BetAmount
+                    <span class='split-header'>/</span>
+                    @Lang.lblBetCount
+                </th>
+                <th class="membercolor">
+                    @Lang.CommBase
+                </th>
+                <th class="membercolor">
+                    @Lang.lblWinLossReport
+                </th>
+                <th class="membercolor">
+                    @Lang.lblComm
+                </th>
+                <th class="membercolor">
+                    @Lang.total
+                </th>
+                <th class="agentcolor">
+                    @Lang.lblWinLossReport
+                </th>
+                <th class="agentcolor">
+                    @Lang.lblComm
+                </th>
+                <th class="agentcolor">
+                    @Lang.total
+                </th>
+                <th class="uplinecolor">
+                    @Lang.lblEffectiveStake2
+                </th>
+                <th class="uplinecolor">
+                    @Lang.total
+                </th>
+            </tr>
+        </thead>
         <tbody>
             @foreach (var item in list)
             {
-                totalTurnover += item.Turnover;
-                totalActual += item.ActualTO;
-                totalMWinLoss += item.WinLoss;
-                totalMComm += item.MemComm;
-                totalMTotal += item.MemTotal;
+                totalBetAmount += item.BetAmount;
+                totalBetCount += item.BetCount;
+                totalCommBase += item.CommBase;
+                totalMemWinLoss += item.MemberWinLoss;
+                totalMemComm += item.MemberComm;
+                totalMemTotal += item.MemberTotal;
                 totalAWinLoss += item.AWinLoss;
                 totalAComm += item.AComm;
                 totalATotal += item.ATotal;
-                totalUpline += item.UplineTotal;
+                totalUpLineEffectiveStake += item.UpLineEffectiveStake;
+                totalUpLineTotal += item.UpLineTotal;
+                totalOutstandingAmount += item.OutstandingAmount;
+                totalOutstandingShareAmount += item.OutstandingShareAmount;
+
                 rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a href="~/_BetList/BetListOnMember.aspx?custId=@item.MemberId&username=@item.MemberName&fromDate=@Formater.ShortDateFormat(Model.FromDate)&toDate=@Formater.ShortDateFormat(Model.ToDate)&type=report">
+                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:;">
                             @item.MemberName
                         </a>
                     </td>
@@ -124,19 +194,21 @@
                         @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.Turnover, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
+                        <span class='split'>/</span>
+                        @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.ActualTO, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.WinLoss, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.MemberWinLoss, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.MemComm, Formater.CULT_NAME_ENG)
+                        @Formater.FormatNumber20(item.MemberComm, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.MemTotal, Formater.CULT_NAME_ENG)
+                    <td class="r">
+                        @Formater.FormatNumber20(item.MemberTotal, Formater.CULT_NAME_ENG)
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
@@ -144,11 +216,20 @@
                     <td class="r">
                         @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r bold">
+                    <td class="r">
                         @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r bold">
-                        @Formater.FormatNumber20(item.UplineTotal, Formater.CULT_NAME_ENG)
+                    <td class="r">
+                        @Formater.FormatNumber20(item.UpLineEffectiveStake, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">
+                        @Formater.FormatNumber20(item.UpLineTotal, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">
+                        @Formater.FormatNumber20(item.OutstandingAmount, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">
+                        @Formater.FormatNumber20(item.OutstandingShareAmount, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
             }
@@ -156,24 +237,26 @@
         <tfoot>
             <tr class="total">
                 <td>
-                    @Apollo.Age.Resources.Lang.total
+                    @Lang.total
                 </td>
                 <td>
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalTurnover, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
+                    <span class='split-footer'>/</span>
+                    @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalActual, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMWinLoss, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemWinLoss, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMComm, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemComm, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalMTotal, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalMemTotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
                     @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
@@ -185,23 +268,53 @@
                     @Formater.FormatNumber20(totalATotal, Formater.CULT_NAME_ENG)
                 </td>
                 <td class="r">
-                    @Formater.FormatNumber20(totalUpline, Formater.CULT_NAME_ENG)
+                    @Formater.FormatNumber20(totalUpLineEffectiveStake, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalUpLineTotal, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalOutstandingAmount, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">
+                    @Formater.FormatNumber20(totalOutstandingShareAmount, Formater.CULT_NAME_ENG)
                 </td>
             </tr>
         </tfoot>
-    }
-    else
-    {
-        @RazorHelper.ShowNoInfo(11)
-    }
-</table>
+    </table>
+}
+else
+{
+    <table class="tblRpt report none-result">
+        <thead>
+            <th>
+                @Lang.NodataSearch
+            </th>
+        </thead>
+        <tbody>
+            <td class="text-center row-exit">
+                <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+            </td>
+        </tbody>
+    </table>
+}
+@Html.Hidden("agentId", Model.AgentId)
+@Html.Hidden("agentName", Model.AgentName)
+@Html.Hidden("hdSportType", Model.Sporttypes)
+@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
+@Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
+@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("SportName", Model.SportName)
+@Html.Hidden("BettypeName", Model.BettypeName)
 @section scripts
 {
-    <script src="~/views/reports/resources/winloss.js" type="text/javascript"></script>
+    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate"
+                MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
+                BetListString: "@Lang.lblBetLists.ToUpper()",
             };
         } ();
     </script>

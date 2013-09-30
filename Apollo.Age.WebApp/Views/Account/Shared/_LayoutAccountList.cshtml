@@ -1,56 +1,41 @@
 ﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<title>@ViewBag.Title</title>
-	<link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-	<link href="~/views/account/resources/customerlist.less" rel="stylesheet" type="text/css" />
-	@RenderSection("css", required: false)
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/account")
+    @RenderSection("css", required: false)
 </head>
 <body>
-	
-	<div id="page_main">
-		<div id="header_main">
-			<div class="header-title">
-				@ViewBag.HeaderTitle
-				<span id="currUsername">@ViewBag.CurrentUsername</span>
-			</div>
-			<div class="edit-setting icon-pencil" username='@ViewBag.CurrentUsername' agentid='@ViewBag.CurrentAgentId' agentlevel='@ViewBag.CurrentAgentLevel' id="quickLinkEditSetting">
-			</div>
-		</div>
-		<div id="content_main">
-			<div id="box_header">
-				<div class="row">
-					<div class="cell">
-						<div class="label">
-							<label for="txtUserName">@Apollo.Age.Resources.Lang.username</label>
-						</div>
-						<div class="editor">
-							<input type="text" autocomplete="off" id="txtUserName" value="@Apollo.Age.Resources.Lang.enterusername" name="txtUserName" class="txtSearch"/>
-						</div>
-						<div class="editor">
-							<input type="button" value="@Apollo.Age.Resources.Lang.submit" id="Search" class="btn" />
-						</div>
-					</div>
-				</div>
-			</div>
-			@RenderBody()
-			<ul id="menuedit" class="edit-menu">
-				<li><a href="#" id="commission">@Apollo.Age.Resources.Lang.commission</a></li>
-				<li><a href="#" id="betsetting">@Apollo.Age.Resources.Lang.lblBetSetting</a></li>
-				<li><a href="#" id="sharesetting">@Apollo.Age.Resources.Lang.lblShareSetting</a></li>
-			</ul>
-		</div>
-	</div>
-	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
-	<script type="text/javascript">
-		var BASELANGUAGES = function () {
-			return {
-				EnterUsername: "@Apollo.Age.Resources.Lang.enterusername"
-			};
-		} ();
-	</script>
-	@Scripts.Render("~/scripts/accountlistjs")
-	@RenderSection("scripts", required: false)
+    <div id="page_main">
+        <div id="header_main">
+            <div class="header-title">
+                @ViewBag.HeaderTitle
+                <span id="currUsername">@ViewBag.CurrentUsername</span>
+            </div>
+            <div class="edit-setting icon-pencil" username='@ViewBag.CurrentUsername' agentid='@ViewBag.CurrentAgentId' agentlevel='@ViewBag.CurrentAgentLevel' id="quickLinkEditSetting">
+            </div>
+        </div>
+        <div id="content_main">
+            @RenderBody()
+            <ul id="menuedit" class="edit-menu">
+                <li><a href="#" id="commission">@Apollo.Age.Resources.Lang.Commission (%)</a></li>
+                <li><a href="#" id="betsetting">@Apollo.Age.Resources.Lang.lblBetSetting</a></li>
+                <li><a href="#" id="sharesetting">@Apollo.Age.Resources.Lang.lblShareSetting</a></li>
+            </ul>
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    <script type="text/javascript">
+        var BASELANGUAGES = function () {
+            return {
+                EnterUsername: "@Apollo.Age.Resources.Lang.enterusername",
+                fundout: "@Lang.fundout",
+                lblSelectAtLeast: "@Lang.lblPleaseSelectAtLeast"
+            };
+        } ();
+    </script>
+    @Scripts.Render("~/scripts/accountlistjs")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

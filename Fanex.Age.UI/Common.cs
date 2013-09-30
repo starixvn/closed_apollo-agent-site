@@ -56,17 +56,17 @@ namespace Fanex.Age.UI
         public const string WinLossByBetTypeMatch = "WLByBettypeMatch";
 
         /// <summary>
-        ///BetList BettypeMatch (Hdp_OU_Live_TG_OE_Outright_ML)
+        /// BetList BettypeMatch (Hdp_OU_Live_TG_OE_Outright_ML)
         /// </summary>
         public const string BetListByBetTypeMatch = "BettypeMatch";
 
         /// <summary>
-        ///BetList BettypeMatch (RACING)
+        /// BetList BettypeMatch (RACING)
         /// </summary>
         public const string RacingBetListByBetTypeMatch = "RacingBettypeMatch";
 
         /// <summary>
-        ///BetList RunningBettypeMatch
+        /// BetList RunningBettypeMatch
         /// </summary>
         public const string RunningBetListByBetTypeMatch = "RunningBettypeMatch";
 
@@ -80,10 +80,12 @@ namespace Fanex.Age.UI
         /// Best List by MixParlay
         /// </summary>
         public const string BestListByMixParlay = "MixParlay";
+
         ///<summary>
-        ///BestList by Bettype only Mixparlay of Match
+        /// BestList by Bettype only Mixparlay of Match
         ///</summary>
         public const string BetListByMixParlayOfMatch = "MixParlayByMatch";
+
         /// <summary>
         /// BetListRunningByDate_Mem
         /// Only for agent - (Member Outstanding)
@@ -106,6 +108,7 @@ namespace Fanex.Age.UI
         /// Best List Select Deleted
         /// </summary>
         public const string BetListByDeleted = "Deleted";
+
         /// <summary>
         /// Best List By Daily Statement
         /// </summary>

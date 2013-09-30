@@ -27,8 +27,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketData">The ticket data.</param>
         /// <returns></returns>
-        AgentComm_Template Render(ITicket ticket, bool hideLinkDetail);
+        AgentComm_Template Render(ITicket ticket);
     }
 }

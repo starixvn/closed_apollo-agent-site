@@ -10,13 +10,44 @@ namespace Apollo.Age.Enumerations
 {
     public enum BetStatus : int
     {
+        /// <summary>
+        /// Hard code for bet status running.
+        /// </summary>
         Running = 0,
+
+        /// <summary>
+        /// Hard code for bet status waiting.
+        /// </summary>
         Waiting = 1,
+
+        /// <summary>
+        /// Hard code for bet status reject.
+        /// </summary>
         Reject = 101,
+
+        /// <summary>
+        /// Hard code for bet status void.
+        /// </summary>
         Void = 102,
+
+        /// <summary>
+        /// Hard code for bet status refund.
+        /// </summary>
         Refund = 103,
+
+        /// <summary>
+        /// Hard code for bet status draw.
+        /// </summary>
         Draw = 111,
+
+        /// <summary>
+        /// Hard code for bet status won.
+        /// </summary>
         Won = 112,
+
+        /// <summary>
+        /// Hard code for bet status lose.
+        /// </summary>
         Lose = 113
     }
 }

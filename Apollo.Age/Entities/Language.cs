@@ -6,8 +6,6 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.29">Created</change>
 // </history>
-
-
 namespace Apollo.Age.Services
 {
     using System;
@@ -29,6 +27,10 @@ namespace Apollo.Age.Services
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// Override string.
+        /// </summary>
+        /// <returns>Return string.</returns>
         public override string ToString()
         {
             return base.ToString(); 

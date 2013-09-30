@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="HomeNoBet.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="HomeNoBetModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,8 +9,12 @@
 
 namespace Apollo.Age.TotalBets.Models
 {
+    using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Home no bet model.
+    /// </summary>
     public class HomeNoBetModel
     {
         public string ShowTime { get; set; }
@@ -51,11 +55,13 @@ namespace Apollo.Age.TotalBets.Models
 
         public int BetCountANB { get; set; }
 
+        public DateTime? KickOffTime { get; set; }
+
         public string HomeTeam
         {
             get
             {
-                return CacheRef.GetTeamName(this.HomeId) + ((this.IsNeutral) ? "(N)" : string.Empty);
+                return CacheRef.GetTeamName(this.HomeId) + (this.IsNeutral ? "(N)" : string.Empty);
             }
         }
 

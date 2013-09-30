@@ -16,7 +16,7 @@
 
         public byte UplineBetStatus { get; set; }
 
-        public Int32 HandicapTakenShare { get; set; }
+        public int HandicapTakenShare { get; set; }
 
         public string UserGroup { get; set; }
 
@@ -31,5 +31,7 @@
         public decimal AgentDiscountOneXTwo { get; set; }
 
         public decimal AgentDiscountOther { get; set; }
+
+        public decimal CashBalance { get; set; }
     }
 }

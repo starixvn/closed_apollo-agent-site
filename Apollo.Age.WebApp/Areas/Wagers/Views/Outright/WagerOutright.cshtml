@@ -1,0 +1,83 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Outright
+@using Apollo.Age.Web.Mvc
+@using Apollo.Age.Enumerations
+@model List<OutrightViewModel>
+<table class="tblRpt outright soccer">
+    <thead>
+        <tr>
+            <th class="width-90">
+                @*@Lang.TimeGMT8*@
+                @Lang.time
+                <br />
+                (@Lang.GMT+8)
+            </th>
+            <th>
+                @Lang.league / @Lang.events
+            </th>
+            <th style="width: 270px">
+                @Lang.lblTeam
+            </th>
+            <th style="width: 100px">
+                @Lang.lblelimination
+            </th>
+            <th style="width: 140px">
+                @Lang.lblWager
+            </th>
+        </tr>
+    </thead>    
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var subModel = new List<OutrightViewModel>();
+            var groupLeague = Model.GroupBy(or => new { or.LeagueId, or.LeagueName, or.EventDate });
+            foreach (var item in groupLeague)
+            {
+            <tr>
+                <td class="outright-league">
+                    @Html.Raw(Formater.FormatDateTime22(item.Key.EventDate))
+                </td>
+                <td class="outright-league l">
+                    @item.Key.LeagueName
+                </td>
+                <td colspan="3" class="hasTbl">
+                    <table class="tbl">
+                        @{
+                            subModel = item.ToList();
+                                //Model.Where(x => x.LeagueId == item.Key.LeagueId).ToList();
+                            var status = string.Empty;
+                            foreach (OutrightViewModel subItem in subModel)
+                            {
+                                status = string.Empty;
+                                if(!string.IsNullOrEmpty(subItem.Status))
+                                {
+                                    if (subItem.Status.ToLower() == "refund")
+                                    {
+                                        status = Lang.refund;
+                                    }
+                                    else if (subItem.Status.ToLower() == "lose")
+                                    {
+                                        status = "+";
+                                    }
+                                }
+                                <tr class="@(!string.IsNullOrEmpty(status) ? "outright-status" : string.Empty) ">
+                                    <td style="width: 276px;" >@subItem.TeamName
+                                    </td>
+                                    <td style="width: 103px;" class="c">@status
+                                    </td>
+                                    <td style="width: 143px;" class="c nowrap" data-bettype="@((int)BetTypes.Outright)">
+                                     @WagerHelper.RenderColumnData(subItem.BetTeam, subItem.BetCount, subItem.Stake, subItem.StakeBefore, subItem.LiveIndicator, subItem.LeagueId, subItem.MatchId)                                    
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
+@Html.Hidden("TimeZone", RazorHelper.GetAtlanticStandardTimeZone(DateTime.Now))

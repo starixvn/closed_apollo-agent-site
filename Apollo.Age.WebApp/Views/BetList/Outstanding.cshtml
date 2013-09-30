@@ -1,0 +1,130 @@
+﻿@using Fanex.BetList.Core.TicketHelper;
+@using Fanex.BetList.Core.Factories;
+@using Fanex.BetList.Core.Utils;
+@model Apollo.Age.BetList.ViewModels.BetListViewModel
+@{
+    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.lblBetLists;
+}
+<div id="function-bar">
+    <div class="item back-link">
+        @Model.Title --<a href="javascript:void();" id="backLink">@Lang.back</a>
+    </div>
+    @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+    <div class="end"></div>
+</div>
+@if (Model.DownlinePath != null && Model.DownlinePath.Any())
+{
+    @RazorHelper.Navigation(Model.DownlinePath as List<Apollo.Age.Entities.Agent>)
+}
+<table class="tblRpt betlist clear">
+    <thead class="persist-header">
+        <tr>
+            <th style="width: 70px;">
+                @BetList.time
+            </th>
+            <th style="width: 180px;">
+                @BetList.rebate
+            </th>
+            <th style="width: 180px;">
+                @BetList.ticket
+            </th>
+            <th>
+                @BetList.content
+            </th>
+            <th style="width: 100px;">
+                @BetList.amount
+            </th>
+            <th style="width: 90px;">
+                @BetList.result
+            </th>
+             <th style="width: 80px;">
+                @BetList.status
+            </th>
+            <th style="width: 90px;">
+                @BetList.agentPT
+            </th>
+            <th style="width: 90px;">
+                @BetList.agentComm
+            </th>
+             <th style="width: 50px;">
+                @BetList.feature
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.TicketList != null && Model.TicketList.Any())
+        {
+            var i = 0;
+            decimal totalAmount = 0;
+            foreach (var item in Model.TicketList)
+            {
+                i++;
+                totalAmount += item.Stake;
+            <tr>
+                <td class='c'>
+                    @Html.Raw(item.TransTime)
+                </td>
+                <td class='c'>@Html.Raw(item.Discount)
+                </td>
+                <td class='c'>@Html.Raw(item.GameType)
+                </td>
+                <td class='r'>
+                    @Html.Raw(item.Choice)
+                </td>
+                <td class='r'>
+                    @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
+                </td>
+                <td class='r'>
+                    0.00
+                </td>
+                 <td class='c'>
+                        @Html.Raw(item.Status)
+                    </td>
+                <td class='r'>
+                    @Html.Raw(item.AgentShare)
+                </td>
+                <td class='r'>
+                    @Html.Raw(item.AgentComm)
+                </td>
+                  <td class='r'>
+                        <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
+                    </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="3">
+                </td>
+                <td class="r total">@i
+                </td>
+                <td class="r total">
+                    @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r out-standing-result">
+                    0.00
+                </td>
+                <td class='r total'>
+                </td>
+                <td class='r result'>
+                    0.00
+                </td>
+                <td class="r result">
+                    0.00
+                </td>
+                 <td class='r total'>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td class="c" colspan="10">
+                    @Lang.NodataSearch
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Hidden("type", Request["type"])
+@Html.Hidden("sportTypes", Request["sporttype"])
+@Html.Hidden("betTypes", Request["bettype"])

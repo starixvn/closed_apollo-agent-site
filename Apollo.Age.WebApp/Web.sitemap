@@ -37,10 +37,15 @@
             <siteMapNode title="lblAgentOutstanding" url="reports/outstanding"></siteMapNode>
             <siteMapNode title="TicketCancelled" url="_betList/BetListTransaction.aspx?type=cancel"></siteMapNode>
             <siteMapNode title="transaction" url="_betList/BetListTransaction.aspx?type=transaction"></siteMapNode>
+        </siteMapNode>
+        <!--/Report-->
+
+        <!--Results-->
+        <siteMapNode title="result">
             <siteMapNode title="lblMatchResult" url="results/match"></siteMapNode>
             <siteMapNode title="lblOutrightResult" url="results/outright"></siteMapNode>
         </siteMapNode>
-        <!--/Report-->
+        <!--/Results-->
 
         <!--MemberInfo-->
         <siteMapNode title="lblAccountInformation">

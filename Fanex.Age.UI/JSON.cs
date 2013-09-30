@@ -25,7 +25,10 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         public static string Render(JSONData data)
         {
-            if (data == null) return NULL;
+            if (data == null)
+            {
+                return NULL;
+            }
 
             int count = data.Count;
             var builder = new StringBuilder();

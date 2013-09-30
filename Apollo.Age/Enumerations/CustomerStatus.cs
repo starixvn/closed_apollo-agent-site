@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CustomerStatues.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CustomerStatus.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,15 +10,26 @@
 
 namespace Apollo.Age.Enumerations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     public enum CustomerStatus : int
     {
+        /// <summary>
+        /// Status active.
+        /// </summary>
         Active = 1,
+
+        /// <summary>
+        /// Status stopped.
+        /// </summary>
         Stopped = 2,
-        Locked = 3
+
+        /// <summary>
+        /// Status locked.
+        /// </summary>
+        Locked = 3,
+
+        /// <summary>
+        /// Status C lock.
+        /// </summary>
+        CLock = 4
     }
 }

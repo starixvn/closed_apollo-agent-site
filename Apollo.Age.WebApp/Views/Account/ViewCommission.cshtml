@@ -1,112 +1,116 @@
 ﻿@using Apollo.Age.Account.ViewModels
+@using Apollo.Age.Resources
+
 @{
-	ViewBag.Title = Apollo.Age.Resources.Lang.ViewCommission;
+	ViewBag.Title = Lang.ViewCommission;
 	Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
 	int index = 0;
 }
 @model ViewCommissionViewModel
-@using (Html.BeginForm())
-{
-	<div id="box_header">
-		<div class="row">
-			<div class="cell">
-				<div class="editor">
-					@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem>
-					{
-						new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-						new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
-					})
-					@Html.TextBoxFor(m => m.Username, new { style = "width: 200px" })
-					<input type="submit" id="btnSubmit" class="btn" value="@Apollo.Age.Resources.Lang.submit" />
-				</div>
+
+<div id="box_header">
+	<div class="row">
+		<div class="cell">
+			<div class="editor">
+				@Html.DropDownListFor(m => m.IsMember, new List<SelectListItem>
+				{
+					new SelectListItem { Value = "false", Text = Lang.agent },
+					new SelectListItem { Value = "true", Text = Lang.member }
+				})
+				@Html.TextBoxFor(m => m.Username, new { style = "width: 200px" })
+				<input type="button" id="btnSubmit" class="btn" value="@Lang.submit" />
 			</div>
 		</div>
 	</div>
-}
-<table class="tbl-cust-setting no-border-bottom" id="tableCommission">
-	<thead>
-		<tr>
-			<th>
-			</th>
-			<th>@Apollo.Age.Resources.Lang.group A (%)
-			</th>
-			<th>@Apollo.Age.Resources.Lang.group B (%)
-			</th>
-			<th>@Apollo.Age.Resources.Lang.group C (%)
-			</th>
-			<th>@Apollo.Age.Resources.Lang.group D (%)
-			</th>
-			<th>
-				1x2 (%)
-			</th>
-			<th>@Apollo.Age.Resources.Lang.Others (%)
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model.CommissionList != null && Model.CommissionList.Any())
-		{
-			int lastIndex = Model.CommissionList.Count();
+</div>
 
-			foreach (var comm in Model.CommissionList)
-			{
-				string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
-
-			<tr @Html.Raw(rowClass)>
-				<td class="em-row l">@comm.Username
-				</td>
-				@if (index == lastIndex && Model.IsMember)
+<div class="view-detail-container">
+	<div class="div-border">
+		<table id="tableCommission" class="tb-cust-setting no-border-bottom">
+			<thead>
+				<tr>
+					<th style="width:16%">
+					</th>
+					<th style="width:14%">@Lang.lblA
+					</th>
+					<th style="width:14%">@Lang.lblB
+					</th>
+					<th style="width:14%">@Lang.lblC
+					</th>
+					<th style="width:14%">@Lang.lblD
+					</th>
+					<th style="width:14%">@Lang.lbl1x2
+                    </th>
+					<th style="width:14%">@Lang.other
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.CommissionList != null && Model.CommissionList.Any())
 				{
-					<td>
-						@if (Model.Group.ToLower() == "a")
+					int lastIndex = Model.CommissionList.Count();
+
+					foreach (var comm in Model.CommissionList)
+					{
+						string rowClass = index++ % 2 == 0 ? "class='alt'" : string.Empty;
+
+					<tr @Html.Raw(rowClass)>
+						<td class="first-cell l">@comm.Username</td>
+						@if (index == lastIndex && Model.IsMember)
 						{
-							@RazorHelper.FormatComm(comm.DiscountA * 100)
+							<td>
+								@if (Model.Group.ToLower() == "a")
+								{
+									@Formater.DecFormat(comm.DiscountA * 100, 2)
+								}
+							</td>
+							<td>
+								@if (Model.Group.ToLower() == "b")
+								{
+									@Formater.DecFormat(comm.DiscountB * 100, 2)
+								}
+							</td>
+							<td>
+								@if (Model.Group.ToLower() == "c")
+								{
+									@Formater.DecFormat(comm.DiscountC * 100, 2)
+								}
+							</td>
+							<td>
+								@if (Model.Group.ToLower() == "d")
+								{
+									@Formater.DecFormat(comm.DiscountD * 100, 2)
+								}
+							</td>
 						}
-					</td>
-					<td>
-						@if (Model.Group.ToLower() == "b")
+						else
 						{
-							@RazorHelper.FormatComm(comm.DiscountB * 100)
+							<td>@Formater.DecFormat(comm.DiscountA * 100, 2)
+							</td>
+							<td>@Formater.DecFormat(comm.DiscountB * 100, 2)
+							</td>
+							<td>@Formater.DecFormat(comm.DiscountC * 100, 2)
+							</td>
+							<td>@Formater.DecFormat(comm.DiscountD * 100, 2)
+							</td>
 						}
-					</td>
-					<td>
-						@if (Model.Group.ToLower() == "c")
-						{
-							@RazorHelper.FormatComm(comm.DiscountC * 100)
-						}
-					</td>
-					<td>
-						@if (Model.Group.ToLower() == "d")
-						{
-							@RazorHelper.FormatComm(comm.DiscountD * 100)
-						}
-					</td>
+						<td>@Formater.DecFormat(comm.Discount1x2 * 100, 2)
+						</td>
+						<td>@Formater.DecFormat(comm.DiscountOthers * 100, 2)
+						</td>
+					</tr>
+					}
 				}
 				else
 				{
-					<td>@RazorHelper.FormatComm(comm.DiscountA * 100)
-					</td>
-					<td>@RazorHelper.FormatComm(comm.DiscountB * 100)
-					</td>
-					<td>@RazorHelper.FormatComm(comm.DiscountC * 100)
-					</td>
-					<td>@RazorHelper.FormatComm(comm.DiscountD * 100)
-					</td>
+					@RazorHelper.ShowNoInfo(7)
 				}
-				<td>@RazorHelper.FormatComm(comm.Discount1x2 * 100)
-				</td>
-				<td>@RazorHelper.FormatComm(comm.DiscountOthers * 100)
-				</td>
-			</tr>
-			}
-		}
-		else
-		{
-			@RazorHelper.ShowNoInfo(7)
-		}
-	</tbody>
-</table>
+			</tbody>
+		</table>
+	</div>
+</div>
+
 @section scripts
 {
-	<script src="~/views/account/resources/viewcomm.js" type="text/javascript"></script>
+	@Scripts.Render("~/scripts/viewcommsettingjs")
 }

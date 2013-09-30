@@ -4,9 +4,9 @@
 @using Fanex.CustSetting.Core
 @{    
     var template = _Configuration.PositionTakingGridConfig;
-    var agentLevel = (int)ViewBag.AgentLevel;
-    var isAgent = (bool)ViewBag.IsAgent;
-    var list = (Dictionary<string, PositionTakingModel>)Model;   
+    var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
+    var isAgent = ViewBag.IsAgent != null ? (bool)ViewBag.IsAgent : false;
+    var list = Model != null ? (Dictionary<string, PositionTakingModel>)Model : new Dictionary<string, PositionTakingModel>();   
 }
 @if (!ReferenceEquals(list, null) && list.Any())
 {
@@ -15,6 +15,14 @@
     var count = 0;
     
     <table class="tblRpt">
+        @if (!isAgent)
+        { 
+            <tr class="sub-title">
+                <td colspan="6">
+                    @Lang.agent: <strong>@ViewBag.Agent</strong>
+                </td>
+            </tr>
+        }
         @foreach (var itemSportType in xmlSportType)
         {
             var sportId = itemSportType.Attribute("id").Value;
@@ -57,6 +65,74 @@
                 count = 0;
                 }
             </tr>
+            
+                if (agentLevel != 1)
+                { 
+            <tr>
+                <td class="colW">
+                    @if (isAgent)
+                    { 
+                        @Lang.lblMaxTakenShare
+                    }
+                    else
+                    {
+                        <span>@Lang.PercentInMember</span>
+                    }
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = list.ContainsKey(key) ? list[key] : null;           
+                    <td class="colW2 @noborder">
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            @ToString(model.OldMaxUpper, model.MaxUpper)
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
+                }
+            </tr>
+                if (isAgent)
+                {
+            <tr>
+                <td class="colW">
+                    @Lang.AppyPresetAdvancedMode
+                </td>
+                @foreach (var itemBet in xmlBetType)
+                {
+                    var noborder = count == 4 ? "no-border-right" : string.Empty;
+                    var betId = itemBet.Attribute("id").Value;
+                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
+                    var model = list.ContainsKey(key) ? list[key] : null;           
+                    <td class="colW2 @noborder">
+                        @if (!ReferenceEquals(model, null))
+                        {
+                            if (model.IsApply)
+                            { 
+                            <span class="valuechanged">@Lang.lblYes</span>
+                            }
+                            else
+                            { 
+                            <span>@Lang.lblNo</span>
+                            }
+                        }
+                    </td>                            
+                        count++;
+                }
+                @GenerateEmptyColumn(count)
+                @{
+                count = 0;
+                }
+            </tr>
+                }
+                }
+
                 if (isAgent)
                 {
             <tr>
@@ -85,43 +161,8 @@
             </tr>
                 }
 
-                if (agentLevel != 1)
-                { 
-
-            <tr>
-                <td class="colW">
-                    @if (isAgent)
-                    { 
-                        @Lang.lblMaxTakenShare
-                    }
-                    else
-                    {
-                        @Lang.lblTakenShare
-                    }
-                </td>
-                @foreach (var itemBet in xmlBetType)
-                {
-                    var noborder = count == 4 ? "no-border-right" : string.Empty;
-                    var betId = itemBet.Attribute("id").Value;
-                    string key = string.Format("{0}_{1}_{2}", sportId, betId, isLive);
-                    var model = list.ContainsKey(key) ? list[key] : null;           
-                    <td class="colW2 @noborder">
-                        @if (!ReferenceEquals(model, null))
-                        {
-                            @ToString(model.OldMaxUpper, model.MaxUpper)
-                        }
-                    </td>                            
-                        count++;
-                }
-                @GenerateEmptyColumn(count)
-                @{
-                count = 0;
-                }
-            </tr>
-                }
                 if (isAgent)
                 { 
-
             <tr>
                 <td class="colW">
                     @Lang.lblMinGivenShare
@@ -150,10 +191,10 @@
         }
     </table>
 }
-@helper ToString(decimal oldValue, decimal newValue)
+@helper ToString(decimal? oldValue, decimal newValue)
     {
-        string strOld = Math.Round(oldValue / 100, 2).ToString("N");
-        string strNew = Math.Round(newValue / 100, 2).ToString("N");
+        string strOld = oldValue != null ? Formater.DecFormat((decimal)oldValue / 100, 2).ToString() : Lang.lblNA;
+        string strNew = Formater.DecFormat(newValue / 100, 2).ToString();
 
         if (oldValue != newValue)
         { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 

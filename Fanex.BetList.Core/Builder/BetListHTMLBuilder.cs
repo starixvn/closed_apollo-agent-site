@@ -16,9 +16,11 @@ namespace Fanex.BetList.Core.Builder
     using Fanex.BetList.Core.Builder.AgentCommBuilder;
     using Fanex.BetList.Core.Builder.AgentShareBuilder;
     using Fanex.BetList.Core.Builder.ChoiceBuilder;
+    using Fanex.BetList.Core.Builder.DiscountBuilder;
     using Fanex.BetList.Core.Builder.OddsBuilder;
     using Fanex.BetList.Core.Builder.StakeBuilder;
     using Fanex.BetList.Core.Builder.StatusBuilder;
+    using Fanex.BetList.Core.Builder.TimeBuilder;
     using Fanex.BetList.Core.Builder.TransBuilder;
     using Fanex.BetList.Core.Entities;
 
@@ -69,6 +71,63 @@ namespace Fanex.BetList.Core.Builder
         }
 
         /// <summary>
+        /// Add the time
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public BetListHTMLBuilder AddTime(ITicket ticket, string openTag, string closeTag, BetListPage page)
+        {
+            string time = BuildTime(ticket, page);
+            this._content.Append(string.Join(null, new string[] { openTag, time, closeTag }));
+            return this;
+        }
+
+        /// <summary>
+        /// Build the time
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public string BuildTime(ITicket ticket, BetListPage page)
+        {
+            ITime timeBuilder = new Time();
+            string time = timeBuilder.Render(ticket, page);
+            return time;
+        }
+
+        /// <summary>
+        /// Add discount
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public BetListHTMLBuilder AddDiscount(ITicket ticket, string openTag, string closeTag, BetListPage page)
+        {
+            string discount = BuildDiscount(ticket, page);
+            this._content.Append(string.Join(null, new string[] { openTag, discount, closeTag }));
+            return this;
+        }
+
+        /// <summary>
+        /// Build discount
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public string BuildDiscount(ITicket ticket, BetListPage page)
+        {
+            IDiscount discountBuilder = new Discount();
+            string discount = discountBuilder.Render(ticket, page);
+
+            return discount;
+        }
+
+        /// <summary>
         /// Adds the choice.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
@@ -81,7 +140,7 @@ namespace Fanex.BetList.Core.Builder
         public BetListHTMLBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData,
             string openTag, string closeTag, bool isShowScoreMap)
         {
-            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap);
+            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
             return this;
         }
@@ -94,10 +153,10 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>string</returns>
-        public string BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap)
+        public string BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap,BetListPage betlistPage)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
-            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
+            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap, betlistPage);
 
             return choice;
         }
@@ -168,9 +227,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddTrans(ITicket ticket, string openTag, string closeTag)
+        public BetListHTMLBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper, string openTag, string closeTag, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
-            string trans = BuildTrans(ticket);
+            string trans = BuildTrans(ticket, ticketHelper, FuncGetOddsTypeName, betListPage);
             this._content.Append(string.Join(null, new string[] { openTag, trans, closeTag }));
             return this;
         }
@@ -180,10 +239,10 @@ namespace Fanex.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns></returns>
-        public string BuildTrans(ITicket ticket)
+        public string BuildTrans(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
-            string trans = transBuilder.Render(ticket);
+            string trans = transBuilder.Render(ticket, ticketHelper, FuncGetOddsTypeName, betListPage);
             return trans;
         }
 
@@ -197,9 +256,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="closeTag">The close tag.</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddStatus(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, string openTag, string closeTag, bool isShowVNIP)
+        public BetListHTMLBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag, bool isShowVNIP)
         {
-            string status = BuildStatus(ticket, ticketHelper, ticketData, isShowVNIP);
+            string status = BuildStatus(ticket, ticketData);
             this._content.Append(string.Join(null, new string[] { openTag, status, closeTag }));
             return this;
         }
@@ -212,10 +271,10 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data (Status33 Win/Place)</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public string BuildStatus(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
+        public string BuildStatus(ITicket ticket, List<ITicketData> ticketData)
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
-            string status = statusBuilder.Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            string status = statusBuilder.Render(ticket, ticketData);
 
             return status;
         }
@@ -229,9 +288,9 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
-        public BetListHTMLBuilder AddAgentComm(ITicket ticket, bool isHideLink, string openTag, string closeTag)
+        public BetListHTMLBuilder AddAgentComm(ITicket ticket, string openTag, string closeTag)
         {
-            string agentComm = BuildAgentComm(ticket, isHideLink);
+            string agentComm = BuildAgentComm(ticket);
             this._content.Append(string.Join(null, new string[] { openTag, agentComm, closeTag }));
 
             return this;
@@ -241,16 +300,23 @@ namespace Fanex.BetList.Core.Builder
         /// Build agent comm
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="hideLinkDetail">Show or Hide link</param>
         /// <returns></returns>
-        public string BuildAgentComm(ITicket ticket, bool isHideLink)
+        public string BuildAgentComm(ITicket ticket)
         {
             IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
-            string agentComm = agentCommBuilder.Render(ticket, isHideLink);
+            string agentComm = agentCommBuilder.Render(ticket);
 
             return agentComm;
         }
 
+        /// <summary>
+        /// Add Agent share
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <param name="openTag"></param>
+        /// <param name="closeTag"></param>
+        /// <returns></returns>
         public BetListHTMLBuilder AddAgentShare(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag)
         {
             string agentShare = BuildAgentShare(ticket, ticketData);
@@ -259,6 +325,12 @@ namespace Fanex.BetList.Core.Builder
             return this;
         }
 
+        /// <summary>
+        /// Buil agent share
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="ticketData"></param>
+        /// <returns></returns>
         public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)
         {
             IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);
@@ -407,7 +479,7 @@ namespace Fanex.BetList.Core.Builder
 
             if (type == null)
             {
-                return new Trans1();
+                return new Trans();
             }
             else
             {

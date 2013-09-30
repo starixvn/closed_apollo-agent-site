@@ -7,6 +7,7 @@
 //   <change who="Anders" date="2013.4.8">Created</change>
 //   <change who="Lewis" date="2013.4.15">Added htmlAttributes param for DatePicker</change>
 //   <change who="Lewis" date="2013.5.17">Added Resource</change>
+//   <change who="Edward.Nguyen" date="2013.6.24">Add get Start of Week</change>
 // </history>
 
 namespace Apollo.Age.Web.Mvc
@@ -23,6 +24,8 @@ namespace Apollo.Age.Web.Mvc
     using System.Web.Compilation;
     using System.Globalization;
     using System.Resources;
+    using Apollo.Age.Enumerations;
+    using Apollo.Age.Resources;
 
     public static class HtmlHelperExtensions
     {
@@ -155,6 +158,21 @@ namespace Apollo.Age.Web.Mvc
         //    return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing));
         //}
 
+        public static DateTime StartOfWeek(this DateTime dt)
+        {
+            int diff = dt.DayOfWeek - DayOfWeek.Monday;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            return dt.AddDays(-1 * diff).Date;
+        }
+
+        public static DateTime EndOfWeek(this DateTime dt)
+        {
+            return dt.StartOfWeek().AddDays(6);
+        }
         #endregion
 
         #region Date, Year Picker
@@ -165,7 +183,7 @@ namespace Apollo.Age.Web.Mvc
             DateTime? minDate = null,
             DateTime? maxDate = null,
             //string formatDate = "M/d/yyyy",
-            string formatDate = "yyyy-M-d",
+            string formatDate = "yyyy-MM-dd",
             IEnumerable<DateTime> unavailDates = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
@@ -189,7 +207,7 @@ namespace Apollo.Age.Web.Mvc
            DateTime? date,
            DateTime? minDate = null,
            DateTime? maxDate = null,
-           string formatDate = "yyyy-M-d",
+           string formatDate = "yyyy-MM-dd",
            IEnumerable<DateTime> unavailDates = null)
         {
             if (string.IsNullOrWhiteSpace(formatDate))
@@ -198,16 +216,16 @@ namespace Apollo.Age.Web.Mvc
             }
 
             string disabledDate = (unavailDates != null && unavailDates.Count() > 0)
-                ? string.Join(",", unavailDates.Select(d => d.ToString("yyyy-M-d")))
+                ? string.Join(",", unavailDates.Select(d => d.ToString("yyyy-MM-dd")))
                 : string.Empty;
 
             var htmlAttribute = new
             {
                 @class = "datepicker",
-                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-M-d") : "null",
-                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-M-d") : "null",
+                mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-MM-dd") : "null",
+                maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-MM-dd") : "null",
                 disabledDate = disabledDate
-               
+
             };
 
             var dateValue = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
@@ -304,10 +322,71 @@ namespace Apollo.Age.Web.Mvc
         public static string Resource(this HtmlHelper htmlhelper, string key,
             Type resourceSource = null)
         {
-            var resMgr = new ResourceManager(resourceSource ?? typeof(Apollo.Age.Resources.Lang));
-
-            return resMgr.GetString(key);
+            return LanguageManager.GetResourceData(key);
         }
+        #endregion
+
+        #region Status
+
+        public static MvcHtmlString ToStringStatus(this byte status, byte uplineStatus)
+        {
+            string format = "<span class=\"{0}\">{1}</span>";
+            MvcHtmlString result = null;
+
+            if (uplineStatus == (int)CustomerStatus.Stopped)
+            {
+                result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
+
+                return result;
+            }
+
+            switch (status)
+            {
+                case (int)CustomerStatus.Active:
+                    result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
+                    break;
+                case (int)CustomerStatus.Stopped:
+                    result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));
+                    break;
+                default:
+                    result = new MvcHtmlString(string.Format(format, "suspended", Lang.locked));
+                    break;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Format Show Time
+        public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
+        {
+            string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
+
+            if (!ignoreTd)
+            {
+                showTimeFormat = string.Format("<td class=\"c show-time\" >{0}</td>", showTimeFormat);
+            }
+
+            return new HtmlString(showTimeFormat);
+        }
+        #endregion
+
+        #region Distinct by
+
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+    (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            foreach (TSource element in source)
+            {
+                if (seenKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
+
         #endregion
     }
 }

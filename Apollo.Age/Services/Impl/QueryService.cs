@@ -9,7 +9,6 @@
 //   <change who="Anders" date="2013.4.8">Change function name from GetReportData to GetData</change>
 // </history>
 
-
 namespace Apollo.Age.Services.Impl
 {
     using System;
@@ -32,12 +31,12 @@ namespace Apollo.Age.Services.Impl
             _repository = repository ?? new DynamicRepository();
         }
 
-        public virtual IEnumerable<T> GetData<T>(ICriteria criteria)
+        public virtual IEnumerable<T>  GetData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             try
-            {                
+            {               
                 if (criteria.IsValid())
                 {
                     return _repository.Fetch<T>(criteria);
@@ -45,11 +44,13 @@ namespace Apollo.Age.Services.Impl
 
                 return new List<T>();
             }
-            catch (Exception ex)
+            catch (ServiceLayerException ex)
             {
+                ex.SettingKey = criteria.GetSettingKey();                
                 HandleException(ex);
                 return null;
             }
         }
+        
     }
 }

@@ -1,0 +1,343 @@
+﻿@import "../../../_globalResources/css/Agent.less";
+@import "../../../_globalResources/css/RefreshCountDown.less";
+@import "../../../_globalResources/css/calendar.less";
+
+a {
+	&:hover {
+		color: #F60;
+		text-decoration: none;
+	}
+}
+
+.cond-search {
+	width: auto;
+
+	td {
+		white-space: nowrap;
+		padding: 0 5px;
+
+		span, select {
+			vertical-align: middle;
+		}
+		.sbpager .item-container {
+			float: none;
+		}
+	}
+}
+
+#function-bar {
+	input.datepicker {
+		border: 1px solid #000;		
+		line-height: 1.2em;
+		font-size: .9em;
+		width: 75px;
+		height: 11px;
+		padding: 3px;
+		margin-right: 5px;
+	}
+}
+
+#header_main {
+	color: #000099;
+	display: block;
+	float: left;
+	margin: 3px 10px 0 5px;
+	padding: 2px 0;
+}
+
+.box-header {
+	float: left;
+	clear: none;
+
+	.row .cell {
+		.label label {
+			margin-top: 1px;
+		}
+	}
+
+	.league {
+		//max-width: 450px;
+	}
+}
+
+.btnCountDown {
+	margin-right: 0;
+}
+
+.mainpage {
+	/*position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+	top: 25px;
+	height: auto;*/
+
+	.text-green {
+		color: #009900;
+	}
+
+	.red {
+		color: #CC0000;
+	}
+
+	.pages-size {
+		.pull-left;		
+		text-transform: uppercase;
+		margin-top: 5px;
+	}
+
+	#content_main
+	{
+		width: 1100px;
+	}
+
+	/* Total goal */
+	.round_color {
+		color: Red;
+	}
+
+	/* HANDICAP OVER UNDER */
+	.fcnum {
+		color: #1D1D1D;
+		text-decoration: none;
+	}
+
+	.fcbtn {
+		text-align: center;
+		width: 16px;
+	}
+
+	.hide {
+		display: none;
+	}
+
+	.negative_color {
+		color: #eb6003;
+	}
+
+	.blue {
+		color: #2673CE;
+	}
+
+	.line_n {
+		background: url("../../_globalResources/images/line_n.jpg") repeat scroll 0 0 transparent;
+	}
+
+	.raceNo {
+		font-size: 14px;
+	}
+
+	.valign-top {
+		vertical-align: top;
+	}
+
+	.header_tb04 {
+		background: url("../../_globalResources/images/bg_head05.jpg") repeat-x scroll 0 0 transparent;
+		color: #900;
+		//font-weight: bold;
+		line-height: 20px;
+		text-align: right;
+	}
+
+	.block-loading {
+		&.fc1x2 {
+			margin-top: 225px;
+		}
+
+		&.loading-scoremap {
+			left: 460px;
+			position: fixed;
+			top: 277px;
+		}
+	}
+
+	.no-border-bottom {
+		border-bottom-width: 0px !important;
+	}
+
+	.break-line {
+		white-space: inherit;
+	}
+
+	.tblRpt {
+
+		th, td {
+			padding: 1px 3px;
+		}
+
+		td {
+			vertical-align: text-top;			
+
+			&.vertical-middle {
+				vertical-align: middle;
+			}
+
+			&.vertical-top {
+				vertical-align: text-top;
+			}
+
+			&.vertical-bottom {
+				vertical-align: text-bottom;
+			}
+
+			.split {
+				color: #000;
+				margin: 0 3px;
+			}
+
+		}
+
+		&.special-bet {
+			max-width: 100%;
+			width: 700px;
+		}
+
+		&.soccer, &.basketball, &.tennis, &.volleyball, &.baseball, &.others {
+			width: 770px;
+
+			&.parlay {
+				width: 800px;
+			}
+
+			&.running-ball {
+				width: 100%;
+			}
+		}
+
+		&.soccer {			
+
+			&.straight {
+				width: 837px;
+			}
+
+			&.first-half {
+				width: 900px;
+			}
+
+			&.correct-score, &.first-half-correct, &.half-full {
+				width: 460px;
+			}
+		}		
+		
+		&.tennis, &.volleyball {
+
+			&.straight {
+				width: 1038px;
+			}
+		}
+
+		&.baseball {
+			
+			&.straight {
+				width: 900px;
+			}
+		}
+
+		&.others {
+
+			&.straight, &.first-half {
+				width: 900px;
+			}
+		}
+
+		&.outright {
+			&.soccer {
+				width: 920px;
+				border-color: #CC9900;
+
+				thead td, thead th, tbody .em-row {
+					background-color: #FFFF66;
+					border-color: #CC9900;
+				}
+
+				tbody tr td {
+					border-color: #CC9900;
+					&.hasTbl {
+						padding: 0;
+						vertical-align: top;
+
+						.tbl {
+							border: 1px solid #CC9900;
+							width: 100%;
+							height: 100%;
+
+							tbody tr {
+
+								&.one-row td {
+									height: 30px;
+								}
+
+								td {
+									border-color: #CC9900;
+								}
+							}
+						}
+					}					
+				}
+			}
+		}
+	}
+}
+
+/* Class Width for table*/
+.width-90 {
+	width: 90px;
+}
+
+/* FIX IE */
+
+.eq-ie7 {
+	.box-header .league {
+		width: 450px;
+	}
+
+	.cond-search {
+		#header_main {
+			padding-top: 1px;
+		}
+
+		.sbpager {
+			display: block;
+		}
+	}
+}
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
+	}
+}
+
+.eq-ie8 {	
+	.box-header {
+		.league-el {
+			max-width: 510px;
+
+			.editor {
+				max-width: 450px;
+			}
+		}
+	}
+}
+
+.outright-league
+{
+	text-align: center;
+    vertical-align: middle !important;
+}
+
+.outright-status
+{
+	background-color: #99CCFF;
+}
+
+#container
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+

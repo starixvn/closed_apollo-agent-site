@@ -10,6 +10,7 @@
 namespace Apollo.Age.BetList.Criterias
 {
     using System;
+    using Fanex.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -41,19 +42,104 @@ namespace Apollo.Age.BetList.Criterias
 
         public int MatchId { get; set; }
 
-        public bool IsExportExcel { get; set; }
-
         public string StatusIds { get; set; }
 
-        public string Bettypes { get; set; }
+        public string BetTypes { get; set; }
+
+        public string SportTypes { get; set; }
 
         public string BetTeam { get; set; }
 
         public int? LiveIndicator { get; set; }
 
+        [SpParam(Ignored = true)]
+        public BetListPage BetListPage { get; set; }
+
+        public int RptType
+        {
+            get
+            {
+                switch (this.BetListPage)
+                {
+                    case BetListPage.AccountInfo:
+                        return (int)ReportType.AccountInfo;
+                    case BetListPage.Transaction:
+                        return (int)ReportType.Transaction;
+                    case BetListPage.Outstanding:
+                        return (int)ReportType.Outstanding;
+                    case BetListPage.Cancel:
+                        return (int)ReportType.TicketCancelled;
+                }
+
+                return (int)ReportType.AccountInfo;
+            }
+        }
+
+        public override string GetSettingKey()
+        {
+            string settingKey = string.Empty;
+
+            switch (this.BetListPage)
+            {
+                case BetListPage.Outstanding:
+                case BetListPage.AccountInfo:
+                case BetListPage.Cancel:
+                    settingKey = "Age_BetList_SelByDateMemStatus";
+                    break;
+                case BetListPage.Transaction:
+                    settingKey = "Age_BetList_SelTransaction";
+                    break;
+            }
+
+            return settingKey;
+        }
+
+        public dynamic GetParameters()
+        {
+            if (this.BetListPage == BetListPage.Transaction)
+            {
+                return new
+                {
+                    todate = this.ToDate,
+                    fromdate = this.FromDate,
+                    custid = this.CustId,
+                    agentid = this.AgentId,
+                    loggedid = this.LoggedId,
+                    statusids = this.StatusIds,
+                    bettypes = !string.IsNullOrEmpty(this.BetTypes) ? this.BetTypes : "0",
+                    sporttypes = !string.IsNullOrEmpty(this.SportTypes) ? this.SportTypes : "0",
+                    movebetsday = this.MoveBetsDay
+                };
+            }
+            else
+            {
+                return new
+                {
+                    todate = this.ToDate,
+                    fromdate = this.FromDate,
+                    custid = this.CustId,
+                    agentid = this.AgentId,
+                    loggedid = this.LoggedId,
+                    statusids = this.StatusIds,
+                    bettypes = !string.IsNullOrEmpty(this.BetTypes) ? this.BetTypes : "0",
+                    sporttypes = !string.IsNullOrEmpty(this.SportTypes) ? this.SportTypes : "0",
+                    rpttype = this.RptType
+                };
+            }
+        }
+
+
         public override bool IsValid()
         {
             return this.ToDate >= this.FromDate;
         }
+    }
+
+    public enum ReportType : int
+    {
+        AccountInfo = 0,
+        Transaction = 1,
+        Outstanding = 2,
+        TicketCancelled = 3
     }
 }

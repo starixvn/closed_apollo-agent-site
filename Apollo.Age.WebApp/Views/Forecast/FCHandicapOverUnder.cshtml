@@ -14,7 +14,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", 15, 0, "UpdateForecastHDValue();")
+    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", new int[1] { 180 }, "UpdateForecastHDValue();")
 }
 <div class="box-header selectLeague">
     <div class="row">
@@ -58,7 +58,7 @@
         <thead>
             <tr class="RptHeader">
                 <td colspan="2">
-                    @Apollo.Age.Resources.Lang.lblTeam
+                    @Apollo.Age.Resources.Lang.homeaway
                 </td>
                 <td colspan="3">
                     @Apollo.Age.Resources.Lang.lblHandicapFC

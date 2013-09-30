@@ -37,7 +37,7 @@ namespace Apollo.Age.Web.Pager
             var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 
             // Previous
-            model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "<", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "<" });
+            model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "&#171;", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "&#171;" });
 
             var start = 1;
             var end = pageCount;
@@ -103,7 +103,7 @@ namespace Apollo.Age.Web.Pager
             }
 
             // Next
-            model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = ">", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = ">" });
+            model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "&#187;", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "&#187;" });
 
             // AjaxOptions
             if (pagerOptions.AjaxOptions != null)
@@ -205,7 +205,7 @@ namespace Apollo.Age.Web.Pager
                     {
                         if (isExistedParam)
                         {
-                            url += "&" + key + "=" + paramsList[key];
+                            url += "&amp;" + key + "=" + paramsList[key];
                         }
                         else
                         {

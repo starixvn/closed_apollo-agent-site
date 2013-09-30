@@ -1,0 +1,96 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Wagers.Core
+@using Apollo.Age.Entities
+@using Apollo.Age.Web.Mvc
+@{
+    Layout = null;
+    var groupBetName = (string)ViewBag.GroupBetName;
+    var sportName = (string)ViewBag.SportName;
+    var title = (string)ViewBag.Title;
+    var titleAll = (string)ViewBag.TitleAll;
+    var lableGroupBet = (string)ViewBag.LableGroupBetName;
+    var EmCalendar = ViewBag.EmCalendar != null ? (List<SelectListItem>)ViewBag.EmCalendar : null;
+    var isEM = (bool)ViewBag.isEM;
+    var isOR = (bool)ViewBag.isOR;
+    var balanceUpDay = (DateTime)ViewBag.BalanceUpDay;
+}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>@Lang.lblWager</title>
+    <link href="~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Wagers/Styles/Wagers.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Css/RefreshCountDown.less" rel="Stylesheet" type="text/css" />
+    <link href="~/_GlobalResources/Js/Pager/jquery.sbpager.less" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="function-bar">
+        <div class="item">
+            @Lang.lblOP.
+            <select class="za_select" name="ltype" id="groupComm">
+                <option value="All">@titleAll</option>
+                <option value="A">@title A</option>
+                <option value="B">@title B </option>
+                <option value="C">@title C </option>
+                <option value="D">@title D </option>
+            </select>
+        </div>
+        <div class="before-filter">
+            --</div>@RazorHelper.RefreshCountDown("WAGERREFRESHCOUNTDOWN", new int[] { 180 }, "Wagers.getWagerData($('#pager').sbPager('getCurrentPage'));")
+        @RazorHelper.ToServerTime(DateTime.Now)
+        <div class="before-filter">
+            --</div>
+        @if (isEM && EmCalendar != null)
+        {           
+            <div class="item">
+                @(Lang.date):
+                @Html.DropDownList("EmDate", EmCalendar)
+            </div>
+        }
+        <div class="before-filter">
+            --</div>
+        @if (isOR == false)
+        {
+            @WagerHelper.RenderMenu(sportName, groupBetName, isEM)
+        }
+        else
+        { 
+            <div class="item">
+             @Html.DatePicker("OutrightFromDate", DateTime.Now, minDate: balanceUpDay)
+             </div>
+             <div class="before-filter">
+            ~</div>
+            <div class="item">
+             @Html.DatePicker("OutrightToDate", DateTime.Now, minDate: balanceUpDay)
+             </div>
+            <div class="item">
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.lblconfirm" />
+            </div>
+        }
+        <img alt="" src="~/_GlobalResources/Images/top_04.gif" />
+    </div>
+    @Html.Hidden("GroupBetName", groupBetName)
+    @Html.Hidden("SportName", sportName)
+    @Html.Hidden("FromDate", new DateTime(2013, 8, 1))@*Sample data - 10 days*@
+    @Html.Hidden("SportTypeIds", (string)ViewBag.SportTypes)
+    @Html.Hidden("BetTypeIds", (string)ViewBag.BetTypeIds)
+    @Html.Hidden("IsEM", isEM.ToString().ToLower())
+    @Html.Hidden("IsOR", isOR.ToString().ToLower())
+    <div class="mainpage">
+        @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder)
+        <div class="pages-size">
+            <div class="pull-left">@Lang.Pages:</div>
+            <div id="pager" class="sbpager">
+            </div>
+        </div>
+        <div id="container">
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Hidden("PageIndex", 0)
+</body>
+</html>
+@Scripts.Render("~/areas/Wagers")

@@ -15,7 +15,6 @@ namespace Apollo.Age.Account.Controllers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.Account.Core;
@@ -24,16 +23,20 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
 
+    /// <summary>
+    /// Message controller.
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class MessageController : BaseController
     {
-        private MessageService _messageService;
-
         /// <summary>
-        /// For temp
+        /// For temp, set site list is 3000 and 3300.
         /// </summary>
+        private const string SiteList = "3000,3300";
         private const int SiteId = 3300;
+
+        private MessageService _messageService;
 
         public MessageController()
             : this(null)
@@ -45,31 +48,75 @@ namespace Apollo.Age.Account.Controllers
             this._messageService = messageService ?? new MessageService();
         }
 
-        public ViewResult Announcement(DateTime? lastPostTime)
+        /// <summary>
+        /// Get announcement.
+        /// </summary>
+        /// <param name="content">Content search.</param>
+        /// <param name="modeDate">Search mode date.</param>
+        /// <returns>View announcement.</returns>
+        [ValidateInput(false)]
+        public ViewResult Announcement(string content = "", int modeDate = 0)
         {
-            var model = this._messageService.GetAnnouncement(this.CurrentSession.AgentId, lastPostTime ?? DateTime.Now);
+            DateTime? startDate = new DateTime();
+            DateTime endDate = new DateTime();
 
-            if (!ReferenceEquals(model, null) && model.Count() > 0)
+            /* Value of ModeDate
+             * 0 : All (From the month before until now)
+             * 1 : Today
+             * 2 : Yesterday
+             * 3 : Before Yesterday
+             */
+            switch (modeDate)
             {
-                var cookie = new HttpCookie(Constants.LastPostTimeKey, model.Last().PostTime.ToString());
-                HttpContext.Response.Cookies.Set(cookie);
-
-                ViewBag.LastPostTime = lastPostTime ?? model.Last().PostTime;
+                case 1:
+                    startDate = DateTime.Now;
+                    endDate = DateTime.Now;
+                    break;
+                case 2:
+                    startDate = DateTime.Now.AddDays(-1);
+                    endDate = DateTime.Now.AddDays(-1);
+                    break;
+                case 3:
+                    startDate = DateTime.Now.AddDays(-2);
+                    endDate = DateTime.Now.AddDays(-2);
+                    break;
+                default:
+                    startDate = null;
+                    endDate = DateTime.Now;
+                    break;
             }
 
+            var model = this._messageService.GetAnnouncement(
+                    agentId: this.CurrentSession.AgentId,
+                    siteIds: SiteList,
+                    lastPostDate: endDate,
+                    startTime: startDate,
+                    content: content,
+                    langue: this.CurrentSession.Language);
+
             ViewBag.UserLang = this.CurrentSession.Language;
+            ViewBag.ModeDate = modeDate;
 
             return View(model);
         }
 
+        /// <summary>
+        /// Portal action.
+        /// </summary>
+        /// <returns>View portal action.</returns>
         public ViewResult Portal()
         {
             return View();
         }
 
+        /// <summary>
+        /// Get new message.
+        /// </summary>
+        /// <param name="criteria">View model get new message.</param>
+        /// <returns>Content new message.</returns>
         public ViewResult NewMessage(GetMessageCriteria criteria)
         {
-            int isPublic = 0;
+            int publicMessage = 0;
             int special = 0;
             int maxSize = 50;
 
@@ -93,7 +140,7 @@ namespace Apollo.Age.Account.Controllers
             if (string.Compare(criteria.PageQuery, Constants.Special) == 0
                 || string.Compare(criteria.PageQuery, Constants.AllSpecial) == 0)
             {
-                isPublic = 2;
+                publicMessage = 2;
                 special = 1;
                 criteria.From = null;
                 criteria.To = null;
@@ -101,27 +148,125 @@ namespace Apollo.Age.Account.Controllers
 
             if (string.Compare(criteria.PageQuery, Constants.Normal) == 0)
             {
-                isPublic = 1;
+                publicMessage = 1;
                 special = 0;
             }
 
             if (string.Compare(criteria.PageQuery, Constants.Private) == 0)
             {
-                isPublic = 0;
+                publicMessage = 0;
                 special = 2;
             }
 
-            criteria.IsPublic = isPublic;
             criteria.Special = special;
             criteria.IsAgent = true;
 
-            ViewBag.Messages = (_messageService.GetMessage(criteria) ?? new List<MessageModel>()).ToList();
+            IEnumerable<MessageModel> listMessage = null;
+
+            switch (publicMessage)
+            {
+                case 0:
+                    listMessage = GetPrivateMessage(criteria);
+                    break;
+                case 1:
+                    listMessage = GetPublicMessage(criteria);
+                    break;
+                default:
+                    switch (criteria.Special)
+                    {
+                        case 0:
+                            listMessage = GetNotSpecialMessage(criteria);
+                            break;
+                        case 1:
+                            listMessage = GetSpecialMessage(criteria);
+                            break;
+                    }
+
+                    if (listMessage == null)
+                    {
+                        listMessage = _messageService.GetMessage(criteria);
+                    }
+
+                    break;
+            }
+
+            ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
 
             return View(criteria);
         }
 
+        #region Private
+
+        private IEnumerable<MessageModel> GetPrivateMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPrivateMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetPublicMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPubMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetNotSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetNotSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+        #endregion
+
         #region Ajax request
 
+        /// <summary>
+        /// Set private message is read.
+        /// </summary>
+        /// <param name="messageId">Message id.</param>
+        /// <returns>Message is updated.</returns>
         [HttpPost]
         public ActionResult SetReadPriMsg(int messageId)
         {
@@ -135,6 +280,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(null);
         }
 
+        /// <summary>
+        /// Update read private messages.
+        /// </summary>
+        /// <returns>Message is read.</returns>
         [HttpPost]
         public ActionResult UpdatePriMsg()
         {
@@ -146,6 +295,10 @@ namespace Apollo.Age.Account.Controllers
             return Json(null);
         }
 
+        /// <summary>
+        /// Get message for ajax.
+        /// </summary>
+        /// <returns>Content of message.</returns>
         [HttpPost]
         public ActionResult GetMessage()
         {

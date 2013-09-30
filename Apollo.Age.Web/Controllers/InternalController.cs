@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Lewis" date="2013.5.2">Created</change>
 //   <change who="Anders.Le" date="2013.6.12">Remove hardcode when checking captcha</change>
+//   <change who="Anders.Le" date="2013.6.27">Change the implementation of random string</change>
 // </history>
 
 namespace Apollo.Age.Web
@@ -25,9 +26,14 @@ namespace Apollo.Age.Web
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
+    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
+    using Fanex.Common;
     using Fanex.Logging;
 
+    /// <summary>
+    /// Internal Login Controller.
+    /// </summary>
     public class InternalController : Controller
     {
         #region Const
@@ -37,7 +43,10 @@ namespace Apollo.Age.Web
         private const string Language = "Language";
         private const string AdminName = "AdminName";
         private const string AdminId = "AdminId";
+        private const string AgentName = "AgentName";
         private const int ServerId = 2;
+        private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private readonly int _randomStringLength = _RandomString.Length;
 
         #endregion Const
 
@@ -45,8 +54,7 @@ namespace Apollo.Age.Web
 
         private readonly IUserService _userService;
         private DeviceDetection _deviceService;
-
-        #endregion Services
+        private UnderMaintenanceService _underMaintenanceService;
 
         #region Ctors
 
@@ -54,10 +62,17 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
             _deviceService = new DeviceDetection();
+            _underMaintenanceService = new UnderMaintenanceService();
         }
 
         #endregion Ctors
 
+        #endregion Services
+
+        /// <summary>
+        /// Index Action.
+        /// </summary>
+        /// <returns>Redirect to Sign in action.</returns>
         public ActionResult Index()
         {
             return RedirectToAction("SignIn");
@@ -65,6 +80,10 @@ namespace Apollo.Age.Web
 
         #region SignIn
 
+        /// <summary>
+        /// Get SignIn Page.
+        /// </summary>
+        /// <returns>Return model.</returns>
         [HttpGet]
         public ActionResult SignIn()
         {
@@ -76,6 +95,11 @@ namespace Apollo.Age.Web
             return View(new SignInViewModel());
         }
 
+        /// <summary>
+        /// Post SignIn Page.
+        /// </summary>
+        /// <param name="model">Input model.</param>
+        /// <returns>Redirect to Select Account Action.</returns>
         [HttpPost]
         public ActionResult SignIn(SignInViewModel model)
         {
@@ -83,15 +107,27 @@ namespace Apollo.Age.Web
             {
                 return new HttpUnauthorizedResult(Lang.UnauthorizedMsg);
             }
-                        
+
             if (ModelState.IsValid)
             {
                 #region if captcha is null or incorrect then return View with captcha error message
 
                 var captcha = Session[ApolloSessionCaptcha];
-                if (model.Captcha != "9999")
+
+                if (Request.IsLocal)
                 {
-                    if (captcha == null || captcha.ToString() != model.Captcha)
+                    if (model.Captcha != "9999")
+                    {
+                        if (captcha == null || captcha.ToString() != model.Captcha.ToUpper())
+                        {
+                            ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
+                            return View(model);
+                        }
+                    }
+                }
+                else
+                {
+                    if (captcha == null || captcha.ToString() != model.Captcha.ToUpper())
                     {
                         ModelState.AddModelError("Captcha", Lang.IncorrectCaptchaMsg);
                         return View(model);
@@ -102,37 +138,42 @@ namespace Apollo.Age.Web
 
                 #region check if NAP username & password are correct
 
-                int _AdminId = 0;
-                bool napUserIsValid = _userService.AuthenticateNapUser(new AuthenticateNapUserCriteria
+                int _adminId = 0;
+                bool napUserIsValid = _userService.AuthenticateNapUser(
+                    new AuthenticateNapUserCriteria
                     {
                         Username = model.Username,
                         Password = model.Password
-                    }, ref _AdminId);
+                    },
+                    ref _adminId);
 
                 #endregion check if NAP username & password are correct
 
-                if (napUserIsValid) // redirect to SelectAccount page
+                // redirect to SelectAccount page.
+                if (napUserIsValid)
                 {
                     TempData[Language] = model.Language;
                     TempData[AdminName] = model.Username;
-                    TempData[AdminId] = _AdminId;
+                    TempData[AdminId] = _adminId;
 
-                    //Write log
-                    //ActionId: 700 - Login successful
-                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.",
-                                    model.Username);
-                    WriteLoginLog(0, _AdminId, 700, doing);
+                    // Write log.
+                    // ActionId: 700 - Login successful.
+                    string doing = string.Format(
+                        "Admin: [{0}] Logged in to Apollo Agent Site - Result: Successful.",
+                        model.Username);
+                    WriteLoginLog(0, _adminId, 700, doing);
 
                     return RedirectToAction("SelectAccount");
                 }
-                else // return View with error message
+                else
                 {
-                    //Write log
-                    //ActionId: 6000 - Login fail
-                    string doing = string.Format("Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .",
+                    // Write log.
+                    // ActionId: 6000 - Login fail.
+                    string doing = string.Format(
+                        "Admin: [{0}] Logged in to Apollo Agent Site - Result: Failed({1}) .",
                                     model.Username,
                                     Lang.InvalidUsernameOrPassword);
-                    WriteLoginLog(0, _AdminId, 7000, doing);
+                    WriteLoginLog(0, _adminId, 7000, doing);
 
                     ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
                 }
@@ -141,6 +182,10 @@ namespace Apollo.Age.Web
             return View(model);
         }
 
+        /// <summary>
+        /// Post ReCheckIn.
+        /// </summary>
+        /// <returns>Return true or false.</returns>
         [HttpPost]
         public JsonResult ReCheckIn()
         {
@@ -156,10 +201,14 @@ namespace Apollo.Age.Web
             });
         }
 
+        /// <summary>
+        /// Get Select Account Action.
+        /// </summary>
+        /// <returns>Return Model.</returns>
         [HttpGet]
         public ActionResult SelectAccount()
         {
-            // admin name must exist to continue the sign-in process
+            // Admin name must exist to continue the sign-in process.
             if (TempData[AdminName] == null && SessionManager.CurrentSession == null)
             {
                 return Redirect(FormsAuthentication.LoginUrl);
@@ -169,7 +218,6 @@ namespace Apollo.Age.Web
                 if (SessionManager.CurrentSession != null)
                 {
                     FormsAuthentication.RedirectFromLoginPage(SessionManager.CurrentSession.Username, createPersistentCookie: false);
-
                 }
                 else
                 {
@@ -181,124 +229,63 @@ namespace Apollo.Age.Web
                     });
                 }
             }
+
             return View();
-
-
         }
 
+        /// <summary>
+        /// Post Select Account Action.
+        /// </summary>
+        /// <param name="model">Input View Model.</param>
+        /// <returns>Redirect to home page or Safe code page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SelectAccount(SelectAccountViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                User user = _userService.InternalGetAgentByUsername(model.Agent);
+                var isAllowUpdate = false;
 
-                if (user != null) // continue sign-in process
+                // Hard code for Super account.
+                if (model.Agent.ToLower() == "super")
                 {
-                    var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
-
-                    switch (userStatus)
+                    if (string.IsNullOrWhiteSpace(model.SafeCode) == false)
                     {
-                        case (int)CustomerStatus.Active:
-                            {
-                                var onUserId = _userService.InternalCheckIn(model.AdminId,
-                                HttpContext.Session.SessionID, _deviceService.ClientIp);
-                                if (onUserId == 0)
-                                    return SignOut();
-                                // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and
-                                // may be removed in future
-                                user.IsMaster = user.IsMaster && AppSettings.AllowInternalUpdate && model.AllowUpdate;
-
-                                // saves user session
-                                SessionManager.CurrentSession = new CurrentSession(
-                                    user: user,
-                                    adminId: model.AdminId,
-                                    adminName: model.AdminName,
-                                    onUserId: onUserId,
-                                    isInternalSignIn: true, // users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc)
-                                    language: model.Language);
-
-                                // Write log internal login
-                                // ActionId: 701 - Select Account successful
-                                string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
-                                                model.AdminName,
-                                                user.Agent.Username);
-
-                                LogService.Info(doing);
-                                WriteLoginLog(user.Agent.Id, model.AdminId, 701, doing);
-
-                                FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
-                                break;
-                            }
-                        case (int)CustomerStatus.Locked:
-                            {
-                                ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
-                                break;
-                            }
-                        default:
-                            {
-                                ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
-                                break;
-                            }
+                        var encryptSafeCode = Cryptography.CfsEnCrypt(model.SafeCode);
+                        if (encryptSafeCode == AppSettings.SuperSafeCode)
+                        {
+                            // Allow Update once Customer has Security code.
+                            isAllowUpdate = true;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("SafeCode", Lang.lblwrongsecuritycode);
+                            return View(model);
+                        }
                     }
                 }
-                else // return View with not-found error message
-                {
-                    //// Write log internal login
-                    // ActionId: 6001 - Select Account fail
-                    string doing = string.Format("Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
-                                    model.AdminName,
-                                    model.Agent,
-                                    Lang.AgentNotFound);
 
-                    
-                    WriteLoginLog(0, model.AdminId, 7001, doing);
-                    ModelState.AddModelError("Agent", Lang.AgentNotFound);
-                }
+                return UserInfo(model.Agent, model.AdminId, model.AdminName, model.Language, isAllowUpdate);
             }
 
             return View(model);
         }
 
-        private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
-        {
-            Task task = Task.Factory.StartNew(() =>
-            {
-                _userService.WriteLogInternalLogin(
-                    agentId,
-                    agentUserId,
-                    ServerId,
-                    actionId,
-                    doing,
-                    _deviceService.ClientIp,
-                    _deviceService.DomainName,
-                    _deviceService.BrowserName,
-                    _deviceService.Platform,
-                    _deviceService.CountryCode
-                    );
-            });
-            try
-            {
-                task.Wait();
-            }
-            catch (AggregateException ex)
-            {
-                LogService.Error(ex.Message);
-                throw ex.Flatten();
-            }
-        }
-
+        /// <summary>
+        /// Generate Captcha Image.
+        /// </summary>
+        /// <param name="noisy">Checking noise or not.</param>
+        /// <returns>Return image.</returns>
         public ActionResult CaptchaImage(bool noisy = true)
         {
             var rand = new Random((int)DateTime.Now.Ticks);
-            int captcha = rand.Next(1000, 9999);
 
-            // saves answer
-            Session[ApolloSessionCaptcha] = captcha.ToString();
+            var captcha = this.GetRandomString(3);
 
-            FileContentResult img = null; // image stream
+            // Saves answer
+            Session[ApolloSessionCaptcha] = captcha;
+
+            FileContentResult img = null; // Image stream.
 
             using (var mem = new MemoryStream())
             using (var bmp = GenerateNoise(55, 23))
@@ -307,30 +294,25 @@ namespace Apollo.Age.Web
                 gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
                 gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // add noise
+                // Add noise.
                 if (noisy)
                 {
                     int i, r, x, y;
-                    var pen = new Pen(Color.Yellow);
+                    var pen = new Pen(Color.White);
                     for (i = 1; i < 10; i++)
                     {
-                        pen.Color = Color.FromArgb(
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)));
-
-                        r = rand.Next(0, (130 / 3));
+                        pen.Color = Color.FromArgb(255, 255, 255);
+                        r = rand.Next(0, 130 / 3);
                         x = rand.Next(0, 130);
                         y = rand.Next(0, 30);
-
                         gfx.DrawEllipse(pen, x - r, y - r, r, r);
                     }
                 }
 
-                // add captcha
-                gfx.DrawString(captcha.ToString(), new Font("Tahoma", 13), Brushes.White, 5, 2);
+                // Add captcha.
+                gfx.DrawString(captcha.ToString(), new Font("Consolas", 13), Brushes.Crimson, 5, 2);
 
-                // render as JPEG
+                // Render as JPEG.
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
                 img = this.File(mem.GetBuffer(), "image/png");
             }
@@ -340,6 +322,10 @@ namespace Apollo.Age.Web
 
         #endregion SignIn
 
+        /// <summary>
+        /// Sign out action.
+        /// </summary>
+        /// <returns>Redirect to Login Page.</returns>
         public ActionResult SignOut()
         {
             var onUserId = 0;
@@ -366,30 +352,195 @@ namespace Apollo.Age.Web
             return Redirect(FormsAuthentication.LoginUrl);
         }
 
-        private bool IsInternalSignIn
-        {
-            get { return SessionManager.CurrentSession != null && SessionManager.CurrentSession.IsInternalSignIn; }
-        }
-
         #region Helpers
 
-        public Bitmap GenerateNoise(int width, int height)
+        /// <summary>
+        /// Handle Unknown Action.
+        /// </summary>
+        /// <param name="actionName">Input Action Name.</param>
+        protected override void HandleUnknownAction(string actionName)
+        {
+            try
+            {
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch
+            {
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
+            }
+        }
+
+        /// <summary>
+        /// Generate Noise.
+        /// </summary>
+        /// <param name="width">Input width image.</param>
+        /// <param name="height">Input height image.</param>
+        /// <returns>Return bitmap.</returns>
+        private Bitmap GenerateNoise(int width, int height)
         {
             var finalBmp = new Bitmap(width, height);
             Random r = new Random();
-
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     int num = r.Next(0, 256);
-                    finalBmp.SetPixel(x, y, Color.Gray);
+                    finalBmp.SetPixel(x, y, Color.FromArgb(175, 172, 137));
                 }
             }
 
             return finalBmp;
         }
 
+        /// <summary>
+        /// Write log login.
+        /// </summary>
+        /// <param name="agentId">Input AgentId.</param>
+        /// <param name="agentUserId">Input AgentUserId.</param>
+        /// <param name="actionId">Input ActionId.</param>
+        /// <param name="doing">Input Doing.</param>
+        private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
+        {
+            Task task = Task.Factory.StartNew(() =>
+            {
+                _userService.WriteLogInternalLogin(
+                    agentId,
+                    agentUserId,
+                    ServerId,
+                    actionId,
+                    doing,
+                    _deviceService.ClientIp,
+                    _deviceService.DomainName,
+                    _deviceService.BrowserName,
+                    _deviceService.Platform,
+                    _deviceService.CountryCode);
+            });
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                LogService.Error(ex.Message);
+                throw ex.Flatten();
+            }
+        }
+
+        /// <summary>
+        /// Get Random string for captcha.
+        /// </summary>
+        /// <param name="seed">Input seed.</param>
+        /// <param name="length">Input length of captcha.</param>
+        /// <returns>Return string captcha.</returns>
+        private string GetRandomString(int seed, int length = 4)
+        {
+            // Use the following string to control your set of alphabetic characters to choose from
+            // For example, you could include uppercase too
+            // Const string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+            // Random is not truly random,
+            // So we try to encourage better randomness by always changing the seed value
+            Random rnd = new Random(seed + DateTime.Now.Millisecond);
+            string result = string.Empty;
+
+            for (int i = 0; i < length; i++)
+            {
+                result += _RandomString[rnd.Next(0, _randomStringLength)];
+            }
+
+            return result;
+        }
+
         #endregion Helpers
+
+        /// <summary>
+        /// Function Get User Info Login.
+        /// </summary>
+        /// <param name="agentName">Input AgentUserName.</param>
+        /// <param name="adminId">Input AdminId.</param>
+        /// <param name="adminName">Input AdminName.</param>
+        /// <param name="language">Input Language.</param>
+        /// <param name="isAllowUpdate">Input AllowUpdate.</param>
+        /// <returns>Return Action Result.</returns>
+        private ActionResult UserInfo(string agentName, int adminId, string adminName, string language, bool isAllowUpdate)
+        {
+            User user = _userService.InternalGetAgentByUsername(agentName);
+
+            // Continue sign-in process.
+            if (user != null)
+            {
+                var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+
+                switch (userStatus)
+                {
+                    case (int)CustomerStatus.Active:
+                        {
+                            var onUserId = _userService.InternalCheckIn(
+                                adminId,
+                            HttpContext.Session.SessionID,
+                            _deviceService.ClientIp);
+                            if (onUserId == 0)
+                            {
+                                return SignOut();
+                            }
+
+                            // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and.
+                            // May be removed in future.
+                            user.IsMaster = isAllowUpdate;
+
+                            // Saves user session
+                            SessionManager.CurrentSession = new CurrentSession(
+                                user: user,
+                                adminId: adminId,
+                                adminName: adminName,
+                                onUserId: onUserId,
+                                isInternalSignIn: true, // Users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc).
+                                language: language);
+
+                            // Write log internal login.
+                            // ActionId: 701 - Select Account successful.
+                            string doing = string.Format(
+                                "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
+                                            adminName,
+                                            user.Agent.Username);
+
+                            WriteLoginLog(user.Agent.Id, adminId, 701, doing);
+
+                            FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
+
+                            break;
+                        }
+
+                    case (int)CustomerStatus.Locked:
+                        {
+                            ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
+
+                            break;
+                        }
+
+                    default:
+                        {
+                            ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
+
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                // Write log internal login.
+                // ActionId: 6001 - Select Account fail.
+                string doing = string.Format(
+                    "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
+                                adminName,
+                                agentName,
+                                Lang.AgentNotFound);
+
+                WriteLoginLog(0, adminId, 7001, doing);
+                ModelState.AddModelError("Agent", Lang.AgentNotFound);
+            }
+
+            return View();
+        }
     }
 }

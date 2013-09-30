@@ -51,19 +51,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                     }
 
                     this.Template.betTeam = betTeam.ToString();
-                    this.Template.Handicap.Hide();
-                    this.Template.betTypeName = string.Empty;
-                    this.Template.betTeamClassName = string.Empty;
-                    this.Template.VS.Hide();
                 }
             }
             else
             {
                 this.Template.betTeam = string.Empty;
-                this.Template.Handicap.Hide();
-                this.Template.betTypeName = Apollo.Age.Resources.BetList.Roulette;
-                this.Template.betTeamClassName = string.Empty;
-                this.Template.VS.Hide();
             }
         }
 

@@ -1,9 +1,18 @@
-﻿.tblRpt tbody td {
-	border-width: 1px;
+﻿
+#function-bar {
+	margin-bottom: 5px;
 }
-.no-data
-{
-	font-weight: bold;
+
+.box-header {
+	display: none;
+
+	.selSport {
+		width: 110px;
+	}
+
+	.selLeague {
+		width: 330px;
+	}
 }
 
 .tblRpt {
@@ -25,6 +34,7 @@
 
 	tbody td {
 		border-right: none;
+		border-width: 1px;
 
 		&.width-80 {
 			width: 80px;
@@ -39,13 +49,21 @@
 			border-right: 1px solid #999;
 		}
 	}
+
+	&.soccer, &.others {
+		width: 630px;
+	}
 }
 
-/* FIX IE7 */
+/* FIX IE */
 .eq-ie7 {
 	.tblRpt {
 		tbody td.border-right {
 			border-right: none;
 		}
+	}
+
+	form {
+		margin: 0;
 	}
 }

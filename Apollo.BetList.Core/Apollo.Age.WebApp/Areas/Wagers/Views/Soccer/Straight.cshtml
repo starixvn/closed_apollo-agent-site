@@ -1,0 +1,39 @@
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Entities
+@using Apollo.Age.Wagers.ViewModels.Soccer
+@using Apollo.Age.Web.Mvc
+@model List<StraightViewModel>
+<table class="tblRpt soccer straight @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapWager
+                    , Lang.lblOverUnderWager
+                    , Lang.lbl1x2Wager)
+    <tbody>
+        @Model.List(
+            @<tr class="c">
+                @WagerHelper.RenderBaseColumns(item, Lang.lblDraw)
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamHDP, item.HomeCountHDP, item.HomeStakeHDP, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamHDP, item.AwayCountHDP, item.AwayStakeHDP, item.LiveIndicator)
+                    <br />
+                    &nbsp
+                </td>
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.HomeBetteamOU, item.HomeCountOU, item.HomeStakeOU, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.AwayBetteamOU, item.AwayCountOU, item.AwayStakeOU, item.LiveIndicator)
+                    <br />
+                    &nbsp
+                </td>
+                <td class="border-right r red-num">
+                    @WagerHelper.RenderColumnData(item.Betteam1, item.Count1, item.Stake1, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.Betteam2, item.Count2, item.Stake2, item.LiveIndicator)
+                    <br />
+                    @WagerHelper.RenderColumnData(item.BetteamX, item.CountX, item.StakeX, item.LiveIndicator)
+                </td>
+            </tr>
+                                                  )
+    </tbody>
+</table>
+@Html.Hidden("TotalItems", (int)ViewBag.TotalItems)

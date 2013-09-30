@@ -16,11 +16,6 @@ namespace Apollo.Age.Account.Criterias
     /// </summary>
     public class GetPriMessageCountCriteria : CriteriaBase
     {
-        public override string GetSettingKey()
-        {
-            return "Dot_Msg_GetPriMsgCount";
-        }
-
         [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
 
@@ -29,6 +24,11 @@ namespace Apollo.Age.Account.Criterias
         public override bool IsValid()
         {
             return UserId > 0;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Dot_Msg_GetPriMsgCount";
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Apollo.Age.Account.Models
 
         public string Username { get; set; }
 
-        public Int16 AgentLevel { get; set; }
+        public short AgentLevel { get; set; }
 
         public byte Status { get; set; }
 
@@ -27,9 +27,9 @@ namespace Apollo.Age.Account.Models
 
         public byte UplineBetStatus { get; set; }
 
-        public Int32 HandicapTakenShare { get; set; }
+        public int HandicapTakenShare { get; set; }
 
-        public Int32 HandicapGivenShare { get; set; }
+        public int HandicapGivenShare { get; set; }
 
         public decimal GroupA { get; set; }
 

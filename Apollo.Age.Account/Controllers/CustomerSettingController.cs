@@ -7,20 +7,24 @@
 //   <change who="Ricky.Nguyen" date="2013.4.15">Created</change>
 //   <change who="Quinn.Vo" date="2013.4.22">Add Action: AgentShare, MemberShare, GetBetType</change>
 //   <change who="Ricky.Nguyen" date="2013.4.29">Update AgentId, Member Id, Shadow Account edit setting</change>
+//   <change who="Ricky.Nguyen" date="2013.7.1">Updated Edit Share Setting, Commission Setting, Bet Limit with Singbet requirements</change>
 // </history>
 
 namespace Apollo.Age.Account.Controllers
 {
-    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Fanex.Common;
@@ -28,7 +32,12 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.Configurations;
 
+    /// <summary>
+    /// Customer Setting Controller
+    /// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
     {
@@ -39,13 +48,13 @@ namespace Apollo.Age.Account.Controllers
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null, null) 
-        { 
+            : this(null, null, null)
+        {
         }
 
         public CustomerSettingController(
-            IAccountService accountService, 
-            ICustomerSettingService customerSettingService, 
+            IAccountService accountService,
+            ICustomerSettingService customerSettingService,
             ISportSettingService sportService)
         {
             _accountService = accountService ?? new AccountService();
@@ -53,49 +62,16 @@ namespace Apollo.Age.Account.Controllers
             _sportService = sportService ?? new SportSettingService();
         }
 
-        #endregion
-
-        #region Bet Setting
-
-        public ActionResult EditBetSetting(int custId, string userName, int? agentLevel)
-        {
-            ViewBag.CustId = custId;
-            ViewBag.UserName = userName;
-            ViewBag.AgentLevel = agentLevel;
-            return View("~/Views/Account/EditBetSetting.cshtml");
-        }
-
-        public ActionResult GetBetLimit(int targetCustId, int? agentId, int? agentLevel)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.BetLimit);
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
-            this.SetBetLimitLanguage(settingContext, betLimits);
-
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var betLimits = {0} ;\n var settingContext = {1} ;",
-                JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
-
-            return JavaScript(jsString);
-        }
-
-        [HttpPost]
-        public ActionResult UpdateBetLimit(SettingContext settingContext, IList<BettingLimit> betLimits)
-        {
-            Result result = _customerSettingService.UpdateBettingLimitSetting(settingContext, betLimits);
-            return ReturnResult(result);
-        }
-
-        #endregion
+        #endregion Ctors
 
         #region Commission Setting
 
         /// <summary>
-        /// Views commission from logged-in agent to selected (searched) agent/member
+        /// Views commission from logged-in agent to selected (searched) agent/member.
         /// </summary>
-        /// <param name="id">id of selected agent/member</param>
-        /// <param name="isMember">indicates whether the customer is agent or member</param>
+        /// <param name="model">Username: text which user input to search, IsMember: is agent or member.</param>
+        /// <returns>View Commission</returns>
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
@@ -110,7 +86,7 @@ namespace Apollo.Age.Account.Controllers
                     model.Id = -1; // force search by username only
                 }
             }
-            
+
             CustomerInfoModel customerInfo = model.IsMember
                 ? _accountService.GetMemberInfo(new GetMemberInfoCriteria
                 {
@@ -118,7 +94,7 @@ namespace Apollo.Age.Account.Controllers
                     CustId = model.Id,
                     Username = model.Username
                 })
-                : _accountService.GetAgentInfo(new GetAgentInfoCriteria
+                : _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
                 {
                     ActorAgentId = CurrentSession.AgentId,
                     AgentId = model.Id,
@@ -129,8 +105,8 @@ namespace Apollo.Age.Account.Controllers
             if (customerInfo != null)
             {
                 model.Username = customerInfo.Username;
-                model.Group = customerInfo.Group;
-                model.CommissionList = model.IsMember
+                model.Group = customerInfo.Group != null ? RevertCommGroupName(customerInfo.Group) : customerInfo.Group;
+                var commissionList = model.IsMember
                     ? _accountService.GetCommissionToMember(
                     new GetCommissionToMemberCriteria
                     {
@@ -145,58 +121,41 @@ namespace Apollo.Age.Account.Controllers
                         AgentId = customerInfo.CustId,
                         Username = customerInfo.Username
                     });
+
+                var commissionModelList = new List<CustomerCommissionModel>();
+                if(commissionList != null && commissionList.Any())
+                {
+                    commissionList.ToList().ForEach(t => commissionModelList.Add(RevertCommGroupValue(t)));
+                }
+
+                model.CommissionList = commissionModelList;
             }
 
             return View("~/Views/Account/ViewCommission.cshtml", model);
         }
 
-        public ActionResult EditCommissionSetting(int custId, string userName, int? agentLevel, string userGroup)
-        {
-            ViewBag.CustId = custId;
-            ViewBag.UserName = userName;
-            ViewBag.AgentLevel = agentLevel;
-            ViewBag.UserGroup = userGroup;
-            return View("~/Views/Account/EditCommission.cshtml");
-        }
-
-        public ActionResult GetCommissionSetting(int targetCustId, int? agentId, int? agentLevel, string ugroup)
-        {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.Commission);
-            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
-            {
-                commissionSetting.UserGroup = ugroup;
-            }
-
-            JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var settingContext = {1} ;",
-                JsonConvert.SerializeObject(commissionSetting, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
-
-            return JavaScript(jsString);
-        }
-
-        [HttpPost]
-        public ActionResult UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
-        {
-            Result result = _customerSettingService.UpdateCommissionSetting(settingContext, commissionSetting);
-            return ReturnResult(result);
-        }
-
-        #endregion
+        #endregion Commission Setting
 
         #region Share [Position Taking]
 
         /// <summary>
-        /// Views "share info" from logged-in agent to selected (searched) agent
+        /// Views "share info" from logged-in agent to selected (searched) agent.
         /// </summary>
-        /// <param name="username">selected agent username</param>
-        public ActionResult AgentShare(int? agentId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
+        /// <param name="username">selected agent username.</param>
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult AgentShare(
+            int? agentId, 
+            string userName, 
+            short? sportType, 
+            short? betType, 
+            bool? isLive, 
+            bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
+            List<SportSetting> sportList = null;
 
             if (!agentId.HasValue && string.IsNullOrWhiteSpace(userName))
             {
@@ -204,15 +163,19 @@ namespace Apollo.Age.Account.Controllers
                 agentId = this.CurrentSession.AgentId;
             }
 
-            var sportList = _sportService.GetAllSportType();
+            if (SportSettingService.SportList == null)
+            {
+                sportList = _sportService.GetAllSportType();
+                SportSettingService.SportList = sportList;
+            }
+            else
+            {
+                sportList = SportSettingService.SportList;
+            }
+
             foreach (var sportItem in sportList)
             {
                 sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
-            }
-
-            if (SportSettingService.SportList == null)
-            {   
-                SportSettingService.SportList = sportList;
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
@@ -252,20 +215,37 @@ namespace Apollo.Age.Account.Controllers
         /// Views "share info" from logged-in agent to selected (searched) member
         /// </summary>
         /// <param name="username">selected member username</param>
-        public ActionResult MemberShare(int? memberId, string userName, short? sportType, short? betType, bool? isLive, bool? isMixSportParlay)
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult MemberShare(
+            int? memberId, 
+            string userName, 
+            short? sportType, 
+            short? betType, 
+            bool? isLive, 
+            bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
             var betTypeId = betType.HasValue ? betType.Value : Converter.To<short>(1);
             var live = isLive.HasValue ? isLive.Value : false;
             var isMixSport = isMixSportParlay.HasValue ? isMixSportParlay.Value : false;
+            List<SportSetting> sportList = null;
 
-            var sportList = _sportService.GetAllSportType();
-            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
+            if (SportSettingService.SportList == null)
+            {
+                sportList = _sportService.GetAllSportType();
+                SportSettingService.SportList = sportList;
+            }
+            else
+            {
+                sportList = SportSettingService.SportList;
+            }
 
             foreach (var sportItem in sportList)
             {
                 sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
             }
+
+            var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
 
             foreach (var betTypeItem in betTypeList)
             {
@@ -299,6 +279,12 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
 
+        /// <summary>
+        /// Get bet type by sport.
+        /// </summary>
+        /// <param name="sportId">Parameter sport id.</param>
+        /// <param name="isMixSportParlay">Is mix sport parlay or no.</param>
+        /// <returns>Bet type list.</returns>
         public JsonResult GetBetType(short sportId, bool isMixSportParlay)
         {
             var view = new AgentShareViewModel();
@@ -315,40 +301,163 @@ namespace Apollo.Age.Account.Controllers
             return Json(view.BetTypeSelectListItem, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditPositionTaking(int custId, string userName, int? agentLevel)
+        /// <summary>
+        /// Edit Agent Position Taking.
+        /// </summary>
+        /// <param name="agentId">Agent Id need be edited.</param>
+        /// <param name="userName">Agent username.</param>
+        /// <param name="agentLevel">Agent level.</param>
+        /// <param name="reload">After edit, reload page or not.</param>
+        /// <param name="isSimpleMode">Current mode is simple mode or not</param>
+        /// <param name="backLink">Back link for after editing</param>
+        /// <param name="fromLeftMenu">Link from left menu or not</param>
+        /// <returns>Action result.</returns>
+        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
         {
-            ViewBag.CustId = custId;
+            ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
+            ViewBag.Reload = reload;
+            ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.IsEditAgent = true;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.ParentUsername = parentUsername;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
-        public ActionResult GetPositionTaking(int targetCustId, int? agentId, int? agentLevel)
+        [HttpPost]
+        public ActionResult CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking);
+            var totalSeconds = _accountService.CalculateUpdateAgentPositionTakingTime(settingContext, positionTakingSetting);
+            return Json(totalSeconds);
+        }
+                
+        /// <summary>
+        /// Edit all member share of agent.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="agentUserName"></param>
+        /// <returns></returns>
+        public ActionResult EditAllMemberShare(int agentId, 
+            string agentUserName,
+            bool reload = false, 
+            bool isSimpleMode = true, 
+            string backLink = "", 
+            bool fromLeftMenu = false)
+        {
+            if (_accountService.HasMember(agentId))
+            {
+                return EditMemberPositionTaking(
+                    agentId,
+                    agentUserName,
+                    reload,
+                    isSimpleMode,
+                    backLink,
+                    fromLeftMenu,
+                    string.Empty);
+            }
+
+            return View("~/Views/Account/EditAllMemberShare.cshtml");
+        }
+                
+
+        /// <summary>
+        /// Edit member position taking
+        /// </summary>
+        /// <param name="memberId">Member id need be edited</param>
+        /// <param name="userName">Member user name.</param>
+        /// <param name="agentId">Cross edit agent.</param>
+        /// <param name="agentUsername">Agent user name.</param>
+        /// <param name="reload">Reload page or not</param>
+        /// <param name="isSimpleMode">Current mode is simple mode or not</param>
+        /// <param name="backLink">Back link after editing.</param>
+          /// <param name="fromLeftMenu">From left menu.</param>
+        /// <returns>Action result</returns>
+        public ActionResult EditMemberPositionTaking(
+            int agentId, 
+            string agentUsername = "", 
+            bool reload = false, 
+            bool isSimpleMode = true, 
+            string backLink = "", 
+            bool fromLeftMenu = false,
+            string memberIds = "")
+      
+        {
+            //if (AppSettings.DisableEditOnMember)
+            //{
+            //    return Redirect("~/Error?err=404");
+            //}
+            ViewBag.CustId = 0;
+            ViewBag.UserName = string.Empty;
+            ViewBag.AgentId = agentId;
+            ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.Reload = reload;
+            ViewBag.IsSimpleMode = isSimpleMode;
+            ViewBag.IsEditAgent = false;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.AgentUsername = agentUsername;
+            ViewBag.MemberIds = memberIds;
+            return View("~/Views/Account/EditPositionTaking.cshtml");
+        }
+
+        /// <summary>
+        /// Get Position taking result.
+        /// </summary>
+        /// <param name="targetCustId">Target cust id is member or agent.</param>
+        /// <param name="agentId">Agent id for edit cross.</param>
+       
+        /// <param name="agentLevel">Agent level.</param>
+        /// <returns>Action result.</returns>
+         public ActionResult GetPositionTaking(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel,
+            string targetCustIds = "")
+
+        {
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking, targetCustIds);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetPositionTakingLanguage(positionTakingSetting);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+            string javascriptString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
                 JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return JavaScript(jsString);
+            return JavaScript(javascriptString);
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Update postion taking setting.
+        /// </summary>
+        /// <param name="settingContext">Current setting context.</param>
+        /// <param name="positionTakingSetting">Position taking update.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost, AllowUpdateChecking]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
             return ReturnResult(result);
         }
 
-        #endregion
+        #endregion Share [Position Taking]
 
         #region Setting
 
+        /// <summary>
+        /// Edit All Setting of customer.
+        /// </summary>
+        /// <param name="custId">Cust id need be edited</param>
+        /// <param name="userName">User name.</param>
+        /// <param name="agentId">Agent id for edit cross level.</param>
+        /// <param name="agentLevel">Agent level.</param>
+        /// <param name="userGroup">User group for edit member.</param>
+        /// <param name="showHeader">Show header or not.</param>
+        /// <returns>Action result.</returns>
         public ActionResult EditAllSetting(int custId, string userName, int? agentId, int? agentLevel, string userGroup, bool showHeader = false)
         {
             ViewBag.CustId = custId;
@@ -360,74 +469,158 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
-        public ActionResult EditMemberSetting(int memberId, string userName, string userGroup, int? agentId, bool showHeader = false, bool isSimpleMode = true)
+        public ActionResult EditMemberSetting(
+            int memberId, 
+            string userName, 
+            int? agentId, 
+            bool fromLeftMenu = false,
+            string memberIds = "")
         {
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
-            ViewBag.UserGroup = userGroup;
             ViewBag.CurentParentAgentId = agentId;
-            ViewBag.IsSimpleMode = isSimpleMode;
-            if (showHeader)
-            {
-                ViewBag.IsShowHeader = true;
-            }
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        public ActionResult EditAgentSetting(int agentId, int agentLevel, string userName, bool showHeader = false, bool isSimpleMode = true)
+        public ActionResult EditAgentSetting(
+            int agentId, 
+            int agentLevel, 
+            string userName, 
+            bool fromLeftMenu = false)
         {
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsSimpleMode = isSimpleMode;
-            if (showHeader)
-            {
-                ViewBag.IsShowHeader = true;
-            }
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
-        public ActionResult GetMemberSetting(int memberId, int? agentId)
+        public ActionResult GetMemberSetting(int memberId, int? agentId, string memberIds = "")
         {
-            string jsString = this.GetSettingScript(memberId, agentId, null, _customerSettingService.GetMemberGroup(memberId));
-            return JavaScript(jsString);
+            var memberInfo = _customerSettingService.GetMemberInfo(memberId);
+            string javascriptString = this.GetSettingScript(memberId, agentId, null, memberInfo != null ? memberInfo.UGroup : string.Empty, memberIds);
+            return JavaScript(javascriptString);
         }
 
         public ActionResult GetAgentSetting(int agentId, int agentLevel)
         {
-            string jsString = this.GetSettingScript(agentId, null, (int?) agentLevel, null);
-            return JavaScript(jsString);
+            string javascriptString = this.GetSettingScript(agentId, null, (int?)agentLevel, null, null);
+            return JavaScript(javascriptString);
         }
 
-        [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        [HttpPost, AllowUpdateChecking]
+        public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
-            return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
-        [HttpPost, CustomValidateAntiForgeryToken]
-        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        [HttpPost, AllowUpdateChecking]
+        public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
-            return UpdateAllSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
+            return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
         public ActionResult MySetting()
         {
             ViewBag.CustId = CurrentSession.AgentId;
-            ViewBag.UserName = CurrentSession.Username;
+            ViewBag.UserName = CurrentSession.AgentName;
             ViewBag.AgentLevel = CurrentSession.AgentLevel;
-            ViewBag.UserGroup = string.Empty;
-            ViewBag.CurentParentAgentId = CurrentSession.AgentId;
-            ViewBag.IsShowHeader = true;
-            ViewBag.IsMaster = false;
-            return View("~/Views/Account/MySetting.cshtml");
+            ViewBag.IsViewOnMember = false;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.IsViewMySetting = true;
+            SettingContext settingContext = this.GetCurrentSettingContext(CurrentSession.AgentId, base.CurrentSession.AgentId, CurrentSession.AgentLevel, FormSettingType.All, string.Empty);
+            return ViewAccountDetails(settingContext);
         }
 
-        #endregion
+        public ActionResult ViewAgentDetails(
+            int agentId, 
+            int agentLevel, 
+            string userName, 
+            string backLink = "", 
+            bool fromLeftMenu = false)
+        {
+            ViewBag.CustId = agentId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentLevel = agentLevel;
+            ViewBag.IsViewOnMember = false;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
+            ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
+            SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All, string.Empty);
+            return ViewAccountDetails(settingContext);
+        }
+
+        public ActionResult ViewMemberDetails(
+            int memberId, 
+            string userName, 
+            int? agentId, 
+            string backLink = "", 
+            bool fromLeftMenu = false,
+            string memberIds = "")
+        {
+            ViewBag.CustId = memberId;
+            ViewBag.UserName = userName;
+            ViewBag.AgentId = agentId;
+            ViewBag.IsViewOnMember = true;
+            ViewBag.IsViewMySetting = false;
+            ViewBag.BackLink = backLink;
+            ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.MemberIds = memberIds;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
+            //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            //{
+            //    settingContext.FormId = FormType.EditPT;
+            //}
+            return ViewAccountDetails(settingContext);
+        }
+
+        private ViewResult ViewAccountDetails(SettingContext settingContext)
+        {
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
+            ViewBag.BetSetting = this.GetBetSetting(settingContext);
+            return View("~/Views/Account/ViewAccountDetails.cshtml");
+        }
+
+        #endregion Setting
 
         #region Helpers
+        [NonAction]
+        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
+        {
+            if (commissionSetting == null && betLimits == null)
+            {
+                return ReturnResult(new Result
+                {
+                    ErrCode = 0,
+                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
+                });
+            }
+
+            if (commissionSetting != null )
+            {
+                if (commissionSetting.CommissionItems != null
+                    && commissionSetting.CommissionItems.Any()
+                    && commissionSetting.CommissionItems[0].SportId == (int)SportTypes.Soccer
+                    && commissionSetting.CommissionItems[0].BetTypeId == (int)BetTypes.Handicap)
+                {
+                    RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                }
+
+                if (!string.IsNullOrEmpty(commissionSetting.UserGroup))
+                {
+                    commissionSetting.UserGroup = RevertCommGroupName(commissionSetting.UserGroup);
+                }
+            }
+
+            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, null);
+            return ReturnResult(result);
+        }
 
         private int GetRoleFromAgentLevel(int agentLevel)
         {
@@ -511,7 +704,12 @@ namespace Apollo.Age.Account.Controllers
             }
         }
 
-        private SettingContext GetCurrentSettingContext(int targetCustId, int? agentId, int? agentLevel, FormSettingType formSettingType)
+        private SettingContext GetCurrentSettingContext(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel, 
+            FormSettingType formSettingType,
+            string memberIds)
         {
             SettingContext settingContext = new SettingContext
             {
@@ -522,11 +720,21 @@ namespace Apollo.Age.Account.Controllers
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
                 FormSetting = (int)formSettingType,
                 FormId = FormType.EditPT,
-                Language = base.CurrentSession.Language
+                Language = base.CurrentSession.Language,
+                AdminId = base.CurrentSession.AdminId,
+                TargetCustIds = memberIds
             };
 
+            var isEditMember = settingContext.TargetRoleId == (int)Role.Member;
+
+            //// If Current is Share Holder, then constrain min
+            if (agentLevel != null && agentLevel.Value == 2)
+            {
+                settingContext.HasMinConstrain = true;
+            }
+
             //// If current Cust Edited Role is Member, then set Edit Role is Agent
-            if (settingContext.TargetRoleId == (int)Role.Member)
+            if (isEditMember)
             {
                 settingContext.RoleId = (int)Role.Agent;
             }
@@ -542,67 +750,137 @@ namespace Apollo.Age.Account.Controllers
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
-            //// If Current Login Agent is not Agent Master User, then set form to form view
-            else if (!base.CurrentSession.IsMaster)
+
+            if (isEditMember && agentId != null)
             {
+                settingContext.FormId = FormType.EditPT;
+                settingContext.CustId = agentId.Value;
+            }
+
+            if (!base.CurrentSession.IsMaster)
+            {
+                //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
                 if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
                 {
                     settingContext.CustId = agentId.Value;
                 }
             }
-            else if (base.CurrentSession.IsSuper
-            && settingContext.TargetRoleId == (int)Role.Member
-            && agentId != null)
+
+            if (!string.IsNullOrEmpty(memberIds))
             {
-                settingContext.FormId = FormType.EditPT;
-                settingContext.CustId = agentId.Value;
+                settingContext.FormId = FormType.EditMultiple;
             }
 
             return settingContext;
         }
 
-        private string GetSettingScript(int targetCustId, int? agentId, int? agentLevel, string ugroup)
+        private string GetSettingScript(
+            int targetCustId, 
+            int? agentId, 
+            int? agentLevel, 
+            string ugroup,
+            string targetCustIds)
         {
-            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All);
+            SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All, targetCustIds);
 
-            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
-            if (ugroup != null)
-            {
-                commissionSetting.UserGroup = ugroup;
-            }
+            CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
-            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-            this.SetPositionTakingLanguage(positionTakingSetting);
-
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string jsString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var positionTakingSetting = {2} ;\n var settingContext = {3} ;",
+            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
-            return jsString;
+            return javasciptString;
         }
 
-        [NonAction]
-        public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits, PositionTakingSetting positionTakingSetting)
+        private CommissionSetting GetCommissionSetting(SettingContext settingContext)
         {
-            if (commissionSetting == null && betLimits == null && positionTakingSetting == null)
+            CommissionSetting commissionSetting = _customerSettingService.GetCommissionSettingForUpdating(settingContext);
+
+            if (commissionSetting.CommissionItems.Any())
             {
-                return ReturnResult(new Result { 
-                    ErrCode = 0,
-                    ErrMsg = Apollo.Age.Resources.Lang.noChangeToUpdate
-                });
+                RevertCommGroupValue(commissionSetting.CommissionItems[0]);
+                RevertCommGroupValue(commissionSetting.CommissionItems[0].Upline);
             }
-            Result result = _customerSettingService.UpdateSetting(settingContext, commissionSetting, betLimits, positionTakingSetting);
-            return ReturnResult(result);
+
+            if (settingContext.TargetRoleId == (int)Role.Member)
+            {
+                var memberInfo = _customerSettingService.GetMemberInfo(settingContext.TargetCustId);
+                if (memberInfo != null)
+                {
+                    commissionSetting.UserGroup = RevertCommGroupName(memberInfo.UGroup);
+                    settingContext.CanEditComGroup = settingContext.AdminId > 0 || CurrentSession.IsSuper || !memberInfo.IsUGroupChanged;
+                }
+            }
+
+            return commissionSetting;
         }
 
-        #endregion
+        private IList<BettingLimit> GetBetSetting(SettingContext settingContext)
+        {
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetBetLimitLanguage(settingContext, betLimits);
+
+            return betLimits;
+        }
+
+        private PositionTakingSetting GetPositionTakingSetting(SettingContext settingContext)
+        {
+            PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
+            this.SetPositionTakingLanguage(positionTakingSetting);
+            return positionTakingSetting;
+        }
+
+        private void RevertCommGroupValue(
+            CommissionItem commissionItem)
+        {
+            var tempDiscountA = commissionItem.DiscountA;
+            var tempDiscountB = commissionItem.DiscountB;
+            var tempDiscountC = commissionItem.DiscountC;
+            var tempDiscountD = commissionItem.DiscountD;
+            commissionItem.DiscountA = tempDiscountD;
+            commissionItem.DiscountB = tempDiscountC;
+            commissionItem.DiscountC = tempDiscountB;
+            commissionItem.DiscountD = tempDiscountA;
+        }
+
+        private string RevertCommGroupName(string groupName)
+        {
+            switch (groupName.ToLower())
+            {
+                case "a":
+                    return "d";
+                case "b":
+                    return "c";
+                case "c":
+                    return "b";
+                case "d":
+                    return "a";
+            }
+
+            return string.Empty;
+        }
+
+        private CustomerCommissionModel RevertCommGroupValue(CustomerCommissionModel commissionModel)
+        {
+            var tempDiscountA = commissionModel.DiscountA;
+            var tempDiscountB = commissionModel.DiscountB;
+            var tempDiscountC = commissionModel.DiscountC;
+            var tempDiscountD = commissionModel.DiscountD;
+            commissionModel.DiscountA = tempDiscountD;
+            commissionModel.DiscountB = tempDiscountC;
+            commissionModel.DiscountC = tempDiscountB;
+            commissionModel.DiscountD = tempDiscountA;
+
+            return commissionModel;
+        }
+        #endregion Helpers
     }
 }

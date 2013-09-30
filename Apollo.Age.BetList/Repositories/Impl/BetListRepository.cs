@@ -42,10 +42,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     var dataSet = db.ExecuteDataSet(new
                     {
                         criteria.TransId,
-                        criteria.LoggedId,
-                        criteria.FromDate,
-                        criteria.ToDate,
-                        criteria.MoveBetsDay
+                        criteria.LoggedId
                     });
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return this.ReadTicket(mainTable);
@@ -72,14 +69,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     if (criteria.ToDate < preBalanceUpDay)
                     {
-                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
                     }
                     else
                     {
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
-                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss_Old", criteria);
+                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
 
-                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
 
                         // Merge two table bettrans
                         mainOldTable.Merge(mainNewTable);
@@ -88,7 +85,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 }
                 else
                 {
-                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Winloss", criteria);
+                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
                 }
 
                 // Main ticket list
@@ -137,91 +134,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 AgentId = criteria.AgentId,
                 criteria.LoggedId,
-                criteria.Bettypes
-            };
-
-            try
-            {
-                using (var db = new ObjectDb(uspKey))
-                {
-                    var dataSet = db.ExecuteDataSet(uspParams);
-                    var ticketResult = new TicketResult();
-
-                    // Main ticket list
-                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
-                    ticketResult.TicketList = this.ReadTicket(mainTable);
-
-                    // Reference ticket
-                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
-                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
-                    return ticketResult;
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Get all bets by date and member
-        /// For only agent (Member Outstanding bet list)
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsByDateAndMem(BetListCriteria criteria)
-        {
-            var uspKey = "Age_BetList_SelByDateMemStatus";
-            var uspParams = new
-            {
-                criteria.LoggedId,
-                criteria.AgentId,
-                criteria.CustId,
-                criteria.FromDate,
-                criteria.ToDate,
-                criteria.StatusIds
-            };
-
-            try
-            {
-                using (var db = new ObjectDb(uspKey))
-                {
-                    var dataSet = db.ExecuteDataSet(uspParams);
-                    var ticketResult = new TicketResult();
-
-                    // Main ticket list
-                    var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
-                    ticketResult.TicketList = this.ReadTicket(mainTable);
-
-                    // Reference ticket
-                    var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
-                    ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
-                    return ticketResult;
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// BetList transaction
-        /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
-        public TicketResult GetAllBetsTransactionByDateAndMem(BetListCriteria criteria)
-        {
-            var uspKey = "Age_BetList_SelTransaction";
-            var uspParams = new
-            {
-                criteria.LoggedId,
-                criteria.AgentId,
-                criteria.CustId,
-                criteria.FromDate,
-                criteria.ToDate,
-                criteria.MoveBetsDay,
-                criteria.StatusIds
+                Bettypes = criteria.BetTypes
             };
 
             try
@@ -260,7 +173,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 MatchID = criteria.MatchId,
                 LoggedId = criteria.LoggedId,
                 AgentId = criteria.AgentId,
-                Bettype = criteria.Bettypes,
+                Bettype = criteria.BetTypes,
                 Liveindicator = criteria.LiveIndicator,
                 Betteam = criteria.BetTeam
             };
@@ -289,7 +202,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get all bets by date and member from Win loss report
+        /// Get all bets by date and member from Win loss listOutstanding
         /// </summary>
         /// <param name="criteria">Criteria name</param>
         /// <returns>Ticket data</returns>
@@ -335,6 +248,70 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 // Reference ticket
                 ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
 
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// BetList: Transaction, Cancel
+        /// </summary>
+        /// <param name="criteria">Criteria name</param>
+        /// <returns>Ticket data</returns>
+        public TicketResult GetTicketResult(BetListCriteria criteria)
+        {
+            try
+            {
+                var ticketResult = new TicketResult();
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        //var param = criteria.GetSpParams();
+                        var dataSet = db.ExecuteDataSet(criteria.GetParameters());
+
+                        // Main ticket list
+                        var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                        ticketResult.TicketList = this.ReadTicket(mainTable);
+
+                        // Reference ticket
+                        var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
+                        ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                    }
+                }
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get data betlist on Wagers page
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        public TicketResult WagersTicket(WagersCriteria criteria)
+        {
+            try
+            {
+                var ticketResult = new TicketResult();
+                if (criteria.IsValid())
+                {
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+                        var dataSet = db.ExecuteDataSet(param);
+
+                        // Main ticket list
+                        var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
+                        ticketResult.TicketList = this.ReadTicket(mainTable);
+                    }
+                }
                 return ticketResult;
             }
             catch
@@ -459,7 +436,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get Agent Upline of member
+        /// Get Agent up line of member
         /// </summary>
         /// <param name="parentId">Logged id</param>
         /// <param name="custId">customer id</param>
@@ -509,6 +486,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsBetTeam = columnCollection.Contains("betteam");
             var containsIP = columnCollection.Contains("ip");
             var containsOddsType = columnCollection.Contains("oddstype");
+            var containsUGroup = columnCollection.Contains("ugroup");
 
             // Int
             var containsMatchId = columnCollection.Contains("matchid");
@@ -522,6 +500,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsAgentLevel = columnCollection.Contains("agentlevel");
             var containsActualStake = columnCollection.Contains("actual_stake");
             var containsStatusId = columnCollection.Contains("statusid");
+            var containsFinalHomeScore = columnCollection.Contains("finalhomescore");
+            var containsFinalAwayScore = columnCollection.Contains("finalawayscore");
 
             // Boolean
             var containsNeutral = columnCollection.Contains("isneutral");
@@ -535,6 +515,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsStake = columnCollection.Contains("stake");
             var containsAPositionTaking = columnCollection.Contains("apositiontaking");
             var containsADiscount = columnCollection.Contains("adiscount");
+            var containsPlayerDiscount = columnCollection.Contains("playerdiscount");
             var containsAWinlost = columnCollection.Contains("awinlost");
             var containsAComm = columnCollection.Contains("acomm");
             var containWinlost = columnCollection.Contains("winlost");
@@ -564,6 +545,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.BetTeam = containsBetTeam ? Converter.ToString2(dataRow["betteam"]) : string.Empty;
                 ticket.IP = containsIP ? Converter.ToString2(dataRow["ip"]) : string.Empty;
                 ticket.OddsType = containsOddsType ? Converter.ToString2(dataRow["oddstype"]) : "0";
+                ticket.UGroup = containsUGroup ? Converter.ToString2(dataRow["ugroup"]) : string.Empty;
 
                 // Int
                 ticket.MatchId = containsMatchId ? Converter.ToInt(dataRow["matchid"]) : 0;
@@ -576,6 +558,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.LiveAwayScore = containsLiveAwayScore ? Converter.ToInt(dataRow["liveawayscore"]) : 0;
                 ticket.AgentLevel = containsAgentLevel ? Converter.ToInt(dataRow["agentlevel"]) : 0;
                 ticket.StatusId = containsStatusId ? Converter.ToInt(dataRow["statusid"]) : 0;
+                ticket.FinalHomeScore = containsFinalHomeScore ? Converter.ToInt(dataRow["finalhomescore"]) : 0;
+                ticket.FinalAwayScore = containsFinalAwayScore ? Converter.ToInt(dataRow["finalawayscore"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
@@ -591,6 +575,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                 ticket.APositionTaking = containsAPositionTaking ? Converter.ToDecimal(dataRow["apositiontaking"]) : 0;
                 ticket.ADiscount = containsADiscount ? Converter.ToDecimal(dataRow["adiscount"]) : 0;
+                ticket.PlayerDiscount = containsPlayerDiscount ? Converter.ToDecimal(dataRow["playerdiscount"]) : 0;
 
                 ticket.AWinlost = containsAWinlost ? Converter.ToDecimal(dataRow["awinlost"]) : 0;
                 ticket.AComm = containsAComm ? Converter.ToDecimal(dataRow["acomm"]) : 0;
@@ -654,7 +639,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
+                    var dataSet = db.ExecuteDataSet(new
+                    {
+                        criteria.TransId,
+                        criteria.LoggedId
+                    });
 
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
@@ -666,6 +655,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 throw;
             }
         }
+
         /// <summary>
         /// Get bet list Win loss from new or archive
         /// </summary>
@@ -676,10 +666,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {                
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
-
                     var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
 
                     // Main ticket list
@@ -696,6 +685,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 throw;
             }
         }
+
         /// <summary>
         /// Get bet list Win loss from new or archive
         /// </summary>
@@ -706,20 +696,21 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromNew(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {                
-                
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    db.AddInParameter("loggedid", DbType.Int32 ,criteria.LoggedId);
+                    db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
-                    db.AddInParameter("statusids", DbType.AnsiString , criteria.StatusIds);
+                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
+                    db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
+                    db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
 
                     var dataSet = db.ExecuteDataSet();
-                   
+
                     // Main ticket list
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
 
@@ -745,8 +736,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         private DataTable GetWinLossFromOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
-            {               
-
+            {
                 using (var db = new ObjectDb(uspKey))
                 {
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
@@ -754,7 +744,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
-                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);                    
+                    db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
+                    db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
+                    db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
 
                     var dataSet = db.ExecuteDataSet();
 

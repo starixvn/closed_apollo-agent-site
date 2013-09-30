@@ -8,37 +8,39 @@ html, body {
 /* MENU */
 
 #tab-menu {
-	#gradient.vertical(#F8F8F8, #E5E5E5);
+	#gradient.vertical(#900, #800);
 	text-align: center;
 	.clearfix;
 	margin-top: 1px;	
 	width: 100%;
 
 	td {		
-		border: 1px solid @borderColor;
+		border: 1px solid #000;
 		border-width: 1px 0px 1px 1px;
 		text-align: center;
 		padding: 0;
 		
-		&.active, &:hover {		
-					
-			a {
-				color: @secondColor;
-
-				i {
-					background-image: url(../../../_globalResources/css/img/glyphicons-halflings.png);
-				}
-			}
+		&:hover {
+			a { color: #FFFF00; }
 		}
 
 		&.active {		
-			border-top: 2px solid #0084B4;
+			border-top: 2px solid @secondColor;
 			border-bottom: 1px solid @white;
 			background-color: @white;
 						
 			a {
+				color: @secondColor;
 				padding: 8px 0 7px;
 				cursor: default;
+
+				i {
+					background-image: url(../../../_globalResources/css/img/glyphicons-halflings-red.png);
+				}
+			}
+
+			&:hover {
+				a { text-decoration: none }
 			}
 		}
 		
@@ -50,14 +52,14 @@ html, body {
 			display: block;
 			padding: 9px 0 7px;
 			text-decoration: none;
-			color: #707070;
+			color: #fff;
 			text-transform: uppercase;
 			font-size: .9em;
 			font-weight: bold;
 
 			i {
 				margin: -2px 3px 0 0;
-				background-image: url(../../../_globalResources/css/img/glyphicons-halflings-gray.png);
+				background-image: url(../../../_globalResources/css/img/glyphicons-halflings-white.png);
 			}
 		}		
 	}
@@ -69,15 +71,14 @@ html, body {
 	.menu-item {
 		display: block;	
 		min-height: 30px;
-		border-bottom: 1px solid @borderColor;
+		border-bottom: 1px solid #000;
 
 		.menu-item-title {
 			display: block;
 			padding: 5px 8px;
-			color: @gray;
+			color: #000;
 			text-transform: uppercase;			
 			cursor: pointer;
-			font-weight: bold;
 			font-size: 0.9em;
 
 			&:hover {	
@@ -96,8 +97,6 @@ html, body {
 				padding: 2px 0;
 				display: block;
 				font-size: .9em;
-				// backup red themes
-				//color: @gray;		
 				color: @linkColor;
 
 				&:hover {
@@ -111,7 +110,7 @@ html, body {
 				background: @grayLighter;
 			}
 			.submenu { 
-				border-top-color: @borderColor;
+				border-top-color: #000;
 			}
 		}
 	}
@@ -143,11 +142,13 @@ html, body {
 			font-size: 1em;
 			color: @gray;
 		}
+
 		select {
-			width: 78px;
+			width: 75px;
 			height: 22px;
 			margin-right: 2px;
 		}
+
 		.btn {
 			width: 26px;
 			height: 22px;
@@ -160,6 +161,7 @@ html, body {
 			.box-shadow(none);
 			i { background-image: url(../../../_globalResources/css/img/glyphicons-halflings-gray.png); }
 		}
+
 		.errMsg {
 			margin-top: 5px;
 			padding: 0 10px;
@@ -173,12 +175,24 @@ html, body {
 		margin-top: 5px;
 		width: 202px;
 
+        tr {            
+
+			td {
+				padding: 3px 0;
+				border-top : 1px dotted @borderLightColor;
+			}
+
+			&:first-child td{
+				border-top: none;
+			}
+        }
+
 		.agent-lbl, .parent-lbl {
 			
 		}
 		.agent-name, .parent-name {
 			text-align: right;
-			color: @orange;
+			color: #BB0000;
 		}
 		.parent-name {
 			a {
@@ -189,21 +203,19 @@ html, body {
 		}
 
 		#agentDownlineLink {
-			background: url(img/down-arr.png) no-repeat center 4px;			
-			display: inline-block;
 			width: 16px;
 			height: 16px;
 			position: relative;
 
 			#ddl-agents {
 				position: absolute;
-				top: 26px;
-				right: -13px;
+				top: 22px;
+				right: -5px;
 				z-index: 199;
 				display: none;
 				padding: 5px;
-				background-color: @grayLighter;
-				border: 1px solid @gray;
+				background-color: #F4F4F4;
+				border: 1px solid @borderColor;
 
 				li {
 					display: block;
@@ -213,7 +225,16 @@ html, body {
 					a { text-align: left }
 
 					&.root-agent {
-						border-bottom: 1px solid @grayLight;
+						//border-top: 1px solid @grayLight;
+						color: #BB0000;
+						list-style-type: disc;
+
+						.icon-stop {
+							background-image: url("../../../_globalresources/css/img/glyphicons-halflings-red.png");
+							margin: 1px 2px 0 -6px;
+							width: 10px;
+							height: 10px;
+						}
 					}
 				}
 
@@ -229,14 +250,14 @@ html, body {
 				&:after {
 					border-color: rgba(238, 238, 238, 0);
 					border-bottom-color: @grayLighter;
-					border-width: 10px;
+					border-width: 8px;
 					right: 10px;
 					margin-left: -10px;
 				}
 				&:before {
 					border-color: rgba(85, 85, 85, 0);
 					border-bottom-color: @gray;
-					border-width: 11px;
+					border-width: 9px;
 					right: 9px;
 					margin-left: -11px;
 				}
@@ -304,7 +325,6 @@ html, body {
 					.border-radius(2px 2px 0 0);
 					
 					color: @gray;
-					font-weight: bold;
 
 					float: left;
 					margin: 0 3px 0 0;
@@ -329,7 +349,7 @@ html, body {
 
 		.content {
 			position: absolute;
-			top: 30px;
+			top: 26px;
 			bottom: 0;
 			left: 0;
 			right: 0;
@@ -353,18 +373,75 @@ html, body {
 					width: 100%;
 					
 					&:hover { 
-						color: @hoverLinkYellowColor;
+						color: @hoverLinkOrangeColor;
+					}
+				}
+
+				.edit-link {
+					background: url(images/tab-arrow_down.png)  no-repeat right 7px;
+					padding: 2px 13px 2px 0;
+					float: left;
+
+					&:hover {
+						color: @hoverLinkOrangeColor;
+					}
+
+					&.bg {
+						//background-color: #FCD5B5;
+						color: @textColor;
+					}
+				}
+
+				.list {
+					display: none;
+					position: relative;
+					z-index: 100;
+					float: left;
+				}
+
+				.menu-list {
+					position: absolute;
+					background-color: #F4F4F4;
+					border: 1px solid @borderColor;					
+					top: 7px;
+					left: 5px;
+					z-index: 100;
+
+					li {
+						border-top: 1px dotted @borderLightColor;
+						padding: 3px 16px 3px 12px;
+
+						a {
+							white-space: nowrap;
+
+							&:hover {
+								color: @hoverLinkOrangeColor;
+							}
+						}
+
+						&:first-child {
+							border-top: none;
+						}
 					}
 				}
 			}
 
 			#agentsTab-content, #membersTab-content {
 				height: 100%;
+				overflow: hidden;
 
+                #agent-treeview{
+                    height: 100%;
+                    iframe {
+						width: 203px;
+						height: 98%;
+						margin: 5px 0 0 5px;
+				    }
+                }
 				iframe {
 					width: 203px;
 					height: 98%;
-					margin: 5px 0 0 5px;
+					margin: 5px 0 0 5px;					
 				}
 			}
 
@@ -377,9 +454,7 @@ html, body {
 
 .no-data-agent, .no-data {
 	text-align: center;
-	font-weight: bold;
 	padding: 10px;
-	color: @hoverLinkYellowColor;
 }
 
 /* AUTO-COMPLETE */
@@ -396,6 +471,15 @@ html, body {
 }
 
 /* TREE VIEW */
+
+.icon-repeat {
+	float: left;
+    margin-right: 5px;
+	position: fixed;
+	left: 185px;
+	top: 39px;
+}
+
 .treeview {
 	
 	li {
@@ -407,6 +491,10 @@ html, body {
 		padding: 0 0 0 5px;
 		color: @linkColor;
 		white-space: nowrap;
+
+		&:hover {
+			color: @hoverLinkOrangeColor;
+		}
 	}
 }
 
@@ -414,7 +502,7 @@ html, body {
 	a {
 		color: @linkColor;
 		&:hover { 
-			color: @hoverLinkYellowColor;
+			color: @hoverLinkOrangeColor;
 		}
 	}
 }
@@ -439,46 +527,30 @@ html, body {
 	text-align: left;
 
 	span, a {
-		//#gradient.vertical(#F8F8F8, #EAEAEA);
-		//border: 1px solid #CCC;
-		//.box-shadow(0 1px 0 #FFF inset);
 		margin: 0 2px;
 		padding: 2px 5px;
-		color: @linkColor;
+		color: @black;
 		text-align: center;
 		text-decoration: none;
 		.transition(all 0.15s ease-in-out 0s);
 		cursor: pointer;
 
 		&:hover, &:focus, &:active {
-			background: @grayLight;
 			padding: 2px 5px;
-			color: @white;
-			text-shadow: 0 1px 0 #555;
+			color: @red;
 		}
 	}
 
 	.current {
-		background: @grayLight;
 		padding: 2px 5px;
-		color: @white;
-		text-shadow: 0 1px 0 @gray;
-
-		&:hover, &:focus, &:active {
-			cursor: default;
-			color: @white;
-		}
+		color: @red;
 	}
 
 	.disabled, .disabled:hover {		
 		cursor: default;
-		background: #ddd;
-		color: @gray;
-		border: 1px solid @borderColor;
-		text-shadow: none;
+		color: @black;
 	}
 }
-
 
 .line-pager {
 	background: #efefef;
@@ -499,14 +571,9 @@ html, body {
 	}
 
 	#wrapper {
-		
-		.cust-info #agentDownlineLink {
-			background: url(img/down-arr.png) @white no-repeat center 4px;
-		}
-		
 		#agent-setting {
 			position: fixed;
-			top: 170px;
+			display: none;
 
 			.content {
 				#agentsTab-content, #membersTab-content {

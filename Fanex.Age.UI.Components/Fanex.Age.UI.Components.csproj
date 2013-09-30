@@ -64,7 +64,6 @@
     <Content Include="ErrorPage\ErrorPage.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formater.cs" />
     <Compile Include="HtmlGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,7 +95,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57212</DevelopmentServerPort>
+          <DevelopmentServerPort>52818</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -3,56 +3,161 @@
 @import "../../../_globalResources/css/sprites.less";
 
 body {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 td {
-    padding-left: 2px;
-    padding-right: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 #news_main {
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-    background: @headerBackground;	
+	height: 100%;
+	width: auto;
+	overflow: hidden;
+	background: #fff;
 
 	.login-bg {
-		background: @white;
-		border-bottom: 1px solid @headerBorderColor;
-		height: 30px;
+		background: #990000;
+		height: 50px;
+		position: relative;
 
 		b {
 			line-height: 2em;
 			color: #555;
 			float: left;
 		}
-	}
-	.login-info {		
-		float: right;		
-		padding: 5px;
-		color: @gray;
 
-		.username {			
-			margin: 0 10px;
+		.left {
+			background: url(images/bg-logo.png) no-repeat;
+			width: 183px;
+			height: 50px;			
+			position: absolute;
+			left: 0;
+			
+			&.sso {
+				background: url(images/bg-logo.png) no-repeat left -25px;
+			}		
 		}
+		
+		.right {
+			left: 183px;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			position: absolute;
 
-		a {
-			color: @linkColor;
-			text-decoration: none;
-			margin: 0 3px;
+			.login-info {					
+				padding: 6px 10px 7px 7px;
+				color: #fff;
+			
+				.username {
+					float: left;
+				}
 
-			&:hover {
-				color: @hoverLinkRedColor;
+				ul.link {					
+					float: right;
+
+					li {
+						float: left;
+
+						a {
+							color: #fff;
+							margin: 0 5px;
+
+							&:hover {
+								color: #FFFF00;
+							}
+						}
+					}					
+				}
 			}
-		}
-	}
+
+			.toolbar {
+				background-color: #ECE9D8;
+				border-bottom: 2px ridge #A0998F;
+				border-top: 1px solid #2F4540;
+				height: 18px;
+
+				&.sso {
+					margin-top: 4px;
+				}
+
+				li {
+					float: left;
+					margin-top: 1px;
+					color: @black;
+
+					span, a {						
+						float: left;
+						margin: 0;
+						padding: 0 4px;
+
+						a {
+							padding: 0;
+						}
+
+						&.border-link {
+							border-top: #ECE9D8 1px solid;		
+							border-right: #ECE9D8 1px solid;
+							border-left: #ECE9D8 1px solid;
+							height: 15px;		
+
+							&:hover {
+								border-top: #fff 1px solid;
+								border-bottom: #A0A0A0 1px solid;
+								border-right: #A0A0A0 1px solid;
+								border-left: #fff 1px solid;
+							}			
+						}
+					}
+
+					a {
+						color: @black;
+						cursor: text;
+
+						&.txtRed {
+							color: #B00;
+							cursor: pointer;
+						}
+						
+						&.outright:hover {
+							color: #FF6600;
+							cursor: text;
+						}	
+					}
+					
+					.sub-menu {						
+						float: left;
+						display: none;
+						margin: 0;
+						padding: 0;
+
+						li {
+							background: url(images/icon-subMenu.png) left center no-repeat;
+							padding-left: 5px;
+
+							a {
+								color: #0000EE;
+
+								&:hover {
+									color: #FF6600;
+									cursor: text;
+								}
+							}
+						}
+					}
+				}
+			}
+		}				
+	}	
 
 	#text_news_out {		
 		height: 29px;
 		width: 100%;
 		position: relative;
+		background: #ECE9D8;
 
 		#text_news {
 			height: 28px;
@@ -145,4 +250,34 @@ td {
 
 .hide {
 	display: none;
+}
+
+/* FIX IE */
+.ie {
+	#news_main .login-bg .right .toolbar {		
+		li, li a, li a.outright, .sub-menu li a:hover {
+			cursor: pointer;
+		}
+
+		li a.outright {
+			color: @black; 
+		}
+	}	
+}
+
+.eq-ie7 {
+	#news_main .login-bg .right .toolbar {
+		height: 19px;
+	}
+
+	#news_main .login-bg .right .toolbar ul {
+		line-height: 15px;
+	}
+}
+
+.eq-ie8 {
+	#news_main .login-bg .right .toolbar {
+		height: 19px;
+		border-bottom: 2px ridge #000;
+	}
 }

@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -38,35 +41,20 @@
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoLibrary">
-      <HintPath>..\Dependencies\CasinoLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoSetting">
-      <HintPath>..\Dependencies\CasinoSetting.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoUtility">
-      <HintPath>..\Dependencies\CasinoUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="DNAide">
-      <HintPath>..\Dependencies\DNAide.dll</HintPath>
-    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DotNet.Highcharts">
-      <HintPath>..\Dependencies\DotNet.Highcharts.dll</HintPath>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="Enyim.Caching">
-      <HintPath>..\Dependencies\Enyim.Caching.dll</HintPath>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-<<<<<<< HEAD
-=======
       <SpecificVersion>False</SpecificVersion>
->>>>>>> ea336342dffebdbff6c0bf55b7da07d7182cd191
       <HintPath>..\Dependencies\Fanex.BetList.Age.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4883.26344, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fanex.BetList.Core, Version=1.0.4923.30128, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
     </Reference>
@@ -86,9 +74,6 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.LiveCasinoSetting">
-      <HintPath>..\Dependencies\Fanex.LiveCasinoSetting.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Logging">
       <HintPath>..\Dependencies\Fanex.Logging.dll</HintPath>
     </Reference>
@@ -97,36 +82,6 @@
     </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.PTEngine">
-      <HintPath>..\Dependencies\Fanex.PTEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.PTEngine.Age">
-      <HintPath>..\Dependencies\Fanex.PTEngine.Age.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.PTVirtualSports">
-      <HintPath>..\Dependencies\Fanex.PTVirtualSports.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.SessionPartition">
-      <HintPath>..\Dependencies\Fanex.SessionPartition.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation">
-      <HintPath>..\Dependencies\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation.resources">
-      <HintPath>..\Dependencies\FluentValidation.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="FPS.Client">
-      <HintPath>..\Dependencies\FPS.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="GotDotNet.ApplicationBlocks.Data">
-      <HintPath>..\Dependencies\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="HandHistoryLibrary">
-      <HintPath>..\Dependencies\HandHistoryLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCCrypt">
-      <HintPath>..\Dependencies\IBCCrypt.dll</HintPath>
     </Reference>
     <Reference Include="IBCDBLibrary">
       <HintPath>..\Dependencies\IBCDBLibrary.dll</HintPath>
@@ -143,20 +98,8 @@
     <Reference Include="IBCUtils">
       <HintPath>..\Dependencies\IBCUtils.dll</HintPath>
     </Reference>
-    <Reference Include="ILogger">
-      <HintPath>..\Dependencies\ILogger.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\Dependencies\Ionic.Zip.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCasinoLibrary">
-      <HintPath>..\Dependencies\LiveCasinoLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="LoadBalancer">
       <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\Dependencies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="LVAPIDBLibrary">
       <HintPath>..\Dependencies\LVAPIDBLibrary.dll</HintPath>
@@ -164,25 +107,7 @@
     <Reference Include="LVAPILibrary">
       <HintPath>..\Dependencies\LVAPILibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Membase">
-      <HintPath>..\Dependencies\Membase.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.Data">
-      <HintPath>..\Dependencies\Microsoft.ApplicationBlocks.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Owin">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
-      <HintPath>..\Dependencies\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\Dependencies\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
       <HintPath>..\Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
@@ -206,9 +131,6 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database">
       <HintPath>..\Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ObjectBuilder">
-      <HintPath>..\Dependencies\Microsoft.Practices.ObjectBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
     </Reference>
@@ -219,17 +141,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception">
       <HintPath>..\Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.StaticFactory">
-      <HintPath>..\Dependencies\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
     </Reference>
     <Reference Include="NetUtility">
       <HintPath>..\Dependencies\NetUtility.dll</HintPath>
@@ -237,29 +150,11 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Nexcel.WebControls.UI">
-      <HintPath>..\Dependencies\Nexcel.WebControls.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\Dependencies\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="NotifyPropertyChanged">
-      <HintPath>..\Dependencies\NotifyPropertyChanged.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\Dependencies\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\Dependencies\Owin.dll</HintPath>
-    </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="RSACryptoPad">
       <HintPath>..\Dependencies\RSACryptoPad.dll</HintPath>
-    </Reference>
-    <Reference Include="SharedCache.WinServiceCommon">
-      <HintPath>..\Dependencies\SharedCache.WinServiceCommon.dll</HintPath>
     </Reference>
     <Reference Include="SPSRemoting">
       <HintPath>..\Dependencies\SPSRemoting.dll</HintPath>
@@ -284,9 +179,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -341,6 +233,9 @@
     <Reference Include="UMControllerLibrary">
       <HintPath>..\Dependencies\UMControllerLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
@@ -357,55 +252,39 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.htm.cs" />
     <Compile Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListTransaction.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
       <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
     <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
       <DependentUpon>MixParlay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="App_Code\Formater.cs" />
@@ -420,7 +299,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Log.txt" />
-    <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Data\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
     <Content Include="CustSettingEngine\PTGrid.xml">
       <SubType>Designer</SubType>
@@ -460,6 +341,7 @@
     <Content Include="Views\Account\Resources\gistfile1.min.js" />
     <Content Include="Views\Account\Resources\header.js" />
     <Content Include="Views\Account\Resources\Images\ajax-loader.gif" />
+    <Content Include="Views\Account\Resources\Images\bg-logo.jpg" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-bottom.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-middle.png" />
     <Content Include="Views\Account\Resources\Images\bg-tooltip-top.png" />
@@ -473,13 +355,16 @@
     <Content Include="Views\Account\Resources\Images\edit-menu.gif" />
     <Content Include="Views\Account\Resources\Images\edit.png" />
     <Content Include="Views\Account\Resources\Images\edit_disabled.gif" />
+    <Content Include="Views\Account\Resources\Images\icon-close.gif" />
     <Content Include="Views\Account\Resources\Images\icon-edit-setting.png" />
+    <Content Include="Views\Account\Resources\Images\icon-help.png" />
     <Content Include="Views\Account\Resources\Images\icon-root.png" />
     <Content Include="Views\Account\Resources\Images\icon-sub-menu.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info-hover.png" />
     <Content Include="Views\Account\Resources\Images\icon-view-info.png" />
     <Content Include="Views\Account\Resources\Images\loader3.gif" />
     <Content Include="Views\Account\Resources\Images\magnifier.png" />
+    <Content Include="Views\Account\Resources\Images\qa_phone.png" />
     <Content Include="Views\Account\Resources\Images\title.jpg" />
     <Content Include="Views\Account\Resources\Images\treeview-1.png" />
     <Content Include="Views\Account\Resources\Images\treeview-default-line.gif" />
@@ -521,6 +406,35 @@
     <Content Include="Views\Forecast\Resources\Images\Loading.gif" />
     <Content Include="Views\Forecast\Resources\Images\Refresh.png" />
     <Content Include="Views\Forecast\Resources\ScoreMap.js" />
+    <Content Include="Views\HiddenTool\Resources\Images\01.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\01_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\02.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\02_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\03.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\03_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\04.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\04_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\05.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\05_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06_1.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\06_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\07.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\07_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\08.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\08_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\09.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\09_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\10.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\11.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\11_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\12.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\12_s.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\13.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\14.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\15.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\16.gif" />
+    <Content Include="Views\HiddenTool\Resources\Images\17_s.gif" />
     <Content Include="Views\Home\Resources\Default.js" />
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
@@ -549,8 +463,11 @@
     <Content Include="Views\Reports\Resources\WinLoss.js" />
     <Content Include="Views\Results\Resources\Match.js" />
     <Content Include="Views\Results\Resources\Outright.js" />
+    <Content Include="Views\TotalBets\Resources\Index.js" />
     <Content Include="Views\TotalBets\Resources\TotalBets.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -696,6 +613,7 @@
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\sync.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
+    <Content Include="_GlobalResources\Images\top_04.gif" />
     <Content Include="_GlobalResources\Images\x5.gif" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
@@ -786,13 +704,42 @@
     <Content Include="_GlobalResources\Js\noty\layouts\topRight.js" />
     <Content Include="_GlobalResources\Js\noty\promise.js" />
     <Content Include="_GlobalResources\Js\noty\themes\default.js" />
+    <Content Include="Views\Home\PagerPlugin.cshtml" />
+    <Content Include="Areas\Wagers\Views\Web.config" />
+    <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Wagers\Views\Soccer\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Others\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\BkNFLRugby\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Baseball\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\VolleyballBadminton\Index.cshtml" />
+    <Content Include="Areas\Wagers\Views\Tennis\Index.cshtml" />
+    <Content Include="Views\HiddenTool\Index.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
+    <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
+    <Content Include="Views\TotalBets\Index.cshtml" />
+    <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
+    <Content Include="Views\Account\ViewAgentDetails.cshtml" />
+    <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
+    <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
+    <Content Include="Views\Account\ContactUs.cshtml" />
+    <Content Include="Views\Account\Resources\header.less" />
+<<<<<<< HEAD
+    <Content Include="Views\Account\InDirectAgentList.cshtml" />
+    <Content Include="Views\Account\InDirectMemberList.cshtml" />
+=======
+>>>>>>> f7af49aade5f308e1447c1e99f42a785f990be23
+    <None Include="_GlobalResources\Js\Pager\jquery.sbpager.less" />
+    <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
     <Content Include="_GlobalResources\Js\shortcut.js" />
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Wagers\Scripts\" />
+    <Folder Include="Areas\Wagers\Styles\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -819,33 +766,31 @@
     <Content Include="Views\Account\Menu.cshtml" />
     <Content Include="Views\Account\MiniMenu.cshtml" />
     <Content Include="Views\Account\MySetting.cshtml" />
-    <None Include="Views\Account\Resources\Account.less" />
-    <None Include="Views\Account\Resources\CustomerList.less" />
+    <Content Include="Views\Account\Resources\Account.less" />
+    <Content Include="Views\Account\Resources\CustomerList.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\Core.less" />
     <None Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
-    <None Include="Views\Account\Resources\header.less" />
-    <None Include="Views\Account\Resources\LogLogin.less" />
-    <None Include="Views\Account\Resources\MiniAccount.less" />
-    <None Include="Views\Account\Resources\ViewSetting.less" />
+    <Content Include="Views\Account\Resources\ContactUs.less" />
+    <Content Include="Views\Account\Resources\LogLogin.less" />
+    <Content Include="Views\Account\Resources\MiniAccount.less" />
+    <Content Include="Views\Account\Resources\ViewSetting.less" />
     <Content Include="Views\Account\Shared\_CustSettingLayout.cshtml" />
     <Content Include="Views\Account\Shared\_Layout.cshtml" />
-    <None Include="Views\Account\Shared\_Layout.cshtml.orig" />
     <Content Include="Views\Account\Shared\_LayoutAccountList.cshtml" />
     <Content Include="Views\Account\Shared\_LayoutLogLogin.cshtml" />
-    <None Include="Views\Account\Shared\_LayoutLogLogin.cshtml.orig" />
     <Content Include="Views\Account\Shared\_LayoutTreeView.cshtml" />
     <Content Include="Views\Account\Shared\_ViewSettingLayout.cshtml" />
     <Content Include="Views\Account\TopBar.cshtml" />
     <Content Include="Views\Account\TreeViewList.cshtml" />
     <Content Include="Views\Account\TreeViewList.testdefer.cshtml" />
     <Content Include="Views\Account\ViewCommission.cshtml" />
-    <None Include="Views\BetList\Resources\BetList.less" />
+    <Content Include="Views\BetList\Resources\BetList.less" />
     <Content Include="Views\BetList\Shared\_Layout.cshtml" />
     <Content Include="Views\BetList\ViewDetail.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Error\AccountStopped.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <None Include="Views\Error\Resources\Index.less" />
+    <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
     <Content Include="Views\Forecast\FC1X2.cshtml" />
@@ -854,8 +799,8 @@
     <Content Include="Views\Forecast\FCHandicapOverUnderMatches.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatch.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
-    <None Include="Views\Forecast\Resources\FC.less" />
-    <None Include="Views\Forecast\Resources\ScoreMap.less" />
+    <Content Include="Views\Forecast\Resources\FC.less" />
+    <Content Include="Views\Forecast\Resources\ScoreMap.less" />
     <Content Include="Views\Forecast\ScoreMap.cshtml" />
     <Content Include="Views\Forecast\ScoreMapBetType.cshtml" />
     <Content Include="Views\Forecast\ScoreMapLeagues.cshtml" />
@@ -863,7 +808,7 @@
     <Content Include="Views\Forecast\ScoreMapResult.cshtml" />
     <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
-    <None Include="Views\Home\Resources\Index.less" />
+    <Content Include="Views\Home\Resources\Index.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentBetSettingAdv.cshtml" />
     <Content Include="Views\Instruction\en-US\AgentCommissionSetting.cshtml" />
@@ -986,18 +931,14 @@
     <Content Include="Views\Instruction\zh-TW\MemberShareSettingAdv.cshtml" />
     <Content Include="Views\Internal\SelectAccount.cshtml" />
     <Content Include="Views\Internal\SignIn.cshtml" />
-    <None Include="Views\Log\Resources\log.less" />
+    <Content Include="Views\Log\Resources\log.less" />
     <Content Include="Views\Log\Shared\_Layout.cshtml" />
-    <Content Include="Views\Log\Templates\AgentDiscount.cshtml" />
-    <Content Include="Views\Log\Templates\BetSetting.cshtml" />
-    <Content Include="Views\Log\Templates\CustomerDiscount.cshtml" />
-    <Content Include="Views\Log\Templates\PositionTaking.cshtml" />
     <Content Include="Views\Log\ViewLog.cshtml" />
     <Content Include="Views\Message\Announcement.cshtml" />
     <Content Include="Views\Message\NewMessage.cshtml" />
     <Content Include="Views\Message\Portal.cshtml" />
-    <None Include="Views\Message\Resources\message.less" />
-    <None Include="Views\Message\Resources\PortalPage.less" />
+    <Content Include="Views\Message\Resources\message.less" />
+    <Content Include="Views\Message\Resources\PortalPage.less" />
     <Content Include="Views\Message\Shared\_Layout.cshtml" />
     <Content Include="Views\OAuth\Error.cshtml" />
     <Content Include="Views\OAuth\GetCode.cshtml" />
@@ -1006,7 +947,7 @@
     <Content Include="Views\Reports\MatchEntered.cshtml" />
     <Content Include="Views\Reports\MemberWinLoss.cshtml" />
     <Content Include="Views\Reports\Outstanding.cshtml" />
-    <None Include="Views\Reports\Resources\Reports.less" />
+    <Content Include="Views\Reports\Resources\Reports.less" />
     <Content Include="Views\Reports\Shared\_Layout.cshtml" />
     <Content Include="Views\Results\Badminton.cshtml" />
     <Content Include="Views\Results\BaseBall.cshtml" />
@@ -1019,7 +960,7 @@
     <Content Include="Views\Results\Outright.cshtml" />
     <Content Include="Views\Results\OutrightResult.cshtml" />
     <Content Include="Views\Results\ParlayResult.cshtml" />
-    <None Include="Views\Results\Resources\Results.less" />
+    <Content Include="Views\Results\Resources\Results.less" />
     <Content Include="Views\Results\Soccer.cshtml" />
     <Content Include="Views\Results\Tennis.cshtml" />
     <Content Include="Views\TotalBets\FirstGoal.cshtml" />
@@ -1030,37 +971,82 @@
     <Content Include="Views\TotalBets\NumberGame.cshtml" />
     <Content Include="Views\TotalBets\OddEven.cshtml" />
     <Content Include="Views\TotalBets\OutRight.cshtml" />
-    <None Include="Views\TotalBets\Resources\TotalBets.less" />
+    <Content Include="Views\TotalBets\Resources\TotalBets.less" />
     <Content Include="Views\TotalBets\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\TotalGoal.cshtml" />
     <Content Include="Web.AppSettings.config" />
-    <Content Include="Web.ConnectionString.config" />
+    <Content Include="Web.ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.sitemap" />
-    <None Include="_BetList\Resources\BetList.less" />
-    <None Include="_BetList\Resources\ErrorPage.less" />
-    <None Include="_BetList\Resources\Paging.less" />
+    <Content Include="_BetList\Resources\BetList.less" />
+    <Content Include="_BetList\Resources\ErrorPage.less" />
+    <Content Include="_BetList\Resources\Paging.less" />
     <Content Include="_Components\web.config" />
     <Content Include="_Components\AGEWnd\web.config" />
-    <None Include="_GlobalResources\Css\Agent.less" />
-    <None Include="_GlobalResources\Css\calendar.less" />
+    <Content Include="_GlobalResources\Css\Agent.less" />
+    <Content Include="_GlobalResources\Css\calendar.less" />
+    <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\MainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Shared\_ApoRes.cshtml" />
+    <Content Include="Views\Log\LogActionType2.cshtml" />
+    <Content Include="Views\Log\LogActionType4.cshtml" />
+    <Content Include="Views\Log\LogActionType3.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentBetSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderShareSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentShareSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewAgentShareSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderBetSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\en-US\ViewMainShareHolderShareSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentBetSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentShareSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewAgentShareSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentBetSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentShareSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewAgentShareSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\MainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\MainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\MainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\MainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderBetSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderShareSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-CN\ViewMainShareHolderShareSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderBetSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderBetSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderCommissionSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderCommissionSettingAdv.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSetting.cshtml" />
+    <Content Include="Views\Instruction\zh-TW\ViewMainShareHolderShareSettingAdv.cshtml" />
+    <None Include="Views\Message\Resources\Announcement.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
-    <None Include="_GlobalResources\Css\mixins.less" />
-    <None Include="_GlobalResources\Css\RefreshCountDown.less" />
-    <None Include="_GlobalResources\Css\sprites.less" />
-    <None Include="_GlobalResources\Css\variables.less" />
-    <None Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
-    <None Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
-    <None Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
+    <Content Include="_GlobalResources\Css\mixins.less" />
+    <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
+    <Content Include="_GlobalResources\Css\sprites.less" />
+    <Content Include="_GlobalResources\Css\variables.less" />
+    <Content Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
+    <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
+    <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
     <Content Include="_GlobalResources\Js\web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Account\Apollo.Age.Account.csproj">
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>Apollo.Age.Account</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Admin\Apollo.Age.Admin.csproj">
-      <Project>{6149E074-7B05-4556-AF53-E97D7199F2BF}</Project>
-      <Name>Apollo.Age.Admin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
@@ -1069,6 +1055,10 @@
     <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
       <Name>Apollo.Age.Forecast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj">
+      <Project>{1909258B-93B9-4E7D-A896-C57D8B22254F}</Project>
+      <Name>Apollo.Age.HiddenTool</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
@@ -1085,6 +1075,10 @@
     <ProjectReference Include="..\Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj">
       <Project>{BD56914E-88CE-4330-BE77-8BD78208A140}</Project>
       <Name>Apollo.Age.TotalBets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Wagers\Apollo.Age.Wagers.csproj">
+      <Project>{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}</Project>
+      <Name>Apollo.Age.Wagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
       <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
@@ -1132,6 +1126,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

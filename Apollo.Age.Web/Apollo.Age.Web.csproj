@@ -53,6 +53,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\Dependencies\Owin.dll</HintPath>
     </Reference>
@@ -61,7 +64,17 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="UMControllerLibrary">
@@ -74,8 +87,10 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Filters\AllowUpdateCheckingAttribute.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\CommonChecking.cs" />
     <Compile Include="Filters\CustomValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Filters\P3PAttribute.cs" />
     <Compile Include="Filters\InternalCheckingAttribute.cs" />
@@ -83,10 +98,11 @@
     <Compile Include="Controllers\InstructionController.cs" />
     <Compile Include="DeviceDetection.cs" />
     <Compile Include="LanguageManager.cs" />
+    <Compile Include="Mvc\RazorExtensions.cs" />
     <Compile Include="SessionManager.cs" />
+    <Compile Include="ViewModels\SafeCodeViewModel.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
-    <Compile Include="ViewModels\UnderMaintenanceViewModel.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Pager\IPagedList.cs" />
     <Compile Include="Pager\PagedList.cs" />
@@ -112,11 +128,16 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
+      <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
+      <Name>Apollo.UMService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

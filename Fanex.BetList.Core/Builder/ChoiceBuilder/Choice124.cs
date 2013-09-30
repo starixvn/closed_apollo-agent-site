@@ -8,12 +8,26 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using Fanex.BetList.Core.Entities;
+
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// FULL TIME 1x2 Asia handicap shorted as "FT 1x2 HDP"  
+    /// FULL TIME 1x2 Asia handicap shorted as "FT 1x2 HDP"
     /// </summary>
     public class Choice124 : Choice1
     {
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        {
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+        }
     }
 }

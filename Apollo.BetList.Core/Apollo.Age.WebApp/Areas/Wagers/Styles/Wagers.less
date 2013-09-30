@@ -1,0 +1,285 @@
+﻿@import "../../../_globalResources/css/Agent.less";
+@import "../../../_globalResources/css/RefreshCountDown.less";
+@import "../../../_globalResources/css/calendar.less";
+
+a {
+	&:hover {
+		color: #F60;
+		text-decoration: none;
+	}
+}
+
+#function-bar {
+	input.datepicker {
+		border: 1px solid #000;		
+		line-height: 1.2em;
+		font-size: .9em;
+		width: 75px;
+		height: 11px;
+		padding: 3px;
+	}
+}
+
+#header_main {
+	color: #000099;
+	display: block;
+	float: left;
+	margin: 2px 10px 5px 5px;
+	padding: 2px 0;
+}
+
+.box-header {
+	float: left;
+	clear: none;
+
+	.row .cell {
+		.label label {
+			margin-top: 1px;
+		}
+	}
+
+	.league {
+		max-width: 450px;
+	}
+}
+
+.btnCountDown {
+	margin-right: 0;
+}
+
+.mainpage {
+	position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+	top: 25px;
+	height: auto;
+
+	.text-green {
+		color: #009900;
+	}
+
+	.red {
+		color: #CC0000;
+	}
+
+	.pages-size {
+		.pull-left;		
+		text-transform: uppercase;
+		margin-top: 5px;
+	}
+
+	#content_main
+	{
+		width: 1100px;
+	}
+
+	/* Total goal */
+	.round_color {
+		color: Red;
+	}
+
+	/* HANDICAP OVER UNDER */
+	.fcnum {
+		color: #1D1D1D;
+		text-decoration: none;
+	}
+
+	.fcbtn {
+		text-align: center;
+		width: 16px;
+	}
+
+	.hide {
+		display: none;
+	}
+
+	.negative_color {
+		color: #eb6003;
+	}
+
+	.blue {
+		color: #2673CE;
+	}
+
+	.line_n {
+		background: url("../../_globalResources/images/line_n.jpg") repeat scroll 0 0 transparent;
+	}
+
+	.raceNo {
+		font-size: 14px;
+	}
+
+	.valign-top {
+		vertical-align: top;
+	}
+
+	.header_tb04 {
+		background: url("../../_globalResources/images/bg_head05.jpg") repeat-x scroll 0 0 transparent;
+		color: #900;
+		//font-weight: bold;
+		line-height: 20px;
+		text-align: right;
+	}
+
+	.block-loading {
+		&.fc1x2 {
+			margin-top: 225px;
+		}
+
+		&.loading-scoremap {
+			left: 460px;
+			position: fixed;
+			top: 277px;
+		}
+	}
+
+	.no-border-bottom {
+		border-bottom-width: 0px !important;
+	}
+
+	.break-line {
+		white-space: inherit;
+	}
+
+	.tblRpt {
+		&.soccer {
+			&.straight {
+				width: 787px;
+			}
+
+			&.first-half {
+				width: 850px;
+			}
+
+			&.correct-score, &.first-half-correct, &.half-full {
+				width: 410px;
+			}
+
+			&.parlay {
+				width: 570px;
+			}
+		}
+
+		&.basketball {
+			width: 860px;
+
+			&.running-ball {
+				width: 720px;
+			}
+
+			&.parlay {
+				width: 450px;
+			}
+		}
+
+		&.tennis, &.volleyball {
+			&.straight {
+				width: 988px;
+			}
+
+			&.running-ball {
+				width: 720px;
+			}
+
+			&.parlay {
+				width: 450px;
+			}
+		}
+
+		&.baseball {
+			&.straight {
+				width: 850px;
+			}
+
+			&.running-ball {
+				width: 720px;
+			}
+
+			&.parlay {
+				width: 450px;
+			}
+		}
+
+		&.others {
+			&.straight, &.first-half {
+				width: 850px;
+			}
+
+			&.running-ball {
+				width: 1110px;
+			}
+
+			&.parlay {
+				width: 570px;
+			}
+		}
+
+		&.outright {
+			&.soccer {
+				width: 820px;
+				border-color: #CC9900;
+
+				thead td, thead th, tbody .em-row {
+					background-color: #FFFF66;
+					border-color: #CC9900;
+				}
+
+				tbody tr td {
+					border-color: #CC9900;
+					&.hasTbl {
+						padding: 0;
+						vertical-align: top;
+
+						.tbl {
+							border: 1px solid #CC9900;
+							width: 100%;
+							height: 100%;
+
+							tbody tr {
+
+								&.one-row td {
+									height: 30px;
+								}
+
+								td {
+									border-color: #CC9900;
+								}
+							}
+						}
+					}					
+				}
+			}
+		}
+	}
+}
+
+/* FIX IE */
+
+.eq-ie7 {
+	.box-header .league {
+		width: 450px;
+	}
+}
+
+.eq-ie7 , .eq-ie8 {
+	.block-loading {
+		&.loading-scoremap {
+			left: 455px;
+			position: fixed;
+			top: 160px;
+		}
+	}
+}
+
+.eq-ie8 {	
+	.box-header {
+		.league-el {
+			max-width: 510px;
+
+			.editor {
+				max-width: 450px;
+			}
+		}
+	}
+}

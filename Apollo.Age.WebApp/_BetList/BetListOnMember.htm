@@ -14,12 +14,12 @@
         </div>
         <div id="content_main">
             <!--Filter-->
-            <div id="box_header">
+            <div id="box_header" class="report">
                 <div class="row">
                     <div class="cell">
                         <div class="label">
                             <label for="dateFrom">
-                                {static:Apollo.Age.Resources.Lang.from}</label>
+                                {static:Apollo.Age.Resources.Lang.dateRange}</label>
                         </div>
                         <div class="editor">
                             <input type="text" id="fromDate" name="fromDate" class="datepicker" value="{valueFromDate}"
@@ -29,18 +29,16 @@
                     <div class="cell">
                         <div class="label">
                             <label for="dateFrom">
-                                {static:Apollo.Age.Resources.Lang.to}</label>
+                                ~</label>
                         </div>
                         <div class="editor">
                             <input type="text" id="toDate" name="toDate" class="datepicker" value="{valueToDate}"
                                 mindate="{valueMinDate}" maxdate="{valueMaxDate}" />
                         </div>
                     </div>
-                    <div class="cell">
-                        <div class="editor">
-                            <input type="button" class="btn act-submit" id="dSubmit" value="{static:Apollo.Age.Resources.Lang.Generate}">
-                        </div>
-                    </div>
+                </div>
+                <div class="row bg-action">
+                    <input type="button" class="btn act-submit" id="dSubmit" value="{static:Apollo.Age.Resources.Lang.search}">
                 </div>
             </div>
             <!--/Filter-->

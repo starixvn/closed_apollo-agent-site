@@ -9,34 +9,35 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Resources;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Apollo.Age.Web.Services;
-    using System.Net;
     using Apollo.Age.Resources;
-    using System.Threading;
+    using Apollo.Age.Web.Services;
 
+    /// <summary>
+    /// Error controller class.
+    /// </summary>
     public class ErrorController : Controller
     {
-        private readonly UnderMaintenanceService maintenanceService;
-        private LanguageManager _langManager;
-     
+        private readonly UnderMaintenanceService _maintenanceService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorController"/> class.
+        /// </summary>
         public ErrorController()
         {
-            maintenanceService = new UnderMaintenanceService();
+            _maintenanceService = new UnderMaintenanceService();
             if (SessionManager.CurrentSession != null)
             {
-                _langManager = new LanguageManager();
-                _langManager.SetCulture(SessionManager.CurrentSession.Language);
-            }            
-            
+                LanguageManager.SetCulture(SessionManager.CurrentSession.Language);
+            }
         }
 
+        /// <summary>
+        /// Indexes the specified error.
+        /// </summary>
+        /// <param name="err">Input error number.</param>
+        /// <returns>Error message.</returns>
         public ActionResult Index(string err)
         {
             switch (err)
@@ -44,9 +45,11 @@ namespace Apollo.Age.Web
                 case "403":
                     ViewBag.ErrorMessage = Lang.HttpError_403;
                     break;
+
                 case "404":
                     ViewBag.ErrorMessage = Lang.HttpError_404;
                     break;
+
                 default:
                     ViewBag.ErrorMessage = Lang.HttpError_Default;
                     break;
@@ -55,11 +58,15 @@ namespace Apollo.Age.Web
             return View();
         }
 
+        /// <summary>
+        /// Under maintenance action.
+        /// </summary>
+        /// <returns>Return view model or redirect to URL.</returns>
         public ActionResult UnderMaintenance()
         {
-            var maintenanceInfo = maintenanceService.MaintenanceInfo;
+            var maintenanceInfo = _maintenanceService.MaintenanceInfo;
 
-            if (maintenanceInfo.IsDownTime)
+            if (maintenanceInfo.Status)
             {
                 return View(maintenanceInfo);
             }
@@ -69,6 +76,10 @@ namespace Apollo.Age.Web
             }
         }
 
+        /// <summary>
+        /// Unauthorized action.
+        /// </summary>
+        /// <returns>Return error message.</returns>
         public ActionResult Unauthorized()
         {
             if (Request.IsAjaxRequest())
@@ -79,14 +90,47 @@ namespace Apollo.Age.Web
             return View();
         }
 
+        /// <summary>
+        /// Accesses the denied.
+        /// </summary>
+        /// <returns>View model.</returns>
         public ActionResult AccessDenied()
         {
             return View();
         }
 
+        /// <summary>
+        /// Accounts the stopped.
+        /// </summary>
+        /// <returns>View model.</returns>
         public ActionResult AccountStopped()
-        {            
+        {
+            bool isInternal = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isInternal = SessionManager.CurrentSession.IsInternalSignIn;
+            }
+
+            ViewBag.IsInternal = isInternal;
             return View();
-        }      
+        }
+
+        /// <summary>
+        /// Who am I action.
+        /// </summary>
+        /// <returns>View model.</returns>
+        public ActionResult WhoAmI()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Redirects to under maintenance.
+        /// </summary>
+        /// <returns>View model.</returns>
+        public ActionResult RedirectToUM()
+        {
+            return View();
+        }
     }
 }

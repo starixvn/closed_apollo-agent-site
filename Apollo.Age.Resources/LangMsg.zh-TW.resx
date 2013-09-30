@@ -93,14 +93,14 @@
               <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
-			<xsd:element name="resheader">
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-					</xsd:sequence>
-					<xsd:attribute name="name" type="xsd:string" use="required" />
-				</xsd:complexType>
-			</xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
         </xsd:choice>
       </xsd:complexType>
     </xsd:element>
@@ -112,77 +112,75 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="succ_101" xml:space="preserve">
-    <value>會員資料已更新成功</value>
-    <comment>Customer information is updated successfully</comment>
-  </data>
-  <data name="succ_102" xml:space="preserve">
-    <value>關閉狀態已更新成功</value>
-    <comment>Closed status is updated successfully</comment>
-  </data>
-  <data name="succ_103" xml:space="preserve">
-    <value>暫停狀態已更新成功</value>
-    <comment>Suspended status is updated successfully</comment>
+  <data name="succ_108" xml:space="preserve">
+    <value>開啟金融狀態已更新成功</value>
   </data>
   <data name="succ_104" xml:space="preserve">
     <value>信用額度已更新成功</value>
-    <comment>Credit is updated successfully</comment>
-  </data>
-  <data name="succ_105" xml:space="preserve">
-    <value>佣金已更新成功</value>
-    <comment>Commission is updated successfully</comment>
-  </data>
-  <data name="succ_106" xml:space="preserve">
-    <value>投注設定已更新成功</value>
-    <comment>Bet Setting is updated successfully</comment>
-  </data>
-  <data name="succ_107" xml:space="preserve">
-    <value>佔成數設定已更新成功</value>
-    <comment>Position taking is updated successfully</comment>
-  </data>
-  <data name="succ_108" xml:space="preserve">
-    <value>開啟金融狀態已更新成功</value>
-    <comment>Finance enabled status is updated successfully</comment>
-  </data>
-  <data name="succ_109" xml:space="preserve">
-    <value>成功開啟/關閉南非賽馬</value>
-  </data>
-  <data name="succ_110" xml:space="preserve">
-    <value>成功開啟/關閉英國/愛爾蘭賽馬</value>
-  </data>
-  <data name="succ_111" xml:space="preserve">
-    <value>英國/愛爾蘭賽馬賭注設置更新成功</value>
-  </data>
-  <data name="succ_112" xml:space="preserve">
-    <value>南非賽馬賭注設置更新成功</value>
-  </data>
-  <data name="succ_113" xml:space="preserve">
-    <value>成功開啟/關閉澳大利亞賽馬</value>
-  </data>
-  <data name="succ_114" xml:space="preserve">
-    <value>成功開啟/關閉英國/愛爾蘭賽狗</value>
-  </data>
-  <data name="succ_115" xml:space="preserve">
-    <value>成功開啟/關閉澳大利亞賽狗</value>
-  </data>
-  <data name="succ_116" xml:space="preserve">
-    <value>成功開啟/關閉澳大利亞馬車</value>
-  </data>
-  <data name="succ_117" xml:space="preserve">
-    <value>澳大利亞賽馬賭注設置更新成功</value>
-  </data>
-  <data name="succ_118" xml:space="preserve">
-    <value>英國/愛爾蘭賽狗賭注設置更新成功</value>
   </data>
   <data name="succ_119" xml:space="preserve">
     <value>澳大利亞賽狗賭注設置更新成功</value>
   </data>
+  <data name="ValidateFromToDate" xml:space="preserve">
+    <value>日期區間錯誤!!</value>
+  </data>
+  <data name="succ_106" xml:space="preserve">
+    <value>投注設定已更新成功</value>
+  </data>
+  <data name="succ_115" xml:space="preserve">
+    <value>成功開啟/關閉澳大利亞賽狗</value>
+  </data>
+  <data name="succ_117" xml:space="preserve">
+    <value>澳大利亞賽馬賭注設置更新成功</value>
+  </data>
+  <data name="succ_102" xml:space="preserve">
+    <value>關閉狀態已更新成功</value>
+  </data>
+  <data name="succ_111" xml:space="preserve">
+    <value>英國/愛爾蘭賽馬賭注設置更新成功</value>
+  </data>
+  <data name="succ_113" xml:space="preserve">
+    <value>成功開啟/關閉澳大利亞賽馬</value>
+  </data>
+  <data name="succ_109" xml:space="preserve">
+    <value>成功開啟/關閉南非賽馬</value>
+  </data>
+  <data name="succ_118" xml:space="preserve">
+    <value>英國/愛爾蘭賽狗賭注設置更新成功</value>
+  </data>
+  <data name="succ_105" xml:space="preserve">
+    <value>佣金已更新成功</value>
+  </data>
   <data name="succ_120" xml:space="preserve">
     <value>澳大利亞馬車賭注設置更新成功</value>
+  </data>
+  <data name="succ_114" xml:space="preserve">
+    <value>成功開啟/關閉英國/愛爾蘭賽狗</value>
+  </data>
+  <data name="succ_107" xml:space="preserve">
+    <value>佔成數設定已更新成功</value>
+  </data>
+  <data name="succ_116" xml:space="preserve">
+    <value>成功開啟/關閉澳大利亞馬車</value>
+  </data>
+  <data name="succ_101" xml:space="preserve">
+    <value>會員資料已更新成功</value>
+  </data>
+  <data name="succ_110" xml:space="preserve">
+    <value>成功開啟/關閉英國/愛爾蘭賽馬</value>
+  </data>
+  <data name="succ_103" xml:space="preserve">
+    <value>暫停狀態已更新成功</value>
+  </data>
+  <data name="MessageValidateWithArchivedDate" xml:space="preserve">
+    <value>日期區間錯誤!!</value>
+  </data>
+  <data name="succ_112" xml:space="preserve">
+    <value>南非賽馬賭注設置更新成功</value>
   </data>
 </root>

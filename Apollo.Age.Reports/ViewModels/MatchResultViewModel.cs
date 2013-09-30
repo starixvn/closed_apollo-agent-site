@@ -15,6 +15,7 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Web.Mvc;
     using Apollo.Age.Entities;
     using Apollo.Age.Services;
+    using Apollo.Age.Reports.Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,23 +25,5 @@ namespace Apollo.Age.Reports.ViewModels
         public DateTime BalanceUpDay { get; set; }
 
         public DateTime EventDate { get; set; }
-
-        public IEnumerable<Sport> SportList { get; set; }
-
-        public IEnumerable<League> LeagueList { get; set; }
-
-        public IEnumerable<SelectListItem> SportSelectListItem
-        {
-            get
-            {
-                var selectItemList = this.SportList.Select(sport => new SelectListItem
-                  {
-                      Value = sport.Id.ToString(),
-                      Text = CacheRef.GetSportName(sport.Id)
-                  }).ToList<SelectListItem>();
-
-                return selectItemList;
-            }
-        }
     }
 }

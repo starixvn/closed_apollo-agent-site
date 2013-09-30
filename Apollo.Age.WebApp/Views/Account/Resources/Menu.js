@@ -5,10 +5,12 @@ var MENU = function ($) {
     return {
         menu: null,
         tabmenu: null,
+        apoRoot: null,
 
         init: function () {
             MENU.menu = $('#menu');
             MENU.tabmenu = $('#tab-menu');
+            MENU.apoRoot = $('#ApoRoot').val();
 
             MENU.tabmenu.on('click', '#lk-menu-tab', function () {
                 location.href = APOLLO.resolveUrl("Account/Menu");
@@ -38,41 +40,62 @@ var MENU = function ($) {
                 location.href = APOLLO.resolveUrl(url);
             });
 
+            $('#lklRefresh').bind('click', function () {
+                location.reload();
+            });
+
             // add loading image
             $('.submenu a[target=main]').on('click', function () {
                 parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
             });
+
+            MENU.loadAgentList();
+        },
+
+        loadAgentList: function () {
+            var agentList = $("#agent-list");
+            if (agentList.length > 0) {
+                var agentId = agentList.attr("data-agentid");
+                agentList.treeview({
+                    url: MENU.apoRoot + "Account/GetDataByNode",
+                    link: "<a href='" + MENU.apoRoot + "Account/IndirectAgentList?parentAgentId={3}&agentid={0}' target='main'>{1}</a>",
+                    linkdirectAgents: "<a href='" + MENU.apoRoot + "Account/AgentList' target='main'>{1}</a>",
+                    agentId: agentId,
+                    showRoot: true,
+                    rootLink: MENU.apoRoot + "Account/GetRootNode"
+                });
+            }
         }
     };
 } (jQuery);
 
 $(document).ready(function () {
-    MENU.init();
-    MENU.menu.on('click', '.menu-item-title', function () {
-        var $this = $(this),
-            subMenu = $this.next('.submenu'),
-            parent = $this.parent();
+	MENU.init();
+	MENU.menu.on('click', '.menu-item-title', function () {
+		var $this = $(this),
+			subMenu = $this.next('.submenu'),
+			parent = $this.parent();
 
-        if (parent.hasClass('active')) {
-            parent.removeClass('active');
-            subMenu.slideUp('fast');
-            $.removeCookie('age-active-menuitem', { path: '/' });
-        } else {
-            parent.addClass('active').siblings('.menu-item').removeClass('active').children('.submenu').slideUp('fast');
-            subMenu.slideDown('fast');
-            $.cookie('age-active-menuitem', parent.index(), { path: '/' });
-        }
-    })
+		if (parent.hasClass('active')) {
+			parent.removeClass('active');
+			subMenu.slideUp('fast');
+			$.removeCookie('age-active-menuitem', { path: '/' });
+		} else {
+			parent.addClass('active').siblings('.menu-item').removeClass('active').children('.submenu').slideUp('fast');
+			subMenu.slideDown('fast');
+			$.cookie('age-active-menuitem', parent.index(), { path: '/' });
+		}
+	})
 
-    // activate selected menu item
-    var activeMenuItemIdx = $.cookie('age-active-menuitem');
+	// activate selected menu item
+	var activeMenuItemIdx = $.cookie('age-active-menuitem');
 
-    if (activeMenuItemIdx) {
-        MENU.menu.children('.menu-item').each(function (idx) {
-            if (idx == activeMenuItemIdx) $(this).addClass('active');
-            else $(this).removeClass('active');
-        });
-    }
+	if (activeMenuItemIdx) {
+		MENU.menu.children('.menu-item').each(function (idx) {
+			if (idx == activeMenuItemIdx) $(this).addClass('active');
+			else $(this).removeClass('active');
+		});
+	}
 
-    MENU.menu.find('.active .submenu').show();
+	MENU.menu.find('.active .submenu').show();
 });

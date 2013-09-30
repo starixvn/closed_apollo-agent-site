@@ -15,6 +15,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Models;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
+    using Fanex.CustSetting.ViewData;
 
     public interface IAccountService
     {
@@ -26,7 +27,7 @@ namespace Apollo.Age.Account.Services
 
         List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria);
 
-        CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria);
+        CustomerInfoModel GetAgentInfo(GetAgentAllInfoCriteria criteria);
 
         CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria);
 
@@ -45,5 +46,13 @@ namespace Apollo.Age.Account.Services
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
 
         IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
+
+        bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSuper = false);
+
+        MemberListModel GetTopMember(int agentId);
+
+        string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting);
+
+        bool HasMember(int agentId);
     }
 }

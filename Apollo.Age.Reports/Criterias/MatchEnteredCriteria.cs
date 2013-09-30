@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 // <history>
 //   <change who="Quinn.Vo" date="2013.4.11">Created</change>
+//   <change who="Terry.Nguyen" date="2013.9.17">Add more parameter isShowAll</change>
 // </history>
 
 namespace Apollo.Age.Reports.Criterias
@@ -13,6 +14,8 @@ namespace Apollo.Age.Reports.Criterias
 
     public class MatchEnteredCriteria : CriteriaBase
     {
+        public bool isShowAll { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Rpt_MatchSelResultEntered";

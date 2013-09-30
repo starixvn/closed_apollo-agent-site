@@ -9,16 +9,11 @@
 
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// Customer
+    /// This class is model that inherited from customer.
     /// </summary>
     public class Member : Customer
-    {       
+    {
         public string Group { get; set; }
     }
 }

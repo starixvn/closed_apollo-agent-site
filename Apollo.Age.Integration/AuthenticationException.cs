@@ -7,13 +7,9 @@
 //   <change who="Anders" date="2013.4.28">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Integration
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,12 +17,8 @@ namespace Apollo.Age.Integration
     public class AuthenticationException : Exception
     {
         public int UserId { get; set; }
-        public string Lang { get; set; }
 
-        public override string ToString()
-        {
-            return base.ToString() + "UserId=" + UserId.ToString() + ";Lang=" + Lang;
-        }
+        public string Lang { get; set; }
 
         public override string Message
         {
@@ -34,6 +26,15 @@ namespace Apollo.Age.Integration
             {
                 return base.Message + "UserId=" + UserId.ToString() + ";Lang=" + Lang;
             }
+        }
+
+        /// <summary>
+        /// Override TOSTRING.
+        /// </summary>
+        /// <returns>Return a value with user id and language.</returns>        
+        public override string ToString()
+        {
+            return base.ToString() + "UserId=" + UserId.ToString() + ";Lang=" + Lang;
         }
     }
 }

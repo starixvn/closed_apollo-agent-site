@@ -22,6 +22,11 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
+    using System;
+    using Fanex.CustSetting.ViewData;
+    using Apollo.Age.Configurations;
+    using Apollo.Age.Resources;
+    using Fanex.NAP.Framework.Data;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -44,6 +49,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberList(ref criteria);
         }
 
+        /// <summary>
+        /// Get agent down line list by user name.
+        /// </summary>
+        /// <param name="criteria">Input GetAgentByUsernameCriteria.</param>
+        /// <returns>Agent down line list.</returns>
         public List<Agent> GetAgentByUsername(GetAgentByUsernameCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -51,6 +61,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetAgentByUsername(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get member down line list by user name.
+        /// </summary>
+        /// <param name="criteria">Input GetMemberByUsernameCriteria.</param>
+        /// <returns>Member down line list.</returns>
         public List<Member> GetMemberByUsername(GetMemberByUsernameCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -58,13 +73,56 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberByUsername(criteria).ToList();
         }
 
-        public CustomerInfoModel GetAgentInfo(GetAgentInfoCriteria criteria)
+        /// <summary>
+        /// Get full info of a agent.
+        /// </summary>
+        /// <param name="criteria">Input GetAgentAllInfoCriteria.</param>
+        /// <returns>CustomerInfoModel (info of agent).</returns>
+        public CustomerInfoModel GetAgentInfo(GetAgentAllInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
+        /// <summary>
+        /// Check current agent is child direct agent.
+        /// </summary>
+        /// <param name="logginAgentId">Current Loggin agent.</param>
+        /// <param name="checkingAgentId">Agent need to check.</param>
+        /// <param name="isSupper">If supper, then full permission.</param>
+        /// <returns>Checking agent is valid direct downline or not.</returns>
+        public bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSupper = false)
+        {
+            if (isSupper)
+            {
+                return isSupper;
+            }
+
+            try
+            {
+                var agentInfo = _accountRepository.GetCustomerInfo(new GetAgentInfoCriteria
+                    {
+                        AgentId = checkingAgentId
+                    });
+                if (agentInfo != null && agentInfo.ParentId == logginAgentId)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Get info of a member.
+        /// </summary>
+        /// <param name="criteria">Input GetMemberInfoCriteria.</param>
+        /// <returns>CustomerInfoModel (info of member).</returns>
         public CustomerInfoModel GetMemberInfo(GetMemberInfoCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "actorAgentId");
@@ -72,6 +130,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCustomerInfo(criteria);
         }
 
+        /// <summary>
+        /// Get member direct down line list.
+        /// </summary>
+        /// <param name="criteria">Input MemberDownLineCriteria.</param>
+        /// <returns>Member list.</returns>
         public List<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
@@ -81,6 +144,11 @@ namespace Apollo.Age.Account.Services
             return memberList;
         }
 
+        /// <summary>
+        /// Get agent down line path list.
+        /// </summary>
+        /// <param name="criteria">Input AgentDownLinePathCriteria.</param>
+        /// <returns>Agent list.</returns>
         public List<Agent> GetAgentDownlinePath(AgentDownlinePathCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ParentId, "parentId");
@@ -89,6 +157,11 @@ namespace Apollo.Age.Account.Services
             return _agentRepository.Fetch(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get agent direct down line list.
+        /// </summary>
+        /// <param name="criteria">Input AgentDownLineCriteria.</param>
+        /// <returns>Agent list.</returns>
         public List<Agent> GetDirectDownline(AgentDownlineCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.AgentId, "agentId");
@@ -96,6 +169,11 @@ namespace Apollo.Age.Account.Services
             return _agentRepository.Fetch(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get agent share model list.
+        /// </summary>
+        /// <param name="criteria">Input AgentShareCriteria.</param>
+        /// <returns>AgentShareModel list.</returns>
         public List<AgentShareModel> GetAgentShare(AgentShareCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -105,6 +183,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetAgentShare(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get member share model list.
+        /// </summary>
+        /// <param name="criteria">Input MemberShareCriteria.</param>
+        /// <returns>MemberShareCriteria list.</returns>
         public List<MemberShareModel> GetMemberShare(MemberShareCriteria criteria)
         {
             Check.Argument.IsNotNegative(criteria.ActorAgentId, "actorAgentId");
@@ -114,6 +197,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetMemberShare(criteria).ToList();
         }
 
+        /// <summary>
+        /// Get Commission to member list.
+        /// </summary>
+        /// <param name="criteria">Input GetCommissionToMemberCriteria.</param>
+        /// <returns>CustomerCommissionModel list.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -121,6 +209,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetCommissionToMember(criteria);
         }
 
+        /// <summary>
+        /// Get Commission to agent list.
+        /// </summary>
+        /// <param name="criteria">Input GetCommissionToAgentCriteria.</param>
+        /// <returns>CustomerCommissionModel list.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -133,6 +226,98 @@ namespace Apollo.Age.Account.Services
             Check.Argument.IsNotNull(criteria, "criteria");
 
             return _accountRepository.GetAgentLogLogin(criteria);
+        }
+
+        public MemberListModel GetTopMember(int agentId)
+        {
+            try
+            {
+                var memberListCriteria = new CustomerListCriteria
+                {
+                    AgentId = agentId,
+                    PageIndex = 0,
+                    UserName = string.Empty,
+                    OrderType = 1
+                };
+
+                IEnumerable<MemberListModel> memberList = GetCustomerList(ref memberListCriteria);
+
+                if (memberList.Any())
+                {
+                    return memberList.ElementAt(0);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
+        }
+
+
+        public string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
+        {
+            try
+            {
+                GetUpdatePositionTakingEstimatedTimeCriteria criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
+
+                foreach (var sportType in positionTakingSetting.SportTypes)
+                {
+                    foreach (var betTypeGroup in sportType.BetTypeGroups)
+                    {
+                        foreach (var betType in betTypeGroup.BetTypes)
+                        {
+                            if (betType.Pt.IsChangePt)
+                            {
+                                criteria.NumOfChange++;
+                            }
+                        }
+                    }
+                }
+
+                if (criteria.NumOfChange > 0)
+                {
+                    criteria.AgentId = settingContext.TargetCustId;
+                    var totalSeconds = _accountRepository.CalculateUpdateAgentPositionTakingTime(criteria);
+                    if (totalSeconds > AppSettings.ShowEstimateTimeWhenGreaterThan)
+                    {
+                        return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Check current agent has member or not.
+        /// </summary>
+        /// <param name="agentId">Current agent id.</param>
+        /// <returns>Has member or not.</returns>
+        public bool HasMember(int agentId)
+        {
+            try
+            {
+                var checkDirectMemberCriteria = new AgentCheckDirectMemberCriteria
+                {
+                    AgentId = agentId
+                };
+
+                return _accountRepository.HasMember(checkDirectMemberCriteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
         }
     }
 }

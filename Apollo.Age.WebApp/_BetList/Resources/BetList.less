@@ -21,19 +21,16 @@
 
 .bl_underdog, .underdog {
 	color: #01122B;
-	font-weight: bold;
 	text-align: right;
 }
 
 .total .bl_underdog
 {
 	color:white;
-	font-weight: bold;
 	text-align: right;
 }
 
 .favorite, .bl_favorite {
-	font-weight: bold;
 	color: #B50000;
 }
 
@@ -47,10 +44,6 @@
 
 .bl_stype, .sport {
 	color: #06C;
-}
-
-.bl_status, .status {
-	font-weight: bold;
 }
 
 .div_result, .result {
@@ -75,7 +68,6 @@
 .bl_ip {
 	color: #434343;
 	font-size: 7pt;
-	font-weight: normal;
 	text-align: center;
 }
 
@@ -97,7 +89,6 @@
 
 .bl_match {
 	color: @black;
-	font-weight: normal;
 	line-height: 15px;
 }
 
@@ -105,9 +96,6 @@
 	color: #586985;
 }
 
-.handicap.custom {
-	font-weight: bold;
-}
 
 .blue {
 	color: #2673CE;
@@ -189,12 +177,8 @@
 
 		td {
 			white-space: normal;
-			vertical-align: top;
+			vertical-align: middle;
 			border-width: 0 1px 0 0;
-
-			.time {
-				font-size: 0.9em;
-			}
 		}
 
 		tr {
@@ -202,14 +186,12 @@
 			&.subtotal {
 				td {
 					background: lighten(@primaryColor, 35%);
-					font-weight: bold;
 					height: 24px;
 				}
 			}
 
 			&.outstanding td {				
 				background: #ddd;
-				font-weight: bold;
 				border: 1px solid @borderColor;
 			}
 
@@ -219,7 +201,6 @@
 
 				td {
 					border-right: 1px solid @borderColor;
-					font-weight: bold;
 				}
 
 				&:hover {
@@ -239,11 +220,11 @@
 		tr {
 
 			&.total td {
-				font-weight: bold;
+				//font-weight: bold;
 			}	
 			
 			.red-color {
-				color: #FF4C4C;
+				color: #fff;
 				white-space: nowrap;
 			}		
 		}

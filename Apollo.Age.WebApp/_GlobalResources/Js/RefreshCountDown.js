@@ -1,123 +1,196 @@
-﻿var curCountDown = 0;
-var ckiName = null;
-var countDownTimer = null;
-var isStopCoundown = true;
+﻿var RefreshCountDown = function ($) {
+    return {
+        interval: 0,
+        timeoutCountDown: null,
+        timoutMenu: null,
+        onRefresh: null,
+        refreshNow: null,
+        countDownRefresh: null,
+        countDownMenu: null,
+        inActive: null,
 
-function CountDownRefresh_Tick() {
-    document.getElementById('CountDownRefresh').innerHTML = curCountDown;
-    curCountDown--;
-    if (countDownTimer != null) clearTimeout(countDownTimer);
-    countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-
-    if (curCountDown < 0) {
-        DoRefreshFunction();
-    }
-}
-function DoRefreshFunction() {
-    document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
-    eval(countDownRefreshFunc);
-    curCountDown = initCountDown;
-};
-
-function CountDownRefresh() {
-    if (countDownTimer != null) clearTimeout(countDownTimer);
-    document.getElementById('CountDownRefresh').innerHTML = loadingTxt;
-
-    ajax.Request(window.location.href,
-        {
-            asynchronous: true,
-            parameters: 'full_mode=0',
-            onComplete: function (data) {
-                document.getElementById('sContent').innerHTML = data.responseText;
-                RefreshCountDown_Init();
+        stopTimeout: function () {
+            if (RefreshCountDown.timeoutCountDown != null) {
+                clearTimeout(RefreshCountDown.timeoutCountDown);
             }
-        });
+        },
 
-    return true;
-}
+        startTimeout: function () {
+            if (RefreshCountDown.interval > 0) {
+                RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+            }
+        },
 
-function CountDownRefresh_SaveOption(idNewOption) {
-    document.getElementById('CountDownMenu').style.display = 'none';
-    var txtNewOption = document.getElementById(idNewOption).innerHTML;
-    initCountDown = parseInt(txtNewOption);
-    CountDownRefresh_DoCheckMenu();
-    setCookie(ckiName, initCountDown, 35);
-    CountDownRefresh_SetCountDown(initCountDown); //reset
-}
+        restartTimeout: function () {
+            RefreshCountDown.stopTimeout();
+            RefreshCountDown.startTimeout();
+        },
 
-function CountDownRefresh_DoCheckMenu() {
-    var menus = document.getElementById('CountDownMenu').getElementsByTagName("div");
-    for (i = 0; i < menus.length; i++) {
-        if (parseInt(menus[i].innerHTML) == initCountDown) {
-            AddClassName(menus[i].id, "menuitemcheck");
+        setCurrentTimeCookie: function () {
+            var refreshId = $('#refreshCountDownId').attr('refresh-id');
+            if (RefreshCountDown.interval > 0) {
+                $.cookie('ApoRefreshTimeout-' + refreshId, RefreshCountDown.interval);
+            } else {
+                RefreshCountDown.stopTimeout();
+                $.removeCookie('ApoRefreshTimeout-' + refreshId);
+            }
+        },
+
+        showHideMenu: function () {
+            var position = $("#ddlCountDown").position();
+            if (RefreshCountDown.countDownMenu.css('display') == 'none') {
+                RefreshCountDown.countDownMenu.css('top', position.top + 20);
+                RefreshCountDown.countDownMenu.show();
+            }
+            else {
+                RefreshCountDown.countDownMenu.hide();
+            }
+        },
+
+        bindEventButtonDown: function () {
+            $("#ddlCountDown").on('click', function () {
+                RefreshCountDown.showHideMenu();
+                RefreshCountDown.bindEventSubMenuOption();
+                RefreshCountDown.bindEventMenu();
+            });
+        },
+
+        refreshCountDownTick: function (timeTick) {
+            var intervalTime = timeTick;
+            intervalTime--;
+            RefreshCountDown.countDownRefresh.html(intervalTime);
+
+            if (intervalTime <= 0) {
+                intervalTime = RefreshCountDown.interval;
+                eval(RefreshCountDown.onRefresh);
+            }
+
+            RefreshCountDown.timeoutCountDown = setTimeout(function () {
+                RefreshCountDown.refreshCountDownTick(intervalTime);
+            }, 1000);
+        },
+
+        bindEventMenu: function () {
+
+            RefreshCountDown.timoutMenu = setTimeout(function () {
+                RefreshCountDown.showHideMenu();
+            }, 3000);
+
+            $("#countdownmenu").on('mouseover', function () {
+                if (RefreshCountDown.timoutMenu != null) {
+                    clearTimeout(RefreshCountDown.timoutMenu);
+                }
+            }).on('mouseleave', function () {
+                RefreshCountDown.countDownMenu.hide();
+            });
+        },
+
+        bindEventSubMenuOption: function () {
+            var countDownSubMenu = RefreshCountDown.countDownMenu.find("li");
+            countDownSubMenu.on('click', function () {
+                var $this = $(this);
+                var itemCheckedClass = 'selected';
+                RefreshCountDown.interval = $this.attr('data-intervaltime');
+
+                //Set value for menu time
+                RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);
+
+                //Show/Hide submenu option
+                countDownSubMenu.each(function () {
+                    if ($(this).hasClass(itemCheckedClass)) {
+                        $(this).removeClass(itemCheckedClass);
+                        return false;
+                    }
+                });
+                $this.addClass(itemCheckedClass);
+
+                if (RefreshCountDown.countDownMenu.css('display') != 'none') {
+                    RefreshCountDown.countDownMenu.hide();
+                    if (RefreshCountDown.timoutMenu != null) {
+                        clearTimeout(RefreshCountDown.timoutMenu);
+                    }
+                }
+                //--------------
+
+                //Save Cookie current time
+                RefreshCountDown.setCurrentTimeCookie();
+
+
+                //Start refresh count down tick
+                if (RefreshCountDown.timeoutCountDown != null) {
+                    clearTimeout(RefreshCountDown.timeoutCountDown);
+                }
+
+                if (RefreshCountDown.interval <= 0) {
+                    RefreshCountDown.stopTimeout();
+                    RefreshCountDown.countDownRefresh.html(RefreshCountDown.inActive);
+                }
+                else {
+                    RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+                }
+            });
+        },
+
+        disabledRefreshCountDown: function (isDisabled) {
+            if (isDisabled) {
+                RefreshCountDown.refreshNow.attr('class', 'refresh disabled');
+                RefreshCountDown.refreshNow.attr('actived', false);
+            }
+            else {
+                RefreshCountDown.refreshNow.attr('class', 'refresh');
+                RefreshCountDown.refreshNow.attr('actived', true);
+            }
+        },
+
+        bindRefreshNow: function () {
+            RefreshCountDown.refreshNow.on('click', function () {
+                $this = $(this);
+                var actived = $this.attr('actived');
+                if (actived == 'true') {
+                    RefreshCountDown.disabledRefreshCountDown(true);
+
+                    eval(RefreshCountDown.onRefresh);
+                    RefreshCountDown.restartTimeout();
+
+                    setTimeout(function () {
+                        RefreshCountDown.disabledRefreshCountDown(false);
+                    }, 15 * 1000);
+                }
+            });
         }
-        else
-            RemoveClassName(menus[i].id, "menuitemcheck");
+
+    };
+} (jQuery);
+
+$(document).ready(function () {
+    RefreshCountDown.onRefresh = $('#apo-on-refresh').val();
+    RefreshCountDown.refreshNow = $('#btnrefresh');
+    RefreshCountDown.countDownRefresh = $('#countdownrefresh');
+    RefreshCountDown.countDownMenu = $('#countdownmenu');
+    RefreshCountDown.inActive = $('#inactive').val();
+
+    // set refresh timeout by using cookie
+    var refreshId = $('#refreshCountDownId').attr('refresh-id');
+    var cookieValue = $.cookie('ApoRefreshTimeout-' + refreshId);
+    if (typeof cookieValue !== 'undefined') {
+        RefreshCountDown.interval = cookieValue;
+        RefreshCountDown.refreshCountDownTick(RefreshCountDown.interval);
+        RefreshCountDown.countDownRefresh.html(RefreshCountDown.interval);               
     }
-}
-
-function CountDownRefresh_Refresh() {
-    var pnlDown = document.getElementById('CountDownMenu');
-    if (pnlDown.style.display == '')
-        pnlDown.style.display = 'none';
-    DoRefreshFunction();
-}
-
-function CountDownRefresh_DoOpenOption(btnDown) {
-    var pnlDown = document.getElementById('CountDownMenu');
-    var arrBtnPos = FindPosition(btnDown.parentNode);
-    if (pnlDown.style.display == 'none') {
-        pnlDown.style.left = arrBtnPos[0] + 'px';
-        pnlDown.style.top = (arrBtnPos[1] + 20) + 'px';
-        pnlDown.style.display = '';
+    else {
+        RefreshCountDown.countDownRefresh.html(RefreshCountDown.inActive);
     }
-    else pnlDown.style.display = 'none';
-}
 
-function CountDownRefresh_SetCountDown(newCountDown) {
-    initCountDown = newCountDown;
-    curCountDown = initCountDown;
-}
-
-function FindPosition(oElement) {
-    if (typeof (oElement.offsetParent) != 'undefined') {
-        for (var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent) {
-            posX += oElement.offsetLeft;
-            posY += oElement.offsetTop;
+    RefreshCountDown.countDownMenu.find("li").each(function () {
+        var $this = $(this);
+        if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
+            $this.addClass('selected');
+            return false;
         }
-        return [posX, posY];
-    } else {
-        return [oElement.x, oElement.y];
-    }
-}
+    });
 
+    RefreshCountDown.disabledRefreshCountDown(false);
+    RefreshCountDown.bindEventButtonDown();
+    RefreshCountDown.bindRefreshNow();
 
-// Start up
-function RefreshCountDown_Init() {
-    if (typeof initCountDown !== 'undefined') {
-        curCountDown = initCountDown;
-        ckiName = "ibcCountDown" + refreshCountDownId;
-
-        //read countdown from cookie
-        var countDownFromCookie = getCookie(ckiName);
-        if (countDownFromCookie && countDownFromCookie != 0) {
-            CountDownRefresh_SetCountDown(countDownFromCookie);
-        }
-        CountDownRefresh_DoCheckMenu();
-        //do count down
-        CountDownRefresh_Tick();
-    }
-}
-
-// utility functions
-function RefreshCountDown_AddEvent(el, evname, func) {
-    if (el.attachEvent) { // IE
-        el.attachEvent("on" + evname, func);
-    } else if (el.addEventListener) { // Gecko / W3C
-        el.addEventListener(evname, func, true);
-    } else { // Opera (or old browsers)
-        el["on" + evname] = func;
-    }
-}
-
-RefreshCountDown_AddEvent(window, "load", RefreshCountDown_Init);
+});

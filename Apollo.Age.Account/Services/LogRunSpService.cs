@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="LogService.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="LogRunSpService.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,9 +14,10 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Fanex.Data;
-    
+    using Apollo.Age.Services.Impl;
+
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    public class LogRunSpService : ILogRunSpService
+    public class LogRunSpService : QueryService, ILogRunSpService
     {
         public IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria)
         {
@@ -32,6 +33,11 @@ namespace Apollo.Age.Account.Services
             }
 
             return list;
+        }
+
+        public string RevertGroupName(string group)
+        {
+            return base.RevertCommGroupName(group);
         }
     }
 }

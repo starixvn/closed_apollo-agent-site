@@ -5,6 +5,7 @@
     ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
     var agentLevel = ViewBag.AgentLevel != null ? (int)ViewBag.AgentLevel : -1;
+    var isAdmin = (bool)ViewBag.IsAdmin;
 }
 @section head {
     <link href="~/views/log/resources/log.less" rel="stylesheet" type="text/css">
@@ -34,10 +35,11 @@
                 <div class="editor">
                     @Html.DropDownListFor(m => m.ActionTypeId, new List<SelectListItem>
                {
-                new SelectListItem{Value ="0",Text=Lang.all},
-                new SelectListItem{Value ="2",Text=Lang.lblCommission},
-                new SelectListItem{Value ="3",Text=Lang.lblBetSetting},
-                new SelectListItem{Value ="4",Text=Lang.positiontaking}
+                new SelectListItem{Value =((int)LogActionType.All).ToString(),Text=Lang.all},
+                new SelectListItem{Value =((int)LogActionType.Commission).ToString(),Text=Lang.lblCommission},
+                new SelectListItem{Value =((int)LogActionType.BetLimit).ToString(),Text=Lang.lblBetSetting},
+                new SelectListItem{Value =((int)LogActionType.PositionTaking).ToString(),Text=Lang.positiontaking},
+                new SelectListItem{Value =((int)LogActionType.GeneralInfo).ToString(),Text=Lang.lblGeneralInfo}
                })
                 </div>
             </div>
@@ -58,7 +60,7 @@
         @Html.CheckBoxFor(m => m.ShowOldValue)
         <label for="ShowOldValue">@Lang.ShowOldValues</label>
     </div>
-    <table class="tblRpt">
+    <table class="tblRpt log">
         <thead>
             <tr>
                 <th style="width: 60px">
@@ -93,12 +95,28 @@
                         @itemLog.LogId
                     </td>
                     <td class="c">
-                        @itemLog.Username
+                        @if (isAdmin && !Equals(itemLog.AdminUsername, null))
+                        {
+                            <span>@itemLog.AdminUsername
+                                <br />
+                                ( @Lang.Admin )</span>
+                        }
+                        else
+                        {
+                            if (Equals(itemLog.AdminUsername, null))
+                            { 
+                            @itemLog.Username
+                            }
+                            else
+                            { 
+                            @Lang.Admin
+                            }
+                        }
                         <p>@itemLog.LogDate.ToShortDateString()</p>
                         <p>@itemLog.LogDate.ToShortTimeString()</p>
                     </td>
                     <td class="c">
-                        @Html.Resource(itemLog.ActionTypeId.ToString(), typeof(Viewlog))
+                        @itemLog.ActionName
                     </td>
                     <td class="message_content">
                         @Html.Action("LogActionType" + itemLog.ActionTypeId.ToString(), "Log", new
@@ -122,5 +140,5 @@
     <div id="btn-go-top" class="top-link">
         <a href="#">@Lang.GoToTop</a></div>
 }
-@Html.Hidden("ToDayLable", Lang.to)
-@Html.Hidden("FromDayLable", Lang.from)
+@Html.Hidden("ToDayLable", "~")
+@Html.Hidden("FromDayLable", Lang.dateRange)

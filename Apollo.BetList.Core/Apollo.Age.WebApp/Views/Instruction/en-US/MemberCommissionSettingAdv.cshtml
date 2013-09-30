@@ -1,0 +1,17 @@
+@{
+	Layout = "~/Views/Instruction/Shared/_Layout.cshtml";
+}
+
+<div class="instruction-content">
+	<ul>
+		<li>Commission Line: 4 lines, namely A, B, C and D. Each line has different values for min and max commission.</li>
+		<li>Member Commission: the commission rates offered to a member on specific bet types or a line of bet types.</li>
+		<li>HDP, OU, OE (%): the commission rate offered to a member on the bet types Handicap (HDP), Over/Under (OU), Odd/Even (OE) and some minor bet types such as 1st Handicap, 1st Over/Under, 1st Odd/Even, Clean Sheet, Double Change, Draw No Bet, Both/One/Neither Team to Score, To Win To Nil, 3-Way Handicap, Home No Bet, Away No Bet, Draw/No Draw, FT. 1x2 HDP, and 1st 1x2 HDP.</li>
+		<li>1X2 Comm (%): the commission rate offered to a member on the bet types 1st 1X2 and FT. 1X2</li>
+		<li>Other Comm (%): the commission rate offered to a member on the other bet types such as Correct Score, Total Goal, Mix Parlay, Outright, First Goal/Last Goal, HT/FT, Moneyline, 1st Moneyline, System Parlay, and 1st Correct Score.</li>
+		<li>[x - y]: input range. If K is the entered amount, then K must be: x <= K <= y.</li>
+	</ul>
+	<p>
+		<span class="note">Note:</span> only allow two numbers after the decimal point. For instance, 1.25 is a valid input, but 1.555 is not.
+	</p>
+</div>

@@ -10,6 +10,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting na
 // [RoleId_] is optional
 // Call method by Method.call(this, arg1, arg2...)
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_4 =
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 = 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     // There is no decorating for this implementation
@@ -20,8 +21,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     box.appendChild(emptyLabel);
 
     var ptLabel = document.createElement("DIV");
-    ptLabel.innerHTML = Language.SIMPLE_MODE_PRESET_POSITION;
-    ptLabel.title = Language.SIMPLE_MODE_PRESET_POSITION;
+    ptLabel.innerHTML = Language.PERCENT_IN_MEMBER;
+    ptLabel.title = Language.PERCENT_IN_MEMBER;
     ptLabel.className = "group-label";
     box.appendChild(ptLabel);
 
@@ -35,24 +36,34 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) { 
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
+    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
+    var isViewMode = currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
+
     var emptyLabel = document.createElement("DIV");
     emptyLabel.innerHTML = "&nbsp;";
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
+
+    // Upline setting lable
+    var uplineSettingLabel = document.createElement("DIV");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.className = "group-label";
+    box.appendChild(uplineSettingLabel);
+
+    var presetLabel = document.createElement("DIV");
+    presetLabel.innerHTML = Language.PRESET_POSITION + (isViewMode ? '' : '<br/>' + Language.apllyPresetAdvancedMode + ':');
+    presetLabel.title = Language.PRESET_POSITION;
+    presetLabel.className = isViewMode ? "group-label" : "group-label-preset";
+    box.appendChild(presetLabel);
 
     var maxLabel = document.createElement("DIV");
     maxLabel.innerHTML = Language.MAX_POSITION;
     maxLabel.title = Language.MAX_POSITION;
     maxLabel.className = "group-label";
     box.appendChild(maxLabel);
-
-    var presetLabel = document.createElement("DIV");
-    presetLabel.innerHTML = Language.PRESET_POSITION;
-    presetLabel.title = Language.PRESET_POSITION;
-    presetLabel.className = "group-label";
-    box.appendChild(presetLabel);
 
     var minLabel = document.createElement("DIV");
     minLabel.innerHTML = Language.MIN_POSITION;
@@ -74,6 +85,13 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
     emptyLabel.innerHTML = "&nbsp;";
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
+
+    // Upline setting lable
+    var uplineSettingLabel = document.createElement("DIV");
+    uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
+    uplineSettingLabel.className = "group-label";
+    box.appendChild(uplineSettingLabel);
 
     var minLabel = document.createElement("DIV");
     minLabel.innerHTML = Language.MAX_POSITION;

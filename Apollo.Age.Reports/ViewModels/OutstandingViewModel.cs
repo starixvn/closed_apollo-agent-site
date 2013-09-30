@@ -9,10 +9,8 @@
 
 namespace Apollo.Age.Reports.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
@@ -27,8 +25,64 @@ namespace Apollo.Age.Reports.ViewModels
 
         public int AgentLevel { get; set; }
 
+        public string Sporttypes { get; set; }
+
+        public string Bettypes { get; set; }
+
         public IEnumerable<OutstandingModel> ListOutStanding { get; set; }
 
         public IEnumerable<Agent> DownlinePath { get; set; }
+
+        public List<SingbetSport> SportList { get; set; }
+
+        public List<SingbetBettype> BettypeList { get; set; }
+
+        public string SportName
+        {
+            get
+            {
+                if (SportList != null)
+                {
+                    var sport = SportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+
+                    if (sport != null)
+                    {
+                        return sport.Name;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public string BettypeName
+        {
+            get
+            {
+                if (BettypeList != null)
+                {
+                    var bettype = BettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+
+                    if (bettype != null)
+                    {
+                        return bettype.Name;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
     }
 }

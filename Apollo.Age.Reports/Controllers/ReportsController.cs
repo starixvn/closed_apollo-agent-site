@@ -8,6 +8,8 @@
 //   <change who="Terry.Nguyen" date="2013.04.07">Implement</change>
 //   <change who="Terry.Nguyen" date="2013.04.09">Get AgentID from BaseController</change>
 //   <change who="Quinn.Vo" date="2013.04.16">Add Action: MatchEntered, AgentWinLoss, MemberWinLoss</change>
+//   <change who="Quinn.Vo" date="2013.07.16">Add Action: ExportAgentWinLoss, ExportMemberWinLoss</change>
+//   <change who="Quinn.Vo" date="2013.07.31">Add Action: SportCredit, ExportSportCredit</change>
 // </history>
 
 namespace Apollo.Age.Reports.Controllers
@@ -15,171 +17,509 @@ namespace Apollo.Age.Reports.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
-    using System.Web.SessionState;
-    using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
+    using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-
-    [SessionState(SessionStateBehavior.ReadOnly)]
+    using Fanex.NAP.Framework.Mvc;
+    using Apollo.Age.Configurations;
+    
+    /// <summary>
+    /// Reports Controller.
+    /// </summary>
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ReportsController : BaseController
     {
-        private readonly OutstandingService _reportService;
-        private readonly IWinLossService _winLossService;
+        private readonly SportCreditService _sportCreditService;
+        private readonly WinLossService _winLossService;
+        private readonly OutstandingService _outstandingService;
+
         private int _currentAgentId;
 
-        public ReportsController() : this(null) 
-        { 
+        /// <summary>
+        /// Initializes a new instance of the ReportsController class.
+        /// </summary>
+        public ReportsController()
+            : this(null)
+        {
         }
 
-        public ReportsController(OutstandingService reportService = null)
+        /// <summary>
+        /// Initializes a new instance of the ReportsController class.
+        /// </summary>
+        /// <param name="outstandingService">Outstanding Service.</param>
+        /// <param name="winlossService">Win loss Service.</param>
+        /// <param name="sportCreditService">SportCredit Service.</param>
+        public ReportsController(
+            OutstandingService outstandingService = null,
+            WinLossService winlossService = null,
+            SportCreditService sportCreditService = null)
         {
-            _reportService = reportService ?? new OutstandingService();
-            _winLossService = _winLossService ?? new WinLossService();
+            this._sportCreditService = sportCreditService ?? new SportCreditService();
+            this._winLossService = winlossService ?? new WinLossService();
+            this._outstandingService = new OutstandingService();
         }
 
         public int? CurrentAgentId
         {
             get
             {
-                return _currentAgentId;
+                return this._currentAgentId;
             }
 
             set
             {
-                _currentAgentId = value.HasValue ? value.Value : this.CurrentSession.AgentId;
+                this._currentAgentId = value.HasValue ? value.Value : this.CurrentSession.AgentId;
             }
         }
 
         #region Outstanding Report
 
-        public ViewResult Outstanding(int? agentId)
+        /// <summary>
+        /// Get Agent Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <returns>Outstanding ViewResult.</returns>
+        public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
-            CurrentAgentId = agentId;
-            var mainShareHolder = new Apollo.Age.Entities.Agent();
+            this.CurrentAgentId = agentId;
+            var report = this._outstandingService.GetAgentOutStandingReport(this.CurrentSession.IsSuper, this.CurrentAgentId, this.CurrentSession.AgentId, sporttypes, bettypes);
+            var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
-            IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(CurrentAgentId.Value);
+            HttpContext.Session[sessionKey] = report.ListOutStanding;
 
-            if (CurrentSession.IsSuper)
-            {
-                if (modelAgentDownLine.Count() > 1)
-                {
-                    mainShareHolder = modelAgentDownLine.ToList()[1];
-                }
-            }
-
-            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new OutstandingCriteria
-            {
-                AgentId = CurrentAgentId.Value
-            });
-
-            return View(new OutstandingViewModel()
-            {
-                CurrentAgentId = CurrentAgentId.Value,
-                ListOutStanding = models,
-                DownlinePath = modelAgentDownLine,
-                AgentLevel = modelAgentDownLine.LastOrDefault().Level,
-                MainShareHolder = mainShareHolder
-            });
+            return this.View(report);
         }
 
-        [HttpPost]
-        public ActionResult MemberOutstanding(int? agentId, int mainShareHolderId, string mainShareHolderUsername)
+        /// <summary>
+        /// Export excel Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="agentUsername">Agent user name.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="sportName">Sport name.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <param name="betTypeName">Bet type name.</param>
+        /// <param name="isAgentOutStanding">Is agent Outstanding.</param>
+        /// <returns>Excel Outstanding report.</returns>
+        public ActionResult ExportOutstandingReport(
+            int? agentId,
+            string agentUsername,
+            string sporttypes,
+            string sportName,
+            string bettypes,
+            string betTypeName,
+            bool isAgentOutStanding)
         {
-            CurrentAgentId = agentId;
-            //// call service to get report data here
-            IEnumerable<OutstandingModel> models = _reportService.GetData<OutstandingModel>(new MemberOutstandingCriteria
-            {
-                AgentId = CurrentAgentId.Value
-            });
+            this.CurrentAgentId = agentId;
+            var sessionKey = string.Format(
+                isAgentOutStanding ? Constants.SessionKeyAgentOutstandingReport : Constants.SessionKeyMemberOutstandingReport,
+                this.CurrentSession.UserId);
 
-            //// Sum total amount
-            OutstandingModel totalModels = new OutstandingModel();
-            if (models != null && models.Any())
+            var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
+
+            if (listOutstanding == null)
             {
-                foreach (OutstandingModel item in models)
+                if (isAgentOutStanding)
                 {
-                    totalModels.Outstanding += item.Outstanding;
-                    totalModels.ShareAmount += item.ShareAmount;
-                    totalModels.GameOutstanding += item.GameOutstanding;
-                    totalModels.GameShareAmount += item.GameShareAmount;
+                    listOutstanding = this._outstandingService.GetData<OutstandingModel>(new OutstandingCriteria
+                    {
+                        AgentId = this.CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
+                }
+                else
+                {
+                    listOutstanding = this._outstandingService.GetData<OutstandingModel>(new MemberOutstandingCriteria
+                    {
+                        AgentId = this.CurrentAgentId.Value,
+                        Sporttypes = sporttypes,
+                        Bettypes = bettypes
+                    });
                 }
             }
+
+            var isSupper = this.CurrentSession.IsSuper && (this.CurrentAgentId == this.CurrentSession.AgentId);
+            var excelResult = this._outstandingService.ExportOutstandingReport(
+                isAgentOutStanding,
+                listOutstanding,
+                agentUsername,
+                HttpUtility.UrlDecode(sportName),
+                HttpUtility.UrlDecode(betTypeName),
+                isSupper);
+
+            return new ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, this._outstandingService.ShortDateFormat(DateTime.Now)));
+        }
+
+        /// <summary>
+        /// Get member Outstanding report.
+        /// </summary>
+        /// <param name="agentId">Input agent id.</param>
+        /// <param name="sporttypes">Sport types.</param>
+        /// <param name="bettypes">Bet types.</param>
+        /// <param name="mainShareHolderId">Main ShareHolder Id.</param>
+        /// <param name="mainShareHolderUsername">Main ShareHolder name.</param>
+        /// <returns>Member Outstanding report.</returns>
+        [HttpPost]
+        public ActionResult MemberOutstanding(
+            int? agentId, 
+            string sporttypes, 
+            string bettypes, 
+            int mainShareHolderId, 
+            string mainShareHolderUsername)
+        {
+            this.CurrentAgentId = agentId;
+
+            //// call service to get listOutstanding data here
+            var report = this._outstandingService.GetMemberOutstandingReport(this.CurrentAgentId, sporttypes, bettypes, mainShareHolderId, mainShareHolderUsername);
+            var sessionKey = string.Format(Constants.SessionKeyMemberOutstandingReport, this.CurrentSession.UserId);
+
+            HttpContext.Session[sessionKey] = report.ListOutstanding;
+
             //// return object
-            return Json(new
-            {
-                ListOutstanding = models,
-                Total = totalModels,
-                MainShareHolderId = mainShareHolderId,
-                MainShareHolderUsername = mainShareHolderUsername
-            });
+            return this.Json(report);
         }
 
         #endregion Outstanding Report
 
         #region Agent Win Loss Report
 
+        /// <summary>
+        /// Get MatchEntered report.
+        /// </summary>
+        /// <returns>MatchEntered ViewResult.</returns>
         public ViewResult MatchEntered()
         {
-            var matchEnteredList = _winLossService.GetMatchEntered();
+            var matchEnteredViewModel = new MatchEnteredViewModel();
+            matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
+            matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+            matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
 
-            return View(matchEnteredList);
+            var isShowDataTest = false;
+            if (SessionManager.CurrentSession != null)
+            {
+                isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
+            }
+           
+            matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
+
+            return this.View(matchEnteredViewModel);
         }
 
-        public ViewResult AgentWinLoss(int? id, string name, DateTime fromDate, DateTime toDate)
+        /// <summary>
+        /// Get agent win loss report.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">To date.</param>
+        /// <param name="sporttypes">Sport type list.</param>
+        /// <param name="bettypes">Bet type list.</param>
+        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentName">Agent name.</param>
+        /// <returns>ViewResult agent win loss.</returns>
+        public ViewResult AgentWinLoss(
+            DateTime fromDate, 
+            DateTime toDate, 
+            string sporttypes, 
+            string bettypes, 
+            int? agentId, 
+            string agentName)
         {
-            var agentId = id.HasValue ? id.Value : this.CurrentSession.AgentId;
-            var agentName = string.IsNullOrWhiteSpace(name) ? this.CurrentSession.AgentName : name;
-            var isSuper = agentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
-
-            var agentWinLossList = _winLossService.GetAgentWinLoss(agentId, fromDate, toDate);
-            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
-
-            var agentWinLossViewModel = new AgentWinLossViewModel()
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
+            var criteria = new AgentWinLossCriteria
             {
+                AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = balanceUpDay,
+                MoveBetDay = this._winLossService.MoveBetsDay()
+            };
+
+            var agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+            var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
+            var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+            var model = new AgentWinLossViewModel
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
+                AgentId = criteria.AgentId,
+                AgentName = string.IsNullOrWhiteSpace(agentName) ? this.CurrentSession.AgentName : agentName,
                 IsSuper = isSuper,
+                AgentWinLossList = agentWinLossList,
+                DownlinePath = modelAgentDownLine,
+                SportList = SingbetSportService.GetSport(isOther: false),
+                BettypeList = this._winLossService.GetBettype(),
+                BalanceUpDay = balanceUpDay
+            };
+
+            var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
+
+            HttpContext.Session[sessionKey] = agentWinLossList;
+
+            return this.View(model);
+        }
+
+        /// <summary>
+        /// Get member win loss report.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">To date.</param>
+        /// <param name="sporttypes">Sport type list.</param>
+        /// <param name="bettypes">Bet type list.</param>
+        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentName">Agent name.</param>
+        /// <returns>ViewResult member win loss.</returns>
+        public ViewResult MemberWinLoss(
+            DateTime fromDate, 
+            DateTime toDate, 
+            string sporttypes, 
+            string bettypes, 
+            int agentId, 
+            string agentName)
+        {
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
+            var criteria = new MemberWinLossCriteria
+            {
+                AgentId = agentId,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
+                FromDate = fromDate,
+                ToDate = toDate,
+                BalanceUpDay = balanceUpDay,
+                MoveBetDay = this._winLossService.MoveBetsDay()
+            };
+
+            var memberWinLossList = this._winLossService.GetMemberWinLoss(criteria);
+            var modelAgentDownLine = this._winLossService.AgentDownlinePath(CurrentSession.AgentId, criteria.AgentId).ToList();
+
+            var model = new MemberWinLossViewModel
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
                 AgentId = agentId,
                 AgentName = agentName,
-                FromDate = fromDate,
-                ToDate = toDate,
-                AgentWinLossList = agentWinLossList,
-                DownlinePath = modelAgentDownLine
+                MemberWinLossList = memberWinLossList,
+                DownlinePath = modelAgentDownLine,
+                SportList = SingbetSportService.GetSport(isOther: false),
+                BettypeList = this._winLossService.GetBettype(),
+                BalanceUpDay = balanceUpDay
             };
 
-            return View(agentWinLossViewModel);
+            var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
+            HttpContext.Session[sessionKey] = memberWinLossList;
+
+            return this.View(model);
         }
 
-        public ViewResult MemberWinLoss(int agentId, string agentName, DateTime fromDate, DateTime toDate)
+        /// <summary>
+        /// Export agent win loss report.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">To date.</param>
+        /// <param name="sporttypes">Sport type list.</param>
+        /// <param name="bettypes">Bet type list.</param>
+        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentName">Agent name.</param>
+        /// <returns>ActionResult agent win loss.</returns>
+        public ActionResult ExportAgentWinLoss(
+            DateTime fromDate, 
+            DateTime toDate, 
+            string sporttypes, 
+            string bettypes, 
+            int? agentId, 
+            string agentName)
         {
-            var memberWinLossList = _winLossService.GetMemberWinLoss(agentId, fromDate, toDate);
-            var modelAgentDownLine = AgentDownlinePath(agentId).ToList();
+            var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
+            var agentWinLossList = (List<AgentWinLossModel>)HttpContext.Session[sessionKey];
+            var agentIdValue = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId;
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
 
-            var memberWinLossViewModel = new MemberWinLossViewModel()
+            if (agentWinLossList == null)
             {
-                AgentName = agentName,
+                var criteria = new AgentWinLossCriteria
+                {
+                    AgentId = agentIdValue,
+                    Sporttypes = sporttypes,
+                    Bettypes = bettypes,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    BalanceUpDay = balanceUpDay,
+                    MoveBetDay = this._winLossService.MoveBetsDay()
+                };
+
+                agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+                HttpContext.Session[sessionKey] = agentWinLossList;
+            }
+
+            var model = new AgentWinLossViewModel
+            {
                 FromDate = fromDate,
                 ToDate = toDate,
-                MemberWinLossList = memberWinLossList,
-                DownlinePath = modelAgentDownLine
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
+                AgentId = agentIdValue,
+                AgentName = string.IsNullOrWhiteSpace(agentName) ? this.CurrentSession.AgentName : agentName,
+                IsSuper = agentIdValue == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false,
+                AgentWinLossList = agentWinLossList,
+                SportList = SingbetSportService.GetSport(isOther: false),
+                BettypeList = this._winLossService.GetBettype(),
+                BalanceUpDay = balanceUpDay,
             };
 
-            return View(memberWinLossViewModel);
+            var excelResult = this._winLossService.ExportAgentWinLoss(model);
+
+            var fileName = string.Format(
+                "AgentWinLoss_{0}_{1}_{2}",
+                agentName,
+                this._winLossService.ShortDateFormat(model.FromDate),
+                this._winLossService.ShortDateFormat(model.ToDate));
+            return new ExcelResult(excelResult, fileName);
+        }
+
+        /// <summary>
+        /// Export member win loss report.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="toDate">To date.</param>
+        /// <param name="sporttypes">Sport type list.</param>
+        /// <param name="bettypes">Bet type list.</param>
+        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentName">Agent name.</param>
+        /// <returns>ActionResult member win loss.</returns>
+        public ActionResult ExportMemberWinLoss(
+            DateTime fromDate, 
+            DateTime toDate, 
+            string sporttypes, 
+            string bettypes, 
+            int agentId, 
+            string agentName)
+        {
+            var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
+            var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
+
+            if (memberWinLossList == null)
+            {
+                var criteria = new MemberWinLossCriteria
+                {
+                    AgentId = agentId,
+                    Sporttypes = sporttypes,
+                    Bettypes = bettypes,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    BalanceUpDay = balanceUpDay,
+                    MoveBetDay = this._winLossService.MoveBetsDay()
+                };
+                
+                memberWinLossList = this._winLossService.GetMemberWinLoss(criteria);
+                HttpContext.Session[sessionKey] = memberWinLossList;
+            }
+
+            var model = new MemberWinLossViewModel
+            {
+                FromDate = fromDate,
+                ToDate = toDate,
+                Sporttypes = sporttypes,
+                Bettypes = bettypes,
+                AgentId = agentId,
+                AgentName = agentName,
+                MemberWinLossList = memberWinLossList,
+                SportList = SingbetSportService.GetSport(isOther: false),
+                BettypeList = this._winLossService.GetBettype(),
+                BalanceUpDay = balanceUpDay
+            };
+
+            var excelResult = this._winLossService.ExportMemberWinLoss(model);
+
+            var fileName = string.Format(
+                "MemberWinLoss_{0}_{1}_{2}",
+                model.AgentName,
+                this._winLossService.ShortDateFormat(model.FromDate),
+                this._winLossService.ShortDateFormat(model.ToDate));
+
+            return new ExcelResult(excelResult, fileName);
         }
 
         #endregion Agent Win Loss Report
 
-        private IEnumerable<Agent> AgentDownlinePath(int agentId)
+        #region Line sport credit
+        
+        /// <summary>
+        /// Get Line sport credit report.
+        /// </summary>
+        /// <param name="username">User name.</param>
+        /// <returns>ActionResult Line sport credit report.</returns>
+        public ActionResult SportCredit(string username)
         {
-            IEnumerable<Agent> models = _reportService.GetData<Agent>(new AgentDownlinePathCriteria
+            var criteria = new SportCreditCriteria
             {
-                ParentId = CurrentSession.AgentId,
-                AgentId = agentId
-            });
+                LoggedId = this.CurrentSession.AgentId,
+                Username = username
+            };
 
-            return models;
+            var sportCreditList = this._sportCreditService.GetSportCredits(criteria);
+
+            var model = new SportCreditViewModel
+            {
+                Username = username,
+                SportCreditModelList = sportCreditList
+            };
+
+            var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
+            HttpContext.Session[sessionKey] = sportCreditList;
+
+            return this.View(model);
         }
+
+        /// <summary>
+        /// Export Line sport credit report.
+        /// </summary>
+        /// <param name="username">User name.</param>
+        /// <returns>ActionResult Line sport credit report.</returns>
+        public ActionResult ExportSportCredit(string username)
+        {
+            var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
+            var sportCreditList = (List<SportCreditModel>)HttpContext.Session[sessionKey];
+
+            if (sportCreditList == null)
+            {
+                var criteria = new SportCreditCriteria
+                {
+                    LoggedId = this.CurrentSession.AgentId,
+                    Username = username
+                };
+
+                sportCreditList = this._sportCreditService.GetSportCredits(criteria);
+                HttpContext.Session[sessionKey] = sportCreditList;
+            }
+
+            var model = new SportCreditViewModel
+            {
+                Username = username,
+                SportCreditModelList = sportCreditList
+            };
+
+            var excelResult = this._sportCreditService.ExportSportCredit(model);
+
+            var fileName = string.Format("LineSportCredit_{0}_{1}", model.Username, this._sportCreditService.ShortDateFormat(DateTime.Now));
+
+            return new ExcelResult(excelResult, fileName);
+        }
+
+        #endregion
     }
 }

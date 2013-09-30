@@ -1,0 +1,143 @@
+@import "../../../_globalResources/css/agent.less";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.floatingHeader 
+{
+	z-index: 20;
+	position: fixed;
+	top: 0;
+	border-bottom: 1px solid #b7c7cf;
+	left: 0 !important;
+}
+
+.his_body {
+    border-bottom: 1px solid #2A73AC;
+    border-right: 1px solid #2A73AC;
+    width: 495px;
+	font-size: @fontSize;
+
+	td, th {
+        border-left: 1px solid #2A73AC;
+        border-top: 1px solid #2A73AC;
+		padding: 3px 2px;	  
+    }
+
+	tr:hover td {
+		background: #52A4E3;
+	}
+
+	.his_info {
+		font-size: 12px;
+		text-align: left;
+		width: 381px;
+	}
+
+	.persist-header, .floatingHeader {
+		tr {
+			.box_title {
+				background-color: #1D76C2;
+				color: #FFF;
+				font-weight: bold;
+				line-height: 22px;
+				text-align: left;
+
+				.title {
+					padding: 4px 4px 4px 10px;
+				}
+			}
+
+			th {
+				font-weight: normal;
+			}
+
+			&.m_title_date {
+				background-color: #52A4E3;
+				text-align: left;
+
+				th {
+					padding: 3px 2px;
+
+					&.page {
+						padding-left: 10px;
+
+						.scr_on {
+							color: #FFFF00;
+							cursor: pointer;
+							text-decoration: none;
+						}
+						.scr_out {
+							color: #FFF;
+							cursor: pointer;
+						}
+					}
+
+					.list {
+						float: left;
+						margin-top: 3px;
+
+						li {
+							float: left;
+							margin-right: 2px;
+
+							a { color: #fff; }
+						}
+					}
+				}		
+			}
+
+			&.m_title_his {
+				background-color: #76C3ED;
+				text-align: center;
+				height: 25px;				 
+			} 
+		}
+	}
+
+	.search
+	{
+		border-left: none;
+		float: right;
+	}
+}
+
+/* Define some widths */
+
+.width-50per {
+	width: 50%;
+}
+
+.width-40 {
+	width: 40px;
+}
+
+.width-70 {
+	width: 70px;
+}
+
+/* FIX IE */
+.eq-ie8 .floatingHeader {
+	top: -10px;
+	left: 11px !important;
+}
+
+.eq-ie7 {
+	#box_header .editor, .box_header .editor {
+
+		INPUT[type=text] {
+			height: 12px;
+		}
+
+		 INPUT[type=button], INPUT[type=submit] {
+			height: 20px;
+			padding-top: 1px;
+		}
+	}
+
+	thead.floatingHeader {
+		display: none;
+	}
+}

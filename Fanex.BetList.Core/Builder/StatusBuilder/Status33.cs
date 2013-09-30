@@ -21,7 +21,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     /// <summary>
     /// Win/Place
     /// </summary>
-    public class Status33 : Status31
+    public class Status33 : Status1
     {
         protected int winBetId, placeBetId;
 
@@ -42,9 +42,9 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
-        public override Templates.Status_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
+        public override Templates.Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
-            base.Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            base.Render(ticket, ticketData);
 
             // Custom Status generated from base class if ticketData has matched items for the current ticket
             if (ticketData != null && ticketData.Count > 0)
@@ -82,9 +82,9 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             return Template;
         }
 
-        public override IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
+        public override IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
         {
-            Render(ticket, ticketHelper, ticketData, isShowVNIP);
+            Render(ticket, ticketData);
 
             // Status != Win/Lose
             if (this.Template.result.Length < 80)
@@ -102,12 +102,6 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                 string status_Place = ExtractStringBetweenTag("b", status_PlaceString);
 
                 rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", status_Win, "\n", Apollo.Age.Resources.BetList.place, ": ", status_Place }), rtfHelper.PosFont);
-            }
-
-            if (Template.ShowIPVN.Visible)
-            {
-                string status = string.Join(null, new string[] { "\n", Template.ShowIPVN.betIp });
-                rtfHelper.RTFRenderer.AddText(status);
             }
 
             var rtfStatus = rtfHelper.RTFRenderer.Render();

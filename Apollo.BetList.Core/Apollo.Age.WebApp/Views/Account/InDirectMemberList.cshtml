@@ -1,0 +1,140 @@
+﻿@using Apollo.Age.Entities
+@using Apollo.Age.Resources
+@model CustomerListCriteria
+@{
+    ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
+    ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblMemberListOf;
+    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
+    titleFormat = string.Format(titleFormat, string.Empty);
+    var agenttitleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
+    agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
+    Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
+    var isMaster = (bool)ViewBag.IsMaster;
+    var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/indirectmemberlist?parentAgentId={0}&agentId={1}", Model.ParentAgentId, Model.AgentId)));
+    var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
+}
+@using (Html.BeginForm())
+{       
+    <div id="function-bar">
+        <div class="item">
+            <label>@Lang.member</label>:
+            <select class="za_select" id="UplineAgentId" name="UplineAgentId">
+                @foreach (var item in driectAgentList)
+                {
+                    if (item.Id == Model.AgentId)
+                    { 
+                    <option value="@item.Id" selected="selected">@item.Username</option>
+                    }
+                    else
+                    {
+                    <option value="@item.Id">@item.Username</option>
+                    }
+                }
+            </select>
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.lblActive },
+					                new SelectListItem { Value = "2", Text = Lang.Close },
+                                    new SelectListItem { Value = "3", Text = Lang.Suspended }
+				                }, new { @class = "za_select" })
+        </div>
+        <div class="item">
+            --<label>@Lang.OrderBy</label>:
+            @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+            @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "2", Text = Lang.DES }
+				                }, new { @class = "za_select" })
+        </div>
+        @if (!ReferenceEquals(memberList, null) && memberList.Any())
+        { 
+            <div class="item">
+                --<label>@Lang.Page</label>:
+                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
+            </div>
+        }
+        <div class="item">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+            <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
+        </div>
+        <img src="/_GlobalResources/Images/top_04.gif" alt="">
+    </div>     
+    @Html.HiddenFor(m => m.AgentId)
+    @Html.HiddenFor(m => m.ParentAgentId)   
+}
+<table class="tblRpt memberList">
+    @if (!ReferenceEquals(memberList, null) && memberList.Any())
+    {
+        <thead>
+            <tr>
+                <td width="80">
+                    @Lang.agent
+                </td>
+                <td width="80">
+                    @Lang.enterusername
+                </td>
+                <td width="60">
+                    @Lang.condition
+                </td>
+                <td width="60">
+                    @Lang.BetCondition
+                </td>
+                <td width="80">
+                    @Lang.Feature
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in memberList)
+            {
+                <tr class="m_cen">
+                    <td>
+                        @ViewBag.AgentUsername
+                    </td>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                    </td>
+                    <td>
+                        @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td class="text-left">
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username&backLink=@backLink">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.view
+                            }</a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&agentId=@Model.AgentId&userName=@item.Username">@Lang.Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <th class="none-result">
+                @Lang.NoneMember
+            </th>
+        </thead>
+    }
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.za_select').change(function () {
+                $('#submit').click();
+            });
+        });
+    </script>
+}

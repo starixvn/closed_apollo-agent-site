@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Constant.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Constants.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Account.Core
 {
+    using System.Collections.Generic;
+    using Apollo.Age.Resources;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -24,14 +27,19 @@ namespace Apollo.Age.Account.Core
 
         public const string LastPostTimeKey = "lastPostTime";
 
-        public const int MainShareHolderLevel = 1;
-
-        public const int ShareHolderLevel = 2;
-
         public const int LogActionDiscount = 2;
 
         public const int LogActionBetSetting = 3;
 
-        public const int LogActionPositionTaking = 4;     
+        public const int LogActionPositionTaking = 4;
+
+        public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
+        {
+            { 0, "lblSuper" },
+            { 1, "lblMainSH" },
+            { 2, "lblShareholder" },
+            { 3, "lblMainAgent" },
+            { 4, "agent" }
+        };
     }
 }

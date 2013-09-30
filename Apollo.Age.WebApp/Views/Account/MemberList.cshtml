@@ -1,4 +1,7 @@
-﻿@using Apollo.Age.Entities;
+﻿@using Apollo.Age.Entities
+@using Apollo.Age.Resources
+@using Apollo.Age.Configurations
+@model CustomerListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblMemberListOf;
@@ -7,61 +10,175 @@
     var agenttitleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
     agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
-}
-@model List<Agent>
-@section css
-{
-    <link href="~/_globalresources/js/fanex.grid/fanex.grid.less" rel="stylesheet" type="text/css" />
-    <link href="~/_globalresources/js/fanex.grid/fanex.pagination.less" rel="stylesheet"
-        type="text/css" />
-}
-@RazorHelper.Navigation(Model)
 
-<div id="gridId" class="freegrid  content-grid" firstAgentId="@Model.First().Id" agentid="@Model.Last().Id" username="@Model.Last().Username" agentlevel="@Model.Last().Level">
+    var isMaster = (bool)ViewBag.IsMaster;
+
+    var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
+
+    var firstMember = memberList.FirstOrDefault() ?? new MemberListModel();
+
+    var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
+
+    var allowFundOut = (bool)ViewBag.AllowFundOut;
+
+    var agentUsername = ViewBag.AgentUserName ?? string.Empty;
+}
+@using (Html.BeginForm())
+{
+    <div id="function-bar">
+        <div class="item">
+            <label>@Lang.member</label>:
+            @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
+                                    new SelectListItem { Value = "0", Text = Lang.all },
+					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
+				                }, new { @class = "za_select" })
+        </div>
+        <div class="item">
+            --<label>@Lang.OrderBy</label>:
+            @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+				                }, new { @class = "za_select" })
+            @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
+					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "2", Text = Lang.DES }
+				                }, new { @class = "za_select" })
+        </div>
+        @if (!ReferenceEquals(memberList, null) && memberList.Any())
+        { 
+            <div class="item">
+                --<label>@Lang.Page</label>:
+                @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
+                <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
+                &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
+            </div>
+        }
+        <div class="item">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
+            <input type="submit" class="za_button" value="@Lang.SearchMember" id="submit">
+        </div>
+        @if (hasAgentDownline)
+        {
+            <div class="item">
+                -- <a href="~/Account/AgentList">@Lang.lblAgents</a>
+            </div>
+        }
+@*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
+        <div class="end">
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.AgentId)
+}
+@if (!ReferenceEquals(memberList, null) && memberList.Any())
+{
+<div  id="divEditMultiple" class="edit-multiple-link">
+    @if(!AppSettings.DisableEditOnMember)
+    {
+        <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+        @if (isMaster)
+        {
+            @Lang.edit
+        }
+        else
+        {
+            @Lang.lblview
+        }</a>
+        @:&nbsp;/&nbsp; 
+    }
+    <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
 </div>
+}
+<table id="tblMemberList" class="tblRpt memberList">
+    @if (!ReferenceEquals(memberList, null) && memberList.Any())
+    {
+        <thead>
+            <tr>
+                 <th class="width-140">
+                    <input type="checkbox" id="cbAllMember" />
+                </th>
+                <th>@Lang.enterusername
+                </th>
+                <th class="width-80">@Lang.status
+                </th>
+                <th class="width-80">@Lang.betstatus
+                </th>
+                <th class="width-80">@Lang.SportCredit
+                </th>
+                <th class="width-140">@Lang.Feature
+                    <div class="edit-member-share">
+                        <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@memberList[0].MemberId&amp;agentId=@Model.AgentId&amp;userName=@memberList[0].Username&amp;agentUsername=@agentUsername&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                            @Apollo.Age.Resources.Lang.lblMemberShare
+                            </a>
+                    </div>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in memberList)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
+                    </td>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
+                    </td>
+                    <td>
+                        @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
+                    </td>
+                    <td>
+                       @* @if (allowFundOut && item.CashBalance > 0)
+                        {
+                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
+                        }
+                        else
+                        {
+                            @Formater.DecFormat(item.CashBalance, 2)
+                        }*@
+                        @Formater.DecFormat(item.CashBalance, 2)
+                    </td>
+                    <td class="text-center">
+                        @if (!AppSettings.DisableEditOnMember)
+                        {
+                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                            @if (isMaster)
+                            {
+                                @Lang.edit
+                            }
+                            else
+                            {
+                                @Lang.lblview
+                            }</a>
+                            @:&nbsp;/&nbsp; 
+                        }
+                        <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <th class="none-result">
+                @Lang.NoneMember
+            </th>
+        </thead>
+    }
+</table>
 @section scripts
 {
-    <script language="javascript" type="text/javascript">
-        var DEFAULTS = function () {
-            return {
-                IsMaster: @(ViewBag.IsMaster ? "true" : "false")
-            };
-        } ();
-        var LANGUAGES = function ($) {
-            return {
-                Username: "@Apollo.Age.Resources.Lang.enterusername",
-                Status: "@Apollo.Age.Resources.Lang.status",
-                BetStatus: "@Apollo.Age.Resources.Lang.betstatus",
-                Edit: "@(ViewBag.IsMaster ? Apollo.Age.Resources.Lang.edit : Apollo.Age.Resources.Lang.view) ",
-                Group: "@Apollo.Age.Resources.Lang.group",
-                AgentCommission: "@Apollo.Age.Resources.Lang.AgentCommission",
-                MemberCommission: "@Apollo.Age.Resources.Lang.memberCommission",
-                SoccerShare: "@Apollo.Age.Resources.Lang.lblSoccerPT",
-                OneXTwo: "@Apollo.Age.Resources.Lang.lbl1x2",
-                Other: "@Apollo.Age.Resources.Lang.other",
-                Stopped: "@Apollo.Age.Resources.Lang.stopped",
-                Locked: "@Apollo.Age.Resources.Lang.locked",
-                Active: "@Apollo.Age.Resources.Lang.lblActive",
-                SoccerDeadballHDPTakenShare: "@Apollo.Age.Resources.Lang.soccerdeadballhdptakenshare",
-                EditSetting: "@Apollo.Age.Resources.Lang.lblEditSetting",
-                ViewSetting: "@Apollo.Age.Resources.Lang.lblViewSetting",
-                PopUpTitle: "@titleFormat",
-                PopUpAgentTitle: "@agenttitleFormat",
-                AgentList : "@Apollo.Age.Resources.Lang.lblAgentList",
-                MemberList : "@Apollo.Age.Resources.Lang.lblPlayerList",
-                CLock: "@Apollo.Age.Resources.Lang.lblCLock",
-                GoToPage: "@Apollo.Age.Resources.Lang.gotopage",
-                Items: "@Apollo.Age.Resources.Lang.Items ",
-                Of: "@Apollo.Age.Resources.Lang.of ",
-                To: "@Apollo.Age.Resources.Lang.to.ToLower() ",
-                Displaying: "@Apollo.Age.Resources.Lang.Displaying ",
-                PageSize: "@Apollo.Age.Resources.Lang.pagesize "
-            };
-        } (jQuery);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.za_select').change(function () {
+                $('#submit').click();
+            });
+        });
     </script>
-    <script src="~/_globalresources/js/fanex.grid/moment.min.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/numeral.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/fanex.grid.js" type="text/javascript"></script>
-    <script src="~/_globalresources/js/fanex.grid/fanex.pagination.js" type="text/javascript"></script>
-    <script src="~/views/account/resources/memberlist.js" type="text/javascript"></script>
 }

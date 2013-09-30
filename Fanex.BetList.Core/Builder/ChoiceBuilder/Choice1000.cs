@@ -27,7 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
-        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap)
+        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
         {
             string content = string.Join(
                                             null,
@@ -53,6 +53,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
             return choiceRtf;
+        }
+
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        {
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
 }

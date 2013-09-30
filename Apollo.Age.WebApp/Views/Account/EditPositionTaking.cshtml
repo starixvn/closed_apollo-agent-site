@@ -1,13 +1,120 @@
-﻿@{
-    ViewBag.Title = "Edit Share Setting " + ViewBag.UserName;
-    Layout = "~/Views/Account/Shared/_CustSettingLayout.cshtml";
+﻿@using Apollo.Age.Resources;
+@using Apollo.Age.Configurations;
+@{
+    
+    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+    var userName = (string)ViewBag.UserName ?? string.Empty;
+    var custId = (int)ViewBag.CustId;
+    var isEditAgent = (bool)ViewBag.IsEditAgent;
+    var linkBack = (string)ViewBag.BackLink;
+    var isMaster = ViewBag.IsMaster ?? false;
+    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+    var agentUsername = ViewBag.AgentUsername ?? string.Empty;
+    ViewBag.Title = isMaster ? string.Format(Lang.lblEditShareSetting, ViewBag.UserName) : string.Format(Lang.lblViewShareSetting, ViewBag.UserName);
+    var memberIds = ViewBag.MemberIds ?? string.Empty;
+    var parentUsername = ViewBag.ParentUsername ?? string.Empty;
+}
+@section header
+{
+    <div id="function-bar">
+        <div class="item detail-information">
+            @if (isEditAgent)
+            {
+                @(string.Format("{0} {1}", Lang.AgencyDetailEdit, isMaster ? Lang.edit.ToLower() : string.Empty))
+            }
+            else
+            {
+                @(isMaster ? Lang.lblEditMemberShare : Lang.lblViewMemberShare)
+            }
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @(isEditAgent ? Html.Raw(string.Format("{0}:  <strong>{1}</strong>", Lang.agent, userName)) : Html.Raw(string.Format("{0}: <strong>{1}</strong>", Lang.agent, agentUsername)) )
+            @*: <strong>@(AppSettings.DisableEditOnMember ? Lang.all : userName)</strong>*@
+             &nbsp;&nbsp;&nbsp;&nbsp;<span id="modeMark">--</span> <a href="javascript:void(0);" id="simple-mode" style="display: none;">@Lang.simplemode</a> 
+            <a href="javascript:void(0);" id="advanced-mode" style="display: none;">@Lang.lblAdvancedMode</a>
+            @if (!isMaster && !fromLeftMenu)
+            {
+                @:-- <a href="javascript:void(0);" id="back-link">@Lang.back</a>
+            }
+        </div>
+        @*<img src="/_GlobalResources/Images/top_04.png" class="end-function-bar">*@
+        <div class="end"></div>
+    </div>
+}
+@Html.Hidden("backUrl", linkBack)
+<div id="ptContainer">
+</div>
+<div style="display:none;" id="noInfoDiv">
+    <h3 style="display:inline;">@Lang.noInfo</h3> 
+    @if (!fromLeftMenu)
+    {
+        <a href="javascript:void(0);"  onClick="history.go(-1)">@Lang.back</a>
+    }
+</div>
+@if (isEditAgent)
+{
+    @Html.Action("Index", "Instruction", new
+{
+    key = "AgentShareSetting",
+    trigger = "agent-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "AgentShareSettingAdv",
+    trigger = "agent-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MainShareHolderShareSettingAdv",
+    trigger = "mainshareholder-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MainShareHolderShareSetting",
+    trigger = "mainshareholder-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+}
+else
+{
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MemberShareSetting",
+    trigger = "member-share-setting-info-button",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+    @Html.Action("Index", "Instruction", new
+{
+    key = "MemberShareSettingAdv",
+    trigger = "member-share-setting-info-button-adv",
+    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+})
+
 }
 
-<div id="ptContainer">
-        </div>
 
 @section scripts
 {
-    <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
-    <script src="~/views/account/resources/editpositiontaking.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Language.apllyPresetSimpleMode = "@string.Format(Lang.ApplyPresetSimpleMode, userName)"; 
+        Language.apllyPresetAdvancedMode = "@Lang.AppyPresetAdvancedMode"; 
+    </script>
+    @if (isEditAgent)
+    {
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentLevel=@(ViewBag.AgentLevel)" type="text/javascript"></script>
+    }
+    else
+    {
+        
+        <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)&targetCustIds=@(memberIds)" type="text/javascript"></script>
+    }
+    @Scripts.Render("~/scripts/editpositiontakingjs")
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetTopPriMessage24Criteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetHasPriMessage24Criteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,12 +15,7 @@ namespace Apollo.Age.Account.Criterias
     /// TODO: Update summary.
     /// </summary>
     public class GetHasPriMessage24Criteria : CriteriaBase
-    {
-        public override string GetSettingKey()
-        {
-            return "Dot_Msg_HasPriMessage24";
-        }
-
+    {    
         [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
 
@@ -31,6 +26,11 @@ namespace Apollo.Age.Account.Criterias
         public override bool IsValid()
         {
             return UserId > 0;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Dot_Msg_HasPriMessage24";
         }
     }
 }

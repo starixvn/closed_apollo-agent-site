@@ -8,7 +8,6 @@
 //   <change who="Anders.Le" date="2013.5.7">Add ErrorMessage</change>
 // </history>
 
-
 namespace Apollo.Age.Integration.Models
 {
     using System;
@@ -17,7 +16,7 @@ namespace Apollo.Age.Integration.Models
     using System.Text;
 
     /// <summary>
-    /// It contains properies parsed from json respone returned from authentication process
+    /// It contains properties parsed from json respone returned from authentication process
     /// </summary>
     public class AuthModel
     {
@@ -57,6 +56,5 @@ namespace Apollo.Age.Integration.Models
             && string.IsNullOrWhiteSpace(ErrorCode);
             }
         }
-
     }
 }

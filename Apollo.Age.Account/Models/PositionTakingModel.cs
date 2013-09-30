@@ -14,9 +14,9 @@ namespace Apollo.Age.Account.Models
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class PositionTakingModel
     {
-        public int SportType { get; set; }       
+        public int SportType { get; set; }
 
-        public int BetType { get; set; }       
+        public int BetType { get; set; }
 
         public bool IsLive { get; set; }
 
@@ -26,10 +26,12 @@ namespace Apollo.Age.Account.Models
 
         public decimal MinGiven { get; set; }
 
-        public decimal OldMaxUpper { get; set; }
+        public bool IsApply { get; set; }
 
-        public decimal OldMaxGiven { get; set; }
+        public decimal? OldMaxUpper { get; set; }
 
-        public decimal OldMinGiven { get; set; }
+        public decimal? OldMaxGiven { get; set; }
+
+        public decimal? OldMinGiven { get; set; }
     }
 }

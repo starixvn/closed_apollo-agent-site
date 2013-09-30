@@ -15,6 +15,10 @@ namespace Apollo.Age.Reports.Criterias
     {
         public int AgentId { get; set; }
 
+        public string Sporttypes { get; set; }
+
+        public string Bettypes { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Rpt_Outstanding_Member";
@@ -22,7 +26,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            return AgentId >= 0;
+            return AgentId > 0;
         }
     }
 }

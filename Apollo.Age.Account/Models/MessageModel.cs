@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MessageViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MessageModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -72,7 +72,7 @@ namespace Apollo.Age.Account.Models
         public string GetContent(string language = "")
         {
             string content = string.Empty;
-            string betTransId = string.Empty;
+            string betTransId = this.BettransID;
             switch (language)
             {
                 case "en-US":

@@ -6,21 +6,21 @@
     ViewBag.Title = Apollo.Age.Resources.BetList.viewCommDetails;
 }
 @{
-    var tickets = Model.ListAgentComm;
+    var tickets = Model.TicketList;
     var index = 0;
 }
 <div id="spData">
-    <table class="tblRpt">
+    <table class="tblRpt betlist" style="width: 97%">
         <thead>
             <tr>
                 <th>
-                    @Apollo.Age.Resources.Lang.agent
+                    @Lang.agent
                 </th>
                 <th style="width: 100px;">
-                    @Apollo.Age.Resources.BetList.agentPT
+                    @BetList.Share
                 </th>
                 <th style="width: 100px;">
-                    @Apollo.Age.Resources.BetList.agentComm
+                    @BetList.Comm
                 </th>
             </tr>
         </thead>

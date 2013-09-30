@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
     <title>@ViewBag.Title</title>
-    <link href="~/views/account/resources/loglogin.less" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/css/log-login")
     @RenderSection("head", required: false)
 </head>
 <body>
@@ -11,11 +11,11 @@
             Login Log
         </div>
         <div id="content_main">
-             @RenderBody()
+            @RenderBody()
         </div>
-    </div>   
+    </div>
     @Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
+    @Html.Partial("_ApoRes")
     @Scripts.Render("~/scripts/logloginjs")
     @RenderSection("foot", required: false)
 </body>

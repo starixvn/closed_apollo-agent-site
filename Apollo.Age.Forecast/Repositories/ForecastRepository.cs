@@ -17,6 +17,9 @@ namespace Apollo.Age.Forecast.Repositories
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Forecast Repository
+    /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
     {
@@ -64,6 +67,11 @@ namespace Apollo.Age.Forecast.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Get Main shareholder id of member
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         public int GetMainShareHolderByMember(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
