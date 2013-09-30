@@ -17,7 +17,6 @@ namespace Apollo.Age.Web
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Net;
     using System.Web.Mvc;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Services.Impl;
@@ -26,7 +25,6 @@ namespace Apollo.Age.Web
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Logging;
-using Apollo.Age.Web.Services;
 
     [SuppressMessage("CSharp.Nexcel.NexcelCustom", "SP2101:CSharp.Nexcel.NexcelCustom", Justification = "Reviewed.")]
 
@@ -41,20 +39,19 @@ using Apollo.Age.Web.Services;
         private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
-                
 
         public BaseController()
         {
             _userService = new UserService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
-        
         }
 
         #region PROPERTIES
 
         /// <summary>
-        /// Gets Current Session.
+        /// Gets Current Session.           
         /// </summary>
+        /// <value>Current Session.</value>
         protected ICurrentSession CurrentSession
         {
             get { return SessionManager.CurrentSession; }
@@ -65,6 +62,7 @@ using Apollo.Age.Web.Services;
         /// <summary>
         /// Gets Current Action.
         /// </summary>
+        /// <value>Current Action.</value>
         protected string CurrentAction
         {
             get
@@ -76,6 +74,7 @@ using Apollo.Age.Web.Services;
         /// <summary>
         /// Gets Current Controller.
         /// </summary>
+        /// <value>Current Controller.</value>
         protected string CurrentController
         {
             get
@@ -87,6 +86,7 @@ using Apollo.Age.Web.Services;
         /// <summary>
         /// Gets Current Area.
         /// </summary>
+        /// <value>Current Area.</value>
         protected string CurrentArea
         {
             get
@@ -128,7 +128,6 @@ using Apollo.Age.Web.Services;
                 CheckAuthentication();
                 CheckValidDownline(filterContext);
                 CheckKickOut(filterContext);
-        
             }
 
             if (CurrentSession != null)
@@ -168,7 +167,7 @@ using Apollo.Age.Web.Services;
             {
                 Response.Redirect(ApoURLs.URLs.Unauthorized);
             }
-        }               
+        }
 
         /// <summary>
         /// Checking Validate Down line.
@@ -258,26 +257,8 @@ using Apollo.Age.Web.Services;
                 }
 
                 if (userStatus >= (int)CustomerStatus.Stopped)
-                {                   
+                {
                     Response.Redirect(ApoURLs.URLs.AccountStopped, false);
-
-                    //if (Request.IsAjaxRequest())
-                    //{
-                    //    Response.ContentType = "text/plain";
-                    //    Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    //    Response.Write(Resources.Lang.lblAccountWasStopped);
-                    //    Response.BufferOutput = true;
-                    //    Response.ClearContent();
-                    //    Response.ClearHeaders();
-                    //    Response.Flush();
-                    //    Response.Close();
-                    //    Response.End();
-                    //}
-                    //else
-                    //{
-                        
-                    //    Response.Redirect(ApoURLs.URLs.AccountStopped, false);
-                    //}
                 }
             }
         }
