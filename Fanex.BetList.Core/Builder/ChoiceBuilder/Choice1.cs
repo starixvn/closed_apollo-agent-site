@@ -178,9 +178,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             //this.Template.Score.scoreClassName = BL_FAVORITE;
 
-            decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : ticket.Handicap1;
-
-            this.Template.handicap = Formatter.FormatHandicap(handicap);
+            decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? (-ticket.Handicap2) : ticket.Handicap1;
+            this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, handicap);
         }
 
         /// <summary>

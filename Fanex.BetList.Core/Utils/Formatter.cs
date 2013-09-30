@@ -643,15 +643,28 @@ namespace Fanex.BetList.Core.Utils
 
         #endregion String
 
-        public static string FormatHandicap(decimal handicapValue)
+        public static string FormatHandicap(int betTypeId, decimal handicapValue)
         {
+            var handicapBetType = 1;
+            var _1stHandicapBetType = 7;
+            var isHandicap = betTypeId == handicapBetType || betTypeId == _1stHandicapBetType;
+
+            var handicapSign = string.Empty;
+
+            if (isHandicap && handicapValue != 0)
+            {
+                handicapSign = handicapValue > 0 ? "+" : "-";
+            }
+
+            handicapValue = Math.Abs(handicapValue);
+
             if ((handicapValue * 10) % 5 == 0)
             {
-                return string.Format(" {0}", Formatter.DecFormat(handicapValue, 1, true));
+                return string.Format(" {0}{1}", handicapSign, Formatter.DecFormat(handicapValue, 1, true));
             }
             else
             {
-                return string.Format(" {0}/{1}", Formatter.DecFormat(handicapValue - (decimal)0.25, 1, true), Formatter.DecFormat(handicapValue + (decimal)0.25, 1, true));
+                return string.Format(" {0}{1}/{2}", handicapSign, Formatter.DecFormat(handicapValue - (decimal)0.25, 1, true), Formatter.DecFormat(handicapValue + (decimal)0.25, 1, true));
             }
         }
     }
