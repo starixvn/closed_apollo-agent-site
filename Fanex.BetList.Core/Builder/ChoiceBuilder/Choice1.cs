@@ -177,9 +177,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             //this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
 
             //this.Template.Score.scoreClassName = BL_FAVORITE;
-            bool isFavorite = betHomeTeam ? (ticket.Handicap2 <= ticket.Handicap1) : (ticket.Handicap2 >= ticket.Handicap1);
-            decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : ticket.Handicap1;
-            this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, isFavorite ? -handicap : handicap);
+            //bool isFavorite = betHomeTeam ? (ticket.Handicap2 <= ticket.Handicap1) : (ticket.Handicap2 >= ticket.Handicap1);
+            decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : -ticket.Handicap1;
+            this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, handicap);
         }
 
         /// <summary>
