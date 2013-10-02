@@ -9,15 +9,12 @@
 
 namespace Apollo.UMService
 {
-    using System;
     using System.IO;
     using System.Net;
-    using System.Text;
-    using System.Threading;
+    using System.Threading.Tasks;
     using System.Web.Helpers;
     using Apollo.UMService.Model;
     using Fanex.Caching;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Under maintenance class.
@@ -65,9 +62,9 @@ namespace Apollo.UMService
         /// <summary>
         /// Makes the asynchronous request.
         /// </summary>
-        /// <param name="url">The URL.</param>
+        /// <param name="url">The URL of maintenance service.</param>
         /// <param name="contentType">Type of the content.</param>
-        /// <returns></returns>
+        /// <returns>Return task asynchronous request.</returns>
         public Task<string> MakeAsyncRequest(string url, string contentType)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -92,11 +89,14 @@ namespace Apollo.UMService
         private string ReadStreamFromResponse(WebResponse response)
         {
             using (Stream responseStream = response.GetResponseStream())
-            using (StreamReader sr = new StreamReader(responseStream))
             {
-                //Need to return this response 
-                string strContent = sr.ReadToEnd();
-                return strContent;
+                using (StreamReader sr = new StreamReader(responseStream))
+                {
+                    ////Need to return this response 
+                    string strContent = sr.ReadToEnd();
+
+                    return strContent;
+                }
             }
         }
     }
