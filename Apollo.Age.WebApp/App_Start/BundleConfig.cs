@@ -245,12 +245,6 @@ namespace Apollo.Age.WebApp
             #region Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
-                "~/views/account/resources/editsetting.js"));
-
-            bundles.Add(new ScriptBundle("~/scripts/editpositiontakingjs").Include(
-                "~/views/account/resources/editpositiontaking.js"));
-
-            bundles.Add(new ScriptBundle("~/scripts/custsettingjs").Include(
                 "~/_globalresources/js/head.min.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery-ui.js",
@@ -262,7 +256,23 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/custsettingengine/bettinglimit.js",
                 "~/views/account/resources/custsettingengine/bettype.js",
                 "~/views/account/resources/custsettingengine/bettypegroup.js",
-                "~/views/account/resources/custsettingengine/commissionsetting.js"));
+                "~/views/account/resources/custsettingengine/commissionsetting.js",
+                "~/views/account/resources/editsetting.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/editpositiontakingjs").Include(
+                "~/_globalresources/js/head.min.js",
+                "~/_globalresources/js/jquery.js",
+                "~/_globalresources/js/jquery-ui.js",
+                "~/_globalresources/js/noty/jquery.noty.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/core.js",
+                "~/views/account/resources/custsettingengine/core.js",
+                "~/views/account/resources/custsettingengine/ptsetting.js",
+                "~/views/account/resources/custsettingengine/bettinglimit.js",
+                "~/views/account/resources/custsettingengine/bettype.js",
+                "~/views/account/resources/custsettingengine/bettypegroup.js",
+                "~/views/account/resources/custsettingengine/commissionsetting.js",
+                "~/views/account/resources/editpositiontaking.js"));
 
             #endregion Customer Setting
 

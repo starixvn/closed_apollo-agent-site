@@ -161,7 +161,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             var selectedUserType = "0";
 
-            if (userType)
+            if (userType)   
             {
                 selectedUserType = "1";
             }
