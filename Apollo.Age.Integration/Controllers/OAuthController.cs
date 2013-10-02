@@ -132,7 +132,7 @@ namespace Apollo.Age.Integration.Controllers
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("User {0} is not found", authModel.Username));
+                                LogService.Error(string.Format("SSO user {0} is not found", authModel.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
