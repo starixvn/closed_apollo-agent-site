@@ -1,0 +1,106 @@
+﻿@model AgentUserAssignFunctionCriteria
+@{
+    Layout = "~/Views/PermissionUserControl/Shared/_Layout.cshtml";
+    ViewBag.Title = "AssignFunction";
+    var listGroupFunction = Model.ListFunction.GroupBy(m => m.FunctionGroup.FunctionGroupId).ToList();
+    var listFunctionPolicy = Model.ListFunctionPolicy;
+    var listParentFunctionPolicy = Model.ListParentFunctionPolicy;
+}
+<table class="tblRpt">
+    <thead>
+        <tr>
+            <th>
+                @Lang.Permission
+            </th>
+            @if (Model.IsMaster)
+            { 
+                <th>
+                    @Lang.edit
+                </th>
+            }
+            <th>
+                @Lang.Query
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itemGroupFunction in listGroupFunction)
+        {
+            var groupName = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupName;            
+            <tr class="group-function">
+                <td>
+                    @groupName
+                </td>
+                @if (Model.IsMaster)
+                { 
+                    <td>
+                    </td>
+                }
+                <td>
+                </td>
+            </tr>
+                foreach (var itemFunction in itemGroupFunction)
+                {
+                    var functionPolicy = listFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
+                    var parentFunctionPolicy = listParentFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
+                    var policy = functionPolicy != null ? functionPolicy.Policy : 0;
+                    var parentPolicy = parentFunctionPolicy != null ? parentFunctionPolicy.Policy : 0;
+            <tr>
+                <td>
+                    @itemFunction.FunctionName
+                </td>
+                @if (Model.IsMaster)
+                { 
+                    <td class="policy">
+                        @if (itemFunction.CRUD == (byte)Crud.Edit)
+                        {
+                            if (policy == (byte)Policy.Edit)
+                            { 
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" checked="checked"/>
+                            }
+                            else
+                            {
+                                if (parentPolicy == (byte)Policy.Edit)
+                                { 
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" />
+                                }
+                                else
+                                { 
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" disabled="disabled"/>
+                                }
+                            }
+                        }
+                    </td>                    
+                }
+                <td class="policy">
+                    @if (policy >= (byte)Policy.Query)
+                    { 
+                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" checked="checked"/>
+                    }
+                    else
+                    {
+                        if (parentPolicy >= (byte)Policy.Query)
+                        { 
+                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId"/>
+                        }
+                        else
+                        { 
+                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" disabled="disabled"/>
+                        }
+
+                    }
+                </td>
+            </tr>
+                }
+        }
+        <tr class="btn-action">
+            <td colspan="3">
+                <input type="button" value="@Lang.lblconfirm" class="btn" id="btnSubmit">
+                <input type="button" value="@Lang.Cancel" class="btn" id="btnCancel">
+            </td>
+        </tr>
+    </tbody>
+</table>
+@Html.Hidden("IsMaster", Model.IsMaster ? "1" : "0")
+@Html.Hidden("AgentUserId", Model.AgentUserId)
+@Scripts.Render("~/scripts/assignfunction")

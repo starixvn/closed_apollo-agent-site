@@ -457,6 +457,7 @@
     <Content Include="Views\Message\Images\onlinelist.png" />
     <Content Include="Views\Message\Images\statistic.png" />
     <Content Include="Views\Message\Resources\PortalPage.js" />
+    <Content Include="Views\PermissionUserControl\Resources\AssignFunction.js" />
     <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
     <Content Include="Views\Reports\Resources\SportCredit.js" />
@@ -1064,6 +1065,9 @@
     <Content Include="Views\Reports\SportCredit.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Error\RedirectToUM.cshtml" />
+    <Content Include="Views\PermissionUserControl\AssignFunction.cshtml" />
+    <Content Include="Views\PermissionUserControl\Shared\_Layout.cshtml" />
+    <None Include="Views\PermissionUserControl\Resources\permissionusercontrol.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -1094,6 +1098,10 @@
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
       <Name>Apollo.Age.Integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
+      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
+      <Name>Apollo.Age.PermissionControl</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
       <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>

@@ -46,6 +46,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.UMService", "Apollo.UMService\Apollo.UMService.csproj", "{0F1FAA78-599B-4646-B4E8-007C7992CE15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.PermissionControl", "Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj", "{FE47EC76-47A3-423B-808D-E94537B3F6FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,10 @@ Global
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

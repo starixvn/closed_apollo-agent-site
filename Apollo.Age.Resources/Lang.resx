@@ -2011,4 +2011,13 @@
   <data name="EstimateTime" xml:space="preserve">
     <value>The updating process will be completed in {0} minute(s) and {1} second(s). Do you want to continue update?</value>
   </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="ConfirmWriteShadow" xml:space="preserve">
+    <value>Confirm write this shadow user ?</value>
+  </data>
 </root>
