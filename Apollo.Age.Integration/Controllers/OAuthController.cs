@@ -86,8 +86,9 @@ namespace Apollo.Age.Integration.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(code))
                     {
-                        // username is empty or user is disallowed sso
-                        if (!_userService.AllowLineAccountSSO(username))
+                        // username is empty or user is disallowed sso.
+                        // Disallow shadow sc88 access to our system by sso way.
+                        if (!_userService.AllowLineAccountSSO(username) || username.ToLower() == "sc88")
                         {
                             authModel.ErrorCode = ErrorCode.ComingSoon;
                             return View(authModel);
@@ -117,7 +118,7 @@ namespace Apollo.Age.Integration.Controllers
                                 else
                                 {
 #if DEBUG
-                                    LogService.Error(string.Format("User {0} is not the requested user [{1}]", username, user.Username));
+                                    LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                     authModel.ErrorCode = ErrorCode.InvalidRequest;
 
