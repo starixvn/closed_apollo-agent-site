@@ -10,16 +10,15 @@
 namespace Apollo.Age.PermissionControl.Controllers
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Entities;
-    using Apollo.Age.PermissionControl.Services;
-    using Apollo.Age.Web;
     using System.Linq;
-    using Apollo.Age.PermissionControl.Criterias;
-    using Fanex.NAP.Framework.Data;
-    using Apollo.Age.PermissionControl.Models;
-    using Apollo.Age.PermissionControl.Web.Attribute;
+    using System.Web.Mvc;
     using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.PermissionControl.Criterias;
+    using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.PermissionControl.Models;
+    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -30,7 +29,7 @@ namespace Apollo.Age.PermissionControl.Controllers
         private readonly IAgentUserService _agentUserService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PermissionUserController"/> class.
+        /// Initializes a new instance of the <see cref="PermissionUserControlController"/> class.
         /// </summary>
         public PermissionUserControlController()
             : this(null, null)
@@ -38,9 +37,10 @@ namespace Apollo.Age.PermissionControl.Controllers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PermissionUserController"/> class.
+        /// Initializes a new instance of the <see cref="PermissionUserControlController"/> class.
         /// </summary>
         /// <param name="functionService">The function service.</param>
+        /// <param name="agentUserService">The agent user service.</param>
         public PermissionUserControlController(IFunctionService functionService, IAgentUserService agentUserService)
         {
             _functionService = functionService ?? new FunctionService();
@@ -81,6 +81,11 @@ namespace Apollo.Age.PermissionControl.Controllers
 
         #region Ajax
 
+        /// <summary>
+        /// Assigns the user permission.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Command result when assign function to user..</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Edit)]
         [HttpPost]
         public ActionResult AssignUserPermission(AgentUserAssignFunctionCriteria criteria)

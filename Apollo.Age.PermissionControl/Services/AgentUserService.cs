@@ -89,10 +89,11 @@ namespace Apollo.Age.PermissionControl.Services
         }
 
         /// <summary>
-        /// Gets the parent information with agent user.
+        /// Gets the parent information.
         /// </summary>
-        /// <param name="agentId">The agent identifier.</param>
-        /// <returns>Parent agent info with shadow information.</returns>
+        /// <param name="agentUserId">The agent user identifier.</param>
+        /// <param name="isMaster">If set to <c>true</c> [is master].</param>
+        /// <returns>User information.</returns>
         public User GetParentInfo(int agentUserId, bool isMaster)
         {
             try

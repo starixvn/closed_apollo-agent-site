@@ -23,15 +23,17 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
     {
         #region Member
 
-        private static readonly ICurrentSession CurrentSession = SessionManager.CurrentSession;
+        private static readonly ICurrentSession _CurrentSession = SessionManager.CurrentSession;
 
-        private static readonly IAgentUserService _agentUserService = new AgentUserService();
+        private static readonly IAgentUserService _AgentUserService = new AgentUserService();
 
         #endregion Member
 
         #region Properties
 
         private string _functionKey;
+
+        private Policy _policy;
 
         public string FunctionKey
         {
@@ -45,8 +47,6 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
                 _functionKey = value;
             }
         }
-
-        private Policy _policy;
 
         public Policy Policy
         {
@@ -63,6 +63,10 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
 
         #endregion Properties
 
+        /// <summary>
+        /// Called when a process requests authorization.
+        /// </summary>
+        /// <param name="filterContext">The filter context, which encapsulates information for using <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
@@ -75,9 +79,9 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
                     return;
                 }
 
-                if (CheckFunctionAuthorization(CurrentSession.UserId))
+                if (CheckFunctionAuthorization(_CurrentSession.UserId))
                 {
-
+                    //// do something here
                 }
                 else
                 {
@@ -90,6 +94,11 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
             }
         }
 
+        /// <summary>
+        /// Checks the function authorization.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>Permission of user on function.</returns>
         public bool CheckFunctionAuthorization(int userId)
         {
             if (userId <= 0)
@@ -97,11 +106,15 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
                 return false;
             }
 
-            var policy = _agentUserService.GetUserPolicy(CurrentSession.UserId, FunctionKey);
+            var policy = _AgentUserService.GetUserPolicy(_CurrentSession.UserId, FunctionKey);
 
             return policy >= (byte)Policy;
         }
 
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         private void CloseConnection(AuthorizationContext filterContext)
         {
             try
@@ -148,9 +161,12 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
             }
         }
 
+        /// <summary>
+        /// Signs the out.
+        /// </summary>
         private void SignOut()
         {
-
+            //// clear cookies
         }
     }
 }

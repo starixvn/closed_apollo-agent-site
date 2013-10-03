@@ -36,8 +36,10 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// <summary>
         /// Gets the parent information with agent user.
         /// </summary>
-        /// <param name="agentId">The agent identifier.</param>
-        /// <returns>Parent agent info with shadow information.</returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// Parent agent info with shadow information.
+        /// </returns>
         User GetParentInfo(ICriteria criteria);
 
         /// <summary>

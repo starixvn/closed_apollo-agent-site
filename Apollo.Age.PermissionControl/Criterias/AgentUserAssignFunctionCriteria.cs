@@ -11,9 +11,9 @@ namespace Apollo.Age.PermissionControl.Criterias
 {
     using System.Collections.Generic;
     using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.PermissionControl.Models;
     using Fanex.NAP.Framework.Data;
-    using Apollo.Age.PermissionControl.Entities;
 
     /// <summary>
     /// Get all function filter by function group and active.

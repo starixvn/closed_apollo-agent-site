@@ -22,7 +22,6 @@ namespace Apollo.Age.PermissionControl.Criterias
 
         public bool? IsActive { get; set; }
 
-
         /// <summary>
         /// Gets the setting key.
         /// </summary>
