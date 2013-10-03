@@ -144,5 +144,32 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
 
             return null;
         }
+
+        /// <summary>
+        /// Gets the user function policy.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Policy of user on function.</returns>
+        public byte GetUserPolicy(ICriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return (byte)objectDb.ExecuteScalar(criteria.GetSpParams());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return 0;
+        }
     }
 }

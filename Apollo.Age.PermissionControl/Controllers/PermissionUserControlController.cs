@@ -18,6 +18,8 @@ namespace Apollo.Age.PermissionControl.Controllers
     using Apollo.Age.PermissionControl.Criterias;
     using Fanex.NAP.Framework.Data;
     using Apollo.Age.PermissionControl.Models;
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// TODO: Update summary.
@@ -50,6 +52,7 @@ namespace Apollo.Age.PermissionControl.Controllers
         /// </summary>
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Return view assign permission to agent user.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Edit)]
         public ActionResult AssignFunction(int agentUserId)
         {
             var agentUserInfo = _agentUserService.GetAgentUserInfo(agentUserId);
@@ -78,6 +81,7 @@ namespace Apollo.Age.PermissionControl.Controllers
 
         #region Ajax
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Edit)]
         [HttpPost]
         public ActionResult AssignUserPermission(AgentUserAssignFunctionCriteria criteria)
         {

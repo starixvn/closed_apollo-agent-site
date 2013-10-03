@@ -564,6 +564,7 @@
         </Setting>
         <Setting Key="Age_AgentUser_GetInfo" SpName="Age_AgentUser_GetInfo" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
-        </Setting>  
+        </Setting>
+        <Setting Key="Age_AgentUser_GetUserFunctionPolicy" SpName="Age_AgentUser_GetUserFunctionPolicy" DbName="SVRCUST.CustDB.aplweb"/>        
     </Function>
 </Functions>

@@ -48,5 +48,13 @@ namespace Apollo.Age.PermissionControl.Services
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Agent user information.</returns>
         User GetAgentUserInfo(int agentUserId);
+
+        /// <summary>
+        /// Gets the user function policy.
+        /// </summary>
+        /// <param name="agentUserId">The agent user identifier.</param>
+        /// <param name="functionKey">The function key.</param>
+        /// <returns>Policy of user on function.</returns>
+        byte GetUserPolicy(int agentUserId, string functionKey);
     }
 }
