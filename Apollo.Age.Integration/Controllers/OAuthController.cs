@@ -86,17 +86,17 @@ namespace Apollo.Age.Integration.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(code))
                     {
+                        // username is empty or user is disallowed sso
+                        if (!_userService.AllowLineAccountSSO(username))
+                        {
+                            authModel.ErrorCode = ErrorCode.ComingSoon;
+                            return View(authModel);
+                        }
+
                         authModel = _authService.GetAuthInfo(authorizationCode: code);
 
                         if (authModel != null && authModel.IsValid)
                         {
-                            // username is empty or user is disallowed sso
-                            if (!_userService.AllowLineAccountSSO(username))
-                            {
-                                authModel.ErrorCode = ErrorCode.ComingSoon;
-                                return View(authModel);
-                            }
-
                             Entities.User user = _userService.GetUserByUsername(authModel.Username);
 
                             // check whether authenticated username (from sungame agentsite) is the same with
@@ -117,7 +117,7 @@ namespace Apollo.Age.Integration.Controllers
                                 else
                                 {
 #if DEBUG
-                                    LogService.Error(string.Format("User {0} is not the requested user [{1}]", authModel.Username, user.Username));
+                                    LogService.Error(string.Format("User {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                     authModel.ErrorCode = ErrorCode.InvalidRequest;
 
@@ -132,7 +132,7 @@ namespace Apollo.Age.Integration.Controllers
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("User {0} is not found", authModel.Username));
+                                LogService.Error(string.Format("SSO user {0} is not found", authModel.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
