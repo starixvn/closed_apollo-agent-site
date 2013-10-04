@@ -98,6 +98,7 @@ namespace Apollo.Age.PermissionControl.Criterias
 
         [SpParam(Ignored = true)]
         public string ShadowUsername { get; set; }
+
         /// <summary>
         /// Gets the setting key.
         /// </summary>

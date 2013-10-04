@@ -24,7 +24,7 @@ var AssignFunction = function ($) {
         assignUserPermision: function () {
             var funcRead = "";
             var funcHost = "";
-            var url = APOLLO.resolveUrl("~/PermissionUserControl/AssignUserPermission");
+            var url = APOLLO.resolveUrl("~/PermissionUserControl/AssignPermissionControl");
 
             AssignFunction.grid.find('[type=checkbox][name=funcRead]').each(function () {
                 var $this = $(this),
@@ -47,7 +47,9 @@ var AssignFunction = function ($) {
                 dataType: 'JSON',
                 data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId },
                 success: function (res) {
-
+                    if (res == "-1") {
+                        window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
+                    }
                 },
                 error: function (xhr, status, err) {
                 }

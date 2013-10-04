@@ -59,7 +59,8 @@
       <DependentUpon>ApolloFunctionKeys.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\PermissionUserControlController.cs" />
-    <Compile Include="Core\Constant.cs" />
+    <Compile Include="Core\Crud.cs" />
+    <Compile Include="Core\Policy.cs" />
     <Compile Include="Criterias\AgentUserAssignFunctionCriteria.cs" />
     <Compile Include="Criterias\AgentUserGetByAgentCriteria.cs" />
     <Compile Include="Criterias\AgentUserGetFunctionPolicyCriteria.cs" />
