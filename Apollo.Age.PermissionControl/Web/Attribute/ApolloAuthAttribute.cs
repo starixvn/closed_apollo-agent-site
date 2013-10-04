@@ -152,7 +152,7 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
                 }
                 else
                 {
-                    response.Redirect("~/Error/Unauthorized");
+                    response.Redirect("~/Error/AccessDenied");
                 }
             }
             catch

@@ -18,6 +18,7 @@
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
 
     var permissionControlPolicy = (byte)ViewBag.PermissionControl;
+    var shadowPermissionPolicy = (byte)ViewBag.ShadowPermission;
 }
 @using (Html.BeginForm())
 {       
@@ -146,11 +147,13 @@
                                 <a  href="~/PermissionUserControl/AssignFunction?agentuserid=@item.AgentId">
                                     @Lang.Permission
                                 </a>
-                            @:&nbsp;/&nbsp;
-                                <a  href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
-                                    @Lang.ShadowPermission
-                                </a>
                         }
+                        @if (shadowPermissionPolicy >= (byte)Policy.Query)
+                        { 
+                            @:&nbsp;/&nbsp;
+                        <a  href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
+                            @Lang.ShadowPermission
+                        </a>}
                     </td>
                 </tr>
             }
