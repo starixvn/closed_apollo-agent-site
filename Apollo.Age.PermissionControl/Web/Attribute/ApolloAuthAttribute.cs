@@ -106,7 +106,17 @@ namespace Apollo.Age.PermissionControl.Web.Attribute
                 return false;
             }
 
-            var policy = _AgentUserService.GetUserPolicy(_CurrentSession.UserId, FunctionKey);
+            string[] arrayFunctionKey = FunctionKey.Split(';');
+            var policy = 0;
+            var temp = 0;
+            foreach (var itemKey in arrayFunctionKey)
+            {
+                if (!string.IsNullOrWhiteSpace(itemKey))
+                {
+                    temp = _AgentUserService.GetUserPolicy(_CurrentSession.UserId, itemKey);
+                    policy = policy > temp ? policy : temp;
+                }
+            }
 
             return policy >= (byte)Policy;
         }
