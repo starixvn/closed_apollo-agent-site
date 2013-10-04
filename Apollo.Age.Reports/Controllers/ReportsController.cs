@@ -28,7 +28,9 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
     using Apollo.Age.Configurations;
-    
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
+
     /// <summary>
     /// Reports Controller.
     /// </summary>
@@ -87,6 +89,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="sporttypes">Sport types.</param>
         /// <param name="bettypes">Bet types.</param>
         /// <returns>Outstanding ViewResult.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             this.CurrentAgentId = agentId;
@@ -109,6 +112,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="betTypeName">Bet type name.</param>
         /// <param name="isAgentOutStanding">Is agent Outstanding.</param>
         /// <returns>Excel Outstanding report.</returns>
+       [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ActionResult ExportOutstandingReport(
             int? agentId,
             string agentUsername,
@@ -169,11 +173,12 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="mainShareHolderUsername">Main ShareHolder name.</param>
         /// <returns>Member Outstanding report.</returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ActionResult MemberOutstanding(
-            int? agentId, 
-            string sporttypes, 
-            string bettypes, 
-            int mainShareHolderId, 
+            int? agentId,
+            string sporttypes,
+            string bettypes,
+            int mainShareHolderId,
             string mainShareHolderUsername)
         {
             this.CurrentAgentId = agentId;
@@ -195,7 +200,8 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get MatchEntered report.
         /// </summary>
-        /// <returns>MatchEntered ViewResult.</returns>
+        /// <returns>MatchEntered ViewResult.</returns>        
+        //[ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
@@ -208,7 +214,7 @@ namespace Apollo.Age.Reports.Controllers
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
-           
+
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
             return this.View(matchEnteredViewModel);
@@ -223,13 +229,14 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="bettypes">Bet type list.</param>
         /// <param name="agentId">Agent id.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ViewResult agent win loss.</returns>
+        /// <returns>ViewResult agent win loss.</returns>        
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult AgentWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int? agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int? agentId,
             string agentName)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -281,12 +288,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">Agent id.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult member win loss.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult MemberWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int agentId,
             string agentName)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -334,13 +342,14 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="bettypes">Bet type list.</param>
         /// <param name="agentId">Agent id.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ActionResult agent win loss.</returns>
+        /// <returns>ActionResult agent win loss.</returns>        
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ActionResult ExportAgentWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int? agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int? agentId,
             string agentName)
         {
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -400,12 +409,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">Agent id.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ActionResult ExportMemberWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int agentId,
             string agentName)
         {
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
@@ -424,7 +434,7 @@ namespace Apollo.Age.Reports.Controllers
                     BalanceUpDay = balanceUpDay,
                     MoveBetDay = this._winLossService.MoveBetsDay()
                 };
-                
+
                 memberWinLossList = this._winLossService.GetMemberWinLoss(criteria);
                 HttpContext.Session[sessionKey] = memberWinLossList;
             }
@@ -457,12 +467,13 @@ namespace Apollo.Age.Reports.Controllers
         #endregion Agent Win Loss Report
 
         #region Line sport credit
-        
+
         /// <summary>
         /// Get Line sport credit report.
         /// </summary>
         /// <param name="username">User name.</param>
         /// <returns>ActionResult Line sport credit report.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.LineSportCredits, Policy = Policy.Query)]
         public ActionResult SportCredit(string username)
         {
             var criteria = new SportCreditCriteria
@@ -490,6 +501,7 @@ namespace Apollo.Age.Reports.Controllers
         /// </summary>
         /// <param name="username">User name.</param>
         /// <returns>ActionResult Line sport credit report.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.LineSportCredits, Policy = Policy.Query)]
         public ActionResult ExportSportCredit(string username)
         {
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);

@@ -70,6 +70,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
+      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
+      <Name>Apollo.Age.PermissionControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Reports\Apollo.Age.Reports.csproj">
       <Project>{0DCAB062-FC45-436B-9F66-4D141DEBAF49}</Project>
       <Name>Apollo.Age.Reports</Name>

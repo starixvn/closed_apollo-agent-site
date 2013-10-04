@@ -118,7 +118,7 @@ var Wagers = function ($) {
                 });
             }
 
-          
+
         },
 
         autoRefresh: function () {
@@ -183,6 +183,14 @@ var Wagers = function ($) {
                     Wagers.initPager(Wagers.pageIndex);
                     Wagers.initWagerBetList();
                     $('.est-zone').html($('#TimeZone').val());
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status == 403) {
+                        location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
+                    }
+                    else {
+                        alert(jqXHR.responseText);
+                    }
                 }
             });
         },
@@ -223,7 +231,7 @@ var Wagers = function ($) {
                 window.open(APOLLO.resolveUrl(url), '_blank');
             });
         }
-       
+
     }
 } (jQuery);
 

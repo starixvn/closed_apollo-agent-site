@@ -32,6 +32,8 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Common;
     using Fanex.BetList.Core.Utils;
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// BetList Controller
@@ -58,7 +60,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet]        
         public ViewResult AccountInfo(int custId)
         {
             var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
@@ -144,6 +146,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
         public ViewResult Transactions()
         {
             var viewModel = new BetListReportViewModel();
@@ -164,6 +167,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
         public ViewResult TransactionsPaging(DateTime fromDate, DateTime toDate, string sportTypes = _StringEmpty,
             string betTypes = _StringEmpty, string userName = _StringEmpty,
             int userType = 0, int pageIndex = 0)
@@ -189,6 +193,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
         public ViewResult Transactions(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
@@ -271,6 +276,7 @@ namespace Apollo.Age.BetList.Controllers
         /// Cancel ticket betlist
         /// </summary>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTicket, Policy = Policy.Query)]
         public ViewResult TicketCancel()
         {
             var viewModel = new BetListReportViewModel
@@ -287,6 +293,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTicket, Policy = Policy.Query)]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
@@ -335,6 +342,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ViewResult Outstanding(int custId,
             string username = _StringEmpty,
             int mainShareHolderId = 0,
@@ -390,6 +398,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult Winloss(int custId, 
             DateTime fromDate, 
             DateTime toDate, 
@@ -465,6 +474,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <param name="isForecast"></param>
         /// <returns></returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
         public ViewResult Forecast(string type = _StringEmpty, string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;
@@ -542,6 +552,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportType"></param>
         /// <param name="betTeam"></param>
         /// <returns></returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
         public ViewResult Wagers(int loggedId, DateTime fromDate, DateTime? toDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
         {
             // List ticket

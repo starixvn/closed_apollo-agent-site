@@ -28,11 +28,14 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Fanex.Common;
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// Wager Controller.
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
     public class WagerController : BaseController
     {
         protected readonly IWagersService WagerService;

@@ -27,12 +27,15 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Web;
+    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// Result controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Result, Policy = Policy.Query)]
     public class ResultsController : BaseController
     {
         /// <summary>
