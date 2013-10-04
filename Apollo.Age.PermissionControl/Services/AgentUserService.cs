@@ -163,5 +163,29 @@ namespace Apollo.Age.PermissionControl.Services
 
             return 0;
         }
+
+        /// <summary>
+        /// Gets the by agent.
+        /// </summary>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>List agent user.</returns>
+        public IEnumerable<User> GetByAgent(int agentId)
+        {
+            try
+            {
+                var criteria = new AgentUserGetByAgentCriteria
+                {
+                    AgentId = agentId
+                };
+
+                return _agentUserRepository.GetByAgent(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
+        }
     }
 }

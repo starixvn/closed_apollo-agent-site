@@ -1067,6 +1067,7 @@
     <Content Include="Views\Error\RedirectToUM.cshtml" />
     <Content Include="Views\PermissionUserControl\AssignFunction.cshtml" />
     <Content Include="Views\PermissionUserControl\Shared\_Layout.cshtml" />
+    <Content Include="Views\PermissionUserControl\AgentUserList.cshtml" />
     <None Include="Views\PermissionUserControl\Resources\permissionusercontrol.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />

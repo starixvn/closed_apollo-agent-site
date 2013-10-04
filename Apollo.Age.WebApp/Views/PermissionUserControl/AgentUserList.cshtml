@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Apollo.Age.Entities.User>
+@{
+    Layout = "~/Views/PermissionUserControl/Shared/_Layout.cshtml";
+    ViewBag.Title = "AgentUserList";
+}
+<div id="function-bar">
+    <div class="item detail-information">
+        <span>
+            @Lang.AgencyDetailEdit
+            &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.agent: <strong>@ViewBag.Username</strong> </span>
+    </div>
+    <div class="end">
+    </div>
+</div>
+<table class="tblRpt shadowList">
+    @if (!ReferenceEquals(Model, null) && Model.Any())
+    { 
+        <thead>
+            <tr>
+                <th>
+                    @Lang.ShadowId
+                </th>
+                <th>
+                    @Lang.lblUserName
+                </th>
+                <th>
+                    @Lang.RegisterDate
+                </th>
+                <th>
+                    @Lang.status
+                </th>
+                <th>
+                    @Lang.Creator
+                </th>
+                <th>
+                    @Lang.Feature
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="">
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @item.CreatedDate
+                    </td>
+                    <td>
+                        @item.Status.ToStringStatus(item.Status)
+                    </td>
+                    <td>
+                        @item.Agent.Username
+                    </td>
+                    <td>
+                        <a  href="~/PermissionUserControl/AssignFunction?agentuserid=@item.Id">
+                            @Lang.Permission
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    { 
+        <thead>
+            <th class="none-result">
+                @Lang.NoneShadow
+            </th>
+        </thead>
+    }
+</table>

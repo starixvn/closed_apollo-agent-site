@@ -85,11 +85,22 @@ namespace Apollo.Age.PermissionControl.Controllers
                 IsMaster = agentUserInfo.IsMaster,
                 AgentUserId = agentUserId,
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId,
-                AgentUsername = agentUserInfo.Agent.Username
+                AgentUsername = agentUserInfo.Agent.Username,
+                ShadowUsername = agentUserInfo.Username
             };
 
             return View(criteria);
         }
+
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.ShadowPermission, Policy = Policy.Query)]
+        public ActionResult AgentUserList(int agentId, string username)
+        {
+            var list = _agentUserService.GetByAgent(agentId);
+            ViewBag.Username = username;
+
+            return View(list);
+        }
+
 
         #region Ajax
 

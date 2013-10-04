@@ -179,9 +179,29 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// </summary>
         /// <param name="agentId">The agent identifier.</param>
         /// <returns>Agent user list.</returns>
-        public IEnumerable<User> GetByAgent(int agentId)
+        public IEnumerable<User> GetByAgent(ICriteria criteria)
         {
-            throw new NotImplementedException();
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return objectDb.Query<User, Agent, User>(
+                            (u, a) => { u.Agent = a; return u; },
+                            "CreatorId",
+                            criteria.GetSpParams());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return null;
         }
     }
 }

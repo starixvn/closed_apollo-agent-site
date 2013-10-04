@@ -2023,4 +2023,22 @@
   <data name="ShadowPermission" xml:space="preserve">
     <value>Shadow Permission</value>
   </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="RegisterDate" xml:space="preserve">
+    <value>Register Date</value>
+  </data>
+  <data name="ShadowId" xml:space="preserve">
+    <value>Shadow Id</value>
+  </data>
+  <data name="NoneShadow" xml:space="preserve">
+    <value>None Shadow</value>
+  </data>
+  <data name="Shadow" xml:space="preserve">
+    <value>Shadow</value>
+  </data>
+  <data name="ShadowDetailed" xml:space="preserve">
+    <value>Shadow detailed</value>
+  </data>
 </root>

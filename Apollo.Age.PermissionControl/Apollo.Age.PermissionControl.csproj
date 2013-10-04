@@ -61,6 +61,7 @@
     <Compile Include="Controllers\PermissionUserControlController.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Criterias\AgentUserAssignFunctionCriteria.cs" />
+    <Compile Include="Criterias\AgentUserGetByAgentCriteria.cs" />
     <Compile Include="Criterias\AgentUserGetFunctionPolicyCriteria.cs" />
     <Compile Include="Criterias\AgentUserGetUserFunctionPolicyCriteria.cs" />
     <Compile Include="Criterias\GetAgentUserCriteria.cs" />
