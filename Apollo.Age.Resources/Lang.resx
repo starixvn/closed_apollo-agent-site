@@ -2020,4 +2020,7 @@
   <data name="ConfirmWriteShadow" xml:space="preserve">
     <value>Confirm write this shadow user ?</value>
   </data>
+  <data name="ShadowPermission" xml:space="preserve">
+    <value>Shadow Permission</value>
+  </data>
 </root>

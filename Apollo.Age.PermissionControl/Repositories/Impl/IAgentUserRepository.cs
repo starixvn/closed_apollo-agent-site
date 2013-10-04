@@ -55,5 +55,12 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// <param name="criteria">The criteria.</param>
         /// <returns>Policy of user on function.</returns>
         byte GetUserPolicy(ICriteria criteria);
+
+        /// <summary>
+        /// Gets the by agent.
+        /// </summary>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>Agent user list.</returns>
+        IEnumerable<User> GetByAgent(int agentId);
     }
 }

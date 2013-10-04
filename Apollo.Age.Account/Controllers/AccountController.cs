@@ -32,6 +32,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Account controllers.
@@ -47,6 +48,7 @@ namespace Apollo.Age.Account.Controllers
         #endregion Const for paging
 
         private readonly IAccountService _accountService;
+        private readonly IAgentUserService _agentUserService;
         private int _agentId;
         private string _username;
         private int _agentLevel;
@@ -54,6 +56,7 @@ namespace Apollo.Age.Account.Controllers
         public AccountController()
         {
             _accountService = new AccountService();
+            _agentUserService = new AgentUserService();
         }
 
         private int? CurrentAgentId
@@ -466,6 +469,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
             ViewBag.AgentUsername = this.CurrentSession.AgentName;
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
             return View(criteria);
         }
@@ -566,6 +570,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.DirectAgentList = directAgent;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentUsername = agentInfo.Username;
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
             return View(criteria);
         }

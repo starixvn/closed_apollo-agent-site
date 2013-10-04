@@ -52,20 +52,30 @@ namespace Apollo.Age.PermissionControl.Controllers
         /// </summary>
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Return view assign permission to agent user.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]
         public ActionResult AssignFunction(int agentUserId)
         {
+            // Get agent user
             var agentUserInfo = _agentUserService.GetAgentUserInfo(agentUserId);
 
             var listFunctionPolicy = new List<FunctionPolicy>();
             var listParentFunctionPolicy = new List<FunctionPolicy>();
             var listFunction = new List<Function>();
 
+            // Get list function which user has permission
             listFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: agentUserId, isActive: true).ToList();
+
+            // Get all function is active
             listFunction = _functionService.GetAll(isActive: true).ToList();
 
+            // Get parent agent and his agent user (is master), if user is shadow will return direct agent
             var parentInfo = _agentUserService.GetParentInfo(agentUserId, agentUserInfo.IsMaster);
+
+            // Get list function which parent user has permission
             listParentFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: parentInfo.Id, isActive: true).ToList();
+
+            // Get permission of current user on this function
+            var policy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
             var criteria = new AgentUserAssignFunctionCriteria
             {
@@ -73,7 +83,9 @@ namespace Apollo.Age.PermissionControl.Controllers
                 ListParentFunctionPolicy = listParentFunctionPolicy,
                 ListFunctionPolicy = listFunctionPolicy,
                 IsMaster = agentUserInfo.IsMaster,
-                AgentUserId = agentUserId
+                AgentUserId = agentUserId,
+                HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId,
+                AgentUsername = agentUserInfo.Agent.Username
             };
 
             return View(criteria);

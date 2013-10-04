@@ -16,6 +16,8 @@
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
 
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
+
+    var permissionControlPolicy = (byte)ViewBag.PermissionControl;
 }
 @using (Html.BeginForm())
 {       
@@ -82,7 +84,7 @@
                 </th>
                 <th class="width-80">@Lang.betstatus
                 </th>
-                <th class="width-200">@Lang.Feature
+                <th class="width-400">@Lang.Feature
                 </th>
             </tr>
         </thead>
@@ -131,14 +133,24 @@
                             {
                                 @Lang.lblview
                             }</a> &nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
-
-                            @if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                            {
-                                @:&nbsp;/&nbsp; 
+                        @if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                        {
+                            @:&nbsp;/&nbsp;
                                 <a  href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)" >
                                     @Apollo.Age.Resources.Lang.lblMemberShare
                                 </a>
-                            }
+                        }
+                        @if (permissionControlPolicy >= (byte)Policy.Query)
+                        {
+                            @:&nbsp;/&nbsp;
+                                <a  href="~/PermissionUserControl/AssignFunction?agentuserid=@item.AgentId">
+                                    @Lang.Permission
+                                </a>
+                            @:&nbsp;/&nbsp;
+                                <a  href="~/PermissionUserControl/AssignFunction?agentuserid=@item.AgentId">
+                                    @Lang.ShadowPermission
+                                </a>
+                        }
                     </td>
                 </tr>
             }

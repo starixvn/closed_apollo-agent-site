@@ -5,8 +5,22 @@
     var listGroupFunction = Model.ListFunction.GroupBy(m => m.FunctionGroup.FunctionGroupId).ToList();
     var listFunctionPolicy = Model.ListFunctionPolicy;
     var listParentFunctionPolicy = Model.ListParentFunctionPolicy;
+    var hasEdit = Model.HasEdit;
 }
-<table class="tblRpt">
+<div id="function-bar">
+    <div class="item detail-information">
+        @if (Model.IsMaster)
+        {
+            <span>
+                @Lang.AgencyDetailEdit
+                &nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.agent: <strong>@Model.AgentUsername</strong>
+            </span>
+        }
+    </div>
+    <div class="end">
+    </div>
+</div>
+<table class="tblRpt ">
     <thead>
         <tr>
             <th>
@@ -45,6 +59,11 @@
                     var parentFunctionPolicy = listParentFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
                     var policy = functionPolicy != null ? functionPolicy.Policy : 0;
                     var parentPolicy = parentFunctionPolicy != null ? parentFunctionPolicy.Policy : 0;
+
+                    var checkHost = policy == (byte)Policy.Edit ? "checked='checked'" : string.Empty;
+                    var disableHost = (parentPolicy != (byte)Policy.Edit) || !hasEdit ? "disabled='disabled'" : string.Empty;
+                    var checkRead = policy >= (byte)Policy.Query ? "checked='checked'" : string.Empty;
+                    var disableRead = (parentPolicy < (byte)Policy.Query) || !hasEdit ? "disabled='disabled'" : string.Empty;
             <tr>
                 <td>
                     @itemFunction.FunctionName
@@ -53,49 +72,24 @@
                 { 
                     <td class="policy">
                         @if (itemFunction.CRUD == (byte)Crud.Edit)
-                        {
-                            if (policy == (byte)Policy.Edit)
-                            { 
-                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" checked="checked"/>
-                            }
-                            else
-                            {
-                                if (parentPolicy == (byte)Policy.Edit)
-                                { 
-                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" />
-                                }
-                                else
-                                { 
-                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" disabled="disabled"/>
-                                }
-                            }
+                        {                       
+
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkHost @disableHost />
                         }
                     </td>                    
                 }
                 <td class="policy">
-                    @if (policy >= (byte)Policy.Query)
-                    { 
-                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" checked="checked"/>
-                    }
-                    else
-                    {
-                        if (parentPolicy >= (byte)Policy.Query)
-                        { 
-                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId"/>
-                        }
-                        else
-                        { 
-                        <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" disabled="disabled"/>
-                        }
-
-                    }
+                    <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkRead @disableRead/>
                 </td>
             </tr>
                 }
         }
         <tr class="btn-action">
             <td colspan="3">
-                <input type="button" value="@Lang.lblconfirm" class="btn" id="btnSubmit">
+                @if (Model.HasEdit)
+                { 
+                    <input type="button" value="@Lang.lblconfirm" class="btn" id="btnSubmit">
+                }
                 <input type="button" value="@Lang.Cancel" class="btn" id="btnCancel">
             </td>
         </tr>

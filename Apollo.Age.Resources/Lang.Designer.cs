@@ -5021,6 +5021,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shadow Permission.
+        /// </summary>
+        public static string ShadowPermission {
+            get {
+                return ResourceManager.GetString("ShadowPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share.
         /// </summary>
         public static string Share {

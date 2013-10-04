@@ -90,6 +90,11 @@ namespace Apollo.Age.PermissionControl.Criterias
         [SpParam(Ignored = true)]
         public List<Function> ListFunction { get; set; }
 
+        [SpParam(Ignored = true)]
+        public bool HasEdit { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string AgentUsername { get; set; }
         /// <summary>
         /// Gets the setting key.
         /// </summary>
