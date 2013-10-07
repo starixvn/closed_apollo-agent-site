@@ -17,6 +17,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
@@ -32,6 +33,14 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
         protected const string BL_UNDER_DOG = "underdog";
         protected const string BL_FAVORITE = "favorite";
+        private static int[] _showHomeCharacterList = new[] { 
+            (int)SportTypeNames.Soccer,
+            (int)SportTypeNames.BasketBall,
+            (int)SportTypeNames.FootBall,
+            (int)SportTypeNames.VolleyBall,
+            (int)SportTypeNames.BaseBall,
+            (int)SportTypeNames.IceHockey
+        };
 
         #endregion Attributes
 
@@ -158,7 +167,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     new string[]
                                                     {
                                                         homeName,
-                                                        ticket.IsNeutral ? " (N) " : " (H)"
+                                                        ticket.IsNeutral ? 
+                                                            " (N) " 
+                                                            : (_showHomeCharacterList.Contains(ticket.SportTypeId) ? " (H)" : string.Empty)
                                                     }
                                                 );
 
