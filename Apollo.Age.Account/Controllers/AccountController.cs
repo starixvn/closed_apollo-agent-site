@@ -673,6 +673,8 @@ namespace Apollo.Age.Account.Controllers
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.AgentUserName = this.CurrentSession.AgentName;
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             return View(criteria);
         }
 
@@ -772,6 +774,7 @@ namespace Apollo.Age.Account.Controllers
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit.
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.ActorAgentUsername = this.CurrentSession.AgentName;
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }

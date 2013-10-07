@@ -22,6 +22,8 @@
     var allowFundOut = (bool)ViewBag.AllowFundOut;
 
     var agentUsername = ViewBag.AgentUserName ?? string.Empty;
+
+    var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
 }
 @using (Html.BeginForm())
 {
@@ -71,31 +73,31 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
-@if (!ReferenceEquals(memberList, null) && memberList.Any())
+@if (!ReferenceEquals(memberList, null) && memberList.Any() && custSettingPermissionPolicy >= (byte)Policy.Query)
 {
-<div  id="divEditMultiple" class="edit-multiple-link">
-    @if(!AppSettings.DisableEditOnMember)
-    {
-        <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-        @if (isMaster)
+    <div id="divEditMultiple" class="edit-multiple-link">
+        @if (!AppSettings.DisableEditOnMember)
         {
-            @Lang.edit
-        }
-        else
-        {
-            @Lang.lblview
-        }</a>
-        @:&nbsp;/&nbsp; 
-    }
-    <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
-</div>
+            <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                @if (isMaster && custSettingPermissionPolicy == (byte)Policy.Edit)
+                {
+                    @Lang.edit
+                }
+                else
+                {
+                    @Lang.lblview
+                }</a>
+            @:&nbsp;/&nbsp;
+                                    }
+        <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+    </div>
 }
 <table id="tblMemberList" class="tblRpt memberList">
     @if (!ReferenceEquals(memberList, null) && memberList.Any())
     {
         <thead>
             <tr>
-                 <th class="width-140">
+                <th class="width-140">
                     <input type="checkbox" id="cbAllMember" />
                 </th>
                 <th>@Lang.enterusername
@@ -106,14 +108,16 @@
                 </th>
                 <th class="width-80">@Lang.SportCredit
                 </th>
-                <th class="width-140">@Lang.Feature
-                    <div class="edit-member-share">
-                        <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@memberList[0].MemberId&amp;agentId=@Model.AgentId&amp;userName=@memberList[0].Username&amp;agentUsername=@agentUsername&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-                            @Apollo.Age.Resources.Lang.lblMemberShare
+                @if (custSettingPermissionPolicy >= (byte)Policy.Query)
+                { 
+                    <th class="width-140">@Lang.Feature
+                        <div class="edit-member-share">
+                            <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@memberList[0].MemberId&amp;agentId=@Model.AgentId&amp;userName=@memberList[0].Username&amp;agentUsername=@agentUsername&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                                @Apollo.Age.Resources.Lang.lblMemberShare
                             </a>
-                    </div>
-                    
-                </th>
+                        </div>
+                    </th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -133,7 +137,7 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                       @* @if (allowFundOut && item.CashBalance > 0)
+                        @* @if (allowFundOut && item.CashBalance > 0)
                         {
                             <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
                         }
@@ -143,22 +147,25 @@
                         }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    <td class="text-center">
-                        @if (!AppSettings.DisableEditOnMember)
-                        {
-                        <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-                            @if (isMaster)
+                    @if (custSettingPermissionPolicy >= (byte)Policy.Query)
+                    {
+                        <td class="text-center">
+                            @if (!AppSettings.DisableEditOnMember)
                             {
-                                @Lang.edit
-                            }
-                            else
-                            {
-                                @Lang.lblview
-                            }</a>
-                            @:&nbsp;/&nbsp; 
-                        }
-                        <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
-                    </td>
+                                <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                                    @if (isMaster)
+                                    {
+                                        @Lang.edit
+                                    }
+                                    else
+                                    {
+                                        @Lang.lblview
+                                    }</a>
+                                @:&nbsp;/&nbsp;
+                                                                                                                                }
+                            <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

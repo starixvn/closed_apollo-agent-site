@@ -22,6 +22,7 @@
 
     var permissionControlPolicy = (byte)ViewBag.PermissionControl;
     var shadowPermissionPolicy = (byte)ViewBag.ShadowPermission;
+    var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
 }
 @using (Html.BeginForm())
 {       
@@ -152,22 +153,27 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@ViewBag.AgentUsername&amp;backLink=@backLink">
-                            @if (isMaster)
-                            {
-                                @Lang.edit
-                            }
-                            else
-                            {
-                                @Lang.lblview
-                            }
-                        </a>&nbsp;/&nbsp; <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
-                        @if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                        {
+                        @if (custSettingPermissionPolicy >= (byte)Policy.Query)
+                        { 
+                            <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@ViewBag.AgentUsername&amp;backLink=@backLink">
+                                @if (isMaster && custSettingPermissionPolicy == (byte)Policy.Edit)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.lblview
+                                }
+                            </a>
+                            @:&nbsp;/&nbsp;
+                        <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                                if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                {
                             @:&nbsp;/&nbsp;
                                 <a  href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&backLink=@backLink">
                                     @Apollo.Age.Resources.Lang.lblMemberShare
                                 </a>
+                                }
                         }
                         @if (permissionControlPolicy >= (byte)Policy.Query)
                         {
