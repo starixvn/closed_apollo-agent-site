@@ -5,6 +5,7 @@
 @{
     Layout = Request.IsAjaxRequest() ? null : "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @section css
 {
@@ -45,7 +46,7 @@
             <label for="ddlSport">@Lang.lblReport:</label>
             @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
         </div>
-        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
+        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction, FunctionPermissions)
         @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
         <div class="end"></div>
     </div>

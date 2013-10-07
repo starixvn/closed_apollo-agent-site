@@ -99,9 +99,12 @@
                                 else if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == 1) ||
                                 (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == 1) ||
                                 (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == 1) ||
-                                (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTicket && item.Policy == 1)))
+                                (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTicket && item.Policy == 1) ||
+                                (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == 1)
+                                ))
                                 {
                                     isShowReport= true;
+                                        
                                 <li id="report-link"><a url="~/Reports/matchentered" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
                                 }

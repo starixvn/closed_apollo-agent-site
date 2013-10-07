@@ -3,6 +3,7 @@
 @{
 	ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
 	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 
 @model OutstandingViewModel
@@ -12,7 +13,7 @@
         <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, Model.Sporttypes)
     </div>
-	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding)
+	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding, FunctionPermissions)
     @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
     <div class="end"></div>
 </div>

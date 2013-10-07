@@ -6,6 +6,7 @@
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model MatchEnteredViewModel
 <div id="function-bar">
@@ -13,7 +14,7 @@
         <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
     </div>
-    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss)
+    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss, FunctionPermissions)
     @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
     <div class="end"></div>
 </div>
