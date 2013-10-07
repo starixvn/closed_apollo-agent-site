@@ -471,6 +471,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentUsername = this.CurrentSession.AgentName;
             ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
             ViewBag.ShadowPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }
@@ -573,6 +574,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentUsername = agentInfo.Username;
             ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
             ViewBag.ShadowPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }
