@@ -6,27 +6,16 @@
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
 }
-<div id="function-bar">
-    <div class="item back-link">
-        @Model.Title --<a href="javascript:void();" id="backLink">@Lang.back</a>
-    </div>
-    @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
-    <div class="end"></div>
-</div>
-@if (Model.DownlinePath != null && Model.DownlinePath.Any())
-{
-    @RazorHelper.Navigation(Model.DownlinePath as List<Apollo.Age.Entities.Agent>)
-}
 <table class="tblRpt betlist clear">
     <thead class="persist-header">
         <tr>
             <th style="width: 70px;">
                 @BetList.time
             </th>
-            <th style="width: 150px;">
+            <th style="width: 120px;">
                 @BetList.rebate
             </th>
-            <th style="width: 120px;">
+            <th style="width: 90px;">
                 @BetList.ticket
             </th>
             <th>
