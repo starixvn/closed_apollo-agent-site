@@ -184,11 +184,8 @@
         </div>
         <div id="agent-setting">
             <ul class="tabs">
-                @if (customerSettingPermission >= (byte)Policy.Query)
-                {
-                <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
+               <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                     <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
-                }
                 @if (!Model.IsMember)
                 {
                     <li id="agentsTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">

@@ -104,6 +104,8 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
             return View(CurrentSession);
         }
 
