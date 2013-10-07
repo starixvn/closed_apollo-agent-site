@@ -34,6 +34,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Customer Setting Controller
@@ -45,22 +46,25 @@ namespace Apollo.Age.Account.Controllers
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
         private readonly ISportSettingService _sportService;
+        private readonly IAgentUserService _agentUserService;
 
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         public CustomerSettingController(
             IAccountService accountService,
             ICustomerSettingService customerSettingService,
-            ISportSettingService sportService)
+            ISportSettingService sportService,
+            IAgentUserService agentUserService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
             _sportService = sportService ?? new SportSettingService();
+            _agentUserService = agentUserService ?? new AgentUserService();
         }
 
         #endregion Ctors
@@ -316,9 +320,11 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">Back link for after editing</param>
         /// <param name="fromLeftMenu">Link from left menu or not</param>
         /// <returns>Action result.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
@@ -327,7 +333,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.ParentUsername = parentUsername;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
@@ -346,7 +352,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="agentId"></param>
         /// <param name="agentUserName"></param>
         /// <returns></returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditAllMemberShare(int agentId,
             string agentUserName,
             bool reload = false,
@@ -381,7 +387,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">Back link after editing.</param>
         /// <param name="fromLeftMenu">From left menu.</param>
         /// <returns>Action result</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditMemberPositionTaking(
             int agentId,
             string agentUsername = "",
@@ -395,6 +401,8 @@ namespace Apollo.Age.Account.Controllers
             //{
             //    return Redirect("~/Error?err=404");
             //}
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = 0;
             ViewBag.UserName = string.Empty;
             ViewBag.AgentId = agentId;
@@ -403,7 +411,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.Reload = reload;
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsEditAgent = false;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.AgentUsername = agentUsername;
             ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditPositionTaking.cshtml");
@@ -557,11 +565,13 @@ namespace Apollo.Age.Account.Controllers
             string backLink = "",
             bool fromLeftMenu = false)
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
@@ -578,6 +588,8 @@ namespace Apollo.Age.Account.Controllers
             bool fromLeftMenu = false,
             string memberIds = "")
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
@@ -586,7 +598,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
             //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
             //{
@@ -788,6 +800,18 @@ namespace Apollo.Age.Account.Controllers
             if (!string.IsNullOrEmpty(memberIds))
             {
                 settingContext.FormId = FormType.EditMultiple;
+            }
+
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
+            if (custSettingPolicy != (byte)Policy.Edit)
+            {
+                //// If Current Login Agent is not have edit customer setting, then set form to form view
+                settingContext.FormId = FormType.ShadowViewSetting;
+                if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
+                {
+                    settingContext.CustId = agentId.Value;
+                }
             }
 
             return settingContext;
