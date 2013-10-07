@@ -81,17 +81,14 @@
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
                     + WINLOSS.hdFromDate.val() + "&toDate=" + WINLOSS.hdToDate.val()
                     + "&custId=" + $(this).attr("data-memberid")
-                    + "&username=" + $(this).attr("data-membername")
                     + "&sportType=" + WINLOSS.hdSportType.val()
                     + "&betType=" + WINLOSS.hdBettype.val()
-                    + "&sportName=" + escape(WINLOSS.sportTypeName)
-                    + "&betTypeName=" + escape(WINLOSS.betTypeName)
                     + "&type=report");
 
                 APOLLO.openDialogFrame(url, LANGUAGES.BetListString, {
-                    width: 1000,
-                    height: 770,
-                    position: { my: "top+40", at: "center top", of: window },
+                    width: 1030,
+                    height: 680,
+                    position: { my: "top+40", at: "center top", of: window }
                 });
 
                 //location.href = url;

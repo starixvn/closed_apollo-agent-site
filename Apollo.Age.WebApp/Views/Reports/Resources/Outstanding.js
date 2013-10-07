@@ -91,19 +91,18 @@
         },
 
         viewBetList: function () {
-            $.blockUI();
             OUTSTANDING.sportTypeName = OUTSTANDING.SportName.val();
             OUTSTANDING.betTypeName = OUTSTANDING.BettypeName.val();
             var username = $(this).closest('tr').children('td:first').text();
-            location.href = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
-            + "&username=" + username
-			+ "&sporttype=" + OUTSTANDING.hdSportType.val()
-            + "&bettype=" + OUTSTANDING.hdBettype.val()
-			+ "&mainShareHolderId=" + $(this).attr("mainShareHolderId")
-            + "&mainShareHolderUsername=" + $(this).attr("mainShareHolderUsername")
-            + "&type=outstanding")
-            + "&sportName=" + escape(OUTSTANDING.sportTypeName)
-            + "&betTypeName=" + escape(OUTSTANDING.betTypeName);
+            var url = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
+            + "&sporttype=" + OUTSTANDING.hdSportType.val()
+            + "&bettype=" + OUTSTANDING.hdBettype.val());
+
+            APOLLO.openDialogFrame(url, LANGUAGES.BetListString, {
+                width: 1030,
+                height: 680,
+                position: { my: "top+40", at: "center top", of: window }
+            });
         },
 
         initGrid: function (outstandingData) {
