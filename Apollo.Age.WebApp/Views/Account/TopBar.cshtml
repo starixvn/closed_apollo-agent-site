@@ -6,6 +6,7 @@
     var topMember = ViewBag.TopMember;
     IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
     bool isShowReport = false;
+    string defaultReportURL = string.Empty;
 }
 <!DOCTYPE html>
 <html>
@@ -104,8 +105,32 @@
                                 ))
                                 {
                                     isShowReport= true;
-                                        
-                                <li id="report-link"><a url="~/Reports/matchentered" target="main" class="menu-list txtRed">
+
+                                    if (string.IsNullOrEmpty(defaultReportURL))
+                                    {
+                                        if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == 1)
+                                        {
+                                            defaultReportURL = "/Reports/matchentered";
+                                        }
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == 1)
+                                        {
+                                            defaultReportURL = "/Reports/outstanding";
+                                        }
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == 1)
+                                        {
+                                            defaultReportURL = "/betlist/transactions";
+                                        }
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTicket && item.Policy == 1)
+                                        {
+                                            defaultReportURL = "/betlist/ticketcancel";
+                                        }
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == 1)
+                                        {
+                                            defaultReportURL = "/Reports/sportcredit";
+                                        }
+                                    }
+                                    
+                                <li id="report-link"><a url="@defaultReportURL" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
                                 }
                                 else if (item.Function.FunctionKey == ApolloFunctionKeys.Result && item.Policy >= 1)
