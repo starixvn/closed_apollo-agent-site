@@ -52,7 +52,7 @@ if (typeof jQuery != 'undefined') {
                     if (frame.length > 0) {
                         frame.html(frameHtml);
                     } else {
-                        var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
+                        var blockLoading = '<p class="block-loading">loading..............................................</p>';
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
                     return APOLLO.openDialog(frame, title, options);
@@ -64,7 +64,7 @@ if (typeof jQuery != 'undefined') {
                         accessClass = "loading-scoremap";
                     }
                 }
-                var blockLoading = '<div class="block-loading ' + accessClass + '">loading............................................................</div>';
+                var blockLoading = '<p class="block-loading">loading..............................................</p>';
 
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
