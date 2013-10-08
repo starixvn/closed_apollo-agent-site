@@ -113,6 +113,7 @@
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\BetSettingModel.cs" />
+    <Compile Include="Models\LogPermissionModel.cs" />
     <Compile Include="Models\LogRunSpModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
     <Compile Include="Models\PositionTakingModel.cs" />

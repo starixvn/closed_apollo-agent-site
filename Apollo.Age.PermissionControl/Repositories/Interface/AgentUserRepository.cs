@@ -12,6 +12,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using Apollo.Age.Entities;
+    using Apollo.Age.PermissionControl.Criterias;
     using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.Repositories.Impl;
@@ -29,7 +30,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// </summary>
         /// <param name="criteria">The criteria assign user permission.</param>
         /// <returns>Return command result.</returns>
-        public int Update(ICriteria criteria)
+        public void Update(ref AgentUserAssignFunctionCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -43,7 +44,8 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
 
                         objectDb.ExecuteNonQuery(param);
 
-                        return (int)param["errorcode"];
+                        criteria.ErrCode = (int)param["errcode"];
+                        criteria.ErrMsg = (string)param["errmsg"];
                     }
                 }
             }
@@ -51,8 +53,6 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
             {
                 throw ex;
             }
-
-            return -1;
         }
 
         /// <summary>

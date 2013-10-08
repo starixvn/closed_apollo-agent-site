@@ -16,6 +16,8 @@ namespace Apollo.Age.PermissionControl.Entities
     {
         public short FunctionGroupId { get; set; }
 
+        public string GroupKey { get; set; }
+
         public string GroupName { get; set; }
 
         public short DisplayOrder1 { get; set; }

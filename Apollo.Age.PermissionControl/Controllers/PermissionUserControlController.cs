@@ -164,6 +164,8 @@ namespace Apollo.Age.PermissionControl.Controllers
         public ActionResult AssignPermissionControl(AgentUserAssignFunctionCriteria criteria)
         {
             criteria.ActorAgentId = CurrentSession.AgentId;
+            criteria.AdminId = CurrentSession.AdminId;
+            criteria.Language = CurrentSession.Language;
 
             //// Get agent user
             var agentUserInfo = _agentUserService.GetAgentUserInfo(criteria.AgentUserId);
@@ -189,9 +191,13 @@ namespace Apollo.Age.PermissionControl.Controllers
                 }
             }
 
-            var command = _agentUserService.AssignUserPermission(criteria);
+            _agentUserService.AssignUserPermission(ref criteria);
 
-            return Json(0);
+            return Json(new
+            {
+                ErrCode = criteria.ErrCode,
+                ErrMsg = criteria.ErrMsg
+            });
         }
 
         #endregion

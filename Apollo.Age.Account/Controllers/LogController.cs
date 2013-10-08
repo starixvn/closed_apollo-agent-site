@@ -21,10 +21,12 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.Logging;
+    using Apollo.Age.PermissionControl.Entities;
 
     /// <summary>
     /// Log controller.
@@ -33,13 +35,13 @@ namespace Apollo.Age.Account.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class LogController : BaseController
     {
-        private ILogRunSpService _logService;
+        private readonly ILogRunSpService _logService;
 
-        private IAccountService _accountService;
+        private readonly IAccountService _accountService;
 
-        private UserService _userServicel;
+        private readonly UserService _userServicel;
 
-        private ServiceBase _serviceBase;
+        private readonly ServiceBase _serviceBase;
 
         public LogController()
             : this(null, null, null, null)
@@ -82,6 +84,7 @@ namespace Apollo.Age.Account.Controllers
             var criteria = new GetLogCustSettingCriteria
             {
                 ActionTypeId = actionTypeId,
+
                 Username = username,
                 ActorAgentId = this.CurrentSession.AgentId,
                 From = from == null ? DateTime.Now : (DateTime)from,
@@ -639,6 +642,95 @@ namespace Apollo.Age.Account.Controllers
             }
 
             return View(list);
+        }
+
+        /// <summary>
+        /// Logs the action permission user control.
+        /// </summary>
+        /// <param name="oldData">The old data.</param>
+        /// <param name="data">The data.</param>
+        /// <returns>Log action permission user control/</returns>
+        public ViewResult LogActionType9(string oldData, string data)
+        {
+            var listFunctionPolicy = new List<LogPermissionModel>();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(oldData))
+                {
+                    var xmlData = XDocument.Parse(oldData);
+                    var permission = xmlData.Descendants("z");
+
+                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    {
+                        foreach (var itemFunctionPolicy in permission)
+                        {
+                            var func = new LogPermissionModel
+                            {
+                                Function = new Function
+                                {
+                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                    FunctionGroup = new FunctionGroup
+                                    {
+                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                    }
+                                },
+                                OldPolicy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                            };
+
+                            listFunctionPolicy.Add(func);
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var xmlData = XDocument.Parse(data);
+                    var permission = xmlData.Descendants("z");
+
+                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    {
+                        foreach (var itemFunctionPolicy in permission)
+                        {
+                            var func = new LogPermissionModel
+                            {
+                                Function = new Function
+                                {
+                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                    FunctionGroup = new FunctionGroup
+                                    {
+                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                    }
+                                },
+                                Policy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                            };
+
+                            for (int i = 0; i < listFunctionPolicy.Count; i++)
+                            {
+                                var item = listFunctionPolicy[i];
+
+                                if (string.Equals(item.Function.FunctionName, func.Function.FunctionName))
+                                {
+                                    item.Policy = func.Policy;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message);
+            }
+
+            return View(listFunctionPolicy);
         }
 
         /// <summary>

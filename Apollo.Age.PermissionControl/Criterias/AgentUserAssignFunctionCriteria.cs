@@ -24,6 +24,8 @@ namespace Apollo.Age.PermissionControl.Criterias
 
         public int ActorAgentId { get; set; }
 
+        public int AdminId { get; set; }
+
         public int AgentUserId { get; set; }
 
         public string Permission
@@ -71,6 +73,12 @@ namespace Apollo.Age.PermissionControl.Criterias
                 return result;
             }
         }
+
+        public string Language { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
         public string FuncRead { get; set; }

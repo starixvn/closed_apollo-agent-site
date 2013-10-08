@@ -47,10 +47,11 @@
     <tbody>
         @foreach (var itemGroupFunction in listGroupFunction)
         {
-            var groupName = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupName;            
+            var groupKey = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupKey;            
             <tr class="group-function">
                 <td>
-                    @groupName
+                    @Html.Resource(groupKey)
+                    @* @groupName*@
                 </td>
                 @if (Model.IsMaster)
                 { 
@@ -73,7 +74,8 @@
                     var disableRead = (parentPolicy < (byte)Policy.Query) || !hasEdit ? "disabled='disabled'" : string.Empty;
             <tr>
                 <td>
-                    @itemFunction.FunctionName
+                    @Html.Resource(itemFunction.FunctionKey)
+                    @*@itemFunction.FunctionName*@
                 </td>
                 @if (Model.IsMaster)
                 { 

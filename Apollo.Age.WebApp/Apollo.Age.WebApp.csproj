@@ -1069,6 +1069,7 @@
     <Content Include="Views\PermissionUserControl\Shared\_Layout.cshtml" />
     <Content Include="Views\PermissionUserControl\AgentUserList.cshtml" />
     <Content Include="Views\PermissionUserControl\Resources\permissionusercontrol.less" />
+    <Content Include="Views\Log\LogActionType9.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

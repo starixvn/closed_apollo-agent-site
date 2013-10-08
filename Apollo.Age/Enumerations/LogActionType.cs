@@ -15,6 +15,7 @@ namespace Apollo.Age.Enumerations
         Commission = 2,
         BetLimit = 3,
         PositionTaking = 4,
-        GeneralInfo = 5
+        GeneralInfo = 5,
+        PermissionUserControl = 9
     }
 }

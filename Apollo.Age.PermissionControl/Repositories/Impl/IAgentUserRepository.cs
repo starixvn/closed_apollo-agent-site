@@ -11,6 +11,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
 {
     using System.Collections.Generic;
     using Apollo.Age.Entities;
+    using Apollo.Age.PermissionControl.Criterias;
     using Apollo.Age.PermissionControl.Models;
     using Fanex.NAP.Framework.Data;
 
@@ -24,7 +25,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// </summary>
         /// <param name="criteria">The criteria assign user permission.</param>
         /// <returns>Return command result.</returns>
-        int Update(ICriteria criteria);
+        void Update(ref AgentUserAssignFunctionCriteria criteria);
 
         /// <summary>
         /// Gets the user function policy.

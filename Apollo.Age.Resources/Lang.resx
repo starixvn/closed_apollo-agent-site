@@ -2041,4 +2041,43 @@
   <data name="ShadowDetailed" xml:space="preserve">
     <value>Shadow detailed</value>
   </data>
+  <data name="AccountManagement" xml:space="preserve">
+    <value>Account Management</value>
+  </data>
+  <data name="CancelledTicket" xml:space="preserve">
+    <value>Cancelled Ticket</value>
+  </data>
+  <data name="CustomerSetting" xml:space="preserve">
+    <value>Customer Setting</value>
+  </data>
+  <data name="DownlineDetails" xml:space="preserve">
+    <value>Downline Details</value>
+  </data>
+  <data name="EMWagers" xml:space="preserve">
+    <value>EM Wagers</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="LineSportCredits" xml:space="preserve">
+    <value>Line Sport Credits</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Outright</value>
+  </data>
+  <data name="PermissionControl" xml:space="preserve">
+    <value>Permission Control</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>Wagers</value>
+  </data>
+  <data name="Wagers_Forecast" xml:space="preserve">
+    <value>Wagers/Forecast</value>
+  </data>
+  <data name="Win_Loss" xml:space="preserve">
+    <value>Win Loss</value>
+  </data>
 </root>
