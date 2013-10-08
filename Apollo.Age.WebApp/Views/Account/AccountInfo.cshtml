@@ -7,6 +7,7 @@
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
     ViewBag.Title = @Apollo.Age.Resources.Lang.AccountSearch;
     var topMember = (MemberListModel)ViewBag.TopMember;
+    var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
 }
 <table id="tab-menu">
     <tr>
@@ -183,7 +184,7 @@
         </div>
         <div id="agent-setting">
             <ul class="tabs">
-                <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
+               <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                     <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
                 @if (!Model.IsMember)
                 {
@@ -261,31 +262,33 @@
                     }
                     else
                     {
-                        if (Model.ActorAgentId != Model.CustId)
+                        if (customerSettingPermission >= (byte)Policy.Query)
                         {
-                        <a class="lnk-setting" target="main"
-							href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
-                            @if (Model.IsMaster)
+                            if (Model.ActorAgentId != Model.CustId)
                             {
-                                @Apollo.Age.Resources.Lang.edit
-                            }
-                            else
-                            {
-                                @Apollo.Age.Resources.Lang.lblview
-                            }
-                        </a>
-                        }
+                            <a class="lnk-setting" target="main"
+							    href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
+                                @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
+                                {
+                                    @Apollo.Age.Resources.Lang.edit
+                                }
+                                else
+                                {
+                                    @Apollo.Age.Resources.Lang.lblview
+                                }
+                            </a>
+                            }                        
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
-                        if (Model.Level > AgentLevel.Shareholder)
-                        {
+                            if (Model.Level > AgentLevel.Shareholder)
+                            {
                             <a class="lnk-setting" target="main" 
                             href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
 
                                 @Apollo.Age.Resources.Lang.lblMemberShare
                             </a>
-                        }
+                            }
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share
                         </a>
@@ -293,11 +296,11 @@
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.lblComm
                         </a>
-                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
-                            @Apollo.Age.Resources.Lang.viewlog
-                        </a>
                         
-                        
+                            <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
+                                @Apollo.Age.Resources.Lang.viewlog
+                            </a>
+                        }
                     }
                 </div>
                 <div id="agentsTab-content">

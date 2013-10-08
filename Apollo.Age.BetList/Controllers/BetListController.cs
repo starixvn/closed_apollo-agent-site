@@ -34,6 +34,7 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.Utils;
     using Apollo.Age.PermissionControl.Web.Attribute;
     using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// BetList Controller
@@ -44,7 +45,7 @@ namespace Apollo.Age.BetList.Controllers
         private readonly BetListService _betListService;
         private readonly ReportService _reportService;
         private readonly TotalBetsService _totalBetsService;
-
+        private readonly IAgentUserService _agentUserService;
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
         /// </summary>
@@ -53,6 +54,7 @@ namespace Apollo.Age.BetList.Controllers
             this._betListService = new BetListService();
             this._reportService = new ReportService();
             this._totalBetsService = new TotalBetsService();
+            _agentUserService = new AgentUserService();
         }
 
         /// <summary>
@@ -151,6 +153,7 @@ namespace Apollo.Age.BetList.Controllers
         {
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.Transactions(viewModel);
         }
@@ -283,6 +286,7 @@ namespace Apollo.Age.BetList.Controllers
                 {
                     Username = CurrentSession.AgentName
                 };
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.TicketCancel(viewModel);
         }

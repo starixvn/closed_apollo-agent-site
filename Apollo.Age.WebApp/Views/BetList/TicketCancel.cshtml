@@ -5,6 +5,7 @@
 @{
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @using (Html.BeginForm())
 {
@@ -13,7 +14,7 @@
             <label for="ddlSport">@Lang.lblReport:</label>
             @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
         </div>
-        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.TicketsCancelled)
+        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.TicketsCancelled, FunctionPermissions)
         <div class="end"></div>
         @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
     </div>

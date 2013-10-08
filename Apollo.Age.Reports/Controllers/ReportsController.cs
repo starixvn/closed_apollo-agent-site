@@ -30,7 +30,8 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Configurations;
     using Apollo.Age.PermissionControl.Web.Attribute;
     using Apollo.Age.PermissionControl.Core;
-
+    using Apollo.Age.PermissionControl.Services;
+    
     /// <summary>
     /// Reports Controller.
     /// </summary>
@@ -40,6 +41,7 @@ namespace Apollo.Age.Reports.Controllers
         private readonly SportCreditService _sportCreditService;
         private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
+        private readonly IAgentUserService _agentUserService;
 
         private int _currentAgentId;
 
@@ -65,6 +67,7 @@ namespace Apollo.Age.Reports.Controllers
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
             this._outstandingService = new OutstandingService();
+            _agentUserService = new AgentUserService();
         }
 
         public int? CurrentAgentId
@@ -97,6 +100,7 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(report);
         }
@@ -188,7 +192,7 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyMemberOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutstanding;
-
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
             //// return object
             return this.Json(report);
         }
@@ -201,7 +205,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Get MatchEntered report.
         /// </summary>
         /// <returns>MatchEntered ViewResult.</returns>        
-        //[ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
@@ -216,6 +220,7 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(matchEnteredViewModel);
         }
@@ -274,6 +279,7 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = agentWinLossList;
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(model);
         }
@@ -329,6 +335,7 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = memberWinLossList;
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(model);
         }
@@ -492,6 +499,7 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = sportCreditList;
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(model);
         }

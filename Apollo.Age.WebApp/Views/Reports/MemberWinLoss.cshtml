@@ -5,6 +5,7 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model MemberWinLossViewModel
 <div id="function-bar">
@@ -12,7 +13,7 @@
         <label for="ddlSport">@Lang.lblReport:</label>
         @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
     </div>
-    @RazorHelper.RenderReportLinks(Lang.lblWinLoss)
+    @RazorHelper.RenderReportLinks(Lang.lblWinLoss, FunctionPermissions)
     @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
     <div class="end">
     </div>

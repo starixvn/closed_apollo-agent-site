@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = Lang.lblLineSportCredit;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model SportCreditViewModel
 
 <div id="function-bar">
-    @RazorHelper.RenderReportLinks(Lang.lblLineSportCredit, "menu report-sportcredit")
+    @RazorHelper.RenderReportLinks(Lang.lblLineSportCredit,FunctionPermissions, "menu report-sportcredit")
     @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
     <div class="end"></div>
 </div>

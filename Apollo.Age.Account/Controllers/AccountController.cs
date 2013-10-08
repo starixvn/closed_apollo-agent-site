@@ -104,6 +104,8 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
             return View(CurrentSession);
         }
 
@@ -211,6 +213,9 @@ namespace Apollo.Age.Account.Controllers
             //// Get Top Member 
             var topMember = _accountService.GetTopMember(agentInfo.CustId);
             ViewBag.TopMember = topMember;
+
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
 
             return View("AccountInfo", agentInfo);
         }
