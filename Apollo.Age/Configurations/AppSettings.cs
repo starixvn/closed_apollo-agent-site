@@ -129,6 +129,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static string PeriodDateRange
+        {
+            get
+            {
+                return GetValue("PeriodDateRange");
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>

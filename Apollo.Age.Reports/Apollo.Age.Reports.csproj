@@ -85,6 +85,7 @@
     <Compile Include="Criterias\SportCreditCriteria.cs" />
     <Compile Include="Extension\HSSFSheetExtensions.cs" />
     <Compile Include="Models\AgentWinLossModel.cs" />
+    <Compile Include="Models\DateRangeModel.cs" />
     <Compile Include="Models\OutrightResultModel.cs" />
     <Compile Include="Models\OutstandingModel.cs" />
     <Compile Include="Models\MatchEnteredModel.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Services\ISportCreditService.cs" />
     <Compile Include="Services\IWinLossService.cs" />
     <Compile Include="Services\OutstandingService.cs" />
+    <Compile Include="Services\PeriodDateRangeService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SportCreditService.cs" />
     <Compile Include="ViewModels\MemberOutstandingViewModel.cs" />
@@ -122,9 +124,7 @@
       <Name>Apollo.Age</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

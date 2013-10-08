@@ -19,6 +19,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Apollo.Age.Configurations;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -27,8 +28,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
-    using Apollo.Age.Configurations;
-    
+
     /// <summary>
     /// Reports Controller.
     /// </summary>
@@ -38,6 +38,7 @@ namespace Apollo.Age.Reports.Controllers
         private readonly SportCreditService _sportCreditService;
         private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
+        private readonly PeriodDateRangeService _periodDateRangeSerivce;
 
         private int _currentAgentId;
 
@@ -63,6 +64,7 @@ namespace Apollo.Age.Reports.Controllers
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
             this._outstandingService = new OutstandingService();
+            _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
         public int? CurrentAgentId
@@ -170,10 +172,10 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Member Outstanding report.</returns>
         [HttpPost]
         public ActionResult MemberOutstanding(
-            int? agentId, 
-            string sporttypes, 
-            string bettypes, 
-            int mainShareHolderId, 
+            int? agentId,
+            string sporttypes,
+            string bettypes,
+            int mainShareHolderId,
             string mainShareHolderUsername)
         {
             this.CurrentAgentId = agentId;
@@ -208,8 +210,11 @@ namespace Apollo.Age.Reports.Controllers
             {
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
-           
+
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
+
+            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
+            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.LastPeriod();
 
             return this.View(matchEnteredViewModel);
         }
@@ -225,11 +230,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
         public ViewResult AgentWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int? agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int? agentId,
             string agentName)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -282,11 +287,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult member win loss.</returns>
         public ViewResult MemberWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int agentId,
             string agentName)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -336,11 +341,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult agent win loss.</returns>
         public ActionResult ExportAgentWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int? agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int? agentId,
             string agentName)
         {
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -401,11 +406,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
         public ActionResult ExportMemberWinLoss(
-            DateTime fromDate, 
-            DateTime toDate, 
-            string sporttypes, 
-            string bettypes, 
-            int agentId, 
+            DateTime fromDate,
+            DateTime toDate,
+            string sporttypes,
+            string bettypes,
+            int agentId,
             string agentName)
         {
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
@@ -424,7 +429,7 @@ namespace Apollo.Age.Reports.Controllers
                     BalanceUpDay = balanceUpDay,
                     MoveBetDay = this._winLossService.MoveBetsDay()
                 };
-                
+
                 memberWinLossList = this._winLossService.GetMemberWinLoss(criteria);
                 HttpContext.Session[sessionKey] = memberWinLossList;
             }
@@ -457,7 +462,7 @@ namespace Apollo.Age.Reports.Controllers
         #endregion Agent Win Loss Report
 
         #region Line sport credit
-        
+
         /// <summary>
         /// Get Line sport credit report.
         /// </summary>
@@ -520,6 +525,6 @@ namespace Apollo.Age.Reports.Controllers
             return new ExcelResult(excelResult, fileName);
         }
 
-        #endregion
+        #endregion Line sport credit
     }
 }
