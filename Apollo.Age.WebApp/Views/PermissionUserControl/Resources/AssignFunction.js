@@ -47,8 +47,14 @@ var AssignFunction = function ($) {
                 dataType: 'JSON',
                 data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId },
                 success: function (res) {
-                    if (res == "-1") {
+                    if (res.ErrCode == "-1") {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
+                    }
+                    if (res.ErrCode != "0") {
+                        APOLLO.showMessage(res.ErrMsg, 'error');
+                    }
+                    else {
+                        window.location.reload();
                     }
                 },
                 error: function (xhr, status, err) {

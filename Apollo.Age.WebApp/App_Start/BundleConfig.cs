@@ -368,6 +368,7 @@ namespace Apollo.Age.WebApp
             bundles.Add(new ScriptBundle("~/scripts/assignfunction").Include(
             "~/_globalresources/js/jquery.js",
             "~/_globalresources/js/jquery-ui.js",
+            "~/_globalresources/js/noty/jquery.noty.js",
             "~/_globalresources/js/Core.js",
             "~/_globalresources/js/BlockUI/jquery.blockUI.js",
             "~/Views/PermissionUserControl/Resources/AssignFunction.js"));
