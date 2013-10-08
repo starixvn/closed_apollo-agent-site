@@ -8,6 +8,8 @@
     ViewBag.Title = @Apollo.Age.Resources.Lang.AccountSearch;
     var topMember = (MemberListModel)ViewBag.TopMember;
     var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
+    var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
+    var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
 }
 <table id="tab-menu">
     <tr>
@@ -42,12 +44,10 @@
                         {
                             @RenderAgentLevelName(Model.Level, "agent-lbl")
                         }
-                        
                         <td class="agent-name">
                             @Model.Username
                         </td>
                     </tr>
-
                     @if (Model.AgentPathList != null && Model.AgentPathList.Any())
                     {
                         var item = new Agent();
@@ -55,21 +55,21 @@
                         for (int i = 0; i < count; i++)
                         {
                             item = Model.AgentPathList[i];
-                            <tr>
-                                @RenderAgentLevelName(item.Level, "parent-lbl")
-                                <td class="parent-name">
-                                    @if (item.Level == AgentLevel.Super)
-                                    {
-                                        @item.Username
-                                    }
-                                    else
-                                    {
-                                        <a class="view-agentinfo" href="#" target="menu"
+                        <tr>
+                            @RenderAgentLevelName(item.Level, "parent-lbl")
+                            <td class="parent-name">
+                                @if (item.Level == AgentLevel.Super)
+                                {
+                                    @item.Username
+                                }
+                                else
+                                {
+                                    <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
-                                        </a>
-                                    }
-                                </td>
-                            </tr>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
                         }
                     }
                     else
@@ -109,21 +109,21 @@
                             </td>
                         </tr>
                     }
-
                     @if (Model.AgentPathList != null && Model.AgentPathList.Any() && Model.AgentPathList.Count > 4)
                     {
-                            <tr>
-                                <td class="parent-lbl"></td>
-                                <td class="parent-name">
-                                    <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@Model.AgentPathList[4].Id">
-                                        @Lang.more &#187;
-                                        <div id="ddl-agents">
-                                            <ul class="agent-list">
-                                            </ul>
-                                        </div>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="parent-lbl">
+                            </td>
+                            <td class="parent-name">
+                                <a href="javascript:void(0)" id="agentDownlineLink" data-agentid="@Model.AgentPathList[4].Id">
+                                    @Lang.more &#187;
+                                    <div id="ddl-agents">
+                                        <ul class="agent-list">
+                                        </ul>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
                                 
                     }
                 </tbody>
@@ -184,7 +184,7 @@
         </div>
         <div id="agent-setting">
             <ul class="tabs">
-               <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
+                <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
                     <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
                 @if (!Model.IsMember)
                 {
@@ -204,36 +204,36 @@
                         var group = Model.Group == null ? string.Empty : Model.Group.ToUpper();
                         if (!AppSettings.DisableEditOnMember)
                         {
-                            <a class="edit-link" href="javascript:;">
-                                @if (Model.IsMaster)
+                        <a class="edit-link" href="javascript:;">
+                            @if (Model.IsMaster)
+                            {
+                                @Apollo.Age.Resources.Lang.edit
+                            }
+                            else
+                            {
+                                @Apollo.Age.Resources.Lang.lblview
+                            }
+                        </a>
+                        <div class="list">
+                            <ul class="menu-list">
+                                @if (Model.AgentPathList.Any())
                                 {
-                                    @Apollo.Age.Resources.Lang.edit
-                                }
-                                else
-                                {
-                                    @Apollo.Age.Resources.Lang.lblview
-                                }
-                            </a>
-                             <div class="list">
-                                <ul class="menu-list">
-                                    @if (Model.AgentPathList.Any())
+                                    var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
+                                    foreach (var itemAgent in listAgent)
                                     {
-                                        var listAgent = Model.AgentPathList.OrderBy(t => t.Level);
-                                        foreach (var itemAgent in listAgent)
-                                        {
-                                            if (itemAgent.Level > AgentLevel.Super)
-                                            { 
-                                        <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
-                                            }
+                                        if (itemAgent.Level > AgentLevel.Super)
+                                        { 
+                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
                                         }
-
                                     }
-                                </ul>
-                            </div>
+
+                                }
+                            </ul>
+                        </div>
                         }
                         else
                         {
-                          @*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
+@*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
                             @if (Model.IsMaster)
                             {
                                 @Apollo.Age.Resources.Lang.lblEditMemberShare
@@ -266,28 +266,27 @@
                         {
                             if (Model.ActorAgentId != Model.CustId)
                             {
-                            <a class="lnk-setting" target="main"
+                        <a class="lnk-setting" target="main"
 							    href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
-                                @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
-                                {
-                                    @Apollo.Age.Resources.Lang.edit
-                                }
-                                else
-                                {
-                                    @Apollo.Age.Resources.Lang.lblview
-                                }
-                            </a>
+                            @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
+                            {
+                                @Apollo.Age.Resources.Lang.edit
+                            }
+                            else
+                            {
+                                @Apollo.Age.Resources.Lang.lblview
+                            }
+                        </a>
                             }                        
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
                             if (Model.Level > AgentLevel.Shareholder)
                             {
-                            <a class="lnk-setting" target="main" 
+                        <a class="lnk-setting" target="main" 
                             href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
-
-                                @Apollo.Age.Resources.Lang.lblMemberShare
-                            </a>
+                            @Apollo.Age.Resources.Lang.lblMemberShare
+                        </a>
                             }
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
                             @Apollo.Age.Resources.Lang.Share
@@ -297,16 +296,28 @@
                             @Apollo.Age.Resources.Lang.lblComm
                         </a>
                         
-                            <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
-                                @Apollo.Age.Resources.Lang.viewlog
-                            </a>
+                        <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
+                            @Apollo.Age.Resources.Lang.viewlog
+                        </a>                     
                         }
+                        if (permissionControl >= (byte)Policy.Query)
+                        {
+                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AssignPermissionControl?agentuserid=@Model.CustId">
+                            @Apollo.Age.Resources.Lang.Permission
+                        </a>                       
+                        }
+                        if (shadowPermissionControl >= (byte)Policy.Query)
+                        { 
+                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
+                            @Apollo.Age.Resources.Lang.ShadowPermission
+                        </a>}
                     }
                 </div>
                 <div id="agentsTab-content">
                     @if (Model.HasAgentDownline)
                     {
-                        <div id="agent-treeview"></div>
+                        <div id="agent-treeview">
+                        </div>
                     }
                     else
                     {
@@ -320,7 +331,6 @@
         }
     }
 </div>
-
 @helper SearchBox()
     {
         if (Model == null)
@@ -348,7 +358,6 @@
     </button>
     <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
 }
-
 @helper RenderAgentLevelName(int agentLevel, string classObject = "")
     {
         var keyLang = string.Empty;

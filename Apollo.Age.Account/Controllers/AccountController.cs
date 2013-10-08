@@ -215,7 +215,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.TopMember = topMember;
 
             ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
-
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+            ViewBag.ShadowPermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
 
             return View("AccountInfo", agentInfo);
         }
