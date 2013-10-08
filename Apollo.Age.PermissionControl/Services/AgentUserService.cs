@@ -44,8 +44,7 @@ namespace Apollo.Age.PermissionControl.Services
         /// <summary>
         /// Assigns the user permission.
         /// </summary>
-        /// <param name="criteria">The criteria assign user permission.</param>
-        /// <returns>Return command result.</returns>
+        /// <param name="criteria">The criteria assign user permission.</param>   
         public void AssignUserPermission(ref AgentUserAssignFunctionCriteria criteria)
         {
             try
