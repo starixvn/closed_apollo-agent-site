@@ -75,14 +75,23 @@ namespace Apollo.Age.Reports.Services
 
             try
             {
-                rangeDates = periodRanges[0].Split('-');
+                foreach (var range in periodRanges)
+                {
+                    rangeDates = range.Split('-');
 
-                fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
-                toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
+                    fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
+                    toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
 
-                lastPeriods.FromDate = fromDate;
-                lastPeriods.ToDate = toDate;
-                return lastPeriods;
+                    if (fromDate.Month == DateTime.Now.AddMonths(-1).Month && fromDate.Day <= DateTime.Now.Day)
+                    {
+                        lastPeriods.FromDate = fromDate;
+                        lastPeriods.ToDate = toDate;
+
+                        return lastPeriods;
+                    }
+                }
+
+                return new DateRangeModel();
             }
             catch (Exception ex)
             {

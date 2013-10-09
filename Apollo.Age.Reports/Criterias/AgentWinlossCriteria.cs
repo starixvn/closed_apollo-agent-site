@@ -35,7 +35,7 @@ namespace Apollo.Age.Reports.Criterias
 
         public override bool IsValid()
         {
-            var check = AgentId > 0 && FromDate <= DateTime.Now && FromDate <= ToDate && BalanceUpDay <= FromDate && BalanceUpDay <= ToDate;
+            var check = AgentId > 0 && FromDate <= DateTime.Now;
             return check;
         }
     }

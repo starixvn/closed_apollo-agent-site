@@ -66,7 +66,7 @@
     <file relUrl="bin/zh-TW/Apollo.Age.Resources.resources.dll" publishTime="10/09/2013 14:34:03" />
     <file relUrl="Views/Account/Resources/header.less" publishTime="09/30/2013 11:08:02" />
     <file relUrl="_GlobalResources/Css/img/cal/calendar_del.png" publishTime="08/19/2013 10:25:05" />
-    <file relUrl="Views/Reports/MatchEntered.cshtml" publishTime="10/08/2013 17:27:59" />
+    <file relUrl="Views/Reports/MatchEntered.cshtml" publishTime="10/09/2013 15:36:39" />
     <file relUrl="Views/Instruction/zh-CN/AgentShareSetting.cshtml" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_flat_50_000_40x100.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Js/noty/layouts/topRight.js" publishTime="08/19/2013 10:25:05" />
@@ -303,7 +303,7 @@
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_ffcf29_256x240.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/sort-icon.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Account/MySetting.cshtml" publishTime="08/19/2013 10:25:05" />
-    <file relUrl="Views/BetList/Transactions.cshtml" publishTime="10/08/2013 17:36:27" />
+    <file relUrl="Views/BetList/Transactions.cshtml" publishTime="10/09/2013 15:38:29" />
     <file relUrl="Views/Instruction/zh-CN/ViewMainShareHolderBetSettingAdv.cshtml" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Message/Images/statistic.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Images/ajax-loader.gif" publishTime="08/19/2013 10:25:05" />
@@ -375,7 +375,7 @@
     <file relUrl="_GlobalResources/Js/Core.js" publishTime="09/30/2013 11:09:32" />
     <file relUrl="Views/BetList/ViewDetail.cshtml" publishTime="09/30/2013 11:08:02" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/Fanex.Grid.less" publishTime="09/30/2013 11:08:02" />
-    <file relUrl="Views/Reports/MemberWinLoss.cshtml" publishTime="10/08/2013 17:28:12" />
+    <file relUrl="Views/Reports/MemberWinLoss.cshtml" publishTime="10/09/2013 15:37:28" />
     <file relUrl="bin/Apollo.Age.HiddenTool.pdb" publishTime="10/09/2013 14:34:08" />
     <file relUrl="_GlobalResources/Css/select2/select2x2.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Account/Resources/Images/treeview-1.png" publishTime="08/19/2013 10:25:05" />
@@ -473,7 +473,7 @@
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_flat_0_000000_40x100.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Log/Resources/images/demo-spindown-closed.gif" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/Popup.css" publishTime="08/19/2013 10:25:05" />
-    <file relUrl="Views/BetList/TicketCancel.cshtml" publishTime="10/08/2013 17:46:07" />
+    <file relUrl="Views/BetList/TicketCancel.cshtml" publishTime="10/09/2013 15:38:15" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_666_256x240.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Internal/Resources/style.css" publishTime="09/30/2013 11:08:02" />
     <file relUrl="bin/Microsoft.Practices.ObjectBuilder2.dll" publishTime="08/19/2013 10:25:05" />
@@ -556,7 +556,7 @@
     <file relUrl="Views/Account/Resources/Images/qa_phone.png" publishTime="09/30/2013 11:08:02" />
     <file relUrl="Views/HiddenTool/Resources/Images/04.gif" publishTime="09/30/2013 11:08:02" />
     <file relUrl="bin/ko-KR/Apollo.Age.Resources.resources.dll" publishTime="10/09/2013 14:34:03" />
-    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="10/08/2013 17:27:52" />
+    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="10/09/2013 15:37:11" />
     <file relUrl="Views/Instruction/zh-CN/MainShareHolderBetSettingAdv.cshtml" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/Agent.less" publishTime="09/30/2013 11:08:02" />
     <file relUrl="Views/Instruction/en-US/AgentCommissionSettingAdv.cshtml" publishTime="09/30/2013 11:08:02" />
