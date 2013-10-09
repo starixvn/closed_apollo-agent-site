@@ -109,34 +109,34 @@
                                 </li>
                                 }
 
-                                else if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query) ||
-                               (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == (byte)Policy.Query) ||
-                               (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == (byte)Policy.Query) ||
-                               (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy == (byte)Policy.Query) ||
-                               (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == (byte)Policy.Query)
+                                else if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= (byte)Policy.Query) ||
+                               (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy >= (byte)Policy.Query) ||
+                               (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy >= (byte)Policy.Query) ||
+                               (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy >= (byte)Policy.Query) ||
+                               (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy >= (byte)Policy.Query)
                                ))
                                 {
                                     isShowReport = true;
 
                                     if (string.IsNullOrEmpty(defaultReportURL))
                                     {
-                                        if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query)
+                                        if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= (byte)Policy.Query)
                                         {
                                             defaultReportURL = "/Reports/matchentered";
                                         }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == (byte)Policy.Query)
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy >= (byte)Policy.Query)
                                         {
                                             defaultReportURL = "/Reports/outstanding";
                                         }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == (byte)Policy.Query)
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy >= (byte)Policy.Query)
                                         {
                                             defaultReportURL = "/betlist/transactions";
                                         }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy == (byte)Policy.Query)
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy >= (byte)Policy.Query)
                                         {
                                             defaultReportURL = "/betlist/ticketcancel";
                                         }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == (byte)Policy.Query)
+                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy >= (byte)Policy.Query)
                                         {
                                             defaultReportURL = "/Reports/sportcredit";
                                         }
