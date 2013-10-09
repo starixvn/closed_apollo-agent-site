@@ -10,6 +10,7 @@
     var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
     var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
     var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
+    var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
 }
 <table id="tab-menu">
     <tr>
@@ -294,12 +295,14 @@
                         <a class="lnk-setting" target="main"
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Apollo.Age.Resources.Lang.lblComm
-                        </a>
-                        
+                        </a>}
+                        if (viewLogPermission >= (byte)Policy.Query)
+                        { 
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Apollo.Age.Resources.Lang.viewlog
                         </a>                     
                         }
+
                         if (permissionControl >= (byte)Policy.Query)
                         {
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AssignPermissionControl?agentuserid=@Model.CustId">

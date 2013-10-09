@@ -1876,4 +1876,88 @@
   <data name="lblViewMemberShare" xml:space="preserve">
     <value>查看會員佔成</value>
   </data>
+  <data name="AccountManagement" xml:space="preserve">
+    <value>账户管理</value>
+  </data>
+  <data name="CancelledTicket" xml:space="preserve">
+    <value>取消单分析</value>
+  </data>
+  <data name="ConfirmUpdatePermission" xml:space="preserve">
+    <value>一些新的权限已经被选择,您想要将这些权限授权给所有的下线和分身障号吗?</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>创建者</value>
+  </data>
+  <data name="CustomerSetting" xml:space="preserve">
+    <value>客户设定</value>
+  </data>
+  <data name="DownlineDetails" xml:space="preserve">
+    <value>下线细项</value>
+  </data>
+  <data name="EMWagers" xml:space="preserve">
+    <value>早餐注单</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>预测</value>
+  </data>
+  <data name="LineSportCredits" xml:space="preserve">
+    <value>体育盘点数</value>
+  </data>
+  <data name="NoneShadow" xml:space="preserve">
+    <value>没有分身账号</value>
+  </data>
+  <data name="NotPermissionUpdate" xml:space="preserve">
+    <value>抱歉! 您需要权限执行这个动作</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>冠军</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="PermissionControl" xml:space="preserve">
+    <value>权限控制</value>
+  </data>
+  <data name="PermissionSetting" xml:space="preserve">
+    <value>权限设定</value>
+  </data>
+  <data name="PermissionUpdatedSuccessfully" xml:space="preserve">
+    <value>成功更新权限!</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="RegisterDate" xml:space="preserve">
+    <value>注册日期</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>报表</value>
+  </data>
+  <data name="Shadow" xml:space="preserve">
+    <value>分身账号</value>
+  </data>
+  <data name="ShadowDetailed" xml:space="preserve">
+    <value>分身账号细项</value>
+  </data>
+  <data name="ShadowId" xml:space="preserve">
+    <value>分身账号</value>
+  </data>
+  <data name="ShadowList" xml:space="preserve">
+    <value>分身账号清单</value>
+  </data>
+  <data name="ShadowPermission" xml:space="preserve">
+    <value>分身账号权限</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>交易</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>实时</value>
+  </data>
+  <data name="Wagers_Forecast" xml:space="preserve">
+    <value>注单/预测</value>
+  </data>
+  <data name="Win_Loss" xml:space="preserve">
+    <value>赢/输</value>
+  </data>
 </root>
