@@ -97,11 +97,12 @@
             var url = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&sporttype=" + OUTSTANDING.hdSportType.val()
             + "&bettype=" + OUTSTANDING.hdBettype.val());
-
+            // resolution for screens
+            var resolution = APOLLO.resolutionForScreens(1030, 630);            
             APOLLO.openDialogFrame(url, LANGUAGES.BetListString, {
-                width: 1030,
-                height: 680,
-                position: { my: "top+40", at: "center top", of: window }
+                width: resolution.width,
+                height: resolution.height,
+                position: { my: "top+20", at: "center top", of: window }
             });
         },
 
