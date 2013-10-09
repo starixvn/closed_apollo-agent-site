@@ -92,6 +92,9 @@ namespace Apollo.Age.Reports.Controllers
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
             this.CurrentAgentId = agentId;
+            sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
+            bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
+
             var report = this._outstandingService.GetAgentOutStandingReport(this.CurrentSession.IsSuper, this.CurrentAgentId, this.CurrentSession.AgentId, sporttypes, bettypes);
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 

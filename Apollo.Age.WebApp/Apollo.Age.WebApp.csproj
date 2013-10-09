@@ -238,22 +238,27 @@
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
     <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.htm.cs" />
     <Compile Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListTransaction.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
       <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
     <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
       <DependentUpon>MixParlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
