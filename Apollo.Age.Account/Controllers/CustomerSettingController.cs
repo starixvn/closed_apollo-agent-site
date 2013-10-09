@@ -26,15 +26,15 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Enumerations;
     using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
+    using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Customer Setting Controller

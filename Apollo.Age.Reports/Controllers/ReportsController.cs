@@ -19,6 +19,8 @@ namespace Apollo.Age.Reports.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Apollo.Age.Configurations;
+    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -27,11 +29,9 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
     using Fanex.NAP.Framework.Mvc;
-    using Apollo.Age.Configurations;
-    using Apollo.Age.PermissionControl.Web.Attribute;
+    using Apollo.Age.Web.Web.Attribute;
     using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
-    
+
     /// <summary>
     /// Reports Controller.
     /// </summary>
@@ -116,7 +116,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="betTypeName">Bet type name.</param>
         /// <param name="isAgentOutStanding">Is agent Outstanding.</param>
         /// <returns>Excel Outstanding report.</returns>
-       [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ActionResult ExportOutstandingReport(
             int? agentId,
             string agentUsername,

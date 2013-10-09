@@ -20,6 +20,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Configurations;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
@@ -27,9 +28,8 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Apollo.Age.PermissionControl.Web.Attribute;
-    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// Wager Controller.

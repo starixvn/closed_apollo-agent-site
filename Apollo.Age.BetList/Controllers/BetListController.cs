@@ -15,26 +15,23 @@ namespace Apollo.Age.BetList.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Web.Attribute;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.Common;
-    using Fanex.BetList.Core.Utils;
-    using Apollo.Age.PermissionControl.Web.Attribute;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// BetList Controller

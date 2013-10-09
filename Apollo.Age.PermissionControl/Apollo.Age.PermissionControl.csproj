@@ -58,7 +58,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApolloFunctionKeys.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\PermissionUserControlController.cs" />
     <Compile Include="Core\Crud.cs" />
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Criterias\AgentUserAssignFunctionCriteria.cs" />
@@ -80,17 +79,12 @@
     <Compile Include="Services\IAgentUserService.cs" />
     <Compile Include="Services\FunctionService.cs" />
     <Compile Include="Services\IFunctionService.cs" />
-    <Compile Include="Web\Attribute\ApolloAuthAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Web\Apollo.Age.Web.csproj">
-      <Project>{126C63A6-33AC-482C-A100-E077C91B7912}</Project>
-      <Name>Apollo.Age.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
