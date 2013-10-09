@@ -47,7 +47,8 @@
         </div>
         @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
         @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
-        <div class="end"></div>
+        <div class="end">
+        </div>
     </div>
     <div class="pages-size">
         <div class="pull-left">@Lang.Page:</div>
@@ -80,10 +81,12 @@
                         </div>
                         <div class="cell">
                             <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                            
                             <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
                             <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                            <input  class="btn dateRange" range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                            <input class="btn dateRange" range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
@@ -92,6 +95,10 @@
                             @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
                             @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                            @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+                            @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+                            @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
+                            @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
                         </div>
                     </div>
                 </td>

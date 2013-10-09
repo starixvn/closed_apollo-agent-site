@@ -291,6 +291,143 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="isIncludeOldData">Include old data from Archive database or not</param>
+        /// <returns>Ticket result data.</returns>
+        public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
+        {
+            try
+            {
+                var ticketResult = new TicketResult();
+                var balanceUpDay = criteria.BalanceUpDay;
+
+                if (criteria.IsValid())
+                {
+                    var uspParams = new Hashtable
+                    {
+                        { "loggedid", criteria.LoggedId },
+                        { "agentid", criteria.AgentId },
+                        { "custid", criteria.CustId },
+                        { "fromdate", criteria.FromDate },
+                        { "todate", criteria.ToDate },
+                        { "statusids", criteria.StatusIds },
+                        { "sporttypes", criteria.SportTypes },
+                        { "bettypes", criteria.BetTypes },
+                        { "rpttype", criteria.RptType },
+                    };
+                    if (isIncludeOldData)
+                    {
+                        if (criteria.FromDate < balanceUpDay)
+                        {
+                            if (criteria.ToDate < balanceUpDay.AddDays(-1))
+                            {
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                {
+                                    db.AssignParamValues(uspParams);
+
+                                    var dataSet = db.ExecuteDataSet();
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                        ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                    }
+                                    else
+                                    {
+                                        ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                        ticketResult.TicketDataList = new List<ITicketData>();
+                                    }
+                                }
+                            }
+                            else // Get data from main database and archive database.
+                            {
+                                var oldDatatable = new DataTable();
+                                var newDatatable = new DataTable();
+                                var oldReferenceDatatable = new DataTable();
+                                var newReferenceDatatable = new DataTable();
+
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                {
+                                    db.AssignParamValues(uspParams);
+
+                                    var dataSet = db.ExecuteDataSet();
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        oldDatatable = dataSet.Tables[0];
+                                        oldReferenceDatatable = dataSet.Tables[1];
+                                    }
+                                    else
+                                    {
+                                        oldDatatable = dataSet.Tables[0];
+                                        oldReferenceDatatable = new DataTable();
+                                    }
+                                }
+
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from Archive database only.
+                                {
+                                    db.AssignParamValues(uspParams);
+
+                                    var dataSet = db.ExecuteDataSet();
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        newDatatable = dataSet.Tables[0];
+                                        newReferenceDatatable = dataSet.Tables[1];
+                                    }
+                                    else
+                                    {
+                                        newDatatable = dataSet.Tables[0];
+                                        newReferenceDatatable = new DataTable();
+                                    }
+                                }
+
+                                // Merge new and old data into a data table.
+                                newDatatable.Merge(oldDatatable);
+                                newReferenceDatatable.Merge(oldReferenceDatatable);
+
+                                ticketResult.TicketList = this.ReadTicket(newDatatable);
+                                ticketResult.TicketDataList = this.ReadReferneceTicket(newReferenceDatatable);
+                            }
+                        }
+                        else
+                        {
+                            using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from main database only.
+                            {
+                                db.AssignParamValues(uspParams);
+
+                                var dataSet = db.ExecuteDataSet();
+
+                                if (dataSet.Tables.Count > 1)
+                                {
+                                    ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                    ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                }
+                                else
+                                {
+                                    ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                    ticketResult.TicketDataList = new List<ITicketData>();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return GetTicketResult(criteria);
+                    }
+                }
+
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Get data betlist on Wagers page
         /// </summary>
         /// <param name="criteria"></param>
@@ -597,7 +734,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// </summary>
         /// <param name="data">Data table</param>
         /// <returns>List TicketData</returns>
-        private List<ITicketData> ReadReferneceTicket(DataTable data)
+        private List<ITicketData>
+            ReadReferneceTicket(DataTable data)
         {
             var result = new List<ITicketData>();
 

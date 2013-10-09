@@ -68,7 +68,7 @@ namespace Apollo.Age.Reports.Services
                     IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new OutstandingCriteria
                     {
                         AgentId = currentAgentId.Value,
-                        Sporttypes = sporttypes,
+                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                         Bettypes = bettypes
                     });
 
@@ -78,7 +78,7 @@ namespace Apollo.Age.Reports.Services
                 }
 
                 outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-                outstandingViewModel.BettypeList = GetBettype();
+                outstandingViewModel.BettypeList = sporttypes == "-99" ? GetParlayBettype() : GetBettype(sporttypes == "-99" || sporttypes == "0");
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@ namespace Apollo.Age.Reports.Services
                 IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new MemberOutstandingCriteria
                 {
                     AgentId = currentAgentId.Value,
-                    Sporttypes = sporttypes,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                     Bettypes = bettypes
                 });
 
@@ -126,7 +126,8 @@ namespace Apollo.Age.Reports.Services
                     ListOutstanding = models,
                     Total = totalModels,
                     MainShareHolderId = mainShareHolderId,
-                    MainShareHolderUsername = mainShareHolderUsername
+                    MainShareHolderUsername = mainShareHolderUsername,
+                    
                 };
             }
             catch (Exception ex)

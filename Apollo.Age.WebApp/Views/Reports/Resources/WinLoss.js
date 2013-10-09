@@ -23,24 +23,52 @@
             WINLOSS.ToThisWeek = $("#thisWeekTo");
             WINLOSS.FromLastWeek = $("#lastWeekFrom");
             WINLOSS.ToLastWeek = $("#lastWeekTo");
+            WINLOSS.FromThisPeriod = $("#thisPeriodFrom");
+            WINLOSS.ToThisPeriod = $("#thisPeriodTo");
+            WINLOSS.FromLastPeriod = $("#lastPeriodFrom");
+            WINLOSS.ToLastPeriod = $("#lastPeriodTo");
             WINLOSS.SportName = $("#SportName");
             WINLOSS.BettypeName = $("#BettypeName");
             WINLOSS.AgentId = $("#agentId");
             WINLOSS.AgentName = $("#agentName");
 
-            // Agent WinLoss Report
-            $("#btnSubmit").bind('click', function () {
-                if (WINLOSS.FromDate.val() < WINLOSS.BalanceUpDay.val() || WINLOSS.ToDate.val() < WINLOSS.BalanceUpDay.val()) {
-                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + WINLOSS.BalanceUpDay.val());
+
+            WINLOSS.ddlSport.bind('change', function () {
+                var $this = $(this);
+                var valueChange = $this.val();
+                var url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
+
+                if (valueChange == "-99") {
+                    url = APOLLO.resolveUrl('Reports/CreateParlayBettype');
+                }
+                else if (valueChange == "0") {
+                    url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=true');
                 }
                 else {
-                    $.blockUI();
-                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
+                    url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
+                }
+
+                $.getJSON(url)
+                        .done(function (data) {
+                            WINLOSS.ddlBettype.empty();
+                            $.each(data, function (i, item) {
+                                WINLOSS.ddlBettype.append($('<option>', {
+                                    value: item.Id,
+                                    text: item.Name
+                                }));
+                            });
+                        });
+
+            });
+
+            // Agent WinLoss Report
+            $("#btnSubmit").bind('click', function () {
+                $.blockUI();
+                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
                     + "&Bettypes=" + WINLOSS.ddlBettype.val());
-                    location.href = url;
-                }
+                location.href = url;
             });
 
             $(".view-agentwinloss").on("click", function () {
@@ -135,10 +163,6 @@
                         WINLOSS.FromDate.val(WINLOSS.Yesterday.val());
                         WINLOSS.ToDate.val(WINLOSS.Yesterday.val());
                         break;
-                    case "3":
-                        WINLOSS.FromDate.val(WINLOSS.Tomorrow.val());
-                        WINLOSS.ToDate.val(WINLOSS.Tomorrow.val());
-                        break;
                     case "4":
                         WINLOSS.FromDate.val(WINLOSS.FromThisWeek.val());
                         WINLOSS.ToDate.val(WINLOSS.ToThisWeek.val());
@@ -146,6 +170,14 @@
                     case "5":
                         WINLOSS.FromDate.val(WINLOSS.FromLastWeek.val());
                         WINLOSS.ToDate.val(WINLOSS.ToLastWeek.val());
+                        break;
+                    case "6":
+                        WINLOSS.FromDate.val(WINLOSS.FromThisPeriod.val());
+                        WINLOSS.ToDate.val(WINLOSS.ToThisPeriod.val());
+                        break;
+                    case "7":
+                        WINLOSS.FromDate.val(WINLOSS.FromLastPeriod.val());
+                        WINLOSS.ToDate.val(WINLOSS.ToLastPeriod.val());
                         break;
                     default:
                         WINLOSS.FromDate.val(WINLOSS.Today.val());

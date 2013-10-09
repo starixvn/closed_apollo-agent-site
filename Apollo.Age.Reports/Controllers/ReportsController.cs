@@ -134,7 +134,7 @@ namespace Apollo.Age.Reports.Controllers
                     listOutstanding = this._outstandingService.GetData<OutstandingModel>(new OutstandingCriteria
                     {
                         AgentId = this.CurrentAgentId.Value,
-                        Sporttypes = sporttypes,
+                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                         Bettypes = bettypes
                     });
                 }
@@ -143,7 +143,7 @@ namespace Apollo.Age.Reports.Controllers
                     listOutstanding = this._outstandingService.GetData<OutstandingModel>(new MemberOutstandingCriteria
                     {
                         AgentId = this.CurrentAgentId.Value,
-                        Sporttypes = sporttypes,
+                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                         Bettypes = bettypes
                     });
                 }
@@ -241,7 +241,7 @@ namespace Apollo.Age.Reports.Controllers
             var criteria = new AgentWinLossCriteria
             {
                 AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
-                Sporttypes = sporttypes,
+                Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                 Bettypes = bettypes,
                 FromDate = fromDate,
                 ToDate = toDate,
@@ -265,8 +265,10 @@ namespace Apollo.Age.Reports.Controllers
                 AgentWinLossList = agentWinLossList,
                 DownlinePath = modelAgentDownLine,
                 SportList = SingbetSportService.GetSport(isOther: false),
-                BettypeList = this._winLossService.GetBettype(),
-                BalanceUpDay = balanceUpDay
+                BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
+                BalanceUpDay = balanceUpDay,
+                ThisPeriod = _periodDateRangeSerivce.ThisPeriod(),
+                LastPeriod = _periodDateRangeSerivce.LastPeriod()
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -298,7 +300,7 @@ namespace Apollo.Age.Reports.Controllers
             var criteria = new MemberWinLossCriteria
             {
                 AgentId = agentId,
-                Sporttypes = sporttypes,
+                Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                 Bettypes = bettypes,
                 FromDate = fromDate,
                 ToDate = toDate,
@@ -320,8 +322,10 @@ namespace Apollo.Age.Reports.Controllers
                 MemberWinLossList = memberWinLossList,
                 DownlinePath = modelAgentDownLine,
                 SportList = SingbetSportService.GetSport(isOther: false),
-                BettypeList = this._winLossService.GetBettype(),
-                BalanceUpDay = balanceUpDay
+                BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
+                BalanceUpDay = balanceUpDay,
+                ThisPeriod = _periodDateRangeSerivce.ThisPeriod(),
+                LastPeriod = _periodDateRangeSerivce.LastPeriod()
             };
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
@@ -358,7 +362,7 @@ namespace Apollo.Age.Reports.Controllers
                 var criteria = new AgentWinLossCriteria
                 {
                     AgentId = agentIdValue,
-                    Sporttypes = sporttypes,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                     Bettypes = bettypes,
                     FromDate = fromDate,
                     ToDate = toDate,
@@ -381,7 +385,7 @@ namespace Apollo.Age.Reports.Controllers
                 IsSuper = agentIdValue == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false,
                 AgentWinLossList = agentWinLossList,
                 SportList = SingbetSportService.GetSport(isOther: false),
-                BettypeList = this._winLossService.GetBettype(),
+                BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
             };
 
@@ -422,7 +426,7 @@ namespace Apollo.Age.Reports.Controllers
                 var criteria = new MemberWinLossCriteria
                 {
                     AgentId = agentId,
-                    Sporttypes = sporttypes,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                     Bettypes = bettypes,
                     FromDate = fromDate,
                     ToDate = toDate,
@@ -444,7 +448,7 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = agentName,
                 MemberWinLossList = memberWinLossList,
                 SportList = SingbetSportService.GetSport(isOther: false),
-                BettypeList = this._winLossService.GetBettype(),
+                BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay
             };
 
@@ -526,5 +530,32 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Line sport credit
+
+        #region Common Action
+
+        /// <summary>
+        /// Creates the type of the bet.
+        /// </summary>
+        /// <param name="isIncludeParlay">Include parlay bettype or not.</param>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateBetType(bool isIncludeParlay)
+        {
+            var bettypeList = this._winLossService.GetBettype(isIncludeParlay);
+
+            return Json(bettypeList,JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Creates the parlay bettype.
+        /// </summary>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateParlayBettype()
+        {
+            var parlayBettypeList = this._winLossService.GetParlayBettype();
+
+            return Json(parlayBettypeList, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

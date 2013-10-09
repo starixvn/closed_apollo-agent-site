@@ -1375,6 +1375,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Period.
+        /// </summary>
+        public static string lastperiod {
+            get {
+                return ResourceManager.GetString("lastperiod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Week.
         /// </summary>
         public static string lastWeek {
@@ -5260,6 +5269,15 @@ namespace Apollo.Age.Resources {
         public static string Tennis {
             get {
                 return ResourceManager.GetString("Tennis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Period.
+        /// </summary>
+        public static string thisperiod {
+            get {
+                return ResourceManager.GetString("thisperiod", resourceCulture);
             }
         }
         

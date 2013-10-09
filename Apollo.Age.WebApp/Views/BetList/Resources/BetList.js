@@ -139,6 +139,10 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ddlSport = $("#SportTypes");
                 BETLIST.ddlBettype = $("#BetTypes");
                 BETLIST.dialogDetails = $('#dialog-details');
+                BETLIST.FromThisPeriod = $("#thisPeriodFrom");
+                BETLIST.ToThisPeriod = $("#thisPeriodTo");
+                BETLIST.FromLastPeriod = $("#lastPeriodFrom");
+                BETLIST.ToLastPeriod = $("#lastPeriodTo");
                 // Event click submit on ticket cancel
                 $(".act-ticket-cancel").click(function () {
                     BETLIST.ticketCancel();
@@ -166,11 +170,7 @@ if (typeof jQuery != "undefined") {
                         case "2":
                             BETLIST.FromDate.val(BETLIST.Yesterday.val());
                             BETLIST.ToDate.val(BETLIST.Yesterday.val());
-                            break;
-                        case "3":
-                            BETLIST.FromDate.val(BETLIST.Tomorrow.val());
-                            BETLIST.ToDate.val(BETLIST.Tomorrow.val());
-                            break;
+                            break;                      
                         case "4":
                             BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
                             BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
@@ -179,6 +179,14 @@ if (typeof jQuery != "undefined") {
                             BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
                             BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
                             break;
+                        case "6":
+                            BETLIST.FromDate.val(BETLIST.FromThisPeriod.val());
+                            BETLIST.ToDate.val(BETLIST.ToThisPeriod.val());
+                            break;
+                        case "7":
+                            BETLIST.FromDate.val(BETLIST.FromLastPeriod.val());
+                            BETLIST.ToDate.val(BETLIST.ToLastPeriod.val());
+                            break;
                         default:
                             BETLIST.FromDate.val(BETLIST.Today.val());
                             BETLIST.ToDate.val(BETLIST.Today.val());
@@ -186,9 +194,38 @@ if (typeof jQuery != "undefined") {
                     }
                 });
 
+
                 if ($('#IsTransactionsBetList').val() === '1') {
                     BETLIST.initPager(BETLIST.pageIndex);
                 }
+
+                BETLIST.ddlSport.bind('change', function () {
+                    var $this = $(this);
+                    var valueChange = $this.val();
+                    var url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=false');
+
+                    if (valueChange == "-99") {
+                        url = APOLLO.resolveUrl('Betlist/CreateParlayBettype');
+                    }
+                    else if (valueChange == "0") {
+                        url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=true');
+                    }
+                    else {
+                        url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=false');
+                    }
+
+                    $.getJSON(url)
+                        .done(function (data) {
+                            BETLIST.ddlBettype.empty();
+                            $.each(data, function (i, item) {
+                                BETLIST.ddlBettype.append($('<option>', {
+                                    value: item.Id,
+                                    text: item.Name
+                                }));
+                            });
+                        });
+
+                });
 
                 BETLIST.initEditLink();
             },
@@ -229,13 +266,8 @@ if (typeof jQuery != "undefined") {
             },
 
             ticketCancel: function () {
-                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
-                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
-                }
-                else {
-                    $.blockUI();
-                    $("form:first").submit();
-                }
+                $.blockUI();
+                $("form:first").submit();
             },
             initEditLink: function () {
                 $(".view-detail").click(function () {

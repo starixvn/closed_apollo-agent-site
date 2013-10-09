@@ -16,6 +16,34 @@
             OUTSTANDING.SportName = $("#SportName");
             OUTSTANDING.BettypeName = $("#BettypeName");
 
+            OUTSTANDING.ddlSport.bind('change', function () {
+                var $this = $(this);
+                var valueChange = $this.val();
+                var url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
+
+                if (valueChange == "-99") {
+                    url = APOLLO.resolveUrl('Reports/CreateParlayBettype');
+                }
+                else if (valueChange == "0") {
+                    url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=true');
+                }
+                else {
+                    url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
+                }
+
+                $.getJSON(url)
+                        .done(function (data) {
+                            OUTSTANDING.ddlBettype.empty();
+                            $.each(data, function (i, item) {
+                                OUTSTANDING.ddlBettype.append($('<option>', {
+                                    value: item.Id,
+                                    text: item.Name
+                                }));
+                            });
+                        });
+
+            });
+
             $("#MemberOutstanding").on('click', function () {
                 var $this = $(this);
 

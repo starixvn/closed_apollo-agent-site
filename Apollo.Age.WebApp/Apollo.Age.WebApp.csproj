@@ -236,41 +236,32 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
+    <Compile Include="_BetList\BetList.aspx.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_BetList\BetListOnMember.aspx.cs">
+      <DependentUpon>BetListOnMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_BetList\BetListOnMember.htm.cs" />
+    <Compile Include="_BetList\BetListTransaction.aspx.cs">
+      <DependentUpon>BetListTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_BetList\BetListTransaction.htm.cs" />
+    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
+      <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
+    <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
+    <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
+      <DependentUpon>MixParlay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Wagers\Scripts\Wagers.js" />
     <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
-    <SplashScreen Include="_BetList\BetList.aspx.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </SplashScreen>
-    <Compile Include="_BetList\BetListOnMember.aspx.cs">
-      <DependentUpon>BetListOnMember.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="_BetList\BetListOnMember.htm.cs" />
-    <Compile Include="_BetList\BetListTransaction.aspx.cs">
-      <DependentUpon>BetListTransaction.aspx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\BetListTransaction.htm.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
-      <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
-    <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
-      <DependentUpon>MixParlay.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="_BetList\Navigation.htm.cs" />
     <Content Include="App_Code\Formater.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -1004,9 +995,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.sitemap" />
-    <Content Include="_BetList\Resources\BetList.less" />
-    <Content Include="_BetList\Resources\ErrorPage.less" />
-    <Content Include="_BetList\Resources\Paging.less" />
     <Content Include="_Components\web.config" />
     <Content Include="_Components\AGEWnd\web.config" />
     <Content Include="_GlobalResources\Css\Agent.less" />
@@ -1064,6 +1052,9 @@
     <Content Include="Views\Reports\SportCredit.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Error\RedirectToUM.cshtml" />
+    <None Include="_BetList\Resources\BetList.less" />
+    <None Include="_BetList\Resources\ErrorPage.less" />
+    <None Include="_BetList\Resources\Paging.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

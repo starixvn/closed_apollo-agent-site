@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -37,15 +37,16 @@
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
                             <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                            
                             <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
                             <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                            <input  class="btn dateRange" range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />                            
+
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
@@ -54,6 +55,9 @@
                             @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
                             @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                            @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+                            @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))                            
+
                         </div>
                     </div>
                 </td>

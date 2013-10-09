@@ -198,6 +198,7 @@
     <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_Agent_GetCustomerDownlinePath" SpName="Age_Agent_GetCustomerDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0">

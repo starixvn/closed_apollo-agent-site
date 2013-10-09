@@ -37,6 +37,10 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
 
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
+
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
         public List<Agent> DownlinePath { get; set; }

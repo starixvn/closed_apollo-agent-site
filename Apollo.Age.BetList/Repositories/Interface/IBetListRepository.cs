@@ -27,6 +27,8 @@ namespace Apollo.Age.BetList.Repositories.Interface
 
         TicketResult GetTicketResult(BetListCriteria criteria);
 
+        TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false);
+
         TicketResult GetRunningByBettype(BetListCriteria criteria);
 
         TicketResult GetWinLossByDateAndMem(BetListCriteria criteria);

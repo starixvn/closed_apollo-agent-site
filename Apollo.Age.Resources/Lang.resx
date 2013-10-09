@@ -2011,4 +2011,10 @@
   <data name="EstimateTime" xml:space="preserve">
     <value>The updating process will be completed in {0} minute(s) and {1} second(s). Do you want to continue update?</value>
   </data>
+  <data name="lastperiod" xml:space="preserve">
+    <value>Last Period</value>
+  </data>
+  <data name="thisperiod" xml:space="preserve">
+    <value>This Period</value>
+  </data>
 </root>

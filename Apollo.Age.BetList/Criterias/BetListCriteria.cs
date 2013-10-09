@@ -77,21 +77,21 @@ namespace Apollo.Age.BetList.Criterias
 
         public override string GetSettingKey()
         {
-            string settingKey = string.Empty;
+            //string settingKey = string.Empty;
 
-            switch (this.BetListPage)
-            {
-                case BetListPage.Outstanding:
-                case BetListPage.AccountInfo:
-                case BetListPage.Cancel:
-                    settingKey = "Age_BetList_SelByDateMemStatus";
-                    break;
-                case BetListPage.Transaction:
-                    settingKey = "Age_BetList_SelTransaction";
-                    break;
-            }
+            //switch (this.BetListPage)
+            //{
+            //    case BetListPage.Outstanding:
+            //    case BetListPage.AccountInfo:
+            //    case BetListPage.Cancel:
+            //        settingKey = "Age_BetList_SelByDateMemStatus";
+            //        break;
+            //    case BetListPage.Transaction:
+            //        settingKey = "Age_BetList_SelTransaction";
+            //        break;
+            //}
 
-            return settingKey;
+            return "Age_BetList_SelTransaction";
         }
 
         public dynamic GetParameters()

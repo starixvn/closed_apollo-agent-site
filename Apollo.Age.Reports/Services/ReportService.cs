@@ -59,7 +59,31 @@ namespace Apollo.Age.Reports.Services
             return SpecialDays.MoveBetsDay;
         }
 
-        public List<SingbetBettype> GetBettype()
+        public List<SingbetBettype> GetParlayBettype()
+        {
+            var bettypeList = new List<SingbetBettype>
+                {
+                    new SingbetBettype
+                    {
+                        Id = BettypeGroup.MixParlay + "," + BettypeGroup.SystemParlay,
+                        Name = Lang.all
+                    },
+                    new SingbetBettype
+                    {
+                        Id = BettypeGroup.MixParlay,
+                        Name = Lang.lblMixParlay
+                    },
+                    new SingbetBettype
+                    {
+                        Id = BettypeGroup.SystemParlay,
+                        Name = Lang.lblSystemParlay
+                    },
+                };
+
+            return bettypeList;
+        }
+
+        public List<SingbetBettype> GetBettype(bool isIncludeParlay = true)
         {
             var bettypeList = new List<SingbetBettype>
                 {
@@ -110,16 +134,6 @@ namespace Apollo.Age.Reports.Services
                     },
                     new SingbetBettype
                     {
-                        Id = BettypeGroup.MixParlay,
-                        Name = Lang.lblMixParlay
-                    },
-                    new SingbetBettype
-                    {
-                        Id = BettypeGroup.SystemParlay,
-                        Name = Lang.lblSystemParlay
-                    },
-                    new SingbetBettype
-                    {
                         Id = BettypeGroup.Outright,
                         Name = Lang.lblOutRight
                     },
@@ -150,6 +164,21 @@ namespace Apollo.Age.Reports.Services
                     },
                 };
 
+            if (isIncludeParlay)
+            {
+                bettypeList.Add(new SingbetBettype
+                    {
+                        Id = BettypeGroup.MixParlay,
+                        Name = Lang.lblMixParlay
+                    });
+                bettypeList.Add(
+                    new SingbetBettype
+                    {
+                        Id = BettypeGroup.SystemParlay,
+                        Name = Lang.lblSystemParlay
+                    }
+                );
+            }
             return bettypeList;
         }
 

@@ -18,6 +18,7 @@ namespace Apollo.Age.BetList.ViewModels
     using Apollo.Age.Entities;
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Reports.Models;
 
     public class BetListReportViewModel
     {
@@ -49,6 +50,10 @@ namespace Apollo.Age.BetList.ViewModels
         public DateTime ToDate { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
+
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
 
         public string SportTypes { get; set; }
 
