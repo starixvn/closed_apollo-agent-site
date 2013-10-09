@@ -38,7 +38,7 @@
                         <ul>
                             @foreach (var item in FunctionPermissions)
                             {
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.Wagers && item.Policy >= 1)
+                                if (item.Function.FunctionKey == ApolloFunctionKeys.Wagers && item.Policy >= (byte)Policy.Query)
                                 {
                                 <li id="wager-link"><span class="menu-list border-link">[@Lang.lblWager]</span>
                                     <ul class="sub-menu">
@@ -50,6 +50,9 @@
                                         <li><a url="~/wagers/wager?sportname=@WagersSportName.Others" target="main">@Lang.other</a></li>
                                     </ul>
                                 </li>
+                                }
+                                if (item.Function.FunctionKey == ApolloFunctionKeys.EMWagers && item.Policy >= (byte)Policy.Query)
+                                {
                                 <li id="emwager-link"><span class="menu-list border-link">[@Lang.lblEmWager]</span>
                                     <ul class="sub-menu">
                                         <li><a url="~/wagers/wager?sportname=@(WagersSportName.Soccer)&isEarlyMarket=true" target="main">@Lang.lblScEm</a></li>
@@ -61,17 +64,17 @@
                                     </ul>
                                 </li>
                                 }
-                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Outright && item.Policy >= 1)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Outright && item.Policy >= (byte)Policy.Query)
                                 { 
                                 <li id="outright-link"><span class="menu-list border-link"><a url="~/wagers/wager?sportname=@WagersSportName.Soccer&isOutright=true" target="main">
                                     [@Lang.lblOutRight]</a> </span></li>
                                 }
-                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Forecast && item.Policy >= 1)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Forecast && item.Policy >= (byte)Policy.Query)
                                 {
                                 <li id="forecast-link"><span class="menu-list border-link"><a url="~/totalBets" target="main">
                                     [@Lang.lblForecast]</a> </span></li>
                                 }
-                                else if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting && item.Policy >= 1)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting)
                                 {
                                  
                                 <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
@@ -80,13 +83,22 @@
                                         @if (Model.AgentLevel > AgentLevel.Shareholder)
                                         {
                                             <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
+                                            if (item.Policy == (byte)Policy.Edit)
+                                            { 
                                             <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username" 
                                                 target="main">@Lang.lblMemberShare</a></li>
+                                            }
                                         }
-                                        <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
-                                        <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>
+                                        @if (item.Policy >= (byte)Policy.Query)
+                                        { 
+                                            <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
+                                            <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>
+                                        }
                                     </ul>
-                                </li>
+                                </li>                                
+                                }
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.System_Log && item.Policy >= (byte)Policy.Query)
+                                { 
                                 <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                     <ul class="sub-menu">
                                         @if (Model.IsInternalSignIn)
@@ -97,47 +109,48 @@
                                     </ul>
                                 </li>
                                 }
-                                else if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == 1) ||
-                                (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == 1) ||
-                                (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == 1) ||
-                                (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTicket && item.Policy == 1) ||
-                                (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == 1)
-                                ))
-                                {
-                                    isShowReport= true;
-
-                                    if (string.IsNullOrEmpty(defaultReportURL))
+                                else
+                                    if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query) ||
+                                   (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == (byte)Policy.Query) ||
+                                   (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == (byte)Policy.Query) ||
+                                   (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy == (byte)Policy.Query) ||
+                                   (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == (byte)Policy.Query)
+                                   ))
                                     {
-                                        if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == 1)
+                                        isShowReport = true;
+
+                                        if (string.IsNullOrEmpty(defaultReportURL))
                                         {
-                                            defaultReportURL = "/Reports/matchentered";
+                                            if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query)
+                                            {
+                                                defaultReportURL = "/Reports/matchentered";
+                                            }
+                                            else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == (byte)Policy.Query)
+                                            {
+                                                defaultReportURL = "/Reports/outstanding";
+                                            }
+                                            else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == (byte)Policy.Query)
+                                            {
+                                                defaultReportURL = "/betlist/transactions";
+                                            }
+                                            else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy == (byte)Policy.Query)
+                                            {
+                                                defaultReportURL = "/betlist/ticketcancel";
+                                            }
+                                            else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == (byte)Policy.Query)
+                                            {
+                                                defaultReportURL = "/Reports/sportcredit";
+                                            }
                                         }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == 1)
-                                        {
-                                            defaultReportURL = "/Reports/outstanding";
-                                        }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == 1)
-                                        {
-                                            defaultReportURL = "/betlist/transactions";
-                                        }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTicket && item.Policy == 1)
-                                        {
-                                            defaultReportURL = "/betlist/ticketcancel";
-                                        }
-                                        else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy == 1)
-                                        {
-                                            defaultReportURL = "/Reports/sportcredit";
-                                        }
-                                    }
                                     
                                 <li id="report-link"><a url="@defaultReportURL" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
-                                }
-                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Result && item.Policy >= 1)
-                                {
+                                    }
+                                    else if (item.Function.FunctionKey == ApolloFunctionKeys.Result && item.Policy >= (byte)Policy.Query)
+                                    {
                                 <li id="result-link"><a url="~/results/match" target="main" class="menu-list txtRed">
                                     [@Lang.lblResult]</a> </li>
-                                }
+                                    }
                             }
                             <li id="hideurl-link"><a url="~/hiddentool/index" target="main" class="menu-list txtRed">
                                 [@Lang.lblHiddenUrlTool]</a> </li>

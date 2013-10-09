@@ -108,8 +108,8 @@ if (typeof jQuery != 'undefined') {
                                     successMessage = '';
                                 for (var i = 0; i < arrayMessage.length; i++) {
                                     var innerMessage = arrayMessage[i].split('##');
-//                                    errorMessage += '<br/> + ';
-//                                    successMessage += '<br/> + ';
+                                    //                                    errorMessage += '<br/> + ';
+                                    //                                    successMessage += '<br/> + ';
                                     for (var j = 0; j < innerMessage.length; j++) {
                                         if (j == 0) {
                                             $.each(innerMessage[j].split(';'), function (i, val) {
@@ -140,11 +140,16 @@ if (typeof jQuery != 'undefined') {
                             }
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        if (jqXHR.responseText) {
-                            APOLLO.showMessage(jqXHR.responseText, 'error');
+                        if (jqXHR.status == 403) {
+                            location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                         }
                         else {
-                            APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                            if (jqXHR.responseText) {
+                                APOLLO.showMessage(jqXHR.responseText, 'error');
+                            }
+                            else {
+                                APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                            }
                         }
                         try { $.unblockUI(); } catch (e) { };
                     }).always(function () {
@@ -154,8 +159,8 @@ if (typeof jQuery != 'undefined') {
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
                 //setTimeout(function () {
-                    try { $.unblockUI(); } catch (e) { };
-                    window.location.href = backLink;
+                try { $.unblockUI(); } catch (e) { };
+                window.location.href = backLink;
                 //}, 4000);
 
             }

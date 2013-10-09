@@ -276,7 +276,7 @@ namespace Apollo.Age.BetList.Controllers
         /// Cancel ticket betlist
         /// </summary>
         [HttpGet]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTicket, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTickets, Policy = Policy.Query)]
         public ViewResult TicketCancel()
         {
             var viewModel = new BetListReportViewModel
@@ -294,7 +294,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTicket, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTickets, Policy = Policy.Query)]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);

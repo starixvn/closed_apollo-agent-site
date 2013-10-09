@@ -522,8 +522,8 @@
         <Setting Key="ReadLog_Login" SpName="ReadLog_Login" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
     </Function>
     <Function Name="Read Log Cust Setting">
-        <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
-        <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+        <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent_xtest" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+        <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust_xtest" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
     </Function>
     <Function Name="Wagers">
         <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB.aplweb">

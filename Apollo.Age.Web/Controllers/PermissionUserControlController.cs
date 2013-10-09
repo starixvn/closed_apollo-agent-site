@@ -83,7 +83,7 @@ namespace Apollo.Age.Web
                 ListFunctionPolicy = listFunctionPolicy,
                 IsMaster = agentUserInfo.IsMaster,
                 AgentUserId = agentUserId,
-                HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId,
+                HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
                 ShadowUsername = agentUserInfo.Username
             };
@@ -127,7 +127,7 @@ namespace Apollo.Age.Web
                 ListFunctionPolicy = listFunctionPolicy,
                 IsMaster = agentUserInfo.IsMaster,
                 AgentUserId = agentUserId,
-                HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId,
+                HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
                 ShadowUsername = agentUserInfo.Username
             };
@@ -175,7 +175,7 @@ namespace Apollo.Age.Web
 
                 if (policyPermissionControl != (byte)Policy.Edit)
                 {
-                    return Json(-1);
+                    return Json(new { ErrCode = -1 });
                 }
             }
             else
@@ -185,7 +185,7 @@ namespace Apollo.Age.Web
 
                 if (policyShadowPermission != (byte)Policy.Edit)
                 {
-                    return Json(-1);
+                    return Json(new { ErrCode = -1 });
                 }
             }
 

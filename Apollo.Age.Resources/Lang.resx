@@ -435,7 +435,7 @@
   <data name="copyPositionTakingFrom" xml:space="preserve">
     <value>Copy {0} share settings from {1}</value>
   </data>
-  <data name="result" xml:space="preserve">
+  <data name="results" xml:space="preserve">
     <value>Results</value>
   </data>
   <data name="lblStraight" xml:space="preserve">
@@ -2044,8 +2044,8 @@
   <data name="AccountManagement" xml:space="preserve">
     <value>Account Management</value>
   </data>
-  <data name="CancelledTicket" xml:space="preserve">
-    <value>Cancelled Ticket</value>
+  <data name="CancelledTickets" xml:space="preserve">
+    <value>Cancelled Tickets</value>
   </data>
   <data name="CustomerSetting" xml:space="preserve">
     <value>Customer Setting</value>
@@ -2078,9 +2078,30 @@
     <value>Wagers/Forecast</value>
   </data>
   <data name="Win_Loss" xml:space="preserve">
-    <value>Win Loss</value>
+    <value>Win/Loss</value>
   </data>
   <data name="PermissionUpdatedSuccessfully" xml:space="preserve">
     <value>Permission updated successfully !</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="ConfirmUpdatePermission" xml:space="preserve">
+    <value>Some new permissions have been selected, would you like to grant these permissions to all downlines and shadows?</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="PermissionSetting" xml:space="preserve">
+    <value>Permission Setting</value>
+  </data>
+  <data name="ShadowList" xml:space="preserve">
+    <value>Shadow list</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>System Log</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>View Log</value>
   </data>
 </root>

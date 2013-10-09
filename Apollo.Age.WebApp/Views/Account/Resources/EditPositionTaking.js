@@ -70,29 +70,29 @@ if (typeof jQuery != 'undefined') {
                         else {
                             var confirmAgent = confirm(Language.CONFIRM_WRITE_AGENT);
                             if (confirmAgent == true) {
-                                EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);                              
+                                EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
                             }
-//                            $.ajax({
-//                                url: APOLLO.resolveUrl('CustomerSetting/CalculateUpdateAgentPositionTakingTime'),
-//                                type: 'POST',
-//                                contentType: "application/json; charset=utf-8",
-//                                dataType: "json",
-//                                data: JSON.stringify({
-//                                    settingContext: EDITPOSITIONTAKING.settingContext,
-//                                    positionTakingSetting: postionTakingValue
-//                                }),
-//                                cache: false
-//                            }).done(function (data) {
-//                                try { $.unblockUI(); } catch (e) { };
-//                                if (data != '') {
-//                                    var confirmEstimate = confirm(data);
-//                                    if (confirmEstimate == true) {
-//                                        EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
-//                                    }
-//                                }
-//                            }).fail(function (jqXHR, textStatus, errorThrown) {
-//                                try { $.unblockUI(); } catch (e) { };
-//                            });
+                            //                            $.ajax({
+                            //                                url: APOLLO.resolveUrl('CustomerSetting/CalculateUpdateAgentPositionTakingTime'),
+                            //                                type: 'POST',
+                            //                                contentType: "application/json; charset=utf-8",
+                            //                                dataType: "json",
+                            //                                data: JSON.stringify({
+                            //                                    settingContext: EDITPOSITIONTAKING.settingContext,
+                            //                                    positionTakingSetting: postionTakingValue
+                            //                                }),
+                            //                                cache: false
+                            //                            }).done(function (data) {
+                            //                                try { $.unblockUI(); } catch (e) { };
+                            //                                if (data != '') {
+                            //                                    var confirmEstimate = confirm(data);
+                            //                                    if (confirmEstimate == true) {
+                            //                                        EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
+                            //                                    }
+                            //                                }
+                            //                            }).fail(function (jqXHR, textStatus, errorThrown) {
+                            //                                try { $.unblockUI(); } catch (e) { };
+                            //                            });
                         }
 
                         // 
@@ -187,11 +187,16 @@ if (typeof jQuery != 'undefined') {
                         }
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    if (jqXHR.responseText) {
-                        APOLLO.showMessage(jqXHR.responseText, 'error');
+                    if (jqXHR.status == 403) {
+                        location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                     }
                     else {
-                        APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        if (jqXHR.responseText) {
+                            APOLLO.showMessage(jqXHR.responseText, 'error');
+                        }
+                        else {
+                            APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
+                        }
                     }
                     try { $.unblockUI(); } catch (e) { };
                 });

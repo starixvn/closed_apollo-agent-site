@@ -30,6 +30,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
+    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Wager Controller.
@@ -39,19 +40,21 @@ namespace Apollo.Age.Wagers.Controllers
     {
         protected readonly IWagersService WagerService;
         protected readonly ReportService ReportService;
+        protected readonly IAgentUserService AgentUserService;
         private DateTime _wagerDate;
 
         public WagerController()
-            : this(null)
+            : this(null, null)
         {
             var configDate = ConfigurationManager.AppSettings["WagerDateConfig"];
             _wagerDate = Converter.ToDateTime(configDate, DateTime.Now);
         }
 
-        public WagerController(IWagersService wagerService = null)
+        public WagerController(IWagersService wagerService = null, IAgentUserService agentUserService = null)
         {
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
+            AgentUserService = agentUserService ?? new AgentUserService();
         }
 
         /// <summary>
@@ -122,6 +125,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isEarlyMarket">Is early market.</param>
         /// <param name="isOutright">Is outright wagers.</param>
         /// <returns>View result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         public ActionResult Index(
             string sportName,
             string groupBetName = "Straight",
@@ -129,6 +133,25 @@ namespace Apollo.Age.Wagers.Controllers
             bool isEarlyMarket = false,
             bool isOutright = false)
         {
+
+            var functionKey = ApolloFunctionKeys.Wagers;
+            // Check permission
+            if (isEarlyMarket)
+            {
+                functionKey = ApolloFunctionKeys.EMWagers;
+            }
+            else if (isOutright)
+            {
+                functionKey = ApolloFunctionKeys.Outright;
+            }
+
+            var policy = AgentUserService.GetUserPolicy(CurrentSession.UserId, functionKey);
+
+            if (policy < (byte)Policy.Query)
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
             var title = string.Empty;

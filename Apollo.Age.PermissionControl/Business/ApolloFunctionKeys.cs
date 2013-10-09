@@ -12,7 +12,7 @@
 /// </summary>
 public static class ApolloFunctionKeys
 {
-    public const string CancelledTicket = "CancelledTicket";
+    public const string CancelledTickets = "CancelledTickets";
     public const string CustomerSetting = "CustomerSetting";
     public const string DownlineDetails = "DownlineDetails";
     public const string EMWagers = "EMWagers";
@@ -23,6 +23,7 @@ public static class ApolloFunctionKeys
     public const string PermissionControl = "PermissionControl";
     public const string Result = "Result";
     public const string ShadowPermission = "ShadowPermission";
+    public const string System_Log = "System_Log";
     public const string Transactions = "Transactions";
     public const string Wagers = "Wagers";
     public const string Win_Loss = "Win_Loss";

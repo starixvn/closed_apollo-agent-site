@@ -27,12 +27,15 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Fanex.Logging;
     using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.Web.Web.Attribute;
+    using Apollo.Age.PermissionControl.Core;
 
     /// <summary>
     /// Log controller.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.System_Log, Policy = Policy.Query)]
     public class LogController : BaseController
     {
         private readonly ILogRunSpService _logService;
