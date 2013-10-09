@@ -36,7 +36,7 @@
                     }
                     <div class="toolbar @sso">
                         <ul>
-                            @foreach (var item in FunctionPermissions)
+                            @foreach (var item in FunctionPermissions.OrderBy(x=>x.Function.DisplayOrder))
                             {
                                 if (item.Function.FunctionKey == ApolloFunctionKeys.Wagers && item.Policy >= (byte)Policy.Query)
                                 {
@@ -51,7 +51,7 @@
                                     </ul>
                                 </li>
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.EMWagers && item.Policy >= (byte)Policy.Query)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.EMWagers && item.Policy >= (byte)Policy.Query)
                                 {
                                 <li id="emwager-link"><span class="menu-list border-link">[@Lang.lblEmWager]</span>
                                     <ul class="sub-menu">
@@ -64,17 +64,17 @@
                                     </ul>
                                 </li>
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.Outright && item.Policy >= (byte)Policy.Query)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Outright && item.Policy >= (byte)Policy.Query)
                                 { 
                                 <li id="outright-link"><span class="menu-list border-link"><a url="~/wagers/wager?sportname=@WagersSportName.Soccer&isOutright=true" target="main">
                                     [@Lang.lblOutRight]</a> </span></li>
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.Forecast && item.Policy >= (byte)Policy.Query)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Forecast && item.Policy >= (byte)Policy.Query)
                                 {
                                 <li id="forecast-link"><span class="menu-list border-link"><a url="~/totalBets" target="main">
                                     [@Lang.lblForecast]</a> </span></li>
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting)
                                 {                                 
                                 <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
                                     @if (item.Policy >= (byte)Policy.Query)
@@ -96,7 +96,7 @@
                                     }
                                 </li>                                
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.System_Log && item.Policy >= (byte)Policy.Query)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.System_Log && item.Policy >= (byte)Policy.Query)
                                 { 
                                 <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                     <ul class="sub-menu">
@@ -109,7 +109,7 @@
                                 </li>
                                 }
 
-                                if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query) ||
+                                else if (!isShowReport && ((item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy == (byte)Policy.Query) ||
                                (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy == (byte)Policy.Query) ||
                                (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy == (byte)Policy.Query) ||
                                (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy == (byte)Policy.Query) ||
@@ -145,7 +145,7 @@
                                 <li id="report-link"><a url="@defaultReportURL" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
                                 }
-                                if (item.Function.FunctionKey == ApolloFunctionKeys.Result && item.Policy >= (byte)Policy.Query)
+                                else if (item.Function.FunctionKey == ApolloFunctionKeys.Result && item.Policy >= (byte)Policy.Query)
                                 {
                                 <li id="result-link"><a url="~/results/match" target="main" class="menu-list txtRed">
                                     [@Lang.lblResult]</a> </li>
