@@ -2080,4 +2080,7 @@
   <data name="Win_Loss" xml:space="preserve">
     <value>Win Loss</value>
   </data>
+  <data name="PermissionUpdatedSuccessfully" xml:space="preserve">
+    <value>Permission updated successfully !</value>
+  </data>
 </root>

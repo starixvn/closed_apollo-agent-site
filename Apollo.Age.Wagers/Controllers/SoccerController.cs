@@ -13,15 +13,18 @@ namespace Apollo.Age.Wagers.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Wagers.Criterias;
     using Apollo.Age.Wagers.Criterias.CorrectScore;
     using Apollo.Age.Wagers.Criterias.Soccer;
     using Apollo.Age.Wagers.ViewModels;
     using Apollo.Age.Wagers.ViewModels.Soccer;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>    
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
     public class SoccerController : WagerController
     {
         /// <summary>
@@ -119,7 +122,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             return View(result);
         }
-        
+
         /// <summary>
         /// Group bet type name Total of Soccer.
         /// </summary>

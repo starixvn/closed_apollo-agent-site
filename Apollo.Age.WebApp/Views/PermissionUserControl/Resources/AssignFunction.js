@@ -54,8 +54,9 @@ var AssignFunction = function ($) {
                         APOLLO.showMessage(res.ErrMsg, 'error');
                     }
                     else {
-                        window.location.reload();
+                        APOLLO.showMessage(Language.UPDATED_SUCCESS, 'success');
                     }
+                    $('#noty_top_layout_container').css({ width: "500px", left: "5px" });
                 },
                 error: function (xhr, status, err) {
                 }

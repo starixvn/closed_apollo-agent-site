@@ -35,7 +35,6 @@ namespace Apollo.Age.Wagers.Controllers
     /// Wager Controller.
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
     public class WagerController : BaseController
     {
         protected readonly IWagersService WagerService;
