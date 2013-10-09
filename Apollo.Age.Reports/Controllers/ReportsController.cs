@@ -213,8 +213,8 @@ namespace Apollo.Age.Reports.Controllers
 
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
-            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
-            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.LastPeriod();
+            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.View(matchEnteredViewModel);
         }
@@ -267,8 +267,8 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.ThisPeriod(),
-                LastPeriod = _periodDateRangeSerivce.LastPeriod()
+                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
+                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -324,8 +324,8 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.ThisPeriod(),
-                LastPeriod = _periodDateRangeSerivce.LastPeriod()
+                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
+                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);

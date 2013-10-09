@@ -152,8 +152,8 @@ namespace Apollo.Age.BetList.Controllers
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
 
-            viewModel.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
-            viewModel.LastPeriod = _periodDateRangeSerivce.LastPeriod();
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.Transactions(viewModel);
         }
@@ -270,8 +270,8 @@ namespace Apollo.Age.BetList.Controllers
                 ViewBag.TotalItems = 0;
             }
 
-            model.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
-            model.LastPeriod = _periodDateRangeSerivce.LastPeriod();
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
@@ -287,8 +287,8 @@ namespace Apollo.Age.BetList.Controllers
                     Username = CurrentSession.AgentName
                 };
 
-            viewModel.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
-            viewModel.LastPeriod = _periodDateRangeSerivce.LastPeriod();
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.TicketCancel(viewModel);
         }
@@ -337,8 +337,8 @@ namespace Apollo.Age.BetList.Controllers
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
 
-            model.ThisPeriod = _periodDateRangeSerivce.ThisPeriod();
-            model.LastPeriod = _periodDateRangeSerivce.LastPeriod();
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.View(model);
         }

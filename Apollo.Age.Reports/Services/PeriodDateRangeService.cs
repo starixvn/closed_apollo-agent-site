@@ -21,17 +21,20 @@ namespace Apollo.Age.Reports.Services
     public class PeriodDateRangeService : QueryService
     {
         /// <summary>
-        /// This the period.
+        /// Get period range.
         /// </summary>
-        /// <returns>Return this period date range.</returns>
-        public DateRangeModel ThisPeriod()
+        /// <param name="getLastPeriod">Want to get last period or this period.</param>
+        /// <returns>
+        /// Return period date range.
+        /// </returns>
+        public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
             var currentDate = DateTime.Now;
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
             DateTime toDate = DateTime.Now;
             string[] rangeDates = null;
-            DateRangeModel thisPeriods = new DateRangeModel();
+            DateRangeModel periodModel = new DateRangeModel();
 
             try
             {
@@ -41,13 +44,25 @@ namespace Apollo.Age.Reports.Services
 
                     fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
                     toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
-
-                    if (fromDate.Month == DateTime.Now.Month && fromDate.Day <= DateTime.Now.Day)
+                    if (getLastPeriod)
                     {
-                        thisPeriods.FromDate = fromDate;
-                        thisPeriods.ToDate = toDate;
+                        if (fromDate.Month == DateTime.Now.AddMonths(-1).Month && fromDate.Day <= DateTime.Now.Day)
+                        {
+                            periodModel.FromDate = fromDate;
+                            periodModel.ToDate = toDate;
 
-                        return thisPeriods;
+                            return periodModel;
+                        }
+                    }
+                    else
+                    {
+                        if (fromDate.Month == DateTime.Now.Month && fromDate.Day <= DateTime.Now.Day)
+                        {
+                            periodModel.FromDate = fromDate;
+                            periodModel.ToDate = toDate;
+
+                            return periodModel;
+                        }
                     }
                 }
 
@@ -58,47 +73,7 @@ namespace Apollo.Age.Reports.Services
                 HandleException(ex);
                 return new DateRangeModel();
             }
-        }
-
-        /// <summary>
-        /// Lasts the period.
-        /// </summary>
-        /// <returns>Return last period date range.</returns>
-        public DateRangeModel LastPeriod()
-        {
-            var currentDate = DateTime.Now;
-            List<string> periodRanges = GetAllPeriodRange();
-            DateTime fromDate = DateTime.Now;
-            DateTime toDate = DateTime.Now;
-            string[] rangeDates = null;
-            DateRangeModel lastPeriods = new DateRangeModel();
-
-            try
-            {
-                foreach (var range in periodRanges)
-                {
-                    rangeDates = range.Split('-');
-
-                    fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
-                    toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
-
-                    if (fromDate.Month == DateTime.Now.AddMonths(-1).Month && fromDate.Day <= DateTime.Now.Day)
-                    {
-                        lastPeriods.FromDate = fromDate;
-                        lastPeriods.ToDate = toDate;
-
-                        return lastPeriods;
-                    }
-                }
-
-                return new DateRangeModel();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                return new DateRangeModel();
-            }
-        }
+        }                
 
         /// <summary>
         /// Gets all period range.
