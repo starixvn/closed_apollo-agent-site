@@ -282,7 +282,6 @@ if (typeof jQuery != "undefined") {
 						widthDialog = 400;
 						heightDialog = 380;
 					}
-					console.log(heightDialog);
 					APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
 								title, { width: widthDialog, height: heightDialog, modal: false });
 
