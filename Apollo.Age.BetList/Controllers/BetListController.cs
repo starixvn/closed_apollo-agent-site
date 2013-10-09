@@ -269,6 +269,8 @@ namespace Apollo.Age.BetList.Controllers
                 ViewBag.TotalItems = 0;
             }
 
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
@@ -331,6 +333,8 @@ namespace Apollo.Age.BetList.Controllers
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
+
+            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
             return this.View(model);
         }
