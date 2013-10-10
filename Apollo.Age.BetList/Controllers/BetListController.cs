@@ -59,7 +59,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet]        
+        [HttpGet]
         public ViewResult AccountInfo(int custId)
         {
             var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
@@ -145,12 +145,18 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
         public ViewResult Transactions()
         {
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
+
+            if (!hasPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
+            }
 
             return this.Transactions(viewModel);
         }
@@ -176,8 +182,8 @@ namespace Apollo.Age.BetList.Controllers
             {
                 FromDate = fromDate,
                 ToDate = toDate,
-                SportTypes = sportTypes,
-                BetTypes = betTypes,
+                SportTypeIds = sportTypes,
+                BetTypeIds = betTypes,
                 Username = userName,
                 UserType = userType,
                 PageIndex = pageIndex,
@@ -193,7 +199,6 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
         public ViewResult Transactions(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
@@ -226,14 +231,14 @@ namespace Apollo.Age.BetList.Controllers
                     FromDate = this.ResetStartDate(model.FromDate),
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
-                    SportTypes = model.SportTypes,
-                    BetTypes = model.BetTypes,
+                    SportTypes = model.SportTypeIds,
+                    BetTypes = model.BetTypeIds,
                     BetListPage = BetListPage.Transaction,
                     MoveBetsDay = _reportService.MoveBetsDay()
                 };
 
                 //// Cache Key
-                var sessionKey = string.Format("TransactionsReport{0}-{1}-{2}", 
+                var sessionKey = string.Format("TransactionsReport{0}-{1}-{2}",
                     criteria.LoggedId,
                     criteria.AgentId,
                     criteria.CustId
@@ -271,6 +276,13 @@ namespace Apollo.Age.BetList.Controllers
 
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
+
+            if (!hasPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
+            }
+
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
@@ -278,7 +290,6 @@ namespace Apollo.Age.BetList.Controllers
         /// Cancel ticket betlist
         /// </summary>
         [HttpGet]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTickets, Policy = Policy.Query)]
         public ViewResult TicketCancel()
         {
             var viewModel = new BetListReportViewModel
@@ -286,6 +297,13 @@ namespace Apollo.Age.BetList.Controllers
                     Username = CurrentSession.AgentName
                 };
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
+
+            if (!hasPermission)
+            {
+                return View("ReportAccessDenied", viewModel);
+            }
 
             return this.TicketCancel(viewModel);
         }
@@ -322,8 +340,8 @@ namespace Apollo.Age.BetList.Controllers
                     FromDate = this.ResetStartDate(model.FromDate),
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
-                    SportTypes = model.SportTypes,
-                    BetTypes = model.BetTypes,
+                    SportTypes = model.SportTypeIds,
+                    BetTypes = model.BetTypeIds,
                     BetListPage = BetListPage.Cancel
                 };
 
@@ -335,6 +353,13 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
+
+            if (!hasPermission)
+            {
+                return View("ReportAccessDenied", model);
+            }
 
             return this.View(model);
         }
@@ -404,14 +429,14 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
-        public ViewResult Winloss(int custId, 
-            DateTime fromDate, 
-            DateTime toDate, 
-            string type = _StringEmpty, 
-            string username = _StringEmpty, 
-            int mainShareHolderId = 0, 
-            string mainShareHolderUsername = _StringEmpty, 
-            string betType = _StringEmpty, 
+        public ViewResult Winloss(int custId,
+            DateTime fromDate,
+            DateTime toDate,
+            string type = _StringEmpty,
+            string username = _StringEmpty,
+            int mainShareHolderId = 0,
+            string mainShareHolderUsername = _StringEmpty,
+            string betType = _StringEmpty,
             string sportType = _StringEmpty,
             string sportName = _StringEmpty,
             string betTypeName = _StringEmpty)

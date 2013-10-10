@@ -2,22 +2,20 @@
 @using Apollo.Age.Entities
 @using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
-
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model MatchEnteredViewModel
-<div id="function-bar">
-    <div class="item">
-        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: "0")
-    </div>
-    @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.lblWinLoss, FunctionPermissions)
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
-    <div class="end"></div>
-</div>
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblWinLoss,
+    SportType = "0"
+})
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -33,7 +31,8 @@
                     </div>
                     <div class="cell">
                         <div class="label">
-                            <label for="FromDate">~</label>
+                            <label for="FromDate">
+                                ~</label>
                         </div>
                         <div class="editor">
                             @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
@@ -150,46 +149,64 @@
         } ();
     </script>
 }
-
 @helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
     {
-        var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
-        var matchEntered = new MatchEnteredModel();
-        
-        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
-        {
-            if (matchEnteredList != null && matchEnteredList.Any())
+            var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
+            var matchEntered = new MatchEnteredModel();
+
+            foreach (KeyValuePair<int, string> pair in matchEnteredSports)
             {
-                matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
-                
-                if (matchEntered != null)
+                if (matchEnteredList != null && matchEnteredList.Any())
                 {
-                    <tr>
-                        <td class="firstcolumn">@Html.Resource(pair.Value):</td>
-                        <td class="winloss_yesterday">@matchEntered.YesterdayEntered</td>
-                        <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered</td>
-                        <td>@matchEntered.TodayEntered</td>
-                        <td>@matchEntered.TodayNonEntered</td>
-                    </tr>
+                    matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+
+                    if (matchEntered != null)
+                    {
+    <tr>
+        <td class="firstcolumn">@Html.Resource(pair.Value):
+        </td>
+        <td class="winloss_yesterday">@matchEntered.YesterdayEntered
+        </td>
+        <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered
+        </td>
+        <td>@matchEntered.TodayEntered
+        </td>
+        <td>@matchEntered.TodayNonEntered
+        </td>
+    </tr>
+                    }
+                    else
+                    {
+    <tr>
+        <td class="firstcolumn">
+            @Html.Resource(pair.Value):
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+                    }
                 }
                 else
                 {
-                    <tr>
-                        <td class="firstcolumn">
-                            @Html.Resource(pair.Value):
-                        </td>
-                        <td></td><td></td><td></td><td></td>
-                    </tr>
+    <tr>
+        <td class="firstcolumn">
+            @Html.Resource(pair.Value):
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
                 }
             }
-            else
-            {
-                <tr>
-                    <td class="firstcolumn">
-                        @Html.Resource(pair.Value):
-                    </td>
-                    <td></td><td></td><td></td><td></td>
-                </tr>
-            }
-        }
 }

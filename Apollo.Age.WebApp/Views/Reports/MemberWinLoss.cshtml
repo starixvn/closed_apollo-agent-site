@@ -5,19 +5,17 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
-    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model MemberWinLossViewModel
-<div id="function-bar">
-    <div class="item">
-        <label for="ddlSport">@Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
-    </div>
-    @RazorHelper.RenderReportLinks(Lang.lblWinLoss, FunctionPermissions)
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
-    <div class="end">
-    </div>
-</div>
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblWinLoss,
+    SportType = Model.SportTypeIds
+})
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -56,14 +54,14 @@
                 @Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds)
             </td>
         </tr>
     </table>
     <div>
         <div class="row bg-action">
             <div class="item">
-                @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
+                @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : string.Empty)
             </div>
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
@@ -72,7 +70,6 @@
         </div>
     </div>
 </div>
-
 @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
 {
     <div class="notes">
@@ -83,7 +80,6 @@
         </ul>
     </div>
 }
-
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath, true)
@@ -301,8 +297,8 @@ else
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
-@Html.Hidden("hdSportType", Model.Sporttypes)
-@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdSportType", Model.SportTypeIds)
+@Html.Hidden("hdBettype", Model.BetTypeIds)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))

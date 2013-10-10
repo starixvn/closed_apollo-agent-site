@@ -47,8 +47,8 @@ namespace Apollo.Age.Reports.Services
             {
                 CurrentAgentId = currentAgentId.Value,
                 MainShareHolder = mainShareHolder,
-                Sporttypes = sporttypes,
-                Bettypes = bettypes
+                SportTypeIds = sporttypes,
+                BetTypeIds = bettypes
             };
 
             try

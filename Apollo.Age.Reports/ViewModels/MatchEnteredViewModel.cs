@@ -52,5 +52,9 @@ namespace Apollo.Age.Reports.ViewModels
 
             return true;
         }
+
+        public bool HasPermission { get; set; }
+
+        public string SportTypeIds { get; set; }
     }
 }

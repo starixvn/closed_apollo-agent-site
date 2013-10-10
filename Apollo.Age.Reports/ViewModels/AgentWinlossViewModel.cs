@@ -23,9 +23,9 @@ namespace Apollo.Age.Reports.ViewModels
 
         public string AgentName { get; set; }
 
-        public string Sporttypes { get; set; }
+        public string SportTypeIds { get; set; }
 
-        public string Bettypes { get; set; }
+        public string BetTypeIds { get; set; }
 
         public List<SingbetSport> SportList { get; set; }
 
@@ -47,7 +47,7 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 if (SportList != null)
                 {
-                    var sport = SportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+                    var sport = SportList.Where(t => t.Id == this.SportTypeIds).SingleOrDefault();
 
                     if (sport != null)
                     {
@@ -71,7 +71,7 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 if (BettypeList != null)
                 {
-                    var bettype = BettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+                    var bettype = BettypeList.Where(t => t.Id == this.BetTypeIds).SingleOrDefault();
 
                     if (bettype != null)
                     {

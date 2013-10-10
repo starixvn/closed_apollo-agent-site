@@ -5,19 +5,17 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
-    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model AgentWinLossViewModel
-<div id="function-bar">
-    <div class="item">
-        <label for="ddlSport">@Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
-    </div>
-    @RazorHelper.RenderReportLinks(Lang.lblWinLoss, FunctionPermissions)
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
-    <div class="end">
-    </div>
-</div>
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblWinLoss,
+    SportType = Model.SportTypeIds
+})
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -56,7 +54,7 @@
                 @Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds)
             </td>
         </tr>
     </table>
@@ -407,8 +405,8 @@ else
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
-@Html.Hidden("hdSportType", Model.Sporttypes)
-@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdSportType", Model.SportTypeIds)
+@Html.Hidden("hdBettype", Model.BetTypeIds)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))

@@ -1,24 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title - Reports</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Reports</title>
     @RenderSection("css", required: false)
-	@Styles.Render("~/css/reports")	
+    @Styles.Render("~/css/reports")
 </head>
 <body>
-	
-	<div id="page_main">
-		<div id="header_main">
-			@ViewBag.Title
-		</div>
-		<div id="content_main">
-			@RenderBody()
-		</div>
-	</div>
-	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
-	@RenderSection("scripts", required: false)
+    <div id="page_main">
+        <div id="header_main">
+            @ViewBag.Title
+        </div>
+        <div id="content_main">
+            @RenderBody()
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

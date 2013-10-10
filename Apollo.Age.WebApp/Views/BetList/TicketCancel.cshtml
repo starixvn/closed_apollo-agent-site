@@ -5,19 +5,19 @@
 @{
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
-    IEnumerable<FunctionPolicy> FunctionPermissions = (IEnumerable<FunctionPolicy>)ViewBag.allFunctionPermission;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @using (Html.BeginForm())
 {
-    <div id="function-bar">
-        <div class="item">
-            <label for="ddlSport">@Lang.lblReport:</label>
-            @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
-        </div>
-        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.TicketsCancelled, FunctionPermissions)
-        <div class="end"></div>
-        @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
-    </div>
+    @Html.Partial("~/Views/Reports/Menu.cshtml",
+new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.TicketsCancelled,
+    SportType = Model.SportTypeIds,
+    SportDropDownControl = "SportTypes"
+})
     <div id="box_header" class="report">
         <table>
             <tr>
@@ -64,7 +64,7 @@
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
                 <td>
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes")
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes")
                 </td>
             </tr>
             <tr>

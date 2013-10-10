@@ -106,6 +106,7 @@
     <Compile Include="ViewModels\AgentWinLossViewModel.cs" />
     <Compile Include="ViewModels\MemberWinLossViewModel.cs" />
     <Compile Include="ViewModels\MatchResultViewModel.cs" />
+    <Compile Include="ViewModels\ReportMenuViewModel.cs" />
     <Compile Include="ViewModels\SportCreditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

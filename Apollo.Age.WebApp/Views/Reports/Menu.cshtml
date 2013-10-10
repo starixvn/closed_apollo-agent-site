@@ -1,0 +1,13 @@
+﻿@model Apollo.Age.Reports.ViewModels.ReportMenuViewModel
+<div id="function-bar">
+    @if (!ReferenceEquals(Model.SportList, null))
+    {
+        <div class="item">
+            <label for="ddlSport">@Lang.lblReport:</label>
+            @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportType, id: !string.IsNullOrWhiteSpace(Model.SportDropDownControl) ? Model.SportDropDownControl : "ddlSport")
+        </div>
+    }
+    @RazorHelper.RenderReportLinks(Model.ReportName, Model.FunctionPolicyList, !string.IsNullOrWhiteSpace(Model.SportDropDownClassName) ? Model.SportDropDownClassName : "menu report-winloss")
+    <div class="end">
+    </div>
+</div>
