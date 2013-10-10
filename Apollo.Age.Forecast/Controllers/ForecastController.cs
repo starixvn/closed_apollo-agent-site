@@ -31,8 +31,8 @@ namespace Apollo.Age.Forecast.Controllers
     /// Forecast Function controller
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    [SessionState(SessionStateBehavior.ReadOnly)]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ForecastController : BaseController
     {
         private readonly ForecastService _forecastService;

@@ -23,9 +23,7 @@ namespace Apollo.Age.Web.Web.Attribute
     {
         #region Member
 
-        private static readonly ICurrentSession _CurrentSession = SessionManager.CurrentSession;
-
-        private static readonly IAgentUserService _AgentUserService = new AgentUserService();
+        private IAgentUserService _AgentUserService = new AgentUserService();
 
         #endregion Member
 
@@ -69,8 +67,6 @@ namespace Apollo.Age.Web.Web.Attribute
         /// <param name="filterContext">The filter context, which encapsulates information for using <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            base.OnAuthorization(filterContext);
-
             try
             {
                 if (filterContext.HttpContext == null)
@@ -79,7 +75,9 @@ namespace Apollo.Age.Web.Web.Attribute
                     return;
                 }
 
-                if (CheckFunctionAuthorization(_CurrentSession.UserId))
+                var userId = SessionManager.CurrentSession.UserId;
+
+                if (CheckFunctionAuthorization(userId))
                 {
                     //// do something here
                 }
@@ -92,6 +90,8 @@ namespace Apollo.Age.Web.Web.Attribute
             {
                 throw;
             }
+
+            base.OnAuthorization(filterContext);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Apollo.Age.Web.Web.Attribute
             {
                 if (!string.IsNullOrWhiteSpace(itemKey))
                 {
-                    temp = _AgentUserService.GetUserPolicy(_CurrentSession.UserId, itemKey);
+                    temp = _AgentUserService.GetUserPolicy(userId, itemKey);
                     policy = policy > temp ? policy : temp;
                 }
             }

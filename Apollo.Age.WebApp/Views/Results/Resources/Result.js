@@ -53,7 +53,7 @@ var Result = (function () {
                                 location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                             }
                             else {
-                                alert(jqXHR.responseText);
+                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                             }
                         });
                 }
@@ -84,7 +84,7 @@ var Result = (function () {
                                 location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                             }
                             else {
-                                alert(jqXHR.responseText);
+                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                             }
                         });
         },
@@ -113,7 +113,7 @@ var Result = (function () {
                     location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
                 else {
-                    alert(jqXHR.responseText);
+                    location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
             });
         },
@@ -211,7 +211,7 @@ var Result = (function () {
                               location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                           else {
-                              alert(jqXHR.responseText);
+                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                       });
                 }
@@ -231,7 +231,7 @@ var Result = (function () {
                               location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                           else {
-                              alert(jqXHR.responseText);
+                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                       });
                 }
@@ -251,7 +251,7 @@ var Result = (function () {
                               location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                           else {
-                              alert(jqXHR.responseText);
+                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                           }
                       });
                 }

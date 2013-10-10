@@ -7,6 +7,7 @@ var AssignFunction = function ($) {
         message: null,
         isMaster: null,
         agentUserId: null,
+        oldValue: null,
 
         init: function () {
             AssignFunction.grid = $('.tblRpt:first');
@@ -19,6 +20,26 @@ var AssignFunction = function ($) {
             else {
                 AssignFunction.message = Language.CONFIRM_SHADOW;
             }
+
+            var funcRead = "";
+            var funcHost = "";
+
+            AssignFunction.grid.find('[type=checkbox][name=funcRead]').each(function () {
+                var $this = $(this),
+			        thisIsChecked = $this.is(':checked'),
+			        row = $this.parents('tr');
+
+                if (thisIsChecked) {
+                    funcRead += $this.val() + ",";
+
+                    var itemHost = row.find('[type=checkbox][name=funcHost]');
+                    if (itemHost.is(':checked')) {
+                        funcHost += itemHost.val() + ",";
+                    }
+                }
+            });
+
+            AssignFunction.oldValue = funcRead + funcHost;
         },
 
         assignUserPermision: function () {
@@ -40,6 +61,11 @@ var AssignFunction = function ($) {
                     }
                 }
             });
+
+            if (AssignFunction.oldValue == (funcRead + funcHost)) {
+                APOLLO.showMessage(Language.NOCHANGE, 'success');
+                return;
+            }
 
             $.ajax({
                 url: url,

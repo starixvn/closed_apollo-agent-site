@@ -33,9 +33,9 @@ namespace Apollo.Age.Reports.Controllers
     /// <summary>
     /// Result controller.
     /// </summary>
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Result, Policy = Policy.Query)]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Result, Policy = Policy.Query)]
     public class ResultsController : BaseController
     {
         /// <summary>
