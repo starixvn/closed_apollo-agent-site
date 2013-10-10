@@ -49,12 +49,7 @@ var Result = (function () {
                             }
                             Result.showOtherResult();
                         }).error(function (jqXHR, exception) {
-                            if (jqXHR.status == 403) {
-                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                            }
-                            else {
-                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                            }
+                            location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                         });
                 }
             }
@@ -80,12 +75,7 @@ var Result = (function () {
                             }
                             Result.bindMatchLeague();
                         }).error(function (jqXHR, exception) {
-                            if (jqXHR.status == 403) {
-                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                            }
-                            else {
-                                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                            }
+                            location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                         });
         },
 
@@ -109,12 +99,7 @@ var Result = (function () {
                 }
                 Result.showOutrightResult();
             }).error(function (jqXHR, exception) {
-                if (jqXHR.status == 403) {
-                    location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                }
-                else {
-                    location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                }
+                location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
             });
         },
         reActiveMenu: function (action) {
@@ -207,12 +192,7 @@ var Result = (function () {
                           // Result.paging();
                       })
                       .error(function (jqXHR, exception) {
-                          if (jqXHR.status == 403) {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
-                          else {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
+                          location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                       });
                 }
             }
@@ -227,12 +207,7 @@ var Result = (function () {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
                       }).error(function (jqXHR, exception) {
-                          if (jqXHR.status == 403) {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
-                          else {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
+                          location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                       });
                 }
             }
@@ -247,12 +222,7 @@ var Result = (function () {
                           resultContainer.empty();
                           resultContainer.html(resultContent);
                       }).error(function (jqXHR, exception) {
-                          if (jqXHR.status == 403) {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
-                          else {
-                              location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                          }
+                          location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                       });
                 }
             }

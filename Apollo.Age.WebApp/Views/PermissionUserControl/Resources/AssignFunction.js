@@ -82,9 +82,13 @@ var AssignFunction = function ($) {
                     else {
                         APOLLO.showMessage(Language.UPDATED_SUCCESS, 'success');
                     }
+
+                    AssignFunction.oldValue = funcRead + funcHost;
+
                     $('#noty_top_layout_container').css({ width: "500px", left: "5px" });
                 },
                 error: function (xhr, status, err) {
+                    location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
             });
         }
