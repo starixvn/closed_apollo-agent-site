@@ -211,7 +211,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Get MatchEntered report.
         /// </summary>
         /// <returns>MatchEntered ViewResult.</returns>
-        public ViewResult MatchEntered()
+        public ActionResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -225,14 +225,50 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
+            var functionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            if (!hasPermission)
+            var winLossFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Win_Loss).FirstOrDefault();
+
+            // If not have permission on win loss report
+            if (winLossFunction == null || winLossFunction.Policy < (byte)Policy.Query)
             {
-                return View("ReportAccessDenied", matchEnteredViewModel);
+                var outStandingFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Outstanding).FirstOrDefault();
+
+                if (!ReferenceEquals(outStandingFunction, null)
+                    && outStandingFunction.Policy == (byte)Policy.Query)
+                {
+                    return RedirectToAction("OutStanding", "Reports");
+                }
+
+                var transactionFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Transactions).FirstOrDefault();
+
+                if (!ReferenceEquals(transactionFunction, null)
+                    && transactionFunction.Policy == (byte)Policy.Query)
+                {
+                    return RedirectToAction("Transactions", "BetList");
+                }
+
+                var ticketCancelFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets).FirstOrDefault();
+
+                if (!ReferenceEquals(ticketCancelFunction, null)
+                    && ticketCancelFunction.Policy == (byte)Policy.Query)
+                {
+                    return RedirectToAction("TicketCancel", "BetList");
+                }
+
+                var lineSportFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits).FirstOrDefault();
+
+                if (!ReferenceEquals(lineSportFunction, null)
+                    && lineSportFunction.Policy == (byte)Policy.Query)
+                {
+                    return RedirectToAction("SportCredit", "Reports");
+                }
+
+                return RedirectToAction("AccessDenied", "Error");
             }
+
+            ViewBag.allFunctionPermission = functionPermission;
 
             return this.View(matchEnteredViewModel);
         }

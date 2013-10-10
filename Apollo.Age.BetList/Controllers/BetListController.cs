@@ -302,7 +302,7 @@ namespace Apollo.Age.BetList.Controllers
 
             if (!hasPermission)
             {
-                return View("ReportAccessDenied", viewModel);
+                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
             }
 
             return this.TicketCancel(viewModel);
@@ -314,7 +314,6 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CancelledTickets, Policy = Policy.Query)]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
@@ -358,7 +357,7 @@ namespace Apollo.Age.BetList.Controllers
 
             if (!hasPermission)
             {
-                return View("ReportAccessDenied", model);
+                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
             }
 
             return this.View(model);

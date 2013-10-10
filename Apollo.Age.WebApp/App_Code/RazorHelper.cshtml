@@ -14,7 +14,6 @@
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.PermissionControl.Services;
 @using Apollo.Age.PermissionControl.Models;
-
 @helper ShowNoInfo(int colspan, string cssClass = "no_info")
     {
     <!--NotFoundContent-->
@@ -395,7 +394,6 @@
         }
     </td>
 }
-
 @helper RenderReportLinks(string currentLink, IEnumerable<FunctionPolicy> functionPermissions, string reportclass = "menu report-winloss")
     {         
         var classWinloss = string.Empty;
@@ -420,17 +418,17 @@
         {
             classTicketsCancelled = "class=active";
         }
-        else
+        else if (currentLink.ToUpper().Equals(Lang.LineSportCredits.ToUpper()))
         {
             classSportCredit = "class=active";
         }
 
     <ul class="@reportclass">
-        @foreach(var item in functionPermissions)
+        @foreach (var item in functionPermissions)
         {
-            if(item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= 1)
+            if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= 1)
             {
-                <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>    
+            <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>    
             }
             else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy >= 1)
             { 
@@ -438,18 +436,17 @@
             }
             else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy >= 1)
             {
-             <li @classTransaction><a href="~/betList/transactions">@Lang.transaction</a></li>
+            <li @classTransaction><a href="~/betList/transactions">@Lang.transaction</a></li>
             }
             else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy >= 1)
             {
-                <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.TicketsCancelled</a></li>
+            <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.TicketsCancelled</a></li>
             }
             else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy >= 1)
             {
-                <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
+            <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
             }
-        }                       
-        
+        }
     </ul>
 }
 @helper RenderAgentListHeader(int currentLevel, bool isReplaceUpline = false)
