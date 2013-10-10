@@ -59,7 +59,7 @@
                 totalAgentWinloss += item.AgentWinlossValue;
                 <tr>
                     <td class='c'>
-                        @Html.Raw(item.TransTime)
+                        @Html.Raw(item.TransTime.Replace(" ","</br>"))
                     </td>
                     <td class='c'>@Html.Raw(item.Discount)
                     </td>
