@@ -398,35 +398,6 @@
     <Content Include="Views\Forecast\Resources\Images\Loading.gif" />
     <Content Include="Views\Forecast\Resources\Images\Refresh.png" />
     <Content Include="Views\Forecast\Resources\ScoreMap.js" />
-    <Content Include="Views\HiddenTool\Resources\Images\01.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\01_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\02.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\02_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\03.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\03_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\04.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\04_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\05.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\05_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06_1.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\07.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\07_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\08.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\08_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\09.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\09_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\10.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\11.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\11_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\12.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\12_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\13.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\14.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\15.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\16.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\17_s.gif" />
     <Content Include="Views\Home\Resources\Default.js" />
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
@@ -709,13 +680,7 @@
     <Content Include="Views\Home\PagerPlugin.cshtml" />
     <Content Include="Areas\Wagers\Views\Web.config" />
     <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
-    <Content Include="Views\HiddenTool\Index.cshtml" />
-    <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
-    <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
-    <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
-    <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
-    <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
@@ -1082,10 +1047,6 @@
     <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
       <Name>Apollo.Age.Forecast</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj">
-      <Project>{1909258B-93B9-4E7D-A896-C57D8B22254F}</Project>
-      <Name>Apollo.Age.HiddenTool</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
