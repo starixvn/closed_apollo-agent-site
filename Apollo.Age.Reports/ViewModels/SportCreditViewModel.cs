@@ -12,6 +12,9 @@ namespace Apollo.Age.Reports.ViewModels
     using System.Collections.Generic;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Sport credit view model class.
+    /// </summary>
     public class SportCreditViewModel
     {
         public string Username { get; set; }

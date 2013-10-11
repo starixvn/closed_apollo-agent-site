@@ -12,7 +12,7 @@ namespace Apollo.Age.Reports.Models
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Date range model class.
     /// </summary>
     public class DateRangeModel
     {

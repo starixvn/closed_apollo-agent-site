@@ -41,14 +41,27 @@ namespace Apollo.Age.Account.Controllers
     {
         #region Const for paging
 
-        private const int _PageIndex = 0; // Current index page
-        private const int _PageSize = 50; // Maximum items in a page
+        /// <summary>
+        /// Current index page.
+        /// </summary>
+        private const int _PageIndex = 0;
+
+        /// <summary>
+        /// Maximum items in a page.
+        /// </summary>
+        private const int _PageSize = 50;
 
         #endregion Const for paging
 
+        /// <summary>
+        /// Service account.
+        /// </summary>
         private readonly IAccountService _accountService;
+
         private int _agentId;
+
         private string _username;
+
         private int _agentLevel;
 
         public AccountController()
@@ -205,7 +218,7 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            //// Get Top Member 
+            //// Get Top Member
             var topMember = _accountService.GetTopMember(agentInfo.CustId);
             ViewBag.TopMember = topMember;
 

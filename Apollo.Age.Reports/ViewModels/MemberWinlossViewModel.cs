@@ -15,6 +15,9 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Member win loss view model class.
+    /// </summary>
     public class MemberWinLossViewModel
     {
         public int AgentId { get; set; }
@@ -43,6 +46,12 @@ namespace Apollo.Age.Reports.ViewModels
 
         public List<Agent> DownlinePath { get; set; }
 
+        /// <summary>
+        /// Gets the name of the sport.
+        /// </summary>
+        /// <value>
+        /// The name of the sport.
+        /// </value>
         public string SportName
         {
             get
@@ -67,6 +76,12 @@ namespace Apollo.Age.Reports.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the name of the bet type.
+        /// </summary>
+        /// <value>
+        /// The name of the bet type.
+        /// </value>
         public string BettypeName
         {
             get

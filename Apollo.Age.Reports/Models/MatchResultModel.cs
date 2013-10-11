@@ -14,12 +14,15 @@ namespace Apollo.Age.Reports.Models
     using System.Resources;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Match result model.
+    /// </summary>
     public class MatchResultModel
     {
-        private object locker = new object();
+        private object _locker = new object();
         private ResourceManager _resourceManager = null;
 
-        // Define list key for eventstatus
+        // Define list key for eventstatus.
         private Dictionary<string, int> _event = new Dictionary<string, int>()
         {
             { "running", Convert.ToInt32("0000000", 2) },
@@ -33,7 +36,7 @@ namespace Apollo.Age.Reports.Models
             { "internal", Convert.ToInt32("0001000", 2) }
         };
 
-        // Define list key for Result: isPending(1 bit) isHTCal(1 bit) calculate(1 bit) enventStatus(4 bit)
+        // Define list key for Result: isPending(1 bit) isHTCal(1 bit) calculate(1 bit) enventStatus(4 bit).
         private Dictionary<int, string> _result = new Dictionary<int, string>()
         {
             { Convert.ToInt32("0000010", 2), "closed" },
@@ -66,6 +69,12 @@ namespace Apollo.Age.Reports.Models
 
         public int LeagueId { get; set; }
 
+        /// <summary>
+        /// Gets the name of the league.
+        /// </summary>
+        /// <value>
+        /// The name of the league.
+        /// </value>
         public string LeagueName
         {
             get
@@ -76,6 +85,12 @@ namespace Apollo.Age.Reports.Models
 
         public string ViewName { get; set; }
 
+        /// <summary>
+        /// Gets the name of the sport.
+        /// </summary>
+        /// <value>
+        /// The name of the sport.
+        /// </value>
         public string SportName
         {
             get
@@ -96,6 +111,12 @@ namespace Apollo.Age.Reports.Models
 
         public int HomeId { get; set; }
 
+        /// <summary>
+        /// Gets the home team.
+        /// </summary>
+        /// <value>
+        /// The home team.
+        /// </value>
         public string HomeTeam
         {
             get
@@ -106,6 +127,12 @@ namespace Apollo.Age.Reports.Models
 
         public int AwayId { get; set; }
 
+        /// <summary>
+        /// Gets the away team.
+        /// </summary>
+        /// <value>
+        /// The away team.
+        /// </value>
         public string AwayTeam
         {
             get
@@ -138,11 +165,14 @@ namespace Apollo.Age.Reports.Models
 
         public bool IsPending { get; set; }
 
-        #region Map event status to coresponding language
+        #region Map event status to responding language
 
         /// <summary>
-        /// Map event status to coresponding language
+        /// Gets map event status to responding language.
         /// </summary>
+        /// <value>
+        /// The event status translation.
+        /// </value>
         public string EventStatusTranslation
         {
             get
@@ -152,15 +182,15 @@ namespace Apollo.Age.Reports.Models
                 int htCal = Convert.ToInt32(this.IsHTCal);
                 int cal = Convert.ToInt32(this.Calculate);
 
-                pending <<= 6;  // Shift right 6 bit for pending status
-                htCal <<= 5;    // Shift right 5 bit for haft time calculate status
-                cal <<= 4;      // Shift right 4 bit for calculate status
+                pending <<= 6;  // Shift right 6 bit for pending status.
+                htCal <<= 5;    // Shift right 5 bit for haft time calculate status.
+                cal <<= 4;      // Shift right 4 bit for calculate status.
 
                 resultKey = pending | htCal | cal;
 
                 if (this._event.ContainsKey(this.EventStatus.ToLowerInvariant()))
                 {
-                    resultKey |= this._event[this.EventStatus.ToLowerInvariant()]; // Or with event status
+                    resultKey |= this._event[this.EventStatus.ToLowerInvariant()]; // Or with event status.
 
                     if (this._result.ContainsKey(resultKey))
                     {
@@ -168,7 +198,7 @@ namespace Apollo.Age.Reports.Models
                     }
                     else
                     {
-                        // Get status from resource lang, if any
+                        // Get status from resource lang, if any.
                         string str = this.GetResource(this.EventStatus.ToLower());
 
                         if (str != string.Empty)
@@ -182,11 +212,18 @@ namespace Apollo.Age.Reports.Models
             }
         }
 
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <param name="key">The key need to get resource value.</param>
+        /// <returns>
+        /// Return resource value.
+        /// </returns>
         public string GetResource(string key)
         {
             if (this._resourceManager == null)
             {
-                lock (this.locker)
+                lock (this._locker)
                 {
                     if (this._resourceManager == null)
                     {
@@ -199,6 +236,11 @@ namespace Apollo.Age.Reports.Models
             return this._resourceManager.GetString(key) ?? string.Empty;
         }
 
+        /// <summary>
+        /// Uppercases the first.
+        /// </summary>
+        /// <param name="s">The string that need to upper case first letter.</param>
+        /// <returns>String formatted.</returns>
         private string UppercaseFirst(string s)
         {
             if (string.IsNullOrEmpty(s))

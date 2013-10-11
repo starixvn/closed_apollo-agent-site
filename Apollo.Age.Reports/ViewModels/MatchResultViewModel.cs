@@ -10,15 +10,9 @@
 namespace Apollo.Age.Reports.ViewModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Services;
-    using Apollo.Age.Reports.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Match result view model class.
     /// </summary>
     public class MatchResultViewModel
     {

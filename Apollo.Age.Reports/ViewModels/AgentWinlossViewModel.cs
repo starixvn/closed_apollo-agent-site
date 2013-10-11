@@ -15,6 +15,9 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Agent win loss model class.
+    /// </summary>
     public class AgentWinLossViewModel
     {
         public bool IsSuper { get; set; }
