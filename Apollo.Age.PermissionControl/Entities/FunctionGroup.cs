@@ -20,8 +20,8 @@ namespace Apollo.Age.PermissionControl.Entities
 
         public string GroupName { get; set; }
 
-        public short DisplayOrder1 { get; set; }
+        public short DisplayOrder { get; set; }
 
-        public bool IsActive1 { get; set; }
+        public bool IsActive { get; set; }
     }
 }
