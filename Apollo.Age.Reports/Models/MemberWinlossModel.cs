@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Models
 {
     using System;
 
+    /// <summary>
+    /// Member win loss model class.
+    /// </summary>
     [Serializable]
     public class MemberWinLossModel : AgentWinLossModel
     {

@@ -22,10 +22,19 @@ namespace Apollo.Age.Reports.Services
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Report service class.
+    /// </summary>
     public class ReportService : QueryService
     {
         private const string _BalanceUpdayKey = "Apollo.Age.Reports.Services.SpecialDays";
 
+        /// <summary>
+        /// Gets the cache manager.
+        /// </summary>
+        /// <value>
+        /// The cache manager.
+        /// </value>
         protected ICache CacheManager
         {
             get
@@ -34,6 +43,12 @@ namespace Apollo.Age.Reports.Services
             }
         }
 
+        /// <summary>
+        /// Gets the special days.
+        /// </summary>
+        /// <value>
+        /// The special days.
+        /// </value>
         private dynamic SpecialDays
         {
             get
@@ -49,16 +64,28 @@ namespace Apollo.Age.Reports.Services
             }
         }
 
+        /// <summary>
+        /// Gets the balance up day.
+        /// </summary>
+        /// <returns>Balance Up day.</returns>
         public DateTime GetBalanceUpDay()
         {
             return SpecialDays.BalanceUpDay;
         }
 
+        /// <summary>
+        /// Moves the bets day.
+        /// </summary>
+        /// <returns>Move bet day.</returns>
         public DateTime MoveBetsDay()
         {
             return SpecialDays.MoveBetsDay;
         }
 
+        /// <summary>
+        /// Gets the parlay bet type.
+        /// </summary>
+        /// <returns>List of bet types.</returns>
         public List<SingbetBettype> GetParlayBettype()
         {
             var bettypeList = new List<SingbetBettype>
@@ -83,6 +110,11 @@ namespace Apollo.Age.Reports.Services
             return bettypeList;
         }
 
+        /// <summary>
+        /// Gets the bet type.
+        /// </summary>
+        /// <param name="isIncludeParlay">Include parlay bet type or not.</param>
+        /// <returns>List of bet types.</returns>
         public List<SingbetBettype> GetBettype(bool isIncludeParlay = true)
         {
             var bettypeList = new List<SingbetBettype>
@@ -171,17 +203,24 @@ namespace Apollo.Age.Reports.Services
                         Id = BettypeGroup.MixParlay,
                         Name = Lang.lblMixParlay
                     });
+
                 bettypeList.Add(
                     new SingbetBettype
                     {
                         Id = BettypeGroup.SystemParlay,
                         Name = Lang.lblSystemParlay
-                    }
-                );
+                    });
             }
+
             return bettypeList;
         }
 
+        /// <summary>
+        /// Agents the down line path.
+        /// </summary>
+        /// <param name="parentId">The parent identifier.</param>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <returns>List of agent.</returns>
         public IEnumerable<Agent> AgentDownlinePath(int parentId, int agentId)
         {
             IEnumerable<Agent> models = GetData<Agent>(new AgentDownlinePathCriteria
@@ -234,7 +273,12 @@ namespace Apollo.Age.Reports.Services
         /// <param name="font">Font of style.</param>
         /// <param name="isBorder">Border or no.</param>
         /// <returns>New style.</returns>
-        public ICellStyle CreateStyle(HSSFWorkbook hssfworkbook, short backgroundColor = -1, HorizontalAlignment align = HorizontalAlignment.LEFT, IFont font = null, bool isBorder = true)
+        public ICellStyle CreateStyle(
+            HSSFWorkbook hssfworkbook,
+            short backgroundColor = -1,
+            HorizontalAlignment align = HorizontalAlignment.LEFT,
+            IFont font = null,
+            bool isBorder = true)
         {
             ICellStyle style = hssfworkbook.CreateCellStyle();
             if (backgroundColor != -1)

@@ -21,10 +21,10 @@ namespace Apollo.Age.Reports.Services
     public class ResultService : ReportService
     {
         /// <summary>
-        /// Get sport which has result in a specified date
+        /// Get sport which has result in a specified date.
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+        /// <param name="date">Input a day.</param>
+        /// <returns>List of sport result.</returns>
         public IEnumerable<Sport> GetResultSports(DateTime date)
         {
             var sports = GetData<Sport>(new ResultGetSportCriteria
@@ -36,7 +36,14 @@ namespace Apollo.Age.Reports.Services
             return sports;
         }
 
-      
+        /// <summary>
+        /// Gets the match result.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="sportTypes">The sport types.</param>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="isShowDataTest">Include data test or not.</param>
+        /// <returns>List of match result.</returns>
         public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
@@ -62,13 +69,19 @@ namespace Apollo.Age.Reports.Services
             return matchResult;
         }
 
+        /// <summary>
+        /// Gets the outright result.
+        /// </summary>
+        /// <param name="fromDate">From date.</param>
+        /// <param name="isShowDataTest">Include data test or not.</param>
+        /// <returns>List of outright result.</returns>
         public IEnumerable<OutrightResultModel> GetOutrightResult(DateTime fromDate, bool isShowDataTest)
         {
             var criteria = new GetOutrightResultCriteria
             {
                 FromDate = fromDate,
                 IsShowAll = isShowDataTest,
-                BalanceUpDay = GetBalanceUpDay(),                
+                BalanceUpDay = GetBalanceUpDay(),
             };
             var cacheKey = fromDate.ToString("yyyyMMdd") + (isShowDataTest ? "_1" : "_0");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
@@ -85,6 +98,11 @@ namespace Apollo.Age.Reports.Services
             return result;
         }
 
+        /// <summary>
+        /// Gets the result by match.
+        /// </summary>
+        /// <param name="matchId">The match identifier.</param>
+        /// <returns>List of match result.</returns>
         public IEnumerable<MatchResultModel> GetResultByMatch(int matchId)
         {
             var criteria = new GetResultByMatchCriteria
@@ -97,6 +115,11 @@ namespace Apollo.Age.Reports.Services
             return matchResult;
         }
 
+        /// <summary>
+        /// Gets the result by parlay.
+        /// </summary>
+        /// <param name="refNo">The reference number.</param>
+        /// <returns>List of parlay result.</returns>
         public IEnumerable<MatchResultModel> GetResultByParlay(long refNo)
         {
             var criteria = new GetResultByParlayCriteria
