@@ -129,6 +129,22 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static int PeakHoursFrom
+        {
+            get
+            {
+                return Converter.ToInt(GetValue("PeakHours").Split('-')[0]);
+            }
+        }
+
+        public static int PeakHoursTo
+        {
+            get
+            {
+                return Converter.ToInt(GetValue("PeakHours").Split('-')[1]);
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>

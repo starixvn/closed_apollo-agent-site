@@ -35,6 +35,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
+    using System;
 
     /// <summary>
     /// Customer Setting Controller
@@ -335,6 +336,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.ParentUsername = parentUsername;
+            ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 

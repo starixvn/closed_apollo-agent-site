@@ -27,6 +27,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Configurations;
     using Apollo.Age.Resources;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Enumerations;
 
     public class AccountService : ServiceBase, IAccountService
     {
@@ -319,5 +320,57 @@ namespace Apollo.Age.Account.Services
 
             return false;
         }
+
+        /// <summary>
+        /// Check current Time is in peak hours, GMT+8.
+        /// </summary>
+        /// <returns>Current time is in peak hours or not.</returns>
+        public bool IsInPeakHours(int agentLevel)
+        {
+            try
+            {
+                int fromHour = AppSettings.PeakHoursFrom;
+                int toHour = AppSettings.PeakHoursTo;
+                bool levelNotAllow = agentLevel < 3;
+                bool isInPeakHour = false;
+
+                TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+                var gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), gmtPlus8);
+
+                switch (gmtPlus8Time.DayOfWeek)
+                {
+                    case DayOfWeek.Saturday:
+                        if (gmtPlus8Time.Hour >= fromHour)
+                        {
+                            isInPeakHour = true;
+                        }
+
+                        break;
+                    case DayOfWeek.Sunday:
+                        if (gmtPlus8Time.Hour >= fromHour || gmtPlus8Time.Hour <= toHour)
+                        {
+                            isInPeakHour = true;
+                        }
+
+                        break;
+                    case DayOfWeek.Monday:
+                        if (gmtPlus8Time.Hour <= toHour)
+                        {
+                            isInPeakHour = true;
+                        }
+
+                        break;
+                }
+
+                return isInPeakHour && levelNotAllow;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
+        }
+                
     }
 }
