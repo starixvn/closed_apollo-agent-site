@@ -419,7 +419,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                                             betType.presetSpinBox.input.onchange();
-                                            betType.presetOnMember.checked = currentCopyBetType.presetOnMember.checked;
                                         }
                                         if (betType.maxSpinBox) {
                                             betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
@@ -702,7 +701,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                     dataChanged = true;
                                 }
 
-                                if (dataChanged == true || isEditMultiple || currentPtValue.IsApplyMember) {
+                                if (dataChanged == true || isEditMultiple) {
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
                                     currentBetType.Pt.IsChangePt = dataChanged || isEditMultiple;
                                 }
@@ -807,7 +806,6 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     if (betType.presetSpinBox) {
                         betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                         betType.presetSpinBox.input.onchange();
-                        betType.presetOnMember.checked = currentCopyBetType.presetOnMember.checked;
                     }
                     if (betType.maxSpinBox) {
                         betType.maxSpinBox.setValue(currentCopyBetType.maxSpinBox.getValue(), true);
