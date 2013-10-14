@@ -305,32 +305,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                 if (criteria.IsValid())
                 {
-                    //var uspParams = new Hashtable
-                    //{
-                    //    { "loggedid", criteria.LoggedId },
-                    //    { "agentid", criteria.AgentId },
-                    //    { "custid", criteria.CustId },
-                    //    { "fromdate", criteria.FromDate },
-                    //    { "todate", criteria.ToDate },
-                    //    { "statusids", criteria.StatusIds },
-                    //    { "sporttypes", criteria.SportTypes },
-                    //    { "bettypes", criteria.BetTypes },
-                    //    { "rpttype", criteria.RptType },
-                    //};
-
-                    var uspParams = new
-                    {
-                        loggedid = criteria.LoggedId,
-                        agentid = criteria.AgentId,
-                        custid = criteria.CustId,
-                        fromdate = criteria.FromDate,
-                        todate = criteria.ToDate,
-                        statusids = criteria.StatusIds,
-                        sporttypes = criteria.SportTypes,
-                        bettypes = criteria.BetTypes,
-                        rpttype = criteria.RptType,
-                    };
-
                     if (isIncludeOldData)
                     {
                         if (criteria.FromDate < balanceUpDay)
@@ -339,6 +313,18 @@ namespace Apollo.Age.BetList.Repositories.Impl
                             {
                                 using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
                                 {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate,
+                                        todate = criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = criteria.SportTypes,
+                                        bettypes = criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                    };
 
                                     var dataSet = db.ExecuteDataSet(uspParams);
 
@@ -363,6 +349,19 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                                 using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
                                 {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate,
+                                        todate = criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = criteria.SportTypes,
+                                        bettypes = criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                    };
+
                                     var dataSet = db.ExecuteDataSet(uspParams);
 
                                     if (dataSet.Tables.Count > 1)
@@ -379,6 +378,20 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                                 using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from Archive database only.
                                 {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate,
+                                        todate = criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = criteria.SportTypes,
+                                        bettypes = criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                        movebetsdays = criteria.MoveBetsDay
+                                    };
+
                                     var dataSet = db.ExecuteDataSet(uspParams);
 
                                     if (dataSet.Tables.Count > 1)
@@ -405,7 +418,20 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         {
                             using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from main database only.
                             {
-                                
+                                var uspParams = new
+                                {
+                                    loggedid = criteria.LoggedId,
+                                    agentid = criteria.AgentId,
+                                    custid = criteria.CustId,
+                                    fromdate = criteria.FromDate,
+                                    todate = criteria.ToDate,
+                                    statusids = criteria.StatusIds,
+                                    sporttypes = criteria.SportTypes,
+                                    bettypes = criteria.BetTypes,
+                                    rpttype = criteria.RptType,
+                                    movebetsdays = criteria.MoveBetsDay
+                                };
+
                                 var dataSet = db.ExecuteDataSet(uspParams);
 
                                 if (dataSet.Tables.Count > 1)
