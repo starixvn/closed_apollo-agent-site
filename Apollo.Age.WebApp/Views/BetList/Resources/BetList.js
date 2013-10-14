@@ -144,8 +144,12 @@ if (typeof jQuery != "undefined") {
                 BETLIST.FromLastPeriod = $("#lastPeriodFrom");
                 BETLIST.ToLastPeriod = $("#lastPeriodTo");
                 // Event click submit on ticket cancel
-                $(".act-ticket-cancel").click(function () {
+                $("#btnSubmitCancelTicket").click(function () {
                     BETLIST.ticketCancel();
+                });
+
+                $("#btnSubmitTransaction").click(function () {
+                    BETLIST.Transaction();
                 });
 
                 $('#backLink').click(function () {
@@ -170,7 +174,7 @@ if (typeof jQuery != "undefined") {
                         case "2":
                             BETLIST.FromDate.val(BETLIST.Yesterday.val());
                             BETLIST.ToDate.val(BETLIST.Yesterday.val());
-                            break;                      
+                            break;
                         case "4":
                             BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
                             BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
@@ -269,6 +273,17 @@ if (typeof jQuery != "undefined") {
                 $.blockUI();
                 $("form:first").submit();
             },
+
+            Transaction: function () {
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+
             initEditLink: function () {
                 $(".view-detail").click(function () {
                     var fromDate = toDate = type = "";
