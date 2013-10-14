@@ -24,6 +24,7 @@ namespace Apollo.Age.Web.Filters
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.Write(Resources.Lang.UnauthorizedMsg);
                 filterContext.Result = new HttpUnauthorizedResult();
                 filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
@@ -45,6 +46,7 @@ namespace Apollo.Age.Web.Filters
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.Write(Resources.Lang.UnauthorizedMsg);
                 filterContext.Result = new HttpUnauthorizedResult();
                 filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);

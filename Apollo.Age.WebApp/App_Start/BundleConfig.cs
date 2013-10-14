@@ -250,7 +250,7 @@ namespace Apollo.Age.WebApp
             #region Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
-                "~/_globalresources/js/head.min.js",
+                "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/noty/jquery.noty.js",
@@ -265,7 +265,7 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/editsetting.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/editpositiontakingjs").Include(
-                "~/_globalresources/js/head.min.js",
+                "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/noty/jquery.noty.js",

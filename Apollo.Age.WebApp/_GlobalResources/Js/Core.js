@@ -52,7 +52,7 @@ if (typeof jQuery != 'undefined') {
                     if (frame.length > 0) {
                         frame.html(frameHtml);
                     } else {
-                        var blockLoading = '<div class="block-loading ' + accessClass + '"></div>';
+                        var blockLoading = '<p class="block-loading">loading..............................................</p>';
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
                     return APOLLO.openDialog(frame, title, options);
@@ -64,7 +64,7 @@ if (typeof jQuery != 'undefined') {
                         accessClass = "loading-scoremap";
                     }
                 }
-                var blockLoading = '<div class="block-loading ' + accessClass + '">loading............................................................</div>';
+                var blockLoading = '<p class="block-loading">loading..............................................</p>';
 
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
@@ -74,7 +74,12 @@ if (typeof jQuery != 'undefined') {
             },
             resizeDialog: function (width, height) {
                 if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
-                    APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
+                   
+                    if ($(window).width() >= 1024) {
+                        APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
+                    } else {
+                        APOLLO.currentOpenDialog.dialog("option", { width: width, height: height });
+                    }
                 }
             },
             setDialogHeight: function (target, height) {
@@ -116,17 +121,17 @@ if (typeof jQuery != 'undefined') {
                         break;
                     case 'error':
                         noty({
-                                text: message,
-                                type: type,
-                                errorType: 'single',
-                                template: '<div class="noty_message error' + (isMultple? ' errormultiple':'') + '"><span class="noty_text"></span></div>',
-                                buttons: true,
-                                buttons: [{
-                                    addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
-                                        $noty.close();
-                                    }
-                                }]
-                            });
+                            text: message,
+                            type: type,
+                            errorType: 'single',
+                            template: '<div class="noty_message error' + (isMultple ? ' errormultiple' : '') + '"><span class="noty_text"></span></div>',
+                            buttons: true,
+                            buttons: [{
+                                addClass: 'btn btn-primary', text: 'Close', onClick: function ($noty) {
+                                    $noty.close();
+                                }
+                            }]
+                        });
                         break;
 
                 }
@@ -422,13 +427,29 @@ if (typeof jQuery != 'undefined') {
                 data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
                 return data;
             },
-
-
-
-
             init: function () {
                 APOLLO.initDatePicker();
                 //APOLLO.initFreeHeader();
+            },
+            resolutionForScreens: function (width, height) {
+                var resolution = new Array();
+                if (($(window).width() >= 1024)) {
+                    resolution["width"] = width;
+                    resolution["height"] = height;
+                } else {
+                    if (width < 960) {
+                        resolution["width"] = width;
+                    } else {
+                        resolution["width"] = 960;
+                    }
+
+                    if (height < 510) {
+                        resolution["height"] = height;
+                    } else {
+                        resolution["height"] = 510;
+                    }
+                } console.log(resolution);
+                return resolution;
             }
         };
     } (jQuery);

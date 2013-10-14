@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Entities\BetListPage.cs" />
     <Compile Include="Entities\RTFHelper.cs" />
+    <Compile Include="Entities\SportTypeNames.cs" />
     <Compile Include="Entities\SystemParlaySerial.cs" />
     <Compile Include="Entities\SystemParlayTicket.cs" />
     <Compile Include="Entities\TextBlock.cs" />
