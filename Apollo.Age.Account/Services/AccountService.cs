@@ -347,7 +347,7 @@ namespace Apollo.Age.Account.Services
 
                         break;
                     case DayOfWeek.Sunday:
-                        if (gmtPlus8Time.Hour >= fromHour && gmtPlus8Time.Hour <= toHour)
+                        if (gmtPlus8Time.Hour >= fromHour || gmtPlus8Time.Hour <= toHour)
                         {
                             isInPeakHour = true;
                         }
