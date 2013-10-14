@@ -71,10 +71,10 @@
     <Compile Include="Entities\FunctionGroup.cs" />
     <Compile Include="Models\FunctionPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Impl\IAgentUserRepository.cs" />
-    <Compile Include="Repositories\Impl\IFunctionRepository.cs" />
-    <Compile Include="Repositories\Interface\AgentUserRepository.cs" />
-    <Compile Include="Repositories\Interface\FunctionRepository.cs" />
+    <Compile Include="Repositories\Interface\IAgentUserRepository.cs" />
+    <Compile Include="Repositories\Interface\IFunctionRepository.cs" />
+    <Compile Include="Repositories\Impl\AgentUserRepository.cs" />
+    <Compile Include="Repositories\Impl\FunctionRepository.cs" />
     <Compile Include="Services\AgentUserService.cs" />
     <Compile Include="Services\IAgentUserService.cs" />
     <Compile Include="Services\FunctionService.cs" />
