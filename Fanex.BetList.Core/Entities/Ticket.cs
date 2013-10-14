@@ -132,6 +132,11 @@ namespace Fanex.BetList.Core.Entities
 
         public int FinalAwayScore { get; set; }
 
+        public int HaftTimeHomeScore { get; set; }
+
+        public int HaftTimeAwayScore { get; set; }
+
         #endregion ITicket Members
+
     }
 }

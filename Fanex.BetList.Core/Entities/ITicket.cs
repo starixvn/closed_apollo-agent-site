@@ -134,5 +134,9 @@ namespace Fanex.BetList.Core.Entities
         int FinalHomeScore { get; set; }
 
         int FinalAwayScore { get; set; }
+
+        int HaftTimeHomeScore { get; set; }
+
+        int HaftTimeAwayScore { get; set; }
     }
 }

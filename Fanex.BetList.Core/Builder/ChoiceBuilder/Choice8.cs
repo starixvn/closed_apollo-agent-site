@@ -8,12 +8,30 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
+using Fanex.BetList.Core.Entities;
+using System.Collections.Generic;
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
     /// 1st Over/Under
     /// </summary>
     public class Choice8 : Choice3
-    {        
+    {
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        {
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+
+            string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+            if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+                || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+            {
+                this.Template.Score.finalHomeScore = ticket.HaftTimeHomeScore.ToString();
+                this.Template.Score.finalAwayScore = ticket.HaftTimeAwayScore.ToString();
+            }
+            else
+            {
+                this.Template.Score.Visible = false;
+            }
+        }
     }
 }
