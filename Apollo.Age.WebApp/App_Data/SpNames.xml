@@ -555,7 +555,7 @@
     <Function Name="Wagers-Outright">
         <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB.aplweb"/>
     </Function>
-    <Function>
+    <Function Name="Permission-User-Control">
         <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRCUST.CustDB.aplweb"/>
         <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
         <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRCUST.CustDB.aplweb"/>
