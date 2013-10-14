@@ -556,9 +556,9 @@
         <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB.aplweb"/>
     </Function>
     <Function Name="Permission-User-Control">
-        <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRAGE.RepDB.aplweb"/>
         <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
-        <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
         <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
         </Setting>
@@ -566,7 +566,7 @@
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
             <Mapping DataField="AgentUsername" ObjectProperty="Username" />
         </Setting>
-        <Setting Key="Age_AgentUser_GetUserFunctionPolicy" SpName="Age_AgentUser_GetUserFunctionPolicy" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_AgentUser_GetUserFunctionPolicy" SpName="Age_AgentUser_GetUserFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
         <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="CreatorId" ObjectProperty="Id" />
         </Setting>
