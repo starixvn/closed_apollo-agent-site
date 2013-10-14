@@ -389,7 +389,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         sporttypes = criteria.SportTypes,
                                         bettypes = criteria.BetTypes,
                                         rpttype = criteria.RptType,
-                                        movebetsdays = criteria.MoveBetsDay
+                                        movebetsday = criteria.MoveBetsDay
                                     };
 
                                     var dataSet = db.ExecuteDataSet(uspParams);
@@ -429,7 +429,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     sporttypes = criteria.SportTypes,
                                     bettypes = criteria.BetTypes,
                                     rpttype = criteria.RptType,
-                                    movebetsdays = criteria.MoveBetsDay
+                                    movebetsday = criteria.MoveBetsDay
                                 };
 
                                 var dataSet = db.ExecuteDataSet(uspParams);

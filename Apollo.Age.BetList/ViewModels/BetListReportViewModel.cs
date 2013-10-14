@@ -51,6 +51,8 @@ namespace Apollo.Age.BetList.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
 
+        public DateTime MoveBetDay { get; set; }
+
         public DateRangeModel ThisPeriod { get; set; }
 
         public DateRangeModel LastPeriod { get; set; }

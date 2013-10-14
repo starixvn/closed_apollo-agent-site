@@ -303,6 +303,7 @@ namespace Apollo.Age.BetList.Controllers
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay();
             int agentId, custId;
             int errorCode;
 
@@ -312,6 +313,7 @@ namespace Apollo.Age.BetList.Controllers
             model.SportList = SingbetSportService.GetSport(isOther: false);
             model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
             model.BalanceUpDay = balanceUpDay;
+            model.MoveBetDay = moveBetsDay;
 
             if (errorCode == 0)
             {
@@ -327,7 +329,8 @@ namespace Apollo.Age.BetList.Controllers
                     SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
                     BetTypes = model.BetTypes,
                     BalanceUpDay = model.BalanceUpDay,
-                    BetListPage = BetListPage.Cancel
+                    BetListPage = BetListPage.Cancel,
+                    MoveBetsDay = model.MoveBetDay
                 };
 
                 TicketResult mainTickets;
