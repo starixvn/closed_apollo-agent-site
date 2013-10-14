@@ -2011,4 +2011,7 @@
   <data name="EstimateTime" xml:space="preserve">
     <value>The updating process will be completed in {0} minute(s) and {1} second(s). Do you want to continue update?</value>
   </data>
+  <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
+    <value>This function is not available during peak hour at weekend since it might affect the performance of the whole system. Please contact CSD for further assistance.</value>
+  </data>
 </root>

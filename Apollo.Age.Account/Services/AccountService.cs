@@ -319,5 +319,32 @@ namespace Apollo.Age.Account.Services
 
             return false;
         }
+
+        /// <summary>
+        /// Check current Time is in peak hours, GMT+8.
+        /// </summary>
+        /// <returns>Current time is in peak hours or not.</returns>
+        public bool IsInPeakHours()
+        {
+            try
+            {
+                TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+                var gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), gmtPlus8);
+
+                if ((gmtPlus8Time.DayOfWeek == DayOfWeek.Saturday || gmtPlus8Time.DayOfWeek == DayOfWeek.Sunday)
+                    && gmtPlus8Time.Hour >= 19 
+                    && gmtPlus8Time.Hour <= 2)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
+        }
+                
     }
 }

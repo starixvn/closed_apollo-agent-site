@@ -4382,6 +4382,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This function is not available during peak hour at weekend since it might affect the performance of the whole system. Please contact CSD for further assistance..
+        /// </summary>
+        public static string NotAllowEditSettingInPeakHours {
+            get {
+                return ResourceManager.GetString("NotAllowEditSettingInPeakHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nov.
         /// </summary>
         public static string November {

@@ -54,5 +54,7 @@ namespace Apollo.Age.Account.Services
         string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting);
 
         bool HasMember(int agentId);
+
+        bool IsInPeakHours();
     }
 }
