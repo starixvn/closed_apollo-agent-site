@@ -47,6 +47,12 @@ if (typeof jQuery != 'undefined') {
 
                     // remove the messages when open the other message
                     $('#noty_top_layout_container').remove();
+                    ////DEFAULT_LAYOUT
+                    if (!DEFAULT_LAYOUT.allowEdit)
+                    {
+                        APOLLO.showMessage(Language.NOT_ALLOW_EDIT_MESSAGE, 'error');
+                        return;
+                    }
 
                     if (EDITPOSITIONTAKING.positionTakingElement.Validate()) {
 

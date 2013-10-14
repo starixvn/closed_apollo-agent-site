@@ -55,6 +55,6 @@ namespace Apollo.Age.Account.Services
 
         bool HasMember(int agentId);
 
-        bool IsInPeakHours();
+        bool IsInPeakHours(int agentLevel);
     }
 }

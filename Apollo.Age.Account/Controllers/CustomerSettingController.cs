@@ -325,6 +325,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.ParentUsername = parentUsername;
+            ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
