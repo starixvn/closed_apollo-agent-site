@@ -37,7 +37,7 @@
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.ToDate, maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
