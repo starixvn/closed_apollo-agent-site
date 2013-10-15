@@ -424,9 +424,9 @@ if (typeof jQuery != 'undefined') {
             },
 
             IsValidDate: function (date) {
-                try
-                {
-                    return Date.parse(date);
+                try {
+
+                    return Date.parse(date.replace(/-/g, '/'));
                 }
                 catch (FormatException) 
                 {
