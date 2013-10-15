@@ -63,12 +63,17 @@
 
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                $.blockUI();
-                var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
+                if (WINLOSS.FromDate.val() < WINLOSS.FromLastPeriod.val() || WINLOSS.ToDate.val() < WINLOSS.FromLastPeriod.val()) {                    
+                    alert("Date range cannot be less than " + WINLOSS.FromLastPeriod.val());
+                }
+                else {
+                    $.blockUI();
+                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?FromDate='
                     + WINLOSS.FromDate.val() + "&ToDate=" + WINLOSS.ToDate.val()
                     + "&Sporttypes=" + WINLOSS.ddlSport.val()
                     + "&Bettypes=" + WINLOSS.ddlBettype.val());
-                location.href = url;
+                    location.href = url;
+                }
             });
 
             $(".view-agentwinloss").on("click", function () {

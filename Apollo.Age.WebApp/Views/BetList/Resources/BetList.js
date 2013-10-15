@@ -145,6 +145,10 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ToLastPeriod = $("#lastPeriodTo");
                 // Event click submit on ticket cancel
                 $("#btnSubmitBetlist").click(function () {
+                    BETLIST.commonBetlist();
+                });
+
+                $("#btnSubmitCancelBetlist").click(function () {
                     BETLIST.ticketCancel();
                 });
 
@@ -269,9 +273,24 @@ if (typeof jQuery != "undefined") {
                 });
             },
 
+            commonBetlist: function () {
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+
             ticketCancel: function () {
-                $.blockUI();
-                $("form:first").submit();
+                if (BETLIST.FromDate.val() < BETLIST.FromThisPeriod.val() || BETLIST.ToDate.val() < BETLIST.FromThisPeriod.val()) {
+                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.FromThisPeriod.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
             },
 
             Transaction: function () {

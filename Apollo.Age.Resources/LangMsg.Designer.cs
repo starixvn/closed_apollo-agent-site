@@ -61,6 +61,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date range cannot be less than.
+        /// </summary>
+        public static string MessageValidateDateRange {
+            get {
+                return ResourceManager.GetString("MessageValidateDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date range cannot be less than Archived Date.
         /// </summary>
         public static string MessageValidateWithArchivedDate {
