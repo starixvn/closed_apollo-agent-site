@@ -69,7 +69,7 @@
                 }
 
                 if (WINLOSS.FromDate.val() < WINLOSS.FromLastPeriod.val() || WINLOSS.ToDate.val() < WINLOSS.FromLastPeriod.val()) {
-                    alert(LANGUAGES.MessageValidateDateRange + WINLOSS.FromLastPeriod.val());
+                    alert(LANGUAGES.MessageValidateDateRange + " " + WINLOSS.FromLastPeriod.val());
                 }
                 else {
                     $.blockUI();
