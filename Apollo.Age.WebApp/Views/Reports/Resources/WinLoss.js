@@ -63,8 +63,13 @@
 
             // Agent WinLoss Report
             $("#btnSubmit").bind('click', function () {
-                if (WINLOSS.FromDate.val() < WINLOSS.FromLastPeriod.val() || WINLOSS.ToDate.val() < WINLOSS.FromLastPeriod.val()) {                    
-                    alert("Date range cannot be less than " + WINLOSS.FromLastPeriod.val());
+                if (!APOLLO.IsValidDate(WINLOSS.FromDate.val()) || !APOLLO.IsValidDate(WINLOSS.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
+                if (WINLOSS.FromDate.val() < WINLOSS.FromLastPeriod.val() || WINLOSS.ToDate.val() < WINLOSS.FromLastPeriod.val()) {
+                    alert(LANGUAGES.MessageValidateDateRange + WINLOSS.FromLastPeriod.val());
                 }
                 else {
                     $.blockUI();

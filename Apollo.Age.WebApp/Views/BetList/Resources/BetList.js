@@ -274,6 +274,11 @@ if (typeof jQuery != "undefined") {
             },
 
             commonBetlist: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
                 if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
@@ -284,6 +289,11 @@ if (typeof jQuery != "undefined") {
             },
 
             ticketCancel: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
                 if (BETLIST.FromDate.val() < BETLIST.FromThisPeriod.val() || BETLIST.ToDate.val() < BETLIST.FromThisPeriod.val()) {
                     alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.FromThisPeriod.val());
                 }
@@ -294,6 +304,11 @@ if (typeof jQuery != "undefined") {
             },
 
             Transaction: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
                 if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }

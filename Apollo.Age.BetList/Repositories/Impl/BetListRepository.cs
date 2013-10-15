@@ -320,7 +320,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
                                         fromdate = criteria.FromDate,
-                                        todate = criteria.BalanceUpDay.AddDays(-1),
+                                        todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = criteria.SportTypes,
                                         bettypes = criteria.BetTypes,
@@ -356,7 +356,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
                                         fromdate = criteria.FromDate,
-                                        todate = criteria.BalanceUpDay.AddDays(-1),
+                                        todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = criteria.SportTypes,
                                         bettypes = criteria.BetTypes,
@@ -384,7 +384,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         loggedid = criteria.LoggedId,
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
-                                        fromdate = criteria.BalanceUpDay,
+                                        fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
                                         todate = criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = criteria.SportTypes,
@@ -424,7 +424,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     loggedid = criteria.LoggedId,
                                     agentid = criteria.AgentId,
                                     custid = criteria.CustId,
-                                    fromdate = criteria.BalanceUpDay,
+                                    fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
                                     todate = criteria.ToDate,
                                     statusids = criteria.StatusIds,
                                     sporttypes = criteria.SportTypes,
@@ -879,7 +879,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.BalanceUpDay);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
@@ -920,7 +920,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
-                    db.AddInParameter("todate", DbType.DateTime, criteria.BalanceUpDay.AddDays(-1));
+                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate > criteria.BalanceUpDay ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
                     db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
