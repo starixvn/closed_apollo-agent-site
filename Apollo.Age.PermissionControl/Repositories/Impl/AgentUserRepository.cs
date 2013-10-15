@@ -15,6 +15,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
     using Apollo.Age.PermissionControl.Criterias;
     using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.PermissionControl.Models;
+    using Apollo.Age.PermissionControl.Repositories.Interface;
     using Apollo.Age.Repositories.Impl;
     using Fanex.Common.Helper;
     using Fanex.Data;
