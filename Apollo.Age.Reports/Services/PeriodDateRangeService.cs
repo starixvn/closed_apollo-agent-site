@@ -29,7 +29,7 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = DateTime.Parse(AppSettings.GetValue("CurrentDate")); //DateTime.Now;
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
             DateTime toDate = DateTime.Now;                      
@@ -38,17 +38,18 @@ namespace Apollo.Age.Reports.Services
             try
             {
                 string[] startRangeDates = periodRanges[0].Split('-');
-                DateTime startFromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(startRangeDates[0].Split('/')[0]), Convert.ToInt32(startRangeDates[0].Split('/')[1]));
-                DateTime startToDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(startRangeDates[1].Split('/')[0]), Convert.ToInt32(startRangeDates[1].Split('/')[1]));
-
+                DateTime startFromDate = DateTime.Parse(startRangeDates[0]);
+                DateTime startToDate = DateTime.Parse(startRangeDates[1]);
+                var count = 0;
                 foreach (var range in periodRanges)
                 {
+                    
                     rangeDates = range.Split('-');
 
-                    fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
-                    toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
+                    fromDate = DateTime.Parse(rangeDates[0]);                        
+                    toDate = DateTime.Parse(rangeDates[1]);                        
 
-                    if (startFromDate > DateTime.Now && startToDate > DateTime.Now)
+                    if (startFromDate > currentDate && startToDate > currentDate)
                     {
                         periodModel.FromDate = startFromDate;
                         periodModel.ToDate = startToDate;
@@ -59,17 +60,18 @@ namespace Apollo.Age.Reports.Services
                     {
                         if (getLastPeriod)
                         {
-                            if (fromDate <= DateTime.Now.AddMonths(-1) && DateTime.Now.AddMonths(-1) <= toDate)
+                            if (fromDate <= currentDate && currentDate <= toDate)
                             {
-                                periodModel.FromDate = fromDate;
-                                periodModel.ToDate = toDate;
+
+                                periodModel.FromDate = DateTime.Parse(periodRanges[count - 1].Split('-')[0]);
+                                periodModel.ToDate = DateTime.Parse(periodRanges[count - 1].Split('-')[1]);
 
                                 return periodModel;
                             }
                         }
                         else
                         {
-                            if (fromDate <= DateTime.Now && DateTime.Now <= toDate)
+                            if (fromDate <= currentDate && currentDate <= toDate)
                             {
                                 periodModel.FromDate = fromDate;
                                 periodModel.ToDate = toDate;
@@ -78,6 +80,9 @@ namespace Apollo.Age.Reports.Services
                             }
                         }
                     }
+
+                    count++;
+                   
                 }
 
                 return new DateRangeModel();
