@@ -216,7 +216,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 if (criteria.FromDate < criteria.BalanceUpDay)
                 {
                     if (criteria.ToDate < preBalanceUpDay)
-                    {
+                    {                        
                         mainTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
                     }
                     else
@@ -224,6 +224,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
                         DataTable referenceOldTable = null;
                         var mainOldTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
+                        
 
                         DataTable referenceNewTable = null;
                         var mainNewTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceNewTable);
@@ -238,7 +239,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     }
                 }
                 else
-                {
+                {                    
                     mainTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceTable);
                 }
 
@@ -878,7 +879,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.BalanceUpDay);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
@@ -919,7 +920,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
-                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
+                    db.AddInParameter("todate", DbType.DateTime, criteria.BalanceUpDay.AddDays(-1));
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
                     db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
