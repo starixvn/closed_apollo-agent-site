@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -37,7 +37,7 @@
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.ToDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -143,7 +143,7 @@
 
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:;">
+                            <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0)">
                                 @item.AgentName
                             </a>
                         </td>
@@ -273,7 +273,7 @@
                         @if (item.IsAgent)
                         {
                             <td>
-                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:;">
+                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0)">
                                     @item.AgentName
                                 </a>
                             </td>
@@ -284,7 +284,7 @@
                         else
                         {
                             <td>
-                                <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:;">
+                                <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0)">
                                     @Lang.lblMemberWinLoss
                                 </a>
                             </td>
@@ -396,7 +396,7 @@ else
         <tbody>
             <tr>
                 <td class="text-center row-exit">
-                    <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+                    <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
                 </td>
             </tr>
         </tbody>

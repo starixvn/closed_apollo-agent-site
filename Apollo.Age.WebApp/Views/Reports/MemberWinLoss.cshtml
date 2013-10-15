@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -37,7 +37,7 @@
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.ToDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -185,7 +185,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:;">
+                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:void(0)">
                             @item.MemberName
                         </a>
                     </td>
@@ -292,7 +292,7 @@ else
         </thead>
         <tbody>
             <td class="text-center row-exit">
-                <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+                <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
             </td>
         </tbody>
     </table>

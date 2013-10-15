@@ -144,7 +144,7 @@ if (typeof jQuery != "undefined") {
                 BETLIST.FromLastPeriod = $("#lastPeriodFrom");
                 BETLIST.ToLastPeriod = $("#lastPeriodTo");
                 // Event click submit on ticket cancel
-                $("#btnSubmitCancelTicket").click(function () {
+                $("#btnSubmitBetlist").click(function () {
                     BETLIST.ticketCancel();
                 });
 

@@ -85,7 +85,8 @@ namespace Apollo.Age.BetList.Controllers
                 ToDate = ResetEndDate(DateTime.Now),
                 StatusIds = statusIds,
                 BetListPage = BetListPage.AccountInfo,
-                BalanceUpDay = _reportService.GetBalanceUpDay()
+                BalanceUpDay = _reportService.GetBalanceUpDay(),
+                MoveBetsDay = moveBetsDay
             };
 
             var mainTickets = _betListService.GetTicketResult(model, true);
@@ -128,6 +129,7 @@ namespace Apollo.Age.BetList.Controllers
             model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.MoveBetsDay = moveBetsDay;
 
             var mainTickets = _betListService.GetTicketResult(model, true);
 
@@ -136,7 +138,8 @@ namespace Apollo.Age.BetList.Controllers
                 TicketList = this.Ticket(mainTickets, BetListPage.AccountInfo),
                 FromDate = moveBetsDay,
                 ToDate = DateTime.Now,
-                BalanceUpDay = moveBetsDay
+                BalanceUpDay = moveBetsDay,
+                MoveBetDay = moveBetsDay
             };
 
             return this.View(viewModel);

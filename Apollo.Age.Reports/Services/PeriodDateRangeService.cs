@@ -32,36 +32,50 @@ namespace Apollo.Age.Reports.Services
             var currentDate = DateTime.Now;
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
-            DateTime toDate = DateTime.Now;
+            DateTime toDate = DateTime.Now;                      
             string[] rangeDates = null;
             DateRangeModel periodModel = new DateRangeModel();
-
             try
             {
+                string[] startRangeDates = periodRanges[0].Split('-');
+                DateTime startFromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(startRangeDates[0].Split('/')[0]), Convert.ToInt32(startRangeDates[0].Split('/')[1]));
+                DateTime startToDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(startRangeDates[1].Split('/')[0]), Convert.ToInt32(startRangeDates[1].Split('/')[1]));
+
                 foreach (var range in periodRanges)
                 {
                     rangeDates = range.Split('-');
 
                     fromDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[0].Split('/')[0]), Convert.ToInt32(rangeDates[0].Split('/')[1]));
                     toDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(rangeDates[1].Split('/')[0]), Convert.ToInt32(rangeDates[1].Split('/')[1]));
-                    if (getLastPeriod)
-                    {
-                        if (fromDate.Month == DateTime.Now.AddMonths(-1).Month && fromDate.Day <= DateTime.Now.Day)
-                        {
-                            periodModel.FromDate = fromDate;
-                            periodModel.ToDate = toDate;
 
-                            return periodModel;
-                        }
+                    if (startFromDate > DateTime.Now && startToDate > DateTime.Now)
+                    {
+                        periodModel.FromDate = startFromDate;
+                        periodModel.ToDate = startToDate;
+
+                        return periodModel;
                     }
                     else
                     {
-                        if (fromDate.Month == DateTime.Now.Month && fromDate.Day <= DateTime.Now.Day)
+                        if (getLastPeriod)
                         {
-                            periodModel.FromDate = fromDate;
-                            periodModel.ToDate = toDate;
+                            if (fromDate <= DateTime.Now.AddMonths(-1) && DateTime.Now.AddMonths(-1) <= toDate)
+                            {
+                                periodModel.FromDate = fromDate;
+                                periodModel.ToDate = toDate;
 
-                            return periodModel;
+                                return periodModel;
+                            }
+                        }
+                        else
+                        {
+                            if (fromDate <= DateTime.Now && DateTime.Now <= toDate)
+                            {
+                                periodModel.FromDate = fromDate;
+                                periodModel.ToDate = toDate;
+
+                                return periodModel;
+                            }
                         }
                     }
                 }
