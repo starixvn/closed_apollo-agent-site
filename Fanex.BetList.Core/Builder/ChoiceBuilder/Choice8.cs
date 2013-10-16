@@ -21,16 +21,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-            if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
-                || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+            if (ticket.SportTypeId == 1)
             {
-                this.Template.Score.finalHomeScore = ticket.HaftTimeHomeScore.ToString();
-                this.Template.Score.finalAwayScore = ticket.HaftTimeAwayScore.ToString();
-            }
-            else
-            {
-                this.Template.Score.Visible = false;
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                {
+                    this.Template.Score.finalHomeScore = ticket.HaftTimeHomeScore.ToString();
+                    this.Template.Score.finalAwayScore = ticket.HaftTimeAwayScore.ToString();
+                }
+                else
+                {
+                    this.Template.Score.Visible = false;
+                }
             }
         }
     }
