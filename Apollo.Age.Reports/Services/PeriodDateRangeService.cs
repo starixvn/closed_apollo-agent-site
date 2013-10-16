@@ -29,10 +29,10 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
-            var currentDate = DateTime.Parse(AppSettings.GetValue("CurrentDate")); //DateTime.Now;
+            var currentDate = DateTime.Now;
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
-            DateTime toDate = DateTime.Now;                      
+            DateTime toDate = DateTime.Now;
             string[] rangeDates = null;
             DateRangeModel periodModel = new DateRangeModel();
             try
@@ -43,11 +43,11 @@ namespace Apollo.Age.Reports.Services
                 var count = 0;
                 foreach (var range in periodRanges)
                 {
-                    
+
                     rangeDates = range.Split('-');
 
-                    fromDate = DateTime.Parse(rangeDates[0]);                        
-                    toDate = DateTime.Parse(rangeDates[1]);                        
+                    fromDate = DateTime.Parse(rangeDates[0]);
+                    toDate = DateTime.Parse(rangeDates[1]);
 
                     if (startFromDate > currentDate && startToDate > currentDate)
                     {
@@ -82,17 +82,25 @@ namespace Apollo.Age.Reports.Services
                     }
 
                     count++;
-                   
+
                 }
 
-                return new DateRangeModel();
+                return new DateRangeModel()
+                {
+                    FromDate = currentDate,
+                    ToDate = currentDate
+                };
             }
             catch (Exception ex)
             {
                 HandleException(ex);
-                return new DateRangeModel();
+                return new DateRangeModel()
+                {
+                    FromDate = currentDate,
+                    ToDate = currentDate
+                };
             }
-        }                
+        }
 
         /// <summary>
         /// Gets all period range.
