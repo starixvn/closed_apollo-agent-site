@@ -104,7 +104,19 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            var listFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            var functionPermissionDictionary = new Dictionary<string, byte>();
+
+            if (!ReferenceEquals(listFunctionPermission, null) && listFunctionPermission.Any())
+            {
+                foreach (var item in listFunctionPermission)
+                {
+                    functionPermissionDictionary.Add(item.Function.FunctionKey, item.Policy);
+                }
+            }
+
+            ViewBag.allFunctionPermission = functionPermissionDictionary;
+
             //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
             return View(CurrentSession);
         }
