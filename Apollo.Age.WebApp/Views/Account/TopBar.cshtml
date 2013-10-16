@@ -77,26 +77,33 @@
                                 <li id="forecast-link"><span class="menu-list border-link"><a url="~/totalBets" target="main">
                                     [@Lang.lblForecast]</a> </span></li>
                                     }
-                                    else if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting)
+                                    else if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting
+                                    || item.Function.FunctionKey == ApolloFunctionKeys.ShadowPermission)
                                     {                                 
                                 <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
-                                    @if (item.Policy >= (byte)Policy.Query)
-                                    { 
-                                        <ul class="sub-menu">
-                                            <li><a url="~/Account/AgentList" target="main">@Lang.Agents</a></li>
-                                            @if (Model.AgentLevel > AgentLevel.Shareholder)
+                                    <ul class="sub-menu">
+                                        <li><a url="~/Account/AgentList" target="main">@Lang.Agents</a></li>
+                                        @if (item.Function.FunctionKey == ApolloFunctionKeys.CustomerSetting
+                                        && item.Policy >= (byte)Policy.Query)
+                                        {
+                                            if (Model.AgentLevel > AgentLevel.Shareholder)
                                             {
-                                                <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
+                                            <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
                                                 if (item.Policy == (byte)Policy.Edit)
                                                 { 
-                                                <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username" 
+                                            <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username"
                                                 target="main">@Lang.lblMemberShare</a></li>
                                                 }
                                             }
                                             <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
-                                            <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>
-                                        </ul>
-                                    }
+                                            <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>                                        
+                                        }
+                                        @if (item.Function.FunctionKey == ApolloFunctionKeys.ShadowPermission
+                                        && item.Policy >= (byte)Policy.Query)
+                                        {
+                                            <li><a url="~/PermissionUserControl/AgentUserList?agentid=@Model.AgentId&username=@Model.Username" target="main">@Lang.ShadowPermission</a></li>                                        
+                                        }
+                                    </ul>
                                 </li>                                
                                     }
                                     else if (item.Function.FunctionKey == ApolloFunctionKeys.System_Log && item.Policy >= (byte)Policy.Query)
