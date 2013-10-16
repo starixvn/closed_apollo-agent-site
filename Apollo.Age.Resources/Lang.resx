@@ -2104,4 +2104,7 @@
   <data name="View_Log" xml:space="preserve">
     <value>View Log</value>
   </data>
+  <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
+    <value>This function is not available during peak hour at weekend since it might affect the performance of the whole system. Please contact CSD for further assistance.</value>
+  </data>
 </root>

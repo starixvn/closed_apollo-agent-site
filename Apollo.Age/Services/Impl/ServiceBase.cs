@@ -9,6 +9,10 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
+    using System.Collections.Generic;
+    using Apollo.Age.Configurations;
+    using Apollo.Age.Entities;
+    using Fanex.Common;
 
     /// <summary>
     /// TODO: Update summary.
@@ -16,9 +20,9 @@ namespace Apollo.Age.Services.Impl
     public class ServiceBase
     {
         /// <summary>
-        /// Handle exception by using Fanex Logging Lib to write log.
+        /// Handle exception by using FANEX Logging Lib to write log.
         /// </summary>
-        /// <param name="ex">Exception param.</param>
+        /// <param name="ex">Exception parameter.</param>
         protected void HandleException(Exception ex)
         {
             Fanex.Logging.LogService.Error(ex.Message, ex);
@@ -63,5 +67,44 @@ namespace Apollo.Age.Services.Impl
         }
 
         #endregion Commission Group Reverting
+
+        /// <summary>
+        /// Get Peak hours for prevent action, format peak hour in config file: DAYINWEEK-HOUR.
+        /// </summary>
+        /// <returns>Peak Hours list.</returns>
+        protected IList<PeakHour> GetPeakHours()
+        {
+            IList<PeakHour> peakHours = new List<PeakHour>();
+            try
+            {
+                var peakHoursString = AppSettings.PeakHours;
+                if (!string.IsNullOrEmpty(peakHoursString))
+                {
+                    var peakHourArray = peakHoursString.Split(';');
+                    foreach (var peakHourSetting in peakHourArray)
+                    {
+                        if (!string.IsNullOrEmpty(peakHourSetting))
+                        {
+                            var peakHourItem = peakHourSetting.Split('>');
+                            var peakHour = new PeakHour
+                            {
+                                FromDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[0].Split(':')[0]),
+                                FromHour = Converter.ToInt(peakHourItem[0].Split(':')[1]),
+                                ToDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[1].Split(':')[0]),
+                                ToHour = Converter.ToInt(peakHourItem[1].Split(':')[1])
+                            };
+
+                            peakHours.Add(peakHour);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return peakHours;
+        }
     }
 }

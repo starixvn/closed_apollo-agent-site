@@ -129,6 +129,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static string PeakHours
+        {
+            get
+            {
+                return GetValue("PeakHours");
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>
