@@ -322,8 +322,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         fromdate = criteria.FromDate,
                                         todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
-                                        sporttypes = criteria.SportTypes,
-                                        bettypes = criteria.BetTypes,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
                                         rpttype = criteria.RptType,
                                     };
 
@@ -358,8 +358,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         fromdate = criteria.FromDate,
                                         todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
-                                        sporttypes = criteria.SportTypes,
-                                        bettypes = criteria.BetTypes,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
                                         rpttype = criteria.RptType,
                                     };
 
@@ -387,8 +387,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
                                         todate = criteria.ToDate,
                                         statusids = criteria.StatusIds,
-                                        sporttypes = criteria.SportTypes,
-                                        bettypes = criteria.BetTypes,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
                                         rpttype = criteria.RptType,
                                         movebetsday = criteria.MoveBetsDay
                                     };
@@ -427,8 +427,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
                                     todate = criteria.ToDate,
                                     statusids = criteria.StatusIds,
-                                    sporttypes = criteria.SportTypes,
-                                    bettypes = criteria.BetTypes,
+                                    sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                    bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
                                     rpttype = criteria.RptType,
                                     movebetsday = criteria.MoveBetsDay
                                 };
