@@ -1960,4 +1960,7 @@
   <data name="Win_Loss" xml:space="preserve">
     <value>贏/輸</value>
   </data>
+  <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
+    <value>在周末高峰时段不提供此功能，因为它可能会影响整个系统的性能。请联络客服寻求进一步协助</value>
+  </data>
 </root>
