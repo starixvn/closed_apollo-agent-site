@@ -1023,7 +1023,6 @@
     <Content Include="Views\Reports\SportCredit.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Error\RedirectToUM.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\PermissionUserControl\AssignPermissionControl.cshtml" />
     <Content Include="Views\PermissionUserControl\Shared\_Layout.cshtml" />
     <Content Include="Views\PermissionUserControl\AgentUserList.cshtml" />
@@ -1031,11 +1030,9 @@
     <Content Include="Views\Log\LogActionType9.cshtml" />
     <Content Include="Views\Reports\Menu.cshtml" />
     <Content Include="Views\Reports\ReportAccessDenied.cshtml" />
-=======
     <None Include="_BetList\Resources\BetList.less" />
     <None Include="_BetList\Resources\ErrorPage.less" />
     <None Include="_BetList\Resources\Paging.less" />
->>>>>>> Feature_#4851_AddPeriodButtonToAllReports
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

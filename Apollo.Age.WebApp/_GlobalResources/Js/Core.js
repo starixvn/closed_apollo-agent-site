@@ -427,8 +427,6 @@ if (typeof jQuery != 'undefined') {
                 data.__RequestVerificationToken = $('#forgery-token-div input[name=__RequestVerificationToken]').val();
                 return data;
             },
-<<<<<<< HEAD
-=======
 
             IsValidDate: function (date) {
                 try {
@@ -441,7 +439,6 @@ if (typeof jQuery != 'undefined') {
                 }
             },
 
->>>>>>> Feature_#4851_AddPeriodButtonToAllReports
             init: function () {
                 APOLLO.initDatePicker();
                 //APOLLO.initFreeHeader();

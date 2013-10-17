@@ -432,7 +432,8 @@ namespace Apollo.Age.BetList.Controllers
                 ToDate = ResetEndDate(DateTime.Now),
                 StatusIds = statusIds,
                 BalanceUpDay = _reportService.GetBalanceUpDay(),
-                BetListPage = BetListPage.Outstanding
+                BetListPage = BetListPage.Outstanding,
+                MoveBetsDay = _reportService.MoveBetsDay()
             };
 
             var mainTickets = _betListService.GetTicketResult(criteria, true);

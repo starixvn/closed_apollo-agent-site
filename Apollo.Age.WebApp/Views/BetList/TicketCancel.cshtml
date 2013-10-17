@@ -67,12 +67,9 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
-                <td>
-<<<<<<< HEAD
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes")
-=======
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes", className: "wagerType")
->>>>>>> Feature_#4851_AddPeriodButtonToAllReports
+                <td>                                   
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+
                 </td>
             </tr>
             <tr>

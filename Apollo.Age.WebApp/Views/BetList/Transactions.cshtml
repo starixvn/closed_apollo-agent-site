@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>*@
-<<<<<<< HEAD
+
     @Html.Partial("~/Views/Reports/Menu.cshtml",
 new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
 {
@@ -51,18 +51,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
     SportType = Model.SportTypeIds,
     SportDropDownControl = "SportTypes"
 })
-=======
-    <div id="function-bar">
-        <div class="item">
-            <label for="ddlSport">@Lang.lblReport:</label>
-            @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
-        </div>
-        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
-        @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
-        <div class="end">
-        </div>
-    </div>
->>>>>>> Feature_#4851_AddPeriodButtonToAllReports
+
     <div class="pages-size">
         <div class="pull-left">@Lang.Page:</div>
         <div id="pager" class="sbpager">
@@ -117,12 +106,10 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
-                <td>
-<<<<<<< HEAD
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes")
-=======
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes", className: "wagerType")
->>>>>>> Feature_#4851_AddPeriodButtonToAllReports
+                <td>                                    
+
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+
                 </td>
             </tr>
             <tr>
