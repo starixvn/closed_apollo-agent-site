@@ -124,19 +124,19 @@
                                                 {
                                                     defaultReportURL = "/Reports/matchentered";
                                                 }
-                                                if (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query)
+                                                else if (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/Reports/outstanding";
                                                 }
-                                                if (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query)
+                                                else if (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/betlist/transactions";
                                                 }
-                                                if (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query)
+                                                else if (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/betlist/ticketcancel";
                                                 }
-                                                if (FunctionPermissions[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query)
+                                                else if (FunctionPermissions[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/Reports/sportcredit";
                                                 }
