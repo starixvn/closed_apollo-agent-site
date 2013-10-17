@@ -109,7 +109,12 @@
                                     </ul>
                                 </li>
                                         }
-                                        if (!isShowReport)
+                                        if (!isShowReport && ((FunctionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query) ||
+                                           (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query) ||
+                                           (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query) ||
+                                           (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query) ||
+                                           (FunctionPermissions[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query)
+                                           ))
                                         {
                                             isShowReport = true;
 
