@@ -115,7 +115,7 @@
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.css" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_glass_40_F1F1F1_1x400.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="bin/Apollo.Age.Forecast.pdb" publishTime="10/17/2013 11:08:23" />
-    <file relUrl="Views/Reports/Outstanding.cshtml" publishTime="10/17/2013 10:50:16" />
+    <file relUrl="Views/Reports/Outstanding.cshtml" publishTime="10/17/2013 11:40:22" />
     <file relUrl="Views/Forecast/Resources/Images/exp_score.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo-backup/images/ui-icons_222222_256x240.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo-backup/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="08/19/2013 10:25:05" />
@@ -372,7 +372,7 @@
     <file relUrl="_GlobalResources/Js/noty/layouts/bottomRight.js" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/BetList/ViewDetail.cshtml" publishTime="09/30/2013 11:08:02" />
     <file relUrl="Views/Forecast/Resources/Images/Refresh.png" publishTime="08/19/2013 10:25:05" />
-    <file relUrl="Views/Reports/MemberWinLoss.cshtml" publishTime="10/17/2013 10:50:01" />
+    <file relUrl="Views/Reports/MemberWinLoss.cshtml" publishTime="10/17/2013 11:40:41" />
     <file relUrl="_GlobalResources/Css/select2/select2x2.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Account/Resources/Images/treeview-1.png" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Account/EditMemberSetting.cshtml" publishTime="09/30/2013 11:08:02" />
@@ -556,7 +556,7 @@
     <file relUrl="Areas/Wagers/Styles/Wagers.less" publishTime="09/30/2013 11:08:02" />
     <file relUrl="Views/Account/Resources/Images/qa_phone.png" publishTime="09/30/2013 11:08:02" />
     <file relUrl="bin/ko-KR/Apollo.Age.Resources.resources.dll" publishTime="10/17/2013 11:08:16" />
-    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="10/17/2013 09:17:01" />
+    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="10/17/2013 12:36:17" />
     <file relUrl="Views/PermissionUserControl/Shared/_Layout.cshtml" publishTime="10/16/2013 15:51:27" />
     <file relUrl="_GlobalResources/Css/Agent.less" publishTime="10/17/2013 09:16:22" />
     <file relUrl="Views/Instruction/zh-TW/AgentShareSettingAdv.cshtml" publishTime="08/19/2013 10:25:05" />
