@@ -52,7 +52,7 @@ namespace Apollo.Age.Web
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Return view assign permission to agent user.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]
-        public ActionResult AssignPermissionControl(int agentUserId)
+        public ActionResult AssignPermissionControl(int parentAgentId, int agentUserId)
         {
             // Get agent user
             var agentUserInfo = _agentUserService.GetAgentUserInfo(agentUserId);
@@ -85,7 +85,10 @@ namespace Apollo.Age.Web
                 AgentUserId = agentUserId,
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
-                ShadowUsername = agentUserInfo.Username
+                ShadowUsername = agentUserInfo.Username,
+                AgentId = parentInfo.Agent.Id,
+                IsDirectAgent = parentInfo.Agent.Id == CurrentSession.AgentId,
+                ParentAgentId = parentAgentId
             };
 
             return View(criteria);
@@ -129,7 +132,8 @@ namespace Apollo.Age.Web
                 AgentUserId = agentUserId,
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
-                ShadowUsername = agentUserInfo.Username
+                ShadowUsername = agentUserInfo.Username,
+                AgentId = parentInfo.Id
             };
 
             return View("AssignPermissionControl", criteria);
