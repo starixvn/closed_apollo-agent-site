@@ -142,7 +142,7 @@ new ReportMenuViewModel
 
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0)">
+                            <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
                                 @item.AgentName
                             </a>
                         </td>
@@ -272,7 +272,7 @@ new ReportMenuViewModel
                         @if (item.IsAgent)
                         {
                             <td>
-                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0)">
+                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
                                     @item.AgentName
                                 </a>
                             </td>
@@ -283,7 +283,7 @@ new ReportMenuViewModel
                         else
                         {
                             <td>
-                                <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0)">
+                                <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0);">
                                     @Lang.lblMemberWinLoss
                                 </a>
                             </td>
