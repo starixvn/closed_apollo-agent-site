@@ -1963,4 +1963,10 @@
   <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
     <value>在周末高峰时段不提供此功能，因为它可能会影响整个系统的性能。请联络客服寻求进一步协助</value>
   </data>
+  <data name="lastperiod" xml:space="preserve">
+    <value>上期</value>
+  </data>
+  <data name="thisperiod" xml:space="preserve">
+    <value>本期</value>
+  </data>
 </root>
