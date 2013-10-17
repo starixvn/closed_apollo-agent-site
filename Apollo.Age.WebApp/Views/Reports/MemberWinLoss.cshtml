@@ -26,7 +26,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -36,15 +36,16 @@ new ReportMenuViewModel
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
-                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
-                        <input  class="btn dateRange" data-range="3" type="button" value="@Lang.tomorrow" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />                        
                         <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
+                        <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>
@@ -60,9 +61,11 @@ new ReportMenuViewModel
     </table>
     <div>
         <div class="row bg-action">
+
             <div class="item">
                 @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : string.Empty)
-            </div>
+            </div>        
+
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
                 <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
@@ -183,7 +186,7 @@ new ReportMenuViewModel
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:;">
+                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:void(0)">
                             @item.MemberName
                         </a>
                     </td>
@@ -290,7 +293,7 @@ else
         </thead>
         <tbody>
             <td class="text-center row-exit">
-                <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+                <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
             </td>
         </tbody>
     </table>
@@ -304,14 +307,21 @@ else
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
+@Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+@Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+@Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
+@Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @section scripts
 {
     @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
+
                 MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
-                BetListString: "@Lang.lblBetLists.ToUpper()"
+                BetListString: "@Lang.lblBetLists.ToUpper()",
+                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange",               
+
             };
         } ();
     </script>

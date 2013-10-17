@@ -43,6 +43,8 @@ namespace Apollo.Age.BetList.Controllers
         private readonly ReportService _reportService;
         private readonly TotalBetsService _totalBetsService;
         private readonly IAgentUserService _agentUserService;
+        private readonly PeriodDateRangeService _periodDateRangeSerivce;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
         /// </summary>
@@ -52,6 +54,7 @@ namespace Apollo.Age.BetList.Controllers
             this._reportService = new ReportService();
             this._totalBetsService = new TotalBetsService();
             _agentUserService = new AgentUserService();
+            _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
         /// <summary>
@@ -85,9 +88,11 @@ namespace Apollo.Age.BetList.Controllers
                 ToDate = ResetEndDate(DateTime.Now),
                 StatusIds = statusIds,
                 BetListPage = BetListPage.AccountInfo,
+                BalanceUpDay = _reportService.GetBalanceUpDay(),
+                MoveBetsDay = moveBetsDay
             };
 
-            var mainTickets = _betListService.GetTicketResult(model);
+            var mainTickets = _betListService.GetTicketResult(model, true);
 
             var viewModel = new BetListReportViewModel
             {
@@ -126,15 +131,18 @@ namespace Apollo.Age.BetList.Controllers
             model.StatusIds = statusIds;
             model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
+            model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.MoveBetsDay = moveBetsDay;
 
-            var mainTickets = _betListService.GetTicketResult(model);
+            var mainTickets = _betListService.GetTicketResult(model, true);
 
             var viewModel = new BetListReportViewModel
             {
                 TicketList = this.Ticket(mainTickets, BetListPage.AccountInfo),
                 FromDate = moveBetsDay,
                 ToDate = DateTime.Now,
-                BalanceUpDay = moveBetsDay
+                BalanceUpDay = moveBetsDay,
+                MoveBetDay = moveBetsDay
             };
 
             return this.View(viewModel);
@@ -157,6 +165,9 @@ namespace Apollo.Age.BetList.Controllers
             {
                 return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
             }
+
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.Transactions(viewModel);
         }
@@ -182,8 +193,12 @@ namespace Apollo.Age.BetList.Controllers
             {
                 FromDate = fromDate,
                 ToDate = toDate,
+
                 SportTypeIds = sportTypes,
                 BetTypeIds = betTypes,
+
+                SportTypes = sportTypes == "-99" ? "0" : sportTypes,
+
                 Username = userName,
                 UserType = userType,
                 PageIndex = pageIndex,
@@ -217,7 +232,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
+            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -231,8 +246,10 @@ namespace Apollo.Age.BetList.Controllers
                     FromDate = this.ResetStartDate(model.FromDate),
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
-                    SportTypes = model.SportTypeIds,
+
+                    SportTypes = model.SportTypeIds == "-99" ? "0" : model.SportTypeIds,
                     BetTypes = model.BetTypeIds,
+
                     BetListPage = BetListPage.Transaction,
                     MoveBetsDay = _reportService.MoveBetsDay()
                 };
@@ -283,6 +300,9 @@ namespace Apollo.Age.BetList.Controllers
                 return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
             }
 
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
@@ -305,6 +325,9 @@ namespace Apollo.Age.BetList.Controllers
                 return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
             }
 
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+
             return this.TicketCancel(viewModel);
         }
 
@@ -318,6 +341,7 @@ namespace Apollo.Age.BetList.Controllers
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay();
             int agentId, custId;
             int errorCode;
 
@@ -325,8 +349,9 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = _reportService.GetBettype();
+            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
             model.BalanceUpDay = balanceUpDay;
+            model.MoveBetDay = moveBetsDay;
 
             if (errorCode == 0)
             {
@@ -339,13 +364,17 @@ namespace Apollo.Age.BetList.Controllers
                     FromDate = this.ResetStartDate(model.FromDate),
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
-                    SportTypes = model.SportTypeIds,
+
+                    SportTypes = model.SportTypeIds == "-99" ? "0" : model.SportTypeIds,
                     BetTypes = model.BetTypeIds,
-                    BetListPage = BetListPage.Cancel
+                    BetListPage = BetListPage.Cancel,
+
+                    BalanceUpDay = model.BalanceUpDay,
+                    MoveBetsDay = model.MoveBetDay
                 };
 
                 TicketResult mainTickets;
-                mainTickets = betListService.GetTicketResult(criteria);
+                mainTickets = betListService.GetTicketResult(criteria, true);
 
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
@@ -359,6 +388,9 @@ namespace Apollo.Age.BetList.Controllers
             {
                 return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
             }
+
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.View(model);
         }
@@ -399,10 +431,12 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = ResetStartDate(moveBetsDay),
                 ToDate = ResetEndDate(DateTime.Now),
                 StatusIds = statusIds,
-                BetListPage = BetListPage.Outstanding
+                BalanceUpDay = _reportService.GetBalanceUpDay(),
+                BetListPage = BetListPage.Outstanding,
+                MoveBetsDay = _reportService.MoveBetsDay()
             };
 
-            var mainTickets = _betListService.GetTicketResult(criteria);
+            var mainTickets = _betListService.GetTicketResult(criteria, true);
 
             var viewModel = new BetListViewModel
             {
@@ -424,6 +458,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderId"></param>
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
+
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
         public ViewResult Winloss(int custId,
             DateTime fromDate,
@@ -467,7 +502,7 @@ namespace Apollo.Age.BetList.Controllers
                 ToDate = this.ResetEndDate(toDate),
                 StatusIds = statusIds,
                 BetTypes = betType,
-                SportTypes = sportType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
@@ -821,5 +856,32 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         #endregion Format Start, End date
+
+        #region Common Action
+
+        /// <summary>
+        /// Creates the type of the bet.
+        /// </summary>
+        /// <param name="isIncludeParlay">Include parlay bettype or not.</param>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateBetType(bool isIncludeParlay)
+        {
+            var bettypeList = _reportService.GetBettype(isIncludeParlay);
+
+            return Json(bettypeList, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Creates the parlay bettype.
+        /// </summary>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateParlayBettype()
+        {
+            var parlayBettypeList = _reportService.GetParlayBettype();
+
+            return Json(parlayBettypeList, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion Common Action
     }
 }

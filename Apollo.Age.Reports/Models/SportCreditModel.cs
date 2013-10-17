@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Models
 {
     using System;
 
+    /// <summary>
+    /// Sport credit model class.
+    /// </summary>
     [Serializable]
     public class SportCreditModel
     {

@@ -48,7 +48,7 @@ namespace Apollo.Age.Reports.Controllers
         #region Ctors
 
         /// <summary>
-        /// Constructor default.
+        /// Initializes result without parameter.
         /// </summary>
         public ResultsController()
             : this(null)
@@ -57,7 +57,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Constructor Controller.
+        /// Initializes result with result service.
         /// </summary>
         /// <param name="resultService">Result Service.</param>
         public ResultsController(ResultService resultService = null)
@@ -70,6 +70,9 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Gets Balance Up Day.
         /// </summary>
+        /// <value>
+        /// The get balance up day.
+        /// </value>
         protected DateTime GetBalanceUpDay
         {
             get { return _resultService.GetBalanceUpDay(); }

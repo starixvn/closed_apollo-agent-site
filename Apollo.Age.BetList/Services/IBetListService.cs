@@ -29,6 +29,8 @@ namespace Apollo.Age.BetList.Services
 
         TicketResult GetTicketResult(BetListCriteria criteria);
 
+        TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData);
+
         TicketResult GetRunningByBettype(BetListCriteria criteria);
 
         TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria);

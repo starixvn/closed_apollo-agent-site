@@ -32,10 +32,14 @@ namespace Apollo.Age.Reports.Services
         /// <summary>
         /// Get List Match Entered from DB.
         /// </summary>
-        /// <returns>List Match Entered.</returns>
+        /// <param name="isShowDataTest">Include data test or not.</param>
+        /// <returns>
+        /// List Match Entered.
+        /// </returns>
         public List<MatchEnteredModel> GetMatchEntered(bool isShowDataTest)
         {
-            var criterias = new MatchEnteredCriteria() {
+            var criterias = new MatchEnteredCriteria()
+            {
                 isShowAll = isShowDataTest
             };
             var matchEnteredList = this.GetData<MatchEntered>(criterias).ToList();
@@ -127,7 +131,6 @@ namespace Apollo.Age.Reports.Services
 
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
 
-                #region declare style of cell
                 this.CustomizeColor(hssfworkbook);
 
                 var fontHeaderWhite = this.CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
@@ -149,9 +152,6 @@ namespace Apollo.Age.Reports.Services
                 IDataFormat format = hssfworkbook.CreateDataFormat();
                 var numberFormat = format.GetFormat("#,##0.00");
 
-                #endregion
-
-                #region header
                 int rowIndex, startIndex;
                 rowIndex = startIndex = 4;
                 var columIndex = 0;
@@ -192,10 +192,7 @@ namespace Apollo.Age.Reports.Services
                 this.CreateStringCell(row, columIndex++, headerStyleOutstanding, string.Empty);
 
                 rowIndex++;
-                #endregion
 
-                #region body
-                //// Add data rows
                 decimal totalBetAmount = 0;
                 decimal totalBetCount = 0;
                 decimal totalCommBase = 0;
@@ -247,9 +244,6 @@ namespace Apollo.Age.Reports.Services
                     rowIndex++;
                 }
 
-                #endregion
-
-                #region footer
                 row = sheet.CreateRow(rowIndex);
                 columIndex = 0;
 
@@ -267,22 +261,16 @@ namespace Apollo.Age.Reports.Services
                 this.CreateNumberCell(row, columIndex++, footerStyleRight, numberFormat, (double)totalUpLineWinLoss);
                 this.CreateNumberCell(row, columIndex++, footerStyleRight, numberFormat, (double)totalOutstandingAmount);
                 this.CreateNumberCell(row, columIndex++, footerStyleRight, numberFormat, (double)totalOutstandingShareAmount);
-                #endregion footer
 
-                #region auto size & freePane
-                sheet.CreateFreezePane(0, startIndex + 2); //// 2: Freeze Pane 2 row after start index
-                //// Auto-size each column
+                sheet.CreateFreezePane(0, startIndex + 2);
+
                 for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
                 {
                     sheet.AutoSizeColumn(i);
                     var currentWidth = sheet.GetColumnWidth(i);
-                    sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
+                    sheet.SetColumnWidth(i, currentWidth + 500);
                 }
 
-                #endregion
-
-                #region title
-                // row title report
                 var rowTitle = sheet.CreateRow(rownum: 1);
                 var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, true);
                 var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
@@ -293,9 +281,6 @@ namespace Apollo.Age.Reports.Services
                 var styleFilter = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
                 this.CreateStringCell(rowFilter, 0, styleFilter, filter);
 
-                #endregion
-
-                #region merge cell
                 sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 13));
                 sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 13));
                 sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
@@ -305,7 +290,6 @@ namespace Apollo.Age.Reports.Services
                 sheet.AddMergedRegion(new CellRangeAddress(4, 4, 10, 11));
                 sheet.AddMergedRegion(new CellRangeAddress(4, 5, 12, 12));
                 sheet.AddMergedRegion(new CellRangeAddress(4, 5, 13, 13));
-                #endregion
             }
 
             return hssfworkbook;
@@ -325,7 +309,6 @@ namespace Apollo.Age.Reports.Services
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
 
-            #region declare style of cell
             this.CustomizeColor(hssfworkbook);
 
             var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
@@ -335,16 +318,13 @@ namespace Apollo.Age.Reports.Services
             var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
             var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
             var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-            
+
             var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
             var bodyStyleLeft = CreateStyle(hssfworkbook);
 
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
 
-            #endregion
-
-            #region header
             int rowIndex, startIndex;
             rowIndex = startIndex = 4;
             var columIndex = 0;
@@ -378,9 +358,6 @@ namespace Apollo.Age.Reports.Services
 
             rowIndex++;
             //// end header
-            #endregion
-
-            #region body
 
             //// Add data rows
             foreach (var agentWinLoss in agentWinLossList)
@@ -402,10 +379,6 @@ namespace Apollo.Age.Reports.Services
                 rowIndex++;
             }
 
-            #endregion
-
-            #region auto size & freePane
-
             sheet.CreateFreezePane(0, startIndex + 2); //// 2: Freeze Pane 2 row after start index
             //// Auto-size each column
             for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
@@ -414,10 +387,6 @@ namespace Apollo.Age.Reports.Services
                 var currentWidth = sheet.GetColumnWidth(i);
                 sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
             }
-
-            #endregion
-
-            #region title
 
             var rowTitle = sheet.CreateRow(rownum: 1);
             var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, isBold: true);
@@ -428,9 +397,7 @@ namespace Apollo.Age.Reports.Services
             var fontFilter = CreateFont(hssfworkbook, HSSFColor.BLUE.index, 11, isBold: true, isItalic: true);
             var filterStyle = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
             this.CreateStringCell(rowFilter, 0, filterStyle, filter);
-            #endregion
 
-            #region merge cell
             sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 9));
             sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 9));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
@@ -438,7 +405,6 @@ namespace Apollo.Age.Reports.Services
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 2, 4));
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 5, 6));
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 7, 9));
-            #endregion
 
             return hssfworkbook;
         }
@@ -457,7 +423,6 @@ namespace Apollo.Age.Reports.Services
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
 
-            #region declare style of cell
             this.CustomizeColor(hssfworkbook);
             var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
             var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
@@ -478,9 +443,6 @@ namespace Apollo.Age.Reports.Services
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
 
-            #endregion
-
-            #region header
             int rowIndex, startIndex;
             rowIndex = startIndex = 4;
             var columIndex = 0;
@@ -517,9 +479,7 @@ namespace Apollo.Age.Reports.Services
             this.CreateStringCell(row, columIndex++, headerStyleUpline, Lang.total);
 
             rowIndex++;
-            #endregion
 
-            #region body
             //// Add data rows
 
             decimal totalBetAmount = 0;
@@ -581,9 +541,6 @@ namespace Apollo.Age.Reports.Services
                 rowIndex++;
             }
 
-            #endregion
-
-            #region footer
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
@@ -600,9 +557,6 @@ namespace Apollo.Age.Reports.Services
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineEffectiveStake);
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalUpLineTotal);
 
-            #endregion footer
-
-            #region auto size & freePane
             sheet.CreateFreezePane(0, startIndex + 2); //// 2: Freeze Pane 2 row after start index
             //// Auto-size each column
             for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
@@ -612,9 +566,6 @@ namespace Apollo.Age.Reports.Services
                 sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
             }
 
-            #endregion
-
-            #region title
             var rowTitle = sheet.CreateRow(1);
             var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, true);
             var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
@@ -625,10 +576,6 @@ namespace Apollo.Age.Reports.Services
             var styleFilter = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
             this.CreateStringCell(rowFilter, 0, styleFilter, filter);
 
-            #endregion
-
-            #region merge cell
-
             sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 11));
             sheet.AddMergedRegion(new CellRangeAddress(2, 2, 0, 11));
             sheet.AddMergedRegion(new CellRangeAddress(4, 5, 0, 0));
@@ -637,8 +584,6 @@ namespace Apollo.Age.Reports.Services
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 5, 6));
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 7, 9));
             sheet.AddMergedRegion(new CellRangeAddress(4, 4, 10, 11));
-
-            #endregion
 
             return hssfworkbook;
         }
