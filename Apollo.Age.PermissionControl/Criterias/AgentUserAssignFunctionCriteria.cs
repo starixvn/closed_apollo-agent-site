@@ -107,6 +107,15 @@ namespace Apollo.Age.PermissionControl.Criterias
         [SpParam(Ignored = true)]
         public string ShadowUsername { get; set; }
 
+        [SpParam(Ignored = true)]
+        public int AgentId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int ParentAgentId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsDirectAgent { get; set; }
+
         /// <summary>
         /// Gets the setting key.
         /// </summary>

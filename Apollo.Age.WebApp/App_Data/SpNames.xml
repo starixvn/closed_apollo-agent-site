@@ -561,6 +561,7 @@
         <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
         <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
+            <Mapping DataField="AgentId" ObjectProperty="Id" />
         </Setting>
         <Setting Key="Age_AgentUser_GetInfo" SpName="Age_AgentUser_GetInfo" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />

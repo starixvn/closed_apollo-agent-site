@@ -8,11 +8,19 @@ var AssignFunction = function ($) {
         isMaster: null,
         agentUserId: null,
         oldValue: null,
+        agentId: null,
+        username: null,
+        isDirectAgent: null,
+        parentAgentId: null,
 
         init: function () {
             AssignFunction.grid = $('.tblRpt:first');
             AssignFunction.isMaster = $('#IsMaster').val();
             AssignFunction.agentUserId = $('#AgentUserId').val();
+            AssignFunction.agentId = $('#AgentId').val();
+            AssignFunction.username = $('#AgentUsername').val();
+            AssignFunction.isDirectAgent = $('#IsDirectAgent').val();
+            AssignFunction.parentAgentId = $('#ParentAgentId').val();
 
             if (AssignFunction.isMaster == "1") {
                 AssignFunction.message = Language.CONFIRM_AGENT;
@@ -86,6 +94,17 @@ var AssignFunction = function ($) {
                     AssignFunction.oldValue = funcRead + funcHost;
 
                     $('#noty_top_layout_container').css({ width: "500px", left: "5px" });
+
+                    setTimeout(function () {
+                        if (AssignFunction.isMaster == "1") {
+                            var url = AssignFunction.isDirectAgent == "1" ? "Account/AgentList" : "Account/IndirectAgentList?parentAgentId=" + AssignFunction.parentAgentId + "&agentid=" + AssignFunction.agentId + "";
+
+                            location.href = APOLLO.resolveUrl(url);
+                        }
+                        else {
+                            location.href = APOLLO.resolveUrl("~/PermissionUserControl/AgentUserList?agentId=" + AssignFunction.agentId + "&&username=" + AssignFunction.username + "");
+                        }
+                    }, 3000);
                 },
                 error: function (xhr, status, err) {
                     location.href = APOLLO.resolveUrl("~/Error/AccessDenied");

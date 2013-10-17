@@ -18,7 +18,7 @@
             else
             {                
                 @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.Shadow: <strong>@Model.ShadowUsername</strong>
-                        }
+                                                                        }
         </span>
     </div>
     <div class="end">
@@ -102,5 +102,9 @@
     </tbody>
 </table>
 @Html.Hidden("IsMaster", Model.IsMaster ? "1" : "0")
+@Html.Hidden("IsDirectAgent", Model.IsDirectAgent ? "1" : "0")
 @Html.Hidden("AgentUserId", Model.AgentUserId)
+@Html.Hidden("AgentId", Model.AgentId)
+@Html.Hidden("AgentUsername", Model.AgentUsername)
+@Html.Hidden("ParentAgentId", Model.ParentAgentId)
 @Scripts.Render("~/scripts/assignfunction")
