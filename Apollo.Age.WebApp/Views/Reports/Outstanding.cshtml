@@ -82,7 +82,7 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:;" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -96,7 +96,7 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:;" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
+                                <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")
