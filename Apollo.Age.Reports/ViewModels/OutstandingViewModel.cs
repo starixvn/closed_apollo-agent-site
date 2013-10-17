@@ -15,7 +15,7 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Reports.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Outstanding view model class.
     /// </summary>
     public class OutstandingViewModel
     {

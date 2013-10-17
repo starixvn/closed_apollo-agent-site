@@ -236,41 +236,37 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Areas\Wagers\Scripts\Wagers.js" />
-    <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
-    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
-    <SplashScreen Include="_BetList\BetList.aspx.cs">
+    <Compile Include="_BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </SplashScreen>
+    </Compile>
     <Compile Include="_BetList\BetListOnMember.aspx.cs">
       <DependentUpon>BetListOnMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\BetListOnMember.htm.cs" />
     <Compile Include="_BetList\BetListTransaction.aspx.cs">
       <DependentUpon>BetListTransaction.aspx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_BetList\BetListTransaction.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
       <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
     <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
     <Compile Include="_BetList\MixParlay\MixParlay.aspx.cs">
       <DependentUpon>MixParlay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="_BetList\Navigation.htm.cs" />
+    <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Wagers\Scripts\Wagers.js" />
+    <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
+    <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Content Include="App_Code\Formater.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -402,35 +398,6 @@
     <Content Include="Views\Forecast\Resources\Images\Loading.gif" />
     <Content Include="Views\Forecast\Resources\Images\Refresh.png" />
     <Content Include="Views\Forecast\Resources\ScoreMap.js" />
-    <Content Include="Views\HiddenTool\Resources\Images\01.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\01_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\02.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\02_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\03.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\03_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\04.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\04_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\05.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\05_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06_1.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\06_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\07.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\07_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\08.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\08_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\09.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\09_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\10.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\11.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\11_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\12.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\12_s.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\13.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\14.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\15.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\16.gif" />
-    <Content Include="Views\HiddenTool\Resources\Images\17_s.gif" />
     <Content Include="Views\Home\Resources\Default.js" />
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
@@ -714,13 +681,7 @@
     <Content Include="Views\Home\PagerPlugin.cshtml" />
     <Content Include="Areas\Wagers\Views\Web.config" />
     <Content Include="Areas\Wagers\Views\_ViewStart.cshtml" />
-    <Content Include="Views\HiddenTool\Index.cshtml" />
-    <Content Include="Views\HiddenTool\Resources\HiddenTool.less" />
-    <Content Include="Views\HiddenTool\Shared\_Layout.cshtml" />
     <Content Include="Views\TotalBets\Index.cshtml" />
-    <Content Include="Views\HiddenTool\NetworkEncryptionSetting.cshtml" />
-    <Content Include="Views\HiddenTool\BrowsingHistoryDeletion.cshtml" />
-    <Content Include="Views\HiddenTool\Resources\Images\te4.zip" />
     <Content Include="Views\Account\ContactUs.cshtml" />
     <Content Include="Views\Account\Resources\header.less" />
     <Content Include="Views\Results\Others.cshtml" />
@@ -1005,9 +966,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.sitemap" />
-    <Content Include="_BetList\Resources\BetList.less" />
-    <Content Include="_BetList\Resources\ErrorPage.less" />
-    <Content Include="_BetList\Resources\Paging.less" />
     <Content Include="_Components\web.config" />
     <Content Include="_Components\AGEWnd\web.config" />
     <Content Include="_GlobalResources\Css\Agent.less" />
@@ -1065,6 +1023,7 @@
     <Content Include="Views\Reports\SportCredit.cshtml" />
     <Content Include="Views\Error\WhoAmI.cshtml" />
     <Content Include="Views\Error\RedirectToUM.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\PermissionUserControl\AssignPermissionControl.cshtml" />
     <Content Include="Views\PermissionUserControl\Shared\_Layout.cshtml" />
     <Content Include="Views\PermissionUserControl\AgentUserList.cshtml" />
@@ -1072,6 +1031,11 @@
     <Content Include="Views\Log\LogActionType9.cshtml" />
     <Content Include="Views\Reports\Menu.cshtml" />
     <Content Include="Views\Reports\ReportAccessDenied.cshtml" />
+=======
+    <None Include="_BetList\Resources\BetList.less" />
+    <None Include="_BetList\Resources\ErrorPage.less" />
+    <None Include="_BetList\Resources\Paging.less" />
+>>>>>>> Feature_#4851_AddPeriodButtonToAllReports
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -1094,10 +1058,6 @@
     <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
       <Name>Apollo.Age.Forecast</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj">
-      <Project>{1909258B-93B9-4E7D-A896-C57D8B22254F}</Project>
-      <Name>Apollo.Age.HiddenTool</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>

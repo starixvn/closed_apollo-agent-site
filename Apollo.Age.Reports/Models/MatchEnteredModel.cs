@@ -12,6 +12,9 @@ namespace Apollo.Age.Reports.Models
     using System;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Match entered model class.
+    /// </summary>
     public class MatchEnteredModel
     {
         public short SportTypeId { get; set; }
@@ -24,6 +27,12 @@ namespace Apollo.Age.Reports.Models
 
         public int TodayNonEntered { get; set; }
 
+        /// <summary>
+        /// Gets the name of the sport type.
+        /// </summary>
+        /// <value>
+        /// The name of the sport type.
+        /// </value>
         public string SportTypeName
         {
             get
@@ -33,6 +42,9 @@ namespace Apollo.Age.Reports.Models
         }
     }
 
+    /// <summary>
+    /// Match entered class.
+    /// </summary>
     public class MatchEntered
     {
         public bool IsToday { get; set; }

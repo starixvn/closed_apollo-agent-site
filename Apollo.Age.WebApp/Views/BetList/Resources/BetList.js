@@ -131,6 +131,7 @@ RegisterStartUp(InitBetList);
 var BETLIST = {};
 
 if (typeof jQuery != "undefined") {
+<<<<<<< HEAD
 	BETLIST = function ($) {
 		return {
 			dialogDetails: null,
@@ -294,6 +295,243 @@ if (typeof jQuery != "undefined") {
 	$(document).ready(function () {
 		$.blockUI();
 		setTimeout('$.unblockUI()', 300);
+=======
+    BETLIST = function ($) {
+        return {
+            dialogDetails: null,
+            pageIndex: 0,
+            init: function () {
+                BETLIST.BalanceUpDay = $("#balanceUpDay")
+                BETLIST.FromDate = $("#FromDate");
+                BETLIST.ToDate = $("#ToDate");
+                BETLIST.Today = $("#today");
+                BETLIST.Yesterday = $("#yesterday");
+                BETLIST.Tomorrow = $("#tomorrow");
+                BETLIST.FromThisWeek = $("#thisWeekFrom");
+                BETLIST.ToThisWeek = $("#thisWeekTo");
+                BETLIST.FromLastWeek = $("#lastWeekFrom");
+                BETLIST.ToLastWeek = $("#lastWeekTo");
+                BETLIST.ddlSport = $("#SportTypes");
+                BETLIST.ddlBettype = $("#BetTypes");
+                BETLIST.dialogDetails = $('#dialog-details');
+                BETLIST.FromThisPeriod = $("#thisPeriodFrom");
+                BETLIST.ToThisPeriod = $("#thisPeriodTo");
+                BETLIST.FromLastPeriod = $("#lastPeriodFrom");
+                BETLIST.ToLastPeriod = $("#lastPeriodTo");
+                // Event click submit on ticket cancel
+                $("#btnSubmitBetlist").click(function () {
+                    BETLIST.commonBetlist();
+                });
+
+                $("#btnSubmitCancelBetlist").click(function () {
+                    BETLIST.ticketCancel();
+                });
+
+                $("#btnSubmitTransaction").click(function () {
+                    BETLIST.Transaction();
+                });
+
+                $('#backLink').click(function () {
+                    history.go(-1);
+                    return false;
+                });
+                $(".dateRange").bind('click', function () {
+                    /* Range type value
+                    + 1 : Today
+                    + 2 : Yesterday
+                    + 3 : Tomorrow
+                    + 4 : This Week
+                    + 5 : Last Week
+                    */
+                    var rangeType = $(this).attr('range');
+
+                    switch (rangeType) {
+                        case "1":
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            break;
+                        case "2":
+                            BETLIST.FromDate.val(BETLIST.Yesterday.val());
+                            BETLIST.ToDate.val(BETLIST.Yesterday.val());
+                            break;
+                        case "4":
+                            BETLIST.FromDate.val(BETLIST.FromThisWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToThisWeek.val());
+                            break;
+                        case "5":
+                            BETLIST.FromDate.val(BETLIST.FromLastWeek.val());
+                            BETLIST.ToDate.val(BETLIST.ToLastWeek.val());
+                            break;
+                        case "6":
+                            BETLIST.FromDate.val(BETLIST.FromThisPeriod.val());
+                            BETLIST.ToDate.val(BETLIST.ToThisPeriod.val());
+                            break;
+                        case "7":
+                            BETLIST.FromDate.val(BETLIST.FromLastPeriod.val());
+                            BETLIST.ToDate.val(BETLIST.ToLastPeriod.val());
+                            break;
+                        default:
+                            BETLIST.FromDate.val(BETLIST.Today.val());
+                            BETLIST.ToDate.val(BETLIST.Today.val());
+                            return;
+                    }
+                });
+
+
+                if ($('#IsTransactionsBetList').val() === '1') {
+                    BETLIST.initPager(BETLIST.pageIndex);
+                }
+
+                BETLIST.ddlSport.bind('change', function () {
+                    var $this = $(this);
+                    var valueChange = $this.val();
+                    var url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=false');
+
+                    if (valueChange == "-99") {
+                        url = APOLLO.resolveUrl('Betlist/CreateParlayBettype');
+                    }
+                    else if (valueChange == "0") {
+                        url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=true');
+                    }
+                    else {
+                        url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=false');
+                    }
+
+                    $.getJSON(url)
+                        .done(function (data) {
+                            BETLIST.ddlBettype.empty();
+                            $.each(data, function (i, item) {
+                                BETLIST.ddlBettype.append($('<option>', {
+                                    value: item.Id,
+                                    text: item.Name
+                                }));
+                            });
+                        });
+
+                });
+
+                BETLIST.initEditLink();
+            },
+
+            getBetListData: function () {
+                $.blockUI();
+                $.ajax({
+                    url: APOLLO.resolveUrl("~/Betlist/TransactionsPaging"),
+                    data: {
+                        fromDate: BETLIST.FromDate.val(),
+                        toDate: BETLIST.ToDate.val(),
+                        sportTypes: BETLIST.ddlSport.val(),
+                        betTypes: BETLIST.ddlBettype.val(),
+                        username: $("#Username").val(),
+                        userType: $("#UserType").val(),
+                        pageIndex: BETLIST.pageIndex
+                    },
+                    success: function (data) {
+                        $('#container').html(data);
+                        BETLIST.initEditLink();
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    }
+                });
+            },
+
+            initPager: function (pageIndex) {
+                $('#pager').sbPager({
+                    currentPage: pageIndex,
+                    itemPerPage: 40,
+                    totalItem: $('#TotalItems').val(),
+                    callback: function (currentPage) {
+                        BETLIST.pageIndex = currentPage;
+                        BETLIST.getBetListData();
+                    }
+                });
+            },
+
+            commonBetlist: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+
+            ticketCancel: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
+                if (BETLIST.FromDate.val() < BETLIST.FromThisPeriod.val() || BETLIST.ToDate.val() < BETLIST.FromThisPeriod.val()) {
+                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.FromThisPeriod.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+
+            Transaction: function () {
+                if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
+                    alert("Invalid date");
+                    return;
+                }
+
+                if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
+                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                }
+                else {
+                    $.blockUI();
+                    $("form:first").submit();
+                }
+            },
+
+            initEditLink: function () {
+                $(".view-detail").click(function () {
+                    var fromDate = toDate = type = "";
+
+                    if (typeof ($("#fromDate").val()) !== 'undefined') {
+                        fromDate = $("#fromDate").val();
+                    }
+                    if (typeof ($("#toDate").val()) !== 'undefined') {
+                        toDate = $("#toDate").val();
+                    }
+                    if (typeof ($("#type").val()) !== 'undefined') {
+                        type = $("#type").val();
+                    }
+
+                    var $this = $(this),
+				    transId = $this.attr("tid"),
+				    fromDate = fromDate,
+				    toDate = toDate,
+				    type = type,
+				    params = "?transid=" + transId +
+					    "&fromdate=" + fromDate +
+					    "&toDate=" + toDate +
+					    "&type=" + type;
+
+                    var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
+                    APOLLO.isResizeDialog = false;
+                    APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
+							    title, { width: 400, height: 500, modal: false });
+
+                    return false;
+                });
+            }
+        };
+    } (jQuery);
+
+    $(document).ready(function () {
+        $.blockUI();
+        setTimeout('$.unblockUI()', 300);
+>>>>>>> Feature_#4851_AddPeriodButtonToAllReports
 
 		BETLIST.init();
 

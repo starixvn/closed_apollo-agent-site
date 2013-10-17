@@ -1862,10 +1862,10 @@
     <value>可佔成預設值% [最小 - 最大]</value>
   </data>
   <data name="lblwinlossnote1" xml:space="preserve">
-    <value>交上線佔成後的實貨量</value>
+    <value>有效金额#1: 交上線佔成後的實貨量</value>
   </data>
   <data name="lblwinlossnote2" xml:space="preserve">
-    <value>交公司實貨量</value>
+    <value>有效金额#2: 交公司實貨量</value>
   </data>
   <data name="lblEditMemberShare" xml:space="preserve">
     <value>修改會員佔成</value>

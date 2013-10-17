@@ -1994,10 +1994,10 @@
     <value>Upline Setting [Min - Max]</value>
   </data>
   <data name="lblwinlossnote1" xml:space="preserve">
-    <value>"Effective Stake#1" after share given to the company (the selected agent and upline) by downline</value>
+    <value>Effective Stake#1: total stake after share returned to the company (the selected agent and upline) by downline</value>
   </data>
   <data name="lblwinlossnote2" xml:space="preserve">
-    <value>"Effective Stake#2" after share given to upline by the selected agent</value>
+    <value>Effective Stake#2: total stake after share returned to upline by the selected agent</value>
   </data>
   <data name="lblEditMemberShare" xml:space="preserve">
     <value>Edit Member Share</value>
@@ -2106,5 +2106,11 @@
   </data>
   <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
     <value>This function is not available during peak hour at weekend since it might affect the performance of the whole system. Please contact CSD for further assistance.</value>
+     </data>
+  <data name="lastperiod" xml:space="preserve">
+    <value>Last Period</value>
+  </data>
+  <data name="thisperiod" xml:space="preserve">
+    <value>This Period</value>
   </data>
 </root>

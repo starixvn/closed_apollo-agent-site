@@ -47,6 +47,11 @@ namespace Apollo.Age.Reports.Services
             return sportCreditList;
         }
 
+        /// <summary>
+        /// Exports the sport credit.
+        /// </summary>
+        /// <param name="model">Input the Sport credit view model.</param>
+        /// <returns>Return a workbook.</returns>
         public HSSFWorkbook ExportSportCredit(SportCreditViewModel model)
         {
             HSSFWorkbook hssfworkbook;
@@ -60,7 +65,7 @@ namespace Apollo.Age.Reports.Services
             //// Assign data
             var templateSheet = hssfworkbook.GetSheet("sheet1");
             var sheet = hssfworkbook.CloneSheet("sheet1", Lang.lblLineSportCredit);
-            
+
             //// render title
             var title = string.Format("{0} {1}", Lang.lblLineSportCredit, Lang.lblReport);
             var rowTitle = sheet.GetRow(_RowTitle);
@@ -93,7 +98,7 @@ namespace Apollo.Age.Reports.Services
             {
                 totalOutstanding += (double)item.OutstandingCredit;
                 totalRemaining += (double)item.RemainingCredit;
-                
+
                 sheet.CopyRow(templateSheet, _RowStartBody, rowIndex);
                 var row = sheet.GetRow(rowIndex);
 
@@ -120,7 +125,7 @@ namespace Apollo.Age.Reports.Services
                 {
                     cellLevel.SetCellValue(LanguageManager.GetResourceData(keyLang));
                 }
-                
+
                 cellOutstanding.SetCellValue((double)item.OutstandingCredit);
                 cellRemaining.SetCellValue((double)item.RemainingCredit);
 

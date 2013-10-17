@@ -14,9 +14,16 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Match entered view model class.
+    /// </summary>
     public class MatchEnteredViewModel
     {
         public DateTime BalanceUpDay { get; set; }
+
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
 
         public List<MatchEnteredModel> MatchEnteredModelList { get; set; }
 
@@ -24,6 +31,11 @@ namespace Apollo.Age.Reports.ViewModels
 
         public List<SingbetBettype> BettypeList { get; set; }
 
+        /// <summary>
+        /// Checks the is completed.
+        /// </summary>
+        /// <param name="isToday">Include today data or not.</param>
+        /// <returns>True for yesterday and false for today.</returns>
         public bool CheckIsCompleted(bool isToday)
         {
             if (MatchEnteredModelList != null)

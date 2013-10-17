@@ -13,12 +13,18 @@ namespace Apollo.Age.Reports.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// Outright result model
+    /// Outright result model class.
     /// </summary>
     public class OutrightResultModel
     {
         public byte SportId { get; set; }
 
+        /// <summary>
+        /// Gets the name of the sport.
+        /// </summary>
+        /// <value>
+        /// The name of the sport.
+        /// </value>
         public string SportName
         {
             get
@@ -29,6 +35,12 @@ namespace Apollo.Age.Reports.Models
 
         public int LeagueId { get; set; }
 
+        /// <summary>
+        /// Gets the name of the league.
+        /// </summary>
+        /// <value>
+        /// The name of the league.
+        /// </value>
         public string LeagueName
         {
             get
@@ -41,6 +53,12 @@ namespace Apollo.Age.Reports.Models
 
         public int TeamId { get; set; }
 
+        /// <summary>
+        /// Gets the name of the team.
+        /// </summary>
+        /// <value>
+        /// The name of the team.
+        /// </value>
         public string TeamName
         {
             get

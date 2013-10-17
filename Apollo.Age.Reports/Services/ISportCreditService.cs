@@ -15,6 +15,11 @@ namespace Apollo.Age.Reports.Services
 
     public interface ISportCreditService
     {
+        /// <summary>
+        /// Gets the sport credits.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of sport credit.</returns>
         List<SportCreditModel> GetSportCredits(SportCreditCriteria criteria);
     }
 }

@@ -15,6 +15,9 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Agent win loss model class.
+    /// </summary>
     public class AgentWinLossViewModel
     {
         public bool IsSuper { get; set; }
@@ -36,6 +39,10 @@ namespace Apollo.Age.Reports.ViewModels
         public DateTime ToDate { get; set; }
 
         public DateTime BalanceUpDay { get; set; }
+
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
 
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 

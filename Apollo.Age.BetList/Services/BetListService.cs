@@ -153,5 +153,10 @@ namespace Apollo.Age.BetList.Services
         {
             return this._betListRepository.GetTicketResult(criteria);
         }
+
+        public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
+        {
+            return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
+        }
     }
 }
