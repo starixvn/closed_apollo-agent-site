@@ -9,13 +9,9 @@
 
 namespace Apollo.Age.Reports.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.Entities;
-    using Apollo.Age.Reports.Models;
-    using Apollo.Age.PermissionControl.Models;
+    using Apollo.Age.Models;
 
     /// <summary>
     /// TODO: Update summary.

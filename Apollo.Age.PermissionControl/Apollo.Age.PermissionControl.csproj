@@ -53,23 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\ApolloFunctionKeys.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApolloFunctionKeys.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Crud.cs" />
-    <Compile Include="Core\Policy.cs" />
-    <Compile Include="Criterias\AgentUserAssignFunctionCriteria.cs" />
-    <Compile Include="Criterias\AgentUserGetByAgentCriteria.cs" />
-    <Compile Include="Criterias\AgentUserGetFunctionPolicyCriteria.cs" />
-    <Compile Include="Criterias\AgentUserGetUserFunctionPolicyCriteria.cs" />
-    <Compile Include="Criterias\GetAgentUserCriteria.cs" />
-    <Compile Include="Criterias\GetParentInfoWithAgentUserCriteria.cs" />
-    <Compile Include="Criterias\FunctionGetAllCriteria.cs" />
-    <Compile Include="Entities\Function.cs" />
-    <Compile Include="Entities\FunctionGroup.cs" />
-    <Compile Include="Models\FunctionPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Interface\IAgentUserRepository.cs" />
     <Compile Include="Repositories\Interface\IFunctionRepository.cs" />
@@ -90,12 +73,6 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Business\ApolloFunctionKeys.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ApolloFunctionKeys.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

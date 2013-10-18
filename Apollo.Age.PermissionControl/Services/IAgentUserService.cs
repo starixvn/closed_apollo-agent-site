@@ -32,7 +32,7 @@ namespace Apollo.Age.PermissionControl.Services
         /// <param name="functionGroupId">The function group identifier.</param>
         /// <param name="isActive">The is active.</param>
         /// <returns>List function with policy of user.</returns>
-        IEnumerable<FunctionPolicy> GetUserFunctionPolicy(int agentUserId, short functionGroupId = 0, bool? isActive = null);
+        IEnumerable<FunctionPolicyModel> GetUserFunctionPolicy(int agentUserId, short functionGroupId = 0, bool? isActive = null);
 
         /// <summary>
         /// Gets the parent information.
@@ -42,12 +42,12 @@ namespace Apollo.Age.PermissionControl.Services
         /// <returns>User information.</returns>
         User GetParentInfo(int agentUserId, bool isMaster);
 
-        /// <summary>
-        /// Gets the agent user information.
-        /// </summary>
-        /// <param name="agentUserId">The agent user identifier.</param>
-        /// <returns>Agent user information.</returns>
-        User GetAgentUserInfo(int agentUserId);
+        ///// <summary>
+        ///// Gets the agent user information.
+        ///// </summary>
+        ///// <param name="agentUserId">The agent user identifier.</param>
+        ///// <returns>Agent user information.</returns>
+        //User GetAgentUserInfo(int agentUserId);
 
         /// <summary>
         /// Gets the user function policy.

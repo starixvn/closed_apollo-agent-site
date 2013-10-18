@@ -14,14 +14,20 @@ namespace Apollo.Age.Services.Interface
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using System.Collections.Generic;
+    using Apollo.Age.Models;
 
     public interface IUserService
     {
         User GetUserById(int userId);
-        
+
         User GetUserByUsername(string username);
-                
+
+        User GetUserParentInfo(int userId);
+
         User InternalGetAgentByUsername(string username);
+
+        IEnumerable<User> GetUserByAgent(int agentId);
 
         bool AllowLineAccountSSO(string username);
 
@@ -60,5 +66,21 @@ namespace Apollo.Age.Services.Interface
         /// <param name="onUserId">User id of current loginned user</param>
         /// <returns>result of login</returns>
         int InternalLogout(int onUserId);
+
+        /// <summary>
+        /// Gets the user function policy.
+        /// </summary>
+        /// <param name="agentUserId">The agent user identifier.</param>
+        /// <param name="functionKey">The function key.</param>
+        /// <returns>Policy of user on function.</returns>
+        byte GetUserPolicy(int userId, string functionKey);
+
+        IEnumerable<FunctionPolicy> GetAllUserPolicy(int userId, short functionGroupId = 0, bool? isActive = null);
+
+        /// <summary>
+        /// Assigns the user permission.
+        /// </summary>
+        /// <param name="criteria">The criteria assign user permission.</param>   
+        void AssignUserPermission(ref UserAssignFunctionCriteria criteria);
     }
 }

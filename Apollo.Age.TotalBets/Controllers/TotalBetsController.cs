@@ -19,12 +19,12 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// Total Bets Controller.

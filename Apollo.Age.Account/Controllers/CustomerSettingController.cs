@@ -25,8 +25,6 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Web.Attribute;
@@ -35,7 +33,9 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using System;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// Customer Setting Controller
@@ -47,7 +47,7 @@ namespace Apollo.Age.Account.Controllers
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
         private readonly ISportSettingService _sportService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
 
         #region Ctors
 
@@ -60,12 +60,12 @@ namespace Apollo.Age.Account.Controllers
             IAccountService accountService,
             ICustomerSettingService customerSettingService,
             ISportSettingService sportService,
-            IAgentUserService agentUserService)
+            IUserService userService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
             _sportService = sportService ?? new SportSettingService();
-            _agentUserService = agentUserService ?? new AgentUserService();
+            _userService = userService ?? new UserService();
         }
 
         #endregion Ctors
@@ -324,7 +324,7 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
         {
-            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -403,7 +403,7 @@ namespace Apollo.Age.Account.Controllers
             //{
             //    return Redirect("~/Error?err=404");
             //}
-            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             ViewBag.CustId = 0;
             ViewBag.UserName = string.Empty;
@@ -567,7 +567,7 @@ namespace Apollo.Age.Account.Controllers
             string backLink = "",
             bool fromLeftMenu = false)
         {
-            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
@@ -590,7 +590,7 @@ namespace Apollo.Age.Account.Controllers
             bool fromLeftMenu = false,
             string memberIds = "")
         {
-            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
@@ -804,7 +804,7 @@ namespace Apollo.Age.Account.Controllers
                 settingContext.FormId = FormType.EditMultiple;
             }
 
-            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             if (custSettingPolicy != (byte)Policy.Edit)
             {

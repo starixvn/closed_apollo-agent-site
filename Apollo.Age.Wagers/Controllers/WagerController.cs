@@ -20,7 +20,6 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Configurations;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
@@ -30,7 +29,8 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Services.Impl;
 
     /// <summary>
     /// Wager Controller.
@@ -40,7 +40,7 @@ namespace Apollo.Age.Wagers.Controllers
     {
         protected readonly IWagersService WagerService;
         protected readonly ReportService ReportService;
-        protected readonly IAgentUserService AgentUserService;
+        protected readonly IUserService UserService;
         private DateTime _wagerDate;
 
         public WagerController()
@@ -50,11 +50,11 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerDate = Converter.ToDateTime(configDate, DateTime.Now);
         }
 
-        public WagerController(IWagersService wagerService = null, IAgentUserService agentUserService = null)
+        public WagerController(IWagersService wagerService = null, IUserService userService = null)
         {
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
-            AgentUserService = agentUserService ?? new AgentUserService();
+            UserService = userService ?? new UserService();
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Apollo.Age.Wagers.Controllers
                 functionKey = ApolloFunctionKeys.Outright;
             }
 
-            var policy = AgentUserService.GetUserPolicy(CurrentSession.UserId, functionKey);
+            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
 
             if (policy < (byte)Policy.Query)
             {

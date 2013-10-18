@@ -13,6 +13,8 @@ namespace Apollo.Age.Repositories.Interface
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Models;
+    using System.Collections.Generic;
 
     public interface IUserRepository : IRepository<User>
     {
@@ -72,5 +74,9 @@ namespace Apollo.Age.Repositories.Interface
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Return true or false.</returns>
         bool CheckBelongToUpline(ICriteria criteria);
+
+        IEnumerable<FunctionPolicy> GetAllUserPolicy(ICriteria criteria);
+
+        void AssignUerPermision(ref UserAssignFunctionCriteria criteria);
     }
 }

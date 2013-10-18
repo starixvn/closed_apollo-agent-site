@@ -13,7 +13,6 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
     using System.Collections.Generic;
     using Apollo.Age.Entities;
     using Apollo.Age.PermissionControl.Criterias;
-    using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.PermissionControl.Repositories.Interface;
     using Apollo.Age.Repositories.Impl;
@@ -60,7 +59,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
         /// </summary>
         /// <param name="criteria">The criteria get user function policy.</param>
         /// <returns>List of function with policy of user.</returns>
-        public IEnumerable<FunctionPolicy> GetUserFunctionPolicy(ICriteria criteria)
+        public IEnumerable<FunctionPolicyModel> GetUserFunctionPolicy(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -70,7 +69,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
                 {
                     using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        return objectDb.Query<FunctionPolicy, Function, FunctionGroup, FunctionPolicy>(
+                        return objectDb.Query<FunctionPolicyModel, Function, FunctionGroup, FunctionPolicyModel>(
                             (fp, f, fg) => { fp.Function = f; f.FunctionGroup = fg; return fp; },
                             "FunctionId,FunctionGroupId",
                             criteria.GetSpParams());

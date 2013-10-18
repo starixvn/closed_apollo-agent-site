@@ -20,14 +20,14 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web;
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Core;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.NAP.Framework.Mvc;
@@ -41,7 +41,7 @@ namespace Apollo.Age.Reports.Controllers
         private readonly SportCreditService _sportCreditService;
         private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
         private int _currentAgentId;
 
@@ -67,7 +67,7 @@ namespace Apollo.Age.Reports.Controllers
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
             this._outstandingService = new OutstandingService();
-            _agentUserService = new AgentUserService();
+            _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
@@ -103,9 +103,9 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            ViewBag.allFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Outstanding) >= (byte)Policy.Query;
+            var hasPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Outstanding) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {
@@ -202,7 +202,7 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyMemberOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutstanding;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            ViewBag.allFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
             //// return object
             return this.Json(report);
         }
@@ -230,7 +230,7 @@ namespace Apollo.Age.Reports.Controllers
 
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
-            var functionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            var functionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
 
             var winLossFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Win_Loss).FirstOrDefault();
 
@@ -335,9 +335,9 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = agentWinLossList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            ViewBag.allFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
+            var hasPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {
@@ -399,9 +399,9 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = memberWinLossList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            ViewBag.allFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
+            var hasPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {
@@ -569,9 +569,9 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = sportCreditList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            ViewBag.allFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.LineSportCredits) >= (byte)Policy.Query;
+            var hasPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.LineSportCredits) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {

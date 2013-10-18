@@ -20,15 +20,14 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-    using Fanex.Logging;
-    using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.Web.Web.Attribute;
-    using Apollo.Age.PermissionControl.Core;
+    using Fanex.Logging;
+    using Apollo.Age.Core;
 
     /// <summary>
     /// Log controller.
@@ -673,11 +672,11 @@ namespace Apollo.Age.Account.Controllers
                             {
                                 Function = new Function
                                 {
-                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                    Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
                                     itemFunctionPolicy.Attribute("f").Value : string.Empty),
                                     FunctionGroup = new FunctionGroup
                                     {
-                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                        Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
                                     itemFunctionPolicy.Attribute("fg").Value : string.Empty)
                                     }
                                 },
@@ -703,11 +702,11 @@ namespace Apollo.Age.Account.Controllers
                             {
                                 Function = new Function
                                 {
-                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                    Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
                                     itemFunctionPolicy.Attribute("f").Value : string.Empty),
                                     FunctionGroup = new FunctionGroup
                                     {
-                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                        Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
                                     itemFunctionPolicy.Attribute("fg").Value : string.Empty)
                                     }
                                 },
@@ -719,7 +718,7 @@ namespace Apollo.Age.Account.Controllers
                             {
                                 var item = listFunctionPolicy[i];
 
-                                if (string.Equals(item.Function.FunctionName, func.Function.FunctionName))
+                                if (string.Equals(item.Function.Name, func.Function.Name))
                                 {
                                     item.Policy = func.Policy;
                                     break;

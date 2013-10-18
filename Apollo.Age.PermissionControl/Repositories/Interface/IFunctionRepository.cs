@@ -10,7 +10,7 @@
 namespace Apollo.Age.PermissionControl.Repositories.Interface
 {
     using System.Collections.Generic;
-    using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

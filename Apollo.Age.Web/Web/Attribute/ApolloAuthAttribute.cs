@@ -11,10 +11,11 @@ namespace Apollo.Age.Web.Web.Attribute
 {
     using System.Web;
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Core;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Services.Impl;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,7 +24,7 @@ namespace Apollo.Age.Web.Web.Attribute
     {
         #region Member
 
-        private IAgentUserService _AgentUserService = new AgentUserService();
+        private IUserService _AgentUserService = new UserService();
 
         #endregion Member
 

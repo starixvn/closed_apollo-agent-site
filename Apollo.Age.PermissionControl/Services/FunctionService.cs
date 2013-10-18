@@ -11,8 +11,8 @@ namespace Apollo.Age.PermissionControl.Services
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Entities;
     using Apollo.Age.PermissionControl.Criterias;
-    using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.PermissionControl.Repositories.Impl;
     using Apollo.Age.PermissionControl.Repositories.Interface;
     using Apollo.Age.Services.Impl;

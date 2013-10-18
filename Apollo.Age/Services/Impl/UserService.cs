@@ -22,6 +22,8 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Logging;
+    using System.Collections.Generic;
+    using Apollo.Age.Models;
 
     public class UserService : QueryService, IUserService
     {
@@ -34,8 +36,23 @@ namespace Apollo.Age.Services.Impl
 
         public User GetUserById(int userId)
         {
-            Check.Argument.IsNotNegativeOrZero(userId, "userId");
-            throw new NotImplementedException();
+            Check.Argument.IsNotNegative(userId, "userId");
+
+            try
+            {
+                var criteria = new UserGetByIdCriteria
+                {
+                    AgentUserId = userId
+                };
+
+                return _userRepository.Get(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
         }
 
         public User GetUserByUsername(string username)
@@ -58,7 +75,41 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
+        public User GetUserParentInfo(int userId)
+        {
+            User user = null;
+            Check.Argument.IsNotNegative(userId, "userId");
 
+            try
+            {
+                user = _userRepository.Get(new UserGetUserParentInfoCriteria
+                {
+                    AgentUserId = userId
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return user;
+        }
+
+        public IEnumerable<User> GetUserByAgent(int agentId)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+
+            try
+            {
+                return _userRepository.Fetch(new UserGetUserByAgentCriteria { AgentId = agentId });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database.
@@ -322,6 +373,61 @@ namespace Apollo.Age.Services.Impl
                 Logger.Log.Error(ex.Message, ex);
             }
             return isAllowed;
+        }
+
+        public byte GetUserPolicy(int userId, string functionKey)
+        {
+            try
+            {
+                var criteria = new UserGetUserFunctionPolicyCriteria
+                {
+                    AgentUserId = userId,
+                    FunctionKey = functionKey
+                };
+
+                return (byte)_userRepository.Count(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return 0;
+        }
+
+        public IEnumerable<FunctionPolicy> GetAllUserPolicy(int userId, short functionGroupId = 0, bool? isActive = null)
+        {
+            try
+            {
+                var criteria = new UserGetAllUserPolicyCriteria
+                {
+                    AgentUserId = userId,
+                    FunctionGroupId = functionGroupId,
+                    IsActive = isActive
+                };
+
+                return _userRepository.GetAllUserPolicy(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
+        }
+
+        public void AssignUserPermission(ref UserAssignFunctionCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                _userRepository.AssignUerPermision(ref criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
     }
 }

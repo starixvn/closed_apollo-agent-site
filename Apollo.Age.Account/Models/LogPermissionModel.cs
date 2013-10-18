@@ -9,11 +9,7 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.Entities;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
