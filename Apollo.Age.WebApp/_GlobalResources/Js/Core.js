@@ -448,7 +448,7 @@ if (typeof jQuery != 'undefined') {
                     } else {
                         resolution["height"] = 510;
                     }
-                } console.log(resolution);
+                }                 
                 return resolution;
             }
         };
