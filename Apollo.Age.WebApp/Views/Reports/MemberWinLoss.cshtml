@@ -71,7 +71,6 @@
         </div>
     </div>
 </div>
-
 @if (Model.MemberWinLossList != null && Model.MemberWinLossList.Any())
 {
     <div class="notes">
@@ -82,7 +81,6 @@
         </ul>
     </div>
 }
-
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath, true)
@@ -186,7 +184,7 @@
 
                 <tr @Html.Raw(rowClass)>
                     <td>
-                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:;">
+                        <a class="view-betlist" data-memberid="@item.MemberId" data-membername="@item.MemberName" href="javascript:void(0);">
                             @item.MemberName
                         </a>
                     </td>
@@ -293,7 +291,7 @@ else
         </thead>
         <tbody>
             <td class="text-center row-exit">
-                <a href="javascript:;" id="lnkExit">@Lang.lblExit</a>
+                <a href="javascript:void(0);" id="lnkExit">@Lang.lblExit</a>
             </td>
         </tbody>
     </table>
@@ -309,13 +307,11 @@ else
 @Html.Hidden("BettypeName", Model.BettypeName)
 @section scripts
 {
-    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
-        var LANGUAGES = function () {
-            return {
-                MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
-                BetListString: "@Lang.lblBetLists.ToUpper()"
-            };
-        } ();
+        var LANGUAGES = {
+            MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
+            BetListString: "@Lang.lblBetLists.ToUpper()"
+        };
     </script>
+    @Scripts.Render("~/scripts/winlossjs")
 }
