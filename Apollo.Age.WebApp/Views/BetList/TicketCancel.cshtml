@@ -16,7 +16,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
     FunctionPolicyList = FunctionPermissions,
     ReportName = Lang.TicketsCancelled,
     SportType = Model.SportTypeIds,
-    SportDropDownControl = "SportTypes"
+    SportDropDownControl = "SportTypeIds"
 })
     <div id="box_header" class="report">
         <table>
@@ -68,7 +68,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
                 <td>                                   
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
 
                 </td>
             </tr>

@@ -49,7 +49,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
     FunctionPolicyList = FunctionPermissions,
     ReportName = Lang.transaction,
     SportType = Model.SportTypeIds,
-    SportDropDownControl = "SportTypes"
+    SportDropDownControl = "SportTypeIds"
 })
 
     <div class="pages-size">
@@ -108,7 +108,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                 </td>
                 <td>                                    
 
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
 
                 </td>
             </tr>
