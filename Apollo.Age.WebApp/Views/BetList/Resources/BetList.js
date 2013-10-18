@@ -146,8 +146,8 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ToThisWeek = $("#thisWeekTo");
                 BETLIST.FromLastWeek = $("#lastWeekFrom");
                 BETLIST.ToLastWeek = $("#lastWeekTo");
-                BETLIST.ddlSport = $("#SportTypes");
-                BETLIST.ddlBettype = $("#BetTypes");
+                BETLIST.ddlSport = $("#SportTypeIds");
+                BETLIST.ddlBettype = $("#BetTypeIds");
                 BETLIST.dialogDetails = $('#dialog-details');
                 BETLIST.FromThisPeriod = $("#thisPeriodFrom");
                 BETLIST.ToThisPeriod = $("#thisPeriodTo");
@@ -255,8 +255,8 @@ if (typeof jQuery != "undefined") {
                     data: {
                         fromDate: BETLIST.FromDate.val(),
                         toDate: BETLIST.ToDate.val(),
-                        sportTypes: BETLIST.ddlSport.val(),
-                        betTypes: BETLIST.ddlBettype.val(),
+                        SportTypeIds: BETLIST.ddlSport.val(),
+                        BetTypeIds: BETLIST.ddlBettype.val(),
                         username: $("#Username").val(),
                         userType: $("#UserType").val(),
                         pageIndex: BETLIST.pageIndex

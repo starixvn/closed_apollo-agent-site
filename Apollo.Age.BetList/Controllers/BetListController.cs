@@ -194,10 +194,8 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = fromDate,
                 ToDate = toDate,
 
-                SportTypeIds = sportTypes,
-                BetTypeIds = betTypes,
-
-                SportTypes = sportTypes == "-99" ? "0" : sportTypes,
+                SportTypeIds = sportTypes == "-99" ? "0" : sportTypes,
+                BetTypeIds = betTypes,               
 
                 Username = userName,
                 UserType = userType,
@@ -232,7 +230,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -349,7 +347,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
 
