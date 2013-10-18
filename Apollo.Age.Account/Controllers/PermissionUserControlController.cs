@@ -88,7 +88,7 @@ namespace Apollo.Age.Account.Controllers
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
                 ShadowUsername = agentUserInfo.Username,
-                AgentId = parentInfo.Agent.Id,
+                AgentId = agentUserInfo.Agent.Id,
                 IsDirectAgent = parentInfo.Agent.Id == CurrentSession.AgentId,
                 ParentAgentId = parentAgentId
             };
