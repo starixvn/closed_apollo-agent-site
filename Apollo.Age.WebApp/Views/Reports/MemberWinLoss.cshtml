@@ -308,16 +308,16 @@ else
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @section scripts
 {
-    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
-        var LANGUAGES = function () {
-            return {
+        var LANGUAGES = {
 
                 MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
                 BetListString: "@Lang.lblBetLists.ToUpper()",
-                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange",               
-
+                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"             
             };
-        } ();
+       
     </script>
+
+    @Scripts.Render("~/scripts/winlossjs")
+    
 }

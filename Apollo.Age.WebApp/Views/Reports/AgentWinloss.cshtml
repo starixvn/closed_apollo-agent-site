@@ -428,12 +428,13 @@ else
 })*@
 @section scripts
 {
-    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
-        var LANGUAGES = function () {
-            return {
-                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
-            };
-        } ();
+     var LANGUAGES = function () {
+         return {
+             MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
+         };
+     } ();
     </script>
+    @Scripts.Render("~/scripts/winlossjs")
+   
 }
