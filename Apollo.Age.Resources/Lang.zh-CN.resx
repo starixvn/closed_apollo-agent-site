@@ -880,7 +880,7 @@
     <value>从{1}复制{0}占成</value>
   </data>
   <data name="TicketsCancelled" xml:space="preserve">
-    <value>交易取消</value>
+    <value>取消单分析</value>
   </data>
   <data name="lblEmWager" xml:space="preserve">
     <value>早餐注单</value>
@@ -1880,7 +1880,7 @@
     <value>账户管理</value>
   </data>
   <data name="CancelledTickets" xml:space="preserve">
-    <value>取消投注</value>
+    <value>取消单分析</value>
   </data>
   <data name="ConfirmUpdatePermission" xml:space="preserve">
     <value>一些新的权限已经被选择,您想要将这些权限授权给所有的下线和分身障号吗?</value>

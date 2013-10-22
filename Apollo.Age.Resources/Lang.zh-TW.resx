@@ -649,7 +649,7 @@
     <value>雙</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>取消投注</value>
+    <value>取消單分析</value>
   </data>
   <data name="lblParlay" xml:space="preserve">
     <value>過關</value>
@@ -1880,7 +1880,7 @@
     <value>帳戶管理</value>
   </data>
   <data name="CancelledTickets" xml:space="preserve">
-    <value>取消投注</value>
+    <value>取消單分析</value>
   </data>
   <data name="ConfirmUpdatePermission" xml:space="preserve">
     <value>一些新的權限已經被選擇,您想要將這些權限授權給所有的下線和分身障號嗎?</value>
