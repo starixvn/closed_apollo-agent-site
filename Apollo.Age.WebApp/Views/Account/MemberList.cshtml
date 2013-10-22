@@ -71,7 +71,9 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
-@if (!ReferenceEquals(memberList, null) && memberList.Any() && Model.CustomerSettingPolicy >= (byte)Policy.Query)
+@if (!ReferenceEquals(memberList, null) && memberList.Any()
+    && Model.CustomerSettingPolicy >= (byte)Policy.Query
+    && Model.HasDownlineDetailsPermission)
 {
     <div id="divEditMultiple" class="edit-multiple-link">
         @if (!AppSettings.DisableEditOnMember)
@@ -86,7 +88,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                                                                                            }
+                                                                                                                                    }
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
     </div>
 }
@@ -95,9 +97,12 @@
     {
         <thead>
             <tr>
-                <th class="width-140">
-                    <input type="checkbox" id="cbAllMember" />
-                </th>
+                @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
+                {
+                    <th class="width-140">
+                        <input type="checkbox" id="cbAllMember" />
+                    </th>
+                }
                 <th>@Lang.enterusername
                 </th>
                 <th class="width-80">@Lang.status
@@ -106,7 +111,7 @@
                 </th>
                 <th class="width-80">@Lang.SportCredit
                 </th>
-                @if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
+                @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
                 { 
                     <th class="width-140">@Lang.Feature
                         <div class="edit-member-share">
@@ -122,9 +127,12 @@
             @foreach (var item in memberList)
             {
                 <tr>
-                    <td>
-                        <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
-                    </td>
+                    @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
+                    {
+                        <td>
+                            <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
+                        </td>
+                    }
                     <td>
                         @if (Model.HasDownlineDetailsPermission)
                         { 
@@ -152,7 +160,7 @@
                         }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    @if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
+                    @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
                     {
                         <td class="text-center">
                             @if (!AppSettings.DisableEditOnMember)
@@ -167,7 +175,7 @@
                                         @Lang.lblview
                                     }</a>
                                 @:&nbsp;/&nbsp;
-                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                         </td>
                     }

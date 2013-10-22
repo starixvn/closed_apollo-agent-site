@@ -115,7 +115,7 @@
                             }
                             else
                             { 
-                            <span>@item.NumberOfAgent</span>
+                            @item.NumberOfAgent
                             }
                         }
                         else
@@ -125,9 +125,16 @@
                     </td>
                     <td>
                         @if (item.NumberOfMember != 0)
-                        { 
+                        {
+                            if (Model.HasDownlineDetailsPermission)
+                            { 
                             @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                            }
+                            else
+                            {
+                            @item.NumberOfMember.ToString()
+                            }
                         }
                         else
                         {

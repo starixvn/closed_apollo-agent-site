@@ -36,6 +36,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
     using Apollo.Age.Web.Web.Attribute;
+    using Apollo.Age.Web.Mvc;
 
     /// <summary>
     /// Account controllers.
@@ -177,6 +178,18 @@ namespace Apollo.Age.Account.Controllers
 
             var memberList = _accountService.GetMemberDownline(ref criteria);
             totalPage = criteria.TotalPages;
+
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!hasDownlineDetailsPermission)
+            {
+                for (int i = 0; i < memberList.Count; i++)
+                {
+                    memberList[i].Username = HtmlHelperExtensions.EncryptUsername(memberList[i].Username);
+                }
+            }
+
+            ViewBag.HasDownlineDetailsPermission = hasDownlineDetailsPermission;
 
             return View(memberList.ToPagedList(currentPageIndex, _PageSize, totalPage * _PageSize));
         }
@@ -342,7 +355,11 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Agent tree list.</returns>
         public ViewResult AgentTreeList(int agentId)
         {
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
             ViewBag.AgentId = agentId;
+            ViewBag.HasDownlineDetailsPermission = hasDownlineDetailsPermission;
+
             return View();
         }
 
@@ -353,6 +370,7 @@ namespace Apollo.Age.Account.Controllers
         public ViewResult TreeViewList()
         {
             ViewBag.AgentId = this.CurrentSession.AgentId;
+
             return View();
         }
 
@@ -392,7 +410,12 @@ namespace Apollo.Age.Account.Controllers
                 && agentList.Any()
                 && !hasDownlineDetailsPermission)
             {
-                var agentInfoList = agentList.Select(x => new { x.Id, x.Username, HasAgentDownline = false });
+                var agentInfoList = agentList.Select(x => new
+                {
+                    x.Id,
+                    Username = HtmlHelperExtensions.EncryptUsername(x.Username),
+                    HasAgentDownline = false
+                });
 
                 return Json(agentInfoList, JsonRequestBehavior.AllowGet);
             }
@@ -411,6 +434,9 @@ namespace Apollo.Age.Account.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetRootNode()
         {
+            // Check downline details permission
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
             var criteria = new AgentDownlineCriteria()
             {
                 AgentId = this.CurrentSession.AgentId
@@ -426,8 +452,8 @@ namespace Apollo.Age.Account.Controllers
                 agentList.ForEach(t => childList.Add(new AgentTreeViewNode
                     {
                         Id = t.Id,
-                        Username = t.Username,
-                        HasAgentDownline = t.HasAgentDownline
+                        Username = hasDownlineDetailsPermission ? t.Username : HtmlHelperExtensions.EncryptUsername(t.Username),
+                        HasAgentDownline = hasDownlineDetailsPermission ? t.HasAgentDownline : false
                     }));
             }
 
@@ -539,36 +565,6 @@ namespace Apollo.Age.Account.Controllers
                 OrderType = orderType
             };
 
-            var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
-            {
-                ActorAgentId = CurrentSession.AgentId,
-                AgentId = agentId == -1 ? this.CurrentSession.AgentId : agentId,
-                ExcludeActor = false
-            });
-
-            IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
-
-            /* Order type
-            * ASC : 1
-            * DES : 2
-            */
-            if (criteria.OrderType == 1)
-            {
-                models = models.OrderBy(m => m.Username).ToList();
-            }
-            else
-            {
-                models = models.OrderByDescending(m => m.Username).ToList();
-            }
-
-            ViewBag.HasMemberDownline = agentInfo != null ? agentInfo.HasMemberDownline : false;
-
-            ViewBag.AgentList = models;
-            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
-            ViewBag.IsMaster = this.CurrentSession.IsMaster;
-            ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
-            ViewBag.AgentUsername = this.CurrentSession.AgentName;
-
             // Get permission on current logging user
             var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
 
@@ -576,6 +572,47 @@ namespace Apollo.Age.Account.Controllers
             criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
+            {
+                ActorAgentId = CurrentSession.AgentId,
+                AgentId = agentId == -1 ? this.CurrentSession.AgentId : agentId,
+                ExcludeActor = false
+            });
+
+            // Check downline details permission, policy < 1 => can not search for specific user
+            if (!criteria.HasDownlineDetailsPermission)
+            {
+                IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
+
+                if (!ReferenceEquals(models, null))
+                {
+                    /* Order type
+                    * ASC : 1
+                    * DES : 2
+                    */
+                    if (criteria.OrderType == 1)
+                    {
+                        models = models.OrderBy(m => m.Username).ToList();
+                    }
+                    else
+                    {
+                        models = models.OrderByDescending(m => m.Username).ToList();
+                    }
+                }
+
+                ViewBag.AgentList = models;
+            }
+            else
+            {
+                ViewBag.AgentList = null;
+            }
+
+            ViewBag.HasMemberDownline = agentInfo != null ? agentInfo.HasMemberDownline : false;
+            ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
+            ViewBag.IsMaster = this.CurrentSession.IsMaster;
+            ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
+            ViewBag.AgentUsername = this.CurrentSession.AgentName;
 
             return View(criteria);
         }
@@ -651,17 +688,20 @@ namespace Apollo.Age.Account.Controllers
 
             IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
 
-            /* Order type
-             * ASC : 1
-             * DES : 2
-             */
-            if (criteria.OrderType == 1)
+            if (!ReferenceEquals(models, null))
             {
-                models = models.OrderBy(m => m.Username).ToList();
-            }
-            else
-            {
-                models = models.OrderByDescending(m => m.Username).ToList();
+                /* Order type
+                 * ASC : 1
+                 * DES : 2
+                 */
+                if (criteria.OrderType == 1)
+                {
+                    models = models.OrderBy(m => m.Username).ToList();
+                }
+                else
+                {
+                    models = models.OrderByDescending(m => m.Username).ToList();
+                }
             }
 
             List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
@@ -754,6 +794,12 @@ namespace Apollo.Age.Account.Controllers
                 OrderType = orderType
             };
 
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+
+            criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
+            criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
             var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
             {
                 ActorAgentId = CurrentSession.AgentId,
@@ -761,35 +807,42 @@ namespace Apollo.Age.Account.Controllers
                 ExcludeActor = false
             });
 
-            IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
-
-            /* Order type
-            * ASC : 1
-            * DES : 2
-            */
-            if (criteria.OrderType == 1)
+            // Check downline details permission, policy < 1 => can not search for specific user
+            if (!criteria.HasDownlineDetailsPermission)
             {
-                models = models.OrderBy(m => m.Username).ToList();
+                IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
+
+                if (!ReferenceEquals(models, null))
+                {
+                    /* Order type
+                    * ASC : 1
+                    * DES : 2
+                    */
+                    if (criteria.OrderType == 1)
+                    {
+                        models = models.OrderBy(m => m.Username).ToList();
+                    }
+                    else
+                    {
+                        models = models.OrderByDescending(m => m.Username).ToList();
+                    }
+                }
+
+                ViewBag.MemberList = models;
             }
             else
             {
-                models = models.OrderByDescending(m => m.Username).ToList();
+                ViewBag.MemberList = null;
             }
 
             ViewBag.HasAgentDownline = agentInfo != null ? agentInfo.HasAgentDownline : false;
-            ViewBag.MemberList = models;
+
             ViewBag.ListPage = GetListPage(criteria.NumPages, criteria.PageIndex);
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
 
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.AgentUserName = this.CurrentSession.AgentName;
-
-            // Get user permission
-            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
-
-            criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
-            criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             return View(criteria);
         }
@@ -865,7 +918,10 @@ namespace Apollo.Age.Account.Controllers
 
             IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
-            models = criteria.OrderType == 1 ? models.OrderBy(m => m.Username).ToList() : models.OrderByDescending(m => m.Username).ToList();
+            if (!ReferenceEquals(models, null))
+            {
+                models = criteria.OrderType == 1 ? models.OrderBy(m => m.Username).ToList() : models.OrderByDescending(m => m.Username).ToList();
+            }
 
             List<Agent> directAgent = _accountService.GetDirectDownline(new AgentDownlineCriteria
             {

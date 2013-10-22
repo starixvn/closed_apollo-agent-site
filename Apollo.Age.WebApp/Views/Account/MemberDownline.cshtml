@@ -3,13 +3,17 @@
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
     ViewBag.Title = @Lang.memberList;
+
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
+
+    var classNameNoPermission = hasDownlineDetailsPermission ? "view-memberinfo" : "";
 }
 <ul id="members-list">
     @if (Model.Any())
     {
         foreach (var member in Model)
         {
-        <li><a class='view-memberinfo' href='javascript:;' data-memberid='@member.Id' data-membername='@member.Username' target='menu'>
+        <li><a class='@classNameNoPermission' href='javascript:;' data-memberid='@member.Id' data-membername='@member.Username' target='menu'>
             @member.Username
         </a></li>
         }
