@@ -133,7 +133,7 @@ namespace Apollo.Age.BetList.Controllers
             model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
-            model.MoveBetsDay = moveBetsDay;
+            model.MoveBetsDay = _reportService.MoveBetsDay();
 
             var mainTickets = _betListService.GetTicketResult(model, true);
 

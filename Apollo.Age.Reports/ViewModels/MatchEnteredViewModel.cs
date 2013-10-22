@@ -25,6 +25,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateRangeModel LastPeriod { get; set; }
 
+        public List<DateRangeModel> PeriodList { get; set; }
+
         public List<MatchEnteredModel> MatchEnteredModelList { get; set; }
 
         public List<SingbetSport> SportList { get; set; }
