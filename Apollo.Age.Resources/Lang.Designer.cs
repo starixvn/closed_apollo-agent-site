@@ -4760,6 +4760,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monthly Account Periods of Year {0}.
+        /// </summary>
+        public static string periodlisttitle {
+            get {
+                return ResourceManager.GetString("periodlisttitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period {0}.
+        /// </summary>
+        public static string periodnumber {
+            get {
+                return ResourceManager.GetString("periodnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission.
         /// </summary>
         public static string Permission {

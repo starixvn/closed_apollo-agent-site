@@ -221,7 +221,7 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
-
+            matchEnteredViewModel.PeriodList = _periodDateRangeSerivce.ListOfPeriodRanges();
             var isShowDataTest = false;
             if (SessionManager.CurrentSession != null)
             {
