@@ -41,7 +41,7 @@ namespace Apollo.Age.Account.Controllers
 
         private readonly IAccountService _accountService;
 
-        private readonly UserService _userServicel;
+        private readonly UserService _userService;
 
         private readonly ServiceBase _serviceBase;
 
@@ -55,7 +55,7 @@ namespace Apollo.Age.Account.Controllers
             _logService = logService ?? new LogRunSpService();
             _accountService = accountService ?? new AccountService();
             _serviceBase = serviceBase ?? new ServiceBase();
-            _userServicel = userService ?? new UserService();
+            _userService = userService ?? new UserService();
         }
 
         /// <summary>
@@ -102,14 +102,22 @@ namespace Apollo.Age.Account.Controllers
             criteria.From = new DateTime(criteria.From.Year, criteria.From.Month, criteria.From.Day, 0, 0, 0);
             criteria.To = new DateTime(criteria.To.Year, criteria.To.Month, criteria.To.Day, 23, 59, 59);
 
-            list = _logService.Search(ref criteria);
-            results = list != null ? list.ToList() : new List<LogRunSpModel>();
+            // Check downline details permission
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (string.IsNullOrWhiteSpace(criteria.Username)
+                || string.Equals(criteria.Username, this.CurrentSession.Username)
+                || hasDownlineDetailsPermission)
+            {
+                list = _logService.Search(ref criteria);
+                results = list != null ? list.ToList() : new List<LogRunSpModel>();
+            }
 
             if (!ReferenceEquals(results, null) && results.Any())
             {
                 if (criteria.IsAgent)
                 {
-                    var agentInfo = _userServicel.InternalGetAgentByUsername(criteria.Username);
+                    var agentInfo = _userService.InternalGetAgentByUsername(criteria.Username);
 
                     ViewBag.AgentLevel = agentInfo.Agent.Level;
                 }
