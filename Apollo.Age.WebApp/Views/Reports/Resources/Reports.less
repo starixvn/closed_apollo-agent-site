@@ -1,10 +1,16 @@
 ﻿@import "../../../_globalResources/css/Agent.less";
 @import "../../../_globalResources/css/calendar.less";
 
-.tblRpt tbody td {
-	border-width: 0 1px 0 0;
+.tblRpt {
+	clear: left;
+	 tbody td {
+		border-width: 0 1px 0 0;
+	}
 }
 
+.clear {
+	clear: both;
+}
 #function-bar {	
 	clear: both;
 	margin-bottom: 5px;
@@ -76,7 +82,7 @@
 		background-color: #DCDCDC;
 		border: 1px solid #000;
 		padding: 0px;
-		float: none;
+		float: left;
 
 		.btn {
 			font-size: @fontSize;
@@ -92,7 +98,7 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 6px 0 4px 0;
+				padding: 3px 0;
 
 				.item {
 					float: right;
@@ -196,6 +202,28 @@
 	}
 }
 
+.period-schedule {
+	float: left;
+	margin-left: 16px;
+	width: 350px;
+
+	.tblRpt {
+		border-color: #000;
+		border-width: 1px;
+		th, td {
+			height: 20px;
+		}
+
+		thead th {
+			background-color: #577176;
+			color: #fff;
+		}
+
+		tbody tr td {
+			border-color: #000;
+		}
+	}
+}
 /* Formatting for GRID */
 
 .freegrid {
@@ -292,6 +320,7 @@
 
 		#box_header {
 			width: 950px;
+			clear: left;
 			.btn {
 				padding: 0;
 			}		
@@ -303,6 +332,10 @@
 
 		.notes {
 			width: 930px;
+		}
+
+		.period-schedule {
+			width: 250px;
 		}
 	}
 }
