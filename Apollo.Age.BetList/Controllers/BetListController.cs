@@ -35,7 +35,8 @@ namespace Apollo.Age.BetList.Controllers
 
     /// <summary>
     /// BetList Controller
-    /// </summary>
+    /// </summary>    
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class BetListController : BaseController
     {
         private const string _StringEmpty = "";

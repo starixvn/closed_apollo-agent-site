@@ -65,7 +65,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 DataTable mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
 
-                if (mainTable == null || mainTable.Rows.Count < 0)
+                if (mainTable == null || mainTable.Rows.Count <= 0)
                 {
                     mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
                 }                                
