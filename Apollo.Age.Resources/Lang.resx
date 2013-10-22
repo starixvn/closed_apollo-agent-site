@@ -2021,7 +2021,7 @@
     <value>Confirm write this shadow user ?</value>
   </data>
   <data name="ShadowPermission" xml:space="preserve">
-    <value>Shadow Permission</value>
+    <value>Shadow Management</value>
   </data>
   <data name="Creator" xml:space="preserve">
     <value>Creator</value>
@@ -2030,7 +2030,7 @@
     <value>Register Date</value>
   </data>
   <data name="ShadowId" xml:space="preserve">
-    <value>Shadow Id</value>
+    <value>Shadow ID</value>
   </data>
   <data name="NoneShadow" xml:space="preserve">
     <value>None Shadow</value>
@@ -2106,11 +2106,14 @@
   </data>
   <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
     <value>This function is not available during peak hour at weekend since it might affect the performance of the whole system. Please contact CSD for further assistance.</value>
-     </data>
+  </data>
   <data name="lastperiod" xml:space="preserve">
     <value>Last Period</value>
   </data>
   <data name="thisperiod" xml:space="preserve">
     <value>This Period</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
   </data>
 </root>
