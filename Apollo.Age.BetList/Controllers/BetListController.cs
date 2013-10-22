@@ -709,14 +709,7 @@ namespace Apollo.Age.BetList.Controllers
             };
             if (criteria.IsValid())
             {
-                if (type.ToLower().Equals("report"))
-                {
-                    listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
-                }
-                else
-                {
-                    listAgentComm = betListService.GetDetailAgentComm(criteria);
-                }
+                listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
 
                 viewModel.TicketList = this.Ticket(listAgentComm);
             }
