@@ -77,6 +77,8 @@ namespace Apollo.Age.Services.Interface
 
         IEnumerable<FunctionPolicy> GetAllUserPolicy(int userId, short functionGroupId = 0, bool? isActive = null);
 
+        Dictionary<string, byte> GetAllUserPermission(int userId);
+
         /// <summary>
         /// Assigns the user permission.
         /// </summary>

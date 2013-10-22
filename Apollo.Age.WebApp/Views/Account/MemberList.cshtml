@@ -21,9 +21,7 @@
 
     var allowFundOut = (bool)ViewBag.AllowFundOut;
 
-    var agentUsername = ViewBag.AgentUserName ?? string.Empty;
-
-    var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
+    var agentUsername = ViewBag.AgentUserName ?? string.Empty;    
 }
 @using (Html.BeginForm())
 {
@@ -73,13 +71,13 @@
     </div>
     @Html.HiddenFor(m => m.AgentId)
 }
-@if (!ReferenceEquals(memberList, null) && memberList.Any() && custSettingPermissionPolicy >= (byte)Policy.Query)
+@if (!ReferenceEquals(memberList, null) && memberList.Any() && Model.CustomerSettingPolicy >= (byte)Policy.Query)
 {
     <div id="divEditMultiple" class="edit-multiple-link">
         @if (!AppSettings.DisableEditOnMember)
         {
             <a href="javascript:void(0);" id="editShareMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@Model.AgentId&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-                @if (isMaster && custSettingPermissionPolicy == (byte)Policy.Edit)
+                @if (isMaster && Model.CustomerSettingPolicy == (byte)Policy.Edit)
                 {
                     @Lang.edit
                 }
@@ -88,7 +86,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                                    }
+                                                                                            }
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
     </div>
 }
@@ -108,7 +106,7 @@
                 </th>
                 <th class="width-80">@Lang.SportCredit
                 </th>
-                @if (custSettingPermissionPolicy >= (byte)Policy.Query)
+                @if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
                 { 
                     <th class="width-140">@Lang.Feature
                         <div class="edit-member-share">
@@ -128,7 +126,14 @@
                         <input type="checkbox" class="cb-edit-multiple" value="@item.MemberId" data-member-username="@item.Username" />
                     </td>
                     <td>
-                        @item.Username
+                        @if (Model.HasDownlineDetailsPermission)
+                        { 
+                            @item.Username
+                        }
+                        else
+                        {
+                            @item.Username.EncryptUsername()
+                        }
                     </td>
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
@@ -147,7 +152,7 @@
                         }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    @if (custSettingPermissionPolicy >= (byte)Policy.Query)
+                    @if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
                     {
                         <td class="text-center">
                             @if (!AppSettings.DisableEditOnMember)
@@ -162,7 +167,7 @@
                                         @Lang.lblview
                                     }</a>
                                 @:&nbsp;/&nbsp;
-                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                    }
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                         </td>
                     }

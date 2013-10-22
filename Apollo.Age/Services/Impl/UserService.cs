@@ -429,5 +429,21 @@ namespace Apollo.Age.Services.Impl
                 HandleException(ex);
             }
         }
+
+        public Dictionary<string, byte> GetAllUserPermission(int userId)
+        {
+            Check.Argument.IsNotNegativeOrZero(userId, "userId");
+
+            var userPermission = new Dictionary<string, byte>();
+
+            var listFunctionPolicy = this.GetAllUserPolicy(userId: userId, isActive: true);
+
+            foreach (var item in listFunctionPolicy)
+            {
+                userPermission.Add(item.Function.FunctionKey, item.Policy);
+            }
+
+            return userPermission;
+        }
     }
 }

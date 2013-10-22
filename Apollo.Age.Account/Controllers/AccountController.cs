@@ -27,13 +27,15 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Account controllers.
@@ -118,18 +120,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
-            var listFunctionPermission = _userService.GetAllUserPolicy(userId: CurrentSession.UserId, isActive: true);
-            var functionPermissionDictionary = new Dictionary<string, byte>();
-
-            if (!ReferenceEquals(listFunctionPermission, null) && listFunctionPermission.Any())
-            {
-                foreach (var item in listFunctionPermission)
-                {
-                    functionPermissionDictionary.Add(item.Function.FunctionKey, item.Policy);
-                }
-            }
-
-            ViewBag.allFunctionPermission = functionPermissionDictionary;
+            ViewBag.allFunctionPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
 
             //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
             return View(CurrentSession);
@@ -199,13 +190,38 @@ namespace Apollo.Age.Account.Controllers
         [ValidateInput(false)]
         public ActionResult AgentInfo(string username, int agentId)
         {
-            var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
+            var agentInfo = new CustomerInfoModel();
+
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.CustomerSettingPermission = userPermission[ApolloFunctionKeys.CustomerSetting];
+            ViewBag.PermissionControl = userPermission[ApolloFunctionKeys.PermissionControl];
+            ViewBag.ShadowPermissionControl = userPermission[ApolloFunctionKeys.ShadowPermission];
+            ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.System_Log];
+
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            /* Check has downline detail permission
+             * Downline details policy < 1  => User can search only himself
+             * Downline details policy >= 1 => Search whole line
+            */
+            if (!string.IsNullOrWhiteSpace(username)
+                && !string.Equals(username, this.CurrentSession.Username)
+                && !hasDownlineDetailsPermission)
             {
-                ActorAgentId = CurrentSession.AgentId,
-                AgentId = agentId,
-                Username = username,
-                ExcludeActor = false
-            });
+                agentInfo = null;
+            }
+            else
+            {
+                agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    AgentId = agentId,
+                    Username = username,
+                    ExcludeActor = false
+                });
+            }
 
             if (agentInfo == null)
             {
@@ -240,11 +256,6 @@ namespace Apollo.Age.Account.Controllers
             var topMember = _accountService.GetTopMember(agentInfo.CustId);
             ViewBag.TopMember = topMember;
 
-            ViewBag.CustomerSettingPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
-            ViewBag.PermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
-            ViewBag.ShadowPermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
-            ViewBag.ViewLogPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.System_Log);
-
             return View("AccountInfo", agentInfo);
         }
 
@@ -257,12 +268,27 @@ namespace Apollo.Age.Account.Controllers
         [ValidateInput(false)]
         public ActionResult MemberInfo(string username, int custId)
         {
-            var memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria
+            var memberInfo = new CustomerInfoModel();
+
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            /* Check downline details permission
+             * Downline details policy < 1 => Can not search member ( all member)
+             * Downline details policy >=  => Search all member whole line
+             */
+            if (!hasDownlineDetailsPermission)
             {
-                ActorAgentId = CurrentSession.AgentId,
-                CustId = custId,
-                Username = username
-            });
+                memberInfo = null;
+            }
+            else
+            {
+                memberInfo = _accountService.GetMemberInfo(new GetMemberInfoCriteria
+                {
+                    ActorAgentId = CurrentSession.AgentId,
+                    CustId = custId,
+                    Username = username
+                });
+            }
 
             if (memberInfo == null)
             {
@@ -355,9 +381,27 @@ namespace Apollo.Age.Account.Controllers
             };
 
             List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
-            var agentList = _accountService.GetDirectDownline(criteria).Select(x => new { x.Id, x.Username, x.HasAgentDownline });
+            var agentList = _accountService.GetDirectDownline(criteria);
 
-            return Json(agentList, JsonRequestBehavior.AllowGet);
+            /* Check downline details permission
+             * Downline details policy < 1 => encrypt user of direct member like A*** and can't see indirect member
+             */
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!ReferenceEquals(agentList, null)
+                && agentList.Any()
+                && !hasDownlineDetailsPermission)
+            {
+                var agentInfoList = agentList.Select(x => new { x.Id, x.Username, HasAgentDownline = false });
+
+                return Json(agentInfoList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var agentInfoList = agentList.Select(x => new { x.Id, x.Username, x.HasAgentDownline });
+
+                return Json(agentInfoList, JsonRequestBehavior.AllowGet);
+            }
         }
 
         /// <summary>
@@ -418,6 +462,17 @@ namespace Apollo.Age.Account.Controllers
                 ExcludeActor = excludeactor.HasValue ? excludeactor.Value : false
             };
 
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!hasDownlineDetailsPermission)
+            {
+                return Json(new[] { 
+                    new { 
+                        Id = this.CurrentSession.AgentId,
+                        Username = this.CurrentSession.Username } 
+                }, JsonRequestBehavior.AllowGet);
+            }
+
             var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();
 
             return Json(agentList, JsonRequestBehavior.AllowGet);
@@ -431,6 +486,17 @@ namespace Apollo.Age.Account.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetMemberByUsername(string username)
         {
+            /* Check downline details permission
+             * Downline details policy < 1 => Can not search member ( all member)
+             * Downline details policy >=  => Search all member whole line
+             */
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!hasDownlineDetailsPermission)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+
             var criteria = new GetMemberByUsernameCriteria()
             {
                 ActorAgentId = this.CurrentSession.AgentId,
@@ -502,9 +568,14 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
             ViewBag.AgentUsername = this.CurrentSession.AgentName;
-            ViewBag.PermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
-            ViewBag.ShadowPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
-            ViewBag.CustomerSettingPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
+            // Get permission on current logging user
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+
+            criteria.PermissionControlPolicy = userPermission[ApolloFunctionKeys.PermissionControl];
+            criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
+            criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
+            criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             return View(criteria);
         }
@@ -551,6 +622,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Indirect agent list view action.</returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult IndirectAgentList(
             int parentAgentId,
             int agentId,
@@ -605,9 +677,14 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.DirectAgentList = directAgent;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentUsername = agentInfo.Username;
-            ViewBag.PermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
-            ViewBag.ShadowPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
-            ViewBag.CustomerSettingPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
+            // Get permission on current logging user
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+
+            criteria.PermissionControlPolicy = userPermission[ApolloFunctionKeys.PermissionControl];
+            criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
+            criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
+            criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             return View(criteria);
         }
@@ -618,6 +695,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="criteria">View model get indirect agent list.</param>
         /// <returns>Indirect agent list view action.</returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult IndirectAgentList(AgentListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
@@ -706,7 +784,12 @@ namespace Apollo.Age.Account.Controllers
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.AgentUserName = this.CurrentSession.AgentName;
-            ViewBag.CustomerSettingPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+
+            criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
+            criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             return View(criteria);
         }
@@ -753,6 +836,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Indirect member list view action.</returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult IndirectMemberList(
             int parentAgentId,
             int agentId,
@@ -818,6 +902,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="criteria">View model get indirect member list.</param>
         /// <returns>Indirect member list view action.</returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult IndirectMemberList(CustomerListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)

@@ -17,9 +17,10 @@
 
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
 
-    var permissionControlPolicy = (byte)ViewBag.PermissionControl;
-    var shadowPermissionPolicy = (byte)ViewBag.ShadowPermission;
-    var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
+    //var permissionControlPolicy = (byte)ViewBag.PermissionControl;
+    //var shadowPermissionPolicy = (byte)ViewBag.ShadowPermission;
+    //var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
+    //var downlineDetailsPermission = (byte)ViewBag.DownlineDetailsPermission;
 }
 @using (Html.BeginForm())
 {       
@@ -95,13 +96,27 @@
             {
                 <tr>
                     <td>
-                        @item.Username
+                        @if (Model.HasDownlineDetailsPermission)
+                        { 
+                            @item.Username
+                        }
+                        else
+                        {
+                            @item.Username.EncryptUsername();
+                        }
                     </td>
                     <td>
                         @if (item.NumberOfAgent != 0)
-                        { 
+                        {
+                            if (Model.HasDownlineDetailsPermission)
+                            { 
                             @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+                            }
+                            else
+                            { 
+                            <span>@item.NumberOfAgent</span>
+                            }
                         }
                         else
                         {
@@ -126,10 +141,12 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td class="text-left">
-                        @if (custSettingPermissionPolicy >= (byte)Policy.Query)
-                        { 
+                        @if (Model.HasDownlineDetailsPermission)
+                        {
+                            if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
+                            { 
                             <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@parentUsername&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                                @if (isMaster && custSettingPermissionPolicy == (byte)Policy.Edit)
+                                @if (isMaster && Model.CustomerSettingPolicy == (byte)Policy.Edit)
                                 {
                                     @Lang.edit
                                 }
@@ -146,20 +163,21 @@
                                     @Apollo.Age.Resources.Lang.lblMemberShare
                                 </a>                            
                                 }
-                        }
-                        @if (permissionControlPolicy >= (byte)Policy.Query)
-                        {
+                            }
+                            if (Model.PermissionControlPolicy >= (byte)Policy.Query)
+                            {
                             @:&nbsp;/&nbsp;
-                            <a  href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
+                            <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
                                 @Lang.Permission
                             </a>
-                        }
-                        @if (shadowPermissionPolicy >= (byte)Policy.Query)
-                        { 
+                            }
+                            if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
+                            { 
                             @:&nbsp;/&nbsp;
-                        <a  href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
+                        <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
                             @Lang.ShadowPermission
                         </a>}
+                        }
                     </td>
                 </tr>
             }

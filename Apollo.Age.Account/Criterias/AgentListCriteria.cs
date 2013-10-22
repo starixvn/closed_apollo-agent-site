@@ -76,6 +76,18 @@ namespace Apollo.Age.Account.Criterias
             }
         }
 
+        [SpParam(Ignored = true)]
+        public byte PermissionControlPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public byte ShadowPermissionPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public byte CustomerSettingPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool HasDownlineDetailsPermission { get; set; }
+
         /// <summary>
         /// Get setting key of agent list.
         /// </summary>
