@@ -230,7 +230,7 @@ new ReportMenuViewModel
                 if (item.FromDate <= DateTime.Now && item.ToDate >= DateTime.Now)
                 {                  
                 <tr class="CurrentPeriod">
-                    <td>@string.Format(Lang.periodnumber, counter)
+                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
                     </td>
                     <td>
                         @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
@@ -240,7 +240,7 @@ new ReportMenuViewModel
                 else
                 { 
                 <tr>
-                    <td>@string.Format(Lang.periodnumber, counter)
+                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
                     </td>
                     <td>
                         @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")

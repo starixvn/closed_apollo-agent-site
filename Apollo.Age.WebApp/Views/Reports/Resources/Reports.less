@@ -98,7 +98,7 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 3px 0;
+				padding: 6px 0;
 
 				.item {
 					float: right;
@@ -204,29 +204,38 @@
 
 .period-schedule {
 	float: left;
-	margin-left: 16px;
+	margin-left: 10px;
 	width: 250px;
+	border: 1px solid #000;
 
 	.tblRpt {
-		border-color: #000;
-		border-width: 1px;
+		border-color: #DCDCDC;
+		border-width: 3px 2px;
 		th, td {
 			height: 20px;
 			padding: 0 3px;
 		}
 
 		thead th {
-			background-color: #577176;
+			background-color: #669999;
 			color: #fff;
 		}
 
 		tbody tr td {
 			border-color: #000;
+
+			&.firstcolumn {
+				background-color: #7DD5D2;
+			}
 		}
 
 		tr.CurrentPeriod {
 			td {
-				background-color: #C9DBDF;
+				background-color: #FFD2C7;
+
+				&.firstcolumn {
+					background-color: #7DD5D2;
+				}
 			}
 		}
 	}
