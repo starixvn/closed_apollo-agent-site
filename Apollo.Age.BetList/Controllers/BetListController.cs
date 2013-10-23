@@ -558,6 +558,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="isForecast"></param>
         /// <returns></returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult Forecast(string type = _StringEmpty, string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
         {
             var strBetType = string.Empty;

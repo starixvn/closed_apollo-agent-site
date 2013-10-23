@@ -24,6 +24,8 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
 
@@ -37,6 +39,8 @@ namespace Apollo.Age.Forecast.Controllers
     {
         private readonly ForecastService _forecastService;
 
+        private readonly IUserService _userService;
+
         #region Ctors
 
         public ForecastController()
@@ -44,9 +48,11 @@ namespace Apollo.Age.Forecast.Controllers
         {
         }
 
-        public ForecastController(ForecastService forecastService = null)
+        public ForecastController(ForecastService forecastService = null, IUserService userService = null)
         {
             _forecastService = forecastService ?? new ForecastService();
+            _userService = userService ?? new UserService();
+
             ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
         }
 
@@ -159,6 +165,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.BetType = betType;
             ViewBag.MatchId = matchId;
             ViewBag.CurrentScore = currentScore;
+
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             return View(_forecastService.GetForecastMatcheValue(currentAgentId, this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
