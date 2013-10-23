@@ -55,6 +55,8 @@ namespace Apollo.Age.Wagers.Controllers
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
             UserService = userService ?? new UserService();
+
+            ViewBag.HasDownlineDetailsPermission = UserService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
         }
 
         /// <summary>
