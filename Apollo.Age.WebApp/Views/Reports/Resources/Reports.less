@@ -98,7 +98,7 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 6px 0;
+				padding: 4px 0;
 
 				.item {
 					float: right;
@@ -204,13 +204,15 @@
 
 .period-schedule {
 	float: left;
+	display: block;
 	margin-left: 10px;
-	width: 250px;
 	border: 1px solid #000;
 
 	.tblRpt {
 		border-color: #DCDCDC;
-		border-width: 3px 2px;
+		border-width: 1px;
+		width: 250px;
+
 		th, td {
 			height: 20px;
 			padding: 0 3px;
@@ -219,10 +221,11 @@
 		thead th {
 			background-color: #669999;
 			color: #fff;
+			border: 0;
 		}
 
 		tbody tr td {
-			border-color: #000;
+			border-color: #DCDCDC;
 
 			&.firstcolumn {
 				background-color: #7DD5D2;
@@ -326,7 +329,7 @@
 .eq-ie7 {
 	
 	#page_main {
-		width: 98%;
+		width: 99%;
 
 		#function-bar {
 			#ddlSport {
@@ -336,7 +339,6 @@
 
 		#box_header {
 			width: 950px;
-			clear: left;
 			.btn {
 				padding: 0;
 			}		
