@@ -205,13 +205,14 @@
 .period-schedule {
 	float: left;
 	margin-left: 16px;
-	width: 350px;
+	width: 250px;
 
 	.tblRpt {
 		border-color: #000;
 		border-width: 1px;
 		th, td {
 			height: 20px;
+			padding: 0 3px;
 		}
 
 		thead th {
@@ -221,6 +222,12 @@
 
 		tbody tr td {
 			border-color: #000;
+		}
+
+		tr.current {
+			td {
+				background-color: #C9DBDF;
+			}
 		}
 	}
 }
@@ -332,10 +339,6 @@
 
 		.notes {
 			width: 930px;
-		}
-
-		.period-schedule {
-			width: 250px;
 		}
 	}
 }
