@@ -92,76 +92,6 @@ function UpdateCountPrivateMsg() {
     });
 }
 
-//var publicMessageId = 0; // public message
-//var privateMessageId = 0; // private message
-//function GetMessages() {
-//    function completedGetMessages(results) {
-//        //Result Format:
-//        //{
-//        // public_message:{'id','2 test message here','normal'},
-//        // private_message:{'id','2 test message here'},
-//        // unread_private_messages:'0'
-//        //}
-//        try {
-//            var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
-//            var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
-//            var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
-
-//            //Update count of private messages
-//            var countText = document.getElementById('privateMsgLnk').innerHTML;
-//            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf("(") + 1) + unreadPriMsgCount + ")";
-
-//            var MSGID = 0,
-//                MSGCONTENT = 1,
-//                MSGTYPE = 2;
-//            var objDiv = age.createElement('div');
-
-//            //Process Public Message: show new public message and its link to message form
-//            var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
-//            var balloonPopupContent = "";
-//            url += publicMessage[MSGTYPE];
-
-//            if ((publicMessage[MSGID] != null) && (publicMessageId != publicMessage[MSGID])) {
-//                document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
-
-//                if (publicMessageId > 0) {
-//                    balloonPopupContent = publicMessage[MSGCONTENT];
-//                }
-//                publicMessageId = publicMessage[MSGID];
-//            }
-
-//            //Process Private Message: show new private message
-//            if ((privateMessage[MSGID] != null) && (privateMessageId != privateMessage[MSGID])) {
-//                document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
-//                if (privateMessageId > 0) {
-//                    balloonPopupContent = privateMessage[MSGCONTENT];
-//                }
-//                privateMessageId = privateMessage[MSGID];
-//            }
-
-//            //Process Balloon Pop-up: show new public and private messages if existed
-//            if (balloonPopupContent != "") {
-//                SetContentPopupTop(balloonPopupContent);
-//                ShowPopupTop(0);
-//                timeOutId = setTimeout("ShowPopupTop(1)", (30 * 1000));
-//            }
-
-//            age.ApplyScroller();
-//        } catch (e) { }
-
-//        setTimeout(GetMessages, (60 * 1000));
-//    }
-
-//    $.ajax({
-//        url: APOLLO.resolveUrl('~/Message/GetMessage'),
-//        type: 'POST',
-//        dataType: 'JSON',
-//        success: completedGetMessages,
-//        error: function (xhr, status, err) {
-//        }
-//    });
-//}
-
 function ReplaceAll(source, stringToFind, stringToReplace) {
     var temp = source;
 
@@ -349,6 +279,7 @@ var HEADER = function ($) {
                     if (!DEFAULTS.IsMaster) {
                         var url = "/CustomerSetting/MySetting";
                         parent.document.getElementById('main').setAttribute('src', url);
+                        HEADER.oldUrl = url;
                     } else {
                         var url = "/Account/AgentList";
                         HEADER.oldUrl = url;
