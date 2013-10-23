@@ -445,5 +445,17 @@ namespace Apollo.Age.Services.Impl
 
             return userPermission;
         }
+
+        public Dictionary<string, byte> ConvertToDictionary(IEnumerable<FunctionPolicy> listUserPermission)
+        {
+            var userPermission = new Dictionary<string, byte>();
+
+            foreach (var item in listUserPermission)
+            {
+                userPermission.Add(item.Function.FunctionKey, item.Policy);
+            }
+
+            return userPermission;
+        }
     }
 }

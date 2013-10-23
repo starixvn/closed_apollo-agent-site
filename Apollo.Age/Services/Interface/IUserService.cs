@@ -79,6 +79,8 @@ namespace Apollo.Age.Services.Interface
 
         Dictionary<string, byte> GetAllUserPermission(int userId);
 
+        Dictionary<string, byte> ConvertToDictionary(IEnumerable<FunctionPolicy> listUserPermission);
+
         /// <summary>
         /// Assigns the user permission.
         /// </summary>

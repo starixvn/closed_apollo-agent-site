@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
@@ -40,11 +40,11 @@ new ReportMenuViewModel
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                        <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                        
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
                         <input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
                         <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                        <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>
@@ -112,7 +112,7 @@ new ReportMenuViewModel
         @RenderMatchEnteredSportRow(Model.MatchEnteredModelList)
     </table>
     <div>
-        <div class="row bg-action">           
+        <div class="row bg-action">
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
                 <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
@@ -153,17 +153,17 @@ new ReportMenuViewModel
 }
 @helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
     {
-            var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
-            var matchEntered = new MatchEnteredModel();
+        var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
+        var matchEntered = new MatchEnteredModel();
 
-            foreach (KeyValuePair<int, string> pair in matchEnteredSports)
+        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
+        {
+            if (matchEnteredList != null && matchEnteredList.Any())
             {
-                if (matchEnteredList != null && matchEnteredList.Any())
-                {
-                    matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
 
-                    if (matchEntered != null)
-                    {
+                if (matchEntered != null)
+                {
     <tr>
         <td class="firstcolumn">@Html.Resource(pair.Value):
         </td>
@@ -176,23 +176,6 @@ new ReportMenuViewModel
         <td>@matchEntered.TodayNonEntered
         </td>
     </tr>
-                    }
-                    else
-                    {
-    <tr>
-        <td class="firstcolumn">
-            @Html.Resource(pair.Value):
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-    </tr>
-                    }
                 }
                 else
                 {
@@ -211,4 +194,21 @@ new ReportMenuViewModel
     </tr>
                 }
             }
+            else
+            {
+    <tr>
+        <td class="firstcolumn">
+            @Html.Resource(pair.Value):
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+            }
+        }
 }

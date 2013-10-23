@@ -16,15 +16,17 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
-    using Apollo.Age.Core;
 
     /// <summary>
     /// Total Bets Controller.
@@ -35,9 +37,14 @@ namespace Apollo.Age.TotalBets.Controllers
     {
         private readonly TotalBetsService _totalBetsService;
 
+        private readonly IUserService _userService;
+
         public TotalBetsController()
         {
             _totalBetsService = new TotalBetsService();
+            _userService = new UserService();
+
+            ViewBag.HasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
         }
 
         /// <summary>

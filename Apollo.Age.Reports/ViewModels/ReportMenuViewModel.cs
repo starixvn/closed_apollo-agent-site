@@ -20,7 +20,7 @@ namespace Apollo.Age.Reports.ViewModels
     {
         public List<SingbetSport> SportList { get; set; }
 
-        public List<FunctionPolicy> FunctionPolicyList { get; set; }
+        public Dictionary<string, byte> FunctionPolicyList { get; set; }
 
         public string ReportName { get; set; }
 

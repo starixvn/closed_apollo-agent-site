@@ -394,7 +394,7 @@
         }
     </td>
 }
-@helper RenderReportLinks(string currentLink, IEnumerable<FunctionPolicy> functionPermissions, string reportclass = "menu report-winloss")
+@helper RenderReportLinks(string currentLink, Dictionary<string, byte> functionPermissions, string reportclass = "menu report-winloss")
     {         
         var classWinloss = string.Empty;
         var classOutstanding = string.Empty;
@@ -424,28 +424,27 @@
         }
 
     <ul class="@reportclass">
-        @foreach (var item in functionPermissions)
+        @if (functionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query)
         {
-            if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= 1)
-            {
-            <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>    
-            }
-            else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy >= 1)
-            { 
+            <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>
+        }
+        @if (functionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query)
+        {
             <li @classOutstanding><a href="~/reports/outstanding">@Lang.outstanding</a></li>
-            }
-            else if (item.Function.FunctionKey == ApolloFunctionKeys.Transactions && item.Policy >= 1)
-            {
+        }
+        @if (functionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query
+            && functionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query)
+        {
             <li @classTransaction><a href="~/betList/transactions">@Lang.transaction</a></li>
-            }
-            else if (item.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets && item.Policy >= 1)
-            {
+        }
+        @if (functionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query
+            && functionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query)
+        {
             <li @classTicketsCancelled><a href="~/betList/ticketcancel">@Lang.CancelledTickets</a></li>
-            }
-            else if (item.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits && item.Policy >= 1)
-            {
+        }
+        @if (functionPermissions[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query)
+        {
             <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
-            }
         }
     </ul>
 }
