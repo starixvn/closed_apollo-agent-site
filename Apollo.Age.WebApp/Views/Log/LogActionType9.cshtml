@@ -1,0 +1,87 @@
+﻿@model List<LogPermissionModel>
+@{      
+    var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.GroupName).ToList() : null;    
+}
+<table class="tblRpt">
+    <tr class="no-border-top bg-green">
+        <td class="colW1">
+            @Lang.Permission
+        </td>
+        <td class="colW1">
+            @Lang.Value
+        </td>
+        <td class="colW1">
+        </td>
+        <td class="colW1">
+        </td>
+        <td class="colW1">
+        </td>
+        <td class="colW1 no-border-right">
+        </td>
+    </tr>
+    @foreach (var itemGroup in listGroupFunction)
+    {
+        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.GroupName;
+        
+        <tr>
+            <td class="colW" colspan="2">
+                <b>@groupName</b>
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2 no-border-right">
+            </td>
+        </tr>
+        
+        foreach (var itemFunction in itemGroup)
+        {
+        <tr>
+            <td class="colW">
+                @itemFunction.Function.FunctionName
+            </td>
+            <td class="colW2">
+                @ToString(itemFunction.OldPolicy, itemFunction.Policy ?? itemFunction.OldPolicy)
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2 no-border-right">
+            </td>
+        </tr>
+        }
+    }
+</table>
+@helper ToString(byte oldValue, byte newValue)
+    {       
+        if (oldValue != newValue)
+        { 
+    <span class="valuechanged" title="@Lang.OldValue : @ToStringPolicy(oldValue)">@ToStringPolicy(newValue)</span>
+    <span class="valueold">| @ToStringPolicy(oldValue)</span>
+            
+        }
+        else
+        { <span class="valueold">@ToStringPolicy(oldValue)</span>
+        }            
+}
+@helper ToStringPolicy(byte policy)
+    {        
+        switch (policy)
+        {
+            case (byte)Policy.Query:
+    @Policy.Query
+break;
+            case (byte)Policy.Edit:
+    @Policy.Edit
+break;
+            default:
+    @Policy.None
+break;
+        }
+}

@@ -3,15 +3,17 @@
 @{
     ViewBag.Title = Lang.lblLineSportCredit;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model SportCreditViewModel
-
-<div id="function-bar">
-    @RazorHelper.RenderReportLinks(Lang.lblLineSportCredit, "menu report-sportcredit")
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
-    <div class="end"></div>
-</div>
-
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = null,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblLineSportCredit,
+    SportDropDownClassName = "menu report-sportcredit"
+})
 <div id="box_header" class="report">
     <table class="sportcredit">
         <tr>
@@ -23,7 +25,7 @@
             </td>
         </tr>
     </table>
-	<div>
+    <div>
         <div class="row bg-action">
             <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
             <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
@@ -37,14 +39,20 @@
         var keyLang = string.Empty;
         decimal totalOutstandingCredit = 0;
         decimal totalRemainingCredit = 0;
-    <div id="navigationAgent" class="nav-outright"><br /></div>
-    <div class="export-excel outright" id="export-excel"></div>
+    <div id="navigationAgent" class="nav-outright">
+        <br />
+    </div>
+    <div class="export-excel outright" id="export-excel">
+    </div>
     <table class="tblRpt report tblSportCredit">
         <thead>
             <tr>
-                <td>@Lang.lblLevel</td>
-                <td>@Lang.lblTotalOutstandingCredit</td>
-                <td>@Lang.lblTotalRemainingCredit</td>
+                <td>@Lang.lblLevel
+                </td>
+                <td>@Lang.lblTotalOutstandingCredit
+                </td>
+                <td>@Lang.lblTotalRemainingCredit
+                </td>
             </tr>
         </thead>
         <tbody>
@@ -77,17 +85,21 @@
                             @Html.Resource(keyLang)
                         </td>
                     }
-                    
-                    <td class="r">@Formater.FormatNumber20(item.OutstandingCredit, Formater.CULT_NAME_ENG)</td>
-                    <td class="r">@Formater.FormatNumber20(item.RemainingCredit, Formater.CULT_NAME_ENG)</td>
+                    <td class="r">@Formater.FormatNumber20(item.OutstandingCredit, Formater.CULT_NAME_ENG)
+                    </td>
+                    <td class="r">@Formater.FormatNumber20(item.RemainingCredit, Formater.CULT_NAME_ENG)
+                    </td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr class="total">
-                <td>@Lang.total</td>
-                <td class="r">@Formater.FormatNumber20(totalOutstandingCredit, Formater.CULT_NAME_ENG)</td>
-                <td class="r">@Formater.FormatNumber20(totalRemainingCredit, Formater.CULT_NAME_ENG)</td>
+                <td>@Lang.total
+                </td>
+                <td class="r">@Formater.FormatNumber20(totalOutstandingCredit, Formater.CULT_NAME_ENG)
+                </td>
+                <td class="r">@Formater.FormatNumber20(totalRemainingCredit, Formater.CULT_NAME_ENG)
+                </td>
             </tr>
         </tfoot>
     </table>
@@ -112,8 +124,7 @@
     </table>
     }
 }
-
 @section scripts
 {
-	@Scripts.Render("~/scripts/sportcreditjs")
+    @Scripts.Render("~/scripts/sportcreditjs")
 }

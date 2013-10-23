@@ -1,0 +1,110 @@
+﻿@model AgentUserAssignFunctionCriteria
+@{
+    Layout = "~/Views/PermissionUserControl/Shared/_Layout.cshtml";
+    ViewBag.Title = "AssignFunction";
+    var listGroupFunction = Model.ListFunction.GroupBy(m => m.FunctionGroup.FunctionGroupId).ToList();
+    var listFunctionPolicy = Model.ListFunctionPolicy;
+    var listParentFunctionPolicy = Model.ListParentFunctionPolicy;
+    var hasEdit = Model.HasEdit;
+}
+<div id="function-bar">
+    <div class="item detail-information">
+        <span>
+            @Lang.PermissionSetting
+            @if (Model.IsMaster)
+            {
+                @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.agent: <strong>@Model.AgentUsername</strong>
+                    }
+            else
+            {                
+                @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.Shadow: <strong>@Model.ShadowUsername</strong>
+                                                                        }
+        </span>
+    </div>
+    <div class="end">
+    </div>
+</div>
+<table class="tblRpt ">
+    <thead>
+        <tr>
+            <th>
+                @Lang.Permission
+            </th>
+            @if (Model.IsMaster)
+            { 
+                <th>
+                    @Lang.edit
+                </th>
+            }
+            <th>
+                @Lang.Query
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itemGroupFunction in listGroupFunction)
+        {
+            var groupKey = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupKey;            
+            <tr class="group-function">
+                <td>
+                    @Html.Resource(groupKey)
+                    @* @groupName*@
+                </td>
+                @if (Model.IsMaster)
+                { 
+                    <td>
+                    </td>
+                }
+                <td>
+                </td>
+            </tr>
+                foreach (var itemFunction in itemGroupFunction)
+                {
+                    var functionPolicy = listFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
+                    var parentFunctionPolicy = listParentFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
+                    var policy = functionPolicy != null ? functionPolicy.Policy : 0;
+                    var parentPolicy = parentFunctionPolicy != null ? parentFunctionPolicy.Policy : 0;
+
+                    var checkHost = policy == (byte)Policy.Edit ? "checked='checked'" : string.Empty;
+                    var disableHost = (parentPolicy != (byte)Policy.Edit) || !hasEdit ? "disabled='disabled'" : string.Empty;
+                    var checkRead = policy >= (byte)Policy.Query ? "checked='checked'" : string.Empty;
+                    var disableRead = (parentPolicy < (byte)Policy.Query) || !hasEdit ? "disabled='disabled'" : string.Empty;
+            <tr>
+                <td>
+                    @Html.Resource(itemFunction.FunctionKey)
+                    @*@itemFunction.FunctionName*@
+                </td>
+                @if (Model.IsMaster)
+                { 
+                    <td class="policy">
+                        @if (itemFunction.CRUD == (byte)Crud.Edit)
+                        {                       
+
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkHost @disableHost />
+                        }
+                    </td>                    
+                }
+                <td class="policy">
+                    <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkRead @disableRead/>
+                </td>
+            </tr>
+                }
+        }
+        <tr class="btn-action">
+            <td colspan="3">
+                @if (Model.HasEdit)
+                { 
+                    <input type="button" value="@Lang.lblconfirm" class="btn" id="btnSubmit">
+                }
+                <input type="button" value="@Lang.Cancel" class="btn" id="btnCancel">
+            </td>
+        </tr>
+    </tbody>
+</table>
+@Html.Hidden("IsMaster", Model.IsMaster ? "1" : "0")
+@Html.Hidden("IsDirectAgent", Model.IsDirectAgent ? "1" : "0")
+@Html.Hidden("AgentUserId", Model.AgentUserId)
+@Html.Hidden("AgentId", Model.AgentId)
+@Html.Hidden("AgentUsername", Model.AgentUsername)
+@Html.Hidden("ParentAgentId", Model.ParentAgentId)
+@Scripts.Render("~/scripts/assignfunction")

@@ -25,14 +25,17 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
+    using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
     using Fanex.CustSetting.Models;
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.Configurations;
+    using System;
 
     /// <summary>
     /// Customer Setting Controller
@@ -44,22 +47,25 @@ namespace Apollo.Age.Account.Controllers
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
         private readonly ISportSettingService _sportService;
+        private readonly IAgentUserService _agentUserService;
 
         #region Ctors
 
         public CustomerSettingController()
-            : this(null, null, null)
+            : this(null, null, null, null)
         {
         }
 
         public CustomerSettingController(
             IAccountService accountService,
             ICustomerSettingService customerSettingService,
-            ISportSettingService sportService)
+            ISportSettingService sportService,
+            IAgentUserService agentUserService)
         {
             _accountService = accountService ?? new AccountService();
             _customerSettingService = customerSettingService ?? new CustomerSettingService();
             _sportService = sportService ?? new SportSettingService();
+            _agentUserService = agentUserService ?? new AgentUserService();
         }
 
         #endregion Ctors
@@ -72,6 +78,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="model">Username: text which user input to search, IsMember: is agent or member.</param>
         /// <returns>View Commission</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
@@ -123,7 +130,7 @@ namespace Apollo.Age.Account.Controllers
                     });
 
                 var commissionModelList = new List<CustomerCommissionModel>();
-                if(commissionList != null && commissionList.Any())
+                if (commissionList != null && commissionList.Any())
                 {
                     commissionList.ToList().ForEach(t => commissionModelList.Add(RevertCommGroupValue(t)));
                 }
@@ -143,12 +150,13 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="username">selected agent username.</param>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult AgentShare(
-            int? agentId, 
-            string userName, 
-            short? sportType, 
-            short? betType, 
-            bool? isLive, 
+            int? agentId,
+            string userName,
+            short? sportType,
+            short? betType,
+            bool? isLive,
             bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
@@ -216,12 +224,13 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="username">selected member username</param>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult MemberShare(
-            int? memberId, 
-            string userName, 
-            short? sportType, 
-            short? betType, 
-            bool? isLive, 
+            int? memberId,
+            string userName,
+            short? sportType,
+            short? betType,
+            bool? isLive,
             bool? isMixSportParlay)
         {
             var sportId = sportType.HasValue ? sportType.Value : Converter.To<short>(1);
@@ -312,8 +321,11 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">Back link for after editing</param>
         /// <param name="fromLeftMenu">Link from left menu or not</param>
         /// <returns>Action result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
@@ -322,29 +334,32 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.ParentUsername = parentUsername;
+            ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             var totalSeconds = _accountService.CalculateUpdateAgentPositionTakingTime(settingContext, positionTakingSetting);
             return Json(totalSeconds);
         }
-                
+
         /// <summary>
         /// Edit all member share of agent.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="agentUserName"></param>
         /// <returns></returns>
-        public ActionResult EditAllMemberShare(int agentId, 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        public ActionResult EditAllMemberShare(int agentId,
             string agentUserName,
-            bool reload = false, 
-            bool isSimpleMode = true, 
-            string backLink = "", 
+            bool reload = false,
+            bool isSimpleMode = true,
+            string backLink = "",
             bool fromLeftMenu = false)
         {
             if (_accountService.HasMember(agentId))
@@ -361,7 +376,6 @@ namespace Apollo.Age.Account.Controllers
 
             return View("~/Views/Account/EditAllMemberShare.cshtml");
         }
-                
 
         /// <summary>
         /// Edit member position taking
@@ -373,22 +387,24 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="reload">Reload page or not</param>
         /// <param name="isSimpleMode">Current mode is simple mode or not</param>
         /// <param name="backLink">Back link after editing.</param>
-          /// <param name="fromLeftMenu">From left menu.</param>
+        /// <param name="fromLeftMenu">From left menu.</param>
         /// <returns>Action result</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditMemberPositionTaking(
-            int agentId, 
-            string agentUsername = "", 
-            bool reload = false, 
-            bool isSimpleMode = true, 
-            string backLink = "", 
+            int agentId,
+            string agentUsername = "",
+            bool reload = false,
+            bool isSimpleMode = true,
+            string backLink = "",
             bool fromLeftMenu = false,
             string memberIds = "")
-      
         {
             //if (AppSettings.DisableEditOnMember)
             //{
             //    return Redirect("~/Error?err=404");
             //}
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = 0;
             ViewBag.UserName = string.Empty;
             ViewBag.AgentId = agentId;
@@ -397,7 +413,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.Reload = reload;
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsEditAgent = false;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.AgentUsername = agentUsername;
             ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditPositionTaking.cshtml");
@@ -408,15 +424,15 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="targetCustId">Target cust id is member or agent.</param>
         /// <param name="agentId">Agent id for edit cross.</param>
-       
+
         /// <param name="agentLevel">Agent level.</param>
         /// <returns>Action result.</returns>
-         public ActionResult GetPositionTaking(
-            int targetCustId, 
-            int? agentId, 
-            int? agentLevel,
-            string targetCustIds = "")
-
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        public ActionResult GetPositionTaking(
+           int targetCustId,
+           int? agentId,
+           int? agentLevel,
+           string targetCustIds = "")
         {
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking, targetCustIds);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
@@ -438,6 +454,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="positionTakingSetting">Position taking update.</param>
         /// <returns>Action result.</returns>
         [HttpPost, AllowUpdateChecking]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
@@ -458,6 +475,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="userGroup">User group for edit member.</param>
         /// <param name="showHeader">Show header or not.</param>
         /// <returns>Action result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult EditAllSetting(int custId, string userName, int? agentId, int? agentLevel, string userGroup, bool showHeader = false)
         {
             ViewBag.CustId = custId;
@@ -469,10 +487,11 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditSetting.cshtml");
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult EditMemberSetting(
-            int memberId, 
-            string userName, 
-            int? agentId, 
+            int memberId,
+            string userName,
+            int? agentId,
             bool fromLeftMenu = false,
             string memberIds = "")
         {
@@ -485,10 +504,11 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult EditAgentSetting(
-            int agentId, 
-            int agentLevel, 
-            string userName, 
+            int agentId,
+            int agentLevel,
+            string userName,
             bool fromLeftMenu = false)
         {
             ViewBag.AgentId = agentId;
@@ -499,6 +519,7 @@ namespace Apollo.Age.Account.Controllers
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult GetMemberSetting(int memberId, int? agentId, string memberIds = "")
         {
             var memberInfo = _customerSettingService.GetMemberInfo(memberId);
@@ -513,12 +534,14 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [HttpPost, AllowUpdateChecking]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
         }
 
         [HttpPost, AllowUpdateChecking]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
@@ -536,18 +559,21 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult ViewAgentDetails(
-            int agentId, 
-            int agentLevel, 
-            string userName, 
-            string backLink = "", 
+            int agentId,
+            int agentLevel,
+            string userName,
+            string backLink = "",
             bool fromLeftMenu = false)
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
@@ -555,14 +581,17 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult ViewMemberDetails(
-            int memberId, 
-            string userName, 
-            int? agentId, 
-            string backLink = "", 
+            int memberId,
+            string userName,
+            int? agentId,
+            string backLink = "",
             bool fromLeftMenu = false,
             string memberIds = "")
         {
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             ViewBag.CustId = memberId;
             ViewBag.UserName = userName;
             ViewBag.AgentId = agentId;
@@ -571,7 +600,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
             //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
             //{
@@ -580,6 +609,7 @@ namespace Apollo.Age.Account.Controllers
             return ViewAccountDetails(settingContext);
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         private ViewResult ViewAccountDetails(SettingContext settingContext)
         {
             ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
@@ -590,7 +620,9 @@ namespace Apollo.Age.Account.Controllers
         #endregion Setting
 
         #region Helpers
+
         [NonAction]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult UpdateAllSetting(SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             if (commissionSetting == null && betLimits == null)
@@ -602,7 +634,7 @@ namespace Apollo.Age.Account.Controllers
                 });
             }
 
-            if (commissionSetting != null )
+            if (commissionSetting != null)
             {
                 if (commissionSetting.CommissionItems != null
                     && commissionSetting.CommissionItems.Any()
@@ -705,9 +737,9 @@ namespace Apollo.Age.Account.Controllers
         }
 
         private SettingContext GetCurrentSettingContext(
-            int targetCustId, 
-            int? agentId, 
-            int? agentLevel, 
+            int targetCustId,
+            int? agentId,
+            int? agentLevel,
             FormSettingType formSettingType,
             string memberIds)
         {
@@ -772,13 +804,25 @@ namespace Apollo.Age.Account.Controllers
                 settingContext.FormId = FormType.EditMultiple;
             }
 
+            var custSettingPolicy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
+            if (custSettingPolicy != (byte)Policy.Edit)
+            {
+                //// If Current Login Agent is not have edit customer setting, then set form to form view
+                settingContext.FormId = FormType.ShadowViewSetting;
+                if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
+                {
+                    settingContext.CustId = agentId.Value;
+                }
+            }
+
             return settingContext;
         }
 
         private string GetSettingScript(
-            int targetCustId, 
-            int? agentId, 
-            int? agentLevel, 
+            int targetCustId,
+            int? agentId,
+            int? agentLevel,
             string ugroup,
             string targetCustIds)
         {
@@ -881,6 +925,7 @@ namespace Apollo.Age.Account.Controllers
 
             return commissionModel;
         }
+
         #endregion Helpers
     }
 }

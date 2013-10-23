@@ -62,24 +62,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
 
-    //// Preset Checkbox
-    presetContainer.appendChild(document.createElement("BR"));
-
-    //var presetLabel = document.createElement('LABEL');
-    var presetOnMember = document.createElement("INPUT");
-    presetOnMember.id = "chbApplyPreset";
-    presetOnMember.type = "checkbox";
-    presetOnMember.className = "preset-input";
-    presetOnMember.disabled = true;
-    presetOnMember.checked = true;
-    presetOnMember.defaultChecked = true;
-    presetContainer.appendChild(presetOnMember);
-    //class= for=>  </label>
-    //    presetLabel.className = "preset-label";
-    //    presetLabel.setAttribute("for", "chbApplyPreset");
-    //    presetLabel.innerHTML = ;
-    //    presetContainer.appendChild(presetLabel);
-
     //// Given share
     var maxSelected = this.pt.Max;
     currentPt.MaxMaxSpan = Math.max(Fanex.RoundNumber(this.pt.Upline.Max - this.pt.Preset, 2), 0); ;
@@ -194,7 +176,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     box.minSpinBox = minSpinBox;
     box.maxSpinBox = maxSpinBox;
     box.presetSpinBox = presetSpinBox;
-    box.presetOnMember = presetOnMember;
 
     box.updateRangeOfMaxForCopy = function (minValue, maxValue) {
         uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(minValue, maxValue);
@@ -220,12 +201,11 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
         this.pt.Min = minSpinBox.getValue();
         this.pt.Max = maxSpinBox.getValue();
         this.pt.Preset = presetSpinBox.getValue();
-        this.pt.IsApplyMember = presetOnMember.checked;
         var isChangePt = this.oldPt.Min != this.pt.Min
         || this.oldPt.Max != this.pt.Max
         || this.oldPt.Preset != this.pt.Preset;
         this.pt.IsChangePt = isChangePt;
-        if (isChangePt || this.pt.IsApplyMember) {
+        if (isChangePt) {
             return {
                 Id: this.id,
                 Pt: this.pt
@@ -530,25 +510,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     presetMaxSpan.className = "upline-agent-share";
     presetContainer.appendChild(presetMaxSpan);
 
-    //// Checkbox apply preset value to all members
-    presetContainer.appendChild(document.createElement("BR"));
-    var presetOnMember = document.createElement("INPUT");
-    presetOnMember.id = "chbApplyPreset";
-    presetOnMember.type = "checkbox";
-    presetOnMember.checked = true;
-    presetOnMember.disabled = true;
-    presetOnMember.defaultChecked = true;
-    presetContainer.appendChild(presetOnMember);
-
-    var presetLabel = document.createElement('Label');
-    //class= for=>  </label>
-    presetLabel.className = "preset-label";
-    presetLabel.setAttribute("for", "chbApplyPreset");
-    presetLabel.innerHTML = Language.apllyPresetSimpleMode;
-    presetContainer.appendChild(presetLabel);
-    //<input id="democheckbox" type="checkbox" value="aaa">
-    //
-
+    
     // Given
     trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting)
@@ -677,13 +639,10 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
         var presetValue = presetSpinBox.getValue();
         var maxValue = maxSpinBox.getValue();
         var minValue = minSpinBox.getValue();
-        var isApplyMember = presetOnMember.checked;
         return {
             Max: maxValue,
             Preset: presetValue,
-            Min: minValue,
-            IsApplyMember: isApplyMember,
-            IsChangePt: true
+            Min: minValue
         };
     };
 

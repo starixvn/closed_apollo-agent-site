@@ -113,6 +113,7 @@
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\BetSettingModel.cs" />
+    <Compile Include="Models\LogPermissionModel.cs" />
     <Compile Include="Models\LogRunSpModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
     <Compile Include="Models\PositionTakingModel.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
+      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
+      <Name>Apollo.Age.PermissionControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>

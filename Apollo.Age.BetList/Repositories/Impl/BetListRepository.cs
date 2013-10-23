@@ -63,30 +63,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         {
             try
             {
-                DataTable mainTable;
-                var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
-                if (criteria.FromDate < criteria.BalanceUpDay)
-                {
-                    if (criteria.ToDate < preBalanceUpDay)
-                    {
-                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
-                    }
-                    else
-                    {
-                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
-                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
+                DataTable mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
 
-                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
-
-                        // Merge two table bettrans
-                        mainOldTable.Merge(mainNewTable);
-                        mainTable = mainOldTable;
-                    }
-                }
-                else
+                if (mainTable == null || mainTable.Rows.Count <= 0)
                 {
-                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
-                }
+                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
+                }                                
 
                 // Main ticket list
                 var ticketList = this.ReadTicket(mainTable);
@@ -213,9 +195,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 DataTable mainTable, referenceTable;
                 var ticketResult = new TicketResult();
                 var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
-                if (criteria.FromDate < criteria.BalanceUpDay)
+                if (criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay))
                 {
-                    if (criteria.ToDate < preBalanceUpDay)
+                    if (criteria.ToDate <= this.ResetEndDate(preBalanceUpDay))
                     {
                         mainTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
                     }
@@ -224,6 +206,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
                         DataTable referenceOldTable = null;
                         var mainOldTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
+
 
                         DataTable referenceNewTable = null;
                         var mainNewTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceNewTable);
@@ -282,6 +265,177 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
                     }
                 }
+                return ticketResult;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="isIncludeOldData">Include old data from Archive database or not</param>
+        /// <returns>Ticket result data.</returns>
+        public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
+        {
+            try
+            {
+                var ticketResult = new TicketResult();
+                var balanceUpDay = criteria.BalanceUpDay;
+                var preBalanceUpDay = balanceUpDay.AddDays(-1);
+                if (criteria.IsValid())
+                {
+                    if (isIncludeOldData)
+                    {
+                        if (criteria.FromDate < this.ResetStartDate(balanceUpDay))
+                        {
+                            if (criteria.ToDate <= this.ResetEndDate(preBalanceUpDay))
+                            {
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate,
+                                        todate = criteria.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                    };
+
+                                    var dataSet = db.ExecuteDataSet(uspParams);
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                        ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                    }
+                                    else
+                                    {
+                                        ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                        ticketResult.TicketDataList = new List<ITicketData>();
+                                    }
+                                }
+                            }
+                            else // Get data from main database and archive database.
+                            {
+                                var oldDatatable = new DataTable();
+                                var newDatatable = new DataTable();
+                                var oldReferenceDatatable = new DataTable();
+                                var newReferenceDatatable = new DataTable();
+
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate,
+                                        todate = criteria.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                    };
+
+                                    var dataSet = db.ExecuteDataSet(uspParams);
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        oldDatatable = dataSet.Tables[0];
+                                        oldReferenceDatatable = dataSet.Tables[1];
+                                    }
+                                    else
+                                    {
+                                        oldDatatable = dataSet.Tables[0];
+                                        oldReferenceDatatable = new DataTable();
+                                    }
+                                }
+
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from Archive database only.
+                                {
+                                    var uspParams = new
+                                    {
+                                        loggedid = criteria.LoggedId,
+                                        agentid = criteria.AgentId,
+                                        custid = criteria.CustId,
+                                        fromdate = criteria.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : criteria.FromDate,
+                                        todate = criteria.ToDate,
+                                        statusids = criteria.StatusIds,
+                                        sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                        bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
+                                        rpttype = criteria.RptType,
+                                        movebetsday = criteria.MoveBetsDay
+                                    };
+
+                                    var dataSet = db.ExecuteDataSet(uspParams);
+
+                                    if (dataSet.Tables.Count > 1)
+                                    {
+                                        newDatatable = dataSet.Tables[0];
+                                        newReferenceDatatable = dataSet.Tables[1];
+                                    }
+                                    else
+                                    {
+                                        newDatatable = dataSet.Tables[0];
+                                        newReferenceDatatable = new DataTable();
+                                    }
+                                }
+
+                                // Merge new and old data into a data table.
+                                newDatatable.Merge(oldDatatable);
+                                newReferenceDatatable.Merge(oldReferenceDatatable);
+
+                                ticketResult.TicketList = this.ReadTicket(newDatatable);
+                                ticketResult.TicketDataList = this.ReadReferneceTicket(newReferenceDatatable);
+                            }
+                        }
+                        else
+                        {
+                            using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from main database only.
+                            {
+                                var uspParams = new
+                                {
+                                    loggedid = criteria.LoggedId,
+                                    agentid = criteria.AgentId,
+                                    custid = criteria.CustId,
+                                    fromdate = criteria.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : criteria.FromDate,
+                                    todate = criteria.ToDate,
+                                    statusids = criteria.StatusIds,
+                                    sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
+                                    bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
+                                    rpttype = criteria.RptType,
+                                    movebetsday = criteria.MoveBetsDay
+                                };
+
+                                var dataSet = db.ExecuteDataSet(uspParams);
+
+                                if (dataSet.Tables.Count > 1)
+                                {
+                                    ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                    ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                }
+                                else
+                                {
+                                    ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
+                                    ticketResult.TicketDataList = new List<ITicketData>();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return GetTicketResult(criteria);
+                    }
+                }
+
                 return ticketResult;
             }
             catch
@@ -502,6 +656,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsStatusId = columnCollection.Contains("statusid");
             var containsFinalHomeScore = columnCollection.Contains("finalhomescore");
             var containsFinalAwayScore = columnCollection.Contains("finalawayscore");
+            var containsFirstHalfHomeScore = columnCollection.Contains("hthomescore");
+            var containsFirstHalfAwayScore = columnCollection.Contains("htawayscore");
 
             // Boolean
             var containsNeutral = columnCollection.Contains("isneutral");
@@ -560,6 +716,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.StatusId = containsStatusId ? Converter.ToInt(dataRow["statusid"]) : 0;
                 ticket.FinalHomeScore = containsFinalHomeScore ? Converter.ToInt(dataRow["finalhomescore"]) : 0;
                 ticket.FinalAwayScore = containsFinalAwayScore ? Converter.ToInt(dataRow["finalawayscore"]) : 0;
+                ticket.HaftTimeHomeScore = containsFirstHalfHomeScore ? Converter.ToInt(dataRow["hthomescore"]) : 0;
+                ticket.HaftTimeAwayScore = containsFirstHalfAwayScore ? Converter.ToInt(dataRow["htawayscore"]) : 0;
 
                 // Boolean
                 ticket.IsLive = containsLiveIndicator ? this.ReadBoolean(dataRow["liveindicator"]) : false;
@@ -597,7 +755,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// </summary>
         /// <param name="data">Data table</param>
         /// <returns>List TicketData</returns>
-        private List<ITicketData> ReadReferneceTicket(DataTable data)
+        private List<ITicketData>
+            ReadReferneceTicket(DataTable data)
         {
             var result = new List<ITicketData>();
 
@@ -702,7 +861,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) ? this.ResetStartDate(criteria.BalanceUpDay) : criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
@@ -743,7 +902,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
-                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
+                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate > this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) ? this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) : criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
                     db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
@@ -788,6 +947,26 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Time start date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        /// <summary>
+        /// Time end date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));
         }
     }
 }

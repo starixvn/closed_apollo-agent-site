@@ -15,15 +15,18 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Member win loss view model class.
+    /// </summary>
     public class MemberWinLossViewModel
     {
         public int AgentId { get; set; }
 
         public string AgentName { get; set; }
 
-        public string Sporttypes { get; set; }
+        public string SportTypeIds { get; set; }
 
-        public string Bettypes { get; set; }
+        public string BetTypeIds { get; set; }
 
         public List<SingbetSport> SportList { get; set; }
 
@@ -35,17 +38,27 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
 
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
+
         public List<MemberWinLossModel> MemberWinLossList { get; set; }
 
         public List<Agent> DownlinePath { get; set; }
 
+        /// <summary>
+        /// Gets the name of the sport.
+        /// </summary>
+        /// <value>
+        /// The name of the sport.
+        /// </value>
         public string SportName
         {
             get
             {
                 if (SportList != null)
                 {
-                    var sport = SportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+                    var sport = SportList.Where(t => t.Id == this.SportTypeIds).SingleOrDefault();
 
                     if (sport != null)
                     {
@@ -63,13 +76,19 @@ namespace Apollo.Age.Reports.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the name of the bet type.
+        /// </summary>
+        /// <value>
+        /// The name of the bet type.
+        /// </value>
         public string BettypeName
         {
             get
             {
                 if (BettypeList != null)
                 {
-                    var bettype = BettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+                    var bettype = BettypeList.Where(t => t.Id == this.BetTypeIds).SingleOrDefault();
 
                     if (bettype != null)
                     {

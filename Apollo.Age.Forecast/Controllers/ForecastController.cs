@@ -23,12 +23,15 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Forecast Function controller
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ForecastController : BaseController
     {

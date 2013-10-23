@@ -1,22 +1,19 @@
 ﻿@using Apollo.Age.Reports.ViewModels;
 @using Apollo.Age.Reports.Models;
 @{
-	ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
-	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
-
 @model OutstandingViewModel
-
-<div id="function-bar">
-    <div class="item">
-        <label for="ddlSport">@Apollo.Age.Resources.Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, Model.Sporttypes)
-    </div>
-	@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.outstanding)
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
-    <div class="end"></div>
-</div>
-
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.outstanding,
+    SportType = Model.SportTypeIds
+})
 <div id="box_header" class="report">
     <table class="outstanding">
         <tr>
@@ -24,137 +21,138 @@
                 @Apollo.Age.Resources.Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
             </td>
         </tr>
     </table>
-	<div>
+    <div>
         <div class="row bg-action">
             <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
             <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
         </div>
     </div>
 </div>
-@if (Model.Sporttypes != null)
+@if (!string.IsNullOrWhiteSpace(Model.SportTypeIds))
 {
-	if (Model.DownlinePath != null && Model.DownlinePath.Any())
-	{
-	<div id= "navigationAgent" class="nav-outright">
-		@RazorHelper.Navigation(Model.DownlinePath.ToList())
-	</div>
-	<div id= "navigationMember" style="display:none" class="nav-outright">
-		@RazorHelper.Navigation(Model.DownlinePath.ToList(), true)
-	</div>
-	}
-
-    <div class="export-excel outright" id="export-excel"></div>
-
-<div id="agentOutstanding" class="clear">
-	<table class="tblRpt tblOutstanding persist-area report">
-		<thead class="persist-header">
-			<tr>
-				<th style="width: 150px;"></th>
-				<th style="width: 200px;">
-					@Apollo.Age.Resources.Lang.outstanding
-				</th>
-				<th style="width: 200px;">
-					@Apollo.Age.Resources.Lang.ShareAmount
-				</th>
-				
-			</tr>
-		</thead>
-		@if (Model.ListOutStanding != null && Model.ListOutStanding.Any())
-  {
-      decimal outStandingTotal = 0;
-      decimal shareAmountTotal = 0;
-      decimal gameOutstandingTotal = 0;
-      decimal gameShareAmountTotal = 0;
-      int i = 1;
-      string rowClass = string.Empty;
-			<tbody>
-				@foreach (OutstandingModel item in Model.ListOutStanding)
+    if (Model.DownlinePath != null && Model.DownlinePath.Any())
     {
-        outStandingTotal += item.Outstanding;
-        shareAmountTotal += item.ShareAmount;
-        gameOutstandingTotal += item.GameOutstanding;
-        gameShareAmountTotal += item.GameShareAmount;
-        rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+    <div id="navigationAgent" class="nav-outright">
+        @RazorHelper.Navigation(Model.DownlinePath.ToList())
+    </div>
+    <div id="navigationMember" style="display: none" class="nav-outright">
+        @RazorHelper.Navigation(Model.DownlinePath.ToList(), true)
+    </div>
+    }
 
-        if (item.IsAgent)
-        {
-					<tr @Html.Raw(rowClass)>
-						<td>
-							<a href="javascript:;" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
-						</td>
-						<td class="r">
-							@Formater.FormatNumber20(item.Outstanding, "en-US")
-						</td>
-						<td class="r">
-							@Formater.FormatNumber20(item.ShareAmount, "en-US")
-						</td>
-					</tr>
-        }
-        else
-        {
-					<tr @Html.Raw(rowClass)>
-						<td>
-							<a href="javascript:;" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
-						</td>
-						<td class="r">
-							@Formater.FormatNumber20(item.Outstanding, "en-US")
-						</td>
-						<td class="r">
-							@Formater.FormatNumber20(item.ShareAmount, "en-US")
-						</td>
-					</tr>
-        }
-    }
-			</tbody>
-    if (Model.AgentLevel != 0)
-    {
-			<tfoot>
-				<tr class="total">
-					<td>
-						@Apollo.Age.Resources.Lang.total
-					</td>
-					<td class="r">
-						@Formater.FormatNumber20(outStandingTotal, "en-US")
-					</td>
-					<td class="r">
-						@Formater.FormatNumber20(shareAmountTotal, "en-US")
-					</td>
-				</tr>
-			</tfoot>
-    }
-  }
-  else
-  {
-	@RazorHelper.ShowNoInfo(3)
-  }
-</table>
-</div>
-<div id="gridId" class="freegrid content-grid clear" style="display: none"></div>
+    <div class="export-excel outright" id="export-excel">
+    </div>
+
+    <div id="agentOutstanding" class="clear">
+        <table class="tblRpt tblOutstanding persist-area report">
+            <thead class="persist-header">
+                <tr>
+                    <th style="width: 150px;">
+                    </th>
+                    <th style="width: 200px;">
+                        @Apollo.Age.Resources.Lang.outstanding
+                    </th>
+                    <th style="width: 200px;">
+                        @Apollo.Age.Resources.Lang.ShareAmount
+                    </th>
+                </tr>
+            </thead>
+            @if (Model.ListOutStanding != null && Model.ListOutStanding.Any())
+            {
+                decimal outStandingTotal = 0;
+                decimal shareAmountTotal = 0;
+                decimal gameOutstandingTotal = 0;
+                decimal gameShareAmountTotal = 0;
+                int i = 1;
+                string rowClass = string.Empty;
+                <tbody>
+                    @foreach (OutstandingModel item in Model.ListOutStanding)
+                    {
+                        outStandingTotal += item.Outstanding;
+                        shareAmountTotal += item.ShareAmount;
+                        gameOutstandingTotal += item.GameOutstanding;
+                        gameShareAmountTotal += item.GameShareAmount;
+                        rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+
+                        if (item.IsAgent)
+                        {
+                        <tr @Html.Raw(rowClass)>
+                            <td>
+                                <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                            </td>
+                            <td class="r">
+                                @Formater.FormatNumber20(item.Outstanding, "en-US")
+                            </td>
+                            <td class="r">
+                                @Formater.FormatNumber20(item.ShareAmount, "en-US")
+                            </td>
+                        </tr>
+                        }
+                        else
+                        {
+                        <tr @Html.Raw(rowClass)>
+                            <td>
+                                <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
+                            </td>
+                            <td class="r">
+                                @Formater.FormatNumber20(item.Outstanding, "en-US")
+                            </td>
+                            <td class="r">
+                                @Formater.FormatNumber20(item.ShareAmount, "en-US")
+                            </td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+                    if (Model.AgentLevel != 0)
+                    {
+                <tfoot>
+                    <tr class="total">
+                        <td>
+                            @Apollo.Age.Resources.Lang.total
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(outStandingTotal, "en-US")
+                        </td>
+                        <td class="r">
+                            @Formater.FormatNumber20(shareAmountTotal, "en-US")
+                        </td>
+                    </tr>
+                </tfoot>
+                    }
+            }
+            else
+            {
+                @RazorHelper.ShowNoInfo(3)
+            }
+        </table>
+    </div>
+    <div id="gridId" class="freegrid content-grid clear" style="display: none">
+    </div>
 }
-@Html.Hidden("hdSportType", Model.Sporttypes)
-@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdSportType", Model.SportTypeIds)
+@Html.Hidden("hdBettype", Model.BetTypeIds)
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
 @Html.Hidden("CurrentCustId", Model.CurrentAgentId)
-
 <iframe id="exportExcelFrame" width="0" height="0" style="display: none"></iframe>
 @section scripts
 {
-	@Scripts.Render("~/scripts/outstandingjs")
-	<script type="text/javascript">
-		var LANGUAGES = function () {
-			return {
-				SportBook: "@Apollo.Age.Resources.Lang.sportBook",
-				NumberGame: "@Apollo.Age.Resources.Lang.numbergame",
-				Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
-				ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
-				Member: "@Apollo.Age.Resources.Lang.member",
-				ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist"
-			};
-		} ();
-	</script>
+    @Scripts.Render("~/scripts/outstandingjs")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                SportBook: "@Apollo.Age.Resources.Lang.sportBook",
+                NumberGame: "@Apollo.Age.Resources.Lang.numbergame",
+                Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
+                ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
+                Member: "@Apollo.Age.Resources.Lang.member",
+                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist"
+            };
+        } ();
+    </script>
 }

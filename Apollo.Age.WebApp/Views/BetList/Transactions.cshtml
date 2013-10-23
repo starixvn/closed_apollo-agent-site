@@ -5,6 +5,7 @@
 @{
     Layout = Request.IsAjaxRequest() ? null : "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @section css
 {
@@ -40,15 +41,17 @@
             </td>
         </tr>
     </table>*@
-    <div id="function-bar">
-        <div class="item">
-            <label for="ddlSport">@Lang.lblReport:</label>
-            @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
-        </div>
-        @RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
-        @*<img alt="" src="~/_GlobalResources/Images/top_04.png" class="end">*@
-        <div class="end"></div>
-    </div>
+
+    @Html.Partial("~/Views/Reports/Menu.cshtml",
+new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.transaction,
+    SportType = Model.SportTypeIds,
+    SportDropDownControl = "SportTypeIds"
+})
+
     <div class="pages-size">
         <div class="pull-left">@Lang.Page:</div>
         <div id="pager" class="sbpager">
@@ -65,7 +68,7 @@
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -75,13 +78,12 @@
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
                             <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
                             <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                            <input  class="btn dateRange" range="3" type="button" value="@Apollo.Age.Resources.Lang.tomorrow" />
                             <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
                             <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
@@ -92,6 +94,10 @@
                             @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
                             @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                            @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+                            @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+                            @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
+                            @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
                         </div>
                     </div>
                 </td>
@@ -100,8 +106,10 @@
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
-                <td>
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes")
+                <td>                                    
+
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
+
                 </td>
             </tr>
             <tr>
@@ -129,13 +137,10 @@
         </table>
         <div>
             <div class="row bg-action">
-                <div class="item">
-                    @Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
-                </div>
                 <div class="item btn-action">
-                    <input id="btnSubmit" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                    <input id="btnSubmitTransaction" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
                     <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-                </div>
+                </div>              
             </div>
         </div>
     </div>    

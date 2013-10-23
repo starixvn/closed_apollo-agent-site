@@ -10,24 +10,27 @@
 
 namespace Apollo.Age.Account.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Impl;
     using Apollo.Age.Account.Repositories.Interface;
+    using Apollo.Age.Configurations;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
+    using Apollo.Age.Enumerations;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
+    using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using System;
     using Fanex.CustSetting.ViewData;
-    using Apollo.Age.Configurations;
-    using Apollo.Age.Resources;
-    using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Account Service.
+    /// </summary>
     public class AccountService : ServiceBase, IAccountService
     {
         private readonly IAccountRepository _accountRepository;
@@ -88,10 +91,10 @@ namespace Apollo.Age.Account.Services
         /// <summary>
         /// Check current agent is child direct agent.
         /// </summary>
-        /// <param name="logginAgentId">Current Loggin agent.</param>
+        /// <param name="logginAgentId">Current Log in agent.</param>
         /// <param name="checkingAgentId">Agent need to check.</param>
         /// <param name="isSupper">If supper, then full permission.</param>
-        /// <returns>Checking agent is valid direct downline or not.</returns>
+        /// <returns>Checking agent is valid direct down line or not.</returns>
         public bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSupper = false)
         {
             if (isSupper)
@@ -228,6 +231,11 @@ namespace Apollo.Age.Account.Services
             return _accountRepository.GetAgentLogLogin(criteria);
         }
 
+        /// <summary>
+        /// Get Top member for edit member.
+        /// </summary>
+        /// <param name="agentId">Current agent id need get member.</param>
+        /// <returns>Member item.</returns>
         public MemberListModel GetTopMember(int agentId)
         {
             try
@@ -246,7 +254,6 @@ namespace Apollo.Age.Account.Services
                 {
                     return memberList.ElementAt(0);
                 }
-
             }
             catch (Exception ex)
             {
@@ -256,7 +263,12 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
-
+        /// <summary>
+        /// Calculate time for update agent setting.
+        /// </summary>
+        /// <param name="settingContext">Current setting context.</param>
+        /// <param name="positionTakingSetting">Position taking setting.</param>
+        /// <returns>Time to announce.</returns>
         public string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             try
@@ -286,7 +298,6 @@ namespace Apollo.Age.Account.Services
                         return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
                     }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -311,6 +322,54 @@ namespace Apollo.Age.Account.Services
                 };
 
                 return _accountRepository.HasMember(checkDirectMemberCriteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check current Time is in peak hours, GMT+8.
+        /// </summary>
+        /// <param name="agentLevel">Just Share holder and main share holder will be check.</param>
+        /// <returns>Current time is in peak hours or not.</returns>
+        public bool IsInPeakHours(int agentLevel)
+        {
+            try
+            {
+                var peakHours = GetPeakHours();
+                bool levelNotAllow = agentLevel < AgentLevel.MainAgent;
+                bool isInPeakHour = false;
+
+                TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+                var gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), gmtPlus8);
+
+                foreach (var peakHour in peakHours)
+                {
+                    if (peakHour.IsSameDay)
+                    {
+                        if (gmtPlus8Time.Hour >= peakHour.FromHour
+                            && gmtPlus8Time.Hour < peakHour.ToHour)
+                        {
+                            isInPeakHour = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if ((gmtPlus8Time.DayOfWeek == peakHour.FromDayOfWeek && gmtPlus8Time.Hour >= peakHour.FromHour)
+                            || (gmtPlus8Time.DayOfWeek == peakHour.ToDayOfWeek && gmtPlus8Time.Hour < peakHour.ToHour))
+                        {
+                            isInPeakHour = true;
+                            break;
+                        }
+                    }
+                }
+
+                return isInPeakHour && levelNotAllow;
             }
             catch (Exception ex)
             {

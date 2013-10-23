@@ -19,15 +19,18 @@ namespace Apollo.Age.TotalBets.Controllers
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Total Bets Controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
     public class TotalBetsController : BaseController
     {
         private readonly TotalBetsService _totalBetsService;

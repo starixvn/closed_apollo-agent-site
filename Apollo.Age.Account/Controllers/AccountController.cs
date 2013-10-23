@@ -32,6 +32,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Pager;
+    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Account controllers.
@@ -41,19 +42,34 @@ namespace Apollo.Age.Account.Controllers
     {
         #region Const for paging
 
-        private const int _PageIndex = 0; // Current index page
-        private const int _PageSize = 50; // Maximum items in a page
+        /// <summary>
+        /// Current index page.
+        /// </summary>
+        private const int _PageIndex = 0;
+
+        /// <summary>
+        /// Maximum items in a page.
+        /// </summary>
+        private const int _PageSize = 50;
 
         #endregion Const for paging
 
+        /// <summary>
+        /// Service account.
+        /// </summary>
         private readonly IAccountService _accountService;
+         private readonly IAgentUserService _agentUserService;
+
         private int _agentId;
+
         private string _username;
+
         private int _agentLevel;
 
         public AccountController()
         {
             _accountService = new AccountService();
+            _agentUserService = new AgentUserService();
         }
 
         private int? CurrentAgentId
@@ -101,6 +117,20 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Current Session.</returns>
         public ActionResult TopBar()
         {
+            var listFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+            var functionPermissionDictionary = new Dictionary<string, byte>();
+
+            if (!ReferenceEquals(listFunctionPermission, null) && listFunctionPermission.Any())
+            {
+                foreach (var item in listFunctionPermission)
+                {
+                    functionPermissionDictionary.Add(item.Function.FunctionKey, item.Policy);
+                }
+            }
+
+            ViewBag.allFunctionPermission = functionPermissionDictionary;
+
+            //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
             return View(CurrentSession);
         }
 
@@ -205,9 +235,14 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            //// Get Top Member 
+            //// Get Top Member
             var topMember = _accountService.GetTopMember(agentInfo.CustId);
             ViewBag.TopMember = topMember;
+
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+            ViewBag.ShadowPermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            ViewBag.ViewLogPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.System_Log);
 
             return View("AccountInfo", agentInfo);
         }
@@ -466,6 +501,9 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentLevel = this.CurrentSession.AgentLevel;
             ViewBag.AgentUsername = this.CurrentSession.AgentName;
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+            ViewBag.ShadowPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }
@@ -566,6 +604,9 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.DirectAgentList = directAgent;
             ViewBag.IsMaster = this.CurrentSession.IsMaster;
             ViewBag.AgentUsername = agentInfo.Username;
+            ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+            ViewBag.ShadowPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }
@@ -664,6 +705,8 @@ namespace Apollo.Age.Account.Controllers
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.AgentUserName = this.CurrentSession.AgentName;
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
+
             return View(criteria);
         }
 
@@ -763,6 +806,7 @@ namespace Apollo.Age.Account.Controllers
             // Super, MainShareHolder and ShareHolder only are allowed fund out sport credit.
             ViewBag.AllowFundOut = this.CurrentSession.AgentLevel <= 2;
             ViewBag.ActorAgentUsername = this.CurrentSession.AgentName;
+            ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             return View(criteria);
         }

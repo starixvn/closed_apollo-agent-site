@@ -10,12 +10,15 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Wagers.Criterias.Outright;
     using Apollo.Age.Wagers.ViewModels.Outright;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Outright Controller.
     /// </summary>    
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outright, Policy = Policy.Query)]
     public class OutrightController : WagerController
     {
         /// <summary>
@@ -31,7 +34,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             var result = WagerService.GetWagerData<OutrightViewModel>(criteria);
 
-            ViewBag.TotalItems = criteria.TotalItems;           
+            ViewBag.TotalItems = criteria.TotalItems;
             return View(result);
         }
     }

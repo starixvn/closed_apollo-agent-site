@@ -86,6 +86,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
+    <Compile Include="Controllers\PermissionUserControlController.cs" />
     <Compile Include="CurrentSession.cs" />
     <Compile Include="Filters\AllowUpdateCheckingAttribute.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
@@ -118,8 +119,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\UnderMaintenanceService.cs" />
+    <Compile Include="Web\Attribute\ApolloAuthAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
+      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
+      <Name>Apollo.Age.PermissionControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>

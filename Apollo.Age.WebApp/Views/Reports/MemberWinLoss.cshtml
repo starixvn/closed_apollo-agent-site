@@ -5,18 +5,17 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @model MemberWinLossViewModel
-<div id="function-bar">
-    <div class="item">
-        <label for="ddlSport">@Lang.lblReport:</label>
-        @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.Sporttypes)
-    </div>
-    @RazorHelper.RenderReportLinks(Lang.lblWinLoss)
-    @*<img alt="" src="~/_GlobalResources/Images/top_04.png"/>*@
-    <div class="end">
-    </div>
-</div>
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblWinLoss,
+    SportType = Model.SportTypeIds
+})
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -27,7 +26,7 @@
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -37,15 +36,16 @@
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddYears(-20), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
-                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
-                        <input  class="btn dateRange" data-range="3" type="button" value="@Lang.tomorrow" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />                        
                         <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
+                        <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>
@@ -55,15 +55,12 @@
                 @Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.Bettypes)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
             </td>
         </tr>
     </table>
     <div>
         <div class="row bg-action">
-            <div class="item">
-                @Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")
-            </div>
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
                 <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
@@ -76,8 +73,8 @@
     <div class="notes">
         <div class="title-notes">@Lang.lblRemarks:</div>
         <ul class="list">
-            <li>#1: @Lang.lblwinlossnote1</li>
-            <li>#2: @Lang.lblwinlossnote2</li>
+            <li>@Lang.lblwinlossnote1</li>
+            <li>@Lang.lblwinlossnote2</li>
         </ul>
     </div>
 }
@@ -298,20 +295,29 @@ else
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
-@Html.Hidden("hdSportType", Model.Sporttypes)
-@Html.Hidden("hdBettype", Model.Bettypes)
+@Html.Hidden("hdSportType", Model.SportTypeIds)
+@Html.Hidden("hdBettype", Model.BetTypeIds)
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
+@Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+@Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+@Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
+@Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @section scripts
 {
     <script type="text/javascript">
         var LANGUAGES = {
-            MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
-            BetListString: "@Lang.lblBetLists.ToUpper()"
-        };
+
+                MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
+                BetListString: "@Lang.lblBetLists.ToUpper()",
+                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"             
+            };
+       
     </script>
+
     @Scripts.Render("~/scripts/winlossjs")
+    
 }

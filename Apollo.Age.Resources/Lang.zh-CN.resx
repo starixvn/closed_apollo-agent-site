@@ -420,7 +420,7 @@
   <data name="lblOdd" xml:space="preserve">
     <value>单</value>
   </data>
-  <data name="result" xml:space="preserve">
+  <data name="results" xml:space="preserve">
     <value>目前状态</value>
   </data>
   <data name="lblStraight" xml:space="preserve">
@@ -880,7 +880,7 @@
     <value>从{1}复制{0}占成</value>
   </data>
   <data name="TicketsCancelled" xml:space="preserve">
-    <value>交易取消</value>
+    <value>取消单分析</value>
   </data>
   <data name="lblEmWager" xml:space="preserve">
     <value>早餐注单</value>
@@ -1862,10 +1862,10 @@
     <value>可佔成預設值% [最小 - 最大]</value>
   </data>
   <data name="lblwinlossnote1" xml:space="preserve">
-    <value>交上線佔成後的實貨量</value>
+    <value>有效金额#1: 交上線佔成後的實貨量</value>
   </data>
   <data name="lblwinlossnote2" xml:space="preserve">
-    <value>交公司實貨量</value>
+    <value>有效金额#2: 交公司實貨量</value>
   </data>
   <data name="lblEditMemberShare" xml:space="preserve">
     <value>修改會員佔成</value>
@@ -1875,5 +1875,116 @@
   </data>
   <data name="lblViewMemberShare" xml:space="preserve">
     <value>查看會員佔成</value>
+  </data>
+  <data name="AccountManagement" xml:space="preserve">
+    <value>账户管理</value>
+  </data>
+  <data name="CancelledTickets" xml:space="preserve">
+    <value>取消单分析</value>
+  </data>
+  <data name="ConfirmUpdatePermission" xml:space="preserve">
+    <value>一些新的权限已经被选择,您想要将这些权限授权给所有的下线和分身障号吗?</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>创建者</value>
+  </data>
+  <data name="CustomerSetting" xml:space="preserve">
+    <value>客户设定</value>
+  </data>
+  <data name="DownlineDetails" xml:space="preserve">
+    <value>下线细项</value>
+  </data>
+  <data name="EMWagers" xml:space="preserve">
+    <value>早餐注单</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>预测</value>
+  </data>
+  <data name="LineSportCredits" xml:space="preserve">
+    <value>總計下線體育點數</value>
+  </data>
+  <data name="NoneShadow" xml:space="preserve">
+    <value>没有分身账号</value>
+  </data>
+  <data name="NotPermissionUpdate" xml:space="preserve">
+    <value>抱歉! 您需要权限执行这个动作</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>冠军</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="PermissionControl" xml:space="preserve">
+    <value>权限控制</value>
+  </data>
+  <data name="PermissionSetting" xml:space="preserve">
+    <value>权限设定</value>
+  </data>
+  <data name="PermissionUpdatedSuccessfully" xml:space="preserve">
+    <value>成功更新权限!</value>
+  </data>
+  <data name="Query" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="RegisterDate" xml:space="preserve">
+    <value>注册日期</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>报表</value>
+  </data>
+  <data name="Shadow" xml:space="preserve">
+    <value>子帳號</value>
+  </data>
+  <data name="ShadowDetailed" xml:space="preserve">
+    <value>分身账号细项</value>
+  </data>
+  <data name="ShadowId" xml:space="preserve">
+    <value>子帳號</value>
+  </data>
+  <data name="ShadowList" xml:space="preserve">
+    <value>分身账号清单</value>
+  </data>
+  <data name="ShadowPermission" xml:space="preserve">
+    <value>子帳號管理</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>交易</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>实时</value>
+  </data>
+  <data name="Wagers_Forecast" xml:space="preserve">
+    <value>注单/预测</value>
+  </data>
+  <data name="Win_Loss" xml:space="preserve">
+    <value>赢/输</value>
+  </data>
+  <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
+    <value>在周末高峰时段不提供此功能，因为它可能会影响整个系统的性能。请联络客服寻求进一步协助</value>
+  </data>
+  <data name="lastperiod" xml:space="preserve">
+    <value>上期</value>
+  </data>
+  <data name="thisperiod" xml:space="preserve">
+    <value>本期</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>賽果</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>設定記錄</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>顯示記錄</value>
+  </data>
+  <data name="periodlisttitle" xml:space="preserve">
+    <value>{0}年月結期數</value>
+  </data>
+  <data name="periodnumber" xml:space="preserve">
+    <value>第 {0} 期</value>
   </data>
 </root>

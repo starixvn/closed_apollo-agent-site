@@ -23,13 +23,17 @@ namespace Apollo.Age.Entities
     {
         public bool IsMaster { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+
+        public byte Status { get; set; }
+
         public Agent Agent { get; set; }
 
         public bool IsSuper
         {
             get
             {
-                return this.Agent.Level == 0; 
+                return this.Agent.Level == 0;
             }
         }
     }

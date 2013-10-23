@@ -23,14 +23,17 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Result controller.
     /// </summary>
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Result, Policy = Policy.Query)]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ResultsController : BaseController
@@ -45,7 +48,7 @@ namespace Apollo.Age.Reports.Controllers
         #region Ctors
 
         /// <summary>
-        /// Constructor default.
+        /// Initializes result without parameter.
         /// </summary>
         public ResultsController()
             : this(null)
@@ -54,7 +57,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Constructor Controller.
+        /// Initializes result with result service.
         /// </summary>
         /// <param name="resultService">Result Service.</param>
         public ResultsController(ResultService resultService = null)
@@ -67,6 +70,9 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Gets Balance Up Day.
         /// </summary>
+        /// <value>
+        /// The get balance up day.
+        /// </value>
         protected DateTime GetBalanceUpDay
         {
             get { return _resultService.GetBalanceUpDay(); }

@@ -16,7 +16,7 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Reports.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Outright result view model class.
     /// </summary>
     public class OutrightResultViewModel
     {

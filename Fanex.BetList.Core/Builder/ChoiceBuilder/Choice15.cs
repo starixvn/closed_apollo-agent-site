@@ -38,9 +38,20 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         ticket.BetTeam.ToUpper()
                                                     }
                                                );
-
-            //this.Template.betTeamClassName = BL_FAVORITE;
-            //this.Template.Handicap.handicap = null;
+            if (ticket.SportTypeId == 1)
+            {
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                {
+                    this.Template.Score.finalHomeScore = ticket.HaftTimeHomeScore.ToString();
+                    this.Template.Score.finalAwayScore = ticket.HaftTimeAwayScore.ToString();
+                }
+                else
+                {
+                    this.Template.Score.Visible = false;
+                }
+            }
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }

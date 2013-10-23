@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/css/assignfunction")
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div id="page_main">
+        <div id="header_main">
+            @ViewBag.Title
+        </div>
+        <div id="content_main">
+            @RenderBody()
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    @RenderSection("foot", required: false)
+    <script type="text/javascript">
+        var Language =
+		{
+		    CONFIRM_AGENT: "@(Lang.ConfirmWriteAgent)",
+		    CONFIRM_SHADOW: "@(Lang.ConfirmWriteShadow)",
+		    UPDATED_SUCCESS: "@(Lang.PermissionUpdatedSuccessfully)",
+		    NOCHANGE: "@(Lang.noChangeToUpdate)"
+		}
+    </script>
+</body>
+</html>

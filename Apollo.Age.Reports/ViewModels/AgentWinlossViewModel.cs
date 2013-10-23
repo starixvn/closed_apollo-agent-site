@@ -15,6 +15,9 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Agent win loss model class.
+    /// </summary>
     public class AgentWinLossViewModel
     {
         public bool IsSuper { get; set; }
@@ -23,9 +26,9 @@ namespace Apollo.Age.Reports.ViewModels
 
         public string AgentName { get; set; }
 
-        public string Sporttypes { get; set; }
+        public string SportTypeIds { get; set; }
 
-        public string Bettypes { get; set; }
+        public string BetTypeIds { get; set; }
 
         public List<SingbetSport> SportList { get; set; }
 
@@ -37,6 +40,10 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
 
+        public DateRangeModel ThisPeriod { get; set; }
+
+        public DateRangeModel LastPeriod { get; set; }
+
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
         public List<Agent> DownlinePath { get; set; }
@@ -47,7 +54,7 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 if (SportList != null)
                 {
-                    var sport = SportList.Where(t => t.Id == this.Sporttypes).SingleOrDefault();
+                    var sport = SportList.Where(t => t.Id == this.SportTypeIds).SingleOrDefault();
 
                     if (sport != null)
                     {
@@ -71,7 +78,7 @@ namespace Apollo.Age.Reports.ViewModels
             {
                 if (BettypeList != null)
                 {
-                    var bettype = BettypeList.Where(t => t.Id == this.Bettypes).SingleOrDefault();
+                    var bettype = BettypeList.Where(t => t.Id == this.BetTypeIds).SingleOrDefault();
 
                     if (bettype != null)
                     {

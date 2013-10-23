@@ -1,0 +1,32 @@
+@using Apollo.Age.Reports.ViewModels
+@{
+    Layout = null;
+    string title = Apollo.Age.Resources.Lang.strNotAccessPage;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+}
+@try
+{ 
+    @Html.Partial("~/Views/Reports/Menu.cshtml",
+new ReportMenuViewModel
+{
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = string.Empty,
+    SportType = Model.SportTypeIds
+})
+}
+catch
+{
+    @Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = null,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = string.Empty,
+    SportDropDownClassName = string.Empty
+})
+}
+<br />
+<br />
+<h1>@title</h1>

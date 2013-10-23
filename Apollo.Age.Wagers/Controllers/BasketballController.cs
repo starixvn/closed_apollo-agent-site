@@ -12,14 +12,17 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
+    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Wagers.Criterias;
     using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels;
     using Apollo.Age.Wagers.ViewModels.Basketball;
+    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>   
+    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
     public class BasketballController : WagerController
     {
         public BasketballController()

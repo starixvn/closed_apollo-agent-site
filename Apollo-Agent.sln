@@ -36,8 +36,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "Fanex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Wagers", "Apollo.Age.Wagers\Apollo.Age.Wagers.csproj", "{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.HiddenTool", "Apollo.Age.HiddenTool\Apollo.Age.HiddenTool.csproj", "{1909258B-93B9-4E7D-A896-C57D8B22254F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
@@ -45,6 +43,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B27BBD58-4705-466B-91DA-CED9465F638A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.UMService", "Apollo.UMService\Apollo.UMService.csproj", "{0F1FAA78-599B-4646-B4E8-007C7992CE15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.PermissionControl", "Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj", "{FE47EC76-47A3-423B-808D-E94537B3F6FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,10 +108,6 @@ Global
 		{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1909258B-93B9-4E7D-A896-C57D8B22254F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -124,6 +120,10 @@ Global
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

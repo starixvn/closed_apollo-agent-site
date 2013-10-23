@@ -54,9 +54,9 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     box.appendChild(uplineSettingLabel);
 
     var presetLabel = document.createElement("DIV");
-    presetLabel.innerHTML = Language.PRESET_POSITION + (isViewMode ? '' : '<br/>' + Language.apllyPresetAdvancedMode + ':');
+    presetLabel.innerHTML = Language.PRESET_POSITION;
     presetLabel.title = Language.PRESET_POSITION;
-    presetLabel.className = isViewMode ? "group-label" : "group-label-preset";
+    presetLabel.className ="group-label";
     box.appendChild(presetLabel);
 
     var maxLabel = document.createElement("DIV");
