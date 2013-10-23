@@ -3,123 +3,125 @@
 @using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
 @{
-	ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
-	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-	List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    int counter = 0;    
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
 new ReportMenuViewModel
 {
-	SportList = Model.SportList,
-	FunctionPolicyList = FunctionPermissions,
-	ReportName = Lang.lblWinLoss,
-	SportType = "0"
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblWinLoss,
+    SportType = "0"
 })
-<div class="clear"></div>
+<div class="clear">
+</div>
 <div id="box_header" class="report">
-	<table class="winloss">
-		<tr>
-			<td class="firstcolumn">
-				@Apollo.Age.Resources.Lang.dateRange:
-			</td>
-			<td colspan="4">
-				<div class="row">
-					<div class="cell">
-						<div class="editor">
-							@Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
-						</div>
-					</div>
-					<div class="cell">
-						<div class="label">
-							<label for="FromDate">
-								~</label>
-						</div>
-						<div class="editor">
-							@Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
-						</div>
-					</div>
-					<div class="cell">
-						<input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-						<input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                        
-						<input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-						<input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-						<input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-							<input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="firstcolumn">
-				@Apollo.Age.Resources.Lang.WagerType:
-			</td>
-			<td colspan="4">
-				@RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: "0", className: "bettype")
-			</td>
-		</tr>
-		<tr>
-			<td class="firstcolumn">
-				@Apollo.Age.Resources.Lang.date:
-			</td>
-			<td colspan="2" class="winloss_date">
-				@Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
-				@if (Model.CheckIsCompleted(isToday: false))
-				{
-					<span class="winloss_complete">
-						@Apollo.Age.Resources.Lang.Complete
-					</span>
-				}
-				else
-				{
-					<span class="winloss_incomplete">
-						@Apollo.Age.Resources.Lang.InComplete
-					</span>
-				}
-			</td>
-			<td colspan="2" class="winloss_date">
-				@Formater.ShortDateFormat(DateTime.Now)
-				@if (Model.CheckIsCompleted(isToday: true))
-				{
-					<span class="winloss_complete">
-						@Apollo.Age.Resources.Lang.Complete
-					</span>
-				}
-				else
-				{
-					<span class="winloss_incomplete">
-						@Apollo.Age.Resources.Lang.InComplete
-					</span>
-				}
-			</td>
-		</tr>
-		<tr>
-			<td class="firstcolumn">
-				@Apollo.Age.Resources.Lang.results:
-			</td>
-			<td class="winloss_yesterday">
-				@Apollo.Age.Resources.Lang.entered
-			</td>
-			<td class="winloss_yesterday">
-				@Apollo.Age.Resources.Lang.nonentered
-			</td>
-			<td>
-				@Apollo.Age.Resources.Lang.entered
-			</td>
-			<td>
-				@Apollo.Age.Resources.Lang.nonentered
-			</td>
-		</tr>
-		@RenderMatchEnteredSportRow(Model.MatchEnteredModelList)
-	</table>
-	<div>
-		<div class="row bg-action">           
-			<div class="item btn-action">
-				<input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-				<input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-			</div>
-		</div>
-	</div>
+    <table class="winloss">
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.dateRange:
+            </td>
+            <td colspan="4">
+                <div class="row">
+                    <div class="cell">
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="FromDate">
+                                ~</label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                        <input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                        <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                        <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                        <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.WagerType:
+            </td>
+            <td colspan="4">
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: "0", className: "bettype")
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.date:
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
+                @if (Model.CheckIsCompleted(isToday: false))
+                {
+                    <span class="winloss_complete">
+                        @Apollo.Age.Resources.Lang.Complete
+                    </span>
+                }
+                else
+                {
+                    <span class="winloss_incomplete">
+                        @Apollo.Age.Resources.Lang.InComplete
+                    </span>
+                }
+            </td>
+            <td colspan="2" class="winloss_date">
+                @Formater.ShortDateFormat(DateTime.Now)
+                @if (Model.CheckIsCompleted(isToday: true))
+                {
+                    <span class="winloss_complete">
+                        @Apollo.Age.Resources.Lang.Complete
+                    </span>
+                }
+                else
+                {
+                    <span class="winloss_incomplete">
+                        @Apollo.Age.Resources.Lang.InComplete
+                    </span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Apollo.Age.Resources.Lang.results:
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td class="winloss_yesterday">
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.entered
+            </td>
+            <td>
+                @Apollo.Age.Resources.Lang.nonentered
+            </td>
+        </tr>
+        @RenderMatchEnteredSportRow(Model.MatchEnteredModelList)
+    </table>
+    <div>
+        <div class="row bg-action">
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            </div>
+        </div>
+    </div>
 </div>
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
@@ -142,134 +144,110 @@ new ReportMenuViewModel
 })*@
 @section scripts
 {
-	@Scripts.Render("~/scripts/winlossjs")
-	<script type="text/javascript">
-		var LANGUAGES = function () {
-			return {
-				MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
-				MessageValidateDateRange: "@Apollo.Age.Resources.LangMsg.MessageValidateDateRange"
-			};
-		} ();
-	</script>
+    @Scripts.Render("~/scripts/winlossjs")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateDateRange: "@Apollo.Age.Resources.LangMsg.MessageValidateDateRange"
+            };
+        } ();
+    </script>
 }
 @helper RenderMatchEnteredSportRow(List<MatchEnteredModel> matchEnteredList)
-	{
-			var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
-			var matchEntered = new MatchEnteredModel();
+    {
+        var matchEnteredSports = Apollo.Age.Reports.Core.Constants.MatchEnteredSports;
+        var matchEntered = new MatchEnteredModel();
 
-			foreach (KeyValuePair<int, string> pair in matchEnteredSports)
-			{
-				if (matchEnteredList != null && matchEnteredList.Any())
-				{
-					matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
+        foreach (KeyValuePair<int, string> pair in matchEnteredSports)
+        {
+            if (matchEnteredList != null && matchEnteredList.Any())
+            {
+                matchEntered = matchEnteredList.Where(t => t.SportTypeId == pair.Key).SingleOrDefault();
 
-					if (matchEntered != null)
-					{
-	<tr>
-		<td class="firstcolumn">@Html.Resource(pair.Value):
-		</td>
-		<td class="winloss_yesterday">@matchEntered.YesterdayEntered
-		</td>
-		<td class="winloss_yesterday">@matchEntered.YesterdayNonEntered
-		</td>
-		<td>@matchEntered.TodayEntered
-		</td>
-		<td>@matchEntered.TodayNonEntered
-		</td>
-	</tr>
-					}
-					else
-					{
-	<tr>
-		<td class="firstcolumn">
-			@Html.Resource(pair.Value):
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-	</tr>
-					}
-				}
-				else
-				{
-	<tr>
-		<td class="firstcolumn">
-			@Html.Resource(pair.Value):
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-		<td>
-		</td>
-	</tr>
-				}
-			}
+                if (matchEntered != null)
+                {
+    <tr>
+        <td class="firstcolumn">@Html.Resource(pair.Value):
+        </td>
+        <td class="winloss_yesterday">@matchEntered.YesterdayEntered
+        </td>
+        <td class="winloss_yesterday">@matchEntered.YesterdayNonEntered
+        </td>
+        <td>@matchEntered.TodayEntered
+        </td>
+        <td>@matchEntered.TodayNonEntered
+        </td>
+    </tr>
+                }
+                else
+                {
+    <tr>
+        <td class="firstcolumn">
+            @Html.Resource(pair.Value):
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+                }
+            }
+            else
+            {
+    <tr>
+        <td class="firstcolumn">
+            @Html.Resource(pair.Value):
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+            }
+        }
 }
-
 <div class="period-schedule">
-	<table class="tblRpt">
-		<thead>
-			<tr>
-				<th colspan="2">Monthly Account Periods of Year 2013</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Period 1</td>
-				<td>2013-01-07  to 2013-02-03</td>
-			</tr>
-			<tr>
-				<td>Period 2</td>
-				<td>2013-02-04  to 2013-03-03</td>
-			</tr>
-			<tr>
-				<td>Period 3</td>
-				<td>2013-03-04  to 2013-03-31</td>
-			</tr>
-			<tr>
-				<td>Period 4</td>
-				<td>2013-04-01  to 2013-05-05</td>
-			</tr>
-			<tr>
-				<td>Period 5</td>
-				<td>2013-05-06  to 2013-06-02</td>
-			</tr>
-			<tr>
-				<td>Period 6</td>
-				<td>2013-06-03  to 2013-06-30</td>
-			</tr>
-			<tr class="current">
-				<td>Period 7</td>
-				<td>2013-07-01  to 2013-08-04</td>
-			</tr>
-			<tr>
-				<td>Period 8</td>
-				<td>2013-08-05  to 2013-09-01</td>
-			</tr>
-			<tr>
-				<td>Period 9</td>
-				<td>2013-09-02  to 2013-10-06</td>
-			</tr>
-			<tr>
-				<td>Period 10</td>
-				<td>2013-10-07  to 2013-11-03</td>
-			</tr>
-			<tr>
-				<td>Period 11</td>
-				<td>2013-11-04  to 2013-12-01</td>
-			</tr>
-			<tr>
-				<td>Period 12</td>
-				<td>2013-12-02  to 2014-01-05</td>
-			</tr>
-		</tbody>
-	</table>
+    <table class="tblRpt">
+        <thead>
+            <tr>
+                <th colspan="2">@string.Format(Lang.periodlisttitle,DateTime.Now.Year)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PeriodList)
+            {
+                counter++;
+                if (item.FromDate <= DateTime.Now && item.ToDate >= DateTime.Now)
+                {                  
+                <tr class="CurrentPeriod">
+                    <td>@string.Format(Lang.periodnumber, counter)
+                    </td>
+                    <td>
+                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
+                    </td>
+                </tr>
+                }
+                else
+                { 
+                <tr>
+                    <td>@string.Format(Lang.periodnumber, counter)
+                    </td>
+                    <td>
+                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>
