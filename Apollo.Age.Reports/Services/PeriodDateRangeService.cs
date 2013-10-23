@@ -36,8 +36,8 @@ namespace Apollo.Age.Reports.Services
                     rangeDates = item.Split('-');
                     listOfRanges.Add(new DateRangeModel
                     {
-                        FromDate = DateTime.ParseExact(rangeDates[0], "yyyy-MM-dd", null),
-                        ToDate = DateTime.ParseExact(rangeDates[1], "yyyy-MM-dd", null),
+                        FromDate = Convert.ToDateTime(rangeDates[0]),
+                        ToDate = Convert.ToDateTime(rangeDates[1]),
                     });
                 }
             }
