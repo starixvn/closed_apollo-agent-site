@@ -71,6 +71,8 @@ namespace Apollo.Age.BetList.ViewModels
 
         public List<TicketText> TicketList { get; set; }
 
+        public List<DateRangeModel> PeriodRangList { get; set; }
+
         public bool FromPaging { get; set; }
     }
 }

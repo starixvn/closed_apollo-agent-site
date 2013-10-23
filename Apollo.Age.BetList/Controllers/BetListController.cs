@@ -326,7 +326,7 @@ namespace Apollo.Age.BetList.Controllers
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
-
+            viewModel.PeriodRangList = _periodDateRangeSerivce.ListOfPeriodRanges();
             return this.TicketCancel(viewModel);
         }
 
@@ -351,6 +351,7 @@ namespace Apollo.Age.BetList.Controllers
             model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
+            model.PeriodRangList = _periodDateRangeSerivce.ListOfPeriodRanges();
 
             if (errorCode == 0)
             {
