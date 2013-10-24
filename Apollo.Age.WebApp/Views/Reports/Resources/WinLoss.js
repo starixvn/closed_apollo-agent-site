@@ -128,7 +128,7 @@
                     width: resolution.width,
                     height: resolution.height,
                     position: { my: "top+20", at: "center top", of: window }
-                });
+                });r
 
                 //location.href = url;
             });

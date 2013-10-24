@@ -21,6 +21,31 @@ namespace Apollo.Age.Reports.Services
     public class PeriodDateRangeService : QueryService
     {
         /// <summary>
+        /// Get list of period date ranges.
+        /// </summary>
+        /// <returns>List of period date ranges that were formatted.</returns>
+        public List<DateRangeModel> ListOfPeriodRanges()
+        {
+            List<string> periodRanges = GetAllPeriodRange();
+            var listOfRanges = new List<DateRangeModel>();
+            string[] rangeDates = null;
+            if (periodRanges != null && periodRanges.Any())
+            {
+                foreach (string item in periodRanges)
+                {
+                    rangeDates = item.Split('-');
+                    listOfRanges.Add(new DateRangeModel
+                    {
+                        FromDate = Convert.ToDateTime(rangeDates[0]),
+                        ToDate = Convert.ToDateTime(rangeDates[1]),
+                    });
+                }
+            }
+
+            return listOfRanges;
+        }
+
+        /// <summary>
         /// Get period range.
         /// </summary>
         /// <param name="getLastPeriod">Want to get last period or this period.</param>
@@ -43,7 +68,6 @@ namespace Apollo.Age.Reports.Services
                 var count = 0;
                 foreach (var range in periodRanges)
                 {
-
                     rangeDates = range.Split('-');
 
                     fromDate = DateTime.Parse(rangeDates[0]);
@@ -62,7 +86,6 @@ namespace Apollo.Age.Reports.Services
                         {
                             if (fromDate <= currentDate && currentDate <= toDate)
                             {
-
                                 periodModel.FromDate = DateTime.Parse(periodRanges[count - 1].Split('-')[0]);
                                 periodModel.ToDate = DateTime.Parse(periodRanges[count - 1].Split('-')[1]);
 
@@ -82,7 +105,6 @@ namespace Apollo.Age.Reports.Services
                     }
 
                     count++;
-
                 }
 
                 return new DateRangeModel()

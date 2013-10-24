@@ -63,30 +63,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         {
             try
             {
-                DataTable mainTable;
-                var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
-                if (criteria.FromDate < criteria.BalanceUpDay)
-                {
-                    if (criteria.ToDate < preBalanceUpDay)
-                    {
-                        mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
-                    }
-                    else
-                    {
-                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
-                        var mainOldTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
+                DataTable mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
 
-                        var mainNewTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
-
-                        // Merge two table bettrans
-                        mainOldTable.Merge(mainNewTable);
-                        mainTable = mainOldTable;
-                    }
-                }
-                else
+                if (mainTable == null || mainTable.Rows.Count <= 0)
                 {
-                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail", criteria);
-                }
+                    mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
+                }                                
 
                 // Main ticket list
                 var ticketList = this.ReadTicket(mainTable);
@@ -213,10 +195,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 DataTable mainTable, referenceTable;
                 var ticketResult = new TicketResult();
                 var preBalanceUpDay = criteria.BalanceUpDay.AddDays(-1);
-                if (criteria.FromDate < criteria.BalanceUpDay)
+                if (criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay))
                 {
-                    if (criteria.ToDate < preBalanceUpDay)
-                    {                        
+                    if (criteria.ToDate <= this.ResetEndDate(preBalanceUpDay))
+                    {
                         mainTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceTable);
                     }
                     else
@@ -224,7 +206,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
                         DataTable referenceOldTable = null;
                         var mainOldTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
-                        
+
 
                         DataTable referenceNewTable = null;
                         var mainNewTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceNewTable);
@@ -239,7 +221,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     }
                 }
                 else
-                {                    
+                {
                     mainTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceTable);
                 }
 
@@ -303,14 +285,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 var ticketResult = new TicketResult();
                 var balanceUpDay = criteria.BalanceUpDay;
-
+                var preBalanceUpDay = balanceUpDay.AddDays(-1);
                 if (criteria.IsValid())
                 {
                     if (isIncludeOldData)
                     {
-                        if (criteria.FromDate < balanceUpDay)
+                        if (criteria.FromDate < this.ResetStartDate(balanceUpDay))
                         {
-                            if (criteria.ToDate < balanceUpDay.AddDays(-1))
+                            if (criteria.ToDate <= this.ResetEndDate(preBalanceUpDay))
                             {
                                 using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
                                 {
@@ -320,7 +302,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
                                         fromdate = criteria.FromDate,
-                                        todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
+                                        todate = criteria.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
                                         bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
@@ -356,7 +338,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
                                         fromdate = criteria.FromDate,
-                                        todate = criteria.ToDate > criteria.BalanceUpDay.AddDays(-1) ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate,
+                                        todate = criteria.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
                                         bettypes = string.IsNullOrWhiteSpace(criteria.BetTypes) ? "0" : criteria.BetTypes,
@@ -384,7 +366,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                         loggedid = criteria.LoggedId,
                                         agentid = criteria.AgentId,
                                         custid = criteria.CustId,
-                                        fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
+                                        fromdate = criteria.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : criteria.FromDate,
                                         todate = criteria.ToDate,
                                         statusids = criteria.StatusIds,
                                         sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
@@ -424,7 +406,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     loggedid = criteria.LoggedId,
                                     agentid = criteria.AgentId,
                                     custid = criteria.CustId,
-                                    fromdate = criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate,
+                                    fromdate = criteria.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : criteria.FromDate,
                                     todate = criteria.ToDate,
                                     statusids = criteria.StatusIds,
                                     sporttypes = string.IsNullOrWhiteSpace(criteria.SportTypes) ? "0" : criteria.SportTypes,
@@ -879,7 +861,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < criteria.BalanceUpDay ? criteria.BalanceUpDay : criteria.FromDate);
+                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) ? this.ResetStartDate(criteria.BalanceUpDay) : criteria.FromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
@@ -920,7 +902,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
-                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate > criteria.BalanceUpDay ? criteria.BalanceUpDay.AddDays(-1) : criteria.ToDate);
+                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate > this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) ? this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) : criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
                     db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
@@ -965,6 +947,26 @@ namespace Apollo.Age.BetList.Repositories.Impl
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Time start date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        /// <summary>
+        /// Time end date
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));
         }
     }
 }

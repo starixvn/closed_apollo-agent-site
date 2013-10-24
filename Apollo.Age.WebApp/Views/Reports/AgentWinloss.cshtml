@@ -58,7 +58,7 @@ new ReportMenuViewModel
                 @Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
             </td>
         </tr>
     </table>
@@ -452,12 +452,13 @@ else
 })*@
 @section scripts
 {
-    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
-        var LANGUAGES = function () {
-            return {
-                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
-            };
-        } ();
+     var LANGUAGES = function () {
+         return {
+             MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
+         };
+     } ();
     </script>
+    @Scripts.Render("~/scripts/winlossjs")
+   
 }

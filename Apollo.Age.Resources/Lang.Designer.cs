@@ -4760,6 +4760,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monthly Account Periods of Year {0}.
+        /// </summary>
+        public static string periodlisttitle {
+            get {
+                return ResourceManager.GetString("periodlisttitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period {0}.
+        /// </summary>
+        public static string periodnumber {
+            get {
+                return ResourceManager.GetString("periodnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission.
         /// </summary>
         public static string Permission {
@@ -5174,6 +5192,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Serial Number.
+        /// </summary>
+        public static string SerialNumber {
+            get {
+                return ResourceManager.GetString("SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set.
         /// </summary>
         public static string Set {
@@ -5210,7 +5237,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shadow Id.
+        ///   Looks up a localized string similar to Shadow ID.
         /// </summary>
         public static string ShadowId {
             get {
@@ -5228,7 +5255,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shadow Permission.
+        ///   Looks up a localized string similar to Shadow Management.
         /// </summary>
         public static string ShadowPermission {
             get {

@@ -9,11 +9,9 @@
 
 namespace Apollo.UMService
 {
-    using System;
     using System.IO;
     using System.Net;
-    using System.Text;
-    using System.Threading;
+    using System.Threading.Tasks;
     using System.Web.Helpers;
     using Apollo.UMService.Model;
     using Fanex.Caching;
@@ -24,11 +22,11 @@ namespace Apollo.UMService
     public class UMBusiness
     {
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key.
-        private const int _BUFFER_SIZE = 1024;
+
         private const int _DefaultTimeout = 30000; // 0.5 minutes timeout
-        private static ManualResetEvent allDone = new ManualResetEvent(false);
+
         private readonly ICache _cacheManager;
-        private HttpWebRequest _request;
+
         private string _underMaintenanceUrlFormat = "{0}?site={1}";
 
         public UMBusiness()
@@ -51,127 +49,56 @@ namespace Apollo.UMService
             {
                 underMaintenanceCtrlUrl = string.Format(_underMaintenanceUrlFormat, underMaintenanceCtrlUrl, siteName);
 
-                this.GetMaintenanceInfo(underMaintenanceCtrlUrl);
+                var task = MakeAsyncRequest(underMaintenanceCtrlUrl, "text/json");
+
+                underMaintenanceInfo = Json.Decode<UnderMaintenanceModel>(task.Result);
+
+                underMaintenanceInfo = underMaintenanceInfo != null ? underMaintenanceInfo : new UnderMaintenanceModel { Status = false };
+
+                this._cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, underMaintenanceInfo, 5);
             }
 
             return underMaintenanceInfo;
         }
 
         /// <summary>
-        /// Gets the maintenance information.
+        /// Makes the asynchronous request.
         /// </summary>
-        /// <param name="underMaintenanceCtrlUrl">The um control URL.</param>
-        private void GetMaintenanceInfo(string underMaintenanceCtrlUrl)
+        /// <param name="url">The URL of maintenance service.</param>
+        /// <param name="contentType">Type of the content.</param>
+        /// <returns>Return task asynchronous request.</returns>
+        public Task<string> MakeAsyncRequest(string url, string contentType)
         {
-            var underMaintenanceInfo = new UnderMaintenanceModel();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.ContentType = contentType;
+            request.Method = WebRequestMethods.Http.Get;
+            request.Timeout = _DefaultTimeout;
+            request.Proxy = null;
 
-            _request = (HttpWebRequest)WebRequest.Create(underMaintenanceCtrlUrl);
+            Task<WebResponse> task = Task.Factory.FromAsync(
+                request.BeginGetResponse,
+                asyncResult => request.EndGetResponse(asyncResult),
+                (object)null);
 
-            // Create an instance of the RequestState and assign the previous myHttpWebRequest
-            // object to its request field.
-            RequestState requestState = new RequestState();
-            requestState.Request = _request;
-
-            // Start the asynchronous request.
-            IAsyncResult result =
-              (IAsyncResult)_request.BeginGetResponse(new AsyncCallback(RespCallback), requestState);
-
-            // this line implements the timeout, if there is a timeout, the callback fires and the request becomes aborted
-            ThreadPool.RegisterWaitForSingleObject(result.AsyncWaitHandle, new WaitOrTimerCallback(TimeoutCallback), _request, _DefaultTimeout, true);
-
-            // The response came in the allowed time. The work processing will happen in the
-            // callback function.
-            allDone.WaitOne();
-
-            // Release the HttpWebResponse resource.
-            if (requestState.Response != null)
-            {
-                requestState.Response.Close();
-            }
+            return task.ContinueWith(t => ReadStreamFromResponse(t.Result));
         }
 
         /// <summary>
-        /// Timeouts the callback.
+        /// Reads the stream from response.
         /// </summary>
-        /// <param name="state">The state.</param>
-        /// <param name="timedOut">Set time out or not.</param>
-        private void TimeoutCallback(object state, bool timedOut)
+        /// <param name="response">The response.</param>
+        /// <returns>Return UM content.</returns>
+        private string ReadStreamFromResponse(WebResponse response)
         {
-            if (timedOut)
+            using (Stream responseStream = response.GetResponseStream())
             {
-                HttpWebRequest request = state as HttpWebRequest;
-                if (request != null)
+                using (StreamReader sr = new StreamReader(responseStream))
                 {
-                    request.Abort();
+                    ////Need to return this response 
+                    string strContent = sr.ReadToEnd();
+
+                    return strContent;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Response the callback.
-        /// </summary>
-        /// <param name="asynchronousResult">The asynchronous result.</param>
-        private void RespCallback(IAsyncResult asynchronousResult)
-        {
-            try
-            {
-                // State of request is asynchronous.
-                RequestState requestState = (RequestState)asynchronousResult.AsyncState;
-                HttpWebRequest httpWebRequest = requestState.Request;
-                requestState.Response = (HttpWebResponse)httpWebRequest.EndGetResponse(asynchronousResult);
-
-                // Read the response into a Stream object.
-                Stream responseStream = requestState.Response.GetResponseStream();
-                requestState.StreamResponse = responseStream;
-
-                // Begin the Reading of the contents of the HTML page and print it to the console.
-                IAsyncResult asynchronousInputRead = responseStream.BeginRead(requestState.BufferRead, 0, _BUFFER_SIZE, new AsyncCallback(ReadCallBack), requestState);
-                return;
-            }
-            catch
-            {
-                allDone.Set();
-            }
-        }
-
-        /// <summary>
-        /// Reads the call back.
-        /// </summary>
-        /// <param name="asyncResult">The asynchronous result.</param>
-        private void ReadCallBack(IAsyncResult asyncResult)
-        {
-            try
-            {
-                RequestState requestState = (RequestState)asyncResult.AsyncState;
-                Stream responseStream = requestState.StreamResponse;
-                int read = responseStream.EndRead(asyncResult);
-
-                // Read the HTML page and then cache to memory cache
-                if (read > 0)
-                {
-                    requestState.RequestData.Append(Encoding.ASCII.GetString(requestState.BufferRead, 0, read));
-                    IAsyncResult asynchronousResult = responseStream.BeginRead(requestState.BufferRead, 0, _BUFFER_SIZE, new AsyncCallback(ReadCallBack), requestState);
-
-                    return;
-                }
-                else
-                {
-                    if (requestState.RequestData.Length > 1)
-                    {
-                        var underMaintenanceInfo = Json.Decode<UnderMaintenanceModel>(requestState.RequestData.ToString());
-                        _cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, underMaintenanceInfo, TimeSpan.FromSeconds(5));
-
-                        // LogService.Info(umInfo.status.ToString() + " - " + umInfo.start_time + " - " + umInfo.end_time);
-                    }
-
-                    responseStream.Close();
-
-                    allDone.Set();
-                }
-            }
-            catch
-            {
-                allDone.Set();
             }
         }
     }

@@ -5,7 +5,7 @@
 @{
     Layout = Request.IsAjaxRequest() ? null : "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
-    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
+    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
 }
 @section css
 {
@@ -49,7 +49,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
     FunctionPolicyList = FunctionPermissions,
     ReportName = Lang.transaction,
     SportType = Model.SportTypeIds,
-    SportDropDownControl = "SportTypes"
+    SportDropDownControl = "SportTypeIds"
 })
 
     <div class="pages-size">
@@ -106,8 +106,10 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                 <td class="winloss_firstcolumn">
                     @Apollo.Age.Resources.Lang.WagerType:
                 </td>
-                <td>
-                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+                <td>                                    
+
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
+
                 </td>
             </tr>
             <tr>
@@ -138,7 +140,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                 <div class="item btn-action">
                     <input id="btnSubmitTransaction" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
                     <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-                </div>
+                </div>              
             </div>
         </div>
     </div>    
