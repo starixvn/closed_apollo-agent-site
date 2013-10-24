@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
     ViewBag.Title = @Lang.userinfo;     
+    
 }
 <table id="tab-menu">
     <tr>
@@ -19,6 +20,7 @@
     <ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
     </ul>
 </div>
+@Html.Hidden("DownlineDetailsPolicy", (byte)ViewBag.DownlineDetailsPolicy)
 @section foot {
     @Scripts.Render("~/scripts/treeviewjs")
     <script type="text/javascript">

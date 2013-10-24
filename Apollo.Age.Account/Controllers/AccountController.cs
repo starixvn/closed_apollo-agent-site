@@ -212,6 +212,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.PermissionControl = userPermission[ApolloFunctionKeys.PermissionControl];
             ViewBag.ShadowPermissionControl = userPermission[ApolloFunctionKeys.ShadowPermission];
             ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.System_Log];
+            ViewBag.DownlineDetailsPolicy = userPermission[ApolloFunctionKeys.DownlineDetails];
 
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
@@ -370,6 +371,7 @@ namespace Apollo.Age.Account.Controllers
         public ViewResult TreeViewList()
         {
             ViewBag.AgentId = this.CurrentSession.AgentId;
+            ViewBag.DownlineDetailsPolicy = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails);
 
             return View();
         }

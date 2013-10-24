@@ -12,10 +12,16 @@
     @if (Model.Any())
     {
         foreach (var member in Model)
-        {
-        <li><a class='@classNameNoPermission' href='javascript:;' data-memberid='@member.Id' data-membername='@member.Username' target='menu'>
-            @member.Username
-        </a></li>
+        {            
+        <li>
+            @if (hasDownlineDetailsPermission)
+            { <a class='@classNameNoPermission' href='javascript:;' data-memberid='@member.Id' data-membername='@member.Username' target='menu'>
+                @member.Username
+            </a>}
+            else
+            {
+                @member.Username
+            }</li>
         }
     }
     else

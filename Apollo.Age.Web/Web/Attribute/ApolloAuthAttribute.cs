@@ -76,6 +76,11 @@ namespace Apollo.Age.Web.Web.Attribute
                     return;
                 }
 
+                if (ReferenceEquals(SessionManager.CurrentSession, null))
+                {
+                    CloseConnection(filterContext);
+                }
+
                 var userId = SessionManager.CurrentSession.UserId;
 
                 if (CheckFunctionAuthorization(userId))
