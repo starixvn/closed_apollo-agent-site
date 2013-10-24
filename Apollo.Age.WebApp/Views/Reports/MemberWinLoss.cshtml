@@ -55,7 +55,7 @@ new ReportMenuViewModel
                 @Lang.WagerType:
             </td>
             <td class="secondcolumn">
-                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds)
+                @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
             </td>
         </tr>
     </table>
@@ -73,8 +73,8 @@ new ReportMenuViewModel
     <div class="notes">
         <div class="title-notes">@Lang.lblRemarks:</div>
         <ul class="list">
-            <li>#1: @Lang.lblwinlossnote1</li>
-            <li>#2: @Lang.lblwinlossnote2</li>
+            <li>@Lang.lblwinlossnote1</li>
+            <li>@Lang.lblwinlossnote2</li>
         </ul>
     </div>
 }
@@ -308,16 +308,16 @@ else
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @section scripts
 {
-    @Scripts.Render("~/scripts/winlossjs")
     <script type="text/javascript">
-        var LANGUAGES = function () {
-            return {
+        var LANGUAGES = {
 
                 MessageValidateWithArchivedDate: "@LangMsg.MessageValidateWithArchivedDate",
                 BetListString: "@Lang.lblBetLists.ToUpper()",
-                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange",               
-
+                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"             
             };
-        } ();
+       
     </script>
+
+    @Scripts.Render("~/scripts/winlossjs")
+    
 }

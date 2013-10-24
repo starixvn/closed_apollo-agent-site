@@ -420,7 +420,7 @@
   <data name="lblOdd" xml:space="preserve">
     <value>單</value>
   </data>
-  <data name="result" xml:space="preserve">
+  <data name="results" xml:space="preserve">
     <value>目前狀態</value>
   </data>
   <data name="lblStraight" xml:space="preserve">
@@ -649,7 +649,7 @@
     <value>雙</value>
   </data>
   <data name="TicketCancelled" xml:space="preserve">
-    <value>取消投注</value>
+    <value>取消單分析</value>
   </data>
   <data name="lblParlay" xml:space="preserve">
     <value>過關</value>
@@ -1879,7 +1879,7 @@
   <data name="AccountManagement" xml:space="preserve">
     <value>帳戶管理</value>
   </data>
-  <data name="CancelledTicket" xml:space="preserve">
+  <data name="CancelledTickets" xml:space="preserve">
     <value>取消單分析</value>
   </data>
   <data name="ConfirmUpdatePermission" xml:space="preserve">
@@ -1901,7 +1901,7 @@
     <value>預測</value>
   </data>
   <data name="LineSportCredits" xml:space="preserve">
-    <value>體育盤點數</value>
+    <value>總計下線體育點數</value>
   </data>
   <data name="NoneShadow" xml:space="preserve">
     <value>沒有分身帳號</value>
@@ -1934,19 +1934,19 @@
     <value>報表</value>
   </data>
   <data name="Shadow" xml:space="preserve">
-    <value>分身帳號</value>
+    <value>子帳號</value>
   </data>
   <data name="ShadowDetailed" xml:space="preserve">
     <value>分身帳號細項</value>
   </data>
   <data name="ShadowId" xml:space="preserve">
-    <value>分身帳號</value>
+    <value>子帳號</value>
   </data>
   <data name="ShadowList" xml:space="preserve">
-    <value>分身帳號清單</value>
+    <value>子帳號清單</value>
   </data>
   <data name="ShadowPermission" xml:space="preserve">
-    <value>分身帳號權限</value>
+    <value>子帳號管理</value>
   </data>
   <data name="Transactions" xml:space="preserve">
     <value>交易</value>
@@ -1968,5 +1968,23 @@
   </data>
   <data name="thisperiod" xml:space="preserve">
     <value>本期</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>賽果</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>設定記錄</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>顯示記錄</value>
+  </data>
+  <data name="periodlisttitle" xml:space="preserve">
+    <value>{0}年月結期數</value>
+  </data>
+  <data name="periodnumber" xml:space="preserve">
+    <value>第 {0} 期</value>
   </data>
 </root>

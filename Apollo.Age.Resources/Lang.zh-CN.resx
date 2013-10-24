@@ -420,7 +420,7 @@
   <data name="lblOdd" xml:space="preserve">
     <value>单</value>
   </data>
-  <data name="result" xml:space="preserve">
+  <data name="results" xml:space="preserve">
     <value>目前状态</value>
   </data>
   <data name="lblStraight" xml:space="preserve">
@@ -880,7 +880,7 @@
     <value>从{1}复制{0}占成</value>
   </data>
   <data name="TicketsCancelled" xml:space="preserve">
-    <value>交易取消</value>
+    <value>取消单分析</value>
   </data>
   <data name="lblEmWager" xml:space="preserve">
     <value>早餐注单</value>
@@ -1879,7 +1879,7 @@
   <data name="AccountManagement" xml:space="preserve">
     <value>账户管理</value>
   </data>
-  <data name="CancelledTicket" xml:space="preserve">
+  <data name="CancelledTickets" xml:space="preserve">
     <value>取消单分析</value>
   </data>
   <data name="ConfirmUpdatePermission" xml:space="preserve">
@@ -1901,7 +1901,7 @@
     <value>预测</value>
   </data>
   <data name="LineSportCredits" xml:space="preserve">
-    <value>体育盘点数</value>
+    <value>總計下線體育點數</value>
   </data>
   <data name="NoneShadow" xml:space="preserve">
     <value>没有分身账号</value>
@@ -1928,25 +1928,25 @@
     <value>浏览</value>
   </data>
   <data name="RegisterDate" xml:space="preserve">
-    <value>注册日期</value>
+    <value>登記日期</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>报表</value>
   </data>
   <data name="Shadow" xml:space="preserve">
-    <value>分身账号</value>
+    <value>子帳號</value>
   </data>
   <data name="ShadowDetailed" xml:space="preserve">
     <value>分身账号细项</value>
   </data>
   <data name="ShadowId" xml:space="preserve">
-    <value>分身账号</value>
+    <value>子帳號</value>
   </data>
   <data name="ShadowList" xml:space="preserve">
-    <value>分身账号清单</value>
+    <value>子帳號清單</value>
   </data>
   <data name="ShadowPermission" xml:space="preserve">
-    <value>分身账号权限</value>
+    <value>子帳號管理</value>
   </data>
   <data name="Transactions" xml:space="preserve">
     <value>交易</value>
@@ -1968,5 +1968,23 @@
   </data>
   <data name="thisperiod" xml:space="preserve">
     <value>本期</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>賽果</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="System_Log" xml:space="preserve">
+    <value>設定記錄</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>顯示記錄</value>
+  </data>
+  <data name="periodlisttitle" xml:space="preserve">
+    <value>{0}年月結期數</value>
+  </data>
+  <data name="periodnumber" xml:space="preserve">
+    <value>第 {0} 期</value>
   </data>
 </root>

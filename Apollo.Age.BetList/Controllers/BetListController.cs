@@ -35,7 +35,8 @@ namespace Apollo.Age.BetList.Controllers
 
     /// <summary>
     /// BetList Controller
-    /// </summary>
+    /// </summary>    
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class BetListController : BaseController
     {
         private const string _StringEmpty = "";
@@ -132,7 +133,7 @@ namespace Apollo.Age.BetList.Controllers
             model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
             model.BalanceUpDay = _reportService.GetBalanceUpDay();
-            model.MoveBetsDay = moveBetsDay;
+            model.MoveBetsDay = _reportService.MoveBetsDay();
 
             var mainTickets = _betListService.GetTicketResult(model, true);
 
@@ -200,10 +201,8 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = fromDate,
                 ToDate = toDate,
 
-                SportTypeIds = sportTypes,
-                BetTypeIds = betTypes,
-
-                SportTypes = sportTypes == "-99" ? "0" : sportTypes,
+                SportTypeIds = sportTypes == "-99" ? "0" : sportTypes,
+                BetTypeIds = betTypes,               
 
                 Username = userName,
                 UserType = userType,
@@ -252,7 +251,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -380,7 +379,7 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypes == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
 
@@ -732,14 +731,7 @@ namespace Apollo.Age.BetList.Controllers
             };
             if (criteria.IsValid())
             {
-                if (type.ToLower().Equals("report"))
-                {
-                    listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
-                }
-                else
-                {
-                    listAgentComm = betListService.GetDetailAgentComm(criteria);
-                }
+                listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
 
                 viewModel.TicketList = this.Ticket(listAgentComm);
             }
