@@ -15,6 +15,9 @@ namespace Apollo.Age.BetList.Criterias
     using System.Text;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Wagers criteria class.
+    /// </summary>
     public class WagersCriteria : CriteriaBase
     {
         public int LoggedId { get; set; }
@@ -41,11 +44,19 @@ namespace Apollo.Age.BetList.Criterias
 
         public bool IsSuperView { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>Return a store name.</returns>
         public override string GetSettingKey()
         {
             return "Age_BetList_SelWagers";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>Is valid or not.</returns>
         public override bool IsValid()
         {
             return true;

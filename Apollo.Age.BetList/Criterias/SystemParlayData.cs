@@ -11,6 +11,9 @@ namespace Apollo.Age.BetList.Criterias
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
 
+    /// <summary>
+    /// System parlay class.
+    /// </summary>
     public class SystemParlayData
     {
         /// <summary>
