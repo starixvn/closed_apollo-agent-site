@@ -13,17 +13,17 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
+    using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Models;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
     using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Logging;
-    using System.Collections.Generic;
-    using Apollo.Age.Models;
 
     public class UserService : QueryService, IUserService
     {
