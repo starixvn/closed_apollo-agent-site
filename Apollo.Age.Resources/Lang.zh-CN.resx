@@ -1928,7 +1928,7 @@
     <value>浏览</value>
   </data>
   <data name="RegisterDate" xml:space="preserve">
-    <value>注册日期</value>
+    <value>登記日期</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>报表</value>
@@ -1943,7 +1943,7 @@
     <value>子帳號</value>
   </data>
   <data name="ShadowList" xml:space="preserve">
-    <value>分身账号清单</value>
+    <value>子帳號清單</value>
   </data>
   <data name="ShadowPermission" xml:space="preserve">
     <value>子帳號管理</value>
