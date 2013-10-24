@@ -65,7 +65,7 @@ namespace Apollo.Age.PermissionControl.Services
         /// <param name="functionGroupId">The function group identifier.</param>
         /// <param name="isActive">The is active.</param>
         /// <returns>List function with policy of user.</returns>
-        public IEnumerable<FunctionPolicy> GetUserFunctionPolicy(int agentUserId, short functionGroupId = 0, bool? isActive = null)
+        public IEnumerable<FunctionPolicyModel> GetUserFunctionPolicy(int agentUserId, short functionGroupId = 0, bool? isActive = null)
         {
             try
             {
@@ -112,29 +112,29 @@ namespace Apollo.Age.PermissionControl.Services
             return null;
         }
 
-        /// <summary>
-        /// Gets the agent user information.
-        /// </summary>
-        /// <param name="agentUserId">The agent user identifier.</param>
-        /// <returns>Agent user information.</returns>
-        public User GetAgentUserInfo(int agentUserId)
-        {
-            try
-            {
-                var criteria = new GetAgentUserCriteria
-                {
-                    AgentUserId = agentUserId
-                };
+        ///// <summary>
+        ///// Gets the agent user information.
+        ///// </summary>
+        ///// <param name="agentUserId">The agent user identifier.</param>
+        ///// <returns>Agent user information.</returns>
+        //public User GetAgentUserInfo(int agentUserId)
+        //{
+        //    try
+        //    {
+        //        var criteria = new GetAgentUserCriteria
+        //        {
+        //            AgentUserId = agentUserId
+        //        };
 
-                return _agentUserRepository.GetAgentUserInfo(criteria);
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+        //        return _agentUserRepository.GetAgentUserInfo(criteria);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HandleException(ex);
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         /// <summary>
         /// Gets the user function policy.

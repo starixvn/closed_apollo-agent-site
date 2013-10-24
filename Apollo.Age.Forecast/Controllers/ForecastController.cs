@@ -17,13 +17,13 @@ namespace Apollo.Age.Forecast.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Criterias;
     using Apollo.Age.Forecast.Models;
     using Apollo.Age.Forecast.Services;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
 

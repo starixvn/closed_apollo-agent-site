@@ -7,9 +7,9 @@
 //   <change who="Edward.Nguyen" date="2013.10.3">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Models
+namespace Apollo.Age.Models
 {
-    using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.

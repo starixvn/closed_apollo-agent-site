@@ -7,18 +7,16 @@
 //   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Criterias
+namespace Apollo.Age.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Get all function filter by function group and active.
     /// </summary>
-    public class GetParentInfoWithAgentUserCriteria : CriteriaBase
+    public class UserGetUserParentInfoCriteria : CriteriaBase
     {
         public int AgentUserId { get; set; }
-
-        public bool IsMaster { get; set; }
 
         /// <summary>
         /// Gets the setting key.

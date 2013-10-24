@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentUserGetUserFunctionPolicyCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UserGetByIdCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,18 +7,16 @@
 //   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Criterias
+namespace Apollo.Age.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Get all function filter by function group and active.
     /// </summary>
-    public class AgentUserGetUserFunctionPolicyCriteria : CriteriaBase
+    public class UserGetByIdCriteria : CriteriaBase
     {
         public int AgentUserId { get; set; }
-
-        public string FunctionKey { get; set; }
 
         /// <summary>
         /// Gets the setting key.
@@ -26,7 +24,7 @@ namespace Apollo.Age.PermissionControl.Criterias
         /// <returns>Return Age_Function_GetAll.</returns>
         public override string GetSettingKey()
         {
-            return "Age_AgentUser_GetUserFunctionPolicy";
+            return "Age_AgentUser_GetInfo";
         }
 
         /// <summary>

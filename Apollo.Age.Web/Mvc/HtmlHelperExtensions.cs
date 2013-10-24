@@ -388,5 +388,20 @@ namespace Apollo.Age.Web.Mvc
         }
 
         #endregion
+
+        #region Encrypt Username
+
+        public static string EncryptUsername(this string username, string stringEncrypt = "***")
+        {
+            if (!string.IsNullOrWhiteSpace(username)
+                && username.Length > 1)
+            {
+                return username[0] + stringEncrypt;
+            }
+
+            return username;
+        }
+
+        #endregion
     }
 }

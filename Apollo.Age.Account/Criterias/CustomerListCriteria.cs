@@ -72,6 +72,12 @@ namespace Apollo.Age.Account.Criterias
             }
         }
 
+        [SpParam(Ignored = true)]
+        public byte CustomerSettingPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool HasDownlineDetailsPermission { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Customer_GetByAgent";

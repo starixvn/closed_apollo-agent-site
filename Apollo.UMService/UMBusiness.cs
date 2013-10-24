@@ -53,6 +53,8 @@ namespace Apollo.UMService
 
                 underMaintenanceInfo = Json.Decode<UnderMaintenanceModel>(task.Result);
 
+                underMaintenanceInfo = underMaintenanceInfo != null ? underMaintenanceInfo : new UnderMaintenanceModel { Status = false };
+
                 this._cacheManager.Set<UnderMaintenanceModel>(MaintenanceCacheKey, underMaintenanceInfo, 5);
             }
 

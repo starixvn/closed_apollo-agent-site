@@ -10,7 +10,7 @@
 namespace Apollo.Age.PermissionControl.Services
 {
     using System.Collections.Generic;
-    using Apollo.Age.PermissionControl.Entities;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// TODO: Update summary.

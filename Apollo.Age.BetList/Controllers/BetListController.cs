@@ -18,14 +18,14 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
@@ -43,7 +43,7 @@ namespace Apollo.Age.BetList.Controllers
         private readonly BetListService _betListService;
         private readonly ReportService _reportService;
         private readonly TotalBetsService _totalBetsService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Apollo.Age.BetList.Controllers
             this._betListService = new BetListService();
             this._reportService = new ReportService();
             this._totalBetsService = new TotalBetsService();
-            _agentUserService = new AgentUserService();
+            _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
@@ -156,16 +156,22 @@ namespace Apollo.Age.BetList.Controllers
         [HttpGet]
         public ViewResult Transactions()
         {
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
-            }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
@@ -215,6 +221,20 @@ namespace Apollo.Age.BetList.Controllers
         [HttpPost]
         public ViewResult Transactions(BetListReportViewModel model)
         {
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
                      (int)Apollo.Age.Enumerations.BetStatus.Void,
                      (int)Apollo.Age.Enumerations.BetStatus.Reject,
@@ -290,15 +310,6 @@ namespace Apollo.Age.BetList.Controllers
                 ViewBag.TotalItems = 0;
             }
 
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
-            }
-
             model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
@@ -315,13 +326,19 @@ namespace Apollo.Age.BetList.Controllers
                 {
                     Username = CurrentSession.AgentName
                 };
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            if (!hasPermission)
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
             {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
             }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
@@ -338,6 +355,20 @@ namespace Apollo.Age.BetList.Controllers
         [HttpPost]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
             var moveBetsDay = _reportService.MoveBetsDay();
@@ -377,15 +408,6 @@ namespace Apollo.Age.BetList.Controllers
 
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
-            }
-
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
             }
 
             model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();

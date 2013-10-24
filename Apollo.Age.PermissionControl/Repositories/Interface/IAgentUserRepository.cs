@@ -12,7 +12,6 @@ namespace Apollo.Age.PermissionControl.Repositories.Interface
     using System.Collections.Generic;
     using Apollo.Age.Entities;
     using Apollo.Age.PermissionControl.Criterias;
-    using Apollo.Age.PermissionControl.Models;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Interface
         /// </summary>
         /// <param name="criteria">The criteria get user function policy.</param>
         /// <returns>List of function with policy of user.</returns>
-        IEnumerable<FunctionPolicy> GetUserFunctionPolicy(ICriteria criteria);
+        IEnumerable<FunctionPolicyModel> GetUserFunctionPolicy(ICriteria criteria);
 
         /// <summary>
         /// Gets the parent information with agent user.

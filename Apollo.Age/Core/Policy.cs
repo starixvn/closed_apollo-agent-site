@@ -1,27 +1,32 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Crud.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Policy.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Edward.Nguyen" date="2013.10.4">Created</change>
+//   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Core
+namespace Apollo.Age.Core
 {
     /// <summary>
-    /// Crud permission.
+    /// The user policy.
     /// </summary>
-    public enum Crud
+    public enum Policy
     {
+        /// <summary>
+        /// The none permission.
+        /// </summary>
+        None = 0,
+
         /// <summary>
         /// The read permission.
         /// </summary>
-        Query = 0,
+        Query = 1,
 
         /// <summary>
         /// The host permission.
         /// </summary>
-        Edit = 1
+        Edit = 2
     }
 }

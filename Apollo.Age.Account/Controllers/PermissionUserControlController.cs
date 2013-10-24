@@ -7,17 +7,19 @@
 //   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.Web
+namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Criterias;
-    using Apollo.Age.PermissionControl.Entities;
-    using Apollo.Age.PermissionControl.Models;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Core;
+    using Apollo.Age.Criterias;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
+    using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Models;
+    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,7 +27,7 @@ namespace Apollo.Age.Web
     public class PermissionUserControlController : BaseController
     {
         private readonly IFunctionService _functionService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PermissionUserControlController"/> class.
@@ -40,10 +42,10 @@ namespace Apollo.Age.Web
         /// </summary>
         /// <param name="functionService">The function service.</param>
         /// <param name="agentUserService">The agent user service.</param>
-        public PermissionUserControlController(IFunctionService functionService, IAgentUserService agentUserService)
+        public PermissionUserControlController(IFunctionService functionService, IUserService userService)
         {
             _functionService = functionService ?? new FunctionService();
-            _agentUserService = agentUserService ?? new AgentUserService();
+            _userService = userService ?? new UserService();
         }
 
         /// <summary>
@@ -55,28 +57,28 @@ namespace Apollo.Age.Web
         public ActionResult AssignPermissionControl(int parentAgentId, int agentUserId)
         {
             // Get agent user
-            var agentUserInfo = _agentUserService.GetAgentUserInfo(agentUserId);
+            var agentUserInfo = _userService.GetUserById(agentUserId);
 
             var listFunctionPolicy = new List<FunctionPolicy>();
             var listParentFunctionPolicy = new List<FunctionPolicy>();
             var listFunction = new List<Function>();
 
             // Get list function which user has permission
-            listFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: agentUserId, isActive: true).ToList();
+            listFunctionPolicy = _userService.GetAllUserPolicy(userId: agentUserId, isActive: true).ToList();
 
             // Get all function is active
             listFunction = _functionService.GetAll(isActive: true).ToList();
 
             // Get parent agent and his agent user (is master), if user is shadow will return direct agent
-            var parentInfo = _agentUserService.GetParentInfo(agentUserId, agentUserInfo.IsMaster);
+            var parentInfo = _userService.GetUserParentInfo(agentUserId);
 
             // Get list function which parent user has permission
-            listParentFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: parentInfo.Id, isActive: true).ToList();
+            listParentFunctionPolicy = _userService.GetAllUserPolicy(userId: parentInfo.Id, isActive: true).ToList();
 
             // Get permission of current user on this function
-            var policy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+            var policy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
-            var criteria = new AgentUserAssignFunctionCriteria
+            var criteria = new UserAssignFunctionCriteria
             {
                 ListFunction = listFunction,
                 ListParentFunctionPolicy = listParentFunctionPolicy,
@@ -86,7 +88,7 @@ namespace Apollo.Age.Web
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
                 ShadowUsername = agentUserInfo.Username,
-                AgentId = parentInfo.Agent.Id,
+                AgentId = agentUserInfo.Agent.Id,
                 IsDirectAgent = parentInfo.Agent.Id == CurrentSession.AgentId,
                 ParentAgentId = parentAgentId
             };
@@ -102,28 +104,25 @@ namespace Apollo.Age.Web
         public ActionResult AssignShadowPermission(int agentUserId)
         {
             // Get agent user
-            var agentUserInfo = _agentUserService.GetAgentUserInfo(agentUserId);
+            var agentUserInfo = _userService.GetUserById(agentUserId);
 
             var listFunctionPolicy = new List<FunctionPolicy>();
             var listParentFunctionPolicy = new List<FunctionPolicy>();
             var listFunction = new List<Function>();
 
             // Get list function which user has permission
-            listFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: agentUserId, isActive: true).ToList();
+            listFunctionPolicy = _userService.GetAllUserPolicy(userId: agentUserId, isActive: true).ToList();
 
             // Get all function is active
             listFunction = _functionService.GetAll(isActive: true).ToList();
 
-            // Get parent agent and his agent user (is master), if user is shadow will return direct agent
-            var parentInfo = _agentUserService.GetParentInfo(agentUserId, agentUserInfo.IsMaster);
-
             // Get list function which parent user has permission
-            listParentFunctionPolicy = _agentUserService.GetUserFunctionPolicy(agentUserId: parentInfo.Id, isActive: true).ToList();
+            listParentFunctionPolicy = _userService.GetAllUserPolicy(userId: agentUserInfo.Agent.Id, isActive: true).ToList();
 
             // Get permission of current user on this function
-            var policy = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+            var policy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
 
-            var criteria = new AgentUserAssignFunctionCriteria
+            var criteria = new UserAssignFunctionCriteria
             {
                 ListFunction = listFunction,
                 ListParentFunctionPolicy = listParentFunctionPolicy,
@@ -133,7 +132,7 @@ namespace Apollo.Age.Web
                 HasEdit = policy == (byte)Policy.Edit && CurrentSession.UserId != agentUserId && CurrentSession.IsMaster,
                 AgentUsername = agentUserInfo.Agent.Username,
                 ShadowUsername = agentUserInfo.Username,
-                AgentId = parentInfo.Id
+                AgentId = agentUserInfo.Agent.Id
             };
 
             return View("AssignPermissionControl", criteria);
@@ -148,7 +147,7 @@ namespace Apollo.Age.Web
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.ShadowPermission, Policy = Policy.Query)]
         public ActionResult AgentUserList(int agentId, string username)
         {
-            var list = _agentUserService.GetByAgent(agentId);
+            var list = _userService.GetUserByAgent(agentId);
             ViewBag.Username = username;
 
             return View(list);
@@ -163,19 +162,19 @@ namespace Apollo.Age.Web
         /// <returns>Command result when assign function to user..</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl + ";" + ApolloFunctionKeys.ShadowPermission, Policy = Policy.Edit)]
         [HttpPost]
-        public ActionResult AssignPermissionControl(AgentUserAssignFunctionCriteria criteria)
+        public ActionResult AssignPermissionControl(UserAssignFunctionCriteria criteria)
         {
             criteria.ActorAgentId = CurrentSession.AgentId;
             criteria.AdminId = CurrentSession.AdminId;
             criteria.Language = CurrentSession.Language;
 
             //// Get agent user
-            var agentUserInfo = _agentUserService.GetAgentUserInfo(criteria.AgentUserId);
+            var agentUserInfo = _userService.GetUserById(criteria.AgentUserId);
 
             if (agentUserInfo.IsMaster)
             {
                 // Get permission of current user on this function
-                var policyPermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
+                var policyPermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
                 if (policyPermissionControl != (byte)Policy.Edit)
                 {
@@ -185,7 +184,7 @@ namespace Apollo.Age.Web
             else
             {
                 // Get permission of current user on this function
-                var policyShadowPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
+                var policyShadowPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
 
                 if (policyShadowPermission != (byte)Policy.Edit)
                 {
@@ -193,7 +192,7 @@ namespace Apollo.Age.Web
                 }
             }
 
-            _agentUserService.AssignUserPermission(ref criteria);
+            _userService.AssignUserPermission(ref criteria);
 
             return Json(new
             {

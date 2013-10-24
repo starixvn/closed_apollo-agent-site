@@ -19,6 +19,8 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using System.Collections.Generic;
+    using Apollo.Age.Models;
 
     /// <summary>
     /// This class for retrieve user.
@@ -46,6 +48,30 @@ namespace Apollo.Age.Repositories.Impl
                             parameters: criteria.GetSpParams());
 
                     return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override IEnumerable<User> Fetch(ICriteria criteria)
+        {
+            try
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var userList = objectDb.Query<User, Agent, User>(
+                            (u, ag) =>
+                            {
+                                u.Agent = ag;
+                                return u;
+                            },
+                            splitOn: "AgentId",
+                            parameterValues: criteria.GetSpParams());
+
+                    return userList;
                 }
             }
             catch (Exception ex)
@@ -266,6 +292,52 @@ namespace Apollo.Age.Repositories.Impl
             }
 
             return false;
+        }
+
+        public IEnumerable<FunctionPolicy> GetAllUserPolicy(ICriteria criteria)
+        {
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        return objectDb.Query<FunctionPolicy, Function, FunctionGroup, FunctionPolicy>(
+                            (fp, f, fg) => { fp.Function = f; f.FunctionGroup = fg; return fp; },
+                            "FunctionId,FunctionGroupId",
+                            criteria.GetSpParams());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return null;
+        }
+
+        public void AssignUerPermision(ref UserAssignFunctionCriteria criteria)
+        {
+            try
+            {
+                if (criteria.IsValid())
+                {
+                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        var param = criteria.GetSpParams();
+
+                        objectDb.ExecuteNonQuery(param);
+
+                        criteria.ErrCode = (int)param["errcode"];
+                        criteria.ErrMsg = (string)param["errmsg"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -7,18 +7,18 @@
 //   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Criterias
+namespace Apollo.Age.Criterias
 {
     using System.Collections.Generic;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Entities;
-    using Apollo.Age.PermissionControl.Models;
+    using Apollo.Age.Core;
+    using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
+    using Apollo.Age.Models;
 
     /// <summary>
     /// Get all function filter by function group and active.
     /// </summary>
-    public class AgentUserAssignFunctionCriteria : CriteriaBase
+    public class UserAssignFunctionCriteria : CriteriaBase
     {
         protected readonly string AssignPermissionTpl = "<FunctionPolicy FunctionId='{0}' Policy='{1}'></FunctionPolicy>";
 

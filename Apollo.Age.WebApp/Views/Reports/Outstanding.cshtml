@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
+
+    var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 }
 @model OutstandingViewModel
 @Html.Partial("Menu",
@@ -82,7 +84,14 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                }
+                                else
+                                { 
+                                    @item.UserName.EncryptUsername()
+                                }
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -96,7 +105,14 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Lang.lblViewMemberOutstanding">@Lang.lblMemberOutstanding</a>
+                                }
+                                else
+                                { 
+                                    @Lang.lblMemberOutstanding
+                                }
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")

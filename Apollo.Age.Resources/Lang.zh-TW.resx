@@ -1943,7 +1943,7 @@
     <value>子帳號</value>
   </data>
   <data name="ShadowList" xml:space="preserve">
-    <value>分身帳號清單</value>
+    <value>子帳號清單</value>
   </data>
   <data name="ShadowPermission" xml:space="preserve">
     <value>子帳號管理</value>
