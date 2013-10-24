@@ -11,6 +11,9 @@ namespace Apollo.Age.BetList.Criterias
 {
     using System;
 
+    /// <summary>
+    /// Ticket text class.
+    /// </summary>
     public class TicketText
     {
         public string UserName { get; set; }

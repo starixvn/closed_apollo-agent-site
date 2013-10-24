@@ -20,7 +20,7 @@ namespace Apollo.Age.BetList.Services
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// BetList Service
+    /// Bet List Service Class.
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
@@ -37,67 +37,67 @@ namespace Apollo.Age.BetList.Services
         /// <summary>
         ///  Initializes a new instance of the <see cref="BetListService" /> class.
         /// </summary>
-        /// <param name="betListRepository">BetList Repository</param>
+        /// <param name="betListRepository">Bet List Repository.</param>
         public BetListService(IBetListRepository betListRepository)
         {
             this._betListRepository = this._betListRepository ?? new BetListRepository();
         }
 
         /// <summary>
-        /// Get detail agent PT and agent commission
+        /// Get detail agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List of Ticket.</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             return this._betListRepository.GetDetailAgentComm(criteria);
         }
 
         /// <summary>
-        /// Get detail win loss agent PT and agent commission
+        /// Get detail win loss agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List of Ticket.</returns>
         public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
         {
             return this._betListRepository.GetDetailWinLossAgentComm(criteria);
         }
 
         /// <summary>
-        /// Get detail ticket mix-parlay
+        /// Get detail ticket mix-parlay.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
             return this._betListRepository.GetMixParlayDetailTicket(criteria);
         }
 
         /// <summary>
-        /// Get bet list running on Total Bets menu
+        /// Get bet list running on Total Bets menu.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
             return this._betListRepository.GetRunningByBettype(criteria);
         }
 
         /// <summary>
-        /// Get all bets by date and member from Win loss listOutstanding
+        /// Get all bets by date and member from Win loss listOutstanding.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             return this._betListRepository.GetWinLossByDateAndMem(criteria);
         }
 
         /// <summary>
-        /// Get bet list by matchId
+        /// Get bet list by match Id.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
             return this._betListRepository.GetRunningByBettypeAndMatch(criteria);
@@ -141,7 +141,7 @@ namespace Apollo.Age.BetList.Services
         /// <summary>
         /// Get data betlist on Wagers page
         /// </summary>
-        /// <param name="criteria"></param>
+        /// <param name="criteria">The criteria.</param>
         /// <returns></returns>
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
@@ -149,11 +149,22 @@ namespace Apollo.Age.BetList.Services
             return this._betListRepository.WagersTicket(criteria);
         }
 
+        /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns></returns>
         public TicketResult GetTicketResult(BetListCriteria criteria)
         {
             return this._betListRepository.GetTicketResult(criteria);
         }
 
+        /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="isIncludeOldData">if set to <c>true</c> [is include old data].</param>
+        /// <returns></returns>
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
