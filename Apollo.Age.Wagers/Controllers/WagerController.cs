@@ -229,7 +229,18 @@ namespace Apollo.Age.Wagers.Controllers
                 toDate = DateTime.Now.Date;
             }
 
-            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName) : new List<Agent>();
+            var listMainShareHolder = this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName);
+            var hasDownlineDetailsPermission = UserService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!hasDownlineDetailsPermission)
+            {
+                for (int i = 0; i < listMainShareHolder.Count; i++)
+                {
+                    listMainShareHolder[i].Username = Web.Mvc.HtmlHelperExtensions.EncryptUsername(listMainShareHolder[i].Username);
+                }
+            }
+
+            ViewBag.MainShareHolder = CurrentSession.IsSuper ? listMainShareHolder : new List<Agent>();
             ViewBag.GroupBetName = isOutright ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;
