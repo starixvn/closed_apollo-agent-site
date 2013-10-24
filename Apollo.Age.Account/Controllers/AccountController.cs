@@ -812,7 +812,8 @@ namespace Apollo.Age.Account.Controllers
             });
 
             // Check downline details permission, policy < 1 => can not search for specific user
-            if (criteria.HasDownlineDetailsPermission)
+            if (string.IsNullOrWhiteSpace(username)
+                || criteria.HasDownlineDetailsPermission)
             {
                 IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
