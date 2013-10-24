@@ -81,6 +81,8 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
             if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
             {
                 model.Id = this.CurrentSession.AgentId;
@@ -113,21 +115,40 @@ namespace Apollo.Age.Account.Controllers
             {
                 model.Username = customerInfo.Username;
                 model.Group = customerInfo.Group != null ? RevertCommGroupName(customerInfo.Group) : customerInfo.Group;
-                var commissionList = model.IsMember
-                    ? _accountService.GetCommissionToMember(
-                    new GetCommissionToMemberCriteria
+
+                IEnumerable<CustomerCommissionModel> commissionList = null;
+
+                if (model.IsMember)
+                {
+                    // Only search if have downline details permission
+                    if (hasDownlineDetailsPermission)
                     {
-                        ActorAgentId = CurrentSession.AgentId,
-                        CustId = customerInfo.CustId,
-                        Username = customerInfo.Username
-                    })
-                    : _accountService.GetCommissionToAgent(
-                    new GetCommissionToAgentCriteria
+                        commissionList = _accountService.GetCommissionToMember(
+                            new GetCommissionToMemberCriteria
+                            {
+                                ActorAgentId = CurrentSession.AgentId,
+                                CustId = customerInfo.CustId,
+                                Username = customerInfo.Username
+                            });
+                    }
+                }
+                else
+                {
+                    /* Only search himself if not have downline details permission
+                     */
+                    if (string.IsNullOrWhiteSpace(customerInfo.Username)
+                       || string.Equals(customerInfo.Username, this.CurrentSession.Username)
+                       || hasDownlineDetailsPermission)
                     {
-                        ActorAgentId = CurrentSession.AgentId,
-                        AgentId = customerInfo.CustId,
-                        Username = customerInfo.Username
-                    });
+                        commissionList = _accountService.GetCommissionToAgent(
+                            new GetCommissionToAgentCriteria
+                            {
+                                ActorAgentId = CurrentSession.AgentId,
+                                AgentId = customerInfo.CustId,
+                                Username = customerInfo.Username
+                            });
+                    }
+                }
 
                 var commissionModelList = new List<CustomerCommissionModel>();
                 if (commissionList != null && commissionList.Any())
@@ -203,6 +224,15 @@ namespace Apollo.Age.Account.Controllers
                 BetTypeList = betTypeList
             };
 
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!string.IsNullOrWhiteSpace(userName)
+                && !string.Equals(userName, this.CurrentSession.Username)
+                && !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
+            }
+
             AgentShareCriteria criteria = new AgentShareCriteria()
             {
                 ActorAgentId = this.CurrentSession.AgentId,
@@ -271,8 +301,6 @@ namespace Apollo.Age.Account.Controllers
                 IsLive = live
             };
 
-            var memberShareModelList = _accountService.GetMemberShare(criteria);
-
             var memberShareViewModel = new MemberShareViewModel()
             {
                 IsMember = true,
@@ -281,9 +309,21 @@ namespace Apollo.Age.Account.Controllers
                 BetType = criteria.BetType,
                 IsLive = criteria.IsLive,
                 SportList = sportList,
-                BetTypeList = betTypeList,
-                MemberShareModelList = memberShareModelList
+                BetTypeList = betTypeList
             };
+
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!string.IsNullOrWhiteSpace(userName)
+                && !string.Equals(userName, this.CurrentSession.Username)
+                && !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
+            }
+
+            var memberShareModelList = _accountService.GetMemberShare(criteria);
+
+            memberShareViewModel.MemberShareModelList = memberShareModelList;
 
             return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
         }
