@@ -583,7 +583,9 @@ namespace Apollo.Age.Account.Controllers
             });
 
             // Check downline details permission, policy < 1 => can not search for specific user
-            if (!criteria.HasDownlineDetailsPermission)
+            if (string.IsNullOrWhiteSpace(username)
+                || string.Equals(username, this.CurrentSession.Username)
+                || criteria.HasDownlineDetailsPermission)
             {
                 IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);
 
@@ -810,7 +812,7 @@ namespace Apollo.Age.Account.Controllers
             });
 
             // Check downline details permission, policy < 1 => can not search for specific user
-            if (!criteria.HasDownlineDetailsPermission)
+            if (criteria.HasDownlineDetailsPermission)
             {
                 IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
 
