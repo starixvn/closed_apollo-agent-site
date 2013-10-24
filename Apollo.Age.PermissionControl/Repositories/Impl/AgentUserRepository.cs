@@ -191,7 +191,7 @@ namespace Apollo.Age.PermissionControl.Repositories.Impl
                     {
                         return objectDb.Query<User, Agent, User>(
                             (u, a) => { u.Agent = a; return u; },
-                            "CreatorId",
+                            "AgentId",
                             criteria.GetSpParams());
                     }
                 }
