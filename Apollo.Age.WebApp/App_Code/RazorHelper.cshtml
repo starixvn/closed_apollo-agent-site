@@ -207,7 +207,7 @@
             RazorHelper.Navigation(Model);
         }
 }
-@helper RenderMainShareHolderDropDownList(int currentMainShareHolderId, IEnumerable<Apollo.Age.Entities.Agent> mainShareHolders)
+@helper RenderMainShareHolderDropDownList(int currentMainShareHolderId, IEnumerable<Apollo.Age.Entities.Agent> mainShareHolders, bool hasDownlineDetailsPermission = true)
     {
     <div id="main-shareholder-box" class="box-header">
         <div class="row">
@@ -232,7 +232,10 @@
                             {
                                 selectedString = string.Empty;
                             }
-                                <option value="@mainShareHolder.Id" @(selectedString) >@mainShareHolder.Username</option>
+
+                            var username = !hasDownlineDetailsPermission ? mainShareHolder.Username.EncryptUsername() : mainShareHolder.Username;
+                            
+                                <option value="@mainShareHolder.Id" @(selectedString) >@username</option>
                         }
                             }
                         </select>
