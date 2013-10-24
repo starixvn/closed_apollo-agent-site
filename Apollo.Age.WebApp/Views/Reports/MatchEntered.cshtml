@@ -5,7 +5,7 @@
 @{
 	ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
 	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-	List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;   
 	int counter = 0;    
 }
 @model MatchEnteredViewModel
