@@ -17,11 +17,11 @@
     { 
         <thead>
             <tr>
-                <th>
+                @*<th>
                     @Lang.ShadowId
-                </th>
+                </th>*@
                 <th>
-                    @Lang.SerialNumber
+                    @Lang.Shadow
                 </th>
                 <th>
                     @Lang.RegisterDate
@@ -29,9 +29,9 @@
                 <th>
                     @Lang.status
                 </th>
-                <th>
+                @*<th>
                     @Lang.Creator
-                </th>
+                </th>*@
                 <th>
                     @Lang.Feature
                 </th>
@@ -41,9 +41,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="">
+                    @*<td class="">
                         @item.Id
-                    </td>
+                    </td>*@
                     <td>
                         @item.Username
                     </td>
@@ -53,9 +53,9 @@
                     <td>
                         @item.Status.ToStringStatus(item.Status)
                     </td>
-                    <td>
+                    @*<td>
                         @item.Agent.Username
-                    </td>
+                    </td>*@
                     <td>
                         <a  href="~/PermissionUserControl/AssignShadowPermission?agentuserid=@item.Id">
                             @Lang.Permission
