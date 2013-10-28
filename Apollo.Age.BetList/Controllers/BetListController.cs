@@ -63,6 +63,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="custId">Input CUSTID who need to view bet list.</param>
         /// <returns>Return view result.</returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(int custId)
         {
             var statusIds = string.Format(
@@ -112,6 +113,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model">Input a model.</param>
         /// <returns>Return view result.</returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(BetListCriteria model)
         {
             var statusIds = string.Format(
