@@ -43,21 +43,27 @@ namespace Apollo.Age.Criterias
                     string[] funcHost = this.FuncHost != null ? this.FuncHost.Split(',') : null;
                     string[] funcRead = this.FuncRead.Split(',');
 
-                    foreach (var itemRead in funcRead)
+                    if (!ReferenceEquals(funcRead, null))
                     {
-                        if (!string.IsNullOrWhiteSpace(itemRead)
-                            && !newPermissionDictionary.ContainsKey(itemRead))
+                        foreach (var itemRead in funcRead)
                         {
-                            newPermissionDictionary.Add(itemRead, (byte)Policy.Query);
+                            if (!string.IsNullOrWhiteSpace(itemRead)
+                                && !newPermissionDictionary.ContainsKey(itemRead))
+                            {
+                                newPermissionDictionary.Add(itemRead, (byte)Policy.Query);
+                            }
                         }
                     }
 
-                    foreach (var itemHost in funcHost)
+                    if (!ReferenceEquals(funcHost, null))
                     {
-                        if (!string.IsNullOrWhiteSpace(itemHost)
-                            && newPermissionDictionary.ContainsKey(itemHost))
+                        foreach (var itemHost in funcHost)
                         {
-                            newPermissionDictionary[itemHost] = (byte)Policy.Edit;
+                            if (!string.IsNullOrWhiteSpace(itemHost)
+                                && newPermissionDictionary.ContainsKey(itemHost))
+                            {
+                                newPermissionDictionary[itemHost] = (byte)Policy.Edit;
+                            }
                         }
                     }
                 }
