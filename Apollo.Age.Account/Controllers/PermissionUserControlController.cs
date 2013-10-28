@@ -192,7 +192,7 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            criteria.ListFunctionPolicy = _userService.GetAllUserPolicy(userId: this.CurrentSession.UserId, isActive: true).ToList();
+            criteria.ListFunctionPolicy = _userService.GetAllUserPolicy(userId: criteria.AgentUserId, isActive: true).ToList();
 
             _userService.AssignUserPermission(ref criteria);
 
