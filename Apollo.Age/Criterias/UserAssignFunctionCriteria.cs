@@ -34,7 +34,10 @@ namespace Apollo.Age.Criterias
             {
                 string result = "<ROOT>";
                 string temp = string.Empty;
+                var newPermissionDictionary = new Dictionary<string, byte>();
+                var oldPermissionDictionary = new Dictionary<string, byte>();
 
+                // Get new permission
                 if (!string.IsNullOrWhiteSpace(this.FuncRead))
                 {
                     string[] funcHost = this.FuncHost != null ? this.FuncHost.Split(',') : null;
@@ -42,28 +45,51 @@ namespace Apollo.Age.Criterias
 
                     foreach (var itemRead in funcRead)
                     {
-                        if (!string.IsNullOrWhiteSpace(itemRead))
+                        if (!string.IsNullOrWhiteSpace(itemRead)
+                            && !newPermissionDictionary.ContainsKey(itemRead))
                         {
-                            if (!ReferenceEquals(funcHost, null))
-                            {
-                                foreach (var itemHost in funcHost)
-                                {
-                                    if (string.Equals(itemRead, itemHost))
-                                    {
-                                        temp = string.Format(AssignPermissionTpl, itemRead, (int)Policy.Edit);
+                            newPermissionDictionary.Add(itemRead, (byte)Policy.Query);
+                        }
+                    }
 
-                                        break;
-                                    }
-                                }
-                            }
+                    foreach (var itemHost in funcHost)
+                    {
+                        if (!string.IsNullOrWhiteSpace(itemHost)
+                            && newPermissionDictionary.ContainsKey(itemHost))
+                        {
+                            newPermissionDictionary[itemHost] = (byte)Policy.Edit;
+                        }
+                    }
+                }
 
-                            if (string.IsNullOrWhiteSpace(temp))
-                            {
-                                temp = string.Format(AssignPermissionTpl, itemRead, (int)Policy.Query);
-                            }
+                // Get old permission of user in DB
+                if (!ReferenceEquals(ListFunctionPolicy, null))
+                {
+                    foreach (var itemFunctionPolicy in ListFunctionPolicy)
+                    {
+                        if (!oldPermissionDictionary.ContainsKey(itemFunctionPolicy.Function.Id.ToString()))
+                        {
+                            oldPermissionDictionary.Add(itemFunctionPolicy.Function.Id.ToString(), itemFunctionPolicy.Policy);
+                        }
+                    }
+                }
 
-                            result += temp;
-                            temp = string.Empty;
+                // Get only permission is changed
+                foreach (var itemFunctionPolicy in oldPermissionDictionary)
+                {
+                    // Get permission change policy
+                    if (newPermissionDictionary.ContainsKey(itemFunctionPolicy.Key))
+                    {
+                        if (newPermissionDictionary[itemFunctionPolicy.Key] != itemFunctionPolicy.Value)
+                        {
+                            result += string.Format(AssignPermissionTpl, itemFunctionPolicy.Key, newPermissionDictionary[itemFunctionPolicy.Key]);
+                        }
+                    }
+                    else
+                    {
+                        if (itemFunctionPolicy.Value != (byte)Policy.None)
+                        {
+                            result += string.Format(AssignPermissionTpl, itemFunctionPolicy.Key, (byte)Policy.None);
                         }
                     }
                 }

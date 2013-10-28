@@ -561,7 +561,7 @@
             <Mapping DataField="FunctionId" ObjectProperty="Id" />
             <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
         </Setting>
-        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction_xtest" DbName="SVRCUST.CustDB.aplweb"/>
         <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="FunctionId" ObjectProperty="Id" />
             <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
