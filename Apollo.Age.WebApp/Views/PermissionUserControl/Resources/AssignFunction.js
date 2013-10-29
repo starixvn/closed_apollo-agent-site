@@ -9,12 +9,13 @@ var AssignFunction = function ($) {
         isMaster: null,
         agentUserId: null,
         oldValue: null,
-        newValue: null,
         agentId: null,
         username: null,
         isDirectAgent: null,
         parentAgentId: null,
         isApplyDownLine: null,
+        unCheckReadValue: "",
+        unCheckHostValue: "",
 
         init: function () {
             AssignFunction.grid = $('.tblRpt:first');
@@ -47,6 +48,14 @@ var AssignFunction = function ($) {
                     if (itemHost.is(':checked')) {
                         funcHost += itemHost.val() + ",";
                     }
+                    else {
+                        if (itemHost.val() != undefined) {
+                            AssignFunction.unCheckHostValue += itemHost.val() + ",";
+                        }
+                    }
+                }
+                else {
+                    AssignFunction.unCheckReadValue += $this.val() + ",";
                 }
             });
 
@@ -77,14 +86,7 @@ var AssignFunction = function ($) {
                 return;
             }
 
-            AssignFunction.newValue = funcRead + funcHost;
-
-            if (AssignFunction.newValue.length > AssignFunction.oldValue.length) {
-                AssignFunction.isApplyDownLine = true;
-            }
-            else {
-                AssignFunction.isApplyDownLine = false;
-            }
+            AssignFunction.isApplyDownLine = AssignFunction.checkHasNewPermission(AssignFunction.unCheckReadValue, AssignFunction.unCheckHostValue, funcRead, funcHost);
 
             if (AssignFunction.isApplyDownLine) {
                 if (confirm(AssignFunction.messageApplyDownline)) {
@@ -108,7 +110,7 @@ var AssignFunction = function ($) {
                 url: url,
                 type: 'POST',
                 dataType: 'JSON',
-                data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId, isApplyDownLine: isApplyDownLine },
+                data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId, IsApplyDownLine: isApplyDownLine },
                 success: function (res) {
                     if (res.ErrCode == "-1") {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
@@ -139,6 +141,45 @@ var AssignFunction = function ($) {
                     location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
             });
+        },
+
+        checkHasNewPermission: function (unCheckReadValue, unCheckHostValue, funcRead, funcHost) {
+            var hasNew = false;
+            var arrUnCheckRead = unCheckReadValue.split(',');
+            var arrUnCheckHost = unCheckHostValue.split(',');
+            var arrFuncRead = funcRead.split(',');
+            var arrFuncHost = funcHost.split(',');
+
+            for (var i = 0; i < arrFuncRead.length; i++) {
+                var functionId = arrFuncRead[i];
+
+                if (AssignFunction.findInArray(arrUnCheckRead, functionId)) {
+                    return true;
+                }
+            }
+
+            for (var i = 0; i < arrFuncHost.length; i++) {
+                var functionId = arrFuncHost[i];
+
+                if (AssignFunction.findInArray(arrUnCheckHost, functionId)) {
+                    return true;
+                }
+            }
+
+            return hasNew;
+
+        },
+
+        findInArray: function (arr, value) {
+            if (value != null && value != "") {
+                for (var i = 0; i < arr.length; i++) {
+                    var item = arr[i];
+                    if (item != "" && item == value) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 } (jQuery);

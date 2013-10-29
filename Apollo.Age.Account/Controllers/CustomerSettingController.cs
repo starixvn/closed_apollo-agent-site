@@ -395,6 +395,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="agentUserName"></param>
         /// <returns></returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditAllMemberShare(int agentId,
             string agentUserName,
             bool reload = false,
