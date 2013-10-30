@@ -27,7 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData,betListPage);
+            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
             //this.Template.VS = null;
             //this.Template.Handicap.handicap = null;
@@ -39,7 +39,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     {
                                                         ticket.MatchCode,
                                                         " - ",
-                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId,ticket.AwayId)
+                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId)
                                                     });
 
             //this.Template.betTeamClassName = BL_FAVORITE;

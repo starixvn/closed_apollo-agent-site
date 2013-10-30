@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.WebApp.Areas.Wagers
+﻿// --------------------------------------------------------------------------
+// <copyright file="RouteConfig.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.WebApp.Areas.Wagers
 {
     using System.Web.Mvc;
 

@@ -1,4 +1,10 @@
-﻿namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
+﻿// --------------------------------------------------------------------------
+// <copyright file="IAgentComm.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
 {
     using System.Collections.Generic;
     using Fanex.BetList.Age.ExtTemplate;

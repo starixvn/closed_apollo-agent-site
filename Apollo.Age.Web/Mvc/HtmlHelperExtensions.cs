@@ -229,12 +229,12 @@ namespace Apollo.Age.Web.Mvc
         }
 
         /// <summary>
-        /// year picker
+        /// Year picker.
         /// </summary>
-        /// <param name="htmlHelper">html Helper</param>
-        /// <param name="name">in name</param>
-        /// <param name="fromYear">default from year 2000</param>
-        /// <param name="currentYear">>default currentYear year 2000</param>
+        /// <param name="htmlHelper">HTML Helper.</param>
+        /// <param name="name">In name.</param>
+        /// <param name="fromYear">Default from year 2000.</param>
+        /// <param name="currentYear">>Default currentYear year 2000.</param>
         /// <returns></returns>
         public static MvcHtmlString YearPicker(
             this HtmlHelper htmlHelper,
@@ -308,9 +308,9 @@ namespace Apollo.Age.Web.Mvc
         #region Resources
 
         /// <summary>
-        /// Returns the value of the specified System.String resource
+        /// Returns the value of the specified System.String resource.
         /// </summary>
-        /// <param name="key">The name of the resource to get</param>
+        /// <param name="key">The name of the resource to get.</param>
         /// <param name="resourceSource">A type from which the resource manager derives all information 
         /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
         /// <returns></returns>
@@ -368,10 +368,12 @@ namespace Apollo.Age.Web.Mvc
 
         #region Distinct by
 
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
-    (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey> (
+            this IEnumerable<TSource> source, 
+            Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();
+
             foreach (TSource element in source)
             {
                 if (seenKeys.Add(keySelector(element)))

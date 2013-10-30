@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="IPagedList.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System.Collections.Generic;
 

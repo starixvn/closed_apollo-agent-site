@@ -74,13 +74,13 @@ namespace Apollo.Age.Services.Interface
         /// Return OnUserId.
         /// </summary>
         /// <param name="onUserId">User id of current loginned user.</param>
-        /// <returns>result of login.</returns>
+        /// <returns>Result of login.</returns>
         int InternalLogout(int onUserId);
 
         /// <summary>
         /// Gets the user function policy.
         /// </summary>
-        /// <param name="agentUserId">The agent user identifier.</param>
+        /// <param name="userId">The agent user identifier.</param>
         /// <param name="functionKey">The function key.</param>
         /// <returns>Policy of user on function.</returns>
         byte GetUserPolicy(int userId, string functionKey);

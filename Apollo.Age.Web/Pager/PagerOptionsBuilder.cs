@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="PagerOptionsBuilder.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System;
     using System.Web.Mvc.Ajax;
@@ -83,7 +89,7 @@
         /// Set the name of the DisplayTemplate view to use for rendering. 
         /// </summary>
         /// <param name="displayTemplate"></param>
-        /// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt;</remarks>
+        /// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt.</remarks>
         /// <returns></returns>
         public PagerOptionsBuilder DisplayTemplate(string displayTemplate)
         {
@@ -117,7 +123,7 @@
         }
 
         /// <summary>
-        /// Set the page routeValue key for pagination links
+        /// Set the page routeValue key for pagination links.
         /// </summary>
         /// <param name="pageRouteValueKey"></param>
         /// <returns></returns>

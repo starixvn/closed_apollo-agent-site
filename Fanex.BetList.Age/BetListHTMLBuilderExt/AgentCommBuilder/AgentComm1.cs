@@ -24,6 +24,11 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     /// </summary>
     public class AgentComm1 : IAgentComm
     {
+        public AgentComm1()
+        {
+            this.Template = new AgentComm_Template();
+        }
+        
         public AgentComm_Template Template { get; set; }
 
         /// <summary>
@@ -63,14 +68,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
 
             return Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AgentPT1" /> class.
-        /// </summary>
-        public AgentComm1()
-        {
-            this.Template = new AgentComm_Template();
         }
     }
 }

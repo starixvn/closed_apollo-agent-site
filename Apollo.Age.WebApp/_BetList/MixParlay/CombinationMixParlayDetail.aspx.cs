@@ -18,11 +18,10 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Services;
+    using Apollo.Age.WebApp._BetList.MixParlay;
     using Fanex.Age.UI;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using Apollo.Age.WebApp;
-    using Apollo.Age.WebApp._BetList.MixParlay;
 
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
@@ -166,7 +165,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                             rowBlock.WinlostDate.rowSpan = string.Empty;
                         }
 
-                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd"); ;
+                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd");
                         rowBlock.WinlostDate.Show();
                     }
                     else

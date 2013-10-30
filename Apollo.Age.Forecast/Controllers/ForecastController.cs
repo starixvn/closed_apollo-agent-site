@@ -157,9 +157,13 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
-        public ViewResult ForecastByMatchContent(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0, int mainShareHolderId = 0)
+        public ViewResult ForecastByMatchContent(
+            int matchId, 
+            int betType = (int)BetTypes.Handicap, 
+            int currentScore = 0, 
+            int mainShareHolderId = 0)
         {
             ViewBag.TopOddsByMatch = _forecastService.GetTopOddsByMatch(matchId, betType);
             ViewBag.BetType = betType;
@@ -175,7 +179,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
         public ViewResult ForecastByMatch(int matchId, int betType = (int)BetTypes.Handicap, int currentScore = 0, string leagueName = "", int mainShareHolderId = 0)
         {

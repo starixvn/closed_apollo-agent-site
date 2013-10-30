@@ -22,7 +22,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Extend CoreBetList HTML Builder
+    /// Extend CoreBetList HTML Builder.
     /// </summary>
     public static class BetListHTMLBuilderExt
     {
@@ -79,7 +79,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         }
 
         /// <summary>
-        /// Add the agent Comm
+        /// Add the agent Comm.
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="ticket"></param>
@@ -173,8 +173,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
                                                 AGENTPT_BUILDER_NAMESPACE,
                                                 ".AgentPT",
                                                 bettype.ToString()
-                                            }
-                                        );
+                                            });
 
             Type type = Type.GetType(typeName);
 
@@ -201,8 +200,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
                                                 AGENTCOMM_BUILDER_NAMESPACE,
                                                 ".AgentComm",
                                                 bettype.ToString()
-                                            }
-                                        );
+                                            });
 
             Type type = Type.GetType(typeName);
 
@@ -230,8 +228,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
                                                 FOOTER_BUILDER_NAMESPACE,
                                                 ".Footer",
                                                 footerType.ToString()
-                                            }
-                                         );
+                                            });
 
             Type type = Type.GetType(typeName);
 

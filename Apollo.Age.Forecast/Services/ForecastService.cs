@@ -45,8 +45,6 @@ namespace Apollo.Age.Forecast.Services
             _cacheManager = cacheManager ?? CacheService.CreateInstance();
         }
 
-        //private IForecastRepository _forecastRepository { get; set; }
-
         /// <summary>
         /// Running Leagues.
         /// </summary>
@@ -116,7 +114,7 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="agentId"></param>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
         public ForecastMatchWinLostModel GetForecastMatcheValue(
             int agentId, 
@@ -396,7 +394,7 @@ namespace Apollo.Age.Forecast.Services
         /// Get Main shareholder in super view.
         /// </summary>
         /// <param name="criteria">Get data parameters.</param>
-        /// <returns>main shareholder id.</returns>
+        /// <returns>Main shareholder id.</returns>
         public int GetMainShareHolderByMember(GetMainShareHolderByMemberCriteria criteria)
         {
             return _forecastRepository.GetMainShareHolderByMember(criteria);
@@ -409,7 +407,7 @@ namespace Apollo.Age.Forecast.Services
         /// </summary>
         /// <param name="forecastMatches"></param>
         /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
         private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchModel> forecastMatches, int betType, int currentScore)
         {
@@ -449,7 +447,7 @@ namespace Apollo.Age.Forecast.Services
         /// Get Forecast Handicap Value.
         /// </summary>
         /// <param name="forecastMatch"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <param name="scoreOffset"></param>
         /// <param name="forecast"></param>
         /// <returns></returns>
@@ -480,7 +478,7 @@ namespace Apollo.Age.Forecast.Services
         /// Get Forecast Over Under Value.
         /// </summary>
         /// <param name="forecastMatch"></param>
-        /// <param name="currentScore"></param>
+        /// <param name="currentScore">Current score.</param>
         /// <param name="scoreOffset"></param>
         /// <param name="forecast"></param>
         /// <returns></returns>

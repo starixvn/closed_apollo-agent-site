@@ -18,6 +18,14 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.NoBuilder
     public class No1 : INo
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="No1" /> class.
+        /// </summary>
+        public No1()
+        {
+            this.Template = new No_Template();
+        }
+        
+        /// <summary>
         /// Gets or sets the template.
         /// </summary>
         /// <value>
@@ -34,14 +42,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.NoBuilder
         {
             Template.orderNo = index.ToString();
             return this.Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="No1" /> class.
-        /// </summary>
-        public No1()
-        {
-            this.Template = new No_Template();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Fanex.BetList.Age.DTO
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Summary description for TicketTransformer
+    /// Ticket transformer.
     /// </summary>
     public static class TicketTransformer
     {

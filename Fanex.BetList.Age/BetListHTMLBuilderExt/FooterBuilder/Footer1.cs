@@ -25,6 +25,14 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
         private Footer1_Template Template;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Footer1" /> class.
+        /// </summary>
+        public Footer1()
+        {
+            Template = new Footer1_Template();
+        }
+
+        /// <summary>
         /// Renders the specified tickets.
         /// </summary>
         /// <param name="tickets">The tickets.</param>
@@ -68,14 +76,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
             Template.Winloss.total = ConvertByBetType.Winloss(sumWinLoss + sumPlayerComm);
 
             return Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Footer1" /> class.
-        /// </summary>
-        public Footer1()
-        {
-            Template = new Footer1_Template();
         }
     }
 }

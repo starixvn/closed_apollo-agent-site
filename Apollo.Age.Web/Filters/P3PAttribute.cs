@@ -20,12 +20,12 @@ namespace Apollo.Age.Web.Filters
     /// </summary>
     /// <remarks>
     /// More info http://www.oreillynet.com/lpt/a/1554
-    /// ref http://stackoverflow.com/questions/389456/cookie-blocked-not-saved-in-iframe-in-internet-explorer
+    /// ref http://stackoverflow.com/questions/389456/cookie-blocked-not-saved-in-iframe-in-internet-explorer.
     /// </remarks>
     public class P3PAttribute : ActionFilterAttribute
     {
         /// <summary>
-        /// On Action Executing add a compact policy "p3p" HTTP header
+        /// On Action Executing add a compact policy "p3p" HTTP header.
         /// </summary>
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)

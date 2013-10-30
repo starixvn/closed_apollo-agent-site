@@ -38,7 +38,10 @@ namespace Fanex.Age.UI
             for (int i = 0; i < count; i++)
             {
                 builder.Append(ObjectToJSON(data[i].Key, data[i].Value));
-                if (i < count - 1) builder.Append(',');
+                if (i < count - 1)
+                {
+                    builder.Append(',');
+                }
             }
 
             builder.Append('}');
@@ -81,7 +84,10 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         private static string ToJSON(object value)
         {
-            if (value == null) return NULL;
+            if (value == null)
+            {
+                return NULL;
+            }
 
             string text = value.ToString();
 
@@ -113,7 +119,10 @@ namespace Fanex.Age.UI
 
         private static string ArrayToJSON(object[] values)
         {
-            if (values == null) return NULL;
+            if (values == null)
+            {
+                return NULL;
+            }
 
             int count = values.Length;
             var builder = new StringBuilder();
@@ -123,7 +132,10 @@ namespace Fanex.Age.UI
             for (int i = 0; i < count; i++)
             {
                 builder.Append(ToJSON(values[i]));
-                if (i < count - 1) builder.Append(',');
+                if (i < count - 1)
+                {
+                    builder.Append(',');
+                }
             }
 
             builder.Append(']');
@@ -137,7 +149,9 @@ namespace Fanex.Age.UI
     /// </summary>
     public class JSONData : List<DictionaryEntry>
     {
-        public JSONData() { }
+        public JSONData() 
+        { 
+        }
 
         public JSONData(int capacity)
         {

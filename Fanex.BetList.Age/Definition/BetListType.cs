@@ -16,7 +16,7 @@ namespace Fanex.BetList.Age.Definition
     public enum BetListType : int
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None = 0x0,
 

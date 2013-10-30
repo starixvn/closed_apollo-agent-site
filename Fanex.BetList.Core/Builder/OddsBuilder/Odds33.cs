@@ -191,26 +191,26 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             switch ((foundRows[i]["status"]).ToString().ToLower())
             {
                 case BetStatus.Won:
-                    odds_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
+                    odds_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
                                                                           ": ",
                                                                           "<b>",
                                                                           Formatter.FormatNumber20(foundRows[i]["odds"], null),
                                                                           "</b>"});
 
-                    status_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
+                    status_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
                                                                           ": ",
                                                                           "<b>",
                                                                           Apollo.Age.Resources.BetList.won,
                                                                           "</b>"});
                     break;
                 default:
-                    odds_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
+                    odds_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
                                                                           ": ",
                                                                           "<b>",
                                                                           "0.00",
                                                                           "</b>"});
 
-                    status_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
+                    status_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
                                                                           ": ",
                                                                           "<b>",
                                                                           Apollo.Age.Resources.BetList.lose,

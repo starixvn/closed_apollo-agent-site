@@ -63,27 +63,15 @@ namespace Fanex.Age.UI
         public bool RegisterControl(string name)
         {
             if (RegisteredControls.Contains(name))
+            {
                 return false;
-            else RegisteredControls.Add(name);
+            }
+            else
+            {
+                RegisteredControls.Add(name);
+            }
 
             return true;
-        }
-
-        protected override void InitializeCulture()
-        {
-            SetLanguage(SessionManager.CurrentSession.Language);
-            base.InitializeCulture();
-        }
-
-        protected void SetLanguage(string language)
-        {
-            CultureInfo def = CultureInfo.CreateSpecificCulture("en-US");
-
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
-            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
         }
 
         #region IBasePage Members
@@ -111,21 +99,46 @@ namespace Fanex.Age.UI
 
         #endregion IBasePage Members
 
+        protected override void InitializeCulture()
+        {
+            SetLanguage(SessionManager.CurrentSession.Language);
+            base.InitializeCulture();
+        }
+
+        protected void SetLanguage(string language)
+        {
+            CultureInfo def = CultureInfo.CreateSpecificCulture("en-US");
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+        }
+
         #region RequestUtility
 
         /// <summary>
         /// Get int request value.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected int GetIntRequest(string name, int defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 int value = 0;
-                if (!int.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
+
+                if (!int.TryParse(HttpContext.Current.Request[name], out value))
+                {
+                    return defaultValue;
+                }
+
                 return value;
             }
         }
@@ -134,15 +147,22 @@ namespace Fanex.Age.UI
         /// Get DateTime request.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected DateTime GetDateTimeRequest(string name, DateTime defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 DateTime value = DateTime.Now;
-                if (!DateTime.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
+                if (!DateTime.TryParse(HttpContext.Current.Request[name], out value))
+                {
+                    return defaultValue;
+                }
+
                 return value;
             }
         }
@@ -151,15 +171,22 @@ namespace Fanex.Age.UI
         /// Get boolean request.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected bool GetBooleanRequest(string name, bool defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 string value = HttpContext.Current.Request[name];
-                if (value == "1" || value == "on" || value == "true") return true;
+
+                if (value == "1" || value == "on" || value == "true")
+                {
+                    return true;
+                }
 
                 return false;
             }
@@ -170,27 +197,40 @@ namespace Fanex.Age.UI
         ///
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected string GetStringRequest(string name, string defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
-            else return HttpContext.Current.Request[name];
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
+            else
+            {
+                return HttpContext.Current.Request[name];
+            }
         }
 
         /// <summary>
         /// Get long request.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected long GetLongRequest(string name, long defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 long value = 0;
-                if (!long.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
+                if (!long.TryParse(HttpContext.Current.Request[name], out value))
+                {
+                    return defaultValue;
+                }
+
                 return value;
             }
         }
@@ -199,15 +239,23 @@ namespace Fanex.Age.UI
         /// Get decimal request.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected decimal GetDecimalRequest(string name, decimal defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 decimal value = 0;
-                if (!decimal.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
+
+                if (!decimal.TryParse(HttpContext.Current.Request[name], out value))
+                {
+                    return defaultValue;
+                }
+
                 return value;
             }
         }
@@ -216,15 +264,23 @@ namespace Fanex.Age.UI
         /// Get double request.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
+        /// <param name="defaultValue">Default value.</param>
         /// <returns></returns>
         protected double GetDoubleRequest(string name, double defaultValue)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request[name])) return defaultValue;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+            {
+                return defaultValue;
+            }
             else
             {
                 double value = 0;
-                if (!double.TryParse(HttpContext.Current.Request[name], out value)) return defaultValue;
+
+                if (!double.TryParse(HttpContext.Current.Request[name], out value))
+                {
+                    return defaultValue;
+                }
+
                 return value;
             }
         }

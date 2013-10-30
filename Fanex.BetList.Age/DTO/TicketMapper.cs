@@ -13,7 +13,7 @@ namespace Fanex.BetList.Age.DTO
     using System.Collections.Generic;
 
     /// <summary>
-    /// Mapfield definition for ITicket type and DataRow
+    /// Mapfield definition for ITicket type and DataRow.
     /// </summary>
     public class TicketMapper
     {

@@ -15,7 +15,7 @@ namespace Apollo.Age.Web
 
     /// <summary>
     ///  It contains all properties of an authenticated user
-    ///  The implementation is applied when user config is state server mode
+    ///  The implementation is applied when user config is state server mode.
     /// </summary>
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
@@ -39,7 +39,10 @@ namespace Apollo.Age.Web
 
         public CurrentSession(SerializationInfo info, StreamingContext context)
         {
-            if (info == null) throw new ArgumentNullException("info");
+            if (info == null)
+            {
+                throw new ArgumentNullException("info");
+            }
 
             AgentId = info.GetInt32("AgentId");
             AgentLevel = info.GetInt16("AgentLevel");
@@ -107,7 +110,10 @@ namespace Apollo.Age.Web
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            if (info == null) throw new ArgumentNullException("info");
+            if (info == null)
+            {
+                throw new ArgumentNullException("info");
+            }
 
             info.AddValue("AgentId", AgentId);
             info.AddValue("AgentLevel", AgentLevel);

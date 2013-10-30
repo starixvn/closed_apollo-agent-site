@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="Pager.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System;
     using System.Text;
@@ -144,9 +150,14 @@
                         else
                         {
                             var linkBuilder = new StringBuilder("<a");
+
                             if (pagerOptions.AjaxOptions != null)
+                            {
                                 foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+                                {
                                     linkBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
+                                }
+                            }
 
                             linkBuilder.AppendFormat(" href=\"{0}\">{1}</a>", paginationLink.Url, paginationLink.DisplayText);
                             sb.Append(linkBuilder.ToString());
@@ -168,6 +179,7 @@
             var routeDataValues = viewContext.RequestContext.RouteData.Values;
           
             RouteValueDictionary pageLinkValueDictionary;
+
             // Avoid canonical errors when pageNumber is equal to 1.
             if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
             {

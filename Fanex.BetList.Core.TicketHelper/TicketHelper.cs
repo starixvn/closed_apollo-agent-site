@@ -1,6 +1,6 @@
 ﻿// ---------------------------------------------------------------------------------
 // <copyright file="TicketHelper.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
 // <history>
@@ -8,7 +8,6 @@
 //     <change who="Marc.Bui" date="2012.12.19">Remove GetMixParlayDetail</change>
 //     <change who="Marc.Bui" date="2012.12.26>Amend GetHorseTeamNameById</change>
 // </history>
-// ---------------------------------------------------------------------------------
 
 namespace Fanex.BetList.Core.TicketHelper
 {
@@ -69,7 +68,6 @@ namespace Fanex.BetList.Core.TicketHelper
         public bool IsVnIp(string ip)
         {
             throw new NotImplementedException();
-            //return IpUtils.IsVnIp(ip);
         }
     }
 }

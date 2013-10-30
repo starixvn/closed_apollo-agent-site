@@ -23,7 +23,7 @@ namespace Apollo.Age.Web
         }
               
         /// <summary>
-        /// This action is for testing ONLY
+        /// This action is for testing ONLY.
         /// </summary>
         /// <returns></returns>
         [NonAction]

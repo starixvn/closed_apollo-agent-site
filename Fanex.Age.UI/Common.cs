@@ -14,8 +14,8 @@ namespace Fanex.Age.UI
     public class Common
     {
         #region Background color setting
-        // Note that we use bgColor, don't use className because performance problem
 
+        // Note that we use bgColor, don't use className because performance problem
         public const string RowBgOdd = "#F6F8F9";
         public const string RowBgEven = "#faf9ee";
         public const string RowBgOver = "#FBF0B9";
@@ -51,7 +51,7 @@ namespace Fanex.Age.UI
         public const string BetListWinLossByDateOld = "WLByDate_Old";
 
         /// <summary>
-        /// WinLossByBettypeMatch.
+        /// WinLossBy bet type Match.
         /// </summary>
         public const string WinLossByBetTypeMatch = "WLByBettypeMatch";
 
@@ -81,9 +81,9 @@ namespace Fanex.Age.UI
         /// </summary>
         public const string BestListByMixParlay = "MixParlay";
 
-        ///<summary>
+        /// <summary>
         /// BestList by Bettype only Mixparlay of Match.
-        ///</summary>
+        /// </summary>
         public const string BetListByMixParlayOfMatch = "MixParlayByMatch";
 
         /// <summary>

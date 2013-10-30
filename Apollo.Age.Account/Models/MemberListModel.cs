@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Account.Models
+﻿// --------------------------------------------------------------------------
+// <copyright file="MemberListModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Account.Models
 {
     using System;
 

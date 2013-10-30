@@ -792,7 +792,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Creates the parlay bettype.
+        /// Creates the parlay bet type.
         /// </summary>
         /// <returns>JSON bet type.</returns>
         public JsonResult CreateParlayBettype()

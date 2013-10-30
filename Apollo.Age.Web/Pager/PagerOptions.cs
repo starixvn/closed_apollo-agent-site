@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="PagerOptions.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System.Web.Mvc.Ajax;
     using System.Web.Routing;

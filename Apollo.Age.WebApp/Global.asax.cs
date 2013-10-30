@@ -1,15 +1,21 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-using Apollo.Age.Web;
-using Apollo.Age.Web.Services;
-using Fanex.Data.Configuration;
-using Fanex.Logging;
+﻿// --------------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.WebApp
 {
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+    using Apollo.Age.Web;
+    using Apollo.Age.Web.Services;
+    using Fanex.Data.Configuration;
+    using Fanex.Logging;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 

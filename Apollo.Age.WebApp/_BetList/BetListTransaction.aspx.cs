@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="BetList.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListTransaction.aspx.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -159,53 +159,6 @@ namespace Sunplus.Agent.UI._BetList
             #endregion RENDER HTML
         }
 
-        private void BoxFilter()
-        {
-            var selectedUserType = "0";
-
-            if (userType)   
-            {
-                selectedUserType = "1";
-            }
-
-            tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-d");
-            tpl.Filter.valueToDate = toDate.ToString("yyyy-M-d");
-            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-M-d");
-            tpl.Filter.valueMinDate = minDate.ToString("yyyy-M-d");
-            tpl.Filter.User.username = username;
-            tpl.HiddenFields.pageType = pageType;
-        }
-
-        private DataTable CreateUserTypeOption()
-        {
-            DataTable dt = new DataTable();
-            DataColumn column;
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "value";
-            dt.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "text";
-            dt.Columns.Add(column);
-
-            DataRow row;
-
-            row = dt.NewRow();
-            row["value"] = "1";
-            row["text"] = Apollo.Age.Resources.Lang.agent;
-            dt.Rows.Add(row);
-
-            row = dt.NewRow();
-            row["value"] = "0";
-            row["text"] = Apollo.Age.Resources.Lang.member;
-            dt.Rows.Add(row);
-
-            return dt;
-        }
-
         public override object InvokeData(Hashtable hash)
         {
             var betListService = new BetListService();
@@ -275,7 +228,8 @@ namespace Sunplus.Agent.UI._BetList
                 moveBetsDay = reportService.GetBalanceUpDay();
                 minDate = moveBetsDay;
 
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
                     (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -320,6 +274,53 @@ namespace Sunplus.Agent.UI._BetList
             {
                 return SessionManager.CurrentSession;
             }
+        }
+
+        private void BoxFilter()
+        {
+            var selectedUserType = "0";
+
+            if (userType)
+            {
+                selectedUserType = "1";
+            }
+
+            tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
+            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-d");
+            tpl.Filter.valueToDate = toDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMinDate = minDate.ToString("yyyy-M-d");
+            tpl.Filter.User.username = username;
+            tpl.HiddenFields.pageType = pageType;
+        }
+
+        private DataTable CreateUserTypeOption()
+        {
+            DataTable dt = new DataTable();
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "value";
+            dt.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "text";
+            dt.Columns.Add(column);
+
+            DataRow row;
+
+            row = dt.NewRow();
+            row["value"] = "1";
+            row["text"] = Apollo.Age.Resources.Lang.agent;
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["value"] = "0";
+            row["text"] = Apollo.Age.Resources.Lang.member;
+            dt.Rows.Add(row);
+
+            return dt;
         }
 
         #region Format Start, End date

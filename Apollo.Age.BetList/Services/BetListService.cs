@@ -131,7 +131,7 @@ namespace Apollo.Age.BetList.Services
         /// Get Agent up line of member.
         /// </summary>
         /// <param name="parentId">Logged id.</param>
-        /// <param name="custId">customer id.</param>
+        /// <param name="custId">Customer id.</param>
         /// <returns></returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
@@ -139,7 +139,7 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Get data betlist on Wagers page.
+        /// Get data bet list on Wagers page.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns></returns>
@@ -163,7 +163,7 @@ namespace Apollo.Age.BetList.Services
         /// Gets the ticket result.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <param name="isIncludeOldData">if set to <c>true</c> [is include old data].</param>
+        /// <param name="isIncludeOldData">If set to <c>true</c> [is include old data].</param>
         /// <returns></returns>
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {

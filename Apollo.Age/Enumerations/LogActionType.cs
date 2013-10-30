@@ -11,11 +11,34 @@ namespace Apollo.Age.Enumerations
 {
     public enum LogActionType : int
     {
+        /// <summary>
+        /// All.
+        /// </summary>
         All = 0,
+
+        /// <summary>
+        /// Commission.
+        /// </summary>
         Commission = 2,
+
+        /// <summary>
+        /// Bet limit.
+        /// </summary>
         BetLimit = 3,
+
+        /// <summary>
+        /// Position taking.
+        /// </summary>
         PositionTaking = 4,
+
+        /// <summary>
+        /// General information.
+        /// </summary>
         GeneralInfo = 5,
+
+        /// <summary>
+        /// Permission user control.
+        /// </summary>
         PermissionUserControl = 9
     }
 }

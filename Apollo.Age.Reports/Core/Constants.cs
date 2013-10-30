@@ -25,6 +25,7 @@ namespace Apollo.Age.Reports.Core
         public const string SessionKeyAgentOutstandingReport = "AgentOutStandingReport-{0}";
         public const string SessionKeyMemberOutstandingReport = "MemberOutStandingReport-{0}";
         public const string SessionKeyLineSportCreditReport = "LineSportCreditReport-{0}";
+
         /// <summary>
         /// Dictionary list (sport id, language key).
         /// The order should follow.

@@ -15,10 +15,18 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.WinLostBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Build WinLoss column
+    /// Build WinLoss column.
     /// </summary>
     public class WinLost1 : IWinLoss
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WinLost1" /> class.
+        /// </summary>
+        public WinLost1()
+        {
+            this.Template = new WinLoss_Template();
+        }
+        
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
@@ -46,14 +54,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.WinLostBuilder
             }
 
             return this.Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WinLost1" /> class.
-        /// </summary>
-        public WinLost1()
-        {
-            this.Template = new WinLoss_Template();
         }
     }
 }

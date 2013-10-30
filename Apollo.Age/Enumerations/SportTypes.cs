@@ -10,7 +10,7 @@
 namespace Apollo.Age.Enumerations
 {
     /// <summary>
-    /// 
+    /// Sport types.
     /// </summary>
     public enum SportTypes : int
     {

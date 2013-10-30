@@ -179,7 +179,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         homeName,
                                                         ticket.IsNeutral ? 
                                                             " (N) " 
-                                                            : (_showHomeCharacterList.Contains(ticket.SportTypeId) ? " (" + Apollo.Age.Resources.BetList.h +")" : string.Empty)
+                                                            : (_showHomeCharacterList.Contains(ticket.SportTypeId) ? " (" + Apollo.Age.Resources.BetList.h + ")" : string.Empty)
                                                     });
 
             this.Template.awayTeam = awayName;

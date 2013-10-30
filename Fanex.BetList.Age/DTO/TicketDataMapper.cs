@@ -13,11 +13,11 @@ namespace Fanex.BetList.Age.DTO
     using System.Collections.Generic;
 
     /// <summary>
-    /// Mapfield definition for ITicketData type and DataRow
+    /// Mapfield definition for ITicketData type and DataRow.
     /// </summary>
     public class TicketDataMapper
     {
-        public static Dictionary<string, string> dict = new Dictionary<string, string>()         
+        public static Dictionary<string, string> dict = new Dictionary<string, string>()
         { 
             {"RefNo", "refno"}, 
             {"BetTypeId", "bettype"}, 

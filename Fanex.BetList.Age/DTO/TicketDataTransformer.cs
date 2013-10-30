@@ -43,7 +43,7 @@ namespace Fanex.BetList.Age.DTO
                         {
                             object value;
 
-                            //Determine if the property is DBNull
+                            // Determine if the property is DBNull
 
                             if (row[mapKey] == DBNull.Value)
                             {
@@ -51,7 +51,7 @@ namespace Fanex.BetList.Age.DTO
                             }
                             else
                             {
-                                //Determine if the property is nullable
+                                // Determine if the property is nullable
                                 Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType);
 
                                 if (underlyingType == null)

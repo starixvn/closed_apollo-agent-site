@@ -1,4 +1,10 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="PagedList.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System;
     using System.Collections.Generic;
@@ -14,12 +20,19 @@
         public PagedList(IQueryable<T> source, int index, int pageSize, int? totalCount = null)
         {
             if (index < 0)
+            {
                 throw new ArgumentOutOfRangeException("index", "Value can not be below 0.");
+            }
+
             if (pageSize < 1)
+            {
                 throw new ArgumentOutOfRangeException("pageSize", "Value can not be less than 1.");
+            }
 
             if (source == null)
+            {
                 source = new List<T>().AsQueryable();
+            }
 
             var realTotalCount = source.Count();
 
@@ -37,14 +50,20 @@
             ItemEnd = Math.Min(PageIndex * PageSize + PageSize, TotalItemCount);
 
             if (TotalItemCount <= 0)
+            {
                 return;
+            }
 
             var realTotalPages = (int)Math.Ceiling(realTotalCount / (double)PageSize);
 
             if (realTotalCount < TotalItemCount && realTotalPages <= PageIndex)
+            {
                 AddRange(source.Skip((realTotalPages - 1) * PageSize).Take(PageSize));
+            }
             else
+            {
                 AddRange(source.Skip(PageIndex * PageSize).Take(PageSize));
+            }
         }
 
         #region IPagedList Members

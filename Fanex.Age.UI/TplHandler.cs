@@ -54,7 +54,10 @@ namespace Fanex.Age.UI
             // Check potentially dangerous request
             try
             {
-                if (IsValidateRequest) context.Request.ValidateInput();
+                if (IsValidateRequest)
+                {
+                    context.Request.ValidateInput();
+                }
 
                 // Process requested param
                 _Parameters = new Hashtable();

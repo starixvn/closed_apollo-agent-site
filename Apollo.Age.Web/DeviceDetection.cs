@@ -16,20 +16,10 @@ namespace Apollo.Age.Web
 
     public class DeviceDetection
     {
-        public string DomainName { get; set; }
-
-        public string BrowserName { get; set; }
-
-        public string Platform { get; set; }
-
-        public string CountryCode { get; set; }
-
-        public string ClientIp { get; set; }
-
         public DeviceDetection()
         {
             var request = HttpContext.Current.Request;
-            
+
             DomainName = request.ServerVariables["SERVER_NAME"] != null ? request.ServerVariables["SERVER_NAME"].ToString() : string.Empty;
             if (request.Browser.IsMobileDevice || request.UserAgent.ToLower().Contains("android"))
             {
@@ -45,6 +35,16 @@ namespace Apollo.Age.Web
             CountryCode = string.Empty;
             ClientIp = RequestIP();
         }
+        
+        public string DomainName { get; set; }
+
+        public string BrowserName { get; set; }
+
+        public string Platform { get; set; }
+
+        public string CountryCode { get; set; }
+
+        public string ClientIp { get; set; }
 
         protected string RequestIP()
         {

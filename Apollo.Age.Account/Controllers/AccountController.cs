@@ -123,7 +123,7 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.allFunctionPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
 
-            //GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);            
+            // GetUserPolicy(CurrentSession.UserId,ApolloFunctionKeys.Wagers);
             return View(CurrentSession);
         }
 

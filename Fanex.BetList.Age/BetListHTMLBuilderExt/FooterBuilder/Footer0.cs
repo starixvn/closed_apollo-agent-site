@@ -16,11 +16,19 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Build Footer with no total info
+    /// Build Footer with no total info.
     /// </summary>
     public class Footer0 : IFooter
     {
         private Footer0_Template Template;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Footer0" /> class.
+        /// </summary>
+        public Footer0()
+        {
+            Template = new Footer0_Template();
+        }
 
         /// <summary>
         /// Renders the specified tickets.
@@ -52,14 +60,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
 
             Template.colSpan = totalColumns.ToString();
             return Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Footer0" /> class.
-        /// </summary>
-        public Footer0()
-        {
-            Template = new Footer0_Template();
         }
     }
 }

@@ -110,8 +110,7 @@ namespace Apollo.Age.Web
 
             if (ModelState.IsValid)
             {
-                #region if captcha is null or incorrect then return View with captcha error message
-
+                // if captcha is null or incorrect then return View with captcha error message
                 var captcha = Session[ApolloSessionCaptcha];
 
                 if (Request.IsLocal)
@@ -134,10 +133,7 @@ namespace Apollo.Age.Web
                     }
                 }
 
-                #endregion if captcha is null or incorrect then return View with captcha error message
-
-                #region check if NAP username & password are correct
-
+                // check if NAP username & password are correct
                 int _adminId = 0;
                 bool napUserIsValid = _userService.AuthenticateNapUser(
                     new AuthenticateNapUserCriteria
@@ -146,8 +142,6 @@ namespace Apollo.Age.Web
                         Password = model.Password
                     },
                     ref _adminId);
-
-                #endregion check if NAP username & password are correct
 
                 // redirect to SelectAccount page.
                 if (napUserIsValid)

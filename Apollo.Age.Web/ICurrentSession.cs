@@ -10,7 +10,7 @@
 namespace Apollo.Age.Web
 {
     /// <summary>
-    /// Contains all properties of an authenticated user
+    /// Contains all properties of an authenticated user.
     /// </summary>
     public interface ICurrentSession
     {

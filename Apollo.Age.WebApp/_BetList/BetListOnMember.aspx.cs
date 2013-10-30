@@ -53,6 +53,20 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Variables
 
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
+
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
@@ -170,7 +184,8 @@ namespace Sunplus.Agent.UI._BetList
             pageType = GetStringRequest("type", string.Empty).ToLower();
             if (pageType.Equals("accountinfo"))
             {
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -182,17 +197,19 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (pageType.Equals("report"))
             {
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
-                       (int)Apollo.Age.Enumerations.BetStatus.Void,
-                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                       (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                       (int)Apollo.Age.Enumerations.BetStatus.Won,
-                       (int)Apollo.Age.Enumerations.BetStatus.Lose);
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5}",
+                    (int)Apollo.Age.Enumerations.BetStatus.Void,
+                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                    (int)Apollo.Age.Enumerations.BetStatus.Won,
+                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
             else
             {
-                statusIds = string.Format("{0},{1}",
+                statusIds = string.Format(
+                    "{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
@@ -302,19 +319,5 @@ namespace Sunplus.Agent.UI._BetList
             navigation.item = link;
             return navigation.ToString();
         }
-
-        #region Format Start, End date
-
-        public static DateTime ResetStartDate(DateTime dt)
-        {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
-        }
-
-        public static DateTime ResetEndDate(DateTime dt)
-        {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
-        }
-
-        #endregion Format Start, End date
     }
 }

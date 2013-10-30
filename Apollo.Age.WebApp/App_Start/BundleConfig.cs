@@ -379,7 +379,8 @@ namespace Apollo.Age.WebApp
     {
         public static void AddAndInclude(
             this BundleCollection bundles,
-            string bundleVirtualPath, params string[] virtualPaths)
+            string bundleVirtualPath, 
+            params string[] virtualPaths)
         {
             bundles.Add(new Bundle(bundleVirtualPath)
             {

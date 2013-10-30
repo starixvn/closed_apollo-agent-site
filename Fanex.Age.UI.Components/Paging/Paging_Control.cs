@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="ErrorPag.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Paging_Control.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -18,6 +18,9 @@ namespace Fanex.Age.UI.Components
 
     public class Paging_Control : TplCore.Element.IComponent
     {
+        const string PAGE_SIZE_P = "pageSize";
+        const string PAGE_INDEX_P = "pageIndex";
+        
         #region Definition
 
         private int _PageCount = 0;
@@ -25,17 +28,26 @@ namespace Fanex.Age.UI.Components
         private int _RowCount = 0;
 
         public Paging_Control(IElement parent, string id, int rowCount)
-            : this(parent, id, -1, HttpContext.Current.Request.Url.AbsoluteUri, rowCount) { }
+            : this(parent, id, -1, HttpContext.Current.Request.Url.AbsoluteUri, rowCount) 
+        { 
+        }
 
         public Paging_Control(IElement parent, string id, string url, int rowCount)
-            : this(parent, id, -1, url, rowCount) { }
+            : this(parent, id, -1, url, rowCount) 
+        { 
+        }
 
         public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount)
-            : this(parent, id, pageSize, url, rowCount, true) { }
+            : this(parent, id, pageSize, url, rowCount, true) 
+        { 
+        }
 
         public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount, bool isSelPageSize)
         {
-            if (parent != null) parent.RegisterComponent("Paging_Control", this);
+            if (parent != null)
+            {
+                parent.RegisterComponent("Paging_Control", this);
+            }
 
             int pageIndex = 1;
             int pageSize1 = 0;
@@ -56,7 +68,10 @@ namespace Fanex.Age.UI.Components
             _RowCount = rowCount;
             _PageCount = (int)(Math.Floor((double)(rowCount / PageSize))) + (rowCount % PageSize == 0 ? 0 : 1);
 
-            if (pageIndex <= 0 || pageIndex > _PageCount) pageIndex = 1;
+            if (pageIndex <= 0 || pageIndex > _PageCount)
+            {
+                pageIndex = 1;
+            }
 
             // Render template
             tpl.id = id;
@@ -89,7 +104,10 @@ namespace Fanex.Age.UI.Components
             {
                 tpl.SelPageSize = null;
 
-                if (PageCount == 0) tpl.pageclass = "pagingHiden";
+                if (PageCount == 0)
+                {
+                    tpl.pageclass = "pagingHiden";
+                }
 
                 int minPageSize = 0;
                 if (PAGE_SIZES != null && PAGE_SIZES.Count > 0)
@@ -98,15 +116,22 @@ namespace Fanex.Age.UI.Components
                 }
 
                 if (_RowCount <= minPageSize)
+                {
                     tpl.pageclass = "pagingHiden";
+                }
                 else
+                {
                     tpl.pageclass = "pagingContainer";
+                }
             }
         }
 
         public Paging_Control(IElement parent, string id, int pageSize, string url, int rowCount, List<object> pageSizeCollection)
         {
-            if (parent != null) parent.RegisterComponent("Paging_Control", this);
+            if (parent != null)
+            {
+                parent.RegisterComponent("Paging_Control", this);
+            }
 
             int pageIndex = 1;
             int pageSize1 = 0;
@@ -132,7 +157,10 @@ namespace Fanex.Age.UI.Components
             _RowCount = rowCount;
             _PageCount = (int)(Math.Floor((double)(rowCount / PageSize))) + (rowCount % PageSize == 0 ? 0 : 1);
 
-            if (pageIndex <= 0 || pageIndex > _PageCount) pageIndex = 1;
+            if (pageIndex <= 0 || pageIndex > _PageCount)
+            {
+                pageIndex = 1;
+            }
 
             // Render template
             tpl.id = id;
@@ -175,12 +203,9 @@ namespace Fanex.Age.UI.Components
 
         #endregion Definition
 
-        const string PAGE_SIZE_P = "pageSize";
-        const string PAGE_INDEX_P = "pageIndex";
-
         Paging_Template tpl = new Paging_Template();
 
-        # region String Convertion
+        #region String Convertion
 
         public static implicit operator string(Paging_Control value)
         {
@@ -196,7 +221,10 @@ namespace Fanex.Age.UI.Components
 
         protected void ShowHidePageSize()
         {
-            if (PageCount == 0) tpl.pageclass = "pagingHiden";
+            if (PageCount == 0)
+            {
+                tpl.pageclass = "pagingHiden";
+            }
 
             int minPageSize = 0;
             if (PAGE_SIZES != null && PAGE_SIZES.Count > 0)
@@ -205,14 +233,21 @@ namespace Fanex.Age.UI.Components
             }
 
             if (_RowCount <= minPageSize)
+            {
                 tpl.pageclass = "pagingHiden";
+            }
             else
+            {
                 tpl.pageclass = "pagingContainer";
+            }
         }
 
         protected void ParseUrl(string url, ref int pageSize, ref int pageIndex)
         {
-            if (url == null) return;
+            if (url == null)
+            {
+                return;
+            }
 
             string ps = UrlProcessor.GetParameterValue(PAGE_SIZE_P, url);
             int.TryParse(ps, out pageSize);
