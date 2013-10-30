@@ -1,12 +1,12 @@
-﻿using System;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
-
-namespace Apollo.Age.Web.Pager
+﻿namespace Apollo.Age.Web.Pager
 {
+    using System;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Html;
+    using System.Web.Routing;
+    
     public class Pager : IHtmlString
     {
         private readonly HtmlHelper htmlHelper;
@@ -46,8 +46,8 @@ namespace Apollo.Age.Web.Pager
             if (pageCount > nrOfPagesToDisplay)
             {
                 var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
-                var below = (currentPage - middle);
-                var above = (currentPage + middle);
+                var below = currentPage - middle;
+                var above = currentPage + middle;
 
                 if (below < 2)
                 {
@@ -88,6 +88,7 @@ namespace Apollo.Age.Web.Pager
                     model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, DisplayText = i.ToString(), Url = generateUrl(i) });
                 }
             }
+
             if (end < pageCount)
             {
                 if (end < pageCount - 1)
@@ -156,6 +157,7 @@ namespace Apollo.Age.Web.Pager
                         sb.AppendFormat("<span class=\"disabled\">{0}</span>", paginationLink.DisplayText);
                     }
                 }
+
                 return sb.ToString();
             }
         }
@@ -185,6 +187,7 @@ namespace Apollo.Age.Web.Pager
             {
                 pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
             }
+
             if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
             {
                 pageLinkValueDictionary.Add("action", routeDataValues["action"]);

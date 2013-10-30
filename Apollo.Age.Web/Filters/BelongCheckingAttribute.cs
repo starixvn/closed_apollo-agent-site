@@ -7,20 +7,15 @@
 //   <change who="Ricky.Nguyen" date="2013.5.7">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
-    using Fanex.Common;
-    using Apollo.Age.Services.Impl;
     using Apollo.Age.Enumerations;
-    using Fanex.Logging;
+    using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using System.Net;
+    using Fanex.Common;
+    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.

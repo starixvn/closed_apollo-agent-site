@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base UI interface
  * Revision: 
  * 20091211@Lee - Initializing
@@ -11,6 +9,8 @@
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+
     public interface IBasePage
     {
         /// <summary>
@@ -22,8 +22,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Validating the request with a list of request params.
         /// </summary>
-        /// <param name="p">List of request params</param>
-        /// <returns>Null is success, otherwise is error</returns>
+        /// <param name="p">List of request params.</param>
+        /// <returns>Null is success, otherwise is error.</returns>
         object ValidateRequest(Hashtable p);
 
         /// <summary>

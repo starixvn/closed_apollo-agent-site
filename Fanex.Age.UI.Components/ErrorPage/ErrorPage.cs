@@ -38,5 +38,4 @@ namespace Fanex.Age.UI.Components
             return tpl.ToString();
         }
     }
-
 }

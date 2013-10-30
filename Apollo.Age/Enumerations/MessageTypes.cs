@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.4.4">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Enumerations
 {
     using System;

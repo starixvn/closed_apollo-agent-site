@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
-
-namespace Apollo.Age.Web.Pager
+﻿namespace Apollo.Age.Web.Pager
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Ajax;
+
     public static class PagingExtensions
     {
         #region HtmlHelper extensions

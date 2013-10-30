@@ -58,27 +58,6 @@ namespace Apollo.Age.Web
             OnUserId = info.GetInt32("OnUserId"); 
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            if (info == null) throw new ArgumentNullException("info");
-
-            info.AddValue("AgentId", AgentId);
-            info.AddValue("AgentLevel", AgentLevel);
-            info.AddValue("AgentName", AgentName);
-            info.AddValue("UserId", UserId);
-            info.AddValue("Username", Username);
-            info.AddValue("IsMaster", IsMaster);
-            info.AddValue("CurrencyId", CurrencyId);
-            info.AddValue("MatchLimit", MatchLimit);
-            info.AddValue("VirtualMultiplier", VirtualMultiplier);
-            info.AddValue("DoubleCommLosing", DoubleCommLosing);
-            info.AddValue("Language", Language);
-            info.AddValue("IsInternalSignIn", IsInternalSignIn);
-            info.AddValue("AdminId", AdminId);
-            info.AddValue("AdminName", AdminName);
-            info.AddValue("OnUserId", OnUserId);
-        }
-
         public int AgentId { get; set; }
 
         public short AgentLevel { get; set; }
@@ -120,11 +99,31 @@ namespace Apollo.Age.Web
             set;
         }
 
-
         public int OnUserId
         {
             get;
             set;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (info == null) throw new ArgumentNullException("info");
+
+            info.AddValue("AgentId", AgentId);
+            info.AddValue("AgentLevel", AgentLevel);
+            info.AddValue("AgentName", AgentName);
+            info.AddValue("UserId", UserId);
+            info.AddValue("Username", Username);
+            info.AddValue("IsMaster", IsMaster);
+            info.AddValue("CurrencyId", CurrencyId);
+            info.AddValue("MatchLimit", MatchLimit);
+            info.AddValue("VirtualMultiplier", VirtualMultiplier);
+            info.AddValue("DoubleCommLosing", DoubleCommLosing);
+            info.AddValue("Language", Language);
+            info.AddValue("IsInternalSignIn", IsInternalSignIn);
+            info.AddValue("AdminId", AdminId);
+            info.AddValue("AdminName", AdminName);
+            info.AddValue("OnUserId", OnUserId);
         }
     }
 }

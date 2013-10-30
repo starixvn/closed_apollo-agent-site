@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-/*
+﻿/*
  * Created 20091211@Lee - JSON processing
  * Revision: 
  * 20091211@Lee - Initializing
@@ -14,6 +9,11 @@ using System.Text;
 
 namespace Fanex.Age.UI
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Text;
+
     public static class JSON
     {
         private const string NULL = "null";
@@ -51,7 +51,6 @@ namespace Fanex.Age.UI
 
             //StringBuilder builder = new StringBuilder();
             //builder.Append('{');
-
 
             //for (int i = 0; i < c; i++)
             //{

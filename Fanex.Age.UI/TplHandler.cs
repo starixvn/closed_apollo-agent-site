@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Web;
-using System.Web.SessionState;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base ashx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
  * Revision: 
  * 20091211@Lee - Initializing
@@ -14,6 +10,10 @@ using System.Web.SessionState;
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+    using System.Web;
+    using System.Web.SessionState;
+
     /// <summary>
     /// Implement IHttpHandler, process request and return in JSON format.
     /// All ashx must be inherited form this handler.
@@ -59,7 +59,6 @@ namespace Fanex.Age.UI
                 // Process requested param
                 _Parameters = new Hashtable();
                 ProcessRequest(ref _Parameters);
-
             }
             catch (HttpRequestValidationException e)
             {
@@ -100,7 +99,6 @@ namespace Fanex.Age.UI
 
             // End
         }
-
 
         /// <summary>
         /// List of returning results.

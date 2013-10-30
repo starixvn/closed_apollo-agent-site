@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Web.UI;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base aspx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
  * Revision: 
  * 20091211@Lee - Initializing
@@ -12,6 +9,9 @@ using System.Web.UI;
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+    using System.Web.UI;
+
     /// <summary>
     /// Base IBC page. All aspx pages should be inherited from TplPage or TplPage2.
     /// </summary>
@@ -65,7 +65,6 @@ namespace Fanex.Age.UI
         /// <param name="writer"></param>
         public abstract void RenderContent(HtmlTextWriter writer);
 
-
         /// <summary>
         /// Don't override this method in instance class.
         /// </summary>
@@ -112,4 +111,3 @@ namespace Fanex.Age.UI
         }
     }
 }
-

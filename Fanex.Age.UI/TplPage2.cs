@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Web.UI;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base aspx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
  * Revision: 
  * 20091211@Lee - Initializing
@@ -12,6 +9,9 @@ using System.Web.UI;
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+    using System.Web.UI;
+
     /// <summary>
     /// Use this class only when need to handle post back event.
     /// </summary>

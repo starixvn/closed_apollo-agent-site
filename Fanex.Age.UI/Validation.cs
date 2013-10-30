@@ -85,5 +85,4 @@ namespace Fanex.Age.UI
            // return Sunplus.Agent.Model.Common.Language.IsValidLanguage(culture);
         }
     }
-
 }

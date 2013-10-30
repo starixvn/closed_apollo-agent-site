@@ -54,8 +54,7 @@ namespace Apollo.Age.Services.Impl
                 {
                     Id = SportGroup.Others,
                     Name = isOther ? Lang.other : Lang.InterEvent
-                }
-                ,
+                },
                 new SingbetSport
                 {
                     Id = "-99",

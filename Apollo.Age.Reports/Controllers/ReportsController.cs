@@ -106,12 +106,14 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission
                 || (agentId != null && !hasDownlineDetailsPermission))
             {
-                return View("ReportAccessDenied", new OutstandingViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new OutstandingViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 
@@ -157,12 +159,14 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission)
             {
-                return View("ReportAccessDenied", new OutstandingViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new OutstandingViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 
@@ -346,8 +350,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || (agentId != null && !hasDownlineDetailsPermission))
+            if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View("ReportAccessDenied", new AgentWinLossViewModel
                 {
@@ -425,15 +428,16 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || !hasDownlineDetailsPermission)
+            if (!hasPermission || !hasDownlineDetailsPermission)
             {
-                return View("ReportAccessDenied", new MemberWinLossViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new MemberWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 
@@ -493,7 +497,6 @@ namespace Apollo.Age.Reports.Controllers
             int? agentId,
             string agentName)
         {
-
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
@@ -504,12 +507,14 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission)
             {
-                return View("ReportAccessDenied", new AgentWinLossViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new AgentWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 
@@ -588,7 +593,6 @@ namespace Apollo.Age.Reports.Controllers
             int agentId,
             string agentName)
         {
-
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 

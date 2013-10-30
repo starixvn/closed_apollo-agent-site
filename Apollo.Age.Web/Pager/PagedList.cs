@@ -1,5 +1,4 @@
-﻿
-namespace Apollo.Age.Web.Pager
+﻿namespace Apollo.Age.Web.Pager
 {
     using System;
     using System.Collections.Generic;
@@ -29,10 +28,10 @@ namespace Apollo.Age.Web.Pager
             TotalItemCount = totalCount.HasValue ? totalCount.Value : realTotalCount;
             PageCount = TotalItemCount > 0 ? (int)Math.Ceiling(TotalItemCount / (double)PageSize) : 0;
 
-            HasPreviousPage = (PageIndex > 0);
-            HasNextPage = (PageIndex < (PageCount - 1));
-            IsFirstPage = (PageIndex <= 0);
-            IsLastPage = (PageIndex >= (PageCount - 1));
+            HasPreviousPage = PageIndex > 0;
+            HasNextPage = PageIndex < (PageCount - 1);
+            IsFirstPage = PageIndex <= 0;
+            IsLastPage = PageIndex >= (PageCount - 1);
 
             ItemStart = PageIndex * PageSize + 1;
             ItemEnd = Math.Min(PageIndex * PageSize + PageSize, TotalItemCount);
@@ -51,15 +50,25 @@ namespace Apollo.Age.Web.Pager
         #region IPagedList Members
 
         public int PageCount { get; private set; }
+
         public int TotalItemCount { get; private set; }
+
         public int PageIndex { get; private set; }
+
         public int PageNumber { get { return PageIndex + 1; } }
+
         public int PageSize { get; private set; }
+
         public bool HasPreviousPage { get; private set; }
+
         public bool HasNextPage { get; private set; }
+
         public bool IsFirstPage { get; private set; }
+
         public bool IsLastPage { get; private set; }
+
         public int ItemStart { get; private set; }
+
         public int ItemEnd { get; private set; }
 
         #endregion

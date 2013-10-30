@@ -142,7 +142,6 @@ namespace Apollo.Age.Configurations
             get
             {
                 return GetValue("PeriodDateRange");
-
             }
         }
 

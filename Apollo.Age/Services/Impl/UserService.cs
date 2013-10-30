@@ -354,10 +354,10 @@ namespace Apollo.Age.Services.Impl
             return 0;
         }
 
-
         public bool AllowLineAccountSSO(string username)
         {
             bool isAllowed = false;
+
             try
             {
                 isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
@@ -365,13 +365,12 @@ namespace Apollo.Age.Services.Impl
                     Username = username,
                     Allowed = false
                 });
-
-
             }
             catch (Exception ex)
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return isAllowed;
         }
 

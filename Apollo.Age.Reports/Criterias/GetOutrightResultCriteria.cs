@@ -11,11 +11,10 @@ namespace Apollo.Age.Reports.Criterias
 {
     using System;
     using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework;
 
     public class GetOutrightResultCriteria : CriteriaBase
     {
-        public DateTime FromDate { get; set; }                
+        public DateTime FromDate { get; set; }
        
         [SpParam(Ignored=true)]
         public DateTime BalanceUpDay { get; set; }

@@ -396,7 +396,8 @@ namespace Apollo.Age.Account.Controllers
         /// <returns></returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
-        public ActionResult EditAllMemberShare(int agentId,
+        public ActionResult EditAllMemberShare(
+            int agentId,
             string agentUserName,
             bool reload = false,
             bool isSimpleMode = true,
@@ -481,7 +482,8 @@ namespace Apollo.Age.Account.Controllers
             this.SetPositionTakingLanguage(positionTakingSetting);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javascriptString = string.Format("var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
+            string javascriptString = string.Format(
+                "var positionTakingSetting = {0} ;\n var settingContext = {1} ;",
                 JsonConvert.SerializeObject(positionTakingSetting, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));
 
@@ -876,7 +878,8 @@ namespace Apollo.Age.Account.Controllers
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
+            string javasciptString = string.Format(
+                "var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting));

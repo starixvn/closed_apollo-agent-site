@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-/*
+﻿/*
  * Created 20100404@Lee - Html controls generator
  * Revision:
  * ?@? - ...
@@ -12,6 +7,11 @@ using System.Text;
 
 namespace Fanex.Age.UI.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+
     public class HtmlGenerator
     {
         #region Combobox

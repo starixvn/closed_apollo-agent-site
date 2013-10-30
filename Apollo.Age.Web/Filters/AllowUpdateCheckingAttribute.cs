@@ -15,7 +15,6 @@ namespace Apollo.Age.Web.Filters
 
     public class AllowUpdateCheckingAttribute : ActionFilterAttribute
     {
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try

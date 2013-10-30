@@ -24,26 +24,6 @@ namespace Fanex.Age.UI.Components
         private int _PageIndex = 0;
         private int _RowCount = 0;
 
-        public int PageIndex
-        {
-            get { return _PageIndex; }
-        }
-
-        public int PageCount
-        {
-            get { return _PageCount; }
-        }
-
-        protected int PageSize = 500;
-        protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
-
-        #endregion Definition
-
-        const string PAGE_SIZE_P = "pageSize";
-        const string PAGE_INDEX_P = "pageIndex";
-
-        Paging_Template tpl = new Paging_Template();
-
         public Paging_Control(IElement parent, string id, int rowCount)
             : this(parent, id, -1, HttpContext.Current.Request.Url.AbsoluteUri, rowCount) { }
 
@@ -179,6 +159,26 @@ namespace Fanex.Age.UI.Components
 
             ShowHidePageSize();
         }
+
+        public int PageIndex
+        {
+            get { return _PageIndex; }
+        }
+
+        public int PageCount
+        {
+            get { return _PageCount; }
+        }
+
+        protected int PageSize = 500;
+        protected List<object> PAGE_SIZES = new List<object>(new object[] { 10, 20, 50, 100, 200, 500 });
+
+        #endregion Definition
+
+        const string PAGE_SIZE_P = "pageSize";
+        const string PAGE_INDEX_P = "pageIndex";
+
+        Paging_Template tpl = new Paging_Template();
 
         protected void ShowHidePageSize()
         {

@@ -10,12 +10,9 @@
 namespace Apollo.Age.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
-    using System.Web.Helpers;
     using System.Net;
+    using System.Web.Helpers;
+    using System.Web.Mvc;
     using Fanex.Logging;
 
     /// <summary>

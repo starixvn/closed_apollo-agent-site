@@ -30,7 +30,7 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
-    /// Forecast Function controller
+    /// Forecast Function controller.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
@@ -117,7 +117,7 @@ namespace Apollo.Age.Forecast.Controllers
         #region Forecast Handicap, Over/Under
 
         /// <summary>
-        /// Handicap OU Forecast Page
+        /// Handicap OU Forecast Page.
         /// </summary>
         /// <returns></returns>
         public ViewResult FCHandicapOverUnder(string leagueName = "", int leagueId = 0, int mainShareHolderId = 0)
@@ -137,7 +137,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Get Handicap OU Matches
+        /// Get Handicap OU Matches.
         /// </summary>
         /// <param name="leagueId"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace Apollo.Age.Forecast.Controllers
         #region Forecast By Matches
 
         /// <summary>
-        /// Forecast by Match Content Page
+        /// Forecast by Match Content Page.
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -171,7 +171,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Forecast By Match Page
+        /// Forecast By Match Page.
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -193,7 +193,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         /// <summary>
         /// Score Map Page, if MatchIds valid, then Render Score Map of these match
-        /// If matchIds != empty, It means that ScoreMap will show in bet list
+        /// If matchIds != empty, It means that ScoreMap will show in bet list.
         /// </summary>
         /// <param name="matchIds"></param>
         /// <param name="liveBetTypes"></param>
@@ -228,7 +228,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Match of LeagueModel
+        /// Match of LeagueModel.
         /// </summary>
         /// <param name="leagueId"></param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// BetType List
+        /// BetType List.
         /// </summary>
         /// <param name="liveBetType"></param>
         /// <param name="deadBetType"></param>
@@ -253,7 +253,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Load LeagueModel
+        /// Load LeagueModel.
         /// </summary>
         /// <param name="currentLeagueId"></param>
         /// <returns></returns>
@@ -265,7 +265,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Load Score Map Result
+        /// Load Score Map Result.
         /// </summary>
         /// <param name="matchIds"></param>
         /// <param name="liveBetTypes"></param>
@@ -294,7 +294,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         /// <summary>
         /// Get Current Agent Id
-        /// If MainShareholderId > 0 and Current Login user is Super then set first is selected
+        /// If MainShareholderId > 0 and Current Login user is Super then set first is selected.
         /// </summary>
         /// <param name="mainShareHolderId"></param>
         /// <returns></returns>

@@ -13,8 +13,7 @@ namespace Apollo.Age.Web
 
     public class InstructionController : BaseController
     {
-        public ActionResult Index(string key, string trigger = "",
-            string title = "", string tipTitle = "")
+        public ActionResult Index(string key, string trigger = "", string title = "", string tipTitle = "")
         {
             ViewBag.Trigger = trigger;
             ViewBag.Title = title;

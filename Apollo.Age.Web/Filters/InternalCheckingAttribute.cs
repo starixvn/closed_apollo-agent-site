@@ -32,6 +32,7 @@ namespace Apollo.Age.Web.Filters
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             base.OnActionExecuted(filterContext);
         }
     }

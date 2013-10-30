@@ -12,8 +12,8 @@ namespace Apollo.Age.Criterias
     using System.Collections.Generic;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
-    using Fanex.NAP.Framework.Data;
     using Apollo.Age.Models;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Get all function filter by function group and active.

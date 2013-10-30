@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc.Ajax;
-
-namespace Apollo.Age.Web.Pager
+﻿namespace Apollo.Age.Web.Pager
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc.Ajax;
+
     public class PaginationModel
     {
         public IList<PaginationLink> PaginationLinks { get; private set; }
+
         public AjaxOptions AjaxOptions { get; internal set; }
+
         public PagerOptions Options { get; internal set; }
 
         public PaginationModel()
@@ -16,7 +18,6 @@ namespace Apollo.Age.Web.Pager
             Options = null;
         }
     }
-
 
     public class PaginationLink
     {

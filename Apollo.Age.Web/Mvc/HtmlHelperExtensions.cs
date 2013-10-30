@@ -16,14 +16,9 @@ namespace Apollo.Age.Web.Mvc
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
-    using Apollo.Age.Web.Properties;
-    using System.Text;
-    using System.Web;
-    using System.Web.Compilation;
-    using System.Globalization;
-    using System.Resources;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
 
@@ -225,7 +220,6 @@ namespace Apollo.Age.Web.Mvc
                 mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-MM-dd") : "null",
                 maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-MM-dd") : "null",
                 disabledDate = disabledDate
-
             };
 
             var dateValue = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
@@ -242,7 +236,8 @@ namespace Apollo.Age.Web.Mvc
         /// <param name="fromYear">default from year 2000</param>
         /// <param name="currentYear">>default currentYear year 2000</param>
         /// <returns></returns>
-        public static MvcHtmlString YearPicker(this HtmlHelper htmlHelper,
+        public static MvcHtmlString YearPicker(
+            this HtmlHelper htmlHelper,
             string name,
             int fromYear = 2000,
             int currentYear = 2000,
@@ -319,8 +314,7 @@ namespace Apollo.Age.Web.Mvc
         /// <param name="resourceSource">A type from which the resource manager derives all information 
         /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
         /// <returns></returns>
-        public static string Resource(this HtmlHelper htmlhelper, string key,
-            Type resourceSource = null)
+        public static string Resource(this HtmlHelper htmlhelper, string key, Type resourceSource = null)
         {
             return LanguageManager.GetResourceData(key);
         }

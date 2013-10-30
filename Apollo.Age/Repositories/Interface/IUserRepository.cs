@@ -10,11 +10,11 @@
 
 namespace Apollo.Age.Repositories.Interface
 {
+    using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
-    using Fanex.NAP.Framework.Data;
     using Apollo.Age.Models;
-    using System.Collections.Generic;
+    using Fanex.NAP.Framework.Data;
 
     public interface IUserRepository : IRepository<User>
     {

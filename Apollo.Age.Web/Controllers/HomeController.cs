@@ -9,19 +9,14 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Resources;
     using System.Web.Mvc;
-    using System.Web.Security;
-    using Apollo.Age.Web.Services;
-    using System.Net;
 
     public class HomeController : BaseController
     {
-       
         public ActionResult Index()
         {       
             return View(SessionManager.CurrentSession);

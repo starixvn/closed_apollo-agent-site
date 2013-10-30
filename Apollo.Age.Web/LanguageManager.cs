@@ -39,6 +39,7 @@ namespace Apollo.Age.Web
             {
                 return _resourceManagerLang.GetString(key);
             }
+
             return string.Empty;
         }
     }

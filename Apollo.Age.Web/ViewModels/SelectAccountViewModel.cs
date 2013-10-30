@@ -25,6 +25,5 @@ namespace Apollo.Age.Web.ViewModels
         public string AdminName { get; set; }
 
         public int AdminId { get; set; }
-                
     }
 }
