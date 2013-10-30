@@ -1,7 +1,4 @@
-﻿//using Sunplus.Agent.Model.BL;
-//using Sunplus.Agent.Model.Entities;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base aspx page
  * Revision:
  * 20091211@Lee - Initializing

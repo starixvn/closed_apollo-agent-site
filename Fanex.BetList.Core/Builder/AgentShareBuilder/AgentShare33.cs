@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Agent Share
+    /// Agent Share.
     /// </summary>
     public class AgentShare33 : AgentShare1
     {
@@ -53,7 +53,9 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
                 agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == placeBetId).AgentPT;
             }
 
-            this.Template.AgentPT.agentPT_setting = string.Join(null, new string[]
+            this.Template.AgentPT.agentPT_setting = string.Join(
+                null, 
+                new string[]
                 {
                     "<span class='blue' style='font-weight:normal;'>", 
                     Apollo.Age.Resources.BetList.win + ": ", 

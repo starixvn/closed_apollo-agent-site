@@ -11,10 +11,10 @@ namespace Fanex.Age.UI
 {
     public class JSONError : JSONData
     {
-        //Error code convention:
-        //-1 : Unknown error
-        //0 :Success
-        //> 0 : Error code, retrieve error message from errMsg field
+        // Error code convention:
+        // -1 : Unknown error
+        // 0 :Success
+        // > 0 : Error code, retrieve error message from errMsg field
         public const string ERROR_CODE = "errCode";
         public const string ERROR_MSG = "errMsg";
 

@@ -1,6 +1,4 @@
-﻿//using Sunplus.Agent.Model.Common;
-
-/*
+﻿/*
  * Created 20091224@Lee - Validating definitions
  * Revision:
  * 20091224@Lee - Initializing

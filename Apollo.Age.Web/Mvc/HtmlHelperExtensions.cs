@@ -368,7 +368,7 @@ namespace Apollo.Age.Web.Mvc
 
         #region Distinct by
 
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey> (
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
             this IEnumerable<TSource> source, 
             Func<TSource, TKey> keySelector)
         {

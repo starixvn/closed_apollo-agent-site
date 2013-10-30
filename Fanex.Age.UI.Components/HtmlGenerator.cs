@@ -293,7 +293,15 @@ namespace Fanex.Age.UI.Components
         /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, object selectedValue, DataTable data, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource, string onchange)
+        public static string ComboBox(
+            string id, 
+            object selectedValue, 
+            DataTable data, 
+            string valueColumnName, 
+            string textColumnName1, 
+            string textColumnName2, 
+            string lblResource, 
+            string onchange)
         {
             if (null == data)
             {
@@ -398,7 +406,13 @@ namespace Fanex.Age.UI.Components
             return builder.ToString();
         }
 
-        public static DataTable ModifyDataTable(DataTable data, string textAdd, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource)
+        public static DataTable ModifyDataTable(
+            DataTable data, 
+            string textAdd, 
+            string valueColumnName, 
+            string textColumnName1, 
+            string textColumnName2, 
+            string lblResource)
         {
             if (null == data)
             {
