@@ -16,10 +16,10 @@ namespace Apollo.Age.Account.Repositories.Impl
     using Apollo.Age.Account.Repositories.Interface;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
+    using Fanex.Common;
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Common;
 
     public class AccountRepository : IAccountRepository
     {

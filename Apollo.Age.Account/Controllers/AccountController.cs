@@ -34,9 +34,9 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
+    using Apollo.Age.Web.Mvc;
     using Apollo.Age.Web.Pager;
     using Apollo.Age.Web.Web.Attribute;
-    using Apollo.Age.Web.Mvc;
 
     /// <summary>
     /// Account controllers.
@@ -494,11 +494,12 @@ namespace Apollo.Age.Account.Controllers
 
             if (!hasDownlineDetailsPermission)
             {
-                return Json(new[] { 
+                return Json(
+                    new[] { 
                     new { 
                         Id = this.CurrentSession.AgentId,
                         Username = this.CurrentSession.Username } 
-                }, JsonRequestBehavior.AllowGet);
+                    }, JsonRequestBehavior.AllowGet);
             }
 
             var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();

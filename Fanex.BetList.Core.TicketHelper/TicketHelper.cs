@@ -12,14 +12,20 @@
 
 namespace Fanex.BetList.Core.TicketHelper
 {
-    using Fanex.BetList.Core.Entities;
     using System;
+    using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Utilities for resolving Names from IDs
+    /// Utilities for resolving Names from IDs.
     /// </summary>
     public class TicketHelper : ITicketHelper
     {
+        public int Index { get; set; }
+
+        public string CurrentLanguage { get; set; }
+
+        public bool IsShowOddsWithChoice { get; set; }
+        
         public string GetBetTypeNameById(object bettypeId)
         {
             return CacheRef.GetBettype(bettypeId);
@@ -65,11 +71,5 @@ namespace Fanex.BetList.Core.TicketHelper
             throw new NotImplementedException();
             //return IpUtils.IsVnIp(ip);
         }
-
-        public int Index { get; set; }
-
-        public string CurrentLanguage { get; set; }
-
-        public bool IsShowOddsWithChoice { get; set; }
     }
 }

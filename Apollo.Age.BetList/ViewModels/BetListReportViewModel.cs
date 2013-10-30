@@ -12,13 +12,11 @@ namespace Apollo.Age.BetList.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Models;
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
-    using Apollo.Age.Reports.Models;
 
     public class BetListReportViewModel
     {

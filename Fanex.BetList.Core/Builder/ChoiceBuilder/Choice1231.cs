@@ -43,8 +43,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         ticket.MatchId.ToString(),
                                                         " - ",
                                                         ticketHelper.GetHorseTeamNameById(ticket.HomeId,ticket.AwayId)
-                                                    }
-                                               );
+                                                    });
 
             //this.Template.betTeamClassName = BL_FAVORITE;
 

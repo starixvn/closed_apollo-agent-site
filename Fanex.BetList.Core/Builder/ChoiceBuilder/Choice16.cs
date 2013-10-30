@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// HT/FT
+    /// HT/FT.
     /// </summary>
     public class Choice16 : Choice1
     {

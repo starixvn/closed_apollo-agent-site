@@ -15,8 +15,6 @@ namespace Apollo.Age.WebApp.Areas.Wagers
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-           
-
         }
     }
 }

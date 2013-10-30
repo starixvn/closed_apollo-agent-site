@@ -131,11 +131,13 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         serial = ticket.Serial;
                         var serials = systemParlay.SerialList.Where(s => s.Serial == serial);
                         even = string.Empty;
+
                         foreach (var item in serials)
                         {
                             even += CacheRef.GetTeamName(item.HomeId) + " - vs - " + CacheRef.GetTeamName(item.AwayId);
                             even += "<br/>";
                         }
+
                         rowBlock.even = even;
                         // end even
 
@@ -154,6 +156,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         var row = ticketList.Where(s => s.WinLostDate == ticket.WinLostDate);
 
                         int numRowSpan = row.Count();
+
                         if (numRowSpan > 1)
                         {
                             rowBlock.WinlostDate.rowSpan = "rowspan='" + numRowSpan.ToString() + "'";
@@ -162,6 +165,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         {
                             rowBlock.WinlostDate.rowSpan = string.Empty;
                         }
+
                         rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd"); ;
                         rowBlock.WinlostDate.Show();
                     }

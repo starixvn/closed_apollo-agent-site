@@ -121,7 +121,12 @@ namespace Apollo.Age.Reports.Controllers
             sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
             bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
 
-            var report = this._outstandingService.GetAgentOutStandingReport(this.CurrentSession.IsSuper, this.CurrentAgentId, this.CurrentSession.AgentId, sporttypes, bettypes);
+            var report = this._outstandingService.GetAgentOutStandingReport(
+                this.CurrentSession.IsSuper, 
+                this.CurrentAgentId, 
+                this.CurrentSession.AgentId, 
+                sporttypes, 
+                bettypes);
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
@@ -352,12 +357,14 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
-                return View("ReportAccessDenied", new AgentWinLossViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new AgentWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 

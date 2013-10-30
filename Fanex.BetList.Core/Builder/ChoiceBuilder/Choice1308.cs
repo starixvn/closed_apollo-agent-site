@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    ///   Match Handicap Games 2-way
+    ///   Match Handicap Games 2-way.
     /// </summary>
     public class Choice1308 : Choice1
     {

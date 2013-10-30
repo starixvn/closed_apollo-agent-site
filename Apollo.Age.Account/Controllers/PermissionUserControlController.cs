@@ -10,16 +10,16 @@
 namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Core;
     using Apollo.Age.Criterias;
+    using Apollo.Age.Entities;
+    using Apollo.Age.Models;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Models;
-    using System.Linq;
 
     /// <summary>
     /// TODO: Update summary.

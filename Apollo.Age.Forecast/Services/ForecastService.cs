@@ -241,7 +241,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Bet Type List Score Map
+        /// Bet Type List Score Map.
         /// </summary>
         /// <returns></returns>
         public List<int> GetListScoreMapBetType()
@@ -268,7 +268,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Bet Type, Will Render 2 Part Live and Dead ball
+        /// Score Map Bet Type, Will Render 2 Part Live and Dead ball.
         /// <returns></returns>
         public ScoreMapBetTypesModel GetScoreMapBetType()
         {
@@ -292,7 +292,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// From a bet type 1st or full time will return a couple of 1st and full time
+        /// From a bet type 1st or full time will return a couple of 1st and full time.
         /// </summary>
         /// <param name="betTypeId"></param>
         /// <param name="isLive"></param>
@@ -328,7 +328,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Matches
+        /// Score Map Matches.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
@@ -345,7 +345,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map LeagueModel
+        /// Score Map LeagueModel.
         /// </summary>
         /// <param name="agentId"></param>
         /// <returns></returns>

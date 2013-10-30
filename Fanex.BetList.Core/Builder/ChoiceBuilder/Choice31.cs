@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Win
+    /// Win.
     /// </summary>
     public class Choice31 : Choice1
     {
@@ -40,8 +40,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         ticket.MatchCode,
                                                         " - ",
                                                         ticketHelper.GetHorseTeamNameById(ticket.HomeId,ticket.AwayId)
-                                                    }
-                                               );
+                                                    });
 
             //this.Template.betTeamClassName = BL_FAVORITE;
 
@@ -52,8 +51,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         Apollo.Age.Resources.BetList.race,
                                                         "&nbsp;",
                                                         ticket.Race
-                                                    }
-                                                );
+                                                    });
         }
     }
 }

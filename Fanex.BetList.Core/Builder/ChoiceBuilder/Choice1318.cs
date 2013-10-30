@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Set x Total Games Odd/Even
+    /// Set x Total Games Odd/Even.
     /// </summary>
     public class Choice1318 : Choice2
     {

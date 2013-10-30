@@ -18,7 +18,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// WinLost
+    /// WinLost.
     /// </summary>
     public class Footer1 : IFooter
     {

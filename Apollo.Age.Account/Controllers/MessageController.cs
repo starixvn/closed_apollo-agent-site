@@ -195,71 +195,6 @@ namespace Apollo.Age.Account.Controllers
             return View(criteria);
         }
 
-        #region Private
-
-        private IEnumerable<MessageModel> GetPrivateMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetPrivateMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsAgent = criteria.IsAgent,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-
-        private IEnumerable<MessageModel> GetPublicMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetPubMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-
-        private IEnumerable<MessageModel> GetNotSpecialMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetNotSpecialMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsAgent = criteria.IsAgent,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-
-        private IEnumerable<MessageModel> GetSpecialMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetSpecialMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-        #endregion
-
         #region Ajax request
 
         /// <summary>
@@ -341,5 +276,70 @@ namespace Apollo.Age.Account.Controllers
         }
 
         #endregion Ajax request
+
+        #region Private
+
+        private IEnumerable<MessageModel> GetPrivateMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPrivateMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetPublicMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetPubMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetNotSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetNotSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsAgent = criteria.IsAgent,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+
+        private IEnumerable<MessageModel> GetSpecialMessage(GetMessageCriteria criteria)
+        {
+            return _messageService.GetMessage(new GetSpecialMessageCriteria
+            {
+                CustId = criteria.CustId,
+                From = criteria.From,
+                IsTest = criteria.IsTest,
+                MatchId = criteria.MatchId,
+                Record = criteria.Record,
+                SiteId = criteria.SiteId,
+                Special = criteria.Special,
+                To = criteria.To
+            });
+        }
+        #endregion
     }
 }

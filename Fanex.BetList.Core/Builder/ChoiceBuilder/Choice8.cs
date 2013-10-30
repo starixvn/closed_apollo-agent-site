@@ -8,12 +8,13 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-using Fanex.BetList.Core.Entities;
-using System.Collections.Generic;
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+
     /// <summary>
-    /// 1st Over/Under
+    /// 1st Over/Under.
     /// </summary>
     public class Choice8 : Choice3
     {

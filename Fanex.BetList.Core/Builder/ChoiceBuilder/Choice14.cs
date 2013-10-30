@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// First Goal/Last Goal
+    /// First Goal/Last Goal.
     /// </summary>
     public class Choice14 : Choice1
     {

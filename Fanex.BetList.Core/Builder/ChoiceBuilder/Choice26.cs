@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Both/One/Neither team to score
+    /// Both/One/Neither team to score.
     /// </summary>
     public class Choice26 : Choice1
     {

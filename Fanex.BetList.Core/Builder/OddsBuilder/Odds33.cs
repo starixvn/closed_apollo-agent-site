@@ -107,8 +107,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                                                         "<span class='blue' style='font-weight:normal;'>",
                                                         oddsWinMarkup,
                                                         "</span>"
-                                                    }
-                                              );
+                                                    });
 
                         odds_place = string.Join(
                                                     null,
@@ -117,8 +116,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                                                         "<span class='' style='font-weight:normal;'>",
                                                         oddsPlaceMarkup,
                                                         "</span>"
-                                                    }
-                                                );
+                                                    });
 
                         this.Template.odds = string.Join(
                                                         null,
@@ -127,8 +125,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                                                             odds_win,
                                                             "<br>",
                                                             odds_place
-                                                        }
-                                                   );
+                                                        });
                     }
                     else
                     {

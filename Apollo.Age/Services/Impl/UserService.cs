@@ -223,7 +223,17 @@ namespace Apollo.Age.Services.Impl
         /// <param name="browserName">Name of the browser.</param>
         /// <param name="platform">The platform.</param>
         /// <param name="countryCode">The country code.</param>
-        public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
+        public void WriteLogInternalLogin(
+            int agentId, 
+            int agentUserId, 
+            int serverId, 
+            int actionId, 
+            string doing, 
+            string loginIp, 
+            string domainName, 
+            string browserName, 
+            string platform, 
+            string countryCode)
         {
             try
             {

@@ -36,11 +36,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         Apollo.Age.Resources.BetList.ht,
                                                         ".",
                                                         ticket.BetTeam.ToUpper()
-                                                    }
-                                               );
+                                                    });
+
             if (ticket.SportTypeId == 1)
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
@@ -52,6 +53,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                     this.Template.Score.Visible = false;
                 }
             }
+
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }

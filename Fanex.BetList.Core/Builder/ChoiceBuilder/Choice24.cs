@@ -18,7 +18,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Double Chance
+    /// Double Chance.
     /// </summary>
     public class Choice24 : Choice1
     {

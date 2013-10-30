@@ -62,7 +62,7 @@ namespace Apollo.Age.Forecast.Controllers
 
         /// <summary>
         /// Get Running LeagueModel, with BetType
-        /// if MatchId != null, that means forecast be shown in TotalBets
+        /// if MatchId != null, that means forecast be shown in TotalBets.
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -90,7 +90,7 @@ namespace Apollo.Age.Forecast.Controllers
         }
 
         /// <summary>
-        /// Get Forecast 1x2 Matches
+        /// Get Forecast 1x2 Matches.
         /// </summary>
         /// <param name="leagueId"></param>
         /// <param name="matchId"></param>

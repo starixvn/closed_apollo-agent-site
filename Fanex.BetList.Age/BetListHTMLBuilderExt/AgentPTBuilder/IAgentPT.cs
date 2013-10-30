@@ -11,9 +11,9 @@
 
 namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
 {
+    using System.Collections.Generic;
     using Fanex.BetList.Age.ExtTemplate;
     using Fanex.BetList.Core.Entities;
-    using System.Collections.Generic;
 
     /// <summary>
     /// TODO: Update summary.

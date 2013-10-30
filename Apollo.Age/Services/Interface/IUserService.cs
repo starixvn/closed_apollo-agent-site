@@ -42,7 +42,17 @@ namespace Apollo.Age.Services.Interface
 
         bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType);
 
-        void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode);
+        void WriteLogInternalLogin(
+            int agentId, 
+            int agentUserId, 
+            int serverId, 
+            int actionId, 
+            string doing, 
+            string loginIp, 
+            string domainName, 
+            string browserName, 
+            string platform, 
+            string countryCode);
 
         /// <summary>
         /// Return OnUserId

@@ -14,15 +14,10 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Agent share
+    /// Agent share.
     /// </summary>
     public class AgentShare1 : IAgentShare
     {
-        /// <summary>
-        /// Template
-        /// </summary>
-        public AgentShare_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentShare1" /> class.
         /// </summary>
@@ -30,6 +25,8 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
         {
             this.Template = new AgentShare_Template();
         }
+
+        public AgentShare_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.

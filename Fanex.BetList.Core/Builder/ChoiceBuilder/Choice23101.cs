@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// P2P Transfer
+    /// P2P Transfer.
     /// </summary>
     public class Choice23101 : Choice1
     {

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentUserGetUserFunctionPolicyCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UserGetUserFunctionPolicyCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------

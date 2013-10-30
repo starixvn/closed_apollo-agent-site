@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// FT. 1x2
+    /// FT. 1x2.
     /// </summary>
     public class Choice5 : Choice1
     {
@@ -40,8 +40,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         Apollo.Age.Resources.BetList.ft,
                                                         ".",
                                                         ticket.BetTeam.ToUpper()
-                                                    }
-                                               );
+                                                    });
         }
     }
 }

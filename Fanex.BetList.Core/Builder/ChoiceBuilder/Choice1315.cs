@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    ///    Set x Player to win on a Tiebreak
+    ///    Set x Player to win on a Tiebreak.
     /// </summary>
     public class Choice1315 : Choice1
     {

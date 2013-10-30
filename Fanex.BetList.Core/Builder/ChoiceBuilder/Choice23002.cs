@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Casino pending
+    /// Casino pending.
     /// </summary>
     public class Choice23002 : Choice1
     {

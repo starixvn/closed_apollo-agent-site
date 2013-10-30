@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Virtual Horse Racing - Win/Place
+    /// Virtual Horse Racing - Win/Place.
     /// </summary>
     public class Odds1233 : Odds33
     {

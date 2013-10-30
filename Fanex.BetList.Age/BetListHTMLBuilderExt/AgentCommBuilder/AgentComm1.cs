@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="AgentPT1.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentComm1.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Build AgentPT
+    /// Build AgentPT.
     /// </summary>
     public class AgentComm1 : IAgentComm
     {
@@ -43,6 +43,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             {
                 Template.AgentCommValue.agentComm_value = ConvertByBetType.PtValue(ticket.AComm);
             }
+
             if (ticket.AgentLevel == 0)
             {
                 Template.AgentComm.agentComm_setting = Lang.lblNA;
@@ -51,6 +52,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             {
                 Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
             }
+
             if (hideDetail)
             {
                 Template.ViewDetail.Visible = false;
@@ -59,6 +61,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             {
                 Template.ViewDetail.transId = ticket.TransId.ToString();
             }
+
             return Template;
         }
 

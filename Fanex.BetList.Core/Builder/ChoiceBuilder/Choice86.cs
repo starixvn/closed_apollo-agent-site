@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Next Odd/Even
+    /// Next Odd/Even.
     /// </summary>
     public class Choice86 : Choice2
     {

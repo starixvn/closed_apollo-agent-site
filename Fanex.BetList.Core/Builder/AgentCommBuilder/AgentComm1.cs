@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentComm.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentComm1.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,15 +14,10 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Agent commission
+    /// Agent commission.
     /// </summary>
     public class AgentComm1 : IAgentComm
     {
-        /// <summary>
-        /// Template
-        /// </summary>
-        public AgentComm_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentComm1" /> class.
         /// </summary>
@@ -30,6 +25,8 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         {
             this.Template = new AgentComm_Template();
         }
+
+        public AgentComm_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.

@@ -12,42 +12,42 @@ namespace Fanex.BetList.Core.Entities
     public enum BetListPage : int
     {
         /// <summary>
-        /// Link from forecast page
+        /// Link from forecast page.
         /// </summary>
         Forecast = 1,
 
         /// <summary>
-        /// Link from report Outstanding page
+        /// Link from report Outstanding page.
         /// </summary>
         Outstanding = 4,
 
         /// <summary>
-        /// Link from report page
+        /// Link from report page.
         /// </summary>
         Report = 2,
 
         /// <summary>
-        /// Link from cancel ticket
+        /// Link from cancel ticket.
         /// </summary>
         Cancel = 3,
 
         /// <summary>
-        /// Link from transactions ticket
+        /// Link from transactions ticket.
         /// </summary>
         Transaction = 6,
 
         /// <summary>
-        /// Link from account info
+        /// Link from account info.
         /// </summary>
         AccountInfo = 7,
 
         /// <summary>
-        /// Link from Wager page
+        /// Link from Wager page.
         /// </summary>
         Wager = 8,
 
         /// <summary>
-        /// Other Pages
+        /// Other Pages.
         /// </summary>
         Default = 5
     }

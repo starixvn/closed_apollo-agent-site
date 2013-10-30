@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    ///      Set x Game y Total Points Exact
+    ///      Set x Game y Total Points Exact.
     /// </summary>
     public class Choice1328 : Choice1
     {

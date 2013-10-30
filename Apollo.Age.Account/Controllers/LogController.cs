@@ -20,6 +20,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
@@ -27,7 +28,6 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Logging;
-    using Apollo.Age.Core;
 
     /// <summary>
     /// Log controller.

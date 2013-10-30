@@ -30,8 +30,7 @@ namespace Apollo.Age.WebApp
                 "~/css/totalbets",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
                 "~/views/totalbets/resources/totalbets.less",
-                "~/_globalresources/css/refreshcountdown.less"
-                );
+                "~/_globalresources/css/refreshcountdown.less");
 
             bundles.AddAndInclude(
                 "~/css/reports",
@@ -244,8 +243,7 @@ namespace Apollo.Age.WebApp
                "~/_globalresources/js/blockui/jquery.blockui.js",
                "~/_globalresources/js/core.js",
                "~/_globalresources/js/pager/jquery.sbpager.js",
-               "~/views/results/resources/result.js"
-               ));
+               "~/views/results/resources/result.js"));
 
             #region Customer Setting
 
@@ -350,8 +348,7 @@ namespace Apollo.Age.WebApp
                 "~/areas/wagers/scripts/wagers.js",
                 "~/_globalresources/js/pager/jquery.sbpager.js",
                 "~/_globalresources/js/jquery.cookie.js",
-                "~/_globalresources/js/refreshcountdown.js"
-            ));
+                "~/_globalresources/js/refreshcountdown.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/sbpager").Include(
             "~/_GlobalResources/Js/Pager/jquery.sbpager.js"));
@@ -362,8 +359,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/Core.js",
                 "~/_globalresources/js/BlockUI/jquery.blockUI.js",
-                 "~/views/account/resources/fundout.js"
-            ));
+                 "~/views/account/resources/fundout.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/assignfunction").Include(
             "~/_globalresources/js/jquery.js",

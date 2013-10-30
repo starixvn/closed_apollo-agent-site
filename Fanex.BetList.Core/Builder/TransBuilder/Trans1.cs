@@ -20,20 +20,14 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
     public class Trans1 : ITrans
     {
         /// <summary>
-        /// Gets or sets the template.
-        /// </summary>
-        /// <value>
-        /// The template.
-        /// </value>
-        public Trans_Template Template { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Trans1" /> class.
         /// </summary>
         public Trans1()
         {
             this.Template = new Trans_Template();
         }
+
+        public Trans_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.
@@ -56,7 +50,6 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
             this.Template.oddsName = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
-
 
             switch (betListPage)
             {

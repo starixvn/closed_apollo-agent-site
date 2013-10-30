@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
     /// <summary>
     /// Next Over/Under
-    /// it supports live ball, so always 37.5
+    /// it supports live ball, so always 37.5.
     /// </summary>
     public class Choice85 : Choice3
     {
@@ -55,8 +55,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     Apollo.Age.Resources.BetList.ft,
                                                     ". ",
                                                     bettypeName
-                                                }
-                                         );
+                                                });
             }
             else
             {
@@ -67,8 +66,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     Apollo.Age.Resources.BetList.next,
                                                     "&nbsp;",
                                                     bettypeName
-                                                }
-                                         );
+                                                });
 
                 liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(
                                                                                                 null,
@@ -77,8 +75,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                                                                     " [",
                                                                                                     betId,
                                                                                                     "]"
-                                                                                                }
-                                                                                            );
+                                                                                                });
             }
 
             this.Template.betTeam = betTeam + liveScore;
@@ -92,8 +89,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     Apollo.Age.Resources.BetList.numbergameno,
                                                     "&nbsp;",
                                                     ticket.MatchCode
-                                                }
-                                           );
+                                                });
         }
     }
 }

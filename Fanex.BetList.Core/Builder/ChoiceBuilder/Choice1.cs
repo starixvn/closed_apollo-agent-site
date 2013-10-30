@@ -17,15 +17,15 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Handicap
+    /// Handicap.
     /// </summary>
     public class Choice1 : IChoice
     {
@@ -70,7 +70,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
-        public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
+        public virtual Choice_Template Render(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            bool isShowScoreMap, 
+            BetListPage betListPage)
         {
             this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
             this.BuildHandicapOdds(ticket, ticketHelper);
@@ -87,7 +92,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
-        public virtual List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
+        public virtual List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper)
         {
             this.Render(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
             var choiceData = BuildRTFChoice(ticket, rtfHelper, ticketHelper);
@@ -161,7 +171,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 this.Template.LiveScore.Hide();
             }
 
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+            // this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             this.Template.homeTeam = string.Join(
                                                     null,
                                                     new string[]
@@ -170,25 +180,24 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         ticket.IsNeutral ? 
                                                             " (N) " 
                                                             : (_showHomeCharacterList.Contains(ticket.SportTypeId) ? " (" + Apollo.Age.Resources.BetList.h +")" : string.Empty)
-                                                    }
-                                                );
+                                                    });
 
             this.Template.awayTeam = awayName;
-            //this.Template.sportTypeName = ticketHelper.GetSportNameById(ticket.SportTypeId);
+            // this.Template.sportTypeName = ticketHelper.GetSportNameById(ticket.SportTypeId);
 
-            //this.Template.home_firstGoal_lastGoal = string.Empty;
-            //this.Template.away_firstGoal_lastGoal = string.Empty;
+            // this.Template.home_firstGoal_lastGoal = string.Empty;
+            // this.Template.away_firstGoal_lastGoal = string.Empty;
 
-            //this.CalculateFG_LG(ticket.BetStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
+            // this.CalculateFG_LG(ticket.BetStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
 
             bool betHomeTeam = ticket.BetTeam != null && ticket.BetTeam.Contains("h");
 
             this.Template.betTeam = betHomeTeam ? this.Template.homeTeam : awayName;
 
-            //this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
+            // this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
 
-            //this.Template.Score.scoreClassName = BL_FAVORITE;
-            //bool isFavorite = betHomeTeam ? (ticket.Handicap2 <= ticket.Handicap1) : (ticket.Handicap2 >= ticket.Handicap1);
+            // this.Template.Score.scoreClassName = BL_FAVORITE;
+            // bool isFavorite = betHomeTeam ? (ticket.Handicap2 <= ticket.Handicap1) : (ticket.Handicap2 >= ticket.Handicap1);
             decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : -ticket.Handicap1;
             this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, handicap);
         }

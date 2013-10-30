@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Total Goal
+    /// Total Goal.
     /// </summary>
     public class Choice6 : Choice1
     {
@@ -36,8 +36,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     {
                                                         "&nbsp;",
                                                         ticket.BetTeam
-                                                    }
-                                               );
+                                                    });
 
             //this.Template.betTeamClassName = BL_FAVORITE;
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;

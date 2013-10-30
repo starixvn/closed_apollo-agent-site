@@ -8,11 +8,11 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using Fanex.BetList.Core.Entities;
-
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+
     /// <summary>
     /// 1st Odd/Even
     /// </summary>

@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Outright
+    /// Outright.
     /// </summary>
     public class Choice10 : Choice1
     {

@@ -19,7 +19,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    ///    Match Handicap Games 3-way
+    ///    Match Handicap Games 3-way.
     /// </summary>
     public class Choice1309 : Choice1
     {

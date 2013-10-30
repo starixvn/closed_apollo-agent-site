@@ -14,12 +14,9 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
-    using NPOI.HSSF.UserModel;
 
     public class Stake1 : IStake
     {
-        public Stake_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Stake1" /> class.
         /// </summary>
@@ -27,6 +24,8 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
         {
             this.Template = new Stake_Template();
         }
+
+        public Stake_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.

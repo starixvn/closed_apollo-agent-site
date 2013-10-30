@@ -38,8 +38,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 "'>",
                                                 Apollo.Age.Resources.BetList.p2pGame,
                                                 "</span></div>"
-                                            }
-                                        );
+                                            });
 
             this.Template.SetValue(content);
 

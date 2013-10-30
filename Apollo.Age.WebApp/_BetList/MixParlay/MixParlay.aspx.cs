@@ -45,6 +45,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                 {
                     line = "<div></div>";
                 }
+
                 if (tickets[i].StatusId == (int)Apollo.Age.Enumerations.BetStatus.Void)
                 {
                     builder.AddChoice(tickets[i], ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
@@ -82,6 +83,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
+
             return null;
         }
     }

@@ -16,7 +16,7 @@ namespace Apollo.Age.Integration.Models
 
     /// <summary>
     /// Represent the object returned from authorization model
-    /// So pls ignore stylecop rule violations
+    /// So pls ignore stylecop rule violations.
     /// </summary>
     public class JsonResponseModel
     {

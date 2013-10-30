@@ -21,7 +21,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// 3-way handicap
+    /// 3-way handicap.
     /// </summary>
     public class Choice28 : Choice1
     {
@@ -81,8 +81,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         "&nbsp;<span class=\"underdog\">(",
                                                         handicap.ToString(),
                                                         ")</span>"
-                                                    }
-                                               );
+                                                    });
         }
     }
 }

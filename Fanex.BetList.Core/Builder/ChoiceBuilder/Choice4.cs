@@ -40,8 +40,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     {
                                                         "&nbsp;",
                                                         choice
-                                                    }
-                                               );
+                                                    });
 
             //this.Template.betTeamClassName = BL_FAVORITE;
         }

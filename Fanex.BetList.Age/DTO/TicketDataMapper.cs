@@ -19,23 +19,15 @@ namespace Fanex.BetList.Age.DTO
     {
         public static Dictionary<string, string> dict = new Dictionary<string, string>()         
         { 
-            {"RefNo","refno"}, 
-
-            {"BetTypeId","bettype"}, 
-
-            {"Status","status"},
-
-            {"Odds","odds"},
-
-            {"Stake","stake"},          
-
-            {"BetTeam","betteam"},
-
-            {"SuperPT","spositiontaking"},
-
-            {"MasterPT","mpositiontaking"},
-
-            {"AgentPT","apositiontaking"}
+            {"RefNo", "refno"}, 
+            {"BetTypeId", "bettype"}, 
+            {"Status", "status"},
+            {"Odds", "odds"},
+            {"Stake", "stake"},
+            {"BetTeam", "betteam"},
+            {"SuperPT", "spositiontaking"},
+            {"MasterPT", "mpositiontaking"},
+            {"AgentPT", "apositiontaking"}
         };
     }
 }

@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Total Sets
+    /// Total Sets.
     /// </summary>
     public class Choice1304 : Choice3
     {

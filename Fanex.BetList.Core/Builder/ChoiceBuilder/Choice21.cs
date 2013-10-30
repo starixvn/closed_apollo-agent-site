@@ -8,13 +8,13 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using Fanex.BetList.Core.Entities;
-
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+
     /// <summary>
-    /// Clean Sheet
+    /// Clean Sheet.
     /// </summary>
     public class Choice21 : Choice20
     {

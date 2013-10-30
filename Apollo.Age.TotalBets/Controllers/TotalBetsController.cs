@@ -53,7 +53,7 @@ namespace Apollo.Age.TotalBets.Controllers
         /// <returns>View return.</returns>
         public ActionResult Index()
         {
-            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; //show button Refresh Now once logged in by Super and MainShareHolder
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; // show button Refresh Now once logged in by Super and MainShareHolder
             return View();
         }
 
@@ -122,12 +122,6 @@ namespace Apollo.Age.TotalBets.Controllers
             var model = GetModel<OutRightModel>(BetTypes.Outright, mainShareHolderId);
             return View(model);
         }
-
-        //public ViewResult NumberGame()
-        //{
-        //    var model = GetModel<NumberGameModel>(betType: 161);
-        //    return View(model);
-        //}
 
         /// <summary>
         /// Load Home No Bet, Draw No Bet.

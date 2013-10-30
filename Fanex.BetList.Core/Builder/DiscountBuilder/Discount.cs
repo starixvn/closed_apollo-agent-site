@@ -20,6 +20,14 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
     public class Discount : IDiscount
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Discount" /> class.
+        /// </summary>
+        public Discount()
+        {
+            this.Template = new Discount_Template();
+        }
+        
+        /// <summary>
         /// Gets or sets the template.
         /// </summary>
         /// <value>
@@ -28,18 +36,10 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
         public Discount_Template Template { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Discount" /> class.
-        /// </summary>
-        public Discount()
-        {
-            this.Template = new Discount_Template();
-        }
-
-        /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="page">Link from page</param>
+        /// <param name="page">Link from page.</param>
         /// <returns></returns>
         public virtual Discount_Template Render(ITicket ticket, BetListPage page)
         {
@@ -81,13 +81,17 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             {
                 case "a":
                     return "D";
+
                 case "b":
                     return "C";
+
                 case "c":
                     return "B";
+
                 case "d":
                     return "A";
             }
+
             return string.Empty;
         }
     }

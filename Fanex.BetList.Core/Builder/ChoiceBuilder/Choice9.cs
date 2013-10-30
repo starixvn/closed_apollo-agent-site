@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Mix Parlay
+    /// Mix Parlay.
     /// </summary>
     public class Choice9 : Choice1
     {
@@ -47,15 +47,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     "<div id=\"divEvent_",
                                                     ticket.TransId.ToString(),
                                                     "\" style=\"display: none\" ></div>"
-                                                }
-                                          );
+                                                });
 
             this.Template.SetValue(mixParlay);
 
             return this.Template;
         }
 
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
             IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblMixParlay);

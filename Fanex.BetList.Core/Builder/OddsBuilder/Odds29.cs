@@ -17,12 +17,10 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Combination Mix Parlay
+    /// Combination Mix Parlay.
     /// </summary>
     public class Odds29 : IOdds
     {
-        public Odds_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Odds29" /> class.
         /// </summary>
@@ -30,6 +28,8 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         {
             this.Template = new Odds_Template();
         }
+
+        public Odds_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.

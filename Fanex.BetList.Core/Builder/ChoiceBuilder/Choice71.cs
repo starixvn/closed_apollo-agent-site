@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Casino Games
+    /// Casino Games.
     /// </summary>
     public class Choice71 : Choice1
     {

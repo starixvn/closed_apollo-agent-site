@@ -23,14 +23,14 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.Services.Impl;
 
     /// <summary>
     /// Wager Controller.
@@ -135,7 +135,6 @@ namespace Apollo.Age.Wagers.Controllers
             bool isEarlyMarket = false,
             bool isOutright = false)
         {
-
             var functionKey = ApolloFunctionKeys.Wagers;
             // Check permission
             if (isEarlyMarket)

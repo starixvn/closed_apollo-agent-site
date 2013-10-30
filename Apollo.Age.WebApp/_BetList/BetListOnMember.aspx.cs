@@ -140,6 +140,7 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
                 builder.Append("</tr>");
             }
+
             if (pageType.Equals("report") || pageType.Equals("accountinfo"))
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost);
@@ -239,10 +240,12 @@ namespace Sunplus.Agent.UI._BetList
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             var maxDate = DateTime.Now;
+
             if (string.IsNullOrEmpty(Request["custid"]) && string.IsNullOrEmpty(Request["username"]))
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
+
             if (pageType.Equals("accountinfo") && (DateTime.Parse(fromDate.ToShortDateString()) < DateTime.Parse(minDate.ToShortDateString())
                 || DateTime.Parse(toDate.ToShortDateString()) < DateTime.Parse(minDate.ToShortDateString())
                 || DateTime.Parse(toDate.ToShortDateString()) > DateTime.Parse(maxDate.ToShortDateString())))
@@ -264,9 +267,9 @@ namespace Sunplus.Agent.UI._BetList
         }
 
         /// <summary>
-        /// Get Navigation link
+        /// Get Navigation link.
         /// </summary>
-        /// <param name="agentId">Agent Id</param>
+        /// <param name="agentId">Agent Id.</param>
         /// <returns></returns>
         private string Navigation(int agentId)
         {
@@ -276,6 +279,7 @@ namespace Sunplus.Agent.UI._BetList
             navigation.MemberUser.Hide();
             navigation.AgentUser.Hide();
             var link = string.Empty;
+
             foreach (var item in listAgent)
             {
                 var last = listAgent.LastOrDefault();
@@ -294,6 +298,7 @@ namespace Sunplus.Agent.UI._BetList
                     link += li.ToString();
                 }
             }
+
             navigation.item = link;
             return navigation.ToString();
         }

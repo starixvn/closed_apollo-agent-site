@@ -38,12 +38,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     new string[]
                                                     {
                                                         team,
-                                                        " <span class=\"",                                                                                                 BL_FAVORITE,
+                                                        " <span class=\"", BL_FAVORITE,
                                                         "\">",
                                                         yesNo.ToUpper(),
                                                         "</span>"
-                                                    }
-                                               );
+                                                    });
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             //this.Template.Handicap.handicap = null;
         }

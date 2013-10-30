@@ -41,8 +41,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         Apollo.Age.Resources.BetList.numbergameno,
                                                         "&nbsp;",
                                                         ticket.MatchCode
-                                                    }
-                                                );
+                                                    });
         }
     }
 }

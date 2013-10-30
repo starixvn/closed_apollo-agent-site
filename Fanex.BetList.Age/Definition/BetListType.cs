@@ -41,12 +41,12 @@ namespace Fanex.BetList.Age.Definition
         Default = 0x1,
 
         /// <summary>
-        /// Check hide column on SmartPhone
+        /// Check hide column on SmartPhone.
         /// </summary>
         SmartPhone = 0x8,
 
         /// <summary>
-        /// Will not have SuperPT, MasterPT, AgentPT
+        /// Will not have SuperPT, MasterPT, AgentPT.
         /// </summary>
         DailyStatement = 0x10
     }

@@ -7,7 +7,6 @@
 //   <change who="Anders.Le" date="2013.7.7">Created</change>
 // </history>
 
-
 namespace Apollo.Age.WebApp
 {
     using System.Web.Mvc;
@@ -33,8 +32,7 @@ namespace Apollo.Age.WebApp
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
-    using NPOI.HSSF.UserModel;
 
     public class Stake29 : IStake
     {
@@ -46,8 +45,8 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
                                                 "&nbsp;(", 
                                                 ConvertByBetType.Stake(ticket.Stake), 
                                                 ")" 
-                                            }
-                                       );
+                                            });
+
             return Template;
         }
 

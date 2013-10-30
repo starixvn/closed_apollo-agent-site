@@ -19,21 +19,21 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Combination Mix Parlay
+    /// Combination Mix Parlay.
     /// </summary>
     public class Choice29 : Choice1
     {
         /// <summary>
-        /// The _combination offer name
+        /// The _combination offer name.
         /// </summary>
         private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string>
         {
-            {"110","Trixie"},
-            {"1110","Yankee"},
-            {"11110","Canadian"},
-            {"111110","Heinz"},
-            {"1111110","Super Heinz"},
-            {"11111110","Goliath"}
+            {"110", "Trixie"},
+            {"1110", "Yankee"},
+            {"11110", "Canadian"},
+            {"111110", "Heinz"},
+            {"1111110", "Super Heinz"},
+            {"11111110", "Goliath"}
         };
 
         /// <summary>
@@ -48,6 +48,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             string mixParlay = string.Empty, custid = string.Empty;
+
             if (HttpContext.Current.Request["custid"] != null)
             {
                 custid = HttpContext.Current.Request["custid"];
@@ -91,8 +92,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             "&quot;, this);\">",
                                             Apollo.Age.Resources.BetList.details,
                                             "</div>"
-                                        }
-                                   );
+                                        });
 
             this.Template.SetValue(mixParlay);
         }
@@ -108,7 +108,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             return _combinationOfferName.ContainsKey(betteam) ? _combinationOfferName[betteam] : string.Empty;
         }
 
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, Entities.RTFHelper rtfHelper)
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            bool isShowScoreMap, 
+            Entities.RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
             IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);

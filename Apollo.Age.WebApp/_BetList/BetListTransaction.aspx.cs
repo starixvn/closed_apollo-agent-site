@@ -129,6 +129,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
+
             if (pageType.Equals("transaction"))
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost | BetListType.Member);
@@ -137,6 +138,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
             }
+
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
@@ -245,6 +247,7 @@ namespace Sunplus.Agent.UI._BetList
                     mainTickets.TicketList = newTicketList;
                 }
             }
+
             return mainTickets;
         }
 
@@ -282,6 +285,7 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
+
             fromDate = GetDateTimeRequest("fromDate", maxDate);
             toDate = GetDateTimeRequest("toDate", maxDate);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();

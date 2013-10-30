@@ -53,6 +53,14 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Variables
 
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
+
         public override void RenderContent(HtmlTextWriter writer)
         {
             #region INIT
@@ -128,6 +136,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 tpl.MainShareHolder.Hide();
             }
+
             writer.Write(tpl);
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
@@ -212,6 +221,7 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     mainShareHolderId = Convert.ToInt32(mainShareHolderId);
                 }
+
                 loggedId = CurrentSession.AgentId;
             }
             else
@@ -239,14 +249,6 @@ namespace Sunplus.Agent.UI._BetList
             }
 
             return null;
-        }
-
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                return SessionManager.CurrentSession;
-            }
         }
 
         #region Box Main Shareholder

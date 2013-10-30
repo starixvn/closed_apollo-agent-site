@@ -122,10 +122,10 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         }
 
         /// <summary>
-        /// Extract string value between tags from a source string
+        /// Extract string value between tags from a source string.
         /// </summary>
-        /// <param name="tag">tag name</param>
-        /// <param name="source">source string</param>
+        /// <param name="tag">tag name.</param>
+        /// <param name="source">source string.</param>
         /// <returns></returns>
         private string ExtractStringBetweenTag(string tag, string source)
         {

@@ -8,13 +8,13 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using Fanex.BetList.Core.Entities;
-
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
+    using System.Collections.Generic;
+    using Fanex.BetList.Core.Entities;
+
     /// <summary>
-    /// Virtual Tennis - PlayerWin
+    /// Virtual Tennis - PlayerWin.
     /// </summary>
     public class Choice1220 : Choice1
     {
