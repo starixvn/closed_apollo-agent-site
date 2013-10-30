@@ -11,11 +11,14 @@
 
 namespace Fanex.Age.UI
 {
+    /// <summary>
+    /// Common class.
+    /// </summary>
     public class Common
     {
         #region Background color setting
 
-        // Note that we use bgColor, don't use className because performance problem
+        // Note that we use bgColor, don't use class Name because performance problem
         public const string RowBgOdd = "#F6F8F9";
         public const string RowBgEven = "#faf9ee";
         public const string RowBgOver = "#FBF0B9";
@@ -34,72 +37,72 @@ namespace Fanex.Age.UI
 
         #endregion
 
-        // Checked status for checkbox
+        // Checked status for checkbox.
         public const string CHECKED = " checked";
         public const string DISABLED = " disabled";
 
         #region BetList
 
         /// <summary>
-        /// BestList Winloss by date.
+        /// Best List Win loss by date.
         /// </summary>
         public const string BetListWinLossByDate = "WLByDate";
 
         /// <summary>
-        /// BestList Winloss by date old.
+        /// BestList Win loss by date old.
         /// </summary>
         public const string BetListWinLossByDateOld = "WLByDate_Old";
 
         /// <summary>
-        /// WinLossBy bet type Match.
+        /// Win Loss By bet type Match.
         /// </summary>
         public const string WinLossByBetTypeMatch = "WLByBettypeMatch";
 
         /// <summary>
-        /// BetList BettypeMatch (Hdp_OU_Live_TG_OE_Outright_ML).
+        /// Bet List Bettype Match (Hdp_OU_Live_TG_OE_Outright_ML).
         /// </summary>
         public const string BetListByBetTypeMatch = "BettypeMatch";
 
         /// <summary>
-        /// BetList BettypeMatch (RACING).
+        /// BetList Bettype Match (RACING).
         /// </summary>
         public const string RacingBetListByBetTypeMatch = "RacingBettypeMatch";
 
         /// <summary>
-        /// BetList RunningBettypeMatch.
+        /// BetList Running Bet type Match.
         /// </summary>
         public const string RunningBetListByBetTypeMatch = "RunningBettypeMatch";
 
         /// <summary>
-        /// BestList by Bettype
+        /// Best List by Bet type
         /// 1X2_CS_MP.
         /// </summary>
         public const string BetListByBetType = "Bettype";
 
         /// <summary>
-        /// Best List by MixParlay.
+        /// Best List by Mix Parlay.
         /// </summary>
         public const string BestListByMixParlay = "MixParlay";
 
         /// <summary>
-        /// BestList by Bettype only Mixparlay of Match.
+        /// Best List by Bet type only Mix parlay of Match.
         /// </summary>
         public const string BetListByMixParlayOfMatch = "MixParlayByMatch";
 
         /// <summary>
-        /// BetListRunningByDate_Mem
+        /// Bet list running by date on member.
         /// Only for agent - (Member Outstanding).
         /// </summary>
         public const string BetListRunningByDate_Member = "RunByDate_Mem";
 
         /// <summary>
-        /// BetListRunningByBettypeMatch_Mem
+        /// Bet list runnning by bet type match on member.
         /// Only for agent - (Member Outstanding).
         /// </summary>
         public const string BetListRunningByBetTypeMatch_Member = "RunByBtypeM";
 
         /// <summary>
-        /// Age_BetList_SelAllByDate_Mem
+        /// Bet list by all date.
         /// Only for agent - (Member Outstanding).
         /// </summary>
         public const string BetListByAllDate = "AllDate";

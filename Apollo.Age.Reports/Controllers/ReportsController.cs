@@ -95,7 +95,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Outstanding ViewResult.</returns>
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
-            // Get user permission
+            // Get user permission.
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             var hasPermission = userPermission[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query;
@@ -115,7 +115,7 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
+            // End check permission.
 
             this.CurrentAgentId = agentId;
             sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
@@ -154,7 +154,7 @@ namespace Apollo.Age.Reports.Controllers
             string betTypeName,
             bool isAgentOutStanding)
         {
-            // Get user permission
+            // Get user permission.
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             var hasPermission = userPermission[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query;
@@ -173,7 +173,7 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
+            // End check permission.
 
             this.CurrentAgentId = agentId;
             var sessionKey = string.Format(

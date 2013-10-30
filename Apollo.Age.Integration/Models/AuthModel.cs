@@ -16,7 +16,7 @@ namespace Apollo.Age.Integration.Models
     using System.Text;
 
     /// <summary>
-    /// It contains properties parsed from json respone returned from authentication process.
+    /// It contains properties parsed from JSON response returned from authentication process.
     /// </summary>
     public class AuthModel
     {

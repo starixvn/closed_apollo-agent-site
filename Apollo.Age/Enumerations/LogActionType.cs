@@ -12,12 +12,12 @@ namespace Apollo.Age.Enumerations
     public enum LogActionType : int
     {
         /// <summary>
-        /// All.
+        /// All action.
         /// </summary>
         All = 0,
 
         /// <summary>
-        /// Commission.
+        /// Commission action.
         /// </summary>
         Commission = 2,
 

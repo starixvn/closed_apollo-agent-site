@@ -9,18 +9,24 @@
 
 namespace Apollo.Age.Enumerations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public enum MessageTypes 
+    public enum MessageTypes
     {
+        /// <summary>
+        /// The private.
+        /// </summary>
         Private,
+
+        /// <summary>
+        /// The special.
+        /// </summary>
         Special,
+
+        /// <summary>
+        /// The public.
+        /// </summary>
         Public
     }
 }

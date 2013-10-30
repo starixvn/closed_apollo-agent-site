@@ -56,6 +56,11 @@ namespace Apollo.Age.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Fetches the specified criteria.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of user.</returns>
         public override IEnumerable<User> Fetch(ICriteria criteria)
         {
             try
@@ -294,6 +299,11 @@ namespace Apollo.Age.Repositories.Impl
             return false;
         }
 
+        /// <summary>
+        /// Gets all user policy.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of function policy.</returns>
         public IEnumerable<FunctionPolicy> GetAllUserPolicy(ICriteria criteria)
         {
             try
@@ -317,6 +327,10 @@ namespace Apollo.Age.Repositories.Impl
             return null;
         }
 
+        /// <summary>
+        /// Assigns the user permission.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
         public void AssignUerPermision(ref UserAssignFunctionCriteria criteria)
         {
             try
