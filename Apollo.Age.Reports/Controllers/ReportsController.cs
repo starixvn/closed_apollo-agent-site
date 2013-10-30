@@ -256,7 +256,6 @@ namespace Apollo.Age.Reports.Controllers
             {
                 return View("ReportAccessDenied");
             }
-            // end check permission
 
             this.CurrentAgentId = agentId;
 
@@ -446,7 +445,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
 
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new MemberWinLossCriteria
@@ -523,7 +521,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
             var agentWinLossList = (List<AgentWinLossModel>)HttpContext.Session[sessionKey];
@@ -610,12 +607,14 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission)
             {
-                return View("ReportAccessDenied", new MemberWinLossViewModel
-                {
-                    SportTypeIds = sporttypes,
-                    BetTypeIds = bettypes,
-                    SportList = SingbetSportService.GetSport(isOther: false)
-                });
+                return View(
+                    "ReportAccessDenied", 
+                    new MemberWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
             }
             // end check permission
 

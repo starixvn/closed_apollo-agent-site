@@ -18,13 +18,13 @@ namespace Apollo.Age.Forecast.Repositories
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Forecast Repository
+    /// Forecast Repository.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
     {
         /// <summary>
-        /// Get ScoreMap Result
+        /// Get ScoreMap Result.
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Apollo.Age.Forecast.Repositories
         }
 
         /// <summary>
-        /// Get Main shareholder id of member
+        /// Get Main shareholder id of member.
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>

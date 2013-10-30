@@ -14,6 +14,7 @@ namespace Apollo.Age.Account.ViewModels
     public class FundOutViewModel
     {        
         public decimal SportCredit { get; set; }
+
         public decimal MemberId { get; set; }
     }
 }

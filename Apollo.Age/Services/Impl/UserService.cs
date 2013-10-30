@@ -285,9 +285,9 @@ namespace Apollo.Age.Services.Impl
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="adminId"> Admin user id.</param>
-        /// <param name="netSessionId"> Session Id. </param>
-        /// <param name="ip"> Requested IP</param>
+        /// <param name="adminId">Admin user id.</param>
+        /// <param name="netSessionId">Session Id. </param>
+        /// <param name="ip">Requested IP.</param>
         /// <returns><c>true</c> if check in successfull; otherwise, <c>false</c>.</returns>
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
@@ -312,9 +312,9 @@ namespace Apollo.Age.Services.Impl
         }
 
         /// <summary>
-        /// Return IsKickOut
+        /// Return IsKickOut.
         /// </summary>
-        /// <param name="onUserId"> Authenticated User Id.</param>
+        /// <param name="onUserId">Authenticated User Id.</param>
         /// <returns></returns>
         public bool InternalReCheckIn(int onUserId)
         {

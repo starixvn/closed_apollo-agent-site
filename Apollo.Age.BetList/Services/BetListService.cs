@@ -104,34 +104,34 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Get Combination Mix Parlay Detail
+        /// Get Combination Mix Parlay Detail.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>SystemParlay data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>SystemParlay data.</returns>
         public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
         {
             return this._betListRepository.GetCombinationMixParlayDetail(criteria);
         }
 
         /// <summary>
-        /// Get UserId By Username
+        /// Get UserId By Username.
         /// </summary>
-        /// <param name="loggedId">Logged id</param>
-        /// <param name="isAgent">Agent choice</param>
-        /// <param name="username">User name</param>
-        /// <param name="agentId">Output agent id</param>
-        /// <param name="custId">Output customer id</param>
-        /// <param name="errorCode">Output error code</param>
+        /// <param name="loggedId">Logged id.</param>
+        /// <param name="isAgent">Agent choice.</param>
+        /// <param name="username">User name.</param>
+        /// <param name="agentId">Output agent id.</param>
+        /// <param name="custId">Output customer id.</param>
+        /// <param name="errorCode">Output error code.</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             this._betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
         }
 
         /// <summary>
-        /// Get Agent up line of member
+        /// Get Agent up line of member.
         /// </summary>
-        /// <param name="parentId">Logged id</param>
-        /// <param name="custId">customer id</param>
+        /// <param name="parentId">Logged id.</param>
+        /// <param name="custId">customer id.</param>
         /// <returns></returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
@@ -139,7 +139,7 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Get data betlist on Wagers page
+        /// Get data betlist on Wagers page.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns></returns>

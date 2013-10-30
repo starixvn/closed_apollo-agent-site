@@ -24,7 +24,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Core;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Web.Attribute;
@@ -33,14 +36,10 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.CustSetting.Service;
     using Fanex.CustSetting.ViewData;
     using Newtonsoft.Json;
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Core;
 
     /// <summary>
-    /// Customer Setting Controller
+    /// Customer Setting Controller.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerSettingController : BaseController
     {
@@ -250,7 +249,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Views "share info" from logged-in agent to selected (searched) member
+        /// Views "share info" from logged-in agent to selected (searched) member.
         /// </summary>
         /// <param name="username">selected member username</param>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -362,7 +361,15 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="fromLeftMenu">Link from left menu or not</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
-        public ActionResult EditAgentPositionTaking(int agentId, string userName, int? agentLevel, bool reload = false, bool isSimpleMode = true, string backLink = "", bool fromLeftMenu = false, string parentUsername = "")
+        public ActionResult EditAgentPositionTaking(
+            int agentId, 
+            string userName, 
+            int? agentLevel, 
+            bool reload = false, 
+            bool isSimpleMode = true, 
+            string backLink = "", 
+            bool fromLeftMenu = false, 
+            string parentUsername = "")
         {
             var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
@@ -374,9 +381,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;// && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit; // && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
             ViewBag.ParentUsername = parentUsername;
             ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
+
             return View("~/Views/Account/EditPositionTaking.cshtml");
         }
 
@@ -420,14 +428,14 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Edit member position taking
+        /// Edit member position taking.
         /// </summary>
-        /// <param name="memberId">Member id need be edited</param>
+        /// <param name="memberId">Member id need be edited.</param>
         /// <param name="userName">Member user name.</param>
         /// <param name="agentId">Cross edit agent.</param>
         /// <param name="agentUsername">Agent user name.</param>
-        /// <param name="reload">Reload page or not</param>
-        /// <param name="isSimpleMode">Current mode is simple mode or not</param>
+        /// <param name="reload">Reload page or not.</param>
+        /// <param name="isSimpleMode">Current mode is simple mode or not.</param>
         /// <param name="backLink">Back link after editing.</param>
         /// <param name="fromLeftMenu">From left menu.</param>
         /// <returns>Action result</returns>
@@ -466,7 +474,6 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="targetCustId">Target cust id is member or agent.</param>
         /// <param name="agentId">Agent id for edit cross.</param>
-
         /// <param name="agentLevel">Agent level.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
@@ -598,7 +605,12 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsViewOnMember = false;
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = true;
-            SettingContext settingContext = this.GetCurrentSettingContext(CurrentSession.AgentId, base.CurrentSession.AgentId, CurrentSession.AgentLevel, FormSettingType.All, string.Empty);
+            SettingContext settingContext = this.GetCurrentSettingContext(
+                CurrentSession.AgentId, 
+                base.CurrentSession.AgentId, 
+                CurrentSession.AgentLevel, 
+                FormSettingType.All, 
+                string.Empty);
             return ViewAccountDetails(settingContext);
         }
 
@@ -643,12 +655,13 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;//&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit; //&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
             //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
             //{
             //    settingContext.FormId = FormType.EditPT;
             //}
+
             return ViewAccountDetails(settingContext);
         }
 

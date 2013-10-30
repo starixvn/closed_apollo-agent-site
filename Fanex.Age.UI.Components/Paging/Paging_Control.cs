@@ -180,6 +180,20 @@ namespace Fanex.Age.UI.Components
 
         Paging_Template tpl = new Paging_Template();
 
+        # region String Convertion
+
+        public static implicit operator string(Paging_Control value)
+        {
+            return value.ToString();
+        }
+
+        public override string ToString()
+        {
+            return tpl.ToString();
+        }
+
+        #endregion
+
         protected void ShowHidePageSize()
         {
             if (PageCount == 0) tpl.pageclass = "pagingHiden";
@@ -206,20 +220,6 @@ namespace Fanex.Age.UI.Components
             string pi = UrlProcessor.GetParameterValue(PAGE_INDEX_P, url);
             int.TryParse(pi, out pageIndex);
         }
-
-        # region String Convertion
-
-        public static implicit operator string(Paging_Control value)
-        {
-            return value.ToString();
-        }
-
-        public override string ToString()
-        {
-            return tpl.ToString();
-        }
-
-        #endregion
 
         #region IComponent Members
 

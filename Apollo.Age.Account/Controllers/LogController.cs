@@ -32,7 +32,6 @@ namespace Apollo.Age.Account.Controllers
     /// <summary>
     /// Log controller.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.System_Log, Policy = Policy.Query)]
     public class LogController : BaseController
@@ -660,7 +659,7 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="oldData">The old data.</param>
         /// <param name="data">The data.</param>
-        /// <returns>Log action permission user control/</returns>
+        /// <returns>Log action permission user control.</returns>
         public ViewResult LogActionType9(string oldData, string data)
         {
             var listFunctionPolicy = new List<LogPermissionModel>();

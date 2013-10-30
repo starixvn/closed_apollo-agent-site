@@ -7,7 +7,6 @@
 //   <change who="Ricky.Nguyen" date="2013.9.20">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Criterias
 {
     using System;

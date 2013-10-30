@@ -16,7 +16,6 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class LogRunSpService : QueryService, ILogRunSpService
     {
         public IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria)

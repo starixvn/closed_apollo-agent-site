@@ -12,7 +12,6 @@ namespace Apollo.Age.Account.Models
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class LogRunSpModel
     {
         public long LogId { get; set; }

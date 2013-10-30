@@ -495,11 +495,15 @@ namespace Apollo.Age.Account.Controllers
             if (!hasDownlineDetailsPermission)
             {
                 return Json(
-                    new[] { 
-                    new { 
-                        Id = this.CurrentSession.AgentId,
-                        Username = this.CurrentSession.Username } 
-                    }, JsonRequestBehavior.AllowGet);
+                    new[] 
+                    { 
+                        new 
+                        { 
+                            Id = this.CurrentSession.AgentId,
+                            Username = this.CurrentSession.Username 
+                        } 
+                    }, 
+                    JsonRequestBehavior.AllowGet);
             }
 
             var agentList = _accountService.GetAgentByUsername(criteria).Select(x => new { x.Id, x.Username }).ToList();

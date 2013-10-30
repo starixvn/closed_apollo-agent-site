@@ -16,7 +16,7 @@ namespace Apollo.Age.Reports.Criterias
     {
         public DateTime FromDate { get; set; }
        
-        [SpParam(Ignored=true)]
+        [SpParam(Ignored = true)]
         public DateTime BalanceUpDay { get; set; }
        
         public bool IsShowAll { get; set; }

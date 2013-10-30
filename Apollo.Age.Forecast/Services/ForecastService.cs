@@ -26,7 +26,7 @@ namespace Apollo.Age.Forecast.Services
     using Fanex.Common.Helper;
 
     /// <summary>
-    /// Forecast Service
+    /// Forecast Service.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
@@ -48,7 +48,7 @@ namespace Apollo.Age.Forecast.Services
         //private IForecastRepository _forecastRepository { get; set; }
 
         /// <summary>
-        /// Running Leagues
+        /// Running Leagues.
         /// </summary>
         /// <param name="betType"></param>
         /// <param name="agentId"></param>
@@ -67,7 +67,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Forecast 1X2
+        /// Forecast 1X2.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
@@ -87,7 +87,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// FC Handicap OU
+        /// FC Handicap OU.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="leagueId"></param>
@@ -111,14 +111,19 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Forecast Matches
+        /// Forecast Matches.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
         /// <param name="currentScore"></param>
         /// <returns></returns>
-        public ForecastMatchWinLostModel GetForecastMatcheValue(int agentId, int loggedId, int matchId, int betType, int currentScore)
+        public ForecastMatchWinLostModel GetForecastMatcheValue(
+            int agentId, 
+            int loggedId, 
+            int matchId, 
+            int betType, 
+            int currentScore)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(matchId, "matchId");
@@ -146,7 +151,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// 1x2 Matches
+        /// 1x2 Matches.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="matchId"></param>
@@ -169,7 +174,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Results
+        /// Score Map Results.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="matchIds"></param>
@@ -367,7 +372,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Top Odds
+        /// Get Top Odds.
         /// </summary>
         /// <param name="matchId"></param>
         /// <param name="betType"></param>
@@ -388,10 +393,10 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Main shareholder in super view
+        /// Get Main shareholder in super view.
         /// </summary>
-        /// <param name="criteria">Get data parameters</param>
-        /// <returns>main shareholder id</returns>
+        /// <param name="criteria">Get data parameters.</param>
+        /// <returns>main shareholder id.</returns>
         public int GetMainShareHolderByMember(GetMainShareHolderByMemberCriteria criteria)
         {
             return _forecastRepository.GetMainShareHolderByMember(criteria);
@@ -400,7 +405,7 @@ namespace Apollo.Age.Forecast.Services
         #region Private Methods
 
         /// <summary>
-        /// Get Odd value of ScoreMap
+        /// Get Odd value of ScoreMap.
         /// </summary>
         /// <param name="forecastMatches"></param>
         /// <param name="betType"></param>
@@ -441,7 +446,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Forecast Handicap Value
+        /// Get Forecast Handicap Value.
         /// </summary>
         /// <param name="forecastMatch"></param>
         /// <param name="currentScore"></param>
@@ -472,7 +477,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Forecast Over Under Value
+        /// Get Forecast Over Under Value.
         /// </summary>
         /// <param name="forecastMatch"></param>
         /// <param name="currentScore"></param>
@@ -503,7 +508,7 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Load Score Map Bet Type from DB or cache
+        /// Load Score Map Bet Type from DB or cache.
         /// </summary>
         /// <returns></returns>
         private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()

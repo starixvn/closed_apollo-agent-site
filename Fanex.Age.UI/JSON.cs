@@ -71,8 +71,7 @@ namespace Fanex.Age.UI
         /// <returns></returns>
         private static string ObjectToJSON(object name, object value)
         {
-            return name == null ? null
-                : string.Format("\"{0}\":{1}", name, ToJSON(value));
+            return name == null ? null : string.Format("\"{0}\":{1}", name, ToJSON(value));
         }
 
         /// <summary>
@@ -87,13 +86,21 @@ namespace Fanex.Age.UI
             string text = value.ToString();
 
             if (value is string)
+            {
                 return string.Format("\"{0}\"", text.Replace("\"", "\\\""));
+            }
             else if (value is JSONData)
+            {
                 return Render((JSONData)(value));
+            }
             else if (value is bool)
+            {
                 return text.ToLower();
+            }
             else if (value is Array)
+            {
                 return ArrayToJSON((object[])(value));
+            }
 
             return text;
         }

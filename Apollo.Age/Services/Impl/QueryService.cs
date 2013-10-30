@@ -20,7 +20,7 @@ namespace Apollo.Age.Services.Impl
 
     /// <summary>
     /// This class encapsulate dynamic repository to provide 
-    /// a flexible way to get data from db by using Stored Procedure
+    /// a flexible way to get data from db by using Stored Procedure.
     /// </summary>
     public class QueryService : ServiceBase
     {

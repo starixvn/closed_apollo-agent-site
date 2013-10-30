@@ -30,6 +30,7 @@ namespace Apollo.Age.Reports.Core
         /// The order should follow.
         /// </summary>
         public static readonly Dictionary<int, string> MatchEnteredSports = new
+
         Dictionary<int, string>
         {
             { 1, "soccer" },
@@ -42,6 +43,7 @@ namespace Apollo.Age.Reports.Core
         };
 
         public static readonly Dictionary<int, string> ReportAgentLevelDictionary = new
+
         Dictionary<int, string>
         {
             { 0, "lblSuper" },

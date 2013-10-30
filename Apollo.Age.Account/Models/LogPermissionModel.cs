@@ -10,6 +10,7 @@
 namespace Apollo.Age.Account.Models
 {
     using Apollo.Age.Entities;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

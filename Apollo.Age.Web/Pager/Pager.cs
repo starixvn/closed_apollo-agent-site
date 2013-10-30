@@ -57,7 +57,7 @@
                 else if (above > (pageCount - 2))
                 {
                     above = pageCount;
-                    below = (pageCount - nrOfPagesToDisplay + 1 -1);
+                    below = (pageCount - nrOfPagesToDisplay + 1 - 1);
                 }
 
                 start = below;

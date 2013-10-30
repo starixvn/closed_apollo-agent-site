@@ -32,7 +32,7 @@ namespace Apollo.Age.Services.Interface
         bool AllowLineAccountSSO(string username);
 
         /// <summary>
-        /// Validates a username and password against credentials stored in NAP database
+        /// Validates a username and password against credentials stored in NAP database.
         /// </summary>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
 
@@ -55,7 +55,7 @@ namespace Apollo.Age.Services.Interface
             string countryCode);
 
         /// <summary>
-        /// Return OnUserId
+        /// Return OnUserId.
         /// </summary>
         /// <param name="adminId"></param>
         /// <param name="netSessionId"></param>
@@ -64,17 +64,17 @@ namespace Apollo.Age.Services.Interface
         int InternalCheckIn(int adminId, string netSessionId, string ip);
 
         /// <summary>
-        /// Return IsKickOut
+        /// Return IsKickOut.
         /// </summary>
         /// <param name="onUserId"></param>
         /// <returns></returns>
         bool InternalReCheckIn(int onUserId);
 
         /// <summary>
-        /// Return OnUserId
+        /// Return OnUserId.
         /// </summary>
-        /// <param name="onUserId">User id of current loginned user</param>
-        /// <returns>result of login</returns>
+        /// <param name="onUserId">User id of current loginned user.</param>
+        /// <returns>result of login.</returns>
         int InternalLogout(int onUserId);
 
         /// <summary>

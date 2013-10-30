@@ -26,7 +26,6 @@ namespace Apollo.Age.Account.Controllers
     /// <summary>
     /// Message controller.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class MessageController : BaseController
     {

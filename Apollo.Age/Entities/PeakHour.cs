@@ -24,7 +24,8 @@ namespace Apollo.Age.Entities
 
         public int ToHour { get; set; }
 
-        public bool IsSameDay {
+        public bool IsSameDay 
+        {
             get
             {
                 return FromDayOfWeek == ToDayOfWeek;

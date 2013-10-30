@@ -136,6 +136,7 @@ namespace Apollo.Age.Wagers.Controllers
             bool isOutright = false)
         {
             var functionKey = ApolloFunctionKeys.Wagers;
+
             // Check permission
             if (isEarlyMarket)
             {
