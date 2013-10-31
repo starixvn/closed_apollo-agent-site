@@ -10,6 +10,7 @@
 namespace Apollo.Age.Web
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
     using Apollo.Age.Entities;
 
@@ -20,7 +21,23 @@ namespace Apollo.Age.Web
     [Serializable]
     public class CurrentSession : ICurrentSession, ISerializable
     {
-        public CurrentSession(User user, int adminId = 0, string adminName = "", int onUserId = 0, bool isInternalSignIn = false, string language = "en-US")
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurrentSession"/> class.
+        /// </summary>
+        /// <param name="user">The user that want to get info.</param>
+        /// <param name="adminId">The admin identifier.</param>
+        /// <param name="adminName">Name of the admin.</param>
+        /// <param name="onUserId">The on user identifier.</param>
+        /// <param name="isInternalSignIn">The status of user log in is internal or not.</param>
+        /// <param name="language">The language.</param>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
+        public CurrentSession(
+            User user,
+            int adminId = 0,
+            string adminName = "",
+            int onUserId = 0,
+            bool isInternalSignIn = false,
+            string language = "en-US")
         {
             AgentId = user.Agent.Id;
             AgentLevel = user.Agent.Level;
@@ -58,7 +75,7 @@ namespace Apollo.Age.Web
             IsInternalSignIn = info.GetBoolean("IsInternalSignIn");
             AdminId = info.GetInt32("AdminId");
             AdminName = info.GetString("AdminName");
-            OnUserId = info.GetInt32("OnUserId"); 
+            OnUserId = info.GetInt32("OnUserId");
         }
 
         public int AgentId { get; set; }
@@ -108,6 +125,12 @@ namespace Apollo.Age.Web
             set;
         }
 
+        /// <summary>
+        /// Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
+        /// <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext" />) for this serialization.</param>
+        /// <exception cref="System.ArgumentNullException">Serialization info.</exception>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)

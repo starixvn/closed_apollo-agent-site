@@ -9,21 +9,34 @@
 // </history>
 namespace Apollo.Age.Web
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Resources;
     using System.Threading;
     using Apollo.Age.Resources;
 
+    /// <summary>
+    /// Language manager class.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1311:StaticReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public static class LanguageManager
     {
         private static readonly CultureInfo usCulture = CultureInfo.CreateSpecificCulture("en-US");
         private static ResourceManager _resourceManagerLang;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="LanguageManager"/> class.
+        /// </summary>
         static LanguageManager()
         {
             _resourceManagerLang = new ResourceManager(typeof(Lang)) { IgnoreCase = true };
         }
 
+        /// <summary>
+        /// Sets the culture.
+        /// </summary>
+        /// <param name="language">The language.</param>
         public static void SetCulture(string language)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
@@ -33,6 +46,11 @@ namespace Apollo.Age.Web
             Thread.CurrentThread.CurrentCulture.NumberFormat = usCulture.NumberFormat;
         }
 
+        /// <summary>
+        /// Gets the resource data.
+        /// </summary>
+        /// <param name="key">The resource key.</param>
+        /// <returns>Resource value from a key.</returns>
         public static string GetResourceData(string key)
         {
             if (!ReferenceEquals(_resourceManagerLang, null))

@@ -27,7 +27,7 @@ namespace Apollo.Age.Web.Filters
         /// <summary>
         /// On Action Executing add a compact policy "p3p" HTTP header.
         /// </summary>
-        /// <param name="filterContext"></param>
+        /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpContext.Current.Response.AddHeader("p3p", "CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");

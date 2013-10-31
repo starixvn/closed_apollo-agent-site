@@ -12,6 +12,7 @@
 namespace Apollo.Age.Web
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
@@ -101,6 +102,7 @@ namespace Apollo.Age.Web
         /// <param name="model">Input model.</param>
         /// <returns>Redirect to Select Account Action.</returns>
         [HttpPost]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult SignIn(SignInViewModel model)
         {
             if (Request.IsAjaxRequest())
@@ -320,6 +322,7 @@ namespace Apollo.Age.Web
         /// Sign out action.
         /// </summary>
         /// <returns>Redirect to Login Page.</returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult SignOut()
         {
             var onUserId = 0;
@@ -456,6 +459,8 @@ namespace Apollo.Age.Web
         /// <param name="language">Input Language.</param>
         /// <param name="isAllowUpdate">Input AllowUpdate.</param>
         /// <returns>Return Action Result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         private ActionResult UserInfo(string agentName, int adminId, string adminName, string language, bool isAllowUpdate)
         {
             User user = _userService.InternalGetAgentByUsername(agentName);

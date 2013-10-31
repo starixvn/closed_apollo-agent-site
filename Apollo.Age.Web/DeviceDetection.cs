@@ -14,8 +14,14 @@ namespace Apollo.Age.Web
     using System.Net;
     using System.Web;
 
+    /// <summary>
+    /// Device detection class.
+    /// </summary>
     public class DeviceDetection
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeviceDetection"/> class.
+        /// </summary>
         public DeviceDetection()
         {
             var request = HttpContext.Current.Request;
@@ -46,35 +52,39 @@ namespace Apollo.Age.Web
 
         public string ClientIp { get; set; }
 
+        /// <summary>
+        /// Requests the IP.
+        /// </summary>
+        /// <returns>String IP.</returns>
         protected string RequestIP()
         {
-            string IP = string.Empty;
+            string ip = string.Empty;
             string userHostAddress = HttpContext.Current.Request.UserHostAddress;
 
             foreach (IPAddress itemIPA in Dns.GetHostAddresses(userHostAddress))
             {
                 if (itemIPA.AddressFamily.ToString().Equals("InterNetwork"))
                 {
-                    IP = itemIPA.ToString();
+                    ip = itemIPA.ToString();
                     break;
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(IP))
+            if (!string.IsNullOrWhiteSpace(ip))
             {
-                return IP;
+                return ip;
             }
 
             foreach (IPAddress itemIPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (itemIPA.AddressFamily.ToString().Equals("InterNetwork", StringComparison.OrdinalIgnoreCase))
                 {
-                    IP = itemIPA.ToString();
+                    ip = itemIPA.ToString();
                     break;
                 }
             }
 
-            return IP.Trim();
+            return ip.Trim();
         }
     }
 }

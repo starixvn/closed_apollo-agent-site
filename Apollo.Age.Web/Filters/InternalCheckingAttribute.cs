@@ -13,8 +13,15 @@ namespace Apollo.Age.Web.Filters
     using System.Web.Mvc;
     using Fanex.Logging;
 
+    /// <summary>
+    /// Internal checking attribute class.
+    /// </summary>
     public class InternalCheckingAttribute : ActionFilterAttribute
     {
+        /// <summary>
+        /// Called by the ASP.NET MVC framework after the action method executes.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             try
