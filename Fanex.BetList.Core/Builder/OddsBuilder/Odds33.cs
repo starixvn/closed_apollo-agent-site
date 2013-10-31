@@ -203,6 +203,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                                                                           Apollo.Age.Resources.BetList.won,
                                                                           "</b>"});
                     break;
+
                 default:
                     odds_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
                                                                           ": ",
@@ -236,6 +237,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                     status_win += string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", Apollo.Age.Resources.BetList.won, "</b>" });
 
                     break;
+
                 default:
                     odds_win += string.Join(null, new string[]{Apollo.Age.Resources.BetList.win,
                                                                           ": ",
@@ -292,11 +294,11 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
 
             var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
 
-            //Add Win
+            // Add Win
             rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": " }), rtfHelper.PosFont);
             rtfNumberRenderer.Render(odds_WinVal);
 
-            //Add Place
+            // Add Place
             rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", Apollo.Age.Resources.BetList.place, ": " }), rtfHelper.PosFont);
             rtfNumberRenderer.Render(odds_PlaceVal);
 

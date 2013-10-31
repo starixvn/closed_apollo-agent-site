@@ -15,6 +15,9 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Stake 29.
+    /// </summary>
     public class Stake29 : IStake
     {
         public Stake_Template Template { get; set; }

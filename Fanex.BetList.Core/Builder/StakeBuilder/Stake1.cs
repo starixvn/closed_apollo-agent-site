@@ -31,7 +31,9 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns>Stake_Template.</returns>
+        /// <returns>
+        /// Stake Template.
+        /// </returns>
         public Stake_Template Render(ITicket ticket)
         {
             this.Template.stake = ConvertByBetType.Stake(ticket.Stake);
@@ -42,6 +44,7 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
         /// IRichTextString
         /// </returns>

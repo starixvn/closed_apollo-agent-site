@@ -403,7 +403,8 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[]{ CHOICE_BUILDER_NAMESPACE,
+                                            new string[]{ 
+                                                CHOICE_BUILDER_NAMESPACE,
                                                 ".Choice",
                                                 bettype.ToString()});
 

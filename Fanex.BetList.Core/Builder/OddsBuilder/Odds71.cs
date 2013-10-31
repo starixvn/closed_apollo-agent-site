@@ -43,7 +43,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             List<ITicketData> ticketData, 
             GetCachePropertyById FuncGetOddsTypeName)
         {
-            //This bettype never has an odds
+            // This bettype never has an odds
             this.Template.odds = "-";
             this.Template.oddsType = string.Empty;
 

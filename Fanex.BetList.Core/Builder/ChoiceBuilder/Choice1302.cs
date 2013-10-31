@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Match Correct Score
+    /// Match Correct Score.
     /// </summary>
     public class Choice1302 : Choice1
     {
@@ -26,11 +26,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            //this.Template.Handicap.handicap = null;
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string betTeam = string.Empty;
             if (ticket.BetTeam.Length == 2)
@@ -38,11 +38,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 betTeam = string.Join(null, new string[] { ticket.BetTeam.Substring(0, 1), ":", ticket.BetTeam.Substring(1, 1) });
             }
 
-            // "&nbsp" because export format
             this.Template.betTeam = string.Join(null, new string[] { "&nbsp;", betTeam });
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
-
-            //this.Template.betTeamClassName = BL_UNDER_DOG;
         }
     }
 }

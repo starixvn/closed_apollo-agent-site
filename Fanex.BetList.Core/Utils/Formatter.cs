@@ -14,6 +14,9 @@ namespace Fanex.BetList.Core.Utils
     using System.Globalization;
     using System.Web;
 
+    /// <summary>
+    /// Formatter class.
+    /// </summary>
     public class Formatter
     {
         public const string CULT_NAME_ENG = "en-US";
@@ -25,7 +28,7 @@ namespace Fanex.BetList.Core.Utils
         public const string DECIMAL_FORMAT10 = "{0:#,##0.0}";
         public const string DECIMAL_FORMAT2 = "{0:#,##0.##}";
         public const string DECIMAL_FORMAT20 = "{0:#,##0.00}";
-        public const string DECIMAL_FORMAT2C = "{0:###0.00}"; //without comma
+        public const string DECIMAL_FORMAT2C = "{0:###0.00}"; // without comma
         public const string DECIMAL_FORMAT3 = "{0:#,##0.###}";
         public const string DECIMAL_FORMAT30 = "{0:#,##0.000}";
         public const string DECIMAL_FORMAT3C = "{0:###0.000}";
@@ -101,8 +104,8 @@ namespace Fanex.BetList.Core.Utils
             else
             {
                 int a = (int)Math.Pow(10, decDigits);
-                //Returns the largest integer less than or equal number
-                if (value < 0) //If the value is negative, then we use Ceiling() function instead of Floor() function
+                // Returns the largest integer less than or equal number
+                if (value < 0) // If the value is negative, then we use Ceiling() function instead of Floor() function
                     return string.Format(DECIMAL_FORMAT2, (Math.Ceiling(value * a) / a));
                 return string.Format(DECIMAL_FORMAT2, (Math.Floor(value * a) / a));
             }
@@ -214,8 +217,9 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>Format number with 2 decimal.</returns>
         public static string FormatNumber2(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -225,6 +229,12 @@ namespace Fanex.BetList.Core.Utils
             return string.Format(DECIMAL_FORMAT2, obj);
         }
 
+        /// <summary>
+        /// Formats the number20.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns></returns>
         public static string FormatNumber20(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
@@ -509,8 +519,10 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Formats the date time en12.
         /// </summary>
-        /// <param name="dt">The dt.</param>
-        /// <returns>System.String.</returns>
+        /// <param name="dt">The date.</param>
+        /// <returns>
+        /// System.String.
+        /// </returns>
         public static string FormatDateTimeEn12(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
@@ -611,11 +623,12 @@ namespace Fanex.BetList.Core.Utils
         #region String
 
         /// <summary>
-        /// TruncateWithTip
+        /// Truncate string With Tip.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="maxLength"></param>
-        /// <returns></returns>
+        /// <param name="value">The value.</param>
+        /// <param name="maxLength">The maximum length.</param>
+        /// <param name="hasSpanReturn">if set to <c>true</c> [has span return].</param>
+        /// <returns>String that truncated.</returns>
         public static String TruncateWithTip(String value, Int32 maxLength, bool hasSpanReturn)
         {
             if (value.Length > maxLength)

@@ -31,17 +31,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            //this.Template.Handicap.handicap = null;
             string teamName = Apollo.Age.Resources.BetList.lblDraw;
             decimal hdp1 = ticket.Handicap1;
             decimal hdp2 = ticket.Handicap2;
 
             string handicap = string.Empty;
-            //this.Template.betTeamClassName = BL_FAVORITE;
 
             if ("1" == ticket.BetTeam)
             {

@@ -13,9 +13,6 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
 {
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
-    using Fanex.BetList.Core.Utils;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
 
     public class Trans : ITrans
     {
@@ -50,8 +47,6 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
             {
                 case BetListPage.Wager:
                 case BetListPage.Forecast:
-                    //this.Template.sportName = string.Empty;
-                    //break;
                 case BetListPage.AccountInfo:
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
@@ -59,6 +54,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
                 case BetListPage.Outstanding:
                     this.Template.sportName = string.Format("<br/>{0}&nbsp;", ticketHelper.GetSportNameById(ticket.SportTypeId));
                     break;
+
                 default:
                     this.Template.sportName = string.Empty;
                     break;

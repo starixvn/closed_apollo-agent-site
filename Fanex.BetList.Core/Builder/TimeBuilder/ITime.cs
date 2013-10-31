@@ -26,7 +26,7 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
         /// <summary>
         /// Render time.
         /// </summary>
-        /// <param name="date"></param>
+        /// <param name="ticket">The ticket.</param>
         /// <param name="page">Link from page.</param>
         /// <returns></returns>
         Time_Template Render(ITicket ticket, BetListPage page);

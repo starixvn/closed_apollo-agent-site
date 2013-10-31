@@ -40,7 +40,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
+        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>IRichTextString</returns>
         IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName, RTFHelper rtfHelper);

@@ -43,11 +43,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             }
 
             this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(xyFormat, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
-            //this.Template.Handicap.handicap = betOver ? ConvertByBetType.Hdp(ticket.Handicap1) : betUnder ? ConvertByBetType.Hdp(ticket.Handicap2) : null;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
-
-            // Update betTeamClassName
-            //this.Template.betTeamClassName = betOver ? BL_FAVORITE : BL_UNDER_DOG;
+          
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }

@@ -29,7 +29,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            //this.Template.Handicap.handicap = null;
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string choice = ticket.BetTeam;
             var betTeam = string.Empty;
@@ -38,22 +37,25 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 case "01":
                     betTeam = "4 " + Apollo.Age.Resources.BetList.points;
                     break;
+
                 case "02":
                     betTeam = "5 " + Apollo.Age.Resources.BetList.points;
                     break;
+
                 case "03":
                     betTeam = "6 " + Apollo.Age.Resources.BetList.points;
                     break;
+
                 case "04":
                     betTeam = "7 " + Apollo.Age.Resources.BetList.upPoints;
                     break;
+
                 default:
                     break;
             }
 
             // "&nbsp" because export format
             this.Template.betTeam = "&nbsp;" + betTeam;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

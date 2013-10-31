@@ -42,6 +42,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
@@ -100,7 +101,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// Gets the name of the combination offer.
         /// </summary>
-        /// <param name="betteam">The betteam.</param>
+        /// <param name="betteam">The bet team.</param>
         /// <returns>System.String.</returns>
         private static string GetCombinationOfferName(string betteam)
         {
@@ -108,6 +109,17 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             return _combinationOfferName.ContainsKey(betteam) ? _combinationOfferName[betteam] : string.Empty;
         }
 
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowScoreMap">Is show score map or not.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
         public override List<IRichTextString> RenderRTF(
             ITicket ticket, 
             ITicketHelper ticketHelper, 

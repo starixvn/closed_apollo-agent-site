@@ -24,11 +24,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            //this.Template.Handicap.handicap = null;
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string choice = ticket.BetTeam;
             choice = (ticket.BetTeam == "0:5" || ticket.BetTeam == "5:0") ? ticket.BetTeam + " UP" : ticket.BetTeam;
@@ -41,8 +41,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                         "&nbsp;",
                                                         choice
                                                     });
-
-            //this.Template.betTeamClassName = BL_FAVORITE;
         }
     }
 }

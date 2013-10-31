@@ -27,8 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
+            this.Template.handicap = Apollo.Age.Resources.BetList.vs;         
         }
     }
 }

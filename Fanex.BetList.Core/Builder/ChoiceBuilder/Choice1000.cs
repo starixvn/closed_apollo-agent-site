@@ -22,16 +22,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket need to build.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
-        /// <returns>Choice_Template.</returns>
+        /// <param name="ticketData">The list of tickets data.</param>
+        /// <param name="isShowScoreMap">Is show score map or not.</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
         public override Choice_Template Render(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
-            bool isShowScoreMap, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            bool isShowScoreMap,
             BetListPage betListPage)
         {
             string content = string.Join(
@@ -50,6 +53,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             return this.Template;
         }
 
+        /// <summary>
+        /// Builds the RTF choice.
+        /// </summary>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <returns>
+        /// Rich text interface.
+        /// </returns>
         protected override NPOI.SS.UserModel.IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
         {
             rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.p2pGame, rtfHelper.PosFont);
@@ -62,9 +74,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// Builds the choice.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket need to build.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);

@@ -70,7 +70,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                     .Replace("<span class='handicap custom'>", string.Empty)
                                     .Replace("</div>", "\n")
                                     .Replace("<span class='stake'>", string.Empty);
-            //Remove the last line-break
+
+            // Remove the last line-break
             int lastBreak = Template.betTeam.LastIndexOf("\n");
             Template.betTeam = Template.betTeam.Remove(lastBreak, 1);
         }
