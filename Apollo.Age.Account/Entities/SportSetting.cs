@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Entities
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Sport setting.
+    /// </summary>
     public class SportSetting
     {
         public short Id { get; set; }

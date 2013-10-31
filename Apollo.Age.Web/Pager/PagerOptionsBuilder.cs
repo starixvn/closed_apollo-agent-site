@@ -55,7 +55,7 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set custom route value parameters for the pager links.
         /// </summary>
-        /// <param name="routeValues"></param>
+        /// <param name="routeValues">Route values.</param>
         /// <returns></returns>
         public PagerOptionsBuilder RouteValues(object routeValues)
         {
@@ -66,7 +66,7 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set custom route value parameters for the pager links.
         /// </summary>
-        /// <param name="routeValues"></param>
+        /// <param name="routeValues">Route values.</param>
         /// <returns></returns>
         public PagerOptionsBuilder RouteValues(RouteValueDictionary routeValues)
         {

@@ -51,27 +51,10 @@ namespace Apollo.Age.Services.Interface
             string platform, 
             string countryCode);
 
-        /// <summary>
-        /// Return OnUserId.
-        /// </summary>
-        /// <param name="adminId">The admin ID.</param>
-        /// <param name="netSessionId">The net session ID.</param>
-        /// <param name="ip">The IP address.</param>
-        /// <returns></returns>
         int InternalCheckIn(int adminId, string netSessionId, string ip);
 
-        /// <summary>
-        /// Return IsKickOut.
-        /// </summary>
-        /// <param name="onlineUserId">Online user ID.</param>
-        /// <returns></returns>
         bool InternalReCheckIn(int onlineUserId);
 
-        /// <summary>
-        /// Return OnUserId.
-        /// </summary>
-        /// <param name="onlineUserId">User id of current loginned user.</param>
-        /// <returns>Result of login.</returns>
         int InternalLogout(int onlineUserId);
 
         /// <summary>

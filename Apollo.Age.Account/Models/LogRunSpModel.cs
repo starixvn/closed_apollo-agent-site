@@ -12,6 +12,9 @@ namespace Apollo.Age.Account.Models
     using System;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// Execute SP log model.
+    /// </summary>
     public class LogRunSpModel
     {
         public long LogId { get; set; }

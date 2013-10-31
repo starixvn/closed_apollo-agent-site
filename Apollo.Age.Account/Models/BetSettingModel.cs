@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// Bet setting model.
+    /// </summary>
     public class BetSettingModel
     {
         public int SportType { get; set; }

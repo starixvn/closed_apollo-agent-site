@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Account.Models
 {
+    /// <summary>
+    /// Customer commission model.
+    /// </summary>
     public class CustomerCommissionModel
     {
         public int Id { get; set; }

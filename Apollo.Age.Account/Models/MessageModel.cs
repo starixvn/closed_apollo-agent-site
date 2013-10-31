@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System;
 
+    /// <summary>
+    /// Message model.
+    /// </summary>
     public class MessageModel
     {
         public int MessageId { get; set; }

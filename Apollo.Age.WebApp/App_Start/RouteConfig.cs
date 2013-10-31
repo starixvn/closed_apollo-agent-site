@@ -12,6 +12,9 @@ namespace Apollo.Age.WebApp
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    /// <summary>
+    /// Route config.
+    /// </summary>
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

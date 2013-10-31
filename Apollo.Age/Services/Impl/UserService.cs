@@ -139,7 +139,7 @@ namespace Apollo.Age.Services.Impl
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <param name="adminId">The admin ID.</param>
-        /// <returns></returns>
+        /// <returns>True : success, false : fail.</returns>
         public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -285,7 +285,7 @@ namespace Apollo.Age.Services.Impl
         /// Internals the get agent by username.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <returns></returns>
+        /// <returns>User object.</returns>
         public User InternalGetAgentByUsername(string username)
         {
             User user = null;
@@ -340,7 +340,7 @@ namespace Apollo.Age.Services.Impl
         /// Return IsKickOut.
         /// </summary>
         /// <param name="onlineUserId">Authenticated User Id.</param>
-        /// <returns></returns>
+        /// <returns>True : success, false: fail.</returns>
         public bool InternalReCheckIn(int onlineUserId)
         {
             Check.Argument.IsNotNegativeOrZero(onlineUserId, "onuserid");

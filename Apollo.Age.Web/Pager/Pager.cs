@@ -12,7 +12,10 @@ namespace Apollo.Age.Web.Pager
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using System.Web.Routing;
-    
+
+    /// <summary>
+    /// Pager control.
+    /// </summary>
     public class Pager : IHtmlString
     {
         private readonly HtmlHelper htmlHelper;

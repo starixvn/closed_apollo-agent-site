@@ -10,6 +10,9 @@ namespace Apollo.Age.Web.Pager
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Paged list.
+    /// </summary>
     public class PagedList<T> : List<T>, IPagedList<T>
     {
         public PagedList(IEnumerable<T> source, int index, int pageSize, int? totalCount = null)

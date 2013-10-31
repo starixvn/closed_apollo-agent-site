@@ -8,6 +8,9 @@ namespace Apollo.Age.Account.Models
 {
     using System;
 
+    /// <summary>
+    /// Member list model.
+    /// </summary>
     public class MemberListModel
     {
         public int MemberId { get; set; }

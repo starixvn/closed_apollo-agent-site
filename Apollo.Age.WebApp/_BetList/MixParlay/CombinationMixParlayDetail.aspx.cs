@@ -109,15 +109,42 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     // status
                     string status = ticket.Status.ToLower();
 
-                    if (status.Equals(BetStatus.Running)) rowBlock.status = Apollo.Age.Resources.BetList.running;
-                    else if (status.Equals(BetStatus.Reject)) rowBlock.status = Apollo.Age.Resources.BetList.reject;
-                    else if (status.Equals(BetStatus.Won)) rowBlock.status = Apollo.Age.Resources.BetList.won;
-                    else if (status.Equals(BetStatus.Lose)) rowBlock.status = Apollo.Age.Resources.BetList.lose;
-                    else if (status.Equals(BetStatus.Draw)) rowBlock.status = Apollo.Age.Resources.BetList.draw;
-                    else if (status.Equals(BetStatus.Waiting)) rowBlock.status = Apollo.Age.Resources.BetList.waiting;
-                    else if (status.Equals(BetStatus.Void)) rowBlock.status = Apollo.Age.Resources.BetList.voided;
-                    else if (status.Equals(BetStatus.Refund)) rowBlock.status = Apollo.Age.Resources.BetList.refund;
-                    else rowBlock.status = string.Empty;
+                    if (status.Equals(BetStatus.Running))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.running;
+                    }
+                    else if (status.Equals(BetStatus.Reject))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.reject;
+                    }
+                    else if (status.Equals(BetStatus.Won))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.won;
+                    }
+                    else if (status.Equals(BetStatus.Lose))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.lose;
+                    }
+                    else if (status.Equals(BetStatus.Draw))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.draw;
+                    }
+                    else if (status.Equals(BetStatus.Waiting))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.waiting;
+                    }
+                    else if (status.Equals(BetStatus.Void))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.voided;
+                    }
+                    else if (status.Equals(BetStatus.Refund))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.refund;
+                    }
+                    else
+                    {
+                        rowBlock.status = string.Empty;
+                    }
 
                     if (status.Equals(BetStatus.Lose))
                     {
@@ -126,7 +153,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        // even
                         serial = ticket.Serial;
                         var serials = systemParlay.SerialList.Where(s => s.Serial == serial);
                         even = string.Empty;
@@ -138,7 +164,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         }
 
                         rowBlock.even = even;
-                        // end even
 
                         if (ticket.MOdds > 0)
                         {

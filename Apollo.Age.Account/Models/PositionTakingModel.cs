@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// Position taking model.
+    /// </summary>
     public class PositionTakingModel
     {
         public int SportType { get; set; }

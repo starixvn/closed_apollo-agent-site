@@ -16,6 +16,9 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Data;
 
+    /// <summary>
+    /// Execute SP log service.
+    /// </summary>
     public class LogRunSpService : QueryService, ILogRunSpService
     {
         public IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria)

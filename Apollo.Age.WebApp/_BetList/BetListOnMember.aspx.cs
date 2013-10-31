@@ -17,14 +17,12 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
-    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
@@ -52,6 +50,14 @@ namespace Sunplus.Agent.UI._BetList
         ReportService reportService = new ReportService();
 
         #endregion Variables
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
 
         #region Format Start, End date
 
@@ -274,14 +280,6 @@ namespace Sunplus.Agent.UI._BetList
         }
 
         #endregion Override
-
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                return SessionManager.CurrentSession;
-            }
-        }
 
         /// <summary>
         /// Get Navigation link.

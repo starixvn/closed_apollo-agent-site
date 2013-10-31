@@ -12,6 +12,9 @@ namespace Apollo.Age.Web.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Select account view model.
+    /// </summary>
     public class SelectAccountViewModel
     {
         [Required]

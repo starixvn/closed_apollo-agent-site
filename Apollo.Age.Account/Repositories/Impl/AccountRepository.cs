@@ -21,6 +21,9 @@ namespace Apollo.Age.Account.Repositories.Impl
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Account repository.
+    /// </summary>
     public class AccountRepository : IAccountRepository
     {
         public IEnumerable<Agent> GetAgentByUsername(ICriteria criteria)

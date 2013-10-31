@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// Discount model.
+    /// </summary>
     public class DiscountModel
     {
         public int SportType { get; set; }

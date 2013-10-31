@@ -63,18 +63,13 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
             bool isShowAgentPT = true;
 
             var ticketResult = View as TicketResult;
             var tickets = ticketResult.TicketList;
             var ticketData = ticketResult.TicketDataList;
 
-            #endregion INIT
-
-            #region Customize
-
+            // Customize
             Header1_Template betlistHeader = new Header1_Template();
             betlistHeader.headerTrans = BetList.ticket;
             betlistHeader.headerMember = BetList.rebate;
@@ -86,10 +81,7 @@ namespace Sunplus.Agent.UI._BetList
 
             betlistHeader.Winloss.Hide();
 
-            #endregion Customize
-
-            #region RENDER HTML
-
+            // Render HTML
             var content = new StringBuilder();
 
             content.Append(betlistHeader);
@@ -141,8 +133,6 @@ namespace Sunplus.Agent.UI._BetList
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
-
-            #endregion RENDER HTML
         }
 
         public override object InvokeData(Hashtable hash)
@@ -284,7 +274,14 @@ namespace Sunplus.Agent.UI._BetList
 
         private void BoxMainShareholder()
         {
-            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox("ddlMainShareHolder", mainShareHolderId.ToString(), this.CreateMainShareholderData(), "value", "text", null, 280);
+            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox(
+                "ddlMainShareHolder", 
+                mainShareHolderId.ToString(), 
+                this.CreateMainShareholderData(), 
+                "value", 
+                "text", 
+                null, 
+                280);
         }
 
         #endregion Box Main Shareholder
