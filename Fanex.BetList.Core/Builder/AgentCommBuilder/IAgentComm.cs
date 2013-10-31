@@ -27,7 +27,7 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <returns>Agent commission template.</returns>
         AgentComm_Template Render(ITicket ticket);
     }
 }

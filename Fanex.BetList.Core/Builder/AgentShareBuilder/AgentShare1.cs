@@ -32,7 +32,10 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>
+        /// Agent share template.
+        /// </returns>
         public virtual AgentShare_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             Template.AgentPT.agentPT_setting = string.Join(null, new string[] { ConvertByBetType.Pt(ticket.APositionTaking), "%" });
