@@ -15,6 +15,7 @@ namespace Apollo.Age.Wagers.Controllers
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
@@ -127,6 +128,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isEarlyMarket">Is early market.</param>
         /// <param name="isOutright">Is outright wagers.</param>
         /// <returns>View result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         public ActionResult Index(
             string sportName,

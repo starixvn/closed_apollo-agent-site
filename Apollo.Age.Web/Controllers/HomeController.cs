@@ -11,22 +11,31 @@ namespace Apollo.Age.Web
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Resources;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// Home controller class.
+    /// </summary>
     public class HomeController : BaseController
     {
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>Action result.</returns>
         public ActionResult Index()
-        {       
+        {
             return View(SessionManager.CurrentSession);
         }
-              
+
         /// <summary>
         /// This action is for testing ONLY.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Action result.</returns>
         [NonAction]
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult Index2()
         {
             try
@@ -56,31 +65,25 @@ namespace Apollo.Age.Web
                     string value = entry.Value.ToString();
 
                     var otherValue = anotherResourceSet1.GetString(key);
-                    //var otherValue1 = anotherResourceSet1.GetString(key);
 
                     if (!string.IsNullOrWhiteSpace(otherValue))
                     {
                         notTransResources.Add(key, otherValue);
                     }
-                    //else
-                    //{
-                    //    if (value.Equals(otherValue1) && !value.Equals(otherValue))
-                    //    {
-                    //        hasKeybutNotTransResources.Add(key, value);
-                    //    }
-                    //}
-
-                    //hasKeybutNotTransResources.Add(key, value);
                 }
 
                 return View(notTransResources);
             }
-            catch 
+            catch
             {
                 return View();
             }
         }
 
+        /// <summary>
+        /// Pagers the plugin.
+        /// </summary>
+        /// <returns>Action result.</returns>
         public ActionResult PagerPlugin()
         {
             return View();

@@ -173,6 +173,7 @@ namespace Apollo.Age.Web
         /// Checking Validate Down line.
         /// </summary>
         /// <param name="filterContext">Input filter Context.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private void CheckValidDownline(ActionExecutingContext filterContext)
         {
             try

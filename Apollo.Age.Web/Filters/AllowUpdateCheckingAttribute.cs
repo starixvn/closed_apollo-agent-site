@@ -13,8 +13,15 @@ namespace Apollo.Age.Web.Filters
     using System.Web.Mvc;
     using Fanex.Logging;
 
+    /// <summary>
+    /// Allow update checking attribute class.
+    /// </summary>
     public class AllowUpdateCheckingAttribute : ActionFilterAttribute
     {
+        /// <summary>
+        /// Called by the ASP.NET MVC framework before the action method executes.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
