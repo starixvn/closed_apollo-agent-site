@@ -12,7 +12,7 @@ namespace Apollo.Age.Reports.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Agent downline path criteria.
+    /// Agent down line path criteria.
     /// </summary>
     public class AgentDownlinePathCriteria : CriteriaBase
     {

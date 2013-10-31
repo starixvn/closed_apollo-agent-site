@@ -13,7 +13,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Permission service.
     /// </summary>
     public static class PermissionService
     {

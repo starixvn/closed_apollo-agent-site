@@ -13,7 +13,6 @@
 namespace Apollo.Age.Forecast.Controllers
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -30,7 +29,7 @@ namespace Apollo.Age.Forecast.Controllers
     using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
-    /// Forecast Function controller.
+    /// Forecast controller.
     /// </summary>
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -65,7 +64,10 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="matchId">The match ID.</param>
         /// <param name="betType">The bet type.</param>
-        /// <returns></returns>
+        /// <param name="leagueName">The league name.</param>
+        /// <param name="leagueId">The league ID.</param>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult FC1X2(
             int? matchId, 
             int betType = (int)BetTypes.FT_1X2, 
@@ -80,6 +82,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.BetType = betType;
             ViewBag.LeagueName = leagueName;
             ViewBag.LeagueId = leagueId;
+
             if (matchId == null)
             {
                 if (leagueId == 0 && leagues != null && leagues.Any())
@@ -99,7 +102,8 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="leagueId">The league ID.</param>
         /// <param name="matchId">The match ID.</param>
         /// <param name="betType">The bet type.</param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>Action result.</returns>
         public ActionResult FC1X2Matches(
             int? leagueId, 
             int? matchId, 
@@ -108,6 +112,7 @@ namespace Apollo.Age.Forecast.Controllers
         {
             IEnumerable<Forecast1X2Model> forecasts = null;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+
             if (matchId != null && matchId.Value > 0)
             {
                 forecasts = _forecastService.GetForecast1X2Matches(currentAgentId, this.CurrentSession.AgentId, matchId.Value, betType);
@@ -127,7 +132,10 @@ namespace Apollo.Age.Forecast.Controllers
         /// <summary>
         /// Handicap OU Forecast Page.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="leagueName">The league name.</param>
+        /// <param name="leagueId">The league ID.</param>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult FCHandicapOverUnder(string leagueName = "", int leagueId = 0, int mainShareHolderId = 0)
         {
             var currentAgentId = GetCurrentAgentId(mainShareHolderId, "1,3,7,8");
@@ -141,6 +149,7 @@ namespace Apollo.Age.Forecast.Controllers
             }
 
             ViewBag.FCHDPList = _forecastService.GetForecastHandicapOverUnder(currentAgentId, this.CurrentSession.AgentId, leagueId);
+
             return View();
         }
 
@@ -148,11 +157,13 @@ namespace Apollo.Age.Forecast.Controllers
         /// Get Handicap OU Matches.
         /// </summary>
         /// <param name="leagueId">The league ID.</param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>Action result.</returns>
         public ActionResult FCHandicapOverUnderMatches(int leagueId, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             var forecasts = _forecastService.GetForecastHandicapOverUnder(currentAgentId, this.CurrentSession.AgentId, leagueId);
+
             return View(forecasts);
         }
 
@@ -166,7 +177,8 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="matchId"></param>
         /// <param name="betType">The bet type.</param>
         /// <param name="currentScore">Current score.</param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult ForecastByMatchContent(
             int matchId, 
             int betType = (int)BetTypes.Handicap, 
@@ -179,6 +191,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.CurrentScore = currentScore;
 
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+
             return View(_forecastService.GetForecastMatcheValue(currentAgentId, this.CurrentSession.AgentId, matchId, betType, currentScore));
         }
 
@@ -188,7 +201,9 @@ namespace Apollo.Age.Forecast.Controllers
         /// <param name="matchId">The match ID.</param>
         /// <param name="betType">The bet type.</param>
         /// <param name="currentScore">Current score.</param>
-        /// <returns></returns>
+        /// <param name="leagueName">The league name.</param>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult ForecastByMatch(
             int matchId, 
             int betType = (int)BetTypes.Handicap, 
@@ -201,6 +216,7 @@ namespace Apollo.Age.Forecast.Controllers
             ViewBag.CurrentScore = currentScore;
             ViewBag.LeagueName = leagueName;
             ViewBag.CurrentMainShareHolderId = mainShareHolderId;
+
             return View();
         }
 
@@ -212,10 +228,12 @@ namespace Apollo.Age.Forecast.Controllers
         /// Score Map Page, if MatchIds valid, then Render Score Map of these match
         /// If matchIds != empty, It means that ScoreMap will show in bet list.
         /// </summary>
-        /// <param name="matchIds"></param>
-        /// <param name="liveBetTypes"></param>
-        /// <param name="deadBallBetTypes"></param>
-        /// <returns></returns>
+        /// <param name="matchIds">List of match IDs.</param>
+        /// <param name="liveBetTypes">Live bet types.</param>
+        /// <param name="deadBallBetTypes">Deadball bet types.</param>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <param name="custId"></param>
+        /// <returns>View result.</returns>
         public ViewResult ScoreMap(
             string matchIds = "", 
             int liveBetTypes = 0, 
@@ -253,24 +271,27 @@ namespace Apollo.Age.Forecast.Controllers
         /// Match of LeagueModel.
         /// </summary>
         /// <param name="leagueId">The league ID.</param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult ScoreMapMatch(int leagueId, int mainShareHolderId = 0)
         {
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
             var matches = _forecastService.GetScoreMapMatches(currentAgentId, leagueId);
+
             return View(matches);
         }
 
         /// <summary>
         /// BetType List.
         /// </summary>
-        /// <param name="liveBetType"></param>
-        /// <param name="deadBetType"></param>
-        /// <returns></returns>
+        /// <param name="liveBetType">Live bet type.</param>
+        /// <param name="deadBetType">Dead bet type.</param>
+        /// <returns>View result.</returns>
         public ViewResult ScoreMapBetType(int liveBetType = 0, int deadBetType = 0)
         {
             ViewBag.LiveBetType = liveBetType;
             ViewBag.DeadBallBetType = deadBetType;
+
             return View(_forecastService.GetScoreMapBetType());
         }
 
@@ -278,21 +299,24 @@ namespace Apollo.Age.Forecast.Controllers
         /// Load LeagueModel.
         /// </summary>
         /// <param name="currentLeagueId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult ScoreMapLeagues(int currentLeagueId = 0, int mainShareHolderId = 0)
         {
             ViewBag.CurrentLeagueId = currentLeagueId;
             var currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+
             return View(_forecastService.GetScoreMapLeagues(currentAgentId));
         }
 
         /// <summary>
         /// Load Score Map Result.
         /// </summary>
-        /// <param name="matchIds"></param>
-        /// <param name="liveBetTypes"></param>
-        /// <param name="deadBallBetTypes"></param>
-        /// <returns></returns>
+        /// <param name="matchIds">List of match IDs.</param>
+        /// <param name="liveBetTypes">Live bet types.</param>
+        /// <param name="deadBallBetTypes">Deadball bet types.</param>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <returns>View result.</returns>
         public ViewResult ScoreMapResult(
             string matchIds,
             string liveBetTypes,
@@ -300,6 +324,7 @@ namespace Apollo.Age.Forecast.Controllers
             int mainShareHolderId = 0)
         {
             int currentAgentId = mainShareHolderId > 0 ? mainShareHolderId : this.CurrentSession.AgentId;
+
             var scoreMapResult = _forecastService.GetScoreMapResults(
                 currentAgentId,
                 this.CurrentSession.AgentId,
@@ -318,11 +343,13 @@ namespace Apollo.Age.Forecast.Controllers
         /// Get Current Agent Id
         /// If MainShareholderId > 0 and Current Login user is Super then set first is selected.
         /// </summary>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="mainShareHolderId">The main shareholder ID.</param>
+        /// <param name="betType">THe bet type.</param>
+        /// <returns>Current agent ID.</returns>
         private int GetCurrentAgentId(int mainShareHolderId, string betType = null)
         {
             int agentId = this.CurrentSession.AgentId;
+
             if (this.CurrentSession.IsSuper)
             {
                 //// Should Use Cache, fix later

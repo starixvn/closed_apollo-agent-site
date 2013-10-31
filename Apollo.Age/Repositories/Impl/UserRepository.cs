@@ -34,25 +34,18 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return a user.</returns>
         public override User Get(ICriteria criteria)
         {
-            try
+            using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var user = objectDb.QueryEntity<User, Agent, User>(
-                            (u, ag) =>
-                            {
-                                u.Agent = ag;
-                                return u;
-                            },
-                            splitOn: "AgentId",
-                            parameters: criteria.GetSpParams());
+                var user = objectDb.QueryEntity<User, Agent, User>(
+                        (u, ag) =>
+                        {
+                            u.Agent = ag;
+                            return u;
+                        },
+                        splitOn: "AgentId",
+                        parameters: criteria.GetSpParams());
 
-                    return user;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return user;
             }
         }
 
@@ -63,25 +56,18 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>List of user.</returns>
         public override IEnumerable<User> Fetch(ICriteria criteria)
         {
-            try
+            using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    var userList = objectDb.Query<User, Agent, User>(
-                            (u, ag) =>
-                            {
-                                u.Agent = ag;
-                                return u;
-                            },
-                            splitOn: "AgentId",
-                            parameterValues: criteria.GetSpParams());
+                var userList = objectDb.Query<User, Agent, User>(
+                        (u, ag) =>
+                        {
+                            u.Agent = ag;
+                            return u;
+                        },
+                        splitOn: "AgentId",
+                        parameterValues: criteria.GetSpParams());
 
-                    return userList;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return userList;
             }
         }
 
@@ -93,19 +79,13 @@ namespace Apollo.Age.Repositories.Impl
         public int GetUserStatus(ICriteria criteria)
         {
             int userStatus = (int)CustomerStatus.Locked;
-            try
+
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        userStatus = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
-                    }
+                    userStatus = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
 
             return userStatus;
@@ -172,18 +152,11 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return true or false.</returns>
         public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
-            try
+            using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    adminId = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
+                adminId = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
 
-                    return adminId != 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return adminId != 0;
             }
         }
 
@@ -194,16 +167,9 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return a number.</returns>
         public int WritelogInternalLogin(InternalLogLoginCriteria criteria)
         {
-            try
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.ExecuteNonQuery(criteria.GetSpParams());
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return db.ExecuteNonQuery(criteria.GetSpParams());
             }
         }
 
@@ -214,21 +180,13 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return a user id.</returns>
         public int InternalCheckIn(InternalCheckinCriteria criteria)
         {
-            try
-            {
-                var param = criteria.GetSpParams();
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    db.ExecuteNonQuery(param);
+            var param = criteria.GetSpParams();
 
-                    return Convert.ToInt32(param["onuserid"]);
-                }
-
-                // return 0;
-            }
-            catch (Exception ex)
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                throw ex;
+                db.ExecuteNonQuery(param);
+
+                return Convert.ToInt32(param["onuserid"]);
             }
         }
 
@@ -239,19 +197,13 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return true or false.</returns>
         public byte InternalReCheckIn(InternalReCheckinCriteria criteria)
         {
-            try
-            {
-                var param = criteria.GetSpParams();
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    db.ExecuteNonQuery(param);
+            var param = criteria.GetSpParams();
 
-                    return Convert.ToByte(param["iskickedout"]);
-                }
-            }
-            catch (Exception ex)
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                throw ex;
+                db.ExecuteNonQuery(param);
+
+                return Convert.ToByte(param["iskickedout"]);
             }
         }
 
@@ -262,20 +214,14 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return a user id that customer is checked in.</returns>
         public int InternalLogout(InternalLogoutCriteria criteria)
         {
-            try
-            {
-                var param = criteria.GetSpParams();
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    db.ExecuteNonQuery(param);
-                }
+            var param = criteria.GetSpParams();
 
-                return Convert.ToInt32(param["onuserid"]);
-            }
-            catch (Exception ex)
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                throw ex;
+                db.ExecuteNonQuery(param);
             }
+
+            return Convert.ToInt32(param["onuserid"]);
         }
 
         /// <summary>
@@ -306,22 +252,15 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>List of function policy.</returns>
         public IEnumerable<FunctionPolicy> GetAllUserPolicy(ICriteria criteria)
         {
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        return objectDb.Query<FunctionPolicy, Function, FunctionGroup, FunctionPolicy>(
-                            (fp, f, fg) => { fp.Function = f; f.FunctionGroup = fg; return fp; },
-                            "FunctionId,FunctionGroupId",
-                            criteria.GetSpParams());
-                    }
+                    return objectDb.Query<FunctionPolicy, Function, FunctionGroup, FunctionPolicy>(
+                        (fp, f, fg) => { fp.Function = f; f.FunctionGroup = fg; return fp; },
+                        "FunctionId,FunctionGroupId",
+                        criteria.GetSpParams());
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
 
             return null;
@@ -333,24 +272,17 @@ namespace Apollo.Age.Repositories.Impl
         /// <param name="criteria">The criteria.</param>
         public void AssignUserPermission(ref UserAssignFunctionCriteria criteria)
         {
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        var param = criteria.GetSpParams();
+                    var param = criteria.GetSpParams();
 
-                        objectDb.ExecuteNonQuery(param);
+                    objectDb.ExecuteNonQuery(param);
 
-                        criteria.ErrCode = (int)param["errcode"];
-                        criteria.ErrMsg = (string)param["errmsg"];
-                    }
+                    criteria.ErrCode = (int)param["errcode"];
+                    criteria.ErrMsg = (string)param["errmsg"];
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
     }

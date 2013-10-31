@@ -10,8 +10,9 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
-
+    /// <summary>
+    /// Forecast match win loss model.
+    /// </summary>
     public class ForecastMatchWinLostModel
     {
         public decimal Value0 { get; set; }

@@ -10,8 +10,9 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
-
+    /// <summary>
+    /// Forecast match model.
+    /// </summary>
     public class ForecastMatchModel
     {
         public decimal Offset { get; set; }

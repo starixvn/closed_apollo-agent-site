@@ -21,6 +21,10 @@ namespace Apollo.Age.Forecast.Criterias
             return true;
         }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_ScoreMap_SelBettype";

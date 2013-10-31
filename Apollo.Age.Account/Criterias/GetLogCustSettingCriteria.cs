@@ -10,9 +10,11 @@
 namespace Apollo.Age.Account.Criterias
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get log customer setting criteria.
+    /// </summary>
     public class GetLogCustSettingCriteria : CriteriaBase
     {
         public int ActorAgentId { get; set; }

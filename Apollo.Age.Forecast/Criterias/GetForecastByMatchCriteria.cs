@@ -25,6 +25,10 @@ namespace Apollo.Age.Forecast.Criterias
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             switch (BetType)

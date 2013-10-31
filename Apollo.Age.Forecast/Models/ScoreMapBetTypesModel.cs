@@ -10,9 +10,10 @@
 namespace Apollo.Age.Forecast.Models
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using Apollo.Age.Forecast.Models;
 
+    /// <summary>
+    /// Score map bet types model.
+    /// </summary>
     public class ScoreMapBetTypesModel
     {
         public ScoreMapBetTypesModel()

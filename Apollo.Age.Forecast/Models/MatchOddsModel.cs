@@ -10,9 +10,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Match odds model.
+    /// </summary>
     public class MatchOddsModel
     {
         public double Hdp1 { get; set; }

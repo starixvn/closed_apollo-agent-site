@@ -12,7 +12,7 @@ namespace Apollo.Age.Models
     using Apollo.Age.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Function policy.
     /// </summary>
     public class FunctionPolicy
     {

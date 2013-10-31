@@ -13,7 +13,7 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Caching;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Caching service.
     /// </summary>
     public class CachingService
     {

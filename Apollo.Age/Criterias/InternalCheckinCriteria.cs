@@ -13,7 +13,7 @@ namespace Apollo.Age.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Internal check in criteria.
     /// </summary>
     public class InternalCheckinCriteria : CriteriaBase
     {

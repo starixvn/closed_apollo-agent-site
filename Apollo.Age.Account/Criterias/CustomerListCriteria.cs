@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Criterias
     using System.Configuration;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Customer list criteria.
+    /// </summary>
     public class CustomerListCriteria : CriteriaBase
     {
         private string _username = string.Empty;

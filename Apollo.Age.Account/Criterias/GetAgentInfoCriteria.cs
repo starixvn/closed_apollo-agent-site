@@ -9,14 +9,10 @@
 
 namespace Apollo.Age.Account.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get agent information criteria.
     /// </summary>
     public class GetAgentInfoCriteria : CriteriaBase
     {

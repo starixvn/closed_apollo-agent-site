@@ -10,10 +10,7 @@
 namespace Apollo.Age.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Serialization;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -58,11 +55,7 @@ namespace Apollo.Age.Services
        
         #endregion      
        
-        public string SettingKey
-        {
-            get;
-            set;
-        }
+        public string SettingKey { get; set; }
 
         public override string Message
         {

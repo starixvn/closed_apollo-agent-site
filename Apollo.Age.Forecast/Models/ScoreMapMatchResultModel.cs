@@ -9,9 +9,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Core;
 
+    /// <summary>
+    /// Score map match result model.
+    /// </summary>
     public class ScoreMapMatchResultModel
     {
         public ScoreMapMatchResultModel()

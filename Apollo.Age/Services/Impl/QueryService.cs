@@ -11,10 +11,7 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.Common.Helper;
     using Fanex.NAP.Framework.Data;
 
@@ -36,7 +33,7 @@ namespace Apollo.Age.Services.Impl
             Check.Argument.IsNotNull(criteria, "criteria");
 
             try
-            {               
+            {
                 if (criteria.IsValid())
                 {
                     return _repository.Fetch<T>(criteria);
@@ -46,7 +43,7 @@ namespace Apollo.Age.Services.Impl
             }
             catch (ServiceLayerException ex)
             {
-                ex.SettingKey = criteria.GetSettingKey();                
+                ex.SettingKey = criteria.GetSettingKey();
                 HandleException(ex);
                 return null;
             }

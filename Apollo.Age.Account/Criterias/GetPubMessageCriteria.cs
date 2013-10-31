@@ -13,7 +13,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get public criteria criteria.
     /// </summary>
     public class GetPubMessageCriteria : CriteriaBase
     {

@@ -55,6 +55,7 @@ namespace Apollo.Age.Services
         {
             // resourceId remove first character
             string resourceId = string.Empty;
+
             if (betID != null && betID.ToString().Length > 1)
             {
                 resourceId = betID.ToString().Substring(1);

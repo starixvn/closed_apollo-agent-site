@@ -586,7 +586,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="bettypes">Bet type list.</param>
         /// <param name="agentId">Agent id.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ActionResult member win loss.</returns>        
+        /// <returns>ActionResult member win loss.</returns>
         public ActionResult ExportMemberWinLoss(
             DateTime fromDate,
             DateTime toDate,
