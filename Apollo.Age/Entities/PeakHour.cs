@@ -12,7 +12,7 @@ namespace Apollo.Age.Entities
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Peak hour entity.
     /// </summary>
     public class PeakHour
     {

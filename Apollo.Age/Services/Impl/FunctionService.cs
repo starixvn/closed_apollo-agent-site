@@ -18,7 +18,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Services.Interface;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Function service.
     /// </summary>
     public class FunctionService : ServiceBase, IFunctionService
     {

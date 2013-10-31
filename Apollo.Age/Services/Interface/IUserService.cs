@@ -31,9 +31,6 @@ namespace Apollo.Age.Services.Interface
 
         bool AllowLineAccountSSO(string username);
 
-        /// <summary>
-        /// Validates a username and password against credentials stored in NAP database.
-        /// </summary>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
 
         int GetUserStatus(int agentId, int agentUserId);
@@ -57,25 +54,25 @@ namespace Apollo.Age.Services.Interface
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="adminId"></param>
-        /// <param name="netSessionId"></param>
-        /// <param name="ip"></param>
+        /// <param name="adminId">The admin ID.</param>
+        /// <param name="netSessionId">The net session ID.</param>
+        /// <param name="ip">The IP address.</param>
         /// <returns></returns>
         int InternalCheckIn(int adminId, string netSessionId, string ip);
 
         /// <summary>
         /// Return IsKickOut.
         /// </summary>
-        /// <param name="onUserId"></param>
+        /// <param name="onlineUserId">Online user ID.</param>
         /// <returns></returns>
-        bool InternalReCheckIn(int onUserId);
+        bool InternalReCheckIn(int onlineUserId);
 
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="onUserId">User id of current loginned user.</param>
+        /// <param name="onlineUserId">User id of current loginned user.</param>
         /// <returns>Result of login.</returns>
-        int InternalLogout(int onUserId);
+        int InternalLogout(int onlineUserId);
 
         /// <summary>
         /// Gets the user function policy.

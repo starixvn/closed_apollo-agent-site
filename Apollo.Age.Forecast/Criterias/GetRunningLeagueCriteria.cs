@@ -20,6 +20,10 @@ namespace Apollo.Age.Forecast.Criterias
 
         public string BetTypes { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_League_GetRunning";

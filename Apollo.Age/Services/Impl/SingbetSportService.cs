@@ -14,8 +14,16 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Entities;
     using Apollo.Age.Resources;
 
+    /// <summary>
+    /// Singbet sport service.
+    /// </summary>
     public class SingbetSportService
     {
+        /// <summary>
+        /// Get SINGBET sport list.
+        /// </summary>
+        /// <param name="isOther">Is other sport or not.</param>
+        /// <returns>List of SINGBET sport.</returns>
         public static List<SingbetSport> GetSport(bool isOther)
         {
             var sportList = new List<SingbetSport>

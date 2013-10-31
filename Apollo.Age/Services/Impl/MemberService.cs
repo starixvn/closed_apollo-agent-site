@@ -13,6 +13,9 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
 
+    /// <summary>
+    /// Member service.
+    /// </summary>
     public class MemberService : IMemberService
     {
         private readonly IMemberRepository _repository;

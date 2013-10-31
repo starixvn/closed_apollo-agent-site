@@ -13,7 +13,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Agent list criteria class.
+    /// Agent list criteria.
     /// </summary>
     public class AgentListCriteria : CriteriaBase
     {

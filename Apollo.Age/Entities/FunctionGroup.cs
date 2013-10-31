@@ -10,7 +10,7 @@
 namespace Apollo.Age.Entities
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Function group entity.
     /// </summary>
     public class FunctionGroup
     {

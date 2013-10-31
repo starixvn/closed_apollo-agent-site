@@ -18,7 +18,7 @@ namespace Apollo.Age.Repositories.Impl
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Function repository.
     /// </summary>
     public class FunctionRepository : IFunctionRepository
     {
@@ -31,22 +31,15 @@ namespace Apollo.Age.Repositories.Impl
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
-                    {
-                        return objectDb.Query<Function, FunctionGroup, Function>(
-                            (f, fg) => { f.FunctionGroup = fg; return f; },
-                            "FunctionGroupId",
-                            criteria.GetSpParams());
-                    }
+                    return objectDb.Query<Function, FunctionGroup, Function>(
+                        (f, fg) => { f.FunctionGroup = fg; return f; },
+                        "FunctionGroupId",
+                        criteria.GetSpParams());
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
 
             return null;

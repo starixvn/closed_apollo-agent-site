@@ -18,6 +18,10 @@ namespace Apollo.Age.Forecast.Criterias
     {
         public int CustId { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_Agent_GetMainShareHolderByMember";

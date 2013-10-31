@@ -10,9 +10,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// League model.
+    /// </summary>
     public class LeagueModel
     {
         private string _leagueName;

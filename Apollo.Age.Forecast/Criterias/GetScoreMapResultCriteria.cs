@@ -28,6 +28,10 @@ namespace Apollo.Age.Forecast.Criterias
         [SpParam(SqlParamName = "bettypes_dead")]
         public string DeadBetTypes { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_ScoreMap_Result";

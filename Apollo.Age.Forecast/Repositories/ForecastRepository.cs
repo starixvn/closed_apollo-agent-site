@@ -10,7 +10,6 @@
 namespace Apollo.Age.Forecast.Repositories
 {
     using System.Data;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
     using Fanex.Common.Extensions;
     using Fanex.Common.Helper;
@@ -26,7 +25,7 @@ namespace Apollo.Age.Forecast.Repositories
         /// Get ScoreMap Result.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <returns></returns>
+        /// <returns>Score map result model</returns>
         public ScoreMapResultModel GetScoreMapResult(ICriteria criteria)
         {
             if (criteria.IsValid())
@@ -35,6 +34,7 @@ namespace Apollo.Age.Forecast.Repositories
                 {
                     ScoreMapResultModel scoreMapResult = new ScoreMapResultModel();
                     IDataReader reader = objdb.ExecuteReader(criteria.GetSpParams());
+
                     while (reader.Read())
                     {
                         scoreMapResult.ScoreMapItems.Add(new ScoreMapItem
@@ -70,10 +70,11 @@ namespace Apollo.Age.Forecast.Repositories
         /// Get Main shareholder id of member.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <returns></returns>
+        /// <returns>Main shareholder.</returns>
         public int GetMainShareHolderByMember(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
+
             try
             {
                 using (var db = new ObjectDb(criteria.GetSettingKey()))

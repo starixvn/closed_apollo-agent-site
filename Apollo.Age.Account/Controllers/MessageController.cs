@@ -13,7 +13,6 @@ namespace Apollo.Age.Account.Controllers
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;

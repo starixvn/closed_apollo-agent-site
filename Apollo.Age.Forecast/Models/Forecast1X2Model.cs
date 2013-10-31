@@ -9,9 +9,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Forecast 1X2 model.
+    /// </summary>
     public class Forecast1X2Model
     {
         public int MatchID { get; set; }

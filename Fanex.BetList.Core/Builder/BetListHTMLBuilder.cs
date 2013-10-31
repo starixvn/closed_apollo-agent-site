@@ -73,7 +73,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Add the time.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <param name="page"></param>
@@ -101,7 +101,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Add discount.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <param name="page"></param>
@@ -116,7 +116,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Build discount.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="page"></param>
         /// <returns></returns>
         public string BuildDiscount(ITicket ticket, BetListPage page)
@@ -315,7 +315,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Add the agent Comm.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
@@ -343,7 +343,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Add Agent share.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="ticketData">Ticket data.</param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
@@ -359,7 +359,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Buil agent share.
         /// </summary>
-        /// <param name="ticket"></param>
+        /// <param name="ticket">The bet ticket.</param>
         /// <param name="ticketData">Ticket data.</param>
         /// <returns></returns>
         public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)

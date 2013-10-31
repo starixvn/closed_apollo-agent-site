@@ -10,9 +10,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
+    /// <summary>
+    /// Forecast Handicap Over/Under model.
+    /// </summary>
     public class ForecastHandicapOUModel
     {
         public int MatchId { get; set; }

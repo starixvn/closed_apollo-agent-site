@@ -10,7 +10,7 @@
 namespace Apollo.Age.Entities
 {
     /// <summary>
-    /// This class to override equals.
+    /// Sport entity.
     /// </summary>
     public class Sport
     {

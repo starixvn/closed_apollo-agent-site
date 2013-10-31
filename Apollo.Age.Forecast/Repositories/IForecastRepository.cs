@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.Forecast.Repositories
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
     using Fanex.NAP.Framework.Data;
 

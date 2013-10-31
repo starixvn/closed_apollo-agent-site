@@ -10,7 +10,7 @@
 namespace Apollo.Age.Entities
 {
     /// <summary>
-    /// This class is model that inherited from customer.
+    /// Member entity.
     /// </summary>
     public class Member : Customer
     {
