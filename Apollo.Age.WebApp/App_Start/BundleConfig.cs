@@ -19,8 +19,7 @@ namespace Apollo.Age.WebApp
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            #region css
-
+            // css
             bundles.AddAndInclude(
                 "~/css/new-message",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
@@ -120,10 +119,7 @@ namespace Apollo.Age.WebApp
            "~/Views/PermissionUserControl/Resources/permissionusercontrol.less",
             "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css");
 
-            #endregion css
-
-            #region js
-
+            // js
             bundles.Add(new ScriptBundle("~/scripts/topbarjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
@@ -245,8 +241,7 @@ namespace Apollo.Age.WebApp
                "~/_globalresources/js/pager/jquery.sbpager.js",
                "~/views/results/resources/result.js"));
 
-            #region Customer Setting
-
+            // Customer Setting
             bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
@@ -276,8 +271,6 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/custsettingengine/bettypegroup.js",
                 "~/views/account/resources/custsettingengine/commissionsetting.js",
                 "~/views/account/resources/editpositiontaking.js"));
-
-            #endregion Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
                 "~/_globalresources/js/head.js",
@@ -368,8 +361,6 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/js/Core.js",
             "~/_globalresources/js/BlockUI/jquery.blockUI.js",
             "~/Views/PermissionUserControl/Resources/AssignFunction.js"));
-
-            #endregion js
 
             bundles.FileSetOrderList.Clear();
         }

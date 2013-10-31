@@ -63,7 +63,7 @@ namespace Apollo.Age.Web.Pager
                 else if (above > (pageCount - 2))
                 {
                     above = pageCount;
-                    below = (pageCount - nrOfPagesToDisplay + 1 - 1);
+                    below = pageCount - nrOfPagesToDisplay;
                 }
 
                 start = below;

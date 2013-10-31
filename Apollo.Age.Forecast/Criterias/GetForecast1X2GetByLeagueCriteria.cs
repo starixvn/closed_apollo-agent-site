@@ -12,7 +12,6 @@ namespace Apollo.Age.Forecast.Criterias
     using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetForecast1X2GetByLeagueCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

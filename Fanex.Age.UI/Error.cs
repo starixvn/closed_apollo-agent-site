@@ -54,7 +54,7 @@ namespace Fanex.Age.UI
 
         public Result(ErrorType type, string msg)
         {
-            ErrCode = (int)(type);
+            ErrCode = (int)type;
             ErrMsg = msg;
         }
     }

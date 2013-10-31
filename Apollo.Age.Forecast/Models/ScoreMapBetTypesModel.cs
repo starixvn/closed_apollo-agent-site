@@ -13,7 +13,6 @@ namespace Apollo.Age.Forecast.Models
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Models;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ScoreMapBetTypesModel
     {
         public ScoreMapBetTypesModel()

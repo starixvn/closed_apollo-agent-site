@@ -18,7 +18,7 @@ namespace Fanex.Age.UI
     public abstract class TplPage : TplBase
     {
         /// <summary>
-        /// Root namespace of json data returned.
+        /// Root namespace of JSON data returned.
         /// </summary>
         private const string JS_DATA = "_page";
 

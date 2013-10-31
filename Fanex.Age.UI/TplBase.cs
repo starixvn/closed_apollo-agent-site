@@ -53,7 +53,7 @@ namespace Fanex.Age.UI
         }
 
         /// <summary>
-        /// Return false that mean the control aldready registered.
+        /// Return false that mean the control already registered.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -74,23 +74,23 @@ namespace Fanex.Age.UI
         #region IBasePage Members
 
         /// <summary>
-        /// Process HttpRequest and return a list of using params.
+        /// Process HttpRequest and return a list of using parameters.
         /// </summary>
-        /// <param name="p">List of params are using in this page.</param>
+        /// <param name="p">List of parameters are using in this page.</param>
         public abstract void ProcessRequest(ref Hashtable p);
 
         /// <summary>
-        /// Validating the request with a list of request params.
+        /// Validating the request with a list of request parameters.
         /// </summary>
-        /// <param name="p">List of request params.</param>
+        /// <param name="p">List of request parameters.</param>
         /// <returns>Null is success otherwise is error message.</returns>
         public abstract object ValidateRequest(Hashtable p);
 
         /// <summary>
-        /// Loading data in _BL with provided params. This function was called  in http get only.
+        /// Loading data in _BL with provided parameters. This function was called  in http get only.
         /// Inherit from TplPage2 will be supported ProcessRequest method.
         /// </summary>
-        /// <param name="p">List of request params.</param>
+        /// <param name="p">List of request parameters.</param>
         /// <returns>Return data in array of objects.</returns>
         public abstract object InvokeData(Hashtable p);
 

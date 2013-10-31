@@ -59,7 +59,7 @@ namespace Fanex.Age.UI.Components
             {
                 PageSize = pageSize1;
             }
-            else if (PAGE_SIZES.Contains((object)(pageSize)))
+            else if (PAGE_SIZES.Contains((object)pageSize))
             {
                 PageSize = pageSize;
             }
@@ -96,7 +96,11 @@ namespace Fanex.Age.UI.Components
 
             if (isSelPageSize)
             {
-                tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
+                tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox(
+                    "sel" + id, 
+                    (object)(PageSize), 
+                    PAGE_SIZES, 
+                    id + ".SetPageSize(this.value)");
 
                 ShowHidePageSize();
             }
@@ -144,11 +148,11 @@ namespace Fanex.Age.UI.Components
             ParseUrl(url, ref pageSize1, ref pageIndex);
 
             // Valid page size
-            if (PAGE_SIZES.Contains((object)(pageSize1)))
+            if (PAGE_SIZES.Contains((object)pageSize1))
             {
                 PageSize = pageSize1;
             }
-            else if (PAGE_SIZES.Contains((object)(pageSize)))
+            else if (PAGE_SIZES.Contains((object)pageSize))
             {
                 PageSize = pageSize;
             }

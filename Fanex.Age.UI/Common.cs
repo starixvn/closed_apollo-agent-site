@@ -96,7 +96,7 @@ namespace Fanex.Age.UI
         public const string BetListRunningByDate_Member = "RunByDate_Mem";
 
         /// <summary>
-        /// Bet list runnning by bet type match on member.
+        /// Bet list running by bet type match on member.
         /// Only for agent - (Member Outstanding).
         /// </summary>
         public const string BetListRunningByBetTypeMatch_Member = "RunByBtypeM";

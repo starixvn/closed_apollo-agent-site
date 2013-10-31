@@ -28,7 +28,6 @@ namespace Apollo.Age.Forecast.Services
     /// <summary>
     /// Forecast Service.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
         private readonly ICache _cacheManager;
@@ -48,8 +47,8 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Running Leagues.
         /// </summary>
-        /// <param name="betType"></param>
-        /// <param name="agentId"></param>
+        /// <param name="betType">The bet type.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <returns></returns>
         public IEnumerable<LeagueModel> GetRunningLeague(int betType, int agentId)
         {
@@ -67,8 +66,8 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Forecast 1X2.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="leagueId">The league ID.</param>
         /// <returns></returns>
         public IEnumerable<Forecast1X2Model> GetForecast1x2(int agentId, int loggedId, int leagueId)
         {
@@ -87,10 +86,13 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// FC Handicap OU.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="leagueId">The league ID.</param>
         /// <returns></returns>
-        public IEnumerable<ForecastHandicapOUModel> GetForecastHandicapOverUnder(int agentId, int loggedId, int leagueId)
+        public IEnumerable<ForecastHandicapOUModel> GetForecastHandicapOverUnder(
+            int agentId, 
+            int loggedId, 
+            int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(leagueId, "leagueId");
@@ -111,9 +113,9 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Forecast Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
         /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
         public ForecastMatchWinLostModel GetForecastMatcheValue(
@@ -151,9 +153,9 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// 1x2 Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
         /// <returns></returns>
         public IEnumerable<Forecast1X2Model> GetForecast1X2Matches(int agentId, int loggedId, int matchId, int betType)
         {
@@ -174,12 +176,17 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Score Map Results.
         /// </summary>
-        /// <param name="agentId"></param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="matchIds"></param>
         /// <param name="liveBetTypes"></param>
         /// <param name="deadBallBetTypes"></param>
         /// <returns></returns>
-        public List<ScoreMapMatchResultModel> GetScoreMapResults(int agentId, int loggedId, string matchIds, string liveBetTypes, string deadBallBetTypes)
+        public List<ScoreMapMatchResultModel> GetScoreMapResults(
+            int agentId, 
+            int loggedId, 
+            string matchIds, 
+            string liveBetTypes, 
+            string deadBallBetTypes)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNull(matchIds, "matchIds");
@@ -333,8 +340,8 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Score Map Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="leagueId">The league ID.</param>
         /// <returns></returns>
         public IEnumerable<ScoreMapMatch> GetScoreMapMatches(int agentId, int leagueId)
         {
@@ -350,7 +357,7 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Score Map LeagueModel.
         /// </summary>
-        /// <param name="agentId"></param>
+        /// <param name="agentId">The agent ID.</param>
         /// <returns></returns>
         public IEnumerable<LeagueModel> GetScoreMapLeagues(int agentId)
         {
@@ -372,8 +379,8 @@ namespace Apollo.Age.Forecast.Services
         /// <summary>
         /// Get Top Odds.
         /// </summary>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
         /// <returns></returns>
         public MatchOddsModel GetTopOddsByMatch(int matchId, int betType)
         {
@@ -406,7 +413,7 @@ namespace Apollo.Age.Forecast.Services
         /// Get Odd value of ScoreMap.
         /// </summary>
         /// <param name="forecastMatches"></param>
-        /// <param name="betType"></param>
+        /// <param name="betType">The bet type.</param>
         /// <param name="currentScore">Current score.</param>
         /// <returns></returns>
         private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchModel> forecastMatches, int betType, int currentScore)

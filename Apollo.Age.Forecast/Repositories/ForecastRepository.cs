@@ -20,13 +20,12 @@ namespace Apollo.Age.Forecast.Repositories
     /// <summary>
     /// Forecast Repository.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastRepository : IForecastRepository
     {
         /// <summary>
         /// Get ScoreMap Result.
         /// </summary>
-        /// <param name="criteria"></param>
+        /// <param name="criteria">The criteria.</param>
         /// <returns></returns>
         public ScoreMapResultModel GetScoreMapResult(ICriteria criteria)
         {
@@ -70,7 +69,7 @@ namespace Apollo.Age.Forecast.Repositories
         /// <summary>
         /// Get Main shareholder id of member.
         /// </summary>
-        /// <param name="criteria"></param>
+        /// <param name="criteria">The criteria.</param>
         /// <returns></returns>
         public int GetMainShareHolderByMember(ICriteria criteria)
         {

@@ -112,7 +112,7 @@ namespace Fanex.Age.UI.Components
 
             builder.Append("\">");
 
-            int c = (int)(Math.Round((max - min) / step));
+            int c = (int)Math.Round((max - min) / step);
             for (int i = c; i >= 0; i--)
             {
                 double f = min + (i * step);
@@ -172,7 +172,7 @@ namespace Fanex.Age.UI.Components
 
                 var tmp = max == min ? min + step : max;
 
-                int c = (int)(Math.Round((tmp - min) / step));
+                int c = (int)Math.Round((tmp - min) / step);
 
                 for (int i = c; i >= 0; i--)
                 {

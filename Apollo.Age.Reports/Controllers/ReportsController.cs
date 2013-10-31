@@ -115,7 +115,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // End check permission.
 
             this.CurrentAgentId = agentId;
             sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
@@ -616,7 +615,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
@@ -705,8 +703,6 @@ namespace Apollo.Age.Reports.Controllers
                 username = string.Empty;
             }
 
-            // end check permission
-
             var criteria = new SportCreditCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
@@ -782,7 +778,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Creates the type of the bet.
         /// </summary>
-        /// <param name="isIncludeParlay">Include parlay bettype or not.</param>
+        /// <param name="isIncludeParlay">Include parlay bet type or not.</param>
         /// <returns>JSON bet type.</returns>
         public JsonResult CreateBetType(bool isIncludeParlay)
         {

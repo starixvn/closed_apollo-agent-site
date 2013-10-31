@@ -14,20 +14,20 @@ namespace Fanex.Age.UI
     public interface IBasePage
     {
         /// <summary>
-        /// Process the request and return requested params.
+        /// Process the request and return requested parameters.
         /// </summary>
         /// <returns></returns>
         void ProcessRequest(ref Hashtable p);
 
         /// <summary>
-        /// Validating the request with a list of request params.
+        /// Validating the request with a list of request parameters.
         /// </summary>
-        /// <param name="p">List of request params.</param>
+        /// <param name="p">List of request parameters.</param>
         /// <returns>Null is success, otherwise is error.</returns>
         object ValidateRequest(Hashtable p);
 
         /// <summary>
-        /// Process data working with provided params.
+        /// Process data working with provided parameters.
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>

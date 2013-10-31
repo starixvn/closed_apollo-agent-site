@@ -12,7 +12,6 @@ namespace Apollo.Age.Forecast.Criterias
     using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetScoreMapBetTypesCriteria : CriteriaBase
     {
         public override bool IsValid()

@@ -178,9 +178,14 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
+        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
         /// <returns>BetListHTMLBuilder.</returns>
-        public BetListHTMLBuilder AddOdds(ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag, GetCachePropertyById FuncGetOddsTypeName)
+        public BetListHTMLBuilder AddOdds(
+            ITicket ticket, 
+            List<ITicketData> ticketData, 
+            string openTag, 
+            string closeTag, 
+            GetCachePropertyById FuncGetOddsTypeName)
         {
             string odds = BuildOdds(ticket, ticketData, FuncGetOddsTypeName);
             this._content.Append(string.Join(null, new string[] { openTag, odds, closeTag }));
@@ -192,8 +197,8 @@ namespace Fanex.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
-        /// <returns>string</returns>
+        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>String.</returns>
         public string BuildOdds(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName)
         {
             IOdds oddsBuilder = this.CreateOddsBuilder(ticket.BetTypeId);
@@ -310,9 +315,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Add the agent Comm.
         /// </summary>
-        /// <param name="factory"></param>
         /// <param name="ticket"></param>
-        /// <param name="ticketData"></param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
@@ -341,7 +344,7 @@ namespace Fanex.BetList.Core.Builder
         /// Add Agent share.
         /// </summary>
         /// <param name="ticket"></param>
-        /// <param name="ticketData"></param>
+        /// <param name="ticketData">Ticket data.</param>
         /// <param name="openTag"></param>
         /// <param name="closeTag"></param>
         /// <returns></returns>
@@ -357,7 +360,7 @@ namespace Fanex.BetList.Core.Builder
         /// Buil agent share.
         /// </summary>
         /// <param name="ticket"></param>
-        /// <param name="ticketData"></param>
+        /// <param name="ticketData">Ticket data.</param>
         /// <returns></returns>
         public string BuildAgentShare(ITicket ticket, List<ITicketData> ticketData)
         {
@@ -370,7 +373,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Creates the choice builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
+        /// <param name="bettype">The bet type.</param>
         /// <returns>IChoice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
@@ -398,7 +401,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Creates the odd builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
+        /// <param name="bettype">The bet type.</param>
         /// <returns>IOdds.</returns>
         private IOdds CreateOddsBuilder(int bettype)
         {
@@ -432,7 +435,7 @@ namespace Fanex.BetList.Core.Builder
         /// <summary>
         /// Creates the stake builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
+        /// <param name="bettype">The bet type.</param>
         /// <returns>IStake.</returns>
         private IStake CreateStakeBuilder(int bettype)
         {

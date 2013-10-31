@@ -36,7 +36,7 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketData"></param>
+        /// <param name="ticketData">Ticket data.</param>
         /// <returns></returns>
         public override AgentShare_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {

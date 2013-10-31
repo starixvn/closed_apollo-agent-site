@@ -77,7 +77,7 @@ namespace Apollo.Age.BetList.Services
         /// Get bet list running on Total Bets menu.
         /// </summary>
         /// <param name="criteria">Criteria name.</param>
-        /// <returns>Ticket data.</returns>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
             return this._betListRepository.GetRunningByBettype(criteria);
@@ -87,7 +87,7 @@ namespace Apollo.Age.BetList.Services
         /// Get all bets by date and member from Win loss listOutstanding.
         /// </summary>
         /// <param name="criteria">Criteria name.</param>
-        /// <returns>Ticket data.</returns>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             return this._betListRepository.GetWinLossByDateAndMem(criteria);
@@ -142,7 +142,7 @@ namespace Apollo.Age.BetList.Services
         /// Get data bet list on Wagers page.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <returns></returns>
+        /// <returns>Ticket result.</returns>
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
             criteria.UGroup = base.RevertCommGroupName(criteria.UGroup);
@@ -153,7 +153,7 @@ namespace Apollo.Age.BetList.Services
         /// Gets the ticket result.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <returns></returns>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria)
         {
             return this._betListRepository.GetTicketResult(criteria);
@@ -164,7 +164,7 @@ namespace Apollo.Age.BetList.Services
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <param name="isIncludeOldData">If set to <c>true</c> [is include old data].</param>
-        /// <returns></returns>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);

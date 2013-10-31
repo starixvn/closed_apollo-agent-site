@@ -399,7 +399,7 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Edit all member share of agent.
         /// </summary>
-        /// <param name="agentId"></param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentUserName"></param>
         /// <returns></returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
@@ -472,7 +472,7 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Get Position taking result.
         /// </summary>
-        /// <param name="targetCustId">Target cust id is member or agent.</param>
+        /// <param name="targetCustId">Target customer id is member or agent.</param>
         /// <param name="agentId">Agent id for edit cross.</param>
         /// <param name="agentLevel">Agent level.</param>
         /// <returns>Action result.</returns>
@@ -498,7 +498,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Update postion taking setting.
+        /// Update position taking setting.
         /// </summary>
         /// <param name="settingContext">Current setting context.</param>
         /// <param name="positionTakingSetting">Position taking update.</param>

@@ -13,7 +13,6 @@ namespace Apollo.Age.Forecast.Criterias
     using Apollo.Age.Enumerations;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetForecastByMatchCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

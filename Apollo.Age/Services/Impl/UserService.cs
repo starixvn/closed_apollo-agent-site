@@ -114,7 +114,7 @@ namespace Apollo.Age.Services.Impl
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database.
         /// </summary>
-        /// <param name="criteria"></param>
+        /// <param name="criteria">The criteria.</param>
         /// <param name="adminId"></param>
         /// <returns></returns>
         public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
@@ -158,7 +158,7 @@ namespace Apollo.Age.Services.Impl
         /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
         /// <param name="actorAgentId">The actor agent id.</param>
-        /// <param name="custId">The cust id.</param>
+        /// <param name="custId">The customer id.</param>
         /// <param name="customerType">Type of the customer.</param>
         /// <returns>
         ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
@@ -186,7 +186,7 @@ namespace Apollo.Age.Services.Impl
         /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
         /// <param name="actorAgentId">The actor agent id.</param>
-        /// <param name="custId">The cust id.</param>
+        /// <param name="custId">The customer id.</param>
         /// <param name="customerType">Type of the customer.</param>
         /// <returns>
         ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
@@ -288,7 +288,7 @@ namespace Apollo.Age.Services.Impl
         /// <param name="adminId">Admin user id.</param>
         /// <param name="netSessionId">Session Id. </param>
         /// <param name="ip">Requested IP.</param>
-        /// <returns><c>true</c> if check in successfull; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if check in successful; otherwise, <c>false</c>.</returns>
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
             Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
