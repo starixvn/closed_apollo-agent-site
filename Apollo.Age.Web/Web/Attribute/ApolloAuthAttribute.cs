@@ -73,12 +73,15 @@ namespace Apollo.Age.Web.Web.Attribute
                 if (filterContext.HttpContext == null)
                 {
                     CloseConnection(filterContext);
+
                     return;
                 }
 
                 if (ReferenceEquals(SessionManager.CurrentSession, null))
                 {
                     CloseConnection(filterContext);
+
+                    return;
                 }
 
                 var userId = SessionManager.CurrentSession.UserId;
@@ -90,6 +93,8 @@ namespace Apollo.Age.Web.Web.Attribute
                 else
                 {
                     CloseConnection(filterContext);
+
+                    return;
                 }
             }
             catch

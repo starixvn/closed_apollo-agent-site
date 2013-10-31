@@ -431,7 +431,7 @@ namespace Apollo.Age.Services.Impl
 
             try
             {
-                _userRepository.AssignUerPermission(ref criteria);
+                _userRepository.AssignUserPermission(ref criteria);
             }
             catch (Exception ex)
             {
