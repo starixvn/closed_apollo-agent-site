@@ -1,13 +1,8 @@
-﻿/*
- * Created 20091224@Lee - Common definitions
- * Revision:
- * 20091224@Lee - Initializing
- * 
- * !!!CAUTION: THIS IS GLOBAL DEFINITIONS, ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * Please refer to <document url> for more details
- * 
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="Common.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Age.UI
 {

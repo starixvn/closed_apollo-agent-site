@@ -1,11 +1,8 @@
-﻿/*
- * Created 20091211@Lee - JSON processing
- * Revision: 
- * 20091211@Lee - Initializing
- * 
- * !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="JSON.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Age.UI
 {
@@ -166,8 +163,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Return an error.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void AsError(int errCode, string errMsg)
         {
             this.Clear();
@@ -178,8 +175,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Return an error.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void AsError(ErrorType errType, string errMsg)
         {
             this.Clear();

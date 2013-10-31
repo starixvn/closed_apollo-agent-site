@@ -12,6 +12,9 @@ namespace Apollo.Age.Reports.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get outright result criteria.
+    /// </summary>
     public class GetOutrightResultCriteria : CriteriaBase
     {
         public DateTime FromDate { get; set; }

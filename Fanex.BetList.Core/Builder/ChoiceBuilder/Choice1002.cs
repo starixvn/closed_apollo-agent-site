@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// Texas Hold'em
+    /// Texas Hold'em.
     /// </summary>
     public class Choice1002 : Choice1000
     {

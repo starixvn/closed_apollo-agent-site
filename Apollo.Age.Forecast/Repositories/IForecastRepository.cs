@@ -13,7 +13,6 @@ namespace Apollo.Age.Forecast.Repositories
     using Apollo.Age.Forecast.Models;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IForecastRepository
     {
         ScoreMapResultModel GetScoreMapResult(ICriteria criteria);

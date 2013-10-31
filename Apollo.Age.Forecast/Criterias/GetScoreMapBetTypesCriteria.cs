@@ -9,9 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get score map bet type criteria.
+    /// </summary>
     public class GetScoreMapBetTypesCriteria : CriteriaBase
     {
         public override bool IsValid()

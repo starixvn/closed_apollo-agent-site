@@ -11,6 +11,9 @@ namespace Apollo.Age.Forecast.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get main shareholder by member criteria.
+    /// </summary>
     public class GetMainShareHolderByMemberCriteria : CriteriaBase
     {
         public int CustId { get; set; }

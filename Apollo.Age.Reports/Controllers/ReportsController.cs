@@ -364,7 +364,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // end check permission
 
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new AgentWinLossCriteria
@@ -741,7 +740,6 @@ namespace Apollo.Age.Reports.Controllers
             {
                 return View("ReportAccessDenied");
             }
-            // end check permission
 
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
             var sportCreditList = (List<SportCreditModel>)HttpContext.Session[sessionKey];

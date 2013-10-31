@@ -12,6 +12,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Match entered criteria.
+    /// </summary>
     public class MatchEnteredCriteria : CriteriaBase
     {
         public bool isShowAll { get; set; }

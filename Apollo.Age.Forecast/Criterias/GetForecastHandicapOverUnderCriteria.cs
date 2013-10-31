@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get forecast handicap over/under criteria.
+    /// </summary>
     public class GetForecastHandicapOverUnderCriteria : CriteriaBase
     {
         public int BaseOffsetHDP { get; set; }

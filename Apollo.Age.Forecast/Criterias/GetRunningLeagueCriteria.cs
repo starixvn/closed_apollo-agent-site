@@ -9,9 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get running league criteria.
+    /// </summary>
     public class GetRunningLeagueCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

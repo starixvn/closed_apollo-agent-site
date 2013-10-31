@@ -1,11 +1,8 @@
-﻿/*
- * Created 20091211@Lee - Base UI interface
- * Revision: 
- * 20091211@Lee - Initializing
- * 
- * !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="IBasePage.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Age.UI
 {

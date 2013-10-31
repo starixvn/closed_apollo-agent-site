@@ -1,11 +1,8 @@
-﻿/*
- * Created 20091211@Lee - ERROR object in UI
- * Revision: 
- * 20091211@Lee - Initializing
- * 
- * !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="Error.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Age.UI
 {

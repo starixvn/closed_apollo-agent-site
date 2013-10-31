@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get match result criteria.
     /// </summary>
     public class GetMatchResultCriteria : CriteriaBase
     {

@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Home no bet
+    /// Home no bet.
     /// </summary>
     public class Choice121 : Choice1
     {

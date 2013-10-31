@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Baccarat
+    /// Baccarat.
     /// </summary>
     public class Choice1101 : Choice1
     {

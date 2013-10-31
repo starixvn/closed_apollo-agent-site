@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get score map by league criteria.
+    /// </summary>
     public class GetScoreMatchesByLeague : CriteriaBase
     {
         public int LeagueId { get; set; }

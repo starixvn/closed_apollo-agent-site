@@ -12,7 +12,6 @@ namespace Apollo.Age.Forecast.Models
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class Forecast1X2Model
     {
         public int MatchID { get; set; }

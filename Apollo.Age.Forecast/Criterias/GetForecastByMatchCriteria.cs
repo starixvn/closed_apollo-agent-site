@@ -9,10 +9,12 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Enumerations;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get forecast by match criteria.
+    /// </summary>
     public class GetForecastByMatchCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

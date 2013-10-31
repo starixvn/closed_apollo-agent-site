@@ -40,8 +40,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Register an error as JSON format.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(int errCode, string errMsg)
         {
             _JsData.Add(JSONError.ERROR_CODE, errCode);
@@ -51,8 +51,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Register an error as JSON format.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(ErrorType type, string errMsg)
         {
             _JsData.Add(JSONError.ERROR_CODE, (int)(type));

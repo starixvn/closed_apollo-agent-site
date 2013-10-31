@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Live Roulette
+    /// Live Roulette.
     /// </summary>
     public class Choice1102 : Choice1
     {

@@ -68,7 +68,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
         public virtual Choice_Template Render(
             ITicket ticket, 
@@ -90,7 +90,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <returns>Choice_Template.</returns>
         public virtual List<IRichTextString> RenderRTF(
             ITicket ticket, 
@@ -451,7 +451,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// Builds the score map.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         private void BuildScoreMap(ITicket ticket, bool isShowScoreMap)
         {
             if (isShowScoreMap)

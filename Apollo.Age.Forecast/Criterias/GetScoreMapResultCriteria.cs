@@ -9,9 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get score map result criteria.
+    /// </summary>
     public class GetScoreMapResultCriteria : CriteriaBase
     {
         public string MatchIds { get; set; }

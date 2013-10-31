@@ -135,7 +135,7 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <returns>BetListHTMLBuilder.</returns>
         public BetListHTMLBuilder AddChoice(
             ITicket ticket, 
@@ -156,7 +156,7 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <returns>string.</returns>
         public string BuildChoice(
             ITicket ticket, 
@@ -281,7 +281,7 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticketData">The ticket data (Status33 Win/Place).</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
         public BetListHTMLBuilder AddStatus(
             ITicket ticket, 
@@ -302,7 +302,7 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data (Status33 Win/Place).</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
         public string BuildStatus(ITicket ticket, List<ITicketData> ticketData)
         {

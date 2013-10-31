@@ -1,10 +1,8 @@
-﻿/*
- * Created 20100404@Lee - Html controls generator
- * Revision:
- * ?@? - ...
- *
- */
-
+﻿// --------------------------------------------------------------------------
+// <copyright file="HtmlGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 namespace Fanex.Age.UI.Components
 {
     using System;
