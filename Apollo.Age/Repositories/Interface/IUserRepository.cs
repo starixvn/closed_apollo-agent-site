@@ -77,6 +77,6 @@ namespace Apollo.Age.Repositories.Interface
 
         IEnumerable<FunctionPolicy> GetAllUserPolicy(ICriteria criteria);
 
-        void AssignUerPermision(ref UserAssignFunctionCriteria criteria);
+        void AssignUerPermission(ref UserAssignFunctionCriteria criteria);
     }
 }
