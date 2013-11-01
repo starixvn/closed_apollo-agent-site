@@ -15,7 +15,7 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Resources;
 
     /// <summary>
-    /// Singbet sport service.
+    /// SINGBET sport service.
     /// </summary>
     public class SingbetSportService
     {
@@ -72,12 +72,11 @@ namespace Apollo.Age.Services.Impl
 
             if (isOther)
             {
-                var ouright = new SingbetSport
-                {
-                    Id = SportGroup.Outright,
-                    Name = Lang.lblOutRight
-                };
-                sportList.Add(ouright);
+                sportList.Add(new SingbetSport
+                    {
+                        Id = SportGroup.Outright,
+                        Name = Lang.lblOutRight
+                    });
             }
 
             return sportList;

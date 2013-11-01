@@ -39,6 +39,10 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(Ignored = true)]
         public bool ShowOldValue { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             string settingKey = string.Empty;

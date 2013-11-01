@@ -12,7 +12,7 @@ namespace Apollo.Age.Criterias.Accounts
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Member downline criteria.
+    /// Member down line criteria.
     /// </summary>
     public class MemberDownlineCriteria : CriteriaBase
     {

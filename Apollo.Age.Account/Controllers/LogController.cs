@@ -657,7 +657,7 @@ namespace Apollo.Age.Account.Controllers
         /// Logs the action permission user control.
         /// </summary>
         /// <param name="oldData">The old data.</param>
-        /// <param name="data">The data.</param>
+        /// <param name="data">The new data.</param>
         /// <returns>Log action permission user control.</returns>
         public ViewResult LogActionType9(string oldData, string data)
         {

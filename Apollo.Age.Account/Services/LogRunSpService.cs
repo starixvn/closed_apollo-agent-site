@@ -21,6 +21,11 @@ namespace Apollo.Age.Account.Services
     /// </summary>
     public class LogRunSpService : QueryService, ILogRunSpService
     {
+        /// <summary>
+        /// Search execute SP log.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of execute SP log model.</returns>
         public IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria)
         {
             IEnumerable<LogRunSpModel> list = null;

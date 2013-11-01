@@ -23,11 +23,11 @@ namespace Apollo.Age.Account.Services
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Message service.
     /// </summary>
     public class MessageService : QueryService, IMessageService
     {
-        private DynamicRepository _dyanamicRepository;
+        private DynamicRepository _dynamicRepository;
 
         private ICache _cache;
 
@@ -35,7 +35,7 @@ namespace Apollo.Age.Account.Services
         public MessageService(ICache cache, DynamicRepository dynamicRepository)
         {
             _cache = cache ?? CacheService.CreateInstance(CacheType.MemoryCache);
-            _dyanamicRepository = _dyanamicRepository ?? new DynamicRepository();
+            _dynamicRepository = _dynamicRepository ?? new DynamicRepository();
         }
 
         public MessageService()
@@ -43,8 +43,21 @@ namespace Apollo.Age.Account.Services
         {
         }
        
-        #endregion       
+        #endregion
 
+        /// <summary>
+        /// Get announcement.
+        /// </summary>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="siteIds">List of site ID.</param>
+        /// <param name="lastPostDate">Last post date.</param>
+        /// <param name="totalMessage">Total message.</param>
+        /// <param name="isTest">Is test or not.</param>
+        /// <param name="isAgent">Agent or member.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="content">The message content.</param>
+        /// <param name="language">The message language.</param>
+        /// <returns>List of announcement model.</returns>
         public IEnumerable<AnnouncementModel> GetAnnouncement(
             int agentId,
             string siteIds,
@@ -54,7 +67,7 @@ namespace Apollo.Age.Account.Services
             bool isAgent = true,
             DateTime? startTime = null,
             string content = "",
-            string langue = "en-US")
+            string language = "en-US")
         {
             return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
                 {
@@ -65,10 +78,16 @@ namespace Apollo.Age.Account.Services
                     IsAgent = isAgent,
                     StartDate = startTime,
                     Content = content,
-                    Language = langue
+                    Language = language
                 });
         }
 
+        /// <summary>
+        /// Count unread private message.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="isAgent">Agent or member.</param>
+        /// <returns>Number of private message.</returns>
         public int CountUnreadPrivateMessage(int userId, bool isAgent = true)
         {
             var criteria = new GetPriMessageCountCriteria
@@ -79,12 +98,18 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                return _dyanamicRepository.Count(criteria);
+                return _dynamicRepository.Count(criteria);
             }
 
             return 0;
         }
 
+        /// <summary>
+        /// Update read private message.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>True : success, false: fail.</returns>
         public bool UpdateReadPrivateMessage(int userId, string username)
         {
             var criteria = new SetPriMessageReadCriteria
@@ -95,7 +120,7 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                _dyanamicRepository.Count(criteria);
+                _dynamicRepository.Count(criteria);
 
                 return true;
             }
@@ -103,6 +128,13 @@ namespace Apollo.Age.Account.Services
             return false;
         }
 
+        /// <summary>
+        /// Update read message.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="messsageId">The message ID.</param>
+        /// <param name="isAgent">Agent or member.</param>
+        /// <returns>True : success, false: fail.</returns>
         public bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true)
         {
             var criteria = new UpdateReadMessageCriteria
@@ -112,11 +144,18 @@ namespace Apollo.Age.Account.Services
                 IsAgent = isAgent
             };
 
-            _dyanamicRepository.Count(criteria);
+            _dynamicRepository.Count(criteria);
 
             return true;
         }
 
+        /// <summary>
+        /// Get has private message 24.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="isTest">Is test or not.</param>
+        /// <param name="isAgent">Agent or member.</param>
+        /// <returns>True : has, false: not.</returns>
         public bool GetHasPrivateMessage24(int userId, bool isTest = false, bool isAgent = true)
         {
             var criteria = new GetHasPriMessage24Criteria
@@ -136,7 +175,19 @@ namespace Apollo.Age.Account.Services
             return false;
         }
 
-        public MessageModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false)
+        /// <summary>
+        /// Get top public message.
+        /// </summary>
+        /// <param name="messageType">The message type.</param>
+        /// <param name="siteId">The site ID.</param>
+        /// <param name="latestMessageId">The latest message ID.</param>
+        /// <param name="isTest">Is test or not.</param>
+        /// <returns>Message model.</returns>
+        public MessageModel GetTopPublicMessage(
+            int messageType, 
+            int siteId, 
+            int latestMessageId = 0, 
+            bool isTest = false)
         {
             char[] separator = new char[] { ',' };
             string[] arraySite = GetParentSitesID(siteId.ToString()).Split(separator);
@@ -176,6 +227,14 @@ namespace Apollo.Age.Account.Services
             return new MessageModel();
         }
 
+        /// <summary>
+        /// Get top private message 24.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="latestMessageId">The latest message ID.</param>
+        /// <param name="isTest">Is test or not.</param>
+        /// <param name="isAgent">Agent or member.</param>
+        /// <returns>Message model.</returns>
         public MessageModel GetTopPrivateMessage24(
             int userId, 
             int latestMessageId = 0, 
@@ -201,10 +260,16 @@ namespace Apollo.Age.Account.Services
             return new MessageModel();
         }
 
+        /// <summary>
+        /// Get parent sites ID.
+        /// </summary>
+        /// <param name="siteId">The site ID.</param>
+        /// <returns>Parent sites ID string.</returns>
         public string GetParentSitesID(string siteId)
         {
             ArrayList list = new ArrayList();
             int num = 0;
+
             for (int i = siteId.Length - 1; i >= 0; i--)
             {
                 if (siteId[i] != '0')
@@ -234,6 +299,11 @@ namespace Apollo.Age.Account.Services
             return str2 + siteId;
         }
 
+        /// <summary>
+        /// Get message.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of message model.</returns>
         public IEnumerable<MessageModel> GetMessage(ICriteria criteria)
         {
             if (criteria.IsValid())
@@ -244,9 +314,16 @@ namespace Apollo.Age.Account.Services
             return new List<MessageModel>();
         }
 
+        /// <summary>
+        /// Get property value.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>Property value.</returns>
         private static object GetValue(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
+
             if (propertyInfo != null)
             {
                 return propertyInfo.GetValue(obj, null);
@@ -255,6 +332,12 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
+        /// <summary>
+        /// Get property information.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>Property information.</returns>
         private static PropertyInfo GetPropertyInfo(object obj, string propertyName)
         {
             foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
@@ -268,6 +351,12 @@ namespace Apollo.Age.Account.Services
             return null;
         }
 
+        /// <summary>
+        /// Check if has property information.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>Property information.</returns>
         private static bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);

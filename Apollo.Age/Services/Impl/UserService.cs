@@ -242,7 +242,7 @@ namespace Apollo.Age.Services.Impl
         /// <param name="serverId">The server id.</param>
         /// <param name="actionId">The action id.</param>
         /// <param name="doing">The doing.</param>
-        /// <param name="loginIp">The login ip.</param>
+        /// <param name="loginIp">The login IP address.</param>
         /// <param name="domainName">Name of the domain.</param>
         /// <param name="browserName">Name of the browser.</param>
         /// <param name="platform">The platform.</param>
@@ -366,7 +366,7 @@ namespace Apollo.Age.Services.Impl
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="onlineUserId">User id of current loginned user.</param>
+        /// <param name="onlineUserId">User id of current login user.</param>
         /// <returns>
         /// Result of logins.
         /// </returns>

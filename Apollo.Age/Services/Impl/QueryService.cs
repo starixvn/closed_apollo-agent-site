@@ -28,6 +28,12 @@ namespace Apollo.Age.Services.Impl
             _repository = repository ?? new DynamicRepository();
         }
 
+        /// <summary>
+        /// Get query data.
+        /// </summary>
+        /// <typeparam name="T">Type of data.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of data.</returns>
         public virtual IEnumerable<T> GetData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");

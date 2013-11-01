@@ -22,7 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// User control permission controller.
     /// </summary>
     public class PermissionUserControlController : BaseController
     {
@@ -41,7 +41,7 @@ namespace Apollo.Age.Account.Controllers
         /// Initializes a new instance of the <see cref="PermissionUserControlController"/> class.
         /// </summary>
         /// <param name="functionService">The function service.</param>
-        /// <param name="agentUserService">The agent user service.</param>
+        /// <param name="userService">The agent user service.</param>
         public PermissionUserControlController(IFunctionService functionService, IUserService userService)
         {
             _functionService = functionService ?? new FunctionService();
@@ -51,6 +51,7 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Assigns the function to agent user.
         /// </summary>
+        /// <param name="parentAgentId">The parent agent ID.</param>
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Return view assign permission to agent user.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]

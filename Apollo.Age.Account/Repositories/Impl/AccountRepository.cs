@@ -26,6 +26,11 @@ namespace Apollo.Age.Account.Repositories.Impl
     /// </summary>
     public class AccountRepository : IAccountRepository
     {
+        /// <summary>
+        /// Get agent by username.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of agent.</returns>
         public IEnumerable<Agent> GetAgentByUsername(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -47,9 +52,15 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get member by username.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of member.</returns>
         public IEnumerable<Member> GetMemberByUsername(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
+
             try
             {
                 if (criteria.IsValid())
@@ -68,9 +79,15 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get customer information.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Customer information model.</returns>
         public CustomerInfoModel GetCustomerInfo(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
+
             try
             {
                 if (criteria.IsValid())
@@ -89,9 +106,15 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get member down line.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of member.</returns>
         public IEnumerable<Member> GetMemberDownline(ref MemberDownlineCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
+
             try
             {
                 if (criteria.IsValid())
@@ -115,6 +138,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get agent list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of agent list model.</returns>
         public IEnumerable<AgentListModel> GetAgentList(ref AgentListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -143,6 +171,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get member list.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of member list model.</returns>
         public IEnumerable<MemberListModel> GetMemberList(ref CustomerListCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -170,6 +203,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get agent share.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of agent share model.</returns>
         public IEnumerable<AgentShareModel> GetAgentShare(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -193,6 +231,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get member share.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of agent member model.</returns>
         public IEnumerable<MemberShareModel> GetMemberShare(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -216,6 +259,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get commission to member.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of customer commission model.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToMember(GetCommissionToMemberCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -238,6 +286,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get commission to agent.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of customer commission model.</returns>
         public IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -260,6 +313,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Get agent log login.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of agent log login model.</returns>
         public IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -281,6 +339,11 @@ namespace Apollo.Age.Account.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Calculate update agent position taking time.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Update duration.</returns>
         public int CalculateUpdateAgentPositionTakingTime(GetUpdatePositionTakingEstimatedTimeCriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
