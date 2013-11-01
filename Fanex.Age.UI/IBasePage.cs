@@ -13,7 +13,7 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Process the request and return requested parameters.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="p">The hashtable.</param>
         void ProcessRequest(ref Hashtable p);
 
         /// <summary>
@@ -26,8 +26,8 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Process data working with provided parameters.
         /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
+        /// <param name="p">The Hashtable.</param>
+        /// <returns>Return object.</returns>
         object InvokeData(Hashtable p);
     }
 }

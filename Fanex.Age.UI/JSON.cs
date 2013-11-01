@@ -18,7 +18,7 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Convert a list of DictionaryEntry to JSON format.
         /// </summary>
-        /// <param name="d"></param>
+        /// <param name="data">The data.</param>
         /// <returns></returns>
         public static string Render(JSONData data)
         {
@@ -43,32 +43,15 @@ namespace Fanex.Age.UI
 
             builder.Append('}');
 
-            return builder.ToString();
-
-            #region old code
-            //if (null == d) return "null";
-            //int c = d.Count;
-
-            //StringBuilder builder = new StringBuilder();
-            //builder.Append('{');
-
-            //for (int i = 0; i < c; i++)
-            //{
-            //    builder.Append(ObjectToJSON(d[i].Key, d[i].Value));
-            //    if (i < c - 1) builder.Append(',');
-            //}
-
-            //builder.Append('}');
-            //return builder.ToString(); 
-            #endregion
+            return builder.ToString();          
         }
 
         /// <summary>
         /// Declares an object as JSON format.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>JSON string.</returns>
         private static string ObjectToJSON(object name, object value)
         {
             return name == null ? null : string.Format("\"{0}\":{1}", name, ToJSON(value));
@@ -168,8 +151,8 @@ namespace Fanex.Age.UI
         public void AsError(int errCode, string errMsg)
         {
             this.Clear();
-            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, errCode));
-            this.Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
+            this.Add(new DictionaryEntry(JSONError.ErrorCode, errCode));
+            this.Add(new DictionaryEntry(JSONError.ErrorMessage, errMsg));
         }
 
         /// <summary>
@@ -180,8 +163,8 @@ namespace Fanex.Age.UI
         public void AsError(ErrorType errType, string errMsg)
         {
             this.Clear();
-            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(errType)));
-            this.Add(new DictionaryEntry(JSONError.ERROR_MSG, errMsg));
+            this.Add(new DictionaryEntry(JSONError.ErrorCode, (int)(errType)));
+            this.Add(new DictionaryEntry(JSONError.ErrorMessage, errMsg));
         }
 
         /// <summary>
@@ -191,11 +174,11 @@ namespace Fanex.Age.UI
         public void AsResult(Result result)
         {
             this.Clear();
-            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, result.ErrCode));
+            this.Add(new DictionaryEntry(JSONError.ErrorCode, result.ErrCode));
 
             if (result.ErrCode != 0)
             {
-                Add(new DictionaryEntry(JSONError.ERROR_MSG, result.ErrMsg));
+                Add(new DictionaryEntry(JSONError.ErrorMessage, result.ErrMsg));
             }
         }
 
@@ -206,11 +189,11 @@ namespace Fanex.Age.UI
         public void AsResult(Result result, bool isMsgSuccess)
         {
             this.Clear();
-            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, result.ErrCode));
+            this.Add(new DictionaryEntry(JSONError.ErrorCode, result.ErrCode));
 
             if (isMsgSuccess)
             {
-                this.Add(new DictionaryEntry(JSONError.ERROR_MSG, result.ErrMsg));
+                this.Add(new DictionaryEntry(JSONError.ErrorMessage, result.ErrMsg));
             }
         }
 
@@ -220,7 +203,7 @@ namespace Fanex.Age.UI
         public void AsSuccessResult()
         {
             this.Clear();
-            this.Add(new DictionaryEntry(JSONError.ERROR_CODE, (int)(ErrorType.Success)));
+            this.Add(new DictionaryEntry(JSONError.ErrorCode, (int)(ErrorType.Success)));
         }
     }
 }

@@ -17,6 +17,12 @@ namespace Apollo.Age.Reports.Criterias
     /// </summary>
     public class MatchEnteredCriteria : CriteriaBase
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether [is show all].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> If [is show all]; otherwise, <c>false</c>.
+        /// </value>
         public bool isShowAll { get; set; }
 
         public override string GetSettingKey()

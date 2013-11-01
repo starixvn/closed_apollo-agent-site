@@ -54,17 +54,17 @@ namespace Fanex.Age.UI
         public const string WinLossByBetTypeMatch = "WLByBettypeMatch";
 
         /// <summary>
-        /// Bet List Bettype Match (Hdp_OU_Live_TG_OE_Outright_ML).
+        /// Bet List Bet type Match (HDP_OU_Live_TG_OE_OUTRIGHT_ML).
         /// </summary>
         public const string BetListByBetTypeMatch = "BettypeMatch";
 
         /// <summary>
-        /// BetList Bettype Match (RACING).
+        /// Bet List Bet type Match (RACING).
         /// </summary>
         public const string RacingBetListByBetTypeMatch = "RacingBettypeMatch";
 
         /// <summary>
-        /// BetList Running Bet type Match.
+        /// Bet List Running Bet type Match.
         /// </summary>
         public const string RunningBetListByBetTypeMatch = "RunningBettypeMatch";
 
@@ -88,13 +88,13 @@ namespace Fanex.Age.UI
         /// Bet list running by date on member.
         /// Only for agent - (Member Outstanding).
         /// </summary>
-        public const string BetListRunningByDate_Member = "RunByDate_Mem";
+        public const string BetListRunningByDateMember = "RunByDate_Mem";
 
         /// <summary>
         /// Bet list running by bet type match on member.
         /// Only for agent - (Member Outstanding).
         /// </summary>
-        public const string BetListRunningByBetTypeMatch_Member = "RunByBtypeM";
+        public const string BetListRunningByBetTypeMatchMember = "RunByBtypeM";
 
         /// <summary>
         /// Bet list by all date.

@@ -211,7 +211,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CustomerSettingPermission = userPermission[ApolloFunctionKeys.CustomerSetting];
             ViewBag.PermissionControl = userPermission[ApolloFunctionKeys.PermissionControl];
             ViewBag.ShadowPermissionControl = userPermission[ApolloFunctionKeys.ShadowPermission];
-            ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.System_Log];
+            ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.SystemLog];
             ViewBag.DownlineDetailsPolicy = userPermission[ApolloFunctionKeys.DownlineDetails];
 
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;

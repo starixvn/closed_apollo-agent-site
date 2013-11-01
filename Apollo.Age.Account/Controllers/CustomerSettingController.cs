@@ -374,13 +374,13 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult EditAgentPositionTaking(
-            int agentId, 
-            string userName, 
-            int? agentLevel, 
-            bool reload = false, 
-            bool isSimpleMode = true, 
-            string backLink = "", 
-            bool fromLeftMenu = false, 
+            int agentId,
+            string userName,
+            int? agentLevel,
+            bool reload = false,
+            bool isSimpleMode = true,
+            string backLink = "",
+            bool fromLeftMenu = false,
             string parentUsername = "")
         {
             var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
@@ -393,7 +393,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit; // && _accountService.IsDirectAgent(base.CurrentSession.AgentId, agentId, base.CurrentSession.IsSuper);
+            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.ParentUsername = parentUsername;
             ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
 
@@ -464,10 +464,6 @@ namespace Apollo.Age.Account.Controllers
             bool fromLeftMenu = false,
             string memberIds = "")
         {
-            //if (AppSettings.DisableEditOnMember)
-            //{
-            //    return Redirect("~/Error?err=404");
-            //}
             var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
 
             ViewBag.CustId = 0;
@@ -544,11 +540,11 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult EditAllSetting(
-            int custId, 
-            string userName, 
-            int? agentId, 
-            int? agentLevel, 
-            string userGroup, 
+            int custId,
+            string userName,
+            int? agentId,
+            int? agentLevel,
+            string userGroup,
             bool showHeader = false)
         {
             ViewBag.CustId = custId;
@@ -633,10 +629,10 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CanEdit = base.CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = true;
             SettingContext settingContext = this.GetCurrentSettingContext(
-                CurrentSession.AgentId, 
-                base.CurrentSession.AgentId, 
-                CurrentSession.AgentLevel, 
-                FormSettingType.All, 
+                CurrentSession.AgentId,
+                base.CurrentSession.AgentId,
+                CurrentSession.AgentLevel,
+                FormSettingType.All,
                 string.Empty);
 
             return ViewAccountDetails(settingContext);
@@ -703,7 +699,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit; //&& ((agentId != null && base.CurrentSession.AgentId == agentId.Value) || base.CurrentSession.IsSuper);
+            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
 
             return ViewAccountDetails(settingContext);
@@ -723,8 +719,8 @@ namespace Apollo.Age.Account.Controllers
         [NonAction]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         public ActionResult UpdateAllSetting(
-            SettingContext settingContext, 
-            CommissionSetting commissionSetting, 
+            SettingContext settingContext,
+            CommissionSetting commissionSetting,
             IList<BettingLimit> betLimits)
         {
             if (commissionSetting == null && betLimits == null)

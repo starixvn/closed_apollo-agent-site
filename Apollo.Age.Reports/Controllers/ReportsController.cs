@@ -293,7 +293,7 @@ namespace Apollo.Age.Reports.Controllers
             var functionPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             // If not have permission on win loss report
-            if (functionPermission[ApolloFunctionKeys.Win_Loss] < (byte)Policy.Query)
+            if (functionPermission[ApolloFunctionKeys.WinLoss] < (byte)Policy.Query)
             {
                 if (functionPermission[ApolloFunctionKeys.Outstanding] == (byte)Policy.Query)
                 {
@@ -347,7 +347,7 @@ namespace Apollo.Age.Reports.Controllers
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            var hasPermission = userPermission[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query;
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             ViewBag.allFunctionPermission = userPermission;
@@ -426,7 +426,7 @@ namespace Apollo.Age.Reports.Controllers
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            var hasPermission = userPermission[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query;
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             ViewBag.allFunctionPermission = userPermission;
@@ -502,7 +502,7 @@ namespace Apollo.Age.Reports.Controllers
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            var hasPermission = userPermission[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query;
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             ViewBag.allFunctionPermission = userPermission;
@@ -597,7 +597,7 @@ namespace Apollo.Age.Reports.Controllers
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            var hasPermission = userPermission[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query;
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             ViewBag.allFunctionPermission = userPermission;

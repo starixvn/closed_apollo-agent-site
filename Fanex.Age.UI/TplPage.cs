@@ -44,8 +44,8 @@ namespace Fanex.Age.UI
         /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(int errCode, string errMsg)
         {
-            _JsData.Add(JSONError.ERROR_CODE, errCode);
-            _JsData.Add(JSONError.ERROR_MSG, errMsg);
+            _JsData.Add(JSONError.ErrorCode, errCode);
+            _JsData.Add(JSONError.ErrorMessage, errMsg);
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Fanex.Age.UI
         /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(ErrorType type, string errMsg)
         {
-            _JsData.Add(JSONError.ERROR_CODE, (int)(type));
-            _JsData.Add(JSONError.ERROR_MSG, errMsg);
+            _JsData.Add(JSONError.ErrorCode, (int)(type));
+            _JsData.Add(JSONError.ErrorMessage, errMsg);
         }
 
         /// <summary>

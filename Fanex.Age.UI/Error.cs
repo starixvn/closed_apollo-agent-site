@@ -3,31 +3,15 @@
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.11.1">Created</change>
+// </history>
 
 namespace Fanex.Age.UI
 {
-    public class JSONError : JSONData
-    {
-        // Error code convention:
-        // -1 : Unknown error
-        // 0 :Success
-        // > 0 : Error code, retrieve error message from errMsg field
-        public const string ERROR_CODE = "errCode";
-        public const string ERROR_MSG = "errMsg";
-
-        public JSONError(int errorCode, string errorMsg)
-        {
-            Add(ERROR_CODE, errorCode);
-            Add(ERROR_MSG, errorMsg);
-        }
-
-        public JSONError(ErrorType errorType, string errorMsg)
-        {
-            Add(ERROR_CODE, (int)errorType);
-            Add(ERROR_MSG, errorMsg);
-        }
-    }
-
+    /// <summary>
+    /// Error type.
+    /// </summary>
     public enum ErrorType
     {
         Success = 0,
@@ -38,6 +22,35 @@ namespace Fanex.Age.UI
         UnderMaintenance = 4
     }
 
+    /// <summary>
+    /// JSON error class.
+    /// </summary>
+    public class JSONError : JSONData
+    {
+        // Error code convention:
+        // -1 : Unknown error
+        // 0 :Success
+        // > 0 : Error code, retrieve error message from errMsg field
+        public const string ErrorCode = "errCode";
+
+        public const string ErrorMessage = "errMsg";
+
+        public JSONError(int errorCode, string errorMsg)
+        {
+            Add(ErrorCode, errorCode);
+            Add(ErrorMessage, errorMsg);
+        }
+
+        public JSONError(ErrorType errorType, string errorMsg)
+        {
+            Add(ErrorCode, (int)errorType);
+            Add(ErrorMessage, errorMsg);
+        }
+    }
+
+    /// <summary>
+    /// Result class.
+    /// </summary>
     public class Result
     {
         public int ErrCode;
