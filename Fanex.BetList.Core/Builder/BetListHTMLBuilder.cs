@@ -144,7 +144,7 @@ namespace Fanex.BetList.Core.Builder
         /// <param name="closeTag">The close tag.</param>
         /// <param name="isShowScoreMap">Is show score map or not.</param>
         /// <returns>
-        /// BetListHTMLBuilder.
+        /// Bet List HTML Builder.
         /// </returns>
         public BetListHTMLBuilder AddChoice(
             ITicket ticket,

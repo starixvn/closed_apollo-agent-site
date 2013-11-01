@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Away No Bet
+    /// Away No Bet.
     /// </summary>
     public class Choice122 : Choice1
     {

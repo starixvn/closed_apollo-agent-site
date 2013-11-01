@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Warrior
+    /// Warrior bet type.
     /// </summary>
     public class Choice88 : Choice1
     {

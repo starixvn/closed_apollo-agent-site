@@ -27,7 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice_Template.

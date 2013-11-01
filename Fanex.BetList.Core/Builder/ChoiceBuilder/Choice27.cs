@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// To win to nil
+    /// To win to nil.
     /// </summary>
     public class Choice27 : Choice1
     {

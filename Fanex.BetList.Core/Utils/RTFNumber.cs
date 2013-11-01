@@ -12,6 +12,9 @@ namespace Fanex.BetList.Core.Utils
 {
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Rich text number class.
+    /// </summary>
     public class RTFNumber
     {
         private IFont posFontText;

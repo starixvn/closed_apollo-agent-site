@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Bingo Transfer
+    /// Bingo Transfer.
     /// </summary>
     public class Choice23201 : Choice1
     {

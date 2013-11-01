@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// 1st Handicap
+    /// 1st Handicap.
     /// </summary>
     public class Choice7 : Choice1
     {

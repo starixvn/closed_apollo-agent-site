@@ -16,10 +16,11 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Odds class.
+    /// </summary>
     public class Odds1 : IOdds
     {
-        public Odds_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Odds1" /> class.
         /// </summary>
@@ -29,13 +30,21 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         }
 
         /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        public Odds_Template Template { get; set; }
+
+        /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
-        /// <returns>Odds_Template.</returns>
-        public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName)
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>Odds Template.</returns>
+        public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
         {
             object oddsType = new object();
 
@@ -49,7 +58,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             }
 
             this.Template.odds = ConvertByBetType.Odds(ticket.Odds, ticket.BetTypeId, oddsType);
-            this.Template.oddsType = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
+            this.Template.oddsType = funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
 
             return this.Template;
         }
@@ -59,16 +68,16 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
-        /// IRichTextString
+        /// Rich text interface.
         /// </returns>
-        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName, RTFHelper rtfHelper)
+        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName, RTFHelper rtfHelper)
         {
-            Render(ticket, ticketData, FuncGetOddsTypeName);
+            Render(ticket, ticketData, funcGetOddsTypeName);
             var rtfOdds = BuildRTFOdds(rtfHelper);
-            
+
             return rtfOdds;
         }
 
@@ -76,7 +85,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// Builds the RTF odds.
         /// </summary>
         /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns></returns>
+        /// <returns>Rich text interface.</returns>
         protected virtual IRichTextString BuildRTFOdds(RTFHelper rtfHelper)
         {
             string odds = Template.odds;
