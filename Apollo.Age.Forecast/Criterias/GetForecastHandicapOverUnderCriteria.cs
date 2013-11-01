@@ -39,6 +39,10 @@ namespace Apollo.Age.Forecast.Criterias
             return "Age_Forecast_1_3_7_8_GetByLeague";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return LeagueID > 0;

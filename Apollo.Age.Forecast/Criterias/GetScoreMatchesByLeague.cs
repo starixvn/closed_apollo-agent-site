@@ -29,6 +29,10 @@ namespace Apollo.Age.Forecast.Criterias
             return "Age_ScoreMap_SelMatch";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return LeagueId > 0;

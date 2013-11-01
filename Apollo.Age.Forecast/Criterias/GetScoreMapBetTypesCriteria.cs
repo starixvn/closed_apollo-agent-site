@@ -16,6 +16,10 @@ namespace Apollo.Age.Forecast.Criterias
     /// </summary>
     public class GetScoreMapBetTypesCriteria : CriteriaBase
     {
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return true;

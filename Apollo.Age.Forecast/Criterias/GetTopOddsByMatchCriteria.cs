@@ -29,6 +29,10 @@ namespace Apollo.Age.Forecast.Criterias
             return "Age_Forecast_OddsGetTopByMatch";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return MatchId > 0 && BetType > 0;
