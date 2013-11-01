@@ -36,14 +36,14 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             bool betOver = ticket.BetTeam == "1";
             bool betUnder = ticket.BetTeam == "2";
 
-            string xyFormat = Apollo.Age.Resources.BetList.betweenXandY;
+            string formatXY = Apollo.Age.Resources.BetList.betweenXandY;
 
-            if (xyFormat == null)
+            if (formatXY == null)
             {
-                xyFormat = "{0} - {1}";
+                formatXY = "{0} - {1}";
             }
 
-            this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(xyFormat, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
+            this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(formatXY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
           
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }

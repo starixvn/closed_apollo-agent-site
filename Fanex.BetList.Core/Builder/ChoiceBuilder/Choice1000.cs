@@ -42,7 +42,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             new string[]
                                             {
                                                 "<div><span class='",
-                                                BL_FAVORITE,
+                                                BetListFavorite,
                                                 "'>",
                                                 Apollo.Age.Resources.BetList.p2pGame,
                                                 "</span></div>"

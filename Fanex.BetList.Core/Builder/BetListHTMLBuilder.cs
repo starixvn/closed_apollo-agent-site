@@ -29,15 +29,15 @@ namespace Fanex.BetList.Core.Builder
     /// </summary>
     public class BetListHTMLBuilder : IBetListBuilder
     {
-        #region Attributes
-                
-        private const string CHOICE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.ChoiceBuilder";
-        private const string ODDS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.OddsBuilder";
-        private const string STAKE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StakeBuilder";
-        private const string TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
-        private const string STATUS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StatusBuilder";
-        private const string AGENTCOMM_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentCommBuilder";
-        private const string AGENTSHARE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.AgentShareBuilder";
+        #region Attributes               
+
+        private const string ChoiceBuilderNamespace = "Fanex.BetList.Core.Builder.ChoiceBuilder";
+        private const string OddsBuilderNamespace = "Fanex.BetList.Core.Builder.OddsBuilder";
+        private const string StakeBuilderNamespace = "Fanex.BetList.Core.Builder.StakeBuilder";
+        private const string TransBuilderNamespace = "Fanex.BetList.Core.Builder.TransBuilder";
+        private const string StatusBuilderNamespace = "Fanex.BetList.Core.Builder.StatusBuilder";
+        private const string AgentCommBuilderNamespace = "Fanex.BetList.Core.Builder.AgentCommBuilder";
+        private const string AgentShareBuilderNamespace = "Fanex.BetList.Core.Builder.AgentShareBuilder";
         private StringBuilder _content;
 
         #endregion Attributes
@@ -403,10 +403,10 @@ namespace Fanex.BetList.Core.Builder
         {
             string typeName = string.Join(
                                             null,
-                                            new string[]{ 
-                                                CHOICE_BUILDER_NAMESPACE,
+                                            new string[] { 
+                                                ChoiceBuilderNamespace,
                                                 ".Choice",
-                                                bettype.ToString()});
+                                                bettype.ToString() });
 
             Type type = Type.GetType(typeName);
 
@@ -437,7 +437,7 @@ namespace Fanex.BetList.Core.Builder
                                             null,
                                             new string[]
                                             {
-                                                ODDS_BUILDER_NAMESPACE,
+                                                OddsBuilderNamespace,
                                                 ".Odds",
                                                 bettype.ToString()
                                             });
@@ -465,7 +465,7 @@ namespace Fanex.BetList.Core.Builder
                                             null,
                                             new string[]
                                             {
-                                                STAKE_BUILDER_NAMESPACE,
+                                                StakeBuilderNamespace,
                                                 ".Stake",
                                                 bettype.ToString()
                                             });
@@ -493,7 +493,7 @@ namespace Fanex.BetList.Core.Builder
                                             null,
                                             new string[]
                                             {
-                                                STATUS_BUILDER_NAMESPACE,
+                                                StatusBuilderNamespace,
                                                 ".Status",
                                                 bettype.ToString()
                                             });
@@ -523,7 +523,7 @@ namespace Fanex.BetList.Core.Builder
                                             null,
                                             new string[]
                                             {
-                                                TRANS_BUILDER_NAMESPACE,
+                                                TransBuilderNamespace,
                                                 ".Trans",
                                                 bettype.ToString()
                                             });
@@ -553,7 +553,7 @@ namespace Fanex.BetList.Core.Builder
                                            null,
                                            new string[]
                                             {
-                                                AGENTSHARE_BUILDER_NAMESPACE,
+                                                AgentShareBuilderNamespace,
                                                 ".AgentShare",
                                                 bettype.ToString()
                                             });
@@ -583,7 +583,7 @@ namespace Fanex.BetList.Core.Builder
                                            null,
                                            new string[]
                                             {
-                                                AGENTCOMM_BUILDER_NAMESPACE,
+                                                AgentCommBuilderNamespace,
                                                 ".AgentComm",
                                                 bettype.ToString()
                                             });

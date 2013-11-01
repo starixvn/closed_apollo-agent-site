@@ -41,17 +41,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                             null,
-                                            new string[]
-                                            {
+                                            new string[] {
                                                 " <span class=\"",
-                                                BL_FAVORITE,
+                                                BetListFavorite,
                                                 "\">",
                                                 team,
                                                 "</span>",
                                                 "&nbsp;",
                                                 Apollo.Age.Resources.BetList.lblOr.ToLower(),
                                                 " <span class=\"",
-                                                BL_FAVORITE,
+                                                BetListFavorite,
                                                 "\">",
                                                 "&nbsp;",
                                                 draw_away,

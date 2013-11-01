@@ -31,8 +31,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     {
         #region Attributes
 
-        protected const string BL_UNDER_DOG = "underdog";
-        protected const string BL_FAVORITE = "favorite";
+        protected const string BetListUnderDog = "underdog";
+        protected const string BetListFavorite = "favorite";
 
         private static int[] _showHomeCharacterList = new[] {
             (int)SportTypeNames.Soccer,

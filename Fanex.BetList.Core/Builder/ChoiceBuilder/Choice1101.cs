@@ -12,6 +12,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -28,6 +29,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="betListPage">The bet list page.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
