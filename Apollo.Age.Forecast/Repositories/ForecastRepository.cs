@@ -25,7 +25,7 @@ namespace Apollo.Age.Forecast.Repositories
         /// Get ScoreMap Result.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <returns>Score map result model</returns>
+        /// <returns>Score map result model.</returns>
         public ScoreMapResultModel GetScoreMapResult(ICriteria criteria)
         {
             if (criteria.IsValid())

@@ -18,6 +18,9 @@ namespace Apollo.Age.BetList.ViewModels
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Bet list report view model.
+    /// </summary>
     public class BetListReportViewModel
     {
         public BetListReportViewModel()

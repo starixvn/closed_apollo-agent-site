@@ -55,7 +55,7 @@ namespace Fanex.Age.UI.Components
             ParseUrl(url, ref pageSize1, ref pageIndex);
 
             // Valid page size
-            if (PAGE_SIZES.Contains((object)(pageSize1)))
+            if (PAGE_SIZES.Contains((object)pageSize1))
             {
                 PageSize = pageSize1;
             }
@@ -66,7 +66,7 @@ namespace Fanex.Age.UI.Components
 
             // Calculate page count
             _RowCount = rowCount;
-            _PageCount = (int)(Math.Floor((double)(rowCount / PageSize))) + (rowCount % PageSize == 0 ? 0 : 1);
+            _PageCount = (int)Math.Floor((double)(rowCount / PageSize)) + (rowCount % PageSize == 0 ? 0 : 1);
 
             if (pageIndex <= 0 || pageIndex > _PageCount)
             {
@@ -98,7 +98,7 @@ namespace Fanex.Age.UI.Components
             {
                 tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox(
                     "sel" + id, 
-                    (object)(PageSize), 
+                    (object)PageSize, 
                     PAGE_SIZES, 
                     id + ".SetPageSize(this.value)");
 
@@ -159,7 +159,7 @@ namespace Fanex.Age.UI.Components
 
             // Calculate page count
             _RowCount = rowCount;
-            _PageCount = (int)(Math.Floor((double)(rowCount / PageSize))) + (rowCount % PageSize == 0 ? 0 : 1);
+            _PageCount = (int)Math.Floor((double)(rowCount / PageSize)) + (rowCount % PageSize == 0 ? 0 : 1);
 
             if (pageIndex <= 0 || pageIndex > _PageCount)
             {
@@ -187,7 +187,7 @@ namespace Fanex.Age.UI.Components
                 tpl.disabledNext = tpl.disabledPrev = tpl.disabledFirst = tpl.disabledLast = "disabled";
             }
 
-            tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)(PageSize), PAGE_SIZES, id + ".SetPageSize(this.value)");
+            tpl.SelPageSize.selPageSize = HtmlGenerator.ComboBox("sel" + id, (object)PageSize, PAGE_SIZES, id + ".SetPageSize(this.value)");
 
             ShowHidePageSize();
         }

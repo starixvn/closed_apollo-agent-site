@@ -172,7 +172,6 @@ namespace Apollo.Age.Reports.Controllers
                         SportList = SingbetSportService.GetSport(isOther: false)
                     });
             }
-            // End check permission.
 
             this.CurrentAgentId = agentId;
             var sessionKey = string.Format(
@@ -330,11 +329,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get agent win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
         public ViewResult AgentWinLoss(
@@ -409,13 +408,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get member win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ViewResult member win loss.</returns>        
+        /// <returns>ViewResult member win loss.</returns>
         public ViewResult MemberWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -485,13 +484,13 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Export agent win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ActionResult agent win loss.</returns>        
+        /// <returns>ActionResult agent win loss.</returns>
         public ActionResult ExportAgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -580,11 +579,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Export member win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
         public ActionResult ExportMemberWinLoss(

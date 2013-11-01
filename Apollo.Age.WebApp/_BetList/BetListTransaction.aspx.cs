@@ -24,7 +24,6 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
-    using Apollo.Age.WebApp;
     using Apollo.Age.WebApp._BetList;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
@@ -36,6 +35,9 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list transaction.
+    /// </summary>
     public partial class BetListTransaction : TplPage
     {
         #region Variables
@@ -60,6 +62,28 @@ namespace Sunplus.Agent.UI._BetList
         private int totalRows;
 
         #endregion Variables
+
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
 
         public override void RenderContent(HtmlTextWriter writer)
         {
@@ -268,14 +292,6 @@ namespace Sunplus.Agent.UI._BetList
             return null;
         }
 
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                return SessionManager.CurrentSession;
-            }
-        }
-
         private void BoxFilter()
         {
             var selectedUserType = "0";
@@ -322,19 +338,5 @@ namespace Sunplus.Agent.UI._BetList
 
             return dt;
         }
-
-        #region Format Start, End date
-
-        public static DateTime ResetStartDate(DateTime dt)
-        {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
-        }
-
-        public static DateTime ResetEndDate(DateTime dt)
-        {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
-        }
-
-        #endregion Format Start, End date
     }
 }

@@ -60,8 +60,8 @@ namespace Fanex.Age.UI
                 }
 
                 // Process requested param
-                _Parameters = new Hashtable();
-                ProcessRequest(ref _Parameters);
+                _parameters = new Hashtable();
+                ProcessRequest(ref _parameters);
             }
             catch (HttpRequestValidationException e)
             {

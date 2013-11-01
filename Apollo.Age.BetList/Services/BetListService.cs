@@ -132,7 +132,7 @@ namespace Apollo.Age.BetList.Services
         /// </summary>
         /// <param name="parentId">Logged id.</param>
         /// <param name="custId">Customer id.</param>
-        /// <returns></returns>
+        /// <returns>List of agent.</returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
             return this._betListRepository.GetAgentUpLineOfMember(parentId, custId);

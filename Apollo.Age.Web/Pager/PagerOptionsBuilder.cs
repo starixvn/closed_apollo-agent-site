@@ -10,31 +10,34 @@ namespace Apollo.Age.Web.Pager
     using System.Web.Mvc.Ajax;
     using System.Web.Routing;
 
+    /// <summary>
+    /// Pager option builder.
+    /// </summary>
     public class PagerOptionsBuilder
     {
-        private PagerOptions pagerOptions;
+        private PagerOptions _pagerOptions;
 
         public PagerOptionsBuilder(PagerOptions pagerOptions)
         {
-            this.pagerOptions = pagerOptions;
+            this._pagerOptions = pagerOptions;
         }
 
         /// <summary>
         /// Set the action name for the pager links. Note that we're always using the current controller.
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">The action name.</param>
+        /// <returns>Pager option builder.</returns>
         public PagerOptionsBuilder Action(string action)
         {
             if (action != null)
             {
-                if (pagerOptions.RouteValues.ContainsKey("action"))
+                if (_pagerOptions.RouteValues.ContainsKey("action"))
                 {
                     throw new ArgumentException("The valuesDictionary already contains an action.", "action");
                 }
 
-                pagerOptions.RouteValues.Add("action", action);
-                pagerOptions.Action = action;
+                _pagerOptions.RouteValues.Add("action", action);
+                _pagerOptions.Action = action;
             }
 
             return this;
@@ -48,7 +51,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder AddRouteValue(string name, object value)
         {
-            pagerOptions.RouteValues[name] = value;
+            _pagerOptions.RouteValues[name] = value;
             return this;
         }
 
@@ -75,11 +78,11 @@ namespace Apollo.Age.Web.Pager
                 throw new ArgumentException("routeValues may not be null", "routeValues");
             }
 
-            this.pagerOptions.RouteValues = routeValues;
+            this._pagerOptions.RouteValues = routeValues;
 
-            if (!string.IsNullOrWhiteSpace(pagerOptions.Action) && !pagerOptions.RouteValues.ContainsKey("action"))
+            if (!string.IsNullOrWhiteSpace(_pagerOptions.Action) && !_pagerOptions.RouteValues.ContainsKey("action"))
             {
-                pagerOptions.RouteValues.Add("action", pagerOptions.Action);
+                _pagerOptions.RouteValues.Add("action", _pagerOptions.Action);
             }
 
             return this;
@@ -93,7 +96,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder DisplayTemplate(string displayTemplate)
         {
-            this.pagerOptions.DisplayTemplate = displayTemplate;
+            this._pagerOptions.DisplayTemplate = displayTemplate;
             return this;
         }
 
@@ -104,7 +107,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder MaxNrOfPages(int maxNrOfPages)
         {
-            this.pagerOptions.MaxNrOfPages = maxNrOfPages;
+            this._pagerOptions.MaxNrOfPages = maxNrOfPages;
             return this;
         }
 
@@ -118,7 +121,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder AlwaysAddFirstPageNumber()
         {
-            this.pagerOptions.AlwaysAddFirstPageNumber = true;
+            this._pagerOptions.AlwaysAddFirstPageNumber = true;
             return this;
         }
 
@@ -134,7 +137,7 @@ namespace Apollo.Age.Web.Pager
                 throw new ArgumentException("pageRouteValueKey may not be null", "pageRouteValueKey");
             }
 
-            this.pagerOptions.PageRouteValueKey = pageRouteValueKey;
+            this._pagerOptions.PageRouteValueKey = pageRouteValueKey;
 
             return this;
         }
@@ -146,7 +149,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         internal PagerOptionsBuilder AjaxOptions(AjaxOptions ajaxOptions)
         {
-            this.pagerOptions.AjaxOptions = ajaxOptions;
+            this._pagerOptions.AjaxOptions = ajaxOptions;
             return this;
         }
     }

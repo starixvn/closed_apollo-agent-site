@@ -24,7 +24,7 @@ namespace Apollo.Age.Web.Web.Attribute
     {
         #region Member
 
-        private IUserService _AgentUserService = new UserService();
+        private IUserService _agentUserService = new UserService();
 
         #endregion Member
 
@@ -124,7 +124,7 @@ namespace Apollo.Age.Web.Web.Attribute
             {
                 if (!string.IsNullOrWhiteSpace(itemKey))
                 {
-                    temp = _AgentUserService.GetUserPolicy(userId, itemKey);
+                    temp = _agentUserService.GetUserPolicy(userId, itemKey);
                     policy = policy > temp ? policy : temp;
                 }
             }

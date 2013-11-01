@@ -15,6 +15,9 @@ namespace Apollo.Age.BetList.ViewModels
     using Apollo.Age.Entities;
     using Fanex.BetList.Core.Entities;
 
+    /// <summary>
+    /// Bet list view model.
+    /// </summary>
     public class BetListViewModel
     {
         public string Title { get; set; }

@@ -11,6 +11,9 @@ namespace Apollo.Age.WebApp.Areas.Wagers
 {
     using System.Web.Optimization;
 
+    /// <summary>
+    /// Bundle config.
+    /// </summary>
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
