@@ -656,6 +656,12 @@ namespace Fanex.BetList.Core.Utils
 
         #endregion String
 
+        /// <summary>
+        /// Formats the handicap.
+        /// </summary>
+        /// <param name="betTypeId">The bet type identifier.</param>
+        /// <param name="handicapValue">The handicap value.</param>
+        /// <returns>Handicap formated.</returns>
         public static string FormatHandicap(int betTypeId, decimal handicapValue)
         {
             var handicapBetType = 1;

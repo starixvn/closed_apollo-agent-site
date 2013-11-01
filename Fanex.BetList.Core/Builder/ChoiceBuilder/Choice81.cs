@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// 1st ball OU
+    /// 1st ball Over Under.
     /// </summary>
     public class Choice81 : Choice1
     {

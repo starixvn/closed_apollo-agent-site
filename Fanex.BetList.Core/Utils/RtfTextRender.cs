@@ -48,7 +48,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Renders this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Rich text interface.</returns>
         public IRichTextString Render()
         {
             string s = "";
@@ -73,12 +73,14 @@ namespace Fanex.BetList.Core.Utils
                         font = block.Font;
                     }
                 }
+
                 if (font != null)
                 {
                     int startIndex = textIndex;
                     int endIndex = textIndex + block.Text.Length;
                     result.ApplyFont(textIndex, endIndex, font);
                 }
+
                 textIndex += block.Text.Length;
             }
 

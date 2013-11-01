@@ -17,6 +17,9 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Discount class.
+    /// </summary>
     public class Discount : IDiscount
     {
         /// <summary>
@@ -38,9 +41,9 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket need to build.</param>
         /// <param name="page">Link from page.</param>
-        /// <returns></returns>
+        /// <returns>Discount template.</returns>
         public virtual Discount_Template Render(ITicket ticket, BetListPage page)
         {
             switch (page)
@@ -75,6 +78,11 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             return Template;
         }
 
+        /// <summary>
+        /// Reverts the name of the commission group.
+        /// </summary>
+        /// <param name="groupName">Name of the group.</param>
+        /// <returns>Revert commission group name.</returns>
         private string RevertCommGroupName(string groupName)
         {
             switch (groupName.ToLower())
