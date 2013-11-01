@@ -1,9 +1,11 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TicketDataTransformer.cs" company="">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="TicketDataTransformer.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
-
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Terry.Nguyen" date="2013.11.1">Created</change>
+// </history>
 namespace Fanex.BetList.Age.DTO
 {
     using System;
@@ -17,10 +19,14 @@ namespace Fanex.BetList.Age.DTO
     /// </summary>
     public static class TicketDataTransformer
     {
+        /// <summary>
+        /// Transforms the specified data.
+        /// </summary>
+        /// <param name="data">The data table.</param>
+        /// <returns>List of tickets.</returns>
         public static List<ITicketData> Transform(DataTable data)
         {
             List<ITicketData> tickets = new List<ITicketData>();
-
             if (data == null)
             {
                 return tickets;
@@ -29,11 +35,9 @@ namespace Fanex.BetList.Age.DTO
             Type typeTicket = typeof(ITicketData);
             PropertyInfo[] typeTicketProps = typeTicket.GetProperties();
             string mapKey = string.Empty;
-
             foreach (DataRow row in data.Rows)
             {
                 ITicketData t = new TicketData();
-
                 foreach (PropertyInfo prop in typeTicketProps)
                 {
                     mapKey = string.Empty;
@@ -44,7 +48,6 @@ namespace Fanex.BetList.Age.DTO
                             object value;
 
                             // Determine if the property is DBNull
-
                             if (row[mapKey] == DBNull.Value)
                             {
                                 value = null;

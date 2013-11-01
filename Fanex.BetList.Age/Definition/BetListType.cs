@@ -16,12 +16,12 @@ namespace Fanex.BetList.Age.Definition
     public enum BetListType : int
     {
         /// <summary>
-        /// None.
+        /// None column.
         /// </summary>
         None = 0x0,
 
         /// <summary>
-        /// Add Winlost column.
+        /// Add Win lost column.
         /// </summary>
         Winlost = 0x1,
 
@@ -31,12 +31,12 @@ namespace Fanex.BetList.Age.Definition
         Member = 0x2,
 
         /// <summary>
-        /// Canceled bet list (will not have total row and postion taking column, including Winlost.
+        /// Canceled bet list (will not have total row and position taking column, including Win lost).
         /// </summary>
         Canceled = 0x4,
 
         /// <summary>
-        /// Winlost.
+        /// Win lost column default.
         /// </summary>
         Default = 0x1,
 

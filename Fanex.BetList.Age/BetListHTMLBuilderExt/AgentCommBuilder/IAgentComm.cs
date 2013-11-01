@@ -28,7 +28,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <param name="hideDetail">If set to <c>true</c> [hide detail].</param>
+        /// <returns>Agent commission template.</returns>
         AgentComm_Template Render(ITicket ticket, List<ITicketData> ticketData, bool hideDetail);
     }
 }

@@ -18,27 +18,28 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// WinLost.
+    /// Win Lost class.
     /// </summary>
     public class Footer1 : IFooter
     {
-        private Footer1_Template Template;
+        private Footer1_Template _template;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Footer1" /> class.
         /// </summary>
         public Footer1()
         {
-            Template = new Footer1_Template();
+            _template = new Footer1_Template();
         }
 
         /// <summary>
         /// Renders the specified tickets.
         /// </summary>
         /// <param name="tickets">The tickets.</param>
-        /// <param name="betlistType">Type of the betlist.</param>
-        /// <param name="userType">Type of the user.</param>
-        /// <returns></returns>
+        /// <param name="betlistType">Type of the bet list.</param>
+        /// <returns>
+        /// String template.
+        /// </returns>
         public string Render(IList<ITicket> tickets, BetListType betlistType)
         {
             int statusColumns = 4;
@@ -46,8 +47,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
 
             if ((betlistType & BetListType.Canceled) == BetListType.Canceled)
             {
-                Template.Status = null;
-                Template.subTotalColSpan = subTotalColumns.ToString();
+                _template.Status = null;
+                _template.subTotalColSpan = subTotalColumns.ToString();
             }
             else
             {
@@ -56,14 +57,14 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
                     subTotalColumns = subTotalColumns - 1;
                 }
 
-                Template.subTotalColSpan = subTotalColumns.ToString();
+                _template.subTotalColSpan = subTotalColumns.ToString();
 
                 if ((betlistType & BetListType.DailyStatement) == BetListType.DailyStatement)
                 {
                     statusColumns = statusColumns - 3;
                 }
 
-                Template.Status.statusColSpan = statusColumns.ToString();
+                _template.Status.statusColSpan = statusColumns.ToString();
             }
 
             IList<ITicket> filteredTickets = tickets.Where(ticket => ticket.Status.ToLower() != BetStatus.Running).ToList();
@@ -71,11 +72,11 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
             decimal sumWinLoss = filteredTickets.Sum(ticket => ticket.Winlost);
             decimal sumPlayerComm = filteredTickets.Sum(ticket => ticket.PlayerComm);
 
-            Template.Winloss.subTotalWinloss = ConvertByBetType.Winloss(sumWinLoss);
-            Template.Winloss.subTotalCom = ConvertByBetType.Comm(sumPlayerComm);
-            Template.Winloss.total = ConvertByBetType.Winloss(sumWinLoss + sumPlayerComm);
+            _template.Winloss.subTotalWinloss = ConvertByBetType.Winloss(sumWinLoss);
+            _template.Winloss.subTotalCom = ConvertByBetType.Comm(sumPlayerComm);
+            _template.Winloss.total = ConvertByBetType.Winloss(sumWinLoss + sumPlayerComm);
 
-            return Template;
+            return _template;
         }
     }
 }

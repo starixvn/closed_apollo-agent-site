@@ -37,7 +37,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.NoBuilder
         /// Renders the specified index.
         /// </summary>
         /// <param name="index">The index.</param>
-        /// <returns></returns>
+        /// <returns>No template.</returns>
         public No_Template Render(int index)
         {
             Template.orderNo = index.ToString();

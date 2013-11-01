@@ -36,7 +36,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>Agent PT template.</returns>
         public virtual AgentPT_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             Template.AgentPT.agentPT_setting = string.Join(null, new string[] { ConvertByBetType.Pt(ticket.APositionTaking), "%" });

@@ -38,8 +38,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.WinLostBuilder
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <returns>Win loss template.</returns>
         public WinLoss_Template Render(ITicket ticket)
         {
             if (ticket.Status.Equals(BetStatus.Running) || ticket.Status.Equals(BetStatus.Waiting))

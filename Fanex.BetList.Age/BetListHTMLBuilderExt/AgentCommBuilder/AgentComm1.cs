@@ -35,7 +35,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="hideDetail">The hide detail.</param>
+        /// <returns>Agent commission template.</returns>
         public virtual AgentComm_Template Render(ITicket ticket, List<ITicketData> ticketData, bool hideDetail = false)
         {
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();

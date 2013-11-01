@@ -33,7 +33,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>Agent PT template.</returns>
         AgentPT_Template Render(ITicket ticket, List<ITicketData> ticketData);
     }
 }
