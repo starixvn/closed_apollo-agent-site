@@ -11,6 +11,9 @@ namespace Apollo.Age.Web.Pager
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
 
+    /// <summary>
+    /// Paging extensions.
+    /// </summary>
     public static class PagingExtensions
     {
         #region HtmlHelper extensions

@@ -23,7 +23,6 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.Forecast.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
@@ -36,6 +35,9 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list page.
+    /// </summary>
     public partial class BetList_Page : TplPage
     {
         #region Variables

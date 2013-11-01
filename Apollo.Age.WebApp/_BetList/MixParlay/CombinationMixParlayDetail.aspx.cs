@@ -23,6 +23,9 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Combination mix parlay detail page.
+    /// </summary>
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
         #region Variable
@@ -202,7 +205,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     template.RowData.Append(rowBlock);
                     winlostdate = ticket.WinLostDate.ToString("yyyy-mm-dd");
 
-                    //Get Sub Total by Day
+                    // Get Sub Total by Day
                     if (i + 1 == numRow)
                     {
                         winlostNextDate = string.Empty;

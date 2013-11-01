@@ -25,7 +25,7 @@ namespace Fanex.Age.UI
 
         protected object _View;
 
-        protected Hashtable _Parameters;
+        protected Hashtable _parameters;
 
         /// <summary>
         /// Data was loaded in InvokeData.
@@ -45,7 +45,7 @@ namespace Fanex.Age.UI
         {
             get
             {
-                return _Parameters;
+                return _parameters;
             }
         }
 

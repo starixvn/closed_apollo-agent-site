@@ -859,10 +859,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
+                    var fromDate = criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) 
+                        ? this.ResetStartDate(criteria.BalanceUpDay) 
+                        : criteria.FromDate;
+                    
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) ? this.ResetStartDate(criteria.BalanceUpDay) : criteria.FromDate);
+                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);

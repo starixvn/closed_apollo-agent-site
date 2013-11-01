@@ -37,6 +37,9 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list on member.
+    /// </summary>
     public partial class BetListOnMember : TplPage
     {
         #region Variables
@@ -285,7 +288,7 @@ namespace Sunplus.Agent.UI._BetList
         /// Get Navigation link.
         /// </summary>
         /// <param name="agentId">Agent Id.</param>
-        /// <returns></returns>
+        /// <returns>Navigation string.</returns>
         private string Navigation(int agentId)
         {
             var betListService = new BetListService();

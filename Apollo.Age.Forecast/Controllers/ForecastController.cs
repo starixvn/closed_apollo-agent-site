@@ -174,7 +174,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <summary>
         /// Forecast by Match Content Page.
         /// </summary>
-        /// <param name="matchId"></param>
+        /// <param name="matchId">The match ID.</param>
         /// <param name="betType">The bet type.</param>
         /// <param name="currentScore">Current score.</param>
         /// <param name="mainShareHolderId">The main shareholder ID.</param>
@@ -230,9 +230,9 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="matchIds">List of match IDs.</param>
         /// <param name="liveBetTypes">Live bet types.</param>
-        /// <param name="deadBallBetTypes">Deadball bet types.</param>
+        /// <param name="deadBallBetTypes">Dead ball bet types.</param>
         /// <param name="mainShareHolderId">The main shareholder ID.</param>
-        /// <param name="custId"></param>
+        /// <param name="custId">Customer ID.</param>
         /// <returns>View result.</returns>
         public ViewResult ScoreMap(
             string matchIds = "", 
@@ -298,7 +298,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// <summary>
         /// Load LeagueModel.
         /// </summary>
-        /// <param name="currentLeagueId"></param>
+        /// <param name="currentLeagueId">Current league ID.</param>
         /// <param name="mainShareHolderId">The main shareholder ID.</param>
         /// <returns>View result.</returns>
         public ViewResult ScoreMapLeagues(int currentLeagueId = 0, int mainShareHolderId = 0)
@@ -314,7 +314,7 @@ namespace Apollo.Age.Forecast.Controllers
         /// </summary>
         /// <param name="matchIds">List of match IDs.</param>
         /// <param name="liveBetTypes">Live bet types.</param>
-        /// <param name="deadBallBetTypes">Deadball bet types.</param>
+        /// <param name="deadBallBetTypes">Dead ball bet types.</param>
         /// <param name="mainShareHolderId">The main shareholder ID.</param>
         /// <returns>View result.</returns>
         public ViewResult ScoreMapResult(

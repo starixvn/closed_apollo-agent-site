@@ -74,9 +74,9 @@ namespace Fanex.Age.UI
             // Hot fix for Opera browser (IIS does sniffing user agent)
             Response.ContentType = "text/html";
 
-            _Parameters = new Hashtable();
+            _parameters = new Hashtable();
 
-            ProcessRequest(ref _Parameters);
+            ProcessRequest(ref _parameters);
 
             object error = ValidateRequest(Parameters);
 

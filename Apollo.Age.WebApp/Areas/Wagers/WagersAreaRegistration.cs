@@ -9,6 +9,9 @@ namespace Apollo.Age.WebApp.Areas.Wagers
     using System.Web.Mvc;
     using System.Web.Optimization;
 
+    /// <summary>
+    /// Wagers area registration.
+    /// </summary>
     public class WagersAreaRegistration : AreaRegistration
     {
         public override string AreaName

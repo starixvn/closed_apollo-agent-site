@@ -9,6 +9,9 @@ namespace Apollo.Age.Web.Pager
     using System.Web.Mvc.Ajax;
     using System.Web.Routing;
 
+    /// <summary>
+    /// Pager options.
+    /// </summary>
     public class PagerOptions
     {
         public PagerOptions()

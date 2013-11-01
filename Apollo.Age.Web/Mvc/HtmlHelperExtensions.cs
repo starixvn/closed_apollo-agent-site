@@ -69,7 +69,7 @@ namespace Apollo.Age.Web.Mvc
         /// <param name="minDate">The minimum date.</param>
         /// <param name="maxDate">The maximum date.</param>
         /// <param name="formatDate">The format date.</param>
-        /// <param name="unavailDates">The unavail dates.</param>
+        /// <param name="unavailDates">The unavailable dates.</param>
         /// <returns>Return MVC HTML string.</returns>
         public static MvcHtmlString DatePickerFor<TModel, TValue>(
             this HtmlHelper<TModel> html,
@@ -103,9 +103,9 @@ namespace Apollo.Age.Web.Mvc
         /// <param name="minDate">The minimum date.</param>
         /// <param name="maxDate">The maximum date.</param>
         /// <param name="formatDate">The format date.</param>
-        /// <param name="unavailDates">The unavail dates.</param>
+        /// <param name="unavailDates">The unavailable dates.</param>
         /// <returns>MVC HTML String.</returns>
-        /// <exception cref="System.ArgumentNullException">formatDate cannot be blank</exception>
+        /// <exception cref="System.ArgumentNullException">FormatDate cannot be blank.</exception>
         public static MvcHtmlString DatePicker(
            this HtmlHelper htmlHelper,
            string name,
@@ -144,7 +144,7 @@ namespace Apollo.Age.Web.Mvc
         /// <param name="htmlHelper">HTML Helper.</param>
         /// <param name="name">In name.</param>
         /// <param name="fromYear">Default from year 2000.</param>
-        /// <param name="currentYear">>Default currentYear year 2000.</param>
+        /// <param name="currentYear">Default currentYear year 2000.</param>
         /// <returns>MVC HTML String.</returns>
         public static MvcHtmlString YearPicker(
             this HtmlHelper htmlHelper,
@@ -287,9 +287,9 @@ namespace Apollo.Age.Web.Mvc
         /// <summary>
         /// Formats the show time.
         /// </summary>
-        /// <param name="htmlhelper">The htmlhelper.</param>
+        /// <param name="htmlhelper">The HTML helper.</param>
         /// <param name="showTime">The show time.</param>
-        /// <param name="ignoreTd">if set to <c>true</c> [ignore td].</param>
+        /// <param name="ignoreTd">If set to <c>true</c> [ignore td].</param>
         /// <returns>MVC HTML String.</returns>
         public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
@@ -308,7 +308,7 @@ namespace Apollo.Age.Web.Mvc
         #region Distinct by
 
         /// <summary>
-        /// Distincts the by.
+        /// Distinct the by.
         /// </summary>
         /// <typeparam name="TSource">The type of the source.</typeparam>
         /// <typeparam name="TKey">The type of the key.</typeparam>

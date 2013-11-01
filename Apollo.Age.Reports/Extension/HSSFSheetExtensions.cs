@@ -13,6 +13,9 @@ namespace Apollo.Age.Reports.Extension
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
+    /// <summary>
+    /// HSSF sheet extensions.
+    /// </summary>
     public static class HSSFSheetExtensions
     {
         /// <summary>
