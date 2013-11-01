@@ -9,6 +9,7 @@
 namespace Apollo.Age.Integration.Services
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -106,6 +107,7 @@ namespace Apollo.Age.Integration.Services
         /// </summary>
         /// <param name="authenticationCode">Code returned from TGP Service.</param>
         /// <returns><see cref="JsonResponseModel"/></returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         internal JsonResponseModel GetSessionToken(string authenticationCode)
         {
             JsonResponseModel jsonResponseModel = new JsonResponseModel();

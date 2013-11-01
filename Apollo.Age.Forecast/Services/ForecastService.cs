@@ -14,6 +14,7 @@ namespace Apollo.Age.Forecast.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Forecast.Core;
@@ -118,10 +119,10 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="currentScore">Current score.</param>
         /// <returns>List of forecast match win lost model.</returns>
         public ForecastMatchWinLostModel GetForecastMatcheValue(
-            int agentId, 
-            int loggedId, 
-            int matchId, 
-            int betType, 
+            int agentId,
+            int loggedId,
+            int matchId,
+            int betType,
             int currentScore)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -182,11 +183,12 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="liveBetTypes">Live bet types.</param>
         /// <param name="deadBallBetTypes">Dead ball bet types.</param>
         /// <returns>List of score map match result model.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public List<ScoreMapMatchResultModel> GetScoreMapResults(
-            int agentId, 
-            int loggedId, 
-            string matchIds, 
-            string liveBetTypes, 
+            int agentId,
+            int loggedId,
+            string matchIds,
+            string liveBetTypes,
             string deadBallBetTypes)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -425,8 +427,8 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="currentScore">Current score.</param>
         /// <returns>Forecast match win lost model.</returns>
         private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(
-            IEnumerable<ForecastMatchModel> forecastMatches, 
-            int betType, 
+            IEnumerable<ForecastMatchModel> forecastMatches,
+            int betType,
             int currentScore)
         {
             if (!forecastMatches.Any())
@@ -471,9 +473,9 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="forecast">Forecast value.</param>
         /// <returns>Fore cast handicap value.</returns>
         private decimal GetForecastHandicapValue(
-            ForecastMatchModel forecastMatch, 
-            int currentScore, 
-            int scoreOffset, 
+            ForecastMatchModel forecastMatch,
+            int currentScore,
+            int scoreOffset,
             decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
@@ -507,9 +509,9 @@ namespace Apollo.Age.Forecast.Services
         /// <param name="forecast">Forecast value.</param>
         /// <returns>Forecast Over Under value.</returns>
         private decimal GetForecastOverUnderValue(
-            ForecastMatchModel forecastMatch, 
-            int currentScore, 
-            int scoreOffset, 
+            ForecastMatchModel forecastMatch,
+            int currentScore,
+            int scoreOffset,
             decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;

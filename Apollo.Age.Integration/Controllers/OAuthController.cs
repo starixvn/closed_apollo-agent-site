@@ -13,6 +13,7 @@
 namespace Apollo.Age.Integration.Controllers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -72,6 +73,7 @@ namespace Apollo.Age.Integration.Controllers
         /// <returns>Return a view.</returns>
         [P3P]
         [AllowAnonymous]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
             var authModel = new AuthModel();
