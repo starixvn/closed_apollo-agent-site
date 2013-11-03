@@ -14,6 +14,7 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Configurations;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Services.Impl;
+    using System.Globalization;
 
     /// <summary>
     /// TODO: Update summary.
@@ -54,7 +55,7 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
             DateTime toDate = DateTime.Now;
@@ -70,8 +71,11 @@ namespace Apollo.Age.Reports.Services
                 {
                     rangeDates = range.Split('-');
 
-                    fromDate = DateTime.Parse(rangeDates[0]);
+                    fromDate = DateTime.Parse(rangeDates[0]);                    
                     toDate = DateTime.Parse(rangeDates[1]);
+
+                    fromDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day);
+                    toDate = new DateTime(toDate.Year, toDate.Month, toDate.Day);
 
                     if (startFromDate > currentDate && startToDate > currentDate)
                     {
