@@ -426,7 +426,7 @@
     <ul class="@reportclass">
         @foreach (var item in functionPermissions)
         {
-            if (item.Function.FunctionKey == ApolloFunctionKeys.Win_Loss && item.Policy >= 1)
+            if (item.Function.FunctionKey == ApolloFunctionKeys.WinLoss && item.Policy >= 1)
             {
             <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>    
             }

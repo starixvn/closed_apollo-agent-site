@@ -97,7 +97,7 @@
                                         }
                                     </ul>
                                 </li>                                                                
-                                        if (FunctionPermissions[ApolloFunctionKeys.System_Log] >= (byte)Policy.Query)
+                                        if (FunctionPermissions[ApolloFunctionKeys.SystemLog] >= (byte)Policy.Query)
                                         { 
                                 <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                     <ul class="sub-menu">
@@ -109,7 +109,7 @@
                                     </ul>
                                 </li>
                                         }
-                                        if (!isShowReport && ((FunctionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query) ||
+                                        if (!isShowReport && ((FunctionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query) ||
@@ -120,7 +120,7 @@
 
                                             if (string.IsNullOrEmpty(defaultReportURL))
                                             {
-                                                if (FunctionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query)
+                                                if (FunctionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/Reports/matchentered";
                                                 }
