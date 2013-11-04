@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Entities
     /// Reference data for bettypes: 
     ///                     1) Horse Racing (33) => Build Odds
     ///                     2) Live Casino Baccarat (1101) => Build Choice
-    ///                     3) Live Roulette (1102) => Build Choice
+    ///                     3) Live Roulette (1102) => Build Choice.
     /// </summary>
     public interface ITicketData
     {
@@ -24,7 +24,7 @@ namespace Fanex.BetList.Core.Entities
         int BetTypeId { get; set; }
 
         /// <summary>
-        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject
+        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject.
         /// </summary>
         string Status { get; set; }
 

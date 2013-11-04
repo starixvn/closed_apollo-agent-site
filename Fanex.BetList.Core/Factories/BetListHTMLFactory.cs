@@ -11,10 +11,10 @@
 namespace Fanex.BetList.Core.Factories
 {
     using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;    
+    using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Class BetListHTMLFactory
+    /// Class BetListHTMLFactory.
     /// </summary>
     public class BetListHTMLFactory : IBetListFactory
     {

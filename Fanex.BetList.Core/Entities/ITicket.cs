@@ -13,7 +13,7 @@ namespace Fanex.BetList.Core.Entities
     using System;
 
     /// <summary>
-    /// Ticket data interface
+    /// Ticket data interface.
     /// </summary>
     public interface ITicket
     {
@@ -46,7 +46,7 @@ namespace Fanex.BetList.Core.Entities
         string BetTeam { get; set; }
 
         /// <summary>
-        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject
+        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject.
         /// </summary>
         string Status { get; set; }
 
@@ -115,7 +115,7 @@ namespace Fanex.BetList.Core.Entities
         long AwayId { get; set; }
 
         /// <summary>
-        /// Match status: First Goal, Last Goal
+        /// Match status: First Goal, Last Goal.
         /// </summary>
         string EventStatus { get; set; }
 

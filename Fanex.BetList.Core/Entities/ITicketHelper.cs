@@ -24,27 +24,36 @@ namespace Fanex.BetList.Core.Entities
         #region METHODS TO RESOLVE NAMES FROM IDS
 
         string GetLeagueNameById(object leagueId);
+
         string GetTeamNameById(object teamId);
+
         string GetBetTypeNameById(object bettypeId);
+
         string GetBetTypeNameById(object bettypeId, object betID);
+
         string GetSportNameById(object sportId);
+
         string GetCasinoBetTeamNameById(object betteamId);
+
         string GetHorseTeamNameById(object homeId, object awayId);
+
         string GetRouletteBetItemNameById(object itemId);
 
         #endregion
 
         /// <summary>
-        /// Check if the input IP string is from Vietnam
+        /// Check if the input IP string is from Vietnam.
         /// </summary>
         /// <param name="ip"></param>
         /// <returns></returns>
         bool IsVnIp(string ip);
+
         int Index { get; set; }
+
         string CurrentLanguage { get; set; }
         
         /// <summary>
-        /// Determine if the current render show Odds values for each ticket (Ex: in MixParlay sub-tickets)
+        /// Determine if the current render show Odds values for each ticket (Ex: in MixParlay sub-tickets).
         /// </summary>
         bool IsShowOddsWithChoice { get; set; }
     }
