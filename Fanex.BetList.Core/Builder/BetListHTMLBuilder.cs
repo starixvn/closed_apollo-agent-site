@@ -29,7 +29,7 @@ namespace Fanex.BetList.Core.Builder
     /// </summary>
     public class BetListHTMLBuilder : IBetListBuilder
     {
-        #region Attributes               
+        #region Attributes
 
         private const string ChoiceBuilderNamespace = "Fanex.BetList.Core.Builder.ChoiceBuilder";
         private const string OddsBuilderNamespace = "Fanex.BetList.Core.Builder.OddsBuilder";
@@ -156,7 +156,7 @@ namespace Fanex.BetList.Core.Builder
         {
             string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
-            
+
             return this;
         }
 
@@ -401,12 +401,15 @@ namespace Fanex.BetList.Core.Builder
         /// <returns>Choice interface.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[] { 
+            string[] choiceBuilder = new string[]
+            {
                                                 ChoiceBuilderNamespace,
                                                 ".Choice",
-                                                bettype.ToString() });
+                                                bettype.ToString()
+            };
+            string typeName = string.Join(
+                                            null,
+                                            choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -433,14 +436,13 @@ namespace Fanex.BetList.Core.Builder
                 bettype = 1101;
             }
 
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
                                                 OddsBuilderNamespace,
                                                 ".Odds",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -461,14 +463,13 @@ namespace Fanex.BetList.Core.Builder
         /// <returns>Stake interface.</returns>
         private IStake CreateStakeBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
                                                 StakeBuilderNamespace,
                                                 ".Stake",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -489,14 +490,13 @@ namespace Fanex.BetList.Core.Builder
         /// <returns>Status interface.</returns>
         private IStatus CreateStatusBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
                                                 StatusBuilderNamespace,
                                                 ".Status",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -519,14 +519,13 @@ namespace Fanex.BetList.Core.Builder
         /// </returns>
         private ITrans CreateTransBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
                                                 TransBuilderNamespace,
                                                 ".Trans",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -549,14 +548,13 @@ namespace Fanex.BetList.Core.Builder
         /// </returns>
         private IAgentShare CreateAgentShareBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                           null,
-                                           new string[]
+            string[] agentShareBuilder = new string[]
                                             {
                                                 AgentShareBuilderNamespace,
                                                 ".AgentShare",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, agentShareBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -579,14 +577,13 @@ namespace Fanex.BetList.Core.Builder
         /// </returns>
         private IAgentComm CreateAgentCommBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                           null,
-                                           new string[]
+            string[] agentCommBuilder = new string[]
                                             {
                                                 AgentCommBuilderNamespace,
                                                 ".AgentComm",
                                                 bettype.ToString()
-                                            });
+                                            };
+            string typeName = string.Join(null, agentCommBuilder);
 
             Type type = Type.GetType(typeName);
 
