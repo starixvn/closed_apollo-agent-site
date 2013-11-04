@@ -42,7 +42,7 @@ namespace Sunplus.Agent.UI._BetList
     {
         #region Variables
 
-        private string title = string.Empty;
+        // private string title = string.Empty;
         private BetListTransaction_Template tpl = new BetListTransaction_Template();
 
         private string username = string.Empty;
@@ -87,8 +87,7 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
+            // INIT
             this.BoxFilter();
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
 
@@ -101,14 +100,10 @@ namespace Sunplus.Agent.UI._BetList
             bool isShowScoremap;
 
             int index = 0;
-           // bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
-            #endregion INIT
-
-            #region RENDER HTML
-
+            // RENDER HTML
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
 
@@ -179,8 +174,6 @@ namespace Sunplus.Agent.UI._BetList
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
-
-            #endregion RENDER HTML
         }
 
         public override object InvokeData(Hashtable hash)

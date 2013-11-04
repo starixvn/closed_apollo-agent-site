@@ -100,8 +100,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             var i = 0;
             if (numRow > 0)
             {
-                #region details
-
+                // details
                 foreach (var ticket in ticketList)
                 {
                     rowBlock.stake = ConvertByBetType.Stake(ticket.Stake);
@@ -219,8 +218,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("yyyy-mm-dd"), winlostNextDate);
                     i++;
                 }
-
-                #endregion details
 
                 template.Summary.total = ConvertByBetType.Winloss(winlostSum);
             }

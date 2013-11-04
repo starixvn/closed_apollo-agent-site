@@ -393,7 +393,10 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
+            model.BettypeList = 
+                model.SportTypeIds == "-99" 
+                ? _reportService.GetParlayBettype() 
+                : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
 

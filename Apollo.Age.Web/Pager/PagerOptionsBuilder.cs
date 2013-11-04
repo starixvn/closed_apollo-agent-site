@@ -145,7 +145,7 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set the AjaxOptions.
         /// </summary>
-        /// <param name="ajaxOptions"></param>
+        /// <param name="ajaxOptions">AJAX options.</param>
         /// <returns></returns>
         internal PagerOptionsBuilder AjaxOptions(AjaxOptions ajaxOptions)
         {

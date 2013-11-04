@@ -204,7 +204,6 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                //string key = messageType.ToString() + "_" + siteId;
                 MessageModel message = new MessageModel();
                 string key = string.Join("_", messageType.ToString(), siteId);
 

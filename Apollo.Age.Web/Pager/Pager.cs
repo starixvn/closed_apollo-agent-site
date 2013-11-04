@@ -46,7 +46,20 @@ namespace Apollo.Age.Web.Pager
             var pageCount = (int)Math.Ceiling(_totalItemCount / (double)_pageSize);
 
             // Previous
-            model.PaginationLinks.Add(_currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "&#171;", PageIndex = _currentPage - 1, Url = generateUrl(_currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "&#171;" });
+            model.PaginationLinks.Add(
+                _currentPage > 1 
+                ? new PaginationLink 
+                    { 
+                        Active = true, 
+                        DisplayText = "&#171;", 
+                        PageIndex = _currentPage - 1, 
+                        Url = generateUrl(_currentPage - 1) 
+                    } 
+                : new PaginationLink 
+                    { 
+                        Active = false, 
+                        DisplayText = "&#171;" 
+                    });
 
             var start = 1;
             var end = pageCount;
@@ -76,10 +89,7 @@ namespace Apollo.Age.Web.Pager
             if (start > 1)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
-                //if (start > 3)
-                //{
-                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 2, DisplayText = "2", Url = generateUrl(2) });
-                //}
+
                 if (start > 2)
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
@@ -104,10 +114,6 @@ namespace Apollo.Age.Web.Pager
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
                 }
-                //if (pageCount - 2 > end)
-                //{
-                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
-                //}
 
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
             }
@@ -209,7 +215,6 @@ namespace Apollo.Age.Web.Pager
             }
 
             // 'Render' virtual path.
-            //var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
             var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(this._htmlHelper.ViewContext.RequestContext, pageLinkValueDictionary);
 
             var url = virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;

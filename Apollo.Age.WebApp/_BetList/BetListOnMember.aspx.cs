@@ -44,9 +44,13 @@ namespace Sunplus.Agent.UI._BetList
     {
         #region Variables
 
-        private int custid;
-        private string username = string.Empty;
-        private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;
+        private int _custId;
+        private string _username = string.Empty;
+        private DateTime fromDate;
+        private DateTime toDate;
+        private DateTime balanceUpDay;
+        private DateTime moveBetsDay;
+        private DateTime minDate;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
         private string mainShareHolderId, mainShareHolderUsername;
@@ -80,21 +84,20 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
+            // INIT
             var tpl = new BetListOnMember_Template();
 
             if (pageType.Equals("accountinfo"))
             {
                 var maxDate = DateTime.Now;
-                tpl.HiddenFields.username = username;
-                tpl.HiddenFields.custId = custid.ToString();
+                tpl.HiddenFields.username = _username;
+                tpl.HiddenFields.custId = _custId.ToString();
                 tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueToDate = toDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.DateTime.Hide();
-                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + username;
+                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + _username;
                 tpl.Navigation = string.Empty;
             }
             else
@@ -108,12 +111,7 @@ namespace Sunplus.Agent.UI._BetList
                     tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList;
                 }
 
-                #region Navigation Link
-
-                tpl.Navigation = this.Navigation(custid);
-
-                #endregion Navigation Link
-
+                tpl.Navigation = this.Navigation(_custId);
                 tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
                 tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
@@ -137,9 +135,6 @@ namespace Sunplus.Agent.UI._BetList
             var forecastService = new ForecastService();
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-           // bool isAdminCanViewVNIP = true;
-
-            #endregion INIT
 
             content.Append(betlistOpenTag);
             content.Append(betlistHeader);
@@ -223,9 +218,9 @@ namespace Sunplus.Agent.UI._BetList
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            int.TryParse(Request["custid"], out custid);
+            int.TryParse(Request["custid"], out _custId);
 
-            username = GetStringRequest("username", string.Empty);
+            _username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = reportService.MoveBetsDay();
             minDate = reportService.MoveBetsDay().AddDays(1);
@@ -243,7 +238,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 AgentId = -1,
                 LoggedId = CurrentSession.AgentId,
-                CustId = custid,
+                CustId = _custId,
                 FromDate = ResetStartDate(fromDate),
                 ToDate = ResetEndDate(toDate),
                 StatusIds = statusIds,
@@ -287,7 +282,7 @@ namespace Sunplus.Agent.UI._BetList
         /// <summary>
         /// Get Navigation link.
         /// </summary>
-        /// <param name="agentId">Agent Id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <returns>Navigation string.</returns>
         private string Navigation(int agentId)
         {

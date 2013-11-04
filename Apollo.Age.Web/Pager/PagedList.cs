@@ -77,7 +77,8 @@ namespace Apollo.Age.Web.Pager
 
         public int PageIndex { get; private set; }
 
-        public int PageNumber { 
+        public int PageNumber 
+        { 
             get 
             { 
                 return PageIndex + 1; 

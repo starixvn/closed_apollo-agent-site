@@ -248,7 +248,7 @@ namespace Apollo.Age.Web.Mvc
         /// To the string status.
         /// </summary>
         /// <param name="status">The status.</param>
-        /// <param name="uplineStatus">The upline status.</param>
+        /// <param name="uplineStatus">The UPLINE status.</param>
         /// <returns>MVC HTML String.</returns>
         public static MvcHtmlString ToStringStatus(this byte status, byte uplineStatus)
         {
@@ -293,7 +293,10 @@ namespace Apollo.Age.Web.Mvc
         /// <returns>MVC HTML String.</returns>
         public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
-            string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
+            string showTimeFormat = 
+                string.IsNullOrEmpty(showTime) 
+                ? string.Empty 
+                : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
 
             if (!ignoreTd)
             {

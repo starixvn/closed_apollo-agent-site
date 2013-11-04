@@ -23,7 +23,7 @@ namespace Apollo.Age.Reports.Criterias
         /// <value>
         ///   <c>true</c> If [is show all]; otherwise, <c>false</c>.
         /// </value>
-        public bool isShowAll { get; set; }
+        public bool IsShowAll { get; set; }
 
         public override string GetSettingKey()
         {
