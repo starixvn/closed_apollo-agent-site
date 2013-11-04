@@ -20,7 +20,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Over/Under
+    /// Over Under.
     /// </summary>
     public class Choice3 : Choice1
     {

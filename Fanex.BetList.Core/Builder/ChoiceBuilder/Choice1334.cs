@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    ///      Set x Games y and y+1 Points
+    ///      Set x Games y and y + 1 Points.
     /// </summary>
     public class Choice1334 : Choice1
     {

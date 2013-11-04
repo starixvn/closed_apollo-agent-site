@@ -41,7 +41,7 @@ namespace Fanex.BetList.Age.DTO
                 foreach (PropertyInfo prop in typeTicketProps)
                 {
                     mapKey = string.Empty;
-                    if (TicketDataMapper.dict.TryGetValue(prop.Name, out mapKey) && mapKey.Length > 0)
+                    if (TicketDataMapper.Dict.TryGetValue(prop.Name, out mapKey) && mapKey.Length > 0)
                     {
                         if (data.Columns.Contains(mapKey))
                         {

@@ -26,9 +26,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
     /// </summary>
     public static class BetListHTMLBuilderExt
     {
-        private const string FOOTER_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
-        private const string AGENTPT_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
-        private const string AGENTCOMM_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
+        private const string FooterBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
+        private const string AgentPTBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
+        private const string AgentCommBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
 
         /// <summary>
         /// Adds the no.
@@ -180,7 +180,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
             string typeName = string.Join(
                                            null,
                                            new string[] {
-                                                AGENTPT_BUILDER_NAMESPACE,
+                                                AgentPTBuilderNamespace,
                                                 ".AgentPT",
                                                 bettype.ToString() });
             Type type = Type.GetType(typeName);
@@ -208,7 +208,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
                                            null,
                                            new string[]
                                             {
-                                                AGENTCOMM_BUILDER_NAMESPACE,
+                                                AgentCommBuilderNamespace,
                                                 ".AgentComm",
                                                 bettype.ToString()
                                             });
@@ -235,7 +235,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
             string typeName = string.Join(
                                             null,
                                             new string[] {
-                                                FOOTER_BUILDER_NAMESPACE,
+                                                FooterBuilderNamespace,
                                                 ".Footer",
                                                 footerType.ToString() });
 

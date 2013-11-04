@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// FT. 1x2.
+    /// Full time 1 x 2.
     /// </summary>
     public class Choice1205 : Choice5
     {

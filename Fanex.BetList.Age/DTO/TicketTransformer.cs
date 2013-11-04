@@ -21,6 +21,11 @@ namespace Fanex.BetList.Age.DTO
     /// </summary>
     public static class TicketTransformer
     {
+        /// <summary>
+        /// Transforms the specified data.
+        /// </summary>
+        /// <param name="data">The data table.</param>
+        /// <returns>List of tickets.</returns>
         public static IList<ITicket> Transform(DataTable data)
         {
             IList<ITicket> tickets = new List<ITicket>();
@@ -35,14 +40,13 @@ namespace Fanex.BetList.Age.DTO
                 foreach (PropertyInfo prop in typeTicketProps)
                 {
                     mapKey = string.Empty;
-                    if (TicketMapper.dict.TryGetValue(prop.Name, out mapKey) && mapKey.Length > 0)
+                    if (TicketMapper.Dict.TryGetValue(prop.Name, out mapKey) && mapKey.Length > 0)
                     {
                         if (data.Columns.Contains(mapKey))
                         {
                             object value;
 
-                            //Determine if the property is DBNull
-
+                            // Determine if the property is DBNull
                             try
                             {
                                 if (row[mapKey] == DBNull.Value)
@@ -51,7 +55,7 @@ namespace Fanex.BetList.Age.DTO
                                 }
                                 else
                                 {
-                                    //Determine if the property is nullable
+                                    // Determine if the property is nullable
                                     Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType);
 
                                     if (underlyingType == null)
@@ -64,7 +68,7 @@ namespace Fanex.BetList.Age.DTO
 
                                 prop.SetValue(t, value, null);
                             }
-                            catch // (Exception ex)
+                            catch
                             {
                             }
                         }

@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Win.
+    /// Win bet type.
     /// </summary>
     public class Choice31 : Choice1
     {
@@ -34,8 +34,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
+                                                    new string[] {
                                                         ticket.MatchCode,
                                                         " - ",
                                                         ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId)

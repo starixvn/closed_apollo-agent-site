@@ -24,6 +24,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     public class Choice29 : Choice1
     {
         /// <summary>
+        /// The combination offer name.
+        /// </summary>
+        private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string>
+        {
+            { "110", "Trixie" },
+            { "1110", "Yankee" },
+            { "11110", "Canadian" },
+            { "111110", "Heinz" },
+            { "1111110", "Super Heinz" },
+            { "11111110", "Goliath" }
+        };
+
+        /// <summary>
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket need to build.</param>
@@ -70,7 +83,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 custid = ticket.CustId.ToString();
             }
 
-            mixParlay = String.Join(
+            mixParlay = string.Join(
                                         null,
                                         new string[]
                                         {
@@ -108,19 +121,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.SetValue(mixParlay);
         }
-
-        /// <summary>
-        /// The _combination offer name.
-        /// </summary>
-        private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string>
-        {
-            {"110", "Trixie"},
-            {"1110", "Yankee"},
-            {"11110", "Canadian"},
-            {"111110", "Heinz"},
-            {"1111110", "Super Heinz"},
-            {"11111110", "Goliath"}
-        };
 
         /// <summary>
         /// Gets the name of the combination offer.

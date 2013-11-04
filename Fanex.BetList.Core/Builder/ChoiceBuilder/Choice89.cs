@@ -15,9 +15,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Next Combo
-    /// do NOT show oddtype because this bettype just offer for DEC
-    /// it supports for live ball, so always 37.5.
+    /// Next Combo.
+    /// Do NOT show odd type because this bet type just offer for DEC.
+    /// It supports for live ball, so always 37.5.
     /// </summary>
     public class Choice89 : Choice1
     {

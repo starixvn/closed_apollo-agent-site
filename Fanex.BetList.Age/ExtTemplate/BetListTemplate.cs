@@ -13,6 +13,10 @@ namespace Fanex.BetList.Age.ExtTemplate
     /// </summary>
     public class BetListTemplate : BetList_Template
     {
+        /// <summary>
+        /// To the string.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         public void ToString(HtmlTextWriter writer)
         {
             if (!Visible)
