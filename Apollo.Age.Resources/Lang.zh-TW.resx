@@ -1957,7 +1957,7 @@
   <data name="Wagers_Forecast" xml:space="preserve">
     <value>注單/預測</value>
   </data>
-  <data name="Win_Loss" xml:space="preserve">
+  <data name="WinLoss" xml:space="preserve">
     <value>贏/輸</value>
   </data>
   <data name="NotAllowEditSettingInPeakHours" xml:space="preserve">
@@ -1975,7 +1975,7 @@
   <data name="SerialNumber" xml:space="preserve">
     <value>序號</value>
   </data>
-  <data name="System_Log" xml:space="preserve">
+  <data name="SystemLog" xml:space="preserve">
     <value>設定記錄</value>
   </data>
   <data name="View_Log" xml:space="preserve">

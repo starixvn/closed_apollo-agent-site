@@ -23,8 +23,8 @@ public static class ApolloFunctionKeys
     public const string PermissionControl = "PermissionControl";
     public const string Result = "Result";
     public const string ShadowPermission = "ShadowPermission";
-    public const string SystemLog = "System_Log";
+    public const string SystemLog = "SystemLog";
     public const string Transactions = "Transactions";
     public const string Wagers = "Wagers";
-    public const string WinLoss = "Win_Loss";
+    public const string WinLoss = "WinLoss";
 }
