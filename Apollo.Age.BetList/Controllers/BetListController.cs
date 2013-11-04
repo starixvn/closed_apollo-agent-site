@@ -458,7 +458,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
 
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         public ViewResult Winloss(int custId,
             DateTime fromDate,
             DateTime toDate,
