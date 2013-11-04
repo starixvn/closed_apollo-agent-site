@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// 1st ball OU
+    /// 1st ball Over Under.
     /// </summary>
     public class Choice81 : Choice1
     {
@@ -25,14 +25,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
-            //this.Template.VS = null;
             this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.over : Apollo.Age.Resources.BetList.under;
-
-            //this.Template.betTeamClassName = BL_FAVORITE;
 
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.homeTeam = string.Join(
@@ -42,8 +40,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     Apollo.Age.Resources.BetList.numbergameno,
                                                     "&nbsp;",
                                                     ticket.MatchCode
-                                                }
-                                            );
+                                                });
         }
     }
 }

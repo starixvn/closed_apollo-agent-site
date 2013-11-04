@@ -1,62 +1,72 @@
-﻿@{
+﻿@using Apollo.Age.Resources
+@using Apollo.Age.Services
+@{
     Layout = null;
     var menu = new List<string[]>
     {
-        new string[] {"~/totalBets/handicap", Apollo.Age.Resources.Lang.lblHOUL},
-        new string[] {"~/totalBets/moneyline", Apollo.Age.Resources.Lang.moneyline},
-        new string[] {"~/totalBets/oddeven", Apollo.Age.Resources.Lang.OE1x2DND},
-        new string[] {"~/Betlist/Forecast?type=CorrectScore", Apollo.Age.Resources.Lang.correctscore},
-        new string[] {"~/totalBets/totalgoal", Apollo.Age.Resources.Lang.totalgoal},
-        new string[] {"~/Betlist/Forecast?type=MixParlay", Apollo.Age.Resources.Lang.lblMixParlay},
-        new string[] {"~/Betlist/Forecast?type=CombMixParlayBetList", Apollo.Age.Resources.Lang.lblSystemParlay},
-        new string[] {"~/totalBets/outright", Apollo.Age.Resources.Lang.lblOutRight},
-        new string[] {"~/totalBets/htft", Apollo.Age.Resources.Lang.htft},
-        new string[] {"~/totalBets/firstgoal", Apollo.Age.Resources.Lang.fglg},
-        new string[] {"~/Betlist/Forecast?bettype=13&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(13)},
-        new string[] {"~/Betlist/Forecast?bettype=24&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(24)},
-        new string[] {"~/totalBets/homenobet", Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet},
-        new string[] {"~/Betlist/Forecast?bettype=26&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(26)},
-        new string[] {"~/Betlist/Forecast?bettype=27&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(27)},
-        new string[] {"~/Betlist/Forecast?bettype=28&amp;type=Bettype", Apollo.Age.Services.CacheRef.GetBettype(28)}
+        new string[] {"~/totalBets/handicap", Lang.lblHOUL},
+        new string[] {"~/totalBets/moneyline", Lang.moneyline},
+        new string[] {"~/totalBets/oddeven", Lang.OE1x2DND},
+        new string[] {"~/Betlist/Forecast?type=CorrectScore", Lang.correctscore, ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/totalBets/totalgoal", Lang.totalgoal},
+        new string[] {"~/Betlist/Forecast?type=MixParlay", Lang.lblMixParlay, ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/Betlist/Forecast?type=CombMixParlayBetList", Lang.lblSystemParlay, ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/totalBets/outright", Lang.lblOutRight},
+        new string[] {"~/totalBets/htft", Lang.htft},
+        new string[] {"~/totalBets/firstgoal", Lang.fglg},
+        new string[] {"~/Betlist/Forecast?bettype=13&amp;type=Bettype", CacheRef.GetBettype(13), ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/Betlist/Forecast?bettype=24&amp;type=Bettype", CacheRef.GetBettype(24), ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/totalBets/homenobet", Lang.lblHomeDrawAwayNoBet},
+        new string[] {"~/Betlist/Forecast?bettype=26&amp;type=Bettype", CacheRef.GetBettype(26), ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/Betlist/Forecast?bettype=27&amp;type=Bettype", CacheRef.GetBettype(27), ApolloFunctionKeys.DownlineDetails},
+        new string[] {"~/Betlist/Forecast?bettype=28&amp;type=Bettype", CacheRef.GetBettype(28), ApolloFunctionKeys.DownlineDetails}
     };
     int menuItemCount = menu.Count;
     var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Forecast</title>    
+    <title>Forecast</title>
     @Styles.Render("~/css/totalbets")
 </head>
 <body>
     <div id="function-bar">
         @RazorHelper.RefreshCountDown("TOTALBETSINDEX", null, "TotalBetsIndex.reloadChild();", isShowRefreshNow)
         @RazorHelper.ToServerTime(DateTime.Now)
-        <div class="before-filter">--</div>
+        <div class="before-filter">
+            --</div>
         <ul class="menu">
-        @for (int i = 0; i < 5; i++)
-        {
-            var item = menu[i];
-            <li class="@(i==0? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-        }
+            @for (int i = 0; i < 5; i++)
+            {
+                var item = menu[i];
+                if (item.Length <= 2)
+                { 
+                <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
+                }
+            }
             <li id="more-link"><a href="javascript:;">@Apollo.Age.Resources.Lang.more ▼</a>
                 <ul class="sub-menu" style="display: none">
-                @for (int i = 5; i < menuItemCount; i++)
-                {
-                    var item = menu[i];
-                    <li ><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
-                }			
+                    @for (int i = 5; i < menuItemCount; i++)
+                    {
+                        var item = menu[i];
+                        if (item.Length <= 2)
+                        { 
+                        <li><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
+                        }
+                    }
                 </ul>
             </li>
         </ul>
         @*<img alt="" src="~/_GlobalResources/Images/top_04.png">*@
-        <div class="end"></div>
+        <div class="end">
+        </div>
     </div>
-
     <div class="mainpage clear">
-        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/totalBets/handicap"></iframe>
+        <iframe id="submain" name="submain" width="100%" height="99%" frameborder="0" src="~/totalBets/handicap">
+        </iframe>
     </div>
-
     @Scripts.Render("~/scripts/forecast-indexjs")
 </body>
 </html>

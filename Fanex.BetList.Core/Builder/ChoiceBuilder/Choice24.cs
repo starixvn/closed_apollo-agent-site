@@ -18,7 +18,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Double Chance
+    /// Double Chance.
     /// </summary>
     public class Choice24 : Choice1
     {
@@ -28,11 +28,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            //this.Template.Handicap.handicap = null;
+
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             string team = ticket.BetTeam.Contains("1") ? this.Template.homeTeam : awayName;
@@ -40,17 +41,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                             null,
-                                            new string[]
-                                            {
+                                            new string[] {
                                                 " <span class=\"",
-                                                BL_FAVORITE,
+                                                BetListFavorite,
                                                 "\">",
                                                 team,
                                                 "</span>",
                                                 "&nbsp;",
                                                 Apollo.Age.Resources.BetList.lblOr.ToLower(),
                                                 " <span class=\"",
-                                                BL_FAVORITE,
+                                                BetListFavorite,
                                                 "\">",
                                                 "&nbsp;",
                                                 draw_away,

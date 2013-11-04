@@ -14,6 +14,8 @@
 
 namespace Fanex.BetList.Core.Entities
 {
+    public delegate string GetCachePropertyById(object id);
+    
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -46,6 +48,4 @@ namespace Fanex.BetList.Core.Entities
         /// </summary>
         bool IsShowOddsWithChoice { get; set; }
     }
-
-    public delegate string GetCachePropertyById(object id);
 }

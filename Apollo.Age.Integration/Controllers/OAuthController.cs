@@ -13,6 +13,7 @@
 namespace Apollo.Age.Integration.Controllers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -72,6 +73,7 @@ namespace Apollo.Age.Integration.Controllers
         /// <returns>Return a view.</returns>
         [P3P]
         [AllowAnonymous]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public ActionResult GetCode(string code, string error, string state, string username, string language)
         {
             var authModel = new AuthModel();
@@ -86,7 +88,7 @@ namespace Apollo.Age.Integration.Controllers
                 {
                     if (!string.IsNullOrWhiteSpace(code))
                     {
-                        // username is empty or user is disallowed sso.
+                        // Username is empty or user is disallowed sso.
                         // Disallow shadow sc88 access to our system by sso way.
                         if (!_userService.AllowLineAccountSSO(username) || username.ToLower() == "sc88")
                         {
@@ -100,8 +102,8 @@ namespace Apollo.Age.Integration.Controllers
                         {
                             Entities.User user = _userService.GetUserByUsername(authModel.Username);
 
-                            // check whether authenticated username (from sungame agentsite) is the same with
-                            // requested sso username
+                            // Check whether authenticated username (from sungame agentsite) is the same with.
+                            // Requested sso username.
                             if (user != null)
                             {
                                 if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
@@ -110,7 +112,7 @@ namespace Apollo.Age.Integration.Controllers
                                     SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
                                     FormsAuthentication.SetAuthCookie(user.Username, true);
 
-                                    // writes SSO logs
+                                    // Writes SSO logs.
                                     // ActionID: 703 -> SSO login successful.
                                     string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
                                     WriteLoginLog(user.Id, 0, 703, 0, doing);

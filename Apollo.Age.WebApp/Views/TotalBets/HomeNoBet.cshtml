@@ -2,6 +2,8 @@
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet;
+
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 
 @model IEnumerable<HomeNoBetModel>
@@ -19,7 +21,7 @@
     }            
 }
 
-@helper ShowMatch(int index, HomeNoBetModel item)
+@helper ShowMatch(int index, HomeNoBetModel item,bool hasDownlineDetailsPermission = true)
 {
     var classRow = string.Empty;
     if (item.LiveIndicator)
@@ -46,24 +48,36 @@
         <td class="r" >
             @if(item.BetCountHNB != 0)
             {
+                if (hasDownlineDetailsPermission)
+                { 
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)    
                 </a>
+                }
+                else { 
+                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)
+                }
             }
             
         </td>
         <td class="r" >
-            @if(item.BetCountDNB != 0)
+            @if (item.BetCountDNB != 0)
             {
-                <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblDrawNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                if (hasDownlineDetailsPermission)
+                { 
+                    <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblDrawNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                        @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB, 2)
+                    </a>
+                }
+                else { 
                     @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB, 2)
-                </a>
+                }
             }
         </td>
         <td class="r" >
-            @if(item.BetCountANB != 0)
+            @if (item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
@@ -134,7 +148,7 @@
                 rowIndex++;
 
                 //@ShowLeague(currentLeagueId, item)
-                @ShowMatch(rowIndex, item)
+                @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
 
                 currentLeagueId = item.LeagueId;
             }

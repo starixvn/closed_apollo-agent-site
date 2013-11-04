@@ -16,6 +16,9 @@ namespace Apollo.Age.Account.ViewModels
     using Apollo.Age.Account.Models;
     using Apollo.Age.Enumerations;
 
+    /// <summary>
+    /// Agent share view model.
+    /// </summary>
     public class AgentShareViewModel
     {
         public bool IsMember { get; set; }

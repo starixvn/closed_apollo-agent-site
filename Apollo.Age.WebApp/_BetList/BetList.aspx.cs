@@ -23,7 +23,6 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.Forecast.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
@@ -36,15 +35,20 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list page.
+    /// </summary>
     public partial class BetList_Page : TplPage
     {
         #region Variables
 
-        private string type = string.Empty;
-        private string title = string.Empty;
-        private int matchId, live;
-        private string bettype, betTeam;
-        private string mainShareHolderUsername;
+        private string _type = string.Empty;
+        private string _title = string.Empty;
+        private int _matchId;
+        private int _live;
+        private string _bettype;
+        private string betTeam;
+        private string _mainShareHolderUsername;
         private BetListTemplate tpl = new BetListTemplate();
         private TotalBetsService totalBetsService = new TotalBetsService();
         private IEnumerable<Agent> mainShareHolders;
@@ -53,20 +57,23 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Variables
 
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
+
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
             bool isShowAgentPT = true;
 
             var ticketResult = View as TicketResult;
             var tickets = ticketResult.TicketList;
             var ticketData = ticketResult.TicketDataList;
 
-            #endregion INIT
-
-            #region Customize
-
+            // Customize
             Header1_Template betlistHeader = new Header1_Template();
             betlistHeader.headerTrans = BetList.ticket;
             betlistHeader.headerMember = BetList.rebate;
@@ -78,10 +85,7 @@ namespace Sunplus.Agent.UI._BetList
 
             betlistHeader.Winloss.Hide();
 
-            #endregion Customize
-
-            #region RENDER HTML
-
+            // Render HTML
             var content = new StringBuilder();
 
             content.Append(betlistHeader);
@@ -114,10 +118,10 @@ namespace Sunplus.Agent.UI._BetList
             content.Append(builder.GetBetList());
             content.Append("</tbody>");
 
-            tpl.title = title;
+            tpl.title = _title;
             tpl.content = content.ToString();
             tpl.HiddenFields.MainShareHolderId = mainShareHolderId.ToString();
-            tpl.HiddenFields.MainShareHolderUsername = mainShareHolderUsername;
+            tpl.HiddenFields.MainShareHolderUsername = _mainShareHolderUsername;
             tpl.HiddenFields.ApoRoot = Page.ResolveUrl("~/");
 
             if (CurrentSession.IsSuper && !isForecast && mainShareHolders.Count() > 0)
@@ -128,12 +132,11 @@ namespace Sunplus.Agent.UI._BetList
             {
                 tpl.MainShareHolder.Hide();
             }
+
             writer.Write(tpl);
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
-
-            #endregion RENDER HTML
         }
 
         public override object InvokeData(Hashtable hash)
@@ -143,15 +146,15 @@ namespace Sunplus.Agent.UI._BetList
             {
                 LoggedId = loggedId,
                 AgentId = mainShareHolderId,
-                BetTypes = bettype,
-                MatchId = matchId,
-                LiveIndicator = live,
+                BetTypes = _bettype,
+                MatchId = _matchId,
+                LiveIndicator = _live,
                 BetTeam = betTeam
             };
 
             TicketResult mainTickets;
 
-            if (matchId > 0)
+            if (_matchId > 0)
             {
                 mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
             }
@@ -165,45 +168,45 @@ namespace Sunplus.Agent.UI._BetList
 
         public override void ProcessRequest(ref Hashtable hash)
         {
-            type = GetStringRequest("type", string.Empty).ToLower();
-            bettype = GetStringRequest("bettype", string.Empty);
+            _type = GetStringRequest("type", string.Empty).ToLower();
+            _bettype = GetStringRequest("bettype", string.Empty);
             betTeam = GetStringRequest("betteam", string.Empty);
-            matchId = GetIntRequest("matchid", 0);
+            _matchId = GetIntRequest("matchid", 0);
             mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
-            mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
-            live = GetIntRequest("islive", 0);
+            _mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
+            _live = GetIntRequest("islive", 0);
             isForecast = GetBooleanRequest("isForecast", false);
 
-            if (type.Equals("correctscore"))
+            if (_type.Equals("correctscore"))
             {
-                title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
-                bettype = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+                _title = CacheRef.GetBettype((int)BetTypes.Correct_Score).ToUpper();
+                _bettype = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
             }
-            else if (type.Equals("mixparlay"))
+            else if (_type.Equals("mixparlay"))
             {
-                bettype = Convert.ToString((int)BetTypes.MixParlay);
-                title = CacheRef.GetBettype(bettype).ToUpper();
+                _bettype = Convert.ToString((int)BetTypes.MixParlay);
+                _title = CacheRef.GetBettype(_bettype).ToUpper();
             }
-            else if (type.Equals("combmixparlaybetlist"))
+            else if (_type.Equals("combmixparlaybetlist"))
             {
-                bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
-                title = Apollo.Age.Resources.Lang.lblSystemParlay.ToUpper();
+                _bettype = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+                _title = Apollo.Age.Resources.Lang.lblSystemParlay.ToUpper();
             }
             else
             {
                 if (Request["leagueName"] != null)
                 {
-                    title = string.Format("{0} - {1}", Request["leagueName"].ToUpper(), CacheRef.GetBettype(bettype).ToUpper());
+                    _title = string.Format("{0} - {1}", Request["leagueName"].ToUpper(), CacheRef.GetBettype(_bettype).ToUpper());
                 }
                 else
                 {
-                    title = CacheRef.GetBettype(bettype).ToUpper();
+                    _title = CacheRef.GetBettype(_bettype).ToUpper();
                 }
             }
 
             if (CurrentSession.IsSuper)
             {
-                mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
+                mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = _bettype });
                 if (mainShareHolderId == 0 && mainShareHolders.Count() > 0)
                 {
                     mainShareHolderId = mainShareHolderId = mainShareHolders.ElementAt(0).Id;
@@ -212,6 +215,7 @@ namespace Sunplus.Agent.UI._BetList
                 {
                     mainShareHolderId = Convert.ToInt32(mainShareHolderId);
                 }
+
                 loggedId = CurrentSession.AgentId;
             }
             else
@@ -241,19 +245,11 @@ namespace Sunplus.Agent.UI._BetList
             return null;
         }
 
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                return SessionManager.CurrentSession;
-            }
-        }
-
         #region Box Main Shareholder
 
         private DataTable CreateMainShareholderData()
         {
-            var mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = bettype });
+            var mainShareHolders = totalBetsService.GetData<Agent>(new GetAllMainShareHolderCriteria { Bettypes = _bettype });
 
             DataTable dataTable = new DataTable();
             DataColumn column;
@@ -282,7 +278,14 @@ namespace Sunplus.Agent.UI._BetList
 
         private void BoxMainShareholder()
         {
-            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox("ddlMainShareHolder", mainShareHolderId.ToString(), this.CreateMainShareholderData(), "value", "text", null, 280);
+            tpl.MainShareHolder.option_agent = HtmlGenerator.ComboBox(
+                "ddlMainShareHolder", 
+                mainShareHolderId.ToString(), 
+                this.CreateMainShareholderData(), 
+                "value", 
+                "text", 
+                null, 
+                280);
         }
 
         #endregion Box Main Shareholder

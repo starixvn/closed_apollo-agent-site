@@ -13,6 +13,9 @@ namespace Fanex.BetList.Core.Utils.NPOIExt
     using System.Collections.Generic;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Row extension interface class.
+    /// </summary>
     public static class IRowExtension
     {
         /// <summary>
@@ -21,7 +24,7 @@ namespace Fanex.BetList.Core.Utils.NPOIExt
         /// <param name="row">The row.</param>
         /// <param name="colId">The col id.</param>
         /// <param name="cellStyle">The cell style.</param>
-        /// <returns>ICell</returns>
+        /// <returns>Cell interface.</returns>
         public static ICell CreateCell(this IRow row, int colId, ICellStyle cellStyle)
         {
             ICell cell = row.CreateCell(colId);

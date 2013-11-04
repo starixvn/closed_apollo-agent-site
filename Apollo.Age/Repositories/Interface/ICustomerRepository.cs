@@ -12,9 +12,6 @@ namespace Apollo.Age.Repositories.Interface
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public interface ICustomerRepository : IRepository<Customer>
     {
     }

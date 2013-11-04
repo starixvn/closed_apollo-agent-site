@@ -1,23 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc.Ajax;
+﻿// --------------------------------------------------------------------------
+// <copyright file="PaginationModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.Web.Pager
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc.Ajax;
+
+    /// <summary>
+    /// Pagination model.
+    /// </summary>
     public class PaginationModel
     {
-        public IList<PaginationLink> PaginationLinks { get; private set; }
-        public AjaxOptions AjaxOptions { get; internal set; }
-        public PagerOptions Options { get; internal set; }
-
         public PaginationModel()
         {
             PaginationLinks = new List<PaginationLink>();
             AjaxOptions = null;
             Options = null;
         }
+
+        public IList<PaginationLink> PaginationLinks { get; private set; }
+
+        public AjaxOptions AjaxOptions { get; internal set; }
+
+        public PagerOptions Options { get; internal set; }
     }
 
-
+    /// <summary>
+    /// Pagination link.
+    /// </summary>
     public class PaginationLink
     {
         public bool Active { get; set; }

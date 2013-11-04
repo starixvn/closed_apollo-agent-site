@@ -11,9 +11,12 @@ namespace Apollo.Age.Account.Models
 {
     using System;
 
+    /// <summary>
+    /// Agent log login model.
+    /// </summary>
     public class AgentLogLoginModel
     {
-        public long Logid { get; set; }      
+        public long Logid { get; set; }
 
         public string Ip { get; set; }
 

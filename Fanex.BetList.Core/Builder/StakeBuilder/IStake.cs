@@ -36,7 +36,10 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns>IRichTextString</returns>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// IRichTextString
+        /// </returns>
         IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper);
     }
 }

@@ -13,22 +13,22 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Caching;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Caching service.
     /// </summary>
     public class CachingService
     {
-        private static readonly ICache _cacheManager;
+        private static readonly ICache CacheManager;
 
         static CachingService()
         {
-            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+            CacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 
         public static object Get(string key)
         {
             try
             {
-                return _cacheManager.Get<object>(key);
+                return CacheManager.Get<object>(key);
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace Apollo.Age.Services.Impl
         {
             try
             {
-                _cacheManager.Set(key, value);
+                CacheManager.Set(key, value);
             }
             catch (Exception)
             {
@@ -51,7 +51,7 @@ namespace Apollo.Age.Services.Impl
         {
             try
             {
-                return _cacheManager.Get<T>(key);
+                return CacheManager.Get<T>(key);
             }
             catch
             {
@@ -61,32 +61,32 @@ namespace Apollo.Age.Services.Impl
 
         public static void Set<T>(string key, T value)
         {
-            _cacheManager.Set<T>(key, value);
+            CacheManager.Set<T>(key, value);
         }
 
         public static void Set(string key, object value, TimeSpan timeSpanExpiration)
         {
-            _cacheManager.Set(key, value, timeSpanExpiration);
+            CacheManager.Set(key, value, timeSpanExpiration);
         }
 
         public static void Set<T>(string key, T value, TimeSpan timeSpanExpiration)
         {
-            _cacheManager.Set<T>(key, value, timeSpanExpiration);
+            CacheManager.Set<T>(key, value, timeSpanExpiration);
         }
 
         public static void Set(string key, object value, DateTime absoluteExpiration)
         {
-            _cacheManager.Set(key, value, absoluteExpiration);
+            CacheManager.Set(key, value, absoluteExpiration);
         }
 
         public static void Set<T>(string key, T value, DateTime absoluteExpiration)
         {
-            _cacheManager.Set<T>(key, value, absoluteExpiration);
+            CacheManager.Set<T>(key, value, absoluteExpiration);
         }
 
         public static void Remove(string key)
         {
-            _cacheManager.Remove(key);
+            CacheManager.Remove(key);
         }
     }
 }

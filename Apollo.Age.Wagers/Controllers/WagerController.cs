@@ -15,22 +15,23 @@ namespace Apollo.Age.Wagers.Controllers
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Wagers.Core;
     using Apollo.Age.Wagers.Core.BettypeGroup;
     using Apollo.Age.Wagers.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Apollo.Age.PermissionControl.Services;
 
     /// <summary>
     /// Wager Controller.
@@ -40,7 +41,7 @@ namespace Apollo.Age.Wagers.Controllers
     {
         protected readonly IWagersService WagerService;
         protected readonly ReportService ReportService;
-        protected readonly IAgentUserService AgentUserService;
+        protected readonly IUserService UserService;
         private DateTime _wagerDate;
 
         public WagerController()
@@ -50,11 +51,13 @@ namespace Apollo.Age.Wagers.Controllers
             _wagerDate = Converter.ToDateTime(configDate, DateTime.Now);
         }
 
-        public WagerController(IWagersService wagerService = null, IAgentUserService agentUserService = null)
+        public WagerController(IWagersService wagerService = null, IUserService userService = null)
         {
             WagerService = wagerService ?? new WagersService();
             ReportService = new ReportService();
-            AgentUserService = agentUserService ?? new AgentUserService();
+            UserService = userService ?? new UserService();
+
+            ViewBag.HasDownlineDetailsPermission = UserService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
         }
 
         /// <summary>
@@ -125,6 +128,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="isEarlyMarket">Is early market.</param>
         /// <param name="isOutright">Is outright wagers.</param>
         /// <returns>View result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         public ActionResult Index(
             string sportName,
@@ -133,8 +137,8 @@ namespace Apollo.Age.Wagers.Controllers
             bool isEarlyMarket = false,
             bool isOutright = false)
         {
-
             var functionKey = ApolloFunctionKeys.Wagers;
+
             // Check permission
             if (isEarlyMarket)
             {
@@ -145,7 +149,7 @@ namespace Apollo.Age.Wagers.Controllers
                 functionKey = ApolloFunctionKeys.Outright;
             }
 
-            var policy = AgentUserService.GetUserPolicy(CurrentSession.UserId, functionKey);
+            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
 
             if (policy < (byte)Policy.Query)
             {
@@ -227,7 +231,18 @@ namespace Apollo.Age.Wagers.Controllers
                 toDate = DateTime.Now.Date;
             }
 
-            ViewBag.MainShareHolder = CurrentSession.IsSuper ? this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName) : new List<Agent>();
+            var listMainShareHolder = this.GetMainShareHolder(sportName, isOutright ? Soccer.OutRight : groupBetName);
+            var hasDownlineDetailsPermission = UserService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (!hasDownlineDetailsPermission)
+            {
+                for (int i = 0; i < listMainShareHolder.Count; i++)
+                {
+                    listMainShareHolder[i].Username = Web.Mvc.HtmlHelperExtensions.EncryptUsername(listMainShareHolder[i].Username);
+                }
+            }
+
+            ViewBag.MainShareHolder = CurrentSession.IsSuper ? listMainShareHolder : new List<Agent>();
             ViewBag.GroupBetName = isOutright ? Soccer.OutRight : groupBetName;
             ViewBag.SportName = sportName;
             ViewBag.Title = title;

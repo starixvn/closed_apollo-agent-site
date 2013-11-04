@@ -5,7 +5,10 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
+
+    var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+    
 }
 @model AgentWinLossViewModel
 @Html.Partial("Menu",
@@ -41,11 +44,11 @@ new ReportMenuViewModel
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
-                        <input class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />                        
+                        <input class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
                         <input class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
-                       <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                        <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                        <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>
@@ -60,7 +63,7 @@ new ReportMenuViewModel
         </tr>
     </table>
     <div>
-        <div class="row bg-action">           
+        <div class="row bg-action">
             <div class="item btn-action">
                 <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
                 <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
@@ -142,9 +145,16 @@ new ReportMenuViewModel
 
                     <tr @Html.Raw(rowClass)>
                         <td>
-                            <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
-                                @item.AgentName
-                            </a>
+                            @if (hasDownlineDetailsPermission)
+                            { 
+                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
+                                    @item.AgentName
+                                </a>
+                            }
+                            else
+                            { 
+                                @item.AgentName.EncryptUsername()
+                            }
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
@@ -272,9 +282,16 @@ new ReportMenuViewModel
                         @if (item.IsAgent)
                         {
                             <td>
-                                <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
-                                    @item.AgentName
-                                </a>
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
+                                        @item.AgentName
+                                    </a>
+                                }
+                                else
+                                {
+                                    @item.AgentName.EncryptUsername()
+                                }
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
@@ -283,9 +300,16 @@ new ReportMenuViewModel
                         else
                         {
                             <td>
-                                <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0);">
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0);">
+                                        @Lang.lblMemberWinLoss
+                                    </a>
+                                }
+                                else
+                                {
                                     @Lang.lblMemberWinLoss
-                                </a>
+                                }
                             </td>
                             <td class="r">
                                 @Lang.lblNA

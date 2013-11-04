@@ -1,34 +1,45 @@
-﻿using System;
-using System.Web.Mvc.Ajax;
-using System.Web.Routing;
+﻿// --------------------------------------------------------------------------
+// <copyright file="PagerOptionsBuilder.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.Web.Pager
 {
+    using System;
+    using System.Web.Mvc.Ajax;
+    using System.Web.Routing;
+
+    /// <summary>
+    /// Pager option builder.
+    /// </summary>
     public class PagerOptionsBuilder
     {
-        private PagerOptions pagerOptions;
+        private PagerOptions _pagerOptions;
 
         public PagerOptionsBuilder(PagerOptions pagerOptions)
         {
-            this.pagerOptions = pagerOptions;
+            this._pagerOptions = pagerOptions;
         }
 
         /// <summary>
         /// Set the action name for the pager links. Note that we're always using the current controller.
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">The action name.</param>
+        /// <returns>Pager option builder.</returns>
         public PagerOptionsBuilder Action(string action)
         {
             if (action != null)
             {
-                if (pagerOptions.RouteValues.ContainsKey("action"))
+                if (_pagerOptions.RouteValues.ContainsKey("action"))
                 {
                     throw new ArgumentException("The valuesDictionary already contains an action.", "action");
                 }
-                pagerOptions.RouteValues.Add("action", action);
-                pagerOptions.Action = action;
+
+                _pagerOptions.RouteValues.Add("action", action);
+                _pagerOptions.Action = action;
             }
+
             return this;
         }
 
@@ -40,14 +51,14 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder AddRouteValue(string name, object value)
         {
-            pagerOptions.RouteValues[name] = value;
+            _pagerOptions.RouteValues[name] = value;
             return this;
         }
 
         /// <summary>
         /// Set custom route value parameters for the pager links.
         /// </summary>
-        /// <param name="routeValues"></param>
+        /// <param name="routeValues">Route values.</param>
         /// <returns></returns>
         public PagerOptionsBuilder RouteValues(object routeValues)
         {
@@ -58,7 +69,7 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set custom route value parameters for the pager links.
         /// </summary>
-        /// <param name="routeValues"></param>
+        /// <param name="routeValues">Route values.</param>
         /// <returns></returns>
         public PagerOptionsBuilder RouteValues(RouteValueDictionary routeValues)
         {
@@ -66,11 +77,14 @@ namespace Apollo.Age.Web.Pager
             {
                 throw new ArgumentException("routeValues may not be null", "routeValues");
             }
-            this.pagerOptions.RouteValues = routeValues;
-            if (!string.IsNullOrWhiteSpace(pagerOptions.Action) && !pagerOptions.RouteValues.ContainsKey("action"))
+
+            this._pagerOptions.RouteValues = routeValues;
+
+            if (!string.IsNullOrWhiteSpace(_pagerOptions.Action) && !_pagerOptions.RouteValues.ContainsKey("action"))
             {
-                pagerOptions.RouteValues.Add("action", pagerOptions.Action);
+                _pagerOptions.RouteValues.Add("action", _pagerOptions.Action);
             }
+
             return this;
         }
 
@@ -78,11 +92,11 @@ namespace Apollo.Age.Web.Pager
         /// Set the name of the DisplayTemplate view to use for rendering. 
         /// </summary>
         /// <param name="displayTemplate"></param>
-        /// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt;</remarks>
+        /// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt.</remarks>
         /// <returns></returns>
         public PagerOptionsBuilder DisplayTemplate(string displayTemplate)
         {
-            this.pagerOptions.DisplayTemplate = displayTemplate;
+            this._pagerOptions.DisplayTemplate = displayTemplate;
             return this;
         }
 
@@ -93,7 +107,7 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder MaxNrOfPages(int maxNrOfPages)
         {
-            this.pagerOptions.MaxNrOfPages = maxNrOfPages;
+            this._pagerOptions.MaxNrOfPages = maxNrOfPages;
             return this;
         }
 
@@ -107,12 +121,12 @@ namespace Apollo.Age.Web.Pager
         /// <returns></returns>
         public PagerOptionsBuilder AlwaysAddFirstPageNumber()
         {
-            this.pagerOptions.AlwaysAddFirstPageNumber = true;
+            this._pagerOptions.AlwaysAddFirstPageNumber = true;
             return this;
         }
 
         /// <summary>
-        /// Set the page routeValue key for pagination links
+        /// Set the page routeValue key for pagination links.
         /// </summary>
         /// <param name="pageRouteValueKey"></param>
         /// <returns></returns>
@@ -122,18 +136,20 @@ namespace Apollo.Age.Web.Pager
             {
                 throw new ArgumentException("pageRouteValueKey may not be null", "pageRouteValueKey");
             }
-            this.pagerOptions.PageRouteValueKey = pageRouteValueKey;
+
+            this._pagerOptions.PageRouteValueKey = pageRouteValueKey;
+
             return this;
         }
 
         /// <summary>
         /// Set the AjaxOptions.
         /// </summary>
-        /// <param name="ajaxOptions"></param>
+        /// <param name="ajaxOptions">AJAX options.</param>
         /// <returns></returns>
         internal PagerOptionsBuilder AjaxOptions(AjaxOptions ajaxOptions)
         {
-            this.pagerOptions.AjaxOptions = ajaxOptions;
+            this._pagerOptions.AjaxOptions = ajaxOptions;
             return this;
         }
     }

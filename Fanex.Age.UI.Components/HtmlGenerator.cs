@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-/*
- * Created 20100404@Lee - Html controls generator
- * Revision:
- * ?@? - ...
- *
- */
-
+﻿// --------------------------------------------------------------------------
+// <copyright file="HtmlGenerator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 namespace Fanex.Age.UI.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Text;
+
     public class HtmlGenerator
     {
         #region Combobox
@@ -95,7 +93,10 @@ namespace Fanex.Age.UI.Components
         /// <returns></returns>
         public static string ComboBox(string id, double selectedValue, double min, double max, double step, string onchange)
         {
-            if (0 == step) throw new DivideByZeroException();
+            if (0 == step)
+            {
+                throw new DivideByZeroException();
+            }
 
             StringBuilder builder = new StringBuilder(200);
 
@@ -109,7 +110,7 @@ namespace Fanex.Age.UI.Components
 
             builder.Append("\">");
 
-            int c = (int)(Math.Round((max - min) / step));
+            int c = (int)Math.Round((max - min) / step);
             for (int i = c; i >= 0; i--)
             {
                 double f = min + (i * step);
@@ -140,7 +141,10 @@ namespace Fanex.Age.UI.Components
 
         public static string ComboBox(string id, double selectedValue, bool disabled, double min, double max, double step, string onchange)
         {
-            if (0 == step) throw new DivideByZeroException();
+            if (0 == step)
+            {
+                throw new DivideByZeroException();
+            }
 
             StringBuilder builder = new StringBuilder(200);
 
@@ -160,11 +164,13 @@ namespace Fanex.Age.UI.Components
             if (min <= max)
             {
                 if (max == min)
+                {
                     maxEqualMin = true;
+                }
 
                 var tmp = max == min ? min + step : max;
 
-                int c = (int)(Math.Round((tmp - min) / step));
+                int c = (int)Math.Round((tmp - min) / step);
 
                 for (int i = c; i >= 0; i--)
                 {
@@ -176,7 +182,9 @@ namespace Fanex.Age.UI.Components
                     }
 
                     if (f < 0 || f < min)
+                    {
                         break;
+                    }
 
                     builder.Append("<option value=\"");
                     builder.Append(f);
@@ -215,14 +223,24 @@ namespace Fanex.Age.UI.Components
         /// </summary>
         /// <param name="id"></param>
         /// <param name="selectedValue"></param>
-        /// <param name="data">First column/ Second column indicate value/text</param>
+        /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, object selectedValue, DataTable data, string valueColumnName, string textColumnName, string onchange, int width = 0)
+        public static string ComboBox(
+            string id, 
+            object selectedValue, 
+            DataTable data, 
+            string valueColumnName, 
+            string textColumnName, 
+            string onchange, 
+            int width = 0)
         {
-            if (null == data) return null;
-            DataRowCollection rows = data.Rows;
+            if (null == data)
+            {
+                return null;
+            }
 
+            DataRowCollection rows = data.Rows;
             StringBuilder builder = new StringBuilder(200);
 
             if (width > 0)
@@ -270,14 +288,25 @@ namespace Fanex.Age.UI.Components
         /// </summary>
         /// <param name="id"></param>
         /// <param name="selectedValue"></param>
-        /// <param name="data">First column/ Second column indicate value/text</param>
+        /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, object selectedValue, DataTable data, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource, string onchange)
+        public static string ComboBox(
+            string id, 
+            object selectedValue, 
+            DataTable data, 
+            string valueColumnName, 
+            string textColumnName1, 
+            string textColumnName2, 
+            string lblResource, 
+            string onchange)
         {
-            if (null == data) return null;
-            DataRowCollection rows = data.Rows;
+            if (null == data)
+            {
+                return null;
+            }
 
+            DataRowCollection rows = data.Rows;
             StringBuilder builder = new StringBuilder(200);
 
             builder.Append("<select id=\"" + id + "\" name=\"" + id + "\"");
@@ -318,14 +347,26 @@ namespace Fanex.Age.UI.Components
         /// </summary>
         /// <param name="id"></param>
         /// <param name="selectedValue"></param>
-        /// <param name="data">First column/ Second column indicate value/text</param>
+        /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, string textDefault, string valueDefault, DataTable data, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource, string onchange)
+        public static string ComboBox(
+            string id, 
+            string textDefault, 
+            string valueDefault, 
+            DataTable data, 
+            string valueColumnName, 
+            string textColumnName1, 
+            string textColumnName2, 
+            string lblResource, 
+            string onchange)
         {
-            if (null == data) return null;
-            DataRowCollection rows = data.Rows;
+            if (null == data)
+            {
+                return null;
+            }
 
+            DataRowCollection rows = data.Rows;
             StringBuilder builder = new StringBuilder(200);
 
             builder.Append("<select id=\"" + id + "\" name=\"" + id + "\"");
@@ -363,9 +404,18 @@ namespace Fanex.Age.UI.Components
             return builder.ToString();
         }
 
-        public static DataTable ModifyDataTable(DataTable data, string textAdd, string valueColumnName, string textColumnName1, string textColumnName2, string lblResource)
+        public static DataTable ModifyDataTable(
+            DataTable data, 
+            string textAdd, 
+            string valueColumnName, 
+            string textColumnName1, 
+            string textColumnName2, 
+            string lblResource)
         {
-            if (null == data) return null;
+            if (null == data)
+            {
+                return null;
+            }
 
             DataTable newDT = new DataTable();
             DataColumn col1 = new DataColumn("custid", typeof(int));

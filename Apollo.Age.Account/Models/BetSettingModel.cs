@@ -11,7 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Bet setting model.
+    /// </summary>
     public class BetSettingModel
     {
         public int SportType { get; set; }

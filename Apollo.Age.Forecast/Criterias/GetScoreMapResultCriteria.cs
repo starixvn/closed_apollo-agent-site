@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get score map result criteria.
+    /// </summary>
     public class GetScoreMapResultCriteria : CriteriaBase
     {
         public string MatchIds { get; set; }
@@ -27,11 +28,19 @@ namespace Apollo.Age.Forecast.Criterias
         [SpParam(SqlParamName = "bettypes_dead")]
         public string DeadBetTypes { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_ScoreMap_Result";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return !string.IsNullOrEmpty(MatchIds);

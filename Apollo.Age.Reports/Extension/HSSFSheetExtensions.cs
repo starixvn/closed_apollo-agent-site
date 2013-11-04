@@ -13,6 +13,9 @@ namespace Apollo.Age.Reports.Extension
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
+    /// <summary>
+    /// HSSF sheet extensions.
+    /// </summary>
     public static class HSSFSheetExtensions
     {
         /// <summary>
@@ -87,6 +90,13 @@ namespace Apollo.Age.Reports.Extension
             return newRow;
         }
 
+        /// <summary>
+        /// CopyCell method is used to copy one cell from a template to another template.
+        /// </summary>
+        /// <param name="sheet">Main sheet object.</param>
+        /// <param name="sourceCell">Template cell.</param>
+        /// <param name="destCell">Index of source cell in template sheet.</param>
+        /// <returns>Return the copied cell.</returns>
         public static ICell CopyCell(this ISheet sheet, ICell sourceCell, ICell destCell)
         {
             // If the old cell is null jump to next cell

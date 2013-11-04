@@ -33,6 +33,10 @@ namespace Apollo.Age.Reports.ViewModels
 
         public List<SingbetBettype> BettypeList { get; set; }
 
+        public bool HasPermission { get; set; }
+
+        public string SportTypeIds { get; set; }
+
         /// <summary>
         /// Checks the is completed.
         /// </summary>
@@ -66,9 +70,5 @@ namespace Apollo.Age.Reports.ViewModels
 
             return true;
         }
-
-        public bool HasPermission { get; set; }
-
-        public string SportTypeIds { get; set; }
     }
 }

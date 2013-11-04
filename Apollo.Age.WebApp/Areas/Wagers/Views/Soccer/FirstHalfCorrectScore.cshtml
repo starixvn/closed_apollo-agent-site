@@ -4,6 +4,9 @@
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Enumerations
 @model List<CorrectScoreViewModel>
+@{
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
+}
 <table class="tblRpt soccer first-half-correct @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
     @WagerHelper.RederHeaderColumn(Lang.correctscore)
     <tbody>
@@ -11,7 +14,7 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.FirstCorrectScore)">
-                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.BetCount, item.Stake, item.StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
                 </td>
             </tr>
         )

@@ -13,12 +13,19 @@ namespace Apollo.Age.Account.Services
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-    using Fanex.Data;
     using Apollo.Age.Services.Impl;
+    using Fanex.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Execute SP log service.
+    /// </summary>
     public class LogRunSpService : QueryService, ILogRunSpService
     {
+        /// <summary>
+        /// Search execute SP log.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of execute SP log model.</returns>
         public IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria)
         {
             IEnumerable<LogRunSpModel> list = null;

@@ -17,14 +17,12 @@ namespace Sunplus.Agent.UI._BetList
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
     using System.Text;
     using System.Web.UI;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Forecast.Services;
-    using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
@@ -39,13 +37,20 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list on member.
+    /// </summary>
     public partial class BetListOnMember : TplPage
     {
         #region Variables
 
-        private int custid;
-        private string username = string.Empty;
-        private DateTime fromDate, toDate, balanceUpDay, moveBetsDay, minDate;
+        private int _custId;
+        private string _username = string.Empty;
+        private DateTime fromDate;
+        private DateTime toDate;
+        private DateTime balanceUpDay;
+        private DateTime moveBetsDay;
+        private DateTime minDate;
         private string statusIds = string.Empty;
         private string pageType = string.Empty;
         private string mainShareHolderId, mainShareHolderUsername;
@@ -53,25 +58,46 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Variables
 
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
+
         #region Override
 
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
+            // INIT
             var tpl = new BetListOnMember_Template();
 
             if (pageType.Equals("accountinfo"))
             {
                 var maxDate = DateTime.Now;
-                tpl.HiddenFields.username = username;
-                tpl.HiddenFields.custId = custid.ToString();
+                tpl.HiddenFields.username = _username;
+                tpl.HiddenFields.custId = _custId.ToString();
                 tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueToDate = toDate.ToString("yyyy-M-dd");
                 tpl.Filter.valueMaxDate = maxDate.ToShortDateString();
                 tpl.Filter.valueMinDate = moveBetsDay.ToShortDateString();
                 tpl.HiddenFields.DateTime.Hide();
-                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + username;
+                tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList + " - " + _username;
                 tpl.Navigation = string.Empty;
             }
             else
@@ -85,12 +111,7 @@ namespace Sunplus.Agent.UI._BetList
                     tpl.title = Apollo.Age.Resources.BetList.lblMemberBetList;
                 }
 
-                #region Navigation Link
-
-                tpl.Navigation = this.Navigation(custid);
-
-                #endregion Navigation Link
-
+                tpl.Navigation = this.Navigation(_custId);
                 tpl.HiddenFields.DateTime.valueFromDate = fromDate.ToShortDateString();
                 tpl.HiddenFields.DateTime.valueToDate = toDate.ToShortDateString();
                 tpl.Filter.Hide();
@@ -114,9 +135,6 @@ namespace Sunplus.Agent.UI._BetList
             var forecastService = new ForecastService();
             var listBetType = forecastService.GetListScoreMapBetType();
             bool isShowScoremap;
-           // bool isAdminCanViewVNIP = true;
-
-            #endregion INIT
 
             content.Append(betlistOpenTag);
             content.Append(betlistHeader);
@@ -140,6 +158,7 @@ namespace Sunplus.Agent.UI._BetList
                 builder.AddAgentComm(ticket, ticketData, false, "<td class='r'>", "</td>");
                 builder.Append("</tr>");
             }
+
             if (pageType.Equals("report") || pageType.Equals("accountinfo"))
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost);
@@ -169,7 +188,8 @@ namespace Sunplus.Agent.UI._BetList
             pageType = GetStringRequest("type", string.Empty).ToLower();
             if (pageType.Equals("accountinfo"))
             {
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -181,24 +201,26 @@ namespace Sunplus.Agent.UI._BetList
             }
             else if (pageType.Equals("report"))
             {
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
-                       (int)Apollo.Age.Enumerations.BetStatus.Void,
-                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                       (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                       (int)Apollo.Age.Enumerations.BetStatus.Won,
-                       (int)Apollo.Age.Enumerations.BetStatus.Lose);
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5}",
+                    (int)Apollo.Age.Enumerations.BetStatus.Void,
+                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                    (int)Apollo.Age.Enumerations.BetStatus.Won,
+                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
             else
             {
-                statusIds = string.Format("{0},{1}",
+                statusIds = string.Format(
+                    "{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
 
-            int.TryParse(Request["custid"], out custid);
+            int.TryParse(Request["custid"], out _custId);
 
-            username = GetStringRequest("username", string.Empty);
+            _username = GetStringRequest("username", string.Empty);
             balanceUpDay = reportService.GetBalanceUpDay();
             moveBetsDay = reportService.MoveBetsDay();
             minDate = reportService.MoveBetsDay().AddDays(1);
@@ -216,7 +238,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 AgentId = -1,
                 LoggedId = CurrentSession.AgentId,
-                CustId = custid,
+                CustId = _custId,
                 FromDate = ResetStartDate(fromDate),
                 ToDate = ResetEndDate(toDate),
                 StatusIds = statusIds,
@@ -239,10 +261,12 @@ namespace Sunplus.Agent.UI._BetList
         public override object ValidateRequest(System.Collections.Hashtable p)
         {
             var maxDate = DateTime.Now;
+
             if (string.IsNullOrEmpty(Request["custid"]) && string.IsNullOrEmpty(Request["username"]))
             {
                 return new ErrorPage_Page(Apollo.Age.Resources.Lang.strNotAccessPage);
             }
+
             if (pageType.Equals("accountinfo") && (DateTime.Parse(fromDate.ToShortDateString()) < DateTime.Parse(minDate.ToShortDateString())
                 || DateTime.Parse(toDate.ToShortDateString()) < DateTime.Parse(minDate.ToShortDateString())
                 || DateTime.Parse(toDate.ToShortDateString()) > DateTime.Parse(maxDate.ToShortDateString())))
@@ -255,19 +279,11 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Override
 
-        protected ICurrentSession CurrentSession
-        {
-            get
-            {
-                return SessionManager.CurrentSession;
-            }
-        }
-
         /// <summary>
-        /// Get Navigation link
+        /// Get Navigation link.
         /// </summary>
-        /// <param name="agentId">Agent Id</param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <returns>Navigation string.</returns>
         private string Navigation(int agentId)
         {
             var betListService = new BetListService();
@@ -276,6 +292,7 @@ namespace Sunplus.Agent.UI._BetList
             navigation.MemberUser.Hide();
             navigation.AgentUser.Hide();
             var link = string.Empty;
+
             foreach (var item in listAgent)
             {
                 var last = listAgent.LastOrDefault();
@@ -294,22 +311,9 @@ namespace Sunplus.Agent.UI._BetList
                     link += li.ToString();
                 }
             }
+
             navigation.item = link;
             return navigation.ToString();
         }
-
-        #region Format Start, End date
-
-        public static DateTime ResetStartDate(DateTime dt)
-        {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
-        }
-
-        public static DateTime ResetEndDate(DateTime dt)
-        {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
-        }
-
-        #endregion Format Start, End date
     }
 }

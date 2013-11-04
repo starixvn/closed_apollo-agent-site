@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="BetList.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BetListTransaction.aspx.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -24,7 +24,6 @@ namespace Sunplus.Agent.UI._BetList
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Web;
-    using Apollo.Age.WebApp;
     using Apollo.Age.WebApp._BetList;
     using Fanex.Age.UI;
     using Fanex.Age.UI.Components;
@@ -36,11 +35,14 @@ namespace Sunplus.Agent.UI._BetList
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
 
+    /// <summary>
+    /// Bet list transaction.
+    /// </summary>
     public partial class BetListTransaction : TplPage
     {
         #region Variables
 
-        private string title = string.Empty;
+        // private string title = string.Empty;
         private BetListTransaction_Template tpl = new BetListTransaction_Template();
 
         private string username = string.Empty;
@@ -61,10 +63,31 @@ namespace Sunplus.Agent.UI._BetList
 
         #endregion Variables
 
+        protected ICurrentSession CurrentSession
+        {
+            get
+            {
+                return SessionManager.CurrentSession;
+            }
+        }
+
+        #region Format Start, End date
+
+        public static DateTime ResetStartDate(DateTime dt)
+        {
+            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+        }
+
+        public static DateTime ResetEndDate(DateTime dt)
+        {
+            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
+        }
+
+        #endregion Format Start, End date
+
         public override void RenderContent(HtmlTextWriter writer)
         {
-            #region INIT
-
+            // INIT
             this.BoxFilter();
             Dictionary<string, DataTable> results = View as Dictionary<string, DataTable>;
 
@@ -77,14 +100,10 @@ namespace Sunplus.Agent.UI._BetList
             bool isShowScoremap;
 
             int index = 0;
-           // bool isAdminCanViewVNIP = true;
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
 
-            #endregion INIT
-
-            #region RENDER HTML
-
+            // RENDER HTML
             BetListHTMLFactory factory = new BetListHTMLFactory();
             BetListHTMLBuilder builder = factory.CreateBuilder();
 
@@ -129,6 +148,7 @@ namespace Sunplus.Agent.UI._BetList
 
                 builder.Append("</tr>");
             }
+
             if (pageType.Equals("transaction"))
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Winlost | BetListType.Member);
@@ -137,6 +157,7 @@ namespace Sunplus.Agent.UI._BetList
             {
                 builder.AddFooter(tickets, string.Empty, string.Empty, BetListType.Member);
             }
+
             content.Append(builder.GetBetList());
             content.Append("</tbody></table>");
 
@@ -153,55 +174,6 @@ namespace Sunplus.Agent.UI._BetList
             RegisterJavascriptObject("titleViewComm", BetList.viewCommDetails);
             RegisterJavascriptObject("refNo", BetList.refno);
             RegisterJavascriptObject("titleScoreMap", BetList.scoreMap.ToUpper());
-
-            #endregion RENDER HTML
-        }
-
-        private void BoxFilter()
-        {
-            var selectedUserType = "0";
-
-            if (userType)   
-            {
-                selectedUserType = "1";
-            }
-
-            tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
-            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-d");
-            tpl.Filter.valueToDate = toDate.ToString("yyyy-M-d");
-            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-M-d");
-            tpl.Filter.valueMinDate = minDate.ToString("yyyy-M-d");
-            tpl.Filter.User.username = username;
-            tpl.HiddenFields.pageType = pageType;
-        }
-
-        private DataTable CreateUserTypeOption()
-        {
-            DataTable dt = new DataTable();
-            DataColumn column;
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "value";
-            dt.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "text";
-            dt.Columns.Add(column);
-
-            DataRow row;
-
-            row = dt.NewRow();
-            row["value"] = "1";
-            row["text"] = Apollo.Age.Resources.Lang.agent;
-            dt.Rows.Add(row);
-
-            row = dt.NewRow();
-            row["value"] = "0";
-            row["text"] = Apollo.Age.Resources.Lang.member;
-            dt.Rows.Add(row);
-
-            return dt;
         }
 
         public override object InvokeData(Hashtable hash)
@@ -245,6 +217,7 @@ namespace Sunplus.Agent.UI._BetList
                     mainTickets.TicketList = newTicketList;
                 }
             }
+
             return mainTickets;
         }
 
@@ -272,7 +245,8 @@ namespace Sunplus.Agent.UI._BetList
                 moveBetsDay = reportService.GetBalanceUpDay();
                 minDate = moveBetsDay;
 
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
                     (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -282,6 +256,7 @@ namespace Sunplus.Agent.UI._BetList
                     (int)Apollo.Age.Enumerations.BetStatus.Won,
                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
             }
+
             fromDate = GetDateTimeRequest("fromDate", maxDate);
             toDate = GetDateTimeRequest("toDate", maxDate);
             username = this.GetStringRequest("username", CurrentSession.AgentName).Trim();
@@ -310,26 +285,51 @@ namespace Sunplus.Agent.UI._BetList
             return null;
         }
 
-        protected ICurrentSession CurrentSession
+        private void BoxFilter()
         {
-            get
+            var selectedUserType = "0";
+
+            if (userType)
             {
-                return SessionManager.CurrentSession;
+                selectedUserType = "1";
             }
+
+            tpl.Filter.User.option_user = HtmlGenerator.ComboBox("userType", selectedUserType, this.CreateUserTypeOption(), "value", "text", null, 72);
+            tpl.Filter.valueFromDate = fromDate.ToString("yyyy-M-d");
+            tpl.Filter.valueToDate = toDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMaxDate = maxDate.ToString("yyyy-M-d");
+            tpl.Filter.valueMinDate = minDate.ToString("yyyy-M-d");
+            tpl.Filter.User.username = username;
+            tpl.HiddenFields.pageType = pageType;
         }
 
-        #region Format Start, End date
-
-        public static DateTime ResetStartDate(DateTime dt)
+        private DataTable CreateUserTypeOption()
         {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
-        }
+            DataTable dt = new DataTable();
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "value";
+            dt.Columns.Add(column);
 
-        public static DateTime ResetEndDate(DateTime dt)
-        {
-            return ResetStartDate(dt).Add(new TimeSpan(23, 59, 59));
-        }
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "text";
+            dt.Columns.Add(column);
 
-        #endregion Format Start, End date
+            DataRow row;
+
+            row = dt.NewRow();
+            row["value"] = "1";
+            row["text"] = Apollo.Age.Resources.Lang.agent;
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["value"] = "0";
+            row["text"] = Apollo.Age.Resources.Lang.member;
+            dt.Rows.Add(row);
+
+            return dt;
+        }
     }
 }

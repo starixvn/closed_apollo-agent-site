@@ -10,7 +10,7 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias.Outright;
     using Apollo.Age.Wagers.ViewModels.Outright;
     using Apollo.Age.Web.Web.Attribute;

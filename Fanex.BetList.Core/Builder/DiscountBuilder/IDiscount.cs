@@ -13,6 +13,9 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
     using Fanex.BetList.Core.Templates;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Discount interface.
+    /// </summary>
     public interface IDiscount
     {
         /// <summary>
@@ -27,8 +30,8 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="page">Link from page</param>
-        /// <returns></returns>
+        /// <param name="page">Link from page.</param>
+        /// <returns>Discount template.</returns>
         Discount_Template Render(ITicket ticket, BetListPage page);
     }
 }

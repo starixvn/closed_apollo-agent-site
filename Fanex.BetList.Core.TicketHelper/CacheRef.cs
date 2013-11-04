@@ -13,6 +13,9 @@ namespace Fanex.BetList.Core.TicketHelper
     using System.Threading;
     using RemotingRef;
 
+    /// <summary>
+    /// Cache reference class.
+    /// </summary>
     public class CacheRef
     {
         public static string CurrentTWLanguage

@@ -13,9 +13,11 @@
 namespace Apollo.Age.Services.Impl
 {
     using System;
+    using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
+    using Apollo.Age.Models;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
@@ -23,6 +25,9 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common.Helper;
     using Fanex.Logging;
 
+    /// <summary>
+    /// User service.
+    /// </summary>
     public class UserService : QueryService, IUserService
     {
         private readonly IUserRepository _userRepository;
@@ -32,12 +37,37 @@ namespace Apollo.Age.Services.Impl
             _userRepository = userRepository ?? new UserRepository();
         }
 
+        /// <summary>
+        /// Get user by ID.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <returns>User object.</returns>
         public User GetUserById(int userId)
         {
-            Check.Argument.IsNotNegativeOrZero(userId, "userId");
-            throw new NotImplementedException();
+            Check.Argument.IsNotNegative(userId, "userId");
+
+            try
+            {
+                var criteria = new UserGetByIdCriteria
+                {
+                    AgentUserId = userId
+                };
+
+                return _userRepository.Get(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
         }
 
+        /// <summary>
+        /// Get user by username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>User object.</returns>
         public User GetUserByUsername(string username)
         {
             User user = null;
@@ -58,14 +88,58 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
+        /// <summary>
+        /// Get user parent information.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <returns>User object.</returns>
+        public User GetUserParentInfo(int userId)
+        {
+            User user = null;
+            Check.Argument.IsNotNegative(userId, "userId");
 
+            try
+            {
+                user = _userRepository.Get(new UserGetUserParentInfoCriteria
+                {
+                    AgentUserId = userId
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return user;
+        }
+
+        /// <summary>
+        /// Get user by agent.
+        /// </summary>
+        /// <param name="agentId">The agent ID.</param>
+        /// <returns>List of user.</returns>
+        public IEnumerable<User> GetUserByAgent(int agentId)
+        {
+            Check.Argument.IsNotNegative(agentId, "agentId");
+
+            try
+            {
+                return _userRepository.Fetch(new UserGetUserByAgentCriteria { AgentId = agentId });
+            }
+            catch (Exception ex)
+            {
+                Logger.Log.Error(ex.Message, ex);
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Validates a username and password against credentials stored in NAP database.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <param name="adminId"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="adminId">The admin ID.</param>
+        /// <returns>True : success, false : fail.</returns>
         public bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -85,6 +159,7 @@ namespace Apollo.Age.Services.Impl
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(agentUserId, "agentUserId");
+
             try
             {
                 var currentStatus = _userRepository.GetUserStatus(new AgentGetStatusCriteria
@@ -107,7 +182,7 @@ namespace Apollo.Age.Services.Impl
         /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
         /// <param name="actorAgentId">The actor agent id.</param>
-        /// <param name="custId">The cust id.</param>
+        /// <param name="custId">The customer id.</param>
         /// <param name="customerType">Type of the customer.</param>
         /// <returns>
         ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
@@ -135,7 +210,7 @@ namespace Apollo.Age.Services.Impl
         /// Determines whether [has permission on updating] [the specified actor agent id].
         /// </summary>
         /// <param name="actorAgentId">The actor agent id.</param>
-        /// <param name="custId">The cust id.</param>
+        /// <param name="custId">The customer id.</param>
         /// <param name="customerType">Type of the customer.</param>
         /// <returns>
         ///   <c>true</c> if [has permission on updating] [the specified actor agent id]; otherwise, <c>false</c>.
@@ -167,12 +242,22 @@ namespace Apollo.Age.Services.Impl
         /// <param name="serverId">The server id.</param>
         /// <param name="actionId">The action id.</param>
         /// <param name="doing">The doing.</param>
-        /// <param name="loginIp">The login ip.</param>
+        /// <param name="loginIp">The login IP address.</param>
         /// <param name="domainName">Name of the domain.</param>
         /// <param name="browserName">Name of the browser.</param>
         /// <param name="platform">The platform.</param>
         /// <param name="countryCode">The country code.</param>
-        public void WriteLogInternalLogin(int agentId, int agentUserId, int serverId, int actionId, string doing, string loginIp, string domainName, string browserName, string platform, string countryCode)
+        public void WriteLogInternalLogin(
+            int agentId, 
+            int agentUserId, 
+            int serverId, 
+            int actionId, 
+            string doing, 
+            string loginIp, 
+            string domainName, 
+            string browserName, 
+            string platform, 
+            string countryCode)
         {
             try
             {
@@ -200,7 +285,7 @@ namespace Apollo.Age.Services.Impl
         /// Internals the get agent by username.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <returns></returns>
+        /// <returns>User object.</returns>
         public User InternalGetAgentByUsername(string username)
         {
             User user = null;
@@ -224,13 +309,14 @@ namespace Apollo.Age.Services.Impl
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="adminId"> Admin user id.</param>
-        /// <param name="netSessionId"> Session Id. </param>
-        /// <param name="ip"> Requested IP</param>
-        /// <returns><c>true</c> if check in successfull; otherwise, <c>false</c>.</returns>
+        /// <param name="adminId">Admin user id.</param>
+        /// <param name="netSessionId">Session Id. </param>
+        /// <param name="ip">Requested IP.</param>
+        /// <returns><c>true</c> if check in successful; otherwise, <c>false</c>.</returns>
         public int InternalCheckIn(int adminId, string netSessionId, string ip)
         {
             Check.Argument.IsNotNegativeOrZero(adminId, "adminid");
+
             try
             {
                 var result = _userRepository.InternalCheckIn(new InternalCheckinCriteria
@@ -251,18 +337,19 @@ namespace Apollo.Age.Services.Impl
         }
 
         /// <summary>
-        /// Return IsKickOut
+        /// Return IsKickOut.
         /// </summary>
-        /// <param name="onUserId"> Authenticated User Id.</param>
-        /// <returns></returns>
-        public bool InternalReCheckIn(int onUserId)
+        /// <param name="onlineUserId">Authenticated User Id.</param>
+        /// <returns>True : success, false: fail.</returns>
+        public bool InternalReCheckIn(int onlineUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
+            Check.Argument.IsNotNegativeOrZero(onlineUserId, "onuserid");
+
             try
             {
                 var result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
                 {
-                    OnUserId = onUserId,
+                    OnUserId = onlineUserId,
                     IsKickedOut = 0
                 });
 
@@ -279,18 +366,19 @@ namespace Apollo.Age.Services.Impl
         /// <summary>
         /// Return OnUserId.
         /// </summary>
-        /// <param name="onUserId">User id of current loginned user.</param>
+        /// <param name="onlineUserId">User id of current login user.</param>
         /// <returns>
         /// Result of logins.
         /// </returns>
-        public int InternalLogout(int onUserId)
+        public int InternalLogout(int onlineUserId)
         {
-            Check.Argument.IsNotNegativeOrZero(onUserId, "onuserid");
+            Check.Argument.IsNotNegativeOrZero(onlineUserId, "onuserid");
+
             try
             {
                 var result = _userRepository.InternalLogout(new InternalLogoutCriteria
                 {
-                    OnUserId = onUserId
+                    OnUserId = onlineUserId
                 });
 
                 return Convert.ToInt32(result);
@@ -303,10 +391,15 @@ namespace Apollo.Age.Services.Impl
             return 0;
         }
 
-
+        /// <summary>
+        /// Allow line account SSO.
+        /// </summary>
+        /// <param name="username">Login username.</param>
+        /// <returns>True: allowed, false: not allowed.</returns>
         public bool AllowLineAccountSSO(string username)
         {
             bool isAllowed = false;
+
             try
             {
                 isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
@@ -314,14 +407,122 @@ namespace Apollo.Age.Services.Impl
                     Username = username,
                     Allowed = false
                 });
-
-
             }
             catch (Exception ex)
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             return isAllowed;
+        }
+
+        /// <summary>
+        /// Get user policy.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="functionKey">The function key.</param>
+        /// <returns>User policy.</returns>
+        public byte GetUserPolicy(int userId, string functionKey)
+        {
+            try
+            {
+                var criteria = new UserGetUserFunctionPolicyCriteria
+                {
+                    AgentUserId = userId,
+                    FunctionKey = functionKey
+                };
+
+                return (byte)_userRepository.Count(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Get all user policy.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="functionGroupId">The function group ID.</param>
+        /// <param name="isActive">Is active or not.</param>
+        /// <returns>List of policy.</returns>
+        public IEnumerable<FunctionPolicy> GetAllUserPolicy(int userId, short functionGroupId = 0, bool? isActive = null)
+        {
+            try
+            {
+                var criteria = new UserGetAllUserPolicyCriteria
+                {
+                    AgentUserId = userId,
+                    FunctionGroupId = functionGroupId,
+                    IsActive = isActive
+                };
+
+                return _userRepository.GetAllUserPolicy(criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Assign user permission.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        public void AssignUserPermission(ref UserAssignFunctionCriteria criteria)
+        {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
+            try
+            {
+                _userRepository.AssignUserPermission(ref criteria);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Get all user permission.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <returns>Dictionary of permission.</returns>
+        public Dictionary<string, byte> GetAllUserPermission(int userId)
+        {
+            Check.Argument.IsNotNegativeOrZero(userId, "userId");
+
+            var userPermission = new Dictionary<string, byte>();
+            var listFunctionPolicy = this.GetAllUserPolicy(userId: userId, isActive: true);
+
+            foreach (var item in listFunctionPolicy)
+            {
+                userPermission.Add(item.Function.FunctionKey, item.Policy);
+            }
+
+            return userPermission;
+        }
+
+        /// <summary>
+        /// Convert to dictionary.
+        /// </summary>
+        /// <param name="listUserPermission">List of user permission.</param>
+        /// <returns>Dictionary of policy.</returns>
+        public Dictionary<string, byte> ConvertToDictionary(IEnumerable<FunctionPolicy> listUserPermission)
+        {
+            var userPermission = new Dictionary<string, byte>();
+
+            foreach (var item in listUserPermission)
+            {
+                userPermission.Add(item.Function.FunctionKey, item.Policy);
+            }
+
+            return userPermission;
         }
     }
 }

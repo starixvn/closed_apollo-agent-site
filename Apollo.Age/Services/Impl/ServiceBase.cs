@@ -15,7 +15,7 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Service base.
     /// </summary>
     public class ServiceBase
     {
@@ -28,8 +28,6 @@ namespace Apollo.Age.Services.Impl
             Fanex.Logging.LogService.Error(ex.Message, ex);
         }
 
-        #region Commission Group Reverting
-
         /// <summary>
         /// Revert Commission Group Name.
         /// </summary>
@@ -40,33 +38,31 @@ namespace Apollo.Age.Services.Impl
             switch (commGroupName.ToLower())
             {
                 case "a":
-                    {
-                        return "D";
-                    }
+                {
+                    return "D";
+                }
 
                 case "b":
-                    {
-                        return "C";
-                    }
+                {
+                    return "C";
+                }
 
                 case "c":
-                    {
-                        return "B";
-                    }
+                {
+                    return "B";
+                }
 
                 case "d":
-                    {
-                        return "A";
-                    }
+                {
+                    return "A";
+                }
 
                 default:
-                    {
-                        return "All";
-                    }
+                {
+                    return "All";
+                }
             }
         }
-
-        #endregion Commission Group Reverting
 
         /// <summary>
         /// Get Peak hours for prevent action, format peak hour in config file: DAYINWEEK-HOUR.

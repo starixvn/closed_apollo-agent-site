@@ -10,13 +10,8 @@
 
 namespace Apollo.Age.Forecast.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Constants list.
     /// </summary>
     public class Constants
     {

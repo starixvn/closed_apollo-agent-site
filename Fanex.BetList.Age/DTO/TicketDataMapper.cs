@@ -13,29 +13,24 @@ namespace Fanex.BetList.Age.DTO
     using System.Collections.Generic;
 
     /// <summary>
-    /// Mapfield definition for ITicketData type and DataRow
+    /// Map field definition for ITicketData type and DataRow.
     /// </summary>
     public class TicketDataMapper
     {
-        public static Dictionary<string, string> dict = new Dictionary<string, string>()         
+        /// <summary>
+        /// The dictionary.
+        /// </summary>
+        public static Dictionary<string, string> Dict = new Dictionary<string, string>()
         { 
-            {"RefNo","refno"}, 
-
-            {"BetTypeId","bettype"}, 
-
-            {"Status","status"},
-
-            {"Odds","odds"},
-
-            {"Stake","stake"},          
-
-            {"BetTeam","betteam"},
-
-            {"SuperPT","spositiontaking"},
-
-            {"MasterPT","mpositiontaking"},
-
-            {"AgentPT","apositiontaking"}
+            { "RefNo", "refno" }, 
+            { "BetTypeId", "bettype" }, 
+            { "Status", "status" },
+            { "Odds", "odds" },
+            { "Stake", "stake" },
+            { "BetTeam", "betteam" },
+            { "SuperPT", "spositiontaking" },
+            { "MasterPT", "mpositiontaking" },
+            { "AgentPT", "apositiontaking" }
         };
     }
 }

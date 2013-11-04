@@ -81,12 +81,12 @@
                                         {
                                             if (Model.AgentLevel > AgentLevel.Shareholder)
                                             {
-                                            <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
-                                                if (FunctionPermissions[ApolloFunctionKeys.CustomerSetting] == (byte)Policy.Edit)
-                                                { 
+                                            <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>   
+                                                if (FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query)
+                                                {                                               
                                             <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username"
-                                                target="main">@Lang.lblMemberShare</a></li>
-                                                }
+                                                target="main">@Lang.lblMemberShare</a></li>                                          
+                                                }      
                                             }
                                             <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
                                             <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>                                        
@@ -97,7 +97,7 @@
                                         }
                                     </ul>
                                 </li>                                                                
-                                        if (FunctionPermissions[ApolloFunctionKeys.System_Log] >= (byte)Policy.Query)
+                                        if (FunctionPermissions[ApolloFunctionKeys.SystemLog] >= (byte)Policy.Query)
                                         { 
                                 <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                     <ul class="sub-menu">
@@ -109,7 +109,7 @@
                                     </ul>
                                 </li>
                                         }
-                                        if (!isShowReport && ((FunctionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query) ||
+                                        if (!isShowReport && ((FunctionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query) ||
                                            (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query) ||
@@ -120,7 +120,7 @@
 
                                             if (string.IsNullOrEmpty(defaultReportURL))
                                             {
-                                                if (FunctionPermissions[ApolloFunctionKeys.Win_Loss] >= (byte)Policy.Query)
+                                                if (FunctionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query)
                                                 {
                                                     defaultReportURL = "/Reports/matchentered";
                                                 }

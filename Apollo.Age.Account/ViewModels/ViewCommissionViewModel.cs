@@ -12,6 +12,9 @@ namespace Apollo.Age.Account.ViewModels
     using System.Collections.Generic;
     using Apollo.Age.Account.Models;
 
+    /// <summary>
+    /// View commission view model.
+    /// </summary>
     public class ViewCommissionViewModel
     {
         public int Id { get; set; }

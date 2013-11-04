@@ -13,7 +13,7 @@ namespace Apollo.Age.Wagers.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias;
     using Apollo.Age.Wagers.Criterias.CorrectScore;
     using Apollo.Age.Wagers.Criterias.Soccer;

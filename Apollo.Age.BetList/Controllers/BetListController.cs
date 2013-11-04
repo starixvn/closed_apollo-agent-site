@@ -18,14 +18,14 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
@@ -34,16 +34,15 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.BetList.Core.TicketHelper;
 
     /// <summary>
-    /// BetList Controller
-    /// </summary>    
+    /// BetList Controller.
+    /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class BetListController : BaseController
     {
-        private const string _StringEmpty = "";
         private readonly BetListService _betListService;
         private readonly ReportService _reportService;
         private readonly TotalBetsService _totalBetsService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
 
         /// <summary>
@@ -54,19 +53,21 @@ namespace Apollo.Age.BetList.Controllers
             this._betListService = new BetListService();
             this._reportService = new ReportService();
             this._totalBetsService = new TotalBetsService();
-            _agentUserService = new AgentUserService();
+            _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
         /// <summary>
-        /// Bet list of member
+        /// Bet list of member.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <returns></returns>
+        /// <param name="custId">Input CUSTID who need to view bet list.</param>
+        /// <returns>Return view result.</returns>
         [HttpGet]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(int custId)
         {
-            var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+            var statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                     (int)Apollo.Age.Enumerations.BetStatus.Void,
                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
                     (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -107,13 +108,16 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list of member
+        /// Bet list of member.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="model">Input a model.</param>
+        /// <returns>Return view result.</returns>
         [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(BetListCriteria model)
         {
-            var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+            var statusIds = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7}",
                    (int)Apollo.Age.Enumerations.BetStatus.Void,
                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -150,22 +154,28 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        ///  Bet list Transaction
+        /// Bet list Transaction.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return view result.</returns>
         [HttpGet]
         public ViewResult Transactions()
         {
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
-            }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
@@ -174,21 +184,26 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list Transaction
+        /// Bet list Transaction.
         /// </summary>
-        /// <param name="fromDate"></param>
-        /// <param name="toDate"></param>
-        /// <param name="sportTypes"></param>
-        /// <param name="betTypes"></param>
-        /// <param name="userName"></param>
-        /// <param name="userType"></param>
-        /// <param name="pageIndex"></param>
-        /// <returns></returns>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
+        /// <param name="sportTypes">Input sport types.</param>
+        /// <param name="betTypes">Input bet types.</param>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="userType">Type of the user.</param>
+        /// <param name="pageIndex">Index of the page.</param>
+        /// <returns>Return view result.</returns>
         [HttpGet]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Transactions, Policy = Policy.Query)]
-        public ViewResult TransactionsPaging(DateTime fromDate, DateTime toDate, string sportTypes = _StringEmpty,
-            string betTypes = _StringEmpty, string userName = _StringEmpty,
-            int userType = 0, int pageIndex = 0)
+        public ViewResult TransactionsPaging(
+            DateTime fromDate,
+            DateTime toDate,
+            string sportTypes = "",
+            string betTypes = "",
+            string userName = "",
+            int userType = 0,
+            int pageIndex = 0)
         {
             var viewModel = new BetListReportViewModel()
             {
@@ -196,7 +211,7 @@ namespace Apollo.Age.BetList.Controllers
                 ToDate = toDate,
 
                 SportTypeIds = sportTypes == "-99" ? "0" : sportTypes,
-                BetTypeIds = betTypes,               
+                BetTypeIds = betTypes,
 
                 Username = userName,
                 UserType = userType,
@@ -208,14 +223,29 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list Transaction
+        /// Bet list Transaction.
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Input the model.</param>
+        /// <returns>Return view result.</returns>
         [HttpPost]
         public ViewResult Transactions(BetListReportViewModel model)
         {
-            var statusIds = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
+            var statusIds = string.Format(
+                     "{0},{1},{2},{3},{4},{5},{6},{7}",
                      (int)Apollo.Age.Enumerations.BetStatus.Void,
                      (int)Apollo.Age.Enumerations.BetStatus.Reject,
                      (int)Apollo.Age.Enumerations.BetStatus.Running,
@@ -231,7 +261,10 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
+            model.BettypeList = 
+                model.SportTypeIds == "-99" 
+                ? _reportService.GetParlayBettype() 
+                : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -254,11 +287,11 @@ namespace Apollo.Age.BetList.Controllers
                 };
 
                 //// Cache Key
-                var sessionKey = string.Format("TransactionsReport{0}-{1}-{2}",
+                var sessionKey = string.Format(
+                    "TransactionsReport{0}-{1}-{2}",
                     criteria.LoggedId,
                     criteria.AgentId,
-                    criteria.CustId
-                    );
+                    criteria.CustId);
 
                 TicketResult mainTickets = null;
                 var getFromDB = true;
@@ -290,15 +323,6 @@ namespace Apollo.Age.BetList.Controllers
                 ViewBag.TotalItems = 0;
             }
 
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Transactions) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
-            }
-
             model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
@@ -306,8 +330,9 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Cancel ticket betlist
+        /// Cancel ticket bet list.
         /// </summary>
+        /// <returns>Return view result.</returns>
         [HttpGet]
         public ViewResult TicketCancel()
         {
@@ -315,13 +340,19 @@ namespace Apollo.Age.BetList.Controllers
                 {
                     Username = CurrentSession.AgentName
                 };
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
-            if (!hasPermission)
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
             {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", viewModel);
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
             }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
@@ -331,13 +362,27 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Cancel ticket betlist
+        /// Cancel ticket bet list.
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Input the model.</param>
+        /// <returns>Return view result.</returns>
         [HttpPost]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
+            // Get permission of user.
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
             var moveBetsDay = _reportService.MoveBetsDay();
@@ -348,7 +393,10 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = model.SportTypeIds == "-99" ? _reportService.GetParlayBettype() : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
+            model.BettypeList = 
+                model.SportTypeIds == "-99" 
+                ? _reportService.GetParlayBettype() 
+                : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
 
@@ -375,17 +423,8 @@ namespace Apollo.Age.BetList.Controllers
                 TicketResult mainTickets;
                 mainTickets = betListService.GetTicketResult(criteria, true);
 
-                // Set data to view model
+                // Set data to view model.
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
-            }
-
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CancelledTickets) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("~/Views/Reports/ReportAccessDenied.cshtml", model);
             }
 
             model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
@@ -395,24 +434,31 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list Outstanding listOutstanding
+        /// Bet list Outstanding listOutstanding.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="username"></param>
-        /// <param name="mainShareHolderId"></param>
-        /// <param name="mainShareHolderUsername"></param>
-        /// <returns></returns>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="username">Name of user.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <param name="mainShareHolderUsername">The main share holder username.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="sportName">Name of the sport.</param>
+        /// <param name="betTypeName">Name of the bet type.</param>
+        /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
-        public ViewResult Outstanding(int custId,
-            string username = _StringEmpty,
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        public ViewResult Outstanding(
+            int custId,
+            string username = "",
             int mainShareHolderId = 0,
-            string mainShareHolderUsername = _StringEmpty,
-            string betType = _StringEmpty,
-            string sportType = _StringEmpty,
-            string sportName = _StringEmpty,
-            string betTypeName = _StringEmpty)
+            string mainShareHolderUsername = "",
+            string betType = "",
+            string sportType = "",
+            string sportName = "",
+            string betTypeName = "")
         {
-            var statusIds = string.Format("{0},{1}",
+            var statusIds = string.Format(
+                    "{0},{1}",
                    (int)Apollo.Age.Enumerations.BetStatus.Running,
                    (int)Apollo.Age.Enumerations.BetStatus.Waiting);
 
@@ -446,35 +492,39 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Bet list winloss listOutstanding
+        /// Bet list win lost.
         /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="fromDate"></param>
-        /// <param name="toDate"></param>
-        /// <param name="type"></param>
-        /// <param name="username"></param>
-        /// <param name="betType"></param>
-        /// <param name="mainShareHolderId"></param>
-        /// <param name="mainShareHolderUsername"></param>
-        /// <returns></returns>
-
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Win_Loss, Policy = Policy.Query)]
-        public ViewResult Winloss(int custId,
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
+        /// <param name="type">Bet list type.</param>
+        /// <param name="username">Name of user.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <param name="mainShareHolderUsername">The main share holder username.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="sportName">Name of the sport.</param>
+        /// <param name="betTypeName">Name of the bet type.</param>
+        /// <returns>Return view result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
+        public ViewResult Winloss(
+            int custId,
             DateTime fromDate,
             DateTime toDate,
-            string type = _StringEmpty,
-            string username = _StringEmpty,
+            string type = "",
+            string username = "",
             int mainShareHolderId = 0,
-            string mainShareHolderUsername = _StringEmpty,
-            string betType = _StringEmpty,
-            string sportType = _StringEmpty,
-            string sportName = _StringEmpty,
-            string betTypeName = _StringEmpty)
+            string mainShareHolderUsername = "",
+            string betType = "",
+            string sportType = "",
+            string sportName = "",
+            string betTypeName = "")
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
             {
-                statusIds = string.Format("{0},{1},{2},{3},{4},{5}",
+                statusIds = string.Format(
+                      "{0},{1},{2},{3},{4},{5}",
                       (int)Apollo.Age.Enumerations.BetStatus.Void,
                       (int)Apollo.Age.Enumerations.BetStatus.Reject,
                       (int)Apollo.Age.Enumerations.BetStatus.Refund,
@@ -484,7 +534,8 @@ namespace Apollo.Age.BetList.Controllers
             }
             else
             {
-                statusIds = string.Format("{0},{1}",
+                statusIds = string.Format(
+                         "{0},{1}",
                          (int)Apollo.Age.Enumerations.BetStatus.Running,
                          (int)Apollo.Age.Enumerations.BetStatus.Waiting);
             }
@@ -524,18 +575,26 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Action view betList from forecast
+        /// Action view bet List from forecast.
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="betType"></param>
-        /// <param name="betTeam"></param>
-        /// <param name="matchId"></param>
-        /// <param name="mainShareHolderId"></param>
-        /// <param name="mainShareHolderUsername"></param>
-        /// <param name="isForecast"></param>
-        /// <returns></returns>
+        /// <param name="type">The type of bet list.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="betTeam">The bet team.</param>
+        /// <param name="matchId">The match identifier.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <param name="mainShareHolderUsername">The main share holder username.</param>
+        /// <param name="isForecast">Is view from forecast or not.</param>
+        /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
-        public ViewResult Forecast(string type = _StringEmpty, string betType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0, int mainShareHolderId = 0, string mainShareHolderUsername = _StringEmpty, bool isForecast = false)
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        public ViewResult Forecast(
+            string type = "",
+            string betType = "",
+            string betTeam = "",
+            int matchId = 0,
+            int mainShareHolderId = 0,
+            string mainShareHolderUsername = "",
+            bool isForecast = false)
         {
             var strBetType = string.Empty;
             var title = string.Empty;
@@ -560,13 +619,12 @@ namespace Apollo.Age.BetList.Controllers
                 title = CacheRef.GetBettype(betType);
             }
 
-            // List mainShare Holder
             IEnumerable<Agent> mainShareHolders = new List<Agent>();
             if (!isForecast)
             {
                 mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
             }
-            // List ticket
+
             var betListService = new BetListService();
             var criteria = new BetListCriteria
             {
@@ -600,33 +658,46 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Action view betList from Wagers page
+        /// Action view bet List from Wagers page.
         /// </summary>
-        /// <param name="loggedId"></param>
-        /// <param name="fromDate"></param>
-        /// <param name="UGroup"></param>
-        /// <param name="isDirectMem"></param>
-        /// <param name="liveIndicator"></param>
-        /// <param name="leagueId"></param>
-        /// <param name="betType"></param>
-        /// <param name="sportType"></param>
-        /// <param name="betTeam"></param>
-        /// <returns></returns>
+        /// <param name="loggedId">The logged identifier.</param>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
+        /// <param name="userGroup">The user group.</param>
+        /// <param name="isDirectMem">Is direct member or not.</param>
+        /// <param name="liveIndicator">Is live or not.</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="betTeam">The bet team.</param>
+        /// <param name="matchId">The match identifier.</param>
+        /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
-        public ViewResult Wagers(int loggedId, DateTime fromDate, DateTime? toDate, string uGroup = _StringEmpty, bool isDirectMem = false, bool liveIndicator = false, int leagueId = 0, string betType = _StringEmpty, string sportType = _StringEmpty, string betTeam = _StringEmpty, int matchId = 0)
+        public ViewResult Wagers(
+            int loggedId,
+            DateTime fromDate,
+            DateTime? toDate,
+            string userGroup = "",
+            bool isDirectMem = false,
+            bool liveIndicator = false,
+            int leagueId = 0,
+            string betType = "",
+            string sportType = "",
+            string betTeam = "",
+            int matchId = 0)
         {
-            // List ticket
             var betListService = new BetListService();
             if (toDate == null)
             {
                 toDate = fromDate;
             }
+
             var criteria = new WagersCriteria
             {
                 LoggedId = loggedId > 0 ? loggedId : CurrentSession.AgentId,
                 FromDate = fromDate,
                 ToDate = toDate,
-                UGroup = uGroup,
+                UGroup = userGroup,
                 IsDirectMem = isDirectMem,
                 LiveIndicator = liveIndicator,
                 LeagueId = leagueId,
@@ -648,10 +719,10 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Action MixParlay
+        /// Action Mix Parlay.
         /// </summary>
-        /// <param name="transid"></param>
-        /// <returns></returns>
+        /// <param name="transid">The transaction id.</param>
+        /// <returns>Return view result.</returns>
         public ViewResult MixParlay(long transid)
         {
             var betListService = new BetListService();
@@ -669,27 +740,29 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Combination MixParlay
+        /// Combination Mix Parlay.
         /// </summary>
-        /// <param name="refNo"></param>
-        /// <param name="winlossDate"></param>
-        /// <param name="transId"></param>
-        /// <param name="betId"></param>
-        /// <param name="custId"></param>
-        /// <returns></returns>
+        /// <param name="refNo">The reference number.</param>
+        /// <param name="winlossDate">The win lost date.</param>
+        /// <param name="transId">The trans identifier.</param>
+        /// <param name="betId">The bet identifier.</param>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>Return view result.</returns>
         public ViewResult CombinationMixParlay(string refNo, DateTime winlossDate, int transId, int betId, int custId)
         {
             return this.View();
         }
 
         /// <summary>
-        /// View detail popup Agent Share and Agent commission
+        /// View detail popup Agent Share and Agent commission.
         /// </summary>
-        /// <param name="transId">Trans Id</param>
-        /// <param name="fromDate">From date</param>
-        /// <param name="toDate">to date</param>
-        /// <param name="type">page type</param>
-        /// <returns>Return view</returns>
+        /// <param name="transId">Transaction Id.</param>
+        /// <param name="fromDate">Input from date.</param>
+        /// <param name="toDate">Input to date.</param>
+        /// <param name="type">Page type.</param>
+        /// <returns>
+        /// Return view result.
+        /// </returns>
         public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
         {
             IList<ITicket> listAgentComm;
@@ -717,12 +790,39 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        #region Common Action
+
         /// <summary>
-        /// Get ticket for betList
+        /// Creates the type of the bet.
         /// </summary>
-        /// <param name="ticketResult"></param>
-        /// <param name="betlistPage"></param>
-        /// <returns></returns>
+        /// <param name="isIncludeParlay">Include parlay bet type or not.</param>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateBetType(bool isIncludeParlay)
+        {
+            var bettypeList = _reportService.GetBettype(isIncludeParlay);
+
+            return Json(bettypeList, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Creates the parlay bet type.
+        /// </summary>
+        /// <returns>JSON bet type.</returns>
+        public JsonResult CreateParlayBettype()
+        {
+            var parlayBettypeList = _reportService.GetParlayBettype();
+
+            return Json(parlayBettypeList, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion Common Action
+
+        /// <summary>
+        /// Get ticket for bet List.
+        /// </summary>
+        /// <param name="ticketResult">The ticket result.</param>
+        /// <param name="betlistPage">The bet list page.</param>
+        /// <returns>Return view result.</returns>
         private List<TicketText> Ticket(TicketResult ticketResult, BetListPage betlistPage)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
@@ -774,10 +874,10 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
-        /// Get ticket for view detail
+        /// Get ticket for view detail.
         /// </summary>
-        /// <param name="tickets"></param>
-        /// <returns></returns>
+        /// <param name="tickets">The tickets.</param>
+        /// <returns>List of tickets.</returns>
         private List<TicketText> Ticket(IList<ITicket> tickets)
         {
             var builder = new BetListHTMLBuilder();
@@ -804,12 +904,11 @@ namespace Apollo.Age.BetList.Controllers
         #region Format Start, End date
 
         /// <summary>
-        /// Get total bet data by betType, if MainShareHolderId > 0 and Current is Supper
-        /// then load Data of that MainShareHolder
+        /// Lists the main share holder.
         /// </summary>
-        /// <param name="betType"></param>
-        /// <param name="mainShareHolderId"></param>
-        /// <returns></returns>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <returns>List of main share holder.</returns>
         private IEnumerable<Agent> ListMainShareHolder(string betType, ref int mainShareHolderId)
         {
             int agentId = this.CurrentSession.AgentId;
@@ -823,57 +922,31 @@ namespace Apollo.Age.BetList.Controllers
 
                 return mainShareHolders;
             }
+
             mainShareHolderId = agentId;
             return new List<Agent>();
         }
 
         /// <summary>
-        /// Time start date
+        /// Time start date.
         /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
+        /// <param name="dt">Input a date.</param>
+        /// <returns>Return a date with full hour.</returns>
         private DateTime ResetStartDate(DateTime dt)
         {
             return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
         }
 
         /// <summary>
-        /// Time end date
+        /// Time end date.
         /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
+        /// <param name="dt">Input a date.</param>
+        /// <returns>Return a date with full hour.</returns>
         private DateTime ResetEndDate(DateTime dt)
         {
             return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));
         }
 
         #endregion Format Start, End date
-
-        #region Common Action
-
-        /// <summary>
-        /// Creates the type of the bet.
-        /// </summary>
-        /// <param name="isIncludeParlay">Include parlay bettype or not.</param>
-        /// <returns>JSON bet type.</returns>
-        public JsonResult CreateBetType(bool isIncludeParlay)
-        {
-            var bettypeList = _reportService.GetBettype(isIncludeParlay);
-
-            return Json(bettypeList, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Creates the parlay bettype.
-        /// </summary>
-        /// <returns>JSON bet type.</returns>
-        public JsonResult CreateParlayBettype()
-        {
-            var parlayBettypeList = _reportService.GetParlayBettype();
-
-            return Json(parlayBettypeList, JsonRequestBehavior.AllowGet);
-        }
-
-        #endregion Common Action
     }
 }

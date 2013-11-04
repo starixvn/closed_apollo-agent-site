@@ -1,8 +1,8 @@
-﻿@model AgentUserAssignFunctionCriteria
+﻿@model UserAssignFunctionCriteria
 @{
     Layout = "~/Views/PermissionUserControl/Shared/_Layout.cshtml";
     ViewBag.Title = "AssignFunction";
-    var listGroupFunction = Model.ListFunction.GroupBy(m => m.FunctionGroup.FunctionGroupId).ToList();
+    var listGroupFunction = Model.ListFunction.GroupBy(m => m.FunctionGroup.Id).ToList();
     var listFunctionPolicy = Model.ListFunctionPolicy;
     var listParentFunctionPolicy = Model.ListParentFunctionPolicy;
     var hasEdit = Model.HasEdit;
@@ -18,7 +18,7 @@
             else
             {                
                 @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.Shadow: <strong>@Model.ShadowUsername</strong>
-                                                                        }
+                                                                                                }
         </span>
     </div>
     <div class="end">
@@ -60,8 +60,8 @@
             </tr>
                 foreach (var itemFunction in itemGroupFunction)
                 {
-                    var functionPolicy = listFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
-                    var parentFunctionPolicy = listParentFunctionPolicy.Where(f => f.Function.FunctionId == itemFunction.FunctionId).FirstOrDefault();
+                    var functionPolicy = listFunctionPolicy.Where(f => f.Function.Id == itemFunction.Id).FirstOrDefault();
+                    var parentFunctionPolicy = listParentFunctionPolicy.Where(f => f.Function.Id == itemFunction.Id).FirstOrDefault();
                     var policy = functionPolicy != null ? functionPolicy.Policy : 0;
                     var parentPolicy = parentFunctionPolicy != null ? parentFunctionPolicy.Policy : 0;
 
@@ -77,15 +77,15 @@
                 @if (Model.IsMaster)
                 { 
                     <td class="policy">
-                        @if (itemFunction.CRUD == (byte)Crud.Edit)
+                        @if (itemFunction.HasEdit)
                         {                       
 
-                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkHost @disableHost />
+                            <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.Id" value="@itemFunction.Id" @checkHost @disableHost />
                         }
                     </td>                    
                 }
                 <td class="policy">
-                    <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.FunctionId" value="@itemFunction.FunctionId" @checkRead @disableRead/>
+                    <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.Id" value="@itemFunction.Id" @checkRead @disableRead/>
                 </td>
             </tr>
                 }

@@ -7,23 +7,18 @@
 //   <change who="Ricky.Nguyen" date="2013.5.7">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.Mvc;
-    using Fanex.Common;
-    using Apollo.Age.Services.Impl;
     using Apollo.Age.Enumerations;
-    using Fanex.Logging;
+    using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using System.Net;
+    using Fanex.Common;
+    using Fanex.Logging;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Belonging checking attribute class.
     /// </summary>
     public class BelongCheckingAttribute : ActionFilterAttribute
     {
@@ -34,11 +29,19 @@ namespace Apollo.Age.Web.Filters
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BelongCheckingAttribute"/> class.
+        /// </summary>
+        /// <param name="userService">The user service.</param>
         public BelongCheckingAttribute(IUserService userService = null)
         {
             _userService = userService ?? new UserService();
         }
-        
+
+        /// <summary>
+        /// Called by the ASP.NET MVC framework before the action method executes.
+        /// </summary>
+        /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -50,7 +53,7 @@ namespace Apollo.Age.Web.Filters
                 {
                     if (!_userService.CheckDownlineBelongToAgent(currentSession.AgentId, memberId, CustomerType.Member))
                     {
-                       CommonChecking.DoUnAuthorized(filterContext);
+                        CommonChecking.DoUnAuthorized(filterContext);
                     }
                 }
                 else if (agentId > 0)
@@ -69,25 +72,9 @@ namespace Apollo.Age.Web.Filters
             {
                 Logger.Log.Error(ex.Message, ex);
             }
+
             // The action filter logic.
             base.OnActionExecuting(filterContext);
         }
-
-        //private void DoUnAuthorized(ActionExecutingContext filterContext)
-        //{
-        //    var response = filterContext.HttpContext.Response;
-        //    if (filterContext.HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        response.Clear();
-        //        response.StatusCode = (int)HttpStatusCode.Unauthorized;
-        //        response.StatusDescription = string.Empty;
-        //        response.Write(Resources.Lang.UnauthorizedMsg);
-        //        response.End();
-        //    }
-        //    else
-        //    {
-        //        response.Redirect(ApoURLs.URLs.AccessDenied);
-        //    }
-        //}
     }
 }

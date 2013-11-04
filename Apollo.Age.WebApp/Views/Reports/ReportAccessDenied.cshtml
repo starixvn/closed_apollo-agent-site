@@ -3,7 +3,7 @@
     Layout = null;
     string title = Apollo.Age.Resources.Lang.strNotAccessPage;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
 }
 @try
 { 
@@ -18,7 +18,7 @@ new ReportMenuViewModel
 }
 catch
 {
-    @Html.Partial("Menu",
+    @Html.Partial("~/Views/Reports/Menu.cshtml",
 new ReportMenuViewModel
 {
     SportList = null,

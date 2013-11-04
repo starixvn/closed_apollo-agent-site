@@ -12,7 +12,7 @@ namespace Apollo.Age.Entities
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Peak hour entity.
     /// </summary>
     public class PeakHour
     {
@@ -24,7 +24,8 @@ namespace Apollo.Age.Entities
 
         public int ToHour { get; set; }
 
-        public bool IsSameDay {
+        public bool IsSameDay 
+        {
             get
             {
                 return FromDayOfWeek == ToDayOfWeek;

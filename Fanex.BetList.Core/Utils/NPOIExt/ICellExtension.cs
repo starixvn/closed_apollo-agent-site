@@ -12,6 +12,9 @@ namespace Fanex.BetList.Core.Utils.NPOIExt
 {
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// Cell extension interface.
+    /// </summary>
     public static class ICellExtension
     {
         /// <summary>

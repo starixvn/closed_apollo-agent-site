@@ -18,6 +18,9 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Services.Impl;
     using Fanex.Common;
 
+    /// <summary>
+    /// Sport setting service.
+    /// </summary>
     public class SportSettingService : ServiceBase, ISportSettingService
     {
         #region const for read XML PTGrid

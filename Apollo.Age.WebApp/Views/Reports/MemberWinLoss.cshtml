@@ -5,7 +5,7 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
 }
 @model MemberWinLossViewModel
 @Html.Partial("Menu",
@@ -41,11 +41,11 @@ new ReportMenuViewModel
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
-                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />                        
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
                         <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
                         <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                        <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>

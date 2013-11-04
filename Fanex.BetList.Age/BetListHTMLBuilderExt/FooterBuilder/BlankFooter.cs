@@ -23,9 +23,10 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
         /// Renders the specified tickets.
         /// </summary>
         /// <param name="tickets">The tickets.</param>
-        /// <param name="betlistType">Type of the betlist.</param>
-        /// <param name="userType">Type of the user.</param>
-        /// <returns></returns>
+        /// <param name="betlistType">Type of the bet list.</param>
+        /// <returns>
+        /// The empty.
+        /// </returns>
         public string Render(IList<ITicket> tickets, BetListType betlistType)
         {
             return string.Empty;

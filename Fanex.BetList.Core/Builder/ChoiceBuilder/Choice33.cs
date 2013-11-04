@@ -11,9 +11,9 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// Win/Place
+    /// Win/Place.
     /// </summary>
     public class Choice33 : Choice31
-    {        
+    {
     }
 }

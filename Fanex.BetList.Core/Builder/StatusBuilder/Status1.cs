@@ -24,6 +24,14 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     public class Status1 : IStatus
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Status1" /> class.
+        /// </summary>
+        public Status1()
+        {
+            this.Template = new Status_Template();
+        }
+        
+        /// <summary>
         /// Gets or sets the template.
         /// </summary>
         /// <value>
@@ -101,14 +109,6 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             rtfHelper.RTFRenderer.Clear();
 
             return rtfStatus;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Status1" /> class.
-        /// </summary>
-        public Status1()
-        {
-            this.Template = new Status_Template();
         }
     }
 }

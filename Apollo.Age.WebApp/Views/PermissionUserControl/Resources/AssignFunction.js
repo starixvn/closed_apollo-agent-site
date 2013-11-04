@@ -5,6 +5,7 @@ var AssignFunction = function ($) {
     return {
         grid: null,
         message: null,
+        messageApplyDownline: null,
         isMaster: null,
         agentUserId: null,
         oldValue: null,
@@ -12,6 +13,9 @@ var AssignFunction = function ($) {
         username: null,
         isDirectAgent: null,
         parentAgentId: null,
+        isApplyDownLine: null,
+        unCheckReadValue: "",
+        unCheckHostValue: "",
 
         init: function () {
             AssignFunction.grid = $('.tblRpt:first');
@@ -21,7 +25,7 @@ var AssignFunction = function ($) {
             AssignFunction.username = $('#AgentUsername').val();
             AssignFunction.isDirectAgent = $('#IsDirectAgent').val();
             AssignFunction.parentAgentId = $('#ParentAgentId').val();
-
+            AssignFunction.messageApplyDownline = Language.APPLYDOWNLINE;
             if (AssignFunction.isMaster == "1") {
                 AssignFunction.message = Language.CONFIRM_AGENT;
             }
@@ -44,6 +48,14 @@ var AssignFunction = function ($) {
                     if (itemHost.is(':checked')) {
                         funcHost += itemHost.val() + ",";
                     }
+                    else {
+                        if (itemHost.val() != undefined) {
+                            AssignFunction.unCheckHostValue += itemHost.val() + ",";
+                        }
+                    }
+                }
+                else {
+                    AssignFunction.unCheckReadValue += $this.val() + ",";
                 }
             });
 
@@ -53,7 +65,6 @@ var AssignFunction = function ($) {
         assignUserPermision: function () {
             var funcRead = "";
             var funcHost = "";
-            var url = APOLLO.resolveUrl("~/PermissionUserControl/AssignPermissionControl");
 
             AssignFunction.grid.find('[type=checkbox][name=funcRead]').each(function () {
                 var $this = $(this),
@@ -75,11 +86,31 @@ var AssignFunction = function ($) {
                 return;
             }
 
+            AssignFunction.isApplyDownLine = AssignFunction.checkHasNewPermission(AssignFunction.unCheckReadValue, AssignFunction.unCheckHostValue, funcRead, funcHost);
+
+            if (AssignFunction.isApplyDownLine) {
+                if (confirm(AssignFunction.messageApplyDownline)) {
+                    AssignFunction.updatePermission(funcRead, funcHost, true);
+                }
+                else {
+                    AssignFunction.updatePermission(funcRead, funcHost, false);
+                }
+            }
+            else {
+                if (confirm(AssignFunction.message)) {
+                    AssignFunction.updatePermission(funcRead, funcHost, false);
+                }
+            }
+        },
+
+        updatePermission: function (funcRead, funcHost, isApplyDownLine) {
+            var url = APOLLO.resolveUrl("~/PermissionUserControl/AssignPermissionControl");
+
             $.ajax({
                 url: url,
                 type: 'POST',
                 dataType: 'JSON',
-                data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId },
+                data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId, IsApplyDownLine: isApplyDownLine },
                 success: function (res) {
                     if (res.ErrCode == "-1") {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
@@ -110,6 +141,45 @@ var AssignFunction = function ($) {
                     location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
             });
+        },
+
+        checkHasNewPermission: function (unCheckReadValue, unCheckHostValue, funcRead, funcHost) {
+            var hasNew = false;
+            var arrUnCheckRead = unCheckReadValue.split(',');
+            var arrUnCheckHost = unCheckHostValue.split(',');
+            var arrFuncRead = funcRead.split(',');
+            var arrFuncHost = funcHost.split(',');
+
+            for (var i = 0; i < arrFuncRead.length; i++) {
+                var functionId = arrFuncRead[i];
+
+                if (AssignFunction.findInArray(arrUnCheckRead, functionId)) {
+                    return true;
+                }
+            }
+
+            for (var i = 0; i < arrFuncHost.length; i++) {
+                var functionId = arrFuncHost[i];
+
+                if (AssignFunction.findInArray(arrUnCheckHost, functionId)) {
+                    return true;
+                }
+            }
+
+            return hasNew;
+
+        },
+
+        findInArray: function (arr, value) {
+            if (value != null && value != "") {
+                for (var i = 0; i < arr.length; i++) {
+                    var item = arr[i];
+                    if (item != "" && item == value) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 } (jQuery);
@@ -133,9 +203,7 @@ $(document).ready(function () {
     });
 
     $('#btnSubmit').bind('click', function () {
-        if (confirm(AssignFunction.message)) {
-            AssignFunction.assignUserPermision();
-        }
+        AssignFunction.assignUserPermision();
     });
 
     $('#btnCancel').bind('click', function () {

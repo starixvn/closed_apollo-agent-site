@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Lang.lblLineSportCredit;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
 }
 @model SportCreditViewModel
 @Html.Partial("Menu",

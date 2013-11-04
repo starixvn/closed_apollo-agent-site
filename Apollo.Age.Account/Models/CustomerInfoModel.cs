@@ -12,6 +12,9 @@ namespace Apollo.Age.Account.Models
     using System.Collections.Generic;
     using Apollo.Age.Entities;
 
+    /// <summary>
+    /// Customer information model.
+    /// </summary>
     public class CustomerInfoModel
     {
         public int ActorAgentId { get; set; }

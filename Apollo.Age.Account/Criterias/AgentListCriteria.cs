@@ -13,7 +13,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Agent list criteria class.
+    /// Agent list criteria.
     /// </summary>
     public class AgentListCriteria : CriteriaBase
     {
@@ -75,6 +75,18 @@ namespace Apollo.Age.Account.Criterias
                 return TotalItems % PageSize == 0 ? TotalItems / PageSize : (TotalItems / PageSize) + 1;
             }
         }
+
+        [SpParam(Ignored = true)]
+        public byte PermissionControlPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public byte ShadowPermissionPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public byte CustomerSettingPolicy { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool HasDownlineDetailsPermission { get; set; }
 
         /// <summary>
         /// Get setting key of agent list.

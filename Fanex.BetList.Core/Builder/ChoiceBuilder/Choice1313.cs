@@ -18,7 +18,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    ///    Set x Total Games 3-way
+    ///    Set x Total Games 3-way.
     /// </summary>
     public class Choice1313 : Choice1
     {
@@ -28,6 +28,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
@@ -35,19 +36,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             bool betOver = ticket.BetTeam == "1";
             bool betUnder = ticket.BetTeam == "2";
 
-            string xyFormat = Apollo.Age.Resources.BetList.betweenXandY;
+            string formatXY = Apollo.Age.Resources.BetList.betweenXandY;
 
-            if (xyFormat == null)
+            if (formatXY == null)
             {
-                xyFormat = "{0} - {1}";
+                formatXY = "{0} - {1}";
             }
 
-            this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(xyFormat, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
-            //this.Template.Handicap.handicap = betOver ? ConvertByBetType.Hdp(ticket.Handicap1) : betUnder ? ConvertByBetType.Hdp(ticket.Handicap2) : null;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
-
-            // Update betTeamClassName
-            //this.Template.betTeamClassName = betOver ? BL_FAVORITE : BL_UNDER_DOG;
+            this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(formatXY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
+          
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }

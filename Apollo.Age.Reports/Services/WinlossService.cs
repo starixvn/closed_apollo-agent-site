@@ -40,7 +40,7 @@ namespace Apollo.Age.Reports.Services
         {
             var criterias = new MatchEnteredCriteria()
             {
-                isShowAll = isShowDataTest
+                IsShowAll = isShowDataTest
             };
             var matchEnteredList = this.GetData<MatchEntered>(criterias).ToList();
 

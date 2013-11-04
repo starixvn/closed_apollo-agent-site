@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System;
 
+    /// <summary>
+    /// Message model.
+    /// </summary>
     public class MessageModel
     {
         public int MessageId { get; set; }
@@ -69,21 +72,30 @@ namespace Apollo.Age.Account.Models
 
         public int TargetId { get; set; }
 
+        /// <summary>
+        /// Get content.
+        /// </summary>
+        /// <param name="language">The language.</param>
+        /// <returns>Language content.</returns>
         public string GetContent(string language = "")
         {
             string content = string.Empty;
             string betTransId = this.BettransID;
+
             switch (language)
             {
                 case "en-US":
                     content = this.ContentEN;
                     break;
+
                 case "th-TH":
                     content = this.ContentTH;
                     break;
+
                 case "zh-CN":
                     content = this.ContentCS;
                     break;
+
                 case "zh-TW":
                     content = this.ContentCH;
                     if (string.IsNullOrEmpty(content))
@@ -92,9 +104,11 @@ namespace Apollo.Age.Account.Models
                     }
 
                     break;
+
                 case "ja-JP":
                     content = this.ContentJP;
                     break;
+
                 case "ko-KR":
                     content = this.ContentKO;
                     break;

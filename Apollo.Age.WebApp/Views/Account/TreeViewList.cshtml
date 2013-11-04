@@ -1,32 +1,33 @@
 ﻿@using Apollo.Age.Resources
 @{
-	Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    ViewBag.Title = @Lang.userinfo;
+    Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewBag.Title = @Lang.userinfo;     
+    
 }
-
 <table id="tab-menu">
-	<tr>
-		<td class="active">
-			<a><i class="icon-user"></i>@Lang.userinfo</a>
-		</td>
-		<td>
-			<a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.AccountSearch</a>
-		</td>
-	</tr>
+    <tr>
+        <td class="active">
+            <a><i class="icon-user"></i>@Lang.userinfo</a>
+        </td>
+        <td>
+            <a id="lk-acc-tab" href="javascript:;" target="menu"><i class="icon-search"></i>@Lang.AccountSearch</a>
+        </td>
+    </tr>
 </table>
 <div id="wrapper">
-    <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat"></a>
-	<ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
-	</ul>
+    <a title="@Lang.refresh" id="lklRefresh" href="javascript:;" class="icon-repeat">
+    </a>
+    <ul id="agent-list" class="tree-sub" data-agentid="@ViewBag.AgentId">
+    </ul>
 </div>
-
+@Html.Hidden("DownlineDetailsPolicy", (byte)ViewBag.DownlineDetailsPolicy)
 @section foot {
     @Scripts.Render("~/scripts/treeviewjs")
-	<script type="text/javascript">
-	    $(document).ready(function () {
-	        $.blockUI.defaults.css.left = "10px";
-	        $(document).ajaxStart($.blockUI);
-	        $(document).ajaxStop($.unblockUI);
-	    })
-	</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.blockUI.defaults.css.left = "10px";
+            $(document).ajaxStart($.blockUI);
+            $(document).ajaxStop($.unblockUI);
+        })
+    </script>
 }

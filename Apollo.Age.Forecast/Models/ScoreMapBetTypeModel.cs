@@ -10,10 +10,11 @@
 namespace Apollo.Age.Forecast.Models
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Score map bet type model.
+    /// </summary>
     [Serializable]
     public class ScoreMapBetTypeModel
     {

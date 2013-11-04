@@ -6,15 +6,11 @@
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
+
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Entity base.
     /// </summary>
     public abstract class EntityBase : IEntity<int, string>
     {

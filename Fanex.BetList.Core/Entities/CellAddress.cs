@@ -12,7 +12,7 @@ namespace Fanex.BetList.Core.Entities
 {
     public struct CellAddress
     {
-        public CellAddress(int rowIndex, int columnIndex): this()
+        public CellAddress(int rowIndex, int columnIndex) : this()
         {
             this.RowIndex = rowIndex;
             this.ColumnIndex = columnIndex;

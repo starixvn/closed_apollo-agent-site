@@ -18,12 +18,14 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     using Apollo.Age.BetList.Services;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Services;
+    using Apollo.Age.WebApp._BetList.MixParlay;
     using Fanex.Age.UI;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using Apollo.Age.WebApp;
-    using Apollo.Age.WebApp._BetList.MixParlay;
 
+    /// <summary>
+    /// Combination mix parlay detail page.
+    /// </summary>
     public partial class CombinationMixParlayDetail_Page : TplPage
     {
         #region Variable
@@ -98,8 +100,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             var i = 0;
             if (numRow > 0)
             {
-                #region details
-
+                // details
                 foreach (var ticket in ticketList)
                 {
                     rowBlock.stake = ConvertByBetType.Stake(ticket.Stake);
@@ -110,15 +111,42 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     // status
                     string status = ticket.Status.ToLower();
 
-                    if (status.Equals(BetStatus.Running)) rowBlock.status = Apollo.Age.Resources.BetList.running;
-                    else if (status.Equals(BetStatus.Reject)) rowBlock.status = Apollo.Age.Resources.BetList.reject;
-                    else if (status.Equals(BetStatus.Won)) rowBlock.status = Apollo.Age.Resources.BetList.won;
-                    else if (status.Equals(BetStatus.Lose)) rowBlock.status = Apollo.Age.Resources.BetList.lose;
-                    else if (status.Equals(BetStatus.Draw)) rowBlock.status = Apollo.Age.Resources.BetList.draw;
-                    else if (status.Equals(BetStatus.Waiting)) rowBlock.status = Apollo.Age.Resources.BetList.waiting;
-                    else if (status.Equals(BetStatus.Void)) rowBlock.status = Apollo.Age.Resources.BetList.voided;
-                    else if (status.Equals(BetStatus.Refund)) rowBlock.status = Apollo.Age.Resources.BetList.refund;
-                    else rowBlock.status = string.Empty;
+                    if (status.Equals(BetStatus.Running))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.running;
+                    }
+                    else if (status.Equals(BetStatus.Reject))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.reject;
+                    }
+                    else if (status.Equals(BetStatus.Won))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.won;
+                    }
+                    else if (status.Equals(BetStatus.Lose))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.lose;
+                    }
+                    else if (status.Equals(BetStatus.Draw))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.draw;
+                    }
+                    else if (status.Equals(BetStatus.Waiting))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.waiting;
+                    }
+                    else if (status.Equals(BetStatus.Void))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.voided;
+                    }
+                    else if (status.Equals(BetStatus.Refund))
+                    {
+                        rowBlock.status = Apollo.Age.Resources.BetList.refund;
+                    }
+                    else
+                    {
+                        rowBlock.status = string.Empty;
+                    }
 
                     if (status.Equals(BetStatus.Lose))
                     {
@@ -127,17 +155,17 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        // even
                         serial = ticket.Serial;
                         var serials = systemParlay.SerialList.Where(s => s.Serial == serial);
                         even = string.Empty;
+
                         foreach (var item in serials)
                         {
                             even += CacheRef.GetTeamName(item.HomeId) + " - vs - " + CacheRef.GetTeamName(item.AwayId);
                             even += "<br/>";
                         }
+
                         rowBlock.even = even;
-                        // end even
 
                         if (ticket.MOdds > 0)
                         {
@@ -154,6 +182,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         var row = ticketList.Where(s => s.WinLostDate == ticket.WinLostDate);
 
                         int numRowSpan = row.Count();
+
                         if (numRowSpan > 1)
                         {
                             rowBlock.WinlostDate.rowSpan = "rowspan='" + numRowSpan.ToString() + "'";
@@ -162,7 +191,8 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                         {
                             rowBlock.WinlostDate.rowSpan = string.Empty;
                         }
-                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd"); ;
+
+                        rowBlock.WinlostDate.date = ticket.WinLostDate.ToString("yyyy-mm-dd");
                         rowBlock.WinlostDate.Show();
                     }
                     else
@@ -174,7 +204,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     template.RowData.Append(rowBlock);
                     winlostdate = ticket.WinLostDate.ToString("yyyy-mm-dd");
 
-                    //Get Sub Total by Day
+                    // Get Sub Total by Day
                     if (i + 1 == numRow)
                     {
                         winlostNextDate = string.Empty;
@@ -188,8 +218,6 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("yyyy-mm-dd"), winlostNextDate);
                     i++;
                 }
-
-                #endregion details
 
                 template.Summary.total = ConvertByBetType.Winloss(winlostSum);
             }

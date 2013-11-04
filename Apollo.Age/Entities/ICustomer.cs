@@ -8,13 +8,8 @@
 // </history>
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Customer interface.
     /// </summary>
     public interface ICustomer : IEntity<int, string>
     {

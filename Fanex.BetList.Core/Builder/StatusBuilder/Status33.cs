@@ -115,17 +115,17 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>List of tickets.</returns>
         protected virtual List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.TransId.ToString()));
         }
 
         /// <summary>
-        /// Extract string value between tags from a source string
+        /// Extract string value between tags from a source string.
         /// </summary>
-        /// <param name="tag">tag name</param>
-        /// <param name="source">source string</param>
+        /// <param name="tag">tag name.</param>
+        /// <param name="source">source string.</param>
         /// <returns></returns>
         private string ExtractStringBetweenTag(string tag, string source)
         {
@@ -141,7 +141,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// Gets the context status.
         /// </summary>
         /// <param name="betStatus">The bet status.</param>
-        /// <returns></returns>
+        /// <returns>String status.</returns>
         private string GetContextStatus(string betStatus)
         {
             switch (betStatus)

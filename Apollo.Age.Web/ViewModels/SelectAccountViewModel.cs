@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SignIn2ViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SelectAccountViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -12,6 +12,9 @@ namespace Apollo.Age.Web.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Select account view model.
+    /// </summary>
     public class SelectAccountViewModel
     {
         [Required]
@@ -25,6 +28,5 @@ namespace Apollo.Age.Web.ViewModels
         public string AdminName { get; set; }
 
         public int AdminId { get; set; }
-                
     }
 }

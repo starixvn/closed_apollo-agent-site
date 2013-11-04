@@ -9,21 +9,30 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get top odds by match criteria.
+    /// </summary>
     public class GetTopOddsByMatchCriteria : CriteriaBase
     {
         public int MatchId { get; set; }
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_Forecast_OddsGetTopByMatch";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return MatchId > 0 && BetType > 0;

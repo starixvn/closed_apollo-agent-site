@@ -1,6 +1,4 @@
-﻿//using Sunplus.Agent.Model.Common;
-
-/*
+﻿/*
  * Created 20091224@Lee - Validating definitions
  * Revision:
  * 20091224@Lee - Initializing
@@ -16,16 +14,23 @@ namespace Fanex.Age.UI
     public class Validation
     {
         /// <summary>
-        /// Return true if password contains least 2 numbers and 2 letters and have length >= 6
+        /// Return true if password contains least 2 numbers and 2 letters and have length >= 6.
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
         public static bool CheckValidPassword(string password)
         {
             password = password.ToLower();
-            if (password.Length < 6) return false;
+            if (password.Length < 6)
+            {
+                return false;
+            }
+
             bool bValid = false;
-            int j1 = -1; int j2 = -1; int j3 = -1;
+            int j1 = -1; 
+            int j2 = -1; 
+            int j3 = -1;
+
             for (int i = 0; i < 10; i++)
             {
                 j1 = password.IndexOf(i.ToString());
@@ -68,7 +73,10 @@ namespace Fanex.Age.UI
                     }
                 }
 
-                if (count < 2) bValid = false;
+                if (count < 2)
+                {
+                    bValid = false;
+                }
             }
 
             return bValid;
@@ -85,5 +93,4 @@ namespace Fanex.Age.UI
            // return Sunplus.Agent.Model.Common.Language.IsValidLanguage(culture);
         }
     }
-
 }

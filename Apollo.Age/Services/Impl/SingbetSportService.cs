@@ -14,8 +14,16 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Entities;
     using Apollo.Age.Resources;
 
+    /// <summary>
+    /// SINGBET sport service.
+    /// </summary>
     public class SingbetSportService
     {
+        /// <summary>
+        /// Get SINGBET sport list.
+        /// </summary>
+        /// <param name="isOther">Is other sport or not.</param>
+        /// <returns>List of SINGBET sport.</returns>
         public static List<SingbetSport> GetSport(bool isOther)
         {
             var sportList = new List<SingbetSport>
@@ -54,8 +62,7 @@ namespace Apollo.Age.Services.Impl
                 {
                     Id = SportGroup.Others,
                     Name = isOther ? Lang.other : Lang.InterEvent
-                }
-                ,
+                },
                 new SingbetSport
                 {
                     Id = "-99",
@@ -65,12 +72,11 @@ namespace Apollo.Age.Services.Impl
 
             if (isOther)
             {
-                var ouright = new SingbetSport
-                {
-                    Id = SportGroup.Outright,
-                    Name = Lang.lblOutRight
-                };
-                sportList.Add(ouright);
+                sportList.Add(new SingbetSport
+                    {
+                        Id = SportGroup.Outright,
+                        Name = Lang.lblOutRight
+                    });
             }
 
             return sportList;

@@ -9,14 +9,8 @@
 
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Apollo.Age.Services;
-
     /// <summary>
-    /// This class to override equals.
+    /// League entity.
     /// </summary>
     public class League
     {

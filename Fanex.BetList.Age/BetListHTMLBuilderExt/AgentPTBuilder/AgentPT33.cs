@@ -17,6 +17,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Agent PT 33.
+    /// </summary>
     public class AgentPT33 : AgentPT1
     {
         protected int winBetId, placeBetId;
@@ -34,8 +37,10 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketData"></param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>
+        /// Agent PT template.
+        /// </returns>
         public override AgentPT_Template Render(ITicket ticket, List<Core.Entities.ITicketData> ticketData)
         {
             base.Render(ticket, ticketData);
@@ -51,14 +56,21 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
                 agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == placeBetId).AgentPT;
             }
 
-            this.Template.AgentPT.agentPT_setting = string.Join(null, new string[]{ "<span class='blue' style='font-weight:normal;'>"
-                                                                      ,BetList.win + ": "
-                                                                      ,"<b>",Formatter.FormatNumber2(agentPT_Win*100, null),"%</b>"
-                                                                      ,"</span><br>"
-                                                                      ,"<span class='' style='font-weight:normal;'>"
-                                                                      ,BetList.place + ": "
-                                                                      ,"<b>",Formatter.FormatNumber2(agentPT_Place*100, null),"%</b>"
-                                                                      ,"</span>"});
+            this.Template.AgentPT.agentPT_setting = string.Join(
+                                                                null, 
+                                                                new string[] { 
+                                                                      "<span class='blue' style='font-weight:normal;'>",
+                                                                      BetList.win + ": ",
+                                                                      "<b>",
+                                                                      Formatter.FormatNumber2(agentPT_Win * 100, null),
+                                                                      "%</b>",
+                                                                      "</span><br>",
+                                                                      "<span class='' style='font-weight:normal;'>",
+                                                                      BetList.place + ": ",
+                                                                      "<b>",
+                                                                      Formatter.FormatNumber2(agentPT_Place * 100, null),
+                                                                      "%</b>",
+                                                                      "</span>" });
 
             return this.Template;
         }
@@ -66,9 +78,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// <summary>
         /// Gets the reference data.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket need to build.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>List of tickets.</returns>
         protected virtual List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.TransId.ToString()));

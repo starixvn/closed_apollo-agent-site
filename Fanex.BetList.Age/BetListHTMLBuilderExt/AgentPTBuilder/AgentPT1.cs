@@ -18,17 +18,26 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Build AgentPT
+    /// Build AgentPT.
     /// </summary>
     public class AgentPT1 : IAgentPT
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AgentPT1" /> class.
+        /// </summary>
+        public AgentPT1()
+        {
+            this.Template = new AgentPT_Template();
+        }
+        
         public AgentPT_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>Agent PT template.</returns>
         public virtual AgentPT_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             Template.AgentPT.agentPT_setting = string.Join(null, new string[] { ConvertByBetType.Pt(ticket.APositionTaking), "%" });
@@ -45,14 +54,6 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
 
             return Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AgentPT1" /> class.
-        /// </summary>
-        public AgentPT1()
-        {
-            this.Template = new AgentPT_Template();
         }
     }
 }
