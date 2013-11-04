@@ -105,8 +105,12 @@ namespace Fanex.BetList.Core.Utils
             {
                 int a = (int)Math.Pow(10, decDigits);
                 // Returns the largest integer less than or equal number
-                if (value < 0) // If the value is negative, then we use Ceiling() function instead of Floor() function
+                // If the value is negative, then we use Ceiling() function instead of Floor() function
+                if (value < 0) 
+                {
                     return string.Format(DECIMAL_FORMAT2, (Math.Ceiling(value * a) / a));
+                }
+
                 return string.Format(DECIMAL_FORMAT2, (Math.Floor(value * a) / a));
             }
         }
@@ -201,21 +205,27 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Format number with 1 decimal, automatically remove redundant '0'
+        /// Format number with 1 decimal, automatically remove redundant '0'.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static string FormatNumber1(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT1_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT1, obj);
         }
 
         /// <summary>
-        /// Format number with 2 decimal, automatically remove redundant '0'
+        /// Format number with 2 decimal, automatically remove redundant '0'.
         /// </summary>
         /// <param name="obj">The object.</param>
         /// <param name="culture">The culture.</param>
@@ -223,9 +233,15 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatNumber2(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT2_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT2, obj);
         }
 
@@ -238,115 +254,162 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatNumber20(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT20_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT20, obj);
         }
 
         /// <summary>
-        /// Format number with maximum 3 significant decimal numbers (numbers that # 0)
+        /// Format number with maximum 3 significant decimal numbers (numbers that # 0).
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static string FormatNumber3(object obj)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             return string.Format(DECIMAL_FORMAT3, obj);
         }
 
         /// <summary>
         /// Format number with 2 decimal, automatically remove redundant '0'
-        /// And do not include comma
+        /// And do not include comma.
         /// </summary>
         public static string FormatNumber2C(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT2C_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT2C, obj);
         }
 
         public static string FormatNumber30(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT30_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT30, obj);
         }
 
         /// <summary>
         /// Format number with 3 decimal, automatically remove redundant '0'
-        /// And do not include comma
+        /// And do not include comma.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-
         public static string FormatNumber3C(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT3C_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT3C, obj);
         }
 
         /// <summary>
-        /// Format number with 3 decimal, automatically remove redundant '0'
+        /// Format number with 3 decimal, automatically remove redundant '0'.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static string FormatNumber3(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT3_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT3, obj);
         }
 
         /// <summary>
-        /// Format number with 4 decimal, automatically remove redundant '0'
+        /// Format number with 4 decimal, automatically remove redundant '0'.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static string FormatNumber4(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT4_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT4, obj);
         }
 
         /// <summary>
         /// Formats the number4.
         /// </summary>
-        /// <param name="obj">The obj.</param>
+        /// <param name="obj">The object.</param>
         /// <returns>System.String.</returns>
         public static string FormatNumber4(object obj)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             return string.Format(DECIMAL_FORMAT4, obj);
         }
 
         /// <summary>
         /// Formats the number40.
         /// </summary>
-        /// <param name="obj">The obj.</param>
+        /// <param name="obj">The object.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>System.String.</returns>
         public static string FormatNumber40(object obj, string culture)
         {
             if (Convert.IsDBNull(obj) || obj == null)
+            {
                 return "0";
+            }
+
             if (culture == CULT_NAME_VI)
+            {
                 return string.Format(DECIMAL_FORMAT40_VI, obj);
+            }
+
             return string.Format(DECIMAL_FORMAT40, obj);
         }
 
@@ -357,8 +420,14 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string FormatSignNumber(decimal number, byte decDigits = 0)
         {
-            if (number > 0) return "+" + DecFormat(number, decDigits);
-            else return DecFormat(number, decDigits);
+            if (number > 0)
+            {
+                return "+" + DecFormat(number, decDigits);
+            }
+            else
+            {
+                return DecFormat(number, decDigits);
+            }
         }
 
         #endregion Number
@@ -374,7 +443,11 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string LongDateFormat(object dt)
         {
-            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
             return string.Format(cult, "{0:yyyy-M-dd HH:mm:ss}", dt);
         }
 
@@ -385,18 +458,26 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string ShortDateFormat(object dt)
         {
-            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
             return string.Format(cult, "{0:yyyy-M-dd}", dt);
         }
 
         /// <summary>
-        /// Fulls the date format.
+        /// Get full date format.
         /// </summary>
         /// <param name="dt">The dt.</param>
         /// <returns>System.String.</returns>
         public static string FullDateFormat(object dt)
         {
-            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
             return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
         }
 
@@ -407,14 +488,18 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>System.String.</returns>
         public static string FullDateFormat2Ln(object dt)
         {
-            if (Convert.IsDBNull(dt) || dt == null) return string.Empty;
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
             return string.Format(cult, "{0:yyyy-M-dd<br/>hh:mm:ss tt}", dt);
         }
 
         /// <summary>
         /// Fulls the date format2 line.
         /// </summary>
-        /// <param name="obj">The obj.</param>
+        /// <param name="obj">The object.</param>
         /// <returns>String.</returns>
         public static String FullDateFormat2Line(object obj)
         {
@@ -422,14 +507,17 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Format datetime with only month/day hour:minute
+        /// Format datetime with only month/day hour:minute.
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
         public static string FormatDateTime22(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
@@ -448,7 +536,10 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatDateTime22DDMM(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 return Convert.ToDateTime(dt).ToString("dd/MM hh:mm");
@@ -467,7 +558,10 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatTimeMiliSec(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 return Convert.ToDateTime(dt).ToString(TIME_FORMAT_MILISEC);
@@ -486,7 +580,10 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatDateEn(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 return Convert.ToDateTime(dt).ToString("yyyy-M-dd");
@@ -500,15 +597,18 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Formats the date vi.
         /// </summary>
-        /// <param name="dt">The dt.</param>
+        /// <param name="dt">The date.</param>
         /// <returns>System.String.</returns>
-        public static string FormatDateVi(object dt)
+        public static string FormatDateVi(object date)
         {
-            if (Convert.IsDBNull(dt) || dt == null)
+            if (Convert.IsDBNull(date) || date == null)
+            {
                 return "";
+            }
+
             try
             {
-                return Convert.ToDateTime(dt).ToString("dd/MM/yyyy");
+                return Convert.ToDateTime(date).ToString("dd/MM/yyyy");
             }
             catch
             {
@@ -523,13 +623,16 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// System.String.
         /// </returns>
-        public static string FormatDateTimeEn12(object dt)
+        public static string FormatDateTimeEn12(object date)
         {
-            if (Convert.IsDBNull(dt) || dt == null)
+            if (Convert.IsDBNull(date) || date == null)
+            {
                 return "";
+            }
+
             try
             {
-                return Convert.ToDateTime(dt).ToString("yyyy-M-dd hh:mm:ss tt");
+                return Convert.ToDateTime(date).ToString("yyyy-M-dd hh:mm:ss tt");
             }
             catch
             {
@@ -542,13 +645,16 @@ namespace Fanex.BetList.Core.Utils
         /// </summary>
         /// <param name="dt">The dt.</param>
         /// <returns>System.String.</returns>
-        public static string FormatDateTimeEn12NoSec(object dt)
+        public static string FormatDateTimeEn12NoSec(object date)
         {
-            if (Convert.IsDBNull(dt) || dt == null)
+            if (Convert.IsDBNull(date) || date == null)
+            {
                 return "";
+            }
+
             try
             {
-                return Convert.ToDateTime(dt).ToString("yyyy-M-dd hh:mm tt");
+                return Convert.ToDateTime(date).ToString("yyyy-M-dd hh:mm tt");
             }
             catch
             {
@@ -564,7 +670,10 @@ namespace Fanex.BetList.Core.Utils
         public static string FormatDateTimeEn24(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 return Convert.ToDateTime(dt).ToString("yyyy-M-dd HH:mm:ss");
@@ -576,21 +685,29 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// IF Time is 12:00, then do not return time
+        /// IF Time is 12:00, then do not return time.
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
         public static string FormatDateOptionalTime(object dt)
         {
             if (Convert.IsDBNull(dt) || dt == null)
+            {
                 return "";
+            }
+
             try
             {
                 DateTime dt2 = Convert.ToDateTime(dt);
+
                 if ((dt2.Hour == 12 || dt2.Hour == 0) && dt2.Minute == 0)
+                {
                     return dt2.ToString("yyyy-M-dd");
+                }
                 else
+                {
                     return dt2.ToString("yyyy-M-dd hh:mm:ss tt");
+                }
             }
             catch
             {
@@ -640,6 +757,7 @@ namespace Fanex.BetList.Core.Utils
                 if (hasSpanReturn)
                     value = String.Format("<span>{0}</span>", HttpUtility.HtmlEncode(value));
             }
+
             return value;
         }
 

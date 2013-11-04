@@ -16,8 +16,11 @@ namespace Fanex.BetList.Core.Entities
     public struct RTFHelper
     {
         public IFont NormalFont { get; set; }
+
         public IFont PosFont { get; set; }
+
         public IFont NegFont { get; set; }
+
         public RtfTextRender RTFRenderer { get; set; }
     }
 }

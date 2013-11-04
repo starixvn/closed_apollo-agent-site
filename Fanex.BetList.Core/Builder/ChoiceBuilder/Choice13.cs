@@ -36,12 +36,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string yesNo = ticket.BetTeam.Contains('y') ? Apollo.Age.Resources.BetList.lblYes : Apollo.Age.Resources.BetList.lblNo;
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[] {
+                                                    new string[] 
+                                                    {
                                                         team,
-                                                        " <span class=\"", BetListFavorite,
+                                                        " <span class=\"", 
+                                                        BetListFavorite,
                                                         "\">",
                                                         yesNo.ToUpper(),
-                                                        "</span>" });
+                                                        "</span>" 
+                                                    });
 
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;            
         }

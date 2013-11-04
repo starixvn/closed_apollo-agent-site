@@ -85,13 +85,19 @@ namespace Fanex.Age.UI.Components
         /// Generate combo box for position taking / commission.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="selectedValue"></param>
+        /// <param name="selectedValue">Selected value.</param>
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <param name="step"></param>
         /// <param name="onchange"></param>
         /// <returns></returns>
-        public static string ComboBox(string id, double selectedValue, double min, double max, double step, string onchange)
+        public static string ComboBox(
+            string id, 
+            double selectedValue, 
+            double min, 
+            double max, 
+            double step, 
+            string onchange)
         {
             if (0 == step)
             {
@@ -222,7 +228,7 @@ namespace Fanex.Age.UI.Components
         /// Generate combo box for position taking / commission.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="selectedValue"></param>
+        /// <param name="selectedValue">Selected value.</param>
         /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
@@ -287,7 +293,7 @@ namespace Fanex.Age.UI.Components
         /// Generate combo box for position taking / commission.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="selectedValue"></param>
+        /// <param name="selectedValue">Selected value.</param>
         /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
@@ -346,7 +352,7 @@ namespace Fanex.Age.UI.Components
         /// Generate combo box for position taking / commission.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="selectedValue"></param>
+        /// <param name="selectedValue">Selected value.</param>
         /// <param name="data">First column/ Second column indicate value/text.</param>
         /// <param name="onchange"></param>
         /// <returns></returns>
@@ -437,7 +443,7 @@ namespace Fanex.Age.UI.Components
             {
                 DataRow newRow = newDT.NewRow();
                 newRow["custid"] = rows[i][valueColumnName];
-                newRow["text"] = (rows[i][textColumnName1] + "(" + rows[i]["betcount"] + " " + lblResource + ")");
+                newRow["text"] = rows[i][textColumnName1] + "(" + rows[i]["betcount"] + " " + lblResource + ")";
                 newDT.Rows.Add(newRow);
             }
 

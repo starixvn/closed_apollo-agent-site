@@ -19,7 +19,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Win/Place
+    /// Win/Place.
     /// </summary>
     public class Status33 : Status1
     {
@@ -40,7 +40,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
         public override Templates.Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
@@ -124,8 +124,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <summary>
         /// Extract string value between tags from a source string.
         /// </summary>
-        /// <param name="tag">tag name.</param>
-        /// <param name="source">source string.</param>
+        /// <param name="tag">Tag name.</param>
+        /// <param name="source">Source string.</param>
         /// <returns></returns>
         private string ExtractStringBetweenTag(string tag, string source)
         {

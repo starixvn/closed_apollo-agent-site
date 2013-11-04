@@ -185,6 +185,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             {
                 return new HSSFRichTextString("-");
             }
+
             int breakPos = this.Template.odds.IndexOf("<br>");
 
             string odds_WinString = this.Template.odds.Substring(0, breakPos);
@@ -257,31 +258,51 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             switch ((foundRows[i]["status"]).ToString().ToLower())
             {
                 case BetStatus.Won:
-                    odds_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Formatter.FormatNumber20(foundRows[i]["odds"], null),
-                                                                          "</b>"});
+                    odds_place += string.Join(
+                        null, 
+                        new string[] 
+                        {
+                            Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Formatter.FormatNumber20(foundRows[i]["odds"], null),
+                            "</b>"
+                        });
 
-                    status_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.won,
-                                                                          "</b>"});
+                    status_place += string.Join(
+                        null, 
+                        new string[] 
+                        {
+                            Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.won,
+                            "</b>"
+                        });
                     break;
 
                 default:
-                    odds_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          "0.00",
-                                                                          "</b>"});
+                    odds_place += string.Join(
+                        null, 
+                        new string[] 
+                        {
+                                Apollo.Age.Resources.BetList.place,
+                                ": ",
+                                "<b>",
+                                "0.00",
+                                "</b>"
+                        });
 
-                    status_place += string.Join(null, new string[] {Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.lose,
-                                                                          "</b>"});
+                    status_place += string.Join(
+                        null, 
+                        new string[] 
+                        {
+                            Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.lose,
+                            "</b>"
+                        });
                     break;
             }
         }
@@ -295,29 +316,53 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// <param name="i">The index.</param>
         private static void GetWin(ref string odds_win, ref string status_win, DataRow[] foundRows, int i)
         {
-            switch ((foundRows[i]["status"]).ToString().ToLower())
+            switch (foundRows[i]["status"].ToString().ToLower())
             {
                 case BetStatus.Won:
-                    odds_win += string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", Formatter.FormatNumber20(foundRows[i]["odds"], null), "</b>" });
-
-                    status_win += string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", Apollo.Age.Resources.BetList.won, "</b>" });
-
+                    odds_win += string.Join(
+                        null, 
+                        new string[] 
+                        { 
+                            Apollo.Age.Resources.BetList.win, 
+                            ": ", 
+                            "<b>", 
+                            Formatter.FormatNumber20(foundRows[i]["odds"], null), 
+                            "</b>" 
+                        });
+                    status_win += string.Join(
+                        null, 
+                        new string[] 
+                        { 
+                            Apollo.Age.Resources.BetList.win, 
+                            ": ", 
+                            "<b>", 
+                            Apollo.Age.Resources.BetList.won, 
+                            "</b>" 
+                        });
                     break;
 
                 default:
-                    odds_win += string.Join(null, new string[]{
-                                                                            Apollo.Age.Resources.BetList.win,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          "0.00",
-                                                                          "</b>"});
+                    odds_win += string.Join(
+                        null, 
+                        new string[]
+                        {
+                            Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            "0.00",
+                            "</b>"
+                        });
 
-                    status_win += string.Join(null, new string[]{
-                                                                        Apollo.Age.Resources.BetList.win,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.lose,
-                                                                          "</b>"});
+                    status_win += string.Join(
+                        null, 
+                        new string[]
+                        {
+                            Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.lose,
+                            "</b>"
+                        });
 
                     break;
             }

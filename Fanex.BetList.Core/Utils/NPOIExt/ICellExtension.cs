@@ -29,23 +29,41 @@ namespace Fanex.BetList.Core.Utils.NPOIExt
             else
             {
                 if (value is string)
+                {
                     cell.SetCellValue((string)value);
+                }
                 else if (value is int)
+                {
                     cell.SetCellValue((int)value);
+                }
                 else if (value is long)
+                {
                     cell.SetCellValue((long)value);
+                }
                 else if (value is double)
+                {
                     cell.SetCellValue((double)value);
+                }
                 else if (value is decimal)
+                {
                     cell.SetCellValue((decimal)value);
+                }
                 else if (value is bool)
+                {
                     cell.SetCellValue((bool)value);
+                }
                 else if (value is System.DateTime)
+                {
                     cell.SetCellValue((System.DateTime)value);
+                }
                 else if (value is IRichTextString)
+                {
                     cell.SetCellValue((IRichTextString)value);
+                }
                 else
+                {
                     cell.SetCellValue("Undefined");
+                }
             }
         }
     }

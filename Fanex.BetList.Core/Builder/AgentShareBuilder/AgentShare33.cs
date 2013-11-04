@@ -90,19 +90,21 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
 
             this.Template.AgentPT.agentPT_setting = string.Join(
                 null,
-                new string[] { 
-                    "<span class='blue' style='font-weight:normal;'>",
-                    Apollo.Age.Resources.BetList.win + ": ",
-                    "<b>",
-                    Formatter.FormatNumber2(agentPT_Win * 100, null),
-                    "%</b>",
-                    "</span><br>",
-                    "<span class='' style='font-weight:normal;'>",
-                    Apollo.Age.Resources.BetList.place + ": ",
-                    "<b>",
-                    Formatter.FormatNumber2(agentPT_Place * 100, null),
-                    "%</b>",
-                    "</span>" });
+                new string[] 
+                    { 
+                        "<span class='blue' style='font-weight:normal;'>",
+                        Apollo.Age.Resources.BetList.win + ": ",
+                        "<b>",
+                        Formatter.FormatNumber2(agentPT_Win * 100, null),
+                        "%</b>",
+                        "</span><br>",
+                        "<span class='' style='font-weight:normal;'>",
+                        Apollo.Age.Resources.BetList.place + ": ",
+                        "<b>",
+                        Formatter.FormatNumber2(agentPT_Place * 100, null),
+                        "%</b>",
+                        "</span>" 
+                    });
 
             return this.Template;
         }
