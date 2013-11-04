@@ -74,7 +74,7 @@ if (typeof jQuery != 'undefined') {
             },
             resizeDialog: function (width, height) {
                 if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
-                   
+
                     if ($(window).width() >= 1024) {
                         APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
                     } else {
@@ -429,14 +429,11 @@ if (typeof jQuery != 'undefined') {
             },
 
             IsValidDate: function (date) {
-                try {
-
-                    return Date.parse(date.replace(/-/g, '/'));
-                }
-                catch (FormatException) 
-                {
+                var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                if (!(date_regex.test(date))) {
                     return false;
                 }
+                return true;
             },
 
             init: function () {
