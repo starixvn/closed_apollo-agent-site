@@ -19,7 +19,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Build Status cell
+    /// Build Status cell.
     /// </summary>
     public class Status1 : IStatus
     {
@@ -44,8 +44,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="ticketData">The ticket data (Status33 - Win/Place)</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="ticketData">The ticket data (Status33 - Win/Place).</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
         public virtual Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {

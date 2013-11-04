@@ -34,13 +34,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected const string BetListUnderDog = "underdog";
         protected const string BetListFavorite = "favorite";
 
-        private static int[] _showHomeCharacterList = new[] {
-            (int)SportTypeNames.Soccer,
-            (int)SportTypeNames.BasketBall,
-            (int)SportTypeNames.FootBall,
-            (int)SportTypeNames.VolleyBall,
-            (int)SportTypeNames.BaseBall,
-            (int)SportTypeNames.IceHockey };
+        private static int[] _showHomeCharacterList = new[] 
+            {
+                (int)SportTypeNames.Soccer,
+                (int)SportTypeNames.BasketBall,
+                (int)SportTypeNames.FootBall,
+                (int)SportTypeNames.VolleyBall,
+                (int)SportTypeNames.BaseBall,
+                (int)SportTypeNames.IceHockey 
+            };
 
         #endregion Attributes
 

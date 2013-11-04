@@ -9,7 +9,6 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-
 namespace Fanex.BetList.Core.Entities
 {
     using System;
@@ -24,7 +23,7 @@ namespace Fanex.BetList.Core.Entities
         public int BetTypeId { get; set; }
 
         /// <summary>
-        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject
+        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject.
         /// </summary>
         public string Status { get; set; }
 

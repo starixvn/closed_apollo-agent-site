@@ -30,7 +30,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="ticketData">The ticket data (Status33 - Win/Place)</param>
+        /// <param name="ticketData">The ticket data (Status33 - Win/Place).</param>
         /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
         /// <returns></returns>
         Status_Template Render(ITicket ticket, List<ITicketData> ticketData);

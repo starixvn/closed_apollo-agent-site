@@ -179,10 +179,13 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         {
             string typeName = string.Join(
                                            null,
-                                           new string[] {
+                                           new string[] 
+                                           {
                                                 AgentPTBuilderNamespace,
                                                 ".AgentPT",
-                                                bettype.ToString() });
+                                                bettype.ToString() 
+                                           });
+
             Type type = Type.GetType(typeName);
 
             if (type == null)
@@ -234,10 +237,12 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] {
+                                            new string[] 
+                                            {
                                                 FooterBuilderNamespace,
                                                 ".Footer",
-                                                footerType.ToString() });
+                                                footerType.ToString() 
+                                            });
 
             Type type = Type.GetType(typeName);
 
