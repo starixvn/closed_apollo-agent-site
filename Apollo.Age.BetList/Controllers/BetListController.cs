@@ -424,7 +424,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 AgentId = -1,
                 BetTypes = betType,
-                SportTypes = sportType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
