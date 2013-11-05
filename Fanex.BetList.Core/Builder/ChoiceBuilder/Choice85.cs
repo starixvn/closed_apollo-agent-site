@@ -49,44 +49,32 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             {
                 bettypeName = string.Join(
                                                 null,
-                                                new string[]
-                                                {
-                                                    Apollo.Age.Resources.BetList.ft,
+                                                Apollo.Age.Resources.BetList.ft,
                                                     ". ",
-                                                    bettypeName
-                                                });
+                                                    bettypeName);
             }
             else
             {
                 bettypeName = string.Join(
                                                 null,
-                                                new string[]
-                                                {
-                                                    Apollo.Age.Resources.BetList.next,
+                                                Apollo.Age.Resources.BetList.next,
                                                     "&nbsp;",
-                                                    bettypeName
-                                                });
+                                                    bettypeName);
 
                 liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(
                                                                                                 null,
-                                                                                                new string[]
-                                                                                                {
-                                                                                                    " [",
+                                                                                               " [",
                                                                                                     betId,
-                                                                                                    "]"
-                                                                                                });
+                                                                                                    "]");
             }
 
             this.Template.betTeam = betTeam + liveScore;
 
             this.Template.homeTeam = string.Join(
                                                 null,
-                                                new string[]
-                                                {
-                                                    Apollo.Age.Resources.BetList.numbergameno,
+                                               Apollo.Age.Resources.BetList.numbergameno,
                                                     "&nbsp;",
-                                                    ticket.MatchCode
-                                                });
+                                                    ticket.MatchCode);
         }
     }
 }

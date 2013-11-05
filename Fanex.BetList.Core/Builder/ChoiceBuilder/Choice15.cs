@@ -31,14 +31,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
 
             this.Template.betTeam = string.Join(
-                                                    null,
-                                                    new string[]
-                                                    {
-                                                        Apollo.Age.Resources.BetList.ht,
+                                            null,
+                                            Apollo.Age.Resources.BetList.ht,
                                                         ".",
-                                                        ticket.BetTeam.ToUpper()
-                                                    });
-
+                                                        ticket.BetTeam.ToUpper());
             if (ticket.SportTypeId == 1)
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();

@@ -10,7 +10,6 @@
 
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
-    using System;
     using System.Collections.Generic;
     using System.Web;
 
@@ -85,8 +84,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             mixParlay = string.Join(
                                         null,
-                                        new string[]
-                                        {
                                             "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                             ticket.TransId.ToString(),
                                             "&quot;);\">",
@@ -116,8 +113,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             custid,
                                             "&quot;, this);\">",
                                             Apollo.Age.Resources.BetList.details,
-                                            "</div>"
-                                        });
+                                            "</div>");
 
             this.Template.SetValue(mixParlay);
         }

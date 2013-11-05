@@ -35,7 +35,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <returns>
-        /// Choice_Template.
+        /// Choice Template.
         /// </returns>
         Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage);
 

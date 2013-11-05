@@ -88,9 +88,7 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
                 agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == PlaceBetId).AgentPT;
             }
 
-            this.Template.AgentPT.agentPT_setting = string.Join(
-                null,
-                new string[] 
+            string[] agentPTSetting = new string[] 
                     { 
                         "<span class='blue' style='font-weight:normal;'>",
                         Apollo.Age.Resources.BetList.win + ": ",
@@ -104,7 +102,9 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
                         Formatter.FormatNumber2(agentPT_Place * 100, null),
                         "%</b>",
                         "</span>" 
-                    });
+                    };
+
+            this.Template.AgentPT.agentPT_setting = string.Join(null, agentPTSetting);
 
             return this.Template;
         }

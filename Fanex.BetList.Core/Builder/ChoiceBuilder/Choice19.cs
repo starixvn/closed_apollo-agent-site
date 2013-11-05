@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Substitutes.
+    /// Substitutes bet type.
     /// </summary>
     public class Choice19 : Choice1
     {

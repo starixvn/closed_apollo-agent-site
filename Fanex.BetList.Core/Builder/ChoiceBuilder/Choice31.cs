@@ -34,21 +34,15 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[] 
-                                                    {
-                                                        ticket.MatchCode,
+                                                    ticket.MatchCode,
                                                         " - ",
-                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId)
-                                                    });
+                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId));
 
             this.Template.homeTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        Apollo.Age.Resources.BetList.race,
+                                                     Apollo.Age.Resources.BetList.race,
                                                         "&nbsp;",
-                                                        ticket.Race
-                                                    });
+                                                        ticket.Race);
         }
     }
 }

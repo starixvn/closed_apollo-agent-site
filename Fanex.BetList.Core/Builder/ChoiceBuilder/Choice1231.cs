@@ -28,19 +28,16 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
-                        
+
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.awayTeam = null;
             this.Template.LeagueName = null;
 
             this.Template.betTeam = string.Join(
-                                                    null,
-                                                    new string[]
-                                                    {
-                                                        ticket.MatchId.ToString(),
+                null,
+                ticket.MatchId.ToString(),
                                                         " - ",
-                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId)
-                                                    });                        
+                                                        ticketHelper.GetHorseTeamNameById(ticket.HomeId, ticket.AwayId));
 
             this.Template.homeTeam = ticket.TransDate.ToString("M/d/yyyy hh:mm");
         }

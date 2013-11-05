@@ -30,7 +30,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <returns>
-        /// Choice_Template.
+        /// Choice Template.
         /// </returns>
         public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
         {
@@ -39,9 +39,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string mixParlay = string.Join(
                                                 null,
-                                                new string[]
-                                                {
-                                                    "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
+                                                "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                                     ticket.TransId.ToString(),
                                                     "&quot;);\">",
                                                     betTypeName,
@@ -49,8 +47,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     "<br/><br/>",
                                                     "<div id=\"divEvent_",
                                                     ticket.TransId.ToString(),
-                                                    "\" style=\"display: none\" ></div>"
-                                                });
+                                                    "\" style=\"display: none\" ></div>");
 
             this.Template.SetValue(mixParlay);
 

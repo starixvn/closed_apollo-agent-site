@@ -15,6 +15,9 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
     using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
+    /// <summary>
+    /// The stake 1.
+    /// </summary>
     public class Stake1 : IStake
     {
         /// <summary>
@@ -46,7 +49,7 @@ namespace Fanex.BetList.Core.Builder.StakeBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
-        /// IRichTextString.
+        /// Rich Text String.
         /// </returns>
         public IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper)
         {

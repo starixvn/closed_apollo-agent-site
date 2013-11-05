@@ -34,12 +34,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        Apollo.Age.Resources.BetList.ft,
+                                                    Apollo.Age.Resources.BetList.ft,
                                                         ".",
-                                                        ticket.BetTeam.ToUpper()
-                                                    });
+                                                        ticket.BetTeam.ToUpper());
         }
     }
 }

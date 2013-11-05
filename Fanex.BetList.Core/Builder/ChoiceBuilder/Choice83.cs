@@ -36,12 +36,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.homeTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        Apollo.Age.Resources.BetList.numbergameno,
+                                                   Apollo.Age.Resources.BetList.numbergameno,
                                                         "&nbsp;",
-                                                        ticket.MatchCode
-                                                    });
+                                                        ticket.MatchCode);
         }
     }
 }

@@ -41,8 +41,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                             null,
-                                            new string[] {
-                                                " <span class=\"",
+                                            " <span class=\"",
                                                 BetListFavorite,
                                                 "\">",
                                                 team,
@@ -54,8 +53,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                 "\">",
                                                 "&nbsp;",
                                                 draw_away,
-                                                "</span>"
-                                            });
+                                                "</span>");
         }
     }
 }
