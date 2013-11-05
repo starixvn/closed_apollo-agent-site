@@ -10,7 +10,10 @@
 
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
-    public class Choice1320 : Choice1302
+    /// <summary>
+    /// The Choice 1320.
+    /// </summary>
+    public class ChoicDe1320 : Choice1302
     {        
     }
 }

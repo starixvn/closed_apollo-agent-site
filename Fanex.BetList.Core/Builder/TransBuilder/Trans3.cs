@@ -12,7 +12,7 @@
 namespace Fanex.BetList.Core.Builder.TransBuilder
 {
     /// <summary>
-    /// Tran3.
+    /// Transaction 3.
     /// </summary>
     public class Trans3 : Trans1
     {

@@ -15,6 +15,9 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Transaction 1.
+    /// </summary>
     public class Trans1 : ITrans
     {
         /// <summary>
@@ -31,7 +34,10 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <returns>Transaction template.</returns>
         public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
         {
             object oddsType = new object();

@@ -91,7 +91,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
         /// Rich text string.
