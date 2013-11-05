@@ -75,7 +75,7 @@
 }
 
 #box_header, .box-header {
-	width: 884px;
+	width: 750px;
 	margin-top: 0px;
 
 	&.report {
@@ -87,13 +87,25 @@
 		.btn {
 			font-size: @fontSize;
 			height: 21px;
-			padding-bottom: 1px;
+			padding: 0 0 1px;
+		}
+
+		input.datepicker {
+			width: 64px;
+		}
+
+		img.ui-datepicker-trigger {
+			margin-left: 2px;
 		}
 
 		.row {
 			background-color: #C9DBDF;
 			padding: 0 0px;
 			margin-bottom: 1px;
+
+			.cell {
+				margin: 0;
+			}
 
 			&.bg-action {
 				background: @white;
@@ -205,18 +217,18 @@
 .period-schedule {
 	float: left;
 	display: block;
-	margin-left: 10px;
+	margin-left: 5px;
 	border: 1px solid #000;
 
 	.tblRpt {
 		border-color: #DCDCDC;
 		border-width: 1px;
-		width: 250px;
+		width: 215px;
 		height: 274px;
 
 		th, td {
 			height: 20px;
-			padding: 0 3px;
+			padding: 0 2px;
 		}
 
 		thead th {
@@ -339,7 +351,7 @@
 		}
 
 		#box_header {
-			width: 950px;
+			width: 750px;
 			.btn {
 				padding: 0;
 			}		
