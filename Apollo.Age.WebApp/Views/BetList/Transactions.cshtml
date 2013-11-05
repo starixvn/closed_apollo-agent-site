@@ -206,10 +206,10 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                         <td class='r'>
                             @Html.Raw(item.Choice)
                         </td>
-                        <td class='r'>
+                        <td class='r nowrap'>
                             @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
                         </td>
-                        <td class='r'>
+                        <td class='r nowrap'>
                             @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
                         </td>
                         <td class='c'>
@@ -231,10 +231,10 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                     </td>
                     <td class="r total">@i
                     </td>
-                    <td class="r total">
+                    <td class="r total nowrap">
                         @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r result">
+                    <td class="r result nowrap">
                         @Formater.FormatNumber20(totalResult, Formater.CULT_NAME_ENG)
                     </td>
                     <td class='r total'>
