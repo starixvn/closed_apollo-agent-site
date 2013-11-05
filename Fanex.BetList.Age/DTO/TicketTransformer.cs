@@ -13,6 +13,7 @@ namespace Fanex.BetList.Age.DTO
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using Fanex.BetList.Core.Entities;
 
@@ -25,11 +26,10 @@ namespace Fanex.BetList.Age.DTO
         /// Transforms the specified data.
         /// </summary>
         /// <param name="data">The data table.</param>
-        /// <returns>List of tickets.</returns>
+        /// <returns>List of tickets.</returns>   
         public static IList<ITicket> Transform(DataTable data)
         {
             IList<ITicket> tickets = new List<ITicket>();
-
             Type typeTicket = typeof(ITicket);
             PropertyInfo[] typeTicketProps = typeTicket.GetProperties();
             string mapKey = string.Empty;
@@ -45,8 +45,7 @@ namespace Fanex.BetList.Age.DTO
                         if (data.Columns.Contains(mapKey))
                         {
                             object value;
-
-                            // Determine if the property is DBNull
+                           
                             try
                             {
                                 if (row[mapKey] == DBNull.Value)
@@ -54,8 +53,7 @@ namespace Fanex.BetList.Age.DTO
                                     value = null;
                                 }
                                 else
-                                {
-                                    // Determine if the property is nullable
+                                {                                    
                                     Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType);
 
                                     if (underlyingType == null)

@@ -11,6 +11,7 @@
 namespace Fanex.BetList.Age.DTO
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Map field definition for ITicketData type and DataRow.
@@ -20,6 +21,7 @@ namespace Fanex.BetList.Age.DTO
         /// <summary>
         /// The dictionary.
         /// </summary>
+        [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed.")]
         public static Dictionary<string, string> Dict = new Dictionary<string, string>()
         { 
             { "RefNo", "refno" }, 

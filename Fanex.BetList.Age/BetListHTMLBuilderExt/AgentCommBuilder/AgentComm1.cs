@@ -28,7 +28,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         {
             this.Template = new AgentComm_Template();
         }
-        
+
         public AgentComm_Template Template { get; set; }
 
         /// <summary>
@@ -57,7 +57,14 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             else
             {
-                Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount)) : string.Join(null, ConvertByBetType.Comm_Percentage(ticket.ADiscount))) + "%";
+                if (ticket.CommStatus == "1")
+                {
+                    Template.AgentComm.agentComm_setting = string.Join(null, "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount));
+                }
+                else
+                {
+                    Template.AgentComm.agentComm_setting = string.Join(null, ConvertByBetType.Comm_Percentage(ticket.ADiscount)) + "%";
+                }
             }
 
             if (hideDetail)

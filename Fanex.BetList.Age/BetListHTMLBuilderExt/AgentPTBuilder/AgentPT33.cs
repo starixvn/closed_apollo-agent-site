@@ -22,15 +22,53 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     /// </summary>
     public class AgentPT33 : AgentPT1
     {
-        protected int winBetId, placeBetId;
+        private int _winBetId, _placeBetId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentPT33" /> class.
         /// </summary>
         public AgentPT33()
         {
-            winBetId = 31;
-            placeBetId = 32;
+            WinBetId = 31;
+            PlaceBetId = 32;
+        }
+
+        /// <summary>
+        /// Gets or sets the win bet identifier.
+        /// </summary>
+        /// <value>
+        /// The win bet identifier.
+        /// </value>
+        public int WinBetId
+        {
+            get
+            {
+                return _winBetId;
+            }
+
+            set
+            {
+                _winBetId = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the place bet identifier.
+        /// </summary>
+        /// <value>
+        /// The place bet identifier.
+        /// </value>
+        public int PlaceBetId
+        {
+            get
+            {
+                return _placeBetId;
+            }
+
+            set
+            {
+                _placeBetId = value;
+            }
         }
 
         /// <summary>
@@ -52,8 +90,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
 
             if (refTicketData.Count > 1)
             {
-                agentPT_Win = refTicketData.FindLast(item => item.BetTypeId == winBetId).AgentPT;
-                agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == placeBetId).AgentPT;
+                agentPT_Win = refTicketData.FindLast(item => item.BetTypeId == WinBetId).AgentPT;
+                agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == PlaceBetId).AgentPT;
             }
 
             this.Template.AgentPT.agentPT_setting = string.Join(
