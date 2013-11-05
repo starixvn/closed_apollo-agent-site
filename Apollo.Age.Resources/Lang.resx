@@ -2125,4 +2125,7 @@
   <data name="ApplyDownlineAndShadow" xml:space="preserve">
     <value>Apply to all downlines and shadows</value>
   </data>
+  <data name="UpdatePermission" xml:space="preserve">
+    <value>Update Permission</value>
+  </data>
 </root>

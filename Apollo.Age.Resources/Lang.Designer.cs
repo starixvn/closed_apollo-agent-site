@@ -5831,6 +5831,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Permission.
+        /// </summary>
+        public static string UpdatePermission {
+            get {
+                return ResourceManager.GetString("UpdatePermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updated successfully!.
         /// </summary>
         public static string updatesuccessfull {
