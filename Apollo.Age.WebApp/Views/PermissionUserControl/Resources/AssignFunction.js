@@ -96,7 +96,7 @@ var AssignFunction = function ($) {
                     height: 140,
                     width: 500,
                     modal: true,
-                    title: "Dialog Title",
+                    title: Language.UPDATE_TITLE,
                     buttons: {
                         "Yes": function () {
                             AssignFunction.updatePermission(funcRead, funcHost, true);

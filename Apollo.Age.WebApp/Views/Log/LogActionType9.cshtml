@@ -13,14 +13,6 @@
             </td>
         </tr>
     }
-    else
-    {
-        <tr class="sub-title">
-            <td colspan="6">
-                @Lang.ApplyDownlineAndShadow: <strong class="valuechanged">@(isApply ? Lang.lblYes : Lang.lblNo)</strong>
-            </td>
-        </tr>
-    }
     <tr class="no-border-top bg-green">
         <td class="colW1">
             @Lang.Permission
@@ -40,6 +32,24 @@
     @foreach (var itemGroup in listGroupFunction)
     {
         var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;
+
+        if (string.IsNullOrWhiteSpace(username))
+        { 
+        <tr>
+            <td class="colW" colspan="1">
+                <b>@Lang.ApplyDownlineAndShadow</b>
+            </td>
+            <td class="colW2">
+                <strong class="valuechanged">@(isApply ? Lang.lblYes : Lang.lblNo)</strong>
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2 no-border-right">
+            </td>
+        </tr>
+        }
         
         <tr>
             <td class="colW" colspan="2">
@@ -53,8 +63,7 @@
             </td>
             <td class="colW2 no-border-right">
             </td>
-        </tr>
-        
+        </tr>        
         foreach (var itemFunction in itemGroup)
         {
         <tr>
