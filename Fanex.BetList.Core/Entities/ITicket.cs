@@ -121,10 +121,16 @@ namespace Fanex.BetList.Core.Entities
         /// </value>
         decimal ActualStake { get; set; }
 
+        /// <summary>
+        /// Gets or sets the bet team.
+        /// </summary>
+        /// <value>
+        /// The bet team.
+        /// </value>
         string BetTeam { get; set; }
 
         /// <summary>
-        /// Running, Waiting, Refund, Void, Won, Lose, Draw, Reject.
+        /// Gets or sets the status.
         /// </summary>
         /// <value>
         /// The status.
@@ -388,7 +394,7 @@ namespace Fanex.BetList.Core.Entities
         long AwayId { get; set; }
 
         /// <summary>
-        /// Match status: First Goal, Last Goal.
+        /// Gets or sets the event status.
         /// </summary>
         /// <value>
         /// The event status.
@@ -428,10 +434,10 @@ namespace Fanex.BetList.Core.Entities
         string BetCheck { get; set; }
 
         /// <summary>
-        /// Gets or sets the comm status.
+        /// Gets or sets the commission status.
         /// </summary>
         /// <value>
-        /// The comm status.
+        /// The commission status.
         /// </value>
         string CommStatus { get; set; }
 

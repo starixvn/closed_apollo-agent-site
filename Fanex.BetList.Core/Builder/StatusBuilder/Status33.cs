@@ -19,7 +19,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Win/Place.
+    /// Win Place bet type.
     /// </summary>
     public class Status33 : Status1
     {
@@ -132,7 +132,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <summary>
         /// Extract string value between tags from a source string.
         /// </summary>
-        /// <param name="tag">Tag name.</param>
+        /// <param name="tag">Input Tag name.</param>
         /// <param name="source">Source string.</param>
         /// <returns>Extract string between tag.</returns>
         private string ExtractStringBetweenTag(string tag, string source)

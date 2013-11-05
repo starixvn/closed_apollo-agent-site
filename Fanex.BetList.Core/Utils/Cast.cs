@@ -25,7 +25,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal.
         /// </returns>
-        public static Decimal AsDecimal(object value)
+        public static decimal AsDecimal(object value)
         {
             return AsDecimal(value, 0, CultureInfo.CurrentCulture);
         }
@@ -38,7 +38,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal.
         /// </returns>
-        public static Decimal AsDecimal(object value, Decimal defaultValue)
+        public static decimal AsDecimal(object value, decimal defaultValue)
         {
             return AsDecimal(value, defaultValue, CultureInfo.CurrentCulture);
         }
@@ -51,7 +51,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal.
         /// </returns>
-        public static Decimal AsDecimal(object value, IFormatProvider provider)
+        public static decimal AsDecimal(object value, IFormatProvider provider)
         {
             return AsDecimal(value, 0, provider);
         }
@@ -65,15 +65,19 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal.
         /// </returns>
-        public static Decimal AsDecimal(object value, Decimal defaultValue, IFormatProvider provider)
+        public static decimal AsDecimal(object value, decimal defaultValue, IFormatProvider provider)
         {
             if (value == null || value == System.DBNull.Value)
+            {
                 return defaultValue;
+            }
 
-            Decimal retval;
+            decimal retval;
 
             if (provider == null)
+            {
                 provider = CultureInfo.CurrentCulture;
+            }
 
             try
             {
@@ -98,7 +102,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal using invariant culture.
         /// </returns>
-        public static Decimal AsDecimalInvariant(object value)
+        public static decimal AsDecimalInvariant(object value)
         {
             return AsDecimal(value, 0, CultureInfo.InvariantCulture);
         }
@@ -111,7 +115,7 @@ namespace Fanex.BetList.Core.Utils
         /// <returns>
         /// Returns an object as a Decimal using invariant culture.
         /// </returns>
-        public static Decimal AsDecimalInvariant(object value, Decimal defaultValue)
+        public static decimal AsDecimalInvariant(object value, decimal defaultValue)
         {
             return AsDecimal(value, defaultValue, CultureInfo.InvariantCulture);
         }

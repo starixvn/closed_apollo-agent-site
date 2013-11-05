@@ -35,10 +35,10 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <returns>Transaction template.</returns>
-        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betListPage)
+        public virtual Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById funcGetOddsTypeName, BetListPage betListPage)
         {
             object oddsType = new object();
 
@@ -51,7 +51,7 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
                 oddsType = ticket.OddsType;
             }
 
-            this.Template.oddsName = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
+            this.Template.oddsName = funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
