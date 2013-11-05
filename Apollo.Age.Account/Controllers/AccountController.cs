@@ -17,6 +17,7 @@
 namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -42,6 +43,7 @@ namespace Apollo.Age.Account.Controllers
     /// Account controllers.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class AccountController : BaseController
     {
         #region Const for paging
@@ -62,6 +64,7 @@ namespace Apollo.Age.Account.Controllers
         /// Service account.
         /// </summary>
         private readonly IAccountService _accountService;
+
         private readonly IUserService _userService;
 
         private int _agentId;
@@ -495,14 +498,14 @@ namespace Apollo.Age.Account.Controllers
             if (!hasDownlineDetailsPermission)
             {
                 return Json(
-                    new[] 
-                    { 
-                        new 
-                        { 
+                    new[]
+                    {
+                        new
+                        {
                             Id = this.CurrentSession.AgentId,
-                            Username = this.CurrentSession.Username 
-                        } 
-                    }, 
+                            Username = this.CurrentSession.Username
+                        }
+                    },
                     JsonRequestBehavior.AllowGet);
             }
 

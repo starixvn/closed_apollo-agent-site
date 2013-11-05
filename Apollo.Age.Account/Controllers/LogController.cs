@@ -11,6 +11,7 @@ namespace Apollo.Age.Account.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -33,6 +34,7 @@ namespace Apollo.Age.Account.Controllers
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.SystemLog, Policy = Policy.Query)]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class LogController : BaseController
     {
         private readonly ILogRunSpService _logService;
@@ -777,9 +779,11 @@ namespace Apollo.Age.Account.Controllers
                 case "1":
                     statusName = Lang.lblActive;
                     break;
+
                 case "2":
                     statusName = Lang.stopped;
                     break;
+
                 default:
                     statusName = Lang.locked;
                     break;

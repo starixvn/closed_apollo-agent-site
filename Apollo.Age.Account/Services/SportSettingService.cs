@@ -10,6 +10,7 @@
 namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using System.Xml;
@@ -24,6 +25,7 @@ namespace Apollo.Age.Account.Services
     public class SportSettingService : ServiceBase, ISportSettingService
     {
         #region const for read XML PTGrid
+
         private const string _PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
 
         private const string _SPORT_TYPE_NODE_XML = "PTGrid/SportType";
@@ -43,15 +45,16 @@ namespace Apollo.Age.Account.Services
         private const string _ATTRIBUTE_RESOURCE_KEY = "resourcekey";
 
         private const string _MIX_SPORT_PARLAY = "Mix Sports Parlay";
-        #endregion
+
+        #endregion const for read XML PTGrid
 
         private static List<SportSetting> _sportList = null;
 
         public static List<SportSetting> SportList
         {
-            get 
-            { 
-                return _sportList; 
+            get
+            {
+                return _sportList;
             }
 
             set
@@ -64,6 +67,7 @@ namespace Apollo.Age.Account.Services
         /// Get all sport type from customer setting xml file.
         /// </summary>
         /// <returns>Sport setting list.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public List<SportSetting> GetAllSportType()
         {
             var sportList = new List<SportSetting>();
@@ -94,7 +98,7 @@ namespace Apollo.Age.Account.Services
 
                         sportList.Add(sport);
                     }
-                    else 
+                    else
                     {
                         // process for sport id=99 & name=Mix Sports Parlay
                         var sportName = sportTypeNode.Attributes[_ATTRIBUTE_SPORT_NAME].Value.ToString();

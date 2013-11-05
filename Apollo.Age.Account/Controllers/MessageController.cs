@@ -13,6 +13,7 @@ namespace Apollo.Age.Account.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -26,12 +27,14 @@ namespace Apollo.Age.Account.Controllers
     /// Message controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class MessageController : BaseController
     {
         /// <summary>
         /// For temp, set site list is 3000 and 3300.
         /// </summary>
         private const string SiteList = "3000,3300";
+
         private const int SiteId = 3300;
 
         private MessageService _messageService;
@@ -180,6 +183,7 @@ namespace Apollo.Age.Account.Controllers
                         case 0:
                             listMessage = GetNotSpecialMessage(criteria);
                             break;
+
                         case 1:
                             listMessage = GetSpecialMessage(criteria);
                             break;
@@ -363,6 +367,7 @@ namespace Apollo.Age.Account.Controllers
                 To = criteria.To
             });
         }
-        #endregion
+
+        #endregion Private
     }
 }

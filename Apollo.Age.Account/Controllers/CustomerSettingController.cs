@@ -13,6 +13,7 @@
 namespace Apollo.Age.Account.Controllers
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -40,6 +41,7 @@ namespace Apollo.Age.Account.Controllers
     /// Customer Setting Controller.
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class CustomerSettingController : BaseController
     {
         private readonly IAccountService _accountService;
@@ -208,13 +210,13 @@ namespace Apollo.Age.Account.Controllers
 
             foreach (var sportItem in sportList)
             {
-                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+                sportItem.Name = GetResourceData(sportItem.ResourceKey);
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
             foreach (var betTypeItem in betTypeList)
             {
-                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+                betTypeItem.Name = GetResourceData(betTypeItem.ResourceKey);
             }
 
             var agentShareViewModel = new AgentShareViewModel()
@@ -291,14 +293,14 @@ namespace Apollo.Age.Account.Controllers
 
             foreach (var sportItem in sportList)
             {
-                sportItem.Name = base.GetResourceData(sportItem.ResourceKey);
+                sportItem.Name = GetResourceData(sportItem.ResourceKey);
             }
 
             var betTypeList = _sportService.GetBetTypeBySport(sportId, isMixSport);
 
             foreach (var betTypeItem in betTypeList)
             {
-                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+                betTypeItem.Name = GetResourceData(betTypeItem.ResourceKey);
             }
 
             var criteria = new MemberShareCriteria()
@@ -352,7 +354,7 @@ namespace Apollo.Age.Account.Controllers
 
             foreach (var betTypeItem in betTypeList)
             {
-                betTypeItem.Name = base.GetResourceData(betTypeItem.ResourceKey);
+                betTypeItem.Name = GetResourceData(betTypeItem.ResourceKey);
             }
 
             view.BetTypeList = betTypeList;
@@ -393,7 +395,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.IsEditAgent = true;
             ViewBag.IsSimpleMode = isSimpleMode;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
+            ViewBag.IsMaster = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.ParentUsername = parentUsername;
             ViewBag.AllowEdit = agentLevel != null ? !_accountService.IsInPeakHours(agentLevel.Value) : true;
 
@@ -474,7 +476,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.Reload = reload;
             ViewBag.IsSimpleMode = isSimpleMode;
             ViewBag.IsEditAgent = false;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
+            ViewBag.IsMaster = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             ViewBag.AgentUsername = agentUsername;
             ViewBag.MemberIds = memberIds;
 
@@ -498,7 +500,7 @@ namespace Apollo.Age.Account.Controllers
         {
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.PositionTaking, targetCustIds);
             PositionTakingSetting positionTakingSetting = _customerSettingService.GetPositionTakingSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetCurrentLanguage(CurrentSession.Language);
             this.SetPositionTakingLanguage(positionTakingSetting);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
@@ -567,7 +569,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.MemberId = memberId;
             ViewBag.UserName = userName;
             ViewBag.CurentParentAgentId = agentId;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
             return View("~/Views/Account/EditMemberSetting.cshtml");
@@ -583,7 +585,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentId = agentId;
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
-            ViewBag.IsMaster = base.CurrentSession.IsMaster;
+            ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -626,11 +628,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = CurrentSession.AgentName;
             ViewBag.AgentLevel = CurrentSession.AgentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster;
+            ViewBag.CanEdit = CurrentSession.IsMaster;
             ViewBag.IsViewMySetting = true;
             SettingContext settingContext = this.GetCurrentSettingContext(
                 CurrentSession.AgentId,
-                base.CurrentSession.AgentId,
+                CurrentSession.AgentId,
                 CurrentSession.AgentLevel,
                 FormSettingType.All,
                 string.Empty);
@@ -661,11 +663,11 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsViewOnMember = false;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
-            ViewBag.IsViewMySetting = base.CurrentSession.AgentId == agentId;
+            ViewBag.CanEdit = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
+            ViewBag.IsViewMySetting = CurrentSession.AgentId == agentId;
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            SettingContext settingContext = this.GetCurrentSettingContext(agentId, base.CurrentSession.AgentId, agentLevel, FormSettingType.All, string.Empty);
+            SettingContext settingContext = this.GetCurrentSettingContext(agentId, CurrentSession.AgentId, agentLevel, FormSettingType.All, string.Empty);
 
             return ViewAccountDetails(settingContext);
         }
@@ -699,7 +701,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.BackLink = backLink;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.CanEdit = base.CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
+            ViewBag.CanEdit = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
 
             return ViewAccountDetails(settingContext);
@@ -794,7 +796,7 @@ namespace Apollo.Age.Account.Controllers
         {
             foreach (Fanex.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
             {
-                bettingLimitItem.Name = base.GetResourceData(bettingLimitItem.ResourceKey);
+                bettingLimitItem.Name = GetResourceData(bettingLimitItem.ResourceKey);
             }
         }
 
@@ -859,7 +861,7 @@ namespace Apollo.Age.Account.Controllers
                 {
                     foreach (Fanex.CustSetting.ViewData.BetType betTypeItem in betTypeGroupItem.BetTypes)
                     {
-                        betTypeName = bettypeTitle = base.GetResourceData(betTypeItem.ResourceKey);
+                        betTypeName = bettypeTitle = GetResourceData(betTypeItem.ResourceKey);
                         betTypeItem.Name = betTypeName;
                         betTypeItem.Title = bettypeTitle;
                     }
@@ -902,15 +904,15 @@ namespace Apollo.Age.Account.Controllers
         {
             SettingContext settingContext = new SettingContext
             {
-                CustId = base.CurrentSession.AgentId,
+                CustId = CurrentSession.AgentId,
                 TargetCustId = targetCustId,
-                ActorCustId = base.CurrentSession.AgentId,
-                RoleId = this.GetRoleFromAgentLevel(base.CurrentSession.AgentLevel),
+                ActorCustId = CurrentSession.AgentId,
+                RoleId = this.GetRoleFromAgentLevel(CurrentSession.AgentLevel),
                 TargetRoleId = this.GetTargetRoleIdFromAgenLevel(agentLevel),
                 FormSetting = (int)formSettingType,
                 FormId = FormType.EditPT,
-                Language = base.CurrentSession.Language,
-                AdminId = base.CurrentSession.AdminId,
+                Language = CurrentSession.Language,
+                AdminId = CurrentSession.AdminId,
                 TargetCustIds = memberIds
             };
 
@@ -929,13 +931,13 @@ namespace Apollo.Age.Account.Controllers
             }
 
             //// If current Agent difference with Direct Upline Agent, then set Form to Edit Non Direct Member
-            if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            if (agentId != null && agentId.Value != CurrentSession.AgentId)
             {
                 settingContext.FormId = FormType.EditMemberNonDirect;
             }
 
             //// View Current Agent Setting
-            if (base.CurrentSession.AgentId == targetCustId && settingContext.TargetRoleId != (int)Role.Member)
+            if (CurrentSession.AgentId == targetCustId && settingContext.TargetRoleId != (int)Role.Member)
             {
                 settingContext.FormId = FormType.ViewAllSetting;
             }
@@ -946,11 +948,11 @@ namespace Apollo.Age.Account.Controllers
                 settingContext.CustId = agentId.Value;
             }
 
-            if (!base.CurrentSession.IsMaster)
+            if (!CurrentSession.IsMaster)
             {
                 //// If Current Login Agent is not Agent Master User, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
-                if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
+                if (CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
                 {
                     settingContext.CustId = agentId.Value;
                 }
@@ -967,7 +969,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 //// If Current Login Agent is not have edit customer setting, then set form to form view
                 settingContext.FormId = FormType.ShadowViewSetting;
-                if (base.CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
+                if (CurrentSession.IsSuper && settingContext.TargetRoleId == (int)Role.Member)
                 {
                     settingContext.CustId = agentId.Value;
                 }
@@ -997,7 +999,7 @@ namespace Apollo.Age.Account.Controllers
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
-            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetCurrentLanguage(CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
@@ -1047,7 +1049,7 @@ namespace Apollo.Age.Account.Controllers
         {
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
 
-            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetCurrentLanguage(CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             return betLimits;

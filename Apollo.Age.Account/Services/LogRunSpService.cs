@@ -44,7 +44,7 @@ namespace Apollo.Age.Account.Services
 
         public string RevertGroupName(string group)
         {
-            return base.RevertCommGroupName(group);
+            return RevertCommGroupName(group);
         }
     }
 }
