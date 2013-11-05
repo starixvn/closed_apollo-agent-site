@@ -1987,4 +1987,7 @@
   <data name="periodnumber" xml:space="preserve">
     <value>第 {0} 期</value>
   </data>
+  <data name="ApplyDownlineAndShadow" xml:space="preserve">
+    <value>更新全部下線代理及子帳號</value>
+  </data>
 </root>
