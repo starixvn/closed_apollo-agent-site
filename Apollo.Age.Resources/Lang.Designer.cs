@@ -295,6 +295,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply to all downlines and shadows.
+        /// </summary>
+        public static string ApplyDownlineAndShadow {
+            get {
+                return ResourceManager.GetString("ApplyDownlineAndShadow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply % Preset to all Members of Agent {0}.
         /// </summary>
         public static string ApplyPresetSimpleMode {

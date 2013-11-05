@@ -2122,4 +2122,7 @@
   <data name="periodnumber" xml:space="preserve">
     <value>Period {0}</value>
   </data>
+  <data name="ApplyDownlineAndShadow" xml:space="preserve">
+    <value>Apply to all downlines and shadows</value>
+  </data>
 </root>
