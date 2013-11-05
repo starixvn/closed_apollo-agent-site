@@ -660,35 +660,45 @@ namespace Apollo.Age.Account.Controllers
         public ViewResult LogActionType9(string oldData, string data)
         {
             var listFunctionPolicy = new List<LogPermissionModel>();
+            var username = string.Empty;
+            var isApply = false;
 
             try
             {
                 if (!string.IsNullOrWhiteSpace(oldData))
                 {
                     var xmlData = XDocument.Parse(oldData);
-                    var permission = xmlData.Descendants("z");
+                    var xmlRoot = xmlData.Descendants("r");
 
-                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    if (!ReferenceEquals(xmlRoot, null) && xmlRoot.Any())
                     {
-                        foreach (var itemFunctionPolicy in permission)
+                        foreach (var itemRoot in xmlRoot)
                         {
-                            var func = new LogPermissionModel
-                            {
-                                Function = new Function
-                                {
-                                    Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
-                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
-                                    FunctionGroup = new FunctionGroup
-                                    {
-                                        Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
-                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
-                                    }
-                                },
-                                OldPolicy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
-                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
-                            };
+                            var permission = itemRoot.Descendants("z");
 
-                            listFunctionPolicy.Add(func);
+                            if (!ReferenceEquals(permission, null) && permission.Any())
+                            {
+                                foreach (var itemFunctionPolicy in permission)
+                                {
+                                    var func = new LogPermissionModel
+                                    {
+                                        Function = new Function
+                                        {
+                                            Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                            itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                            FunctionGroup = new FunctionGroup
+                                            {
+                                                Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                            itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                            }
+                                        },
+                                        OldPolicy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                            Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                                    };
+
+                                    listFunctionPolicy.Add(func);
+                                }
+                            }
                         }
                     }
                 }
@@ -696,36 +706,46 @@ namespace Apollo.Age.Account.Controllers
                 if (!string.IsNullOrWhiteSpace(data))
                 {
                     var xmlData = XDocument.Parse(data);
-                    var permission = xmlData.Descendants("z");
+                    var xmlRoot = xmlData.Descendants("r");
 
-                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    if (!ReferenceEquals(xmlRoot, null) && xmlRoot.Any())
                     {
-                        foreach (var itemFunctionPolicy in permission)
+                        foreach (var itemRoot in xmlRoot)
                         {
-                            var func = new LogPermissionModel
+                            var permission = itemRoot.Descendants("z");
+                            username = itemRoot.Attribute("u") != null ? itemRoot.Attribute("u").Value : string.Empty;
+                            isApply = itemRoot.Attribute("ia") != null ? itemRoot.Attribute("ia").Value == "1" : false;
+
+                            if (!ReferenceEquals(permission, null) && permission.Any())
                             {
-                                Function = new Function
+                                foreach (var itemFunctionPolicy in permission)
                                 {
-                                    Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
-                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
-                                    FunctionGroup = new FunctionGroup
+                                    var func = new LogPermissionModel
                                     {
-                                        Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
-                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                        Function = new Function
+                                        {
+                                            Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                            itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                            FunctionGroup = new FunctionGroup
+                                            {
+                                                Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                            itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                            }
+                                        },
+                                        Policy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                            Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                                    };
+
+                                    for (int i = 0; i < listFunctionPolicy.Count; i++)
+                                    {
+                                        var item = listFunctionPolicy[i];
+
+                                        if (string.Equals(item.Function.Name, func.Function.Name))
+                                        {
+                                            item.Policy = func.Policy;
+                                            break;
+                                        }
                                     }
-                                },
-                                Policy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
-                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
-                            };
-
-                            for (int i = 0; i < listFunctionPolicy.Count; i++)
-                            {
-                                var item = listFunctionPolicy[i];
-
-                                if (string.Equals(item.Function.Name, func.Function.Name))
-                                {
-                                    item.Policy = func.Policy;
-                                    break;
                                 }
                             }
                         }
@@ -736,6 +756,9 @@ namespace Apollo.Age.Account.Controllers
             {
                 Logger.Log.Error(ex.Message);
             }
+
+            ViewBag.Username = username;
+            ViewBag.IsApply = isApply;
 
             return View(listFunctionPolicy);
         }

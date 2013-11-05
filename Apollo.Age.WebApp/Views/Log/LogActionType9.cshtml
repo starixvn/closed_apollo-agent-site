@@ -1,8 +1,26 @@
 ﻿@model List<LogPermissionModel>
 @{      
-    var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.Name).ToList() : null;    
+    var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.Name).ToList() : null;
+    var username = ViewBag.Username;
+    var isApply = ViewBag.IsApply != null ? (bool)ViewBag.IsApply : false;
 }
 <table class="tblRpt">
+    @if (!string.IsNullOrWhiteSpace(username))
+    { 
+        <tr class="sub-title">
+            <td colspan="6">
+                @Lang.Shadow: <strong>@username</strong>
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="sub-title">
+            <td colspan="6">
+                @Lang.ApplyDownlineAndShadow: <strong class="valuechanged">@(isApply ? Lang.lblYes : Lang.lblNo)</strong>
+            </td>
+        </tr>
+    }
     <tr class="no-border-top bg-green">
         <td class="colW1">
             @Lang.Permission

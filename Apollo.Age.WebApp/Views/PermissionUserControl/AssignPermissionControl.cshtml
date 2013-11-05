@@ -18,7 +18,7 @@
             else
             {                
                 @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.Shadow: <strong>@Model.ShadowUsername</strong>
-                                                                                                }
+                                                                                                            }
         </span>
     </div>
     <div class="end">
@@ -101,9 +101,7 @@
         </tr>
     </tbody>
 </table>
-
-<div id="confirm-mess" class="confirm-mess">asdasdd</div>
-
+<div id="confirm-mess" class="confirm-mess">@Lang.ConfirmUpdatePermission</div>
 @Html.Hidden("IsMaster", Model.IsMaster ? "1" : "0")
 @Html.Hidden("IsDirectAgent", Model.IsDirectAgent ? "1" : "0")
 @Html.Hidden("AgentUserId", Model.AgentUserId)
