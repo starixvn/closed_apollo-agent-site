@@ -57,7 +57,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
             else
             {
-                Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
+                Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount)) : string.Join(null, ConvertByBetType.Comm_Percentage(ticket.ADiscount))) + "%";
             }
 
             if (hideDetail)

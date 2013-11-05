@@ -57,10 +57,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
             }
 
             this.Template.AgentPT.agentPT_setting = string.Join(
-                                                                null, 
-                                                                new string[] 
-                                                                { 
-                                                                    "<span class='blue' style='font-weight:normal;'>",
+                                                                null,
+                                                                "<span class='blue' style='font-weight:normal;'>",
                                                                     BetList.win + ": ",
                                                                     "<b>",
                                                                     Formatter.FormatNumber2(agentPT_Win * 100, null),
@@ -71,8 +69,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
                                                                     "<b>",
                                                                     Formatter.FormatNumber2(agentPT_Place * 100, null),
                                                                     "%</b>",
-                                                                    "</span>" 
-                                                                });
+                                                                    "</span>");
 
             return this.Template;
         }

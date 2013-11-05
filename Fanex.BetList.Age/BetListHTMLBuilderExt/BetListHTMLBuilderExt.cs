@@ -179,12 +179,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         {
             string typeName = string.Join(
                                            null,
-                                           new string[] 
-                                           {
-                                                AgentPTBuilderNamespace,
+                                           AgentPTBuilderNamespace,
                                                 ".AgentPT",
-                                                bettype.ToString() 
-                                           });
+                                                bettype.ToString());
 
             Type type = Type.GetType(typeName);
 
@@ -209,12 +206,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         {
             string typeName = string.Join(
                                            null,
-                                           new string[]
-                                            {
-                                                AgentCommBuilderNamespace,
+                                           AgentCommBuilderNamespace,
                                                 ".AgentComm",
-                                                bettype.ToString()
-                                            });
+                                                bettype.ToString());
 
             Type type = Type.GetType(typeName);
 
@@ -237,12 +231,9 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         {
             string typeName = string.Join(
                                             null,
-                                            new string[] 
-                                            {
-                                                FooterBuilderNamespace,
+                                             FooterBuilderNamespace,
                                                 ".Footer",
-                                                footerType.ToString() 
-                                            });
+                                                footerType.ToString());
 
             Type type = Type.GetType(typeName);
 
