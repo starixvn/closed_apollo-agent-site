@@ -29,12 +29,8 @@
         <td class="colW1 no-border-right">
         </td>
     </tr>
-    @foreach (var itemGroup in listGroupFunction)
+    @if (string.IsNullOrWhiteSpace(username))
     {
-        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;
-
-        if (string.IsNullOrWhiteSpace(username))
-        { 
         <tr>
             <td class="colW" colspan="1">
                 <b>@Lang.ApplyDownlineAndShadow</b>
@@ -49,7 +45,10 @@
             <td class="colW2 no-border-right">
             </td>
         </tr>
-        }
+    }
+    @foreach (var itemGroup in listGroupFunction)
+    {
+        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;        
         
         <tr>
             <td class="colW" colspan="2">
