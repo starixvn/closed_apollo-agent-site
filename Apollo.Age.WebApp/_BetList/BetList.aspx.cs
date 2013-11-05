@@ -47,7 +47,7 @@ namespace Sunplus.Agent.UI._BetList
         private int _matchId;
         private int _live;
         private string _bettype;
-        private string betTeam;
+        private string _betTeam;
         private string _mainShareHolderUsername;
         private BetListTemplate tpl = new BetListTemplate();
         private TotalBetsService totalBetsService = new TotalBetsService();
@@ -149,7 +149,7 @@ namespace Sunplus.Agent.UI._BetList
                 BetTypes = _bettype,
                 MatchId = _matchId,
                 LiveIndicator = _live,
-                BetTeam = betTeam
+                BetTeam = _betTeam
             };
 
             TicketResult mainTickets;
@@ -170,7 +170,7 @@ namespace Sunplus.Agent.UI._BetList
         {
             _type = GetStringRequest("type", string.Empty).ToLower();
             _bettype = GetStringRequest("bettype", string.Empty);
-            betTeam = GetStringRequest("betteam", string.Empty);
+            _betTeam = GetStringRequest("betteam", string.Empty);
             _matchId = GetIntRequest("matchid", 0);
             mainShareHolderId = GetIntRequest("mainShareHolderId", 0);
             _mainShareHolderUsername = GetStringRequest("mainShareHolderUsername", string.Empty);
