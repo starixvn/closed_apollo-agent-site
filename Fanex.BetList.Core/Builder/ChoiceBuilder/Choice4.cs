@@ -36,11 +36,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             // "&nbsp" because export format
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        "&nbsp;",
-                                                        choice
-                                                    });
+                                                     "&nbsp;",
+                                                        choice);
         }
     }
 }

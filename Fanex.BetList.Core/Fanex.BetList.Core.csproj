@@ -205,7 +205,9 @@
     <Compile Include="Builder\TransBuilder\Trans85.cs" />
     <Compile Include="Builder\TransBuilder\Trans18.cs" />
     <Compile Include="Builder\TransBuilder\Trans7.cs" />
-    <Compile Include="Builder\TransBuilder\Trans.cs" />
+    <Compile Include="Builder\TransBuilder\Trans.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Builder\TransBuilder\Trans3.cs" />
     <Compile Include="Builder\TransBuilder\ITrans.cs" />
     <Compile Include="Builder\TransBuilder\Trans1.cs" />

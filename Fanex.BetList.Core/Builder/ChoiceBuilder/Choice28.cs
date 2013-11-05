@@ -74,13 +74,10 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        teamName,
+                                                    teamName,
                                                         "&nbsp;<span class=\"underdog\">(",
                                                         handicap.ToString(),
-                                                        ")</span>"
-                                                    });
+                                                        ")</span>");
         }
     }
 }

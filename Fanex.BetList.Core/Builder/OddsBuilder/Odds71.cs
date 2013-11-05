@@ -17,12 +17,12 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Casino.
+    /// Casino game.
     /// </summary>
     public class Odds71 : IOdds
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Odds1" /> class.
+        /// Initializes a new instance of the <see cref="Odds71" /> class.
         /// </summary>
         public Odds71()
         {
@@ -36,12 +36,12 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
-        /// <returns>Odds_Template.</returns>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>Odds Template.</returns>
         public Odds_Template Render(
             ITicket ticket, 
             List<ITicketData> ticketData, 
-            GetCachePropertyById FuncGetOddsTypeName)
+            GetCachePropertyById funcGetOddsTypeName)
         {
             // This bettype never has an odds
             this.Template.odds = "-";
@@ -55,18 +55,18 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
-        /// IRichTextString.
+        /// Rich Text String.
         /// </returns>
         public IRichTextString RenderRTF(
             ITicket ticket, 
             List<ITicketData> ticketData, 
-            GetCachePropertyById FuncGetOddsTypeName, 
+            GetCachePropertyById funcGetOddsTypeName, 
             RTFHelper rtfHelper)
         {
-            Render(ticket, ticketData, FuncGetOddsTypeName);
+            Render(ticket, ticketData, funcGetOddsTypeName);
             var rtfOdds = BuildRTFOdds(rtfHelper);
             
             return rtfOdds;
@@ -76,7 +76,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// Builds the RTF odds.
         /// </summary>
         /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns></returns>
+        /// <returns>Build RTF Odds.</returns>
         protected virtual IRichTextString BuildRTFOdds(RTFHelper rtfHelper)
         {
             string odds = Template.odds;

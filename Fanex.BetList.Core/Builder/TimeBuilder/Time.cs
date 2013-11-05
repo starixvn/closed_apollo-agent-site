@@ -9,24 +9,15 @@
 // ---------------------------------------------------------------------------------
 namespace Fanex.BetList.Core.Builder.TimeBuilder
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Time class.
+    /// </summary>
     public class Time : ITime
     {
-        /// <summary>
-        /// Gets or sets the template.
-        /// </summary>
-        /// <value>
-        /// The template.
-        /// </value>
-        public Time_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Time" /> class.
         /// </summary>
@@ -36,11 +27,19 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
         }
 
         /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        public Time_Template Template { get; set; }
+
+        /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="page">Link from page.</param>
-        /// <returns></returns>
+        /// <returns>Time Template.</returns>
         public virtual Time_Template Render(ITicket ticket, BetListPage page)
         {
             switch (page)
@@ -49,6 +48,7 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
                 case BetListPage.Forecast:
                     Template.transDate = Formatter.FormatDateTime22(ticket.TransDate);
                     break;
+
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
                 case BetListPage.AccountInfo:
@@ -56,6 +56,7 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
                 case BetListPage.Outstanding:
                     Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
                     break;
+
                 default:
                     Template.transDate = Formatter.FullDateFormat(ticket.TransDate);
                     break;

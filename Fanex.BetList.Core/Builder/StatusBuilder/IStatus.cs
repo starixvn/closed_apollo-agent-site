@@ -31,18 +31,20 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data (Status33 - Win/Place).</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
-        /// <returns></returns>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
+        /// <returns>Status template.</returns>
         Status_Template Render(ITicket ticket, List<ITicketData> ticketData);
 
         /// <summary>
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
-        /// <returns></returns>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich text string.
+        /// </returns>
         IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper);
     }
 }

@@ -38,10 +38,10 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Status Template.
+        /// </returns>
         public override Templates.Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             base.Render(ticket, ticketData);
@@ -82,6 +82,14 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             return Template;
         }
 
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich Text String.</returns>
         public override IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
         {
             Render(ticket, ticketData);
@@ -126,7 +134,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="tag">Tag name.</param>
         /// <param name="source">Source string.</param>
-        /// <returns></returns>
+        /// <returns>Extract string between tag.</returns>
         private string ExtractStringBetweenTag(string tag, string source)
         {
             string startTag = string.Join(null, new string[] { "<", tag, ">" });

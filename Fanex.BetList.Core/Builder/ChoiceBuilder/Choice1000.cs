@@ -38,15 +38,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             BetListPage betListPage)
         {
             string content = string.Join(
-                                            null,
-                                            new string[]
-                                            {
-                                                "<div><span class='",
+                null,
+                "<div><span class='",
                                                 BetListFavorite,
                                                 "'>",
                                                 Apollo.Age.Resources.BetList.p2pGame,
-                                                "</span></div>"
-                                            });
+                                                "</span></div>");
 
             this.Template.SetValue(content);
 

@@ -31,11 +31,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        "&nbsp;",
-                                                        ticket.BetTeam
-                                                    });
+                                                   "&nbsp;",
+                                                        ticket.BetTeam);
 
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }

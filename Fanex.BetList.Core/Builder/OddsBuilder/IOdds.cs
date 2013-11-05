@@ -32,7 +32,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
-        /// <returns>Odds_Template.</returns>
+        /// <returns>Odds Template.</returns>
         Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName);
 
         /// <summary>

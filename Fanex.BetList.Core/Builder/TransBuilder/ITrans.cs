@@ -29,9 +29,9 @@ namespace Fanex.BetList.Core.Builder.TransBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the function get odds type.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <param name="betlistPage">The betlist page.</param>
         /// <returns></returns>
-        Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById FuncGetOddsTypeName, BetListPage betlistPage);
+        Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById funcGetOddsTypeName, BetListPage betlistPage);
     }
 }
