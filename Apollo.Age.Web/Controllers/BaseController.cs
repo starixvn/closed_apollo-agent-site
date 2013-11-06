@@ -18,6 +18,7 @@ namespace Apollo.Age.Web
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
@@ -49,7 +50,7 @@ namespace Apollo.Age.Web
         #region PROPERTIES
 
         /// <summary>
-        /// Gets Current Session.           
+        /// Gets Current Session.
         /// </summary>
         /// <value>Current Session.</value>
         protected ICurrentSession CurrentSession
@@ -157,6 +158,25 @@ namespace Apollo.Age.Web
         #endregion Override functions
 
         #region Auth
+
+        /// <summary>
+        /// Permissions the downline detail.
+        /// </summary>
+        /// <param name="customerId">The customer identifier.</param>
+        /// <param name="functionKey">The function key.</param>
+        /// <returns>True for permission downline detail is ok.</returns>
+        protected bool PermissionDownlineDetail(int customerId, string functionKey)
+        {
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);            
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (customerId != this.CurrentSession.UserId && !hasDownlineDetailsPermission)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Checking Authentication.
