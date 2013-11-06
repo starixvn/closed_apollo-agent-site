@@ -75,7 +75,7 @@
 }
 
 #box_header, .box-header {
-	width: 884px;
+	width: 805px;
 	margin-top: 0px;
 
 	&.report {
@@ -87,13 +87,25 @@
 		.btn {
 			font-size: @fontSize;
 			height: 21px;
-			padding-bottom: 1px;
+			padding: 0 0 1px;
+		}
+
+		input.datepicker {
+			width: 65px;
+		}
+
+		img.ui-datepicker-trigger {
+			margin-left: 2px;
 		}
 
 		.row {
 			background-color: #C9DBDF;
-			padding: 0 0px;
+			padding: 0;
 			margin-bottom: 1px;
+
+			.cell {
+				margin: 0;
+			}
 
 			&.bg-action {
 				background: @white;
@@ -107,26 +119,31 @@
 					&.btn-action {
 						float: none;
 						margin: auto;
-						width: 173px;
+						width: 153px;
 
 						input {
-							margin-right: 20px;
+							margin-right: 10px;
 						}
 
 						.btn {
 							padding: 0 8px;
-							height: 20px;
 							float: left;
 						}
 					}
 				}				
 			}
 		}
+
+		&.matchEnter {
+			width: 750px;
+		}
+
 		.winloss, .outstanding {
 			.bettype {
 				min-width: 146px;
 			}
 		}
+
 		.winloss, .outstanding, .sportcredit {
 			width: 100%;
 
@@ -205,18 +222,18 @@
 .period-schedule {
 	float: left;
 	display: block;
-	margin-left: 10px;
+	margin-left: 5px;
 	border: 1px solid #000;
 
 	.tblRpt {
 		border-color: #DCDCDC;
 		border-width: 1px;
-		width: 250px;
+		width: 215px;
 		height: 274px;
 
 		th, td {
 			height: 20px;
-			padding: 0 3px;
+			padding: 0 2px;
 		}
 
 		thead th {
@@ -289,7 +306,7 @@
 	display: table;
 	margin-top: 10px;
 	padding: 10px;
-	width: 864px;
+	width: 785px;
 
 	.title-notes {
 		float: left;
@@ -300,7 +317,7 @@
 		float: left;		
 		list-style: disc outside none;
 		margin-left: 26px;
-		width: 680px;
+		width: 626px;
 		font-style: italic;	
 	}
 }
@@ -309,7 +326,7 @@
 
 .ie {
 	#box_header.report .btn, .box-header.report .btn {
-		height: 20px;
+		height: 22px;
 	}
 
 	#function-bar {
@@ -320,10 +337,6 @@
 				color: #0000EE;
 			}
 		}
-		.menu.report-sportcredit
-		{
-			margin: 2px 80px 0 291px;
-		}		
 	}
 }
 
@@ -338,19 +351,36 @@
 			}
 		}
 
-		#box_header {
-			width: 950px;
-			.btn {
-				padding: 0;
-			}		
-		}
-
 		.export-excel {
 			margin-top: 0;
 		}
+	}
+}
+
+.eq-ie8, .eq-ie7 {
+	#page_main {
+		#box_header {
+			
+			&.report {
+				width: 797px;
+
+				&.matchEnter {
+					width: 750px;
+				}
+			}
+
+			.btn {
+				padding: 0 2px;
+				overflow: visible;
+			}
+		}
+
+		#function-bar .menu.report-sportcredit {
+			margin-left: 283px;
+		}
 
 		.notes {
-			width: 930px;
+			width: 777px;
 		}
 	}
 }

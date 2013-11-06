@@ -62,7 +62,7 @@ namespace Apollo.Age.Reports.Services
 
                 if (sportTypes == Apollo.Age.Core.SportGroup.Others && matchResult != null)
                 {
-                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
+                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromSeconds(30));
                 }
             }
 
@@ -91,7 +91,7 @@ namespace Apollo.Age.Reports.Services
                 result = GetData<OutrightResultModel>(criteria);
                 if (result != null)
                 {
-                    CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
+                    CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromSeconds(30));
                 }
             }
 

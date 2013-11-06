@@ -424,7 +424,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 AgentId = -1,
                 BetTypes = betType,
-                SportTypes = sportType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
@@ -458,7 +458,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername"></param>
         /// <returns></returns>
 
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = "Win_Loss", Policy = Policy.Query)]
         public ViewResult Winloss(int custId,
             DateTime fromDate,
             DateTime toDate,
