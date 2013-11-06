@@ -507,6 +507,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTypeName">Name of the bet type.</param>
         /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult Winloss(
             int custId,
             DateTime fromDate,
