@@ -14,6 +14,7 @@ new ReportMenuViewModel
     ReportName = Lang.outstanding,
     SportType = Model.SportTypeIds
 })
+<div class="clear"></div>
 <div id="box_header" class="report report-outstanding">
     <table class="outstanding">
         <tr>
@@ -32,6 +33,7 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
+<div class="clear"></div>
 @if (!string.IsNullOrWhiteSpace(Model.SportTypeIds))
 {
     if (Model.DownlinePath != null && Model.DownlinePath.Any())
