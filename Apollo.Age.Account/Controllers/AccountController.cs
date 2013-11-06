@@ -169,6 +169,11 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Member down line.</returns>
         public ActionResult MemberDownline(int agentId, int? page)
         {
+            if (!PermissionDownlineDetail(agentId))
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             int totalPage = 0;
             var criteria = new MemberDownlineCriteria()
@@ -359,10 +364,17 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Agent tree list.</returns>
         public ViewResult AgentTreeList(int agentId)
         {
+           
+
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
             ViewBag.AgentId = agentId;
             ViewBag.HasDownlineDetailsPermission = hasDownlineDetailsPermission;
+
+            if (!PermissionDownlineDetail(agentId))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");                    
+            }
 
             return View();
         }

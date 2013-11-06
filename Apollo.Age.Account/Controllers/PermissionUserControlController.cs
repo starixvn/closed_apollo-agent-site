@@ -58,7 +58,7 @@ namespace Apollo.Age.Account.Controllers
         public ActionResult AssignPermissionControl(int parentAgentId, int agentUserId)
         {
 
-            if (!PermissionDownlineDetail(agentUserId, ApolloFunctionKeys.PermissionControl))
+            if (!PermissionDownlineDetail(agentUserId))
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -154,7 +154,7 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.ShadowPermission, Policy = Policy.Query)]
         public ActionResult AgentUserList(int agentId, string username)
         {
-            if (!PermissionDownlineDetail(agentId, ApolloFunctionKeys.ShadowPermission))
+            if (!PermissionDownlineDetail(agentId))
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

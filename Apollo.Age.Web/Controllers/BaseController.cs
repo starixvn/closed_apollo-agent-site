@@ -165,7 +165,7 @@ namespace Apollo.Age.Web
         /// <param name="customerId">The customer identifier.</param>
         /// <param name="functionKey">The function key.</param>
         /// <returns>True for permission downline detail is ok.</returns>
-        protected bool PermissionDownlineDetail(int customerId, string functionKey)
+        protected bool PermissionDownlineDetail(int customerId)
         {
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);            
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;

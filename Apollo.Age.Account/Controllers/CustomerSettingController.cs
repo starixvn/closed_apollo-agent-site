@@ -667,7 +667,7 @@ namespace Apollo.Age.Account.Controllers
         {
          
             var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);                      
-            if (!PermissionDownlineDetail(agentId, ApolloFunctionKeys.CustomerSetting))
+            if (!PermissionDownlineDetail(agentId))
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
