@@ -75,7 +75,7 @@
 }
 
 #box_header, .box-header {
-	width: 750px;
+	width: 805px;
 	margin-top: 0px;
 
 	&.report {
@@ -100,7 +100,7 @@
 
 		.row {
 			background-color: #C9DBDF;
-			padding: 0 0px;
+			padding: 0;
 			margin-bottom: 1px;
 
 			.cell {
@@ -119,10 +119,10 @@
 					&.btn-action {
 						float: none;
 						margin: auto;
-						width: 173px;
+						width: 145px;
 
 						input {
-							margin-right: 20px;
+							margin-right: 10px;
 						}
 
 						.btn {
@@ -134,11 +134,17 @@
 				}				
 			}
 		}
+
+		&.matchEnter {
+			width: 750px;
+		}
+
 		.winloss, .outstanding {
 			.bettype {
 				min-width: 146px;
 			}
 		}
+
 		.winloss, .outstanding, .sportcredit {
 			width: 100%;
 
@@ -301,7 +307,7 @@
 	display: table;
 	margin-top: 10px;
 	padding: 10px;
-	width: 864px;
+	width: 785px;
 
 	.title-notes {
 		float: left;
@@ -312,7 +318,7 @@
 		float: left;		
 		list-style: disc outside none;
 		margin-left: 26px;
-		width: 680px;
+		width: 626px;
 		font-style: italic;	
 	}
 }
@@ -321,7 +327,7 @@
 
 .ie {
 	#box_header.report .btn, .box-header.report .btn {
-		height: 20px;
+		height: 22px;
 	}
 
 	#function-bar {
@@ -332,10 +338,6 @@
 				color: #0000EE;
 			}
 		}
-		.menu.report-sportcredit
-		{
-			margin: 2px 80px 0 291px;
-		}		
 	}
 }
 
@@ -350,19 +352,36 @@
 			}
 		}
 
-		#box_header {
-			width: 750px;
-			.btn {
-				padding: 0;
-			}		
-		}
-
 		.export-excel {
 			margin-top: 0;
 		}
+	}
+}
+
+.eq-ie8, .eq-ie7 {
+	#page_main {
+		#box_header {
+			
+			&.report {
+				width: 797px;
+
+				&.matchEnter {
+					width: 750px;
+				}
+			}
+
+			.btn {
+				padding: 0 2px;
+				overflow: visible;
+			}
+		}
+
+		#function-bar .menu.report-sportcredit {
+			margin-left: 283px;
+		}
 
 		.notes {
-			width: 930px;
+			width: 777px;
 		}
 	}
 }
