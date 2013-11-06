@@ -375,6 +375,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="parentUsername">The parent username.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditAgentPositionTaking(
             int agentId,
             string userName,
@@ -457,6 +458,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="memberIds">List of member ID.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditMemberPositionTaking(
             int agentId,
             string agentUsername = "",
@@ -520,6 +522,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [HttpPost, AllowUpdateChecking]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult UpdatePositionTaking(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
             Result result = _customerSettingService.UpdatePositionTakingSetting(settingContext, positionTakingSetting);
@@ -541,6 +544,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="showHeader">Show header or not.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditAllSetting(
             int custId,
             string userName,
@@ -559,6 +563,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditMemberSetting(
             int memberId,
             string userName,
@@ -576,6 +581,7 @@ namespace Apollo.Age.Account.Controllers
         }
 
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditAgentSetting(
             int agentId,
             int agentLevel,
@@ -606,6 +612,7 @@ namespace Apollo.Age.Account.Controllers
 
         [HttpPost, AllowUpdateChecking]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult UpdateMemberSetting(int memberId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
@@ -613,6 +620,7 @@ namespace Apollo.Age.Account.Controllers
 
         [HttpPost, AllowUpdateChecking]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult UpdateAgentSetting(int agentId, SettingContext settingContext, CommissionSetting commissionSetting, IList<BettingLimit> betLimits)
         {
             return UpdateAllSetting(settingContext, commissionSetting, betLimits);
@@ -720,6 +728,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [NonAction]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult UpdateAllSetting(
             SettingContext settingContext,
             CommissionSetting commissionSetting,
