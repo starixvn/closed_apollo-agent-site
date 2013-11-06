@@ -242,7 +242,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CustomerSettingPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
             ViewBag.PermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
             ViewBag.ShadowPermissionControl = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
-            ViewBag.ViewLogPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.SystemLog);
+            ViewBag.ViewLogPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.System_Log);
 
             return View("AccountInfo", agentInfo);
         }
