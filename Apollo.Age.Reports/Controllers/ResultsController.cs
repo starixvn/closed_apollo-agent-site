@@ -53,7 +53,7 @@ namespace Apollo.Age.Reports.Controllers
         public ResultsController()
             : this(null)
         {
-            _resultDate = AppSettings.ResultDateConfig;
+            _resultDate = DateTime.Now;
         }
 
         /// <summary>
