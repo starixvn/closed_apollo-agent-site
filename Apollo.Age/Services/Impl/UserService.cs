@@ -168,12 +168,10 @@ namespace Apollo.Age.Services.Impl
 
                 return currentStatus;
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return -1;
             }
-
-            return -1;
         }
 
         /// <summary>
@@ -196,12 +194,10 @@ namespace Apollo.Age.Services.Impl
                     ObjectTypeId = (int)customerType
                 });
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return false;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -224,12 +220,10 @@ namespace Apollo.Age.Services.Impl
                     ObjectTypeId = (int)customerType
                 });
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return false;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -257,26 +251,19 @@ namespace Apollo.Age.Services.Impl
             string platform,
             string countryCode)
         {
-            try
+            var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
             {
-                var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
-                {
-                    AgentId = agentId,
-                    AgentUserId = agentUserId,
-                    ServerId = serverId,
-                    ActionId = actionId,
-                    Doing = doing,
-                    LoginIp = loginIp,
-                    Platform = platform,
-                    CountryCode = countryCode,
-                    BrowserName = browserName,
-                    DomainName = domainName
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
+                AgentId = agentId,
+                AgentUserId = agentUserId,
+                ServerId = serverId,
+                ActionId = actionId,
+                Doing = doing,
+                LoginIp = loginIp,
+                Platform = platform,
+                CountryCode = countryCode,
+                BrowserName = browserName,
+                DomainName = domainName
+            });
         }
 
         /// <summary>
@@ -289,17 +276,10 @@ namespace Apollo.Age.Services.Impl
             User user = null;
             Check.Argument.IsNotNull(username, "username");
 
-            try
+            user = _userRepository.Get(new InternalGetAgentByUsernameCriteria
             {
-                user = _userRepository.Get(new InternalGetAgentByUsernameCriteria
-                {
-                    Username = username
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
+                Username = username
+            });
 
             return user;
         }
@@ -326,12 +306,10 @@ namespace Apollo.Age.Services.Impl
                 });
                 return result;
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return 0;
             }
-
-            return 0;
         }
 
         /// <summary>
@@ -353,12 +331,10 @@ namespace Apollo.Age.Services.Impl
 
                 return Convert.ToBoolean(result);
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return false;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -381,12 +357,10 @@ namespace Apollo.Age.Services.Impl
 
                 return Convert.ToInt32(result);
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Log.Error(ex.Message, ex);
+                return 0;
             }
-
-            return 0;
         }
 
         /// <summary>
@@ -398,18 +372,11 @@ namespace Apollo.Age.Services.Impl
         {
             bool isAllowed = false;
 
-            try
+            isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
             {
-                isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
-                {
-                    Username = username,
-                    Allowed = false
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
+                Username = username,
+                Allowed = false
+            });
 
             return isAllowed;
         }

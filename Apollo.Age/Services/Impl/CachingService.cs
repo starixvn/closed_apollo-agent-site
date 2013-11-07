@@ -38,13 +38,7 @@ namespace Apollo.Age.Services.Impl
 
         public static void Set(string key, object value)
         {
-            try
-            {
-                CacheManager.Set(key, value);
-            }
-            catch (Exception)
-            {
-            }
+            CacheManager.Set(key, value);
         }
 
         public static T Get<T>(string key)
