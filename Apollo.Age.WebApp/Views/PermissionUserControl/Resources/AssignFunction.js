@@ -134,8 +134,7 @@ var AssignFunction = function ($) {
                 success: function (res) {
                     if (res.ErrCode == "-1") {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                    }
-                    if (res.ErrCode != "0") {
+                    } else if (res.ErrCode != "0") {
                         APOLLO.showMessage(res.ErrMsg, 'error');
                     }
                     else {
