@@ -145,7 +145,7 @@ namespace Apollo.Age.BetList.Services
         /// <returns>Ticket result.</returns>
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
-            criteria.UGroup = base.RevertCommGroupName(criteria.UGroup);
+            criteria.UGroup = RevertCommGroupName(criteria.UGroup);
             return this._betListRepository.WagersTicket(criteria);
         }
 

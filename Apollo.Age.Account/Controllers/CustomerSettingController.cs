@@ -657,7 +657,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="backLink">The back link URL.</param>
         /// <param name="fromLeftMenu">From left menu or not.</param>
         /// <returns>Action result.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]        
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
         public ActionResult ViewAgentDetails(
             int agentId,
             int agentLevel,
@@ -665,8 +665,7 @@ namespace Apollo.Age.Account.Controllers
             string backLink = "",
             bool fromLeftMenu = false)
         {
-         
-            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);                      
+            var custSettingPolicy = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.CustomerSetting);
             if (!PermissionDownlineDetail(agentId))
             {
                 return RedirectToAction("AccessDenied", "Error");
