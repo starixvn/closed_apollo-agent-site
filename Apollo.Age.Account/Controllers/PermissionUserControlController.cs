@@ -179,13 +179,13 @@ namespace Apollo.Age.Account.Controllers
             criteria.AdminId = CurrentSession.AdminId;
             criteria.Language = CurrentSession.Language;
 
-            var hasDownlineDetailsPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
-
             //// Get agent user
             var agentUserInfo = _userService.GetUserById(criteria.AgentUserId);
 
             if (agentUserInfo.IsMaster)
             {
+                var hasDownlineDetailsPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
                 // Get permission of current user on this function
                 var policyPermissionControl = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.PermissionControl);
 
@@ -199,7 +199,7 @@ namespace Apollo.Age.Account.Controllers
                 // Get permission of current user on this function
                 var policyShadowPermission = _userService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.ShadowPermission);
 
-                if (policyShadowPermission != (byte)Policy.Edit || !hasDownlineDetailsPermission)
+                if (policyShadowPermission != (byte)Policy.Edit)
                 {
                     return Json(new { ErrCode = -1 });
                 }
