@@ -699,7 +699,7 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             if (!string.IsNullOrWhiteSpace(username)
-                && !string.Equals(username, this.CurrentSession.Username)
+                && !string.Equals(username, this.CurrentSession.AgentName)
                 && !hasDownlineDetailsPermission)
             {
                 username = string.Empty;

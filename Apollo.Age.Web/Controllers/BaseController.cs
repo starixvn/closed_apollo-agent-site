@@ -167,12 +167,26 @@ namespace Apollo.Age.Web
         /// <returns>True for permission downline detail is ok.</returns>
         protected bool PermissionDownlineDetail(int customerId)
         {
-            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);            
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
-            if (customerId != this.CurrentSession.UserId && !hasDownlineDetailsPermission)
+            // Current user is agent
+            if (this.CurrentSession.IsMaster)
             {
-                return false;
+                if (customerId != this.CurrentSession.UserId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // Current user is shadow
+                if (customerId != this.CurrentSession.AgentId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
             }
 
             return true;

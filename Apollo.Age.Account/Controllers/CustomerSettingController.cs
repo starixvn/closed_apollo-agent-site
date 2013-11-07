@@ -137,7 +137,7 @@ namespace Apollo.Age.Account.Controllers
                     /* Only search himself if not have downline details permission
                      */
                     if (string.IsNullOrWhiteSpace(customerInfo.Username)
-                       || string.Equals(customerInfo.Username, this.CurrentSession.Username)
+                       || string.Equals(customerInfo.Username, this.CurrentSession.AgentName)
                        || hasDownlineDetailsPermission)
                     {
                         commissionList = _accountService.GetCommissionToAgent(
@@ -233,7 +233,7 @@ namespace Apollo.Age.Account.Controllers
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
             if (!string.IsNullOrWhiteSpace(userName)
-                && !string.Equals(userName, this.CurrentSession.Username)
+                && !string.Equals(userName, this.CurrentSession.AgentName)
                 && !hasDownlineDetailsPermission)
             {
                 return View("~/Views/Account/AgentShare.cshtml", agentShareViewModel);
@@ -327,7 +327,7 @@ namespace Apollo.Age.Account.Controllers
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
             if (!string.IsNullOrWhiteSpace(userName)
-                && !string.Equals(userName, this.CurrentSession.Username)
+                && !string.Equals(userName, this.CurrentSession.AgentName)
                 && !hasDownlineDetailsPermission)
             {
                 return View("~/Views/Account/MemberShare.cshtml", memberShareViewModel);
