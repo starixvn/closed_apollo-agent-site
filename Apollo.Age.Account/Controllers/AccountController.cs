@@ -229,7 +229,7 @@ namespace Apollo.Age.Account.Controllers
              * Downline details policy >= 1 => Search whole line
             */
             if (!string.IsNullOrWhiteSpace(username)
-                && !string.Equals(username, this.CurrentSession.Username)
+                && !string.Equals(username, this.CurrentSession.AgentName)
                 && !hasDownlineDetailsPermission)
             {
                 agentInfo = null;
@@ -364,8 +364,6 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Agent tree list.</returns>
         public ViewResult AgentTreeList(int agentId)
         {
-           
-
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
             ViewBag.AgentId = agentId;
@@ -515,7 +513,7 @@ namespace Apollo.Age.Account.Controllers
                         new
                         {
                             Id = this.CurrentSession.AgentId,
-                            Username = this.CurrentSession.Username
+                            Username = this.CurrentSession.AgentName
                         }
                     },
                     JsonRequestBehavior.AllowGet);
@@ -604,7 +602,7 @@ namespace Apollo.Age.Account.Controllers
 
             // Check downline details permission, policy < 1 => can not search for specific user
             if (string.IsNullOrWhiteSpace(username)
-                || string.Equals(username, this.CurrentSession.Username)
+                || string.Equals(username, this.CurrentSession.AgentName)
                 || criteria.HasDownlineDetailsPermission)
             {
                 IEnumerable<AgentListModel> models = _accountService.GetAgentList(ref criteria);

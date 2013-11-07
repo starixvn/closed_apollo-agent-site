@@ -106,7 +106,7 @@ namespace Apollo.Age.Account.Controllers
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
             if (string.IsNullOrWhiteSpace(criteria.Username)
-                || string.Equals(criteria.Username, this.CurrentSession.Username)
+                || string.Equals(criteria.Username, this.CurrentSession.AgentName)
                 || hasDownlineDetailsPermission)
             {
                 list = _logService.Search(ref criteria);
