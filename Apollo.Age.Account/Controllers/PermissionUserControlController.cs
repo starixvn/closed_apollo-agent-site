@@ -57,6 +57,12 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]
         public ActionResult AssignPermissionControl(int parentAgentId, int agentUserId)
         {
+
+            if (!PermissionDownlineDetail(agentUserId))
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             // Get agent user
             var agentUserInfo = _userService.GetUserById(agentUserId);
 
@@ -148,6 +154,11 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.ShadowPermission, Policy = Policy.Query)]
         public ActionResult AgentUserList(int agentId, string username)
         {
+            if (!PermissionDownlineDetail(agentId))
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             var list = _userService.GetUserByAgent(agentId);
             ViewBag.Username = username;
 
