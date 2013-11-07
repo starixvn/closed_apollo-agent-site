@@ -157,7 +157,8 @@ new ReportMenuViewModel
 @Html.Hidden("CurrentCustId", Model.CurrentAgentId)
 <iframe id="exportExcelFrame" width="0" height="0" style="display: none"></iframe>
 @section scripts
-{
+{    
+
     @Scripts.Render("~/scripts/outstandingjs")
     <script type="text/javascript">
         var LANGUAGES = function () {
@@ -167,7 +168,8 @@ new ReportMenuViewModel
                 Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
                 ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
                 Member: "@Apollo.Age.Resources.Lang.member",
-                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist"
+                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist",
+                DonwlinePermission: "@Apollo.Age.Resources.Lang.strNotAccessPage"
             };
         } ();
     </script>

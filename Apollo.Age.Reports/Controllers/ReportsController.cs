@@ -107,7 +107,7 @@ namespace Apollo.Age.Reports.Controllers
                 || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new OutstandingViewModel
                     {
                         SportTypeIds = sporttypes,
@@ -121,10 +121,10 @@ namespace Apollo.Age.Reports.Controllers
             bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
 
             var report = this._outstandingService.GetAgentOutStandingReport(
-                this.CurrentSession.IsSuper, 
-                this.CurrentAgentId, 
-                this.CurrentSession.AgentId, 
-                sporttypes, 
+                this.CurrentSession.IsSuper,
+                this.CurrentAgentId,
+                this.CurrentSession.AgentId,
+                sporttypes,
                 bettypes);
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
@@ -164,7 +164,7 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission)
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new OutstandingViewModel
                     {
                         SportTypeIds = sporttypes,
@@ -251,8 +251,11 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission
                 || !hasDownlineDetailsPermission)
-            {
-                return View("ReportAccessDenied");
+            {                          
+                return Json(new MemberOutstandingViewModel
+                {
+                    HasPermissionDownlineDetail = false
+                });
             }
 
             this.CurrentAgentId = agentId;
@@ -264,6 +267,7 @@ namespace Apollo.Age.Reports.Controllers
             HttpContext.Session[sessionKey] = report.ListOutstanding;
 
             //// return object
+            report.HasPermissionDownlineDetail = true;
             return this.Json(report);
         }
 
@@ -355,7 +359,7 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new AgentWinLossViewModel
                     {
                         SportTypeIds = sporttypes,
@@ -434,7 +438,7 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission || !hasDownlineDetailsPermission)
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new MemberWinLossViewModel
                     {
                         SportTypeIds = sporttypes,
@@ -510,7 +514,7 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission)
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new AgentWinLossViewModel
                     {
                         SportTypeIds = sporttypes,
@@ -605,7 +609,7 @@ namespace Apollo.Age.Reports.Controllers
             if (!hasPermission)
             {
                 return View(
-                    "ReportAccessDenied", 
+                    "ReportAccessDenied",
                     new MemberWinLossViewModel
                     {
                         SportTypeIds = sporttypes,
