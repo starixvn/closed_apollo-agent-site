@@ -57,7 +57,6 @@ namespace Apollo.Age.Account.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]
         public ActionResult AssignPermissionControl(int parentAgentId, int agentUserId)
         {
-
             if (!PermissionDownlineDetail(agentUserId))
             {
                 return RedirectToAction("AccessDenied", "Error");

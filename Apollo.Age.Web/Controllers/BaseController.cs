@@ -169,12 +169,24 @@ namespace Apollo.Age.Web
         {
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-            var userInfo = _userService.GetUserById(customerId);
 
-            if (userInfo.Agent.Username != this.CurrentSession.AgentName
-                && !hasDownlineDetailsPermission)
+            // Current user is agent
+            if (this.CurrentSession.IsMaster)
             {
-                return false;
+                if (customerId != this.CurrentSession.UserId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // Current user is shadow
+                if (customerId != this.CurrentSession.AgentId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
             }
 
             return true;
