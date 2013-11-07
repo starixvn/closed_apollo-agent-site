@@ -36,7 +36,10 @@ namespace Apollo.Age.Web.Pager
         public string Action { get; internal set; }
 
         public string PageRouteValueKey { get; set; }
-        
+
+        /// <summary>
+        /// Default defaults.
+        /// </summary>
         public static class DefaultDefaults
         {
             public const int MAXNROFPAGES = 3;
@@ -51,14 +54,90 @@ namespace Apollo.Age.Web.Pager
         /// </summary>
         public static class Defaults
         {
-            public static int MaxNrOfPages = DefaultDefaults.MAXNROFPAGES;
+            private static int _maxNrOfPages = DefaultDefaults.MAXNROFPAGES;
+            private static string _displayTemplate = DefaultDefaults.DISPLAYTEMPLATE;
+            private static bool _alwaysAddFirstPageNumber = DefaultDefaults.ALWAYSADDFIRSTPAGENUMBER;
+            private static string _defaultPageRouteValueKey = DefaultDefaults.DEFAULTPAGEROUTEVALUEKEY;
 
-            public static string DisplayTemplate = DefaultDefaults.DISPLAYTEMPLATE;
+            /// <summary>
+            /// Gets or sets the maximum nr of pages.
+            /// </summary>
+            /// <value>
+            /// The maximum nr of pages.
+            /// </value>
+            public static int MaxNrOfPages
+            {              
+                get
+                {
+                    return _maxNrOfPages;
+                }
 
-            public static bool AlwaysAddFirstPageNumber = DefaultDefaults.ALWAYSADDFIRSTPAGENUMBER;
+                set
+                {
+                    _maxNrOfPages = value;
+                }
+            }
 
-            public static string DefaultPageRouteValueKey = DefaultDefaults.DEFAULTPAGEROUTEVALUEKEY;
+            /// <summary>
+            /// Gets or sets the display template.
+            /// </summary>
+            /// <value>
+            /// The display template.
+            /// </value>
+            public static string DisplayTemplate 
+            {
+                get
+                {
+                    return _displayTemplate;
+                }
 
+                set
+                {
+                    _displayTemplate = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [always add first page number].
+            /// </summary>
+            /// <value>
+            /// <c>true</c> if [always add first page number]; otherwise, <c>false</c>.
+            /// </value>
+            public static bool AlwaysAddFirstPageNumber 
+            {
+                get 
+                {
+                    return _alwaysAddFirstPageNumber;
+                }
+
+                set
+                {
+                    _alwaysAddFirstPageNumber = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the default page route value key.
+            /// </summary>
+            /// <value>
+            /// The default page route value key.
+            /// </value>
+            public static string DefaultPageRouteValueKey 
+            {
+                get
+                {
+                    return _defaultPageRouteValueKey;
+                }
+
+                set
+                {
+                    _defaultPageRouteValueKey = value;
+                }
+            }
+
+            /// <summary>
+            /// Resets this instance.
+            /// </summary>
             public static void Reset()
             {
                 MaxNrOfPages = DefaultDefaults.MAXNROFPAGES;

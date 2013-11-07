@@ -11,6 +11,7 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Core;
@@ -25,6 +26,7 @@ namespace Apollo.Age.Reports.Services
     /// <summary>
     /// Report service class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class ReportService : QueryService
     {
         private const string _BalanceUpdayKey = "Apollo.Age.Reports.Services.SpecialDays";

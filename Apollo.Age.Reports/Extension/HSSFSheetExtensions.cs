@@ -10,12 +10,14 @@
 namespace Apollo.Age.Reports.Extension
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
     /// <summary>
     /// HSSF sheet extensions.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public static class HSSFSheetExtensions
     {
         /// <summary>
@@ -119,7 +121,7 @@ namespace Apollo.Age.Reports.Extension
                 destCell.Hyperlink = sourceCell.Hyperlink;
             }
 
-            // Set the cell data type            
+            // Set the cell data type
             destCell.SetCellType(sourceCell.CellType);
 
             // Set the cell data value

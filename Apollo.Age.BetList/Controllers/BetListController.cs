@@ -13,6 +13,7 @@ namespace Apollo.Age.BetList.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.BetList.Criterias;
@@ -37,6 +38,7 @@ namespace Apollo.Age.BetList.Controllers
     /// BetList Controller.
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class BetListController : BaseController
     {
         private readonly BetListService _betListService;
@@ -261,9 +263,9 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = 
-                model.SportTypeIds == "-99" 
-                ? _reportService.GetParlayBettype() 
+            model.BettypeList =
+                model.SportTypeIds == "-99"
+                ? _reportService.GetParlayBettype()
                 : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
 
@@ -393,9 +395,9 @@ namespace Apollo.Age.BetList.Controllers
             _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList = 
-                model.SportTypeIds == "-99" 
-                ? _reportService.GetParlayBettype() 
+            model.BettypeList =
+                model.SportTypeIds == "-99"
+                ? _reportService.GetParlayBettype()
                 : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
@@ -936,7 +938,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Return a date with full hour.</returns>
         private DateTime ResetStartDate(DateTime dt)
         {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+            return dt.AddMilliseconds(-((((((dt.Hour * 60) + dt.Minute) * 60) + dt.Second) * 1000) + dt.Millisecond));
         }
 
         /// <summary>

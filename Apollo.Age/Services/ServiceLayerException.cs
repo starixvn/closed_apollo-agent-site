@@ -10,15 +10,18 @@
 namespace Apollo.Age.Services
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [Serializable]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class ServiceLayerException : Exception
     {
         #region ctor
+
         public ServiceLayerException()
             : base()
         {
@@ -52,9 +55,9 @@ namespace Apollo.Age.Services
                 this.SettingKey = info.GetString("SettingKey");
             }
         }
-       
-        #endregion      
-       
+
+        #endregion ctor
+
         public string SettingKey { get; set; }
 
         public override string Message
@@ -83,7 +86,7 @@ namespace Apollo.Age.Services
         /// <PermissionSet>
         ///   <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*"/>
         ///   <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter"/>
-        /// </PermissionSet>        
+        /// </PermissionSet>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

@@ -7,11 +7,13 @@
 namespace Apollo.Age.Web.Pager
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc.Ajax;
 
     /// <summary>
     /// Pagination model.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class PaginationModel
     {
         public PaginationModel()
@@ -31,6 +33,7 @@ namespace Apollo.Age.Web.Pager
     /// <summary>
     /// Pagination link.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class PaginationLink
     {
         public bool Active { get; set; }

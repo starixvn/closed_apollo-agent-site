@@ -46,9 +46,9 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Add a custom route value parameter for the pager links.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="name">Input the name.</param>
+        /// <param name="value">Input the value.</param>
+        /// <returns>Page option builder.</returns>
         public PagerOptionsBuilder AddRouteValue(string name, object value)
         {
             _pagerOptions.RouteValues[name] = value;
@@ -59,7 +59,7 @@ namespace Apollo.Age.Web.Pager
         /// Set custom route value parameters for the pager links.
         /// </summary>
         /// <param name="routeValues">Route values.</param>
-        /// <returns></returns>
+        /// <returns>Page option builder.</returns>
         public PagerOptionsBuilder RouteValues(object routeValues)
         {
             RouteValues(new RouteValueDictionary(routeValues));
@@ -70,7 +70,7 @@ namespace Apollo.Age.Web.Pager
         /// Set custom route value parameters for the pager links.
         /// </summary>
         /// <param name="routeValues">Route values.</param>
-        /// <returns></returns>
+        /// <returns>Page option builder.</returns>
         public PagerOptionsBuilder RouteValues(RouteValueDictionary routeValues)
         {
             if (routeValues == null)
@@ -89,11 +89,10 @@ namespace Apollo.Age.Web.Pager
         }
 
         /// <summary>
-        /// Set the name of the DisplayTemplate view to use for rendering. 
+        /// Displays the template.
         /// </summary>
-        /// <param name="displayTemplate"></param>
-        /// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt.</remarks>
-        /// <returns></returns>
+        /// <param name="displayTemplate">The display template.</param>
+        /// <returns>Pager Options Builder.</returns>
         public PagerOptionsBuilder DisplayTemplate(string displayTemplate)
         {
             this._pagerOptions.DisplayTemplate = displayTemplate;
@@ -103,8 +102,10 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set the maximum number of pages to show. The default is 10.
         /// </summary>
-        /// <param name="maxNrOfPages"></param>
-        /// <returns></returns>
+        /// <param name="maxNrOfPages">The maximum nr of pages.</param>
+        /// <returns>
+        /// Page option builder.
+        /// </returns>
         public PagerOptionsBuilder MaxNrOfPages(int maxNrOfPages)
         {
             this._pagerOptions.MaxNrOfPages = maxNrOfPages;
@@ -114,11 +115,11 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Always add the page number to the generated link for the first page.
         /// </summary>
+        /// <returns>Page option builder.</returns>
         /// <remarks>
-        /// By default we don't add the page number for page 1 because it results in canonical links. 
-        /// Use this option to override this behaviour.
+        /// By default we don't add the page number for page 1 because it results in canonical links.
+        /// Use this option to override this behavior.
         /// </remarks>
-        /// <returns></returns>
         public PagerOptionsBuilder AlwaysAddFirstPageNumber()
         {
             this._pagerOptions.AlwaysAddFirstPageNumber = true;
@@ -128,8 +129,8 @@ namespace Apollo.Age.Web.Pager
         /// <summary>
         /// Set the page routeValue key for pagination links.
         /// </summary>
-        /// <param name="pageRouteValueKey"></param>
-        /// <returns></returns>
+        /// <param name="pageRouteValueKey">The page route value key.</param>
+        /// <returns>Page option builder.</returns>        
         public PagerOptionsBuilder PageRouteValueKey(string pageRouteValueKey)
         {
             if (pageRouteValueKey == null)
@@ -146,7 +147,7 @@ namespace Apollo.Age.Web.Pager
         /// Set the AjaxOptions.
         /// </summary>
         /// <param name="ajaxOptions">AJAX options.</param>
-        /// <returns></returns>
+        /// <returns>Page option builder.</returns>
         internal PagerOptionsBuilder AjaxOptions(AjaxOptions ajaxOptions)
         {
             this._pagerOptions.AjaxOptions = ajaxOptions;

@@ -9,6 +9,7 @@
 
 namespace Apollo.Age.WebApp
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Optimization;
     using BundleTransformer.Core.Orderers;
@@ -18,7 +19,7 @@ namespace Apollo.Age.WebApp
     /// Bundle config.
     /// </summary>
     public class BundleConfig
-    {      
+    {
         /// <summary>
         /// Registers the bundles.
         /// </summary>
@@ -375,6 +376,7 @@ namespace Apollo.Age.WebApp
     /// <summary>
     /// Bundle extensions.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     internal static class BundleExtensions
     {
         public static void AddAndInclude(

@@ -7,6 +7,7 @@
 namespace Apollo.Age.Web.Pager
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
@@ -24,6 +25,13 @@ namespace Apollo.Age.Web.Pager
         private readonly int _totalItemCount;
         private readonly PagerOptions _pagerOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pager"/> class.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="totalItemCount">The total item count.</param>
         public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
         {
             this._htmlHelper = htmlHelper;
@@ -33,12 +41,24 @@ namespace Apollo.Age.Web.Pager
             this._pagerOptions = new PagerOptions();
         }
 
+        /// <summary>
+        /// Option the specified build options.
+        /// </summary>
+        /// <param name="buildOptions">The build options.</param>
+        /// <returns>Return page object.</returns>
         public Pager Options(Action<PagerOptionsBuilder> buildOptions)
         {
             buildOptions(new PagerOptionsBuilder(this._pagerOptions));
             return this;
         }
 
+        /// <summary>
+        /// Builds the pagination model.
+        /// </summary>
+        /// <param name="generateUrl">The generate URL.</param>
+        /// <returns>Return page model.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
         {
             var model = new PaginationModel();
@@ -47,39 +67,39 @@ namespace Apollo.Age.Web.Pager
 
             // Previous
             model.PaginationLinks.Add(
-                _currentPage > 1 
-                ? new PaginationLink 
-                    { 
-                        Active = true, 
-                        DisplayText = "&#171;", 
-                        PageIndex = _currentPage - 1, 
-                        Url = generateUrl(_currentPage - 1) 
-                    } 
-                : new PaginationLink 
-                    { 
-                        Active = false, 
-                        DisplayText = "&#171;" 
+                _currentPage > 1
+                ? new PaginationLink
+                    {
+                        Active = true,
+                        DisplayText = "&#171;",
+                        PageIndex = _currentPage - 1,
+                        Url = generateUrl(_currentPage - 1)
+                    }
+                : new PaginationLink
+                    {
+                        Active = false,
+                        DisplayText = "&#171;"
                     });
 
             var start = 1;
             var end = pageCount;
-            var nrOfPagesToDisplay = this._pagerOptions.MaxNrOfPages;
+            var numberOfPageToDisplay = this._pagerOptions.MaxNrOfPages;
 
-            if (pageCount > nrOfPagesToDisplay)
+            if (pageCount > numberOfPageToDisplay)
             {
-                var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
+                var middle = (int)Math.Ceiling(numberOfPageToDisplay / 2d) - 1;
                 var below = _currentPage - middle;
                 var above = _currentPage + middle;
 
                 if (below < 2)
                 {
-                    above = nrOfPagesToDisplay;
+                    above = numberOfPageToDisplay;
                     below = 1;
                 }
                 else if (above > (pageCount - 2))
                 {
                     above = pageCount;
-                    below = pageCount - nrOfPagesToDisplay;
+                    below = pageCount - numberOfPageToDisplay;
                 }
 
                 start = below;
@@ -131,6 +151,12 @@ namespace Apollo.Age.Web.Pager
             return model;
         }
 
+        /// <summary>
+        /// Returns an HTML-encoded string.
+        /// </summary>
+        /// <returns>
+        /// An HTML-encoded string.
+        /// </returns>
         public string ToHtmlString()
         {
             var model = BuildPaginationModel(GeneratePageUrl);
@@ -182,11 +208,17 @@ namespace Apollo.Age.Web.Pager
             }
         }
 
+        /// <summary>
+        /// Generates the page URL.
+        /// </summary>
+        /// <param name="pageNumber">The page number.</param>
+        /// <returns>System string.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private string GeneratePageUrl(int pageNumber)
         {
             var viewContext = this._htmlHelper.ViewContext;
             var routeDataValues = viewContext.RequestContext.RouteData.Values;
-          
+
             RouteValueDictionary pageLinkValueDictionary;
 
             // Avoid canonical errors when pageNumber is equal to 1.

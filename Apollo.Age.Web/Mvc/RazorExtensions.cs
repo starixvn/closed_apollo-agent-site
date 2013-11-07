@@ -15,10 +15,17 @@ namespace Apollo.Age.Web.Mvc
     using System.Web.WebPages;
 
     /// <summary>
-    /// <example>http://haacked.com/archive/2011/02/27/templated-razor-delegates.aspx</example> 
+    /// Razor extensions.
     /// </summary>
     public static class RazorExtensions
     {
+        /// <summary>
+        /// Lists the specified items.
+        /// </summary>
+        /// <typeparam name="T">The object.</typeparam>
+        /// <param name="items">The items.</param>
+        /// <param name="template">The template.</param>
+        /// <returns>Helper result.</returns>
         public static HelperResult List<T>(this IEnumerable<T> items, Func<T, HelperResult> template)
         {
             if (items != null && items.Any())

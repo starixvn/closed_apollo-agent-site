@@ -160,11 +160,12 @@ namespace Apollo.Age.Web
         #region Auth
 
         /// <summary>
-        /// Permissions the downline detail.
+        /// Permissions the down line detail.
         /// </summary>
         /// <param name="customerId">The customer identifier.</param>
-        /// <param name="functionKey">The function key.</param>
-        /// <returns>True for permission downline detail is ok.</returns>
+        /// <returns>
+        /// True for permission down line detail is ok.
+        /// </returns>
         protected bool PermissionDownlineDetail(int customerId)
         {
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);

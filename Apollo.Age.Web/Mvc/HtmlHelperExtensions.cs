@@ -82,7 +82,7 @@ namespace Apollo.Age.Web.Mvc
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
             DateTime? value = DateTime.Now;
 
-            if (metaData.Model is Nullable<DateTime> || metaData.Model is DateTime)
+            if (metaData.Model is Nullable || metaData.Model is DateTime)
             {
                 value = (DateTime?)metaData.Model;
             }
@@ -98,13 +98,15 @@ namespace Apollo.Age.Web.Mvc
         /// Dates the picker.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="date">The date.</param>
+        /// <param name="name">Input the name.</param>
+        /// <param name="date">Input the date.</param>
         /// <param name="minDate">The minimum date.</param>
         /// <param name="maxDate">The maximum date.</param>
         /// <param name="formatDate">The format date.</param>
         /// <param name="unavailDates">The unavailable dates.</param>
-        /// <returns>MVC HTML String.</returns>
+        /// <returns>
+        /// MVC HTML String.
+        /// </returns>
         /// <exception cref="System.ArgumentNullException">FormatDate cannot be blank.</exception>
         public static MvcHtmlString DatePicker(
            this HtmlHelper htmlHelper,
@@ -142,10 +144,13 @@ namespace Apollo.Age.Web.Mvc
         /// Year picker.
         /// </summary>
         /// <param name="htmlHelper">HTML Helper.</param>
-        /// <param name="name">In name.</param>
+        /// <param name="name">Input the name.</param>
         /// <param name="fromYear">Default from year 2000.</param>
         /// <param name="currentYear">Default currentYear year 2000.</param>
-        /// <returns>MVC HTML String.</returns>
+        /// <param name="hasShowNextYear">If set to <c>true</c> [has show next year].</param>
+        /// <returns>
+        /// MVC HTML String.
+        /// </returns>
         public static MvcHtmlString YearPicker(
             this HtmlHelper htmlHelper,
             string name,
@@ -231,10 +236,13 @@ namespace Apollo.Age.Web.Mvc
         /// <summary>
         /// Returns the value of the specified System.String resource.
         /// </summary>
+        /// <param name="htmlhelper">The html helper.</param>
         /// <param name="key">The name of the resource to get.</param>
         /// <param name="resourceSource">A type from which the resource manager derives all information
         /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
-        /// <returns>The resource value.</returns>
+        /// <returns>
+        /// The resource value.
+        /// </returns>
         public static string Resource(this HtmlHelper htmlhelper, string key, Type resourceSource = null)
         {
             return LanguageManager.GetResourceData(key);

@@ -16,6 +16,7 @@ namespace Apollo.Age.Reports.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -29,13 +30,13 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using Apollo.Age.Web.Web.Attribute;
     using Fanex.NAP.Framework.Mvc;
 
     /// <summary>
     /// Reports Controller.
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class ReportsController : BaseController
     {
         private readonly SportCreditService _sportCreditService;
@@ -251,7 +252,7 @@ namespace Apollo.Age.Reports.Controllers
 
             if (!hasPermission
                 || !hasDownlineDetailsPermission)
-            {                          
+            {
                 return Json(new MemberOutstandingViewModel
                 {
                     HasPermissionDownlineDetail = false
@@ -729,7 +730,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Export Line sport credit report.
         /// </summary>
         /// <param name="username">User name.</param>
-        /// <returns>ActionResult Line sport credit report.</returns>        
+        /// <returns>ActionResult Line sport credit report.</returns>
         public ActionResult ExportSportCredit(string username)
         {
             // Get user permission

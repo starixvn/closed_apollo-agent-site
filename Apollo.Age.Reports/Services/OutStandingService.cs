@@ -10,6 +10,7 @@
 namespace Apollo.Age.Reports.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
@@ -25,6 +26,7 @@ namespace Apollo.Age.Reports.Services
     /// <summary>
     /// Outstanding service class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class OutstandingService : ReportService
     {
         /// <summary>

@@ -10,6 +10,7 @@
 namespace Apollo.Age.Services.Impl
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Resources;
@@ -17,6 +18,7 @@ namespace Apollo.Age.Services.Impl
     /// <summary>
     /// SINGBET sport service.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class SingbetSportService
     {
         /// <summary>

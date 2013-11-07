@@ -14,6 +14,7 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -27,6 +28,7 @@ namespace Apollo.Age.Reports.Services
     /// <summary>
     /// WinLoss Service.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class WinLossService : ReportService, IWinLossService
     {
         /// <summary>

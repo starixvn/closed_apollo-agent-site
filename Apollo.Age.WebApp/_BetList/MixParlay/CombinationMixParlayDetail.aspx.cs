@@ -30,14 +30,18 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
     {
         #region Variable
 
-        long _refno = 0;
-        decimal _outStanding = 0;
-        long _transid = 0;
-        long _betid = 0;
-        int _custid = 0;
+        private long _refno = 0;
+        private decimal _outStanding = 0;
+        private long _transid = 0;
+        private long _betid = 0;
+        private int _custid = 0;
 
         #endregion Variable
 
+        /// <summary>
+        /// Render content section of html page.
+        /// </summary>
+        /// <param name="writer">HTML writer.</param>
         public override void RenderContent(HtmlTextWriter writer)
         {
             CombinationMixParlayDetail_Template tpl = new CombinationMixParlayDetail_Template();
@@ -52,6 +56,11 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             writer.Write(tpl);
         }
 
+        /// <summary>
+        /// Invokes the data.
+        /// </summary>
+        /// <param name="hash">The hash.</param>
+        /// <returns></returns>
         public override object InvokeData(Hashtable hash)
         {
             var reportService = new ReportService();
@@ -76,6 +85,13 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
             _custid = Convert.ToInt32(Request["custid"]);
         }
 
+        /// <summary>
+        /// Validating the request with a list of request parameters.
+        /// </summary>
+        /// <param name="p">List of request parameters.</param>
+        /// <returns>
+        /// Null is success otherwise is error message.
+        /// </returns>
         public override object ValidateRequest(Hashtable p)
         {
             return null;
@@ -211,8 +227,8 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     }
                     else
                     {
-                        var drTemp = ticketList[i + 1];
-                        winlostNextDate = drTemp.WinLostDate.ToString("yyyy-mm-dd");
+                        var temp = ticketList[i + 1];
+                        winlostNextDate = temp.WinLostDate.ToString("yyyy-mm-dd");
                     }
 
                     this.GetSubTotalByDay(template, ref subWinlostSum, ticket.WinLostDate.ToString("yyyy-mm-dd"), winlostNextDate);

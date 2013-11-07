@@ -14,6 +14,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
@@ -24,6 +25,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     /// <summary>
     /// BetList Repository.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class BetListRepository : IBetListRepository
     {
         /// <summary>
@@ -859,10 +861,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 using (var db = new ObjectDb(uspKey))
                 {
-                    var fromDate = criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) 
-                        ? this.ResetStartDate(criteria.BalanceUpDay) 
+                    var fromDate = criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay)
+                        ? this.ResetStartDate(criteria.BalanceUpDay)
                         : criteria.FromDate;
-                    
+
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
@@ -908,8 +910,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
                     db.AddInParameter(
-                        "todate", 
-                        DbType.DateTime, 
+                        "todate",
+                        DbType.DateTime,
                         criteria.ToDate > this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) ? this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) : criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
@@ -964,7 +966,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// <returns>Return a date with full hour.</returns>
         private DateTime ResetStartDate(DateTime dt)
         {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+            return dt.AddMilliseconds(-((((((dt.Hour * 60) + dt.Minute) * 60) + dt.Second) * 1000) + dt.Millisecond));
         }
 
         /// <summary>
