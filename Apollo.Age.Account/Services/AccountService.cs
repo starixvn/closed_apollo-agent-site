@@ -102,20 +102,14 @@ namespace Apollo.Age.Account.Services
                 return isSupper;
             }
 
-            try
+            var agentInfo = _accountRepository.GetCustomerInfo(new GetAgentInfoCriteria
             {
-                var agentInfo = _accountRepository.GetCustomerInfo(new GetAgentInfoCriteria
-                    {
-                        AgentId = checkingAgentId
-                    });
-                if (agentInfo != null && agentInfo.ParentId == logginAgentId)
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
+                AgentId = checkingAgentId
+            });
+
+            if (agentInfo != null && agentInfo.ParentId == logginAgentId)
             {
-                HandleException(ex);
+                return true;
             }
 
             return false;
@@ -238,26 +232,19 @@ namespace Apollo.Age.Account.Services
         /// <returns>Member item.</returns>
         public MemberListModel GetTopMember(int agentId)
         {
-            try
+            var memberListCriteria = new CustomerListCriteria
             {
-                var memberListCriteria = new CustomerListCriteria
-                {
-                    AgentId = agentId,
-                    PageIndex = 0,
-                    UserName = string.Empty,
-                    OrderType = 1
-                };
+                AgentId = agentId,
+                PageIndex = 0,
+                UserName = string.Empty,
+                OrderType = 1
+            };
 
-                IEnumerable<MemberListModel> memberList = GetCustomerList(ref memberListCriteria);
+            IEnumerable<MemberListModel> memberList = GetCustomerList(ref memberListCriteria);
 
-                if (memberList.Any())
-                {
-                    return memberList.ElementAt(0);
-                }
-            }
-            catch (Exception ex)
+            if (memberList.Any())
             {
-                HandleException(ex);
+                return memberList.ElementAt(0);
             }
 
             return null;
@@ -271,37 +258,30 @@ namespace Apollo.Age.Account.Services
         /// <returns>Time to announce.</returns>
         public string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
-            try
-            {
-                GetUpdatePositionTakingEstimatedTimeCriteria criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
+            GetUpdatePositionTakingEstimatedTimeCriteria criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
 
-                foreach (var sportType in positionTakingSetting.SportTypes)
+            foreach (var sportType in positionTakingSetting.SportTypes)
+            {
+                foreach (var betTypeGroup in sportType.BetTypeGroups)
                 {
-                    foreach (var betTypeGroup in sportType.BetTypeGroups)
+                    foreach (var betType in betTypeGroup.BetTypes)
                     {
-                        foreach (var betType in betTypeGroup.BetTypes)
+                        if (betType.Pt.IsChangePt)
                         {
-                            if (betType.Pt.IsChangePt)
-                            {
-                                criteria.NumOfChange++;
-                            }
+                            criteria.NumOfChange++;
                         }
                     }
                 }
-
-                if (criteria.NumOfChange > 0)
-                {
-                    criteria.AgentId = settingContext.TargetCustId;
-                    var totalSeconds = _accountRepository.CalculateUpdateAgentPositionTakingTime(criteria);
-                    if (totalSeconds > AppSettings.ShowEstimateTimeWhenGreaterThan)
-                    {
-                        return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
-                    }
-                }
             }
-            catch (Exception ex)
+
+            if (criteria.NumOfChange > 0)
             {
-                HandleException(ex);
+                criteria.AgentId = settingContext.TargetCustId;
+                var totalSeconds = _accountRepository.CalculateUpdateAgentPositionTakingTime(criteria);
+                if (totalSeconds > AppSettings.ShowEstimateTimeWhenGreaterThan)
+                {
+                    return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
+                }
             }
 
             return string.Empty;
@@ -323,12 +303,10 @@ namespace Apollo.Age.Account.Services
 
                 return _accountRepository.HasMember(checkDirectMemberCriteria);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return false;
             }
-
-            return false;
         }
 
         /// <summary>
@@ -371,12 +349,10 @@ namespace Apollo.Age.Account.Services
 
                 return isInPeakHour && levelNotAllow;
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return false;
             }
-
-            return false;
         }
     }
 }

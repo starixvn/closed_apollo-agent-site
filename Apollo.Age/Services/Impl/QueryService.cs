@@ -38,21 +38,12 @@ namespace Apollo.Age.Services.Impl
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            if (criteria.IsValid())
             {
-                if (criteria.IsValid())
-                {
-                    return _repository.Fetch<T>(criteria);
-                }
+                return _repository.Fetch<T>(criteria);
+            }
 
-                return new List<T>();
-            }
-            catch (ServiceLayerException ex)
-            {
-                ex.SettingKey = criteria.GetSettingKey();
-                HandleException(ex);
-                return null;
-            }
+            return new List<T>();
         }
     }
 }

@@ -84,58 +84,41 @@ namespace Apollo.Age.Integration.Controllers
             }
             else
             {
-                try
+                if (!string.IsNullOrWhiteSpace(code))
                 {
-                    if (!string.IsNullOrWhiteSpace(code))
+                    // Username is empty or user is disallowed sso.
+                    // Disallow shadow sc88 access to our system by sso way.
+                    if (!_userService.AllowLineAccountSSO(username) || username.ToLower() == "sc88")
                     {
-                        // Username is empty or user is disallowed sso.
-                        // Disallow shadow sc88 access to our system by sso way.
-                        if (!_userService.AllowLineAccountSSO(username) || username.ToLower() == "sc88")
+                        authModel.ErrorCode = ErrorCode.ComingSoon;
+                        return View(authModel);
+                    }
+
+                    authModel = _authService.GetAuthInfo(authorizationCode: code);
+
+                    if (authModel != null && authModel.IsValid)
+                    {
+                        Entities.User user = _userService.GetUserByUsername(authModel.Username);
+
+                        // Check whether authenticated username (from sungame agentsite) is the same with.
+                        // Requested sso username.
+                        if (user != null)
                         {
-                            authModel.ErrorCode = ErrorCode.ComingSoon;
-                            return View(authModel);
-                        }
-
-                        authModel = _authService.GetAuthInfo(authorizationCode: code);
-
-                        if (authModel != null && authModel.IsValid)
-                        {
-                            Entities.User user = _userService.GetUserByUsername(authModel.Username);
-
-                            // Check whether authenticated username (from sungame agentsite) is the same with.
-                            // Requested sso username.
-                            if (user != null)
+                            if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
                             {
-                                if (user.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
-                                {
-                                    authModel.ErrorCode = string.Empty;
-                                    SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
-                                    FormsAuthentication.SetAuthCookie(user.Username, true);
+                                authModel.ErrorCode = string.Empty;
+                                SessionManager.CurrentSession = new CurrentSession(user, 0, string.Empty, 0, false, language);
+                                FormsAuthentication.SetAuthCookie(user.Username, true);
 
-                                    // Writes SSO logs.
-                                    // ActionID: 703 -> SSO login successful.
-                                    string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
-                                    WriteLoginLog(user.Id, 0, 703, 0, doing);
-                                }
-                                else
-                                {
-#if DEBUG
-                                    LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
-#endif
-                                    authModel.ErrorCode = ErrorCode.InvalidRequest;
-
-                                    // ActionID: 7002 -> SSO login fail.
-                                    string doing = string.Format(
-                                                    "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
-                                                    authModel.Username,
-                                                    Resources.Lang.AgentNotFound);
-                                    WriteLoginLog(0, 0, 7002, 0, doing);
-                                }
+                                // Writes SSO logs.
+                                // ActionID: 703 -> SSO login successful.
+                                string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
+                                WriteLoginLog(user.Id, 0, 703, 0, doing);
                             }
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("SSO user {0} is not found", authModel.Username));
+                                LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
@@ -149,7 +132,17 @@ namespace Apollo.Age.Integration.Controllers
                         }
                         else
                         {
+#if DEBUG
+                            LogService.Error(string.Format("SSO user {0} is not found", authModel.Username));
+#endif
                             authModel.ErrorCode = ErrorCode.InvalidRequest;
+
+                            // ActionID: 7002 -> SSO login fail.
+                            string doing = string.Format(
+                                            "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
+                                            authModel.Username,
+                                            Resources.Lang.AgentNotFound);
+                            WriteLoginLog(0, 0, 7002, 0, doing);
                         }
                     }
                     else
@@ -157,10 +150,9 @@ namespace Apollo.Age.Integration.Controllers
                         authModel.ErrorCode = ErrorCode.InvalidRequest;
                     }
                 }
-                catch (AuthenticationException ex)
+                else
                 {
-                    authModel.ErrorCode = ErrorCode.ServerError;
-                    LogService.Error(ex.Message);
+                    authModel.ErrorCode = ErrorCode.InvalidRequest;
                 }
             }
 

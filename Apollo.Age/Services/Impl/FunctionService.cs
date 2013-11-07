@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System;
     using System.Collections.Generic;
     using Apollo.Age.Entities;
     using Apollo.Age.PermissionControl.Criterias;
@@ -52,12 +51,10 @@ namespace Apollo.Age.Services.Impl
 
                 return _functionRepository.GetAll(criteria);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return null;
             }
-
-            return null;
         }
     }
 }

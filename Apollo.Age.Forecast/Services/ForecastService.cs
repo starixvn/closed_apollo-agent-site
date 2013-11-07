@@ -143,9 +143,8 @@ namespace Apollo.Age.Forecast.Services
             {
                 return GetForecastValueWithCurrentScore(forecastMatches, betType, currentScore);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
                 return null;
             }
         }
@@ -195,59 +194,53 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNull(matchIds, "matchIds");
             Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
             List<ScoreMapMatchResultModel> scoreMapViewResult = new List<ScoreMapMatchResultModel>();
-            try
+
+            //// Get Plain Data From Database
+            ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
             {
-                //// Get Plain Data From Database
-                ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
+                AgentId = agentId,
+                MatchIds = matchIds,
+                LiveBetTypes = liveBetTypes,
+                DeadBetTypes = deadBallBetTypes,
+                LoggedId = loggedId
+            });
+
+            //// Map Data
+            int homeIndex = 0, awayIndex = 0, length = 0;
+
+            foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
+            {
+                homeIndex = 0;
+                awayIndex = 0;
+                ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
                 {
-                    AgentId = agentId,
-                    MatchIds = matchIds,
-                    LiveBetTypes = liveBetTypes,
-                    DeadBetTypes = deadBallBetTypes,
-                    LoggedId = loggedId
-                });
+                    MatchId = match.MatchId,
+                    HomeName = match.HomeTeam,
+                    AwayName = match.AwayTeam
+                };
 
-                //// Map Data
-                int homeIndex = 0, awayIndex = 0, length = 0;
-
-                foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
+                length = scoreMapItem.ScoreMatrix.GetLength(1);
+                foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
                 {
-                    homeIndex = 0;
-                    awayIndex = 0;
-                    ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
+                    if (match.MatchId == item.MatchId)
                     {
-                        MatchId = match.MatchId,
-                        HomeName = match.HomeTeam,
-                        AwayName = match.AwayTeam
-                    };
-
-                    length = scoreMapItem.ScoreMatrix.GetLength(1);
-                    foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
-                    {
-                        if (match.MatchId == item.MatchId)
+                        scoreMapItem.HasData = true;
+                        scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total;
+                        //// If HomeIndex = 7 Col, then increate Away Row
+                        if (homeIndex == length)
                         {
-                            scoreMapItem.HasData = true;
-                            scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total;
-                            //// If HomeIndex = 7 Col, then increate Away Row
-                            if (homeIndex == length)
+                            homeIndex = 0;
+                            awayIndex++;
+                            //// If away row == 7 then break out
+                            if (awayIndex == length)
                             {
-                                homeIndex = 0;
-                                awayIndex++;
-                                //// If away row == 7 then break out
-                                if (awayIndex == length)
-                                {
-                                    break;
-                                }
+                                break;
                             }
                         }
                     }
-
-                    scoreMapViewResult.Add(scoreMapItem);
                 }
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
+
+                scoreMapViewResult.Add(scoreMapItem);
             }
 
             return scoreMapViewResult;
@@ -379,9 +372,8 @@ namespace Apollo.Age.Forecast.Services
                     AgentId = agentId
                 }).OrderBy(league => league.LeagueName);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
                 return null;
             }
         }

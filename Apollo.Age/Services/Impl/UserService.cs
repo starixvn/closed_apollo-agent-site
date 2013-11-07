@@ -55,12 +55,10 @@ namespace Apollo.Age.Services.Impl
 
                 return _userRepository.Get(criteria);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return null;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -248,15 +246,15 @@ namespace Apollo.Age.Services.Impl
         /// <param name="platform">The platform.</param>
         /// <param name="countryCode">The country code.</param>
         public void WriteLogInternalLogin(
-            int agentId, 
-            int agentUserId, 
-            int serverId, 
-            int actionId, 
-            string doing, 
-            string loginIp, 
-            string domainName, 
-            string browserName, 
-            string platform, 
+            int agentId,
+            int agentUserId,
+            int serverId,
+            int actionId,
+            string doing,
+            string loginIp,
+            string domainName,
+            string browserName,
+            string platform,
             string countryCode)
         {
             try
@@ -434,12 +432,10 @@ namespace Apollo.Age.Services.Impl
 
                 return (byte)_userRepository.Count(criteria);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return 0;
             }
-
-            return 0;
         }
 
         /// <summary>
@@ -462,12 +458,10 @@ namespace Apollo.Age.Services.Impl
 
                 return _userRepository.GetAllUserPolicy(criteria);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
+                return null;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -478,14 +472,7 @@ namespace Apollo.Age.Services.Impl
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
-            {
-                _userRepository.AssignUserPermission(ref criteria);
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+            _userRepository.AssignUserPermission(ref criteria);
         }
 
         /// <summary>

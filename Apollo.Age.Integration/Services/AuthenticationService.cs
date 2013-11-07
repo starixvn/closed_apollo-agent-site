@@ -17,7 +17,6 @@ namespace Apollo.Age.Integration.Services
     using Apollo.Age.Integration.Configurations;
     using Apollo.Age.Integration.Models;
     using Apollo.Age.Resources;
-    using Fanex.Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -130,34 +129,19 @@ namespace Apollo.Age.Integration.Services
             request.GetRequestStream().Write(requestData, 0, requestData.Length);
 
             HttpWebResponse response = null;
-            try
-            {
-                response = (HttpWebResponse)request.GetResponse();
 
-                if (response.StatusCode == HttpStatusCode.OK)
+            response = (HttpWebResponse)request.GetResponse();
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                // read response stream and parse to JsonResponseModel
+                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
                 {
-                    // read response stream and parse to JsonResponseModel
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
-                    {
-                        string jsonString = reader.ReadToEnd();
-                        jsonResponseModel = Json.Decode<JsonResponseModel>(jsonString);
-                    }
+                    string jsonString = reader.ReadToEnd();
+                    jsonResponseModel = Json.Decode<JsonResponseModel>(jsonString);
                 }
-            }
-            catch (WebException webException)
-            {
-                LogService.Error(webException.Message, webException);
-            }
-            catch (AuthenticationException authException)
-            {
-                LogService.Error(authException.Message, authException);
-            }
-            finally
-            {
-                if (response != null)
-                {
-                    response.Close();
-                }
+
+                response.Close();
             }
 
             return jsonResponseModel;
