@@ -17,6 +17,10 @@ namespace Apollo.Age.WebApp
     /// </summary>
     public class RouteConfig
     {
+        /// <summary>
+        /// Registers the routes.
+        /// </summary>
+        /// <param name="routes">The routes collection.</param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

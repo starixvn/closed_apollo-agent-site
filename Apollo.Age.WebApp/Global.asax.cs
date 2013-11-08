@@ -21,18 +21,26 @@ namespace Apollo.Age.WebApp
     /// </summary>
     public class MvcApplication : HttpApplication
     {
-        public static UnderMaintenanceService maintenanceService = null;
+        private static UnderMaintenanceService _maintenanceService = null;
 
+        /// <summary>
+        /// Application_s the start.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            maintenanceService = new UnderMaintenanceService();
+            _maintenanceService = new UnderMaintenanceService();
             DbSettingProviderManager.Current.Start();
         }
 
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
             // Logging
@@ -68,6 +76,11 @@ namespace Apollo.Age.WebApp
             }
         }
 
+        /// <summary>
+        /// Handles the AcquireRequestState event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
             try
@@ -82,7 +95,7 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".gif") == -1
                     && executeFileName.IndexOf(".png") == -1)
                 {
-                    if (maintenanceService.MaintenanceInfo.Status)
+                    if (_maintenanceService.MaintenanceInfo.Status)
                     {
                         Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
                     }
