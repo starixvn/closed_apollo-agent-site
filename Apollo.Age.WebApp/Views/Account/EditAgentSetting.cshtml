@@ -27,7 +27,7 @@
 @Html.Hidden("backUrl", backLink)
 @if (betSettingMinLimit != 0)
 {
-<div id="betSettingInformationMessage" class="clear"> @(LangMsg.MessageBetSettingLimit) @(betSettingMinLimit) </div>
+<div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <b>@(betSettingMinLimit)</b> </div>
 }
 <div id="commissionSettingContainer" class="clear">
 </div>

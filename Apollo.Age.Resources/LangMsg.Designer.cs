@@ -61,7 +61,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Single Bet and Single Game must be greater than.
+        ///   Looks up a localized string similar to ※Note: Single Bet and Single Game must be greater than.
         /// </summary>
         public static string MessageBetSettingLimit {
             get {

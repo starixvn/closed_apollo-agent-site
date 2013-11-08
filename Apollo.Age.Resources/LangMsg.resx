@@ -187,7 +187,7 @@
     <value>Date range cannot be less than</value>
   </data>
   <data name="MessageBetSettingLimit" xml:space="preserve">
-    <value>Single Bet and Single Game must be greater than</value>
+    <value>※Note: Single Bet and Single Game must be greater than</value>
   </data>
   <data name="MessageSingBetMinLimit" xml:space="preserve">
     <value>Single Bet must be greater than</value>
