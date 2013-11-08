@@ -20,6 +20,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     /// <summary>
     /// Baccarat game.
     /// </summary>
+   [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1101 : Choice1
     {
         /// <summary>

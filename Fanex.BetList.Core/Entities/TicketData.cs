@@ -13,6 +13,9 @@ namespace Fanex.BetList.Core.Entities
 {
     using System;
 
+    /// <summary>
+    /// Ticket data class.
+    /// </summary>
     [Serializable]
     public class TicketData : ITicketData
     {

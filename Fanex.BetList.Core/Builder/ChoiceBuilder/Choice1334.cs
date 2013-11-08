@@ -12,12 +12,13 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
     ///      Set x Games y and y + 1 Points.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1334 : Choice1
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             bool team2 = ticket.BetTeam == "2";
 
             this.Template.betTeam = team1 ? string.Join(
-                null, 
+                null,
                 new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.under, "</span>" }) : team2 ? string.Join(null, new string[] { "<span class=\"favorite\">", Apollo.Age.Resources.BetList.over, "</span>" }) : string.Join(null, new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.exactly, "</span>" });
 
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;

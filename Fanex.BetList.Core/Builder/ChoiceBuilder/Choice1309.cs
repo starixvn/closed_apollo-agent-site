@@ -14,13 +14,14 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
     ///    Match Handicap Games 3-way.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1309 : Choice1
     {
         /// <summary>

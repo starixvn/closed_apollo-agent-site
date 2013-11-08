@@ -12,6 +12,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -19,6 +20,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     /// <summary>
     /// Live Roulette.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1102 : Choice1
     {
         /// <summary>

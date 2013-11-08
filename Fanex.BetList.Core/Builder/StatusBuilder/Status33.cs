@@ -14,24 +14,52 @@
 namespace Fanex.BetList.Core.Builder.StatusBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
 
     /// <summary>
     /// Win Place bet type.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Status33 : Status1
     {
-        protected int winBetId, placeBetId;
+        private int _winBetId;
+        private int _placeBetId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Status33" /> class.
         /// </summary>
         public Status33()
         {
-            winBetId = 31;
-            placeBetId = 32;
+            WinBetId = 31;
+            PlaceBetId = 32;
+        }
+
+        public int WinBetId
+        {
+            get
+            {
+                return _winBetId;
+            }
+
+            set
+            {
+                _winBetId = value;
+            }
+        }
+
+        public int PlaceBetId
+        {
+            get
+            {
+                return _placeBetId;
+            }
+
+            set
+            {
+                _placeBetId = value;
+            }
         }
 
         /// <summary>
@@ -53,8 +81,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
 
                 if (foundTicketData != null && foundTicketData.Count > 1)
                 {
-                    string winStatus = foundTicketData.Find(item => item.BetTypeId == winBetId).Status.ToLower();
-                    string placeStatus = foundTicketData.Find(item => item.BetTypeId == placeBetId).Status.ToLower();
+                    string winStatus = foundTicketData.Find(item => item.BetTypeId == WinBetId).Status.ToLower();
+                    string placeStatus = foundTicketData.Find(item => item.BetTypeId == PlaceBetId).Status.ToLower();
 
                     string contextWinStatus = GetContextStatus(winStatus);
                     string contextPlaceStatus = GetContextStatus(placeStatus);
@@ -72,6 +100,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                         case BetStatus.Reject:
                         case BetStatus.Refund:
                             break;
+
                         default:
                             this.Template.result = string.Join(null, new string[] { winStatusMarkup, "<br/>", placeStatusMarkup });
                             break;

@@ -290,7 +290,7 @@ if (typeof jQuery != "undefined") {
                 }
 
                 if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
-                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
                     $.blockUI();
@@ -320,7 +320,7 @@ if (typeof jQuery != "undefined") {
                 }
 
                 if (BETLIST.FromDate.val() < BETLIST.BalanceUpDay.val() || BETLIST.ToDate.val() < BETLIST.BalanceUpDay.val()) {
-                    alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
+                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
                     $.blockUI();

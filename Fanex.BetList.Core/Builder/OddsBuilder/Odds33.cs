@@ -15,6 +15,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
@@ -26,7 +27,8 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     /// </summary>
     public class Odds33 : IOdds
     {
-        protected int winBetId, placeBetId;
+        private int _winBetId;
+        private int _placeBetId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Odds33" /> class.
@@ -34,8 +36,34 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         public Odds33()
         {
             this.Template = new Odds_Template();
-            winBetId = 31;
-            placeBetId = 32;
+            WinBetId = 31;
+            PlaceBetId = 32;
+        }
+
+        public int WinBetId
+        {
+            get
+            {
+                return _winBetId;
+            }
+
+            set
+            {
+                _winBetId = value;
+            }
+        }
+
+        public int PlaceBetId
+        {
+            get
+            {
+                return _placeBetId;
+            }
+
+            set
+            {
+                _placeBetId = value;
+            }
         }
 
         /// <summary>
@@ -53,7 +81,11 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <returns>Odds Template.</returns>
-        public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        public Odds_Template Render(
+            ITicket ticket,
+            List<ITicketData> ticketData,
+            GetCachePropertyById funcGetOddsTypeName)
         {
             if (ticketData != null && ticketData.Count > 0)
             {
@@ -65,8 +97,8 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
 
                 if (foundTicketData != null && foundTicketData.Count > 1)
                 {
-                    ITicketData winTicket = foundTicketData.Find(item => item.BetTypeId == winBetId);
-                    ITicketData placeTicket = foundTicketData.Find(item => item.BetTypeId == placeBetId);
+                    ITicketData winTicket = foundTicketData.Find(item => item.BetTypeId == WinBetId);
+                    ITicketData placeTicket = foundTicketData.Find(item => item.BetTypeId == PlaceBetId);
 
                     string oddsWin, oddsPlace;
 
@@ -209,7 +241,8 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// <param name="i">The index.</param>
         private static void GetPlace(ref string odds_place, ref string status_place, DataRow[] foundRows, int i)
         {
-            switch ((foundRows[i]["status"]).ToString().ToLower())
+            var foundRow = foundRows[i]["status"];
+            switch (foundRow.ToString().ToLower())
             {
                 case BetStatus.Won:
                     odds_place += string.Join(

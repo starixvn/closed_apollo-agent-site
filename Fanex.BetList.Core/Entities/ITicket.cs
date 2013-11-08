@@ -101,7 +101,7 @@ namespace Fanex.BetList.Core.Entities
         /// Gets or sets the odds.
         /// </summary>
         /// <value>
-        /// The odds.
+        /// The odds value.
         /// </value>
         decimal Odds { get; set; }
 
@@ -109,7 +109,7 @@ namespace Fanex.BetList.Core.Entities
         /// Gets or sets the stake.
         /// </summary>
         /// <value>
-        /// The stake.
+        /// The stake value.
         /// </value>
         decimal Stake { get; set; }
 
@@ -373,7 +373,7 @@ namespace Fanex.BetList.Core.Entities
         /// Gets or sets the race.
         /// </summary>
         /// <value>
-        /// The race.
+        /// The race value.
         /// </value>
         string Race { get; set; }
 

@@ -23,8 +23,8 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         public Odds1233()
         {
-            winBetId = 1231;
-            placeBetId = 1232;
+            WinBetId = 1231;
+            PlaceBetId = 1232;
         }
 
         /// <summary>

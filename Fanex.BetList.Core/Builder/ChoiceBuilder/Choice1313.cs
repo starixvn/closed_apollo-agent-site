@@ -14,12 +14,14 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
     ///    Set x Total Games 3-way.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1313 : Choice1
     {
         /// <summary>
@@ -44,7 +46,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             }
 
             this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(formatXY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
-          
+
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }
