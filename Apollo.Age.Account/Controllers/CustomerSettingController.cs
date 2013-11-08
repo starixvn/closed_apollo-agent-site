@@ -516,6 +516,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
+            // Hard code bet setting min limit is 5000 for HK$ currency.
+            ViewBag.BetSettingMinLimit = CurrentSession.CurrencyId == 5 ? 5000 : 0; 
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
