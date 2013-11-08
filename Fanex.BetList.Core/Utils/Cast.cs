@@ -11,17 +11,19 @@
 namespace Fanex.BetList.Core.Utils
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
 
     /// <summary>
     /// Convert class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1625:ElementDocumentationMustNotBeCopiedAndPasted", Justification = "Reviewed.")]
     public static partial class Cast
     {
         /// <summary>
         /// Returns an object as a Decimal.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value.</param>
         /// <returns>
         /// Returns an object as a Decimal.
         /// </returns>
@@ -33,7 +35,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Returns an object as a Decimal.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value.</param>
         /// <param name="defaultValue">Value returned if cast fails.</param>
         /// <returns>
         /// Returns an object as a Decimal.
@@ -46,7 +48,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Returns an object as a Decimal.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value.</param>
         /// <param name="provider">Instance of IFormatProvider.</param>
         /// <returns>
         /// Returns an object as a Decimal.
@@ -59,7 +61,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Returns an object as a Decimal.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value..</param>
         /// <param name="defaultValue">Value returned if cast fails.</param>
         /// <param name="provider">Instance of IFormatProvider.</param>
         /// <returns>
@@ -98,7 +100,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Returns an object as a Decimal using invariant culture.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value.</param>
         /// <returns>
         /// Returns an object as a Decimal using invariant culture.
         /// </returns>
@@ -110,7 +112,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Returns an object as a Decimal using invariant culture.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The object value.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>
         /// Returns an object as a Decimal using invariant culture.

@@ -17,38 +17,40 @@ namespace Fanex.BetList.Core.Utils
     /// </summary>
     public class RTFNumber
     {
-        private IFont posFontText;
-        private IFont negFontText;
-        private RtfTextRender renderContent;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RTFNumber" /> class.
         /// </summary>
         /// <param name="render">The render.</param>
-        /// <param name="posFont">The pos font.</param>
-        /// <param name="negFont">The neg font.</param>
+        /// <param name="posFont">The positive font.</param>
+        /// <param name="negFont">The negative font.</param>
         public RTFNumber(RtfTextRender render, IFont posFont, IFont negFont)
         {
-            this.renderContent = render;
-            this.posFontText = posFont;
-            this.negFontText = negFont;
+            this.RenderContent = render;
+            this.PosFontText = posFont;
+            this.NegFontText = negFont;
         }
+
+        private IFont PosFontText { get; set; }
+
+        private IFont NegFontText { get; set; }
+
+        private RtfTextRender RenderContent { get; set; }
 
         /// <summary>
         /// Renders the specified text.
         /// </summary>
-        /// <param name="text">The text.</param>
+        /// <param name="text">The string text.</param>
         public void Render(string text)
         {
             string removeText = text.Replace(ConvertByBetType.FontOpenTag, string.Empty).Replace(ConvertByBetType.FontCloseTag, string.Empty);
             if (text.Length == removeText.Length)
             {
-                this.renderContent.AddText(removeText, this.posFontText);
+                this.RenderContent.AddText(removeText, this.PosFontText);
             }
             else
             {
-                this.renderContent.AddText(removeText, this.negFontText);
+                this.RenderContent.AddText(removeText, this.NegFontText);
             }
         }
-    }    
+    }
 }

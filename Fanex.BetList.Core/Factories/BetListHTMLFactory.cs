@@ -21,7 +21,7 @@ namespace Fanex.BetList.Core.Factories
         /// <summary>
         /// Creates the builder.
         /// </summary>
-        /// <returns>BetListHTMLBuilder.</returns>
+        /// <returns>Bet List HTML Builder.</returns>
         public BetListHTMLBuilder CreateBuilder()
         {
             BetListHTMLBuilder builder = new BetListHTMLBuilder();

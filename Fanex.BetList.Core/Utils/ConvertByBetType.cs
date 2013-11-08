@@ -15,6 +15,7 @@ namespace Fanex.BetList.Core.Utils
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Convert by bet type.
@@ -84,6 +85,7 @@ namespace Fanex.BetList.Core.Utils
         /// <param name="betTeam">The bet team.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <returns>Return bet team.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static string GetBetTeam(string betTeam, int betType)
         {
             if (string.IsNullOrEmpty(betTeam))

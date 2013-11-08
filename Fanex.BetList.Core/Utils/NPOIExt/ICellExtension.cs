@@ -20,12 +20,14 @@ namespace Fanex.BetList.Core.Utils.NPOIExt
         /// <summary>
         /// Sets the cell value.
         /// </summary>
-        /// <param name="cell">The cell.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="cell">The cell object.</param>
+        /// <param name="value">The value object.</param>
         public static void SetCellValue(this ICell cell, object value)
         {
             if (value == null)
+            {
                 cell.SetCellValue("0");
+            }
             else
             {
                 if (value is string)
