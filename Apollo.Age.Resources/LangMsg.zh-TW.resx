@@ -183,4 +183,13 @@
   <data name="succ_112" xml:space="preserve">
     <value>南非賽馬賭注設置更新成功</value>
   </data>
+  <data name="MessageBetSettingLimit" xml:space="preserve">
+    <value>註:單注上限及單場上限必需大於</value>
+  </data>
+  <data name="MessageSingBetMinLimit" xml:space="preserve">
+    <value>單注上限必需大於</value>
+  </data>
+  <data name="MessageSingGameMinLimit" xml:space="preserve">
+    <value>單場上限必需大於</value>
+  </data>
 </root>
