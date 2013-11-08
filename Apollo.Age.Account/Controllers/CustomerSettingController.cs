@@ -501,6 +501,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
+            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
