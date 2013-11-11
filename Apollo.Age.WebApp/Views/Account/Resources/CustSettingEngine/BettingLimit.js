@@ -53,8 +53,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     return false;
                 }
 
-                if (maxBet != 0 && maxBet < DEFAULT_OBJECT.betSettingMinLimit) {
-                    Fanex.ValidateMessage(item.maxBetElement, Language.BET_SETTING_LIMIT_MIN_SINGBET_MESSAGE + " " + Fanex.FormatNumberFloat(DEFAULT_OBJECT.betSettingMinLimit));
+                if (maxBet != 0 && maxBet < maxBetLimit) {
+                    Fanex.ValidateMessage(item.maxBetElement, Language.BET_SETTING_LIMIT_MIN_SINGBET_MESSAGE + " " + Fanex.FormatNumberFloat(maxBetLimit));
                     return false;
                 }
 
@@ -63,8 +63,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     return false;
                 }
 
-                if (minBet != 0 && maxBet < DEFAULT_OBJECT.betSettingMinLimit) {
-                    Fanex.ValidateMessage(item.minBetElement, Language.BET_SETTING_LIMIT_MIN_SINGGAME_MESSAGE + " " + Fanex.FormatNumberFloat(DEFAULT_OBJECT.betSettingMinLimit));
+                if (minBet != 0 && maxBet < maxBetLimit) {
+                    Fanex.ValidateMessage(item.minBetElement, Language.BET_SETTING_LIMIT_MIN_SINGGAME_MESSAGE + " " + Fanex.FormatNumberFloat(maxBetLimit));
                     return false;
                 }
 

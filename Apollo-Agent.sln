@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.UMService", "Apollo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.PermissionControl", "Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj", "{FE47EC76-47A3-423B-808D-E94537B3F6FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustSetting", "..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj", "{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,10 @@ Global
 		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

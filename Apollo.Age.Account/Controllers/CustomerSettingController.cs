@@ -500,8 +500,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            ViewBag.MemberIds = memberIds;
-            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
+            ViewBag.MemberIds = memberIds;            
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -516,9 +515,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = base.CurrentSession.IsMaster;
-            ViewBag.FromLeftMenu = fromLeftMenu;
-            // Hard code bet setting min limit is 5000 for HK$ currency.
-            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
+            ViewBag.FromLeftMenu = fromLeftMenu;            
+            
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -833,15 +831,18 @@ namespace Apollo.Age.Account.Controllers
 
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            int maxBetLimit = 0;
+
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
+            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
+                JsonConvert.SerializeObject(settingContext, jsonSetting),
+                maxBetLimit);
 
             return javasciptString;
         }
@@ -871,7 +872,9 @@ namespace Apollo.Age.Account.Controllers
 
         private IList<BettingLimit> GetBetSetting(SettingContext settingContext)
         {
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            int maxBetLimit = 0;
+
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
             this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
