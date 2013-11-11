@@ -54,7 +54,7 @@
 }
 
 #box_header, .box-header {
-	width: 775px;
+	width: 882px;
 	clear: none;
 	margin: 3px 0;
 
@@ -71,15 +71,7 @@
 		.btn {
 			font-size: @fontSize;
 			height: 21px;
-			padding: 0 0 1px;
-		}
-
-		input.datepicker {
-			width: 65px;
-		}
-
-		img.ui-datepicker-trigger {
-			margin-left: 2px;
+			padding-bottom: 1px;
 		}
 
 		.wagerType	{
@@ -90,10 +82,6 @@
 			background-color: #C9DBDF;
 			padding: 0 3px;
 			margin-bottom: 1px;
-
-			.cell {
-				margin: 0;
-			}
 
 			&.bg-action {
 				background: @white;
@@ -107,14 +95,15 @@
 					&.btn-action {
 						float: none;
 						margin: auto;
-						width: 153px;
+						width: 173px;
 
 						input {
-							margin-right: 10px;
+							margin-right: 20px;
 						}
 
 						.btn {
 							padding: 0 8px;
+							height: 20px;
 							float: left;
 						}
 					}
@@ -223,10 +212,6 @@
 .ip, .view-detail {
 	padding-top:3px;
 	color: @linkColor;
-	font-size: 10px;
-}
-
-.ip {
 	font-size: 10px;
 }
 
@@ -437,9 +422,13 @@
 	}
 		
 	#box_header.report {
-		width: 778px;
+		width: 900px;
 
 		.row.bg-action .item.btn-action .btn {
+			padding: 0;
+		}
+		
+		.btn {
 			padding: 0;
 		}
 	}
@@ -457,16 +446,7 @@
 
 .ie {
 	#box_header.report .btn, .box-header.report .btn {
-		height: 22px;
+		height: 20px;
 		float: left;
-		overflow: visible;
-		padding: 0 2px;
-	}
-}
-
-.eq-ie10 {
-	#box_header.report .btn, .box-header.report .btn {
-		padding-top: 1px;
-		margin-right: 4px;
 	}
 }

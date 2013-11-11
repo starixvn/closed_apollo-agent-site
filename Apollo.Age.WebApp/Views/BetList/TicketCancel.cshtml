@@ -3,22 +3,15 @@
 @using Fanex.BetList.Core.Utils;
 @model Apollo.Age.BetList.ViewModels.BetListReportViewModel
 @{
-<<<<<<< HEAD
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
-=======
-	Layout = "~/Views/BetList/Shared/_Layout.cshtml";
-	ViewBag.Title = Lang.lblBetLists;
-	List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
->>>>>>> Hotfix_ResizeColumnforBetlist
 }
 @using (Html.BeginForm())
 {
 	@Html.Partial("~/Views/Reports/Menu.cshtml",
 new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
 {
-<<<<<<< HEAD
     SportList = Model.SportList,
     FunctionPolicyList = FunctionPermissions,
     ReportName = Lang.TicketsCancelled,
@@ -108,211 +101,8 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
             </div>
         </div>
     </div>
-=======
-	SportList = Model.SportList,
-	FunctionPolicyList = FunctionPermissions,
-	ReportName = Lang.TicketsCancelled,
-	SportType = Model.SportTypeIds,
-	SportDropDownControl = "SportTypeIds"
-})
-<div class="clear"></div>
-	<div id="box_header" class="report">
-		<table>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@Apollo.Age.Resources.Lang.dateRange:
-				</td>
-				<td>
-					<div class="row">
-						<div class="cell">
-							<div class="editor">
-								@Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))                                
-							</div>
-						</div>
-						<div class="cell">
-							<div class="label">
-								<label for="dateFrom">
-									~
-								</label>
-							</div>
-							<div class="editor">
-								@Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))                                
-							</div>
-						</div>
-						<div class="cell">
-							<input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-							<input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                            
-							<input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-							<input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-							<input  class="btn dateRange" range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />                            
-
-							@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
-							@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
-							@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
-							@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
-							@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
-							@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
-							@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
-							@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
-							@Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
-							@Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate)) 
-
-							@Html.Hidden("limitFromDate", (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()) : Formater.ShortDateFormat(Model.ThisPeriod.FromDate)))                            
-
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@Apollo.Age.Resources.Lang.WagerType:
-				</td>
-				<td>                                   
-					@RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
-
-				</td>
-			</tr>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@{
-	var dllUserType = new List<SelectListItem>{new SelectListItem
-				   {
-					   Text = Lang.agent,
-					   Value = "1",
-					   Selected = (1 == Model.UserType)
-
-				   }, new SelectListItem
-				   {
-					   Text = Lang.member,
-					   Value = "0",
-					   Selected = (0 == Model.UserType)
-				   }};
-					}
-					@Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
-				</td>
-				<td>
-					<input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
-				</td>
-			</tr>
-		</table>
-		<div>
-			<div class="row bg-action">              
-				<div class="item btn-action">
-					<input id="btnSubmitCancelBetlist" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
-					<input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-				</div>
-			</div>
-		</div>
-	</div>
->>>>>>> Hotfix_ResizeColumnforBetlist
 }
-<div class="clear"></div>
 <table class="tblRpt betlist">
-<<<<<<< HEAD
-    <thead class="persist-header">
-        <tr>
-            <th style="width: 70px;">
-                @BetList.time
-            </th>
-            <th style="width: 120px;">
-                @BetList.discount
-            </th>
-            <th style="width: 110px;">
-                @BetList.gameType
-            </th>
-            <th>
-                @BetList.explain
-            </th>
-            <th style="width: 80px;">
-                @BetList.amount
-            </th>
-            <th style="width: 80px;">
-                @BetList.result
-            </th>
-            <th style="width: 80px;">
-                @BetList.status
-            </th>
-            <th style="width: 90px;">
-                @BetList.agentPT
-            </th>
-            <th style="width: 90px;">
-                @BetList.agentComm
-            </th>
-            <th style="width: 60px;">
-                @BetList.feature
-            </th>
-        </tr>
-    </thead>
-    @if (Model.TicketList != null && Model.TicketList.Any())
-    {
-        var i = 0;
-        decimal totalAmount = 0;
-        decimal totalResult = 0;
-        decimal totalAgentWinloss = 0;
-        decimal totalAgentComm = 0;
-        <tbody>
-            @foreach (var item in Model.TicketList)
-            {
-                i++;
-                totalAmount += item.Stake;
-                totalResult += item.Result;
-                totalAgentComm += item.AgentCommValue;
-                totalAgentWinloss += item.AgentWinlossValue;
-                <tr>
-                    <td class='c'>
-                        @Html.Raw(item.TransTime)
-                    </td>
-                    <td class='c'>@Html.Raw(item.Discount)
-                    </td>
-                    <td class='c'>@Html.Raw(item.GameType)
-                    </td>
-                    <td class='r'>
-                        @Html.Raw(item.Choice)
-                    </td>
-                    <td class='r nowrap'>
-                        @Formater.FormatNumber20(item.Stake, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class='r nowrap'>
-                        @Formater.FormatNumber20(item.Result, Formater.CULT_NAME_ENG)
-                    </td>
-                    <td class='c'>
-                        @Html.Raw(item.Status)
-                    </td>
-                    <td class='r'>
-                        @Html.Raw(item.AgentShare)
-                    </td>
-                    <td class='r'>
-                        @Html.Raw(item.AgentComm)
-                    </td>
-                    <td class='r'>
-                        <a class="view-detail" href="#" tid="@item.TransId">@BetList.details</a>
-                    </td>
-                </tr>
-            }
-            <tr>
-                <td colspan="3" class="total">
-                </td>
-                <td class="r total">@i
-                </td>
-                <td class="r total nowrap">
-                    @Formater.FormatNumber20(totalAmount, Formater.CULT_NAME_ENG)
-                </td>
-                <td class="r result nowrap">
-                    @Formater.FormatNumber20(totalResult, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r total'>
-                </td>
-                <td class='r result'>
-                    @Formater.FormatNumber20(totalAgentWinloss, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r result'>
-                    @Formater.FormatNumber20(totalAgentComm, Formater.CULT_NAME_ENG)
-                </td>
-                <td class='r total'>
-                </td>
-            </tr>
-        </tbody>
-=======
 	<thead class="persist-header">
 		<tr>
 			<th style="width: 70px;">
@@ -416,7 +206,6 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
 				</td>
 			</tr>
 		</tbody>
->>>>>>> Hotfix_ResizeColumnforBetlist
 
 	}
 </table>
