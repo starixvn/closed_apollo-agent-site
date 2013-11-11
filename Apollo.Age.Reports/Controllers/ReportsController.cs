@@ -496,6 +496,10 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult agent win loss.</returns>
+<<<<<<< HEAD
+=======
+        [ApolloAuth(FunctionKey = "Win_Loss", Policy = Policy.Query)]
+>>>>>>> Hotfix_ResizeColumnforBetlist
         public ActionResult ExportAgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -591,6 +595,10 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
+<<<<<<< HEAD
+=======
+        [ApolloAuth(FunctionKey = "Win_Loss", Policy = Policy.Query)]
+>>>>>>> Hotfix_ResizeColumnforBetlist
         public ActionResult ExportMemberWinLoss(
             DateTime fromDate,
             DateTime toDate,

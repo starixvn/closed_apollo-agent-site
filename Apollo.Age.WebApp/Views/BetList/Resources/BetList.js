@@ -153,6 +153,7 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ToThisPeriod = $("#thisPeriodTo");
                 BETLIST.FromLastPeriod = $("#lastPeriodFrom");
                 BETLIST.ToLastPeriod = $("#lastPeriodTo");
+                BETLIST.limitFromDate = $("#limitFromDate");
                 // Event click submit on ticket cancel
                 $("#btnSubmitBetlist").click(function () {
                     BETLIST.commonBetlist();
@@ -304,8 +305,8 @@ if (typeof jQuery != "undefined") {
                     return;
                 }
 
-                if (BETLIST.FromDate.val() < BETLIST.FromThisPeriod.val() || BETLIST.ToDate.val() < BETLIST.FromThisPeriod.val()) {
-                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.FromThisPeriod.val());
+                if (BETLIST.FromDate.val() < BETLIST.limitFromDate.val() || BETLIST.ToDate.val() < BETLIST.limitFromDate.val()) {
+                    alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.limitFromDate.val());
                 }
                 else {
                     $.blockUI();

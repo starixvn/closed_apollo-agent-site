@@ -472,7 +472,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 AgentId = -1,
                 BetTypes = betType,
-                SportTypes = sportType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
@@ -496,6 +496,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <summary>
         /// Bet list win lost.
         /// </summary>
+<<<<<<< HEAD
         /// <param name="custId">The customer identifier.</param>
         /// <param name="fromDate">Input from date.</param>
         /// <param name="toDate">Input to date.</param>
@@ -512,6 +513,20 @@ namespace Apollo.Age.BetList.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult Winloss(
             int custId,
+=======
+        /// <param name="custId"></param>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <param name="type"></param>
+        /// <param name="username"></param>
+        /// <param name="betType"></param>
+        /// <param name="mainShareHolderId"></param>
+        /// <param name="mainShareHolderUsername"></param>
+        /// <returns></returns>
+
+        [ApolloAuth(FunctionKey = "Win_Loss", Policy = Policy.Query)]
+        public ViewResult Winloss(int custId,
+>>>>>>> Hotfix_ResizeColumnforBetlist
             DateTime fromDate,
             DateTime toDate,
             string type = "",
