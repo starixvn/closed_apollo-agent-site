@@ -61,6 +61,33 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ※Note: Single Bet and Single Game must be greater than.
+        /// </summary>
+        public static string MessageBetSettingLimit {
+            get {
+                return ResourceManager.GetString("MessageBetSettingLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Bet must be greater than.
+        /// </summary>
+        public static string MessageSingBetMinLimit {
+            get {
+                return ResourceManager.GetString("MessageSingBetMinLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Game must be greater than.
+        /// </summary>
+        public static string MessageSingGameMinLimit {
+            get {
+                return ResourceManager.GetString("MessageSingGameMinLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date range cannot be less than.
         /// </summary>
         public static string MessageValidateDateRange {

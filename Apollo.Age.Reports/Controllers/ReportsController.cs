@@ -232,7 +232,7 @@ namespace Apollo.Age.Reports.Controllers
 
             var functionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var winLossFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Win_Loss).FirstOrDefault();
+            var winLossFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.WinLoss).FirstOrDefault();
 
             // If not have permission on win loss report
             if (winLossFunction == null || winLossFunction.Policy < (byte)Policy.Query)
@@ -337,7 +337,7 @@ namespace Apollo.Age.Reports.Controllers
             HttpContext.Session[sessionKey] = agentWinLossList;
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.WinLoss) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {
@@ -401,7 +401,7 @@ namespace Apollo.Age.Reports.Controllers
             HttpContext.Session[sessionKey] = memberWinLossList;
             ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
 
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Win_Loss) >= (byte)Policy.Query;
+            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.WinLoss) >= (byte)Policy.Query;
 
             if (!hasPermission)
             {

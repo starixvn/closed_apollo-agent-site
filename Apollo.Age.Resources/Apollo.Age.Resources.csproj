@@ -272,6 +272,7 @@
     <EmbeddedResource Include="LangMsg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LangMsg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LangMsg.th-TH.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
