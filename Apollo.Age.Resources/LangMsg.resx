@@ -186,4 +186,13 @@
   <data name="MessageValidateDateRange" xml:space="preserve">
     <value>Date range cannot be less than</value>
   </data>
+  <data name="MessageBetSettingLimit" xml:space="preserve">
+    <value>※Note: Single Bet and Single Game must be greater than</value>
+  </data>
+  <data name="MessageSingBetMinLimit" xml:space="preserve">
+    <value>Single Bet must be greater than</value>
+  </data>
+  <data name="MessageSingGameMinLimit" xml:space="preserve">
+    <value>Single Game must be greater than</value>
+  </data>
 </root>

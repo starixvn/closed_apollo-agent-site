@@ -36,6 +36,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     Fanex.ValidateMessage(item.maxBetElement, Language.INCORRECT_MAX_BET, 0, 100);
                     return false;
                 }
+
                 if (validateExpr.test(item.minBetElement.value) == false) {
                     Fanex.ValidateMessage(item.minBetElement, Language.INCORRECT_MIN_BET, 0, 100);
                     return false;
@@ -52,8 +53,18 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
                     return false;
                 }
 
+                if (maxBet != 0 && maxBet < DEFAULT_OBJECT.betSettingMinLimit) {
+                    Fanex.ValidateMessage(item.maxBetElement, Language.BET_SETTING_LIMIT_MIN_SINGBET_MESSAGE + " " + Fanex.FormatNumberFloat(DEFAULT_OBJECT.betSettingMinLimit));
+                    return false;
+                }
+
                 if (minBet > maxPerMatch) {
                     Fanex.ValidateMessage(item.maxPerMatchElement, Language.MIN_BET_LOWER_THAN_MIN_MAX_PER_MATCH_BET.Format(item.Name));
+                    return false;
+                }
+
+                if (minBet != 0 && maxBet < DEFAULT_OBJECT.betSettingMinLimit) {
+                    Fanex.ValidateMessage(item.minBetElement, Language.BET_SETTING_LIMIT_MIN_SINGGAME_MESSAGE + " " + Fanex.FormatNumberFloat(DEFAULT_OBJECT.betSettingMinLimit));
                     return false;
                 }
 
@@ -151,7 +162,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
             var maxBetValue = Fanex.RoundNumber(parseFloat(this.items[0].maxBetElement.value, true), 1);
             var maxPerMatchValue = Fanex.RoundNumber(parseFloat(this.items[0].maxPerMatchElement.value, true), 1);
-            
+
 
             var c = this.items.length;
             for (var i = 0; i < c; i++) {
