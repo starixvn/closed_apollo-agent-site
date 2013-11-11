@@ -433,15 +433,6 @@
         }
         @if (functionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query)
         {
-<<<<<<< .merge_file_a06060
-=======
-            if (item.Function.FunctionKey == ApolloFunctionKeys.WinLoss && item.Policy >= 1)
-            {
-            <li @classWinloss><a href="~/Reports/MatchEntered">@Lang.lblWinLoss</a></li>    
-            }
-            else if (item.Function.FunctionKey == ApolloFunctionKeys.Outstanding && item.Policy >= 1)
-            { 
->>>>>>> .merge_file_a03984
             <li @classOutstanding><a href="~/reports/outstanding">@Lang.outstanding</a></li>
         }
         @if (functionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query
