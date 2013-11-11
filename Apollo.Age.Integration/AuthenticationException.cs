@@ -14,7 +14,6 @@ namespace Apollo.Age.Integration
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [Serializable]
     public class AuthenticationException : Exception
     {
         public int UserId { get; set; }
