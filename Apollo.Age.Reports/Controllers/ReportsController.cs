@@ -496,6 +496,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult agent win loss.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         public ActionResult ExportAgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -591,6 +592,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         public ActionResult ExportMemberWinLoss(
             DateTime fromDate,
             DateTime toDate,
