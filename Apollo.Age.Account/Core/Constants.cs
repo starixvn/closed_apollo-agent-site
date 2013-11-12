@@ -10,7 +10,6 @@
 namespace Apollo.Age.Account.Core
 {
     using System.Collections.Generic;
-    using Apollo.Age.Resources;
 
     /// <summary>
     /// TODO: Update summary.

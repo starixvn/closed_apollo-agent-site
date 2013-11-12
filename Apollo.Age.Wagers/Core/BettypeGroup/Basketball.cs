@@ -9,10 +9,12 @@
 namespace Apollo.Age.Wagers.Core.BettypeGroup
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Basketball class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Basketball
     {
         public const string Straight = "1, 2, 3";

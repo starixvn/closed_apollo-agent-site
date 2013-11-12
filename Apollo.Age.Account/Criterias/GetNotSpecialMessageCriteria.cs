@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetMessageCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetNotSpecialMessageCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get not special message criteria.
     /// </summary>
     public class GetNotSpecialMessageCriteria : CriteriaBase
     {

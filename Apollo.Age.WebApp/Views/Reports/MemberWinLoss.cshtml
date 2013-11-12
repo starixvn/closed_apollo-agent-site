@@ -5,7 +5,7 @@
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     int i = 1;
     string rowClass = string.Empty;
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
 }
 @model MemberWinLossViewModel
 @Html.Partial("Menu",
@@ -16,8 +16,6 @@ new ReportMenuViewModel
     ReportName = Lang.lblWinLoss,
     SportType = Model.SportTypeIds
 })
-<div class="clear">
-</div>
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -43,11 +41,11 @@ new ReportMenuViewModel
                     </div>
                     <div class="cell">
                         <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
-                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />                        
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
                         <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                         <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
                         <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                        <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                     </div>
                 </div>
             </td>
@@ -190,42 +188,42 @@ new ReportMenuViewModel
                     <td class="r">
                         @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
                         <span class='split'>/</span>
                         @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.MemberWinLoss, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.MemberComm, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.MemberTotal, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.AWinLoss, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.AComm, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.ATotal, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.UpLineEffectiveStake, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.UpLineTotal, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.OutstandingAmount, Formater.CULT_NAME_ENG)
                     </td>
-                    <td class="r nowrap">
+                    <td class="r">
                         @Formater.FormatNumber20(item.OutstandingShareAmount, Formater.CULT_NAME_ENG)
                     </td>
                 </tr>
@@ -238,42 +236,42 @@ new ReportMenuViewModel
                 </td>
                 <td>
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
                     <span class='split-footer'>/</span>
                     @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalMemWinLoss, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalMemComm, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalMemTotal, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalAWinLoss, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalAComm, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalATotal, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalUpLineEffectiveStake, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalUpLineTotal, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalOutstandingAmount, Formater.CULT_NAME_ENG)
                 </td>
-                <td class="r nowrap">
+                <td class="r">
                     @Formater.FormatNumber20(totalOutstandingShareAmount, Formater.CULT_NAME_ENG)
                 </td>
             </tr>
@@ -302,13 +300,6 @@ else
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
-@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
-@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
-@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
-@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
-@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
-@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
-@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
 @Html.Hidden("SportName", Model.SportName)
 @Html.Hidden("BettypeName", Model.BettypeName)
 @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))

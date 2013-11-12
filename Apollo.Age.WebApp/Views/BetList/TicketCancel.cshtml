@@ -3,112 +3,105 @@
 @using Fanex.BetList.Core.Utils;
 @model Apollo.Age.BetList.ViewModels.BetListReportViewModel
 @{
-	Layout = "~/Views/BetList/Shared/_Layout.cshtml";
-	ViewBag.Title = Lang.lblBetLists;
-	List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.lblBetLists;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
 }
 @using (Html.BeginForm())
 {
 	@Html.Partial("~/Views/Reports/Menu.cshtml",
 new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
 {
-	SportList = Model.SportList,
-	FunctionPolicyList = FunctionPermissions,
-	ReportName = Lang.TicketsCancelled,
-	SportType = Model.SportTypeIds,
-	SportDropDownControl = "SportTypeIds"
+    SportList = Model.SportList,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.TicketsCancelled,
+    SportType = Model.SportTypeIds,
+    SportDropDownControl = "SportTypes"
 })
-<div class="clear"></div>
-	<div id="box_header" class="report">
-		<table>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@Apollo.Age.Resources.Lang.dateRange:
-				</td>
-				<td>
-					<div class="row">
-						<div class="cell">
-							<div class="editor">
-								@Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))                                
-							</div>
-						</div>
-						<div class="cell">
-							<div class="label">
-								<label for="dateFrom">
-									~
-								</label>
-							</div>
-							<div class="editor">
-								@Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))                                
-							</div>
-						</div>
-						<div class="cell">
-							<input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-							<input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                            
-							<input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-							<input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-							<input  class="btn dateRange" range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />                            
+    <div id="box_header" class="report">
+        <table>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.dateRange:
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="cell">
+                            <div class="editor">
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="label">
+                                <label for="dateFrom">
+                                    ~
+                                </label>
+                            </div>
+                            <div class="editor">
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
+                            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
+                            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                            <input  class="btn dateRange" range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
+                            @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+                            @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
+                            @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
+                            @Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
+                            @Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
+                            @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
+                            @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
+                            @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                            @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
+                            @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @Apollo.Age.Resources.Lang.WagerType:
+                </td>
+                <td>
+                    @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypes", className: "wagerType")
+                </td>
+            </tr>
+            <tr>
+                <td class="winloss_firstcolumn">
+                    @{
+    var dllUserType = new List<SelectListItem>{new SelectListItem
+                   {
+                       Text = Lang.agent,
+                       Value = "1",
+                       Selected = (1 == Model.UserType)
 
-							@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
-							@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
-							@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
-							@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
-							@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
-							@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
-							@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
-							@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
-							@Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
-							@Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate)) 
-
-							@Html.Hidden("limitFromDate", (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()) : Formater.ShortDateFormat(Model.ThisPeriod.FromDate)))                            
-
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@Apollo.Age.Resources.Lang.WagerType:
-				</td>
-				<td>                                   
-					@RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypeIds, id: "BetTypeIds", className: "wagerType")
-
-				</td>
-			</tr>
-			<tr>
-				<td class="winloss_firstcolumn">
-					@{
-	var dllUserType = new List<SelectListItem>{new SelectListItem
-				   {
-					   Text = Lang.agent,
-					   Value = "1",
-					   Selected = (1 == Model.UserType)
-
-				   }, new SelectListItem
-				   {
-					   Text = Lang.member,
-					   Value = "0",
-					   Selected = (0 == Model.UserType)
-				   }};
-					}
-					@Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
-				</td>
-				<td>
-					<input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
-				</td>
-			</tr>
-		</table>
-		<div>
-			<div class="row bg-action">              
-				<div class="item btn-action">
-					<input id="btnSubmitCancelBetlist" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
-					<input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
-				</div>
-			</div>
-		</div>
-	</div>
+                   }, new SelectListItem
+                   {
+                       Text = Lang.member,
+                       Value = "0",
+                       Selected = (0 == Model.UserType)
+                   }};
+                    }
+                    @Html.DropDownList("UserType", dllUserType, new { @class = "user-type" })
+                </td>
+                <td>
+                    <input type="text" value="@Model.Username" name="Username" maxlength="50" id="Username" class="txt-username" autocomplete="off">
+                </td>
+            </tr>
+        </table>
+        <div>
+            <div class="row bg-action">
+                <div class="item btn-action">
+                    <input id="btnSubmitCancelBetlist" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                    <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                </div>
+            </div>
+        </div>
+    </div>
 }
-<div class="clear"></div>
 <table class="tblRpt betlist">
 	<thead class="persist-header">
 		<tr>

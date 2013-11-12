@@ -10,7 +10,7 @@
 namespace Apollo.Age.Web
 {
     /// <summary>
-    /// Contains all properties of an authenticated user
+    /// Contains all properties of an authenticated user.
     /// </summary>
     public interface ICurrentSession
     {
@@ -45,14 +45,5 @@ namespace Apollo.Age.Web
         string AdminName { get; set; }
 
         int OnUserId { get; set; }
-
-        /// <summary>
-        /// True indicate admin user can view VN ip.
-        /// </summary>
-        //bool IsAdminCanViewVNIP
-        //{
-        //    get;
-        //    set;
-        //}
     }
 }

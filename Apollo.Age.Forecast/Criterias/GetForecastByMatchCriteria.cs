@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetForecastHandicapByMatch.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetForecastByMatchCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,11 +9,12 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Enumerations;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get forecast by match criteria.
+    /// </summary>
     public class GetForecastByMatchCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
@@ -24,6 +25,10 @@ namespace Apollo.Age.Forecast.Criterias
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             switch (BetType)
@@ -45,6 +50,10 @@ namespace Apollo.Age.Forecast.Criterias
             return string.Empty;
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return MatchId > 0 && BetType > 0;

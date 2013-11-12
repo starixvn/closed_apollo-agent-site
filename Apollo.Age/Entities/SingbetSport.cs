@@ -9,13 +9,8 @@
 
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// This class is sport type model.
+    /// SINGBET sport entity.
     /// </summary>
     public class SingbetSport
     {

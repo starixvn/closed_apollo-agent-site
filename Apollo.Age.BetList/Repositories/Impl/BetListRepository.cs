@@ -14,6 +14,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
@@ -22,15 +23,16 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using Fanex.Data;
 
     /// <summary>
-    /// BetList Repository
+    /// BetList Repository.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class BetListRepository : IBetListRepository
     {
         /// <summary>
-        /// Get detail agent PT and agent commission
+        /// Get detail agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List Ticket.</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_AgentDetail";
@@ -55,10 +57,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get detail win loss agent PT and agent commission
+        /// Get detail win loss agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List Ticket.</returns>
         public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
         {
             try
@@ -68,9 +70,9 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 if (mainTable == null || mainTable.Rows.Count <= 0)
                 {
                     mainTable = this.GetDetailWinLossNewOrOld("Age_BetList_AgentDetail_Old", criteria);
-                }                                
+                }
 
-                // Main ticket list
+                // Main ticket list.
                 var ticketList = this.ReadTicket(mainTable);
 
                 return ticketList;
@@ -82,10 +84,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get detail ticket mix-parlay
+        /// Get detail ticket mix-parlay.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List Ticket.</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_SelParlayDetail";
@@ -105,10 +107,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get bet list running on Total Bets menu
+        /// Get bet list running on Total Bets menu.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_TotalBets_SelRunningByBettype";
@@ -126,11 +128,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     var dataSet = db.ExecuteDataSet(uspParams);
                     var ticketResult = new TicketResult();
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     ticketResult.TicketList = this.ReadTicket(mainTable);
 
-                    // Reference ticket
+                    // Reference ticket.
                     var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
                     ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
                     return ticketResult;
@@ -143,10 +145,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get bet list by matchId
+        /// Get bet list by matchId.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
             var uspKey = "Age_BetList_TotalBets_SelRunningByBettypeMatch";
@@ -167,11 +169,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     var dataSet = db.ExecuteDataSet(uspParams);
                     var ticketResult = new TicketResult();
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     ticketResult.TicketList = this.ReadTicket(mainTable);
 
-                    // Reference ticket
+                    // Reference ticket.
                     var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
                     ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
                     return ticketResult;
@@ -184,10 +186,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get all bets by date and member from Win loss listOutstanding
+        /// Get all bets by date and member from Win loss listOutstanding.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             try
@@ -203,19 +205,18 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     }
                     else
                     {
-                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo
+                        // Separate 2 parts: dateFrom --> preBalanceUpDate, balanceUpDate --> dateTo.
                         DataTable referenceOldTable = null;
                         var mainOldTable = this.GetWinLossFromOld("Age_BetList_SelWinloss_Old", criteria, out referenceOldTable);
-
 
                         DataTable referenceNewTable = null;
                         var mainNewTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceNewTable);
 
-                        // Merge two table bettrans
+                        // Merge two table bettrans.
                         mainOldTable.Merge(mainNewTable);
                         mainTable = mainOldTable;
 
-                        // Merge table reference
+                        // Merge table reference.
                         referenceOldTable.Merge(referenceNewTable);
                         referenceTable = referenceOldTable;
                     }
@@ -225,10 +226,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     mainTable = this.GetWinLossFromNew("Age_BetList_SelWinloss", criteria, out referenceTable);
                 }
 
-                // Main ticket list
+                // Main ticket list.
                 ticketResult.TicketList = this.ReadTicket(mainTable);
 
-                // Reference ticket
+                // Reference ticket.
                 ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
 
                 return ticketResult;
@@ -240,10 +241,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// BetList: Transaction, Cancel
+        /// BetList: Transaction, Cancel.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria)
         {
             try
@@ -253,18 +254,18 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     using (var db = new ObjectDb(criteria.GetSettingKey()))
                     {
-                        //var param = criteria.GetSpParams();
                         var dataSet = db.ExecuteDataSet(criteria.GetParameters());
 
-                        // Main ticket list
+                        // Main ticket list.
                         var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                         ticketResult.TicketList = this.ReadTicket(mainTable);
 
-                        // Reference ticket
+                        // Reference ticket.
                         var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
                         ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
                     }
                 }
+
                 return ticketResult;
             }
             catch
@@ -277,7 +278,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// Gets the ticket result.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
-        /// <param name="isIncludeOldData">Include old data from Archive database or not</param>
+        /// <param name="isIncludeOldData">Include old data from Archive database or not.</param>
         /// <returns>Ticket result data.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
@@ -294,7 +295,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         {
                             if (criteria.ToDate <= this.ResetEndDate(preBalanceUpDay))
                             {
-                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                // Get data from Archive database only.
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old"))
                                 {
                                     var uspParams = new
                                     {
@@ -323,14 +325,16 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     }
                                 }
                             }
-                            else // Get data from main database and archive database.
+                            else
                             {
+                                // Get data from main database and archive database.
                                 var oldDatatable = new DataTable();
                                 var newDatatable = new DataTable();
                                 var oldReferenceDatatable = new DataTable();
                                 var newReferenceDatatable = new DataTable();
 
-                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old")) // Get data from Archive database only.
+                                // Get data from Archive database only.
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus_Old"))
                                 {
                                     var uspParams = new
                                     {
@@ -359,7 +363,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     }
                                 }
 
-                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from Archive database only.
+                                // Get data from Archive database only.
+                                using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus"))
                                 {
                                     var uspParams = new
                                     {
@@ -399,7 +404,8 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         }
                         else
                         {
-                            using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus")) // Get data from main database only.
+                            // Get data from main database only.
+                            using (var db = new ObjectDb("Age_BetList_SelByDateMemStatus"))
                             {
                                 var uspParams = new
                                 {
@@ -445,10 +451,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get data betlist on Wagers page
+        /// Get data bet list on Wagers page.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The wagers criteria.</param>
+        /// <returns>Return a ticket object.</returns>
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
             try
@@ -461,11 +467,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         var param = criteria.GetSpParams();
                         var dataSet = db.ExecuteDataSet(param);
 
-                        // Main ticket list
+                        // Main ticket list.
                         var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                         ticketResult.TicketList = this.ReadTicket(mainTable);
                     }
                 }
+
                 return ticketResult;
             }
             catch
@@ -475,10 +482,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get Combination Mix Parlay Detail
+        /// Get Combination Mix Parlay Detail.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>SystemParlay data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>System Parlay data.</returns>
         public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
         {
             var uspKey = "Age_Betlist_SelSystemParlay_Details";
@@ -542,14 +549,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get UserId By Username
+        /// Get User Id By Username.
         /// </summary>
-        /// <param name="loggedId">Logged id</param>
-        /// <param name="isAgent">Agent choice</param>
-        /// <param name="username">User name</param>
-        /// <param name="agentId">Output agent id</param>
-        /// <param name="custId">Output customer id</param>
-        /// <param name="errorCode">Output error code</param>
+        /// <param name="loggedId">Logged id.</param>
+        /// <param name="isAgent">Agent choice.</param>
+        /// <param name="username">User name.</param>
+        /// <param name="agentId">Output agent id.</param>
+        /// <param name="custId">Output customer id.</param>
+        /// <param name="errorCode">Output error code.</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             var uspKey = "Age_BetList_GetId";
@@ -590,11 +597,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get Agent up line of member
+        /// Get Agent up line of member.
         /// </summary>
-        /// <param name="parentId">Logged id</param>
-        /// <param name="custId">customer id</param>
-        /// <returns></returns>
+        /// <param name="parentId">Logged id.</param>
+        /// <param name="custId">Customer id.</param>
+        /// <returns>List of Agent.</returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
             var uspKey = "Age_Agent_GetCustomerDownlinePath";
@@ -617,10 +624,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Parse to Ticket Objet
+        /// Parse to Ticket Object.
         /// </summary>
-        /// <param name="data">Data Table</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="data">Data Table.</param>
+        /// <returns>List Ticket.</returns>
         private IList<ITicket> ReadTicket(DataTable data)
         {
             var columnCollection = data.Columns;
@@ -751,10 +758,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Parse data table to list TicketData Object
+        /// Parse data table to list TicketData Object.
         /// </summary>
-        /// <param name="data">Data table</param>
-        /// <returns>List TicketData</returns>
+        /// <param name="data">Data table.</param>
+        /// <returns>List Ticket Data.</returns>
         private List<ITicketData>
             ReadReferneceTicket(DataTable data)
         {
@@ -766,18 +773,14 @@ namespace Apollo.Age.BetList.Repositories.Impl
             {
                 var ticket = new TicketData();
 
-                // string
                 ticket.BetTeam = containsBetTeam ? dataRow["betteam"].ToString() : string.Empty;
                 ticket.RefNo = dataRow["refno"].ToString();
                 ticket.Status = dataRow["status"].ToString();
 
-                // Int
                 ticket.BetTypeId = Convert.ToInt32(dataRow["bettype"]);
 
-                // Money
                 ticket.Stake = containsStake ? Convert.ToDecimal(dataRow["stake"]) : 0;
 
-                // Decimal
                 ticket.Odds = Convert.ToDecimal(dataRow["odds"]);
 
                 result.Add(ticket);
@@ -787,11 +790,11 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get detail Win loss from new or archive
+        /// Get detail Win loss from new or archive.
         /// </summary>
-        /// <param name="uspKey">Store name</param>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Return to table</returns>
+        /// <param name="uspKey">Store name.</param>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Return to table.</returns>
         private DataTable GetDetailWinLossNewOrOld(string uspKey, BetListCriteria criteria)
         {
             try
@@ -804,7 +807,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         criteria.LoggedId
                     });
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
                     return mainTable;
                 }
@@ -816,12 +819,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get bet list Win loss from new or archive
+        /// Get bet list Win loss from new or archive.
         /// </summary>
-        /// <param name="uspKey">Store name</param>
-        /// <param name="criteria">Criteria name</param>
-        /// <param name="referenceTable">Out reference table</param>
-        /// <returns>Return to table</returns>
+        /// <param name="uspKey">Store name.</param>
+        /// <param name="criteria">Criteria name.</param>
+        /// <param name="referenceTable">Out reference table.</param>
+        /// <returns>Return to table.</returns>
         private DataTable GetWinLossFromNewOrOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
@@ -830,10 +833,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 {
                     var dataSet = db.ExecuteDataSet(criteria.GetSpParams());
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
 
-                    // Reference ticket
+                    // Reference ticket.
                     referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
 
                     return mainTable;
@@ -846,22 +849,26 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get bet list Win loss from new or archive
+        /// Get bet list Win loss from new or archive.
         /// </summary>
-        /// <param name="uspKey">Store name</param>
-        /// <param name="criteria">Criteria name</param>
-        /// <param name="referenceTable">Out reference table</param>
-        /// <returns>Return to table</returns>
+        /// <param name="uspKey">Store name.</param>
+        /// <param name="criteria">Criteria name.</param>
+        /// <param name="referenceTable">Out reference table.</param>
+        /// <returns>Return to table.</returns>
         private DataTable GetWinLossFromNew(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
             {
                 using (var db = new ObjectDb(uspKey))
                 {
+                    var fromDate = criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay)
+                        ? this.ResetStartDate(criteria.BalanceUpDay)
+                        : criteria.FromDate;
+
                     db.AddInParameter("loggedid", DbType.Int32, criteria.LoggedId);
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
-                    db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate < this.ResetStartDate(criteria.BalanceUpDay) ? this.ResetStartDate(criteria.BalanceUpDay) : criteria.FromDate);
+                    db.AddInParameter("fromdate", DbType.DateTime, fromDate);
                     db.AddInParameter("todate", DbType.DateTime, criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("movebetsday", DbType.DateTime, criteria.MoveBetsDay);
@@ -870,10 +877,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                     var dataSet = db.ExecuteDataSet();
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
 
-                    // Reference ticket
+                    // Reference ticket.
                     referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
 
                     return mainTable;
@@ -886,12 +893,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Get bet list Win loss from new or archive
+        /// Get bet list Win loss from new or archive.
         /// </summary>
-        /// <param name="uspKey">Store name</param>
-        /// <param name="criteria">Criteria name</param>
-        /// <param name="referenceTable">Out reference table</param>
-        /// <returns>Return to table</returns>
+        /// <param name="uspKey">Store name.</param>
+        /// <param name="criteria">Criteria name.</param>
+        /// <param name="referenceTable">Out reference table.</param>
+        /// <returns>Return to table.</returns>
         private DataTable GetWinLossFromOld(string uspKey, BetListCriteria criteria, out DataTable referenceTable)
         {
             try
@@ -902,17 +909,20 @@ namespace Apollo.Age.BetList.Repositories.Impl
                     db.AddInParameter("agentid", DbType.Int32, criteria.AgentId);
                     db.AddInParameter("custid", DbType.Int32, criteria.CustId);
                     db.AddInParameter("fromdate", DbType.DateTime, criteria.FromDate);
-                    db.AddInParameter("todate", DbType.DateTime, criteria.ToDate > this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) ? this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) : criteria.ToDate);
+                    db.AddInParameter(
+                        "todate",
+                        DbType.DateTime,
+                        criteria.ToDate > this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) ? this.ResetEndDate(criteria.BalanceUpDay.AddDays(-1)) : criteria.ToDate);
                     db.AddInParameter("statusids", DbType.AnsiString, criteria.StatusIds);
                     db.AddInParameter("sporttypes", DbType.String, criteria.SportTypes);
                     db.AddInParameter("bettypes", DbType.String, criteria.BetTypes);
 
                     var dataSet = db.ExecuteDataSet();
 
-                    // Main ticket list
+                    // Main ticket list.
                     var mainTable = dataSet.Tables.Count > 0 ? dataSet.Tables[0] : new DataTable();
 
-                    // Reference ticket
+                    // Reference ticket.
                     referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
 
                     return mainTable;
@@ -925,10 +935,10 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Read boolean value from an object
+        /// Read boolean value from an object.
         /// </summary>
-        /// <param name="value">Input value</param>
-        /// <returns>To boolean</returns>
+        /// <param name="value">Input value.</param>
+        /// <returns>To boolean.</returns>
         private bool ReadBoolean(object value)
         {
             if (value == null || value == Convert.DBNull)
@@ -950,20 +960,20 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
-        /// Time start date
+        /// Time start date.
         /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
+        /// <param name="dt">Input a date.</param>
+        /// <returns>Return a date with full hour.</returns>
         private DateTime ResetStartDate(DateTime dt)
         {
-            return dt.AddMilliseconds(-(((dt.Hour * 60 + dt.Minute) * 60 + dt.Second) * 1000 + dt.Millisecond));
+            return dt.AddMilliseconds(-((((((dt.Hour * 60) + dt.Minute) * 60) + dt.Second) * 1000) + dt.Millisecond));
         }
 
         /// <summary>
-        /// Time end date
+        /// Time end date.
         /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
+        /// <param name="dt">Input a date.</param>
+        /// <returns>Return a date with full hour.</returns>
         private DateTime ResetEndDate(DateTime dt)
         {
             return ResetStartDate(dt).Add(new TimeSpan(0, 23, 59, 59, 000));

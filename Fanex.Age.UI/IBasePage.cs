@@ -1,36 +1,33 @@
-﻿using System.Collections;
-
-/*
- * Created 20091211@Lee - Base UI interface
- * Revision: 
- * 20091211@Lee - Initializing
- * 
- * !!!CAUTION: ANY REVISION MUST BE APPROVED BEFORE PROCEEDING!!!
- * 
- */
+﻿// --------------------------------------------------------------------------
+// <copyright file="IBasePage.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+
     public interface IBasePage
     {
         /// <summary>
-        /// Process the request and return requested params.
+        /// Process the request and return requested parameters.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="p">The hashtable.</param>
         void ProcessRequest(ref Hashtable p);
 
         /// <summary>
-        /// Validating the request with a list of request params.
+        /// Validating the request with a list of request parameters.
         /// </summary>
-        /// <param name="p">List of request params</param>
-        /// <returns>Null is success, otherwise is error</returns>
+        /// <param name="p">List of request parameters.</param>
+        /// <returns>Null is success, otherwise is error.</returns>
         object ValidateRequest(Hashtable p);
 
         /// <summary>
-        /// Process data working with provided params.
+        /// Process data working with provided parameters.
         /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
+        /// <param name="p">The Hashtable.</param>
+        /// <returns>Return object.</returns>
         object InvokeData(Hashtable p);
     }
 }

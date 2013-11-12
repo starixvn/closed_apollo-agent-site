@@ -11,6 +11,7 @@
     var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
     var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
     var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
+    var hasDownlineDetailsPermission = ViewBag.DownlineDetailsPolicy != null ? (byte)ViewBag.DownlineDetailsPolicy >= (byte)Policy.Query : false;
 }
 <table id="tab-menu">
     <tr>
@@ -282,7 +283,7 @@
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Apollo.Age.Resources.Lang.ViewDetails
                         </a>
-                            if (Model.Level > AgentLevel.Shareholder)
+                            if (Model.Level > AgentLevel.Shareholder && hasDownlineDetailsPermission)
                             {
                         <a class="lnk-setting" target="main" 
                             href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">

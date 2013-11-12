@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.9.5">Created</change>
 // </history>
+
 namespace Apollo.Age.Entities
 {
     /// <summary>

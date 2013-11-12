@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.htft;
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<HTFTModel>
 <table class="tblRpt persist-area">
@@ -19,31 +20,31 @@
             @*<td style="width: 200px;">
                 @Apollo.Age.Resources.Lang.away
             </td>*@
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.hh
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.hd
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.ha
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.dh
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.dd
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.da
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.ah
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.ad
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.aa
             </td>
         </tr>
@@ -54,7 +55,7 @@
         {
             int rowIndex = 0;
             var classRow = string.Empty;
-            
+
             foreach (var item in Model)
             {
                 rowIndex++;
@@ -66,48 +67,55 @@
                 {
                     classRow = "r";
                 }
-                <tr class="@classRow">
-                   @Html.FormatShowTime(item.ShowTime)
-                    <td class="l no-border-bottom  valign-top home-away-team">
-                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
+        <tr class="@classRow">
+            @Html.FormatShowTime(item.ShowTime)
+            <td class="l no-border-bottom  valign-top home-away-team">
+                @if (hasDownlineDetailsPermission)
+                { 
+                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
                             href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.htft"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.HomeTeam
-                        </a>
-                        <br />
-                         @item.AwayTeam
-                    </td>
-                    <td class="fcnum" >
-                        @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
-                    </td>
-                    <td class="fcnum">
-                        @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
-                    </td>
-                </tr>
+                    </a>
+                }
+                else
+                {
+                    @item.HomeTeam
+                }
+                <br />
+                @item.AwayTeam
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
+            </td>
+        </tr>
             }
         }
         else
         {
-        //@RazorHelper.ShowNoInfo(colspan: 12)
+            //@RazorHelper.ShowNoInfo(colspan: 12)
         }
     }
 </table>
@@ -118,12 +126,12 @@
             return {
                 initData: function () {
                     TOTALBETS.initViewBetList();
-                    
+
                 }
             };
         } ();
         $(function () {
             DEFAULT_OBJECT.initData();
         });
-    </script>       
+    </script>
 }

@@ -9,15 +9,13 @@
 
 namespace Apollo.Age.Integration.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Represent the object returned from authorization model
-    /// So pls ignore stylecop rule violations
+    /// So please ignore stylecop rule violations.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public class JsonResponseModel
     {
         public string access_token { get; set; }
@@ -28,6 +26,6 @@ namespace Apollo.Age.Integration.Models
 
         public string expires_in { get; set; }
 
-        public string token_type { get; set; }        
+        public string token_type { get; set; }
     }
 }

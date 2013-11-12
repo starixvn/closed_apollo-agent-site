@@ -12,9 +12,18 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Match entered criteria.
+    /// </summary>
     public class MatchEnteredCriteria : CriteriaBase
     {
-        public bool isShowAll { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether [is show all].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> If [is show all]; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsShowAll { get; set; }
 
         public override string GetSettingKey()
         {

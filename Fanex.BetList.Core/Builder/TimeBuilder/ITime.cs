@@ -24,11 +24,11 @@ namespace Fanex.BetList.Core.Builder.TimeBuilder
         Time_Template Template { get; set; }
 
         /// <summary>
-        /// Render time
+        /// Render time.
         /// </summary>
-        /// <param name="date"></param>
-        /// <param name="page">Link from page</param>
-        /// <returns></returns>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">Link from page.</param>
+        /// <returns>Time Template.</returns>
         Time_Template Render(ITicket ticket, BetListPage page);
     }
 }

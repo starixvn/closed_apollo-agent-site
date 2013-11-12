@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// Over/Under
+    /// Over Under.
     /// </summary>
     public class Choice1203 : Choice3
     {

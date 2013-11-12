@@ -14,7 +14,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    ///  Set x Will There Be A Tiebreak
+    ///  Set x Will There Be A Tiebreak.
     /// </summary>
     public class Choice1314 : Choice20
     {
@@ -24,6 +24,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
@@ -32,7 +33,6 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = yes ? Apollo.Age.Resources.BetList.lblYes : Apollo.Age.Resources.BetList.lblNo;
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

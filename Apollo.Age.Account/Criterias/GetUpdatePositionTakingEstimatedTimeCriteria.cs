@@ -7,17 +7,12 @@
 //   <change who="Ricky.Nguyen" date="2013.9.20">Created</change>
 // </history>
 
-
 namespace Apollo.Age.Account.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get update position taking estimated time criteria.
     /// </summary>
     public class GetUpdatePositionTakingEstimatedTimeCriteria : CriteriaBase
     {

@@ -20,7 +20,7 @@ namespace Apollo.Age.BetList.Services
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// BetList Service
+    /// Bet List Service Class.
     /// </summary>
     public class BetListService : QueryService, IBetListService
     {
@@ -37,123 +37,134 @@ namespace Apollo.Age.BetList.Services
         /// <summary>
         ///  Initializes a new instance of the <see cref="BetListService" /> class.
         /// </summary>
-        /// <param name="betListRepository">BetList Repository</param>
+        /// <param name="betListRepository">Bet List Repository.</param>
         public BetListService(IBetListRepository betListRepository)
         {
             this._betListRepository = this._betListRepository ?? new BetListRepository();
         }
 
         /// <summary>
-        /// Get detail agent PT and agent commission
+        /// Get detail agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List of Ticket.</returns>
         public IList<ITicket> GetDetailAgentComm(BetListCriteria criteria)
         {
             return this._betListRepository.GetDetailAgentComm(criteria);
         }
 
         /// <summary>
-        /// Get detail win loss agent PT and agent commission
+        /// Get detail win loss agent PT and agent commission.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>List Ticket</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>List of Ticket.</returns>
         public IList<ITicket> GetDetailWinLossAgentComm(BetListCriteria criteria)
         {
             return this._betListRepository.GetDetailWinLossAgentComm(criteria);
         }
 
         /// <summary>
-        /// Get detail ticket mix-parlay
+        /// Get detail ticket mix-parlay.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public IList<ITicket> GetMixParlayDetailTicket(BetListCriteria criteria)
         {
             return this._betListRepository.GetMixParlayDetailTicket(criteria);
         }
 
         /// <summary>
-        /// Get bet list running on Total Bets menu
+        /// Get bet list running on Total Bets menu.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetRunningByBettype(BetListCriteria criteria)
         {
             return this._betListRepository.GetRunningByBettype(criteria);
         }
 
         /// <summary>
-        /// Get all bets by date and member from Win loss listOutstanding
+        /// Get all bets by date and member from Win loss listOutstanding.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetWinLossByDateAndMem(BetListCriteria criteria)
         {
             return this._betListRepository.GetWinLossByDateAndMem(criteria);
         }
 
         /// <summary>
-        /// Get bet list by matchId
+        /// Get bet list by match Id.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>Ticket data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>Ticket data.</returns>
         public TicketResult GetRunningByBettypeAndMatch(BetListCriteria criteria)
         {
             return this._betListRepository.GetRunningByBettypeAndMatch(criteria);
         }
 
         /// <summary>
-        /// Get Combination Mix Parlay Detail
+        /// Get Combination Mix Parlay Detail.
         /// </summary>
-        /// <param name="criteria">Criteria name</param>
-        /// <returns>SystemParlay data</returns>
+        /// <param name="criteria">Criteria name.</param>
+        /// <returns>SystemParlay data.</returns>
         public SystemParlayData GetCombinationMixParlayDetail(SystemParlayDetailCriteria criteria)
         {
             return this._betListRepository.GetCombinationMixParlayDetail(criteria);
         }
 
         /// <summary>
-        /// Get UserId By Username
+        /// Get UserId By Username.
         /// </summary>
-        /// <param name="loggedId">Logged id</param>
-        /// <param name="isAgent">Agent choice</param>
-        /// <param name="username">User name</param>
-        /// <param name="agentId">Output agent id</param>
-        /// <param name="custId">Output customer id</param>
-        /// <param name="errorCode">Output error code</param>
+        /// <param name="loggedId">Logged id.</param>
+        /// <param name="isAgent">Agent choice.</param>
+        /// <param name="username">User name.</param>
+        /// <param name="agentId">Output agent id.</param>
+        /// <param name="custId">Output customer id.</param>
+        /// <param name="errorCode">Output error code.</param>
         public void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode)
         {
             this._betListRepository.GetUserIdByUserName(loggedId, isAgent, username, out agentId, out custId, out errorCode);
         }
 
         /// <summary>
-        /// Get Agent up line of member
+        /// Get Agent up line of member.
         /// </summary>
-        /// <param name="parentId">Logged id</param>
-        /// <param name="custId">customer id</param>
-        /// <returns></returns>
+        /// <param name="parentId">Logged id.</param>
+        /// <param name="custId">Customer id.</param>
+        /// <returns>List of agent.</returns>
         public IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId)
         {
             return this._betListRepository.GetAgentUpLineOfMember(parentId, custId);
         }
 
         /// <summary>
-        /// Get data betlist on Wagers page
+        /// Get data bet list on Wagers page.
         /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
         public TicketResult WagersTicket(WagersCriteria criteria)
         {
-            criteria.UGroup = base.RevertCommGroupName(criteria.UGroup);
+            criteria.UGroup = RevertCommGroupName(criteria.UGroup);
             return this._betListRepository.WagersTicket(criteria);
         }
 
+        /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria)
         {
             return this._betListRepository.GetTicketResult(criteria);
         }
 
+        /// <summary>
+        /// Gets the ticket result.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="isIncludeOldData">If set to <c>true</c> [is include old data].</param>
+        /// <returns>Ticket result.</returns>
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);

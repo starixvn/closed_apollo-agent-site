@@ -179,14 +179,14 @@ namespace Apollo.Age.Reports.Models
             {
                 int resultKey = 0x0000000;
                 int pending = Convert.ToInt32(this.IsPending);
-                int htCal = Convert.ToInt32(this.IsHTCal);
+                int halftimeCal = Convert.ToInt32(this.IsHTCal);
                 int cal = Convert.ToInt32(this.Calculate);
 
                 pending <<= 6;  // Shift right 6 bit for pending status.
-                htCal <<= 5;    // Shift right 5 bit for haft time calculate status.
+                halftimeCal <<= 5;    // Shift right 5 bit for haft time calculate status.
                 cal <<= 4;      // Shift right 4 bit for calculate status.
 
-                resultKey = pending | htCal | cal;
+                resultKey = pending | halftimeCal | cal;
 
                 if (this._event.ContainsKey(this.EventStatus.ToLowerInvariant()))
                 {

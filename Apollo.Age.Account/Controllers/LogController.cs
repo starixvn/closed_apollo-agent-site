@@ -20,6 +20,8 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Account.ViewModels;
+    using Apollo.Age.Core;
+    using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.Resources;
@@ -28,7 +30,7 @@ namespace Apollo.Age.Account.Controllers
     using Fanex.Logging;
     using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.Web.Web.Attribute;
-    using Apollo.Age.PermissionControl.Core;
+    using Fanex.Logging;
 
     /// <summary>
     /// Log controller.
@@ -36,13 +38,14 @@ namespace Apollo.Age.Account.Controllers
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.SystemLog, Policy = Policy.Query)]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class LogController : BaseController
     {
         private readonly ILogRunSpService _logService;
 
         private readonly IAccountService _accountService;
 
-        private readonly UserService _userServicel;
+        private readonly UserService _userService;
 
         private readonly ServiceBase _serviceBase;
 
@@ -56,7 +59,7 @@ namespace Apollo.Age.Account.Controllers
             _logService = logService ?? new LogRunSpService();
             _accountService = accountService ?? new AccountService();
             _serviceBase = serviceBase ?? new ServiceBase();
-            _userServicel = userService ?? new UserService();
+            _userService = userService ?? new UserService();
         }
 
         /// <summary>
@@ -103,14 +106,22 @@ namespace Apollo.Age.Account.Controllers
             criteria.From = new DateTime(criteria.From.Year, criteria.From.Month, criteria.From.Day, 0, 0, 0);
             criteria.To = new DateTime(criteria.To.Year, criteria.To.Month, criteria.To.Day, 23, 59, 59);
 
-            list = _logService.Search(ref criteria);
-            results = list != null ? list.ToList() : new List<LogRunSpModel>();
+            // Check downline details permission
+            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
+            if (string.IsNullOrWhiteSpace(criteria.Username)
+                || string.Equals(criteria.Username, this.CurrentSession.AgentName)
+                || hasDownlineDetailsPermission)
+            {
+                list = _logService.Search(ref criteria);
+                results = list != null ? list.ToList() : new List<LogRunSpModel>();
+            }
 
             if (!ReferenceEquals(results, null) && results.Any())
             {
                 if (criteria.IsAgent)
                 {
-                    var agentInfo = _userServicel.InternalGetAgentByUsername(criteria.Username);
+                    var agentInfo = _userService.InternalGetAgentByUsername(criteria.Username);
 
                     ViewBag.AgentLevel = agentInfo.Agent.Level;
                 }
@@ -652,40 +663,50 @@ namespace Apollo.Age.Account.Controllers
         /// Logs the action permission user control.
         /// </summary>
         /// <param name="oldData">The old data.</param>
-        /// <param name="data">The data.</param>
-        /// <returns>Log action permission user control/</returns>
+        /// <param name="data">The new data.</param>
+        /// <returns>Log action permission user control.</returns>
         public ViewResult LogActionType9(string oldData, string data)
         {
             var listFunctionPolicy = new List<LogPermissionModel>();
+            var username = string.Empty;
+            var isApply = false;
 
             try
             {
                 if (!string.IsNullOrWhiteSpace(oldData))
                 {
                     var xmlData = XDocument.Parse(oldData);
-                    var permission = xmlData.Descendants("z");
+                    var xmlRoot = xmlData.Descendants("r");
 
-                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    if (!ReferenceEquals(xmlRoot, null) && xmlRoot.Any())
                     {
-                        foreach (var itemFunctionPolicy in permission)
+                        foreach (var itemRoot in xmlRoot)
                         {
-                            var func = new LogPermissionModel
-                            {
-                                Function = new Function
-                                {
-                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
-                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
-                                    FunctionGroup = new FunctionGroup
-                                    {
-                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
-                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
-                                    }
-                                },
-                                OldPolicy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
-                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
-                            };
+                            var permission = itemRoot.Descendants("z");
 
-                            listFunctionPolicy.Add(func);
+                            if (!ReferenceEquals(permission, null) && permission.Any())
+                            {
+                                foreach (var itemFunctionPolicy in permission)
+                                {
+                                    var func = new LogPermissionModel
+                                    {
+                                        Function = new Function
+                                        {
+                                            Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                            itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                            FunctionGroup = new FunctionGroup
+                                            {
+                                                Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                            itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                            }
+                                        },
+                                        OldPolicy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                            Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                                    };
+
+                                    listFunctionPolicy.Add(func);
+                                }
+                            }
                         }
                     }
                 }
@@ -693,36 +714,46 @@ namespace Apollo.Age.Account.Controllers
                 if (!string.IsNullOrWhiteSpace(data))
                 {
                     var xmlData = XDocument.Parse(data);
-                    var permission = xmlData.Descendants("z");
+                    var xmlRoot = xmlData.Descendants("r");
 
-                    if (!ReferenceEquals(permission, null) && permission.Any())
+                    if (!ReferenceEquals(xmlRoot, null) && xmlRoot.Any())
                     {
-                        foreach (var itemFunctionPolicy in permission)
+                        foreach (var itemRoot in xmlRoot)
                         {
-                            var func = new LogPermissionModel
+                            var permission = itemRoot.Descendants("z");
+                            username = itemRoot.Attribute("u") != null ? itemRoot.Attribute("u").Value : string.Empty;
+                            isApply = itemRoot.Attribute("ia") != null ? itemRoot.Attribute("ia").Value == "1" : false;
+
+                            if (!ReferenceEquals(permission, null) && permission.Any())
                             {
-                                Function = new Function
+                                foreach (var itemFunctionPolicy in permission)
                                 {
-                                    FunctionName = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
-                                    itemFunctionPolicy.Attribute("f").Value : string.Empty),
-                                    FunctionGroup = new FunctionGroup
+                                    var func = new LogPermissionModel
                                     {
-                                        GroupName = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
-                                    itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                        Function = new Function
+                                        {
+                                            Name = GetResourceData(itemFunctionPolicy.Attribute("f") != null ?
+                                            itemFunctionPolicy.Attribute("f").Value : string.Empty),
+                                            FunctionGroup = new FunctionGroup
+                                            {
+                                                Name = GetResourceData(itemFunctionPolicy.Attribute("fg") != null ?
+                                            itemFunctionPolicy.Attribute("fg").Value : string.Empty)
+                                            }
+                                        },
+                                        Policy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
+                                            Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
+                                    };
+
+                                    for (int i = 0; i < listFunctionPolicy.Count; i++)
+                                    {
+                                        var item = listFunctionPolicy[i];
+
+                                        if (string.Equals(item.Function.Name, func.Function.Name))
+                                        {
+                                            item.Policy = func.Policy;
+                                            break;
+                                        }
                                     }
-                                },
-                                Policy = (byte)(itemFunctionPolicy.Attribute("pl") != null ?
-                                    Convert.ToByte(itemFunctionPolicy.Attribute("pl").Value) : 0)
-                            };
-
-                            for (int i = 0; i < listFunctionPolicy.Count; i++)
-                            {
-                                var item = listFunctionPolicy[i];
-
-                                if (string.Equals(item.Function.FunctionName, func.Function.FunctionName))
-                                {
-                                    item.Policy = func.Policy;
-                                    break;
                                 }
                             }
                         }
@@ -733,6 +764,9 @@ namespace Apollo.Age.Account.Controllers
             {
                 Logger.Log.Error(ex.Message);
             }
+
+            ViewBag.Username = username;
+            ViewBag.IsApply = isApply;
 
             return View(listFunctionPolicy);
         }
@@ -751,9 +785,11 @@ namespace Apollo.Age.Account.Controllers
                 case "1":
                     statusName = Lang.lblActive;
                     break;
+
                 case "2":
                     statusName = Lang.stopped;
                     break;
+
                 default:
                     statusName = Lang.locked;
                     break;

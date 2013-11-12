@@ -23,7 +23,6 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
@@ -47,19 +46,12 @@ namespace Apollo.Age.Reports.Controllers
 
         #region Ctors
 
-        /// <summary>
-        /// Initializes result without parameter.
-        /// </summary>
         public ResultsController()
             : this(null)
         {
-            _resultDate = DateTime.Now;
+            _resultDate = AppSettings.ResultDateConfig;
         }
 
-        /// <summary>
-        /// Initializes result with result service.
-        /// </summary>
-        /// <param name="resultService">Result Service.</param>
         public ResultsController(ResultService resultService = null)
         {
             _resultService = resultService ?? new ResultService();

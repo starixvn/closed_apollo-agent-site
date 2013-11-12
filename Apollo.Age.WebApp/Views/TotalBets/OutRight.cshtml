@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblOutRight;
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<OutRightModel>
 @helper ShowLeague(int currentLeagueId, OutRightModel item)
@@ -16,11 +17,10 @@
     </tr>
         }            
 }
-
 <table class="tblRpt  persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-           @* <td style="width: 5%;">
+            @* <td style="width: 5%;">
                 @Apollo.Age.Resources.Lang.time
                 <br />
                 (@Apollo.Age.Resources.Lang.GMT)
@@ -43,8 +43,8 @@
             if (Model != null && Model.Any())
             {
                 int rowIndex = 0;
-                int currentLeagueId = 0;               
-                
+                int currentLeagueId = 0;
+
                 foreach (var item in Model)
                 {
                     rowIndex++;
@@ -58,9 +58,16 @@
                         }
                     </td>*@
                 <td class="l  valign-top  home-away">
-                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
+                    @if (hasDownlineDetailsPermission)
+                    { 
+                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
                         href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOutRight"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.TeamName
-                    </a>
+                        </a>
+                    }
+                    else
+                    {
+                        @item.TeamName
+                    }
                 </td>
                 <td class="fcnum">
                     @RazorHelper.FormatNumber(item.Balance, 2)
@@ -73,8 +80,8 @@
                 }
             }
             else
-            { 
-            //@RazorHelper.ShowNoInfo(colspan: 4)
+            {
+                //@RazorHelper.ShowNoInfo(colspan: 4)
             }     
         }
     </tbody>
@@ -92,5 +99,5 @@
         $(function () {
             DEFAULT_OBJECT.initData();
         });
-    </script>       
+    </script>
 }

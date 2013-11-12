@@ -11,9 +11,10 @@ namespace Apollo.Age.Web.Web.Attribute
 {
     using System.Web;
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Core;
     using Apollo.Age.Resources;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
 
     /// <summary>
@@ -23,7 +24,7 @@ namespace Apollo.Age.Web.Web.Attribute
     {
         #region Member
 
-        private IAgentUserService _AgentUserService = new AgentUserService();
+        private IUserService _agentUserService = new UserService();
 
         #endregion Member
 
@@ -72,6 +73,14 @@ namespace Apollo.Age.Web.Web.Attribute
                 if (filterContext.HttpContext == null)
                 {
                     CloseConnection(filterContext);
+
+                    return;
+                }
+
+                if (ReferenceEquals(SessionManager.CurrentSession, null))
+                {
+                    CloseConnection(filterContext);
+
                     return;
                 }
 
@@ -84,6 +93,8 @@ namespace Apollo.Age.Web.Web.Attribute
                 else
                 {
                     CloseConnection(filterContext);
+
+                    return;
                 }
             }
             catch
@@ -113,7 +124,7 @@ namespace Apollo.Age.Web.Web.Attribute
             {
                 if (!string.IsNullOrWhiteSpace(itemKey))
                 {
-                    temp = _AgentUserService.GetUserPolicy(userId, itemKey);
+                    temp = _agentUserService.GetUserPolicy(userId, itemKey);
                     policy = policy > temp ? policy : temp;
                 }
             }

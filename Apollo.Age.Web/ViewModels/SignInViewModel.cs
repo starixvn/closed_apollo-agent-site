@@ -13,6 +13,9 @@ namespace Apollo.Age.Web.ViewModels
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// Sign in view model.
+    /// </summary>
     public class SignInViewModel
     {
         [Required]

@@ -9,6 +9,9 @@
 // ---------------------------------------------------------------------------------
 namespace Fanex.BetList.Core.Builder.TransBuilder
 {
+    /// <summary>
+    /// Transaction 7.
+    /// </summary>
     public class Trans7 : Trans1
     {
     }

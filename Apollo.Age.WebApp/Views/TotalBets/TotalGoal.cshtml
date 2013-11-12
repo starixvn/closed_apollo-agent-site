@@ -2,8 +2,8 @@
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
-
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
@@ -16,19 +16,19 @@
             <td style="width: 25%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
-@*            <td style="width: 150px;">
+            @*            <td style="width: 150px;">
                 @Apollo.Age.Resources.Lang.away
             </td>*@
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.total01
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.total23
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.total46
             </td>
-            <td >
+            <td>
                 @Apollo.Age.Resources.Lang.total7over
             </td>
         </tr>
@@ -50,41 +50,45 @@
                     {
                         classRow = string.Empty;
                     }
-                <tr class="item @item.Closed @classRow">
-                
-               @Html.FormatShowTime(item.ShowTime)
-                    <td style="width: 150px;" class="home-away-team">
+            <tr class="item @item.Closed @classRow">
+                @Html.FormatShowTime(item.ShowTime)
+                <td style="width: 150px;" class="home-away-team">
+                    @if (hasDownlineDetailsPermission)
+                    { 
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
                             href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
                             @item.HomeTeam
-                            
                         </a>
-                        <br />
-                            @item.AwayTeam
-                    </td>
-                    <td class="r fcnum" style="width: 80px;">
-                        @RazorHelper.FormatPositiveNumber(item.Total01, 2)
-                    </td>
-                    <td class="r fcnum" style="width: 80px;">
-                        @RazorHelper.FormatPositiveNumber(item.Total23, 2)
-                    </td>
-                    <td class="r fcnum" style="width: 80px;">
-                        @RazorHelper.FormatPositiveNumber(item.Total46, 2)
-                    </td>
-                    <td class="r fcnum" style="width: 80px;">
-                        @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
-                    </td>
-                </tr>
+                    }
+                    else
+                    { 
+                        @item.HomeTeam
+                    }
+                    <br />
+                    @item.AwayTeam
+                </td>
+                <td class="r fcnum" style="width: 80px;">
+                    @RazorHelper.FormatPositiveNumber(item.Total01, 2)
+                </td>
+                <td class="r fcnum" style="width: 80px;">
+                    @RazorHelper.FormatPositiveNumber(item.Total23, 2)
+                </td>
+                <td class="r fcnum" style="width: 80px;">
+                    @RazorHelper.FormatPositiveNumber(item.Total46, 2)
+                </td>
+                <td class="r fcnum" style="width: 80px;">
+                    @RazorHelper.FormatPositiveNumber(item.Total7Over, 2)
+                </td>
+            </tr>
                 }
             }
             else
-            { 
-            //@RazorHelper.ShowNoInfo(colspan: 7)
+            {
+                //@RazorHelper.ShowNoInfo(colspan: 7)
             }
         }
     </tbody>
 </table>
-
 @section scripts
 {
     <script type="text/javascript">
@@ -94,9 +98,9 @@
                     TOTALBETS.initViewBetList();
                 }
             };
-        }();
+        } ();
         $(function () {
             DEFAULT_OBJECT.initData();
         });
-    </script>       
+    </script>
 }

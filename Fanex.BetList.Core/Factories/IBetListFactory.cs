@@ -15,6 +15,5 @@ namespace Fanex.BetList.Core.Factories
     /// </summary>
     public interface IBetListFactory
     {
-        
     }
 }

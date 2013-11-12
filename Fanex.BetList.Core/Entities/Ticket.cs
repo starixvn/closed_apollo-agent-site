@@ -13,7 +13,7 @@ namespace Fanex.BetList.Core.Entities
     using System;
 
     /// <summary>
-    /// Class Ticket
+    /// Class Ticket.
     /// </summary>
     [Serializable]
     public class Ticket : ITicket
@@ -137,6 +137,5 @@ namespace Fanex.BetList.Core.Entities
         public int HaftTimeAwayScore { get; set; }
 
         #endregion ITicket Members
-
     }
 }

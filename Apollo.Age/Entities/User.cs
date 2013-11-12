@@ -11,12 +11,9 @@
 namespace Apollo.Age.Entities
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
-    /// Shadow account.
+    /// Agent user entity.
     /// </summary>
     [Serializable]
     public class User : EntityBase

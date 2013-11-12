@@ -11,6 +11,9 @@
 
 namespace Fanex.BetList.Core.Builder.TransBuilder
 {
+    /// <summary>
+    /// Transaction 18.
+    /// </summary>
     public class Trans18 : Trans1
     {
     }

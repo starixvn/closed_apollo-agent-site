@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Account.Models
 {
+    /// <summary>
+    /// Member share model.
+    /// </summary>
     public class MemberShareModel : AgentShareModel
     {
         public short TakenShareMember { get; set; }

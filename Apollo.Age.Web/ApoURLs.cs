@@ -9,15 +9,10 @@
 
 namespace Apollo.Age.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Configuration;
 
     /// <summary>
-    /// Custom URLs for Apollo.Agent
-    /// <example>http://haacked.com/archive/2007/03/11/custom-configuration-sections-in-3-easy-steps.aspx</example>
+    /// Custom URLs for Website.
     /// </summary>
     public class ApoURLs : ConfigurationSection
     {

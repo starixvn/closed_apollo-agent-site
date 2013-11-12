@@ -13,13 +13,13 @@ namespace Apollo.Age.Reports.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Result get sport criteria.
     /// </summary>
     public class ResultGetSportCriteria : CriteriaBase
     {
         public DateTime EventDate { get; set; }
 
-        [SpParam(Ignored=true)]
+        [SpParam(Ignored = true)]
         public DateTime BalanceUpDay { get; set; }
 
         public override string GetSettingKey()

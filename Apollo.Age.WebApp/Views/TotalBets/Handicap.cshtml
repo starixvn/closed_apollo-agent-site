@@ -1,69 +1,75 @@
 ﻿@using Apollo.Age.Web.Mvc;
 @using Apollo.Age.TotalBets.Models
-
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
     ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
+
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
-
 @model IEnumerable<HandicapModel>
+@helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds, string leagueName, string betTypeName, bool hasDownlineDetailsPermission = true)
+    {
+        var totalOdds = homeOdds - awayOdds;
 
-@helper ShowBlock(int betType, int matchId, decimal homeOdds, decimal awayOdds, string leagueName, string betTypeName)
-{
-    var totalOdds = homeOdds - awayOdds;
-        
-    if (Math.Round(totalOdds, 2) != 0)
-    { 
-        <td class="r" style="width: 90px" >
-            <!--HandicapTotalValue-->
+        if (Math.Round(totalOdds, 2) != 0)
+        { 
+    <td class="r" style="width: 90px">
+        <!--HandicapTotalValue-->
+        @if (hasDownlineDetailsPermission)
+        { 
             <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
             betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
-            <!--/HandicapTotalValue-->
-        </td>
-        <td class="fcbtn c" >
-            <!--HandicapTotalButton-->
-            <input type="button" match-id="@matchId" bet-type="@betType" 
+        }
+        else
+        {
+            @RazorHelper.FormatNegativeNumber(totalOdds, 2)
+        }
+        <!--/HandicapTotalValue-->
+    </td>
+    <td class="fcbtn c">
+        <!--HandicapTotalButton-->
+        <input type="button" match-id="@matchId" bet-type="@betType" 
             class="fc-button view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
-            <!--/HandicapTotalButton-->
-        </td>
-    }
-    else
-    { 
-        <td class="r" style="width: 90px" ></td>
-        <td class="fcbtn"  ></td>
-    }
+        <!--/HandicapTotalButton-->
+    </td>
+        }
+        else
+        { 
+    <td class="r" style="width: 90px">
+    </td>
+    <td class="fcbtn">
+    </td>
+        }
 }
-
 @helper ShowTime(HandicapModel item)
-{
+    {
     <td class="c bl_time">
         @if (item.LiveIndicator)
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
         }
-       @* else
+@* else
         {
             @Html.Raw(item.ShowTime)
         }*@
     </td>
 }
-
-@helper ShowMatch(int index, HandicapModel item)
-{
-    var classRow = string.Empty;
-    if (item.LiveIndicator)
+@helper ShowMatch(int index, HandicapModel item, bool hasDownlineDetailsPermission = true)
     {
-        classRow = "class=live";
-    }
-    else
-    {        
-        classRow = string.Empty;        
-    }
+        var classRow = string.Empty;
+        if (item.LiveIndicator)
+        {
+            classRow = "class=live";
+        }
+        else
+        {
+            classRow = string.Empty;
+        }
     
     <tr @classRow>
         @Html.FormatShowTime(item.ShowTime)
         @ShowTime(item)
-        <td class="c" >
+        <td class="c">
             @item.LeagueName
         </td>
         <td class="valign-top  home-away-team">
@@ -71,13 +77,12 @@
             <br />
             @item.AwayTeam
         </td>
-        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lblHandicapFC)
-        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU)
-        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp)
-        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU)
+        @ShowBlock(1, item.MatchId, item.HomeOddsHandicap, item.AwayOddsHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lblHandicapFC, hasDownlineDetailsPermission)
+        @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU, hasDownlineDetailsPermission)
+        @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp, hasDownlineDetailsPermission)
+        @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU, hasDownlineDetailsPermission)
     </tr>          
 }
-
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
     {
         if (currentLeagueId != item.LeagueId)
@@ -90,9 +95,6 @@
     </tr>
         }            
 }
-
-
-
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
@@ -108,7 +110,7 @@
             <td rowspan="2" style="width: 25%;">
                 @Apollo.Age.Resources.Lang.league
             </td>
-            <td rowspan="2"  style="width: 15%;">
+            <td rowspan="2" style="width: 15%;">
                 @Apollo.Age.Resources.Lang.homeaway
             </td>
             <td colspan="4">
@@ -144,7 +146,7 @@
                 rowIndex++;
 
                 //@ShowLeague(currentLeagueId, item)
-                @ShowMatch(rowIndex, item)
+            @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
 
                 currentLeagueId = item.LeagueId;
             }
@@ -155,7 +157,6 @@
         }
     </tbody>
 </table>
-
 @section scripts
 {
     <script type="text/javascript">
@@ -163,12 +164,12 @@
             return {
                 initData: function () {
                     TOTALBETS.initViewForeCastHandicap();
-                    TOTALBETS.initViewBetList();                    
+                    TOTALBETS.initViewBetList();
                 }
             };
         } ();
         $(function () {
             DEFAULT_OBJECT.initData();
         });
-    </script>    
+    </script>
 }

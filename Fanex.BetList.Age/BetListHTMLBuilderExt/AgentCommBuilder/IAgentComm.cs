@@ -1,4 +1,10 @@
-﻿namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
+﻿// --------------------------------------------------------------------------
+// <copyright file="IAgentComm.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
 {
     using System.Collections.Generic;
     using Fanex.BetList.Age.ExtTemplate;
@@ -22,7 +28,8 @@
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <param name="hideDetail">If set to <c>true</c> [hide detail].</param>
+        /// <returns>Agent commission template.</returns>
         AgentComm_Template Render(ITicket ticket, List<ITicketData> ticketData, bool hideDetail);
     }
 }

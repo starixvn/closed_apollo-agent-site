@@ -9,19 +9,28 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get score map league criteria.
+    /// </summary>
     public class GetScoreMapLeaguesCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_ScoreMap_SelLeague";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return true;

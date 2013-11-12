@@ -1,36 +1,36 @@
 @using Apollo.Age.Entities
 @using Apollo.Age.Resources
-
 @{
-	var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
-	var currentAgentId = ViewBag.CurrentAgentId;
-	var mainShareHolders = (IEnumerable<Agent>)ViewBag.MainShareHolders;
+    var currentMainShareHolderId = ViewBag.CurrentMainShareHolderId ?? 0;
+    var currentAgentId = ViewBag.CurrentAgentId;
+    var mainShareHolders = (IEnumerable<Agent>)ViewBag.MainShareHolders;
     var isSuper = ViewBag.IsSuper ?? false;
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title - Total Bets</title>	
-	@Styles.Render("~/css/totalbets")
-	@RenderSection("css", required: false)
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Total Bets</title>
+    @Styles.Render("~/css/totalbets")
+    @RenderSection("css", required: false)
 </head>
 <body>
-	<div id="page_main">
-		<div id="content_main">
-			<div id="header_main">@ViewBag.Title</div>
-			@if (isSuper)
-			{
-				@RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders)
-			}
-			@RenderBody()
-		</div>
-	</div>
-	@Html.Hidden("ApoRoot", Url.Content("~/"))
-	@Html.Partial("_ApoRes")
-	@Scripts.Render("~/scripts/totalbetsjs")
-	<script type="text/javascript">
+    <div id="page_main">
+        <div id="content_main">
+            <div id="header_main">@ViewBag.Title</div>
+            @if (isSuper)
+            {
+                @RazorHelper.RenderMainShareHolderDropDownList(currentMainShareHolderId, mainShareHolders, hasDownlineDetailsPermission)
+            }
+            @RenderBody()
+        </div>
+    </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    @Scripts.Render("~/scripts/totalbetsjs")
+    <script type="text/javascript">
 		var DEFAULT_LAYOUT = function(){
 			return {
 				currentMainShareHolderId : @(currentMainShareHolderId),
@@ -39,7 +39,7 @@
 				forecastString: '@Lang.lblForecast.ToUpper()'
 			};
 		}();
-	</script>
-	@RenderSection("scripts", required: false)
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

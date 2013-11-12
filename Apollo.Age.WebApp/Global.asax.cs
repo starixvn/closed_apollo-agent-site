@@ -1,32 +1,46 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-using Apollo.Age.Web;
-using Apollo.Age.Web.Services;
-using Fanex.Data.Configuration;
-using Fanex.Logging;
+﻿// --------------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.WebApp
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
-    // visit http://go.microsoft.com/?LinkId=9394801
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+    using Apollo.Age.Web;
+    using Apollo.Age.Web.Services;
+    using Fanex.Data.Configuration;
+    using Fanex.Logging;
 
+    /// <summary>
+    /// MVC application.
+    /// </summary>
     public class MvcApplication : HttpApplication
     {
-        public static UnderMaintenanceService maintenanceService = null;
+        private static UnderMaintenanceService _maintenanceService = null;
 
+        /// <summary>
+        /// Application_s the start.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            maintenanceService = new UnderMaintenanceService();
+            _maintenanceService = new UnderMaintenanceService();
             DbSettingProviderManager.Current.Start();
         }
 
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
             // Logging
@@ -62,6 +76,11 @@ namespace Apollo.Age.WebApp
             }
         }
 
+        /// <summary>
+        /// Handles the AcquireRequestState event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
             try
@@ -74,10 +93,9 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".css") == -1
                     && executeFileName.IndexOf(".js") == -1
                     && executeFileName.IndexOf(".gif") == -1
-                    && executeFileName.IndexOf(".png") == -1
-                    )
+                    && executeFileName.IndexOf(".png") == -1)
                 {
-                    if (maintenanceService.MaintenanceInfo.Status)
+                    if (_maintenanceService.MaintenanceInfo.Status)
                     {
                         Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
                     }

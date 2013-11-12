@@ -1,8 +1,18 @@
 ﻿@model List<LogPermissionModel>
 @{      
-    var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.GroupName).ToList() : null;    
+    var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.Name).ToList() : null;
+    var username = ViewBag.Username;
+    var isApply = ViewBag.IsApply != null ? (bool)ViewBag.IsApply : false;
 }
 <table class="tblRpt">
+    @if (!string.IsNullOrWhiteSpace(username))
+    { 
+        <tr class="sub-title">
+            <td colspan="6">
+                @Lang.Shadow: <strong>@username</strong>
+            </td>
+        </tr>
+    }
     <tr class="no-border-top bg-green">
         <td class="colW1">
             @Lang.Permission
@@ -19,9 +29,26 @@
         <td class="colW1 no-border-right">
         </td>
     </tr>
+    @if (string.IsNullOrWhiteSpace(username) && isApply)
+    {
+        <tr>
+            <td class="colW" colspan="1">
+                <b>@Lang.ApplyDownlineAndShadow</b>
+            </td>
+            <td class="colW2">
+                <strong class="valuechanged">@(isApply ? Lang.lblYes : Lang.lblNo)</strong>
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2">
+            </td>
+            <td class="colW2 no-border-right">
+            </td>
+        </tr>
+    }
     @foreach (var itemGroup in listGroupFunction)
     {
-        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.GroupName;
+        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;        
         
         <tr>
             <td class="colW" colspan="2">
@@ -35,13 +62,12 @@
             </td>
             <td class="colW2 no-border-right">
             </td>
-        </tr>
-        
+        </tr>        
         foreach (var itemFunction in itemGroup)
         {
         <tr>
             <td class="colW">
-                @itemFunction.Function.FunctionName
+                @itemFunction.Function.Name
             </td>
             <td class="colW2">
                 @ToString(itemFunction.OldPolicy, itemFunction.Policy ?? itemFunction.OldPolicy)

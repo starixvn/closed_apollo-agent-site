@@ -70,7 +70,7 @@
     <Compile Include="BetListHTMLBuilderExt\FooterBuilder\IFooter.cs" />
     <Compile Include="BetListHTMLBuilderExt\NoBuilder\INo.cs" />
     <Compile Include="BetListHTMLBuilderExt\NoBuilder\No1.cs" />
-    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\IWinLost.cs" />
+    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\IWinLoss.cs" />
     <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\WinLost1.cs" />
     <Compile Include="Definition\BetListType.cs" />
     <Compile Include="DTO\TicketMapper.cs" />

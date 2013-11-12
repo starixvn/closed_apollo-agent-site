@@ -16,10 +16,12 @@ namespace Apollo.Age.TotalBets.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Apollo.Age.Core;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Core;
+    using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Criterias;
     using Apollo.Age.TotalBets.Models;
     using Apollo.Age.TotalBets.Services;
@@ -35,9 +37,14 @@ namespace Apollo.Age.TotalBets.Controllers
     {
         private readonly TotalBetsService _totalBetsService;
 
+        private readonly IUserService _userService;
+
         public TotalBetsController()
         {
             _totalBetsService = new TotalBetsService();
+            _userService = new UserService();
+
+            ViewBag.HasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
         }
 
         /// <summary>
@@ -46,7 +53,7 @@ namespace Apollo.Age.TotalBets.Controllers
         /// <returns>View return.</returns>
         public ActionResult Index()
         {
-            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; //show button Refresh Now once logged in by Super and MainShareHolder
+            ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1; // show button Refresh Now once logged in by Super and MainShareHolder
             return View();
         }
 
@@ -115,12 +122,6 @@ namespace Apollo.Age.TotalBets.Controllers
             var model = GetModel<OutRightModel>(BetTypes.Outright, mainShareHolderId);
             return View(model);
         }
-
-        //public ViewResult NumberGame()
-        //{
-        //    var model = GetModel<NumberGameModel>(betType: 161);
-        //    return View(model);
-        //}
 
         /// <summary>
         /// Load Home No Bet, Draw No Bet.

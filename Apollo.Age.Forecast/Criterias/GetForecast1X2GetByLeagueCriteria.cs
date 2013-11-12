@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="Forecast1X2GetByLeague.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetForecast1X2GetByLeagueCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Forecast.Criterias
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get forecast 1X2 get by league criteria.
+    /// </summary>
     public class GetForecast1X2GetByLeagueCriteria : CriteriaBase
     {
         public int AgentId { get; set; }
@@ -21,11 +22,19 @@ namespace Apollo.Age.Forecast.Criterias
 
         public int LoggedId { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             return "Age_Forecast_5_15_GetByLeague";
         }
 
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>True if is valid.</returns>
         public override bool IsValid()
         {
             return LeagueID > 0;

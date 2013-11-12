@@ -9,8 +9,8 @@
 
 namespace Apollo.Age.Reports.Services
 {
-    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
@@ -26,6 +26,7 @@ namespace Apollo.Age.Reports.Services
     /// <summary>
     /// Outstanding service class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class OutstandingService : ReportService
     {
         /// <summary>
@@ -54,39 +55,32 @@ namespace Apollo.Age.Reports.Services
                 BetTypeIds = bettypes
             };
 
-            try
+            if (sporttypes != null)
             {
-                if (sporttypes != null)
+                IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(parentId, currentAgentId.Value);
+
+                if (isSuper)
                 {
-                    IEnumerable<Agent> modelAgentDownLine = AgentDownlinePath(parentId, currentAgentId.Value);
-
-                    if (isSuper)
+                    if (modelAgentDownLine.Count() > 1)
                     {
-                        if (modelAgentDownLine.Count() > 1)
-                        {
-                            mainShareHolder = modelAgentDownLine.ToList()[1];
-                        }
+                        mainShareHolder = modelAgentDownLine.ToList()[1];
                     }
-
-                    IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new OutstandingCriteria
-                    {
-                        AgentId = currentAgentId.Value,
-                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
-                        Bettypes = bettypes
-                    });
-
-                    outstandingViewModel.ListOutStanding = models;
-                    outstandingViewModel.DownlinePath = modelAgentDownLine;
-                    outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
                 }
 
-                outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
-                outstandingViewModel.BettypeList = sporttypes == "-99" ? GetParlayBettype() : GetBettype(sporttypes == "-99" || sporttypes == "0");
+                IEnumerable<OutstandingModel> models = GetData<OutstandingModel>(new OutstandingCriteria
+                {
+                    AgentId = currentAgentId.Value,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                    Bettypes = bettypes
+                });
+
+                outstandingViewModel.ListOutStanding = models;
+                outstandingViewModel.DownlinePath = modelAgentDownLine;
+                outstandingViewModel.AgentLevel = modelAgentDownLine.LastOrDefault().Level;
             }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+
+            outstandingViewModel.SportList = SingbetSportService.GetSport(isOther: false);
+            outstandingViewModel.BettypeList = sporttypes == "-99" ? GetParlayBettype() : GetBettype(sporttypes == "-99" || sporttypes == "0");
 
             return outstandingViewModel;
         }
@@ -101,10 +95,10 @@ namespace Apollo.Age.Reports.Services
         /// <param name="mainShareHolderUsername">Main ShareHolder Name.</param>
         /// <returns>Member Outstanding ViewModel.</returns>
         public MemberOutstandingViewModel GetMemberOutstandingReport(
-            int? currentAgentId, 
-            string sporttypes, 
-            string bettypes, 
-            int mainShareHolderId, 
+            int? currentAgentId,
+            string sporttypes,
+            string bettypes,
+            int mainShareHolderId,
             string mainShareHolderUsername)
         {
             try
@@ -137,9 +131,8 @@ namespace Apollo.Age.Reports.Services
                     MainShareHolderUsername = mainShareHolderUsername,
                 };
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
                 return new MemberOutstandingViewModel();
             }
         }
@@ -166,79 +159,72 @@ namespace Apollo.Age.Reports.Services
             CustomizeColor(hssfworkbook);
             ISheet sheet = hssfworkbook.CreateSheet("OutStanding Report");
 
-            try
-            {
-                if (listOutStanding != null
+            if (listOutStanding != null
                     && listOutStanding.Any())
-                {
-                    RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
-                    RenderExcelHeader(hssfworkbook, sheet, 4);
-                    var rowIndex = 5;
-                    var length = listOutStanding.Count();
-                    //// create the format instance
-                    IDataFormat format = hssfworkbook.CreateDataFormat();
-                    var numberFormat = format.GetFormat("#,##0.00");
-                    double totalOutstanding = 0, totalShareAmount = 0, currentOutStanding = 0, currentShareAmount = 0;
-                    string userName = string.Empty;
-
-                    var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
-                    var bodyStyleLeft = CreateStyle(hssfworkbook);
-
-                    sheet.CreateFreezePane(0, rowIndex);
-
-                    for (int i = 0; i < length; i++)
-                    {
-                        IRow row = sheet.CreateRow(rowIndex + i);
-                        var currentOutstanding = listOutStanding.ElementAt(i);
-                        //// If current agent level is agent, then add member outstanding
-                        if (!currentOutstanding.IsAgent && isAgentOutStanding)
-                        {
-                            userName = Lang.lblMemberOutstanding;
-                        }
-                        else
-                        {
-                            userName = currentOutstanding.UserName;
-                        }
-
-                        currentOutStanding = (double)currentOutstanding.Outstanding;
-                        currentShareAmount = (double)currentOutstanding.ShareAmount;
-                        RenderExcelBodyRows(
-                            hssfworkbook,
-                            sheet,
-                            rowIndex + i,
-                            userName,
-                            currentOutStanding,
-                            currentShareAmount,
-                            numberFormat,
-                            bodyStyleLeft,
-                            bodyStyleRight);
-                        totalOutstanding += currentOutStanding;
-                        totalShareAmount += currentShareAmount;
-                    }
-
-                    //// If not is supper, then add total row
-                    if (!isSuper)
-                    {
-                        var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-                        var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
-                        var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
-
-                        RenderExcelBodyRows(
-                            hssfworkbook,
-                            sheet,
-                            rowIndex + length,
-                            Lang.total,
-                            totalOutstanding,
-                            totalShareAmount,
-                            numberFormat,
-                            footerStyleLeft,
-                            footerStyleRight);
-                    }
-                }
-            }
-            catch (Exception ex)
             {
-                HandleException(ex);
+                RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
+                RenderExcelHeader(hssfworkbook, sheet, 4);
+                var rowIndex = 5;
+                var length = listOutStanding.Count();
+                //// create the format instance
+                IDataFormat format = hssfworkbook.CreateDataFormat();
+                var numberFormat = format.GetFormat("#,##0.00");
+                double totalOutstanding = 0, totalShareAmount = 0, currentOutStanding = 0, currentShareAmount = 0;
+                string userName = string.Empty;
+
+                var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+                var bodyStyleLeft = CreateStyle(hssfworkbook);
+
+                sheet.CreateFreezePane(0, rowIndex);
+
+                for (int i = 0; i < length; i++)
+                {
+                    IRow row = sheet.CreateRow(rowIndex + i);
+                    var currentOutstanding = listOutStanding.ElementAt(i);
+                    //// If current agent level is agent, then add member outstanding
+                    if (!currentOutstanding.IsAgent && isAgentOutStanding)
+                    {
+                        userName = Lang.lblMemberOutstanding;
+                    }
+                    else
+                    {
+                        userName = currentOutstanding.UserName;
+                    }
+
+                    currentOutStanding = (double)currentOutstanding.Outstanding;
+                    currentShareAmount = (double)currentOutstanding.ShareAmount;
+                    RenderExcelBodyRows(
+                        hssfworkbook,
+                        sheet,
+                        rowIndex + i,
+                        userName,
+                        currentOutStanding,
+                        currentShareAmount,
+                        numberFormat,
+                        bodyStyleLeft,
+                        bodyStyleRight);
+                    totalOutstanding += currentOutStanding;
+                    totalShareAmount += currentShareAmount;
+                }
+
+                //// If not is supper, then add total row
+                if (!isSuper)
+                {
+                    var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
+                    var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
+                    var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
+
+                    RenderExcelBodyRows(
+                        hssfworkbook,
+                        sheet,
+                        rowIndex + length,
+                        Lang.total,
+                        totalOutstanding,
+                        totalShareAmount,
+                        numberFormat,
+                        footerStyleLeft,
+                        footerStyleRight);
+                }
             }
 
             return hssfworkbook;

@@ -11,7 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Position taking model.
+    /// </summary>
     public class PositionTakingModel
     {
         public int SportType { get; set; }

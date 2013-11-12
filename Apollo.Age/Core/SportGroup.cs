@@ -10,9 +10,12 @@
 
 namespace Apollo.Age.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// This class to hard code for sport type Id.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public static class SportGroup
     {
         public const string All = "0";

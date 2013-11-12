@@ -10,15 +10,16 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.Age.Configurations;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Services.Impl;
-    using System.Globalization;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class PeriodDateRangeService : QueryService
     {
         /// <summary>
@@ -55,77 +56,63 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
-            var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            var currentDate = DateTime.Now;
             List<string> periodRanges = GetAllPeriodRange();
             DateTime fromDate = DateTime.Now;
             DateTime toDate = DateTime.Now;
             string[] rangeDates = null;
             DateRangeModel periodModel = new DateRangeModel();
-            try
+            string[] startRangeDates = periodRanges[0].Split('-');
+            DateTime startFromDate = DateTime.Parse(startRangeDates[0]);
+            DateTime startToDate = DateTime.Parse(startRangeDates[1]);
+            var count = 0;
+
+            foreach (var range in periodRanges)
             {
-                string[] startRangeDates = periodRanges[0].Split('-');
-                DateTime startFromDate = DateTime.Parse(startRangeDates[0]);
-                DateTime startToDate = DateTime.Parse(startRangeDates[1]);
-                var count = 0;
-                foreach (var range in periodRanges)
+                rangeDates = range.Split('-');
+
+                fromDate = DateTime.Parse(rangeDates[0]);
+                toDate = DateTime.Parse(rangeDates[1]);
+
+                if (startFromDate > currentDate && startToDate > currentDate)
                 {
-                    rangeDates = range.Split('-');
+                    periodModel.FromDate = startFromDate;
+                    periodModel.ToDate = startToDate;
 
-                    fromDate = DateTime.Parse(rangeDates[0]);                    
-                    toDate = DateTime.Parse(rangeDates[1]);
-
-                    fromDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day);
-                    toDate = new DateTime(toDate.Year, toDate.Month, toDate.Day);
-
-                    if (startFromDate > currentDate && startToDate > currentDate)
+                    return periodModel;
+                }
+                else
+                {
+                    if (getLastPeriod)
                     {
-                        periodModel.FromDate = startFromDate;
-                        periodModel.ToDate = startToDate;
+                        if (fromDate <= currentDate && currentDate <= toDate)
+                        {
+                            periodModel.FromDate = DateTime.Parse(periodRanges[count - 1].Split('-')[0]);
+                            periodModel.ToDate = DateTime.Parse(periodRanges[count - 1].Split('-')[1]);
 
-                        return periodModel;
+                            return periodModel;
+                        }
                     }
                     else
                     {
-                        if (getLastPeriod)
+                        if (fromDate <= currentDate && currentDate <= toDate)
                         {
-                            if (fromDate <= currentDate && currentDate <= toDate)
-                            {
-                                periodModel.FromDate = DateTime.Parse(periodRanges[count - 1].Split('-')[0]);
-                                periodModel.ToDate = DateTime.Parse(periodRanges[count - 1].Split('-')[1]);
+                            periodModel.FromDate = fromDate;
+                            periodModel.ToDate = toDate;
 
-                                return periodModel;
-                            }
-                        }
-                        else
-                        {
-                            if (fromDate <= currentDate && currentDate <= toDate)
-                            {
-                                periodModel.FromDate = fromDate;
-                                periodModel.ToDate = toDate;
-
-                                return periodModel;
-                            }
+                            return periodModel;
                         }
                     }
-
-                    count++;
                 }
 
-                return new DateRangeModel()
-                {
-                    FromDate = currentDate,
-                    ToDate = currentDate
-                };
+                count++;
             }
-            catch (Exception ex)
+
+            return new DateRangeModel()
             {
-                HandleException(ex);
-                return new DateRangeModel()
-                {
-                    FromDate = currentDate,
-                    ToDate = currentDate
-                };
-            }
+                FromDate = currentDate,
+                ToDate = currentDate
+            };
         }
 
         /// <summary>
