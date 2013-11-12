@@ -195,7 +195,11 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         //                spinBoxElement.setValue(currentComValue);
         //            }
         //        };
+        var currentValue = spinBoxElement.getValue();
         spinBoxElement.updateMaxValue(uplineDiscount);
+        if (spinBoxElement.input) {
+            spinBoxElement.input.value = currentValue;
+        }
         //        var currentComValue = spinBoxElement.getValue();
         //        if (currentComValue > uplineDiscount) {
         //            spinBoxElement.setValue(uplineDiscount);

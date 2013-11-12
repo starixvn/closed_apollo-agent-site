@@ -102,6 +102,18 @@ var Wagers = function ($) {
                     var newFromDate = $('#OutrightFromDate').val();
                     var newToDate = $('#OutrightToDate').val();
 
+                    if (!APOLLO.IsValidDate(newFromDate)) {
+                        $('#OutrightFromDate').focus();
+                        alert("Invalid date.");
+                        return;
+                    }
+
+                    if (!APOLLO.IsValidDate(newToDate)) {
+                        $('#OutrightToDate').focus();
+                        alert("Invalid date.");
+                        return;
+                    }
+
                     if (newFromDate > newToDate) {
                         alert($('#RecheckRangeOfDateText').val());
                         return;

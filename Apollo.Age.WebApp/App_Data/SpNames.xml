@@ -480,7 +480,7 @@
         <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
-        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest6" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest8" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
         <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
             <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
@@ -502,7 +502,7 @@
         <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdateDirectMember" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking_xtest" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB.aplweb" TimeOut="600"/>
         <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer_xtest" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
             <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
