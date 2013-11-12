@@ -23,19 +23,15 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
-    using Apollo.Age.PermissionControl.Models;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-    using Fanex.Logging;
-    using Apollo.Age.PermissionControl.Entities;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Logging;
 
     /// <summary>
     /// Log controller.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     [ApolloAuth(FunctionKey = ApolloFunctionKeys.SystemLog, Policy = Policy.Query)]
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
@@ -480,7 +476,6 @@ namespace Apollo.Age.Account.Controllers
                                         MaxUpper = item.Attribute("p") != null ? Convert.ToDecimal(item.Attribute("p").Value) : 0,
                                         MaxGiven = item.Attribute("ma") != null ? Convert.ToDecimal(item.Attribute("ma").Value) : 0,
                                         MinGiven = item.Attribute("mi") != null ? Convert.ToDecimal(item.Attribute("mi").Value) : 0,
-                                        //IsApply = item.Attribute("ia") != null ? (item.Attribute("ia").Value.ToString() == "1" ? true : false) : false
                                     };
 
                                     string key = string.Format("{0}_{1}_{2}", model.SportType.ToString(), model.BetType.ToString(), model.IsLive.ToString().ToLower());
@@ -491,7 +486,6 @@ namespace Apollo.Age.Account.Controllers
                                         list[key].MaxUpper = model.MaxUpper;
                                         list[key].MaxGiven = model.MaxGiven;
                                         list[key].MinGiven = model.MinGiven;
-                                        //list[key].IsApply = model.IsApply;
                                     }
                                     else if (string.IsNullOrWhiteSpace(oldData))
                                     {

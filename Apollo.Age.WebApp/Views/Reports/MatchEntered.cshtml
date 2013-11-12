@@ -5,11 +5,8 @@
 @{
 	ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
 	Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-	List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
-	int counter = 0;
-	var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-	var fromDate = DateTime.Now;
-	var toDate = DateTime.Now; 
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;   
+	int counter = 0;    
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
@@ -20,8 +17,9 @@ new ReportMenuViewModel
 	ReportName = Lang.lblWinLoss,
 	SportType = "0"
 })
-<div class="clear"></div>
-<div id="box_header" class="report matchEnter">
+<div class="clear">
+</div>
+<div id="box_header" class="report">
 	<table class="winloss">
 		<tr>
 			<td class="firstcolumn">
@@ -221,23 +219,21 @@ new ReportMenuViewModel
 	<table class="tblRpt">
 		<thead>
 			<tr>
-				<th colspan="2">@string.Format(Lang.periodlisttitle, currentDate.Year)
+				<th colspan="2">@string.Format(Lang.periodlisttitle,DateTime.Now.Year)
 				</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach (var item in Model.PeriodList)
 			{
-				fromDate = new DateTime(item.FromDate.Year, item.FromDate.Month, item.FromDate.Day);
-				toDate = new DateTime(item.ToDate.Year, item.ToDate.Month, item.ToDate.Day);
 				counter++;
-				if (fromDate <= currentDate && toDate >= currentDate)
+				if (item.FromDate <= DateTime.Now && item.ToDate >= DateTime.Now)
 				{                  
 				<tr class="CurrentPeriod">
 					<td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
 					</td>
 					<td>
-						@fromDate.ToString("yyyy-MM-dd") @Lang.to @toDate.ToString("yyyy-MM-dd")
+						@item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
 					</td>
 				</tr>
 				}
@@ -247,7 +243,7 @@ new ReportMenuViewModel
 					<td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
 					</td>
 					<td>
-						@fromDate.ToString("yyyy-MM-dd") @Lang.to @toDate.ToString("yyyy-MM-dd")
+						@item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
 					</td>
 				</tr>
 				}

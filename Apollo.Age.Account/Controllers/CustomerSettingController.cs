@@ -577,18 +577,9 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
-        /// <summary>
-        /// Edits the agent setting.
-        /// </summary>
-        /// <param name="agentId">The agent identifier.</param>
-        /// <param name="agentLevel">The agent level.</param>
-        /// <param name="userName">Name of the user.</param>
-        /// <param name="fromLeftMenu">If set to <c>true</c> [from left menu].</param>
-        /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult EditAgentSetting(
@@ -602,9 +593,6 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
-
-            // Hard code bet setting min limit is 5000 for HK$ currency.
-            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 

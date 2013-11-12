@@ -24,7 +24,6 @@ namespace Apollo.Age.WebApp
         /// Registers the bundles.
         /// </summary>
         /// <param name="bundles">The bundles.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static void RegisterBundles(BundleCollection bundles)
         {
             // css
