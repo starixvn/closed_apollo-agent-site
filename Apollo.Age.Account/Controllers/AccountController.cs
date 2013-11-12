@@ -651,10 +651,8 @@ namespace Apollo.Age.Account.Controllers
             {
                 criteria.PageIndex = 0;
             }
-            else
-            {
-                criteria.OldPageIndex = criteria.PageIndex;
-            }
+            
+            criteria.OldPageIndex = criteria.PageIndex;
 
             return RedirectToAction(
                 "AgentList",
@@ -882,10 +880,8 @@ namespace Apollo.Age.Account.Controllers
             {
                 criteria.PageIndex = 0;
             }
-            else
-            {
-                criteria.OldPageIndex = criteria.PageIndex;
-            }
+
+            criteria.OldPageIndex = criteria.PageIndex;
 
             return RedirectToAction(
                 "MemberList",
