@@ -54,7 +54,7 @@ namespace Apollo.Age.Reports.Services
                         IsTest = isShowDataTest
                     };
 
-            var cacheKey = string.Join("-", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "_")) + (isShowDataTest ? "_1" : "_0");
+            var cacheKey = string.Join("-", "MatchResult", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "-"), (isShowDataTest ? "1" : "0"));
             var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
             if (matchResult == null)
             {
@@ -62,7 +62,7 @@ namespace Apollo.Age.Reports.Services
 
                 if (sportTypes == Apollo.Age.Core.SportGroup.Others && matchResult != null)
                 {
-                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(5));
+                    CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(1));
                 }
             }
 
@@ -83,7 +83,7 @@ namespace Apollo.Age.Reports.Services
                 IsShowAll = isShowDataTest,
                 BalanceUpDay = GetBalanceUpDay(),
             };
-            var cacheKey = fromDate.ToString("yyyyMMdd") + (isShowDataTest ? "_1" : "_0");
+            var cacheKey = string.Join("-", "OutrightResult", fromDate.ToString("yyyyMMdd"), (isShowDataTest ? "1" : "0"));
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
             if (result == null)
@@ -91,7 +91,7 @@ namespace Apollo.Age.Reports.Services
                 result = GetData<OutrightResultModel>(criteria);
                 if (result != null)
                 {
-                    CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(5));
+                    CacheManager.Set<IEnumerable<OutrightResultModel>>(cacheKey, result, TimeSpan.FromMinutes(1));
                 }
             }
 
