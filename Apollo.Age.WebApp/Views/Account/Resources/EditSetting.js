@@ -6,6 +6,7 @@ if (typeof jQuery != 'undefined') {
             settingContext: null,
             commissionSettingElement: null,
             betLimitElement: null,
+            maxBetLimit: 0,
 
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
@@ -45,6 +46,16 @@ if (typeof jQuery != 'undefined') {
                     $('#tbl-edit').show();
                 }
                 $('#btnCancelFooter').show();
+
+                EDITSETTING.maxBetLimit = maxBetLimit;
+                if (EDITSETTING.maxBetLimit == 0) {
+                    $("#betSettingInformationMessage").hide();
+                }
+                else {
+                    $("#betSettingInformationMessage").show();
+                    $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
+                }
+
             },
             saveSetting: function () {
                 if (EDITSETTING.commissionSettingElement.Validate()

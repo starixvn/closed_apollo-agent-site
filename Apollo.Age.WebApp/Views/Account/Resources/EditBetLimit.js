@@ -6,7 +6,7 @@ if (typeof jQuery != 'undefined') {
             settingContext: null,
             betLimitElement: null,
             betLimitItems: null,
-            currentIsSimpleMode: true,
+            currentIsSimpleMode: true,            
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
                 BETLIMIT.init(settingContext, betLimits);
@@ -42,8 +42,19 @@ if (typeof jQuery != 'undefined') {
                     BETLIMIT.currentIsSimpleMode = false;
                     BETLIMIT.initOthers(false);
                 });
+
+                BETLIMIT.maxBetLimit = maxBetLimit;
+                if (BETLIMIT.maxBetLimit == 0) {
+                    $("#betSettingInformationMessage").hide();
+                }
+                else {
+                    $("#betSettingInformationMessage").show();
+                    $("#maxbetlimit").val(BETLIMIT.maxBetLimit);
+                }
+
+
             },
-            updateBetLimit: function () {                
+            updateBetLimit: function () {
                 if (BETLIMIT.betLimitElement.Validate()) {
                     $.ajax({
                         url: APOLLO.resolveUrl('CustomerSetting/UpdateBetLimit'),
