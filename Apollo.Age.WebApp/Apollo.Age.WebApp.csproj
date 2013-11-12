@@ -1062,17 +1062,17 @@
       <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
       <Name>Fanex.Age.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Age\Fanex.BetList.Age.csproj">
+    <ProjectReference Include="..\Fanex.BetList.Age\Apollo.BetList.Age.csproj">
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
-      <Name>Fanex.BetList.Age</Name>
+      <Name>Apollo.BetList.Age</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj">
+    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj">
       <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
-      <Name>Fanex.BetList.Core.TicketHelper</Name>
+      <Name>Apollo.BetList.Core.TicketHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Core\Fanex.BetList.Core.csproj">
+    <ProjectReference Include="..\Fanex.BetList.Core\Apollo.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
-      <Name>Fanex.BetList.Core</Name>
+      <Name>Apollo.BetList.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

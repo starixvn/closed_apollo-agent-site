@@ -32,13 +32,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C60FB
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "Fanex.BetList.Core\Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core", "Fanex.BetList.Core\Apollo.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Wagers", "Apollo.Age.Wagers\Apollo.Age.Wagers.csproj", "{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Age", "Fanex.BetList.Age\Apollo.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B27BBD58-4705-466B-91DA-CED9465F638A}"
 EndProject
