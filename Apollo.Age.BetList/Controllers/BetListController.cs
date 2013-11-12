@@ -181,6 +181,7 @@ namespace Apollo.Age.BetList.Controllers
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            
 
             return this.Transactions(viewModel);
         }
@@ -212,8 +213,8 @@ namespace Apollo.Age.BetList.Controllers
                 FromDate = fromDate,
                 ToDate = toDate,
 
-                SportTypeIds = sportTypes == "-99" ? "0" : sportTypes,
-                BetTypeIds = betTypes,
+                SportTypes = sportTypes == "-99" ? "0" : sportTypes,
+                BetTypes = betTypes,
 
                 Username = userName,
                 UserType = userType,
@@ -264,9 +265,9 @@ namespace Apollo.Age.BetList.Controllers
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
             model.BettypeList =
-                model.SportTypeIds == "-99"
+                model.SportTypes == "-99"
                 ? _reportService.GetParlayBettype()
-                : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
+                : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
             model.BalanceUpDay = balanceUpDay;
 
             if (errorCode == 0)
@@ -281,8 +282,8 @@ namespace Apollo.Age.BetList.Controllers
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
 
-                    SportTypes = model.SportTypeIds == "-99" ? "0" : model.SportTypeIds,
-                    BetTypes = model.BetTypeIds,
+                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
+                    BetTypes = model.BetTypes,
 
                     BetListPage = BetListPage.Transaction,
                     MoveBetsDay = _reportService.MoveBetsDay()
@@ -358,7 +359,7 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);            
 
             return this.TicketCancel(viewModel);
         }
@@ -396,9 +397,9 @@ namespace Apollo.Age.BetList.Controllers
 
             model.SportList = SingbetSportService.GetSport(isOther: false);
             model.BettypeList =
-                model.SportTypeIds == "-99"
+                model.SportTypes == "-99"
                 ? _reportService.GetParlayBettype()
-                : _reportService.GetBettype(model.SportTypeIds == "-99" || model.SportTypeIds == "0");
+                : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
             model.BalanceUpDay = balanceUpDay;
             model.MoveBetDay = moveBetsDay;
 
@@ -414,8 +415,8 @@ namespace Apollo.Age.BetList.Controllers
                     ToDate = this.ResetEndDate(model.ToDate),
                     StatusIds = statusIds,
 
-                    SportTypes = model.SportTypeIds == "-99" ? "0" : model.SportTypeIds,
-                    BetTypes = model.BetTypeIds,
+                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
+                    BetTypes = model.BetTypes,
                     BetListPage = BetListPage.Cancel,
 
                     BalanceUpDay = model.BalanceUpDay,
@@ -472,7 +473,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 AgentId = -1,
                 BetTypes = betType,
-                SportTypes = sportType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),

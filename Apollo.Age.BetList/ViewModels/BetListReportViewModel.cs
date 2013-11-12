@@ -29,7 +29,7 @@ namespace Apollo.Age.BetList.ViewModels
             FromDate = DateTime.Now;
             ToDate = DateTime.Now;
             UserType = 1;
-            SportTypeIds = BetTypeIds = "0";
+            SportTypes = BetTypes = "0";
         }
 
         [SpParam(Ignored = true)]
@@ -52,7 +52,7 @@ namespace Apollo.Age.BetList.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
         
-        public string SportTypeIds { get; set; }
+        public string SportTypes { get; set; }
 
         public DateTime MoveBetDay { get; set; }
 
@@ -60,7 +60,7 @@ namespace Apollo.Age.BetList.ViewModels
 
         public DateRangeModel LastPeriod { get; set; }        
 
-        public string BetTypeIds { get; set; }
+        public string BetTypes { get; set; }
 
         public string Username { get; set; }
 
