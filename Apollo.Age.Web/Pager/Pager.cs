@@ -1,63 +1,105 @@
-﻿using System;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
+﻿// --------------------------------------------------------------------------
+// <copyright file="Pager.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.Web.Pager
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Html;
+    using System.Web.Routing;
+
+    /// <summary>
+    /// Pager control.
+    /// </summary>
     public class Pager : IHtmlString
     {
-        private readonly HtmlHelper htmlHelper;
-        private readonly int pageSize;
-        private readonly int currentPage;
-        private readonly int totalItemCount;
-        private readonly PagerOptions pagerOptions;
+        private readonly HtmlHelper _htmlHelper;
+        private readonly int _pageSize;
+        private readonly int _currentPage;
+        private readonly int _totalItemCount;
+        private readonly PagerOptions _pagerOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pager"/> class.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="totalItemCount">The total item count.</param>
         public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
         {
-            this.htmlHelper = htmlHelper;
-            this.pageSize = pageSize;
-            this.currentPage = currentPage;
-            this.totalItemCount = totalItemCount;
-            this.pagerOptions = new PagerOptions();
+            this._htmlHelper = htmlHelper;
+            this._pageSize = pageSize;
+            this._currentPage = currentPage;
+            this._totalItemCount = totalItemCount;
+            this._pagerOptions = new PagerOptions();
         }
 
+        /// <summary>
+        /// Option the specified build options.
+        /// </summary>
+        /// <param name="buildOptions">The build options.</param>
+        /// <returns>Return page object.</returns>
         public Pager Options(Action<PagerOptionsBuilder> buildOptions)
         {
-            buildOptions(new PagerOptionsBuilder(this.pagerOptions));
+            buildOptions(new PagerOptionsBuilder(this._pagerOptions));
             return this;
         }
 
+        /// <summary>
+        /// Builds the pagination model.
+        /// </summary>
+        /// <param name="generateUrl">The generate URL.</param>
+        /// <returns>Return page model.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
         {
             var model = new PaginationModel();
 
-            var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
+            var pageCount = (int)Math.Ceiling(_totalItemCount / (double)_pageSize);
 
             // Previous
-            model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "&#171;", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "&#171;" });
+            model.PaginationLinks.Add(
+                _currentPage > 1
+                ? new PaginationLink
+                    {
+                        Active = true,
+                        DisplayText = "&#171;",
+                        PageIndex = _currentPage - 1,
+                        Url = generateUrl(_currentPage - 1)
+                    }
+                : new PaginationLink
+                    {
+                        Active = false,
+                        DisplayText = "&#171;"
+                    });
 
             var start = 1;
             var end = pageCount;
-            var nrOfPagesToDisplay = this.pagerOptions.MaxNrOfPages;
+            var numberOfPageToDisplay = this._pagerOptions.MaxNrOfPages;
 
-            if (pageCount > nrOfPagesToDisplay)
+            if (pageCount > numberOfPageToDisplay)
             {
-                var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
-                var below = (currentPage - middle);
-                var above = (currentPage + middle);
+                var middle = (int)Math.Ceiling(numberOfPageToDisplay / 2d) - 1;
+                var below = _currentPage - middle;
+                var above = _currentPage + middle;
 
                 if (below < 2)
                 {
-                    above = nrOfPagesToDisplay;
+                    above = numberOfPageToDisplay;
                     below = 1;
                 }
                 else if (above > (pageCount - 2))
                 {
                     above = pageCount;
-                    below = (pageCount - nrOfPagesToDisplay + 1 -1);
+                    below = pageCount - numberOfPageToDisplay;
                 }
 
                 start = below;
@@ -67,10 +109,7 @@ namespace Apollo.Age.Web.Pager
             if (start > 1)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
-                //if (start > 3)
-                //{
-                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 2, DisplayText = "2", Url = generateUrl(2) });
-                //}
+
                 if (start > 2)
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
@@ -79,7 +118,7 @@ namespace Apollo.Age.Web.Pager
 
             for (var i = start; i <= end; i++)
             {
-                if (i == currentPage || (currentPage <= 0 && i == 0))
+                if (i == _currentPage || (_currentPage <= 0 && i == 0))
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
                 }
@@ -88,41 +127,44 @@ namespace Apollo.Age.Web.Pager
                     model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, DisplayText = i.ToString(), Url = generateUrl(i) });
                 }
             }
+
             if (end < pageCount)
             {
                 if (end < pageCount - 1)
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = ".." });
                 }
-                //if (pageCount - 2 > end)
-                //{
-                //    model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
-                //}
 
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
             }
 
             // Next
-            model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "&#187;", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "&#187;" });
+            model.PaginationLinks.Add(_currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = _currentPage + 1, DisplayText = "&#187;", Url = generateUrl(_currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "&#187;" });
 
             // AjaxOptions
-            if (pagerOptions.AjaxOptions != null)
+            if (_pagerOptions.AjaxOptions != null)
             {
-                model.AjaxOptions = pagerOptions.AjaxOptions;
+                model.AjaxOptions = _pagerOptions.AjaxOptions;
             }
 
-            model.Options = pagerOptions;
+            model.Options = _pagerOptions;
             return model;
         }
 
+        /// <summary>
+        /// Returns an HTML-encoded string.
+        /// </summary>
+        /// <returns>
+        /// An HTML-encoded string.
+        /// </returns>
         public string ToHtmlString()
         {
             var model = BuildPaginationModel(GeneratePageUrl);
 
-            if (!String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
+            if (!string.IsNullOrEmpty(this._pagerOptions.DisplayTemplate))
             {
-                var templatePath = string.Format("DisplayTemplates/{0}", this.pagerOptions.DisplayTemplate);
-                return htmlHelper.Partial(templatePath, model).ToHtmlString();
+                var templatePath = string.Format("DisplayTemplates/{0}", this._pagerOptions.DisplayTemplate);
+                return _htmlHelper.Partial(templatePath, model).ToHtmlString();
             }
             else
             {
@@ -143,9 +185,14 @@ namespace Apollo.Age.Web.Pager
                         else
                         {
                             var linkBuilder = new StringBuilder("<a");
-                            if (pagerOptions.AjaxOptions != null)
-                                foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+
+                            if (_pagerOptions.AjaxOptions != null)
+                            {
+                                foreach (var ajaxOption in _pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+                                {
                                     linkBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
+                                }
+                            }
 
                             linkBuilder.AppendFormat(" href=\"{0}\">{1}</a>", paginationLink.Url, paginationLink.DisplayText);
                             sb.Append(linkBuilder.ToString());
@@ -156,28 +203,36 @@ namespace Apollo.Age.Web.Pager
                         sb.AppendFormat("<span class=\"disabled\">{0}</span>", paginationLink.DisplayText);
                     }
                 }
+
                 return sb.ToString();
             }
         }
 
+        /// <summary>
+        /// Generates the page URL.
+        /// </summary>
+        /// <param name="pageNumber">The page number.</param>
+        /// <returns>System string.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private string GeneratePageUrl(int pageNumber)
         {
-            var viewContext = this.htmlHelper.ViewContext;
+            var viewContext = this._htmlHelper.ViewContext;
             var routeDataValues = viewContext.RequestContext.RouteData.Values;
-          
+
             RouteValueDictionary pageLinkValueDictionary;
+
             // Avoid canonical errors when pageNumber is equal to 1.
-            if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
+            if (pageNumber == 1 && !this._pagerOptions.AlwaysAddFirstPageNumber)
             {
-                pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
-                if (routeDataValues.ContainsKey(this.pagerOptions.PageRouteValueKey))
+                pageLinkValueDictionary = new RouteValueDictionary(this._pagerOptions.RouteValues);
+                if (routeDataValues.ContainsKey(this._pagerOptions.PageRouteValueKey))
                 {
-                    routeDataValues.Remove(this.pagerOptions.PageRouteValueKey);
+                    routeDataValues.Remove(this._pagerOptions.PageRouteValueKey);
                 }
             }
             else
             {
-                pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { this.pagerOptions.PageRouteValueKey, pageNumber } };
+                pageLinkValueDictionary = new RouteValueDictionary(this._pagerOptions.RouteValues) { { this._pagerOptions.PageRouteValueKey, pageNumber } };
             }
 
             // To be sure we get the right route, ensure the controller and action are specified.
@@ -185,14 +240,14 @@ namespace Apollo.Age.Web.Pager
             {
                 pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
             }
+
             if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
             {
                 pageLinkValueDictionary.Add("action", routeDataValues["action"]);
             }
 
             // 'Render' virtual path.
-            //var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
-            var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(this.htmlHelper.ViewContext.RequestContext, pageLinkValueDictionary);
+            var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(this._htmlHelper.ViewContext.RequestContext, pageLinkValueDictionary);
 
             var url = virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
             if (url != null)

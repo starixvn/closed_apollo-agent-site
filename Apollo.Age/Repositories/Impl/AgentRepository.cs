@@ -28,23 +28,16 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return list of agent.</returns>
         public override Agent Get(ICriteria criteria)
         {
-            try
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.QueryEntity<Agent, Agent, Agent>(
-                        (f, w) =>
-                        {
-                            f.Agent = w;
-                            return f;
-                        },
-                        "ParentId",
-                        criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
+                return db.QueryEntity<Agent, Agent, Agent>(
+                    (f, w) =>
+                    {
+                        f.Agent = w;
+                        return f;
+                    },
+                    "ParentId",
+                    criteria.GetSpParams());
             }
         }
 

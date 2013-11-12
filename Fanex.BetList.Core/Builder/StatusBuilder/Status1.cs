@@ -19,10 +19,18 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Build Status cell
+    /// Build Status cell.
     /// </summary>
     public class Status1 : IStatus
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Status1" /> class.
+        /// </summary>
+        public Status1()
+        {
+            this.Template = new Status_Template();
+        }
+        
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
@@ -35,10 +43,10 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="ticketData">The ticket data (Status33 - Win/Place)</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data (Status33 - Win/Place).</param>
+        /// <returns>
+        /// Status template.
+        /// </returns>
         public virtual Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
@@ -82,11 +90,12 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Rich text string.
+        /// </returns>
         public virtual IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
         {
             Render(ticket, ticketData);
@@ -101,14 +110,6 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             rtfHelper.RTFRenderer.Clear();
 
             return rtfStatus;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Status1" /> class.
-        /// </summary>
-        public Status1()
-        {
-            this.Template = new Status_Template();
         }
     }
 }

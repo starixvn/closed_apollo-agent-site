@@ -1,18 +1,35 @@
-﻿namespace Apollo.Age.Web.Pager
+﻿// --------------------------------------------------------------------------
+// <copyright file="IPagedList.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Apollo.Age.Web.Pager
 {
     using System.Collections.Generic;
+
     public interface IPagedList
     {
         int PageCount { get; }
+
         int TotalItemCount { get; }
+
         int PageIndex { get; }
+
         int PageNumber { get; }
+
         int PageSize { get; }
+
         bool HasPreviousPage { get; }
+
         bool HasNextPage { get; }
+
         bool IsFirstPage { get; }
+
         bool IsLastPage { get; }
+
         int ItemStart { get; }
+
         int ItemEnd { get; }
     }
 

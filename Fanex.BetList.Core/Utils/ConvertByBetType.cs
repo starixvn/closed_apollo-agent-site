@@ -15,7 +15,11 @@ namespace Fanex.BetList.Core.Utils
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// Convert by bet type.
+    /// </summary>
     public static partial class ConvertByBetType
     {
         #region [f_GetOddsByBettype], [f_ShowOddsByBettype], [f_GetChoice]
@@ -32,11 +36,11 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Shows the odds by bettype.
+        /// Shows the odds by bet type.
         /// </summary>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="oddsType">Type of the odds.</param>
-        /// <returns>System.Int32.</returns>
+        /// <returns>Return odd by bet type.</returns>
         public static int ShowOddsByBettype(int betType, int oddsType)
         {
             if (oddsBettypes.Contains(betType))
@@ -52,10 +56,12 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Gets the type of the odds by bet.
         /// </summary>
-        /// <param name="odds">The odds.</param>
+        /// <param name="odds">Input the odds.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="oddsType">Type of the odds.</param>
-        /// <returns>System.Double.</returns>
+        /// <returns>
+        /// Return odd by bet type.
+        /// </returns>
         public static double GetOddsByBetType(double odds, int betType, int oddsType)
         {
             bool isShownOddType = ShowOddsByBettype(betType, oddsType) != 0;
@@ -78,7 +84,8 @@ namespace Fanex.BetList.Core.Utils
         /// </summary>
         /// <param name="betTeam">The bet team.</param>
         /// <param name="betType">Type of the bet.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>Return bet team.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static string GetBetTeam(string betTeam, int betType)
         {
             if (string.IsNullOrEmpty(betTeam))
@@ -163,17 +170,17 @@ namespace Fanex.BetList.Core.Utils
         /// HDPs the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>Handicap bet type.</returns>
         public static string Hdp(object value)
         {
             return Cast.AsDecimal(value).ToString("0.##");
         }
 
         /// <summary>
-        /// Oddses the specified value.
+        /// Odds the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String odds.</returns>
         public static string Odds(object value)
         {
             decimal d = Cast.AsDecimal(value);
@@ -189,12 +196,12 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Oddses the specified odds.
+        /// Odds the specified odds.
         /// </summary>
-        /// <param name="odds">The odds.</param>
+        /// <param name="odds">Input the odds.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="oddsType">Type of the odds.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String odds.</returns>
         public static string Odds(object odds, object betType, object oddsType)
         {
             double d = ConvertByBetType.GetOddsByBetType(Convert.ToDouble(odds), Convert.ToInt32(betType), Convert.ToInt32(oddsType));
@@ -213,21 +220,23 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Oddses the type.
+        /// Odds the type.
         /// </summary>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="oddsType">Type of the odds.</param>
-        /// <returns>System.Object.</returns>
+        /// <returns>
+        /// Odds type.
+        /// </returns>
         public static object OddsType(object betType, object oddsType)
         {
             return ConvertByBetType.ShowOddsByBettype(Convert.ToInt32(betType), Convert.ToInt32(oddsType));
         }
 
         /// <summary>
-        /// Ms the odds.
+        /// The M odds.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String odds.</returns>
         public static string MOdds(object value)
         {
             decimal d = Cast.AsDecimal(value);
@@ -243,10 +252,10 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Ms the odds4.
+        /// The M odds 4.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String odds 4.</returns>
         public static string MOdds4(object value)
         {
             decimal d = Cast.AsDecimal(value);
@@ -262,10 +271,10 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Winlosses the specified value.
+        /// Win loss the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String win loss.</returns>
         public static string Winloss(object value)
         {
             decimal d = Cast.AsDecimal(value);
@@ -281,20 +290,20 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Comm_s the percentage.
+        /// Commission the percentage.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String commission.</returns>
         public static string Comm_Percentage(object value)
         {
             return (Cast.AsDecimal(value) * 100).ToString("N2");
         }
 
         /// <summary>
-        /// Comms the value.
+        /// Commission the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String value commission.</returns>
         public static string CommValue(object value)
         {
             decimal d = Cast.AsDecimal(value);
@@ -313,37 +322,39 @@ namespace Fanex.BetList.Core.Utils
         /// Stakes the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String stake.</returns>
         public static string Stake(object value)
         {
             return string.Format(Formatter.DECIMAL_FORMAT2, value);
         }
 
         /// <summary>
-        /// Pts the specified value.
+        /// PT the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String PT.</returns>
         public static string Pt(object value)
         {
             return (Cast.AsDecimal(value) * 100).ToString("N2");
         }
 
         /// <summary>
-        /// Comms the specified value.
+        /// Commission the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>String commission.</returns>
         public static string Comm(object value)
         {
             return string.Format(Formatter.DECIMAL_FORMAT20, value);
         }
 
         /// <summary>
-        /// Pts the value.
+        /// PT the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>System.String.</returns>
+        /// <returns>
+        /// String PT value.
+        /// </returns>
         public static string PtValue(object value)
         {
             var newValue = string.Format(Formatter.DECIMAL_FORMAT20, value);

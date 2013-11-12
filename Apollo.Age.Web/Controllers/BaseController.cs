@@ -18,6 +18,7 @@ namespace Apollo.Age.Web
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
+    using Apollo.Age.Core;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
@@ -49,7 +50,7 @@ namespace Apollo.Age.Web
         #region PROPERTIES
 
         /// <summary>
-        /// Gets Current Session.           
+        /// Gets Current Session.
         /// </summary>
         /// <value>Current Session.</value>
         protected ICurrentSession CurrentSession
@@ -159,6 +160,40 @@ namespace Apollo.Age.Web
         #region Auth
 
         /// <summary>
+        /// Permissions the down line detail.
+        /// </summary>
+        /// <param name="customerId">The customer identifier.</param>
+        /// <returns>
+        /// True for permission down line detail is ok.
+        /// </returns>
+        protected bool PermissionDownlineDetail(int customerId)
+        {
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            // Current user is agent
+            if (this.CurrentSession.IsMaster)
+            {
+                if (customerId != this.CurrentSession.UserId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // Current user is shadow
+                if (customerId != this.CurrentSession.AgentId
+                    && !hasDownlineDetailsPermission)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Checking Authentication.
         /// </summary>
         private void CheckAuthentication()
@@ -173,6 +208,7 @@ namespace Apollo.Age.Web
         /// Checking Validate Down line.
         /// </summary>
         /// <param name="filterContext">Input filter Context.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private void CheckValidDownline(ActionExecutingContext filterContext)
         {
             try

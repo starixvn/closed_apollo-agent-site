@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get match result criteria.
     /// </summary>
     public class GetMatchResultCriteria : CriteriaBase
     {
@@ -26,7 +26,7 @@ namespace Apollo.Age.Reports.Criterias
         [SpParam(SqlParamName = "IsShowAll")]
         public bool IsTest { get; set; }
 
-        [SpParam(Ignored=true)]
+        [SpParam(Ignored = true)]
         public DateTime BalanceUpDay { get; set; }
 
         public override string GetSettingKey()

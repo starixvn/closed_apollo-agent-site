@@ -10,12 +10,10 @@
 namespace Apollo.Age.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
-    using System.Web.Helpers;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net;
+    using System.Web.Helpers;
+    using System.Web.Mvc;
     using Fanex.Logging;
 
     /// <summary>
@@ -23,11 +21,16 @@ namespace Apollo.Age.Web.Filters
     /// </summary>
     public class CustomValidateAntiForgeryTokenAttribute : AuthorizeAttribute
     {
+        /// <summary>
+        /// Called when a process requests authorization.
+        /// </summary>
+        /// <param name="filterContext">The filter context, which encapsulates information for using <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
-            //  Ajax POSTs and normal form posts have to be treated differently when it comes
-            //  to validating the AntiForgeryToken
+
+            // Ajax POSTs and normal form posts have to be treated differently when it comes. To validating the AntiForgeryToken.
             if (request.IsAjaxRequest())
             {
                 var antiForgeryCookie = request.Cookies[AntiForgeryConfig.CookieName];

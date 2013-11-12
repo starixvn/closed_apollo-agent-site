@@ -11,16 +11,13 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.Common.Helper;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// This class encapsulate dynamic repository to provide 
-    /// a flexible way to get data from db by using Stored Procedure
+    /// a flexible way to get data from database by using Stored Procedure.
     /// </summary>
     public class QueryService : ServiceBase
     {
@@ -31,26 +28,22 @@ namespace Apollo.Age.Services.Impl
             _repository = repository ?? new DynamicRepository();
         }
 
-        public virtual IEnumerable<T>  GetData<T>(ICriteria criteria)
+        /// <summary>
+        /// Get query data.
+        /// </summary>
+        /// <typeparam name="T">Type of data.</typeparam>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of data.</returns>
+        public virtual IEnumerable<T> GetData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
-            {               
-                if (criteria.IsValid())
-                {
-                    return _repository.Fetch<T>(criteria);
-                }
-
-                return new List<T>();
-            }
-            catch (ServiceLayerException ex)
+            if (criteria.IsValid())
             {
-                ex.SettingKey = criteria.GetSettingKey();                
-                HandleException(ex);
-                return null;
+                return _repository.Fetch<T>(criteria);
             }
+
+            return new List<T>();
         }
-        
     }
 }

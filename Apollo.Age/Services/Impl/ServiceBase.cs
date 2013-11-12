@@ -15,21 +15,10 @@ namespace Apollo.Age.Services.Impl
     using Fanex.Common;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Service base.
     /// </summary>
     public class ServiceBase
     {
-        /// <summary>
-        /// Handle exception by using FANEX Logging Lib to write log.
-        /// </summary>
-        /// <param name="ex">Exception parameter.</param>
-        protected void HandleException(Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message, ex);
-        }
-
-        #region Commission Group Reverting
-
         /// <summary>
         /// Revert Commission Group Name.
         /// </summary>
@@ -66,8 +55,6 @@ namespace Apollo.Age.Services.Impl
             }
         }
 
-        #endregion Commission Group Reverting
-
         /// <summary>
         /// Get Peak hours for prevent action, format peak hour in config file: DAYINWEEK-HOUR.
         /// </summary>
@@ -75,33 +62,26 @@ namespace Apollo.Age.Services.Impl
         protected IList<PeakHour> GetPeakHours()
         {
             IList<PeakHour> peakHours = new List<PeakHour>();
-            try
+            var peakHoursString = AppSettings.PeakHours;
+            if (!string.IsNullOrEmpty(peakHoursString))
             {
-                var peakHoursString = AppSettings.PeakHours;
-                if (!string.IsNullOrEmpty(peakHoursString))
+                var peakHourArray = peakHoursString.Split(';');
+                foreach (var peakHourSetting in peakHourArray)
                 {
-                    var peakHourArray = peakHoursString.Split(';');
-                    foreach (var peakHourSetting in peakHourArray)
+                    if (!string.IsNullOrEmpty(peakHourSetting))
                     {
-                        if (!string.IsNullOrEmpty(peakHourSetting))
+                        var peakHourItem = peakHourSetting.Split('>');
+                        var peakHour = new PeakHour
                         {
-                            var peakHourItem = peakHourSetting.Split('>');
-                            var peakHour = new PeakHour
-                            {
-                                FromDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[0].Split(':')[0]),
-                                FromHour = Converter.ToInt(peakHourItem[0].Split(':')[1]),
-                                ToDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[1].Split(':')[0]),
-                                ToHour = Converter.ToInt(peakHourItem[1].Split(':')[1])
-                            };
+                            FromDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[0].Split(':')[0]),
+                            FromHour = Converter.ToInt(peakHourItem[0].Split(':')[1]),
+                            ToDayOfWeek = (DayOfWeek)Converter.ToInt(peakHourItem[1].Split(':')[0]),
+                            ToHour = Converter.ToInt(peakHourItem[1].Split(':')[1])
+                        };
 
-                            peakHours.Add(peakHour);
-                        }
+                        peakHours.Add(peakHour);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
             }
 
             return peakHours;

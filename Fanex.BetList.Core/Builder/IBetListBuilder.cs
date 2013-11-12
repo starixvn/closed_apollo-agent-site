@@ -15,6 +15,5 @@ namespace Fanex.BetList.Core.Builder
     /// </summary>
     public interface IBetListBuilder
     {
-
     }
 }

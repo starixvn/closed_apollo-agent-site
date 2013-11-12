@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get special days criteria.
+    /// </summary>
     public class GetSpecialDaysCriteria : CriteriaBase
     {
         public override string GetSettingKey()

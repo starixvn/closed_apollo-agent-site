@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Entities
 {
     /// <summary>
-    /// Struct BetStatus
+    /// Struct BetStatus.
     /// </summary>
     public struct BetStatus
     {

@@ -1,4 +1,10 @@
-﻿namespace Fanex.BetList.Age.ExtTemplate
+﻿// --------------------------------------------------------------------------
+// <copyright file="BetListTemplate.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+
+namespace Fanex.BetList.Age.ExtTemplate
 {
     using System.Web.UI;
 
@@ -7,9 +13,17 @@
     /// </summary>
     public class BetListTemplate : BetList_Template
     {
+        /// <summary>
+        /// To the string.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         public void ToString(HtmlTextWriter writer)
         {
-            if (!Visible) return;
+            if (!Visible)
+            {
+                return;
+            }
+
             if (RenderChild)
             {
                 writer.Write(s0);

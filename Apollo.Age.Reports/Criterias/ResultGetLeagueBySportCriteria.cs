@@ -13,7 +13,7 @@ namespace Apollo.Age.Reports.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Result get league by sport criteria.
     /// </summary>
     public class ResultGetLeagueBySportCriteria : CriteriaBase
     {

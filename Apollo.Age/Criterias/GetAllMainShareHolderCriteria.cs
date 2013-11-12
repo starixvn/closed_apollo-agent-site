@@ -12,7 +12,7 @@ namespace Apollo.Age.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get all main shareholder.
     /// </summary>
     public class GetAllMainShareHolderCriteria : CriteriaBase
     {

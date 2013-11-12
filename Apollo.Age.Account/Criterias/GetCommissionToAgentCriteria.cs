@@ -11,6 +11,9 @@ namespace Apollo.Age.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get commission to agent criteria.
+    /// </summary>
     public class GetCommissionToAgentCriteria : CriteriaBase
     {
         public int ActorAgentId { get; set; }

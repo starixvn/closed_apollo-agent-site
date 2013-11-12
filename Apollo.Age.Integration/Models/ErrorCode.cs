@@ -15,7 +15,7 @@ namespace Apollo.Age.Integration.Models
     using System.Text;
 
     /// <summary>
-    /// It contains error code returned from authentication service of sungame
+    /// It contains error code returned from authentication service of sun game.
     /// </summary>
     public static class ErrorCode
     {

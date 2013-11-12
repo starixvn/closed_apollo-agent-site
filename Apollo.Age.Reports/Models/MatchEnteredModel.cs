@@ -10,11 +10,13 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
     /// <summary>
     /// Match entered model class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class MatchEnteredModel
     {
         public short SportTypeId { get; set; }
@@ -45,6 +47,7 @@ namespace Apollo.Age.Reports.Models
     /// <summary>
     /// Match entered class.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class MatchEntered
     {
         public bool IsToday { get; set; }

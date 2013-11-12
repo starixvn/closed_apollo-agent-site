@@ -16,7 +16,7 @@ namespace Fanex.BetList.Core.Utils
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Renderer for RTF
+    /// Render for RTF.
     /// </summary>
     public class RtfTextRender
     {
@@ -30,7 +30,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Initializes a new instance of the <see cref="RtfTextRender" /> class.
         /// </summary>
-        /// <param name="font">The font.</param>
+        /// <param name="font">Input the font.</param>
         public RtfTextRender(IFont font)
             : base()
         {
@@ -48,10 +48,10 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Renders this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Rich text interface.</returns>
         public IRichTextString Render()
         {
-            string s = "";
+            string s = string.Empty;
             foreach (var block in _blocks)
             {
                 s += block.Text;
@@ -73,12 +73,14 @@ namespace Fanex.BetList.Core.Utils
                         font = block.Font;
                     }
                 }
+
                 if (font != null)
                 {
                     int startIndex = textIndex;
                     int endIndex = textIndex + block.Text.Length;
                     result.ApplyFont(textIndex, endIndex, font);
                 }
+
                 textIndex += block.Text.Length;
             }
 
@@ -97,7 +99,7 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Adds the text.
         /// </summary>
-        /// <param name="text">The text.</param>
+        /// <param name="text">Input the text.</param>
         public void AddText(string text)
         {
             _blocks.Add(new TextBlock(text));
@@ -106,8 +108,8 @@ namespace Fanex.BetList.Core.Utils
         /// <summary>
         /// Adds the text.
         /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="font">The font.</param>
+        /// <param name="text">Input the text.</param>
+        /// <param name="font">Input the font.</param>
         public void AddText(string text, IFont font)
         {
             _blocks.Add(new TextBlock(text, font));

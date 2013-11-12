@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
  * Created 20100603@Lee - Url processor
  * Revision:
  * ?@? - ... 
@@ -14,7 +13,7 @@ namespace Fanex.Age.UI.Components
         /// 
         /// </summary>
         /// <param name="paramName"></param>
-        /// <param name="paramValue">=null to remove this param on url</param>
+        /// <param name="paramValue">=null to remove this param on url.</param>
         /// <param name="url"></param>
         public static void SetParameterValue(string name, string value, ref string url)
         {
@@ -49,14 +48,19 @@ namespace Fanex.Age.UI.Components
 
         public static string GetParameterValue(string name, string url)
         {
-            if (url == null) return null;
+            if (url == null)
+            {
+                return null;
+            }
 
             string separator = url.Contains("?" + name + "=") ? "?" : "&";
-
             string parameter = separator + name + "=";
 
             int i1 = url.IndexOf(parameter);
-            if (i1 == -1) return null;
+            if (i1 == -1)
+            {
+                return null;
+            }
 
             string tmp = url.Substring(i1);
             int i2 = tmp.IndexOf("&", 1);

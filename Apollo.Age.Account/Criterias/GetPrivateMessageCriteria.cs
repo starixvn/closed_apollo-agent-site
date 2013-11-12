@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetMessageCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetPrivateMessageCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get private message criteria.
     /// </summary>
     public class GetPrivateMessageCriteria : CriteriaBase
     {

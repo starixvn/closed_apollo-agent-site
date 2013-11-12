@@ -11,6 +11,9 @@ namespace Apollo.Age.Web.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Safe code view model.
+    /// </summary>
     public class SafeCodeViewModel
     {
         [Required]

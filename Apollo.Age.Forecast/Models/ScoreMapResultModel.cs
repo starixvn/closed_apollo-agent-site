@@ -6,14 +6,16 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.5">Created</change>
 // </history>
-
 namespace Apollo.Age.Forecast.Models
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Score map result model.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class ScoreMapResultModel
     {
         public ScoreMapResultModel()
@@ -27,6 +29,10 @@ namespace Apollo.Age.Forecast.Models
         public List<ScoreMapMatch> ScoreMapMatches { get; set; }
     }
 
+    /// <summary>
+    /// Score map item model.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class ScoreMapItem
     {
         public int MatchId { get; set; }
@@ -38,6 +44,10 @@ namespace Apollo.Age.Forecast.Models
         public decimal Total { get; set; }
     }
 
+    /// <summary>
+    /// Score map match model.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class ScoreMapMatch
     {
         private string _matchName;

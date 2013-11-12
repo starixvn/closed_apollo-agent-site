@@ -10,9 +10,14 @@
 namespace Apollo.Age.Reports.Extension
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
+    /// <summary>
+    /// HSSF sheet extensions.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public static class HSSFSheetExtensions
     {
         /// <summary>
@@ -87,6 +92,13 @@ namespace Apollo.Age.Reports.Extension
             return newRow;
         }
 
+        /// <summary>
+        /// CopyCell method is used to copy one cell from a template to another template.
+        /// </summary>
+        /// <param name="sheet">Main sheet object.</param>
+        /// <param name="sourceCell">Template cell.</param>
+        /// <param name="destCell">Index of source cell in template sheet.</param>
+        /// <returns>Return the copied cell.</returns>
         public static ICell CopyCell(this ISheet sheet, ICell sourceCell, ICell destCell)
         {
             // If the old cell is null jump to next cell
@@ -109,7 +121,7 @@ namespace Apollo.Age.Reports.Extension
                 destCell.Hyperlink = sourceCell.Hyperlink;
             }
 
-            // Set the cell data type            
+            // Set the cell data type
             destCell.SetCellType(sourceCell.CellType);
 
             // Set the cell data value

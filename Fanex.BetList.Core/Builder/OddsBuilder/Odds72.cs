@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.OddsBuilder
 {
     /// <summary>
-    /// Poker
+    /// Poker game.
     /// </summary>
     public class Odds72 : Odds71
     {

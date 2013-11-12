@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------
-// <copyright file="ErrorPag.aspx.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ErrorPage.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ---------------------------------------------------------------------------------
@@ -11,6 +11,7 @@
 namespace Fanex.Age.UI.Components
 {
     using Fanex.Age.UI.Components.ErrorPage;
+
     public class ErrorPage_Page
     {
         private string _error;
@@ -38,5 +39,4 @@ namespace Fanex.Age.UI.Components
             return tpl.ToString();
         }
     }
-
 }

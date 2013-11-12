@@ -17,8 +17,19 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
 
+    /// <summary>
+    /// Discount class.
+    /// </summary>
     public class Discount : IDiscount
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Discount" /> class.
+        /// </summary>
+        public Discount()
+        {
+            this.Template = new Discount_Template();
+        }
+        
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
@@ -28,19 +39,11 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
         public Discount_Template Template { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Discount" /> class.
-        /// </summary>
-        public Discount()
-        {
-            this.Template = new Discount_Template();
-        }
-
-        /// <summary>
         /// Renders the specified ticket.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="page">Link from page</param>
-        /// <returns></returns>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <param name="page">Link from page.</param>
+        /// <returns>Discount template.</returns>
         public virtual Discount_Template Render(ITicket ticket, BetListPage page)
         {
             switch (page)
@@ -75,19 +78,28 @@ namespace Fanex.BetList.Core.Builder.DiscountBuilder
             return Template;
         }
 
+        /// <summary>
+        /// Reverts the name of the commission group.
+        /// </summary>
+        /// <param name="groupName">Name of the group.</param>
+        /// <returns>Revert commission group name.</returns>
         private string RevertCommGroupName(string groupName)
         {
             switch (groupName.ToLower())
             {
                 case "a":
                     return "D";
+
                 case "b":
                     return "C";
+
                 case "c":
                     return "B";
+
                 case "d":
                     return "A";
             }
+
             return string.Empty;
         }
     }

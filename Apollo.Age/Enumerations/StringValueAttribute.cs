@@ -15,7 +15,7 @@ namespace Apollo.Age.Enumerations
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// String value attribute.
     /// </summary>
     public class StringValueAttribute : Attribute
     {

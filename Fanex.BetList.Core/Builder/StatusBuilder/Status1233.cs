@@ -13,6 +13,9 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
 
+    /// <summary>
+    /// The status 1233.
+    /// </summary>
     public class Status1233 : Status33
     {
         /// <summary>
@@ -20,8 +23,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         public Status1233()
         {
-            winBetId = 1231;
-            placeBetId = 1232;
+            WinBetId = 1231;
+            PlaceBetId = 1232;
         }
 
         /// <summary>
@@ -29,7 +32,9 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// List of tickets.
+        /// </returns>
         protected override List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.RefNo));

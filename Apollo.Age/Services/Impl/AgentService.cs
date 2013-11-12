@@ -13,6 +13,9 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
 
+    /// <summary>
+    /// Agent service.
+    /// </summary>
     public class AgentService : IAgentService
     {
         private readonly IAgentRepository _repository;

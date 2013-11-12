@@ -14,7 +14,7 @@ namespace Apollo.Age.BetList.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// BetList Criteria
+    /// Bet List Criteria.
     /// </summary>
     public class BetListCriteria : CriteriaBase
     {
@@ -22,6 +22,32 @@ namespace Apollo.Age.BetList.Criterias
         {
             this.FromDate = DateTime.Today;
             this.ToDate = DateTime.Today;
+        }
+
+        /// <summary>
+        /// Type of report.
+        /// </summary>
+        public enum ReportType : int
+        {
+            /// <summary>
+            /// The account information.
+            /// </summary>
+            AccountInfo = 0,
+
+            /// <summary>
+            /// The transaction.
+            /// </summary>
+            Transaction = 1,
+
+            /// <summary>
+            /// The outstanding.
+            /// </summary>
+            Outstanding = 2,
+
+            /// <summary>
+            /// The ticket cancelled.
+            /// </summary>
+            TicketCancelled = 3
         }
 
         public DateTime FromDate { get; set; }
@@ -55,6 +81,12 @@ namespace Apollo.Age.BetList.Criterias
         [SpParam(Ignored = true)]
         public BetListPage BetListPage { get; set; }
 
+        /// <summary>
+        /// Gets the type of the report.
+        /// </summary>
+        /// <value>
+        /// The type of the report.
+        /// </value>
         public int RptType
         {
             get
@@ -75,25 +107,19 @@ namespace Apollo.Age.BetList.Criterias
             }
         }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>Return store name.</returns>
         public override string GetSettingKey()
         {
-            //string settingKey = string.Empty;
-
-            //switch (this.BetListPage)
-            //{
-            //    case BetListPage.Outstanding:
-            //    case BetListPage.AccountInfo:
-            //    case BetListPage.Cancel:
-            //        settingKey = "Age_BetList_SelByDateMemStatus";
-            //        break;
-            //    case BetListPage.Transaction:
-            //        settingKey = "Age_BetList_SelTransaction";
-            //        break;
-            //}
-
             return "Age_BetList_SelTransaction";
         }
 
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <returns>Return dynamic parameters.</returns>
         public dynamic GetParameters()
         {
             if (this.BetListPage == BetListPage.Transaction)
@@ -128,18 +154,13 @@ namespace Apollo.Age.BetList.Criterias
             }
         }
 
-
+        /// <summary>
+        /// Determines whether this instance is valid.
+        /// </summary>
+        /// <returns>Is validate or note.</returns>
         public override bool IsValid()
         {
             return this.ToDate >= this.FromDate;
         }
-    }
-
-    public enum ReportType : int
-    {
-        AccountInfo = 0,
-        Transaction = 1,
-        Outstanding = 2,
-        TicketCancelled = 3
     }
 }

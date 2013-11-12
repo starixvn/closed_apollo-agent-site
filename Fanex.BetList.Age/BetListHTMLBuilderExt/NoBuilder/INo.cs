@@ -29,7 +29,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.NoBuilder
         /// Renders the specified index.
         /// </summary>
         /// <param name="index">The index.</param>
-        /// <returns></returns>
+        /// <returns>None template.</returns>
         No_Template Render(int index);
     }
 }

@@ -10,10 +10,11 @@
 namespace Apollo.Age.Account.Criterias
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Get log customer setting criteria.
+    /// </summary>
     public class GetLogCustSettingCriteria : CriteriaBase
     {
         public int ActorAgentId { get; set; }
@@ -38,6 +39,10 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(Ignored = true)]
         public bool ShowOldValue { get; set; }
 
+        /// <summary>
+        /// Gets the setting key.
+        /// </summary>
+        /// <returns>The setting key.</returns>
         public override string GetSettingKey()
         {
             string settingKey = string.Empty;

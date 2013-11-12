@@ -28,23 +28,16 @@ namespace Apollo.Age.Repositories.Impl
         /// <returns>Return list of member.</returns>
         public override Member Get(ICriteria criteria)
         {
-            try
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return db.QueryEntity<Member, Agent, Member>(
-                        (f, w) =>
-                        {
-                            f.Agent = w;
-                            return f;
-                        },
-                        "ParentId",
-                        criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
+                return db.QueryEntity<Member, Agent, Member>(
+                    (f, w) =>
+                    {
+                        f.Agent = w;
+                        return f;
+                    },
+                    "ParentId",
+                    criteria.GetSpParams());
             }
         }
 

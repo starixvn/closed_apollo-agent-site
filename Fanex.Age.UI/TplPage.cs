@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Web.UI;
-
-/*
+﻿/*
  * Created 20091211@Lee - Base aspx page, use Template method pattern http://sourcemaking.com/design_patterns/template_method
  * Revision: 
  * 20091211@Lee - Initializing
@@ -12,13 +9,16 @@ using System.Web.UI;
 
 namespace Fanex.Age.UI
 {
+    using System.Collections;
+    using System.Web.UI;
+
     /// <summary>
     /// Base IBC page. All aspx pages should be inherited from TplPage or TplPage2.
     /// </summary>
     public abstract class TplPage : TplBase
     {
         /// <summary>
-        /// Root namespace of json data returned.
+        /// Root namespace of JSON data returned.
         /// </summary>
         private const string JS_DATA = "_page";
 
@@ -40,23 +40,23 @@ namespace Fanex.Age.UI
         /// <summary>
         /// Register an error as JSON format.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(int errCode, string errMsg)
         {
-            _JsData.Add(JSONError.ERROR_CODE, errCode);
-            _JsData.Add(JSONError.ERROR_MSG, errMsg);
+            _JsData.Add(JSONError.ErrorCode, errCode);
+            _JsData.Add(JSONError.ErrorMessage, errMsg);
         }
 
         /// <summary>
         /// Register an error as JSON format.
         /// </summary>
-        /// <param name="errCode"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         public void RegisterJSONError(ErrorType type, string errMsg)
         {
-            _JsData.Add(JSONError.ERROR_CODE, (int)(type));
-            _JsData.Add(JSONError.ERROR_MSG, errMsg);
+            _JsData.Add(JSONError.ErrorCode, (int)(type));
+            _JsData.Add(JSONError.ErrorMessage, errMsg);
         }
 
         /// <summary>
@@ -64,7 +64,6 @@ namespace Fanex.Age.UI
         /// </summary>
         /// <param name="writer"></param>
         public abstract void RenderContent(HtmlTextWriter writer);
-
 
         /// <summary>
         /// Don't override this method in instance class.
@@ -75,9 +74,9 @@ namespace Fanex.Age.UI
             // Hot fix for Opera browser (IIS does sniffing user agent)
             Response.ContentType = "text/html";
 
-            _Parameters = new Hashtable();
+            _parameters = new Hashtable();
 
-            ProcessRequest(ref _Parameters);
+            ProcessRequest(ref _parameters);
 
             object error = ValidateRequest(Parameters);
 
@@ -112,4 +111,3 @@ namespace Fanex.Age.UI
         }
     }
 }
-

@@ -9,14 +9,13 @@
 
 namespace Apollo.Age.Services.Impl
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;
-    using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Customer service.
+    /// </summary>
     public class CustomerService : ICustomerService
     {
         private readonly IAgentRepository _repository;

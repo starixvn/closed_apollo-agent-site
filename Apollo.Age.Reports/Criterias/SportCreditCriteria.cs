@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Sport credit criteria.
+    /// </summary>
     public class SportCreditCriteria : CriteriaBase
     {
         public int LoggedId { get; set; }

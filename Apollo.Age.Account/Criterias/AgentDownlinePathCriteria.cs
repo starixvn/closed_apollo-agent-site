@@ -11,6 +11,9 @@ namespace Apollo.Age.Criterias.Accounts
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Agent down line path criteria.
+    /// </summary>
     public class AgentDownlinePathCriteria : CriteriaBase
     {
         public int ParentId { get; set; }

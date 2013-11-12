@@ -12,7 +12,7 @@ namespace Apollo.Age.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Internal get agent by username criteria.
     /// </summary>
     public class InternalGetAgentByUsernameCriteria : CriteriaBase
     {

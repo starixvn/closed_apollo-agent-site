@@ -10,10 +10,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Services;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// League model.
+    /// </summary>
     public class LeagueModel
     {
         private string _leagueName;

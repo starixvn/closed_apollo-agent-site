@@ -10,9 +10,12 @@
 
 namespace Apollo.Age.Reports.Core
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Hard code group bet types.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class BettypeGroup
     {
         public const string All = "0";

@@ -9,10 +9,11 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Forecast.Core;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Score map match result model.
+    /// </summary>
     public class ScoreMapMatchResultModel
     {
         public ScoreMapMatchResultModel()

@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get result by match criteria.
+    /// </summary>
     public class GetResultByMatchCriteria : CriteriaBase
     {
         public int MatchId { get; set; }

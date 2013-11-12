@@ -16,148 +16,24 @@ namespace Apollo.Age.Web.Mvc
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
-    using Apollo.Age.Web.Properties;
-    using System.Text;
-    using System.Web;
-    using System.Web.Compilation;
-    using System.Globalization;
-    using System.Resources;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Resources;
 
+    /// <summary>
+    /// HTML helper extensions class.
+    /// </summary>
     public static class HtmlHelperExtensions
     {
         #region DatePickerFor
 
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression)
-        //{
-        //    return htmlHelper.DatePickerFor(expression, format: null);
-        //}
-
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression, string format)
-        //{
-        //    return htmlHelper.DatePickerFor(expression, format, minDate: null, maxDate: null);
-        //}
-
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression, string format,
-        //    DateTime? minDate, DateTime? maxDate)
-        //{
-        //    return htmlHelper.DatePickerFor(expression, format, minDate, maxDate,
-        //        unavailableDates: null);
-        //}
-
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression, string format,
-        //    DateTime? minDate, DateTime? maxDate, IEnumerable<DateTime> unavailableDates)
-        //{
-        //    return htmlHelper.DatePickerFor(expression, format, minDate, maxDate,
-        //        unavailableDates, (IDictionary<string, object>)null);
-        //}
-
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression, string format,
-        //    DateTime? minDate, DateTime? maxDate,
-        //    IEnumerable<DateTime> unavailableDates, object htmlAttributes)
-        //{
-        //    return htmlHelper.DatePickerFor(expression, format,
-        //        minDate, maxDate, unavailableDates,
-        //        HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
-        //}
-
-        //public static MvcHtmlString DatePickerFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TProperty>> expression, string format,
-        //    DateTime? minDate, DateTime? maxDate,
-        //    IEnumerable<DateTime> unavailableDates,
-        //    IDictionary<string, object> htmlAttributes)
-        //{
-        //    if (string.IsNullOrWhiteSpace(format))
-        //    {
-        //        format = "MM/dd/yyyy";
-        //    }
-
-        //    //var value = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
-
-        //    htmlAttributes = htmlAttributes ?? new Dictionary<string, object>();
-
-        //    if (htmlAttributes.ContainsKey("class"))
-        //    {
-        //        htmlAttributes["class"] += " datepicker";
-        //    }
-        //    else
-        //    {
-        //        htmlAttributes.Add("class", "datepicker");
-        //    }
-
-        //    #region min/max date
-        //    if (minDate != null)
-        //    {
-        //        htmlAttributes.Add("mindate", minDate);
-        //    }
-
-        //    if (maxDate != null)
-        //    {
-        //        htmlAttributes.Add("maxdate", maxDate);
-        //    }
-        //    #endregion
-
-        //    #region unavailable dates
-        //    if (unavailableDates != null && unavailableDates.Any())
-        //    {
-        //        htmlAttributes.Add("disabledDates",
-        //            string.Join(",", unavailableDates.Select(d => d.ToString("MM/dd/yyyy"))));
-        //    }
-        //    #endregion
-
-        //    ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
-        //    return DatePickerHelper(htmlHelper, metadata,
-        //        ExpressionHelper.GetExpressionText(expression),
-        //        format, htmlAttributes);
-        //}
-
-        //private static MvcHtmlString DatePickerHelper(HtmlHelper htmlHelper, ModelMetadata metadata,
-        //    string name, string format, IDictionary<string, object> htmlAttributes)
-        //{
-        //    string fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
-
-        //    if (String.IsNullOrEmpty(fullName))
-        //    {
-        //        throw new ArgumentException(Resources.Common_NullOrEmpty, "name");
-        //    }
-
-        //    TagBuilder tagBuilder = new TagBuilder("input");
-        //    tagBuilder.MergeAttributes(htmlAttributes);
-        //    tagBuilder.MergeAttribute("type", HtmlHelper.GetInputTypeString(InputType.Text));
-        //    tagBuilder.MergeAttribute("name", fullName, true);
-
-        //    DateTime? dateValue = null;
-        //    if (metadata.Model is Nullable<DateTime> || metadata.Model is DateTime)
-        //    {
-        //        dateValue = (DateTime?)metadata.Model;
-        //    }
-        //    tagBuilder.MergeAttribute("value",
-        //        dateValue.HasValue ? dateValue.Value.ToString(format) : string.Empty, true);
-        //    tagBuilder.GenerateId(fullName);
-
-        //    ModelState modelState;
-        //    if (htmlHelper.ViewData.ModelState.TryGetValue(fullName, out modelState))
-        //    {
-        //        // If there are any errors for a named field, we add the css attribute.
-        //        if (modelState.Errors.Count > 0)
-        //        {
-        //            tagBuilder.AddCssClass(HtmlHelper.ValidationInputCssClassName);
-        //        }
-        //    }
-
-        //    tagBuilder.MergeAttributes(htmlHelper.GetUnobtrusiveValidationAttributes(name, metadata));
-
-        //    return new MvcHtmlString(tagBuilder.ToString(TagRenderMode.SelfClosing));
-        //}
-
+        /// <summary>
+        /// Starts the of week.
+        /// </summary>
+        /// <param name="dt">The a date.</param>
+        /// <returns>Return a start day of a week.</returns>
         public static DateTime StartOfWeek(this DateTime dt)
         {
             int diff = dt.DayOfWeek - DayOfWeek.Monday;
@@ -169,27 +45,44 @@ namespace Apollo.Age.Web.Mvc
             return dt.AddDays(-1 * diff).Date;
         }
 
+        /// <summary>
+        /// Ends the of week.
+        /// </summary>
+        /// <param name="dt">The a date.</param>
+        /// <returns>Return a end day of a week.</returns>
         public static DateTime EndOfWeek(this DateTime dt)
         {
             return dt.StartOfWeek().AddDays(6);
         }
-        #endregion
+
+        #endregion DatePickerFor
 
         #region Date, Year Picker
 
+        /// <summary>
+        /// Dates the picker for.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="html">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="minDate">The minimum date.</param>
+        /// <param name="maxDate">The maximum date.</param>
+        /// <param name="formatDate">The format date.</param>
+        /// <param name="unavailDates">The unavailable dates.</param>
+        /// <returns>Return MVC HTML string.</returns>
         public static MvcHtmlString DatePickerFor<TModel, TValue>(
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TValue>> expression,
             DateTime? minDate = null,
-            DateTime? maxDate = null,
-            //string formatDate = "M/d/yyyy",
+            DateTime? maxDate = null,            
             string formatDate = "yyyy-MM-dd",
             IEnumerable<DateTime> unavailDates = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
             DateTime? value = DateTime.Now;
 
-            if (metaData.Model is Nullable<DateTime> || metaData.Model is DateTime)
+            if (metaData.Model is Nullable || metaData.Model is DateTime)
             {
                 value = (DateTime?)metaData.Model;
             }
@@ -201,6 +94,20 @@ namespace Apollo.Age.Web.Mvc
             return html.DatePicker(metaData.PropertyName, value, minDate, maxDate, formatDate, unavailDates);
         }
 
+        /// <summary>
+        /// Dates the picker.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="name">Input the name.</param>
+        /// <param name="date">Input the date.</param>
+        /// <param name="minDate">The minimum date.</param>
+        /// <param name="maxDate">The maximum date.</param>
+        /// <param name="formatDate">The format date.</param>
+        /// <param name="unavailDates">The unavailable dates.</param>
+        /// <returns>
+        /// MVC HTML String.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">FormatDate cannot be blank.</exception>
         public static MvcHtmlString DatePicker(
            this HtmlHelper htmlHelper,
            string name,
@@ -225,7 +132,6 @@ namespace Apollo.Age.Web.Mvc
                 mindate = minDate != null && minDate != DateTime.MinValue ? ((DateTime)minDate).ToString("yyyy-MM-dd") : "null",
                 maxdate = maxDate != null && maxDate != DateTime.MinValue ? ((DateTime)maxDate).ToString("yyyy-MM-dd") : "null",
                 disabledDate = disabledDate
-
             };
 
             var dateValue = date.HasValue ? date.Value.ToString(formatDate) : string.Empty;
@@ -235,14 +141,18 @@ namespace Apollo.Age.Web.Mvc
         }
 
         /// <summary>
-        /// year picker
+        /// Year picker.
         /// </summary>
-        /// <param name="htmlHelper">html Helper</param>
-        /// <param name="name">in name</param>
-        /// <param name="fromYear">default from year 2000</param>
-        /// <param name="currentYear">>default currentYear year 2000</param>
-        /// <returns></returns>
-        public static MvcHtmlString YearPicker(this HtmlHelper htmlHelper,
+        /// <param name="htmlHelper">HTML Helper.</param>
+        /// <param name="name">Input the name.</param>
+        /// <param name="fromYear">Default from year 2000.</param>
+        /// <param name="currentYear">Default currentYear year 2000.</param>
+        /// <param name="hasShowNextYear">If set to <c>true</c> [has show next year].</param>
+        /// <returns>
+        /// MVC HTML String.
+        /// </returns>
+        public static MvcHtmlString YearPicker(
+            this HtmlHelper htmlHelper,
             string name,
             int fromYear = 2000,
             int currentYear = 2000,
@@ -275,10 +185,21 @@ namespace Apollo.Age.Web.Mvc
             return MvcHtmlString.Create(dropDownList.ToString());
         }
 
-        #endregion
+        #endregion Date, Year Picker
 
         #region Dropdownlist
 
+        /// <summary>
+        /// Drops down list for.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="selectList">The select list.</param>
+        /// <param name="firstItem">The first item.</param>
+        /// <param name="htmlAttributes">The HTML attributes.</param>
+        /// <returns>MVC HTML String.</returns>
         public static MvcHtmlString DropDownListFor<TModel, TProperty>(
            this HtmlHelper<TModel> htmlHelper,
            Expression<Func<TModel, TProperty>> expression,
@@ -308,26 +229,35 @@ namespace Apollo.Age.Web.Mvc
             return SelectExtensions.DropDownListFor(htmlHelper, expression, selectList, htmlAttributes);
         }
 
-        #endregion
+        #endregion Dropdownlist
 
         #region Resources
 
         /// <summary>
-        /// Returns the value of the specified System.String resource
+        /// Returns the value of the specified System.String resource.
         /// </summary>
-        /// <param name="key">The name of the resource to get</param>
-        /// <param name="resourceSource">A type from which the resource manager derives all information 
+        /// <param name="htmlhelper">The html helper.</param>
+        /// <param name="key">The name of the resource to get.</param>
+        /// <param name="resourceSource">A type from which the resource manager derives all information
         /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
-        /// <returns></returns>
-        public static string Resource(this HtmlHelper htmlhelper, string key,
-            Type resourceSource = null)
+        /// <returns>
+        /// The resource value.
+        /// </returns>
+        public static string Resource(this HtmlHelper htmlhelper, string key, Type resourceSource = null)
         {
             return LanguageManager.GetResourceData(key);
         }
-        #endregion
+
+        #endregion Resources
 
         #region Status
 
+        /// <summary>
+        /// To the string status.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <param name="uplineStatus">The UPLINE status.</param>
+        /// <returns>MVC HTML String.</returns>
         public static MvcHtmlString ToStringStatus(this byte status, byte uplineStatus)
         {
             string format = "<span class=\"{0}\">{1}</span>";
@@ -345,9 +275,11 @@ namespace Apollo.Age.Web.Mvc
                 case (int)CustomerStatus.Active:
                     result = new MvcHtmlString(string.Format(format, "active", Lang.lblActive));
                     break;
+
                 case (int)CustomerStatus.Stopped:
                     result = new MvcHtmlString(string.Format(format, "close", Lang.stopped));
                     break;
+
                 default:
                     result = new MvcHtmlString(string.Format(format, "suspended", Lang.locked));
                     break;
@@ -356,12 +288,23 @@ namespace Apollo.Age.Web.Mvc
             return result;
         }
 
-        #endregion
+        #endregion Status
 
         #region Format Show Time
+
+        /// <summary>
+        /// Formats the show time.
+        /// </summary>
+        /// <param name="htmlhelper">The HTML helper.</param>
+        /// <param name="showTime">The show time.</param>
+        /// <param name="ignoreTd">If set to <c>true</c> [ignore td].</param>
+        /// <returns>MVC HTML String.</returns>
         public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
-            string showTimeFormat = string.IsNullOrEmpty(showTime) ? string.Empty : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
+            string showTimeFormat = 
+                string.IsNullOrEmpty(showTime) 
+                ? string.Empty 
+                : showTime.Replace("</font>", "<#font>").Replace('/', '-').Replace("<#font>", "</font></br>").TrimEnd('M');
 
             if (!ignoreTd)
             {
@@ -370,14 +313,25 @@ namespace Apollo.Age.Web.Mvc
 
             return new HtmlString(showTimeFormat);
         }
-        #endregion
+
+        #endregion Format Show Time
 
         #region Distinct by
 
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
-    (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        /// <summary>
+        /// Distinct the by.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="keySelector">The key selector.</param>
+        /// <returns>List of object.</returns>
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();
+
             foreach (TSource element in source)
             {
                 if (seenKeys.Add(keySelector(element)))
@@ -387,6 +341,27 @@ namespace Apollo.Age.Web.Mvc
             }
         }
 
-        #endregion
+        #endregion Distinct by
+
+        #region Encrypt Username
+
+        /// <summary>
+        /// Encrypts the username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="stringEncrypt">The string encrypt.</param>
+        /// <returns>The username that is encrypted.</returns>
+        public static string EncryptUsername(this string username, string stringEncrypt = "***")
+        {
+            if (!string.IsNullOrWhiteSpace(username)
+                && username.Length > 1)
+            {
+                return username[0] + stringEncrypt;
+            }
+
+            return username;
+        }
+
+        #endregion Encrypt Username
     }
 }

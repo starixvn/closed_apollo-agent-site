@@ -14,7 +14,6 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface ILogRunSpService
     {
         IEnumerable<LogRunSpModel> Search(ref GetLogCustSettingCriteria criteria);

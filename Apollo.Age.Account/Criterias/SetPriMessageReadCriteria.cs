@@ -12,7 +12,7 @@ namespace Apollo.Age.Account.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Set private message read criteria.
     /// </summary>
     public class SetPriMessageReadCriteria : CriteriaBase
     {       

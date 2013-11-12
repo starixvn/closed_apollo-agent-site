@@ -16,19 +16,26 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Build Footer with no total info
+    /// Build Footer with no total info.
     /// </summary>
     public class Footer0 : IFooter
     {
-        private Footer0_Template Template;
+        private Footer0_Template _template;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Footer0" /> class.
+        /// </summary>
+        public Footer0()
+        {
+            _template = new Footer0_Template();
+        }
 
         /// <summary>
         /// Renders the specified tickets.
         /// </summary>
         /// <param name="tickets">The tickets.</param>
-        /// <param name="betlistType">Type of the betlist.</param>
-        /// <param name="userType">Type of the user.</param>
-        /// <returns></returns>
+        /// <param name="betlistType">Type of the bet list.</param>
+        /// <returns>String template.</returns>
         public string Render(IList<ITicket> tickets, BetListType betlistType)
         {
             int totalColumns = 10;
@@ -50,16 +57,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
                 }
             }
 
-            Template.colSpan = totalColumns.ToString();
-            return Template;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Footer0" /> class.
-        /// </summary>
-        public Footer0()
-        {
-            Template = new Footer0_Template();
+            _template.colSpan = totalColumns.ToString();
+            return _template;
         }
     }
 }
