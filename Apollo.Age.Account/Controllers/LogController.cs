@@ -663,7 +663,7 @@ namespace Apollo.Age.Account.Controllers
         {
             var listFunctionPolicy = new List<LogPermissionModel>();
             var username = string.Empty;
-            var isApply = false;
+            var isApply = -1;
 
             try
             {
@@ -716,7 +716,7 @@ namespace Apollo.Age.Account.Controllers
                         {
                             var permission = itemRoot.Descendants("z");
                             username = itemRoot.Attribute("u") != null ? itemRoot.Attribute("u").Value : string.Empty;
-                            isApply = itemRoot.Attribute("ia") != null ? itemRoot.Attribute("ia").Value == "1" : false;
+                            isApply = itemRoot.Attribute("ia") != null ? Convert.ToInt16(itemRoot.Attribute("ia").Value) : -1;
 
                             if (!ReferenceEquals(permission, null) && permission.Any())
                             {

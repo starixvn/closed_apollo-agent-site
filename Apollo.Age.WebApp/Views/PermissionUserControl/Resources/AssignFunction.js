@@ -99,26 +99,19 @@ var AssignFunction = function ($) {
                     title: Language.UPDATE_TITLE,
                     buttons: {
                         "Yes": function () {
-                            AssignFunction.updatePermission(funcRead, funcHost, true);
+                            AssignFunction.updatePermission(funcRead, funcHost, 1);
                             $(this).dialog("close");
                         },
                         "No": function () {
-                            AssignFunction.updatePermission(funcRead, funcHost, false);
+                            AssignFunction.updatePermission(funcRead, funcHost, 0);
                             $(this).dialog("close");
                         }
                     }
-                });
-
-                /*if (confirm(AssignFunction.messageApplyDownline)) {
-                AssignFunction.updatePermission(funcRead, funcHost, true);
-                }
-                else {
-                AssignFunction.updatePermission(funcRead, funcHost, false);
-                }*/
+                });               
             }
             else {
                 if (confirm(AssignFunction.message)) {
-                    AssignFunction.updatePermission(funcRead, funcHost, false);
+                    AssignFunction.updatePermission(funcRead, funcHost, -1);
                 }
             }
         },

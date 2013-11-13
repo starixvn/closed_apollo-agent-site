@@ -28,7 +28,7 @@ namespace Apollo.Age.Criterias
 
         public int AgentUserId { get; set; }
 
-        public bool IsApplyDownLine { get; set; }
+        public int IsApplyDownLine { get; set; }
 
         public string Permission
         {

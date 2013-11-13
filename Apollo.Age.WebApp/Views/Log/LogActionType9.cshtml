@@ -2,7 +2,7 @@
 @{      
     var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.Name).ToList() : null;
     var username = ViewBag.Username;
-    var isApply = ViewBag.IsApply != null ? (bool)ViewBag.IsApply : false;
+    var isApply = Convert.ToInt16(ViewBag.IsApply);
 }
 <table class="tblRpt">
     @if (!string.IsNullOrWhiteSpace(username))
@@ -29,14 +29,14 @@
         <td class="colW1 no-border-right">
         </td>
     </tr>
-    @if (string.IsNullOrWhiteSpace(username) && isApply)
+    @if (string.IsNullOrWhiteSpace(username) && isApply != -1)
     {
         <tr>
             <td class="colW" colspan="1">
                 <b>@Lang.ApplyDownlineAndShadow</b>
             </td>
             <td class="colW2">
-                <strong class="valuechanged">@(isApply ? Lang.lblYes : Lang.lblNo)</strong>
+                <strong class="valuechanged">@(isApply == 1 ? Lang.lblYes : Lang.lblNo)</strong>
             </td>
             <td class="colW2">
             </td>
