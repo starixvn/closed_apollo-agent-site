@@ -51,10 +51,11 @@ if (typeof jQuery != 'undefined') {
 
                     if (frame.length > 0) {
                         frame.html(frameHtml);
-                    } else {
-                        var blockLoading = '<p class="block-loading">loading..............................................</p>';
-                        frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
+
+                     var blockLoading = '<p class="block-loading">loading..............................................</p>';
+                     frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+
                     return APOLLO.openDialog(frame, title, options);
                 }
 

@@ -66,8 +66,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		});
 }
 
-function InitBetList() {
-    $.blockUI();
+function InitBetList() {    
     if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
         var heightPopup = 630;
         if (APOLLO.browser.msie) {
