@@ -113,7 +113,7 @@
             });
 
             $(".view-betlist").on("click", function () {
-                
+                $.unblockUI();
                 WINLOSS.sportTypeName = WINLOSS.SportName.val();
                 WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="

@@ -146,7 +146,7 @@ namespace Sunplus.Agent.UI._BetList.MixParlay
                     else if (status.Equals(BetStatus.Draw))
                     {
                         rowBlock.status = Apollo.Age.Resources.BetList.draw;
-                    }
+                    }   
                     else if (status.Equals(BetStatus.Waiting))
                     {
                         rowBlock.status = Apollo.Age.Resources.BetList.waiting;

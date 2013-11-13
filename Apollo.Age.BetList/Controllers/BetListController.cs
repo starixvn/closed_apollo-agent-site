@@ -181,7 +181,7 @@ namespace Apollo.Age.BetList.Controllers
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
-            
+
 
             return this.Transactions(viewModel);
         }
@@ -359,7 +359,7 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);            
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
             return this.TicketCancel(viewModel);
         }
@@ -755,9 +755,23 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betId">The bet identifier.</param>
         /// <param name="custId">The customer identifier.</param>
         /// <returns>Return view result.</returns>
-        public ViewResult CombinationMixParlay(string refNo, DateTime winlossDate, int transId, int betId, int custId)
+        public ViewResult CombinationMixParlay(long refNo, DateTime winlossDate, int transId, int betId, int custId)
         {
-            return this.View();
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay();
+
+            var criteria = new SystemParlayDetailCriteria
+            {
+                CustId = custId,
+                Language = CurrentSession.Language,
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay,
+                RefNo = refNo
+            };
+
+            var mixParlayCombinationDatas = _betListService.GetCombinationMixParlayDetail(criteria);
+
+            return this.View(mixParlayCombinationDatas);
         }
 
         /// <summary>

@@ -1,5 +1,165 @@
-﻿@{
+﻿@using Apollo.Age.Services;
+@using Fanex.BetList.Core.Utils;
+@{
     ViewBag.Title = "CombinationMixParlay";
+    Layout = null;
+    var winlostDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 }
-
-<h2>CombinationMixParlay</h2>
+@model Apollo.Age.BetList.Criterias.SystemParlayData
+<div id="page_main">
+<table class="tblRpt border-tbl">
+    <thead>
+        <tr>
+            <th style="width: 100px;">
+                @Lang.time                
+            </th>
+            <th style="width: 370px;">
+                @Lang.homeaway
+            </th>
+            <th style="width: 60px;">
+                @Lang.odds
+            </th>
+            <th style="width: 60px;">
+                @Lang.Amount
+            </th>
+            <th style="width: 80px;">
+                @Lang.lblResult
+            </th>
+            <th style="width: 80px;">
+                @Lang.status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TicketList)
+        { 
+            winlostDate = item.WinLostDate;
+            <tr>    
+            @if (winlostDate != item.WinLostDate)
+            {    
+                var rowsCount = Model.TicketList.Where(x=>x.WinLostDate == winlostDate).Count();
+                        
+            <td rowspan="@rowsCount" class="c">
+                @item.WinLostDate.ToString("yyyy-MM-dd")
+            </td>           
+            }
+            <td class="l">
+                @if (item.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose))
+                {
+                    <span>@BetList.losingtickets</span>
+                }
+                else
+                {
+                    var serial = Model.SerialList.Where(x => x.Serial == item.Serial);
+                    
+                    <span>@CacheRef.GetTeamName(serial.Select(x=>x.HomeId))</span>
+                    <span>-vs-</span>
+                    <span>@CacheRef.GetTeamName(serial.Select(x=>x.AwayId))</span>
+                    <br />
+                }
+            </td>
+            <td class="r bl_underdog">
+            @if (item.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose))
+            {
+             <span>-</span>
+            }
+            else
+            {
+                if (item.MOdds > 0)
+                { 
+                    <span>@item.MOdds.ToString("##0.###")</span>
+                }
+                else
+                { 
+                    <span>@ConvertByBetType.Odds(item.MOdds)</span>
+                }
+            }            
+            </td>
+            <td class="r bl_underdog">
+                @ConvertByBetType.Stake(item.Stake)
+            </td>
+             <td class="r">
+                <div>
+                    <span class="bl_underdog">@ConvertByBetType.Winloss(item.WinLost)</span></div>
+                <div>
+                    <span class="bl_underdog">@ConvertByBetType.Comm(item.PlayerComm)</span></div>
+            </td>
+            <td class="bl_status c">
+                @switch (item.Status.ToLower())
+                {
+                    case Fanex.BetList.Core.Entities.BetStatus.Running:
+                        { 
+                            <span>@Lang.running</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Reject:
+                        { 
+                            <span>@BetList.reject</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Won:
+                        { 
+                            <span>@BetList.won</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Lose:
+                        { 
+                            <span>@BetList.lose</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Draw:
+                        { 
+                            <span>@BetList.draw</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Waiting:
+                        { 
+                            <span>@BetList.waiting</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Void:
+                        { 
+                            <span>@BetList.voided</span>
+                            break;
+                        }
+                    case Fanex.BetList.Core.Entities.BetStatus.Refund:
+                        { 
+                            <span>@BetList.refund</span>
+                            break;
+                        }
+                    default:
+                        { 
+                            <span>@string.Empty</span>
+                            break;
+                        }
+                }
+            </td>
+        </tr>
+         
+         <tr class="subtotal">
+            <td colspan="4" class="r">@Lang.subTotal</td>
+            <td class="r">{subTotal}</td>
+            <td></td>
+        </tr>     
+              
+        }                               
+               
+        <!--OutStanding-->
+        <tr class="outstanding">
+            <td colspan="4" class="r">{static:Apollo.Age.Resources.Lang.outstanding}</td>
+            <td class="r">{outstanding}</td>
+            <td></td>
+        </tr>
+        <!--/OutStanding-->
+    </tbody>
+    <tfoot>
+        <!--Summary-->
+        <tr class="total">
+            <td colspan="4" class="r">{static:Apollo.Age.Resources.Lang.total}</td>
+            <td class="white-color r">{total}</td>
+            <td></td>
+        </tr>
+        <!--/Summary-->
+    </tfoot>
+</table>
+</div>
