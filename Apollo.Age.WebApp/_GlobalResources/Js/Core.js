@@ -37,6 +37,9 @@ if (typeof jQuery != 'undefined') {
             openDialogFrame: function (url, title, options, singleFrame) {
                 var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
 					accessClass = "";
+
+                var blockLoading = '<p class="block-loading">loading..............................................</p>';
+
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
                 if (singleFrame) { // only one instance of dialog can be opened
@@ -50,11 +53,11 @@ if (typeof jQuery != 'undefined') {
                     }
 
                     if (frame.length > 0) {
-                        frame.html(frameHtml);
+                        frame.html(blockLoading + frameHtml);
                     }
-
-                     var blockLoading = '<p class="block-loading">loading..............................................</p>';
-                     frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+                    else {
+                        frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
+                    }
 
                     return APOLLO.openDialog(frame, title, options);
                 }
@@ -65,8 +68,7 @@ if (typeof jQuery != 'undefined') {
                         accessClass = "loading-scoremap";
                     }
                 }
-                var blockLoading = '<p class="block-loading">loading..............................................</p>';
-
+                
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
             },

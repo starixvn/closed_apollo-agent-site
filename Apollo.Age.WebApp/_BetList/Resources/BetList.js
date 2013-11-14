@@ -110,7 +110,8 @@ function InitBetList() {
 	if (document.getElementById("exporttoexcel") != null) {
 		document.getElementById("exporttoexcel").style.display = "none";
 	}
-	InitExcelFunction();
+InitExcelFunction();
+
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {

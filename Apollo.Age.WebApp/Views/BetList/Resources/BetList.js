@@ -66,7 +66,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		});
 }
 
-function InitBetList() {    
+function InitBetList() {   
     if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
         var heightPopup = 630;
         if (APOLLO.browser.msie) {
@@ -94,7 +94,8 @@ function InitBetList() {
     if (document.getElementById("exporttoexcel") != null) {
         document.getElementById("exporttoexcel").style.display = "none";
     }
-    $.unblockUI();
+
+    APOLLO.hidePopupBlockLoading(); 
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
@@ -357,9 +358,7 @@ if (typeof jQuery != "undefined") {
         };
     } (jQuery);
 
-    $(document).ready(function () {
-
-        $.unblockUI();
+    $(document).ready(function () {            
 
         BETLIST.init();
 
