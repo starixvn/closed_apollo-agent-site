@@ -7,7 +7,8 @@ if (typeof jQuery != 'undefined') {
             showBlockLoading: function () {
                 $.blockUI();
             },
-            hidePopupBlockLoading: function () {
+            hidePopupBlockLoading: function () {               
+
                 $("iframe").siblings('.block-loading').hide();
             },
             dialogOpt: {
@@ -26,10 +27,13 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
                 var iframeLoading = target.find('iframe').get(0);
+
                 if (iframeLoading) {
+
                     iframeLoading.contentWindow.onload = function () {
                         APOLLO.hidePopupBlockLoading();
                     };
+
                 }
 
                 return APOLLO.currentOpenDialog;
@@ -39,6 +43,8 @@ if (typeof jQuery != 'undefined') {
 					accessClass = "";
 
                 var blockLoading = '<p class="block-loading">loading..............................................</p>';
+
+                
 
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
@@ -56,6 +62,9 @@ if (typeof jQuery != 'undefined') {
                         frame.html(blockLoading + frameHtml);
                     }
                     else {
+                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                            blockLoading = '';
+                        }
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
 
@@ -68,7 +77,7 @@ if (typeof jQuery != 'undefined') {
                         accessClass = "loading-scoremap";
                     }
                 }
-                
+
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
             },

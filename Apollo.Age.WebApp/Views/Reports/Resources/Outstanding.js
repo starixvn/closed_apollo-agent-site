@@ -198,8 +198,8 @@
 } (jQuery);
 
 $(document).ready(function () {
-    $.blockUI();
+    //$.blockUI();
     OUTSTANDING.init();
     APOLLO.initPageInfo();
-    $.unblockUI();
+    //$.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
