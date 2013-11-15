@@ -73,6 +73,7 @@
             return api;
         }
 
+        var Object = {};
         if (Object.prototype.toString.call(enabled) === '[object Function]') {
             enabled = enabled.call();
         }

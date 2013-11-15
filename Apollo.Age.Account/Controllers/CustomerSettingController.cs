@@ -729,6 +729,7 @@ namespace Apollo.Age.Account.Controllers
         {
             ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
             ViewBag.BetSetting = this.GetBetSetting(settingContext);
+
             return View("~/Views/Account/ViewAccountDetails.cshtml");
         }
 
