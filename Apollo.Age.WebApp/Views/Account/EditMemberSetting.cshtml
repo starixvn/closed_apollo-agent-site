@@ -8,7 +8,8 @@
 	var memberId = ViewBag.MemberId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
     string memberIds = ViewBag.MemberIds ?? string.Empty;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));        
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
+    var MaxBetLimit = Convert.ToInt32(ViewBag.MaxBetLimit);
 }
 
 @section header
@@ -26,7 +27,10 @@
     </div>
 }
 @Html.Hidden("backUrl", backLink)
-<div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">0</span> </div>
+@if (MaxBetLimit != 0)
+{
+    <div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">0</span> </div>
+}
 <div id="commissionSettingContainer"></div>
 <div id="bettingLimitContainer"></div>
 

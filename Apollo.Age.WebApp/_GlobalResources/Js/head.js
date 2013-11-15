@@ -73,9 +73,11 @@
             return api;
         }
 
-        var Object = {};
-        if (Object.prototype.toString.call(enabled) === '[object Function]') {
-            enabled = enabled.call();
+        if(enabled != null)
+        {
+            if (Object.prototype.toString.call(enabled) === '[object Function]') {
+                enabled = enabled.call();
+            }
         }
 
         pushClass((enabled ? '' : 'no-') + key);

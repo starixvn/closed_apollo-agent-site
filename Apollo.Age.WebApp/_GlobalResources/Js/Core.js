@@ -40,6 +40,8 @@ if (typeof jQuery != 'undefined') {
 
                 }
 
+                //APOLLO.closeDialog(target);
+
                 return APOLLO.currentOpenDialog;
             },
             openDialogFrame: function (url, title, options, singleFrame) {
@@ -66,9 +68,9 @@ if (typeof jQuery != 'undefined') {
                         frame.html(blockLoading + frameHtml);
                     }
                     else {
-//                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
-//                            blockLoading = '';
-//                        }
+                        //                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                        //                            blockLoading = '';
+                        //                        }
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
 

@@ -324,7 +324,8 @@ if (typeof jQuery != "undefined") {
             },
 
             initEditLink: function () {
-                $(".view-detail").click(function () {
+                $(".view-detail").click(function () {                   
+
                     var fromDate = toDate = type = "";
 
                     if (typeof ($("#fromDate").val()) !== 'undefined') {
