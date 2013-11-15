@@ -576,7 +576,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.CurentParentAgentId = agentId;
             ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            ViewBag.MemberIds = memberIds;
+            ViewBag.MemberIds = memberIds;            
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -592,7 +592,9 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserName = userName;
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = CurrentSession.IsMaster;
-            ViewBag.FromLeftMenu = fromLeftMenu;
+            ViewBag.FromLeftMenu = fromLeftMenu;            
+            // Hard code bet setting min limit is 5000 for HK$ currency.
+            ViewBag.BetSettingMinLimit = CurrentSession.IsSuper ? 5000 : (CurrentSession.CurrencyId == 5 ? 5000 : 0);
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
 
@@ -715,8 +717,19 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.MemberIds = memberIds;
             ViewBag.CanEdit = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
-
+            //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
+            //{
+            //    settingContext.FormId = FormType.EditPT;
+            //}
             return ViewAccountDetails(settingContext);
+        }
+
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        private ViewResult ViewAccountDetails(SettingContext settingContext)
+        {
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
+            ViewBag.BetSetting = this.GetBetSetting(settingContext);
+            return View("~/Views/Account/ViewAccountDetails.cshtml");
         }
 
         #endregion Setting
@@ -1011,16 +1024,19 @@ namespace Apollo.Age.Account.Controllers
 
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
 
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            int maxBetLimit = 0;
             this.SetCurrentLanguage(CurrentSession.Language);
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
+          
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javasciptString = string.Format(
+            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",
                 "var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
-                JsonConvert.SerializeObject(settingContext, jsonSetting));
+                JsonConvert.SerializeObject(settingContext, jsonSetting),
+                maxBetLimit);
 
             return javasciptString;
         }
@@ -1060,9 +1076,10 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>List of bet limit.</returns>
         private IList<BettingLimit> GetBetSetting(SettingContext settingContext)
         {
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext);
+            int maxBetLimit = 0;
 
-            this.SetCurrentLanguage(CurrentSession.Language);
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
+            this.SetCurrentLanguage(base.CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             return betLimits;

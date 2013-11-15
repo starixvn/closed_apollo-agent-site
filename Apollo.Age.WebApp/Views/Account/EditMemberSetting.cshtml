@@ -8,8 +8,8 @@
 	var memberId = ViewBag.MemberId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
     string memberIds = ViewBag.MemberIds ?? string.Empty;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
-    
+    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));    
+    int betSettingMinLimit = (int)ViewBag.BetSettingMinLimit;
 }
 
 @section header
@@ -27,6 +27,10 @@
     </div>
 }
 @Html.Hidden("backUrl", backLink)
+@if (betSettingMinLimit != 0)
+{
+<div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <b>@(betSettingMinLimit)</b> </div>
+}
 <div id="commissionSettingContainer"></div>
 <div id="bettingLimitContainer"></div>
 
@@ -66,7 +70,8 @@
 	<script type="text/javascript">
         var DEFAULT_OBJECT = function(){
             return {
-                memberId : @(memberId)
+                memberId : @(memberId),
+                betSettingMinLimit: @(betSettingMinLimit)
             };
         }();
 	</script>
