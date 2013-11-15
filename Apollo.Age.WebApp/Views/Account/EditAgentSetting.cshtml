@@ -7,8 +7,7 @@
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentId = ViewBag.AgentId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
-    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);
-    int betSettingMinLimit =(int)ViewBag.BetSettingMinLimit;
+    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);    
 }
 @section header
 {
@@ -27,8 +26,6 @@
 @Html.Hidden("backUrl", backLink)
 
 <div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">0</span> </div>
-<div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <b>@(betSettingMinLimit)</b> </div>
-}
 <div id="commissionSettingContainer" class="clear">
 </div>
 <div id="bettingLimitContainer">
@@ -95,8 +92,7 @@
         var DEFAULT_OBJECT = function()
         {
             return {
-               agentId: @(agentId),
-               betSettingMinLimit: @(betSettingMinLimit)
+               agentId: @(agentId)               
             };
         }();
     </script>

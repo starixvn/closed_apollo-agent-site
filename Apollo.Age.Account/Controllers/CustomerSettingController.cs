@@ -797,21 +797,7 @@ namespace Apollo.Age.Account.Controllers
                 default:
                     return (int)Role.Agent;
             }
-        }
-
-        /// <summary>
-        /// View account details.
-        /// </summary>
-        /// <param name="settingContext">The setting context.</param>
-        /// <returns>View result.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
-        private ViewResult ViewAccountDetails(SettingContext settingContext)
-        {
-            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
-            ViewBag.BetSetting = this.GetBetSetting(settingContext);
-
-            return View("~/Views/Account/ViewAccountDetails.cshtml");
-        }
+        }                
 
         /// <summary>
         /// Set bet limit language.
@@ -1031,8 +1017,7 @@ namespace Apollo.Age.Account.Controllers
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",
-                "var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;",
+            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",                
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting),

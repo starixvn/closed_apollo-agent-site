@@ -38,9 +38,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustSetting">
-      <HintPath>..\Dependencies\Fanex.CustSetting.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.60, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Fanex.Data.dll</HintPath>
@@ -146,9 +143,9 @@
       <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
       <Name>Fanex.CustSetting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
-      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
-      <Name>Apollo.Age.PermissionControl</Name>
+    <ProjectReference Include="..\..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj">
+      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
+      <Name>Fanex.CustSetting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>

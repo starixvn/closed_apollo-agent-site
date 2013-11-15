@@ -197,8 +197,13 @@ var ACCOUNT = function ($) {
 
             // add loading image
             $('.lnk-setting').on('click', function () {
-                if (parent.document.getElementById('main')) {
+                try
+                {
                     parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+                }
+                catch
+                {
+                
                 }
             });
         },
