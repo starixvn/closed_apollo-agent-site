@@ -1201,7 +1201,7 @@
     <value>擴大</value>
   </data>
   <data name="lblCLock" xml:space="preserve">
-    <value>C.上鎖</value>
+    <value>連鎖</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>混合過關</value>

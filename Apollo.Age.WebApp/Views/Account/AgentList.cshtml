@@ -160,27 +160,29 @@
                                 else
                                 {
                                     @Lang.lblview
-                                }</a> @:&nbsp;/&nbsp;
+                                }
+                                </a> 
                                 <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
+                                @:&nbsp;/&nbsp;
                                 if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
                                 {
-                            @:&nbsp;/&nbsp;
+                            
                                 <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)"
                                 >
                                     @Apollo.Age.Resources.Lang.lblMemberShare
                                 </a>                            
+                                @:&nbsp;/&nbsp;
                                 }
                             }
                             if (Model.PermissionControlPolicy >= (byte)Policy.Query)
-                            {
-                            @:&nbsp;/&nbsp;
+                            {                            
                             <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
                                 @Lang.Permission
                             </a>
+                            @:&nbsp;/&nbsp;
                             }
                             if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
-                            { 
-                            @:&nbsp;/&nbsp;
+                            {                            
                         <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
                             @Lang.ShadowPermission
                         </a>}
