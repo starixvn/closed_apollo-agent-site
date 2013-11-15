@@ -43,7 +43,7 @@ if (typeof jQuery != 'undefined') {
                 return APOLLO.currentOpenDialog;
             },
             openDialogFrame: function (url, title, options, singleFrame) {
-                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
+                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" overflow="auto" frameborder="0" border="0"></iframe>',
 					accessClass = "";
 
                 var blockLoading = '<p class="block-loading">loading..............................................</p>';
@@ -66,9 +66,9 @@ if (typeof jQuery != 'undefined') {
                         frame.html(blockLoading + frameHtml);
                     }
                     else {
-                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
-                            blockLoading = '';
-                        }
+//                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+//                            blockLoading = '';
+//                        }
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
 
