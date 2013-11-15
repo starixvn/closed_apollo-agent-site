@@ -154,33 +154,58 @@
                             <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@ViewBag.AgentUsername&amp;backLink=@backLink">
                                 @if (isMaster && Model.CustomerSettingPolicy == (byte)Policy.Edit)
                                 {
-                                    @Lang.edit
+                                    @(Lang.edit + " / ")
                                 }
                                 else
                                 {
-                                    @Lang.lblview
+                                    @(Lang.lblview + " / ")                                    
                                 }
+                            </a>                            
+                            <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">
+                                        @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query && item.AgentLevel < Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                        {
+                                            @(Lang.Detail)
+                                        }
+                                        else
+                                        {
+                                            @(Lang.Detail + " / ")
+                                        }
                             </a>
-                            @:&nbsp;/&nbsp;
-                        <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@Lang.Detail</a>
                                 if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
                                 {
-                            @:&nbsp;/&nbsp;
+                            
                                 <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&backLink=@backLink">
-                                    @Apollo.Age.Resources.Lang.lblMemberShare
+                                    
+
+                                    @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                        {
+                                            @(Lang.lblMemberShare)
+                                        }
+                                        else
+                                        {
+                                            @(Lang.lblMemberShare + " / ")
+                                        }
+
+
                                 </a>
                                 }
                         }
                         @if (Model.PermissionControlPolicy >= (byte)Policy.Query)
-                        {
-                            @:&nbsp;/&nbsp;
+                        {                            
                                 <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
-                                    @Lang.Permission
+                                     @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                     { 
+                                        @(Lang.Permission)
+                                     }
+                                     else
+                                     {
+                                        @(Lang.Permission + " / ")                                    
+                                     }
                                 </a>
                         }
+                        
                         @if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
-                        { 
-                            @:&nbsp;/&nbsp;
+                        {                             
                                  <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
                                      @Lang.ShadowPermission
                                  </a>

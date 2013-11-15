@@ -162,14 +162,24 @@
                                     @(Lang.lblview + " / ")
                                 }                               
                                 </a>                                 
-                                <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">@(Lang.Detail + " / ")</a>                                
+                                <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">                                                                
+                                        @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                        {
+                                            @(Lang.Detail)
+                                        }
+                                        else
+                                        {
+                                            @(Lang.Detail + " / ")
+                                        }
+                                </a>                                
                                 if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
                                 {                            
                                     <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                                        @(Lang.lblMemberShare + " / ")
+                                        @(Lang.lblMemberShare + " / ")                                       
+
                                     </a>                           
                                 }
-                            }                            
+                            }
 
                             if (Model.PermissionControlPolicy >= (byte)Policy.Query)
                             {                            
