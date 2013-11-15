@@ -49,17 +49,17 @@ var ACCOUNT = function ($) {
             location.href = APOLLO.resolveUrl(url);
         },
 
-////        reloadButtonRefresh: function () {
-////            $("#lklRefresh").fadeIn('fast', function () {
-////                $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
-////            });
-////        },
+        ////        reloadButtonRefresh: function () {
+        ////            $("#lklRefresh").fadeIn('fast', function () {
+        ////                $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
+        ////            });
+        ////        },
 
         initSearchClick: function () {
             ACCOUNT.showSectionTab("custsettings", 1); // 1: default is show setting tab
-////            $("#wrapper").scroll(function () {
-////                ACCOUNT.reloadButtonRefresh();
-////            });
+            ////            $("#wrapper").scroll(function () {
+            ////                ACCOUNT.reloadButtonRefresh();
+            ////            });
 
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
@@ -197,7 +197,9 @@ var ACCOUNT = function ($) {
 
             // add loading image
             $('.lnk-setting').on('click', function () {
-                parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+                if (parent.document.getElementById('main')) {
+                    parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
+                }
             });
         },
 

@@ -7,9 +7,13 @@ if (typeof jQuery != 'undefined') {
             showBlockLoading: function () {
                 $.blockUI();
             },
-            hidePopupBlockLoading: function () {               
-
-                $("iframe").siblings('.block-loading').hide();
+            hidePopupBlockLoading: function () {
+                if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                    parent.$('.block-loading').hide();
+                }
+                else {
+                    $("iframe").siblings('.block-loading').hide();
+                }
             },
             dialogOpt: {
                 position: { my: "top+20%", at: "center top", of: window },
@@ -44,7 +48,7 @@ if (typeof jQuery != 'undefined') {
 
                 var blockLoading = '<p class="block-loading">loading..............................................</p>';
 
-                
+
 
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
