@@ -182,7 +182,6 @@ namespace Apollo.Age.BetList.Controllers
             viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
             viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
 
-
             return this.Transactions(viewModel);
         }
 

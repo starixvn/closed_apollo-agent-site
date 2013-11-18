@@ -54,7 +54,7 @@ namespace Apollo.Age.Reports.Services
                         IsTest = isShowDataTest
                     };
 
-            var cacheKey = string.Join("-", "MatchResult", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "-"), (isShowDataTest ? "1" : "0"));
+            var cacheKey = string.Join("-", "MatchResult", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "-"), isShowDataTest ? "1" : "0");
             var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
             if (matchResult == null)
             {
@@ -83,7 +83,7 @@ namespace Apollo.Age.Reports.Services
                 IsShowAll = isShowDataTest,
                 BalanceUpDay = GetBalanceUpDay(),
             };
-            var cacheKey = string.Join("-", "OutrightResult", fromDate.ToString("yyyyMMdd"), (isShowDataTest ? "1" : "0"));
+            var cacheKey = string.Join("-", "OutrightResult", fromDate.ToString("yyyyMMdd"), isShowDataTest ? "1" : "0");
             var result = CacheManager.Get<IEnumerable<OutrightResultModel>>(cacheKey);
 
             if (result == null)

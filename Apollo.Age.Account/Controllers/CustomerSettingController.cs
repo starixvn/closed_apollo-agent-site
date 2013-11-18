@@ -44,11 +44,11 @@ namespace Apollo.Age.Account.Controllers
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
     public class CustomerSettingController : BaseController
     {
+        private static int _maxBetLimit = 0;
         private readonly IAccountService _accountService;
         private readonly ICustomerSettingService _customerSettingService;
         private readonly ISportSettingService _sportService;
         private readonly IUserService _userService;
-        private static int maxBetLimit = 0;
 
         #region Ctors
 
@@ -578,7 +578,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
             ViewBag.MemberIds = memberIds;
-            ViewBag.MaxBetLimit = maxBetLimit;
+            ViewBag.MaxBetLimit = _maxBetLimit;
             return View("~/Views/Account/EditMemberSetting.cshtml");
         }
 
@@ -595,7 +595,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.AgentLevel = agentLevel;
             ViewBag.IsMaster = CurrentSession.IsMaster;
             ViewBag.FromLeftMenu = fromLeftMenu;
-            ViewBag.MaxBetLimit = maxBetLimit;
+            ViewBag.MaxBetLimit = _maxBetLimit;
 
             return View("~/Views/Account/EditAgentSetting.cshtml");
         }
@@ -719,20 +719,8 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.MemberIds = memberIds;
             ViewBag.CanEdit = CurrentSession.IsMaster && custSettingPolicy == (byte)Policy.Edit;
             SettingContext settingContext = this.GetCurrentSettingContext(memberId, agentId, null, FormSettingType.All, memberIds);
-            //if (agentId != null && agentId.Value != base.CurrentSession.AgentId)
-            //{
-            //    settingContext.FormId = FormType.EditPT;
-            //}
+
             return ViewAccountDetails(settingContext);
-        }
-
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
-        private ViewResult ViewAccountDetails(SettingContext settingContext)
-        {
-            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
-            ViewBag.BetSetting = this.GetBetSetting(settingContext);
-
-            return View("~/Views/Account/ViewAccountDetails.cshtml");
         }
 
         #endregion Setting
@@ -745,7 +733,9 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="settingContext">The setting context.</param>
         /// <param name="commissionSetting">Commission setting.</param>
         /// <param name="betLimits">List of bet limit.</param>
-        /// <returns>Action result.</returns>
+        /// <returns>
+        /// Action result.
+        /// </returns>
         [NonAction]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Edit)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
@@ -784,6 +774,15 @@ namespace Apollo.Age.Account.Controllers
             return ReturnResult(result);
         }
 
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        private ViewResult ViewAccountDetails(SettingContext settingContext)
+        {
+            ViewBag.CommissionSetting = this.GetCommissionSetting(settingContext);
+            ViewBag.BetSetting = this.GetBetSetting(settingContext);
+
+            return View("~/Views/Account/ViewAccountDetails.cshtml");
+        }
+
         /// <summary>
         /// Get role from agent level.
         /// </summary>
@@ -800,7 +799,7 @@ namespace Apollo.Age.Account.Controllers
                 default:
                     return (int)Role.Agent;
             }
-        }                
+        }
 
         /// <summary>
         /// Set bet limit language.
@@ -1012,19 +1011,20 @@ namespace Apollo.Age.Account.Controllers
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All, targetCustIds);
 
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
-
-            //int maxBetLimit = 0;
+                        
             this.SetCurrentLanguage(CurrentSession.Language);
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
-          
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref _maxBetLimit);
+
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
-            string javasciptString = string.Format("var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",                
+
+            string javasciptString = string.Format(
+                "var commissionSetting = {0} ;\n var betLimits = {1} ;\n var settingContext = {2} ;\n var maxBetLimit = {3} ;",
                 JsonConvert.SerializeObject(commissionSetting, jsonSetting),
                 JsonConvert.SerializeObject(betLimits, jsonSetting),
                 JsonConvert.SerializeObject(settingContext, jsonSetting),
-                maxBetLimit);
+                _maxBetLimit);
 
             return javasciptString;
         }
@@ -1064,11 +1064,9 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>List of bet limit.</returns>
         private IList<BettingLimit> GetBetSetting(SettingContext settingContext)
         {
-            
+            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref _maxBetLimit);
 
-            IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref maxBetLimit);
-
-            this.SetCurrentLanguage(base.CurrentSession.Language);
+            this.SetCurrentLanguage(CurrentSession.Language);
             this.SetBetLimitLanguage(settingContext, betLimits);
 
             return betLimits;

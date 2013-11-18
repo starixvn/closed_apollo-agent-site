@@ -149,10 +149,9 @@ namespace Apollo.Age.Configurations
         {
             get
             {
-                return Convert.ToInt32(GetValue("MessageSiteId")); 
+                return Convert.ToInt32(GetValue("MessageSiteId"));
             }
         }
-
 
         /// <summary>
         /// Gets value from a key.
