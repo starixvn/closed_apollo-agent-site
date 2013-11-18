@@ -22,6 +22,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Configurations;
 
     /// <summary>
     /// Message controller.
@@ -31,11 +32,11 @@ namespace Apollo.Age.Account.Controllers
     public class MessageController : BaseController
     {
         /// <summary>
-        /// For temp, set site list is 3000 and 3300.
+        /// For temp, set site list is 3000000 and 3300.
         /// </summary>
-        private const string SiteList = "3000,3300";
+        //private const string SiteList = "3000000";
 
-        private const int SiteId = 3300;
+        //private const int SiteId = 3000000;
 
         private MessageService _messageService;
 
@@ -92,7 +93,7 @@ namespace Apollo.Age.Account.Controllers
 
             var model = this._messageService.GetAnnouncement(
                     agentId: this.CurrentSession.AgentId,
-                    siteIds: SiteList,
+                    siteIds: AppSettings.SiteId.ToString(),
                     lastPostDate: endDate,
                     startTime: startDate,
                     content: content,
@@ -125,7 +126,7 @@ namespace Apollo.Age.Account.Controllers
             int maxSize = 50;
 
             criteria.CustId = this.CurrentSession.AgentId;
-            criteria.SiteId = this._messageService.GetParentSitesID(SiteId.ToString());
+            criteria.SiteId = this._messageService.GetParentSitesID(AppSettings.SiteId.ToString());
             criteria.Record = maxSize;
 
             criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
@@ -253,7 +254,7 @@ namespace Apollo.Age.Account.Controllers
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
-            var pubMessage = this._messageService.GetTopPublicMessage(messageType, SiteId);
+            var pubMessage = this._messageService.GetTopPublicMessage(messageType, AppSettings.SiteId);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
