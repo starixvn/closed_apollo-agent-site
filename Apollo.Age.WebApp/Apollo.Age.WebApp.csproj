@@ -1007,10 +1007,6 @@
     <Content Include="_GlobalResources\Js\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj">
-      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
-      <Name>Fanex.CustSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Account\Apollo.Age.Account.csproj">
       <Project>{39FC7B3E-361B-4470-9A02-73B25795D99E}</Project>
       <Name>Apollo.Age.Account</Name>
