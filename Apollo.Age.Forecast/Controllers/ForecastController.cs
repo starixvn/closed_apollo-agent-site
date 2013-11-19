@@ -52,6 +52,9 @@ namespace Apollo.Age.Forecast.Controllers
             _userService = userService ?? new UserService();
 
             ViewBag.IsShowRefreshNow = CurrentSession.AgentLevel <= 1;
+
+            ViewBag.HasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+
         }
 
         #endregion Ctors

@@ -17,8 +17,7 @@ namespace Apollo.Age.Wagers.Controllers
 
     /// <summary>
     /// Outright Controller.
-    /// </summary>    
-    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outright, Policy = Policy.Query)]
+    /// </summary>        
     public class OutrightController : WagerController
     {
         /// <summary>
@@ -28,6 +27,13 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View result.</returns>
         public ActionResult WagerOutright(OutrightCriteria criteria)
         {
+            bool noPermission = PermissionChecking(false, true);
+
+            if (noPermission)
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Sporttypes = SportId(criteria.SportName);
             criteria.IsSuperView = CurrentSession.IsSuper;

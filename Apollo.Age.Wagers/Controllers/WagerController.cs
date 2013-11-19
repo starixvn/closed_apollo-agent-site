@@ -137,24 +137,16 @@ namespace Apollo.Age.Wagers.Controllers
             bool isEarlyMarket = false,
             bool isOutright = false)
         {
-            var functionKey = ApolloFunctionKeys.Wagers;
 
-            // Check permission
-            if (isEarlyMarket)
-            {
-                functionKey = ApolloFunctionKeys.EMWagers;
-            }
-            else if (isOutright)
-            {
-                functionKey = ApolloFunctionKeys.Outright;
-            }
+            bool permission = PermissionChecking(isEarlyMarket, isOutright);                       
 
-            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
-
-            if (policy < (byte)Policy.Query)
+            if (permission)
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
+
+
+
 
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -369,6 +361,32 @@ namespace Apollo.Age.Wagers.Controllers
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Permissions the checking.
+        /// </summary>
+        /// <param name="isEarlyMarket">if set to <c>true</c> [is early market].</param>
+        /// <param name="isOutright">if set to <c>true</c> [is outright].</param>
+        /// <returns></returns>
+        protected bool PermissionChecking(bool isEarlyMarket = false, bool isOutright = false)
+        {
+            var functionKey = ApolloFunctionKeys.Wagers;
+
+            // Check permission
+            if (isEarlyMarket)
+            {
+                functionKey = ApolloFunctionKeys.EMWagers;
+            }
+            else if (isOutright)
+            {
+                functionKey = ApolloFunctionKeys.Outright;
+            }
+
+            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);                                    
+
+            return policy < (byte)Policy.Query;
+
         }
     }
 }
