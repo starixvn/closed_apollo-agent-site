@@ -17,11 +17,13 @@ namespace Apollo.Age.WebApp
 			public string title = "{title}";
 			protected static string s1 = "</title><link href=\"";
 			protected static string s2{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\">var combinationMixParlayDetailScript = true;</script></head><body><form id=\"frmmain\" method=\"get\" action=\"";
-			protected static string s4{get{return AbsoluteUrl2("_BetList/MixParlay/CombinationMixParlayDetail.aspx");}}
-			protected static string s5 = "\"><div id=\"page_main\">";
+			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"";
+			protected static string s4{get{return AbsoluteUrl("_GlobalResources/Js/Core.js", TplSettings.Question);}}
+			protected static string s5 = "\" type=\"text/javascript\"></script><script type=\"text/javascript\">var combinationMixParlayDetailScript = true;</script></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s6{get{return AbsoluteUrl2("_BetList/MixParlay/CombinationMixParlayDetail.aspx");}}
+			protected static string s7 = "\"><div id=\"page_main\">";
 			public CombinationMixParlayDetail_Content_Block Content = new CombinationMixParlayDetail_Content_Block();
-			protected static string s6 = "</div></form></body></html>";
+			protected static string s8 = "</div></form></body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
@@ -34,8 +36,10 @@ namespace Apollo.Age.WebApp
 					bd.Append(s3);
 					bd.Append(s4);
 					bd.Append(s5);
-					if(null != Content) Content.ToString(ref bd);
 					bd.Append(s6);
+					bd.Append(s7);
+					if(null != Content) Content.ToString(ref bd);
+					bd.Append(s8);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
