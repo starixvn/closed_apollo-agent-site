@@ -51,12 +51,12 @@
         <!--/OneXTwoValue-->
     </td>
            
-    <td class="fcbtn" align="center" style="width: 16px">
+    <td class="fcbtn" align="center" style="width: 16px">        
         @if (item.OneXTwoTotal != 0)
-        { 
-            <!--OneXTwoButton-->
-            <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
-            <!--/OneXTwoButton-->
+        {
+             <!--OneXTwoButton-->
+                <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+                <!--/OneXTwoButton-->  
         }
     </td>
         
@@ -84,8 +84,9 @@
         {
             <!--OneXTwoFirstHalfButton-->
             <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+            <!--/OneXTwoFirstHalfButton-->
         }
-        <!--/OneXTwoFirstHalfButton-->
+        
     </td>
        
         }

@@ -676,7 +676,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTeam">The bet team.</param>
         /// <param name="matchId">The match identifier.</param>
         /// <returns>Return view result.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult Wagers(
             int loggedId,
