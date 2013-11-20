@@ -17,7 +17,7 @@ namespace Apollo.Age.WebApp
 			public string title = "{title}";
 			protected static string s1 = "</title><link href=\"";
 			protected static string s2{get{return AbsoluteUrl("_BetList/Resources/BetList.less", TplSettings.Question);}}
-			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /></head><body><form id=\"frmmain\" method=\"get\" action=\"";
+			protected static string s3 = "\" rel=\"stylesheet\" type=\"text/css\" /><script type=\"text/javascript\">var combinationMixParlayDetailScript = true;</script></head><body><form id=\"frmmain\" method=\"get\" action=\"";
 			protected static string s4{get{return AbsoluteUrl2("_BetList/MixParlay/CombinationMixParlayDetail.aspx");}}
 			protected static string s5 = "\"><div id=\"page_main\">";
 			public CombinationMixParlayDetail_Content_Block Content = new CombinationMixParlayDetail_Content_Block();
