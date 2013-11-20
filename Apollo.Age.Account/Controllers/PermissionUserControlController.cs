@@ -107,6 +107,7 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="agentUserId">The agent user identifier.</param>
         /// <returns>Return view assign permission to agent user.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.ShadowPermission, Policy = Policy.Query)]
         public ActionResult AssignShadowPermission(int agentUserId)
         {
             // Get agent user
