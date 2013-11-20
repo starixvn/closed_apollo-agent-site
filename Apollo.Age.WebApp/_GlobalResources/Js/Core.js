@@ -9,12 +9,8 @@ if (typeof jQuery != 'undefined') {
             },
             hidePopupBlockLoading: function () {
                 if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
-                    if ($('.block-loading')) {
-                        $('.block-loading').hide();
-                    }
-                    else {
-                        parent.$('.block-loading').hide();                        
-                    }
+                    parent.$('.block-loading').hide();
+                    $('.block-loading').hide();			
                 }
                 else {
                     $("iframe").siblings('.block-loading').hide();

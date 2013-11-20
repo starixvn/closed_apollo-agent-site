@@ -137,16 +137,12 @@ namespace Apollo.Age.Wagers.Controllers
             bool isEarlyMarket = false,
             bool isOutright = false)
         {
-
-            bool permission = PermissionChecking(isEarlyMarket, isOutright);                       
+            bool permission = PermissionChecking(isEarlyMarket, isOutright);
 
             if (permission)
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
-
-
-
 
             var sportTypes = string.Empty;
             sportName = !string.IsNullOrWhiteSpace(sportName) ? sportName.ToLower() : string.Empty;
@@ -383,10 +379,9 @@ namespace Apollo.Age.Wagers.Controllers
                 functionKey = ApolloFunctionKeys.Outright;
             }
 
-            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);                                    
+            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
 
             return policy < (byte)Policy.Query;
-
         }
     }
 }

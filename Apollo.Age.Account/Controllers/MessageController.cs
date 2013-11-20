@@ -21,8 +21,8 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Web;
     using Apollo.Age.Configurations;
+    using Apollo.Age.Web;
 
     /// <summary>
     /// Message controller.
@@ -33,11 +33,7 @@ namespace Apollo.Age.Account.Controllers
     {
         /// <summary>
         /// For temp, set site list is 3000000 and 3300.
-        /// </summary>
-        //private const string SiteList = "3000000";
-
-        //private const int SiteId = 3000000;
-
+        /// </summary>        
         private MessageService _messageService;
 
         public MessageController()
