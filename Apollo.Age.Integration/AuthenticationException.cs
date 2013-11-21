@@ -10,6 +10,7 @@
 namespace Apollo.Age.Integration
 {
     using System;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// TODO: Update summary.
@@ -36,6 +37,16 @@ namespace Apollo.Age.Integration
         public override string ToString()
         {
             return base.ToString() + "UserId=" + UserId.ToString() + ";Lang=" + Lang;
+        }
+
+        /// <summary>
+        /// Get object data.
+        /// </summary>
+        /// <param name="info">Serialization information.</param>
+        /// <param name="context">Streaming context.</param>
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
         }
     }
 }

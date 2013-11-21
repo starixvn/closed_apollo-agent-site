@@ -25,16 +25,8 @@ namespace Apollo.Age.Wagers.Configuration
         /// </summary>
         static WagerMenusConfiguration()
         {
-            try
-            {
-                var strPath = ConfigurationManager.AppSettings["WagerMenuConfig"].ToString();
-                MenuConfig = XDocument.Load(HttpContext.Current.Server.MapPath(strPath));
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-                throw new Exception("Could not load Wagers Menu configruation file.", ex);
-            }
+            var strPath = ConfigurationManager.AppSettings["WagerMenuConfig"].ToString();
+            MenuConfig = XDocument.Load(HttpContext.Current.Server.MapPath(strPath));
         }
 
         public static XDocument MenuConfig { get; set; }
