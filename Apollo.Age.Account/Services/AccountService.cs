@@ -87,33 +87,7 @@ namespace Apollo.Age.Account.Services
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
-
-        /// <summary>
-        /// Check current agent is child direct agent.
-        /// </summary>
-        /// <param name="logginAgentId">Current Log in agent.</param>
-        /// <param name="checkingAgentId">Agent need to check.</param>
-        /// <param name="isSupper">If supper, then full permission.</param>
-        /// <returns>Checking agent is valid direct down line or not.</returns>
-        public bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSupper = false)
-        {
-            if (isSupper)
-            {
-                return isSupper;
-            }
-
-            var agentInfo = _accountRepository.GetCustomerInfo(new GetAgentInfoCriteria
-            {
-                AgentId = checkingAgentId
-            });
-
-            if (agentInfo != null && agentInfo.ParentId == logginAgentId)
-            {
-                return true;
-            }
-
-            return false;
-        }
+                
 
         /// <summary>
         /// Get info of a member.

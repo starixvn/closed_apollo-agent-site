@@ -45,9 +45,7 @@ namespace Apollo.Age.Account.Services
 
         IEnumerable<CustomerCommissionModel> GetCommissionToAgent(GetCommissionToAgentCriteria criteria);
 
-        IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);
-
-        bool IsDirectAgent(int logginAgentId, int checkingAgentId, bool isSuper = false);
+        IEnumerable<AgentLogLoginModel> GetAgentLogLogin(GetLoginLogCriteria criteria);                
 
         MemberListModel GetTopMember(int agentId);
 

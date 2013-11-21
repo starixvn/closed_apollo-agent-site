@@ -222,15 +222,11 @@
         <Setting Key="Age_Agent_GetAllInfo" SpName="Age_Agent_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="CustId" />
             <Mapping DataField="AgentLevel" ObjectProperty="Level" />
-        </Setting>
-        <Setting Key="Age_Agent_GetInfo" SpName="Age_Agent_GetInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
-            <Mapping DataField="AgentId" ObjectProperty="CustId" />
-        </Setting>
+        </Setting>        
         <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="ParentId" />
             <Mapping DataField="UGroup" ObjectProperty="Group" />
         </Setting>
-
         <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="Id" />
             <Mapping DataField="AgentLevel" ObjectProperty="Level" />
