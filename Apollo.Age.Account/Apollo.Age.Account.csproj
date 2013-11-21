@@ -139,10 +139,6 @@
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj">
-      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
-      <Name>Fanex.CustSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>
@@ -154,6 +150,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.CustSetting\Fanex.CustSetting.csproj">
+      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
+      <Name>Fanex.CustSetting</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
