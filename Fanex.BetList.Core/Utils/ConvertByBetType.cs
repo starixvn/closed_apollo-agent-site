@@ -290,6 +290,18 @@ namespace Fanex.BetList.Core.Utils
         }
 
         /// <summary>
+        /// Wins the color of the loss no.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>Win lost value within no red color.</returns>
+        public static string WinLossNoColor(object value)
+        {
+            decimal d = Cast.AsDecimal(value);
+
+            return string.Format(Formatter.DECIMAL_FORMAT20, d);
+        }
+
+        /// <summary>
         /// Commission the percentage.
         /// </summary>
         /// <param name="value">The value.</param>

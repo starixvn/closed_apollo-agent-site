@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI", "Fanex.Age.UI\Fanex.Age.UI.csproj", "{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age", "Apollo.Age\Apollo.Age.csproj", "{784D23CD-1AF9-4265-9C68-62C31DD84AAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.TotalBets", "Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj", "{BD56914E-88CE-4330-BE77-8BD78208A140}"
@@ -22,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Integration", "Apollo.Age.Integration\Apollo.Age.Integration.csproj", "{5065F780-0CF8-4AE4-96F2-70D8BE40332C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Resources", "Apollo.Age.Resources\Apollo.Age.Resources.csproj", "{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components", "Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj", "{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.WebApp", "Apollo.Age.WebApp\Apollo.Age.WebApp.csproj", "{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}"
 EndProject
@@ -52,10 +46,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,10 +82,6 @@ Global
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -127,9 +113,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5} = {B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE} = {B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}
 	EndGlobalSection
 EndGlobal

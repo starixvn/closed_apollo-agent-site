@@ -233,12 +233,6 @@
   <ItemGroup>
     <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx.cs">
-      <DependentUpon>CombinationMixParlayDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
-    <Compile Include="_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
     <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -434,20 +428,6 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="_BetList\MixParlay\CombinationMixParlayDetail.aspx" />
-    <Content Include="_BetList\MixParlay\CombinationMixParlayDetail.htm" />
-    <Content Include="_BetList\MixParlay\CombinationMixParlayRow.htm" />
-    <Content Include="_BetList\Resources\BetList.js" />
-    <Content Include="_BetList\Resources\Images\bgHeader.jpg" />
-    <Content Include="_BetList\Resources\Images\bg_conts.jpg" />
-    <Content Include="_BetList\Resources\Images\bg_popup.jpg" />
-    <Content Include="_BetList\Resources\Images\firstGoal.gif" />
-    <Content Include="_BetList\Resources\Images\green-star.gif" />
-    <Content Include="_BetList\Resources\Images\lastGoal.gif" />
-    <Content Include="_BetList\Resources\Images\q_Icon2_1.png" />
-    <Content Include="_BetList\Resources\Images\q_Icon_2.png" />
-    <Content Include="_BetList\Resources\Images\ScoreMapWL.png" />
-    <Content Include="_BetList\Resources\Paging.js" />
     <Content Include="_GlobalResources\Css\Footer.css" />
     <Content Include="_GlobalResources\Css\img\arrow_down.png" />
     <Content Include="_GlobalResources\Css\img\calendar.gif" />
@@ -993,9 +973,6 @@
     <Content Include="Views\Log\LogActionType9.cshtml" />
     <Content Include="Views\Reports\Menu.cshtml" />
     <Content Include="Views\Reports\ReportAccessDenied.cshtml" />
-    <None Include="_BetList\Resources\BetList.less" />
-    <None Include="_BetList\Resources\ErrorPage.less" />
-    <None Include="_BetList\Resources\Paging.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -1050,14 +1027,6 @@
     <ProjectReference Include="..\Apollo.UMService\Apollo.UMService.csproj">
       <Project>{0F1FAA78-599B-4646-B4E8-007C7992CE15}</Project>
       <Name>Apollo.UMService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj">
-      <Project>{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}</Project>
-      <Name>Fanex.Age.UI.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Age.UI\Fanex.Age.UI.csproj">
-      <Project>{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}</Project>
-      <Name>Fanex.Age.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.BetList.Age\Apollo.BetList.Age.csproj">
       <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>

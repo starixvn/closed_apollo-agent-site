@@ -56,9 +56,9 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
     if (parent.RefreshCountDown) parent.RefreshCountDown.stopTimeout();
     var width = 750,
 		height = 350,
-		params = '?refno=' + refno + '&wldate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
+		params = '?refno=' + refno + '&winlossDate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
 		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + ApoRes.RefNo + ": " + transid;
-    APOLLO.openDialogFrame(APOLLO.resolveUrl("~/_BetList/MixParlay/CombinationMixParlayDetail.aspx" + params),
+    APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
 		detailTitle, { width: width, height: height,
 		    close: function (event, ui) {
 		        if (parent.RefreshCountDown) parent.RefreshCountDown.startTimeout();

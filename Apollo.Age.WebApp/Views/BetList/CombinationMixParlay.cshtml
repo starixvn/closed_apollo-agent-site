@@ -2,8 +2,7 @@
 @using Fanex.BetList.Core.Utils;
 @{
     ViewBag.Title = "CombinationMixParlay";
-    Layout = null;
-    var winlostDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     decimal total = 0;
 }
 @model Apollo.Age.BetList.Criterias.SystemParlayData
@@ -32,61 +31,73 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.TicketList)
+            @if (Model.TicketList != null && Model.TicketList.Any())
             {
-                winlostDate = item.WinLostDate;
-                <tr>
-                    @if (winlostDate != item.WinLostDate)
+                var groupByWinlostDate = Model.TicketList.GroupBy(x => x.WinLostDate);
+
+
+                foreach (var winLostDate in groupByWinlostDate)
+                {
+                    decimal sumWinlost = 0;
+                    var listOfTickets = Model.TicketList.Where(x => x.WinLostDate == winLostDate.Key);
+                    bool isFirst = true;
+                    foreach (var ticket in listOfTickets)
                     {
-                        var rowsCount = Model.TicketList.Where(x => x.WinLostDate == winlostDate).Count();
-                        
-                        <td rowspan="@rowsCount" class="c">
-                            @item.WinLostDate.ToString("yyyy-MM-dd")
-                        </td>           
+
+                        sumWinlost += ticket.WinLost + ticket.PlayerComm;
+                        total += sumWinlost;
+                <tr>
+                    @if (isFirst)
+                    {                           
+                        <td rowspan="@listOfTickets.Count()" class="c">@ticket.WinLostDate.ToString("yyyy-MM-dd")
+                        </td>   
+                        isFirst = false;
                     }
                     <td class="l">
-                        @if (item.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose))
+                        @if (ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
                         {
                             <span>@BetList.losingtickets</span>
                         }
                         else
                         {
-                            var serial = Model.SerialList.Where(x => x.Serial == item.Serial);
-                    
-                            <span>@CacheRef.GetTeamName(serial.Select(x => x.HomeId))</span>
+                            var serials = Model.SerialList.Where(x => x.Serial == ticket.Serial);
+                            foreach (var serial in serials)
+                            {
+                            <span>@CacheRef.GetTeamName(serial.HomeId)</span>
                             <span>-vs-</span>
-                            <span>@CacheRef.GetTeamName(serial.Select(x => x.AwayId))</span>
+                            <span>@CacheRef.GetTeamName(serial.AwayId)</span>
                             <br />
+                            }
                         }
                     </td>
                     <td class="r bl_underdog">
-                        @if (item.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose))
+                        @if (ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
                         {
                             <span>-</span>
                         }
                         else
                         {
-                            if (item.MOdds > 0)
+                            if (ticket.MOdds > 0)
                             { 
-                            <span>@item.MOdds.ToString("##0.###")</span>
+                            <span>@ticket.MOdds.ToString("##0.###")</span>
                             }
                             else
                             { 
-                            <span>@ConvertByBetType.Odds(item.MOdds)</span>
+                            <span>@ConvertByBetType.Odds(ticket.MOdds)</span>
                             }
                         }
                     </td>
                     <td class="r bl_underdog">
-                        @ConvertByBetType.Stake(item.Stake)
+                        @ConvertByBetType.Stake(ticket.Stake)
                     </td>
                     <td class="r">
                         <div>
-                            <span class="bl_underdog">@ConvertByBetType.Winloss(item.WinLost)</span></div>
+                            <span class="bl_underdog">@Html.Raw(ConvertByBetType.Winloss(ticket.WinLost))</span></div>
                         <div>
-                            <span class="bl_underdog">@ConvertByBetType.Comm(item.PlayerComm)</span></div>
+                            <span class="bl_underdog">@Html.Raw(ConvertByBetType.Comm(ticket.PlayerComm))</span></div>
                     </td>
                     <td class="bl_status c">
-                        @switch (item.Status.ToLower())
+                        @switch (ticket.Status.ToLower())
                         {
                             case Fanex.BetList.Core.Entities.BetStatus.Running:
                                 { 
@@ -135,19 +146,22 @@
                                 }
                         }
                     </td>
-                </tr>
-                @if (winlostDate != item.WinLostDate)
-                {
-                    var sumWinlost = Model.TicketList.Where(x => x.WinLostDate == item.WinLostDate).Sum(a => a.WinLost);
-                    var playerComm = Model.TicketList.Where(x => x.WinLostDate == item.WinLostDate).Sum(a => a.PlayerComm);
-                    total += sumWinlost + playerComm;
-                    <tr class="subtotal"> 
-                        <td colspan="4" class="r">@Lang.subTotal</td> 
-                        <td class="r">@(sumWinlost + playerComm)</td>
-                        <td></td> 
-                    </tr>  
-                }   
-            }            
+                </tr>                                                                        
+                
+                    }
+                
+                <tr class="subtotal">
+                    <td colspan="4" class="r">@Lang.subTotal
+                    </td>
+                    <td class="r">
+                        @Html.Raw(ConvertByBetType.Winloss(sumWinlost))
+                    </td>
+                    <td>
+                    </td>
+                </tr>    
+               
+                }
+            }
             <tr class="outstanding">
                 <td colspan="4" class="r">
                     @Lang.outstanding
@@ -157,7 +171,7 @@
                 </td>
                 <td>
                 </td>
-            </tr>            
+            </tr>
         </tbody>
         <tfoot>
             <!--Summary-->
@@ -165,8 +179,8 @@
                 <td colspan="4" class="r">
                     @Lang.total
                 </td>
-                <td class="white-color r">
-                    @(total)
+                <td class="r" style="color: White">
+                    @(Html.Raw(ConvertByBetType.WinLossNoColor(total)))
                 </td>
                 <td>
                 </td>

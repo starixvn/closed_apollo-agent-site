@@ -10,14 +10,12 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
-    using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias.Outright;
     using Apollo.Age.Wagers.ViewModels.Outright;
-    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Outright Controller.
-    /// </summary>        
+    /// </summary>
     public class OutrightController : WagerController
     {
         /// <summary>
@@ -27,9 +25,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View result.</returns>
         public ActionResult WagerOutright(OutrightCriteria criteria)
         {
-            bool noPermission = PermissionChecking(false, true);
-
-            if (noPermission)
+            if (PermissionChecking(false, true))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }

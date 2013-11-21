@@ -12,16 +12,14 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
-    using Apollo.Age.Core;
     using Apollo.Age.Wagers.Criterias;
     using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels;
     using Apollo.Age.Wagers.ViewModels.Basketball;
-    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// TODO: Update summary.
-    /// </summary>    
+    /// </summary>
     public class BasketballController : WagerController
     {
         public BasketballController()
@@ -36,9 +34,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult Straight(BasketballCriteria criteria)
         {
-            bool noPermission = PermissionChecking(criteria.IsEarlyMarket);
-
-            if (noPermission)
+            if (PermissionChecking(criteria.IsEarlyMarket))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
@@ -63,9 +59,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult FirstHalf(BasketballCriteria criteria)
         {
-            bool noPermission = PermissionChecking(criteria.IsEarlyMarket);
-
-            if (noPermission)
+            if (PermissionChecking(criteria.IsEarlyMarket))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
@@ -90,9 +84,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult RunningBall(RunningBallCriteria criteria)
         {
-            bool noPermission = PermissionChecking(criteria.IsEarlyMarket);
-
-            if (noPermission)
+            if (PermissionChecking(criteria.IsEarlyMarket))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
@@ -118,9 +110,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult Parlay(BasketballCriteria criteria)
         {
-            bool noPermission = PermissionChecking(criteria.IsEarlyMarket);
-
-            if (noPermission)
+            if (PermissionChecking(criteria.IsEarlyMarket))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }
@@ -145,9 +135,7 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult SpecialBet(BasketballCriteria criteria)
         {
-            bool noPermission = PermissionChecking(criteria.IsEarlyMarket);
-
-            if (noPermission)
+            if (PermissionChecking(criteria.IsEarlyMarket))
             {
                 return View("~/Views/Error/AccessDenied.cshtml");
             }

@@ -362,9 +362,9 @@ namespace Apollo.Age.Wagers.Controllers
         /// <summary>
         /// Permissions the checking.
         /// </summary>
-        /// <param name="isEarlyMarket">if set to <c>true</c> [is early market].</param>
-        /// <param name="isOutright">if set to <c>true</c> [is outright].</param>
-        /// <returns></returns>
+        /// <param name="isEarlyMarket">If set to <c>true</c> [is early market].</param>
+        /// <param name="isOutright">If set to <c>true</c> [is outright].</param>
+        /// <returns>Return true if has permission.</returns>
         protected bool PermissionChecking(bool isEarlyMarket = false, bool isOutright = false)
         {
             var functionKey = ApolloFunctionKeys.Wagers;
