@@ -87,7 +87,6 @@ namespace Apollo.Age.Account.Services
 
             return _accountRepository.GetCustomerInfo(criteria);
         }
-                
 
         /// <summary>
         /// Get info of a member.
