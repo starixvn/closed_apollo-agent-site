@@ -141,9 +141,9 @@ new ReportMenuViewModel
             <tbody>
                 @foreach (var item in Model.AgentWinLossList)
                 {
-                    rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-                    <tr @Html.Raw(rowClass)>
+                    <tr>
                         <td>
                             @if (hasDownlineDetailsPermission)
                             { 
@@ -276,9 +276,9 @@ new ReportMenuViewModel
                     totalUpLineEffectiveStake += item.UpLineEffectiveStake;
                     totalUpLineTotal += item.UpLineTotal;
 
-                    rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-                    <tr @Html.Raw(rowClass)>
+                    <tr>
                         @if (item.IsAgent)
                         {
                             <td>

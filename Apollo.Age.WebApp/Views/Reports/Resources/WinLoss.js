@@ -112,7 +112,7 @@
                 location.href = url;
             });
 
-            $(".view-betlist").on("click", function () {               
+            $(".view-betlist").on("click", function () {
                 WINLOSS.sportTypeName = WINLOSS.SportName.val();
                 WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
@@ -127,7 +127,7 @@
                     width: resolution.width,
                     height: resolution.height,
                     position: { my: "top+20", at: "center top", of: window }
-                });                                
+                });
             });
 
             $("#btnExcelAgentWinLoss").on("click", function () {
@@ -150,6 +150,17 @@
                     + "&Bettypes=" + WINLOSS.hdBettype.val());
                 location.href = url;
                 $.unblockUI();
+            });
+
+            $(".tblWinLoss tbody tr td:not(:first-child)").on("click", function () {
+                var $this = $(this);
+
+                if ($this.parent().hasClass("rowactivecolor")) {
+                    $this.parent().removeClass("rowactivecolor");
+                }
+                else {
+                    $this.parent().addClass("rowactivecolor");
+                }
             });
 
             $(".dateRange").on('click', function () {
@@ -200,8 +211,8 @@
 } (jQuery);
 
 $(document).ready(function () {
-   // $.blockUI();
+    // $.blockUI();
     WINLOSS.init();
     APOLLO.initPageInfo();
-   // $.unblockUI();
+    // $.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
