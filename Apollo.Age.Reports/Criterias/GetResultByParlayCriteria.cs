@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get result by parlay criteria.
+    /// </summary>
     public class GetResultByParlayCriteria : CriteriaBase
     {
         public long RefNo { get; set; }

@@ -14,7 +14,7 @@ namespace Apollo.Age.Account.Models
     using System.Reflection;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Announcement model.
     /// </summary>
     public class AnnouncementModel
     {
@@ -75,6 +75,11 @@ namespace Apollo.Age.Account.Models
             }
         }
 
+        /// <summary>
+        /// Get full content.
+        /// </summary>
+        /// <param name="userLang">The user language.</param>
+        /// <returns>Full content string.</returns>
         public string GetFullContent(string userLang)
         {
             string lang = GetLang(userLang, "Content").Replace("_", string.Empty);
@@ -88,16 +93,29 @@ namespace Apollo.Age.Account.Models
             return content;
         }
 
+        /// <summary>
+        /// Get small content.
+        /// </summary>
+        /// <param name="userLang">The user language.</param>
+        /// <returns>Small content string.</returns>
         public string GetSmallContent(string userLang)
         {
             int maxLength = this.IsRead ? 100 : 80;
+
             return GetSmallContent(GetFullContent(userLang), maxLength);
         }
 
+        /// <summary>
+        /// Get content.
+        /// </summary>
+        /// <param name="userLanguage">The user language.</param>
+        /// <param name="langName">The language name.</param>
+        /// <returns>Content string.</returns>
         private string GetContent(string userLanguage, string langName)
         {
             string content = string.Empty;
             object value = GetValue(this, langName);
+
             if ((value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
                 && !userLanguage.Contains("zh"))
             {
@@ -143,6 +161,12 @@ namespace Apollo.Age.Account.Models
             return content;
         }
 
+        /// <summary>
+        /// Get language.
+        /// </summary>
+        /// <param name="userLang">The user language.</param>
+        /// <param name="original">The original string.</param>
+        /// <returns>Language string.</returns>
         private string GetLang(string userLang, string original)
         {
             var ret = "_";
@@ -176,12 +200,25 @@ namespace Apollo.Age.Account.Models
             return original + ret;
         }
 
+        /// <summary>
+        /// Get small content.
+        /// </summary>
+        /// <param name="fullContent">The full content.</param>
+        /// <param name="maxLength">The max length.</param>
+        /// <returns>Small content string.</returns>
         private string GetSmallContent(string fullContent, int maxLength)
         {
             int length = Math.Min(maxLength, fullContent.Length);
+
             return fullContent.Substring(0, length) + " ...";
         }
 
+        /// <summary>
+        /// Get property value.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>Property value.</returns>
         private object GetValue(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);
@@ -193,6 +230,12 @@ namespace Apollo.Age.Account.Models
             return null;
         }
 
+        /// <summary>
+        /// Get property information.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>Property information.</returns>
         private PropertyInfo GetPropertyInfo(object obj, string propertyName)
         {
             foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
@@ -206,6 +249,12 @@ namespace Apollo.Age.Account.Models
             return null;
         }
 
+        /// <summary>
+        /// Check if has property information.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>True : has, false : not have.</returns>
         private bool HasPropertyInfo(object obj, string propertyName)
         {
             var propertyInfo = GetPropertyInfo(obj, propertyName);

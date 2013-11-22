@@ -14,13 +14,14 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    ///    Match Handicap Games 3-way
+    ///    Match Handicap Games 3-way.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1309 : Choice1
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
@@ -42,24 +44,18 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             if (betHome)
             {
                 this.Template.betTeam = this.Template.homeTeam;
-                //this.Template.betTeamClassName = (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
-                // this.Template.Handicap.handicap = ConvertByBetType.Hdp((this.Template.betTeamClassName == BL_FAVORITE) ? -handicap : handicap);
             }
             else if (betAway)
             {
                 this.Template.betTeam = awayName;
-                //this.Template.betTeamClassName = (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
-                //this.Template.Handicap.handicap = ConvertByBetType.Hdp((this.Template.betTeamClassName == BL_FAVORITE) ? -handicap : handicap);
             }
             else
             {
-                //this.Template.betTeamClassName = BL_UNDER_DOG;
                 this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
                                                     string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
-                //this.Template.Handicap.handicap = null;
             }
+
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId, ticket.BetId);
         }
     }
 }

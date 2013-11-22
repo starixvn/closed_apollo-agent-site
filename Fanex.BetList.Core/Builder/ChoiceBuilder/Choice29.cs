@@ -10,7 +10,6 @@
 
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
-    using System;
     using System.Collections.Generic;
     using System.Web;
 
@@ -19,22 +18,46 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Combination Mix Parlay
+    /// Combination Mix Parlay.
     /// </summary>
     public class Choice29 : Choice1
     {
         /// <summary>
-        /// The _combination offer name
+        /// The combination offer name.
         /// </summary>
         private static Dictionary<string, string> _combinationOfferName = new Dictionary<string, string>
         {
-            {"110","Trixie"},
-            {"1110","Yankee"},
-            {"11110","Canadian"},
-            {"111110","Heinz"},
-            {"1111110","Super Heinz"},
-            {"11111110","Goliath"}
+            { "110", "Trixie" },
+            { "1110", "Yankee" },
+            { "11110", "Canadian" },
+            { "111110", "Heinz" },
+            { "1111110", "Super Heinz" },
+            { "11111110", "Goliath" }
         };
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowScoreMap">Is show score map or not.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            bool isShowScoreMap,
+            Entities.RTFHelper rtfHelper)
+        {
+            List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
+            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
+            lstRTFChoices.Add(rtfChoice);
+            return lstRTFChoices;
+        }
 
         /// <summary>
         /// Builds the choice.
@@ -42,12 +65,14 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
 
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             string mixParlay = string.Empty, custid = string.Empty;
+
             if (HttpContext.Current.Request["custid"] != null)
             {
                 custid = HttpContext.Current.Request["custid"];
@@ -57,10 +82,8 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                 custid = ticket.CustId.ToString();
             }
 
-            mixParlay = String.Join(
+            mixParlay = string.Join(
                                         null,
-                                        new string[]
-                                        {
                                             "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                             ticket.TransId.ToString(),
                                             "&quot;);\">",
@@ -90,9 +113,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                             custid,
                                             "&quot;, this);\">",
                                             Apollo.Age.Resources.BetList.details,
-                                            "</div>"
-                                        }
-                                   );
+                                            "</div>");
 
             this.Template.SetValue(mixParlay);
         }
@@ -100,20 +121,12 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// Gets the name of the combination offer.
         /// </summary>
-        /// <param name="betteam">The betteam.</param>
-        /// <returns>System.String.</returns>
+        /// <param name="betteam">The bet team.</param>
+        /// <returns>Combination offer name.</returns>
         private static string GetCombinationOfferName(string betteam)
         {
             betteam = betteam.Trim();
             return _combinationOfferName.ContainsKey(betteam) ? _combinationOfferName[betteam] : string.Empty;
-        }
-
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, Entities.RTFHelper rtfHelper)
-        {
-            List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
-            lstRTFChoices.Add(rtfChoice);
-            return lstRTFChoices;
         }
     }
 }

@@ -16,18 +16,19 @@ namespace Apollo.Age.Reports.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
-    using Apollo.Age.PermissionControl.Core;
-    using Apollo.Age.PermissionControl.Services;
+    using Apollo.Age.Core;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.NAP.Framework.Mvc;
@@ -36,12 +37,13 @@ namespace Apollo.Age.Reports.Controllers
     /// Reports Controller.
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class ReportsController : BaseController
     {
         private readonly SportCreditService _sportCreditService;
         private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
-        private readonly IAgentUserService _agentUserService;
+        private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
         private int _currentAgentId;
 
@@ -67,7 +69,7 @@ namespace Apollo.Age.Reports.Controllers
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
             this._outstandingService = new OutstandingService();
-            _agentUserService = new AgentUserService();
+            _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
 
@@ -95,22 +97,40 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>Outstanding ViewResult.</returns>
         public ViewResult Outstanding(int? agentId, string sporttypes, string bettypes)
         {
+            // Get user permission.
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission
+                || (agentId != null && !hasDownlineDetailsPermission))
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new OutstandingViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             this.CurrentAgentId = agentId;
             sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
             bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
 
-            var report = this._outstandingService.GetAgentOutStandingReport(this.CurrentSession.IsSuper, this.CurrentAgentId, this.CurrentSession.AgentId, sporttypes, bettypes);
+            var report = this._outstandingService.GetAgentOutStandingReport(
+                this.CurrentSession.IsSuper,
+                this.CurrentAgentId,
+                this.CurrentSession.AgentId,
+                sporttypes,
+                bettypes);
             var sessionKey = string.Format(Constants.SessionKeyAgentOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutStanding;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.Outstanding) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("ReportAccessDenied", report);
-            }
 
             return this.View(report);
         }
@@ -126,7 +146,6 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="betTypeName">Bet type name.</param>
         /// <param name="isAgentOutStanding">Is agent Outstanding.</param>
         /// <returns>Excel Outstanding report.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ActionResult ExportOutstandingReport(
             int? agentId,
             string agentUsername,
@@ -136,12 +155,32 @@ namespace Apollo.Age.Reports.Controllers
             string betTypeName,
             bool isAgentOutStanding)
         {
+            // Get user permission.
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new OutstandingViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             this.CurrentAgentId = agentId;
             var sessionKey = string.Format(
                 isAgentOutStanding ? Constants.SessionKeyAgentOutstandingReport : Constants.SessionKeyMemberOutstandingReport,
                 this.CurrentSession.UserId);
 
-            var listOutstanding = (IEnumerable<OutstandingModel>)HttpContext.Session[sessionKey];
+            var listOutstanding = (List<OutstandingModel>)HttpContext.Session[sessionKey];
 
             if (listOutstanding == null)
             {
@@ -152,7 +191,7 @@ namespace Apollo.Age.Reports.Controllers
                         AgentId = this.CurrentAgentId.Value,
                         Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                         Bettypes = bettypes
-                    });
+                    }).ToList();
                 }
                 else
                 {
@@ -161,7 +200,17 @@ namespace Apollo.Age.Reports.Controllers
                         AgentId = this.CurrentAgentId.Value,
                         Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                         Bettypes = bettypes
-                    });
+                    }).ToList();
+                }
+            }
+
+            if (!hasDownlineDetailsPermission
+                && listOutstanding != null
+                && listOutstanding.Any())
+            {
+                for (int i = 0; i < listOutstanding.Count; i++)
+                {
+                    listOutstanding[i].UserName = Web.Mvc.HtmlHelperExtensions.EncryptUsername(listOutstanding[i].UserName);
                 }
             }
 
@@ -187,7 +236,6 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="mainShareHolderUsername">Main ShareHolder name.</param>
         /// <returns>Member Outstanding report.</returns>
         [HttpPost]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         public ActionResult MemberOutstanding(
             int? agentId,
             string sporttypes,
@@ -195,6 +243,23 @@ namespace Apollo.Age.Reports.Controllers
             int mainShareHolderId,
             string mainShareHolderUsername)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return Json(new MemberOutstandingViewModel
+                {
+                    HasPermissionDownlineDetail = false
+                });
+            }
+
             this.CurrentAgentId = agentId;
 
             //// call service to get listOutstanding data here
@@ -202,8 +267,9 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyMemberOutstandingReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = report.ListOutstanding;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
+
             //// return object
+            report.HasPermissionDownlineDetail = true;
             return this.Json(report);
         }
 
@@ -230,41 +296,27 @@ namespace Apollo.Age.Reports.Controllers
 
             matchEnteredViewModel.MatchEnteredModelList = this._winLossService.GetMatchEntered(isShowDataTest);
 
-            var functionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var winLossFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.WinLoss).FirstOrDefault();
+            var functionPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             // If not have permission on win loss report
-            if (winLossFunction == null || winLossFunction.Policy < (byte)Policy.Query)
+            if (functionPermission[ApolloFunctionKeys.WinLoss] < (byte)Policy.Query)
             {
-                var outStandingFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Outstanding).FirstOrDefault();
-
-                if (!ReferenceEquals(outStandingFunction, null)
-                    && outStandingFunction.Policy == (byte)Policy.Query)
+                if (functionPermission[ApolloFunctionKeys.Outstanding] == (byte)Policy.Query)
                 {
                     return RedirectToAction("OutStanding", "Reports");
                 }
 
-                var transactionFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.Transactions).FirstOrDefault();
-
-                if (!ReferenceEquals(transactionFunction, null)
-                    && transactionFunction.Policy == (byte)Policy.Query)
+                if (functionPermission[ApolloFunctionKeys.Transactions] == (byte)Policy.Query)
                 {
                     return RedirectToAction("Transactions", "BetList");
                 }
 
-                var ticketCancelFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.CancelledTickets).FirstOrDefault();
-
-                if (!ReferenceEquals(ticketCancelFunction, null)
-                    && ticketCancelFunction.Policy == (byte)Policy.Query)
+                if (functionPermission[ApolloFunctionKeys.CancelledTickets] == (byte)Policy.Query)
                 {
                     return RedirectToAction("TicketCancel", "BetList");
                 }
 
-                var lineSportFunction = functionPermission.Where(m => m.Function.FunctionKey == ApolloFunctionKeys.LineSportCredits).FirstOrDefault();
-
-                if (!ReferenceEquals(lineSportFunction, null)
-                    && lineSportFunction.Policy == (byte)Policy.Query)
+                if (functionPermission[ApolloFunctionKeys.LineSportCredits] == (byte)Policy.Query)
                 {
                     return RedirectToAction("SportCredit", "Reports");
                 }
@@ -283,11 +335,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get agent win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
         public ViewResult AgentWinLoss(
@@ -298,6 +350,26 @@ namespace Apollo.Age.Reports.Controllers
             int? agentId,
             string agentName)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new AgentWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new AgentWinLossCriteria
             {
@@ -335,14 +407,6 @@ namespace Apollo.Age.Reports.Controllers
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
 
             HttpContext.Session[sessionKey] = agentWinLossList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.WinLoss) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("ReportAccessDenied", model);
-            }
 
             return this.View(model);
         }
@@ -350,11 +414,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Get member win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult member win loss.</returns>
         public ViewResult MemberWinLoss(
@@ -365,6 +429,26 @@ namespace Apollo.Age.Reports.Controllers
             int agentId,
             string agentName)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission || !hasDownlineDetailsPermission)
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new MemberWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new MemberWinLossCriteria
             {
@@ -399,14 +483,6 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = memberWinLossList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.WinLoss) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("ReportAccessDenied", model);
-            }
 
             return this.View(model);
         }
@@ -414,11 +490,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Export agent win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult agent win loss.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
@@ -430,6 +506,26 @@ namespace Apollo.Age.Reports.Controllers
             int? agentId,
             string agentName)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new AgentWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
             var agentWinLossList = (List<AgentWinLossModel>)HttpContext.Session[sessionKey];
             var agentIdValue = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId;
@@ -450,6 +546,16 @@ namespace Apollo.Age.Reports.Controllers
 
                 agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
                 HttpContext.Session[sessionKey] = agentWinLossList;
+            }
+
+            if (!hasDownlineDetailsPermission
+                && agentWinLossList != null
+                && agentWinLossList.Any())
+            {
+                for (int i = 0; i < agentWinLossList.Count; i++)
+                {
+                    agentWinLossList[i].AgentName = Web.Mvc.HtmlHelperExtensions.EncryptUsername(agentWinLossList[i].AgentName);
+                }
             }
 
             var model = new AgentWinLossViewModel
@@ -480,11 +586,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Export member win loss report.
         /// </summary>
-        /// <param name="fromDate">From date.</param>
-        /// <param name="toDate">To date.</param>
+        /// <param name="fromDate">From date value.</param>
+        /// <param name="toDate">To date value.</param>
         /// <param name="sporttypes">Sport type list.</param>
         /// <param name="bettypes">Bet type list.</param>
-        /// <param name="agentId">Agent id.</param>
+        /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ActionResult member win loss.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
@@ -496,6 +602,26 @@ namespace Apollo.Age.Reports.Controllers
             int agentId,
             string agentName)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View(
+                    "ReportAccessDenied",
+                    new MemberWinLossViewModel
+                    {
+                        SportTypeIds = sporttypes,
+                        BetTypeIds = bettypes,
+                        SportList = SingbetSportService.GetSport(isOther: false)
+                    });
+            }
+
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
             var memberWinLossList = (List<MemberWinLossModel>)HttpContext.Session[sessionKey];
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -515,6 +641,16 @@ namespace Apollo.Age.Reports.Controllers
 
                 memberWinLossList = this._winLossService.GetMemberWinLoss(criteria);
                 HttpContext.Session[sessionKey] = memberWinLossList;
+            }
+
+            if (!hasDownlineDetailsPermission
+                && memberWinLossList != null
+                && memberWinLossList.Any())
+            {
+                for (int i = 0; i < memberWinLossList.Count; i++)
+                {
+                    memberWinLossList[i].MemberName = Web.Mvc.HtmlHelperExtensions.EncryptUsername(memberWinLossList[i].MemberName);
+                }
             }
 
             var model = new MemberWinLossViewModel
@@ -553,6 +689,26 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>ActionResult Line sport credit report.</returns>
         public ActionResult SportCredit(string username)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View("ReportAccessDenied");
+            }
+
+            if (!string.IsNullOrWhiteSpace(username)
+                && !string.Equals(username, this.CurrentSession.AgentName)
+                && !hasDownlineDetailsPermission)
+            {
+                username = string.Empty;
+            }
+
             var criteria = new SportCreditCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
@@ -569,14 +725,6 @@ namespace Apollo.Age.Reports.Controllers
 
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
             HttpContext.Session[sessionKey] = sportCreditList;
-            ViewBag.allFunctionPermission = _agentUserService.GetUserFunctionPolicy(agentUserId: CurrentSession.UserId, isActive: true);
-
-            var hasPermission = _agentUserService.GetUserPolicy(CurrentSession.UserId, ApolloFunctionKeys.LineSportCredits) >= (byte)Policy.Query;
-
-            if (!hasPermission)
-            {
-                return View("ReportAccessDenied", model);
-            }
 
             return this.View(model);
         }
@@ -586,9 +734,20 @@ namespace Apollo.Age.Reports.Controllers
         /// </summary>
         /// <param name="username">User name.</param>
         /// <returns>ActionResult Line sport credit report.</returns>
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.LineSportCredits, Policy = Policy.Query)]
         public ActionResult ExportSportCredit(string username)
         {
+            // Get user permission
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            var hasPermission = userPermission[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query;
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View("ReportAccessDenied");
+            }
+
             var sessionKey = string.Format(Constants.SessionKeyLineSportCreditReport, this.CurrentSession.UserId);
             var sportCreditList = (List<SportCreditModel>)HttpContext.Session[sessionKey];
 
@@ -624,7 +783,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// Creates the type of the bet.
         /// </summary>
-        /// <param name="isIncludeParlay">Include parlay bettype or not.</param>
+        /// <param name="isIncludeParlay">Include parlay bet type or not.</param>
         /// <returns>JSON bet type.</returns>
         public JsonResult CreateBetType(bool isIncludeParlay)
         {
@@ -634,7 +793,7 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Creates the parlay bettype.
+        /// Creates the parlay bet type.
         /// </summary>
         /// <returns>JSON bet type.</returns>
         public JsonResult CreateParlayBettype()

@@ -12,7 +12,7 @@ namespace Apollo.Age.TotalBets.Services
     using Apollo.Age.Services.Impl;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Total bets service.
     /// </summary>
     public class TotalBetsService : QueryService
     {

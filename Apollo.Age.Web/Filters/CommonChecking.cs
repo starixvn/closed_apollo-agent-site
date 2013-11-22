@@ -12,6 +12,9 @@ namespace Apollo.Age.Web.Filters
     using System.Net;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// Common checking class.
+    /// </summary>
     public static class CommonChecking
     {
         /// <summary>

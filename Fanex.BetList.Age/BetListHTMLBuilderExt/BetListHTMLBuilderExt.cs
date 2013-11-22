@@ -22,13 +22,13 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Extend CoreBetList HTML Builder
+    /// Extend CoreBetList HTML Builder.
     /// </summary>
     public static class BetListHTMLBuilderExt
     {
-        private const string FOOTER_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
-        private const string AGENTPT_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
-        private const string AGENTCOMM_BUILDER_NAMESPACE = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
+        private const string FooterBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
+        private const string AgentPTBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
+        private const string AgentCommBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
 
         /// <summary>
         /// Adds the no.
@@ -37,7 +37,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <param name="index">The index.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <returns></returns>
+        /// <returns>Bet List HTML Builder.</returns>
         public static BetListHTMLBuilder AddNo(this BetListHTMLBuilder factory, int index, string openTag, string closeTag)
         {
             factory.Append(string.Join(null, new string[] { openTag, index.ToString(), closeTag }));
@@ -51,7 +51,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <param name="ticket">The ticket.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <returns></returns>
+        /// <returns>Bet List HTML Builder.</returns>
         public static BetListHTMLBuilder AddWinLoss(this BetListHTMLBuilder factory, ITicket ticket, string openTag, string closeTag)
         {
             IWinLoss winlossBuilder = CreateWinLossBuilder();
@@ -66,9 +66,10 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// </summary>
         /// <param name="factory">The factory.</param>
         /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <returns></returns>
+        /// <returns>Bet List HTML Builder.</returns>
         public static BetListHTMLBuilder AddAgentPT(this BetListHTMLBuilder factory, ITicket ticket, List<ITicketData> ticketData, string openTag, string closeTag)
         {
             IAgentPT agentPTBuilder = CreateAgentPTBuilder(ticket.BetTypeId);
@@ -79,15 +80,22 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         }
 
         /// <summary>
-        /// Add the agent Comm
+        /// Add the agent Commission.
         /// </summary>
-        /// <param name="factory"></param>
-        /// <param name="ticket"></param>
-        /// <param name="ticketData"></param>
-        /// <param name="openTag"></param>
-        /// <param name="closeTag"></param>
-        /// <returns></returns>
-        public static BetListHTMLBuilder AddAgentComm(this BetListHTMLBuilder factory, ITicket ticket, List<ITicketData> ticketData, bool hideDetail, string openTag, string closeTag)
+        /// <param name="factory">The factory.</param>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="hideDetail">If set to <c>true</c> [hide detail].</param>
+        /// <param name="openTag">The open tag.</param>
+        /// <param name="closeTag">The close tag.</param>
+        /// <returns>Bet List HTML Builder.</returns>
+        public static BetListHTMLBuilder AddAgentComm(
+            this BetListHTMLBuilder factory,
+            ITicket ticket,
+            List<ITicketData> ticketData,
+            bool hideDetail,
+            string openTag,
+            string closeTag)
         {
             IAgentComm agentCommBuilder = CreateAgentCommBuilder(ticket.BetTypeId);
             string agentCom = agentCommBuilder.Render(ticket, ticketData, hideDetail);
@@ -103,7 +111,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <param name="ticket">The ticket.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <returns></returns>
+        /// <returns>Bet List HTML Builder.</returns>
         public static BetListHTMLBuilder AddMember(this BetListHTMLBuilder factory, ITicket ticket, string openTag, string closeTag)
         {
             factory.Append(string.Join(null, new string[] { openTag, ticket.UserName, closeTag }));
@@ -118,10 +126,16 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <param name="tickets">The tickets.</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <param name="userType">Type of the user.</param>
-        /// <param name="betlistType">Type of the betlist.</param>
-        /// <returns></returns>
-        public static BetListHTMLBuilder AddFooter(this BetListHTMLBuilder factory, IList<ITicket> tickets, string openTag, string closeTag, BetListType betlistType)
+        /// <param name="betlistType">Type of the bet list.</param>
+        /// <returns>
+        /// Bet List HTML Builder.
+        /// </returns>
+        public static BetListHTMLBuilder AddFooter(
+            this BetListHTMLBuilder factory, 
+            IList<ITicket> tickets, 
+            string openTag, 
+            string closeTag, 
+            BetListType betlistType)
         {
             int footerType;
 
@@ -148,7 +162,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <summary>
         /// Creates the win loss builder.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Win loss interface.</returns>
         private static IWinLoss CreateWinLossBuilder()
         {
             return new WinLost1();
@@ -157,18 +171,17 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// <summary>
         /// Creates the agent PT builder.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>
+        /// Agent PT interface.
+        /// </returns>
         private static IAgentPT CreateAgentPTBuilder(int bettype)
         {
             string typeName = string.Join(
                                            null,
-                                           new string[]
-                                            {
-                                                AGENTPT_BUILDER_NAMESPACE,
+                                           AgentPTBuilderNamespace,
                                                 ".AgentPT",
-                                                bettype.ToString()
-                                            }
-                                        );
+                                                bettype.ToString());
 
             Type type = Type.GetType(typeName);
 
@@ -183,20 +196,19 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         }
 
         /// <summary>
-        /// Creates the agent Comm builder.
+        /// Creates the agent Commission builder.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>
+        /// Agent commission interface.
+        /// </returns>
         private static IAgentComm CreateAgentCommBuilder(int bettype)
         {
             string typeName = string.Join(
                                            null,
-                                           new string[]
-                                            {
-                                                AGENTCOMM_BUILDER_NAMESPACE,
+                                           AgentCommBuilderNamespace,
                                                 ".AgentComm",
-                                                bettype.ToString()
-                                            }
-                                        );
+                                                bettype.ToString());
 
             Type type = Type.GetType(typeName);
 
@@ -214,18 +226,14 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt
         /// Creates the footer builder.
         /// </summary>
         /// <param name="footerType">Type of the footer.</param>
-        /// <returns></returns>
+        /// <returns>Footer interface.</returns>
         private static IFooter CreateFooterBuilder(int footerType)
         {
             string typeName = string.Join(
                                             null,
-                                            new string[]
-                                            {
-                                                FOOTER_BUILDER_NAMESPACE,
+                                             FooterBuilderNamespace,
                                                 ".Footer",
-                                                footerType.ToString()
-                                            }
-                                         );
+                                                footerType.ToString());
 
             Type type = Type.GetType(typeName);
 

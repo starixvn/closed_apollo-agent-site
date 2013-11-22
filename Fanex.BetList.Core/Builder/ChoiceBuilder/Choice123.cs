@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Draw no draw
+    /// Draw no draw.
     /// </summary>
     public class Choice123 : Choice1
     {
@@ -25,6 +25,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
@@ -34,24 +35,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             this.Template.betTeam = betHomeTeam ? Apollo.Age.Resources.BetList.lblDraw : Apollo.Age.Resources.BetList.lblNoDraw;
-            //this.Template.betTeamClassName = betHomeTeam ? (ticket.Handicap2 >= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE) : (ticket.Handicap2 <= ticket.Handicap1 ? BL_UNDER_DOG : BL_FAVORITE);
-
-            //this.Template.Score.homeScore = ticket.LiveHomeScore.ToString();
-            //this.Template.Score.awayScore = ticket.LiveAwayScore.ToString();
-
-            // For special cases
-            //this.Template.Score.Visible = ticket.IsLive;
-
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
             this.Template.homeTeam = homeName + (ticket.IsNeutral ? " (N)" : string.Empty);
-            //this.Template.home_firstGoal_lastGoal = string.Empty;
+
             this.Template.awayTeam = awayName;
-            //this.Template.away_firstGoal_lastGoal = string.Empty;
 
-            //this.CalculateFG_LG(ticket.EventStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
-
-            //this.Template.sportTypeName = ticketHelper.GetSportNameById(ticket.SportTypeId);
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }

@@ -30,11 +30,6 @@ namespace Apollo.Age.Integration.Configurations
         {
             get
             {
-                if (settings == null)
-                {
-                    throw new ConfigurationErrorsException("Cannot find section Apollo.Age.OAuthSettings");
-                }
-
                 return settings;
             }
         }

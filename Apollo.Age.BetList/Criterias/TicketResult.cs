@@ -14,7 +14,7 @@ namespace Apollo.Age.BetList.Criterias
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Ticket result for bet list
+    /// Ticket result for bet list.
     /// </summary>
     [Serializable]
     public class TicketResult
@@ -32,6 +32,10 @@ namespace Apollo.Age.BetList.Criterias
 
         public List<ITicketData> TicketDataList { get; set; }
 
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>Ticket result.</returns>
         public TicketResult Clone()
         {
             return new TicketResult
@@ -40,6 +44,5 @@ namespace Apollo.Age.BetList.Criterias
                 TicketDataList = this.TicketDataList.ToList()
             };
         }
-                
     }
 }

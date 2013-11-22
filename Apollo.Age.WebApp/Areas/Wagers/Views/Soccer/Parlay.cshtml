@@ -4,6 +4,9 @@
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Enumerations
 @model List<ParlayViewModel>
+@{
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
+}
 <table class="tblRpt soccer parlay @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
     @WagerHelper.RederHeaderColumn(Lang.lblMixParlay
                     , Lang.lblSystemParlay)
@@ -12,10 +15,10 @@
             @<tr class="c">
                 @WagerHelper.RenderBaseColumns(item)
                 <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.MixParlay)">
-                    @WagerHelper.RenderColumnData("0", item.Count9, item.Stake9, item.StakeBefore9, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.Count9, item.Stake9, item.StakeBefore9, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
                 </td>
                 <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.Combine_Mix_Parlay)">
-                    @WagerHelper.RenderColumnData("0", item.Count29, item.Stake29, item.StakeBefore29, item.LiveIndicator, item.LeagueId, item.MatchId)
+                    @WagerHelper.RenderColumnData("0", item.Count29, item.Stake29, item.StakeBefore29, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
                 </td>
             </tr>
         )

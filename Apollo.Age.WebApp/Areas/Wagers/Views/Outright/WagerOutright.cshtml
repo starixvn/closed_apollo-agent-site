@@ -4,6 +4,9 @@
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Enumerations
 @model List<OutrightViewModel>
+@{
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
+}
 <table class="tblRpt outright soccer">
     <thead>
         <tr>
@@ -26,7 +29,7 @@
                 @Lang.lblWager
             </th>
         </tr>
-    </thead>    
+    </thead>
     <tbody>
         @if (Model != null && Model.Any())
         {
@@ -44,33 +47,33 @@
                 <td colspan="3" class="hasTbl">
                     <table class="tbl">
                         @{
-                            subModel = item.ToList();
-                                //Model.Where(x => x.LeagueId == item.Key.LeagueId).ToList();
-                            var status = string.Empty;
-                            foreach (OutrightViewModel subItem in subModel)
-                            {
-                                status = string.Empty;
-                                if(!string.IsNullOrEmpty(subItem.Status))
-                                {
-                                    if (subItem.Status.ToLower() == "refund")
-                                    {
-                                        status = Lang.refund;
-                                    }
-                                    else if (subItem.Status.ToLower() == "lose")
-                                    {
-                                        status = "+";
-                                    }
-                                }
-                                <tr class="@(!string.IsNullOrEmpty(status) ? "outright-status" : string.Empty) ">
-                                    <td style="width: 276px;" >@subItem.TeamName
-                                    </td>
-                                    <td style="width: 103px;" class="c">@status
-                                    </td>
-                                    <td style="width: 143px;" class="c nowrap" data-bettype="@((int)BetTypes.Outright)">
-                                     @WagerHelper.RenderColumnData(subItem.BetTeam, subItem.BetCount, subItem.Stake, subItem.StakeBefore, subItem.LiveIndicator, subItem.LeagueId, subItem.MatchId)                                    
-                                    </td>
-                                </tr>
-                            }
+                subModel = item.ToList();
+                //Model.Where(x => x.LeagueId == item.Key.LeagueId).ToList();
+                var status = string.Empty;
+                foreach (OutrightViewModel subItem in subModel)
+                {
+                    status = string.Empty;
+                    if (!string.IsNullOrEmpty(subItem.Status))
+                    {
+                        if (subItem.Status.ToLower() == "refund")
+                        {
+                            status = Lang.refund;
+                        }
+                        else if (subItem.Status.ToLower() == "lose")
+                        {
+                            status = "+";
+                        }
+                    }
+                            <tr class="@(!string.IsNullOrEmpty(status) ? "outright-status" : string.Empty) ">
+                                <td style="width: 276px;">@subItem.TeamName
+                                </td>
+                                <td style="width: 103px;" class="c">@status
+                                </td>
+                                <td style="width: 143px;" class="c nowrap" data-bettype="@((int)BetTypes.Outright)">
+                                    @WagerHelper.RenderColumnData(subItem.BetTeam, subItem.BetCount, subItem.Stake, subItem.StakeBefore, subItem.LiveIndicator, subItem.LeagueId, subItem.MatchId, hasDownlineDetailsPermission)
+                                </td>
+                            </tr>
+                }
                         }
                     </table>
                 </td>

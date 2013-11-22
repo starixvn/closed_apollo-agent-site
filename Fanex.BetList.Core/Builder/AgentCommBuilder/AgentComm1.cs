@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentComm.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentComm1.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,15 +14,10 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
     using Fanex.BetList.Core.Utils;
 
     /// <summary>
-    /// Agent commission
+    /// Agent commission.
     /// </summary>
     public class AgentComm1 : IAgentComm
     {
-        /// <summary>
-        /// Template
-        /// </summary>
-        public AgentComm_Template Template { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentComm1" /> class.
         /// </summary>
@@ -31,11 +26,13 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             this.Template = new AgentComm_Template();
         }
 
+        public AgentComm_Template Template { get; set; }
+
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns></returns>
+        /// <returns>Agent commission template.</returns>
         public AgentComm_Template Render(ITicket ticket)
         {
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
@@ -57,7 +54,14 @@ namespace Fanex.BetList.Core.Builder.AgentCommBuilder
             }
             else
             {
-                Template.AgentComm.agentComm_setting = (ticket.CommStatus == "1" ? string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) : string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) })) + "%";
+                if (ticket.CommStatus == "1")
+                {
+                    Template.AgentComm.agentComm_setting = string.Join(null, new string[] { "2x ", ConvertByBetType.Comm_Percentage(ticket.ADiscount) });
+                }
+                else
+                {
+                    Template.AgentComm.agentComm_setting = string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) + "%";
+                }                
             }
 
             return Template;

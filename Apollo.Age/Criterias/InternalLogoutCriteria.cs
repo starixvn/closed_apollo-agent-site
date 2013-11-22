@@ -12,7 +12,7 @@ namespace Apollo.Age.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Internal log out criteria.
     /// </summary>
     public class InternalLogoutCriteria : CriteriaBase
     {

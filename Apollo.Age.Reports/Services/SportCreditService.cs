@@ -10,6 +10,7 @@
 namespace Apollo.Age.Reports.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Web;
@@ -26,6 +27,7 @@ namespace Apollo.Age.Reports.Services
     /// <summary>
     /// Service for SportCredit.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class SportCreditService : ReportService, ISportCreditService
     {
         private const int _RowTitle = 1;

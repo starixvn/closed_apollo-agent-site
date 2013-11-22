@@ -11,6 +11,9 @@ namespace Apollo.Age.Reports.Criterias
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Member outstanding criteria.
+    /// </summary>
     public class MemberOutstandingCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

@@ -9,12 +9,11 @@
 
 namespace Apollo.Age.Account.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Get login log criteria.
+    /// </summary>
     public class GetLoginLogCriteria : CriteriaBase
     {
         public int AgentId 

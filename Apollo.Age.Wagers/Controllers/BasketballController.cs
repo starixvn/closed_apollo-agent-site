@@ -12,17 +12,14 @@
 namespace Apollo.Age.Wagers.Controllers
 {
     using System.Web.Mvc;
-    using Apollo.Age.PermissionControl.Core;
     using Apollo.Age.Wagers.Criterias;
     using Apollo.Age.Wagers.Criterias.Basketball;
     using Apollo.Age.Wagers.ViewModels;
     using Apollo.Age.Wagers.ViewModels.Basketball;
-    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// TODO: Update summary.
-    /// </summary>   
-    [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers, Policy = Policy.Query)]
+    /// </summary>
     public class BasketballController : WagerController
     {
         public BasketballController()
@@ -37,6 +34,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult Straight(BasketballCriteria criteria)
         {
+            if (PermissionChecking(criteria.IsEarlyMarket))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.IsSuperView = CurrentSession.IsSuper;
@@ -45,7 +47,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
-            ViewBag.IsEM = criteria.IsEM;
+            ViewBag.IsEM = criteria.IsEarlyMarket;
 
             return View(list);
         }
@@ -57,6 +59,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult FirstHalf(BasketballCriteria criteria)
         {
+            if (PermissionChecking(criteria.IsEarlyMarket))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.IsSuperView = CurrentSession.IsSuper;
@@ -65,7 +72,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
-            ViewBag.IsEM = criteria.IsEM;
+            ViewBag.IsEM = criteria.IsEarlyMarket;
 
             return View(list);
         }
@@ -77,6 +84,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult RunningBall(RunningBallCriteria criteria)
         {
+            if (PermissionChecking(criteria.IsEarlyMarket))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.Sporttypes = SportId(criteria.SportName);
@@ -86,7 +98,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
-            ViewBag.IsEM = criteria.IsEM;
+            ViewBag.IsEM = criteria.IsEarlyMarket;
 
             return View("~/Areas/Wagers/Views/Wager/RunningBall.cshtml", list);
         }
@@ -98,6 +110,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult Parlay(BasketballCriteria criteria)
         {
+            if (PermissionChecking(criteria.IsEarlyMarket))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.IsSuperView = CurrentSession.IsSuper;
@@ -106,7 +123,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
-            ViewBag.IsEM = criteria.IsEM;
+            ViewBag.IsEM = criteria.IsEarlyMarket;
 
             return View(list);
         }
@@ -118,6 +135,11 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View results.</returns>
         public ActionResult SpecialBet(BasketballCriteria criteria)
         {
+            if (PermissionChecking(criteria.IsEarlyMarket))
+            {
+                return View("~/Views/Error/AccessDenied.cshtml");
+            }
+
             criteria.GroupBetName = this.CurrentAction;
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.IsSuperView = CurrentSession.IsSuper;
@@ -126,7 +148,7 @@ namespace Apollo.Age.Wagers.Controllers
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;
-            ViewBag.IsEM = criteria.IsEM;
+            ViewBag.IsEM = criteria.IsEarlyMarket;
 
             return View("~/Areas/Wagers/Views/Wager/SpecialBet.cshtml", list);
         }

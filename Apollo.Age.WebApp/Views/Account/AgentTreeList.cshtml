@@ -1,10 +1,13 @@
 ﻿@{
     Layout = "~/Views/Account/Shared/_LayoutTreeView.cshtml";
     ViewBag.Title = @Lang.Agents;
+
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
+
+    var classNameNoPermission = hasDownlineDetailsPermission ? "view-agentinfo" : "";
 }
 <ul id="treeview_list" class="tree-tab" data-agentid="@ViewBag.AgentId">
 </ul>
-
 @section foot {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -13,9 +16,11 @@
             var treeList = $("#treeview_list"),
                 agentId = treeList.attr("data-agentid");
 
+            var html = "@(hasDownlineDetailsPermission ? "a" : "span")";
+
             treeList.treeview({
                 url: MENU.apoRoot + "Account/GetDataByNode",
-                link: "<a class='view-agentinfo' href='javascript:;'" + "data-agentid='{0}' data-agentname={1} target='menu'> {2} </a>",
+                link: "<"+html+" class='@classNameNoPermission' href='javascript:;'" + "data-agentid='{0}' data-agentname={1} target='menu'> {2} </"+html+">",
                 agentId: agentId,
                 showRoot: false
             });

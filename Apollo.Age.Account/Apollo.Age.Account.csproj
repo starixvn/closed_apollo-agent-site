@@ -114,6 +114,7 @@
     <Compile Include="Models\LogRunSpModel.cs" />
     <Compile Include="Models\MemberShareModel.cs" />
     <Compile Include="Models\PositionTakingModel.cs" />
+    <Compile Include="Controllers\PermissionUserControlController.cs" />
     <Compile Include="Repositories\Impl\AccountRepository.cs" />
     <Compile Include="Repositories\Interface\IAccountRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
@@ -138,14 +139,6 @@
     <Compile Include="ViewModels\MemberShareViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj">
-      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
-      <Name>Fanex.CustSetting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj">
-      <Project>{FE47EC76-47A3-423B-808D-E94537B3F6FC}</Project>
-      <Name>Apollo.Age.PermissionControl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
       <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
       <Name>Apollo.Age.Resources</Name>
@@ -157,6 +150,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.CustSetting\Apollo.CustSetting.csproj">
+      <Project>{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}</Project>
+      <Name>Apollo.CustSetting</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

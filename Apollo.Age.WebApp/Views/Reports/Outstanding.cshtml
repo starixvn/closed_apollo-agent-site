@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.outstanding;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    List<FunctionPolicy> FunctionPermissions = (List<FunctionPolicy>)ViewBag.allFunctionPermission;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
+
+    var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 }
 @model OutstandingViewModel
 @Html.Partial("Menu",
@@ -14,8 +16,7 @@ new ReportMenuViewModel
     ReportName = Lang.outstanding,
     SportType = Model.SportTypeIds
 })
-<div class="clear"></div>
-<div id="box_header" class="report report-outstanding">
+<div id="box_header" class="report">
     <table class="outstanding">
         <tr>
             <td class="firstcolumn">
@@ -33,7 +34,6 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
-<div class="clear"></div>
 @if (!string.IsNullOrWhiteSpace(Model.SportTypeIds))
 {
     if (Model.DownlinePath != null && Model.DownlinePath.Any())
@@ -84,7 +84,14 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                }
+                                else
+                                { 
+                                    @item.UserName.EncryptUsername()
+                                }
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -98,7 +105,14 @@ new ReportMenuViewModel
                         {
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Apollo.Age.Resources.Lang.lblViewMemberOutstanding">@Apollo.Age.Resources.Lang.lblMemberOutstanding</a>
+                                @if (hasDownlineDetailsPermission)
+                                { 
+                                    <a href="javascript:void(0);" id="MemberOutstanding" data-mainShareHolderId="@Model.MainShareHolder.Id" data-mainShareHolderUsername="@Model.MainShareHolder.Username" data-agentid="@Model.CurrentAgentId"  title="@Lang.lblViewMemberOutstanding">@Lang.lblMemberOutstanding</a>
+                                }
+                                else
+                                { 
+                                    @Lang.lblMemberOutstanding
+                                }
                             </td>
                             <td class="r">
                                 @Formater.FormatNumber20(item.Outstanding, "en-US")
@@ -143,7 +157,8 @@ new ReportMenuViewModel
 @Html.Hidden("CurrentCustId", Model.CurrentAgentId)
 <iframe id="exportExcelFrame" width="0" height="0" style="display: none"></iframe>
 @section scripts
-{
+{    
+
     @Scripts.Render("~/scripts/outstandingjs")
     <script type="text/javascript">
         var LANGUAGES = function () {
@@ -153,7 +168,9 @@ new ReportMenuViewModel
                 Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
                 ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
                 Member: "@Apollo.Age.Resources.Lang.member",
-                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist"
+                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist",
+                DonwlinePermission: "@Apollo.Age.Resources.Lang.strNotAccessPage",
+                BetListString: "@Lang.lblBetLists.ToUpper()"
             };
         } ();
     </script>

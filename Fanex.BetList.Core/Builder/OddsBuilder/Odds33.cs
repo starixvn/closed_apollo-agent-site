@@ -15,6 +15,7 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Templates;
     using Fanex.BetList.Core.Utils;
@@ -22,13 +23,12 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Win/Place
+    /// Win Place.
     /// </summary>
     public class Odds33 : IOdds
     {
-        public Odds_Template Template { get; set; }
-
-        protected int winBetId, placeBetId;
+        private int _winBetId;
+        private int _placeBetId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Odds33" /> class.
@@ -36,37 +36,69 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         public Odds33()
         {
             this.Template = new Odds_Template();
-            winBetId = 31;
-            placeBetId = 32;
+            WinBetId = 31;
+            PlaceBetId = 32;
         }
+
+        public int WinBetId
+        {
+            get
+            {
+                return _winBetId;
+            }
+
+            set
+            {
+                _winBetId = value;
+            }
+        }
+
+        public int PlaceBetId
+        {
+            get
+            {
+                return _placeBetId;
+            }
+
+            set
+            {
+                _placeBetId = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>
+        /// The template.
+        /// </value>
+        public Odds_Template Template { get; set; }
 
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
-        /// <returns>Odds_Template.</returns>
-        public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName)
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>Odds Template.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        public Odds_Template Render(
+            ITicket ticket,
+            List<ITicketData> ticketData,
+            GetCachePropertyById funcGetOddsTypeName)
         {
             if (ticketData != null && ticketData.Count > 0)
             {
-                #region declare params
-
                 string odds_win = string.Empty;
                 string odds_place = string.Empty;
                 string oddsWinMarkup, oddsPlaceMarkup;
-
-                #endregion declare params
 
                 List<ITicketData> foundTicketData = this.GetReferenceData(ticket, ticketData);
 
                 if (foundTicketData != null && foundTicketData.Count > 1)
                 {
-                    #region Win/Place
-
-                    ITicketData winTicket = foundTicketData.Find(item => item.BetTypeId == winBetId);
-                    ITicketData placeTicket = foundTicketData.Find(item => item.BetTypeId == placeBetId);
+                    ITicketData winTicket = foundTicketData.Find(item => item.BetTypeId == WinBetId);
+                    ITicketData placeTicket = foundTicketData.Find(item => item.BetTypeId == PlaceBetId);
 
                     string oddsWin, oddsPlace;
 
@@ -94,41 +126,27 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                     oddsWinMarkup = string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", oddsWin, "</b>" });
                     oddsPlaceMarkup = string.Join(null, new string[] { Apollo.Age.Resources.BetList.place, ": ", "<b>", oddsPlace, "</b>" });
 
-                    #endregion Win/Place
-
                     string status = ticket.Status.ToLower();
 
                     if (status.Equals(BetStatus.Won) || status.Equals(BetStatus.Lose))
                     {
                         odds_win = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        "<span class='blue' style='font-weight:normal;'>",
+                                                    "<span class='blue' style='font-weight:normal;'>",
                                                         oddsWinMarkup,
-                                                        "</span>"
-                                                    }
-                                              );
+                                                        "</span>");
 
                         odds_place = string.Join(
                                                     null,
-                                                    new string[]
-                                                    {
-                                                        "<span class='' style='font-weight:normal;'>",
+                                                   "<span class='' style='font-weight:normal;'>",
                                                         oddsPlaceMarkup,
-                                                        "</span>"
-                                                    }
-                                                );
+                                                        "</span>");
 
                         this.Template.odds = string.Join(
                                                         null,
-                                                        new string[]
-                                                        {
-                                                            odds_win,
+                                                        odds_win,
                                                             "<br>",
-                                                            odds_place
-                                                        }
-                                                   );
+                                                            odds_place);
                     }
                     else
                     {
@@ -145,9 +163,27 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
                 this.Template.odds = "-";
             }
 
-            this.Template.oddsType = FuncGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
+            this.Template.oddsType = funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
 
             return this.Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich Text String interface.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName, RTFHelper rtfHelper)
+        {
+            Render(ticket, ticketData, funcGetOddsTypeName);
+            var rtfOdds = BuildRTFOdds(rtfHelper);
+
+            return rtfOdds;
         }
 
         /// <summary>
@@ -155,18 +191,168 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>List of tickets.</returns>
         protected virtual List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.TransId.ToString()));
         }
 
         /// <summary>
+        /// Builds the RTF odds.
+        /// </summary>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich text interface.</returns>
+        protected virtual IRichTextString BuildRTFOdds(RTFHelper rtfHelper)
+        {
+            if (this.Template.odds == "-")
+            {
+                return new HSSFRichTextString("-");
+            }
+
+            int breakPos = this.Template.odds.IndexOf("<br>");
+
+            string odds_WinString = this.Template.odds.Substring(0, breakPos);
+            string odds_PlaceString = this.Template.odds.Replace(odds_WinString, string.Empty);
+
+            string odds_WinVal = ExtractStringBetweenTag("b", odds_WinString);
+            string odds_PlaceVal = ExtractStringBetweenTag("b", odds_PlaceString);
+
+            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+
+            // Add Win
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": " }), rtfHelper.PosFont);
+            rtfNumberRenderer.Render(odds_WinVal);
+
+            // Add Place
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", Apollo.Age.Resources.BetList.place, ": " }), rtfHelper.PosFont);
+            rtfNumberRenderer.Render(odds_PlaceVal);
+
+            var rtfOdds = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+            return rtfOdds;
+        }
+
+        /// <summary>
+        /// Gets the place.
+        /// </summary>
+        /// <param name="odds_place">The odds place.</param>
+        /// <param name="status_place">The status place.</param>
+        /// <param name="foundRows">The found rows.</param>
+        /// <param name="i">The index.</param>
+        private static void GetPlace(ref string odds_place, ref string status_place, DataRow[] foundRows, int i)
+        {
+            var foundRow = foundRows[i]["status"];
+            switch (foundRow.ToString().ToLower())
+            {
+                case BetStatus.Won:
+                    odds_place += string.Join(
+                        null,
+                        Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Formatter.FormatNumber20(foundRows[i]["odds"], null),
+                            "</b>");
+
+                    status_place += string.Join(
+                        null,
+                       Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.won,
+                            "</b>");
+                    break;
+
+                default:
+                    odds_place += string.Join(
+                        null,
+                       Apollo.Age.Resources.BetList.place,
+                                ": ",
+                                "<b>",
+                                "0.00",
+                                "</b>");
+
+                    status_place += string.Join(
+                        null,
+                         Apollo.Age.Resources.BetList.place,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.lose,
+                            "</b>");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Gets the win.
+        /// </summary>
+        /// <param name="odds_win">The odds win.</param>
+        /// <param name="status_win">The status win.</param>
+        /// <param name="foundRows">The found rows.</param>
+        /// <param name="i">The index.</param>
+        private static void GetWin(ref string odds_win, ref string status_win, DataRow[] foundRows, int i)
+        {
+            switch (foundRows[i]["status"].ToString().ToLower())
+            {
+                case BetStatus.Won:
+                    odds_win += string.Join(
+                        null,
+                         Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            Formatter.FormatNumber20(foundRows[i]["odds"], null),
+                            "</b>");
+                    status_win += string.Join(
+                        null,
+                        Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.won,
+                            "</b>");
+                    break;
+
+                default:
+                    odds_win += string.Join(
+                        null,
+                        Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            "0.00",
+                            "</b>");
+
+                    status_win += string.Join(
+                        null,
+                        Apollo.Age.Resources.BetList.win,
+                            ": ",
+                            "<b>",
+                            Apollo.Age.Resources.BetList.lose,
+                            "</b>");
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Extract string value between tags from a source string.
+        /// </summary>
+        /// <param name="tag">Input tag name.</param>
+        /// <param name="source">Source string.</param>
+        /// <returns>Extract string value between tags.</returns>
+        private string ExtractStringBetweenTag(string tag, string source)
+        {
+            string startTag = string.Join(null, new string[] { "<", tag, ">" });
+            string endTag = string.Join(null, new string[] { "</", tag, ">" });
+
+            int startIndex = source.IndexOf(startTag) + startTag.Length;
+            int endIndex = source.IndexOf(endTag, startIndex);
+            return source.Substring(startIndex, endIndex - startIndex);
+        }
+
+        /// <summary>
         /// Sets the odds.
         /// </summary>
-        /// <param name="row">The row.</param>
-        /// <param name="odds_win">The odds_win.</param>
-        /// <param name="odds_place">The odds_place.</param>
+        /// <param name="row">The row tickets.</param>
+        /// <param name="odds_win">The odds win.</param>
+        /// <param name="odds_place">The odds place.</param>
         private void SetOdds(ITicket row, ref string odds_win, ref string odds_place)
         {
             string status = row.Status.ToString().ToLower();
@@ -180,148 +366,6 @@ namespace Fanex.BetList.Core.Builder.OddsBuilder
             {
                 this.Template.odds = "-";
             }
-        }
-
-        /// <summary>
-        /// Gets the place.
-        /// </summary>
-        /// <param name="odds_place">The odds_place.</param>
-        /// <param name="status_place">The status_place.</param>
-        /// <param name="foundRows">The found rows.</param>
-        /// <param name="i">The index.</param>
-        private static void GetPlace(ref string odds_place, ref string status_place, DataRow[] foundRows, int i)
-        {
-            switch ((foundRows[i]["status"]).ToString().ToLower())
-            {
-                case BetStatus.Won:
-                    odds_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Formatter.FormatNumber20(foundRows[i]["odds"], null),
-                                                                          "</b>"});
-
-                    status_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.won,
-                                                                          "</b>"});
-                    break;
-                default:
-                    odds_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          "0.00",
-                                                                          "</b>"});
-
-                    status_place += string.Join(null, new string[]{Apollo.Age.Resources.BetList.place,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.lose,
-                                                                          "</b>"});
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Gets the win.
-        /// </summary>
-        /// <param name="odds_win">The odds_win.</param>
-        /// <param name="status_win">The status_win.</param>
-        /// <param name="foundRows">The found rows.</param>
-        /// <param name="i">The index.</param>
-        private static void GetWin(ref string odds_win, ref string status_win, DataRow[] foundRows, int i)
-        {
-            switch ((foundRows[i]["status"]).ToString().ToLower())
-            {
-                case BetStatus.Won:
-                    odds_win += string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", Formatter.FormatNumber20(foundRows[i]["odds"], null), "</b>" });
-
-                    status_win += string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", Apollo.Age.Resources.BetList.won, "</b>" });
-
-                    break;
-                default:
-                    odds_win += string.Join(null, new string[]{Apollo.Age.Resources.BetList.win,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          "0.00",
-                                                                          "</b>"});
-
-                    status_win += string.Join(null, new string[]{Apollo.Age.Resources.BetList.win,
-                                                                          ": ",
-                                                                          "<b>",
-                                                                          Apollo.Age.Resources.BetList.lose,
-                                                                          "</b>"});
-
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Renders the RTF.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>
-        /// IRichTextString
-        /// </returns>
-        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName, RTFHelper rtfHelper)
-        {
-            Render(ticket, ticketData, FuncGetOddsTypeName);
-            var rtfOdds = BuildRTFOdds(rtfHelper);
-
-            return rtfOdds;
-        }
-
-        /// <summary>
-        /// Builds the RTF odds.
-        /// </summary>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>IRichTextString</returns>
-        protected virtual IRichTextString BuildRTFOdds(RTFHelper rtfHelper)
-        {
-            if (this.Template.odds == "-")
-            {
-                return new HSSFRichTextString("-");
-            }
-            int breakPos = this.Template.odds.IndexOf("<br>");
-
-            string odds_WinString = this.Template.odds.Substring(0, breakPos);
-            string odds_PlaceString = this.Template.odds.Replace(odds_WinString, string.Empty);
-
-            string odds_WinVal = ExtractStringBetweenTag("b", odds_WinString);
-            string odds_PlaceVal = ExtractStringBetweenTag("b", odds_PlaceString);
-
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
-
-            //Add Win
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": " }), rtfHelper.PosFont);
-            rtfNumberRenderer.Render(odds_WinVal);
-
-            //Add Place
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", Apollo.Age.Resources.BetList.place, ": " }), rtfHelper.PosFont);
-            rtfNumberRenderer.Render(odds_PlaceVal);
-
-            var rtfOdds = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
-            return rtfOdds;
-        }
-
-        /// <summary>
-        /// Extract string value between tags from a source string
-        /// </summary>
-        /// <param name="tag">tag name</param>
-        /// <param name="source">source string</param>
-        /// <returns></returns>
-        private string ExtractStringBetweenTag(string tag, string source)
-        {
-            string startTag = string.Join(null, new string[] { "<", tag, ">" });
-            string endTag = string.Join(null, new string[] { "</", tag, ">" });
-
-            int startIndex = source.IndexOf(startTag) + startTag.Length;
-            int endIndex = source.IndexOf(endTag, startIndex);
-            return source.Substring(startIndex, endIndex - startIndex);
         }
     }
 }

@@ -105,6 +105,8 @@
     @Html.Hidden("IsOR", isOR.ToString().ToLower())
     @Html.Hidden("RecheckRangeOfDateText", Lang.RecheckRangeOfDate)
     @Html.Hidden("TitleGroupBetName", lableGroupBet)
+    @Html.Hidden("MoveBetDate", moveBetDate.ToString("yyyy-MM-dd"))
+    @Html.Hidden("MessageValidateDateRange", LangMsg.MessageValidateDateRange)
     <div class="mainpage">
         
                 @WagerHelper.RenderFilter(lableGroupBet, (List<League>)ViewBag.Leagues, (List<Agent>)ViewBag.MainShareHolder, isShowViewOption)

@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Mix Parlay
+    /// Mix Parlay.
     /// </summary>
     public class Choice9 : Choice1
     {
@@ -27,8 +27,11 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">if set to <c>true</c> [is show score map].</param>
-        /// <returns>Choice_Template.</returns>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
         public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
@@ -36,9 +39,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             string mixParlay = string.Join(
                                                 null,
-                                                new string[]
-                                                {
-                                                    "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
+                                                "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
                                                     ticket.TransId.ToString(),
                                                     "&quot;);\">",
                                                     betTypeName,
@@ -46,16 +47,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
                                                     "<br/><br/>",
                                                     "<div id=\"divEvent_",
                                                     ticket.TransId.ToString(),
-                                                    "\" style=\"display: none\" ></div>"
-                                                }
-                                          );
+                                                    "\" style=\"display: none\" ></div>");
 
             this.Template.SetValue(mixParlay);
 
             return this.Template;
         }
 
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper)
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
             IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblMixParlay);

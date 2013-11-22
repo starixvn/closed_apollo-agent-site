@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PT</title>
+    <link href="UI/Core.css" rel="stylesheet" type="text/css" />
+    <script src="UI/Languages/en.js"></script>
+    <script src="UI/Core.js" type="text/javascript"></script>
+    <script src="UI/PTSetting.js" type="text/javascript"></script>
+    <script src="UI/BetType.js" type="text/javascript"></script>
+    <script src="UI/BetTypeGroup.js" type="text/javascript"></script>
+    <script src="UI/BettingLimit.js" type="text/javascript"></script>
+    <script src="UI/Config.js" type="text/javascript"></script>
+    <script src="UI/CommissionSetting.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <input type="checkbox" id="box6" value="6" checked="" />
+    <a href="javascript:Popups.Confirm(0.3);">Confirm</a><br />
+    <a href="javascript:notify(this,'3,2,1');">Click Company Edit Agent 1</a>
+    <br />
+    <a href="javascript:notify(this,'2,2,1');">Click Agent K Edit Agent K + 1</a>
+    <br />
+    <a href="javascript:notify(this,'2,1,1');">Click Agent K edit Member</a>
+    <br />
+    <br />
+    <br />
+    <br />
+    <input id="btnSave" type="button" value="Save All" onclick="SaveAll()" />
+    <br />
+    <script type="text/javascript">
+        var grid1 = null;
+        var bettingLimit1 = null;
+        var commissionSetting = null;
+        function notify(x, y) { // x - element, y - tag
+            var roles = y.split(',');
+            var settingContainer = document.getElementById('settingContainer');
+//            if (roles[0] == 3) {
+//                settingContainer.setAttribute("style", "width:936px;");
+//            }
+//            else {
+//                settingContainer.setAttribute("style", "width:936px;");
+//            }
+            Fanex.CustSetting.CURRENT_CONTEXT = new Fanex.CustSetting.Context(roles[0], roles[1], roles[2]);
+//            Fanex.CustSetting.CURRENT_CONTEXT.ia3 = false; // Allow auto PT master on member
+//            Fanex.CustSetting.CURRENT_CONTEXT.language = 'th-TH'
+            grid1 = new Fanex.CustSetting.PTGrid(grid);
+            var ptContainer = document.getElementById('ptContainer');
+            ptContainer.innerHTML = "";
+            grid1.Render(ptContainer);
+
+            bettingLimit1 = new Fanex.CustSetting.BettingLimit(roles[1] == '4' ? bettingLimits : bettingLimits2);
+            var bettingLimitContainer = document.getElementById('bettingLimitContainer');
+            bettingLimitContainer.innerHTML = "";
+            bettingLimit1.Render(bettingLimitContainer);
+
+            commissionSetting = new Fanex.CustSetting.CommissionSetting(commissionSettingData);
+            var commissionSettingContainer = document.getElementById('commissionSettingContainer');
+            commissionSettingContainer.innerHTML = "";
+            commissionSetting.Render(commissionSettingContainer);
+
+
+            Validators.show(document.getElementById('btnSave'), 'This is demo for tooltip message, this is very long message with custom style');
+        };
+
+        function SaveAll() {
+            var commissionValue = commissionSetting.Save();
+            var betSettingValidate = bettingLimit1.Validate();
+            var betSettingValue = bettingLimit1.Save();
+            var ptSettingValue = grid1.Save();
+            var demox = 10;
+        }
+
+    </script>
+    <br />
+    <div  id="settingContainer" style="width:936px;">
+        <div id="commissionSettingContainer">
+        </div>
+        <br />
+        <div id="bettingLimitContainer">
+        </div>
+        <br />
+        <div id="ptContainer">
+        </div>
+    </div>
+    </div>
+</body>
+</html>

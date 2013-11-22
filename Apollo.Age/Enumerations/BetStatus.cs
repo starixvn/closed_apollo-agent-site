@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Tring" date="2013.4.12">Created</change>
 // </history>
+
 namespace Apollo.Age.Enumerations
 {
     public enum BetStatus : int

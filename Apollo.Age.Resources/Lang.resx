@@ -2077,7 +2077,7 @@
   <data name="Wagers_Forecast" xml:space="preserve">
     <value>Wagers/Forecast</value>
   </data>
-  <data name="Win_Loss" xml:space="preserve">
+  <data name="WinLoss" xml:space="preserve">
     <value>Win/Loss</value>
   </data>
   <data name="PermissionUpdatedSuccessfully" xml:space="preserve">
@@ -2098,7 +2098,7 @@
   <data name="ShadowList" xml:space="preserve">
     <value>Shadow list</value>
   </data>
-  <data name="System_Log" xml:space="preserve">
+  <data name="SystemLog" xml:space="preserve">
     <value>System Log</value>
   </data>
   <data name="View_Log" xml:space="preserve">
@@ -2121,5 +2121,11 @@
   </data>
   <data name="periodnumber" xml:space="preserve">
     <value>Period {0}</value>
+  </data>
+  <data name="ApplyDownlineAndShadow" xml:space="preserve">
+    <value>Apply to all downlines and shadows</value>
+  </data>
+  <data name="UpdatePermission" xml:space="preserve">
+    <value>Update Permission</value>
   </data>
 </root>

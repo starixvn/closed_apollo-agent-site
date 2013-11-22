@@ -24,5 +24,7 @@ namespace Apollo.Age.Reports.ViewModels
         public int MainShareHolderId { get; set; }
 
         public string MainShareHolderUsername { get; set; }
+
+        public bool HasPermissionDownlineDetail { get; set; }
     }
 }

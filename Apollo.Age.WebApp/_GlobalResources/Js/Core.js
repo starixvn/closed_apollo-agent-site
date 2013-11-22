@@ -8,7 +8,13 @@ if (typeof jQuery != 'undefined') {
                 $.blockUI();
             },
             hidePopupBlockLoading: function () {
-                $("iframe").siblings('.block-loading').hide();
+                if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                    parent.$('.block-loading').hide();
+                    $('.block-loading').hide();			
+                }
+                else {
+                    $("iframe").siblings('.block-loading').hide();
+                }
             },
             dialogOpt: {
                 position: { my: "top+20%", at: "center top", of: window },
@@ -26,17 +32,27 @@ if (typeof jQuery != 'undefined') {
                 APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
                 var iframeLoading = target.find('iframe').get(0);
+
                 if (iframeLoading) {
+
                     iframeLoading.contentWindow.onload = function () {
                         APOLLO.hidePopupBlockLoading();
                     };
+
                 }
+
+                //APOLLO.closeDialog(target);
 
                 return APOLLO.currentOpenDialog;
             },
             openDialogFrame: function (url, title, options, singleFrame) {
-                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" frameborder="0" border="0"></iframe>',
+                var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" overflow="auto" frameborder="0" border="0"></iframe>',
 					accessClass = "";
+
+                var blockLoading = '<p class="block-loading">loading..............................................</p>';
+
+
+
                 if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
 
                 if (singleFrame) { // only one instance of dialog can be opened
@@ -50,11 +66,15 @@ if (typeof jQuery != 'undefined') {
                     }
 
                     if (frame.length > 0) {
-                        frame.html(frameHtml);
-                    } else {
-                        var blockLoading = '<p class="block-loading">loading..............................................</p>';
+                        frame.html(blockLoading + frameHtml);
+                    }
+                    else {
+                        //                        if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
+                        //                            blockLoading = '';
+                        //                        }
                         frame = '<div id="apo-dialog-frame">' + blockLoading + frameHtml + '</div>';
                     }
+
                     return APOLLO.openDialog(frame, title, options);
                 }
 
@@ -64,7 +84,6 @@ if (typeof jQuery != 'undefined') {
                         accessClass = "loading-scoremap";
                     }
                 }
-                var blockLoading = '<p class="block-loading">loading..............................................</p>';
 
                 // multiple instances of dialog can be opened
                 return APOLLO.openDialog('<div>' + blockLoading + frameHtml + '</div>', title, options);
@@ -74,7 +93,7 @@ if (typeof jQuery != 'undefined') {
             },
             resizeDialog: function (width, height) {
                 if (APOLLO.currentOpenDialog && APOLLO.currentOpenDialog.dialog("isOpen")) {
-                   
+
                     if ($(window).width() >= 1024) {
                         APOLLO.currentOpenDialog.dialog("option", { width: width + 30, height: height + 50 });
                     } else {
@@ -231,14 +250,21 @@ if (typeof jQuery != 'undefined') {
 
                         target.datepicker('setDate', new Date(y, m, d));
                     };
-
+                    var defaultDate = function ($this) {
+                        var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                        if (!(date_regex.test($this.val()))) {
+                            var today = new Date();
+                            return today.getYear + '-' + today.getMonth + '-' + today.getDay;
+                        }
+                        return $this.val();
+                    };
                     datePickers.each(function () {
                         var $this = $(this);
 
                         $this.datepicker({
                             changeMonth: true,
                             changeYear: true,
-                            defaultDate: new Date($this.val()),
+                            defaultDate: defaultDate($this),
                             dateFormat: "yy-mm-dd",
                             minDate: limitDate($this, "mindate"),
                             maxDate: limitDate($this, "maxdate"),
@@ -429,14 +455,11 @@ if (typeof jQuery != 'undefined') {
             },
 
             IsValidDate: function (date) {
-                try {
-
-                    return Date.parse(date.replace(/-/g, '/'));
-                }
-                catch (FormatException) 
-                {
+                var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                if (!(date_regex.test(date))) {
                     return false;
                 }
+                return true;
             },
 
             init: function () {

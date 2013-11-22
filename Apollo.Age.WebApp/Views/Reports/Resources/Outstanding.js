@@ -62,11 +62,16 @@
                     timeout: 120000
                 })
                 .done(function (result) {
-                    OUTSTANDING.initGrid(result);
+                    if (result.HasPermissionDownlineDetail) {
+                        OUTSTANDING.initGrid(result);
 
-                    OUTSTANDING.ddlSport.val(OUTSTANDING.hdSportType.val());
-                    OUTSTANDING.ddlBettype.val(OUTSTANDING.hdBettype.val());
-                    OUTSTANDING.isAgentOutStanding = false;
+                        OUTSTANDING.ddlSport.val(OUTSTANDING.hdSportType.val());
+                        OUTSTANDING.ddlBettype.val(OUTSTANDING.hdBettype.val());
+                        OUTSTANDING.isAgentOutStanding = false;
+                    }
+                    else {
+                        alert(APOLLO.htmlDecode(LANGUAGES.DonwlinePermission));
+                    }
                 })
                 .fail(function (event, jqXHR, ajaxSettings) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
@@ -126,7 +131,7 @@
             + "&sporttype=" + OUTSTANDING.hdSportType.val()
             + "&bettype=" + OUTSTANDING.hdBettype.val());
             // resolution for screens
-            var resolution = APOLLO.resolutionForScreens(1030, 630);            
+            var resolution = APOLLO.resolutionForScreens(1030, 630);
             APOLLO.openDialogFrame(url, LANGUAGES.BetListString, {
                 width: resolution.width,
                 height: resolution.height,
@@ -193,8 +198,8 @@
 } (jQuery);
 
 $(document).ready(function () {
-    $.blockUI();
+    //$.blockUI();
     OUTSTANDING.init();
     APOLLO.initPageInfo();
-    $.unblockUI();
+    //$.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

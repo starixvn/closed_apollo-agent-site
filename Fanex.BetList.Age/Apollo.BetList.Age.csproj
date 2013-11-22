@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.BetList.Age</RootNamespace>
+    <AssemblyName>Fanex.BetList.Age</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fanex.BetList.Core">
+      <HintPath>..\Dependencies\Fanex.BetList.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\TplCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\AgentComm1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentCommBuilder\IAgentComm.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT1233.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\AgentPT33.cs" />
+    <Compile Include="BetListHTMLBuilderExt\AgentPTBuilder\IAgentPT.cs" />
+    <Compile Include="BetListHTMLBuilderExt\BetListHTMLBuilderExt.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\BlankFooter.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\Footer0.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\Footer1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\FooterBuilder\IFooter.cs" />
+    <Compile Include="BetListHTMLBuilderExt\NoBuilder\INo.cs" />
+    <Compile Include="BetListHTMLBuilderExt\NoBuilder\No1.cs" />
+    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\IWinLoss.cs" />
+    <Compile Include="BetListHTMLBuilderExt\WinLostBuilder\WinLost1.cs" />
+    <Compile Include="Definition\BetListType.cs" />
+    <Compile Include="DTO\TicketMapper.cs" />
+    <Compile Include="DTO\TicketDataMapper.cs" />
+    <Compile Include="DTO\TicketDataTransformer.cs" />
+    <Compile Include="DTO\TicketTransformer.cs" />
+    <Compile Include="ExtTemplate\AgentComm.htm.cs" />
+    <Compile Include="ExtTemplate\AgentPT.htm.cs" />
+    <Compile Include="ExtTemplate\BetList.htm.cs" />
+    <Compile Include="ExtTemplate\BetListTemplate.cs" />
+    <Compile Include="ExtTemplate\Footer0.htm.cs" />
+    <Compile Include="ExtTemplate\Footer1.htm.cs" />
+    <Compile Include="ExtTemplate\Header1.htm.cs" />
+    <Compile Include="ExtTemplate\HeaderViewDetail.htm.cs" />
+    <Compile Include="ExtTemplate\No.htm.cs" />
+    <Compile Include="ExtTemplate\OpenBetList.htm.cs" />
+    <Compile Include="ExtTemplate\Trans.htm.cs" />
+    <Compile Include="ExtTemplate\WinLoss.htm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExtTemplate\AgentComm.htm" />
+    <Content Include="ExtTemplate\BetList.htm" />
+    <Content Include="ExtTemplate\AgentPT.htm" />
+    <Content Include="ExtTemplate\Footer1.htm" />
+    <Content Include="ExtTemplate\Footer0.htm" />
+    <Content Include="ExtTemplate\HeaderViewDetail.htm" />
+    <Content Include="ExtTemplate\OpenBetList.htm" />
+    <Content Include="ExtTemplate\Header1.htm" />
+    <Content Include="ExtTemplate\No.htm" />
+    <Content Include="ExtTemplate\Trans.htm" />
+    <Content Include="ExtTemplate\WinLoss.htm" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.BetList.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.Lang.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.Racing.designer.cs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">
+      <Project>{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}</Project>
+      <Name>Apollo.Age.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -10,9 +10,9 @@
 
 namespace Apollo.Age.Forecast.Models
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Forecast match win loss model.
+    /// </summary>
     public class ForecastMatchWinLostModel
     {
         public decimal Value0 { get; set; }

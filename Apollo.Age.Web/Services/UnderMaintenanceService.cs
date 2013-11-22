@@ -10,7 +10,6 @@
 
 namespace Apollo.Age.Web.Services
 {
-    using System;
     using Apollo.Age.Configurations;
     using Apollo.Age.Services.Impl;
     using Apollo.UMService;
@@ -65,10 +64,8 @@ namespace Apollo.Age.Web.Services
 
                     return underMaintenanceInfo;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    HandleException(ex);
-
                     return new UnderMaintenanceModel { Status = false };
                 }
             }

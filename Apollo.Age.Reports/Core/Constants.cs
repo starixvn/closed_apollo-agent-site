@@ -13,6 +13,9 @@ namespace Apollo.Age.Reports.Core
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Constants list.
+    /// </summary>
     public static class Constants
     {
         public const string NA = "N/A";
@@ -25,11 +28,13 @@ namespace Apollo.Age.Reports.Core
         public const string SessionKeyAgentOutstandingReport = "AgentOutStandingReport-{0}";
         public const string SessionKeyMemberOutstandingReport = "MemberOutStandingReport-{0}";
         public const string SessionKeyLineSportCreditReport = "LineSportCreditReport-{0}";
+
         /// <summary>
         /// Dictionary list (sport id, language key).
         /// The order should follow.
         /// </summary>
         public static readonly Dictionary<int, string> MatchEnteredSports = new
+
         Dictionary<int, string>
         {
             { 1, "soccer" },
@@ -42,6 +47,7 @@ namespace Apollo.Age.Reports.Core
         };
 
         public static readonly Dictionary<int, string> ReportAgentLevelDictionary = new
+
         Dictionary<int, string>
         {
             { 0, "lblSuper" },

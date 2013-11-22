@@ -10,6 +10,9 @@ namespace Apollo.Age.BetList.Criterias
 {
     using System;
 
+    /// <summary>
+    /// System parlay detail criteria.
+    /// </summary>
     public class SystemParlayDetailCriteria
     {
         public long RefNo { get; set; }

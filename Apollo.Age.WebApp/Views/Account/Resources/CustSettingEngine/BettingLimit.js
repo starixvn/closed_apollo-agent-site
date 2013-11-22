@@ -162,7 +162,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             var minBetValue = Fanex.RoundNumber(parseFloat(this.items[0].minBetElement.value, true), 1);
             var maxBetValue = Fanex.RoundNumber(parseFloat(this.items[0].maxBetElement.value, true), 1);
             var maxPerMatchValue = Fanex.RoundNumber(parseFloat(this.items[0].maxPerMatchElement.value, true), 1);
-
+            
 
             var c = this.items.length;
             for (var i = 0; i < c; i++) {

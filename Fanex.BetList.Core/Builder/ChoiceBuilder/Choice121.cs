@@ -17,7 +17,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Home no bet
+    /// Home no bet.
     /// </summary>
     public class Choice121 : Choice1
     {
@@ -27,6 +27,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
@@ -37,13 +38,9 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = betHomeTeam ? Apollo.Age.Resources.BetList.lblDraw : awayName;
 
-            //this.Template.betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
             this.Template.homeTeam = string.Join(null, new string[] { homeName, ticket.IsNeutral ? " (N) " : string.Empty });
             this.Template.awayTeam = awayName;
 
-            //this.CalculateFG_LG(ticket.EventStatus, ref this.Template.home_firstGoal_lastGoal, ref this.Template.away_firstGoal_lastGoal);
-
-            //this.Template.sportTypeName = ticketHelper.GetSportNameById(ticket.SportTypeId);
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
         }

@@ -75,7 +75,7 @@
 }
 
 #box_header, .box-header {
-	width: 805px;
+	width: 884px;
 	margin-top: 0px;
 
 	&.report {
@@ -87,25 +87,13 @@
 		.btn {
 			font-size: @fontSize;
 			height: 21px;
-			padding: 0 0 1px;
-		}
-
-		input.datepicker {
-			width: 65px;
-		}
-
-		img.ui-datepicker-trigger {
-			margin-left: 2px;
+			padding-bottom: 1px;
 		}
 
 		.row {
 			background-color: #C9DBDF;
-			padding: 0;
+			padding: 0 0px;
 			margin-bottom: 1px;
-
-			.cell {
-				margin: 0;
-			}
 
 			&.bg-action {
 				background: @white;
@@ -119,31 +107,26 @@
 					&.btn-action {
 						float: none;
 						margin: auto;
-						width: 153px;
+						width: 173px;
 
 						input {
-							margin-right: 10px;
+							margin-right: 20px;
 						}
 
 						.btn {
 							padding: 0 8px;
+							height: 20px;
 							float: left;
 						}
 					}
 				}				
 			}
 		}
-
-		&.matchEnter {
-			width: 750px;
-		}
-
 		.winloss, .outstanding {
 			.bettype {
 				min-width: 146px;
 			}
 		}
-
 		.winloss, .outstanding, .sportcredit {
 			width: 100%;
 
@@ -222,18 +205,18 @@
 .period-schedule {
 	float: left;
 	display: block;
-	margin-left: 5px;
+	margin-left: 10px;
 	border: 1px solid #000;
 
 	.tblRpt {
 		border-color: #DCDCDC;
 		border-width: 1px;
-		width: 215px;
+		width: 250px;
 		height: 274px;
 
 		th, td {
 			height: 20px;
-			padding: 0 2px;
+			padding: 0 3px;
 		}
 
 		thead th {
@@ -306,7 +289,7 @@
 	display: table;
 	margin-top: 10px;
 	padding: 10px;
-	width: 785px;
+	width: 864px;
 
 	.title-notes {
 		float: left;
@@ -317,7 +300,7 @@
 		float: left;		
 		list-style: disc outside none;
 		margin-left: 26px;
-		width: 626px;
+		width: 680px;
 		font-style: italic;	
 	}
 }
@@ -326,8 +309,7 @@
 
 .ie {
 	#box_header.report .btn, .box-header.report .btn {
-		height: 22px;
-		padding: 0 2px;
+		height: 20px;
 	}
 
 	#function-bar {
@@ -338,37 +320,10 @@
 				color: #0000EE;
 			}
 		}
-	}
-
-	.period-schedule .tblRpt {
-		height: 277px;
-	}
-}
-
-.eq-ie8, .eq-ie7 {
-	#page_main {
-		#box_header {
-			
-			&.report {
-				width: 797px;
-
-				&.matchEnter {
-					width: 760px;
-				}
-			}
-
-			.btn {
-				overflow: visible;
-			}
-		}
-
-		#function-bar .menu.report-sportcredit {
-			margin-left: 283px;
-		}
-
-		.notes {
-			width: 777px;
-		}
+		.menu.report-sportcredit
+		{
+			margin: 2px 80px 0 291px;
+		}		
 	}
 }
 
@@ -377,30 +332,25 @@
 	#page_main {
 		width: 99%;
 
-		#box_header {
-			&.report.matchEnter {
-				width: 750px;
-			}
-		}
-
 		#function-bar {
 			#ddlSport {
 				height: 20px;
 			}
 		}
 
+		#box_header {
+			width: 950px;
+			.btn {
+				padding: 0;
+			}		
+		}
+
 		.export-excel {
 			margin-top: 0;
 		}
-	}
-}
 
-.eq-ie10 {
-	#page_main {
-		#box_header {
-			.btn {
-				padding-top: 1px;
-			}
+		.notes {
+			width: 930px;
 		}
 	}
 }
@@ -425,7 +375,7 @@
 			background-color:#008081;
 		}
 		.membercolor{
-			color: #222;
+			color: #222222;
 			background-color:#DBE5EE;
 		}
 		.downlinecolor{
@@ -433,13 +383,13 @@
 		}
 		.agentcolor{
 			background-color: #C4D9EE;
-			color: #222;
+			color: #222222;
 		}
 		.uplinecolor{
 			background-color:#008081;
 		}
 		.oustandingcolor{
-			color: #222;
+			color: #222222;
 			background-color:#DBE5EE;
 			width: 110px;
 		}
@@ -447,11 +397,11 @@
 
 	.header-member{
 		.namecolor{
-			color: #222;
+			color: #222222;
 			background-color:#C4D9EE;
 		}
 		.sharecolor{
-			color: #222;
+			color: #222222;
 			background-color:#C4D9EE;
 		}
 		.membercolor{
@@ -460,13 +410,13 @@
 		}
 		.agentcolor{
 			background-color: #C4D9EE;
-			color: #222;
+			color: #222222;
 		}
 		.uplinecolor{
 			background-color:#008081;
 		}
 		.oustandingcolor{
-			color: #222;
+			color: #222222;
 			background-color:#C4D9EE;
 			width: 110px;
 		}
@@ -484,7 +434,7 @@
 
 	.split-header
 	{
-		color: #222;
+		color: #222222;
 	}
 
 	.split-footer

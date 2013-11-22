@@ -176,14 +176,14 @@
     <tbody>
     </tbody>
 }
-@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype)
+@helper RenderBetTypeData(List<SpecialViewModel> list, int currentBettype, bool hasDownlineDetailsPermission = true)
     {
         var groupBet = list.Where(m => m.Bettype == currentBettype).OrderBy(m => m.Type).ToList();
 
         if (!ReferenceEquals(groupBet, null) && groupBet.Any())
         {
             var firstModel = groupBet.FirstOrDefault();
-    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), groupBet.Sum(m => m.StakeBefore), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId)
+    @RenderColumnData(firstModel.BetTeam, (int)groupBet.Sum(m => m.Count), groupBet.Sum(m => m.Stake), groupBet.Sum(m => m.StakeBefore), firstModel.LiveIndicator, firstModel.LeagueId, firstModel.MatchId, hasDownlineDetailsPermission)
         }
         else
         {
@@ -208,7 +208,7 @@
         + 3 : Draw
 *@
 }
-@helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId)
+@helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId, bool hasDownlineDetailsPermission = true)
     {
         string columnData = "{0}<span class='split'>/</span>{1}<span class='split'>/</span>{2}";
         if (betCount != 0
@@ -220,9 +220,16 @@
                 betCount.ToString(),
                 Math.Round(stakebefore).ToString(),
                 Math.Round(stake).ToString());
+            if (hasDownlineDetailsPermission)
+            { 
     <a href="#" class="red wager-link" data-betTeams="@betTeams" data-live="@isLive" data-league="@leagueId" data-match="@matchId">
         @(new HtmlString(columnData))
     </a>
+            }
+            else
+            {
+    @(new HtmlString(columnData))
+            }
         }
         else
         {

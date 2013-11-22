@@ -11,7 +11,7 @@
 namespace Fanex.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    /// Last ball OU
+    /// Last ball Over Under.
     /// </summary>
     public class Choice82 : Choice81
     {

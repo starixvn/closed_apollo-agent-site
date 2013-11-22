@@ -30,7 +30,7 @@ namespace Fanex.BetList.Core.Builder.AgentShareBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>Agent share template.</returns>
         AgentShare_Template Render(ITicket ticket, List<ITicketData> ticketData);
     }
 }

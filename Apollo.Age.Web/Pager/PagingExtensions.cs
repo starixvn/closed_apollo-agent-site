@@ -1,11 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
+﻿// --------------------------------------------------------------------------
+// <copyright file="PagingExtensions.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Apollo.Age.Web.Pager
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Ajax;
+
+    /// <summary>
+    /// Paging extensions.
+    /// </summary>
     public static class PagingExtensions
     {
         #region HtmlHelper extensions

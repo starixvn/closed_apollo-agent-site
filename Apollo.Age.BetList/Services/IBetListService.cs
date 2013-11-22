@@ -15,7 +15,7 @@ namespace Apollo.Age.BetList.Services
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Service Interface
+    /// Service Interface.
     /// </summary>
     public interface IBetListService
     {

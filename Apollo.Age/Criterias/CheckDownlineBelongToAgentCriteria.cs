@@ -8,14 +8,10 @@
 // </history>
 namespace Apollo.Age.Criterias
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Check down line belong to agent criteria.
     /// </summary>
     public class CheckDownlineBelongToAgentCriteria : CriteriaBase
     {

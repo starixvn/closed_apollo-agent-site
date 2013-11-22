@@ -14,6 +14,8 @@
     }
 
     var groupMatch = list.GroupBy(m => m.MatchId);
+
+    var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt @ViewBag.SportName @((bool)ViewBag.IsEM ? "emw" : string.Empty) special-bet">
     @WagerHelper.RederHeaderColumn(arrBet)
@@ -27,7 +29,7 @@
                 @for (int i = 0; i < countBet; i++)
                 {
                     <td class="r red-num vertical-middle nowrap" data-bettype="@listBet[i].Bettype">
-                        @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype)
+                        @WagerHelper.RenderBetTypeData(listMatch, listBet[i].Bettype, hasDownlineDetailsPermission)
                     </td>
                 }
             </tr>

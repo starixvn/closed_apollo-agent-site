@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI", "Fanex.Age.UI\Fanex.Age.UI.csproj", "{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age", "Apollo.Age\Apollo.Age.csproj", "{784D23CD-1AF9-4265-9C68-62C31DD84AAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.TotalBets", "Apollo.Age.TotalBets\Apollo.Age.TotalBets.csproj", "{BD56914E-88CE-4330-BE77-8BD78208A140}"
@@ -23,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Integration", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Resources", "Apollo.Age.Resources\Apollo.Age.Resources.csproj", "{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components", "Fanex.Age.UI.Components\Fanex.Age.UI.Components.csproj", "{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.WebApp", "Apollo.Age.WebApp\Apollo.Age.WebApp.csproj", "{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C60FBCF-4D7E-4773-A9AC-3FEAA8B83C47}"
@@ -32,21 +26,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C60FB
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "Fanex.BetList.Core\Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core", "Fanex.BetList.Core\Apollo.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Wagers", "Apollo.Age.Wagers\Apollo.Age.Wagers.csproj", "{8D7FD241-B6DE-4DD0-A22A-16B4A53CAC48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Age", "Fanex.BetList.Age\Apollo.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core.TicketHelper", "Fanex.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B27BBD58-4705-466B-91DA-CED9465F638A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.UMService", "Apollo.UMService\Apollo.UMService.csproj", "{0F1FAA78-599B-4646-B4E8-007C7992CE15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.PermissionControl", "Apollo.Age.PermissionControl\Apollo.Age.PermissionControl.csproj", "{FE47EC76-47A3-423B-808D-E94537B3F6FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustSetting", "..\..\Appo-CustSetting\apollo-customer-setting\Fanex.CustSetting\Fanex.CustSetting\Fanex.CustSetting.csproj", "{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.CustSetting", "Fanex.CustSetting\Apollo.CustSetting.csproj", "{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,12 +46,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{784D23CD-1AF9-4265-9C68-62C31DD84AAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD56914E-88CE-4330-BE77-8BD78208A140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -78,12 +66,12 @@ Global
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FC7B3E-361B-4470-9A02-73B25795D99E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5065F780-0CF8-4AE4-96F2-70D8BE40332C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -94,10 +82,6 @@ Global
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE02C65E-2BAB-4805-81C9-548DB9DD4CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,10 +106,6 @@ Global
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F1FAA78-599B-4646-B4E8-007C7992CE15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE47EC76-47A3-423B-808D-E94537B3F6FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -133,9 +113,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{8CF3E76A-81DB-4D8C-B999-9B4D428591F5} = {B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}
-		{AB0F7FCA-F8A6-407F-B9CC-CEF619FD42BE} = {B24FBAD2-DDF2-4C46-9479-2A5DF6D3D2F6}
 	EndGlobalSection
 EndGlobal

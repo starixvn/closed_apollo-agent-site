@@ -14,34 +14,62 @@
 namespace Fanex.BetList.Core.Builder.StatusBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Fanex.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// Win/Place
+    /// Win Place bet type.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Status33 : Status1
     {
-        protected int winBetId, placeBetId;
+        private int _winBetId;
+        private int _placeBetId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Status33" /> class.
         /// </summary>
         public Status33()
         {
-            winBetId = 31;
-            placeBetId = 32;
+            WinBetId = 31;
+            PlaceBetId = 32;
+        }
+
+        public int WinBetId
+        {
+            get
+            {
+                return _winBetId;
+            }
+
+            set
+            {
+                _winBetId = value;
+            }
+        }
+
+        public int PlaceBetId
+        {
+            get
+            {
+                return _placeBetId;
+            }
+
+            set
+            {
+                _placeBetId = value;
+            }
         }
 
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">if set to <c>true</c> [is show VNIP].</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Status Template.
+        /// </returns>
         public override Templates.Status_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             base.Render(ticket, ticketData);
@@ -53,8 +81,8 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
 
                 if (foundTicketData != null && foundTicketData.Count > 1)
                 {
-                    string winStatus = foundTicketData.Find(item => item.BetTypeId == winBetId).Status.ToLower();
-                    string placeStatus = foundTicketData.Find(item => item.BetTypeId == placeBetId).Status.ToLower();
+                    string winStatus = foundTicketData.Find(item => item.BetTypeId == WinBetId).Status.ToLower();
+                    string placeStatus = foundTicketData.Find(item => item.BetTypeId == PlaceBetId).Status.ToLower();
 
                     string contextWinStatus = GetContextStatus(winStatus);
                     string contextPlaceStatus = GetContextStatus(placeStatus);
@@ -72,6 +100,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
                         case BetStatus.Reject:
                         case BetStatus.Refund:
                             break;
+
                         default:
                             this.Template.result = string.Join(null, new string[] { winStatusMarkup, "<br/>", placeStatusMarkup });
                             break;
@@ -82,6 +111,14 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
             return Template;
         }
 
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich Text String.</returns>
         public override IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
         {
             Render(ticket, ticketData);
@@ -115,18 +152,18 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>List of tickets.</returns>
         protected virtual List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.TransId.ToString()));
         }
 
         /// <summary>
-        /// Extract string value between tags from a source string
+        /// Extract string value between tags from a source string.
         /// </summary>
-        /// <param name="tag">tag name</param>
-        /// <param name="source">source string</param>
-        /// <returns></returns>
+        /// <param name="tag">Input Tag name.</param>
+        /// <param name="source">Source string.</param>
+        /// <returns>Extract string between tag.</returns>
         private string ExtractStringBetweenTag(string tag, string source)
         {
             string startTag = string.Join(null, new string[] { "<", tag, ">" });
@@ -141,7 +178,7 @@ namespace Fanex.BetList.Core.Builder.StatusBuilder
         /// Gets the context status.
         /// </summary>
         /// <param name="betStatus">The bet status.</param>
-        /// <returns></returns>
+        /// <returns>String status.</returns>
         private string GetContextStatus(string betStatus)
         {
             switch (betStatus)

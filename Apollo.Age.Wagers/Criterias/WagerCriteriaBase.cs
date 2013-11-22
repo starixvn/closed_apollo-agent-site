@@ -69,6 +69,6 @@ namespace Apollo.Age.Wagers.Criterias
         }
 
         [SpParam(Ignored = true)]
-        public bool IsEM { get; set; }
+        public bool IsEarlyMarket { get; set; }
     }
 }

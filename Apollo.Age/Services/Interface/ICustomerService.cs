@@ -9,10 +9,6 @@
 
 namespace Apollo.Age.Services.Interface
 {
-    using System.Collections.Generic;
-    using Apollo.Age.Criterias;
-    using Apollo.Age.Entities;
-
     public interface ICustomerService
     {
     }

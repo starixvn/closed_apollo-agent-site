@@ -23,8 +23,8 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// </summary>
         public AgentPT1233()
         {
-            winBetId = 1231;
-            placeBetId = 1232;
+            WinBetId = 1231;
+            PlaceBetId = 1232;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns></returns>
+        /// <returns>List of tickets.</returns>
         protected override List<ITicketData> GetReferenceData(ITicket ticket, List<ITicketData> ticketData)
         {
             return ticketData.FindAll(item => item.RefNo.Equals(ticket.RefNo));

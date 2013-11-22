@@ -142,7 +142,14 @@ namespace Apollo.Age.Configurations
             get
             {
                 return GetValue("PeriodDateRange");
+            }
+        }
 
+        public static int SiteId
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("MessageSiteId"));
             }
         }
 

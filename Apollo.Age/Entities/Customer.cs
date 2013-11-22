@@ -6,15 +6,11 @@
 // <history>
 //   <change who="Anders.Le" date="2013.7.4">Created</change>
 // </history>
+
 namespace Apollo.Age.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Customer entity.
     /// </summary>
     public class Customer : ICustomer
     {

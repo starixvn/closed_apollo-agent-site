@@ -7,7 +7,8 @@
     var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
     var agentId = ViewBag.AgentId ?? 0;
     var isMaster = ViewBag.IsMaster ?? false;
-    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);    
+    string backLink = string.Format(Url.Content("~/CustomerSetting/ViewAgentDetails") + "/?agentId={0}&agentLevel={1}&userName={2}&fromLeftMenu={3}", agentId, ViewBag.AgentLevel, userName, fromLeftMenu);
+    var MaxBetLimit = Convert.ToInt32(ViewBag.MaxBetLimit);
 }
 @section header
 {
@@ -24,8 +25,10 @@
     </div>
 }
 @Html.Hidden("backUrl", backLink)
-
+@if (MaxBetLimit != 0)
+{
 <div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">0</span> </div>
+}
 <div id="commissionSettingContainer" class="clear">
 </div>
 <div id="bettingLimitContainer">

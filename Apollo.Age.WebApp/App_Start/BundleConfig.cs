@@ -9,18 +9,25 @@
 
 namespace Apollo.Age.WebApp
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Optimization;
     using BundleTransformer.Core.Orderers;
     using BundleTransformer.Core.Transformers;
 
+    /// <summary>
+    /// Bundle config.
+    /// </summary>
     public class BundleConfig
     {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         public static void RegisterBundles(BundleCollection bundles)
         {
-            #region css
-
+            // css
             bundles.AddAndInclude(
                 "~/css/new-message",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
@@ -30,8 +37,7 @@ namespace Apollo.Age.WebApp
                 "~/css/totalbets",
                 "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
                 "~/views/totalbets/resources/totalbets.less",
-                "~/_globalresources/css/refreshcountdown.less"
-                );
+                "~/_globalresources/css/refreshcountdown.less");
 
             bundles.AddAndInclude(
                 "~/css/reports",
@@ -118,13 +124,10 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
            "~/css/assignfunction",
-           "~/Views/PermissionUserControl/Resources/permissionusercontrol.less",
-            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css");
+            "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
+           "~/Views/PermissionUserControl/Resources/permissionusercontrol.less");
 
-            #endregion css
-
-            #region js
-
+            // js
             bundles.Add(new ScriptBundle("~/scripts/topbarjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
@@ -244,11 +247,9 @@ namespace Apollo.Age.WebApp
                "~/_globalresources/js/blockui/jquery.blockui.js",
                "~/_globalresources/js/core.js",
                "~/_globalresources/js/pager/jquery.sbpager.js",
-               "~/views/results/resources/result.js"
-               ));
+               "~/views/results/resources/result.js"));
 
-            #region Customer Setting
-
+            // Customer Setting
             bundles.Add(new ScriptBundle("~/scripts/editsettingjs").Include(
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
@@ -278,8 +279,6 @@ namespace Apollo.Age.WebApp
                 "~/views/account/resources/custsettingengine/bettypegroup.js",
                 "~/views/account/resources/custsettingengine/commissionsetting.js",
                 "~/views/account/resources/editpositiontaking.js"));
-
-            #endregion Customer Setting
 
             bundles.Add(new ScriptBundle("~/scripts/accountlistjs").Include(
                 "~/_globalresources/js/head.js",
@@ -350,8 +349,7 @@ namespace Apollo.Age.WebApp
                 "~/areas/wagers/scripts/wagers.js",
                 "~/_globalresources/js/pager/jquery.sbpager.js",
                 "~/_globalresources/js/jquery.cookie.js",
-                "~/_globalresources/js/refreshcountdown.js"
-            ));
+                "~/_globalresources/js/refreshcountdown.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/sbpager").Include(
             "~/_GlobalResources/Js/Pager/jquery.sbpager.js"));
@@ -362,8 +360,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/Core.js",
                 "~/_globalresources/js/BlockUI/jquery.blockUI.js",
-                 "~/views/account/resources/fundout.js"
-            ));
+                 "~/views/account/resources/fundout.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/assignfunction").Include(
             "~/_globalresources/js/jquery.js",
@@ -373,17 +370,20 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/js/BlockUI/jquery.blockUI.js",
             "~/Views/PermissionUserControl/Resources/AssignFunction.js"));
 
-            #endregion js
-
             bundles.FileSetOrderList.Clear();
         }
     }
 
+    /// <summary>
+    /// Bundle extensions.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     internal static class BundleExtensions
     {
         public static void AddAndInclude(
             this BundleCollection bundles,
-            string bundleVirtualPath, params string[] virtualPaths)
+            string bundleVirtualPath,
+            params string[] virtualPaths)
         {
             bundles.Add(new Bundle(bundleVirtualPath)
             {

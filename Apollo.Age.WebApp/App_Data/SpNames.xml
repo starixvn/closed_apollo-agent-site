@@ -222,15 +222,11 @@
         <Setting Key="Age_Agent_GetAllInfo" SpName="Age_Agent_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="CustId" />
             <Mapping DataField="AgentLevel" ObjectProperty="Level" />
-        </Setting>
-        <Setting Key="Age_Agent_GetInfo" SpName="Age_Agent_GetInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
-            <Mapping DataField="AgentId" ObjectProperty="CustId" />
-        </Setting>
+        </Setting>        
         <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="ParentId" />
             <Mapping DataField="UGroup" ObjectProperty="Group" />
         </Setting>
-
         <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="SVRAGE.RepDB.aplweb" Plain="0">
             <Mapping DataField="AgentId" ObjectProperty="Id" />
             <Mapping DataField="AgentLevel" ObjectProperty="Level" />
@@ -480,7 +476,7 @@
         <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
-        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest6" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest8" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
         <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
             <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
@@ -502,7 +498,7 @@
         <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdateDirectMember" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
-        <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking_xtest" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB.aplweb" TimeOut="600"/>
         <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer_xtest" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
             <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
@@ -557,20 +553,27 @@
         <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB.aplweb"/>
     </Function>
     <Function>
-        <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRAGE.RepDB.aplweb"/>
-        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
-        <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
-        <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser" DbName="SVRAGE.RepDB.aplweb">
+        <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRAGE.RepDB.aplweb">
+            <Mapping DataField="FunctionId" ObjectProperty="Id" />
+            <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
+        </Setting>
+        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction_xtest" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb">
+            <Mapping DataField="FunctionId" ObjectProperty="Id" />
+            <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
+        </Setting>
+        <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser_xtest" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
             <Mapping DataField="AgentId" ObjectProperty="Id" />
         </Setting>
         <Setting Key="Age_AgentUser_GetInfo" SpName="Age_AgentUser_GetInfo" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
+            <Mapping DataField="AgentId" ObjectProperty="Id" />
             <Mapping DataField="AgentUsername" ObjectProperty="Username" />
         </Setting>
         <Setting Key="Age_AgentUser_GetUserFunctionPolicy" SpName="Age_AgentUser_GetUserFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
-        <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb">
-            <Mapping DataField="CreatorId" ObjectProperty="Id" />
+        <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb">            
+            <Mapping DataField="AgentId" ObjectProperty="Id" />
         </Setting>
     </Function>
 </Functions>

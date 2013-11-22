@@ -9,6 +9,7 @@ var Wagers = function ($) {
         league: null,
         fromDate: null,
         toDate: null,
+        moveBetDate: null,
         groupComm: null,
         sportTypeIds: null,
         url: null,
@@ -17,6 +18,7 @@ var Wagers = function ($) {
         pageIndex: 0,
         betTypeIds: null,
         urlActived: null,
+        messageValidateDateRange: null,
 
         init: function () {
             Wagers.sportName = $('#SportName').val();
@@ -28,6 +30,8 @@ var Wagers = function ($) {
             Wagers.isEM = $('#IsEM').val();
             Wagers.isOR = $('#IsOR').val();
             Wagers.betTypeIds = $('#BetTypeIds').val();
+            Wagers.moveBetDate = $('#MoveBetDate').val();
+            Wagers.messageValidateDateRange = $('#MessageValidateDateRange').val();
 
             if (Wagers.isOR == "true") {
                 Wagers.fromDate = $('#OutrightFromDate').val();
@@ -101,6 +105,30 @@ var Wagers = function ($) {
                 $("#btnSubmit").on('click', function () {
                     var newFromDate = $('#OutrightFromDate').val();
                     var newToDate = $('#OutrightToDate').val();
+
+                    if (!APOLLO.IsValidDate(newFromDate)) {
+                        $('#OutrightFromDate').focus();
+                        alert("Invalid date.");
+                        return;
+                    }
+
+                    if (newFromDate < Wagers.moveBetDate) {
+                        $('#OutrightFromDate').focus();
+                        alert(Wagers.messageValidateDateRange + ' ' + Wagers.moveBetDate);
+                        return;                        
+                    }
+
+                    if (!APOLLO.IsValidDate(newToDate)) {
+                        $('#OutrightToDate').focus();
+                        alert("Invalid date.");
+                        return;
+                    }
+
+                    if (newToDate < Wagers.moveBetDate) {
+                        $('#OutrightToDate').focus();
+                        alert(Wagers.messageValidateDateRange + ' ' + Wagers.moveBetDate);
+                        return;
+                    }
 
                     if (newFromDate > newToDate) {
                         alert($('#RecheckRangeOfDateText').val());

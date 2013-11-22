@@ -26,9 +26,8 @@ namespace Apollo.Age.Forecast.Services
     using Fanex.Common.Helper;
 
     /// <summary>
-    /// Forecast Service
+    /// Forecast Service.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ForecastService : QueryService
     {
         private readonly ICache _cacheManager;
@@ -45,14 +44,12 @@ namespace Apollo.Age.Forecast.Services
             _cacheManager = cacheManager ?? CacheService.CreateInstance();
         }
 
-        //private IForecastRepository _forecastRepository { get; set; }
-
         /// <summary>
-        /// Running Leagues
+        /// Running Leagues.
         /// </summary>
-        /// <param name="betType"></param>
-        /// <param name="agentId"></param>
-        /// <returns></returns>
+        /// <param name="betType">The bet type.</param>
+        /// <param name="agentId">The agent ID.</param>
+        /// <returns>List of league model.</returns>
         public IEnumerable<LeagueModel> GetRunningLeague(int betType, int agentId)
         {
             Check.Argument.IsNotNegative(betType, "betType");
@@ -67,11 +64,12 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Forecast 1X2
+        /// Forecast 1X2.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="loggedId">The logged ID.</param>
+        /// <param name="leagueId">The league ID.</param>
+        /// <returns>List of forecast 1X2 model.</returns>
         public IEnumerable<Forecast1X2Model> GetForecast1x2(int agentId, int loggedId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -87,11 +85,12 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// FC Handicap OU
+        /// FC Handicap OU.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="loggedId">The logged ID.</param>
+        /// <param name="leagueId">The league ID.</param>
+        /// <returns>List of forecast handicap model.</returns>
         public IEnumerable<ForecastHandicapOUModel> GetForecastHandicapOverUnder(int agentId, int loggedId, int leagueId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -111,14 +110,20 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Forecast Matches
+        /// Forecast Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
-        /// <returns></returns>
-        public ForecastMatchWinLostModel GetForecastMatcheValue(int agentId, int loggedId, int matchId, int betType, int currentScore)
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="loggedId">The logged ID.</param>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
+        /// <param name="currentScore">Current score.</param>
+        /// <returns>List of forecast match win lost model.</returns>
+        public ForecastMatchWinLostModel GetForecastMatcheValue(
+            int agentId,
+            int loggedId,
+            int matchId,
+            int betType,
+            int currentScore)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNegative(matchId, "matchId");
@@ -138,20 +143,20 @@ namespace Apollo.Age.Forecast.Services
             {
                 return GetForecastValueWithCurrentScore(forecastMatches, betType, currentScore);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// 1x2 Matches
+        /// 1x2 Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="loggedId">The logged ID.</param>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
+        /// <returns>List of forecast 1X2 model.</returns>
         public IEnumerable<Forecast1X2Model> GetForecast1X2Matches(int agentId, int loggedId, int matchId, int betType)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
@@ -169,88 +174,91 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Results
+        /// Score Map Results.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="matchIds"></param>
-        /// <param name="liveBetTypes"></param>
-        /// <param name="deadBallBetTypes"></param>
-        /// <returns></returns>
-        public List<ScoreMapMatchResultModel> GetScoreMapResults(int agentId, int loggedId, string matchIds, string liveBetTypes, string deadBallBetTypes)
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="loggedId">The logged ID.</param>
+        /// <param name="matchIds">List of match IDs.</param>
+        /// <param name="liveBetTypes">Live bet types.</param>
+        /// <param name="deadBallBetTypes">Dead ball bet types.</param>
+        /// <returns>List of score map match result model.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        public List<ScoreMapMatchResultModel> GetScoreMapResults(
+            int agentId,
+            int loggedId,
+            string matchIds,
+            string liveBetTypes,
+            string deadBallBetTypes)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNull(matchIds, "matchIds");
             Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
             List<ScoreMapMatchResultModel> scoreMapViewResult = new List<ScoreMapMatchResultModel>();
-            try
+
+            //// Get Plain Data From Database
+            ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
             {
-                //// Get Plain Data From Database
-                ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
+                AgentId = agentId,
+                MatchIds = matchIds,
+                LiveBetTypes = liveBetTypes,
+                DeadBetTypes = deadBallBetTypes,
+                LoggedId = loggedId
+            });
+
+            //// Map Data
+            int homeIndex = 0, awayIndex = 0, length = 0;
+
+            foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
+            {
+                homeIndex = 0;
+                awayIndex = 0;
+                ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
                 {
-                    AgentId = agentId,
-                    MatchIds = matchIds,
-                    LiveBetTypes = liveBetTypes,
-                    DeadBetTypes = deadBallBetTypes,
-                    LoggedId = loggedId
-                });
+                    MatchId = match.MatchId,
+                    HomeName = match.HomeTeam,
+                    AwayName = match.AwayTeam
+                };
 
-                //// Map Data
-                int homeIndex = 0, awayIndex = 0, length = 0;
-
-                foreach (ScoreMapMatch match in scoreMapResult.ScoreMapMatches)
+                length = scoreMapItem.ScoreMatrix.GetLength(1);
+                foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
                 {
-                    homeIndex = 0;
-                    awayIndex = 0;
-                    ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
+                    if (match.MatchId == item.MatchId)
                     {
-                        MatchId = match.MatchId,
-                        HomeName = match.HomeTeam,
-                        AwayName = match.AwayTeam
-                    };
-
-                    length = scoreMapItem.ScoreMatrix.GetLength(1);
-                    foreach (ScoreMapItem item in scoreMapResult.ScoreMapItems)
-                    {
-                        if (match.MatchId == item.MatchId)
+                        scoreMapItem.HasData = true;
+                        scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total;
+                        //// If HomeIndex = 7 Col, then increate Away Row
+                        if (homeIndex == length)
                         {
-                            scoreMapItem.HasData = true;
-                            scoreMapItem.ScoreMatrix[awayIndex, homeIndex++] = item.Total;
-                            //// If HomeIndex = 7 Col, then increate Away Row
-                            if (homeIndex == length)
+                            homeIndex = 0;
+                            awayIndex++;
+                            //// If away row == 7 then break out
+                            if (awayIndex == length)
                             {
-                                homeIndex = 0;
-                                awayIndex++;
-                                //// If away row == 7 then break out
-                                if (awayIndex == length)
-                                {
-                                    break;
-                                }
+                                break;
                             }
                         }
                     }
-
-                    scoreMapViewResult.Add(scoreMapItem);
                 }
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
+
+                scoreMapViewResult.Add(scoreMapItem);
             }
 
             return scoreMapViewResult;
         }
 
         /// <summary>
-        /// Bet Type List Score Map
+        /// Bet Type List Score Map.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of score map bet type.</returns>
         public List<int> GetListScoreMapBetType()
         {
             var oldBetTypeIds = _cacheManager.Get<List<int>>(Constants.ScoreMapBetTypeList);
+
             if (oldBetTypeIds == null)
             {
                 IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());
                 var betTypeIds = new List<int>();
+
                 foreach (var betType in scoreMapBetTypeList)
                 {
                     betTypeIds.Add(betType.TypeId);
@@ -261,6 +269,7 @@ namespace Apollo.Age.Forecast.Services
                 }
 
                 _cacheManager.Set<List<int>>(Constants.ScoreMapBetTypeList, betTypeIds, TimeSpan.FromHours(2));
+
                 return betTypeIds;
             }
 
@@ -268,13 +277,14 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Bet Type, Will Render 2 Part Live and Dead ball
-        /// <returns></returns>
+        /// Score Map Bet Type, Will Render 2 Part Live and Dead ball.
+        /// </summary>
+        /// <returns>Score map bet type model.</returns>
         public ScoreMapBetTypesModel GetScoreMapBetType()
         {
             IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
-
             ScoreMapBetTypesModel scoreMapBetTypes = new ScoreMapBetTypesModel();
+
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {
                 if (betType.IsLive == 1)
@@ -292,11 +302,11 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// From a bet type 1st or full time will return a couple of 1st and full time
+        /// From a bet type 1st or full time will return a couple of 1st and full time.
         /// </summary>
-        /// <param name="betTypeId"></param>
-        /// <param name="isLive"></param>
-        /// <returns></returns>
+        /// <param name="betTypeId">Bet type ID.</param>
+        /// <param name="isLive">Is live or not.</param>
+        /// <returns>All bet type string.</returns>
         public string GetAllBetTypeFromBetType(int betTypeId, bool isLive)
         {
             if (betTypeId == 0)
@@ -306,6 +316,7 @@ namespace Apollo.Age.Forecast.Services
 
             string betTypeAll = string.Empty;
             IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
+
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {
                 if (isLive
@@ -328,11 +339,11 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Score Map Matches
+        /// Score Map Matches.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="leagueId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <param name="leagueId">The league ID.</param>
+        /// <returns>List of score map match.</returns>
         public IEnumerable<ScoreMapMatch> GetScoreMapMatches(int agentId, int leagueId)
         {
             IEnumerable<ScoreMapMatch> scoreMapMatches = GetData<ScoreMapMatch>(
@@ -341,17 +352,19 @@ namespace Apollo.Age.Forecast.Services
                         AgentId = agentId,
                         LeagueId = leagueId
                     });
+
             return scoreMapMatches.OrderBy(match => match.MatchName);
         }
 
         /// <summary>
-        /// Score Map LeagueModel
+        /// Score Map LeagueModel.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <returns></returns>
+        /// <param name="agentId">The agent ID.</param>
+        /// <returns>List of league model.</returns>
         public IEnumerable<LeagueModel> GetScoreMapLeagues(int agentId)
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
+
             try
             {
                 return GetData<LeagueModel>(new GetScoreMapLeaguesCriteria
@@ -359,19 +372,18 @@ namespace Apollo.Age.Forecast.Services
                     AgentId = agentId
                 }).OrderBy(league => league.LeagueName);
             }
-            catch (Exception ex)
+            catch
             {
-                HandleException(ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// Get Top Odds
+        /// Get Top Odds.
         /// </summary>
-        /// <param name="matchId"></param>
-        /// <param name="betType"></param>
-        /// <returns></returns>
+        /// <param name="matchId">The match ID.</param>
+        /// <param name="betType">The bet type.</param>
+        /// <returns>Match odds model.</returns>
         public MatchOddsModel GetTopOddsByMatch(int matchId, int betType)
         {
             Check.Argument.IsNotNegative(matchId, "matchId");
@@ -388,10 +400,10 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Main shareholder in super view
+        /// Get Main shareholder in super view.
         /// </summary>
-        /// <param name="criteria">Get data parameters</param>
-        /// <returns>main shareholder id</returns>
+        /// <param name="criteria">Get data parameters.</param>
+        /// <returns>Main shareholder id.</returns>
         public int GetMainShareHolderByMember(GetMainShareHolderByMemberCriteria criteria)
         {
             return _forecastRepository.GetMainShareHolderByMember(criteria);
@@ -400,13 +412,16 @@ namespace Apollo.Age.Forecast.Services
         #region Private Methods
 
         /// <summary>
-        /// Get Odd value of ScoreMap
+        /// Get Odd value of ScoreMap.
         /// </summary>
-        /// <param name="forecastMatches"></param>
-        /// <param name="betType"></param>
-        /// <param name="currentScore"></param>
-        /// <returns></returns>
-        private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(IEnumerable<ForecastMatchModel> forecastMatches, int betType, int currentScore)
+        /// <param name="forecastMatches">List of forecast match.</param>
+        /// <param name="betType">The bet type.</param>
+        /// <param name="currentScore">Current score.</param>
+        /// <returns>Forecast match win lost model.</returns>
+        private ForecastMatchWinLostModel GetForecastValueWithCurrentScore(
+            IEnumerable<ForecastMatchModel> forecastMatches,
+            int betType,
+            int currentScore)
         {
             if (!forecastMatches.Any())
             {
@@ -414,6 +429,7 @@ namespace Apollo.Age.Forecast.Services
             }
 
             ForecastMatchWinLostModel matchWinLost = new ForecastMatchWinLostModel();
+
             if (betType == (int)BetTypes.Handicap || betType == (int)BetTypes._1st_Handicap)
             {
                 foreach (var forecastMatch in forecastMatches)
@@ -441,16 +457,21 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Forecast Handicap Value
+        /// Get Forecast Handicap Value.
         /// </summary>
-        /// <param name="forecastMatch"></param>
-        /// <param name="currentScore"></param>
-        /// <param name="scoreOffset"></param>
-        /// <param name="forecast"></param>
-        /// <returns></returns>
-        private decimal GetForecastHandicapValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
+        /// <param name="forecastMatch">Forecast match.</param>
+        /// <param name="currentScore">Current score.</param>
+        /// <param name="scoreOffset">Score offset.</param>
+        /// <param name="forecast">Forecast value.</param>
+        /// <returns>Fore cast handicap value.</returns>
+        private decimal GetForecastHandicapValue(
+            ForecastMatchModel forecastMatch,
+            int currentScore,
+            int scoreOffset,
+            decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
+
             if (forecastScore > 0 && forecastScore < (decimal)0.5)
             {
                 forecast += forecastMatch.AwayWinLost / 2; // win 1/2
@@ -472,16 +493,21 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Get Forecast Over Under Value
+        /// Get Forecast Over Under Value.
         /// </summary>
-        /// <param name="forecastMatch"></param>
-        /// <param name="currentScore"></param>
-        /// <param name="scoreOffset"></param>
-        /// <param name="forecast"></param>
-        /// <returns></returns>
-        private decimal GetForecastOverUnderValue(ForecastMatchModel forecastMatch, int currentScore, int scoreOffset, decimal forecast)
+        /// <param name="forecastMatch">Forecast match.</param>
+        /// <param name="currentScore">Current score.</param>
+        /// <param name="scoreOffset">Score offset.</param>
+        /// <param name="forecast">Forecast value.</param>
+        /// <returns>Forecast Over Under value.</returns>
+        private decimal GetForecastOverUnderValue(
+            ForecastMatchModel forecastMatch,
+            int currentScore,
+            int scoreOffset,
+            decimal forecast)
         {
             decimal forecastScore = currentScore - forecastMatch.Offset + scoreOffset;
+
             if (forecastScore == (decimal)0.25)
             {
                 forecast += forecastMatch.AwayWinLost / 2;
@@ -503,12 +529,13 @@ namespace Apollo.Age.Forecast.Services
         }
 
         /// <summary>
-        /// Load Score Map Bet Type from DB or cache
+        /// Load Score Map Bet Type from DB or cache.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of score map bet type model.</returns>
         private IEnumerable<ScoreMapBetTypeModel> LoadScoreMapBetTypes()
         {
             IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = _cacheManager.Get<IEnumerable<ScoreMapBetTypeModel>>(Constants.ScoreMapBetType);
+
             if (scoreMapBetTypeList == null)
             {
                 scoreMapBetTypeList = GetData<ScoreMapBetTypeModel>(new GetScoreMapBetTypesCriteria());

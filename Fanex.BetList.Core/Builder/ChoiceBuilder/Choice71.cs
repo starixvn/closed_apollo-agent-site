@@ -15,7 +15,7 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
     using Fanex.BetList.Core.Entities;
 
     /// <summary>
-    /// Casino Games
+    /// Casino Games.
     /// </summary>
     public class Choice71 : Choice1
     {
@@ -25,23 +25,19 @@ namespace Fanex.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="betListPage">The bet list page.</param>
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
-            //this.Template.betTypeName = null;
-            //this.Template.VS = null;
-            //this.Template.sportTypeName = null;
-            //this.Template.Score = null;
-            //this.Template.Handicap.handicap = null;
 
             this.Template.homeTeam = null;
-            //this.Template.home_firstGoal_lastGoal = null;
+
             this.Template.awayTeam = null;
-            //this.Template.away_firstGoal_lastGoal = null;
+
             this.Template.LeagueName.leagueName = null;
 
             this.Template.betTeam = Apollo.Age.Resources.BetList.casinoGame;
-            //this.Template.betTeamClassName = BL_FAVORITE;
+
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
         }
     }

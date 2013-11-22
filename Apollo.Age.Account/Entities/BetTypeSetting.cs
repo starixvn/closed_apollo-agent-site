@@ -9,6 +9,9 @@
 
 namespace Apollo.Age.Account.Entities
 {
+    /// <summary>
+    /// Bet type setting.
+    /// </summary>
     public class BetTypeSetting
     {
         public int Id { get; set; }

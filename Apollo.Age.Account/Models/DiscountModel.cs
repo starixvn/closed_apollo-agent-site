@@ -11,7 +11,9 @@ namespace Apollo.Age.Account.Models
 {
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    /// <summary>
+    /// Discount model.
+    /// </summary>
     public class DiscountModel
     {
         public int SportType { get; set; }

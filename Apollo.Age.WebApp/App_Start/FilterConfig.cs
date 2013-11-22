@@ -12,6 +12,9 @@ namespace Apollo.Age.WebApp
     using System.Web;
     using System.Web.Mvc;
 
+    /// <summary>
+    /// Filter config.
+    /// </summary>
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

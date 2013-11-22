@@ -12,14 +12,15 @@ namespace Apollo.Age.BetList.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
-    using System.Text;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
+    using Apollo.Age.Reports.Models;
     using Fanex.Common;
     using Fanex.NAP.Framework.Data;
-    using Apollo.Age.Reports.Models;
 
+    /// <summary>
+    /// Bet list report view model.
+    /// </summary>
     public class BetListReportViewModel
     {
         public BetListReportViewModel()
@@ -28,7 +29,7 @@ namespace Apollo.Age.BetList.ViewModels
             FromDate = DateTime.Now;
             ToDate = DateTime.Now;
             UserType = 1;
-            SportTypeIds = BetTypeIds = "0";
+            SportTypes = BetTypes = "0";
         }
 
         [SpParam(Ignored = true)]
@@ -51,7 +52,7 @@ namespace Apollo.Age.BetList.ViewModels
 
         public DateTime BalanceUpDay { get; set; }
         
-        public string SportTypeIds { get; set; }
+        public string SportTypes { get; set; }
 
         public DateTime MoveBetDay { get; set; }
 
@@ -59,7 +60,7 @@ namespace Apollo.Age.BetList.ViewModels
 
         public DateRangeModel LastPeriod { get; set; }        
 
-        public string BetTypeIds { get; set; }
+        public string BetTypes { get; set; }
 
         public string Username { get; set; }
 
