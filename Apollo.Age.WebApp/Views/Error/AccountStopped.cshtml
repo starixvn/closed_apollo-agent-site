@@ -16,13 +16,8 @@
             alert('@title');
             parent.location.href='@Url.Action("SignOut", "Internal")';
         </script>
-    }
-    else
-    {
-        <script type="text/javascript">
-            alert('@title');
-            parent.location.href='@Url.Action("SignOut", "OAuth")';
-        </script>
-    }
+    }    
+    <span>@title</span>
 </body>
 </html>
+

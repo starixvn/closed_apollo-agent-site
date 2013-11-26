@@ -37,7 +37,7 @@ var TOTALBETS = function ($) {
                     url += "&mainShareHolderId=" + DEFAULT_LAYOUT.currentMainShareHolderId + "&isForecast=true";
                 }
                 // resolution for screens
-                var resolution = APOLLO.resolutionForScreens(1000, 720);
+                var resolution = APOLLO.resolutionForScreens(1030, 639);
                 
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: resolution.width,

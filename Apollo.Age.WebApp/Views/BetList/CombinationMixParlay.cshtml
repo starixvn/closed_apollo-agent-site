@@ -2,10 +2,21 @@
 @using Fanex.BetList.Core.Utils;
 @{
     ViewBag.Title = "CombinationMixParlay";
-    Layout = "~/Views/BetList/Shared/_Layout.cshtml";
+    Layout =null;
     decimal total = 0;
 }
 @model Apollo.Age.BetList.Criterias.SystemParlayData
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>    
+    @Styles.Render("~/css/betlist")    
+</head>
+<body>
+   
 <div id="page_main">
     <table class="tblRpt border-tbl">
         <thead>
@@ -13,7 +24,7 @@
                 <th style="width: 100px;">
                     @Lang.time
                 </th>
-                <th style="width: 370px;">
+                <th style="width: auto;">
                     @Lang.homeaway
                 </th>
                 <th style="width: 60px;">
@@ -189,3 +200,17 @@
         </tfoot>
     </table>
 </div>
+    @Html.Hidden("ApoRoot", Url.Content("~/"))
+    @Html.Partial("_ApoRes")
+    <script type="text/javascript">
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDate: "@Apollo.Age.Resources.LangMsg.ValidateFromToDate",
+                MessageValidateWithArchivedDate: "@Apollo.Age.Resources.LangMsg.MessageValidateWithArchivedDate",
+                MessageValidateDateRange: "@Apollo.Age.Resources.LangMsg.MessageValidateDateRange"
+            };
+        } ();
+    </script>        
+</body>
+</html>
+
