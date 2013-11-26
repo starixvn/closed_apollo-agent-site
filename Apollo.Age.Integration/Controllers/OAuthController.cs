@@ -88,7 +88,7 @@ namespace Apollo.Age.Integration.Controllers
                 {
                     // Username is empty or user is disallowed sso.
                     // Disallow shadow sc88 access to our system by sso way.
-                    if (!_userService.AllowLineAccountSSO(username) || username.ToLower() == "sc88")
+                    if (!_userService.AllowLineAccountSSO(username))
                     {
                         authModel.ErrorCode = ErrorCode.ComingSoon;
                         return View(authModel);
