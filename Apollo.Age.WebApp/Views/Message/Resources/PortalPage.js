@@ -14,6 +14,8 @@ var MessagePortalPage = function ($) {
 
         privateMessageId: null,
 
+        message :  null,
+
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
@@ -148,9 +150,9 @@ var MessagePortalPage = function ($) {
                     var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
                     var balloonPopupContent = "";
                     url += publicMessage[MSGTYPE];
-
+                   
                     if ((publicMessage[MSGID] != null) && (MessagePortalPage.publicMessageId != publicMessage[MSGID])) {
-                        document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
+                        MessagePortalPage.message = publicMessage[MSGCONTENT];
 
                         if (MessagePortalPage.publicMessageId > 0) {
                             balloonPopupContent = publicMessage[MSGCONTENT];
@@ -160,12 +162,14 @@ var MessagePortalPage = function ($) {
 
                     //Process Private Message: show new private message
                     if ((privateMessage[MSGID] != null) && (MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
-                        document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
+                        MessagePortalPage.message += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
                         if (MessagePortalPage.privateMessageId > 0) {
                             balloonPopupContent = privateMessage[MSGCONTENT];
                         }
                         MessagePortalPage.privateMessageId = privateMessage[MSGID];
                     }
+
+                    document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + MessagePortalPage.message + "</marquee>"
 
                 } catch (e) {
                     console.log(e);

@@ -254,7 +254,7 @@ namespace Apollo.Age.Account.Controllers
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
-                publicMessages[1] = pubMessage.GetContent();
+                publicMessages[1] = pubMessage.GetContent(CurrentSession.Language);
                 publicMessages[2] = Constants.Normal;
                 if (pubMessage.IsSticky)
                 {
@@ -266,7 +266,7 @@ namespace Apollo.Age.Account.Controllers
             if (!ReferenceEquals(priMessage, null))
             {
                 privateMessages[0] = priMessage.MessageId;
-                privateMessages[1] = priMessage.GetContent();
+                privateMessages[1] = priMessage.GetContent(CurrentSession.Language);
             }
 
             var countPriMessage = this._messageService.CountUnreadPrivateMessage(agentId);
