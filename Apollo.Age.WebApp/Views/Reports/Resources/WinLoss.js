@@ -82,6 +82,7 @@
             });
 
             $(".view-agentwinloss").on("click", function () {
+               
                 $.blockUI();
                 var url = APOLLO.resolveUrl("Reports/AgentWinLoss?FromDate="
                     + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
@@ -112,7 +113,8 @@
                 location.href = url;
             });
 
-            $(".view-betlist").on("click", function () {
+            $(".view-betlist").on("click", function (e) {
+                e.stopPropagation();
                 WINLOSS.sportTypeName = WINLOSS.SportName.val();
                 WINLOSS.betTypeName = WINLOSS.BettypeName.val();
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
@@ -152,14 +154,14 @@
                 $.unblockUI();
             });
 
-            $(".tblWinLoss tbody tr td:not(:first-child)").on("click", function () {
+            $(".tblWinLoss tbody tr").on("click", function () {
                 var $this = $(this);
 
-                if ($this.parent().hasClass("rowactivecolor")) {
-                    $this.parent().removeClass("rowactivecolor");
+                if ($this.hasClass("rowactivecolor")) {
+                    $this.removeClass("rowactivecolor");
                 }
                 else {
-                    $this.parent().addClass("rowactivecolor");
+                    $this.addClass("rowactivecolor");
                 }
             });
 
