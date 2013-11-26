@@ -12,7 +12,8 @@
     var color = string.Empty;
     var minDate = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-3).Month, 1);
     var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
-
+    var lang = ViewBag.UserLang;
+    
     switch (Model.PageQuery)
     {
         case Constants.Normal:
@@ -121,7 +122,7 @@
     {
         string rowClass = string.Empty;
 
-        foreach (var itemMessage in listMessage)
+        foreach (MessageModel itemMessage in listMessage)
         {
             count++;
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
@@ -132,7 +133,8 @@
                     <td class="c">
                         @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
                     </td>
-                    <td class="message_content">@itemMessage.GetContent()
+                    <td class="message_content">
+                        @itemMessage.GetContent(lang)                        
                     </td>
                 </tr>
         }

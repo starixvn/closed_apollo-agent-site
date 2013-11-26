@@ -195,7 +195,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
-
+            ViewBag.UserLang = this.CurrentSession.Language;
             return View(criteria);
         }
 
