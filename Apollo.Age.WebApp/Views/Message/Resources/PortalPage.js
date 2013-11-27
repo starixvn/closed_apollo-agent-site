@@ -14,7 +14,7 @@ var MessagePortalPage = function ($) {
 
         privateMessageId: null,
 
-        message :  null,
+        message : "",
 
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
@@ -143,8 +143,8 @@ var MessagePortalPage = function ($) {
                     var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
 
                     var MSGID = 0,
-                MSGCONTENT = 1,
-                MSGTYPE = 2;
+                        MSGCONTENT = 1,
+                        MSGTYPE = 2;
 
                     //Process Public Message: show new public message and its link to message form
                     var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
