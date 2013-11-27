@@ -23,9 +23,15 @@ var MessagePortalPage = function ($) {
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
-            MessagePortalPage.getMessages();
+           
             MessagePortalPage.publicMessageId = 0;
             MessagePortalPage.privateMessageId = 0;
+            MessagePortalPage.privateMsgContent = "";
+            MessagePortalPage.publicMsgContent = "";
+            MessagePortalPage.isFirstTime = false;
+
+            MessagePortalPage.getMessages();
+
         },
 
         loadAnnouncement: function () {
@@ -137,9 +143,6 @@ var MessagePortalPage = function ($) {
 
 
             function completedGetMessages(results) {
-                if (results.public_message == null && results.private_message == null) {
-                    MessagePortalPage.message = "";
-                }
 
                 try {
                     var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
@@ -155,7 +158,7 @@ var MessagePortalPage = function ($) {
 
                     url += publicMessage[MSGTYPE];
 
-                    if (publicMessage[MSGID] != null) {
+                    if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) {
 
                         MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
 
@@ -164,7 +167,7 @@ var MessagePortalPage = function ($) {
                     }
 
                     // Process Private Message: show new private message
-                    if (privateMessage[MSGID] != null) {
+                    if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID]) {
 
                         MessagePortalPage.privateMsgContent = "<span style=\"color:green\">" + $("#messagePrivate").val() + ":" + privateMessage[MSGCONTENT] + "</span>";
 
@@ -172,19 +175,17 @@ var MessagePortalPage = function ($) {
 
                     }
 
-                    if(!MessagePortalPage.isFirstTime)
-                    {
+                    if (!MessagePortalPage.isFirstTime) {
                         document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
                         MessagePortalPage.isFirstTime = true;
                     }
-                    else
-                    {
+                    else {
                         if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
                             document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
                         }
                     }
 
-                    
+
 
                 } catch (e) {
                     console.log(e);

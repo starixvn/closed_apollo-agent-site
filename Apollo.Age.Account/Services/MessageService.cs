@@ -205,20 +205,13 @@ namespace Apollo.Age.Account.Services
             if (criteria.IsValid())
             {
                 MessageModel message = new MessageModel();
-                string key = string.Join("_", messageType.ToString(), siteId);
 
-                message = _cache.Get<MessageModel>(key);
+                var messageList = this.GetData<MessageModel>(criteria);
 
-                if (message == null)
+                if (messageList != null && messageList.Any())
                 {
-                    var messageList = this.GetData<MessageModel>(criteria);
-
-                    if (messageList != null && messageList.Any())
-                    {
-                        message = messageList.FirstOrDefault();
-                        _cache.Set<MessageModel>(key, message);
-                    }
-                }              
+                    message = messageList.FirstOrDefault();
+                }
 
                 return message;
             }

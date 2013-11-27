@@ -239,6 +239,7 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <returns>Content of message.</returns>
         [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult GetMessage()
         {
             // Message type from older source code
