@@ -4162,4 +4162,7 @@
   <data name="lblwinlossnote2" xml:space="preserve">
     <value>"Effective Stake" after share given to upline by the selected agent</value>
   </data>
+  <data name="privatemessage" xml:space="preserve">
+    <value>Private Message</value>
+  </data>
 </root>

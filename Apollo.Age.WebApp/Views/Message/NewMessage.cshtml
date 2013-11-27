@@ -5,7 +5,7 @@
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.MessageHistory;
 
-    var listMessage = ViewBag.Messages ?? new List<MessageModel>();
+    var listMessage = (List<MessageModel>)ViewBag.Messages ?? new List<MessageModel>();
     var normal = string.Empty;
     var special = string.Empty;
     var pri = string.Empty;
@@ -118,7 +118,7 @@
         <tbody>
             @{
     int count = 0;
-    if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
+    if (listMessage != null && listMessage.Any())
     {
         string rowClass = string.Empty;
 
@@ -140,6 +140,7 @@
         }
     }    
             }
+             @Html.Hidden("messagePrivate", Apollo.Age.Resources.Lang.privatemessage)    
         </tbody>
     </table>
 }

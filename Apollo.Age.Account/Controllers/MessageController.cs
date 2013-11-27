@@ -300,7 +300,7 @@ namespace Apollo.Age.Account.Controllers
                 Record = criteria.Record,
                 SiteId = criteria.SiteId,
                 Special = criteria.Special,
-                To = criteria.To
+                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
             });
         }
 
@@ -341,7 +341,7 @@ namespace Apollo.Age.Account.Controllers
                 Record = criteria.Record,
                 SiteId = criteria.SiteId,
                 Special = criteria.Special,
-                To = criteria.To
+                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
             });
         }
 
