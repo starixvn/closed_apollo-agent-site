@@ -210,7 +210,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery-ui.js",
-                "~/_globalresources/js/blockui/jquery.blockui.js",
+                "~/_globalresources/js/blockui/jquery.blockui.js",                
                 "~/_globalresources/js/core.js",
                 "~/views/message/resources/portalpage.js"));
 

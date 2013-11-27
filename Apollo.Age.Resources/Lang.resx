@@ -2128,4 +2128,7 @@
   <data name="UpdatePermission" xml:space="preserve">
     <value>Update Permission</value>
   </data>
+  <data name="privatemessage" xml:space="preserve">
+    <value>Private Message</value>
+  </data>
 </root>

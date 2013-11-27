@@ -195,7 +195,7 @@ namespace Apollo.Age.Account.Controllers
             }
 
             ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
-
+            ViewBag.UserLang = this.CurrentSession.Language;
             return View(criteria);
         }
 
@@ -254,7 +254,7 @@ namespace Apollo.Age.Account.Controllers
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
-                publicMessages[1] = pubMessage.GetContent();
+                publicMessages[1] = pubMessage.GetContent(CurrentSession.Language);
                 publicMessages[2] = Constants.Normal;
                 if (pubMessage.IsSticky)
                 {
@@ -266,7 +266,7 @@ namespace Apollo.Age.Account.Controllers
             if (!ReferenceEquals(priMessage, null))
             {
                 privateMessages[0] = priMessage.MessageId;
-                privateMessages[1] = priMessage.GetContent();
+                privateMessages[1] = priMessage.GetContent(CurrentSession.Language);
             }
 
             var countPriMessage = this._messageService.CountUnreadPrivateMessage(agentId);
@@ -300,7 +300,7 @@ namespace Apollo.Age.Account.Controllers
                 Record = criteria.Record,
                 SiteId = criteria.SiteId,
                 Special = criteria.Special,
-                To = criteria.To
+                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
             });
         }
 
@@ -341,7 +341,7 @@ namespace Apollo.Age.Account.Controllers
                 Record = criteria.Record,
                 SiteId = criteria.SiteId,
                 Special = criteria.Special,
-                To = criteria.To
+                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
             });
         }
 

@@ -1990,4 +1990,7 @@
   <data name="ApplyDownlineAndShadow" xml:space="preserve">
     <value>更新全部下線代理及子帳號</value>
   </data>
+  <data name="privatemessage" xml:space="preserve">
+    <value>私人訊息</value>
+  </data>
 </root>
