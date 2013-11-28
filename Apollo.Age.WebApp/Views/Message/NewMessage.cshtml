@@ -5,14 +5,15 @@
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.MessageHistory;
 
-    var listMessage = ViewBag.Messages ?? new List<MessageModel>();
+    var listMessage = (List<MessageModel>)ViewBag.Messages ?? new List<MessageModel>();
     var normal = string.Empty;
     var special = string.Empty;
     var pri = string.Empty;
     var color = string.Empty;
     var minDate = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-3).Month, 1);
     var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
-
+    var lang = ViewBag.UserLang;
+    
     switch (Model.PageQuery)
     {
         case Constants.Normal:
@@ -44,8 +45,9 @@
             <td class="text-right width-150">
                 @Lang.news：
             </td>
-            <td class="width-520">
-                <marquee scrolldelay="200" id="topnews"></marquee>
+            <td class="width-520" id="topnews">
+                
+              
             </td>
             <td class="text-center">
                 <a href="javascript:;" id="announcement-link">@Lang.announcement </a>
@@ -116,11 +118,11 @@
         <tbody>
             @{
     int count = 0;
-    if (!ReferenceEquals(listMessage, null) && listMessage.Count > 0)
+    if (listMessage != null && listMessage.Any())
     {
         string rowClass = string.Empty;
 
-        foreach (var itemMessage in listMessage)
+        foreach (MessageModel itemMessage in listMessage)
         {
             count++;
             rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
@@ -131,12 +133,14 @@
                     <td class="c">
                         @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
                     </td>
-                    <td class="message_content">@itemMessage.GetContent()
+                    <td class="message_content">
+                        @itemMessage.GetContent(lang)                        
                     </td>
                 </tr>
         }
     }    
             }
+             @Html.Hidden("messagePrivate", Apollo.Age.Resources.Lang.privatemessage)    
         </tbody>
     </table>
 }

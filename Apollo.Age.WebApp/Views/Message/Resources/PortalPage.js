@@ -14,12 +14,24 @@ var MessagePortalPage = function ($) {
 
         privateMessageId: null,
 
+        privateMsgContent: "",
+
+        publicMsgContent: "",
+
+        isFirstTime: false,
+
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
-            MessagePortalPage.getMessages();
+           
             MessagePortalPage.publicMessageId = 0;
             MessagePortalPage.privateMessageId = 0;
+            MessagePortalPage.privateMsgContent = "";
+            MessagePortalPage.publicMsgContent = "";
+            MessagePortalPage.isFirstTime = false;
+
+            MessagePortalPage.getMessages();
+
         },
 
         loadAnnouncement: function () {
@@ -128,44 +140,52 @@ var MessagePortalPage = function ($) {
         },
 
         getMessages: function () {
+
+
             function completedGetMessages(results) {
-                //Result Format:
-                //{
-                // public_message:{'id','2 test message here','normal'},
-                // private_message:{'id','2 test message here'},
-                // unread_private_messages:'0'
-                //}
+
                 try {
                     var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
                     var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
                     var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
 
                     var MSGID = 0,
-                MSGCONTENT = 1,
-                MSGTYPE = 2;
+                        MSGCONTENT = 1,
+                        MSGTYPE = 2;
 
-                    //Process Public Message: show new public message and its link to message form
+                    // Process Public Message: show new public message and its link to message form
                     var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
-                    var balloonPopupContent = "";
+
                     url += publicMessage[MSGTYPE];
 
-                    if ((publicMessage[MSGID] != null) && (MessagePortalPage.publicMessageId != publicMessage[MSGID])) {
-                        document.getElementById('topnews').innerHTML = publicMessage[MSGCONTENT];
+                    if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) {
 
-                        if (MessagePortalPage.publicMessageId > 0) {
-                            balloonPopupContent = publicMessage[MSGCONTENT];
-                        }
+                        MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
+
                         MessagePortalPage.publicMessageId = publicMessage[MSGID];
+
                     }
 
-                    //Process Private Message: show new private message
-                    if ((privateMessage[MSGID] != null) && (MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
-                        document.getElementById('topnews').innerHTML += ". <span style=\"color:green\">Private message:" + privateMessage[MSGCONTENT] + "</span>";
-                        if (MessagePortalPage.privateMessageId > 0) {
-                            balloonPopupContent = privateMessage[MSGCONTENT];
-                        }
+                    // Process Private Message: show new private message
+                    if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID]) {
+
+                        MessagePortalPage.privateMsgContent = "<span style=\"color:green\">" + $("#messagePrivate").val() + ":" + privateMessage[MSGCONTENT] + "</span>";
+
                         MessagePortalPage.privateMessageId = privateMessage[MSGID];
+
                     }
+
+                    if (!MessagePortalPage.isFirstTime) {
+                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                        MessagePortalPage.isFirstTime = true;
+                    }
+                    else {
+                        if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
+                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                        }
+                    }
+
+
 
                 } catch (e) {
                     console.log(e);

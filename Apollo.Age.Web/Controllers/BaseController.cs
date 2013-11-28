@@ -151,7 +151,7 @@ namespace Apollo.Age.Web
             }
             catch
             {
-                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404", false);
             }
         }
 
@@ -200,7 +200,7 @@ namespace Apollo.Age.Web
         {
             if (!Request.IsAuthenticated || CurrentSession == null)
             {
-                Response.Redirect(ApoURLs.URLs.Unauthorized);
+                Response.Redirect(ApoURLs.URLs.Unauthorized, false);
             }
         }
 

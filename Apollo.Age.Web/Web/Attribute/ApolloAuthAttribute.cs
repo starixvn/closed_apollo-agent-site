@@ -173,7 +173,7 @@ namespace Apollo.Age.Web.Web.Attribute
                 }
                 else
                 {
-                    response.Redirect("~/Error/AccessDenied");
+                    response.Redirect("~/Error/AccessDenied", false);
                 }
             }
             catch

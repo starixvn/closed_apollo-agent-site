@@ -2,8 +2,7 @@
 @using Apollo.Age.Resources
 @{
     ViewBag.Title = Lang.agentwinloss;
-    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    int i = 1;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";    
     string rowClass = string.Empty;
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
 
@@ -141,9 +140,9 @@ new ReportMenuViewModel
             <tbody>
                 @foreach (var item in Model.AgentWinLossList)
                 {
-                    rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-                    <tr @Html.Raw(rowClass)>
+                    <tr>
                         <td>
                             @if (hasDownlineDetailsPermission)
                             { 
@@ -276,9 +275,9 @@ new ReportMenuViewModel
                     totalUpLineEffectiveStake += item.UpLineEffectiveStake;
                     totalUpLineTotal += item.UpLineTotal;
 
-                    rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
+                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
-                    <tr @Html.Raw(rowClass)>
+                    <tr>
                         @if (item.IsAgent)
                         {
                             <td>

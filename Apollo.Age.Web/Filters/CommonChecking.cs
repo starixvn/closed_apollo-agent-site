@@ -35,7 +35,7 @@ namespace Apollo.Age.Web.Filters
             }
             else
             {
-                response.Redirect(ApoURLs.URLs.AccessDenied);
+                response.Redirect(ApoURLs.URLs.AccessDenied, false);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Apollo.Age.Web.Filters
             }
             else
             {
-                response.Redirect(ApoURLs.URLs.AccessDenied);
+                response.Redirect(ApoURLs.URLs.AccessDenied, false);
             }
         }
     }
