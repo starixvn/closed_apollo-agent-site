@@ -363,7 +363,7 @@ namespace Apollo.Age.Web
             }
             catch
             {
-                Response.Redirect(ApoURLs.URLs.Error + "?err=404");
+                Response.Redirect(ApoURLs.URLs.Error + "?err=404", false);
             }
         }
 
