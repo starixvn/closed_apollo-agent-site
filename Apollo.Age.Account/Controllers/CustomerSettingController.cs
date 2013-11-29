@@ -31,10 +31,10 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Web.Attribute;
-    using Fanex.Common;
     using Apollo.CustSetting.Models;
     using Apollo.CustSetting.Service;
     using Apollo.CustSetting.ViewData;
+    using Fanex.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -1011,7 +1011,7 @@ namespace Apollo.Age.Account.Controllers
             SettingContext settingContext = this.GetCurrentSettingContext(targetCustId, agentId, agentLevel, FormSettingType.All, targetCustIds);
 
             CommissionSetting commissionSetting = GetCommissionSetting(settingContext);
-                        
+
             this.SetCurrentLanguage(CurrentSession.Language);
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref _maxBetLimit);
 

@@ -14,10 +14,10 @@ namespace Apollo.CustSetting.Repositories
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using Fanex.Common.Extensions;
     using Apollo.CustSetting.Core;
     using Apollo.CustSetting.Models;
     using Apollo.CustSetting.ViewData;
+    using Fanex.Common.Extensions;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 
@@ -260,7 +260,7 @@ namespace Apollo.CustSetting.Repositories
         public MemberInfo GetMemberInfo(ICriteria criteria)
         {
             using (ObjectDb odb = new ObjectDb(criteria.GetSettingKey()))
-            {                
+            {
                 IDataReader reader = odb.ExecuteReader(criteria.GetSpParams());
                 reader.Read();
                 return new MemberInfo

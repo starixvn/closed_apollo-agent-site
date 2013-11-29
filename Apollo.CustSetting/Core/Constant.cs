@@ -12,8 +12,8 @@ namespace Apollo.CustSetting.Core
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.Linq;
-    using Fanex.Common;
     using Apollo.CustSetting.ViewData;
+    using Fanex.Common;
 
     /// <summary>
     /// Constant information.

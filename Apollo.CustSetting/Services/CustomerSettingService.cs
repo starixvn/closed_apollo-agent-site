@@ -15,7 +15,6 @@ namespace Apollo.CustSetting.Service
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.Linq;
-    using Fanex.Common;
     using Apollo.CustSetting.Core;
     using Apollo.CustSetting.Criteria;
     using Apollo.CustSetting.Criteria.Agent;
@@ -23,6 +22,7 @@ namespace Apollo.CustSetting.Service
     using Apollo.CustSetting.Models;
     using Apollo.CustSetting.Repositories;
     using Apollo.CustSetting.ViewData;
+    using Fanex.Common;
     using Fanex.Logging;
     using Fanex.NAP.Framework.Data;
 
@@ -166,7 +166,7 @@ namespace Apollo.CustSetting.Service
                         settingContext,
                         new GetAgentBetLimitForUpdateCriteria
                         {
-                            AgentId = settingContext.TargetCustId,                            
+                            AgentId = settingContext.TargetCustId,
                             MaxBetLimit = 0
                         },
                         ref maxBetLimit);
@@ -176,8 +176,8 @@ namespace Apollo.CustSetting.Service
                     bettingLimits = _customerSettingRepository.GetBettingLimitSettingForUpdating(
                         settingContext,
                         new GetMemberBetLimitForUpdateCriteria
-                        {                            
-                            CustId = settingContext.TargetCustId,                            
+                        {
+                            CustId = settingContext.TargetCustId,
                             MaxBetLimit = 0
                         },
                         ref maxBetLimit);
@@ -214,7 +214,7 @@ namespace Apollo.CustSetting.Service
                 else
                 {
                     commissionSetting.CommissionItems = _customerSettingRepository.GetCustomerCommissionSetingForUpdating(new GetMemberDiscountForUpdateCriteria
-                    {                        
+                    {
                         CustId = settingContext.TargetCustId
                     });
                 }
@@ -254,8 +254,8 @@ namespace Apollo.CustSetting.Service
                     return new Result(Constant.WARNING_CODE_DEFAULT, Constant.WARNING_MESSAGE_DEFAULT);
                 }
 
-                var positionTakingXML = xmlStringData.XMLSetting != string.Empty 
-                    ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) 
+                var positionTakingXML = xmlStringData.XMLSetting != string.Empty
+                    ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
                     : string.Empty;
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
@@ -391,7 +391,7 @@ namespace Apollo.CustSetting.Service
         /// <param name="commissionSetting">Commission setting.</param>
         /// <returns>Update commission setting result status.</returns>
         public Result UpdateCommissionSetting(
-            SettingContext settingContext, 
+            SettingContext settingContext,
             CommissionSetting commissionSetting)
         {
             if (commissionSetting == null || settingContext == null)
@@ -455,9 +455,9 @@ namespace Apollo.CustSetting.Service
         /// <param name="positionTakingSetting">Position taking setting data.</param>
         /// <returns>Update result status.</returns>
         public Result UpdateSetting(
-            SettingContext settingContext, 
-            CommissionSetting commissionSetting, 
-            IList<BettingLimit> bettingLimits, 
+            SettingContext settingContext,
+            CommissionSetting commissionSetting,
+            IList<BettingLimit> bettingLimits,
             PositionTakingSetting positionTakingSetting)
         {
             try
@@ -467,14 +467,14 @@ namespace Apollo.CustSetting.Service
                 var betLimitXmlStringData = BuildBetLimitSettingXML(settingContext, bettingLimits);
                 var positionTakingXmlStringData = BuildPositionTakingSettingXML(settingContext, positionTakingSetting);
 
-                var discountXML = discountXmlStringData.XMLSetting != string.Empty 
-                    ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData.XMLSetting) 
+                var discountXML = discountXmlStringData.XMLSetting != string.Empty
+                    ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData.XMLSetting)
                     : string.Empty;
-                var betLimitXML = betLimitXmlStringData.XMLSetting != string.Empty 
-                    ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData.XMLSetting) 
+                var betLimitXML = betLimitXmlStringData.XMLSetting != string.Empty
+                    ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData.XMLSetting)
                     : string.Empty;
-                var positionTakingXML = positionTakingXmlStringData.XMLSetting != string.Empty 
-                    ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData.XMLSetting) 
+                var positionTakingXML = positionTakingXmlStringData.XMLSetting != string.Empty
+                    ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData.XMLSetting)
                     : string.Empty;
 
                 if (settingContext.TargetRoleId != (int)Role.Member)
@@ -694,7 +694,7 @@ namespace Apollo.CustSetting.Service
         /// <param name="positionTakingSetting">Position taking data.</param>
         /// <returns>String data to update database.</returns>
         private XMLStringData BuildPositionTakingSettingXML(
-            SettingContext settingContext, 
+            SettingContext settingContext,
             PositionTakingSetting positionTakingSetting)
         {
             XMLStringData xmlStringData = new XMLStringData();
@@ -774,13 +774,13 @@ namespace Apollo.CustSetting.Service
         /// <returns>Message details string.</returns>
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         private string BuildLogErrorDetail(
-            string errorMessage, 
-            bool isEditAgent, 
-            int actorId, 
-            string custId, 
-            int adminId, 
-            string commissionXml, 
-            string betSettingXml, 
+            string errorMessage,
+            bool isEditAgent,
+            int actorId,
+            string custId,
+            int adminId,
+            string commissionXml,
+            string betSettingXml,
             string ptSettingXml)
         {
             try
