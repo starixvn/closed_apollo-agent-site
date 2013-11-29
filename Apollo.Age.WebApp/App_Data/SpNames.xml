@@ -500,7 +500,7 @@
         <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
         <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB.aplweb" TimeOut="600"/>
-        <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer_xtest" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
+        <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
             <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
             <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
             <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
@@ -519,8 +519,8 @@
         <Setting Key="ReadLog_Login" SpName="ReadLog_Login" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
     </Function>
     <Function Name="Read Log Cust Setting">
-        <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent_xtest" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
-        <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust_xtest" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+        <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+        <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
     </Function>
     <Function Name="Wagers">
         <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB.aplweb">
@@ -557,12 +557,12 @@
             <Mapping DataField="FunctionId" ObjectProperty="Id" />
             <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
         </Setting>
-        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction_xtest" DbName="SVRCUST.CustDB.aplweb"/>
+        <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
         <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="FunctionId" ObjectProperty="Id" />
             <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
         </Setting>
-        <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser_xtest" DbName="SVRAGE.RepDB.aplweb">
+        <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser" DbName="SVRAGE.RepDB.aplweb">
             <Mapping DataField="AgentUserId" ObjectProperty="Id" />
             <Mapping DataField="AgentId" ObjectProperty="Id" />
         </Setting>
