@@ -1,0 +1,183 @@
+﻿#hor-minimalist-a
+{
+	font-size: 12px;
+	background: #fff;
+	border-collapse: collapse;
+	text-align: left;
+}
+#hor-minimalist-a th
+{
+	font-size: 14px font-weight: normal;
+	color: #fff;
+	background: url(Images/bgHeader.jpg) repeat-x scroll center top #6A6969;
+	padding: 2px 2px;
+	border: solid 1px #999;
+	text-align: center;
+}
+#hor-minimalist-a td
+{
+	color: #000;
+	vertical-align: top;
+	padding: 2px 2px 0px 2px;
+	border: solid 1px #999;
+	text-align: right;
+}
+#hor-minimalist-a tbody tr:hover td
+{
+	color: #009;
+}
+
+
+.w-order
+{
+	color: #7D7D7D;
+	font-weight: normal;
+	text-align: right;
+	width: 20px;
+}
+
+.bl_btype
+{
+	color: #003399;
+	font-weight: 600;
+}
+
+.b
+{
+	font-weight: bold;
+}
+
+.bl_time
+{
+	color: #434343;
+	font-size: 7pt;
+	font-weight: normal;
+	text-align: center;
+}
+
+.bl_ip
+{
+	color: #434343;
+	font-size: 7pt;
+	font-weight: normal;
+	text-align: center;
+}
+
+.bl_evt
+{
+	color: #FFFFFF;
+	font-size: 11px;
+}
+
+.c
+{
+	text-align: center !important;
+}
+
+.r
+{
+	text-align: right !important;
+}
+
+.bl_favorite,favorite
+{
+	color: #B50000;
+	font-weight: bold;
+}
+
+.firstGoal
+{
+	background: url(Images/firstGoal.gif) no-repeat scroll center center transparent;
+	display: inline;
+	height: 10px;
+	padding: 0 4px;
+	width: 14px;
+}
+
+.lastGoal
+{
+	background: url(Images/lastGoal.gif) no-repeat scroll center center transparent;
+	display: inline;
+	height: 10px;
+	padding: 0 4px;
+	width: 14px;
+}
+
+.bl_match
+{
+	color: #000000;
+	font-weight: normal;
+	line-height: 15px;
+}
+
+.bl_underdog,underdog
+{
+	color: #01122B;
+	font-weight: bold;
+}
+
+.bl_oddtype
+{
+	color: #586985;
+}
+
+.bl_status
+{
+	color: #606060;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.hand
+{
+	cursor: pointer;
+}
+
+.link
+{
+	color: #0066CC;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+.bl_lname
+{
+	color: #666666;
+	line-height: 15px;
+}
+.bl_footertotal
+{
+	color: #000000;
+	font-weight: bold;
+	background-color: #E8DFCA;
+}
+
+.blue
+{
+	color: #2673CE;
+}
+
+.bl_stype
+{
+	color: #0066CC;
+}
+
+.div_pt
+{
+	background: none repeat scroll 0% 0% rgb(245, 227, 227);
+}
+
+.div_result
+{
+	cursor: pointer;
+	color: rgb(27, 164, 237);
+}
+.stake
+{
+	color: #ff0000;	
+}

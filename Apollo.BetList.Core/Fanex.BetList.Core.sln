@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core", "Fanex.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Core.TicketHelper", "..\Fanex.BetList.Core.TicketHelper\Fanex.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Resources", "..\Apollo.Age.Resources\Apollo.Age.Resources.csproj", "{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core", "..\Apollo.BetList.Core\Apollo.BetList.Core.csproj", "{F800013D-9168-4B0D-8315-8CA6EB202387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetList.Age", "..\Fanex.BetList.Age\Fanex.BetList.Age.csproj", "{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.18.200.213:8080/
+		SccLocalPath0 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D3E73C-1A96-4023-8B8F-5A465DFA38CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F800013D-9168-4B0D-8315-8CA6EB202387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F800013D-9168-4B0D-8315-8CA6EB202387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F800013D-9168-4B0D-8315-8CA6EB202387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F800013D-9168-4B0D-8315-8CA6EB202387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

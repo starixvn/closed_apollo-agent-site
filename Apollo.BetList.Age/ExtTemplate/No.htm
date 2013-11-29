@@ -1,0 +1,278 @@
+﻿<!--HiddenBlock-->
+<link href="Resources/BetList.css" rel="stylesheet" type="text/css" />
+<table id="hor-minimalist-a">
+    <thead>
+        <tr>
+            <th style="width: 20px;">
+                #
+            </th>
+            <th style="width: 110px;">
+                Member
+            </th>
+            <th style="width: 130px;">
+                Trans.Time
+            </th>
+            <th>
+                Choice
+            </th>
+            <th style="width: 50px;">
+                Odds
+            </th>
+            <th style="width: 50px;">
+                Stake
+            </th>
+            <th style="width: 50px;">
+                Win Loss
+            </th>
+            <th style="width: 85px;">
+                Status
+            </th>
+            <th style="width: 100px;">
+                SuperPT/<br />
+                Comm
+            </th>
+            <th style="width: 100px;">
+                MasterPT/<br />
+                Comm
+            </th>
+            <th style="width: 100px;">
+                AgentPT/<br />
+                Comm
+            </th>
+        </tr>
+    </thead>
+    <tr id="r{betId:}">
+        <!--No-->
+        <td class="w-order">
+            <!--/HiddenBlock-->
+            {orderNo}
+            <!--HiddenBlock-->
+        </td>
+        <!--/No-->
+        <!--Member-->
+        <td class="c">
+            {userName}
+        </td>
+        <!--/Member-->
+        <td class="c">
+            <!--TransTimeHyperLink-->
+            <div class="iplink" onclick="ViewBetSlip({refNo}, '{winlostDate}', {isRunning},{league});">
+                refNo: {refNo}</div>
+            <!--/TransTimeHyperLink-->
+            <!--TransTime-->
+            refNo: {refNo}
+            <!--/TransTime-->
+            <div class="bl_time mt10">
+                {transTime}</div>
+        </td>
+        <td class="r bl_evt">
+            <div>
+                <div class='{eventClassName}'>
+                    <!--ScoreMapIcon-->
+                    <span class='float_l'><a href="javascript:OpenScoreMap({matchId},{betTypeId},{liveindicator});"
+                        title="{static:Resources.BetList.scoreMap}">
+                        <div class='iconScoreMap'>
+                        </div>
+                    </a></span>
+                    <!--/ScoreMapIcon-->
+                    <span class="{betTeamClassName}">{betTeam}
+                        <!--Handicap-->
+                        <span class='colorHandicap'>{handicap} </span>
+                        <!--/Handicap-->
+                        <!--OddMixParlay-->
+                        <!--/OddMixParlay-->
+                        <!--Score-->
+                        &nbsp;<span class="{scoreClassName}">[{homeScore}-{awayScore}]</span>
+                        <!--/Score-->
+                    </span>
+                    <div class="bl_btype b">
+                        {betTypeName}</div>
+                    <div class="bl_match">
+                        {homeTeam} {home_firstGoal_lastGoal}
+                        <!--VS-->
+                        - vs -&nbsp;
+                        <!--/VS-->
+                        {awayTeam} {away_firstGoal_lastGoal}
+                    </div>
+                    <div class="bl_lname">
+                        <span class="bl_stype blue">{sportTypeName} </span>
+                        <!--LeagueName-->
+                        {leagueName}<!--/LeagueName-->
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td class="bl_underdog">
+            <span class="bl_underdog">{odds}</span><br />
+            <span class="bl_oddtype">{oddType}</span>
+        </td>
+        <td class="bl_underdog">
+            <span class="stake">{stake}</span>
+        </td>
+        <!--Winlost-->
+        <td class="r">
+            <div>
+                <span class="bl_underdog">{winloss}</span></div>
+            <div>
+                <font class="bl_underdog">{comm}</font>
+            </div>
+        </td>
+        <!--/Winlost-->
+        <!--Status-->
+        <td class="c">
+            <div class="bl_status c">
+                {result}</div>
+            <!--StatusResult-->
+            <div class="div_result" onclick="ViewResult({matchId}, {race:0}, {betType}, {sportType}, {refNo}, '{userName}', '{winlostDate}', {refNo_MixParlay:0}, {league}, {is_outright:0}, this);">
+                {static:Resources.BetList.results}</div>
+            <!--/StatusResult-->
+            <!--ShowIPVN-->
+            <div class="bl_ip">
+                {betIp}
+            </div>
+            <!--/ShowIPVN-->
+        </td>
+        <!--/Status-->
+        <!--Super-->
+        <td class="r">
+            <div class="div_pt">
+                <!--SuperPT-->
+                <font class="bl_underdog">{superPT_setting}</font>
+                <br />
+                <!--/SuperPT-->
+                <!--SuperPTValue-->
+                <span class="bl_underdog">{superPT_value}</span><br />
+                <!--/SuperPTValue-->
+            </div>
+            <!--SuperComm-->
+            {superComm_setting}<br />
+            <!--/SuperComm-->
+            <!--SuperCommValue-->
+            {superComm_value}<br />
+            <!--/SuperCommValue-->
+        </td>
+        <!--/Super-->
+        <!--Master-->
+        <td class="r">
+            <div class="div_pt">
+                <!--MasterPT-->
+                <font class="bl_underdog">{masterPT_setting}</font>
+                <br />
+                <!--/MasterPT-->
+                <!--MasterPTValue-->
+                <span class="bl_underdog">{masterPT_value}</span><br />
+                <!--/MasterPTValue-->
+            </div>
+            <!--MasterComm-->
+            {masterComm_setting}<br />
+            <!--/MasterComm-->
+            <!--MasterCommValue-->
+            {masterComm_value}<br />
+            <!--/MasterCommValue-->
+        </td>
+        <!--/Master-->
+        <!--Agent-->
+        <td class="r">
+            <div class="div_pt">
+                <!--AgentPT-->
+                <font class="bl_underdog">{agentPT_setting}</font>
+                <br />
+                <!--/AgentPT-->
+                <!--AgentPTValue-->
+                <span class="bl_underdog">{agentPT_value}</span><br />
+                <!--/AgentPTValue-->
+            </div>
+            <!--AgentComm-->
+            {agentComm_setting}<br />
+            <!--/AgentComm-->
+            <!--AgentCommValue-->
+            {agentComm_value}<br />
+            <!--/AgentCommValue-->
+        </td>
+        <!--/Agent-->
+    </tr>
+    <tr>
+        <td class="w-order">
+            2
+        </td>
+        <td class="c">
+            TESTCS0101TTT
+        </td>
+        <td>
+            <div onclick="ViewBetSlip(2140103760, '01/09/2011 12:00:00', 0);">
+                <a href="javascript:void();">Ref No:2140103760</a>
+            </div>
+            <span class="bl_time">01/09/2011 10:24:52 AM</span>
+        </td>
+        <td class="r bl_evt">
+            <div class="{className}" id="Div1">
+                <span class="bl_favorite">Manchester United <font color="#606060">-0.75</font>[1-0]</span>
+                <div class="bl_btype b">
+                    Handicap</div>
+                <div class="bl_match">
+                    Manchester United
+                    <div class="firstGoal">
+                        &nbsp;</div>
+                    <div class="lastGoal">
+                        &nbsp;</div>
+                    - vs - Liverpool
+                </div>
+                <div class="bl_lname">
+                    <span class="bl_stype blue">Soccer</span> ENGLAND FA CUP
+                </div>
+            </div>
+        </td>
+        <td class="bl_underdog">
+            <span class="bl_underdog">0.945</span><br />
+            <span class="bl_oddtype">MY</span>
+        </td>
+        <td class="r bl_underdog">
+            1,000
+        </td>
+        <td class="r">
+            <div>
+                <span class="bl_favorite">-1,000</span></div>
+            <div>
+                <font class="bl_underdog">5</font>
+            </div>
+        </td>
+        <td class="c">
+            <div class="bl_status">
+                Lose</div>
+            <div onclick="ViewResult(924290, 1, 0, 1);" style="color: rgb(27, 164, 237);" class="hand">
+                Results</div>
+            <div class="bl_ip">
+                <br />
+                <a class="iplink" href="javascript:OpenIPInfo('113.190.151.35');">113.190.151.35</a>
+            </div>
+        </td>
+        <td class="r">
+            <div class="div_pt">
+                <font class="bl_underdog">3%</font>
+                <br />
+                <span class="bl_underdog">30.00</span><br />
+            </div>
+            0.5%<br />
+            -0.15<br />
+        </td>
+        <td class="r">
+            <div class="div_pt">
+                <font class="bl_underdog">17%</font>
+                <br />
+                <span class="bl_underdog">170.00</span><br />
+            </div>
+            0.5%<br />
+            -0.85<br />
+        </td>
+        <td class="r">
+            <div class="div_pt">
+                <font class="bl_underdog">50%</font>
+                <br />
+                <span class="bl_underdog">500.00</span><br />
+            </div>
+            0.5%<br />
+            -2.5<br />
+        </td>
+    </tr>
+</table>
+<!--/HiddenBlock-->

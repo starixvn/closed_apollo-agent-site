@@ -1,0 +1,20 @@
+﻿// ---------------------------------------------------------------------------------
+// <copyright file="Odds1101.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ---------------------------------------------------------------------------------
+// <history>
+//     <change who="Marc.Bui" date="2013.02.21">Create</change>
+// </history>
+// ---------------------------------------------------------------------------------
+
+namespace Apollo.BetList.Core.Builder.OddsBuilder
+{
+    /// <summary>
+    /// Baccarat game.
+    /// This is the 1st bet type in Live Casino bet types, having ids range from 1101 to 1199.
+    /// </summary>
+    public class Odds1101 : Odds71
+    {
+    }
+}
