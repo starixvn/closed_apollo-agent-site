@@ -15,7 +15,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Models;
     using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
-    using Fanex.CustSetting.ViewData;
+    using Apollo.CustSetting.ViewData;
 
     public interface IAccountService
     {

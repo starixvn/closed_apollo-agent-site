@@ -12,7 +12,7 @@ namespace Apollo.Age.BetList.Services
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Service Interface.

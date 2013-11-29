@@ -18,7 +18,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
     using Fanex.Common;
     using Fanex.Data;
 

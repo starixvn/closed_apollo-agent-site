@@ -26,7 +26,7 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Fanex.Common.Helper;
-    using Fanex.CustSetting.ViewData;
+    using Apollo.CustSetting.ViewData;
 
     /// <summary>
     /// Account Service.

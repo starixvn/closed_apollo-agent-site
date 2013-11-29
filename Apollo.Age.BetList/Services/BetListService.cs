@@ -17,7 +17,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Bet List Service Class.

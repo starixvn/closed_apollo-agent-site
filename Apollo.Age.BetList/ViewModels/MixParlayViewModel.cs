@@ -10,7 +10,7 @@
 namespace Apollo.Age.BetList.ViewModels
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Mix parlay view model.

@@ -90,11 +90,15 @@
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj">
+    <ProjectReference Include="..\Apollo.BetList.Age\Apollo.BetList.Age.csproj">
+      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
+      <Name>Apollo.BetList.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj">
       <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
       <Name>Apollo.BetList.Core.TicketHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.BetList.Core\Apollo.BetList.Core.csproj">
+    <ProjectReference Include="..\Apollo.BetList.Core\Apollo.BetList.Core.csproj">
       <Project>{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}</Project>
       <Name>Apollo.BetList.Core</Name>
     </ProjectReference>

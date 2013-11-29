@@ -13,7 +13,7 @@ namespace Apollo.Age.BetList.Repositories.Interface
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
 
     public interface IBetListRepository
     {

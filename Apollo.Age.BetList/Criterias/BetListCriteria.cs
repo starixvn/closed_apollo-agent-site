@@ -10,7 +10,7 @@
 namespace Apollo.Age.BetList.Criterias
 {
     using System;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

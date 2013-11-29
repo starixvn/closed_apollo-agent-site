@@ -11,7 +11,7 @@ namespace Apollo.Age.BetList.Criterias
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.BetList.Core.Entities;
+    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Ticket result for bet list.

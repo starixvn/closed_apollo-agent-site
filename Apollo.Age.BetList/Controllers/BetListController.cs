@@ -30,9 +30,9 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.TicketHelper;
+    using Apollo.BetList.Core.Builder;
+    using Apollo.BetList.Core.Entities;
+    using Apollo.BetList.Core.TicketHelper;
 
     /// <summary>
     /// BetList Controller.
@@ -873,9 +873,9 @@ namespace Apollo.Age.BetList.Controllers
                 };
 
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-                if (ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Won
-                    || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Draw
-                    || ticketBetStatus == Fanex.BetList.Core.Entities.BetStatus.Lose
+                if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
                 {
                     ticketText.Result = ticket.Winlost + ticket.PlayerComm;

@@ -32,9 +32,9 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web.Filters;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Fanex.CustSetting.Models;
-    using Fanex.CustSetting.Service;
-    using Fanex.CustSetting.ViewData;
+    using Apollo.CustSetting.Models;
+    using Apollo.CustSetting.Service;
+    using Apollo.CustSetting.ViewData;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -808,7 +808,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="betLimits">List of bet limit.</param>
         private void SetBetLimitLanguage(SettingContext settingContext, IList<BettingLimit> betLimits)
         {
-            foreach (Fanex.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
+            foreach (Apollo.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
             {
                 bettingLimitItem.Name = GetResourceData(bettingLimitItem.ResourceKey);
             }
@@ -868,12 +868,12 @@ namespace Apollo.Age.Account.Controllers
             string betTypeName = string.Empty;
             string bettypeTitle = string.Empty;
 
-            foreach (Fanex.CustSetting.ViewData.SportType sportTypeItem in positionTakingSetting.SportTypes)
+            foreach (Apollo.CustSetting.ViewData.SportType sportTypeItem in positionTakingSetting.SportTypes)
             {
                 sportTypeItem.Name = this.GetResourceData(sportTypeItem.ResourceKey);
-                foreach (Fanex.CustSetting.ViewData.BetTypeGroup betTypeGroupItem in sportTypeItem.BetTypeGroups)
+                foreach (Apollo.CustSetting.ViewData.BetTypeGroup betTypeGroupItem in sportTypeItem.BetTypeGroups)
                 {
-                    foreach (Fanex.CustSetting.ViewData.BetType betTypeItem in betTypeGroupItem.BetTypes)
+                    foreach (Apollo.CustSetting.ViewData.BetType betTypeItem in betTypeGroupItem.BetTypes)
                     {
                         betTypeName = bettypeTitle = GetResourceData(betTypeItem.ResourceKey);
                         betTypeItem.Name = betTypeName;
@@ -890,7 +890,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>JSON result.</returns>
         private JsonResult ReturnResult(Result result)
         {
-            if (result.ErrCode != 0 && result.ErrCode != Fanex.CustSetting.Core.Constant.WARNING_CODE_DEFAULT)
+            if (result.ErrCode != 0 && result.ErrCode != Apollo.CustSetting.Core.Constant.WARNING_CODE_DEFAULT)
             {
                 return Json(new Result(result.ErrCode, result.ErrMsg));
             }
