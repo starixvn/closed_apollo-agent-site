@@ -26,9 +26,9 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt
     /// </summary>
     public static class BetListHTMLBuilderExt
     {
-        private const string FooterBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
-        private const string AgentPTBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
-        private const string AgentCommBuilderNamespace = "Fanex.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
+        private const string FooterBuilderNamespace = "Apollo.BetList.Age.BetListHTMLBuilderExt.FooterBuilder";
+        private const string AgentPTBuilderNamespace = "Apollo.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder";
+        private const string AgentCommBuilderNamespace = "Apollo.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder";
 
         /// <summary>
         /// Adds the no.

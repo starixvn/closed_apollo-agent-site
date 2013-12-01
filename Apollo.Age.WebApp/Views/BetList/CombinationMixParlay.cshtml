@@ -1,5 +1,5 @@
 ﻿@using Apollo.Age.Services;
-@using Fanex.BetList.Core.Utils;
+@using Apollo.BetList.Core.Utils;
 @{
     ViewBag.Title = "CombinationMixParlay";
     Layout =null;
@@ -65,7 +65,7 @@
                         isFirst = false;
                     }
                     <td class="l">
-                        @if (ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
+                        @if (ticket.Status.Equals(Apollo.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
                         {
                             <span>@BetList.losingtickets</span>
                         }
@@ -82,7 +82,7 @@
                         }
                     </td>
                     <td class="r bl_underdog">
-                        @if (ticket.Status.Equals(Fanex.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
+                        @if (ticket.Status.Equals(Apollo.BetList.Core.Entities.BetStatus.Lose, StringComparison.OrdinalIgnoreCase))
                         {
                             <span>-</span>
                         }
@@ -110,42 +110,42 @@
                     <td class="bl_status c">
                         @switch (ticket.Status.ToLower())
                         {
-                            case Fanex.BetList.Core.Entities.BetStatus.Running:
+                            case Apollo.BetList.Core.Entities.BetStatus.Running:
                                 { 
                             <span>@Lang.running</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Reject:
+                            case Apollo.BetList.Core.Entities.BetStatus.Reject:
                                 { 
                             <span>@BetList.reject</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Won:
+                            case Apollo.BetList.Core.Entities.BetStatus.Won:
                                 { 
                             <span>@BetList.won</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Lose:
+                            case Apollo.BetList.Core.Entities.BetStatus.Lose:
                                 { 
                             <span>@BetList.lose</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Draw:
+                            case Apollo.BetList.Core.Entities.BetStatus.Draw:
                                 { 
                             <span>@BetList.draw</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Waiting:
+                            case Apollo.BetList.Core.Entities.BetStatus.Waiting:
                                 { 
                             <span>@BetList.waiting</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Void:
+                            case Apollo.BetList.Core.Entities.BetStatus.Void:
                                 { 
                             <span>@BetList.voided</span>
                                     break;
                                 }
-                            case Fanex.BetList.Core.Entities.BetStatus.Refund:
+                            case Apollo.BetList.Core.Entities.BetStatus.Refund:
                                 { 
                             <span>@BetList.refund</span>
                                     break;

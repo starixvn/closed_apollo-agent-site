@@ -31,13 +31,13 @@ namespace Apollo.BetList.Core.Builder
     {
         #region Attributes
 
-        private const string ChoiceBuilderNamespace = "Fanex.BetList.Core.Builder.ChoiceBuilder";
-        private const string OddsBuilderNamespace = "Fanex.BetList.Core.Builder.OddsBuilder";
-        private const string StakeBuilderNamespace = "Fanex.BetList.Core.Builder.StakeBuilder";
-        private const string TransBuilderNamespace = "Fanex.BetList.Core.Builder.TransBuilder";
-        private const string StatusBuilderNamespace = "Fanex.BetList.Core.Builder.StatusBuilder";
-        private const string AgentCommBuilderNamespace = "Fanex.BetList.Core.Builder.AgentCommBuilder";
-        private const string AgentShareBuilderNamespace = "Fanex.BetList.Core.Builder.AgentShareBuilder";
+        private const string ChoiceBuilderNamespace = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+        private const string OddsBuilderNamespace = "Apollo.BetList.Core.Builder.OddsBuilder";
+        private const string StakeBuilderNamespace = "Apollo.BetList.Core.Builder.StakeBuilder";
+        private const string TransBuilderNamespace = "Apollo.BetList.Core.Builder.TransBuilder";
+        private const string StatusBuilderNamespace = "Apollo.BetList.Core.Builder.StatusBuilder";
+        private const string AgentCommBuilderNamespace = "Apollo.BetList.Core.Builder.AgentCommBuilder";
+        private const string AgentShareBuilderNamespace = "Apollo.BetList.Core.Builder.AgentShareBuilder";
         private StringBuilder _content;
 
         #endregion Attributes

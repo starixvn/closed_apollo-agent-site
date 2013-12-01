@@ -56,10 +56,10 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRangeModel PeriodRange(bool getLastPeriod = false)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> periodRanges = GetAllPeriodRange();
-            DateTime fromDate = DateTime.Now;
-            DateTime toDate = DateTime.Now;
+            DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             string[] rangeDates = null;
             DateRangeModel periodModel = new DateRangeModel();
             string[] startRangeDates = periodRanges[0].Split('-');
