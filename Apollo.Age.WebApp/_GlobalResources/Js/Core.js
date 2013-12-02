@@ -10,7 +10,7 @@ if (typeof jQuery != 'undefined') {
             hidePopupBlockLoading: function () {
                 if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) < 9) {
                     parent.$('.block-loading').hide();
-                    $('.block-loading').hide();			
+                    $('.block-loading').hide();
                 }
                 else {
                     $("iframe").siblings('.block-loading').hide();
@@ -459,6 +459,37 @@ if (typeof jQuery != 'undefined') {
                 if (!(date_regex.test(date))) {
                     return false;
                 }
+
+                var opera = date.split('-');
+                if (opera.length > 1) {
+                    var yy = parseInt(opera[0]);
+                    var mm = parseInt(opera[1]);
+                    var dd = parseInt(opera[2]);
+                    var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                    if (mm == 1 || mm > 2) {
+                        if (dd > ListofDays[mm - 1]) {
+                            return false;
+                        }
+                    }
+                    if (mm == 2) {
+                        var lyear = false;
+                        if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                            lyear = true;
+                        }
+
+                        if ((lyear == false) && (dd >= 29)) {
+                            return false;
+                        }
+
+                        if ((lyear == true) && (dd > 29)) {
+                            return false;
+                        }
+                    }                  
+                }
+                else {
+                    return false;
+                }
+
                 return true;
             },
 
