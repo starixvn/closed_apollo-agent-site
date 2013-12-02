@@ -57,6 +57,8 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
                             @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
                             @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
+
+                            @Html.Hidden("dateLimited", Formater.ShortDateFormat((Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate)))
                         </div>
                     </div>
                 </td>

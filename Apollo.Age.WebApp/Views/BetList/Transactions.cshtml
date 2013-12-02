@@ -68,7 +68,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddDays(-7).StartOfWeek(), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -78,7 +78,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: Model.BalanceUpDay, maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddDays(-7).StartOfWeek(), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
