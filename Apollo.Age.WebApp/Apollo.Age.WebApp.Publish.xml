@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="D:\Apollo-Deploy\HighlightBackground_DisableMinPT_MessageIssue_20131201" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+  <publishProfile publishUrl="D:\Apollo-Deploy\HighlightBackground_DisableMinPT_MessageIssue_20131202" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="bin/th-TH/Apollo.Age.Resources.resources.dll" publishTime="12/01/2013 13:30:01" />
     <file relUrl="Views/Results/Others.cshtml" publishTime="10/01/2013 16:55:01" />
     <file relUrl="_GlobalResources/Images/edit.gif" publishTime="05/23/2013 14:14:39" />
@@ -292,7 +292,7 @@
     <file relUrl="bin/ru-ru/BundleTransformer.Core.resources.dll" publishTime="09/30/2013 11:08:03" />
     <file relUrl="bin/vi-VN/Apollo.Age.Resources.resources.dll" publishTime="12/01/2013 13:30:01" />
     <file relUrl="Views/Instruction/vi-VN/AgentBetSettingAdv.cshtml" publishTime="05/23/2013 14:14:39" />
-    <file relUrl="Views/Message/NewMessage.cshtml" publishTime="12/01/2013 13:24:00" />
+    <file relUrl="Views/Message/NewMessage.cshtml" publishTime="12/02/2013 08:58:55" />
     <file relUrl="Views/Home/Resources/img/buttons.png" publishTime="05/23/2013 14:14:39" />
     <file relUrl="Views/Forecast/Resources/ScoreMap.js" publishTime="05/23/2013 14:14:39" />
     <file relUrl="CustSettingEngine/BettingLimitSportNames.xml" publishTime="05/23/2013 14:14:38" />

@@ -10,8 +10,8 @@
     var special = string.Empty;
     var pri = string.Empty;
     var color = string.Empty;
-    var minDate = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-3).Month, 1);
-    var maxDate = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(1).Month, 1);
+    var minDate = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).AddMonths(-3);
+    var maxDate = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).AddMonths(1);
     var lang = ViewBag.UserLang;
     
     switch (Model.PageQuery)
