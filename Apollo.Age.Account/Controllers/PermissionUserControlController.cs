@@ -51,11 +51,14 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Assigns the function to agent user.
         /// </summary>
+        /// <param name="grandParentAgentId">The grand parent agent identifier.</param>
         /// <param name="parentAgentId">The parent agent ID.</param>
         /// <param name="agentUserId">The agent user identifier.</param>
-        /// <returns>Return view assign permission to agent user.</returns>
+        /// <returns>
+        /// Return view assign permission to agent user.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.PermissionControl, Policy = Policy.Query)]
-        public ActionResult AssignPermissionControl(int grandParentAgentId, int parentAgentId, int agentUserId)
+        public ActionResult AssignPermissionControl(int? grandParentAgentId, int parentAgentId, int agentUserId)
         {
             if (!PermissionDownlineDetail(agentUserId))
             {
@@ -97,7 +100,7 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentUserInfo.Agent.Id,
                 IsDirectAgent = parentInfo.Agent.Id == CurrentSession.AgentId,
                 ParentAgentId = parentAgentId,
-                GrandParentAgentId = grandParentAgentId
+                GrandParentAgentId = grandParentAgentId.HasValue ? grandParentAgentId.Value : 0
             };
 
             return View(criteria);

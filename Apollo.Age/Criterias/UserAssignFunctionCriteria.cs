@@ -147,7 +147,6 @@ namespace Apollo.Age.Criterias
         [SpParam(Ignored = true)]
         public int ParentAgentId { get; set; }
 
-
         [SpParam(Ignored = true)]
         public int GrandParentAgentId { get; set; }
 
