@@ -29,7 +29,7 @@
 @Html.Hidden("backUrl", backLink)
 @if (MaxBetLimit != 0)
 {
-    <div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">0</span> </div>
+    <div id="betSettingInformationMessage" class="edit-setting-warning clear"> @(LangMsg.MessageBetSettingLimit) <span id="maxbetlimit">@MaxBetLimit</span> </div>
 }
 <div id="commissionSettingContainer"></div>
 <div id="bettingLimitContainer"></div>

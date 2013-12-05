@@ -12,7 +12,11 @@
     var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
     var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
     var hasDownlineDetailsPermission = ViewBag.DownlineDetailsPolicy != null ? (byte)ViewBag.DownlineDetailsPolicy >= (byte)Policy.Query : false;
+    var agentLevelId = new int[4];
+    
+    
 }
+
 <table id="tab-menu">
     <tr>
         <td>
@@ -57,8 +61,10 @@
                         for (int i = 0; i < count; i++)
                         {
                             item = Model.AgentPathList[i];
+                            agentLevelId[i] = item.Id;
                         <tr>
                             @RenderAgentLevelName(item.Level, "parent-lbl")
+                           
                             <td class="parent-name">
                                 @if (item.Level == AgentLevel.Super)
                                 {
@@ -66,6 +72,7 @@
                                 }
                                 else
                                 {
+                                    
                                     <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                     </a>
@@ -306,7 +313,7 @@
 
                         if (permissionControl >= (byte)Policy.Query)
                         {
-                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentId&agentuserid=@Model.CustId">
+                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AssignPermissionControl?grandParentAgentId=@(agentLevelId[1] != 0 ? agentLevelId[1] : agentLevelId[0])&parentAgentId=@Model.ParentId&agentuserid=@Model.CustId">
                             @Apollo.Age.Resources.Lang.Permission
                         </a>                       
                         }

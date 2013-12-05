@@ -201,7 +201,7 @@
                         }
                         @if (Model.PermissionControlPolicy >= (byte)Policy.Query)
                         {                            
-                                <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
+                                <a href="~/PermissionUserControl/AssignPermissionControl?grandParentAgentId=@parentId&parentAgentId=@Model.AgentId&agentuserid=@item.AgentId">
                                      @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
                                      { 
                                         @(Lang.Permission)

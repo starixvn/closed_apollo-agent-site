@@ -13,6 +13,7 @@ var AssignFunction = function ($) {
         username: null,
         isDirectAgent: null,
         parentAgentId: null,
+        grandParentAgentId: 0,
         isApplyDownLine: null,
         unCheckReadValue: "",
         unCheckHostValue: "",
@@ -25,6 +26,7 @@ var AssignFunction = function ($) {
             AssignFunction.username = $('#AgentUsername').val();
             AssignFunction.isDirectAgent = $('#IsDirectAgent').val();
             AssignFunction.parentAgentId = $('#ParentAgentId').val();
+            AssignFunction.grandParentAgentId = $('#GrandParentAgentId').val();
             AssignFunction.messageApplyDownline = Language.APPLYDOWNLINE;
 
             if (AssignFunction.isMaster == "1") {
@@ -140,7 +142,7 @@ var AssignFunction = function ($) {
 
                     setTimeout(function () {
                         if (AssignFunction.isMaster == "1") {
-                            var url = AssignFunction.isDirectAgent == "1" ? "Account/AgentList" : "Account/IndirectAgentList?parentAgentId=" + AssignFunction.parentAgentId + "&agentid=" + AssignFunction.agentId + "";
+                            var url = AssignFunction.isDirectAgent == "1" ? "Account/AgentList" : "Account/IndirectAgentList?parentAgentId=" + (AssignFunction.grandParentAgentId != 0 ? AssignFunction.grandParentAgentId : AssignFunction.parentAgentId) + "&agentid=" + (AssignFunction.grandParentAgentId != 0 ? AssignFunction.parentAgentId : AssignFunction.agentId) + "";
 
                             location.href = APOLLO.resolveUrl(url);
                         }
