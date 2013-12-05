@@ -53,7 +53,7 @@ if (typeof jQuery != 'undefined') {
                 }
                 else {
                     $("#betSettingInformationMessage").show();
-                    $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
+                   // $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
                 }
 
             },
