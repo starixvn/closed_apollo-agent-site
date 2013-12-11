@@ -10,14 +10,26 @@
 namespace Apollo.Age.Reports.Models
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Date range model class.
     /// </summary>
-    public class DateRangeModel
+    public class ListDateRange
+    {
+        public int Year { get; set; }
+
+        public List<DateRange> ListOfDateRange { get; set; }
+    }
+
+    /// <summary>
+    /// Date range model class.
+    /// </summary>
+    public class DateRange
     {
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
+                
     }
 }
