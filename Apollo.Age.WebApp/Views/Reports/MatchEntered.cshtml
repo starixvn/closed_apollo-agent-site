@@ -8,6 +8,7 @@
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
     int counter = 0;
     var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    var currentPeriodClass = string.Empty;
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
@@ -220,55 +221,41 @@ new ReportMenuViewModel
     <table class="tblRpt">
         <thead>
             <tr>
-            <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)</th>
+                <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)
+                </th>
             </tr>
-            <tr>               
+            <tr>
                 <th colspan="2">@Model.PeriodList[0].Year
                 </th>
-                <th colspan="2">@Model.PeriodList[1].Year</th>
+                <th colspan="2">@Model.PeriodList[1].Year
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var dateRange in Model.PeriodList[0].ListOfDateRange)
+            {
+                counter++;
+                if (string.IsNullOrWhiteSpace(currentPeriodClass) && dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
                 {
-                    counter++;
-                    
-                    if (dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
-                    {                  
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td class="CurrentPeriod">
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                             <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @Model.PeriodList[0].ListOfDateRange[counter-1].FromDate.ToString("yyyy-MM-dd") ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                        </tr>
-                    }
-                    else
-                    { 
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                             <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd") ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                        </tr>
-                    }
-                    
+                    currentPeriodClass = "CurrentPeriod";
                 }
+                
+                <tr>
+                    <td class="firstcolumn">
+                        @counter
+                    </td>
+                    <td class="@currentPeriodClass">
+                        @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                    </td>
+                    <td class="firstcolumn">
+                        @counter
+                    </td>
+                    <td>
+                        @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
+                        ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                    </td>
+                </tr>                             
+            }
         </tbody>
     </table>
 </div>

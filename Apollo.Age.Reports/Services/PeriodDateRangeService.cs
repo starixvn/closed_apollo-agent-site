@@ -44,7 +44,14 @@ namespace Apollo.Age.Reports.Services
         /// <returns>List of period date ranges that were formatted.</returns>
         public List<DateRanges> ListOfPeriods()
         {
-            return GetAllPeriodRange();   
+            List<DateRanges> ranges = GetAllPeriodRange();
+
+            if (ranges.Count > 2)
+            {
+                return ranges.Where(x => x.Year >= DateTime.Now.AddYears(-1).Year).ToList();
+            }
+            
+            return ranges;   
         }
 
         /// <summary>
