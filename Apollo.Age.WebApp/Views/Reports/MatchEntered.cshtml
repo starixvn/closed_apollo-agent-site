@@ -220,12 +220,12 @@ new ReportMenuViewModel
     <table class="tblRpt">
         <thead>
             <tr>
-            <th colspan="4">@string.Format(Lang.periodlisttitle,DateTime.Now.Year + " & " + DateTime.Now.AddYears(1).Year)</th>
+            <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)</th>
             </tr>
             <tr>               
-                <th colspan="2">@DateTime.Now.Year
+                <th colspan="2">@Model.PeriodList[0].Year
                 </th>
-                <th colspan="2">@DateTime.Now.AddYears(1).Year</th>
+                <th colspan="2">@Model.PeriodList[1].Year</th>
             </tr>
         </thead>
         <tbody>
