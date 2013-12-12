@@ -2,357 +2,363 @@
 @import "../../../_globalResources/css/calendar.less";
 
 .tblRpt {
-	clear: left;
-	 tbody td {
-		border-width: 0 1px 0 0;
-	}
+    clear: left;
+     tbody td {
+        border-width: 0 1px 0 0;
+    }
 }
 
 .clear {
-	clear: both;
+    clear: both;
 }
 #function-bar {	
-	clear: both;
-	margin-bottom: 5px;
+    clear: both;
+    margin-bottom: 5px;
 
-	.item {
-		margin-top: 1px;
+    .item {
+        margin-top: 1px;
 
-		.sport {
-			height: 15px;
-		}
-	}
-	.menu.report-winloss {
-		margin: 2px 80px 0 97px;
+        .sport {
+            height: 15px;
+        }
+    }
+    .menu.report-winloss {
+        margin: 2px 80px 0 97px;
 
-		li {
-			margin-right: 8px;
-		}
-	}
-	.menu.report-sportcredit
-	{
-		margin: 2px 80px 0 291px;
+        li {
+            margin-right: 8px;
+        }
+    }
+    .menu.report-sportcredit
+    {
+        margin: 2px 80px 0 291px;
 
-		li {
-			margin-right: 8px;
-		}
-	}
+        li {
+            margin-right: 8px;
+        }
+    }
 }
 
 .last_goal {
-	background: url(../../../_globalResources/images/lastGoal.gif) no-repeat center center;
-	height: 10px;
-	width: 14px;
-	display: inline;
-	padding: 0 4px;
+    background: url(../../../_globalResources/images/lastGoal.gif) no-repeat center center;
+    height: 10px;
+    width: 14px;
+    display: inline;
+    padding: 0 4px;
 }
 
 .first_goal {
-	background: url(../../../_globalResources/images/firstGoal.gif) no-repeat center center;
-	height: 10px;
-	width: 14px;
-	display: inline;
-	padding: 0 4px;
+    background: url(../../../_globalResources/images/firstGoal.gif) no-repeat center center;
+    height: 10px;
+    width: 14px;
+    display: inline;
+    padding: 0 4px;
 }
 
 .nav-outright {
-	width: 795px;
-	float: left;
-	margin-bottom: 5px;
+    width: 795px;
+    float: left;
+    margin-bottom: 5px;
 }
 
 .boxNavigation {
-	min-height: 20px;
-	clear: both;
-	margin-bottom: 3px;	
-	width: 90%;
-	float: left;
+    min-height: 20px;
+    clear: both;
+    margin-bottom: 3px;	
+    width: 90%;
+    float: left;
 }
 
 #resultContainer {
-	margin: 5px 0 10px 0;
-	float: left;
+    margin: 5px 0 10px 0;
+    float: left;
 }
 
 #box_header, .box-header {
-	width: 884px;
-	margin: 0 5px 0 0;
+    width: 884px;
+    margin: 0 5px 0 0;
 
-	&.report {
-		background-color: #DCDCDC;
-		border: 1px solid #000;
-		padding: 0px;
-		float: left;
+    &.report {
+        background-color: #DCDCDC;
+        border: 1px solid #000;
+        padding: 0px;
+        float: left;
 
-		&.hasPeriods {
-			margin-bottom: 10px;
-		}
+        &.hasPeriods {
+            margin-bottom: 10px;
+        }
 
-		.btn {
-			font-size: @fontSize;
-			height: 21px;
-			padding-bottom: 1px;
-		}
+        .btn {
+            font-size: @fontSize;
+            height: 21px;
+            padding-bottom: 1px;
+        }
 
-		.row {
-			background-color: #C9DBDF;
-			padding: 0 0px;
-			margin-bottom: 1px;
+        .row {
+            background-color: #C9DBDF;
+            padding: 0 0px;
+            margin-bottom: 1px;
 
-			&.bg-action {
-				background: @white;
-				text-align: center;
-				padding: 3px 0;
+            &.bg-action {
+                background: @white;
+                text-align: center;
+                padding: 3px 0;
 
-				.item {
-					float: right;
-					margin: 0 5px;
+                .item {
+                    float: right;
+                    margin: 0 5px;
 
-					&.btn-action {
-						float: none;
-						margin: auto;
-						width: 173px;
+                    &.btn-action {
+                        float: none;
+                        margin: auto;
+                        width: 173px;
 
-						input {
-							margin-right: 20px;
-						}
+                        input {
+                            margin-right: 20px;
+                        }
 
-						.btn {
-							padding: 0 8px;
-							height: 20px;
-							float: left;
-						}
-					}
-				}				
-			}
-		}
-		.winloss, .outstanding {
-			.bettype {
-				min-width: 146px;
-			}
-		}
-		.winloss, .outstanding, .sportcredit {
-			width: 100%;
+                        .btn {
+                            padding: 0 8px;
+                            height: 20px;
+                            float: left;
+                        }
+                    }
+                }				
+            }
+        }
+        .winloss, .outstanding {
+            .bettype {
+                min-width: 146px;
+            }
+        }
+        .winloss, .outstanding, .sportcredit {
+            width: 100%;
 
-			.winloss_date {
-				background-color: #699;
-				text-align: center;
-				color: white;
-			
-				.winloss_complete {
-					background-color: #FFD700; 
-					color: #3804FD;
-				}
-				.winloss_incomplete {
-					background-color: #FFF011; 
-					color: #FF4E00;
-				}
-			}
+            .winloss_date {
+                background-color: #699;
+                text-align: center;
+                color: white;
+            
+                .winloss_complete {
+                    background-color: #FFD700; 
+                    color: #3804FD;
+                }
+                .winloss_incomplete {
+                    background-color: #FFF011; 
+                    color: #FF4E00;
+                }
+            }
 
-			tr td.firstcolumn {
-				background-color:#577176;
-				text-align: right;
-				width: 100px;
-				color: white;
-			}
+            tr td.firstcolumn {
+                background-color:#577176;
+                text-align: right;
+                width: 100px;
+                color: white;
+            }
 
-			tr td.secondcolumn{
-				width: 830px;
-			}
+            tr td.secondcolumn{
+                width: 830px;
+            }
 
-			tr{
-				td{
-					border: 1px solid #DCDCDC;
-					background-color: #C9DBDF;
-					padding: 3px 3px;
+            tr{
+                td{
+                    border: 1px solid #DCDCDC;
+                    background-color: #C9DBDF;
+                    padding: 3px 3px;
 
-					.bettype {
-						height: 19px;
-						margin: 2px;
-					}
-				}
-			}
+                    .bettype {
+                        height: 19px;
+                        margin: 2px;
+                    }
+                }
+            }
 
-			.winloss_yesterday{
-				color: red;
-			}
+            .winloss_yesterday{
+                color: red;
+            }
 
-			.txt-username{
-				width: 136px;
-			}
-		}
-	}
+            .txt-username{
+                width: 136px;
+            }
+        }
+    }
 }
 
 .tblRpt.report.none-result {
-	border: #fff;
-	th, td {
-		border: 1px solid #fff;
-	}
+    border: #fff;
+    th, td {
+        border: 1px solid #fff;
+    }
 
-	thead {
-		th{
-			background-color: #CC0000;
-			height: 30px;
-		}
-	}
-	tbody td {
-		background: #CCC;
-		
-		&.row-exit {
-			height: 20px;
-		}
-	}
+    thead {
+        th{
+            background-color: #CC0000;
+            height: 30px;
+        }
+    }
+    tbody td {
+        background: #CCC;
+        
+        &.row-exit {
+            height: 20px;
+        }
+    }
 }
 
 .period-schedule {
-	float: left;
-	border: 1px solid #000;
+    float: left;
+    border: 1px solid #000;
 
-	.tblRpt {
-		border-color: #DCDCDC;
-		border-width: 1px;
-		width: 340px;
-		height: 274px;
+    .tblRpt {
+        border-color: #DCDCDC;
+        border-width: 1px;
+        width: 340px;
+        height: 274px;
 
-		th, td {
-			height: 20px;
-			padding: 0 3px;
-		}
+        th, td {
+            height: 20px;
+            padding: 0 3px;
+        }
 
-		thead th {
-			background-color: #669999;
-			color: #fff;
-			border: 0;
-		}
+        thead th {
+            background-color: #669999;
+            color: #fff;
+            border: 0;
+        }
 
-		tbody tr td {
-			border-color: #DCDCDC;
+        tbody tr td {
+            border-color: #DCDCDC;
 
-			&.firstcolumn {
-				background-color: #7DD5D2;
-			}
-		}
+            &.firstcolumn {
+                background-color: #7DD5D2;
+                text-align: center;
+            }
+        }
 
-		tr.CurrentPeriod {
-			td {
-				background-color: #FFD2C7;
+        tr.title th {
+            background: #C9DBDF;
+            color: #000;
+        }
 
-				&.firstcolumn {
-					background-color: #7DD5D2;
-				}
-			}
-		}
-	}
+        tr.CurrentPeriod {
+            td {
+                background-color: #FFD2C7;
+
+                &.firstcolumn {
+                    background-color: #7DD5D2;
+                }
+            }
+        }
+    }
 }
 /* Formatting for GRID */
 
 .freegrid {
-	border: 4px solid #000;
-	border-width: 4px 3px 1px;
-	
-	.grid-fixed-table {
-		border-bottom: 1px solid #000;
-	}
+    border: 4px solid #000;
+    border-width: 4px 3px 1px;
+    
+    .grid-fixed-table {
+        border-bottom: 1px solid #000;
+    }
 
-	table thead th, .col_header table thead th {
-		background-color: #687780;
-		border-color: #000;
-		color: #fff;		
-		text-shadow: none;
-		font-weight: normal;
-	}
+    table thead th, .col_header table thead th {
+        background-color: #687780;
+        border-color: #000;
+        color: #fff;		
+        text-shadow: none;
+        font-weight: normal;
+    }
 
-	.free-top-left thead th, .grid-fixed-table thead th {
-		padding: 0 2px;
-	}
+    .free-top-left thead th, .grid-fixed-table thead th {
+        padding: 0 2px;
+    }
 
-	td, .grid-fixed-table td {
-		border-color: #000;
-		background-color: #fff;
-		border-bottom: 1px solid #000;
-	}
+    td, .grid-fixed-table td {
+        border-color: #000;
+        background-color: #fff;
+        border-bottom: 1px solid #000;
+    }
 
-	.row_footer table thead th, .col_footer table thead th {
-		font-weight: normal;
-	}
+    .row_footer table thead th, .col_footer table thead th {
+        font-weight: normal;
+    }
 
-	.row-footer-background {
-		border-top: none;
-	}
+    .row-footer-background {
+        border-top: none;
+    }
 }
 
 /* NOTES */
 
 .notes {
-	border: 1px solid #E6D87C;
-	clear: both;
-	display: table;
-	margin-top: 10px;
-	padding: 10px;
-	width: 864px;
+    border: 1px solid #E6D87C;
+    clear: both;
+    display: table;
+    margin-top: 10px;
+    padding: 10px;
+    width: 864px;
 
-	.title-notes {
-		float: left;
-		color: #b97a57;
-	}
+    .title-notes {
+        float: left;
+        color: #b97a57;
+    }
 
-	.list {
-		float: left;		
-		list-style: disc outside none;
-		margin-left: 26px;
-		width: 680px;
-		font-style: italic;	
-	}
+    .list {
+        float: left;		
+        list-style: disc outside none;
+        margin-left: 26px;
+        width: 680px;
+        font-style: italic;	
+    }
 }
 
 /* FIX IE */
 
 .ie {
-	#box_header.report .btn, .box-header.report .btn {
-		height: 20px;
-	}
+    #box_header.report .btn, .box-header.report .btn {
+        height: 20px;
+    }
 
-	#function-bar {
-		.menu.report-winloss {
-			margin: 3px 71px 0 97px;
+    #function-bar {
+        .menu.report-winloss {
+            margin: 3px 71px 0 97px;
 
-			a, a:hover {
-				color: #0000EE;
-			}
-		}
-		.menu.report-sportcredit
-		{
-			margin: 2px 80px 0 291px;
-		}		
-	}
+            a, a:hover {
+                color: #0000EE;
+            }
+        }
+        .menu.report-sportcredit
+        {
+            margin: 2px 80px 0 291px;
+        }		
+    }
 }
 
 .eq-ie7 {
-	
-	#page_main {
-		width: 99%;
+    
+    #page_main {
+        width: 99%;
 
-		#function-bar {
-			#ddlSport {
-				height: 20px;
-			}
-		}
+        #function-bar {
+            #ddlSport {
+                height: 20px;
+            }
+        }
 
-		#box_header {
-			width: 890px;
-			.btn {
-				padding: 0;
-			}		
-		}
+        #box_header {
+            width: 890px;
+            .btn {
+                padding: 0;
+            }		
+        }
 
-		.export-excel {
-			margin-top: 10px;
-		}
+        .export-excel {
+            margin-top: 10px;
+        }
 
-		.notes {
-			width: 930px;
-		}
+        .notes {
+            width: 930px;
+        }
 
         .period-schedule .tblRpt {
             width: 330px;
@@ -367,109 +373,109 @@
             padding: 0 2px;
             white-space: nowrap;
         }
-	}
+    }
 }
 
 .tblRpt.tblOutstanding
 {
-	width: 795px;
+    width: 795px;
 }
 
 .tblRpt.tblSportCredit
 {
-	width: 795px;
+    width: 795px;
 }
 
 .tblRpt.tblWinLoss
 {
-	thead {
-		.namecolor{
-			background-color:#008081;
-		}
-		.sharecolor{
-			background-color:#008081;
-		}
-		.membercolor{
-			color: #222222;
-			background-color:#DBE5EE;
-		}
-		.downlinecolor{
-			background-color:#008081;
-		}
-		.agentcolor{
-			background-color: #C4D9EE;
-			color: #222222;
-		}
-		.uplinecolor{
-			background-color:#008081;
-		}
-		.oustandingcolor{
-			color: #222222;
-			background-color:#DBE5EE;
-			width: 110px;
-		}
-	}
+    thead {
+        .namecolor{
+            background-color:#008081;
+        }
+        .sharecolor{
+            background-color:#008081;
+        }
+        .membercolor{
+            color: #222222;
+            background-color:#DBE5EE;
+        }
+        .downlinecolor{
+            background-color:#008081;
+        }
+        .agentcolor{
+            background-color: #C4D9EE;
+            color: #222222;
+        }
+        .uplinecolor{
+            background-color:#008081;
+        }
+        .oustandingcolor{
+            color: #222222;
+            background-color:#DBE5EE;
+            width: 110px;
+        }
+    }
 
-	.header-member{
-		.namecolor{
-			color: #222222;
-			background-color:#C4D9EE;
-		}
-		.sharecolor{
-			color: #222222;
-			background-color:#C4D9EE;
-		}
-		.membercolor{
-			color: #fff;
-			background-color:#008081;
-		}
-		.agentcolor{
-			background-color: #C4D9EE;
-			color: #222222;
-		}
-		.uplinecolor{
-			background-color:#008081;
-		}
-		.oustandingcolor{
-			color: #222222;
-			background-color:#C4D9EE;
-			width: 110px;
-		}
+    .header-member{
+        .namecolor{
+            color: #222222;
+            background-color:#C4D9EE;
+        }
+        .sharecolor{
+            color: #222222;
+            background-color:#C4D9EE;
+        }
+        .membercolor{
+            color: #fff;
+            background-color:#008081;
+        }
+        .agentcolor{
+            background-color: #C4D9EE;
+            color: #222222;
+        }
+        .uplinecolor{
+            background-color:#008081;
+        }
+        .oustandingcolor{
+            color: #222222;
+            background-color:#C4D9EE;
+            width: 110px;
+        }
 
-		.split-header
-		{
-			color: #fff;
-		}
-	}
+        .split-header
+        {
+            color: #fff;
+        }
+    }
 
-	.split
-	{
-		color: #C10000;
-	}
+    .split
+    {
+        color: #C10000;
+    }
 
-	.split-header
-	{
-		color: #222222;
-	}
+    .split-header
+    {
+        color: #222222;
+    }
 
-	.split-footer
-	{
-		color: #fff;
-	}
+    .split-footer
+    {
+        color: #fff;
+    }
 
-	tfoot{
-		.total{
-			background-color:#C10000;
-		}
-	}
+    tfoot{
+        .total{
+            background-color:#C10000;
+        }
+    }
 
-	tbody{
-		tr:hover{
-			background-color: Yellow;				
-		}
-			
-		.rowactivecolor{
-				background-color: Yellow;
-			}		
-	}
+    tbody{
+        tr:hover{
+            background-color: Yellow;				
+        }
+            
+        .rowactivecolor{
+                background-color: Yellow;
+            }		
+    }
 }
