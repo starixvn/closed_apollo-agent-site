@@ -220,7 +220,7 @@ new ReportMenuViewModel
 <div class="period-schedule">
     <table class="tblRpt">
         <thead>
-            <tr class="title">
+            <tr>
                 <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)
                 </th>
             </tr>
@@ -251,8 +251,8 @@ new ReportMenuViewModel
                         @counter
                     </td>
                     <td>
-                        @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
-                        ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                        @Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
+                        ~ @Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
                     </td>
                 </tr>                             
             }
