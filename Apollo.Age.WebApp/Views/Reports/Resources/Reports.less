@@ -76,13 +76,17 @@
 
 #box_header, .box-header {
 	width: 884px;
-	margin-top: 0px;
+	margin: 0 5px 0 0;
 
 	&.report {
 		background-color: #DCDCDC;
 		border: 1px solid #000;
 		padding: 0px;
 		float: left;
+
+		&.hasPeriods {
+			margin-bottom: 10px;
+		}
 
 		.btn {
 			font-size: @fontSize;
@@ -98,7 +102,7 @@
 			&.bg-action {
 				background: @white;
 				text-align: center;
-				padding: 4px 0;
+				padding: 3px 0;
 
 				.item {
 					float: right;
@@ -130,7 +134,7 @@
 		.winloss, .outstanding, .sportcredit {
 			width: 100%;
 
-			.winloss_date{
+			.winloss_date {
 				background-color: #699;
 				text-align: center;
 				color: white;
@@ -160,8 +164,7 @@
 				td{
 					border: 1px solid #DCDCDC;
 					background-color: #C9DBDF;
-					padding: 2px 3px;
-					width: 22%;
+					padding: 3px 3px;
 
 					.bettype {
 						height: 19px;
@@ -204,14 +207,12 @@
 
 .period-schedule {
 	float: left;
-	display: block;
-	margin-left: 10px;
 	border: 1px solid #000;
 
 	.tblRpt {
 		border-color: #DCDCDC;
 		border-width: 1px;
-		width: 250px;
+		width: 340px;
 		height: 274px;
 
 		th, td {
@@ -339,19 +340,33 @@
 		}
 
 		#box_header {
-			width: 950px;
+			width: 890px;
 			.btn {
 				padding: 0;
 			}		
 		}
 
 		.export-excel {
-			margin-top: 0;
+			margin-top: 10px;
 		}
 
 		.notes {
 			width: 930px;
 		}
+
+        .period-schedule .tblRpt {
+            width: 330px;
+        }
+
+        #box_header.report .winloss tr td.firstcolumn,
+        .box-header.report .winloss tr td.firstcolumn {
+            width: 75px;
+        }
+
+        .period-schedule .tblRpt th, .period-schedule .tblRpt td {
+            padding: 0 2px;
+            white-space: nowrap;
+        }
 	}
 }
 
