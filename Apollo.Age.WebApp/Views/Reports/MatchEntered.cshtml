@@ -220,35 +220,50 @@ new ReportMenuViewModel
     <table class="tblRpt">
         <thead>
             <tr>
-                <th colspan="2">@string.Format(Lang.periodlisttitle, DateTime.Now.Year)
+            <th colspan="3">@string.Format(Lang.periodlisttitle,DateTime.Now.Year + " & " + DateTime.Now.AddYears(1).Year)</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>@DateTime.Now.Year
                 </th>
+                <th>@DateTime.Now.AddYears(1).Year</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.PeriodList)
-            {
-                counter++;
-                if (item.FromDate <= currentDate && item.ToDate >= currentDate)
-                {                  
-                <tr class="CurrentPeriod">
-                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
-                    </td>
-                    <td>
-                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
-                    </td>
-                </tr>
+            @foreach (var dateRange in Model.PeriodList[0].ListOfDateRange)
+                {
+                    counter++;
+                    
+                    if (dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
+                    {                  
+                        <tr class="CurrentPeriod">
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") @Lang.to @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>
+                                @Model.PeriodList[0].ListOfDateRange[counter-1].FromDate.ToString("yyyy-MM-dd") @Lang.to @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        </tr>
+                    }
+                    else
+                    { 
+                        <tr>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") @Lang.to @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>
+                                @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd") @Lang.to @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        </tr>
+                    }
+                    
                 }
-                else
-                { 
-                <tr>
-                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
-                    </td>
-                    <td>
-                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
-                    </td>
-                </tr>
-                }
-            }
         </tbody>
     </table>
 </div>

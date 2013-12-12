@@ -179,8 +179,8 @@ namespace Apollo.Age.BetList.Controllers
             var viewModel = new BetListReportViewModel();
             viewModel.Username = CurrentSession.AgentName;
 
-            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.Transactions(viewModel);
         }
@@ -325,8 +325,8 @@ namespace Apollo.Age.BetList.Controllers
                 ViewBag.TotalItems = 0;
             }
 
-            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
@@ -357,8 +357,8 @@ namespace Apollo.Age.BetList.Controllers
                 return View("~/Views/Reports/ReportAccessDenied.cshtml");
             }
 
-            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.TicketCancel(viewModel);
         }
@@ -429,8 +429,8 @@ namespace Apollo.Age.BetList.Controllers
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
 
-            model.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            model.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            model.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View(model);
         }

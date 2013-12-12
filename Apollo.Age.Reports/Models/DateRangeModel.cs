@@ -15,7 +15,7 @@ namespace Apollo.Age.Reports.Models
     /// <summary>
     /// Date range model class.
     /// </summary>
-    public class ListDateRange
+    public class DateRanges
     {
         public int Year { get; set; }
 

@@ -27,14 +27,24 @@ namespace Apollo.Age.Reports.Services
         /// Get list of period date ranges.
         /// </summary>
         /// <returns>List of period date ranges that were formatted.</returns>
-        public List<DateRange> ListOfPeriodRanges()
+        public List<DateRange> PeriodRanges()
         {
-            List<ListDateRange> data = GetAllPeriodRange();
+            List<DateRanges> data = GetAllPeriodRange();
+
             var dateRangeNow = new List<DateRange>();
 
             dateRangeNow = data.Where(x => x.Year == DateTime.Now.Year).Select(y => y.ListOfDateRange).FirstOrDefault();
 
             return dateRangeNow;
+        }
+
+        /// <summary>
+        /// Lists the of periods.
+        /// </summary>
+        /// <returns>List of period date ranges that were formatted.</returns>
+        public List<DateRanges> ListOfPeriods()
+        {
+            return GetAllPeriodRange();   
         }
 
         /// <summary>
@@ -44,10 +54,10 @@ namespace Apollo.Age.Reports.Services
         /// <returns>
         /// Return period date range.
         /// </returns>
-        public DateRange PeriodRange(bool getLastPeriod = false)
+        public DateRange PeriodDates(bool getLastPeriod = false)
         {
             var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            List<DateRange> periodRanges = ListOfPeriodRanges();
+            List<DateRange> periodRanges = PeriodRanges();
             DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             DateRange periodModel = new DateRange();
@@ -105,9 +115,9 @@ namespace Apollo.Age.Reports.Services
         /// Gets all period range.
         /// </summary>
         /// <returns>List of all period range.</returns>
-        private List<ListDateRange> GetAllPeriodRange()
+        private List<DateRanges> GetAllPeriodRange()
         {
-            var listDateRange = new List<ListDateRange>();
+            var listDateRange = new List<DateRanges>();
 
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(HttpContext.Current.Server.MapPath("~/App_Data/PeriodsRange.xml"));
@@ -126,7 +136,7 @@ namespace Apollo.Age.Reports.Services
                     });
                 }
 
-                listDateRange.Add(new ListDateRange
+                listDateRange.Add(new DateRanges
                 {
                     ListOfDateRange = dateRanges,
                     Year = int.Parse(period.Attributes["Year"].Value)
