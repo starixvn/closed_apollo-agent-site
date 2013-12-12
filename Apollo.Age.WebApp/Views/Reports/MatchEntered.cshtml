@@ -220,13 +220,12 @@ new ReportMenuViewModel
     <table class="tblRpt">
         <thead>
             <tr>
-            <th colspan="3">@string.Format(Lang.periodlisttitle,DateTime.Now.Year + " & " + DateTime.Now.AddYears(1).Year)</th>
+            <th colspan="4">@string.Format(Lang.periodlisttitle,DateTime.Now.Year + " & " + DateTime.Now.AddYears(1).Year)</th>
             </tr>
-            <tr>
-                <th></th>
-                <th>@DateTime.Now.Year
+            <tr>               
+                <th colspan="2">@DateTime.Now.Year
                 </th>
-                <th>@DateTime.Now.AddYears(1).Year</th>
+                <th colspan="2">@DateTime.Now.AddYears(1).Year</th>
             </tr>
         </thead>
         <tbody>
@@ -236,15 +235,18 @@ new ReportMenuViewModel
                     
                     if (dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
                     {                  
-                        <tr class="CurrentPeriod">
+                        <tr>
                             <td class="firstcolumn">
                                 @counter
                             </td>
-                            <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") @Lang.to @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            <td class="CurrentPeriod">
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                             <td class="firstcolumn">
+                                @counter
                             </td>
                             <td>
-                                @Model.PeriodList[0].ListOfDateRange[counter-1].FromDate.ToString("yyyy-MM-dd") @Lang.to @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                                @Model.PeriodList[0].ListOfDateRange[counter-1].FromDate.ToString("yyyy-MM-dd") ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
                             </td>
                         </tr>
                     }
@@ -255,10 +257,13 @@ new ReportMenuViewModel
                                 @counter
                             </td>
                             <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") @Lang.to @dateRange.ToDate.ToString("yyyy-MM-dd")
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                             <td class="firstcolumn">
+                                @counter
                             </td>
                             <td>
-                                @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd") @Lang.to @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                                @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd") ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
                             </td>
                         </tr>
                     }
