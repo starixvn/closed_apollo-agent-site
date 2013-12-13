@@ -494,6 +494,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="excludeactor">Exclude actor or no.</param>
         /// <returns>Agent down line list.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [ValidateInput(false)]
         public JsonResult GetAgentByUsername(string username, bool? excludeactor)
         {
             var criteria = new GetAgentByUsernameCriteria()
@@ -530,6 +531,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="username">User name is searched.</param>
         /// <returns>Member down line list.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [ValidateInput(false)]
         public JsonResult GetMemberByUsername(string username)
         {
             /* Check downline details permission
