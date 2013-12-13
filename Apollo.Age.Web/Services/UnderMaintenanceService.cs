@@ -31,9 +31,7 @@ namespace Apollo.Age.Web.Services
         {
             get
             {
-                var underMaintenanceInfo = new UnderMaintenanceModel { Status = false };
-                var startTime = underMaintenanceInfo.Start_time;
-                var endTime = underMaintenanceInfo.End_time;
+                var underMaintenanceInfo = new UnderMaintenanceModel { Status = false };             
 
                 // Check downtime from AppSetting.
                 if (AppSettings.IsApolloDownTime)
@@ -48,11 +46,7 @@ namespace Apollo.Age.Web.Services
                 // Check downtime from library.
                 try
                 {
-                    if (AppSettings.DisabledUnderMaintenanceAPI)
-                    {
-                        underMaintenanceInfo.Status = false;
-                    }
-                    else
+                    if (!AppSettings.DisabledUnderMaintenanceAPI)
                     {
                         underMaintenanceInfo = _underMaintenanceBusiness.GetMaintenanceInfo(Sites.Agent, AppSettings.UnderMaintenanceUrl);
 

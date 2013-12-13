@@ -29,7 +29,7 @@ namespace Apollo.Age.Reports.Services
         /// <returns>List of period date ranges that were formatted.</returns>
         public List<DateRange> PeriodRanges()
         {
-            List<DateRanges> data = GetAllPeriodRange();
+            List<DateRangesModel> data = GetAllPeriodRange();
 
             var dateRangeNow = new List<DateRange>();
 
@@ -42,9 +42,9 @@ namespace Apollo.Age.Reports.Services
         /// Lists the of periods.
         /// </summary>
         /// <returns>List of period date ranges that were formatted.</returns>
-        public List<DateRanges> ListOfPeriods()
+        public List<DateRangesModel> ListOfPeriods()
         {
-            List<DateRanges> ranges = GetAllPeriodRange();
+            List<DateRangesModel> ranges = GetAllPeriodRange();
 
             if (ranges.Count > 2)
             {
@@ -122,9 +122,9 @@ namespace Apollo.Age.Reports.Services
         /// Gets all period range.
         /// </summary>
         /// <returns>List of all period range.</returns>
-        private List<DateRanges> GetAllPeriodRange()
+        private List<DateRangesModel> GetAllPeriodRange()
         {
-            var listDateRange = new List<DateRanges>();
+            var listDateRange = new List<DateRangesModel>();
 
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(HttpContext.Current.Server.MapPath("~/App_Data/PeriodsRange.xml"));
@@ -143,7 +143,7 @@ namespace Apollo.Age.Reports.Services
                     });
                 }
 
-                listDateRange.Add(new DateRanges
+                listDateRange.Add(new DateRangesModel
                 {
                     ListOfDateRange = dateRanges,
                     Year = int.Parse(period.Attributes["Year"].Value)
