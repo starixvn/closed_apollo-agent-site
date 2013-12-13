@@ -243,6 +243,14 @@
         td.CurrentPeriod {
             background-color: #FFD2C7;
         }
+
+        &.oneYear {
+            width: 218px;
+
+            thead th {
+                height: 40px;
+            }
+        }
     }
 }
 /* Formatting for GRID */
@@ -363,9 +371,15 @@
             width: 75px;
         }
 
-        .period-schedule .tblRpt th, .period-schedule .tblRpt td {
-            padding: 0 2px;
-            white-space: nowrap;
+        .period-schedule {
+            .tblRpt th, .period-schedule .tblRpt td {
+                padding: 0 2px;
+                white-space: nowrap;
+            }
+
+            .tblRpt.oneYear {
+                width: 218px;
+            }
         }
     }
 }
