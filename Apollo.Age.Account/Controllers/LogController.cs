@@ -28,7 +28,6 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Logging;
-    using System.Web;
 
     /// <summary>
     /// Log controller.
