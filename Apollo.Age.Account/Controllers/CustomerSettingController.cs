@@ -80,6 +80,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>View Commission.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult ViewCommission(ViewCommissionViewModel model)
         {
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
@@ -179,6 +180,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult AgentShare(
             int? agentId,
             string userName,
@@ -268,6 +270,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Action result.</returns>
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.CustomerSetting, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult MemberShare(
             int? memberId,
             string userName,

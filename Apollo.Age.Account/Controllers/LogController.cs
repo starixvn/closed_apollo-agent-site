@@ -71,6 +71,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="pageIndex">Current page index.</param>
         /// <returns>View log details from date to date.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.SystemLog, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ViewResult ViewLog(
             bool isAgent = true,
             string username = "",

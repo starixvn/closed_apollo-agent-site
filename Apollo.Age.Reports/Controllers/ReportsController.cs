@@ -342,6 +342,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
+       [ValidateInput(false)]
         public ViewResult AgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -421,6 +422,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult member win loss.</returns>
+        [ValidateInput(false)]
         public ViewResult MemberWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -687,6 +689,7 @@ namespace Apollo.Age.Reports.Controllers
         /// </summary>
         /// <param name="username">User name.</param>
         /// <returns>ActionResult Line sport credit report.</returns>
+        [ValidateInput(false)]
         public ActionResult SportCredit(string username)
         {
             // Get user permission
