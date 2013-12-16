@@ -569,6 +569,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Agent list view action.</returns>
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult AgentList(
             int agentId = -1,
             int pageIndex = 0,
@@ -647,6 +648,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="criteria">View model get agent list.</param>
         /// <returns>Agent list view action.</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AgentList(AgentListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
@@ -682,6 +684,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Indirect agent list view action.</returns>
         [HttpGet]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult IndirectAgentList(
             int parentAgentId,
             int agentId,
@@ -758,6 +761,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Indirect agent list view action.</returns>
         [HttpPost]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult IndirectAgentList(AgentListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
@@ -796,6 +800,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="orderType">Filter order by username.</param>
         /// <returns>Direct member list view action.</returns>
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult MemberList(
             int agentId = -1,
             int pageIndex = 0,
@@ -874,6 +879,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="criteria">View model get direct member list.</param>
         /// <returns>Direct member list view action.</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult MemberList(CustomerListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
@@ -909,6 +915,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Indirect member list view action.</returns>
         [HttpGet]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult IndirectMemberList(
             int parentAgentId,
             int agentId,
@@ -978,6 +985,7 @@ namespace Apollo.Age.Account.Controllers
         /// <returns>Indirect member list view action.</returns>
         [HttpPost]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult IndirectMemberList(CustomerListCriteria criteria)
         {
             if (criteria.PageIndex == criteria.OldPageIndex)
