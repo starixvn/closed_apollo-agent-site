@@ -230,6 +230,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model">Input the model.</param>
         /// <returns>Return view result.</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ViewResult Transactions(BetListReportViewModel model)
         {
             // Get permission of user
