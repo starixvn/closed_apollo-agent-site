@@ -68,38 +68,18 @@ namespace Apollo.Age.Web.Web.Attribute
         /// <param name="filterContext">The filter context, which encapsulates information for using <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            try
+            if (ReferenceEquals(SessionManager.CurrentSession, null))
             {
-                if (filterContext.HttpContext == null)
-                {
-                    CloseConnection(filterContext);
-
-                    return;
-                }
-
-                if (ReferenceEquals(SessionManager.CurrentSession, null))
-                {
-                    CloseConnection(filterContext);
-
-                    return;
-                }
-
-                var userId = SessionManager.CurrentSession.UserId;
-
-                if (CheckFunctionAuthorization(userId))
-                {
-                    //// do something here
-                }
-                else
-                {
-                    CloseConnection(filterContext);
-
-                    return;
-                }
+                filterContext.HttpContext.Response.Redirect(ApoURLs.URLs.Unauthorized, false);
+                return;
             }
-            catch
+
+            var userId = SessionManager.CurrentSession.UserId;
+
+            if (!CheckFunctionAuthorization(userId))
             {
-                throw;
+                CloseConnection(filterContext);
+                return;
             }
 
             base.OnAuthorization(filterContext);
@@ -138,56 +118,29 @@ namespace Apollo.Age.Web.Web.Attribute
         /// <param name="filterContext">The filter context.</param>
         private void CloseConnection(AuthorizationContext filterContext)
         {
-            try
+            HttpResponseBase response = filterContext.HttpContext.Response;
+
+            if (response == null)
             {
-                if (filterContext == null
-                    || filterContext.HttpContext == null
-                    || filterContext.HttpContext.Request == null)
-                {
-                    SignOut();
-                    return;
-                }
-
-                HttpResponseBase response = filterContext.HttpContext.Response;
-
-                if (response == null)
-                {
-                    SignOut();
-                    return;
-                }
-
-                if (filterContext.HttpContext.Request.IsAjaxRequest())
-                {
-                    filterContext.Result = new HttpStatusCodeResult(403, "<center><b>" + Lang.UnauthorizedMsg + "</b></center>");
-
-                    response.Buffer = true;
-                    response.StatusCode = 403; // Unauthorized status code
-                    response.Write("<center><b>" + Lang.UnauthorizedMsg + "</b></center>");
-                    response.Flush();
-                    response.Close();
-                    response.End();
-                }
-                else if (!filterContext.HttpContext.Request.IsAuthenticated)
-                {
-                    SignOut();
-                }
-                else
-                {
-                    response.Redirect("~/Error/AccessDenied", false);
-                }
+                response.Redirect(ApoURLs.URLs.Unauthorized, false);
+                return;
             }
-            catch
+
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                throw;
-            }
-        }
+                filterContext.Result = new HttpStatusCodeResult(403, "<center><b>" + Lang.UnauthorizedMsg + "</b></center>");
 
-        /// <summary>
-        /// Signs the out.
-        /// </summary>
-        private void SignOut()
-        {
-            //// clear cookies
+                response.Buffer = true;
+                response.StatusCode = 403; // Unauthorized status code
+                response.Write("<center><b>" + Lang.UnauthorizedMsg + "</b></center>");
+                response.Flush();
+                response.Close();
+                response.End();
+            }
+            else
+            {
+                response.Redirect("~/Error/AccessDenied", false);
+            }
         }
     }
 }

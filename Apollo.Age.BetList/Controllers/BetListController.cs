@@ -230,6 +230,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model">Input the model.</param>
         /// <returns>Return view result.</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ViewResult Transactions(BetListReportViewModel model)
         {
             // Get permission of user
@@ -369,6 +370,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="model">Input the model.</param>
         /// <returns>Return view result.</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ViewResult TicketCancel(BetListReportViewModel model)
         {
             // Get permission of user.
@@ -449,6 +451,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ViewResult Outstanding(
             int custId,
             string username = "",
@@ -510,6 +513,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Return view result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ViewResult Winloss(
             int custId,
             DateTime fromDate,
