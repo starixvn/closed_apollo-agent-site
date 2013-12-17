@@ -1993,4 +1993,7 @@
   <data name="privatemessage" xml:space="preserve">
     <value>私人訊息</value>
   </data>
+  <data name="announcementlevel" xml:space="preserve">
+    <value>Level Announcement</value>
+  </data>
 </root>

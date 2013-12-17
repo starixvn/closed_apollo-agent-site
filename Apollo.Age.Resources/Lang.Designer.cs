@@ -295,6 +295,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level Announcement.
+        /// </summary>
+        public static string announcementlevel {
+            get {
+                return ResourceManager.GetString("announcementlevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply to all downlines and shadows.
         /// </summary>
         public static string ApplyDownlineAndShadow {

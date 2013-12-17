@@ -42,15 +42,30 @@
 <table class="m_tab_ed">
     <tbody>
         <tr>
-            <td class="text-right width-150">
+            <td class="text-right">
                 @Lang.news：
             </td>
             <td class="width-520" id="topnews">
-                
-              
+                             
             </td>
             <td class="text-center">
-                <a href="javascript:;" id="announcement-link">@Lang.announcement </a>
+                <a href="javascript:void(0);" id="announcement-link">@Lang.announcement </a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="bg-green">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">
+                @Lang.news：
+            </td>
+            <td class="width-520" id="topnewsbylevel">
+                             
+            </td>
+            <td class="text-center">
+                <a href="javascript:void(0);" id="announcementLevel-link">@Lang.announcementlevel </a>
             </td>
         </tr>
         <tr>
@@ -66,18 +81,18 @@
         <div class="row">
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.From, @Lang.dateRange) :
+                    @Html.LabelFor(m => m.FromDate, @Lang.dateRange) :
                 </div>
                 <div class="editor">
-                    @Html.DatePickerFor(m => m.From, minDate: minDate, maxDate: maxDate)
+                    @Html.DatePickerFor(m => m.FromDate, minDate: minDate, maxDate: maxDate)
                 </div>
             </div>
             <div class="cell">
                 <div class="label">
-                    @Html.LabelFor(m => m.To, "~")
+                    @Html.LabelFor(m => m.ToDate, "~")
                 </div>
                 <div class="editor">
-                    @Html.DatePickerFor(m => m.To, minDate: minDate, maxDate: maxDate)
+                    @Html.DatePickerFor(m => m.ToDate, minDate: minDate, maxDate: maxDate)
                 </div>
             </div>
             <div class="cell">

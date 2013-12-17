@@ -23,7 +23,7 @@ var MessagePortalPage = function ($) {
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
-           
+
             MessagePortalPage.publicMessageId = 0;
             MessagePortalPage.privateMessageId = 0;
             MessagePortalPage.privateMsgContent = "";
@@ -31,6 +31,7 @@ var MessagePortalPage = function ($) {
             MessagePortalPage.isFirstTime = false;
 
             MessagePortalPage.getMessages();
+            MessagePortalPage.getLevelMessages();
 
         },
 
@@ -139,6 +140,20 @@ var MessagePortalPage = function ($) {
             $('form').submit();
         },
 
+        getLevelMessages: function () {
+            $.ajax({
+                url: APOLLO.resolveUrl('~/Message/GetLevelMessage'),
+                type: 'POST',
+                dataType: 'JSON',
+                success: function (result) {
+                    $("#topnewsbylevel").html("<marquee scrolldelay='200'>" + result.public_message_content + "</marquee>");
+                    setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
+                },
+                error: function (xhr, status, err) {
+                }
+            });
+        },
+
         getMessages: function () {
 
 
@@ -169,23 +184,21 @@ var MessagePortalPage = function ($) {
                     // Process Private Message: show new private message
                     if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID]) {
 
-                        MessagePortalPage.privateMsgContent = "<span style=\"color:green\">" + $("#messagePrivate").val() + ":" + privateMessage[MSGCONTENT] + "</span>";
+                        MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
 
                         MessagePortalPage.privateMessageId = privateMessage[MSGID];
 
                     }
 
                     if (!MessagePortalPage.isFirstTime) {
-                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + ";" : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
                         MessagePortalPage.isFirstTime = true;
                     }
                     else {
                         if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
-                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + ";" : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
                         }
-                    }
-
-
+                    }                    
 
                 } catch (e) {
                     console.log(e);
@@ -227,6 +240,11 @@ $(document).ready(function () {
 
     $(document).delegate('#announcement-link', 'click', function () {
         var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
+        myWindow.focus();
+    });
+
+    $(document).delegate('#announcementLevel-link', 'click', function () {
+        var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement?isLevelAnnouncement=true'), '_blank', 'scrollbars=1,width=520,height=800');
         myWindow.focus();
     });
 

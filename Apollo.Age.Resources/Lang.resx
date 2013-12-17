@@ -2131,4 +2131,7 @@
   <data name="privatemessage" xml:space="preserve">
     <value>Private Message</value>
   </data>
+  <data name="announcementlevel" xml:space="preserve">
+    <value>Level Announcement</value>
+  </data>
 </root>

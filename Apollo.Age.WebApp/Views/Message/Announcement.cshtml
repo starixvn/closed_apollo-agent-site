@@ -3,7 +3,8 @@
 @{
     Layout = null;
     var userLang = ViewBag.UserLang as string;
-    int modeDate = ViewBag.ModeDate;     
+    int modeDate = ViewBag.ModeDate;
+    bool isLevelAnnouncement = ViewBag.IsLevelAnnouncement;
 }
 <!DOCTYPE html>
 <html lang="en-us">
@@ -25,10 +26,10 @@
                 <tr class="m_title_date">
                     <th class="page width-50per" colspan="3">
                         <ul class="list">
-                            <li>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0 }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</li>
-                            <li>/ @Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1 }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</li>
-                            <li>/ @Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2 }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</li>
-                            <li>/ @Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3 }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</li>
+                            <li>@Html.ActionLink(Lang.all, "Announcement", new { modeDate = 0, isLevelAnnouncement = isLevelAnnouncement }, new { @class = modeDate == 0 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.today, "Announcement", new { modeDate = 1, isLevelAnnouncement = isLevelAnnouncement }, new { @class = modeDate == 1 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.yesterday, "Announcement", new { modeDate = 2, isLevelAnnouncement = isLevelAnnouncement }, new { @class = modeDate == 2 ? "scr_on" : string.Empty })</li>
+                            <li>/ @Html.ActionLink(Lang.beforeYesterday, "Announcement", new { modeDate = 3, isLevelAnnouncement = isLevelAnnouncement }, new { @class = modeDate == 3 ? "scr_on" : string.Empty })</li>
                         </ul>
                         <div class="search">
                             @Html.TextBox("content", "", new { @class = "ccroll_input" })
