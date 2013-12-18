@@ -168,7 +168,7 @@ var MessagePortalPage = function ($) {
                     var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
                     var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
                     var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
-
+                    var finalMessage = null;
                     var MSGID = 0,
                         MSGCONTENT = 1,
                         MSGTYPE = 2;
@@ -195,13 +195,25 @@ var MessagePortalPage = function ($) {
 
                     }
 
-                    if (!MessagePortalPage.isFirstTime) {
-                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + ";" : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                    if (MessagePortalPage.publicMsgContent != "" && MessagePortalPage.privateMsgContent != "") {
+                        finalMessage = MessagePortalPage.publicMsgContent + "; " + MessagePortalPage.privateMsgContent;
+                    }
+                    else {
+                        if (MessagePortalPage.publicMsgContent == "") {
+                            finalMessage = MessagePortalPage.privateMsgContent;
+                        }
+                        else {
+                            finalMessage = MessagePortalPage.publicMsgContent;
+                        }
+                    }                                       
+
+                    if (!MessagePortalPage.isFirstTime) {                       
+                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         MessagePortalPage.isFirstTime = true;
                     }
                     else {
                         if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
-                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + ";" : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         }
                     }
 
