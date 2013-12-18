@@ -20,6 +20,8 @@ var MessagePortalPage = function ($) {
 
         isFirstTime: false,
 
+        isShowLevelMessage: false,
+
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
@@ -30,9 +32,12 @@ var MessagePortalPage = function ($) {
             MessagePortalPage.publicMsgContent = "";
             MessagePortalPage.isFirstTime = false;
 
-            MessagePortalPage.getMessages();
-            MessagePortalPage.getLevelMessages();
+            MessagePortalPage.isShowLevelMessage = $("#isShowMessageLevel").val();
 
+            MessagePortalPage.getMessages();
+            if (MessagePortalPage.isShowLevelMessage) {
+                MessagePortalPage.getLevelMessages();
+            }
         },
 
         loadAnnouncement: function () {
@@ -198,7 +203,7 @@ var MessagePortalPage = function ($) {
                         if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
                             document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + ";" : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
                         }
-                    }                    
+                    }
 
                 } catch (e) {
                     console.log(e);

@@ -178,6 +178,10 @@ namespace Apollo.Age.Account.Controllers
 
             ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
             ViewBag.UserLang = this.CurrentSession.Language;
+
+            // Level: 0 for super, 1 for mainSH, 2 for SH and 3 for main agent.
+            ViewBag.IsShowMessageLevel = this.CurrentSession.AgentLevel < 4;
+
             return View(criteria);
         }
 
