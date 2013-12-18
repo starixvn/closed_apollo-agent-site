@@ -10,7 +10,7 @@
 <html lang="en-us">
 <head>
     <meta charset="utf-8" />
-    <title>@Lang.announcement</title>
+    <title>@(isLevelAnnouncement ? Lang.announcementlevel : Lang.announcement)</title>
     <link href="~/Views/Message/Resources/Announcement.less" rel="Stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,7 +20,7 @@
             <thead class="persist-header">
                 <tr>
                     <th colspan="3" class="box_title">
-                        <span class="title">@Lang.announcement</span>
+                        <span class="title">@(isLevelAnnouncement ? Lang.announcementlevel : Lang.announcement)</span>
                     </th>
                 </tr>
                 <tr class="m_title_date">
@@ -57,9 +57,9 @@
                     foreach (var msg in Model)
                     {
                     <tr class="m_cen">
-                        <td style="width: 40px" class="text-center">@(++index)
+                        <td class="text-center">@(++index)
                         </td>
-                        <td style="width: 70px" class="text-center">@msg.PostTime.ToString("yy-MM-dd")
+                        <td style="white-space:nowrap" class="text-center">@msg.PostTime.ToString("yy-MM-dd")
                         </td>
                         <td class="his_info">@msg.GetFullContent(userLang)
                         </td>
@@ -69,6 +69,7 @@
             </tbody>
         </table>
         @Html.Hidden("modeDate", modeDate)    
+        @Html.Hidden("isLevelAnnouncement", isLevelAnnouncement)    
     }
 </body>
 </html>
