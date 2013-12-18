@@ -100,7 +100,7 @@ namespace Apollo.Age.Account.Controllers
                 agentLevel,
                 10,
                 false,
-                content,
+                content.Trim(),
                 CurrentSession.Language);
 
             ViewBag.UserLang = this.CurrentSession.Language;
