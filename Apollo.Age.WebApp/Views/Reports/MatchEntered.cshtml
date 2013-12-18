@@ -2,12 +2,13 @@
 @using Apollo.Age.Entities
 @using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Configurations
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
     int counter = 0;
-    var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
     var currentPeriodClass = string.Empty;
 }
 @model MatchEnteredViewModel
@@ -234,29 +235,46 @@ new ReportMenuViewModel
                 </tr>
             </thead>
             <tbody>
-                @foreach (var dateRange in Model.PeriodList[1].ListOfDateRange)
+                @foreach (var dateRange in Model.PeriodList[0].ListOfDateRange)
                 {
                     counter++;
-                    if (string.IsNullOrWhiteSpace(currentPeriodClass) && dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
-                    {
-                        currentPeriodClass = "CurrentPeriod";
+                    if (Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate <= currentDate && Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate >= currentDate)
+                    {                        
+                        <tr>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td class="CurrentPeriod">
+                                @Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
+                                ~ @Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        </tr>   
                     }
-                
-                    <tr>
-                        <td class="firstcolumn">
-                            @counter
-                        </td>
-                        <td class="@currentPeriodClass">
-                            @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                        </td>
-                        <td class="firstcolumn">
-                            @counter
-                        </td>
-                        <td>
-                            @Model.PeriodList[0].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
-                            ~ @Model.PeriodList[0].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
-                        </td>
-                    </tr>                             
+                    else
+                    { 
+                        <tr>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
+                                ~ @Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        </tr> 
+                    }
+
                 }
             </tbody>
         </table>
@@ -275,18 +293,28 @@ new ReportMenuViewModel
                 {
                     counter++;
                     if (string.IsNullOrWhiteSpace(currentPeriodClass) && dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
-                    {
-                        currentPeriodClass = "CurrentPeriod";
+                    {                        
+                        <tr>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td class="CurrentPeriod">
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>                        
+                        </tr>  
                     }
-                
-                    <tr>
-                        <td class="firstcolumn">
-                            @counter
-                        </td>
-                        <td class="@currentPeriodClass">
-                            @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                        </td>                        
-                    </tr>                             
+                    else
+                    { 
+                        <tr>
+                            <td class="firstcolumn">
+                                @counter
+                            </td>
+                            <td>
+                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                            </td>                        
+                        </tr>  
+                    }
+
                 }
             </tbody>
         </table>

@@ -16,6 +16,7 @@ namespace Apollo.Age.Reports.Services
     using System.Xml;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -33,7 +34,7 @@ namespace Apollo.Age.Reports.Services
 
             var dateRangeNow = new List<DateRange>();
 
-            dateRangeNow = data.Where(x => x.Year == DateTime.Now.Year).Select(y => y.ListOfDateRange).FirstOrDefault();
+            dateRangeNow = data.Where(x => x.Year == AppSettings.PeriodDateRange.Year).Select(y => y.ListOfDateRange).FirstOrDefault();
 
             return dateRangeNow;
         }
@@ -48,7 +49,7 @@ namespace Apollo.Age.Reports.Services
 
             if (ranges.Count > 2)
             {
-                return ranges.Where(x => x.Year >= DateTime.Now.AddYears(-1).Year).ToList();
+                return ranges.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
             }
             
             return ranges;   
@@ -63,10 +64,10 @@ namespace Apollo.Age.Reports.Services
         /// </returns>
         public DateRange PeriodDates(bool getLastPeriod = false)
         {
-            var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
             List<DateRange> periodRanges = PeriodRanges();
-            DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            DateTime fromDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+            DateTime toDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
             DateRange periodModel = new DateRange();
             DateTime startFromDate = periodRanges[0].FromDate;
             DateTime startToDate = periodRanges[0].ToDate;
