@@ -180,7 +180,7 @@ namespace Apollo.Age.Account.Controllers
             ViewBag.UserLang = this.CurrentSession.Language;
 
             // Level: 0 for super, 1 for mainSH, 2 for SH and 3 for main agent.
-            ViewBag.IsShowMessageLevel = this.CurrentSession.AgentLevel < 4;
+            ViewBag.IsShowMessageLevel = this.CurrentSession.AgentLevel < 3;
 
             return View(criteria);
         }
