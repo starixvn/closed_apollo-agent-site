@@ -284,7 +284,8 @@ namespace Apollo.Age.Account.Controllers
                 IsSpecial = isSpecial,
                 IsTest = false,
                 MsgType = messageType,
-                Record = record
+                Record = record,
+                AgentLevel = CurrentSession.AgentLevel
             });
         }
     }
