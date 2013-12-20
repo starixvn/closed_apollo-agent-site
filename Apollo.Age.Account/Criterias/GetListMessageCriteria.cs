@@ -36,7 +36,7 @@ namespace Apollo.Age.Account.Criterias
 
         public int Record { get; set; }
 
-        public short AgentLevel { get; set; }
+        public short? AgentLevel { get; set; }
 
         public override string GetSettingKey()
         {
