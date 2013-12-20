@@ -274,8 +274,7 @@ namespace Apollo.Age.Account.Controllers
         /// <param name="messageType">Type of the message.</param>
         /// <returns>List of message.</returns>
         private IEnumerable<MessageModel> GetListMessage(DateTime startDate, DateTime endDate, int record, bool isSpecial = false, byte messageType = 0)
-        {            
-
+        {
             return _messageService.GetMessage(new GetListMessageCriteria
             {
                 CustomerId = this.CurrentSession.AgentId,
