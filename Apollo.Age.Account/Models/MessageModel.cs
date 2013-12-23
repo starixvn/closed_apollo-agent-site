@@ -124,7 +124,7 @@ namespace Apollo.Age.Account.Models
 
             if (this.MsgType == 1) // Private message.
             {
-                content = content.Replace("@@", betTransId);
+                content = content.Replace("@@", betTransId == null ? string.Empty : betTransId);
             }
 
             return content
