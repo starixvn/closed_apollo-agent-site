@@ -10,6 +10,7 @@
 namespace Apollo.Age.Account.Models
 {
     using System;
+    using Apollo.Age.Account.Core;
 
     /// <summary>
     /// Message model.
@@ -121,8 +122,12 @@ namespace Apollo.Age.Account.Models
 
             content = content != null ? content : string.Empty;
 
+            if (this.MsgType == 1) // Private message.
+            {
+                content = content.Replace("@@", betTransId);
+            }
+
             return content
-                .Replace("@@", betTransId)
                 .Replace("\n", string.Empty)
                 .Replace("\r", string.Empty)
                 .Replace("'", "\'") + string.Empty;
