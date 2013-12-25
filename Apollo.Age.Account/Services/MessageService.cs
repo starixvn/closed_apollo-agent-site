@@ -187,10 +187,7 @@ namespace Apollo.Age.Account.Services
         /// <returns>
         /// Message model.
         /// </returns>
-        public MessageModel GetTopPublicMessage(
-            int messageType,
-            int siteId,
-            bool isTest = false)
+        public MessageModel GetTopPublicMessage(int messageType, int siteId, bool isTest = false)
         {
             var criteria = new GetTopPubMessageCriteria
             {
@@ -200,7 +197,7 @@ namespace Apollo.Age.Account.Services
 
             if (criteria.IsValid())
             {
-                MessageModel message = new MessageModel();
+                var message = new MessageModel();
 
                 var messageList = this.GetData<MessageModel>(criteria);
 

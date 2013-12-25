@@ -12,7 +12,7 @@ namespace Apollo.Age.Account.Models
     using Apollo.Age.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Log permission model.
     /// </summary>
     public class LogPermissionModel
     {

@@ -59,6 +59,7 @@ namespace Apollo.Age.Integration.Controllers
         {
             ViewBag.Username = user_id;
             ViewBag.Language = _authService.ConvertToApolloLanguage(lang);
+
             return View();
         }
 
@@ -118,7 +119,7 @@ namespace Apollo.Age.Integration.Controllers
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
+                                LogService.Info(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 

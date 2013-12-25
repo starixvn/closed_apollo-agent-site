@@ -193,7 +193,8 @@ namespace Apollo.Age.Forecast.Services
             Check.Argument.IsNotNegative(agentId, "agentId");
             Check.Argument.IsNotNull(matchIds, "matchIds");
             Check.Argument.IsNotNull(liveBetTypes, "liveBetTypes");
-            List<ScoreMapMatchResultModel> scoreMapViewResult = new List<ScoreMapMatchResultModel>();
+
+            var scoreMapViewResult = new List<ScoreMapMatchResultModel>();
 
             //// Get Plain Data From Database
             ScoreMapResultModel scoreMapResult = _forecastRepository.GetScoreMapResult(new GetScoreMapResultCriteria
@@ -212,7 +213,8 @@ namespace Apollo.Age.Forecast.Services
             {
                 homeIndex = 0;
                 awayIndex = 0;
-                ScoreMapMatchResultModel scoreMapItem = new ScoreMapMatchResultModel
+
+                var scoreMapItem = new ScoreMapMatchResultModel
                 {
                     MatchId = match.MatchId,
                     HomeName = match.HomeTeam,
@@ -283,7 +285,7 @@ namespace Apollo.Age.Forecast.Services
         public ScoreMapBetTypesModel GetScoreMapBetType()
         {
             IEnumerable<ScoreMapBetTypeModel> scoreMapBetTypeList = this.LoadScoreMapBetTypes();
-            ScoreMapBetTypesModel scoreMapBetTypes = new ScoreMapBetTypesModel();
+            var scoreMapBetTypes = new ScoreMapBetTypesModel();
 
             foreach (ScoreMapBetTypeModel betType in scoreMapBetTypeList)
             {
