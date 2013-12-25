@@ -14,9 +14,9 @@ namespace Apollo.Age.Reports.Services
     using System.Linq;
     using System.Web;
     using System.Xml;
+    using Apollo.Age.Configurations;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Configurations;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,8 +51,8 @@ namespace Apollo.Age.Reports.Services
             {
                 return ranges.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
             }
-            
-            return ranges;   
+
+            return ranges;
         }
 
         /// <summary>
