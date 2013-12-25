@@ -87,7 +87,7 @@ namespace Apollo.Age.Account.Models
 
             if (GetMessageType == "private")
             {
-                content = content.Replace("@@", this.BetTransId);
+                content = content.Replace("@@", this.BetTransId == null ? string.Empty : this.BetTransId);
             }
 
             return content;

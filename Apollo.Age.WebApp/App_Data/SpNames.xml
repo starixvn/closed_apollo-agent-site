@@ -30,7 +30,7 @@
     </Function>
 
     <Function Name="Apollo Agent Message">
-        <Setting Key="Dot_Msg_GetPrivateMessage" SpName="Dot_Msg_GetPrivateMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+        <Setting Key="Age_Msg_GetListAnnouncement" SpName="Age_Msg_GetListAnnouncement" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
             <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
             <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
             <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
@@ -100,8 +100,8 @@
             <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
             <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
         </Setting>
-        <Setting Key="Dot_Msg_HasPriMessage24" SpName="Dot_Msg_HasPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
-        <Setting Key="Age_Msg_GetByCustomer" SpName="Age_Msg_GetByCustomer" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+        <Setting Key="Age_Msg_HasPriMessage24" SpName="Age_Msg_HasPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+        <Setting Key="Age_Msg_SearchAnnouncement" SpName="Age_Msg_SearchAnnouncement" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
             <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
             <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
             <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
@@ -113,7 +113,7 @@
         </Setting>
         <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
         <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
-        <Setting Key="Dot_Msg_GetTopPriMessage24" SpName="Dot_Msg_GetTopPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+        <Setting Key="Age_Msg_GetTopPriMessage24" SpName="Age_Msg_GetTopPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
             <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
             <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
             <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
@@ -127,7 +127,7 @@
             <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
             <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
         </Setting>
-        <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+        <Setting Key="Age_Msg_GetTopPubMessage" SpName="Age_Msg_GetTopPubMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
             <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
             <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
             <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
@@ -143,6 +143,8 @@
         </Setting>
 
         <Setting Key="Age_Msg_UpdateRead" SpName="Age_Msg_UpdateRead" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+
+        <Setting Key="Age_Msg_GetTopPubLevelMessage" SpName="Age_Msg_GetTopPubLevelMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
 
     </Function>
 

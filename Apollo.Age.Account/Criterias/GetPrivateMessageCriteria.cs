@@ -46,7 +46,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override string GetSettingKey()
         {
-            return "Dot_Msg_GetPrivateMessage";
+            return "Age_Msg_GetListAnnouncement";
         }
     }
 }

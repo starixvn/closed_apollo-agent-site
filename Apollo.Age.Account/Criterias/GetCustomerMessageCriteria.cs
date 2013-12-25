@@ -15,34 +15,33 @@ namespace Apollo.Age.Account.Criterias
     /// Get customer message criteria.
     /// </summary>
     public class GetCustomerMessageCriteria : CriteriaBase
-    {      
-        [SpParam(SqlParamName = "targetID")]
+    {
+        [SpParam(SqlParamName = "targetID2")]
         public int CustomerId { get; set; }
 
-        [SpParam(SqlParamName = "targetID2")]
+        [SpParam(SqlParamName = "targetID")]
         public string SiteIds { get; set; }
 
         public DateTime? StartDate { get; set; }
 
-        public DateTime LastPostTime { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public bool IsAgent { get; set; }
+        public short? AgentLevel { get; set; }
+
+        public bool IsTest { get; set; }
 
         public string Content { get; set; }
 
         public string Language { get; set; }
 
-        [SpParam(SqlParamName = "IsTest")]
-        public bool IsTest { get; set; }
+        public override string GetSettingKey()
+        {
+            return "Age_Msg_SearchAnnouncement";
+        }
 
         public override bool IsValid()
         {
-            return this.CustomerId >= 0 && !string.IsNullOrWhiteSpace(SiteIds);
-        }
-
-        public override string GetSettingKey()
-        {
-            return "Age_Msg_GetByCustomer";
+            return true;
         }
     }
 }

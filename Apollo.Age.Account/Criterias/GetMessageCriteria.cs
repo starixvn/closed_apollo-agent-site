@@ -30,10 +30,10 @@ namespace Apollo.Age.Account.Criterias
         public int Record { get; set; }
 
         [SpParam(SqlParamName = "sdate")]
-        public DateTime? From { get; set; }
+        public DateTime? FromDate { get; set; }
 
         [SpParam(SqlParamName = "edate")]
-        public DateTime? To { get; set; }
+        public DateTime? ToDate { get; set; }
 
         public bool IsTest { get; set; }
 

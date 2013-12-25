@@ -33,7 +33,7 @@ namespace Apollo.Age.Account.Controllers
     {
         /// <summary>
         /// For temp, set site list is 3000000 and 3300.
-        /// </summary>        
+        /// </summary>
         private MessageService _messageService;
 
         public MessageController()
@@ -51,13 +51,16 @@ namespace Apollo.Age.Account.Controllers
         /// </summary>
         /// <param name="content">Content search.</param>
         /// <param name="modeDate">Search mode date.</param>
-        /// <returns>View announcement.</returns>
+        /// <param name="isLevelAnnouncement">If set to <c>true</c> [is level announcement].</param>
+        /// <returns>
+        /// View announcement.
+        /// </returns>
         [ValidateInput(false)]
-        public ViewResult Announcement(string content = "", int modeDate = 0)
+        public ViewResult Announcement(string content = "", int modeDate = 0, bool isLevelAnnouncement = false)
         {
             DateTime? startDate = new DateTime();
             DateTime endDate = new DateTime();
-
+            short? agentLevel = null;
             /* Value of ModeDate
              * 0 : All (From the month before until now)
              * 1 : Today
@@ -87,17 +90,22 @@ namespace Apollo.Age.Account.Controllers
                     break;
             }
 
+            agentLevel = isLevelAnnouncement ? Convert.ToInt16(CurrentSession.AgentLevel) : agentLevel;
+
             var model = this._messageService.GetAnnouncement(
-                    agentId: this.CurrentSession.AgentId,
-                    siteIds: AppSettings.SiteId.ToString(),
-                    lastPostDate: endDate,
-                    startTime: startDate,
-                    content: content,
-                    language: this.CurrentSession.Language);
+                this.CurrentSession.AgentId,
+                AppSettings.SiteId.ToString(),
+                startDate,
+                endDate,
+                agentLevel,
+                10,
+                false,
+                content.Trim(),
+                CurrentSession.Language);
 
             ViewBag.UserLang = this.CurrentSession.Language;
             ViewBag.ModeDate = modeDate;
-
+            ViewBag.IsLevelAnnouncement = isLevelAnnouncement;
             return View(model);
         }
 
@@ -125,26 +133,15 @@ namespace Apollo.Age.Account.Controllers
             criteria.SiteId = this._messageService.GetParentSitesID(AppSettings.SiteId.ToString());
             criteria.Record = maxSize;
 
-            criteria.From = criteria.From != null ? criteria.From : DateTime.Now.AddDays(-3);
-            criteria.To = criteria.To != null ? criteria.To : DateTime.Now;
+            criteria.FromDate = criteria.FromDate != null ? criteria.FromDate : DateTime.Now.AddDays(-3);
+            criteria.ToDate = criteria.ToDate != null ? criteria.ToDate : DateTime.Now;
             criteria.PageQuery = string.IsNullOrWhiteSpace(criteria.PageQuery) ? Constants.Normal : criteria.PageQuery;
-
-            if (string.Compare(criteria.PageQuery, Constants.Private) == 0
-                && criteria.Extra == 1)
-            {
-                if (!this.CurrentSession.IsSuper)
-                {
-                    this._messageService.UpdateReadPrivateMessage(this.CurrentSession.AgentId, this.CurrentSession.Username);
-                }
-            }
 
             if (string.Compare(criteria.PageQuery, Constants.Special) == 0
                 || string.Compare(criteria.PageQuery, Constants.AllSpecial) == 0)
             {
                 publicMessage = 2;
                 special = 1;
-                criteria.From = null;
-                criteria.To = null;
             }
 
             if (string.Compare(criteria.PageQuery, Constants.Normal) == 0)
@@ -167,72 +164,28 @@ namespace Apollo.Age.Account.Controllers
             switch (publicMessage)
             {
                 case 0:
-                    listMessage = GetPrivateMessage(criteria);
+                    listMessage = GetListMessage(criteria.FromDate.Value, criteria.ToDate.Value, criteria.Record, false, 1);
                     break;
 
                 case 1:
-                    listMessage = GetPublicMessage(criteria);
+                    listMessage = GetListMessage(criteria.FromDate.Value, criteria.ToDate.Value, criteria.Record, false, 3);
                     break;
 
                 default:
-                    switch (criteria.Special)
-                    {
-                        case 0:
-                            listMessage = GetNotSpecialMessage(criteria);
-                            break;
-
-                        case 1:
-                            listMessage = GetSpecialMessage(criteria);
-                            break;
-                    }
-
-                    if (listMessage == null)
-                    {
-                        listMessage = _messageService.GetMessage(criteria);
-                    }
-
+                    listMessage = GetListMessage(criteria.FromDate.Value, criteria.ToDate.Value, criteria.Record, true, 3);
                     break;
             }
 
             ViewBag.Messages = (listMessage ?? new List<MessageModel>()).ToList();
             ViewBag.UserLang = this.CurrentSession.Language;
+
+            // Level: 0 for super, 1 for mainSH, 2 for SH and 3 for main agent.
+            ViewBag.IsShowMessageLevel = this.CurrentSession.AgentLevel < 3;
+
             return View(criteria);
         }
 
         #region Ajax request
-
-        /// <summary>
-        /// Set private message is read.
-        /// </summary>
-        /// <param name="messageId">Message id.</param>
-        /// <returns>Message is updated.</returns>
-        [HttpPost]
-        public ActionResult SetReadPriMsg(int messageId)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                int agentId = this.CurrentSession.AgentId;
-
-                return Json(this._messageService.UpdateReadMessage(agentId, messageId));
-            }
-
-            return Json(null);
-        }
-
-        /// <summary>
-        /// Update read private messages.
-        /// </summary>
-        /// <returns>Message is read.</returns>
-        [HttpPost]
-        public ActionResult UpdatePriMsg()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return Json(this._messageService.UpdateReadPrivateMessage(this.CurrentSession.AgentId, this.CurrentSession.Username));
-            }
-
-            return Json(null);
-        }
 
         /// <summary>
         /// Get message for ajax.
@@ -280,92 +233,60 @@ namespace Apollo.Age.Account.Controllers
             });
         }
 
+        /// <summary>
+        /// Gets the level message.
+        /// </summary>
+        /// <returns>JSON Result.</returns>
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public JsonResult GetLevelMessage()
+        {
+            var messages = this._messageService.GetTopPublicMessageLevel(AppSettings.SiteId, this.CurrentSession.AgentLevel);
+            if (messages != null)
+            {
+                return Json(
+                    new
+                    {
+                        public_message_content = messages.GetContent(CurrentSession.Language),
+                        public_message_id = messages.MessageId
+                    },
+                JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(
+                new
+                {
+                    public_message_content = string.Empty,
+                    public_message_id = 0
+                },
+            JsonRequestBehavior.AllowGet);
+        }
+
         #endregion Ajax request
 
-        #region Private
-
         /// <summary>
-        /// Get private message.
+        /// Gets the list message.
         /// </summary>
-        /// <param name="criteria">The criteria.</param>]
-        /// <returns>List of message model.</returns>
-        private IEnumerable<MessageModel> GetPrivateMessage(GetMessageCriteria criteria)
+        /// <param name="startDate">The start date.</param>
+        /// <param name="endDate">The end date.</param>
+        /// <param name="record">The record.</param>
+        /// <param name="isSpecial">If set to <c>true</c> [is special].</param>
+        /// <param name="messageType">Type of the message.</param>
+        /// <returns>List of message.</returns>
+        private IEnumerable<MessageModel> GetListMessage(DateTime startDate, DateTime endDate, int record, bool isSpecial = false, byte messageType = 0)
         {
-            return _messageService.GetMessage(new GetPrivateMessageCriteria
+            return _messageService.GetMessage(new GetListMessageCriteria
             {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsAgent = criteria.IsAgent,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
+                CustomerId = this.CurrentSession.AgentId,
+                SiteIds = AppSettings.SiteId.ToString(),
+                StartDate = startDate,
+                EndDate = endDate,
+                IsSpecial = isSpecial,
+                IsTest = false,
+                MsgType = messageType,
+                Record = record,
+                AgentLevel = messageType == 1 ? null : (short?)CurrentSession.AgentLevel
             });
         }
-
-        /// <summary>
-        /// Get public message.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>List of message model.</returns>
-        private IEnumerable<MessageModel> GetPublicMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetPubMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-
-        /// <summary>
-        /// Get not special message.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>List of message model.</returns>
-        private IEnumerable<MessageModel> GetNotSpecialMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetNotSpecialMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsAgent = criteria.IsAgent,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = new DateTime(criteria.To.Value.Year, criteria.To.Value.Month, criteria.To.Value.Day, 23, 59, 59)
-            });
-        }
-
-        /// <summary>
-        /// Get special message.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>List of message model.</returns>
-        private IEnumerable<MessageModel> GetSpecialMessage(GetMessageCriteria criteria)
-        {
-            return _messageService.GetMessage(new GetSpecialMessageCriteria
-            {
-                CustId = criteria.CustId,
-                From = criteria.From,
-                IsTest = criteria.IsTest,
-                MatchId = criteria.MatchId,
-                Record = criteria.Record,
-                SiteId = criteria.SiteId,
-                Special = criteria.Special,
-                To = criteria.To
-            });
-        }
-
-        #endregion Private
     }
 }

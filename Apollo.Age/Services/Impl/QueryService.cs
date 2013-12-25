@@ -16,7 +16,7 @@ namespace Apollo.Age.Services.Impl
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// This class encapsulate dynamic repository to provide 
+    /// This class encapsulate dynamic repository to provide
     /// a flexible way to get data from database by using Stored Procedure.
     /// </summary>
     public class QueryService : ServiceBase

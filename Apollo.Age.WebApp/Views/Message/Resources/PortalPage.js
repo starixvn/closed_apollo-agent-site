@@ -20,18 +20,24 @@ var MessagePortalPage = function ($) {
 
         isFirstTime: false,
 
+        isShowLevelMessage: false,
+
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
-           
+
             MessagePortalPage.publicMessageId = 0;
             MessagePortalPage.privateMessageId = 0;
             MessagePortalPage.privateMsgContent = "";
             MessagePortalPage.publicMsgContent = "";
             MessagePortalPage.isFirstTime = false;
 
-            MessagePortalPage.getMessages();
+            MessagePortalPage.isShowLevelMessage = $("#isShowMessageLevel").val();
 
+            MessagePortalPage.getMessages();
+            if (MessagePortalPage.isShowLevelMessage) {
+                MessagePortalPage.getLevelMessages();
+            }
         },
 
         loadAnnouncement: function () {
@@ -139,6 +145,20 @@ var MessagePortalPage = function ($) {
             $('form').submit();
         },
 
+        getLevelMessages: function () {
+            $.ajax({
+                url: APOLLO.resolveUrl('~/Message/GetLevelMessage'),
+                type: 'POST',
+                dataType: 'JSON',
+                success: function (result) {
+                    $("#topnewsbylevel").html("<marquee scrolldelay='200'>" + result.public_message_content + "</marquee>");
+                    setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
+                },
+                error: function (xhr, status, err) {
+                }
+            });
+        },
+
         getMessages: function () {
 
 
@@ -148,7 +168,7 @@ var MessagePortalPage = function ($) {
                     var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
                     var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
                     var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
-
+                    var finalMessage = null;
                     var MSGID = 0,
                         MSGCONTENT = 1,
                         MSGTYPE = 2;
@@ -169,23 +189,33 @@ var MessagePortalPage = function ($) {
                     // Process Private Message: show new private message
                     if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID]) {
 
-                        MessagePortalPage.privateMsgContent = "<span style=\"color:green\">" + $("#messagePrivate").val() + ":" + privateMessage[MSGCONTENT] + "</span>";
+                        MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
 
                         MessagePortalPage.privateMessageId = privateMessage[MSGID];
 
                     }
 
-                    if (!MessagePortalPage.isFirstTime) {
-                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                    if (MessagePortalPage.publicMsgContent != "" && MessagePortalPage.privateMsgContent != "") {
+                        finalMessage = MessagePortalPage.publicMsgContent + "; " + MessagePortalPage.privateMsgContent;
+                    }
+                    else {
+                        if (MessagePortalPage.publicMsgContent == "") {
+                            finalMessage = MessagePortalPage.privateMsgContent;
+                        }
+                        else {
+                            finalMessage = MessagePortalPage.publicMsgContent;
+                        }
+                    }                                       
+
+                    if (!MessagePortalPage.isFirstTime) {                       
+                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         MessagePortalPage.isFirstTime = true;
                     }
                     else {
                         if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
-                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + (MessagePortalPage.publicMsgContent != "" ? MessagePortalPage.publicMsgContent + "." : "") + " " + MessagePortalPage.privateMsgContent + "</marquee>";
+                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         }
                     }
-
-
 
                 } catch (e) {
                     console.log(e);
@@ -227,6 +257,11 @@ $(document).ready(function () {
 
     $(document).delegate('#announcement-link', 'click', function () {
         var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
+        myWindow.focus();
+    });
+
+    $(document).delegate('#announcementLevel-link', 'click', function () {
+        var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement?isLevelAnnouncement=true'), '_blank', 'scrollbars=1,width=520,height=800');
         myWindow.focus();
     });
 

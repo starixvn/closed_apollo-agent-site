@@ -76,6 +76,8 @@
     <Compile Include="Criterias\AgentCheckDirectMemberCriteria.cs" />
     <Compile Include="Criterias\AgentDownlineCriteria.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
+    <Compile Include="Criterias\GetListMessageCriteria.cs" />
+    <Compile Include="Criterias\GetTopPubMessageByLevelCriteria.cs" />
     <Compile Include="Criterias\GetAgentAllInfoCriteria.cs" />
     <Compile Include="Criterias\GetPrivateMessageCriteria.cs" />
     <Compile Include="Criterias\GetPubMessageCriteria.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Entities\SportSetting.cs" />
     <Compile Include="Entities\AgentTreeViewNode.cs" />
     <Compile Include="Models\AgentShareModel.cs" />
+    <Compile Include="Models\MessageLevelModel.cs" />
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\CustomerCommissionModel.cs" />
     <Compile Include="Models\BetSettingModel.cs" />
@@ -123,7 +126,9 @@
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\ISportSettingService.cs" />
     <Compile Include="Services\LogRunSpService.cs" />
-    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\MessageService.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Models\AgentListModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

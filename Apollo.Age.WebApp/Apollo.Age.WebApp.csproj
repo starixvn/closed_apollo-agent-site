@@ -79,15 +79,6 @@
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\Dependencies\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="IBCMessage">
-      <HintPath>..\Dependencies\IBCMessage.dll</HintPath>
-    </Reference>
-    <Reference Include="LoadBalancer">
-      <HintPath>..\Dependencies\LoadBalancer.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
       <HintPath>..\Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
@@ -136,9 +127,6 @@
     </Reference>
     <Reference Include="RSACryptoPad">
       <HintPath>..\Dependencies\RSACryptoPad.dll</HintPath>
-    </Reference>
-    <Reference Include="SPSRemoting">
-      <HintPath>..\Dependencies\SPSRemoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

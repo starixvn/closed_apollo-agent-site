@@ -33,7 +33,7 @@ namespace Apollo.Age.Account.Criterias
 
         public override string GetSettingKey()
         {
-            return "Dot_Msg_GetTopPriMessage24";
+            return "Age_Msg_GetTopPriMessage24";
         }
     }
 }
