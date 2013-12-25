@@ -109,6 +109,20 @@ namespace Apollo.Age.Reports.Services
         }
 
         /// <summary>
+        /// Gets the customer counter.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// List of Customer counter.
+        /// </returns>
+        public List<CustomerCounterViewModel> GetCustomerCounter(CustomerCounterCriteria criteria)
+        {
+            var customerCounterList = this.GetData<CustomerCounterViewModel>(criteria).ToList();
+
+            return customerCounterList;
+        }
+
+        /// <summary>
         /// Export Excel for Member Win Loss.
         /// </summary>
         /// <param name="model">The input MemberWinLossViewModel to export Excel.</param>
@@ -678,20 +692,6 @@ namespace Apollo.Age.Reports.Services
             }
 
             return enteredToList;
-        }
-
-        /// <summary>
-        /// Gets the customer counter.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>
-        /// List of Customer counter.
-        /// </returns>
-        public List<CustomerCounterViewModel> GetCustomerCounter(CustomerCounterCriteria criteria)
-        {
-            var customerCounterList = this.GetData<CustomerCounterViewModel>(criteria).ToList();
-
-            return customerCounterList;
         }
     }
 }

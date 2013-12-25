@@ -405,7 +405,6 @@ namespace Apollo.Age.Reports.Controllers
                 });
             }
 
-
             var model = new AgentWinLossViewModel
             {
                 FromDate = fromDate,
