@@ -10,6 +10,7 @@
 namespace Apollo.Age.Account.Models
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Message model.
@@ -77,6 +78,7 @@ namespace Apollo.Age.Account.Models
         /// </summary>
         /// <param name="language">The language.</param>
         /// <returns>Language content.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public string GetContent(string language = "")
         {
             string content = string.Empty;
@@ -121,8 +123,13 @@ namespace Apollo.Age.Account.Models
 
             content = content != null ? content : string.Empty;
 
+            // Private message.
+            if (this.MsgType == 1)
+            {
+                content = content.Replace("@@", betTransId == null ? string.Empty : betTransId);
+            }
+
             return content
-                .Replace("@@", betTransId)
                 .Replace("\n", string.Empty)
                 .Replace("\r", string.Empty)
                 .Replace("'", "\'") + string.Empty;

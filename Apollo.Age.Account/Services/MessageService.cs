@@ -32,6 +32,7 @@ namespace Apollo.Age.Account.Services
         private ICache _cache;
 
         #region ctor
+
         public MessageService(ICache cache, DynamicRepository dynamicRepository)
         {
             _cache = cache ?? CacheService.CreateInstance(CacheType.MemoryCache);
@@ -42,44 +43,46 @@ namespace Apollo.Age.Account.Services
             : this(null, null)
         {
         }
-       
-        #endregion
+
+        #endregion ctor
 
         /// <summary>
         /// Get announcement.
         /// </summary>
         /// <param name="agentId">The agent ID.</param>
         /// <param name="siteIds">List of site ID.</param>
-        /// <param name="lastPostDate">Last post date.</param>
+        /// <param name="startDate">The start date.</param>
+        /// <param name="endDate">The end date.</param>
+        /// <param name="agentLevel">The agent level.</param>
         /// <param name="totalMessage">Total message.</param>
         /// <param name="isTest">Is test or not.</param>
-        /// <param name="isAgent">Agent or member.</param>
-        /// <param name="startTime">The start time.</param>
         /// <param name="content">The message content.</param>
         /// <param name="language">The message language.</param>
-        /// <returns>List of announcement model.</returns>
+        /// <returns>
+        /// List of announcement model.
+        /// </returns>
         public IEnumerable<AnnouncementModel> GetAnnouncement(
             int agentId,
             string siteIds,
-            DateTime lastPostDate,
+            DateTime? startDate,
+            DateTime endDate,
+            short? agentLevel = null,
             int totalMessage = 10,
             bool isTest = false,
-            bool isAgent = true,
-            DateTime? startTime = null,
             string content = "",
             string language = "en-US")
         {
             return this.GetData<AnnouncementModel>(new GetCustomerMessageCriteria
-                {
-                    CustomerId = agentId,
-                    SiteIds = siteIds,
-                    LastPostTime = lastPostDate,
-                    IsTest = isTest,
-                    IsAgent = isAgent,
-                    StartDate = startTime,
-                    Content = content,
-                    Language = language
-                });
+                 {
+                     CustomerId = agentId,
+                     SiteIds = siteIds,
+                     EndDate = endDate,
+                     IsTest = isTest,
+                     StartDate = startDate,
+                     AgentLevel = agentLevel,
+                     Content = content,
+                     Language = language
+                 });
         }
 
         /// <summary>
@@ -180,25 +183,18 @@ namespace Apollo.Age.Account.Services
         /// </summary>
         /// <param name="messageType">The message type.</param>
         /// <param name="siteId">The site ID.</param>
-        /// <param name="latestMessageId">The latest message ID.</param>
         /// <param name="isTest">Is test or not.</param>
-        /// <returns>Message model.</returns>
+        /// <returns>
+        /// Message model.
+        /// </returns>
         public MessageModel GetTopPublicMessage(
-            int messageType, 
-            int siteId, 
-            int latestMessageId = 0, 
+            int messageType,
+            int siteId,
             bool isTest = false)
         {
-            char[] separator = new char[] { ',' };
-            string[] arraySite = GetParentSitesID(siteId.ToString()).Split(separator);
-
             var criteria = new GetTopPubMessageCriteria
             {
-                MessageType = messageType,
-                Site1 = arraySite[0],
-                Site2 = arraySite.Length > 1 ? arraySite[1] : string.Empty,
-                Site3 = arraySite.Length > 2 ? arraySite[2] : string.Empty,
-                LastMessageId = latestMessageId,
+                TargetId = siteId,
                 IsTest = isTest
             };
 
@@ -228,9 +224,9 @@ namespace Apollo.Age.Account.Services
         /// <param name="isAgent">Agent or member.</param>
         /// <returns>Message model.</returns>
         public MessageModel GetTopPrivateMessage24(
-            int userId, 
-            int latestMessageId = 0, 
-            bool isTest = false, 
+            int userId,
+            int latestMessageId = 0,
+            bool isTest = false,
             bool isAgent = true)
         {
             var criteria = new GetTopPriMessage24Criteria
@@ -304,6 +300,27 @@ namespace Apollo.Age.Account.Services
             }
 
             return new List<MessageModel>();
+        }
+
+        /// <summary>
+        /// Gets the top public message level.
+        /// </summary>
+        /// <param name="siteId">The site identifier.</param>
+        /// <param name="agentLevel">The agent level.</param>
+        /// <param name="isTest">If set to <c>true</c> [is test].</param>
+        /// <returns>
+        /// Message level model.
+        /// </returns>
+        public MessageLevelModel GetTopPublicMessageLevel(int siteId, short agentLevel, bool isTest = false)
+        {
+            var criteria = new GetTopPubMessageByLevelCriteria
+            {
+                TargetId = siteId,
+                AgentLevel = agentLevel,
+                IsTest = isTest
+            };
+
+            return this.GetData<MessageLevelModel>(criteria).FirstOrDefault();
         }
 
         /// <summary>

@@ -20,25 +20,23 @@ namespace Apollo.Age.Account.Services
         IEnumerable<AnnouncementModel> GetAnnouncement(
             int agentId,
             string siteIds,
-            DateTime lastPostDate,
+            DateTime? startDate,
+            DateTime endDate,
+            short? agentLevel,
             int totalMessage = 10,
             bool isTest = false,
-            bool isAgent = true,
-            DateTime? startTime = null,
             string content = "",
-            string langue = "en-US");
-
-        bool UpdateReadMessage(int userId, int messsageId, bool isAgent = true);
+            string language = "en-US");
 
         bool GetHasPrivateMessage24(int userId, bool isTest = false, bool isAgent = true);
-
-        int CountUnreadPrivateMessage(int userId, bool isAgent = true);
 
         bool UpdateReadPrivateMessage(int userId, string username);
 
         MessageModel GetTopPrivateMessage24(int userId, int latestMessageId = 0, bool isTest = false, bool isAgent = true);
 
-        MessageModel GetTopPublicMessage(int messageType, int siteId, int latestMessageId = 0, bool isTest = false);
+        MessageModel GetTopPublicMessage(int messageType, int siteId, bool isTest = false);
+
+        MessageLevelModel GetTopPublicMessageLevel(int siteId, short agentLevel, bool isTest = false);
 
         IEnumerable<MessageModel> GetMessage(ICriteria criteria);
     }

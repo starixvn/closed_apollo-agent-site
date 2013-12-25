@@ -15,32 +15,19 @@ namespace Apollo.Age.Account.Criterias
     /// Get top public message criteria.
     /// </summary>
     public class GetTopPubMessageCriteria : CriteriaBase
-    {      
-        public int MessageType { get; set; }
-
-        public string Site1 { get; set; }
-
-        public string Site2 { get; set; }
-
-        public string Site3 { get; set; }
-
-        public string Site4 { get; set; }
-
-        public string Site5 { get; set; }
-
-        [SpParam(SqlParamName = "LatestMsgID")]
-        public int LastMessageId { get; set; }
+    {
+        public int TargetId { get; set; }
 
         public bool IsTest { get; set; }
+
+        public override string GetSettingKey()
+        {
+            return "Age_Msg_GetTopPubMessage";
+        }
 
         public override bool IsValid()
         {
             return true;
-        }
-
-        public override string GetSettingKey()
-        {
-            return "Acc_Msg_GetTopPubMessage";
         }
     }
 }
