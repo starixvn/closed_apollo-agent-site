@@ -679,5 +679,19 @@ namespace Apollo.Age.Reports.Services
 
             return enteredToList;
         }
+
+        /// <summary>
+        /// Gets the customer counter.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// List of Customer counter.
+        /// </returns>
+        public List<CustomerCounterViewModel> GetCustomerCounter(CustomerCounterCriteria criteria)
+        {
+            var customerCounterList = this.GetData<CustomerCounterViewModel>(criteria).ToList();
+
+            return customerCounterList;
+        }
     }
 }

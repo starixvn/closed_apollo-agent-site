@@ -2134,4 +2134,7 @@
   <data name="announcementlevel" xml:space="preserve">
     <value>Level Announcement</value>
   </data>
+  <data name="NumberOfMember" xml:space="preserve">
+    <value>No. of Members</value>
+  </data>
 </root>

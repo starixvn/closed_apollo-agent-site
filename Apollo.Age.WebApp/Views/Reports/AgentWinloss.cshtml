@@ -113,6 +113,11 @@ new ReportMenuViewModel
                         @Lang.BetAmount
                         <span class='split-header'>/</span>
                         @Lang.lblBetCount
+                        @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                        { 
+                            <span class='split-header'>/</span>
+                            <span>@Lang.NumberOfMember</span>
+                        }
                     </th>
                     <th class="membercolor">
                         @Lang.CommBase
@@ -162,6 +167,15 @@ new ReportMenuViewModel
                             @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
                             <span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
+                            @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                            { 
+                                var numberOfMembers = Model.CustomerCounterList.Where(x=>x.AgentId == item.AgentId).FirstOrDefault();
+                                if (numberOfMembers != null)
+                                {
+                                    <span class='split'>/</span>
+                                    <span>@numberOfMembers.CustCount</span>
+                                }
+                            }
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
@@ -215,6 +229,11 @@ new ReportMenuViewModel
                         @Lang.BetAmount
                         <span class='split-header'>/</span>
                         @Lang.lblBetCount
+                        @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                        { 
+                            <span class='split-header'>/</span>
+                            <span>@Lang.NumberOfMember</span>
+                        }
                     </th>
                     <th class="membercolor">
                         @Lang.CommBase
@@ -259,6 +278,7 @@ new ReportMenuViewModel
             decimal totalATotal = 0;
             decimal totalUpLineEffectiveStake = 0;
             decimal totalUpLineTotal = 0;
+            decimal totalNumberOfMember = 0;
             
                 }
                 @foreach (var item in list)
@@ -274,7 +294,11 @@ new ReportMenuViewModel
                     totalATotal += item.ATotal;
                     totalUpLineEffectiveStake += item.UpLineEffectiveStake;
                     totalUpLineTotal += item.UpLineTotal;
-
+                    if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                    {
+                        var numberOfMembers = Model.CustomerCounterList.Where(x => x.AgentId == item.AgentId).FirstOrDefault();
+                        totalNumberOfMember += numberOfMembers.CustCount.Value;
+                    }
                     //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                     <tr>
@@ -318,6 +342,15 @@ new ReportMenuViewModel
                             @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
                             <span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
+                            @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                            { 
+                                var numberOfMembers = Model.CustomerCounterList.Where(x=>x.AgentId == item.AgentId).FirstOrDefault();
+                                if (numberOfMembers != null)
+                                {
+                                    <span class='split'>/</span>
+                                    <span>@numberOfMembers.CustCount</span>
+                                }
+                            }
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(item.CommBase, Formater.CULT_NAME_ENG)
@@ -372,6 +405,11 @@ new ReportMenuViewModel
                         @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
                         <span class='split-footer'>/</span>
                         @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
+                         @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                         {
+                             <span class='split-footer'>/</span>
+                             <span>@totalNumberOfMember</span>
+                         }
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)

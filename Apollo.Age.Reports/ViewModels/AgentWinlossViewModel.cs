@@ -46,6 +46,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
+        public List<CustomerCounterViewModel> CustomerCounterList { get; set; }
+
         public List<Agent> DownlinePath { get; set; }
 
         public string SportName

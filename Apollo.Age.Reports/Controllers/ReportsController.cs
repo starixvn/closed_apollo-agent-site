@@ -342,7 +342,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
-       [ValidateInput(false)]
+        [ValidateInput(false)]
         public ViewResult AgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -356,6 +356,8 @@ namespace Apollo.Age.Reports.Controllers
 
             var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            List<CustomerCounterViewModel> customerCounterList = null;
 
             ViewBag.allFunctionPermission = userPermission;
 
@@ -384,8 +386,25 @@ namespace Apollo.Age.Reports.Controllers
             };
 
             var agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+
             var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
             var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+            // Only super and main shareholder can see number of member.
+            if (modelAgentDownLine.Last().Level <= 1)
+            {
+                customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                {
+                    AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                    Bettypes = bettypes,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    BalanceUpDay = balanceUpDay,
+                    MoveBetDay = this._winLossService.MoveBetsDay()
+                });
+            }
+
 
             var model = new AgentWinLossViewModel
             {
@@ -397,6 +416,7 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = string.IsNullOrWhiteSpace(agentName) ? this.CurrentSession.AgentName : agentName,
                 IsSuper = isSuper,
                 AgentWinLossList = agentWinLossList,
+                CustomerCounterList = customerCounterList,
                 DownlinePath = modelAgentDownLine,
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
