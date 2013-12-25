@@ -155,12 +155,11 @@ namespace Apollo.Age.Reports.Services
             string betTypeName,
             bool isSuper)
         {
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+            var hssfworkbook = new HSSFWorkbook();
             CustomizeColor(hssfworkbook);
             ISheet sheet = hssfworkbook.CreateSheet("OutStanding Report");
 
-            if (listOutStanding != null
-                    && listOutStanding.Any())
+            if (listOutStanding != null && listOutStanding.Any())
             {
                 RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
                 RenderExcelHeader(hssfworkbook, sheet, 4);
@@ -254,6 +253,7 @@ namespace Apollo.Age.Reports.Services
             ICellStyle bodyStyleRight)
         {
             IRow row = sheet.CreateRow(rowIndex);
+
             CreateStringCell(row, 0, bodyStyleLeft, userName);
             CreateNumberCell(row, 1, bodyStyleRight, numberFormat, outstandingAmount);
             CreateNumberCell(row, 2, bodyStyleRight, numberFormat, shareAmount);

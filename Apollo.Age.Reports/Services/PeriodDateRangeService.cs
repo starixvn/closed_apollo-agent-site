@@ -124,7 +124,7 @@ namespace Apollo.Age.Reports.Services
             if (!string.IsNullOrWhiteSpace(AppSettings.PeriodDateRange))
             {
                 string periodDateRange = AppSettings.PeriodDateRange;
-                return periodDateRange.Split(';').ToList();
+                return AppSettings.PeriodDateRange.Split(';').ToList();
             }
 
             return new List<string>();

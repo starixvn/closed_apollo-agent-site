@@ -105,8 +105,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || (agentId != null && !hasDownlineDetailsPermission))
+            if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
                     "ReportAccessDenied",
@@ -251,8 +250,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || !hasDownlineDetailsPermission)
+            if (!hasPermission || !hasDownlineDetailsPermission)
             {
                 return Json(new MemberOutstandingViewModel
                 {

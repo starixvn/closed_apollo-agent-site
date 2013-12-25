@@ -112,7 +112,7 @@ namespace Apollo.Age.Reports.Services
                 if (langAgent.Value == null)
                 {
                     // is not exits in Constants.ReportAgentLevelDictionary is it's Agent (key = 4)
-                    keyLang = Apollo.Age.Reports.Core.Constants.ReportAgentLevelDictionary[4];
+                    keyLang = Constants.ReportAgentLevelDictionary[4];
                 }
                 else
                 {

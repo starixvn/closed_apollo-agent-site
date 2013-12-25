@@ -11,6 +11,7 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -47,12 +48,12 @@ namespace Apollo.Age.Reports.Services
         public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
-                    {
-                        FromDate = fromDate,
-                        Sporttypes = sportTypes,
-                        BalanceUpDay = GetBalanceUpDay(),
-                        IsTest = isShowDataTest
-                    };
+            {
+                FromDate = fromDate,
+                Sporttypes = sportTypes,
+                BalanceUpDay = GetBalanceUpDay(),
+                IsTest = isShowDataTest
+            };
 
             var cacheKey = string.Join("-", "MatchResult", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "-"), isShowDataTest ? "1" : "0");
             var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
@@ -60,7 +61,7 @@ namespace Apollo.Age.Reports.Services
             {
                 matchResult = GetData<MatchResultModel>(criteria);
 
-                if (sportTypes == Apollo.Age.Core.SportGroup.Others && matchResult != null)
+                if (sportTypes == SportGroup.Others && matchResult != null)
                 {
                     CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(1));
                 }
