@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Reports.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Result service.
     /// </summary>
     public class ResultService : ReportService
     {
@@ -45,7 +45,7 @@ namespace Apollo.Age.Reports.Services
         /// <param name="custId">The customer identifier.</param>
         /// <param name="isShowDataTest">Include data test or not.</param>
         /// <returns>List of match result.</returns>
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
             {

@@ -68,7 +68,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
-            this._outstandingService = new OutstandingService();
+            this._outstandingService = outstandingService ?? new OutstandingService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }

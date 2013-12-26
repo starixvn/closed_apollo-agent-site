@@ -75,7 +75,7 @@ namespace Apollo.Age.Web.Mvc
             this HtmlHelper<TModel> html,
             Expression<Func<TModel, TValue>> expression,
             DateTime? minDate = null,
-            DateTime? maxDate = null,            
+            DateTime? maxDate = null,
             string formatDate = "yyyy-MM-dd",
             IEnumerable<DateTime> unavailDates = null)
         {
@@ -243,7 +243,7 @@ namespace Apollo.Age.Web.Mvc
         /// <returns>
         /// The resource value.
         /// </returns>
-        public static string Resource(this HtmlHelper htmlhelper, string key, Type resourceSource = null)
+        public static string Resource(this HtmlHelper htmlhelper, string key)
         {
             return LanguageManager.GetResourceData(key);
         }
@@ -266,7 +266,6 @@ namespace Apollo.Age.Web.Mvc
             if (uplineStatus == (int)CustomerStatus.Stopped)
             {
                 result = new MvcHtmlString(string.Format(format, "close", Lang.lblCLock));
-
                 return result;
             }
 
@@ -330,7 +329,7 @@ namespace Apollo.Age.Web.Mvc
             this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector)
         {
-            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            var seenKeys = new HashSet<TKey>();
 
             foreach (TSource element in source)
             {
@@ -353,8 +352,7 @@ namespace Apollo.Age.Web.Mvc
         /// <returns>The username that is encrypted.</returns>
         public static string EncryptUsername(this string username, string stringEncrypt = "***")
         {
-            if (!string.IsNullOrWhiteSpace(username)
-                && username.Length > 1)
+            if (!string.IsNullOrWhiteSpace(username) && username.Length > 1)
             {
                 return username[0] + stringEncrypt;
             }

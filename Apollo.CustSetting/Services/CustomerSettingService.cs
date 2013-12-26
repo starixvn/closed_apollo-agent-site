@@ -250,15 +250,15 @@ namespace Apollo.CustSetting.Service
                 string tempString = string.Empty;
                 XMLStringData xmlStringData = BuildPositionTakingSettingXML(settingContext, positionTakingSetting);
 
-                if (xmlStringData.XMLSetting == string.Empty
-                    && xmlStringData.XMLSetting3rd == string.Empty)
+                if (string.IsNullOrEmpty(xmlStringData.XMLSetting) && string.IsNullOrEmpty(xmlStringData.XMLSetting3rd))
                 {
                     return new Result(Constant.WARNING_CODE_DEFAULT, Constant.WARNING_MESSAGE_DEFAULT);
                 }
 
-                var positionTakingXML = xmlStringData.XMLSetting != string.Empty
+                var positionTakingXML = string.IsNullOrEmpty(xmlStringData.XMLSetting)
                     ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
                     : string.Empty;
+
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
                     criteria = new UpdateAgentPositionTakingCriteria
@@ -357,7 +357,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         AgentId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
                 else
@@ -367,7 +367,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         CustId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
 
@@ -698,7 +698,6 @@ namespace Apollo.CustSetting.Service
         {
             var xmlStringData = new XMLStringData();
             var tempString = string.Empty;
-            string applyOnMemberTempString = string.Empty;
 
             if (positionTakingSetting != null
                 && positionTakingSetting.SportTypes != null

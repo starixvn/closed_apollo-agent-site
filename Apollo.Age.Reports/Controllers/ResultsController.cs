@@ -104,8 +104,7 @@ namespace Apollo.Age.Reports.Controllers
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
+            IEnumerable<MatchResultModel> matchResults = _resultService.GetMatchResult(date, sportTypes, isShowDataTest);
 
             var listLeague = new List<League>();
 
@@ -142,8 +141,7 @@ namespace Apollo.Age.Reports.Controllers
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
+            IEnumerable<MatchResultModel> matchResults = _resultService.GetMatchResult(date, sportTypes, isShowDataTest);
 
             var sports = new List<Sport>();
             if (matchResults != null && matchResults.Any())
@@ -174,8 +172,7 @@ namespace Apollo.Age.Reports.Controllers
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
+            IEnumerable<MatchResultModel> matchResults = _resultService.GetMatchResult(date, sportTypes, isShowDataTest);
 
             if (matchResults != null && matchResults.Any())
             {
@@ -204,8 +201,7 @@ namespace Apollo.Age.Reports.Controllers
                 isShowDataTest = AppSettings.CurrencyTesting == CurrentSession.CurrencyId || CurrentSession.IsSuper;
             }
 
-            IEnumerable<MatchResultModel> matchResults =
-                _resultService.GetMatchResult(date, sportTypes, this.CurrentSession.UserId, isShowDataTest);
+            IEnumerable<MatchResultModel> matchResults = _resultService.GetMatchResult(date, sportTypes, isShowDataTest);
 
             if (matchResults != null && matchResults.Any())
             {

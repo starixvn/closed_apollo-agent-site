@@ -35,7 +35,6 @@ namespace Apollo.Age.Criterias
             get
             {
                 string result = "<ROOT>";
-                string temp = string.Empty;
                 var newPermissionDictionary = new Dictionary<string, byte>();
                 var oldPermissionDictionary = new Dictionary<string, byte>();
 

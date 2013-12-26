@@ -128,7 +128,7 @@ namespace Apollo.Age.Web
             {
                 CheckAuthentication();
                 CheckValidDownline(filterContext);
-                CheckKickOut(filterContext);
+                CheckKickOut();
             }
 
             if (CurrentSession != null)
@@ -174,8 +174,7 @@ namespace Apollo.Age.Web
             // Current user is agent
             if (this.CurrentSession.IsMaster)
             {
-                if (customerId != this.CurrentSession.UserId
-                    && !hasDownlineDetailsPermission)
+                if (customerId != this.CurrentSession.UserId && !hasDownlineDetailsPermission)
                 {
                     return false;
                 }
@@ -183,8 +182,7 @@ namespace Apollo.Age.Web
             else
             {
                 // Current user is shadow
-                if (customerId != this.CurrentSession.AgentId
-                    && !hasDownlineDetailsPermission)
+                if (customerId != this.CurrentSession.AgentId && !hasDownlineDetailsPermission)
                 {
                     return false;
                 }
@@ -276,12 +274,13 @@ namespace Apollo.Age.Web
         /// Checking Kick Out.
         /// </summary>
         /// <param name="filterContext">Input filter context.</param>
-        private void CheckKickOut(ActionExecutingContext filterContext)
+        private void CheckKickOut()
         {
             if (!ReferenceEquals(CurrentSession, null))
             {
                 int userStatus = -1;
                 string cacheKey = KickOutStatusCacheKey + CurrentSession.AgentId.ToString() + CurrentSession.UserId.ToString();
+
                 if (_cacheManager.Contains(cacheKey))
                 {
                     userStatus = _cacheManager.Get<int>(cacheKey);

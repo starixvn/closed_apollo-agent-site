@@ -41,7 +41,6 @@ namespace Apollo.Age.Web
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-
             Thread.CurrentThread.CurrentCulture.DateTimeFormat = usCulture.DateTimeFormat;
             Thread.CurrentThread.CurrentCulture.NumberFormat = usCulture.NumberFormat;
         }

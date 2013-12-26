@@ -93,6 +93,7 @@ namespace Apollo.Age.Reports.Services
                     model.SportName,
                     Lang.WagerType,
                     model.BettypeName);
+
                 if (model.IsSuper)
                 {
                     return this.AgentWinLossViewBySuper(model.AgentWinLossList, title, model.AgentName, filter);
@@ -435,7 +436,7 @@ namespace Apollo.Age.Reports.Services
         /// <returns>Agent Win Loss Excel File.</returns>
         private HSSFWorkbook AgentWinLossViewByNoneSuper(IList<AgentWinLossModel> agentWinLossList, string title, string agentName, string filter)
         {
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+            var hssfworkbook = new HSSFWorkbook();
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
 

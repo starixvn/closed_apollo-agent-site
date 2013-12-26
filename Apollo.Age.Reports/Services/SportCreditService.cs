@@ -149,10 +149,6 @@ namespace Apollo.Age.Reports.Services
             cellTotalRemaining.SetCellValue(totalRemaining);
             //// end footer
 
-            //// remove sheet & row template
-            var rowBodyTemplate = sheet.GetRow(rowIndex + 1);
-            var rowFooterTemplate = sheet.GetRow(rowIndex + 2);
-
             hssfworkbook.RemoveSheetAt(0);
 
             return hssfworkbook;

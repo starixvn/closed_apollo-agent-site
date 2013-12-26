@@ -27,7 +27,6 @@ namespace Apollo.Age.Web
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
-    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.ViewModels;
     using Fanex.Common;
     using Fanex.Logging;
@@ -55,7 +54,6 @@ namespace Apollo.Age.Web
 
         private readonly IUserService _userService;
         private DeviceDetection _deviceService;
-        private UnderMaintenanceService _underMaintenanceService;
 
         #region Ctors
 
@@ -63,7 +61,6 @@ namespace Apollo.Age.Web
         {
             _userService = new UserService();
             _deviceService = new DeviceDetection();
-            _underMaintenanceService = new UnderMaintenanceService();
         }
 
         #endregion Ctors
@@ -381,7 +378,6 @@ namespace Apollo.Age.Web
             {
                 for (int y = 0; y < height; y++)
                 {
-                    int num = r.Next(0, 256);
                     finalBmp.SetPixel(x, y, Color.FromArgb(175, 172, 137));
                 }
             }
@@ -476,8 +472,8 @@ namespace Apollo.Age.Web
                         {
                             var onUserId = _userService.InternalCheckIn(
                                 adminId,
-                            HttpContext.Session.SessionID,
-                            _deviceService.ClientIp);
+                                HttpContext.Session.SessionID,
+                                _deviceService.ClientIp);
                             if (onUserId == 0)
                             {
                                 return SignOut();
@@ -511,18 +507,12 @@ namespace Apollo.Age.Web
                         }
 
                     case (int)CustomerStatus.Locked:
-                        {
-                            ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
-
-                            break;
-                        }
+                        ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
+                        break;
 
                     default:
-                        {
-                            ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
-
-                            break;
-                        }
+                        ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
+                        break;
                 }
             }
             else

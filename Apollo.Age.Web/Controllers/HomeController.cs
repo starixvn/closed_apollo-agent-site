@@ -15,6 +15,7 @@ namespace Apollo.Age.Web
     using System.Globalization;
     using System.Resources;
     using System.Web.Mvc;
+    using Apollo.Age.Resources;
 
     /// <summary>
     /// Home controller class.
@@ -32,6 +33,14 @@ namespace Apollo.Age.Web
 
         /// <summary>
         /// This action is for testing ONLY.
+        /// Culture name.
+        ///     en-US   : American English.
+        ///     zh-CN   : Chinese Simplified.
+        ///     zh-TW   : Chinese Traditional.
+        ///     vi-VN   : Vietnamese.
+        ///     ja-JP   : Japanese.
+        ///     th-TH   : Thai.
+        ///     ko-KR   : Korean.
         /// </summary>
         /// <returns>Action result.</returns>
         [NonAction]
@@ -41,30 +50,19 @@ namespace Apollo.Age.Web
             try
             {
                 var usCulture = new CultureInfo("en-US"); // American English
-                var cnCulture = new CultureInfo("zh-CN"); // Chinese Simplified
                 var twCulture = new CultureInfo("zh-TW"); // Chinese Traditional
-                var viCulture = new CultureInfo("vi-VN"); // Vietnamese
-                var jpCulture = new CultureInfo("ja-JP"); // Japanese
-                var thCulture = new CultureInfo("th-TH"); // Thai
-                var krCulture = new CultureInfo("ko-KR"); // Korean
 
-                ResourceSet resourceSetEnUs =
-                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(usCulture, true, true);
-                ResourceSet anotherResourceSet =
-                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(cnCulture, true, true);
-
-                ResourceSet anotherResourceSet1 =
-                    Apollo.Age.Resources.Lang.ResourceManager.GetResourceSet(twCulture, true, true);
+                ResourceSet resourceSetEnUs = Lang.ResourceManager.GetResourceSet(usCulture, true, true);
+                ResourceSet anotherResourceSet = Lang.ResourceManager.GetResourceSet(twCulture, true, true);
 
                 var notTransResources = new Dictionary<string, string>();
-                var hasKeybutNotTransResources = new Dictionary<string, string>();
 
                 foreach (DictionaryEntry entry in resourceSetEnUs)
                 {
                     string key = entry.Key.ToString();
                     string value = entry.Value.ToString();
 
-                    var otherValue = anotherResourceSet1.GetString(key);
+                    var otherValue = anotherResourceSet.GetString(key);
 
                     if (!string.IsNullOrWhiteSpace(otherValue))
                     {

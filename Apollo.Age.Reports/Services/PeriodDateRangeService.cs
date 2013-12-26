@@ -17,7 +17,7 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Services.Impl;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Period date range service.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class PeriodDateRangeService : QueryService
@@ -58,8 +58,8 @@ namespace Apollo.Age.Reports.Services
         {
             var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             List<string> periodRanges = GetAllPeriodRange();
-            DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            var fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            var toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             string[] rangeDates = null;
             DateRangeModel periodModel = new DateRangeModel();
             string[] startRangeDates = periodRanges[0].Split('-');
@@ -123,7 +123,6 @@ namespace Apollo.Age.Reports.Services
         {
             if (!string.IsNullOrWhiteSpace(AppSettings.PeriodDateRange))
             {
-                string periodDateRange = AppSettings.PeriodDateRange;
                 return AppSettings.PeriodDateRange.Split(';').ToList();
             }
 
