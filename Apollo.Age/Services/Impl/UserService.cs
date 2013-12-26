@@ -486,7 +486,7 @@ namespace Apollo.Age.Services.Impl
         /// <returns>Return SSO time.</returns>
         public DateTime SSOGetTime(SSOGetTimeCriteria criteria)
         {
-            return this.SSOGetTime(criteria);
+            return _userRepository.SSOGetTime(criteria);
         }
 
         /// <summary>
@@ -496,7 +496,7 @@ namespace Apollo.Age.Services.Impl
         /// <returns>Return on user Id.</returns>
         public int SSOCheckIn(SSOCheckInCriteria criteria)
         {
-            return this.SSOCheckIn(criteria);
+            return _userRepository.SSOCheckIn(criteria);
         }
     }
 }

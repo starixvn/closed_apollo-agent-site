@@ -236,30 +236,41 @@ namespace Apollo.Age.Web
         /// <param name="sso">The SSO parameters.</param>
         /// <returns>Action result.</returns>
         [AllowAnonymous]
-        public ActionResult InternalLogin(string sso)
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        public ActionResult SSOLogin(string sso)
         {
             if (!string.IsNullOrWhiteSpace(sso))
             {
-                string ssoParams = Cryptography.CfsDeCrypt(sso);
-                var time = DateTime.Now;
-                int userId = 0;
+                string ssoParams = Cryptography.CfsDeCrypt(sso.Replace(" ", "+"));
+                var loginTime = DateTime.Now;
+                int agentId = 0;
                 int adminId = 0;
                 string adminName = string.Empty;
-                int onlineUserId = 0;
-                int siteId = 0;
+                int onlineAdminId = 0;
+                int siteId = AppSettings.SSOSiteId;
+
+                string[] listOfParam = ssoParams.Split('&');
+                if (listOfParam.Length > 0)
+                {
+                    onlineAdminId = Convert.ToInt32(listOfParam[0].Substring(listOfParam[0].IndexOf('=') + 1));
+                    adminId = Convert.ToInt32(listOfParam[1].Substring(listOfParam[1].IndexOf('=') + 1));
+                    adminName = listOfParam[2].Substring(listOfParam[2].IndexOf('=') + 1);
+                    agentId = Convert.ToInt32(listOfParam[3].Substring(listOfParam[3].IndexOf('=') + 1));
+                    loginTime = Convert.ToDateTime(listOfParam[4].Substring(listOfParam[4].IndexOf('=') + 1));
+                }
 
                 DateTime currentTime = _userService.SSOGetTime(new SSOGetTimeCriteria
                 {
                     Time = DateTime.Now
                 });
 
-                var expirationTime = currentTime - time;
+                var expirationTime = currentTime - loginTime;
                 if (expirationTime.TotalSeconds <= _expirationTime)
                 {
                     // SSO Check-in again.
                     var criteria = new SSOCheckInCriteria
                     {
-                        CheckOnUserId = onlineUserId,
+                        CheckOnUserId = onlineAdminId,
                         OnUserId = 0,
                         SiteId = siteId,
                         LoginDate = DateTime.Now,
@@ -268,20 +279,28 @@ namespace Apollo.Age.Web
                         IP = _deviceService.ClientIp
                     };
 
-                    onlineUserId = _userService.SSOCheckIn(criteria);
+                    onlineAdminId = _userService.SSOCheckIn(criteria);
 
-                    if (onlineUserId > 0)
+                    if (onlineAdminId > 0)
                     {
-                        var user = _userService.GetUserById(userId);
+                        var user = _userService.GetUserById(agentId);
                         if (user != null)
                         {
-                            return UserInfo(user.Username, adminId, adminName, "en-US", false);
+                            User agentUser = null;
+                            int onlineUserId = 0;
+                            var userChecking = this.UserInfoChecking(user.Username, adminId, ref agentUser, ref onlineUserId);
+                            if (userChecking == 0)
+                            {
+                                CreateLoginSession(adminId, adminName, "en-US", false, agentUser, onlineUserId);
+
+                                return Redirect(FormsAuthentication.DefaultUrl);
+                            }
                         }
                     }
                 }
             }
 
-            return RedirectToAction("Error");
+            return RedirectToAction(ApoURLs.URLs.Error + "?err=404");
         }
 
         /// <summary>
@@ -506,6 +525,58 @@ namespace Apollo.Age.Web
         #endregion Helpers
 
         /// <summary>
+        /// Users the information checking.
+        /// </summary>
+        /// <param name="agentName">Name of the agent.</param>
+        /// <param name="adminId">The admin identifier.</param>
+        /// <param name="agentUser">The agent user.</param>
+        /// <param name="onlineUserId">The online user identifier.</param>
+        /// <returns>
+        /// Return user status.
+        /// </returns>
+        private int UserInfoChecking(string agentName, int adminId, ref User agentUser, ref int onlineUserId)
+        {
+            if (!string.IsNullOrWhiteSpace(agentName))
+            {
+                User user = _userService.InternalGetAgentByUsername(agentName);
+                if (user != null)
+                {
+                    var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+                    switch (userStatus)
+                    {
+                        case (int)CustomerStatus.Active:
+                            var onlineAgentId = _userService.InternalCheckIn(
+                                adminId,
+                            HttpContext.Session.SessionID,
+                            _deviceService.ClientIp);
+                            if (onlineAgentId == 0)
+                            {
+                                // Kick out user.
+                                return 3;
+                            }
+
+                            onlineUserId = onlineAgentId;
+                            agentUser = user;
+
+                            // Login successfully.
+                            return 0;
+                        case (int)CustomerStatus.Locked:
+
+                            // Account is locked.
+                            return 1;
+                        default:
+
+                            // Account is stopped.
+                            return 2;
+                    }
+                }
+            }
+
+            // Agent is not found.
+            return 4;
+        }
+
+        /// <summary>
         /// Function Get User Info Login.
         /// </summary>
         /// <param name="agentName">Input AgentUserName.</param>
@@ -518,83 +589,85 @@ namespace Apollo.Age.Web
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         private ActionResult UserInfo(string agentName, int adminId, string adminName, string language, bool isAllowUpdate)
         {
-            User user = _userService.InternalGetAgentByUsername(agentName);
+            User agentUser = null;
+            int onlineUserId = 0;
+            var userChecking = this.UserInfoChecking(agentName, adminId, ref agentUser, ref onlineUserId);
 
-            // Continue sign-in process.
-            if (user != null)
+            switch (userChecking)
             {
-                var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+                case 0:
+                    {
+                        CreateLoginSession(adminId, adminName, language, isAllowUpdate, agentUser, onlineUserId);
 
-                switch (userStatus)
-                {
-                    case (int)CustomerStatus.Active:
-                        {
-                            var onUserId = _userService.InternalCheckIn(
-                                adminId,
-                            HttpContext.Session.SessionID,
-                            _deviceService.ClientIp);
-                            if (onUserId == 0)
-                            {
-                                return SignOut();
-                            }
+                        break;
+                    }
 
-                            // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and.
-                            // May be removed in future.
-                            user.IsMaster = isAllowUpdate;
+                case 1:
+                    {
+                        // Account is locked.
+                        ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
+                        break;
+                    }
 
-                            // Saves user session
-                            SessionManager.CurrentSession = new CurrentSession(
-                                user: user,
-                                adminId: adminId,
-                                adminName: adminName,
-                                onUserId: onUserId,
-                                isInternalSignIn: true, // Users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc).
-                                language: language);
+                case 2:
+                    {
+                        // Account is stopped.
+                        ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
+                        break;
+                    }
 
-                            // Write log internal login.
-                            // ActionId: 701 - Select Account successful.
-                            string doing = string.Format(
-                                "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
-                                            adminName,
-                                            user.Agent.Username);
+                case 3:
+                    {
+                        // Kick out account.
+                        return SignOut();
+                    }
 
-                            WriteLoginLog(user.Agent.Id, adminId, 701, doing);
-
-                            FormsAuthentication.RedirectFromLoginPage(user.Agent.Username, createPersistentCookie: false);
-
-                            break;
-                        }
-
-                    case (int)CustomerStatus.Locked:
-                        {
-                            ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
-
-                            break;
-                        }
-
-                    default:
-                        {
-                            ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
-
-                            break;
-                        }
-                }
-            }
-            else
-            {
-                // Write log internal login.
-                // ActionId: 6001 - Select Account fail.
-                string doing = string.Format(
-                    "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Failed({2}).",
-                                adminName,
-                                agentName,
-                                Lang.AgentNotFound);
-
-                WriteLoginLog(0, adminId, 7001, doing);
-                ModelState.AddModelError("Agent", Lang.AgentNotFound);
+                default:
+                    {
+                        // Agent is not found.
+                        ModelState.AddModelError("Agent", Lang.AgentNotFound);
+                        break;
+                    }
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// Creates the login session.
+        /// </summary>
+        /// <param name="adminId">The admin identifier.</param>
+        /// <param name="adminName">Name of the admin.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="isAllowUpdate">If set to <c>true</c> [is allow update].</param>
+        /// <param name="agentUser">The agent user.</param>
+        /// <param name="onlineUserId">The online user identifier.</param>
+        private void CreateLoginSession(int adminId, string adminName, string language, bool isAllowUpdate, User agentUser, int onlineUserId)
+        {
+            // Login successfull.
+            // AppSettings.AllowInternalUpdate is a workaround solution for internal testing and.
+            // May be removed in future.
+            agentUser.IsMaster = isAllowUpdate;
+
+            // Saves user session
+            SessionManager.CurrentSession = new CurrentSession(
+                user: agentUser,
+                adminId: adminId,
+                adminName: adminName,
+                onUserId: onlineUserId,
+                isInternalSignIn: true, // Users sign in by this view should be internal users (CSD Admin or Devs, QCs, etc).
+                language: language);
+
+            // Write log internal login.
+            // ActionId: 701 - Select Account successful.
+            string doing = string.Format(
+                "Admin: [{0}] via Agent: [{1}] Logged in to Apollo Agent Site - Result: Successful.",
+                            adminName,
+                            agentUser.Agent.Username);
+
+            WriteLoginLog(agentUser.Agent.Id, adminId, 701, doing);
+
+            FormsAuthentication.RedirectFromLoginPage(agentUser.Agent.Username, createPersistentCookie: false);
         }
     }
 }

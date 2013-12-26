@@ -145,11 +145,19 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static int SiteId
+        public static int MessageSiteId
         {
             get
             {
                 return Convert.ToInt32(GetValue("MessageSiteId"));
+            }
+        }
+
+        public static int SSOSiteId
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("SSOSiteId"));
             }
         }
 
