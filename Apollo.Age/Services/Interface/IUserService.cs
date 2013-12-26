@@ -11,6 +11,7 @@
 
 namespace Apollo.Age.Services.Interface
 {
+    using System;
     using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
@@ -33,6 +34,10 @@ namespace Apollo.Age.Services.Interface
 
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
 
+        DateTime SSOGetTime(SSOGetTimeCriteria criteria);
+
+        int SSOCheckIn(SSOCheckInCriteria criteria);
+
         int GetUserStatus(int agentId, int agentUserId);
 
         bool HasPermissionOnUpdating(int actorAgentId, int custId, CustomerType customerType);
@@ -40,15 +45,15 @@ namespace Apollo.Age.Services.Interface
         bool CheckDownlineBelongToAgent(int actorAgentId, int custId, CustomerType customerType);
 
         void WriteLogInternalLogin(
-            int agentId, 
-            int agentUserId, 
-            int serverId, 
-            int actionId, 
-            string doing, 
-            string loginIp, 
-            string domainName, 
-            string browserName, 
-            string platform, 
+            int agentId,
+            int agentUserId,
+            int serverId,
+            int actionId,
+            string doing,
+            string loginIp,
+            string domainName,
+            string browserName,
+            string platform,
             string countryCode);
 
         int InternalCheckIn(int adminId, string netSessionId, string ip);
@@ -74,7 +79,7 @@ namespace Apollo.Age.Services.Interface
         /// <summary>
         /// Assigns the user permission.
         /// </summary>
-        /// <param name="criteria">The criteria assign user permission.</param>   
+        /// <param name="criteria">The criteria assign user permission.</param>
         void AssignUserPermission(ref UserAssignFunctionCriteria criteria);
     }
 }

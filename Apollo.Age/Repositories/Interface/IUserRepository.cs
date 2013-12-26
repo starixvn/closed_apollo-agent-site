@@ -10,6 +10,7 @@
 
 namespace Apollo.Age.Repositories.Interface
 {
+    using System;
     using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
@@ -60,6 +61,20 @@ namespace Apollo.Age.Repositories.Interface
         /// <param name="adminId">Input admin Id.</param>
         /// <returns>Return true or false.</returns>
         bool AuthenticateNapUser(AuthenticateNapUserCriteria criteria, ref int adminId);
+
+        /// <summary>
+        /// SSO the get time.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return time of user logged in.</returns>
+        DateTime SSOGetTime(SSOGetTimeCriteria criteria);
+
+        /// <summary>
+        /// SSO the check in.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return user Id.</returns>
+        int SSOCheckIn(SSOCheckInCriteria criteria);
 
         /// <summary>
         /// Interface check permission.

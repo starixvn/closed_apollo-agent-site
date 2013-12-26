@@ -48,6 +48,7 @@ namespace Apollo.Age.Web
         private const int ServerId = 2;
         private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private readonly int _randomStringLength = _RandomString.Length;
+        private readonly int _expirationTime = 30; // 30s for expirating.
 
         #endregion Const
 
@@ -227,6 +228,60 @@ namespace Apollo.Age.Web
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// Internals the login.
+        /// </summary>
+        /// <param name="sso">The SSO parameters.</param>
+        /// <returns>Action result.</returns>
+        [AllowAnonymous]
+        public ActionResult InternalLogin(string sso)
+        {
+            if (!string.IsNullOrWhiteSpace(sso))
+            {
+                string ssoParams = Cryptography.CfsDeCrypt(sso);
+                var time = DateTime.Now;
+                int userId = 0;
+                int adminId = 0;
+                string adminName = string.Empty;
+                int onlineUserId = 0;
+                int siteId = 0;
+
+                DateTime currentTime = _userService.SSOGetTime(new SSOGetTimeCriteria
+                {
+                    Time = DateTime.Now
+                });
+
+                var expirationTime = currentTime - time;
+                if (expirationTime.TotalSeconds <= _expirationTime)
+                {
+                    // SSO Check-in again.
+                    var criteria = new SSOCheckInCriteria
+                    {
+                        CheckOnUserId = onlineUserId,
+                        OnUserId = 0,
+                        SiteId = siteId,
+                        LoginDate = DateTime.Now,
+                        NetSessionId = Session.SessionID,
+                        UserId = adminId,
+                        IP = _deviceService.ClientIp
+                    };
+
+                    onlineUserId = _userService.SSOCheckIn(criteria);
+
+                    if (onlineUserId > 0)
+                    {
+                        var user = _userService.GetUserById(userId);
+                        if (user != null)
+                        {
+                            return UserInfo(user.Username, adminId, adminName, "en-US", false);
+                        }
+                    }
+                }
+            }
+
+            return RedirectToAction("Error");
         }
 
         /// <summary>

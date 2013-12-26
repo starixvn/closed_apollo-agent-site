@@ -24,7 +24,11 @@
         <Setting Key="Age_Agent_CheckBelongToUplines" SpName="Age_Agent_CheckBelongToUplinesForAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" ></Setting>
 
         <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="SVRNAP.bodb_NAP.bodbAdminNet" />
-        <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
+        <Setting Key="NAP_User_SSOGetTime" SpName="NAP_User_SSOGetTime" DbName="SVRNAP.bodb_NAP.bodbAdminNet" />
+        <Setting Key="NAP_User_SSOCheckIn" SpName="NAP_User_SSOCheckIn" DbName="SVRNAP.bodb_NAP.bodbAdminNet" />
+      
+
+      <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
         <Setting Key="Age_Admin_ReCheckIn" SpName="Age_Admin_ReCheckIn" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
         <Setting Key="Age_Admin_Logout" SpName="Age_Admin_Logout" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
     </Function>
