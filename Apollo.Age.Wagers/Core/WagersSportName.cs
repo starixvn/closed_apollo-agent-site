@@ -13,7 +13,7 @@ namespace Apollo.Age.Wagers.Core
     using Apollo.Age.Core;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Wagers sport name.
     /// </summary>
     public static class WagersSportName
     {

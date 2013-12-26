@@ -13,7 +13,7 @@ namespace Apollo.Age.Wagers.Criterias
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Get league criteria.
     /// </summary>
     public class GetLeagueCriteria : CriteriaBase
     {

@@ -17,7 +17,7 @@ namespace Apollo.Age.Wagers.Services
     using Apollo.Age.Wagers.Criterias;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Wagers service.
     /// </summary>
     public class WagersService : QueryService, IWagersService
     {

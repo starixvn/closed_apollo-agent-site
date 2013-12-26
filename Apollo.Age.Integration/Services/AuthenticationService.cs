@@ -20,7 +20,7 @@ namespace Apollo.Age.Integration.Services
     using Apollo.Age.Resources;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Authentication service.
     /// </summary>
     public class AuthenticationService
     {

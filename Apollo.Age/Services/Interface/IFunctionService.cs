@@ -13,7 +13,7 @@ namespace Apollo.Age.Services.Interface
     using Apollo.Age.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Function service interface.
     /// </summary>
     public interface IFunctionService
     {
