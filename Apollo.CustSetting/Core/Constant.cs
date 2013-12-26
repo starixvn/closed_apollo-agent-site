@@ -68,9 +68,10 @@ namespace Apollo.CustSetting.Core
         private static void LoadBettingLimitSportNames()
         {
             XElement root = _Configuration.BettingLimitSportNameConfig.Root;
+
             foreach (XElement sport in root.Elements())
             {
-                BettingLimit bettingLimit = new BettingLimit
+                var bettingLimit = new BettingLimit
                 {
                     SportId = Converter.ToInt(sport.Attribute("sportId").Value),
                     BetTypeId = Converter.ToInt(sport.Attribute("betTypeId").Value),

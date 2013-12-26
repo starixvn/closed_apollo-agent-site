@@ -8,7 +8,6 @@
 // </history>
 namespace Apollo.CustSetting.Criteria.Agent
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

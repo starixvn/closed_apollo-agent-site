@@ -10,7 +10,6 @@
 namespace Apollo.CustSetting.Models
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Result information.
