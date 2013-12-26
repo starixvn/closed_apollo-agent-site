@@ -238,8 +238,6 @@ namespace Apollo.Age.Web.Mvc
         /// </summary>
         /// <param name="htmlhelper">The html helper.</param>
         /// <param name="key">The name of the resource to get.</param>
-        /// <param name="resourceSource">A type from which the resource manager derives all information
-        /// for finding .resources files (default value is Apollo.Age.Resources.Lang).</param>
         /// <returns>
         /// The resource value.
         /// </returns>

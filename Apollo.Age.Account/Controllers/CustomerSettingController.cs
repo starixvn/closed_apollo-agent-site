@@ -807,7 +807,6 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Set bet limit language.
         /// </summary>
-        /// <param name="settingContext">The setting context.</param>
         /// <param name="betLimits">List of bet limit.</param>
         private void SetBetLimitLanguage(IList<BettingLimit> betLimits)
         {

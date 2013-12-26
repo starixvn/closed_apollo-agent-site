@@ -273,7 +273,6 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Checking Kick Out.
         /// </summary>
-        /// <param name="filterContext">Input filter context.</param>
         private void CheckKickOut()
         {
             if (!ReferenceEquals(CurrentSession, null))

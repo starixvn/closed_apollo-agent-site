@@ -33,14 +33,6 @@ namespace Apollo.Age.Web
 
         /// <summary>
         /// This action is for testing ONLY.
-        /// Culture name.
-        ///     en-US   : American English.
-        ///     zh-CN   : Chinese Simplified.
-        ///     zh-TW   : Chinese Traditional.
-        ///     vi-VN   : Vietnamese.
-        ///     ja-JP   : Japanese.
-        ///     th-TH   : Thai.
-        ///     ko-KR   : Korean.
         /// </summary>
         /// <returns>Action result.</returns>
         [NonAction]

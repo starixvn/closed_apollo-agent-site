@@ -42,7 +42,6 @@ namespace Apollo.Age.Reports.Services
         /// </summary>
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">The sport types.</param>
-        /// <param name="custId">The customer identifier.</param>
         /// <param name="isShowDataTest">Include data test or not.</param>
         /// <returns>List of match result.</returns>
         public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, bool isShowDataTest)
