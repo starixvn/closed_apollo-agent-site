@@ -45,7 +45,7 @@ namespace Apollo.Age.Reports.Services
                     });
                 }
             }
-            
+
             return dateRangeNow;
         }
 
@@ -111,6 +111,7 @@ namespace Apollo.Age.Reports.Services
                                 periodModel.FromDate = periodRanges[count - 1].FromDate;
                                 periodModel.ToDate = periodRanges[count - 1].ToDate;
                             }
+
                             return periodModel;
                         }
                     }
