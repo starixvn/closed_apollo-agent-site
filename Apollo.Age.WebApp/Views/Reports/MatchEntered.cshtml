@@ -10,6 +10,12 @@
     int counter = 0;
     var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
     var currentPeriodClass = string.Empty;
+    
+    var currentPeriodFromDate = DateTime.Now;
+    var currentPeriodToDate = DateTime.Now;
+    var oldPeriodFromDate = DateTime.Now;
+    var oldPeriodToDate = DateTime.Now;
+    
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
@@ -219,9 +225,7 @@ new ReportMenuViewModel
         }
 }
 <div class="period-schedule">
-    @if (Model.PeriodList.Count > 1)
-    {
-        <table class="tblRpt">
+    <table class="tblRpt">
             <thead>
                 <tr>
                     <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)
@@ -235,89 +239,48 @@ new ReportMenuViewModel
                 </tr>
             </thead>
             <tbody>
-                @foreach (var dateRange in Model.PeriodList[0].ListOfDateRange)
+                @for (var i = 0; i < 12; i++)
                 {
-                    counter++;
-                    if (Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate <= currentDate && Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate >= currentDate)
-                    {                        
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
+                    currentPeriodFromDate = Model.PeriodList[1].ListOfDateRange[i].FromDate;
+                    currentPeriodToDate = Model.PeriodList[1].ListOfDateRange[i].ToDate;
+                    oldPeriodFromDate = Model.PeriodList[0].ListOfDateRange[i].FromDate;
+                    oldPeriodToDate = Model.PeriodList[0].ListOfDateRange[i].ToDate;
+                    
+                    
+                    <tr>
+                        <td class="firstcolumn">
+                            @i
+                        </td>
+                        @if (oldPeriodFromDate <= currentDate && oldPeriodToDate >= currentDate)
+                        {
                             <td class="CurrentPeriod">
-                                @Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
-                                ~ @Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
                             </td>
-                        </tr>   
-                    }
-                    else
-                    { 
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
+                        }
+                        else
+                        { 
                             <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
                             </td>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @Model.PeriodList[1].ListOfDateRange[counter - 1].FromDate.ToString("yyyy-MM-dd")
-                                ~ @Model.PeriodList[1].ListOfDateRange[counter - 1].ToDate.ToString("yyyy-MM-dd")
-                            </td>
-                        </tr> 
-                    }
-
+                        }
+                        <td class="firstcolumn">
+                            @i
+                        </td>
+                        @if (currentPeriodFromDate <= currentDate && currentPeriodToDate >= currentDate)
+                        {
+                        <td class="CurrentPeriod">
+                            @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                        </td>
+                        }
+                        else
+                        { 
+                         <td>
+                            @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                        </td>
+                        }
+                    </tr>
                 }
+                
             </tbody>
         </table>
-    }
-    else
-    { 
-        <table class="tblRpt oneYear">
-            <thead>
-                <tr>
-                    <th colspan="2">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year)
-                    </th>
-                </tr>               
-            </thead>
-            <tbody>
-                @foreach (var dateRange in Model.PeriodList[0].ListOfDateRange)
-                {
-                    counter++;
-                    if (string.IsNullOrWhiteSpace(currentPeriodClass) && dateRange.FromDate <= currentDate && dateRange.ToDate >= currentDate)
-                    {                        
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td class="CurrentPeriod">
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                            </td>                        
-                        </tr>  
-                    }
-                    else
-                    { 
-                        <tr>
-                            <td class="firstcolumn">
-                                @counter
-                            </td>
-                            <td>
-                                @dateRange.FromDate.ToString("yyyy-MM-dd") ~ @dateRange.ToDate.ToString("yyyy-MM-dd")
-                            </td>                        
-                        </tr>  
-                    }
-
-                }
-            </tbody>
-        </table>
-    }
-    
 </div>
