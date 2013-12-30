@@ -137,11 +137,17 @@ namespace Apollo.Age.Configurations
             }
         }
 
-        public static string PeriodDateRange
+        public static DateTime PeriodDateRange
         {
             get
             {
-                return GetValue("PeriodDateRange");
+                string periodDate = GetValue("PeriodDateRange");
+                if (string.IsNullOrWhiteSpace(periodDate))
+                {
+                    return DateTime.Now;
+                } 
+
+                return Convert.ToDateTime(GetValue("PeriodDateRange"));
             }
         }
 

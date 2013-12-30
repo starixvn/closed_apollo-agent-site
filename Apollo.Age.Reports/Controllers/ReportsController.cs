@@ -287,7 +287,7 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
-            matchEnteredViewModel.PeriodList = _periodDateRangeSerivce.ListOfPeriodRanges();
+            matchEnteredViewModel.PeriodList = _periodDateRangeSerivce.ListOfPeriods();
             var isShowDataTest = false;
             if (SessionManager.CurrentSession != null)
             {
@@ -326,8 +326,8 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = functionPermission;
 
-            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View(matchEnteredViewModel);
         }
@@ -401,8 +401,8 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
-                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
+                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
+                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -479,8 +479,8 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
-                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
+                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
+                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
