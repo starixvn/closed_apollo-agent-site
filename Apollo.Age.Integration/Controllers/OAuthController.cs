@@ -118,7 +118,7 @@ namespace Apollo.Age.Integration.Controllers
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
+                                // LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 

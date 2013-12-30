@@ -85,7 +85,7 @@
     <Compile Include="Criterias\SportCreditCriteria.cs" />
     <Compile Include="Extension\HSSFSheetExtensions.cs" />
     <Compile Include="Models\AgentWinLossModel.cs" />
-    <Compile Include="Models\DateRangeModel.cs" />
+    <Compile Include="Models\DateRangesModel.cs" />
     <Compile Include="Models\OutrightResultModel.cs" />
     <Compile Include="Models\OutstandingModel.cs" />
     <Compile Include="Models\MatchEnteredModel.cs" />
