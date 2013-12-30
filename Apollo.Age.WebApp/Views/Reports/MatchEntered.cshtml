@@ -245,11 +245,11 @@ new ReportMenuViewModel
                     currentPeriodToDate = Model.PeriodList[1].ListOfDateRange[i].ToDate;
                     oldPeriodFromDate = Model.PeriodList[0].ListOfDateRange[i].FromDate;
                     oldPeriodToDate = Model.PeriodList[0].ListOfDateRange[i].ToDate;
-                    
+                    counter++;
                     
                     <tr>
                         <td class="firstcolumn">
-                            @i
+                            @counter
                         </td>
                         @if (oldPeriodFromDate <= currentDate && oldPeriodToDate >= currentDate)
                         {
@@ -264,7 +264,7 @@ new ReportMenuViewModel
                             </td>
                         }
                         <td class="firstcolumn">
-                            @i
+                            @counter
                         </td>
                         @if (currentPeriodFromDate <= currentDate && currentPeriodToDate >= currentDate)
                         {
