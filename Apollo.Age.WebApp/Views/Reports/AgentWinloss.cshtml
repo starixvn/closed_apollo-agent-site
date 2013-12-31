@@ -2,12 +2,11 @@
 @using Apollo.Age.Resources
 @{
     ViewBag.Title = Lang.agentwinloss;
-    Layout = "~/Views/Reports/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     string rowClass = string.Empty;
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
 
     var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-    
 }
 @model AgentWinLossViewModel
 @Html.Partial("Menu",
@@ -28,7 +27,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddMonths(-6), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -38,7 +37,7 @@ new ReportMenuViewModel
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddMonths(-6), maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -168,12 +167,12 @@ new ReportMenuViewModel
                             <span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                             @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
-                            { 
-                                var numberOfMembers = Model.CustomerCounterList.Where(x=>x.AgentId == item.AgentId).FirstOrDefault();
+                            {
+                                var numberOfMembers = Model.CustomerCounterList.Where(x => x.AgentId == item.AgentId).FirstOrDefault();
                                 if (numberOfMembers != null)
                                 {
-                                    <span class='split'>/</span>
-                                    <span>@numberOfMembers.CustCount</span>
+                                <span class='split'>/</span>
+                                <span>@numberOfMembers.CustCount</span>
                                 }
                             }
                         </td>
@@ -266,19 +265,19 @@ new ReportMenuViewModel
             </thead>
             <tbody>
                 @{
-            var list = Model.AgentWinLossList;
-            decimal totalBetAmount = 0;
-            decimal totalBetCount = 0;
-            decimal totalCommBase = 0;
-            decimal totalMemTotal = 0;
-            decimal totalDownLineEffectiveStake = 0;
-            decimal totalDownLineTotal = 0;
-            decimal totalAWinLoss = 0;
-            decimal totalAComm = 0;
-            decimal totalATotal = 0;
-            decimal totalUpLineEffectiveStake = 0;
-            decimal totalUpLineTotal = 0;
-            decimal totalNumberOfMember = 0;
+                        var list = Model.AgentWinLossList;
+                        decimal totalBetAmount = 0;
+                        decimal totalBetCount = 0;
+                        decimal totalCommBase = 0;
+                        decimal totalMemTotal = 0;
+                        decimal totalDownLineEffectiveStake = 0;
+                        decimal totalDownLineTotal = 0;
+                        decimal totalAWinLoss = 0;
+                        decimal totalAComm = 0;
+                        decimal totalATotal = 0;
+                        decimal totalUpLineEffectiveStake = 0;
+                        decimal totalUpLineTotal = 0;
+                        decimal totalNumberOfMember = 0;
             
                 }
                 @foreach (var item in list)
@@ -343,12 +342,12 @@ new ReportMenuViewModel
                             <span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                             @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
-                            { 
-                                var numberOfMembers = Model.CustomerCounterList.Where(x=>x.AgentId == item.AgentId).FirstOrDefault();
+                            {
+                                var numberOfMembers = Model.CustomerCounterList.Where(x => x.AgentId == item.AgentId).FirstOrDefault();
                                 if (numberOfMembers != null)
                                 {
-                                    <span class='split'>/</span>
-                                    <span>@numberOfMembers.CustCount</span>
+                                <span class='split'>/</span>
+                                <span>@numberOfMembers.CustCount</span>
                                 }
                             }
                         </td>
@@ -405,11 +404,11 @@ new ReportMenuViewModel
                         @Formater.FormatNumber20(totalBetAmount, Formater.CULT_NAME_ENG)
                         <span class='split-footer'>/</span>
                         @Formater.FormatNumber2(totalBetCount, Formater.CULT_NAME_ENG)
-                         @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
-                         {
-                             <span class='split-footer'>/</span>
-                             <span>@totalNumberOfMember</span>
-                         }
+                        @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
+                        {
+                            <span class='split-footer'>/</span>
+                            <span>@totalNumberOfMember</span>
+                        }
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(totalCommBase, Formater.CULT_NAME_ENG)
@@ -490,12 +489,11 @@ else
 @section scripts
 {
     <script type="text/javascript">
-     var LANGUAGES = function () {
-         return {
-             MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
-         };
-     } ();
+        var LANGUAGES = function () {
+            return {
+                MessageValidateDateRange: "@LangMsg.MessageValidateDateRange"
+            };
+        } ();
     </script>
     @Scripts.Render("~/scripts/winlossjs")
-   
 }
