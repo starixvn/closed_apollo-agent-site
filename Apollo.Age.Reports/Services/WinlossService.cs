@@ -370,7 +370,7 @@ namespace Apollo.Age.Reports.Services
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
             if (customerCounterList != null && customerCounterList.Any())
             {
-                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + "/" + Lang.NumberOfMember);
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + " / " + Lang.NumberOfMember);
             }
             else
             {
@@ -399,7 +399,7 @@ namespace Apollo.Age.Reports.Services
                 if (customerCounterList != null && customerCounterList.Any())
                 {
                     var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
-                    this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + "/" + numberOfMember.CustCount);
+                    this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + " / " + numberOfMember.CustCount);
                 }
                 else
                 {
@@ -511,7 +511,7 @@ namespace Apollo.Age.Reports.Services
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
             if (customerCounterList != null && customerCounterList.Any())
             {
-                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + "/" + Lang.NumberOfMember);
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + " / " + Lang.NumberOfMember);
             }
             else
             {
@@ -568,7 +568,7 @@ namespace Apollo.Age.Reports.Services
                     if (customerCounterList != null && customerCounterList.Any())
                     {
                         var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
-                        this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + "/" + numberOfMember.CustCount);
+                        this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + " / " + numberOfMember.CustCount);
                     }
                     else
                     {
