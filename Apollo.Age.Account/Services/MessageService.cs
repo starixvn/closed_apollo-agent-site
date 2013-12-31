@@ -29,19 +29,16 @@ namespace Apollo.Age.Account.Services
     {
         private DynamicRepository _dynamicRepository;
 
-        private ICache _cache;
-
         #region ctor
 
-        public MessageService(ICache cache, DynamicRepository dynamicRepository)
+        public MessageService()
+            : this(null)
         {
-            _cache = cache ?? CacheService.CreateInstance(CacheType.MemoryCache);
-            _dynamicRepository = _dynamicRepository ?? new DynamicRepository();
         }
 
-        public MessageService()
-            : this(null, null)
+        public MessageService(DynamicRepository dynamicRepository)
         {
+            _dynamicRepository = _dynamicRepository ?? new DynamicRepository();
         }
 
         #endregion ctor
@@ -198,7 +195,6 @@ namespace Apollo.Age.Account.Services
             if (criteria.IsValid())
             {
                 var message = new MessageModel();
-
                 var messageList = this.GetData<MessageModel>(criteria);
 
                 if (messageList != null && messageList.Any())

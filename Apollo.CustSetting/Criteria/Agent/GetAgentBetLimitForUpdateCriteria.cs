@@ -9,7 +9,6 @@
 
 namespace Apollo.CustSetting.Criteria.Agent
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,7 +16,7 @@ namespace Apollo.CustSetting.Criteria.Agent
     /// </summary>
     public class GetAgentBetLimitForUpdateCriteria : CriteriaBase
     {
-        public int AgentId { get; set; }                
+        public int AgentId { get; set; }
         
         public int MaxBetLimit { get; set; }
 

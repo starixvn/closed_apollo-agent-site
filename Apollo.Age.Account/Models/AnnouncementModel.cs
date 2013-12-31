@@ -124,9 +124,6 @@ namespace Apollo.Age.Account.Models
 
             if (userLanguage.Contains("zh"))
             {
-                var contentCS = this.ContentCS;
-                var contentCH = this.ContentCH;
-
                 if (string.IsNullOrWhiteSpace(this.ContentCS) && string.IsNullOrWhiteSpace(this.ContentCH))
                 {
                     langName = "Contenten";

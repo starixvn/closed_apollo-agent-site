@@ -39,22 +39,16 @@ namespace Apollo.Age.Account.Controllers
     {
         private readonly ILogRunSpService _logService;
 
-        private readonly IAccountService _accountService;
-
         private readonly UserService _userService;
 
-        private readonly ServiceBase _serviceBase;
-
         public LogController()
-            : this(null, null, null, null)
+            : this(null, null)
         {
         }
 
-        public LogController(ILogRunSpService logService, IAccountService accountService, ServiceBase serviceBase, UserService userService)
+        public LogController(ILogRunSpService logService, UserService userService)
         {
             _logService = logService ?? new LogRunSpService();
-            _accountService = accountService ?? new AccountService();
-            _serviceBase = serviceBase ?? new ServiceBase();
             _userService = userService ?? new UserService();
         }
 

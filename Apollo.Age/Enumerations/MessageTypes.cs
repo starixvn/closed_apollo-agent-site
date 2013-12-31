@@ -10,7 +10,7 @@
 namespace Apollo.Age.Enumerations
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Message types.
     /// </summary>
     public enum MessageTypes
     {

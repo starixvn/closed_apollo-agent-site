@@ -68,7 +68,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
-            this._outstandingService = new OutstandingService();
+            this._outstandingService = outstandingService ?? new OutstandingService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
@@ -105,8 +105,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || (agentId != null && !hasDownlineDetailsPermission))
+            if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
                     "ReportAccessDenied",
@@ -251,8 +250,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || !hasDownlineDetailsPermission)
+            if (!hasPermission || !hasDownlineDetailsPermission)
             {
                 return Json(new MemberOutstandingViewModel
                 {

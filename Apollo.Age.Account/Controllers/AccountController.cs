@@ -413,7 +413,6 @@ namespace Apollo.Age.Account.Controllers
                 AgentId = agentId
             };
 
-            List<AgentTreeViewNode> childList = new List<AgentTreeViewNode>();
             var agentList = _accountService.GetDirectDownline(criteria);
 
             /* Check downline details permission

@@ -18,7 +18,7 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Wagers.ViewModels.Basketball;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Basketbal controller.
     /// </summary>
     public class BasketballController : WagerController
     {

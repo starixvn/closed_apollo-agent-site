@@ -11,12 +11,13 @@ namespace Apollo.Age.Reports.Services
 {
     using System;
     using System.Collections.Generic;
+    using Apollo.Age.Core;
     using Apollo.Age.Entities;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Result service.
     /// </summary>
     public class ResultService : ReportService
     {
@@ -41,18 +42,17 @@ namespace Apollo.Age.Reports.Services
         /// </summary>
         /// <param name="fromDate">From date.</param>
         /// <param name="sportTypes">The sport types.</param>
-        /// <param name="custId">The customer identifier.</param>
         /// <param name="isShowDataTest">Include data test or not.</param>
         /// <returns>List of match result.</returns>
-        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, int custId, bool isShowDataTest)
+        public IEnumerable<MatchResultModel> GetMatchResult(DateTime fromDate, string sportTypes, bool isShowDataTest)
         {
             var criteria = new GetMatchResultCriteria
-                    {
-                        FromDate = fromDate,
-                        Sporttypes = sportTypes,
-                        BalanceUpDay = GetBalanceUpDay(),
-                        IsTest = isShowDataTest
-                    };
+            {
+                FromDate = fromDate,
+                Sporttypes = sportTypes,
+                BalanceUpDay = GetBalanceUpDay(),
+                IsTest = isShowDataTest
+            };
 
             var cacheKey = string.Join("-", "MatchResult", fromDate.ToString("yyyyMMdd"), sportTypes.Replace(",", "-"), isShowDataTest ? "1" : "0");
             var matchResult = CacheManager.Get<IEnumerable<MatchResultModel>>(cacheKey);
@@ -60,7 +60,7 @@ namespace Apollo.Age.Reports.Services
             {
                 matchResult = GetData<MatchResultModel>(criteria);
 
-                if (sportTypes == Apollo.Age.Core.SportGroup.Others && matchResult != null)
+                if (sportTypes == SportGroup.Others && matchResult != null)
                 {
                     CacheManager.Set<IEnumerable<MatchResultModel>>(cacheKey, matchResult, TimeSpan.FromMinutes(1));
                 }
