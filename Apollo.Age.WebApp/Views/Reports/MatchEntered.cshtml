@@ -2,12 +2,20 @@
 @using Apollo.Age.Entities
 @using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
+@using Apollo.Age.Configurations
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
     int counter = 0;
-    var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+    var currentPeriodClass = string.Empty;
+    
+    var currentPeriodFromDate = DateTime.Now;
+    var currentPeriodToDate = DateTime.Now;
+    var oldPeriodFromDate = DateTime.Now;
+    var oldPeriodToDate = DateTime.Now;
+    
 }
 @model MatchEnteredViewModel
 @Html.Partial("Menu",
@@ -20,7 +28,7 @@ new ReportMenuViewModel
 })
 <div class="clear">
 </div>
-<div id="box_header" class="report">
+<div id="box_header" class="report hasPeriods">
     <table class="winloss">
         <tr>
             <td class="firstcolumn">
@@ -138,10 +146,10 @@ new ReportMenuViewModel
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @*@Html.Action("Index", "Instruction", new
 {
-	key = "AgentWinLossPageInfo",
-	trigger = string.Empty,
-	title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
-	tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    key = "AgentWinLossPageInfo",
+    trigger = string.Empty,
+    title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
+    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
 })*@
 @section scripts
 {
@@ -218,37 +226,61 @@ new ReportMenuViewModel
 }
 <div class="period-schedule">
     <table class="tblRpt">
-        <thead>
-            <tr>
-                <th colspan="2">@string.Format(Lang.periodlisttitle, DateTime.Now.Year)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.PeriodList)
-            {
-                counter++;
-                if (item.FromDate <= currentDate && item.ToDate >= currentDate)
-                {                  
-                <tr class="CurrentPeriod">
-                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
-                    </td>
-                    <td>
-                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
-                    </td>
-                </tr>
-                }
-                else
-                { 
+            <thead>
                 <tr>
-                    <td class="firstcolumn">@string.Format(Lang.periodnumber, counter)
-                    </td>
-                    <td>
-                        @item.FromDate.ToString("yyyy-MM-dd") @Lang.to @item.ToDate.ToString("yyyy-MM-dd")
-                    </td>
+                    <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)
+                    </th>
                 </tr>
+                <tr>
+                    <th colspan="2">@Model.PeriodList[0].Year
+                    </th>
+                    <th colspan="2">@Model.PeriodList[1].Year
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < 12; i++)
+                {
+                    currentPeriodFromDate = Model.PeriodList[1].ListOfDateRange[i].FromDate;
+                    currentPeriodToDate = Model.PeriodList[1].ListOfDateRange[i].ToDate;
+                    oldPeriodFromDate = Model.PeriodList[0].ListOfDateRange[i].FromDate;
+                    oldPeriodToDate = Model.PeriodList[0].ListOfDateRange[i].ToDate;
+                    counter++;
+                    
+                    <tr>
+                        <td class="firstcolumn">
+                            @counter
+                        </td>
+                        @if (oldPeriodFromDate <= currentDate && oldPeriodToDate >= currentDate)
+                        {
+                            <td class="CurrentPeriod">
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                        else
+                        { 
+                            <td>
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                        <td class="firstcolumn">
+                            @counter
+                        </td>
+                        @if (currentPeriodFromDate <= currentDate && currentPeriodToDate >= currentDate)
+                        {
+                        <td class="CurrentPeriod">
+                            @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                        </td>
+                        }
+                        else
+                        { 
+                         <td>
+                            @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                        </td>
+                        }
+                    </tr>
                 }
-            }
-        </tbody>
-    </table>
+                
+            </tbody>
+        </table>
 </div>

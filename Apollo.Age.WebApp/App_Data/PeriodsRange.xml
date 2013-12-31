@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Periods>
+  <Date Year="2013">
+    <Period Key="period1" FromDate="2013-01-07" ToDate="2013-02-03"  />
+    <Period Key="period2" FromDate="2013-02-04" ToDate="2013-03-03"  />
+    <Period Key="period3" FromDate="2013-03-04" ToDate="2013-03-31"  />
+    <Period Key="period4" FromDate="2013-04-01" ToDate="2013-05-05"  />
+    <Period Key="period5" FromDate="2013-05-06" ToDate="2013-06-02"  />
+    <Period Key="period6" FromDate="2013-06-03" ToDate="2013-06-30"  />
+    <Period Key="period7" FromDate="2013-07-01" ToDate="2013-08-04"  />
+    <Period Key="period8" FromDate="2013-08-05" ToDate="2013-09-01"  />
+    <Period Key="period9" FromDate="2013-09-02" ToDate="2013-10-06"  />
+    <Period Key="period10" FromDate="2013-10-07" ToDate="2013-11-03"  />
+    <Period Key="period11" FromDate="2013-11-04" ToDate="2013-12-01"  />
+    <Period Key="period12" FromDate="2013-12-02" ToDate="2014-01-05"  />
+  </Date>
+  <Date Year="2014">
+    <Period Key="period1" FromDate="2014-01-06" ToDate="2014-02-02"  />
+    <Period Key="period2" FromDate="2014-02-03" ToDate="2014-03-02"  />
+    <Period Key="period3" FromDate="2014-03-03" ToDate="2014-04-06"  />
+    <Period Key="period4" FromDate="2014-04-07" ToDate="2014-05-04"  />
+    <Period Key="period5" FromDate="2014-05-05" ToDate="2014-06-01"  />
+    <Period Key="period6" FromDate="2014-06-02" ToDate="2014-07-06"  />
+    <Period Key="period7" FromDate="2014-07-07" ToDate="2014-08-03"  />
+    <Period Key="period8" FromDate="2014-08-04" ToDate="2014-08-31"  />
+    <Period Key="period9" FromDate="2014-09-01" ToDate="2014-10-05"  />
+    <Period Key="period10" FromDate="2014-10-06" ToDate="2014-11-02"  />
+    <Period Key="period11" FromDate="2014-11-03" ToDate="2014-11-30"  />
+    <Period Key="period12" FromDate="2014-12-01" ToDate="2015-01-04"  />
+  </Date>
+</Periods>
