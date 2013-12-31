@@ -28,7 +28,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: DateTime.Now.AddMonths(-6), maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -38,7 +38,7 @@ new ReportMenuViewModel
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: DateTime.Now.AddMonths(-6), maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">

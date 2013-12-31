@@ -316,11 +316,15 @@ namespace Apollo.Age.Reports.Services
         /// Get Excel File by View Super.
         /// </summary>
         /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="customerCounterList">The customer counter list.</param>
         /// <param name="title">Title of File.</param>
         /// <param name="agentName">Current Agent Name.</param>
         /// <param name="filter">All parameters to query report.</param>
-        /// <returns>Agent Win Loss Excel File.</returns>
-        private HSSFWorkbook AgentWinLossViewBySuper(IList<AgentWinLossModel> agentWinLossList, IList<CustomerCounterViewModel> customerCounterList , string title, string agentName, string filter)
+        /// <returns>
+        /// Agent Win Loss Excel File.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        private HSSFWorkbook AgentWinLossViewBySuper(IList<AgentWinLossModel> agentWinLossList, IList<CustomerCounterViewModel> customerCounterList, string title, string agentName, string filter)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 
@@ -372,6 +376,7 @@ namespace Apollo.Age.Reports.Services
             {
                 this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
             }
+
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
             this.CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
@@ -382,7 +387,7 @@ namespace Apollo.Age.Reports.Services
 
             rowIndex++;
             //// end header
-            
+
             //// Add data rows
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -400,6 +405,7 @@ namespace Apollo.Age.Reports.Services
                 {
                     this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
                 }
+
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.CommBase);
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.MemberTotal);
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
@@ -445,10 +451,14 @@ namespace Apollo.Age.Reports.Services
         /// Get Excel File by View None Super.
         /// </summary>
         /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="customerCounterList">The customer counter list.</param>
         /// <param name="title">Title of File.</param>
         /// <param name="agentName">Current Agent Name.</param>
         /// <param name="filter">All parameters to query report.</param>
-        /// <returns>Agent Win Loss Excel File.</returns>
+        /// <returns>
+        /// Agent Win Loss Excel File.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private HSSFWorkbook AgentWinLossViewByNoneSuper(IList<AgentWinLossModel> agentWinLossList, IList<CustomerCounterViewModel> customerCounterList, string title, string agentName, string filter)
         {
             var hssfworkbook = new HSSFWorkbook();
@@ -507,6 +517,7 @@ namespace Apollo.Age.Reports.Services
             {
                 this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
             }
+
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
             this.CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
@@ -563,6 +574,7 @@ namespace Apollo.Age.Reports.Services
                     {
                         this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
                     }
+
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.CommBase);
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.MemberTotal);
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
