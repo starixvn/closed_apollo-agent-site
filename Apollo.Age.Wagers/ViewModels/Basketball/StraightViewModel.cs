@@ -11,7 +11,7 @@
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Straight view model.
     /// </summary>
     public class StraightViewModel : WagerViewModel
     {

@@ -9,13 +9,8 @@
 
 namespace Apollo.Age.Account.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// Log setting view model.
     /// </summary>
     public class LogSettingViewModel
     {

@@ -19,7 +19,7 @@ namespace Apollo.Age.Reports.Services
     using Apollo.Age.Services.Impl;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Period date range service.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class PeriodDateRangeService : QueryService

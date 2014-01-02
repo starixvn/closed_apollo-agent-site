@@ -23,7 +23,6 @@ namespace Apollo.Age.Services.Impl
     using Apollo.Age.Services.Interface;
     using Fanex.Common;
     using Fanex.Common.Helper;
-    using Fanex.Logging;
 
     /// <summary>
     /// User service.
@@ -68,20 +67,12 @@ namespace Apollo.Age.Services.Impl
         /// <returns>User object.</returns>
         public User GetUserByUsername(string username)
         {
-            User user = null;
             Check.Argument.IsNotNull(username, "username");
 
-            try
+            User user = _userRepository.Get(new UserGetByUsernameCriteria
             {
-                user = _userRepository.Get(new UserGetByUsernameCriteria
-                     {
-                         Username = username
-                     });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
+                Username = username
+            });
 
             return user;
         }
@@ -93,20 +84,12 @@ namespace Apollo.Age.Services.Impl
         /// <returns>User object.</returns>
         public User GetUserParentInfo(int userId)
         {
-            User user = null;
             Check.Argument.IsNotNegative(userId, "userId");
 
-            try
+            User user = _userRepository.Get(new UserGetUserParentInfoCriteria
             {
-                user = _userRepository.Get(new UserGetUserParentInfoCriteria
-                {
-                    AgentUserId = userId
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
+                AgentUserId = userId
+            });
 
             return user;
         }
@@ -120,16 +103,7 @@ namespace Apollo.Age.Services.Impl
         {
             Check.Argument.IsNotNegative(agentId, "agentId");
 
-            try
-            {
-                return _userRepository.Fetch(new UserGetUserByAgentCriteria { AgentId = agentId });
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-            }
-
-            return null;
+            return _userRepository.Fetch(new UserGetUserByAgentCriteria { AgentId = agentId });
         }
 
         /// <summary>
@@ -273,10 +247,9 @@ namespace Apollo.Age.Services.Impl
         /// <returns>User object.</returns>
         public User InternalGetAgentByUsername(string username)
         {
-            User user = null;
             Check.Argument.IsNotNull(username, "username");
 
-            user = _userRepository.Get(new InternalGetAgentByUsernameCriteria
+            User user = _userRepository.Get(new InternalGetAgentByUsernameCriteria
             {
                 Username = username
             });

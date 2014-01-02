@@ -25,7 +25,7 @@ namespace Apollo.Age.Web.ViewModels
         public string Password { get; set; }
 
         [Required]
-        public string Captcha { get; set; }        
+        public string Captcha { get; set; }
 
         public string Language { get; set; }
 

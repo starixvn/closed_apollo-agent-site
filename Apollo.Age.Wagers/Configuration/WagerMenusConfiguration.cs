@@ -16,7 +16,7 @@ namespace Apollo.Age.Wagers.Configuration
     using Fanex.Logging;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Wager menu configuration.
     /// </summary>
     public static class WagerMenusConfiguration
     {

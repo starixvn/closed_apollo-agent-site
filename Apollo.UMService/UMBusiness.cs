@@ -43,6 +43,7 @@ namespace Apollo.UMService
         public UnderMaintenanceModel GetMaintenanceInfo(string siteName, string underMaintenanceCtrlUrl)
         {
             var underMaintenanceInfo = new UnderMaintenanceModel();
+
             underMaintenanceInfo = _cacheManager.Get<UnderMaintenanceModel>(MaintenanceCacheKey);
 
             if (underMaintenanceInfo == null)
@@ -69,7 +70,8 @@ namespace Apollo.UMService
         /// <returns>Return task asynchronous request.</returns>
         public Task<string> MakeAsyncRequest(string url, string contentType)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+
             request.ContentType = contentType;
             request.Method = WebRequestMethods.Http.Get;
             request.Timeout = _DefaultTimeout;
@@ -92,7 +94,7 @@ namespace Apollo.UMService
         {
             using (Stream responseStream = response.GetResponseStream())
             {
-                using (StreamReader sr = new StreamReader(responseStream))
+                using (var sr = new StreamReader(responseStream))
                 {
                     ////Need to return this response 
                     string strContent = sr.ReadToEnd();

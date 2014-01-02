@@ -9,7 +9,6 @@
 
 namespace Apollo.CustSetting.Criteria.Member
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,7 +16,7 @@ namespace Apollo.CustSetting.Criteria.Member
     /// </summary>
     public class GetMemberDiscountForUpdateCriteria : CriteriaBase
     {
-        public int CustId { get; set; }                
+        public int CustId { get; set; }
 
         public string UGroup { get; set; }
 

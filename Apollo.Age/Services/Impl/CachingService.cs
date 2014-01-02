@@ -15,7 +15,7 @@ namespace Apollo.Age.Services.Impl
     /// <summary>
     /// Caching service.
     /// </summary>
-    public class CachingService
+    public static class CachingService
     {
         private static readonly ICache CacheManager;
 

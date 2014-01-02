@@ -10,7 +10,6 @@
 namespace Apollo.CustSetting.Core
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Xml.Linq;
     using Fanex.Logging;
@@ -22,16 +21,8 @@ namespace Apollo.CustSetting.Core
     {
         static _Configuration()
         {
-            try
-            {
-                PositionTakingGridConfig = XDocument.Load(HttpContext.Current.Server.MapPath(Constant.PT_GRID_CONFIG));
-                BettingLimitSportNameConfig = XDocument.Load(HttpContext.Current.Server.MapPath(Constant.BETTING_LIMIT_SPORT_NAMES_FILE));
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
-                throw;
-            }
+            PositionTakingGridConfig = XDocument.Load(HttpContext.Current.Server.MapPath(Constant.PT_GRID_CONFIG));
+            BettingLimitSportNameConfig = XDocument.Load(HttpContext.Current.Server.MapPath(Constant.BETTING_LIMIT_SPORT_NAMES_FILE));
         }
 
         public static XDocument PositionTakingGridConfig { get; set; }

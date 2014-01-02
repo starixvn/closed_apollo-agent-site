@@ -47,14 +47,13 @@ namespace Apollo.Age.Account.Criterias
         {
             string settingKey = string.Empty;
 
-            switch (this.IsAgent)
+            if (this.IsAgent)
             {
-                case true:
-                    settingKey = "ReadLog_RunSpAgent";
-                    break;
-                default:
-                    settingKey = "ReadLog_RunSpCust";
-                    break;
+                settingKey = "ReadLog_RunSpAgent";
+            }
+            else
+            {
+                settingKey = "ReadLog_RunSpCust";
             }
 
             return settingKey;

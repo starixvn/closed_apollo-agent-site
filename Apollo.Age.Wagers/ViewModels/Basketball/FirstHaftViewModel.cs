@@ -11,7 +11,7 @@
 namespace Apollo.Age.Wagers.ViewModels.Basketball
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// First half view model.
     /// </summary>
     public class FirstHaftViewModel : WagerViewModel
     {

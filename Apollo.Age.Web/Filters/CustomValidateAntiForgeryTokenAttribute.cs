@@ -17,7 +17,7 @@ namespace Apollo.Age.Web.Filters
     using Fanex.Logging;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Custom validate anti forgery token attribute.
     /// </summary>
     public class CustomValidateAntiForgeryTokenAttribute : AuthorizeAttribute
     {
@@ -42,8 +42,7 @@ namespace Apollo.Age.Web.Filters
                 var isValid = true;
                 try
                 {
-                    if (request.Headers["__RequestVerificationToken"] == null
-                        || cookieValue == null)
+                    if (request.Headers["__RequestVerificationToken"] == null || cookieValue == null)
                     {
                         isValid = false;
                     }

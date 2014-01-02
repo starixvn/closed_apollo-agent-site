@@ -9,8 +9,6 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Discount model.
     /// </summary>

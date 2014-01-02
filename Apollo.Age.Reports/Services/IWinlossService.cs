@@ -32,6 +32,13 @@ namespace Apollo.Age.Reports.Services
         List<AgentWinLossModel> GetAgentWinLoss(AgentWinLossCriteria criteria);
 
         /// <summary>
+        /// Gets the customer counter.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>List of Customer counter.</returns>
+        List<CustomerCounterViewModel> GetCustomerCounter(CustomerCounterCriteria criteria);
+
+        /// <summary>
         /// Gets the member win loss.
         /// </summary>
         /// <param name="criteria">The criteria.</param>

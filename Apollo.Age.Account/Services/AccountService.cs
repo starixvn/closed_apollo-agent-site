@@ -231,13 +231,13 @@ namespace Apollo.Age.Account.Services
         /// <returns>Time to announce.</returns>
         public string CalculateUpdateAgentPositionTakingTime(SettingContext settingContext, PositionTakingSetting positionTakingSetting)
         {
-            GetUpdatePositionTakingEstimatedTimeCriteria criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
+            var criteria = new GetUpdatePositionTakingEstimatedTimeCriteria();
 
-            foreach (var sportType in positionTakingSetting.SportTypes)
+            foreach (SportType sportType in positionTakingSetting.SportTypes)
             {
-                foreach (var betTypeGroup in sportType.BetTypeGroups)
+                foreach (BetTypeGroup betTypeGroup in sportType.BetTypeGroups)
                 {
-                    foreach (var betType in betTypeGroup.BetTypes)
+                    foreach (BetType betType in betTypeGroup.BetTypes)
                     {
                         if (betType.Pt.IsChangePt)
                         {
@@ -251,6 +251,7 @@ namespace Apollo.Age.Account.Services
             {
                 criteria.AgentId = settingContext.TargetCustId;
                 var totalSeconds = _accountRepository.CalculateUpdateAgentPositionTakingTime(criteria);
+
                 if (totalSeconds > AppSettings.ShowEstimateTimeWhenGreaterThan)
                 {
                     return string.Format(Lang.EstimateTime, (int)(totalSeconds / 60), (int)(totalSeconds % 60));
@@ -291,19 +292,18 @@ namespace Apollo.Age.Account.Services
         {
             try
             {
-                var peakHours = GetPeakHours();
+                IList<PeakHour> peakHours = GetPeakHours();
                 bool levelNotAllow = agentLevel < AgentLevel.MainAgent;
                 bool isInPeakHour = false;
 
                 TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
-                var gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), gmtPlus8);
+                DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), gmtPlus8);
 
                 foreach (var peakHour in peakHours)
                 {
                     if (peakHour.IsSameDay)
                     {
-                        if (gmtPlus8Time.Hour >= peakHour.FromHour
-                            && gmtPlus8Time.Hour < peakHour.ToHour)
+                        if (gmtPlus8Time.Hour >= peakHour.FromHour && gmtPlus8Time.Hour < peakHour.ToHour)
                         {
                             isInPeakHour = true;
                             break;

@@ -174,6 +174,7 @@ namespace Apollo.Age.TotalBets.Controllers
 
             ViewBag.CurrentAgentId = this.CurrentSession.AgentId;
             ViewBag.IsSuper = this.CurrentSession.IsSuper;
+
             return _totalBetsService.GetData<T>(new TotalBetsCriteria
             {
                 AgentId = agentId,

@@ -85,14 +85,14 @@ namespace Apollo.Age.Account.Controllers
         {
             var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
 
-            if (model.Id == 0 && string.IsNullOrWhiteSpace(model.Username))
+            if (model.Id == 0)
             {
-                model.Id = this.CurrentSession.AgentId;
-                model.Username = this.CurrentSession.AgentName;
-            }
-            else
-            {
-                if (model.Id == 0 && !string.IsNullOrWhiteSpace(model.Username))
+                if (string.IsNullOrWhiteSpace(model.Username))
+                {
+                    model.Id = this.CurrentSession.AgentId;
+                    model.Username = this.CurrentSession.AgentName;
+                }
+                else
                 {
                     model.Id = -1; // force search by username only
                 }
@@ -807,11 +807,10 @@ namespace Apollo.Age.Account.Controllers
         /// <summary>
         /// Set bet limit language.
         /// </summary>
-        /// <param name="settingContext">The setting context.</param>
         /// <param name="betLimits">List of bet limit.</param>
-        private void SetBetLimitLanguage(SettingContext settingContext, IList<BettingLimit> betLimits)
+        private void SetBetLimitLanguage(IList<BettingLimit> betLimits)
         {
-            foreach (Apollo.CustSetting.ViewData.BettingLimit bettingLimitItem in betLimits)
+            foreach (BettingLimit bettingLimitItem in betLimits)
             {
                 bettingLimitItem.Name = GetResourceData(bettingLimitItem.ResourceKey);
             }
@@ -1018,7 +1017,7 @@ namespace Apollo.Age.Account.Controllers
             this.SetCurrentLanguage(CurrentSession.Language);
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref _maxBetLimit);
 
-            this.SetBetLimitLanguage(settingContext, betLimits);
+            this.SetBetLimitLanguage(betLimits);
 
             JsonSerializerSettings jsonSetting = this.GetJsonSetting();
 
@@ -1070,7 +1069,7 @@ namespace Apollo.Age.Account.Controllers
             IList<BettingLimit> betLimits = _customerSettingService.GetBettingLimitSettingForUpdating(settingContext, ref _maxBetLimit);
 
             this.SetCurrentLanguage(CurrentSession.Language);
-            this.SetBetLimitLanguage(settingContext, betLimits);
+            this.SetBetLimitLanguage(betLimits);
 
             return betLimits;
         }

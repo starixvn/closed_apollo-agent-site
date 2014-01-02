@@ -13,7 +13,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Outright model.
     /// </summary>
     public class OutRightModel
     {

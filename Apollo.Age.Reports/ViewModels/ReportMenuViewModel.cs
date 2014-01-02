@@ -14,7 +14,7 @@ namespace Apollo.Age.Reports.ViewModels
     using Apollo.Age.Models;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Report menu view model.
     /// </summary>
     public class ReportMenuViewModel
     {

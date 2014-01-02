@@ -14,7 +14,7 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     using Apollo.Age.Services;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Special view model.
     /// </summary>
     public class SpecialViewModel : WagerViewModel
     {
