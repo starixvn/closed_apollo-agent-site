@@ -230,7 +230,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticketResult.TicketList = this.ReadTicket(mainTable);
 
                 // Reference ticket.
-                ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                ticketResult.TicketListMixParlay = this.ReadTicket(referenceTable);
 
                 return ticketResult;
             }

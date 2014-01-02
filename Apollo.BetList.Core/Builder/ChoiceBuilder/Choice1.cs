@@ -18,6 +18,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
@@ -124,6 +125,54 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         }
 
         /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Choice Template.</returns>
+        public virtual List<IRichTextString> RenderRTF(
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            List<ITicket> ticketMixParlay,
+            bool isShowScoreMap,
+            RTFHelper rtfHelper)
+        {
+            return RenderRTF(
+             ticket,
+             ticketHelper,
+             ticketData,
+             isShowScoreMap,
+             rtfHelper);
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        public Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
+        {
+            this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            this.BuildHandicapOdds(ticket, ticketHelper);
+            this.BuildScoreMap(ticket, isShowScoreMap);
+
+            return this.Template;
+        }
+
+        /// <summary>
         /// Builds the choice.
         /// </summary>
         /// <param name="ticket">The ticket need to build.</param>
@@ -175,6 +224,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : -ticket.Handicap1;
             this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, handicap);
+        }
+
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="betListPage">The bet list page.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, BetListPage betListPage)
+        {
+            BuildChoice(ticket, ticketHelper, ticketData, betListPage);
         }
 
         /// <summary>

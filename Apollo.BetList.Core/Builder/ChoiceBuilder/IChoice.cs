@@ -40,6 +40,18 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage);
 
         /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <returns>Choice Template.</returns>
+        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage);
+
+        /// <summary>
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
