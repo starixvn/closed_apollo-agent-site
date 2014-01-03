@@ -868,7 +868,7 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
+                    Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ? builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) : builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
                     AgentCommValue = ticket.AComm,

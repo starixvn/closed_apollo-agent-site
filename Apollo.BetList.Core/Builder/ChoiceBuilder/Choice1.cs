@@ -138,7 +138,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             ITicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
-            List<ITicket> ticketMixParlay,
+            IList<ITicket> ticketMixParlay,
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
@@ -163,7 +163,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Choice Template.
         /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        public Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
+        public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
         {
             this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
             this.BuildHandicapOdds(ticket, ticketHelper);
@@ -235,7 +235,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="betListPage">The bet list page.</param>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, BetListPage betListPage)
+        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, BetListPage betListPage)
         {
             BuildChoice(ticket, ticketHelper, ticketData, betListPage);
         }

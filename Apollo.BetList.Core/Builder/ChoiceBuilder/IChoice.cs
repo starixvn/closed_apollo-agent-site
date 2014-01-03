@@ -49,7 +49,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <returns>Choice Template.</returns>
-        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, List<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage);
+        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage);
 
         /// <summary>
         /// Renders the RTF.

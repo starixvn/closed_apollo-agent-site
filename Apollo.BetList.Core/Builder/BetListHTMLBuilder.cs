@@ -161,6 +161,32 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
+        /// Adds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="openTag">The open tag.</param>
+        /// <param name="closeTag">The close tag.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <returns>Bet List HTML Builder.</returns>
+        public BetListHTMLBuilder AddChoice(
+           ITicket ticket,
+           ITicketHelper ticketHelper,
+           List<ITicketData> ticketData,
+             List<ITicket> ticketMixParlay,
+           string openTag,
+           string closeTag,
+           bool isShowScoreMap)
+        {
+            string choice = BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap, BetListPage.Default);
+            this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
+
+            return this;
+        }
+
+        /// <summary>
         /// Builds the choice.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
@@ -180,6 +206,30 @@ namespace Apollo.BetList.Core.Builder
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
             string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap, betlistPage);
+
+            return choice;
+        }
+
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="betlistPage">The bet list page.</param>
+        /// <returns>Choice string.</returns>
+        public string BuildChoice(
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
+            bool isShowScoreMap,
+            BetListPage betlistPage)
+        {
+            IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
+            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap, betlistPage);
 
             return choice;
         }
