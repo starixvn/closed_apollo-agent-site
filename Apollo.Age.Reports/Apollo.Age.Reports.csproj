@@ -71,6 +71,7 @@
     <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
+    <Compile Include="Criterias\CustomerCounterCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
     <Compile Include="Criterias\GetResultByMatchCriteria.cs" />
     <Compile Include="Criterias\GetResultByParlayCriteria.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="Criterias\SportCreditCriteria.cs" />
     <Compile Include="Extension\HSSFSheetExtensions.cs" />
     <Compile Include="Models\AgentWinLossModel.cs" />
-    <Compile Include="Models\DateRangeModel.cs" />
+    <Compile Include="Models\DateRangesModel.cs" />
     <Compile Include="Models\OutrightResultModel.cs" />
     <Compile Include="Models\OutstandingModel.cs" />
     <Compile Include="Models\MatchEnteredModel.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Services\PeriodDateRangeService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SportCreditService.cs" />
+    <Compile Include="ViewModels\CustomerCounterViewModel.cs" />
     <Compile Include="ViewModels\MemberOutstandingViewModel.cs" />
     <Compile Include="ViewModels\OutrightResultViewModel.cs" />
     <Compile Include="ViewModels\MatchEnteredViewModel.cs" />

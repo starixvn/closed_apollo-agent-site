@@ -11,16 +11,13 @@
 namespace Apollo.Age.Integration.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// It contains properties parsed from JSON response returned from authentication process.
     /// </summary>
     public class AuthModel
     {
-        internal AuthModel(string errorMessage = "")
+        internal AuthModel()
         {
         }
 
@@ -51,9 +48,9 @@ namespace Apollo.Age.Integration.Models
             get
             {
                 return !string.IsNullOrWhiteSpace(Username)
-            && !string.IsNullOrWhiteSpace(AccessToken)
-            && UserId > 0
-            && string.IsNullOrWhiteSpace(ErrorCode);
+                    && !string.IsNullOrWhiteSpace(AccessToken)
+                    && UserId > 0
+                    && string.IsNullOrWhiteSpace(ErrorCode);
             }
         }
     }

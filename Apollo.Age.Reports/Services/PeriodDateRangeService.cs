@@ -12,12 +12,14 @@ namespace Apollo.Age.Reports.Services
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Web;
+    using System.Xml;
     using Apollo.Age.Configurations;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Services.Impl;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Period date range service.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class PeriodDateRangeService : QueryService
@@ -26,25 +28,41 @@ namespace Apollo.Age.Reports.Services
         /// Get list of period date ranges.
         /// </summary>
         /// <returns>List of period date ranges that were formatted.</returns>
-        public List<DateRangeModel> ListOfPeriodRanges()
+        public List<DateRange> PeriodRanges()
         {
-            List<string> periodRanges = GetAllPeriodRange();
-            var listOfRanges = new List<DateRangeModel>();
-            string[] rangeDates = null;
-            if (periodRanges != null && periodRanges.Any())
+            List<DateRangesModel> data = GetAllPeriodRange();
+            data = data.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
+            var dateRangeNow = new List<DateRange>();
+
+            foreach (var item in data)
             {
-                foreach (string item in periodRanges)
+                foreach (var range in item.ListOfDateRange)
                 {
-                    rangeDates = item.Split('-');
-                    listOfRanges.Add(new DateRangeModel
+                    dateRangeNow.Add(new DateRange
                     {
-                        FromDate = Convert.ToDateTime(rangeDates[0]),
-                        ToDate = Convert.ToDateTime(rangeDates[1]),
+                        FromDate = range.FromDate,
+                        ToDate = range.ToDate
                     });
                 }
             }
 
-            return listOfRanges;
+            return dateRangeNow;
+        }
+
+        /// <summary>
+        /// Lists the of periods.
+        /// </summary>
+        /// <returns>List of period date ranges that were formatted.</returns>
+        public List<DateRangesModel> ListOfPeriods()
+        {
+            List<DateRangesModel> ranges = GetAllPeriodRange();
+
+            if (ranges.Count > 2)
+            {
+                return ranges.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
+            }
+
+            return ranges;
         }
 
         /// <summary>
@@ -54,25 +72,21 @@ namespace Apollo.Age.Reports.Services
         /// <returns>
         /// Return period date range.
         /// </returns>
-        public DateRangeModel PeriodRange(bool getLastPeriod = false)
+        public DateRange PeriodDates(bool getLastPeriod = false)
         {
-            var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            List<string> periodRanges = GetAllPeriodRange();
-            DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            string[] rangeDates = null;
-            DateRangeModel periodModel = new DateRangeModel();
-            string[] startRangeDates = periodRanges[0].Split('-');
-            DateTime startFromDate = DateTime.Parse(startRangeDates[0]);
-            DateTime startToDate = DateTime.Parse(startRangeDates[1]);
+            var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+            List<DateRange> periodRanges = PeriodRanges();
+            DateTime fromDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+            DateTime toDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+            DateRange periodModel = new DateRange();
+            DateTime startFromDate = periodRanges[0].FromDate;
+            DateTime startToDate = periodRanges[0].ToDate;
             var count = 0;
 
             foreach (var range in periodRanges)
             {
-                rangeDates = range.Split('-');
-
-                fromDate = DateTime.Parse(rangeDates[0]);
-                toDate = DateTime.Parse(rangeDates[1]);
+                fromDate = range.FromDate;
+                toDate = range.ToDate;
 
                 if (startFromDate > currentDate && startToDate > currentDate)
                 {
@@ -87,8 +101,16 @@ namespace Apollo.Age.Reports.Services
                     {
                         if (fromDate <= currentDate && currentDate <= toDate)
                         {
-                            periodModel.FromDate = DateTime.Parse(periodRanges[count - 1].Split('-')[0]);
-                            periodModel.ToDate = DateTime.Parse(periodRanges[count - 1].Split('-')[1]);
+                            if (count <= 0)
+                            {
+                                periodModel.FromDate = fromDate;
+                                periodModel.ToDate = toDate;
+                            }
+                            else
+                            {
+                                periodModel.FromDate = periodRanges[count - 1].FromDate;
+                                periodModel.ToDate = periodRanges[count - 1].ToDate;
+                            }
 
                             return periodModel;
                         }
@@ -108,7 +130,7 @@ namespace Apollo.Age.Reports.Services
                 count++;
             }
 
-            return new DateRangeModel()
+            return new DateRange
             {
                 FromDate = currentDate,
                 ToDate = currentDate
@@ -119,15 +141,35 @@ namespace Apollo.Age.Reports.Services
         /// Gets all period range.
         /// </summary>
         /// <returns>List of all period range.</returns>
-        private List<string> GetAllPeriodRange()
+        private List<DateRangesModel> GetAllPeriodRange()
         {
-            if (!string.IsNullOrWhiteSpace(AppSettings.PeriodDateRange))
+            var listDateRange = new List<DateRangesModel>();
+
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(HttpContext.Current.Server.MapPath("~/App_Data/PeriodsRange.xml"));
+            XmlNodeList periods = xmldoc.SelectNodes("/Periods/Date");
+            foreach (XmlNode period in periods)
             {
-                string periodDateRange = AppSettings.PeriodDateRange;
-                return periodDateRange.Split(';').ToList();
+                XmlNodeList dates = period.ChildNodes;
+                var dateRanges = new List<DateRange>();
+
+                foreach (XmlNode date in dates)
+                {
+                    dateRanges.Add(new DateRange
+                    {
+                        FromDate = DateTime.Parse(date.Attributes["FromDate"].Value),
+                        ToDate = DateTime.Parse(date.Attributes["ToDate"].Value),
+                    });
+                }
+
+                listDateRange.Add(new DateRangesModel
+                {
+                    ListOfDateRange = dateRanges,
+                    Year = int.Parse(period.Attributes["Year"].Value)
+                });
             }
 
-            return new List<string>();
+            return listDateRange;
         }
     }
 }

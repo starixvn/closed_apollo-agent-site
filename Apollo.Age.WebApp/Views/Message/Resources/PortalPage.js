@@ -22,6 +22,10 @@ var MessagePortalPage = function ($) {
 
         isShowLevelMessage: false,
 
+        publicLevelMessageId: 0,
+
+        publicLevelMessageContent: "",
+
         init: function () {
             MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
             MessagePortalPage.announcement = $("#announcement").val();
@@ -151,8 +155,17 @@ var MessagePortalPage = function ($) {
                 type: 'POST',
                 dataType: 'JSON',
                 success: function (result) {
-                    $("#topnewsbylevel").html("<marquee scrolldelay='200'>" + result.public_message_content + "</marquee>");
-                    setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
+                    if (result != null) {
+                        if (MessagePortalPage.publicLevelMessageId == 0 || MessagePortalPage.publicLevelMessageId != result.public_message_id) {
+                            MessagePortalPage.publicLevelMessageId = result.public_message_id;
+                            MessagePortalPage.publicLevelMessageContent = result.public_message_content;
+
+                            $("#topnewsbylevel").html("<marquee scrolldelay='200'>" + MessagePortalPage.publicLevelMessageContent + "</marquee>");
+                        }
+
+                        setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
+                    }
+                    
                 },
                 error: function (xhr, status, err) {
                 }
@@ -205,9 +218,9 @@ var MessagePortalPage = function ($) {
                         else {
                             finalMessage = MessagePortalPage.publicMsgContent;
                         }
-                    }                                       
+                    }
 
-                    if (!MessagePortalPage.isFirstTime) {                       
+                    if (!MessagePortalPage.isFirstTime) {
                         document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         MessagePortalPage.isFirstTime = true;
                     }

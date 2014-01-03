@@ -10,11 +10,9 @@
 namespace Apollo.CustSetting.Service
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.CustSetting.Models;
     using Apollo.CustSetting.ViewData;
 
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "EX1003:MethodMustBeDocumented", Justification = "Reviewed.")]
     public interface ICustomerSettingService
     {
         PositionTakingSetting GetPositionTakingSettingForUpdating(SettingContext settingContext);

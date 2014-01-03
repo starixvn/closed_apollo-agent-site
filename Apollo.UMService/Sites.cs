@@ -10,7 +10,7 @@
 namespace Apollo.UMService
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Sites constant.
     /// </summary>
     public static class Sites
     {

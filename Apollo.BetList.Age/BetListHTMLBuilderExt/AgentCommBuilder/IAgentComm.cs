@@ -11,7 +11,7 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt.AgentCommBuilder
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Agent commission interface.
     /// </summary>
     public interface IAgentComm
     {

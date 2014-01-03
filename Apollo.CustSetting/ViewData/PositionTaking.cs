@@ -9,8 +9,6 @@
 
 namespace Apollo.CustSetting.ViewData
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Class name.
     /// </summary>

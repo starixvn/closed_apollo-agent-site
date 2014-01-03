@@ -30,7 +30,7 @@ namespace Apollo.Age.Integration.Controllers
     [AllowAnonymous]
     public class OAuthController : Controller
     {
-        private const int ServerId = 1;
+        private const int ServerId = 1;     // SSO Server ID
 
         private readonly AuthenticationService _authService;
         private readonly UserService _userService;
@@ -59,6 +59,7 @@ namespace Apollo.Age.Integration.Controllers
         {
             ViewBag.Username = user_id;
             ViewBag.Language = _authService.ConvertToApolloLanguage(lang);
+
             return View();
         }
 
@@ -113,12 +114,12 @@ namespace Apollo.Age.Integration.Controllers
                                 // Writes SSO logs.
                                 // ActionID: 703 -> SSO login successful.
                                 string doing = string.Format("SSO logged in via Agent: [{0}] - Result: Successful.", user.Username);
-                                WriteLoginLog(user.Id, 0, 703, 0, doing);
+                                WriteLoginLog(user.Id, 0, 703, doing);
                             }
                             else
                             {
 #if DEBUG
-                                LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
+                                // LogService.Error(string.Format("SSO user {0} is not the requested user [{1}]", username, user.Username));
 #endif
                                 authModel.ErrorCode = ErrorCode.InvalidRequest;
 
@@ -127,7 +128,7 @@ namespace Apollo.Age.Integration.Controllers
                                                 "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
                                                 authModel.Username,
                                                 Resources.Lang.AgentNotFound);
-                                WriteLoginLog(0, 0, 7002, 0, doing);
+                                WriteLoginLog(0, 0, 7002, doing);
                             }
                         }
                         else
@@ -142,7 +143,7 @@ namespace Apollo.Age.Integration.Controllers
                                             "SSO logged in via Agent: [{0}] - Result: Fail({1}).",
                                             authModel.Username,
                                             Resources.Lang.AgentNotFound);
-                            WriteLoginLog(0, 0, 7002, 0, doing);
+                            WriteLoginLog(0, 0, 7002, doing);
                         }
                     }
                     else
@@ -191,7 +192,7 @@ namespace Apollo.Age.Integration.Controllers
                 // Write log.
                 // ActionId: 704 - sso logout successful
                 string doing = string.Format("SSO log out via Agent: [{0}] - Result: Successful.", SessionManager.CurrentSession.Username);
-                WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, 0, doing);
+                WriteLoginLog(SessionManager.CurrentSession.UserId, 0, 704, doing);
             }
 
             Session.Abandon();
@@ -204,9 +205,8 @@ namespace Apollo.Age.Integration.Controllers
         /// <param name="agentId">Input a agent id.</param>
         /// <param name="agentUserId">Input a agent user id.</param>
         /// <param name="actionId">Input a action id.</param>
-        /// <param name="serverId">Input a server id.</param>
         /// <param name="doing">Input a doing.</param>
-        private void WriteLoginLog(int agentId, int agentUserId, int actionId, int serverId, string doing)
+        private void WriteLoginLog(int agentId, int agentUserId, int actionId, string doing)
         {
             Task task = Task.Factory.StartNew(() =>
             {

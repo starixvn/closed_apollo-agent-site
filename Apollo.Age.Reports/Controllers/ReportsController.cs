@@ -68,7 +68,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
-            this._outstandingService = new OutstandingService();
+            this._outstandingService = outstandingService ?? new OutstandingService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }
@@ -105,8 +105,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || (agentId != null && !hasDownlineDetailsPermission))
+            if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
                     "ReportAccessDenied",
@@ -251,8 +250,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (!hasPermission
-                || !hasDownlineDetailsPermission)
+            if (!hasPermission || !hasDownlineDetailsPermission)
             {
                 return Json(new MemberOutstandingViewModel
                 {
@@ -287,7 +285,7 @@ namespace Apollo.Age.Reports.Controllers
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
             matchEnteredViewModel.SportList = SingbetSportService.GetSport(isOther: false);
             matchEnteredViewModel.BettypeList = this._winLossService.GetBettype();
-            matchEnteredViewModel.PeriodList = _periodDateRangeSerivce.ListOfPeriodRanges();
+            matchEnteredViewModel.PeriodList = _periodDateRangeSerivce.ListOfPeriods();
             var isShowDataTest = false;
             if (SessionManager.CurrentSession != null)
             {
@@ -326,8 +324,8 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = functionPermission;
 
-            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodRange();
-            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodRange(true);
+            matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
+            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View(matchEnteredViewModel);
         }
@@ -342,7 +340,7 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
         /// <returns>ViewResult agent win loss.</returns>
-       [ValidateInput(false)]
+        [ValidateInput(false)]
         public ViewResult AgentWinLoss(
             DateTime fromDate,
             DateTime toDate,
@@ -356,6 +354,8 @@ namespace Apollo.Age.Reports.Controllers
 
             var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            List<CustomerCounterViewModel> customerCounterList = null;
 
             ViewBag.allFunctionPermission = userPermission;
 
@@ -384,8 +384,24 @@ namespace Apollo.Age.Reports.Controllers
             };
 
             var agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+
             var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
             var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+
+            // Only super and main shareholder can see number of member.
+            if (modelAgentDownLine.Last().Level <= 1)
+            {
+                customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                {
+                    AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                    Bettypes = bettypes,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    BalanceUpDay = balanceUpDay,
+                    MoveBetDay = this._winLossService.MoveBetsDay()
+                });
+            }
 
             var model = new AgentWinLossViewModel
             {
@@ -397,12 +413,13 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = string.IsNullOrWhiteSpace(agentName) ? this.CurrentSession.AgentName : agentName,
                 IsSuper = isSuper,
                 AgentWinLossList = agentWinLossList,
+                CustomerCounterList = customerCounterList,
                 DownlinePath = modelAgentDownLine,
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
-                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
+                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
+                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -479,8 +496,8 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodRange(),
-                LastPeriod = _periodDateRangeSerivce.PeriodRange(true)
+                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
+                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
             };
 
             var sessionKey = string.Format(Constants.SessionKeyMemberWinLossReport, this.CurrentSession.UserId);
@@ -515,6 +532,8 @@ namespace Apollo.Age.Reports.Controllers
             var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             ViewBag.allFunctionPermission = userPermission;
+
+            List<CustomerCounterViewModel> customerCounterList = null;
 
             if (!hasPermission)
             {
@@ -560,6 +579,23 @@ namespace Apollo.Age.Reports.Controllers
                 }
             }
 
+            var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, agentId.Value).ToList();
+
+            // Only super and main shareholder can see number of member.
+            if (modelAgentDownLine.Last().Level <= 1)
+            {
+                customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                {
+                    AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                    Bettypes = bettypes,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    BalanceUpDay = balanceUpDay,
+                    MoveBetDay = this._winLossService.MoveBetsDay()
+                });
+            }
+
             var model = new AgentWinLossViewModel
             {
                 FromDate = fromDate,
@@ -570,6 +606,7 @@ namespace Apollo.Age.Reports.Controllers
                 AgentName = string.IsNullOrWhiteSpace(agentName) ? this.CurrentSession.AgentName : agentName,
                 IsSuper = agentIdValue == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false,
                 AgentWinLossList = agentWinLossList,
+                CustomerCounterList = customerCounterList,
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,

@@ -319,6 +319,7 @@ namespace Apollo.Age.Reports.Services
         public void CreateNumberCell(IRow row, int columIndex, ICellStyle style, short numberFormat, double value)
         {
             var cell = row.CreateCell(columIndex);
+
             cell.CellStyle = style;
             cell.SetCellType(CellType.NUMERIC);
             cell.CellStyle.DataFormat = numberFormat;
@@ -335,6 +336,7 @@ namespace Apollo.Age.Reports.Services
         public void CreateStringCell(IRow row, int columIndex, ICellStyle style, string value)
         {
             var cell = row.CreateCell(columIndex);
+
             cell.CellStyle = style;
             cell.SetCellValue(value);
         }
@@ -346,6 +348,7 @@ namespace Apollo.Age.Reports.Services
         public void CustomizeColor(HSSFWorkbook hssfworkbook)
         {
             var palette = hssfworkbook.GetCustomPalette();
+
             palette.SetColorAtIndex(HSSFColor.BLUE_GREY.index, (byte)141, (byte)200, (byte)245);
             palette.SetColorAtIndex(HSSFColor.BROWN.index, (byte)104, (byte)119, (byte)128);
             palette.SetColorAtIndex(HSSFColor.RED.index, (byte)153, (byte)0, (byte)0);

@@ -10,7 +10,7 @@
 namespace Apollo.Age.Enumerations
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Customer type.
     /// </summary>
     public enum CustomerType : int
     {

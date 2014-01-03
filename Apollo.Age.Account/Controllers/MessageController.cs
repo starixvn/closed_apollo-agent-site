@@ -198,9 +198,6 @@ namespace Apollo.Age.Account.Controllers
             // Message type from older source code
             int messageType = 3;
 
-            int agentId = this.CurrentSession.AgentId;
-            string username = this.CurrentSession.Username;
-
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
@@ -216,14 +213,14 @@ namespace Apollo.Age.Account.Controllers
                 }
             }
 
-            var priMessage = this._messageService.GetTopPrivateMessage24(agentId);
+            var priMessage = this._messageService.GetTopPrivateMessage24(this.CurrentSession.AgentId);
             if (!ReferenceEquals(priMessage, null))
             {
                 privateMessages[0] = priMessage.MessageId;
                 privateMessages[1] = priMessage.GetContent(CurrentSession.Language);
             }
 
-            var countPriMessage = this._messageService.CountUnreadPrivateMessage(agentId);
+            var countPriMessage = this._messageService.CountUnreadPrivateMessage(this.CurrentSession.AgentId);
 
             return Json(new
             {

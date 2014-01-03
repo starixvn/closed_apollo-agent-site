@@ -1996,4 +1996,7 @@
   <data name="announcementlevel" xml:space="preserve">
     <value>股东公告</value>
   </data>
+  <data name="NumberOfMember" xml:space="preserve">
+    <value>下注人數</value>
+  </data>
 </root>

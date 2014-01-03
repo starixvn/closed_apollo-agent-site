@@ -9,7 +9,6 @@
 
 namespace Apollo.CustSetting.Criteria.Member
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

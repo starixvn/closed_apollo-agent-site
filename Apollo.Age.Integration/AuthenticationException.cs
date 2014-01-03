@@ -13,7 +13,7 @@ namespace Apollo.Age.Integration
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Authentication exception.
     /// </summary>
     [Serializable]
     public class AuthenticationException : Exception
@@ -33,7 +33,7 @@ namespace Apollo.Age.Integration
         /// <summary>
         /// Override TOSTRING.
         /// </summary>
-        /// <returns>Return a value with user id and language.</returns>        
+        /// <returns>Return a value with user id and language.</returns>
         public override string ToString()
         {
             return base.ToString() + "UserId=" + UserId.ToString() + ";Lang=" + Lang;

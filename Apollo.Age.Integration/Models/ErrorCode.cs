@@ -9,11 +9,6 @@
 
 namespace Apollo.Age.Integration.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// It contains error code returned from authentication service of sun game.
     /// </summary>

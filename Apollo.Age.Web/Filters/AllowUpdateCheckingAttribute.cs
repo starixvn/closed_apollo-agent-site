@@ -9,9 +9,7 @@
 
 namespace Apollo.Age.Web.Filters
 {
-    using System;
     using System.Web.Mvc;
-    using Fanex.Logging;
 
     /// <summary>
     /// Allow update checking attribute class.
@@ -24,20 +22,11 @@ namespace Apollo.Age.Web.Filters
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            try
+            if (SessionManager.CurrentSession != null 
+                && !SessionManager.CurrentSession.IsMaster)
             {
-                if (SessionManager.CurrentSession != null)
-                {
-                    if (SessionManager.CurrentSession.IsMaster == false)
-                    {
-                        CommonChecking.DoUnAuthorized(filterContext);
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
+                CommonChecking.DoUnAuthorized(filterContext);
+                return;
             }
 
             base.OnActionExecuting(filterContext);

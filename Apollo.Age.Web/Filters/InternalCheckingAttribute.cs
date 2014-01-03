@@ -6,12 +6,10 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.5.17">Created</change>
 // </history>
+
 namespace Apollo.Age.Web.Filters
 {
-    using System;
-    using System.Net;
     using System.Web.Mvc;
-    using Fanex.Logging;
 
     /// <summary>
     /// Internal checking attribute class.
@@ -24,20 +22,10 @@ namespace Apollo.Age.Web.Filters
         /// <param name="filterContext">The filter context.</param>
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            try
+            if (SessionManager.CurrentSession != null
+                && !SessionManager.CurrentSession.IsInternalSignIn)
             {
-                if (SessionManager.CurrentSession != null)
-                {
-                    var currentSession = SessionManager.CurrentSession;
-                    if (!currentSession.IsInternalSignIn)
-                    {
-                       CommonChecking.DoUnAuthorized(filterContext);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
+                CommonChecking.DoUnAuthorized(filterContext);
             }
 
             base.OnActionExecuted(filterContext);

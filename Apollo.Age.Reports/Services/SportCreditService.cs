@@ -112,7 +112,7 @@ namespace Apollo.Age.Reports.Services
                 if (langAgent.Value == null)
                 {
                     // is not exits in Constants.ReportAgentLevelDictionary is it's Agent (key = 4)
-                    keyLang = Apollo.Age.Reports.Core.Constants.ReportAgentLevelDictionary[4];
+                    keyLang = Constants.ReportAgentLevelDictionary[4];
                 }
                 else
                 {
@@ -148,10 +148,6 @@ namespace Apollo.Age.Reports.Services
             cellTotalOutstanding.SetCellValue(totalOutstanding);
             cellTotalRemaining.SetCellValue(totalRemaining);
             //// end footer
-
-            //// remove sheet & row template
-            var rowBodyTemplate = sheet.GetRow(rowIndex + 1);
-            var rowFooterTemplate = sheet.GetRow(rowIndex + 2);
 
             hssfworkbook.RemoveSheetAt(0);
 
