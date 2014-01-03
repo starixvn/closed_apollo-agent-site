@@ -14,7 +14,7 @@ namespace Apollo.Age.Services
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Service layer exception.
     /// </summary>
     [Serializable]
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]

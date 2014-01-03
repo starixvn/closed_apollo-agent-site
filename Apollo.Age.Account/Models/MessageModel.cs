@@ -82,7 +82,6 @@ namespace Apollo.Age.Account.Models
         public string GetContent(string language = "")
         {
             string content = string.Empty;
-            string betTransId = this.BettransID;
 
             switch (language)
             {
@@ -126,7 +125,7 @@ namespace Apollo.Age.Account.Models
             // Private message.
             if (this.MsgType == 1)
             {
-                content = content.Replace("@@", betTransId == null ? string.Empty : betTransId);
+                content = content.Replace("@@", this.BettransID == null ? string.Empty : this.BettransID);
             }
 
             return content

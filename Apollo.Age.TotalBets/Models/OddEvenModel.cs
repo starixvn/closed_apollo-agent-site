@@ -14,7 +14,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Odd even model.
     /// </summary>
     public class OddEvenModel
     {

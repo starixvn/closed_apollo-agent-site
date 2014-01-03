@@ -12,7 +12,7 @@ namespace Apollo.Age.Account.Core
     using System.Collections.Generic;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Constants class.
     /// </summary>
     public static class Constants
     {

@@ -10,7 +10,6 @@
 namespace Apollo.Age.Account.Models
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Execute SP log model.

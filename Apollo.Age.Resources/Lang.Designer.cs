@@ -4553,6 +4553,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No. of Members.
+        /// </summary>
+        public static string NumberOfMember {
+            get {
+                return ResourceManager.GetString("NumberOfMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oct.
         /// </summary>
         public static string October {

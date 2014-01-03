@@ -186,7 +186,9 @@ new ReportMenuViewModel
                         </a>
                     </td>
                     <td class="r">
-                        @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
+                        <span>
+                            @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
+                        </span>
                     </td>
                     <td class="r">
                         @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)

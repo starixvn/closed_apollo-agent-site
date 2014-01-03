@@ -93,19 +93,34 @@ namespace Apollo.Age.Reports.Services
                     model.SportName,
                     Lang.WagerType,
                     model.BettypeName);
+
                 if (model.IsSuper)
                 {
-                    return this.AgentWinLossViewBySuper(model.AgentWinLossList, title, model.AgentName, filter);
+                    return this.AgentWinLossViewBySuper(model.AgentWinLossList, model.CustomerCounterList, title, model.AgentName, filter);
                 }
                 else
                 {
-                    return this.AgentWinLossViewByNoneSuper(model.AgentWinLossList, title, model.AgentName, filter);
+                    return this.AgentWinLossViewByNoneSuper(model.AgentWinLossList, model.CustomerCounterList, title, model.AgentName, filter);
                 }
             }
             else
             {
                 return new HSSFWorkbook();
             }
+        }
+
+        /// <summary>
+        /// Gets the customer counter.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// List of Customer counter.
+        /// </returns>
+        public List<CustomerCounterViewModel> GetCustomerCounter(CustomerCounterCriteria criteria)
+        {
+            var customerCounterList = this.GetData<CustomerCounterViewModel>(criteria).ToList();
+
+            return customerCounterList;
         }
 
         /// <summary>
@@ -301,11 +316,15 @@ namespace Apollo.Age.Reports.Services
         /// Get Excel File by View Super.
         /// </summary>
         /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="customerCounterList">The customer counter list.</param>
         /// <param name="title">Title of File.</param>
         /// <param name="agentName">Current Agent Name.</param>
         /// <param name="filter">All parameters to query report.</param>
-        /// <returns>Agent Win Loss Excel File.</returns>
-        private HSSFWorkbook AgentWinLossViewBySuper(IList<AgentWinLossModel> agentWinLossList, string title, string agentName, string filter)
+        /// <returns>
+        /// Agent Win Loss Excel File.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        private HSSFWorkbook AgentWinLossViewBySuper(IList<AgentWinLossModel> agentWinLossList, IList<CustomerCounterViewModel> customerCounterList, string title, string agentName, string filter)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 
@@ -349,7 +368,15 @@ namespace Apollo.Age.Reports.Services
 
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
-            this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            if (customerCounterList != null && customerCounterList.Any())
+            {
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + " / " + Lang.NumberOfMember);
+            }
+            else
+            {
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            }
+
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
             this.CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
@@ -369,7 +396,16 @@ namespace Apollo.Age.Reports.Services
 
                 this.CreateStringCell(row, columIndex++, bodyStyleLeft, agentWinLoss.AgentName);
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
-                this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
+                if (customerCounterList != null && customerCounterList.Any())
+                {
+                    var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
+                    this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + " / " + numberOfMember.CustCount);
+                }
+                else
+                {
+                    this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
+                }
+
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.CommBase);
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.MemberTotal);
                 this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);
@@ -415,13 +451,17 @@ namespace Apollo.Age.Reports.Services
         /// Get Excel File by View None Super.
         /// </summary>
         /// <param name="agentWinLossList">List Data need Export.</param>
+        /// <param name="customerCounterList">The customer counter list.</param>
         /// <param name="title">Title of File.</param>
         /// <param name="agentName">Current Agent Name.</param>
         /// <param name="filter">All parameters to query report.</param>
-        /// <returns>Agent Win Loss Excel File.</returns>
-        private HSSFWorkbook AgentWinLossViewByNoneSuper(IList<AgentWinLossModel> agentWinLossList, string title, string agentName, string filter)
+        /// <returns>
+        /// Agent Win Loss Excel File.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        private HSSFWorkbook AgentWinLossViewByNoneSuper(IList<AgentWinLossModel> agentWinLossList, IList<CustomerCounterViewModel> customerCounterList, string title, string agentName, string filter)
         {
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+            var hssfworkbook = new HSSFWorkbook();
 
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
 
@@ -469,7 +509,15 @@ namespace Apollo.Age.Reports.Services
 
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
             this.CreateStringCell(row, columIndex++, headerStyleShare, string.Empty);
-            this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            if (customerCounterList != null && customerCounterList.Any())
+            {
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount + " / " + Lang.NumberOfMember);
+            }
+            else
+            {
+                this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.BetAmount + " / " + Lang.lblBetCount);
+            }
+
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.CommBase);
             this.CreateStringCell(row, columIndex++, headerStyleMember, Lang.total);
             this.CreateStringCell(row, columIndex++, headerStyleDownline, Lang.lblEffectiveStake);
@@ -517,7 +565,16 @@ namespace Apollo.Age.Reports.Services
                 {
                     this.CreateStringCell(row, columIndex++, bodyStyleLeft, agentWinLoss.AgentName);
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)(agentWinLoss.SoccerShare / 100.00));
-                    this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
+                    if (customerCounterList != null && customerCounterList.Any())
+                    {
+                        var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
+                        this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount) + " / " + numberOfMember.CustCount);
+                    }
+                    else
+                    {
+                        this.CreateStringCell(row, columIndex++, bodyStyleRight, this.FormatNumber20(agentWinLoss.BetAmount) + " / " + this.FormatNumber(agentWinLoss.BetCount));
+                    }
+
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.CommBase);
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.MemberTotal);
                     this.CreateNumberCell(row, columIndex++, bodyStyleRight, numberFormat, (double)agentWinLoss.DownLineEffectiveStake);

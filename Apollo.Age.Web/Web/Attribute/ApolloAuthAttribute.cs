@@ -18,7 +18,7 @@ namespace Apollo.Age.Web.Web.Attribute
     using Apollo.Age.Web;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Authorize attribute.
     /// </summary>
     public class ApolloAuthAttribute : AuthorizeAttribute
     {

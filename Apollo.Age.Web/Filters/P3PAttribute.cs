@@ -17,7 +17,7 @@ namespace Apollo.Age.Web.Filters
     /// P3P provides a standard way for Web sites to communicate about their practices around the collection, 
     /// use, and distribution of personal information. It's a machine-readable privacy policy that can be 
     /// automatically fetched and viewed by users, and it can be tailored to fit your company's specific policies.
-    /// </summary>   
+    /// </summary>
     public class P3PAttribute : ActionFilterAttribute
     {
         /// <summary>

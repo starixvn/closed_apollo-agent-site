@@ -30,9 +30,9 @@ namespace Apollo.Age.Forecast.Repositories
         {
             if (criteria.IsValid())
             {
-                using (ObjectDb objdb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objdb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    ScoreMapResultModel scoreMapResult = new ScoreMapResultModel();
+                    var scoreMapResult = new ScoreMapResultModel();
                     IDataReader reader = objdb.ExecuteReader(criteria.GetSpParams());
 
                     while (reader.Read())
@@ -75,16 +75,9 @@ namespace Apollo.Age.Forecast.Repositories
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
-            try
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var db = new ObjectDb(criteria.GetSettingKey()))
-                {
-                    return (int)db.ExecuteScalar(criteria.GetSpParams());
-                }
-            }
-            catch
-            {
-                throw;
+                return (int)db.ExecuteScalar(criteria.GetSpParams());
             }
         }
     }

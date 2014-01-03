@@ -49,17 +49,19 @@ namespace Apollo.CustSetting.Repositories
         /// <returns>Position taking list.</returns>
         public Dictionary<string, PositionTaking> GetAgentPositionTakingSettingForUpdating(ICriteria criteria)
         {
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
                 IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
                 int sportId, betTypeId;
                 bool isLive;
+
                 while (reader.Read())
                 {
                     sportId = reader.ToInt("SportType");
                     betTypeId = reader.ToInt("BetType");
                     isLive = reader.ToBool("IsLive");
+
                     PositionTaking positionTakingData = new PositionTaking
                     {
                         Preset = reader.ToDecimal("MaxUpperPositionTaking") / Constant.STEP_MUL_DIV,
@@ -93,12 +95,13 @@ namespace Apollo.CustSetting.Repositories
         /// <returns>Position taking list.</returns>
         public Dictionary<string, PositionTaking> GetCustomerPositionTakingSettingForUpdating(ICriteria criteria)
         {
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 Dictionary<string, PositionTaking> positionTakingDataList = new Dictionary<string, PositionTaking>();
                 IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
                 int sportId, betTypeId;
                 bool isLive;
+
                 while (reader.Read())
                 {
                     sportId = reader.ToInt("SportType");
@@ -140,11 +143,12 @@ namespace Apollo.CustSetting.Repositories
         /// </returns>
         public IList<BettingLimit> GetBettingLimitSettingForUpdating(SettingContext settingContext, ICriteria criteria, ref int maxBetLimit)
         {
-            using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 IList<BettingLimit> bettingLimits = new List<BettingLimit>();
                 IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
                 string bettingItemDicKey = string.Empty;
+
                 while (reader.Read())
                 {
                     var sportType = reader.ToInt("SportType");
@@ -153,7 +157,7 @@ namespace Apollo.CustSetting.Repositories
                         continue;
                     }
 
-                    BettingLimit bettingLimit = new BettingLimit
+                    var bettingLimit = new BettingLimit
                     {
                         SportId = sportType,
                         BetTypeId = reader.ToInt("BetType"),
@@ -193,9 +197,11 @@ namespace Apollo.CustSetting.Repositories
         public IList<CommissionItem> GetAgentCommissionSetingForUpdating(ICriteria criteria)
         {
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
+
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+
                 while (reader.Read())
                 {
                     commissionItems.Add(new CommissionItem
@@ -228,9 +234,11 @@ namespace Apollo.CustSetting.Repositories
         public IList<CommissionItem> GetCustomerCommissionSetingForUpdating(ICriteria criteria)
         {
             IList<CommissionItem> commissionItems = new List<CommissionItem>();
+
             using (ObjectDb objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 IDataReader reader = objDb.ExecuteReader(criteria.GetSpParams());
+
                 while (reader.Read())
                 {
                     commissionItems.Add(new CommissionItem
@@ -259,10 +267,11 @@ namespace Apollo.CustSetting.Repositories
         /// <returns>Member information details.</returns>
         public MemberInfo GetMemberInfo(ICriteria criteria)
         {
-            using (ObjectDb odb = new ObjectDb(criteria.GetSettingKey()))
+            using (var odb = new ObjectDb(criteria.GetSettingKey()))
             {
                 IDataReader reader = odb.ExecuteReader(criteria.GetSpParams());
                 reader.Read();
+
                 return new MemberInfo
                 {
                     UGroup = reader.ToString("UGroup"),

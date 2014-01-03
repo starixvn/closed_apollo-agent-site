@@ -10,7 +10,6 @@
 namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
 

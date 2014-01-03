@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.4.26">Created</change>
 // </history>
+
 namespace Apollo.Age.Integration.Services
 {
     using System;
@@ -19,7 +20,7 @@ namespace Apollo.Age.Integration.Services
     using Apollo.Age.Resources;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Authentication service.
     /// </summary>
     public class AuthenticationService
     {
@@ -40,16 +41,22 @@ namespace Apollo.Age.Integration.Services
             {
                 case ErrorCode.InvalidRequest:
                     return Lang.lblInvalidRequest;
+
                 case ErrorCode.UnauthorizedClient:
                     return Lang.lblUnauthorizedClient;
+
                 case ErrorCode.AccessDenied:
                     return Lang.lblAccessDenied;
+
                 case ErrorCode.UnsupportedResponseType:
                     return Lang.lblUnsupportedResponseType;
+
                 case ErrorCode.ServerError:
                     return Lang.lblServerError;
+
                 case ErrorCode.ComingSoon:
                     return Lang.comingsoon;
+
                 case ErrorCode.TemporarilyUnavailable:
                 default:
                     return Lang.lblTemporarilyUnavailable;
@@ -65,10 +72,10 @@ namespace Apollo.Age.Integration.Services
         {
             if (string.IsNullOrWhiteSpace(authorizationCode))
             {
-                throw new ArgumentNullException("code");
+                throw new ArgumentNullException("authorizationCode");
             }
 
-            AuthModel authModel = new AuthModel(GetSessionToken(authorizationCode));
+            var authModel = new AuthModel(GetSessionToken(authorizationCode));
 
             return authModel;
         }
@@ -109,7 +116,7 @@ namespace Apollo.Age.Integration.Services
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         internal JsonResponseModel GetSessionToken(string authenticationCode)
         {
-            JsonResponseModel jsonResponseModel = new JsonResponseModel();
+            var jsonResponseModel = new JsonResponseModel();
 
             // Compose post data to make a web request to authorization server.
             var postData = string.Format(
@@ -119,23 +126,21 @@ namespace Apollo.Age.Integration.Services
                 OAuthSettings.Settings.AppId,
                 OAuthSettings.Settings.AppSecret);
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(OAuthSettings.Settings.TokenUrl);
+            byte[] requestData = new ASCIIEncoding().GetBytes(postData);
+            var request = (HttpWebRequest)WebRequest.Create(OAuthSettings.Settings.TokenUrl);
+
             request.KeepAlive = false;
             request.Method = WebRequestMethods.Http.Post; // It is required.
             request.ContentType = "application/x-www-form-urlencoded";
-
-            byte[] requestData = new ASCIIEncoding().GetBytes(postData);
             request.ContentLength = requestData.Length;
             request.GetRequestStream().Write(requestData, 0, requestData.Length);
 
-            HttpWebResponse response = null;
-
-            response = (HttpWebResponse)request.GetResponse();
+            var response = (HttpWebResponse)request.GetResponse();
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 // read response stream and parse to JsonResponseModel
-                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
+                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
                 {
                     string jsonString = reader.ReadToEnd();
                     jsonResponseModel = Json.Decode<JsonResponseModel>(jsonString);

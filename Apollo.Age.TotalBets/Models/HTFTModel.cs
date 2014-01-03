@@ -13,7 +13,7 @@ namespace Apollo.Age.TotalBets.Models
     using Apollo.Age.Services;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Half time / full time model.
     /// </summary>
     public class HTFTModel
     {

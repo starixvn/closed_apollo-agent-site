@@ -111,7 +111,7 @@ namespace Apollo.Age.Reports.Services
                 });
 
                 //// Sum total amount
-                OutstandingModel totalModels = new OutstandingModel();
+                var totalModels = new OutstandingModel();
                 if (models != null && models.Any())
                 {
                     foreach (OutstandingModel item in models)
@@ -155,12 +155,11 @@ namespace Apollo.Age.Reports.Services
             string betTypeName,
             bool isSuper)
         {
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+            var hssfworkbook = new HSSFWorkbook();
             CustomizeColor(hssfworkbook);
             ISheet sheet = hssfworkbook.CreateSheet("OutStanding Report");
 
-            if (listOutStanding != null
-                    && listOutStanding.Any())
+            if (listOutStanding != null && listOutStanding.Any())
             {
                 RenderExcelTitle(hssfworkbook, sheet, 1, isAgentOutStanding, currentUsername, sportName, betTypeName);
                 RenderExcelHeader(hssfworkbook, sheet, 4);
@@ -179,7 +178,6 @@ namespace Apollo.Age.Reports.Services
 
                 for (int i = 0; i < length; i++)
                 {
-                    IRow row = sheet.CreateRow(rowIndex + i);
                     var currentOutstanding = listOutStanding.ElementAt(i);
                     //// If current agent level is agent, then add member outstanding
                     if (!currentOutstanding.IsAgent && isAgentOutStanding)
@@ -254,6 +252,7 @@ namespace Apollo.Age.Reports.Services
             ICellStyle bodyStyleRight)
         {
             IRow row = sheet.CreateRow(rowIndex);
+
             CreateStringCell(row, 0, bodyStyleLeft, userName);
             CreateNumberCell(row, 1, bodyStyleRight, numberFormat, outstandingAmount);
             CreateNumberCell(row, 2, bodyStyleRight, numberFormat, shareAmount);
@@ -283,7 +282,6 @@ namespace Apollo.Age.Reports.Services
             //// Report Title
             var row = sheet.CreateRow(fromRow);
 
-            var rowTitle = sheet.CreateRow(rownum: 1);
             var fontTitle = CreateFont(workBook, HSSFColor.BLACK.index, 14, true);
             var styleTitle = CreateStyle(workBook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
             CreateStringCell(row, 0, styleTitle, string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));

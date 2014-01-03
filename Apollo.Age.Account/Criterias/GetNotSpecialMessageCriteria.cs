@@ -37,7 +37,7 @@ namespace Apollo.Age.Account.Criterias
 
         public bool IsTest { get; set; }
 
-        public int MatchId { get; set; }        
+        public int MatchId { get; set; }
 
         public override bool IsValid()
         {

@@ -8,7 +8,6 @@
 // </history>
 namespace Apollo.CustSetting.Criteria.Member
 {
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -16,7 +15,7 @@ namespace Apollo.CustSetting.Criteria.Member
     /// </summary>
     public class GetMemberBetLimitForUpdateCriteria : CriteriaBase
     {
-        public int CustId { get; set; }                                
+        public int CustId { get; set; }
 
         public int MaxBetLimit { get; set; }
 

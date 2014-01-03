@@ -24,6 +24,7 @@ namespace Apollo.Age.Web.Filters
         public static void DoUnAuthorized(ActionExecutedContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
+
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();
@@ -46,6 +47,7 @@ namespace Apollo.Age.Web.Filters
         public static void DoUnAuthorized(ActionExecutingContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
+
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 response.Clear();

@@ -14,7 +14,7 @@ namespace Apollo.UMService.Model
     using System;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Under maintenance model.
     /// </summary>
     public class UnderMaintenanceModel
     {

@@ -54,13 +54,15 @@ namespace Apollo.CustSetting.Service
         /// <returns>Position taking setting.</returns>
         public PositionTakingSetting GetPositionTakingSettingForUpdating(SettingContext settingContext)
         {
-            PositionTakingSetting positionTakingSetting = new PositionTakingSetting();
+            var positionTakingSetting = new PositionTakingSetting();
+
             try
             {
                 //// Load Pt Configuration
                 XDocument positionTakingDoc = _Configuration.PositionTakingGridConfig;
                 XElement root = positionTakingDoc.Root;
                 Dictionary<string, PositionTaking> positionTakingData = null;
+
                 if (settingContext.TargetRoleId == (int)Role.Member)
                 {
                     positionTakingData = _customerSettingRepository.GetCustomerPositionTakingSettingForUpdating(
@@ -81,7 +83,7 @@ namespace Apollo.CustSetting.Service
 
                 foreach (XElement sport in root.Elements())
                 {
-                    SportType sportType = new SportType
+                    var sportType = new SportType
                     {
                         Id = Converter.ToInt(sport.Attribute("id").Value),
                         IsLive = Converter.ToBool(sport.Attribute("isLive").Value),
@@ -94,7 +96,7 @@ namespace Apollo.CustSetting.Service
                     //// Read All Group
                     foreach (XElement betTypeGroupElement in sport.Elements())
                     {
-                        BetTypeGroup betTypeGroup = new BetTypeGroup
+                        var betTypeGroup = new BetTypeGroup
                         {
                             Id = Converter.ToInt(betTypeGroupElement.Attribute("id") != null ? betTypeGroupElement.Attribute("id").Value : "0")
                         };
@@ -102,7 +104,7 @@ namespace Apollo.CustSetting.Service
                         //// Read all bet type
                         foreach (XElement betType in betTypeGroupElement.Elements())
                         {
-                            BetType bt = new BetType
+                            var bt = new BetType
                             {
                                 Id = Converter.ToInt(betType.Attribute("id").Value),
                                 Name = Converter.ToString2(betType.Attribute("name").Value),
@@ -203,7 +205,7 @@ namespace Apollo.CustSetting.Service
         {
             try
             {
-                CommissionSetting commissionSetting = new CommissionSetting();
+                var commissionSetting = new CommissionSetting();
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
                     commissionSetting.CommissionItems = _customerSettingRepository.GetAgentCommissionSetingForUpdating(new GetAgentDiscountForUpdateCriteria
@@ -248,15 +250,15 @@ namespace Apollo.CustSetting.Service
                 string tempString = string.Empty;
                 XMLStringData xmlStringData = BuildPositionTakingSettingXML(settingContext, positionTakingSetting);
 
-                if (xmlStringData.XMLSetting == string.Empty
-                    && xmlStringData.XMLSetting3rd == string.Empty)
+                if (string.IsNullOrEmpty(xmlStringData.XMLSetting) && string.IsNullOrEmpty(xmlStringData.XMLSetting3rd))
                 {
                     return new Result(Constant.WARNING_CODE_DEFAULT, Constant.WARNING_MESSAGE_DEFAULT);
                 }
 
-                var positionTakingXML = xmlStringData.XMLSetting != string.Empty
+                var positionTakingXML = string.IsNullOrEmpty(xmlStringData.XMLSetting)
                     ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
                     : string.Empty;
+
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
                     criteria = new UpdateAgentPositionTakingCriteria
@@ -355,7 +357,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         AgentId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
                 else
@@ -365,7 +367,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         CustId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
 
@@ -390,9 +392,7 @@ namespace Apollo.CustSetting.Service
         /// <param name="settingContext">Current context.</param>
         /// <param name="commissionSetting">Commission setting.</param>
         /// <returns>Update commission setting result status.</returns>
-        public Result UpdateCommissionSetting(
-            SettingContext settingContext,
-            CommissionSetting commissionSetting)
+        public Result UpdateCommissionSetting(SettingContext settingContext, CommissionSetting commissionSetting)
         {
             if (commissionSetting == null || settingContext == null)
             {
@@ -653,10 +653,9 @@ namespace Apollo.CustSetting.Service
         /// <returns>String data to update database.</returns>
         private XMLStringData BuildBetLimitSettingXML(SettingContext settingContext, IList<BettingLimit> bettingLimits)
         {
-            XMLStringData xmlStringData = new XMLStringData();
-            string tempString = string.Empty;
-            if (bettingLimits != null
-                && bettingLimits.Count > 0)
+            var xmlStringData = new XMLStringData();
+
+            if (bettingLimits != null && bettingLimits.Count > 0)
             {
                 foreach (BettingLimit betLimit in bettingLimits)
                 {
@@ -697,9 +696,9 @@ namespace Apollo.CustSetting.Service
             SettingContext settingContext,
             PositionTakingSetting positionTakingSetting)
         {
-            XMLStringData xmlStringData = new XMLStringData();
-            string tempString = string.Empty;
-            string applyOnMemberTempString = string.Empty;
+            var xmlStringData = new XMLStringData();
+            var tempString = string.Empty;
+
             if (positionTakingSetting != null
                 && positionTakingSetting.SportTypes != null
                 && positionTakingSetting.SportTypes.Count > 0)
