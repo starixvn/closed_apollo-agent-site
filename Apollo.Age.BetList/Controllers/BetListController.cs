@@ -33,6 +33,8 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.TicketHelper;
+    using Fanex.NAP.Framework.Mvc;
+using Apollo.Age.Web.Services;
 
     /// <summary>
     /// BetList Controller.
@@ -46,6 +48,7 @@ namespace Apollo.Age.BetList.Controllers
         private readonly TotalBetsService _totalBetsService;
         private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
+        private readonly ExcelService _excelService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
@@ -57,6 +60,7 @@ namespace Apollo.Age.BetList.Controllers
             this._totalBetsService = new TotalBetsService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
+            this._excelService = new ExcelService();
         }
 
         /// <summary>
@@ -578,7 +582,81 @@ namespace Apollo.Age.BetList.Controllers
             {
                 TicketList = this.Ticket(mainTickets, BetListPage.Report),
             };
+
             return this.View(viewModel);
+        }
+
+        public ActionResult ExportWinloss(
+            int custId,
+            DateTime fromDate,
+            DateTime toDate,
+            string type = "",
+            string username = "",
+            int mainShareHolderId = 0,
+            string mainShareHolderUsername = "",
+            string betType = "",
+            string sportType = "",
+            string sportName = "",
+            string betTypeName = "")
+        {
+            var statusIds = string.Empty;
+            if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
+            {
+                statusIds = string.Format(
+                      "{0},{1},{2},{3},{4},{5}",
+                      (int)Apollo.Age.Enumerations.BetStatus.Void,
+                      (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                      (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                      (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                      (int)Apollo.Age.Enumerations.BetStatus.Won,
+                      (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            }
+            else
+            {
+                statusIds = string.Format(
+                         "{0},{1}",
+                         (int)Apollo.Age.Enumerations.BetStatus.Running,
+                         (int)Apollo.Age.Enumerations.BetStatus.Waiting);
+            }
+
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay();
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                AgentId = -1,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custId,
+                FromDate = this.ResetStartDate(fromDate),
+                ToDate = this.ResetEndDate(toDate),
+                StatusIds = statusIds,
+                BetTypes = betType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
+                BalanceUpDay = balanceUpDay,
+                MoveBetsDay = moveBetsDay
+            };
+
+            TicketResult mainTickets;
+            if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
+            {
+                mainTickets = betListService.GetWinLossByDateAndMem(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetTicketResult(criteria);
+            }
+
+            var listTicketText = this.Ticket(mainTickets, BetListPage.Report);
+
+            var excelResult = this._betListService.ExportExcel(listTicketText, string.Empty);
+
+            var fileName = string.Format(
+                "BetList_{0}_{1}_{2}",
+                "aaaa",
+                this._excelService.ShortDateFormat(fromDate),
+                this._excelService.ShortDateFormat(toDate));
+
+            return new ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -973,6 +1051,6 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Format Start, End date
 
-         
+
     }
 }

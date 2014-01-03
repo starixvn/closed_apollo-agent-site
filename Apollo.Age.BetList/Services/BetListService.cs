@@ -177,7 +177,7 @@ namespace Apollo.Age.BetList.Services
         }
 
 
-        public HSSFWorkbook ExportExcel(TicketResult ticketResult, string title)
+        public HSSFWorkbook ExportExcel(List<TicketText> ticketResult, string title)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 
@@ -199,8 +199,8 @@ namespace Apollo.Age.BetList.Services
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
 
-            int rowIndex, startIndex;
-            rowIndex = startIndex = 4;
+            int rowIndex;
+            rowIndex = 4;
             var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
@@ -219,11 +219,11 @@ namespace Apollo.Age.BetList.Services
             columIndex = 0;
             row = sheet.CreateRow(rowIndex);
 
-            foreach (var item in ticketResult.TicketList)
+            foreach (var item in ticketResult)
             {
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
-                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.ShowTime);
+                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.TransTime);
             }
 
             return hssfworkbook;

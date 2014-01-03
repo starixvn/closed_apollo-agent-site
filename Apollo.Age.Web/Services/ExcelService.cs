@@ -9,6 +9,7 @@
 
 namespace Apollo.Age.Web.Services
 {
+    using System;
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
@@ -138,6 +139,21 @@ namespace Apollo.Age.Web.Services
             palette.SetColorAtIndex(HSSFColor.GREY_25_PERCENT.index, (byte)219, (byte)229, (byte)238);
             palette.SetColorAtIndex(HSSFColor.GREY_50_PERCENT.index, (byte)196, (byte)217, (byte)238);
             palette.SetColorAtIndex(HSSFColor.GREEN.index, (byte)0, (byte)128, (byte)129);
+        }
+
+        /// <summary>
+        /// Get Date Format (year-month-day).
+        /// </summary>
+        /// <param name="dt">Object date need format.</param>
+        /// <returns>Return string date.</returns>
+        public string ShortDateFormat(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
+            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
         }
     }
 }

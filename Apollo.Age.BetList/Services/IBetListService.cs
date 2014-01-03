@@ -44,6 +44,6 @@ namespace Apollo.Age.BetList.Services
 
         IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId);
 
-        HSSFWorkbook ExportExcel(TicketResult ticketResult, string title);
+        HSSFWorkbook ExportExcel(List<TicketText> ticketResult, string title);
     }
 }
