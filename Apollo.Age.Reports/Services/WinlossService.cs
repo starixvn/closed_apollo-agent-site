@@ -543,6 +543,7 @@ namespace Apollo.Age.Reports.Services
             decimal totalATotal = 0;
             decimal totalUpLineEffectiveStake = 0;
             decimal totalUpLineTotal = 0;
+            decimal totalNumberOfMember = 0;
 
             foreach (var agentWinLoss in agentWinLossList)
             {
@@ -558,7 +559,12 @@ namespace Apollo.Age.Reports.Services
                 totalATotal += agentWinLoss.ATotal;
                 totalUpLineEffectiveStake += agentWinLoss.UpLineEffectiveStake;
                 totalUpLineTotal += agentWinLoss.UpLineTotal;
-
+                if (customerCounterList != null && customerCounterList.Any())
+                {
+                    var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
+                    totalNumberOfMember += numberOfMember.CustCount.Value;
+                }
+                
                 row = sheet.CreateRow(rowIndex);
 
                 if (agentWinLoss.IsAgent)
@@ -605,7 +611,14 @@ namespace Apollo.Age.Reports.Services
 
             this.CreateStringCell(row, columIndex++, styleFooterLeft, Lang.total);
             this.CreateStringCell(row, columIndex++, styleFooterRight, string.Empty);
-            this.CreateStringCell(row, columIndex++, styleFooterRight, this.FormatNumber20(totalBetAmount) + " / " + this.FormatNumber(totalBetCount));
+            if (customerCounterList != null && customerCounterList.Any())
+            {
+                this.CreateStringCell(row, columIndex++, styleFooterRight, this.FormatNumber20(totalBetAmount) + " / " + this.FormatNumber(totalBetCount) + " / " + totalNumberOfMember);
+            }
+            else
+            {
+                this.CreateStringCell(row, columIndex++, styleFooterRight, this.FormatNumber20(totalBetAmount) + " / " + this.FormatNumber(totalBetCount));
+            }
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalCommBase);
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalMemTotal);
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalDownLineEffectiveStake);
