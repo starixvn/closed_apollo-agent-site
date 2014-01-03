@@ -12,16 +12,17 @@
 namespace Apollo.Age.BetList.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Impl;
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Web.Services;
     using Apollo.BetList.Core.Entities;
     using NPOI.HSSF.UserModel;
-    using Apollo.Age.Web.Services;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Bet List Service Class.
@@ -176,7 +177,13 @@ namespace Apollo.Age.BetList.Services
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
         }
 
-
+        /// <summary>
+        /// Exports the excel.
+        /// </summary>
+        /// <param name="ticketResult">The ticket result.</param>
+        /// <param name="title">The title.</param>
+        /// <returns>HSSF Work book.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public HSSFWorkbook ExportExcel(List<TicketText> ticketResult, string title)
         {
             HSSFWorkbook hssfworkbook = new HSSFWorkbook();
@@ -186,12 +193,8 @@ namespace Apollo.Age.BetList.Services
             _excelService.CustomizeColor(hssfworkbook);
 
             var fontHeaderWhite = _excelService.CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-            var fontHeaderBlack = _excelService.CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
 
-            var headerStyleShare = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleMember = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-            var headerStyleDownline = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleAgent = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyle = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_40_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderWhite);
 
             var bodyStyleRight = _excelService.CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
             var bodyStyleLeft = _excelService.CreateStyle(hssfworkbook);
@@ -199,21 +202,20 @@ namespace Apollo.Age.BetList.Services
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
 
-            int rowIndex;
-            rowIndex = 4;
+            int rowIndex, startIndex;
+            rowIndex = startIndex = 4;
             var columIndex = 0;
             var row = sheet.CreateRow(rowIndex);
 
-
-            _excelService.CreateStringCell(row, columIndex++, headerStyleShare, Resources.BetList.time);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleShare, Resources.BetList.discount);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.gameType);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.explain);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.amount);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleDownline, Resources.BetList.result);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleDownline, Resources.BetList.status);
-            _excelService.CreateStringCell(row, columIndex++, headerStyleAgent, Resources.Lang.lblAgentShare );
-            _excelService.CreateStringCell(row, columIndex++, headerStyleAgent, Resources.Lang.AgentCommission);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.time);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.discount);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.gameType);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.explain);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.amount);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.result);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.status);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.Lang.lblAgentShare);
+            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.Lang.AgentCommission);
 
             rowIndex++;
             columIndex = 0;
@@ -224,6 +226,18 @@ namespace Apollo.Age.BetList.Services
                 columIndex = 0;
                 row = sheet.CreateRow(rowIndex);
                 _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.TransTime);
+                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.Discount);
+                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.GameType);
+                rowIndex++;
+            }
+
+            sheet.CreateFreezePane(0, startIndex + 2); //// 2: Freeze Pane 2 row after start index
+            //// Auto-size each column
+            for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
+            {
+                sheet.AutoSizeColumn(i);
+                var currentWidth = sheet.GetColumnWidth(i);
+                sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
             }
 
             return hssfworkbook;

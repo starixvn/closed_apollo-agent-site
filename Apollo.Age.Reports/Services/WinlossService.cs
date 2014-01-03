@@ -564,7 +564,7 @@ namespace Apollo.Age.Reports.Services
                     var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
                     totalNumberOfMember += numberOfMember.CustCount.Value;
                 }
-                
+
                 row = sheet.CreateRow(rowIndex);
 
                 if (agentWinLoss.IsAgent)
@@ -619,6 +619,7 @@ namespace Apollo.Age.Reports.Services
             {
                 this.CreateStringCell(row, columIndex++, styleFooterRight, this.FormatNumber20(totalBetAmount) + " / " + this.FormatNumber(totalBetCount));
             }
+
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalCommBase);
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalMemTotal);
             this.CreateNumberCell(row, columIndex++, styleFooterRight, numberFormat, (double)totalDownLineEffectiveStake);

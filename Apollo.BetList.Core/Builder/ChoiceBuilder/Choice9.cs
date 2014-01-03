@@ -11,6 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
@@ -34,6 +35,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
@@ -68,6 +70,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
@@ -83,6 +86,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <returns>Return mix parlay string.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private string RenderMixParlayDetail(ITicket ticket, IList<ITicket> ticketMixParlay, ITicketHelper ticketHelper)
         {
             var line = "<div class='line'></div>";

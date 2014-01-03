@@ -11,6 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;
@@ -18,6 +19,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public interface IChoice
     {
         /// <summary>
@@ -48,7 +50,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="betListPage">The bet list page.</param>
-        /// <returns>Choice Template.</returns>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
         Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage);
 
         /// <summary>

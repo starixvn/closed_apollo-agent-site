@@ -11,8 +11,9 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Web;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Web;
     using Apollo.BetList.Core.Entities;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
@@ -65,7 +66,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="betListPage">The bet list page.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
@@ -81,7 +84,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 custid = ticket.CustId.ToString();
             }
-            
+
             mixParlay = string.Join(
                                         null,
                                             "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
@@ -135,7 +138,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns></returns>
+        /// <returns>Return system string.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private string RenderMixParlayDetail(ITicket ticket, IList<ITicket> ticketMixParlay, ITicketHelper ticketHelper)
         {
             var line = "<div class='line'></div>";

@@ -29,12 +29,12 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
+    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.Web.Attribute;
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.TicketHelper;
     using Fanex.NAP.Framework.Mvc;
-using Apollo.Age.Web.Services;
 
     /// <summary>
     /// BetList Controller.
@@ -586,6 +586,21 @@ using Apollo.Age.Web.Services;
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Exports the win loss.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="fromDate">The From date.</param>
+        /// <param name="toDate">The To date.</param>
+        /// <param name="type">The type bet list.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <param name="mainShareHolderUsername">The main share holder username.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="sportName">Name of the sport.</param>
+        /// <param name="betTypeName">Name of the bet type.</param>
+        /// <returns>Return action result.</returns>
         public ActionResult ExportWinloss(
             int custId,
             DateTime fromDate,
@@ -925,6 +940,7 @@ using Apollo.Age.Web.Services;
         /// <param name="ticketResult">The ticket result.</param>
         /// <param name="betlistPage">The bet list page.</param>
         /// <returns>Return view result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private List<TicketText> Ticket(TicketResult ticketResult, BetListPage betlistPage)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
@@ -1050,7 +1066,5 @@ using Apollo.Age.Web.Services;
         }
 
         #endregion Format Start, End date
-
-
     }
 }
