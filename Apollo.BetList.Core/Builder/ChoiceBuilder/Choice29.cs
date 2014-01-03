@@ -12,7 +12,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
     using System.Web;
-
+    using System.Linq;
     using Apollo.BetList.Core.Entities;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
@@ -66,7 +66,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="betListPage">The bet list page.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, BetListPage betListPage)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
 
@@ -81,7 +81,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 custid = ticket.CustId.ToString();
             }
-
+            
             mixParlay = string.Join(
                                         null,
                                             "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
@@ -96,7 +96,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                                             "</div>",
                                             "<div id=\"divEvent_",
                                             ticket.TransId.ToString(),
-                                            "\" style=\"display: none\" ></div>",
+                                            "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>",
                                             "<div class=\"detail\" onclick=\"showCombMPDetail(&quot;",
                                             ticket.RefNo,
                                             "&quot;",
@@ -127,6 +127,42 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             betteam = betteam.Trim();
             return _combinationOfferName.ContainsKey(betteam) ? _combinationOfferName[betteam] : string.Empty;
+        }
+
+        /// <summary>
+        /// Renders the mix parlay detail.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <returns></returns>
+        private string RenderMixParlayDetail(ITicket ticket, IList<ITicket> ticketMixParlay, ITicketHelper ticketHelper)
+        {
+            var line = "<div class='line'></div>";
+            var result = string.Empty;
+            var tickets = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo);
+            foreach (var item in tickets)
+            {
+                var builder = new BetListHTMLBuilder();
+
+                if (tickets.LastOrDefault().TransId == item.TransId)
+                {
+                    line = string.Empty;
+                }
+
+                if (item.StatusId.ToString() == BetStatus.Void)
+                {
+                    builder.AddChoice(item, ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
+                }
+                else
+                {
+                    builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
+                }
+
+                result += builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
+            }
+
+            return result;
         }
     }
 }

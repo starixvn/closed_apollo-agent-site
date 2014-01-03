@@ -165,7 +165,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
         {
-            this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            this.BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay, betListPage);
             this.BuildHandicapOdds(ticket, ticketHelper);
             this.BuildScoreMap(ticket, isShowScoreMap);
 

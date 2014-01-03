@@ -18,6 +18,10 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.BetList.Core.Entities;
+    using NPOI.HSSF.UserModel;
+    using Apollo.Age.Web.Services;
+    using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Bet List Service Class.
@@ -25,6 +29,7 @@ namespace Apollo.Age.BetList.Services
     public class BetListService : QueryService, IBetListService
     {
         private IBetListRepository _betListRepository;
+        private ExcelService _excelService;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BetListService" /> class.
@@ -41,6 +46,7 @@ namespace Apollo.Age.BetList.Services
         public BetListService(IBetListRepository betListRepository)
         {
             this._betListRepository = this._betListRepository ?? new BetListRepository();
+            this._excelService = new ExcelService();
         }
 
         /// <summary>
@@ -168,6 +174,59 @@ namespace Apollo.Age.BetList.Services
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
+        }
+
+
+        public HSSFWorkbook ExportExcel(TicketResult ticketResult, string title)
+        {
+            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+
+            var sheet = hssfworkbook.CreateSheet(Resources.Lang.lblBetLists);
+
+            _excelService.CustomizeColor(hssfworkbook);
+
+            var fontHeaderWhite = _excelService.CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
+            var fontHeaderBlack = _excelService.CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
+
+            var headerStyleShare = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleMember = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleDownline = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleAgent = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+
+            var bodyStyleRight = _excelService.CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+            var bodyStyleLeft = _excelService.CreateStyle(hssfworkbook);
+
+            IDataFormat format = hssfworkbook.CreateDataFormat();
+            var numberFormat = format.GetFormat("#,##0.00");
+
+            int rowIndex, startIndex;
+            rowIndex = startIndex = 4;
+            var columIndex = 0;
+            var row = sheet.CreateRow(rowIndex);
+
+
+            _excelService.CreateStringCell(row, columIndex++, headerStyleShare, Resources.BetList.time);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleShare, Resources.BetList.discount);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.gameType);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.explain);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleMember, Resources.BetList.amount);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleDownline, Resources.BetList.result);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleDownline, Resources.BetList.status);
+            _excelService.CreateStringCell(row, columIndex++, headerStyleAgent, Resources.Lang.lblAgentShare );
+            _excelService.CreateStringCell(row, columIndex++, headerStyleAgent, Resources.Lang.AgentCommission);
+
+            rowIndex++;
+            columIndex = 0;
+            row = sheet.CreateRow(rowIndex);
+
+            foreach (var item in ticketResult.TicketList)
+            {
+                columIndex = 0;
+                row = sheet.CreateRow(rowIndex);
+                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.ShowTime);
+            }
+
+            return hssfworkbook;
         }
     }
 }

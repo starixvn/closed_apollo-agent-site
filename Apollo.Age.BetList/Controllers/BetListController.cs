@@ -972,5 +972,7 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         #endregion Format Start, End date
+
+         
     }
 }

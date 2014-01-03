@@ -11,6 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.HSSF.UserModel;
@@ -45,10 +46,10 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                                                     "&quot;);\">",
                                                     betTypeName,
                                                     "</a>",
-                                                    "<br/><br/>",
+                                                    "<br/>",
                                                     "<div id=\"divEvent_",
                                                     ticket.TransId.ToString(),
-                                                    "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket,ticketMixParlay,ticketHelper) + "</div>");
+                                                    "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>");
 
             this.Template.SetValue(mixParlay);
 
@@ -86,22 +87,26 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             var line = "<div class='line'></div>";
             var result = string.Empty;
-            foreach (var item in ticketMixParlay)
+            var tickets = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo);
+            foreach (var item in tickets)
             {
-                if (item.RefNo == ticket.RefNo)
-                {
-                    var builder = new BetListHTMLBuilder();
-                    if (item.StatusId.ToString() == BetStatus.Void)
-                    {
-                        builder.AddChoice(item, ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
-                    }
-                    else
-                    {
-                        builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
-                    }
+                var builder = new BetListHTMLBuilder();
 
-                    result += builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
+                if (tickets.LastOrDefault().TransId == item.TransId)
+                {
+                    line = string.Empty;
                 }
+
+                if (item.StatusId.ToString() == BetStatus.Void)
+                {
+                    builder.AddChoice(item, ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
+                }
+                else
+                {
+                    builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
+                }
+
+                result += builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
             }
 
             return result;

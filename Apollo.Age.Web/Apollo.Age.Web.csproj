@@ -56,6 +56,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\Dependencies\Owin.dll</HintPath>
     </Reference>
@@ -99,6 +103,7 @@
     <Compile Include="DeviceDetection.cs" />
     <Compile Include="LanguageManager.cs" />
     <Compile Include="Mvc\RazorExtensions.cs" />
+    <Compile Include="Services\ExcelService.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="ViewModels\SafeCodeViewModel.cs" />
     <Compile Include="ViewModels\SelectAccountViewModel.cs" />
