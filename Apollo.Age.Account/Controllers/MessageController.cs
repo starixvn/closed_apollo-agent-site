@@ -94,7 +94,7 @@ namespace Apollo.Age.Account.Controllers
 
             var model = this._messageService.GetAnnouncement(
                 this.CurrentSession.AgentId,
-                AppSettings.SiteId.ToString(),
+                AppSettings.MessageSiteId.ToString(),
                 startDate,
                 endDate,
                 agentLevel,
@@ -130,7 +130,7 @@ namespace Apollo.Age.Account.Controllers
             int maxSize = 50;
 
             criteria.CustId = this.CurrentSession.AgentId;
-            criteria.SiteId = this._messageService.GetParentSitesID(AppSettings.SiteId.ToString());
+            criteria.SiteId = this._messageService.GetParentSitesID(AppSettings.MessageSiteId.ToString());
             criteria.Record = maxSize;
 
             criteria.FromDate = criteria.FromDate != null ? criteria.FromDate : DateTime.Now.AddDays(-3);
@@ -201,7 +201,7 @@ namespace Apollo.Age.Account.Controllers
             object[] publicMessages = new object[3];
             object[] privateMessages = new object[2];
 
-            var pubMessage = this._messageService.GetTopPublicMessage(messageType, AppSettings.SiteId);
+            var pubMessage = this._messageService.GetTopPublicMessage(messageType, AppSettings.MessageSiteId);
             if (!ReferenceEquals(pubMessage, null))
             {
                 publicMessages[0] = pubMessage.MessageId;
@@ -238,7 +238,7 @@ namespace Apollo.Age.Account.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetLevelMessage()
         {
-            var messages = this._messageService.GetTopPublicMessageLevel(AppSettings.SiteId, this.CurrentSession.AgentLevel);
+            var messages = this._messageService.GetTopPublicMessageLevel(AppSettings.MessageSiteId, this.CurrentSession.AgentLevel);
             if (messages != null)
             {
                 return Json(
@@ -275,7 +275,7 @@ namespace Apollo.Age.Account.Controllers
             return _messageService.GetMessage(new GetListMessageCriteria
             {
                 CustomerId = this.CurrentSession.AgentId,
-                SiteIds = AppSettings.SiteId.ToString(),
+                SiteIds = AppSettings.MessageSiteId.ToString(),
                 StartDate = startDate,
                 EndDate = endDate,
                 IsSpecial = isSpecial,

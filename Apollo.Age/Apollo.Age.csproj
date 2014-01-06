@@ -66,6 +66,8 @@
     <Compile Include="Core\Policy.cs" />
     <Compile Include="Core\SportGroup.cs" />
     <Compile Include="Criterias\AgentGetStatusCriteria.cs" />
+    <Compile Include="Criterias\SSOCheckInCriteria.cs" />
+    <Compile Include="Criterias\SSOGetTimeCriteria.cs" />
     <Compile Include="Criterias\UserAssignFunctionCriteria.cs" />
     <Compile Include="Criterias\UserGetUserByAgentCriteria.cs" />
     <Compile Include="Criterias\UserGetAllUserPolicyCriteria.cs" />

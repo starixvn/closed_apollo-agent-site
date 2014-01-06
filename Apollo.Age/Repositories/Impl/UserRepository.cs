@@ -285,5 +285,48 @@ namespace Apollo.Age.Repositories.Impl
                 }
             }
         }
+
+        /// <summary>
+        /// Get time once SSO accessed.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// Return time of user logged in.
+        /// </returns>
+        public DateTime SSOGetTime(SSOGetTimeCriteria criteria)
+        {
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var param = criteria.GetSpParams();
+
+                    objectDb.ExecuteNonQuery(param);
+
+                    return (DateTime)param["time"];
+                }
+            }
+
+            return DateTime.Now;
+        }
+
+        /// <summary>
+        /// SSO the check in.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// Return user Id.
+        /// </returns>
+        public int SSOCheckIn(SSOCheckInCriteria criteria)
+        {
+            var param = criteria.GetSpParams();
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(param);
+
+                return Convert.ToInt32(param["onuserid"]);
+            }
+        }
     }
 }
