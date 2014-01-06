@@ -111,5 +111,19 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
 
             return rtfStatus;
         }
+
+
+        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
+        {
+            Render(ticket, ticketData);
+
+            string status = Template.result;
+            rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
+
+            IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfStatus;
+        }
     }
 }

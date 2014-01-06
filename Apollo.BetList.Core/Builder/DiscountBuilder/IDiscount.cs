@@ -33,5 +33,13 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
         /// <param name="page">Link from page.</param>
         /// <returns>Discount template.</returns>
         Discount_Template Render(ITicket ticket, BetListPage page);
+
+        /// <summary>
+        /// Adds the discount.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The page.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper);
     }
 }

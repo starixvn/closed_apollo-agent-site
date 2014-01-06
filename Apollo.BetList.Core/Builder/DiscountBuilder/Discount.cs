@@ -16,6 +16,7 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Discount class.
@@ -101,6 +102,23 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
             }
 
             return string.Empty;
+        }
+        
+        /// <summary>
+        /// Renders the RFT.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="?">The ?.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich Text String.</returns>
+        public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
+        {
+            Render(ticket, page);
+
+            IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
+
+            return rtfDiscount;
         }
     }
 }

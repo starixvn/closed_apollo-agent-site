@@ -934,6 +934,49 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Common Action
 
+        private List<TicketText> TicketExcel(TicketResult ticketResult, BetListPage betlistPage)
+        {
+            GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+            var ticketHelper = new TicketHelper();
+            var builder = new BetListExcelBuilder();
+            var ticketTextList = new List<TicketText>();
+            var tickets = ticketResult.TicketList;
+            foreach (var ticket in tickets)
+            {
+                if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
+                {
+                    ticket.AgentLevel = CurrentSession.AgentLevel;
+                }
+
+                var ticketText = new TicketText
+                {
+                    TransId = ticket.TransId,
+                    UserName = ticket.UserName,
+                    Discount = builder.AddDiscount(ticket,betlistPage).ToString()
+                };
+
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
+                {
+                    ticketText.Result = ticket.Winlost + ticket.PlayerComm;
+                    ticketText.AgentWinlossValue = ticket.AWinlost;
+                }
+                else
+                {
+                    ticketText.Result = 0;
+                    ticketText.AgentWinlossValue = 0;
+                }
+
+                ticketTextList.Add(ticketText);
+            }
+
+            return ticketTextList;
+        }
+
+
         /// <summary>
         /// Get ticket for bet List.
         /// </summary>
