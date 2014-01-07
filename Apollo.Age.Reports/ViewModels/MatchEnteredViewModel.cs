@@ -25,6 +25,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateRange LastPeriod { get; set; }
 
+        public List<DateRange> FivePeriods { get; set; }
+
         public List<DateRangesModel> PeriodList { get; set; }
 
         public List<MatchEnteredModel> MatchEnteredModelList { get; set; }
@@ -36,6 +38,8 @@ namespace Apollo.Age.Reports.ViewModels
         public bool HasPermission { get; set; }
 
         public string SportTypeIds { get; set; }
+
+        public bool IsHistoryReport { get; set; }
 
         /// <summary>
         /// Checks the is completed.

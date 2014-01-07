@@ -33,20 +33,32 @@ namespace Apollo.Age.Reports.Services
             List<DateRangesModel> data = GetAllPeriodRange();
             data = data.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
             var dateRangeNow = new List<DateRange>();
-
+            int periodCounter = 1;
             foreach (var item in data)
             {
+                periodCounter = 1;
                 foreach (var range in item.ListOfDateRange)
                 {
                     dateRangeNow.Add(new DateRange
                     {
                         FromDate = range.FromDate,
-                        ToDate = range.ToDate
+                        ToDate = range.ToDate,
+                        PeriodNumber = periodCounter
                     });
+
+                    periodCounter++;
                 }
             }
 
             return dateRangeNow;
+        }
+
+        public List<DateRange> FivePeriodRanges()
+        {
+            var currentPariod = this.PeriodDates();
+            var listOfCurrentPeriod = PeriodRanges();
+            
+            return listOfCurrentPeriod.Where(x => x.FromDate <= currentPariod.FromDate && x.ToDate <= currentPariod.ToDate).OrderByDescending(a=>a.FromDate).Take(5).ToList();
         }
 
         /// <summary>

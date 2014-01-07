@@ -404,6 +404,7 @@
         var classTransaction = string.Empty;
         var classTicketsCancelled = string.Empty;
         var classSportCredit = string.Empty;
+        var classWinlossHistory = string.Empty;
 
         if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
         {
@@ -424,6 +425,10 @@
         else if (currentLink.ToUpper().Equals(Lang.LineSportCredits.ToUpper()))
         {
             classSportCredit = "class=active";
+        }
+        else if (currentLink.ToUpper().Equals(Lang.lblWinLossHistory.ToUpper()))
+        {
+            classWinlossHistory = "class=active";
         }
 
     <ul class="@reportclass">
@@ -449,6 +454,11 @@
         {
             <li @classSportCredit><a href="~/reports/SportCredit">@Lang.lblLineSportCredit</a></li>
         }
+         @if (functionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query)
+        {
+            <li @classWinlossHistory><a href="~/Reports/MatchEntered?ishistory=true">@Lang.lblWinLossHistory</a></li>
+        }
+
     </ul>
 }
 @helper RenderAgentListHeader(int currentLevel, bool isReplaceUpline = false)

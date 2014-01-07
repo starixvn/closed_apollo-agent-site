@@ -279,7 +279,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Get MatchEntered report.
         /// </summary>
         /// <returns>MatchEntered ViewResult.</returns>
-        public ActionResult MatchEntered()
+        public ActionResult MatchEntered(bool isHistory = false)
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -323,9 +323,18 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             ViewBag.allFunctionPermission = functionPermission;
-
             matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
-            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
+            if (isHistory)
+            {
+                matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.FivePeriodRanges().Last();
+            }
+            else
+            {
+                
+                matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
+            }
+            matchEnteredViewModel.FivePeriods = _periodDateRangeSerivce.FivePeriodRanges();
+            matchEnteredViewModel.IsHistoryReport = isHistory;
 
             return this.View(matchEnteredViewModel);
         }
@@ -347,7 +356,8 @@ namespace Apollo.Age.Reports.Controllers
             string sporttypes,
             string bettypes,
             int? agentId,
-            string agentName)
+            string agentName,
+            bool isHistory = false)
         {
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
@@ -419,7 +429,9 @@ namespace Apollo.Age.Reports.Controllers
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
                 ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
-                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
+                LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
+                FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
+                IsHistoryReport = isHistory
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);

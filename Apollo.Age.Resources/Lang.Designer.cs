@@ -4040,6 +4040,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History Report.
+        /// </summary>
+        public static string lblWinLossHistory {
+            get {
+                return ResourceManager.GetString("lblWinLossHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Effective Stake#1: total stake after share returned to the company (the selected agent and upline) by downline.
         /// </summary>
         public static string lblwinlossnote1 {

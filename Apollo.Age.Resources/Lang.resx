@@ -2137,4 +2137,7 @@
   <data name="NumberOfMember" xml:space="preserve">
     <value>No. of Members</value>
   </data>
+  <data name="lblWinLossHistory" xml:space="preserve">
+    <value>History Report</value>
+  </data>
 </root>
