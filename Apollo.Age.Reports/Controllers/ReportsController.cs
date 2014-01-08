@@ -338,7 +338,10 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="bettypes">Bet type list.</param>
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ViewResult agent win loss.</returns>
+        /// <param name="isHistory">If set to <c>true</c> [is history].</param>
+        /// <returns>
+        /// ViewResult agent win loss.
+        /// </returns>
         [ValidateInput(false)]
         public ViewResult AgentWinLoss(
             DateTime? fromDate,
@@ -349,7 +352,6 @@ namespace Apollo.Age.Reports.Controllers
             string agentName,
             bool isHistory = false)
         {
-
             if (isHistory)
             {
                 fromDate = fromDate == null ? _periodDateRangeSerivce.FivePeriodRanges().First().FromDate : fromDate;

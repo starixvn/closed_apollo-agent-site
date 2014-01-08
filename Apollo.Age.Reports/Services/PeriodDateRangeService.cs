@@ -53,6 +53,11 @@ namespace Apollo.Age.Reports.Services
             return dateRangeNow;
         }
 
+        /// <summary>
+        /// Fives the period ranges.
+        /// </summary>
+        /// <returns>List of date range.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public List<DateRange> FivePeriodRanges()
         {
             var currentPariod = this.PeriodDates();
