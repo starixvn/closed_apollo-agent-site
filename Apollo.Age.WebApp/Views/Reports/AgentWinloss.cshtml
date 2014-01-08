@@ -54,12 +54,12 @@ new ReportMenuViewModel
                         {
                             var periodText = "{0}-P{1}";
                             foreach (var period in Model.FivePeriods)
-                            {                                
+                            {
                             <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
                             }
                         }
                         else
-                        { 
+                        {
                             <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
                             <input class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
                             <input class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
@@ -89,7 +89,6 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
-
 @if (Model.IsHistoryReport)
 {
     <div class="period-schedule">
@@ -114,7 +113,7 @@ new ReportMenuViewModel
                     oldPeriodFromDate = Model.PeriodList[0].ListOfDateRange[i].FromDate;
                     oldPeriodToDate = Model.PeriodList[0].ListOfDateRange[i].ToDate;
                     counter++;
-                    
+
                     <tr>
                         <td class="firstcolumn">
                             @counter
@@ -126,7 +125,7 @@ new ReportMenuViewModel
                             </td>
                         }
                         else
-                        { 
+                        {
                             <td>
                                 @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
                             </td>
@@ -141,7 +140,7 @@ new ReportMenuViewModel
                             </td>
                         }
                         else
-                        { 
+                        {
                             <td>
                                 @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
                             </td>
@@ -152,7 +151,6 @@ new ReportMenuViewModel
         </table>
     </div>
 }
-
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
     <div class="@(Model.IsHistoryReport ? "noteshistory" : "notes")">
@@ -163,14 +161,12 @@ new ReportMenuViewModel
         </ul>
     </div>
 }
-
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
 
-
-if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
-{
+    if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
+    {
     <div class="export-excel" id="btnExcelAgentWinLoss">
     </div>
     <table class="tblRpt report tblWinLoss">
@@ -199,7 +195,7 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                         <span class='split-header'>/</span>
                         @Lang.lblBetCount
                         @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
-                        { 
+                        {
                             <span class='split-header'>/</span>
                             <span>@Lang.NumberOfMember</span>
                         }
@@ -235,13 +231,13 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                     <tr>
                         <td>
                             @if (hasDownlineDetailsPermission)
-                            { 
+                            {
                                 <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
                                     @item.AgentName
                                 </a>
                             }
                             else
-                            { 
+                            {
                                 @item.AgentName.EncryptUsername()
                             }
                         </td>
@@ -315,7 +311,7 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                         <span class='split-header'>/</span>
                         @Lang.lblBetCount
                         @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
-                        { 
+                        {
                             <span class='split-header'>/</span>
                             <span>@Lang.NumberOfMember</span>
                         }
@@ -364,7 +360,7 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                         decimal totalUpLineEffectiveStake = 0;
                         decimal totalUpLineTotal = 0;
                         decimal totalNumberOfMember = 0;
-            
+
                 }
                 @foreach (var item in list)
                 {
@@ -391,7 +387,7 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                         {
                             <td>
                                 @if (hasDownlineDetailsPermission)
-                                { 
+                                {
                                     <a class="view-agentwinloss" data-agentid="@item.AgentId" data-agentname="@item.AgentName" href="javascript:void(0);">
                                         @item.AgentName
                                     </a>
@@ -409,7 +405,7 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
                         {
                             <td>
                                 @if (hasDownlineDetailsPermission && !Model.IsHistoryReport)
-                                { 
+                                {
                                     <a class="view-memberwinloss" data-agentid="@Model.AgentId" data-agentname="@Model.AgentName" href="javascript:void(0);">
                                         @Lang.lblMemberWinLoss
                                     </a>
@@ -527,9 +523,9 @@ if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
             </tfoot>
         }
     </table>
-}
-else
-{
+    }
+    else
+    {
     <table class="tblRpt report none-result">
         <thead>
             <tr>
@@ -546,7 +542,7 @@ else
             </tr>
         </tbody>
     </table>
-}
+    }
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)

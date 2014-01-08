@@ -4436,7 +4436,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No data for search.
+        ///   Looks up a localized string similar to No data for search!.
         /// </summary>
         public static string NodataSearch {
             get {

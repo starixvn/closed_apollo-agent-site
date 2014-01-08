@@ -208,7 +208,7 @@
     <value>Your session has timed out or your request is not authorized</value>
   </data>
   <data name="NodataSearch" xml:space="preserve">
-    <value>No data for search</value>
+    <value>No data for search!</value>
   </data>
   <data name="lblPlayerList" xml:space="preserve">
     <value>Member List</value>
