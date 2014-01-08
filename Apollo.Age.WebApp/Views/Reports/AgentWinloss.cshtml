@@ -89,7 +89,7 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
-@if (Model.IsHistoryReport)
+@if (Model.IsHistoryReport && Model.AgentWinLossList == null)
 {
     <div class="period-schedule">
         <table class="tblRpt">
@@ -153,7 +153,7 @@ new ReportMenuViewModel
 }
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
-    <div class="@(Model.IsHistoryReport ? "noteshistory" : "notes")">
+    <div class="@(Model.IsHistoryReport && Model.AgentWinLossList == null ? "noteshistory" : "notes")">
         <div class="title-notes">@Lang.lblRemarks:</div>
         <ul class="list">
             <li>@Lang.lblwinlossnote1</li>
