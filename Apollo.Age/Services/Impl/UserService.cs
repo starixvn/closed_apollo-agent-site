@@ -451,5 +451,25 @@ namespace Apollo.Age.Services.Impl
 
             return userPermission;
         }
+
+        /// <summary>
+        /// SSO the get time.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return SSO time.</returns>
+        public DateTime SSOGetTime(SSOGetTimeCriteria criteria)
+        {
+            return _userRepository.SSOGetTime(criteria);
+        }
+
+        /// <summary>
+        /// SSO the check in.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return on user Id.</returns>
+        public int SSOCheckIn(SSOCheckInCriteria criteria)
+        {
+            return _userRepository.SSOCheckIn(criteria);
+        }
     }
 }
