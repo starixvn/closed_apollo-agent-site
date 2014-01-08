@@ -353,6 +353,7 @@ namespace Apollo.Age.Reports.Controllers
             bool isHistory = false)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
+
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
