@@ -279,7 +279,7 @@ namespace Apollo.Age.Reports.Controllers
         /// Get MatchEntered report.
         /// </summary>
         /// <returns>MatchEntered ViewResult.</returns>
-        public ActionResult MatchEntered(bool isHistory = false)
+        public ActionResult MatchEntered()
         {
             var matchEnteredViewModel = new MatchEnteredViewModel();
             matchEnteredViewModel.BalanceUpDay = this._winLossService.GetBalanceUpDay();
@@ -324,17 +324,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = functionPermission;
             matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
-            if (isHistory)
-            {
-                matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.FivePeriodRanges().Last();
-            }
-            else
-            {
-                
-                matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
-            }
-            matchEnteredViewModel.FivePeriods = _periodDateRangeSerivce.FivePeriodRanges();
-            matchEnteredViewModel.IsHistoryReport = isHistory;
+            matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View(matchEnteredViewModel);
         }
@@ -351,14 +341,23 @@ namespace Apollo.Age.Reports.Controllers
         /// <returns>ViewResult agent win loss.</returns>
         [ValidateInput(false)]
         public ViewResult AgentWinLoss(
-            DateTime fromDate,
-            DateTime toDate,
+            DateTime? fromDate,
+            DateTime? toDate,
             string sporttypes,
             string bettypes,
             int? agentId,
             string agentName,
             bool isHistory = false)
         {
+
+            if (isHistory)
+            {
+                fromDate = fromDate == null ? _periodDateRangeSerivce.FivePeriodRanges().First().FromDate : fromDate;
+                toDate = toDate == null ? _periodDateRangeSerivce.FivePeriodRanges().First().ToDate : toDate;
+                sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
+                bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
+            }
+
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
@@ -387,8 +386,8 @@ namespace Apollo.Age.Reports.Controllers
                 AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
                 Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                 Bettypes = bettypes,
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = fromDate.Value,
+                ToDate = toDate.Value,
                 BalanceUpDay = balanceUpDay,
                 MoveBetDay = this._winLossService.MoveBetsDay()
             };
@@ -406,8 +405,8 @@ namespace Apollo.Age.Reports.Controllers
                     AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
                     Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                     Bettypes = bettypes,
-                    FromDate = fromDate,
-                    ToDate = toDate,
+                    FromDate = fromDate.Value,
+                    ToDate = toDate.Value,
                     BalanceUpDay = balanceUpDay,
                     MoveBetDay = this._winLossService.MoveBetsDay()
                 });
@@ -415,8 +414,8 @@ namespace Apollo.Age.Reports.Controllers
 
             var model = new AgentWinLossViewModel
             {
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = fromDate.Value,
+                ToDate = toDate.Value,
                 SportTypeIds = sporttypes,
                 BetTypeIds = bettypes,
                 AgentId = criteria.AgentId,
@@ -428,9 +427,10 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
+                ThisPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().First() : _periodDateRangeSerivce.PeriodDates(),
                 LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
                 FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
+                PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
                 IsHistoryReport = isHistory
             };
 

@@ -1,5 +1,6 @@
 ﻿@using Apollo.Age.Reports.ViewModels
 @using Apollo.Age.Resources
+@using Apollo.Age.Configurations
 @{
     ViewBag.Title = Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
@@ -7,7 +8,14 @@
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
 
     var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-    var counter = 7;
+    int counter = 0;
+    var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+    var currentPeriodClass = string.Empty;
+
+    var currentPeriodFromDate = DateTime.Now;
+    var currentPeriodToDate = DateTime.Now;
+    var oldPeriodFromDate = DateTime.Now;
+    var oldPeriodToDate = DateTime.Now;
 }
 @model AgentWinLossViewModel
 @Html.Partial("Menu",
@@ -45,9 +53,9 @@ new ReportMenuViewModel
                         @if (Model.IsHistoryReport)
                         {
                             var periodText = "{0}-P{1}";
-                            foreach(var period in Model.FivePeriods)
+                            foreach (var period in Model.FivePeriods)
                             {                                
-                                <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
+                            <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
                             }
                         }
                         else
@@ -59,7 +67,6 @@ new ReportMenuViewModel
                             <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
                             <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
                         }
-
                     </div>
                 </div>
             </td>
@@ -82,6 +89,70 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
+
+@if (Model.IsHistoryReport)
+{
+    <div class="period-schedule">
+        <table class="tblRpt">
+            <thead>
+                <tr>
+                    <th colspan="4">@string.Format(Lang.periodlisttitle, Model.PeriodList[0].Year + " & " + Model.PeriodList[1].Year)
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">@Model.PeriodList[0].Year
+                    </th>
+                    <th colspan="2">@Model.PeriodList[1].Year
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < 12; i++)
+                {
+                    currentPeriodFromDate = Model.PeriodList[1].ListOfDateRange[i].FromDate;
+                    currentPeriodToDate = Model.PeriodList[1].ListOfDateRange[i].ToDate;
+                    oldPeriodFromDate = Model.PeriodList[0].ListOfDateRange[i].FromDate;
+                    oldPeriodToDate = Model.PeriodList[0].ListOfDateRange[i].ToDate;
+                    counter++;
+                    
+                    <tr>
+                        <td class="firstcolumn">
+                            @counter
+                        </td>
+                        @if (oldPeriodFromDate <= currentDate && oldPeriodToDate >= currentDate)
+                        {
+                            <td class="CurrentPeriod">
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                        else
+                        { 
+                            <td>
+                                @oldPeriodFromDate.ToString("yyyy-MM-dd") ~ @oldPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                        <td class="firstcolumn">
+                            @counter
+                        </td>
+                        @if (currentPeriodFromDate <= currentDate && currentPeriodToDate >= currentDate)
+                        {
+                            <td class="CurrentPeriod">
+                                @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                        else
+                        { 
+                            <td>
+                                @currentPeriodFromDate.ToString("yyyy-MM-dd") ~ @currentPeriodToDate.ToString("yyyy-MM-dd")
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
 @if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
     <div class="notes">
@@ -92,6 +163,7 @@ new ReportMenuViewModel
         </ul>
     </div>
 }
+
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)

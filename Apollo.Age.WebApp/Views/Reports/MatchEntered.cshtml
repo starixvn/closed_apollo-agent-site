@@ -23,7 +23,7 @@ new ReportMenuViewModel
 {
     SportList = Model.SportList,
     FunctionPolicyList = FunctionPermissions,
-    ReportName = Model.IsHistoryReport ? Lang.lblWinLossHistory : Lang.lblWinLoss,
+    ReportName = Lang.lblWinLoss,
     SportType = "0"
 })
 <div class="clear">
@@ -38,7 +38,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -47,27 +47,16 @@ new ReportMenuViewModel
                                 ~</label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
-                        @if (Model.IsHistoryReport)
-                        {
-                            var periodText = "{0}-P{1}";                            
-                            foreach (var period in Model.FivePeriods)
-                            {                                
-                            <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
-                            }
-                        }
-                        else
-                        { 
-                            <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
+                        <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
                             <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
                             <input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
                             <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
                             <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
                             <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
-                        }
                     </div>
                 </div>
             </td>
@@ -155,7 +144,7 @@ new ReportMenuViewModel
 @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
 @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
-@Html.Hidden("isHistoryReport", Model.IsHistoryReport)
+@Html.Hidden("isHistoryReport", false)
 @*@Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",

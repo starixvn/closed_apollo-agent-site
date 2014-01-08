@@ -46,6 +46,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public List<DateRange> FivePeriods { get; set; }
 
+        public List<DateRangesModel> PeriodList { get; set; }
+
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
         public List<CustomerCounterViewModel> CustomerCounterList { get; set; }
