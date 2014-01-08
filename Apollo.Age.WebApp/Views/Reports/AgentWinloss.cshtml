@@ -36,7 +36,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate",Model.IsHistoryReport ? Model.FromDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", Model.IsHistoryReport ? Model.FromDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -167,8 +167,9 @@ new ReportMenuViewModel
 @if (Model.DownlinePath != null && Model.DownlinePath.Any())
 {
     @RazorHelper.Navigation(Model.DownlinePath)
-}
-@if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
+
+
+if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
 {
     <div class="export-excel" id="btnExcelAgentWinLoss">
     </div>
@@ -545,6 +546,7 @@ else
             </tr>
         </tbody>
     </table>
+}
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
