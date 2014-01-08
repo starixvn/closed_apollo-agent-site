@@ -388,8 +388,6 @@ namespace Apollo.Age.Reports.Controllers
                 });
             }
 
-           
-
             if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
                 return View(
