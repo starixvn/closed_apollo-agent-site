@@ -352,14 +352,7 @@ namespace Apollo.Age.Reports.Controllers
             string agentName,
             bool isHistory = false)
         {
-            if (isHistory)
-            {
-                fromDate = fromDate == null ? _periodDateRangeSerivce.FivePeriodRanges().First().FromDate : fromDate;
-                toDate = toDate == null ? _periodDateRangeSerivce.FivePeriodRanges().First().ToDate : toDate;
-                sporttypes = string.IsNullOrWhiteSpace(sporttypes) ? "0" : sporttypes;
-                bettypes = string.IsNullOrWhiteSpace(bettypes) ? "0" : bettypes;
-            }
-
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
@@ -369,6 +362,33 @@ namespace Apollo.Age.Reports.Controllers
             List<CustomerCounterViewModel> customerCounterList = null;
 
             ViewBag.allFunctionPermission = userPermission;
+
+            if (fromDate == null || toDate == null)
+            {
+                return View(new AgentWinLossViewModel
+                {
+                    FromDate = _periodDateRangeSerivce.FivePeriodRanges().First().FromDate,
+                    ToDate = _periodDateRangeSerivce.FivePeriodRanges().First().ToDate,
+                    SportTypeIds = "0",
+                    BetTypeIds = "0",
+                    AgentId = this.CurrentSession.AgentId,
+                    AgentName = this.CurrentSession.AgentName,
+                    IsSuper = this.CurrentSession.IsSuper,
+                    AgentWinLossList = null,
+                    CustomerCounterList = null,
+                    DownlinePath = null,
+                    SportList = SingbetSportService.GetSport(isOther: false),
+                    BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
+                    BalanceUpDay = balanceUpDay,
+                    ThisPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().First() : _periodDateRangeSerivce.PeriodDates(),
+                    LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
+                    FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
+                    PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
+                    IsHistoryReport = isHistory
+                });
+            }
+
+           
 
             if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
@@ -382,7 +402,6 @@ namespace Apollo.Age.Reports.Controllers
                     });
             }
 
-            var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new AgentWinLossCriteria
             {
                 AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
