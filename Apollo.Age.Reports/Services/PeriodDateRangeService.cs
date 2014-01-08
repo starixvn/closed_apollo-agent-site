@@ -61,9 +61,9 @@ namespace Apollo.Age.Reports.Services
         public List<DateRange> FivePeriodRanges()
         {
             var currentPariod = this.PeriodDates();
-            var listOfCurrentPeriod = PeriodRanges();
+            var listOfCurrentPeriod = PeriodRanges().Where(x => x.FromDate <= currentPariod.FromDate.AddMonths(-2) && x.ToDate <= currentPariod.ToDate.AddMonths(-2)).OrderByDescending(a => a.FromDate);
 
-            return listOfCurrentPeriod.Where(x => x.FromDate <= currentPariod.FromDate.AddMonths(-2) && x.ToDate <= currentPariod.ToDate.AddMonths(-2)).OrderByDescending(a => a.FromDate).Take(5).ToList();
+            return listOfCurrentPeriod.Take(5).ToList();
         }
 
         /// <summary>
