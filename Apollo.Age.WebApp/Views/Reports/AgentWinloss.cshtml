@@ -36,7 +36,7 @@ new ReportMenuViewModel
                 <div class="row">
                     <div class="cell">
                         <div class="editor">
-                            @Html.DatePicker("FromDate", Model.IsHistoryReport ? Model.FromDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
+                            @Html.DatePicker("FromDate", Model.IsHistoryReport ? Model.FromDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -46,7 +46,7 @@ new ReportMenuViewModel
                             </label>
                         </div>
                         <div class="editor">
-                            @Html.DatePicker("ToDate", Model.IsHistoryReport ? Model.ToDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: Model.IsHistoryReport ? Model.ThisPeriod.ToDate : DateTime.Now.AddYears(20))
+                            @Html.DatePicker("ToDate", Model.IsHistoryReport ? Model.ToDate : DateTime.Now, minDate: Model.LastPeriod.FromDate, maxDate: DateTime.Now.AddYears(20))
                         </div>
                     </div>
                     <div class="cell">
@@ -562,7 +562,7 @@ new ReportMenuViewModel
 @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
 @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
-@Html.Hidden("isHistoryReport", Model.IsHistoryReport)
+@Html.Hidden("isHistoryReport", Model.IsHistoryReport ? "true" : "false")
 @*@Html.Action("Index", "Instruction", new
 {
     key = "AgentWinLossPageInfo",
