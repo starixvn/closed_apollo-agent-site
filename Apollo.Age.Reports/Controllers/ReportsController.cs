@@ -379,7 +379,7 @@ namespace Apollo.Age.Reports.Controllers
                     CustomerCounterList = null,
                     DownlinePath = null,
                     SportList = SingbetSportService.GetSport(isOther: false),
-                    BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
+                    BettypeList = this._winLossService.GetBettype(true),
                     BalanceUpDay = balanceUpDay,
                     ThisPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().First() : _periodDateRangeSerivce.PeriodDates(),
                     LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
