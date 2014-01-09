@@ -22,6 +22,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
     using Apollo.Age.Core;
+    using Apollo.Age.Entities;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -32,7 +33,6 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.NAP.Framework.Mvc;
-    using Apollo.Age.Entities;
 
     /// <summary>
     /// Reports Controller.
@@ -434,11 +434,9 @@ namespace Apollo.Age.Reports.Controllers
                         MoveBetDay = this._winLossService.MoveBetsDay()
                     });
                 }
-            }            
-                        
-            var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
+            }
 
-           
+            var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
             var model = new AgentWinLossViewModel
             {
