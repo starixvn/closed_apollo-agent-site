@@ -2140,4 +2140,7 @@
   <data name="lblWinLossHistory" xml:space="preserve">
     <value>History Report</value>
   </data>
+  <data name="historyreportpeakhour" xml:space="preserve">
+    <value>History Report is not supported during system peak hours.</value>
+  </data>
 </root>

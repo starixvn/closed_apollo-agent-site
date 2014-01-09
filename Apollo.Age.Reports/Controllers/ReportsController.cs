@@ -364,7 +364,7 @@ namespace Apollo.Age.Reports.Controllers
 
             ViewBag.allFunctionPermission = userPermission;
 
-            if (fromDate == null || toDate == null)
+            if ((fromDate == null || toDate == null) && isHistory)
             {
                 return View(new AgentWinLossViewModel
                 {
@@ -412,7 +412,18 @@ namespace Apollo.Age.Reports.Controllers
                 MoveBetDay = this._winLossService.MoveBetsDay()
             };
 
-            var agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+            List<AgentWinLossModel> agentWinLossList = null;
+            if (isHistory)
+            {
+                if (!IsPeakHour())
+                {
+                    agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+                }
+            }
+            else
+            {
+                agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+            }
 
             var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
             var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
@@ -451,7 +462,8 @@ namespace Apollo.Age.Reports.Controllers
                 LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
                 FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
                 PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
-                IsHistoryReport = isHistory
+                IsHistoryReport = isHistory,
+                IsPeakHour = IsPeakHour()
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -876,5 +888,24 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Common Action
+
+        /// <summary>
+        /// Determines whether [is peak hour].
+        /// </summary>
+        /// <returns>True for Peak hour.</returns>
+        private bool IsPeakHour()
+        {
+            var currentDate = AppSettings.PeriodDateRange;
+            TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(currentDate.ToUniversalTime(), gmtPlus8);
+
+            // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
+            if (gmtPlus8Time.Hour < 9 || gmtPlus8Time.Hour > 17)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

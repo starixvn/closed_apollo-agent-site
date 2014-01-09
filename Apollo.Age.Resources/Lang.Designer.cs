@@ -1285,6 +1285,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History Report is not supported during system peak hours..
+        /// </summary>
+        public static string historyreportpeakhour {
+            get {
+                return ResourceManager.GetString("historyreportpeakhour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string home {

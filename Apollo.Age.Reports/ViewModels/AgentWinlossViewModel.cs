@@ -56,6 +56,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public bool IsHistoryReport { get; set; }
 
+        public bool IsPeakHour { get; set; }
+
         public string SportName
         {
             get

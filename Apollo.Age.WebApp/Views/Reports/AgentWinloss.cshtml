@@ -526,22 +526,44 @@ new ReportMenuViewModel
     }
     else
     {
-    <table class="tblRpt report none-result">
-        <thead>
-            <tr>
-                <th>
-                    @Lang.NodataSearch
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="text-center row-exit">
-                    <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        if (Model.IsPeakHour)
+        {
+            <table class="tblRpt report none-result">
+                <thead>
+                    <tr>
+                        <th>
+                            @Lang.historyreportpeakhour
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center row-exit">
+                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table class="tblRpt report none-result">
+                <thead>
+                    <tr>
+                        <th>
+                            @Lang.NodataSearch
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center row-exit">
+                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
     }
 }
 @Html.Hidden("agentId", Model.AgentId)
