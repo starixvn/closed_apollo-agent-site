@@ -2000,7 +2000,7 @@
     <value>下注人數</value>
   </data>
   <data name="lblWinLossHistory" xml:space="preserve">
-    <value>History Report</value>
+    <value>輸贏歷史記錄</value>
   </data>
   <data name="historyreportpeakhour" xml:space="preserve">
     <value>在繁忙時段不支援輸贏歷史記錄查詢</value>
