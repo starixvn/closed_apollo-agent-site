@@ -517,7 +517,7 @@
     <file relUrl="Views/Results/Resources/Result.js" publishTime="10/23/2013 18:10:35" />
     <file relUrl="Views/Account/Resources/Images/qa_phone.png" publishTime="10/01/2013 16:55:00" />
     <file relUrl="bin/ko-KR/Apollo.Age.Resources.resources.dll" publishTime="01/09/2014 16:09:51" />
-    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="01/09/2014 15:45:33" />
+    <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="01/09/2014 16:25:20" />
     <file relUrl="bin/Apollo.BetList.Core.dll" publishTime="01/09/2014 16:09:52" />
     <file relUrl="Views/PermissionUserControl/Shared/_Layout.cshtml" publishTime="11/22/2013 10:21:15" />
     <file relUrl="bin/Apollo.CustSetting.dll" publishTime="01/03/2014 14:42:29" />
@@ -571,7 +571,7 @@
     <file relUrl="Views/Instruction/en-US/MemberCommissionSetting.cshtml" publishTime="10/01/2013 16:55:01" />
     <file relUrl="Views/Account/Resources/Images/magnifier.png" publishTime="05/23/2013 14:14:38" />
     <file relUrl="App_Code/WagerHelper.cshtml" publishTime="11/22/2013 10:21:15" />
-    <file relUrl="Web.AppSettings.config" publishTime="01/09/2014 15:47:12" />
+    <file relUrl="Web.AppSettings.config" publishTime="01/09/2014 16:26:38" />
     <file relUrl="Views/Instruction/vi-VN/MainShareHolderShareSettingAdv.cshtml" publishTime="05/23/2013 14:14:39" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/moment.min.js" publishTime="05/23/2013 14:14:39" />
     <file relUrl="Areas/Wagers/Views/Wager/Index.cshtml" publishTime="11/22/2013 10:21:15" />

@@ -569,6 +569,28 @@ new ReportMenuViewModel
         }
     }
 }
+else
+{ 
+    if (Model.IsPeakHour)
+        {
+            <table class="tblRpt report none-result">
+                <thead>
+                    <tr>
+                        <th>
+                            @Lang.historyreportpeakhour
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center row-exit">
+                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+}
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
 @Html.Hidden("hdSportType", Model.SportTypeIds)

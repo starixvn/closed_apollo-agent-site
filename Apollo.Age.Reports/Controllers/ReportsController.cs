@@ -32,6 +32,7 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.NAP.Framework.Mvc;
+    using Apollo.Age.Entities;
 
     /// <summary>
     /// Reports Controller.
@@ -413,35 +414,31 @@ namespace Apollo.Age.Reports.Controllers
             };
 
             List<AgentWinLossModel> agentWinLossList = null;
-            if (isHistory)
-            {
-                if (!IsPeakHour())
-                {
-                    agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
-                }
-            }
-            else
+            List<Agent> modelAgentDownLine = null;
+            if (!isHistory || !IsPeakHour())
             {
                 agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
-            }
+                modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
 
-            var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
+                // Only super and main shareholder can see number of member.
+                if (modelAgentDownLine.Last().Level <= 1)
+                {
+                    customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                    {
+                        AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                        Bettypes = bettypes,
+                        FromDate = fromDate.Value,
+                        ToDate = toDate.Value,
+                        BalanceUpDay = balanceUpDay,
+                        MoveBetDay = this._winLossService.MoveBetsDay()
+                    });
+                }
+            }            
+                        
             var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
-            // Only super and main shareholder can see number of member.
-            if (modelAgentDownLine.Last().Level <= 1)
-            {
-                customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
-                {
-                    AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
-                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
-                    Bettypes = bettypes,
-                    FromDate = fromDate.Value,
-                    ToDate = toDate.Value,
-                    BalanceUpDay = balanceUpDay,
-                    MoveBetDay = this._winLossService.MoveBetsDay()
-                });
-            }
+           
 
             var model = new AgentWinLossViewModel
             {
