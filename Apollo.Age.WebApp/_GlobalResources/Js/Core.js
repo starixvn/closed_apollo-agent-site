@@ -49,7 +49,7 @@ if (typeof jQuery != 'undefined') {
                 var frameHtml = '<iframe src="' + url + '" width="99%" height="99%" overflow="auto" frameborder="0" border="0"></iframe>',
 					accessClass = "";
 
-                var blockLoading = '<p class="block-loading">loading..............................................</p>';
+                var blockLoading = '<p class="block-loading">Loading..............................................</p>';
 
 
 
