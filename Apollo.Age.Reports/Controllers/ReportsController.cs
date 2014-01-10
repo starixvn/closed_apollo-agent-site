@@ -891,8 +891,9 @@ namespace Apollo.Age.Reports.Controllers
         private bool IsPeakHour()
         {
             var currentDate = AppSettings.PeriodDateRange;
+            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
             TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
-            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(currentDate.ToUniversalTime(), gmtPlus8);
+            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTime(currentDate, localTimeZone, gmtPlus8);
             string[] peakHour = AppSettings.ReportPeakHour.Split('>', ':');
             if (peakHour.Count() <= 0 || peakHour.Count() > 4)
             {
