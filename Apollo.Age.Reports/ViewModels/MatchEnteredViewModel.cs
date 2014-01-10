@@ -37,6 +37,8 @@ namespace Apollo.Age.Reports.ViewModels
 
         public string SportTypeIds { get; set; }
 
+        public bool IsHistoryReport { get; set; }
+
         /// <summary>
         /// Checks the is completed.
         /// </summary>

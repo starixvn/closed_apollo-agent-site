@@ -33,20 +33,37 @@ namespace Apollo.Age.Reports.Services
             List<DateRangesModel> data = GetAllPeriodRange();
             data = data.Where(x => x.Year >= AppSettings.PeriodDateRange.AddYears(-1).Year).ToList();
             var dateRangeNow = new List<DateRange>();
-
+            int periodCounter = 1;
             foreach (var item in data)
             {
+                periodCounter = 1;
                 foreach (var range in item.ListOfDateRange)
                 {
                     dateRangeNow.Add(new DateRange
                     {
                         FromDate = range.FromDate,
-                        ToDate = range.ToDate
+                        ToDate = range.ToDate,
+                        PeriodNumber = periodCounter
                     });
+
+                    periodCounter++;
                 }
             }
 
             return dateRangeNow;
+        }
+
+        /// <summary>
+        /// Fives the period ranges.
+        /// </summary>
+        /// <returns>List of date range.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        public List<DateRange> FivePeriodRanges()
+        {
+            var currentPariod = this.PeriodDates();
+            var listOfCurrentPeriod = PeriodRanges().Where(x => x.FromDate < currentPariod.FromDate.AddMonths(-1) && x.ToDate < currentPariod.ToDate.AddMonths(-1));
+
+            return listOfCurrentPeriod.Reverse().Take(5).ToList();
         }
 
         /// <summary>

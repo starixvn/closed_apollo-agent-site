@@ -208,7 +208,7 @@
     <value>Your session has timed out or your request is not authorized</value>
   </data>
   <data name="NodataSearch" xml:space="preserve">
-    <value>No data for search</value>
+    <value>No data for search!</value>
   </data>
   <data name="lblPlayerList" xml:space="preserve">
     <value>Member List</value>
@@ -2136,5 +2136,11 @@
   </data>
   <data name="NumberOfMember" xml:space="preserve">
     <value>No. of Members</value>
+  </data>
+  <data name="lblWinLossHistory" xml:space="preserve">
+    <value>History Report</value>
+  </data>
+  <data name="historyreportpeakhour" xml:space="preserve">
+    <value>History Report is not supported during system peak hours.</value>
   </data>
 </root>

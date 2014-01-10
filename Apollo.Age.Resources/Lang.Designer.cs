@@ -1285,6 +1285,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History Report is not supported during system peak hours..
+        /// </summary>
+        public static string historyreportpeakhour {
+            get {
+                return ResourceManager.GetString("historyreportpeakhour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string home {
@@ -4040,6 +4049,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History Report.
+        /// </summary>
+        public static string lblWinLossHistory {
+            get {
+                return ResourceManager.GetString("lblWinLossHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Effective Stake#1: total stake after share returned to the company (the selected agent and upline) by downline.
         /// </summary>
         public static string lblwinlossnote1 {
@@ -4427,7 +4445,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No data for search.
+        ///   Looks up a localized string similar to No data for search!.
         /// </summary>
         public static string NodataSearch {
             get {
