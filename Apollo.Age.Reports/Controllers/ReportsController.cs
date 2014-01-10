@@ -458,7 +458,7 @@ namespace Apollo.Age.Reports.Controllers
                 FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
                 PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
                 IsHistoryReport = isHistory,
-                IsPeakHour = IsPeakHour()
+                IsPeakHour = isHistory ? IsPeakHour() : false
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -895,7 +895,7 @@ namespace Apollo.Age.Reports.Controllers
             DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(currentDate.ToUniversalTime(), gmtPlus8);
 
             // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
-            if (gmtPlus8Time.Hour < 9 || gmtPlus8Time.Hour > 17)
+            if (gmtPlus8Time.Hour < 11 || gmtPlus8Time.Hour > 12)
             {
                 return true;
             }
