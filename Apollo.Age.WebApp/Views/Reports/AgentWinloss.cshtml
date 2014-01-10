@@ -165,7 +165,7 @@ new ReportMenuViewModel
 {
     if (!Model.IsPeakHour)
     {
-        @RazorHelper.Navigation(Model.DownlinePath)
+    @RazorHelper.Navigation(Model.DownlinePath)
     }
 
     if (Model.AgentWinLossList != null && Model.AgentWinLossList.Any())
@@ -248,7 +248,9 @@ new ReportMenuViewModel
                             @Formater.FormatNumber20(item.SoccerShare / 100.00, Formater.CULT_NAME_ENG)
                         </td>
                         <td class="r">
-                            @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
+                            <span>
+                                @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
+                            </span>
                             <span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                             @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
@@ -531,65 +533,65 @@ new ReportMenuViewModel
     {
         if (Model.IsPeakHour)
         {
-            <table class="tblRpt report none-result">
-                <thead>
-                    <tr>
-                        <th>
-                            @Lang.historyreportpeakhour
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center row-exit">
-                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <table class="tblRpt report none-result">
+        <thead>
+            <tr>
+                <th>
+                    @Lang.historyreportpeakhour
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center row-exit">
+                    <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
         }
         else
         {
-            <table class="tblRpt report none-result">
-                <thead>
-                    <tr>
-                        <th>
-                            @Lang.NodataSearch
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center row-exit">
-                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <table class="tblRpt report none-result">
+        <thead>
+            <tr>
+                <th>
+                    @Lang.NodataSearch
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center row-exit">
+                    <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
         }
     }
 }
 else
-{ 
+{
     if (Model.IsPeakHour)
-        {
-            <table class="tblRpt report none-result">
-                <thead>
-                    <tr>
-                        <th>
-                            @Lang.historyreportpeakhour
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center row-exit">
-                            <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        }
+    {
+    <table class="tblRpt report none-result">
+        <thead>
+            <tr>
+                <th>
+                    @Lang.historyreportpeakhour
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center row-exit">
+                    <a href="javascript:void(0)" id="lnkExit">@Lang.lblExit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    }
 }
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("agentName", Model.AgentName)
