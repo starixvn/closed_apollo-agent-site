@@ -29,6 +29,8 @@ namespace Apollo.Age.Reports.Models
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class DateRange
     {
+        public int PeriodNumber { get; set; }
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }

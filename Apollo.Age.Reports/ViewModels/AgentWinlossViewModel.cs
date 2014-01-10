@@ -44,11 +44,19 @@ namespace Apollo.Age.Reports.ViewModels
 
         public DateRange LastPeriod { get; set; }
 
+        public List<DateRange> FivePeriods { get; set; }
+
+        public List<DateRangesModel> PeriodList { get; set; }
+
         public List<AgentWinLossModel> AgentWinLossList { get; set; }
 
         public List<CustomerCounterViewModel> CustomerCounterList { get; set; }
 
         public List<Agent> DownlinePath { get; set; }
+
+        public bool IsHistoryReport { get; set; }
+
+        public bool IsPeakHour { get; set; }
 
         public string SportName
         {

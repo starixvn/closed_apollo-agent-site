@@ -22,6 +22,7 @@ namespace Apollo.Age.Reports.Controllers
     using System.Web.Mvc;
     using Apollo.Age.Configurations;
     using Apollo.Age.Core;
+    using Apollo.Age.Entities;
     using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
@@ -323,7 +324,6 @@ namespace Apollo.Age.Reports.Controllers
             }
 
             ViewBag.allFunctionPermission = functionPermission;
-
             matchEnteredViewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
             matchEnteredViewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
@@ -339,16 +339,22 @@ namespace Apollo.Age.Reports.Controllers
         /// <param name="bettypes">Bet type list.</param>
         /// <param name="agentId">The agent ID.</param>
         /// <param name="agentName">Agent name.</param>
-        /// <returns>ViewResult agent win loss.</returns>
+        /// <param name="isHistory">If set to <c>true</c> [is history].</param>
+        /// <returns>
+        /// ViewResult agent win loss.
+        /// </returns>
         [ValidateInput(false)]
         public ViewResult AgentWinLoss(
-            DateTime fromDate,
-            DateTime toDate,
+            DateTime? fromDate,
+            DateTime? toDate,
             string sporttypes,
             string bettypes,
             int? agentId,
-            string agentName)
+            string agentName,
+            bool isHistory = false)
         {
+            var balanceUpDay = this._winLossService.GetBalanceUpDay();
+
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
@@ -358,6 +364,31 @@ namespace Apollo.Age.Reports.Controllers
             List<CustomerCounterViewModel> customerCounterList = null;
 
             ViewBag.allFunctionPermission = userPermission;
+
+            if ((fromDate == null || toDate == null) && isHistory)
+            {
+                return View(new AgentWinLossViewModel
+                {
+                    FromDate = _periodDateRangeSerivce.FivePeriodRanges().First().FromDate,
+                    ToDate = _periodDateRangeSerivce.FivePeriodRanges().First().ToDate,
+                    SportTypeIds = "0",
+                    BetTypeIds = "0",
+                    AgentId = this.CurrentSession.AgentId,
+                    AgentName = this.CurrentSession.AgentName,
+                    IsSuper = this.CurrentSession.IsSuper,
+                    AgentWinLossList = null,
+                    CustomerCounterList = null,
+                    DownlinePath = null,
+                    SportList = SingbetSportService.GetSport(isOther: false),
+                    BettypeList = this._winLossService.GetBettype(true),
+                    BalanceUpDay = balanceUpDay,
+                    ThisPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().First() : _periodDateRangeSerivce.PeriodDates(),
+                    LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
+                    FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
+                    PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
+                    IsHistoryReport = isHistory
+                });
+            }
 
             if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
             {
@@ -371,42 +402,46 @@ namespace Apollo.Age.Reports.Controllers
                     });
             }
 
-            var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var criteria = new AgentWinLossCriteria
             {
                 AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
                 Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
                 Bettypes = bettypes,
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = fromDate.Value,
+                ToDate = toDate.Value,
                 BalanceUpDay = balanceUpDay,
                 MoveBetDay = this._winLossService.MoveBetsDay()
             };
 
-            var agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
-
-            var modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
-            var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
-
-            // Only super and main shareholder can see number of member.
-            if (modelAgentDownLine.Last().Level <= 1)
+            List<AgentWinLossModel> agentWinLossList = null;
+            List<Agent> modelAgentDownLine = null;
+            if (!isHistory || !IsPeakHour())
             {
-                customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
+                modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
+
+                // Only super and main shareholder can see number of member.
+                if (modelAgentDownLine.Last().Level <= 1)
                 {
-                    AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
-                    Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
-                    Bettypes = bettypes,
-                    FromDate = fromDate,
-                    ToDate = toDate,
-                    BalanceUpDay = balanceUpDay,
-                    MoveBetDay = this._winLossService.MoveBetsDay()
-                });
+                    customerCounterList = this._winLossService.GetCustomerCounter(new CustomerCounterCriteria
+                    {
+                        AgentId = agentId.HasValue ? agentId.Value : this.CurrentSession.AgentId,
+                        Sporttypes = sporttypes == "-99" ? "0" : sporttypes,
+                        Bettypes = bettypes,
+                        FromDate = fromDate.Value,
+                        ToDate = toDate.Value,
+                        BalanceUpDay = balanceUpDay,
+                        MoveBetDay = this._winLossService.MoveBetsDay()
+                    });
+                }
             }
+
+            var isSuper = criteria.AgentId == this.CurrentSession.AgentId ? this.CurrentSession.IsSuper : false;
 
             var model = new AgentWinLossViewModel
             {
-                FromDate = fromDate,
-                ToDate = toDate,
+                FromDate = fromDate.Value,
+                ToDate = toDate.Value,
                 SportTypeIds = sporttypes,
                 BetTypeIds = bettypes,
                 AgentId = criteria.AgentId,
@@ -418,8 +453,12 @@ namespace Apollo.Age.Reports.Controllers
                 SportList = SingbetSportService.GetSport(isOther: false),
                 BettypeList = sporttypes == "-99" ? this._winLossService.GetParlayBettype() : this._winLossService.GetBettype(sporttypes == "-99" || sporttypes == "0"),
                 BalanceUpDay = balanceUpDay,
-                ThisPeriod = _periodDateRangeSerivce.PeriodDates(),
-                LastPeriod = _periodDateRangeSerivce.PeriodDates(true)
+                ThisPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().First() : _periodDateRangeSerivce.PeriodDates(),
+                LastPeriod = isHistory ? _periodDateRangeSerivce.FivePeriodRanges().Last() : _periodDateRangeSerivce.PeriodDates(true),
+                FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
+                PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
+                IsHistoryReport = isHistory,
+                IsPeakHour = isHistory ? IsPeakHour() : false
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -844,5 +883,35 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         #endregion Common Action
+
+        /// <summary>
+        /// Determines whether [is peak hour].
+        /// </summary>
+        /// <returns>True for Peak hour.</returns>
+        private bool IsPeakHour()
+        {
+            var currentDate = AppSettings.PeriodDateRange;
+            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+            TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTime(currentDate, localTimeZone, gmtPlus8);
+            string[] peakHour = AppSettings.ReportPeakHour.Split('>', ':');
+            if (peakHour.Count() <= 0 || peakHour.Count() > 4)
+            {
+                return false;
+            }
+            else
+            {
+                // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
+                DateTime fromHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[0]), int.Parse(peakHour[1]), 0);
+                DateTime toHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[2]), int.Parse(peakHour[3]), 0);
+
+                if (gmtPlus8Time >= fromHour && gmtPlus8Time <= toHour)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

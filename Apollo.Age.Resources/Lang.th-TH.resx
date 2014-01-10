@@ -4168,4 +4168,7 @@
   <data name="announcementlevel" xml:space="preserve">
     <value>Level Announcement</value>
   </data>
+  <data name="lblWinLossHistory" xml:space="preserve">
+    <value>History Report</value>
+  </data>
 </root>

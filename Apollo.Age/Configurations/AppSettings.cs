@@ -167,6 +167,14 @@ namespace Apollo.Age.Configurations
             }
         }
 
+        public static string ReportPeakHour
+        {
+            get
+            {
+                return GetValue("HistoryReportPeakHours");
+            }
+        }
+
         /// <summary>
         /// Gets value from a key.
         /// </summary>

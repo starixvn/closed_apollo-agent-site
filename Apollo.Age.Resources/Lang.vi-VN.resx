@@ -4481,4 +4481,7 @@ Lưu ý:Thông tin về Quốc gia, Thành Phố được cung cấp bởi  IP2L
   <data name="announcementlevel" xml:space="preserve">
     <value>Level Announcement</value>
   </data>
+  <data name="lblWinLossHistory" xml:space="preserve">
+    <value>History Report</value>
+  </data>
 </root>
