@@ -895,7 +895,7 @@ namespace Apollo.Age.Reports.Controllers
             DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(currentDate.ToUniversalTime(), gmtPlus8);
 
             // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
-            if (gmtPlus8Time.Hour < 11 || gmtPlus8Time.Hour > 12)
+            if ((gmtPlus8Time.Hour <= 11 || gmtPlus8Time.Hour >= 12) && gmtPlus8Time.Minute > 0)
             {
                 return true;
             }
