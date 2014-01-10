@@ -893,14 +893,21 @@ namespace Apollo.Age.Reports.Controllers
             var currentDate = AppSettings.PeriodDateRange;
             TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
             DateTime gmtPlus8Time = TimeZoneInfo.ConvertTimeFromUtc(currentDate.ToUniversalTime(), gmtPlus8);
-
-            // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
-            DateTime fromHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, 9, 0, 0);
-            DateTime toHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, 17, 0, 0);
-
-            if (gmtPlus8Time >= fromHour && gmtPlus8Time <= toHour)
+            string[] peakHour = AppSettings.ReportPeakHour.Split('>', ':');
+            if (peakHour.Count() <= 0 || peakHour.Count() > 4)
             {
                 return false;
+            }
+            else
+            {
+                // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
+                DateTime fromHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[0]), int.Parse(peakHour[1]), 0);
+                DateTime toHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[2]), int.Parse(peakHour[3]), 0);
+
+                if (gmtPlus8Time >= fromHour && gmtPlus8Time <= toHour)
+                {
+                    return false;
+                }
             }
 
             return true;
