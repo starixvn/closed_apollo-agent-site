@@ -355,6 +355,7 @@ namespace Apollo.Age.Reports.Controllers
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
             var isPeakHour = IsPeakHour();
+
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
