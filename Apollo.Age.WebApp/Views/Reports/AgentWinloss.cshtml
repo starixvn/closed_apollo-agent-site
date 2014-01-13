@@ -16,6 +16,10 @@
     var currentPeriodToDate = DateTime.Now;
     var oldPeriodFromDate = DateTime.Now;
     var oldPeriodToDate = DateTime.Now;
+
+    string[] peakHours = AppSettings.ReportPeakHour.Split('>');
+    var fromHour = (int.Parse(peakHours[0]) > 0 && int.Parse(peakHours[0]) < 9 ? "0" + peakHours[0] : peakHours[0]) + ":00";
+    var toHour = (int.Parse(peakHours[1]) > 0 && int.Parse(peakHours[1]) < 9 ? "0" + peakHours[1] : peakHours[1]) + ":00";
 }
 @model AgentWinLossViewModel
 @Html.Partial("Menu",
@@ -77,6 +81,10 @@ new ReportMenuViewModel
             </td>
             <td class="secondcolumn">
                 @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
+                @if (Model.IsHistoryReport)
+                {
+                    <span class="peakhour">@string.Format(Lang.peakhourmessage, fromHour, toHour)</span>
+                }
             </td>
         </tr>
     </table>
@@ -250,8 +258,7 @@ new ReportMenuViewModel
                         <td class="r">
                             <span>
                                 @Formater.FormatNumber20(item.BetAmount, Formater.CULT_NAME_ENG)
-                            </span>
-                            <span class='split'>/</span>
+                            </span><span class='split'>/</span>
                             @Formater.FormatNumber2(item.BetCount, Formater.CULT_NAME_ENG)
                             @if (Model.CustomerCounterList != null && Model.CustomerCounterList.Any())
                             {
