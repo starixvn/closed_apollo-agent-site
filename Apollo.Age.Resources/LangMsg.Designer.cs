@@ -88,7 +88,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date range cannot be less than.
+        ///   Looks up a localized string similar to Date chosen cannot be less than.
         /// </summary>
         public static string MessageValidateDateRange {
             get {

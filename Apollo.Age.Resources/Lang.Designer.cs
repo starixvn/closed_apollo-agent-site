@@ -4787,6 +4787,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System peark hours (GMT +8): {0} - {1}.
+        /// </summary>
+        public static string peakhourmessage {
+            get {
+                return ResourceManager.GetString("peakhourmessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         public static string pending {

@@ -354,6 +354,7 @@ namespace Apollo.Age.Reports.Controllers
             bool isHistory = false)
         {
             var balanceUpDay = this._winLossService.GetBalanceUpDay();
+            var isPeakHour = IsPeakHour();
 
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
@@ -415,7 +416,7 @@ namespace Apollo.Age.Reports.Controllers
 
             List<AgentWinLossModel> agentWinLossList = null;
             List<Agent> modelAgentDownLine = null;
-            if (!isHistory || !IsPeakHour())
+            if (!isHistory || !isPeakHour)
             {
                 agentWinLossList = this._winLossService.GetAgentWinLoss(criteria);
                 modelAgentDownLine = this._winLossService.AgentDownlinePath(this.CurrentSession.AgentId, criteria.AgentId).ToList();
@@ -458,7 +459,7 @@ namespace Apollo.Age.Reports.Controllers
                 FivePeriods = _periodDateRangeSerivce.FivePeriodRanges(),
                 PeriodList = _periodDateRangeSerivce.ListOfPeriods(),
                 IsHistoryReport = isHistory,
-                IsPeakHour = isHistory ? IsPeakHour() : false
+                IsPeakHour = isHistory ? isPeakHour : false
             };
 
             var sessionKey = string.Format(Constants.SessionKeyAgentWinLossReport, this.CurrentSession.UserId);
@@ -891,21 +892,22 @@ namespace Apollo.Age.Reports.Controllers
         private bool IsPeakHour()
         {
             var currentDate = AppSettings.PeriodDateRange;
-            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+
             TimeZoneInfo gmtPlus8 = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
-            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTime(currentDate, localTimeZone, gmtPlus8);
-            string[] peakHour = AppSettings.ReportPeakHour.Split('>', ':');
-            if (peakHour.Count() <= 0 || peakHour.Count() > 4)
+            DateTime gmtPlus8Time = TimeZoneInfo.ConvertTime(currentDate, gmtPlus8);
+
+            string[] peakHour = AppSettings.ReportPeakHour.Split('>');
+            if (peakHour.Count() <= 0 || peakHour.Count() > 2)
             {
                 return false;
             }
             else
             {
                 // Hard code for peak hour. The history report available time 9:00 - 17:00 GMT +8
-                DateTime fromHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[0]), int.Parse(peakHour[1]), 0);
-                DateTime toHour = new DateTime(gmtPlus8Time.Year, gmtPlus8Time.Month, gmtPlus8Time.Day, int.Parse(peakHour[2]), int.Parse(peakHour[3]), 0);
+                int fromHour = int.Parse(peakHour[0]);
+                int toHour = int.Parse(peakHour[1]);
 
-                if (gmtPlus8Time >= fromHour && gmtPlus8Time <= toHour)
+                if (gmtPlus8Time.Hour >= fromHour && gmtPlus8Time.Hour < toHour)
                 {
                     return false;
                 }
