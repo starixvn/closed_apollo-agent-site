@@ -13,6 +13,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
     using Apollo.BetList.Core.Entities;
+    using NPOI.HSSF.UserModel;
 
     /// <summary>
     /// Service Interface.
@@ -42,5 +43,7 @@ namespace Apollo.Age.BetList.Services
         void GetUserIdByUserName(int loggedId, bool isAgent, string username, out int agentId, out int custId, out int errorCode);
 
         IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId);
+
+        HSSFWorkbook ExportExcel(List<TicketText> ticketResult, string title);
     }
 }

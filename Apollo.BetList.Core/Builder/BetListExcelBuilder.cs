@@ -9,23 +9,27 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-namespace Fanex.BetList.Core.Builder
+namespace Apollo.BetList.Core.Builder
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Fanex.BetList.Core.Builder.ChoiceBuilder;
-    using Fanex.BetList.Core.Builder.OddsBuilder;
-    using Fanex.BetList.Core.Builder.StakeBuilder;
-    using Fanex.BetList.Core.Builder.StatusBuilder;
-    using Fanex.BetList.Core.Builder.TransBuilder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Utils;
-    using Fanex.BetList.Core.Utils.NPOIExt;
-    using Fanex.BetList.Core.Utils.StringExt;
+    using Apollo.BetList.Core.Builder.ChoiceBuilder;
+    using Apollo.BetList.Core.Builder.OddsBuilder;
+    using Apollo.BetList.Core.Builder.StakeBuilder;
+    using Apollo.BetList.Core.Builder.StatusBuilder;
+    using Apollo.BetList.Core.Builder.TransBuilder;
+    using Apollo.BetList.Core.Entities;
+    using Apollo.BetList.Core.Utils;
+    using Apollo.BetList.Core.Utils.NPOIExt;
+    using Apollo.BetList.Core.Utils.StringExt;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
+    using Apollo.BetList.Core.Builder.AgentShareBuilder;
+    using Apollo.BetList.Core.Builder.AgentCommBuilder;
+    using Apollo.BetList.Core.Builder.TimeBuilder;
+    using Apollo.BetList.Core.Builder.DiscountBuilder;
 
     /// <summary>
     /// Apollo.Age.Resources.BetList Excel Builder
@@ -34,11 +38,13 @@ namespace Fanex.BetList.Core.Builder
     {
         #region Attributes
 
-        private const string CHOICE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.ChoiceBuilder";
-        private const string ODDS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.OddsBuilder";
-        private const string STAKE_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StakeBuilder";
-        private const string TRANS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.TransBuilder";
-        private const string STATUS_BUILDER_NAMESPACE = "Fanex.BetList.Core.Builder.StatusBuilder";
+        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+        private const string ODDS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.OddsBuilder";
+        private const string STAKE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.StakeBuilder";
+        private const string TRANS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.TransBuilder";
+        private const string STATUS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.StatusBuilder";
+        private const string AgentCommBuilderNamespace = "Apollo.BetList.Core.Builder.AgentCommBuilder";
+        private const string AgentShareBuilderNamespace = "Apollo.BetList.Core.Builder.AgentShareBuilder";
         private IWorkbook _workbook;
         private short _reportColumnsNum;
         private ISheet _worksheet;
@@ -306,22 +312,6 @@ namespace Fanex.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Adds the trans.
-        /// </summary>
-        /// <param name="factory">The factory.</param>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns></returns>
-        public BetListExcelBuilder AddTrans(ITicket ticket, ITicketHelper ticketHelper)
-        {
-            ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
-            IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper);
-
-            this.AddCell(rtfTrans, ticketHelper.Index % 2 == 0 ? OddCellStyleCenterAligned : EvenCellStyleCenterAligned);
-            return this;
-        }
-
-        /// <summary>
         /// Adds the status.
         /// </summary>
         /// <param name="factory">The factory.</param>
@@ -333,6 +323,41 @@ namespace Fanex.BetList.Core.Builder
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
             IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketHelper, ticketData, isShowVNIP, RTFHelper);
             this.AddCell(rtfStatus, ticketHelper.Index % 2 == 0 ? OddCellStyleCenterAligned : EvenCellStyleCenterAligned);
+            return this;
+        }
+
+        /// <summary>
+        /// Build the time.
+        /// </summary>
+        /// <param name="ticket">The ticket need to build.</param>
+        /// <param name="page">The page bet list.</param>
+        /// <returns>
+        /// Time string.
+        /// </returns>
+        public BetListExcelBuilder AddTime(ITicket ticket, BetListPage page)
+        {
+            var timeBuilder = new Time();
+
+            IRichTextString rtfTime = timeBuilder.RenderRTF(ticket, page, RTFHelper);
+
+            this.AddCell(rtfTime);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the discount.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The page.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder AddDiscount(ITicket ticket, BetListPage page)
+        {
+            var discountBuilder = new Discount();
+            IRichTextString rtfDiscount = discountBuilder.RenderRTF(ticket, page, RTFHelper);
+
+            this.AddCell(rtfDiscount);
+
             return this;
         }
 
@@ -521,6 +546,64 @@ namespace Fanex.BetList.Core.Builder
             else
             {
                 return Activator.CreateInstance(type) as ITrans;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent PT builder.
+        /// </summary>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>
+        /// Agent share interface.
+        /// </returns>
+        private IAgentShare CreateAgentShareBuilder(int bettype)
+        {
+            string[] agentShareBuilder = new string[]
+                                            {
+                                                AgentShareBuilderNamespace,
+                                                ".AgentShare",
+                                                bettype.ToString()
+                                            };
+            string typeName = string.Join(null, agentShareBuilder);
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentShare1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentShare;
+            }
+        }
+
+        /// <summary>
+        /// Creates the agent Commission builder.
+        /// </summary>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>
+        /// Agent commission interface.
+        /// </returns>
+        private IAgentComm CreateAgentCommBuilder(int bettype)
+        {
+            string[] agentCommBuilder = new string[]
+                                            {
+                                                AgentCommBuilderNamespace,
+                                                ".AgentComm",
+                                                bettype.ToString()
+                                            };
+            string typeName = string.Join(null, agentCommBuilder);
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new AgentComm1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IAgentComm;
             }
         }
 

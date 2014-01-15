@@ -230,7 +230,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticketResult.TicketList = this.ReadTicket(mainTable);
 
                 // Reference ticket.
-                ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                ticketResult.TicketListMixParlay = this.ReadTicket(referenceTable);
 
                 return ticketResult;
             }
@@ -262,7 +262,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
 
                         // Reference ticket.
                         var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
-                        ticketResult.TicketDataList = this.ReadReferneceTicket(referenceTable);
+                        ticketResult.TicketListMixParlay = this.ReadTicket(referenceTable);
                     }
                 }
 
@@ -316,12 +316,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                     if (dataSet.Tables.Count > 1)
                                     {
                                         ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
-                                        ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                        ticketResult.TicketListMixParlay = this.ReadTicket(dataSet.Tables[1]);
                                     }
                                     else
                                     {
                                         ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
-                                        ticketResult.TicketDataList = new List<ITicketData>();
+                                        ticketResult.TicketListMixParlay = new List<ITicket>();
                                     }
                                 }
                             }
@@ -399,7 +399,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                 newReferenceDatatable.Merge(oldReferenceDatatable);
 
                                 ticketResult.TicketList = this.ReadTicket(newDatatable);
-                                ticketResult.TicketDataList = this.ReadReferneceTicket(newReferenceDatatable);
+                                ticketResult.TicketListMixParlay = this.ReadTicket(newReferenceDatatable);
                             }
                         }
                         else
@@ -426,12 +426,12 @@ namespace Apollo.Age.BetList.Repositories.Impl
                                 if (dataSet.Tables.Count > 1)
                                 {
                                     ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
-                                    ticketResult.TicketDataList = this.ReadReferneceTicket(dataSet.Tables[1]);
+                                    ticketResult.TicketListMixParlay = this.ReadTicket(dataSet.Tables[1]);
                                 }
                                 else
                                 {
                                     ticketResult.TicketList = this.ReadTicket(dataSet.Tables[0]);
-                                    ticketResult.TicketDataList = new List<ITicketData>();
+                                    ticketResult.TicketListMixParlay = new List<ITicket>();
                                 }
                             }
                         }

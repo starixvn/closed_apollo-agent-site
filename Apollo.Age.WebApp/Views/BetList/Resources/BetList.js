@@ -66,7 +66,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		});
 }
 
-function InitBetList() {   
+function InitBetList() {
     if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
         var heightPopup = 630;
         if (APOLLO.browser.msie) {
@@ -95,7 +95,7 @@ function InitBetList() {
         document.getElementById("exporttoexcel").style.display = "none";
     }
 
-    APOLLO.hidePopupBlockLoading(); 
+    APOLLO.hidePopupBlockLoading();
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
@@ -249,6 +249,7 @@ if (typeof jQuery != "undefined") {
                 });
 
                 BETLIST.initEditLink();
+                BETLIST.ExportWinLoss();
             },
 
             getBetListData: function () {
@@ -324,8 +325,20 @@ if (typeof jQuery != "undefined") {
                 }
             },
 
+            ExportWinLoss: function () {
+                $("#btnExcelWinLoss").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/ExportWinloss?custId=' + $("#custid").val()
+                    + "&type=" + $("#type").val()
+                    + "&FromDate=" + $("#fromDate").val()
+                    + "&ToDate=" + $("#toDate").val()
+                    + "&sportType=" + $("#sportTypes").val()
+                    + "&betType=" + $("#betTypes").val());
+                    location.href = url;
+                });
+            },
+
             initEditLink: function () {
-                $(".view-detail").click(function () {                   
+                $(".view-detail").click(function () {
 
                     var fromDate = toDate = type = "";
 
@@ -360,7 +373,7 @@ if (typeof jQuery != "undefined") {
         };
     } (jQuery);
 
-    $(document).ready(function () {            
+    $(document).ready(function () {
 
         BETLIST.init();
 
@@ -467,6 +480,6 @@ if (typeof jQuery != "undefined") {
                     location.href = url;
                 }
             }
-        });                
+        });
     }); //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
