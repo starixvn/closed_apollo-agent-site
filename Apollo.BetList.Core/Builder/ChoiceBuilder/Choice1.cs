@@ -301,7 +301,37 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             // the 1st line
             this.AdjustBetTeamToRTF();
-            string choice = Template.betTeam;
+            string choice = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(Template.LeagueName))
+            {
+                choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+                rtfHelper.RTFRenderer.AddText(choice);
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.betTeam))
+            {
+                choice = string.Join(null, new string[] { " \n ", Template.betTeam });
+                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                choice = string.Empty;
+            }
+
+            rtfHelper.RTFRenderer.AddText(" @ ");
+
+            if (!string.IsNullOrWhiteSpace(Template.odds))
+            {
+                choice = string.Join(null, new string[] { Template.odds });
+                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(choice))
+            {
+                choice = choice.Replace("&nbsp;", " ");
+                rtfHelper.RTFRenderer.AddText("\n" + choice);
+            }
+
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
 

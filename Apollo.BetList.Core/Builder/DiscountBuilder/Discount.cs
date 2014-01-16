@@ -116,8 +116,14 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
         {
             Render(ticket, page);
 
+            rtfHelper.RTFRenderer.AddText(Template.username + " ");
+
+            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.NegFont);
+
             IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
 
+            rtfHelper.RTFRenderer.Clear();
+            
             return rtfDiscount;
         }
     }

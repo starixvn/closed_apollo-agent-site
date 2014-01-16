@@ -103,7 +103,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
             string status = Template.result;
             rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
 
-            status = string.Join(null, new string[] { "\n", Template.betIp });
+            status += string.Join(null, new string[] { "\n", ticket.IP });
             rtfHelper.RTFRenderer.AddText(status);
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
@@ -119,6 +119,10 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
 
             string status = Template.result;
             rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
+            status = string.Empty;
+
+            status = string.Join(null, new string[] { "\n", ticket.IP });
+            rtfHelper.RTFRenderer.AddText(status, rtfHelper.NormalFont);
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

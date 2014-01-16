@@ -35,6 +35,8 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.TicketHelper;
     using Fanex.NAP.Framework.Mvc;
+    using NPOI.HSSF.UserModel;
+    using Apollo.BetList.Core.Factories;
 
     /// <summary>
     /// BetList Controller.
@@ -663,7 +665,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var listTicketText = this.Ticket(mainTickets, BetListPage.Report);
 
-            var excelResult = this._betListService.ExportExcel(listTicketText, string.Empty);
+            var excelResult = this.TicketExcel(mainTickets);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -934,13 +936,16 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Common Action
 
-        private List<TicketText> TicketExcel(TicketResult ticketResult, BetListPage betlistPage)
+        private HSSFWorkbook TicketExcel(TicketResult ticketResult)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
+            BetListPage betListPage = new BetListPage();
             var ticketHelper = new TicketHelper();
-            var builder = new BetListExcelBuilder();
-            var ticketTextList = new List<TicketText>();
+            BetListExcelFactory factory = new BetListExcelFactory();
+            BetListExcelBuilder builder = factory.CreateBuilder();
             var tickets = ticketResult.TicketList;
+            builder.BuildWorksheet("Betlist", 6);
+
             foreach (var ticket in tickets)
             {
                 if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
@@ -948,32 +953,17 @@ namespace Apollo.Age.BetList.Controllers
                     ticket.AgentLevel = CurrentSession.AgentLevel;
                 }
 
-                var ticketText = new TicketText
-                {
-                    TransId = ticket.TransId,
-                    UserName = ticket.UserName,
-                    Discount = builder.AddDiscount(ticket,betlistPage).ToString()
-                };
+                builder.AddTime(ticket, betListPage)
+                       .AddDiscount(ticket, betListPage)
+                       .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList)
+                       .AddStake(ticket)
+                       .AddResult(ticket, betListPage)
+                       .AddStatus(ticket, ticketHelper, ticketResult.TicketDataList, false);
+                       
 
-                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-                if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
-                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
-                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
-                    || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
-                {
-                    ticketText.Result = ticket.Winlost + ticket.PlayerComm;
-                    ticketText.AgentWinlossValue = ticket.AWinlost;
-                }
-                else
-                {
-                    ticketText.Result = 0;
-                    ticketText.AgentWinlossValue = 0;
-                }
-
-                ticketTextList.Add(ticketText);
             }
 
-            return ticketTextList;
+            return (HSSFWorkbook)builder.GetBetList();
         }
 
 

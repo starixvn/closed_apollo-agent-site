@@ -23,6 +23,7 @@ namespace Apollo.Age.BetList.Services
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
+    using Apollo.BetList.Core.Builder;
 
     /// <summary>
     /// Bet List Service Class.
@@ -175,72 +176,6 @@ namespace Apollo.Age.BetList.Services
         public TicketResult GetTicketResult(BetListCriteria criteria, bool isIncludeOldData = false)
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
-        }
-
-        /// <summary>
-        /// Exports the excel.
-        /// </summary>
-        /// <param name="ticketResult">The ticket result.</param>
-        /// <param name="title">The title.</param>
-        /// <returns>HSSF Work book.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public HSSFWorkbook ExportExcel(List<TicketText> ticketResult, string title)
-        {
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook();
-
-            var sheet = hssfworkbook.CreateSheet(Resources.Lang.lblBetLists);
-
-            _excelService.CustomizeColor(hssfworkbook);
-
-            var fontHeaderWhite = _excelService.CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-
-            var headerStyle = _excelService.CreateStyle(hssfworkbook, HSSFColor.GREY_40_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-
-            var bodyStyleRight = _excelService.CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
-            var bodyStyleLeft = _excelService.CreateStyle(hssfworkbook);
-
-            IDataFormat format = hssfworkbook.CreateDataFormat();
-            var numberFormat = format.GetFormat("#,##0.00");
-
-            int rowIndex, startIndex;
-            rowIndex = startIndex = 4;
-            var columIndex = 0;
-            var row = sheet.CreateRow(rowIndex);
-
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.time);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.discount);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.gameType);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.explain);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.amount);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.result);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.BetList.status);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.Lang.lblAgentShare);
-            _excelService.CreateStringCell(row, columIndex++, headerStyle, Resources.Lang.AgentCommission);
-
-            rowIndex++;
-            columIndex = 0;
-            row = sheet.CreateRow(rowIndex);
-
-            foreach (var item in ticketResult)
-            {
-                columIndex = 0;
-                row = sheet.CreateRow(rowIndex);
-                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.TransTime);
-                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.Discount);
-                _excelService.CreateStringCell(row, columIndex++, bodyStyleLeft, item.GameType);
-                rowIndex++;
-            }
-
-            sheet.CreateFreezePane(0, startIndex + 2); //// 2: Freeze Pane 2 row after start index
-            //// Auto-size each column
-            for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
-            {
-                sheet.AutoSizeColumn(i);
-                var currentWidth = sheet.GetColumnWidth(i);
-                sheet.SetColumnWidth(i, currentWidth + 500); //// 500: is padding of cell
-            }
-
-            return hssfworkbook;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Apollo.BetList.Core.Builder
     using Apollo.BetList.Core.Builder.AgentCommBuilder;
     using Apollo.BetList.Core.Builder.TimeBuilder;
     using Apollo.BetList.Core.Builder.DiscountBuilder;
+    using Apollo.BetList.Core.Builder.ResultBuilder;
 
     /// <summary>
     /// Apollo.Age.Resources.BetList Excel Builder
@@ -358,6 +359,27 @@ namespace Apollo.BetList.Core.Builder
 
             this.AddCell(rtfDiscount);
 
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the result.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The page.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
+        {
+            var resultBuilder = new Result();
+            IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
+            this.AddCell(rtfResult);
+
+            return this;
+        }
+
+        public BetListExcelBuilder AddShare(ITicket ticket, BetListPage page)
+        {
+            //var shareBuilder = new IAgentShare();
             return this;
         }
 

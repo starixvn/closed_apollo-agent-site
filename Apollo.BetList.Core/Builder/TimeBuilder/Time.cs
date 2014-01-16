@@ -78,7 +78,10 @@ namespace Apollo.BetList.Core.Builder.TimeBuilder
         public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
         {
             Render(ticket, page);
+            Template.transDate = Template.transDate.Replace(" ", "\n");
+            rtfHelper.RTFRenderer.AddText(Template.transDate);
             IRichTextString rtfTime = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
 
             return rtfTime;
         }

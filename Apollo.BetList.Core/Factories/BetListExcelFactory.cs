@@ -8,9 +8,9 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-namespace Fanex.BetList.Core.Factories
+namespace Apollo.BetList.Core.Factories
 {
-    using Fanex.BetList.Core.Builder;
+    using Apollo.BetList.Core.Builder;
 
     /// <summary>
     /// Class BetListExcelFactory
