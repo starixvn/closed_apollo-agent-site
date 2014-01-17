@@ -37,6 +37,7 @@ namespace Apollo.Age.BetList.Controllers
     using Fanex.NAP.Framework.Mvc;
     using NPOI.HSSF.UserModel;
     using Apollo.BetList.Core.Factories;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// BetList Controller.
@@ -665,7 +666,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var listTicketText = this.Ticket(mainTickets, BetListPage.Report);
 
-            var excelResult = this.TicketExcel(mainTickets);
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -936,15 +937,37 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Common Action
 
-        private HSSFWorkbook TicketExcel(TicketResult ticketResult)
+        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
-            BetListPage betListPage = new BetListPage();
             var ticketHelper = new TicketHelper();
             BetListExcelFactory factory = new BetListExcelFactory();
             BetListExcelBuilder builder = factory.CreateBuilder();
             var tickets = ticketResult.TicketList;
-            builder.BuildWorksheet("Betlist", 6);
+            short columnNumber = 9;
+            builder.BuildWorksheet("Betlist", columnNumber, 20);
+
+            builder
+                .SetColumnWidth(0, 1000)
+                .SetColumnWidth(1, 1000)
+                .SetColumnWidth(2, 3000)
+                .SetColumnWidth(3, 10000)
+                .SetColumnWidth(4, 500)
+                .SetColumnWidth(5, 1500)
+                .SetColumnWidth(6, 1500)
+                .SetColumnWidth(7, 1500)
+                .SetColumnWidth(8, 3000);
+
+            builder
+                .AddHeader(Resources.BetList.time)
+                .AddHeader(Resources.BetList.discount)
+                .AddHeader(Resources.BetList.gameType)
+                .AddHeader(Resources.BetList.explain)
+                .AddHeader(Resources.BetList.amount)
+                .AddHeader(Resources.BetList.result)
+                .AddHeader(Resources.BetList.status)
+                .AddHeader(Resources.Lang.lblAgentShare)
+                .AddHeader(Resources.Lang.AgentCommission);
 
             foreach (var ticket in tickets)
             {
@@ -955,12 +978,13 @@ namespace Apollo.Age.BetList.Controllers
 
                 builder.AddTime(ticket, betListPage)
                        .AddDiscount(ticket, betListPage)
+                       .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName)
                        .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList)
                        .AddStake(ticket)
                        .AddResult(ticket, betListPage)
-                       .AddStatus(ticket, ticketHelper, ticketResult.TicketDataList, false);
-                       
-
+                       .AddStatus(ticket, ticketResult.TicketDataList)
+                       .AddShare(ticket, ticketResult.TicketDataList, betListPage)
+                       .AddComm(ticket);
             }
 
             return (HSSFWorkbook)builder.GetBetList();

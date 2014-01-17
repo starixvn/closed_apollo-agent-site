@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Agent commission.
@@ -61,10 +62,32 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
                 else
                 {
                     Template.AgentComm.agentComm_setting = string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) + "%";
-                }                
+                }
             }
 
             return Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich TextString.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper)
+        {
+            Render(ticket);
+
+            rtfHelper.RTFRenderer.AddText(string.Join("", new string[] { Template.AgentComm.agentComm_setting, " \n " }));
+
+            rtfHelper.RTFRenderer.AddText(Template.AgentCommValue.agentComm_value);
+
+            IRichTextString rtfAgentComm = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfAgentComm;
         }
     }
 }

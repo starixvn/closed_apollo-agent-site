@@ -11,6 +11,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
 {
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Transaction class.
@@ -65,6 +66,20 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             }
 
             return Template;
+        }
+
+        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, RTFHelper rtfHelper, GetCachePropertyById funcGetOddsTypeName)
+        {
+            Render(ticket, ticketHelper, funcGetOddsTypeName, page);
+
+            rtfHelper.RTFRenderer.AddText(string.Join("", new string[] { Template.transId," \n " }));
+
+            rtfHelper.RTFRenderer.AddText(string.Join("", new string[] { Template.sportName.Replace("<br/>", "").Replace("&nbsp;", ""), " ", Template.bettypeName }));
+
+            IRichTextString rtfTrans = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfTrans;
         }
     }
 }

@@ -256,8 +256,8 @@ namespace Apollo.CustSetting.Service
                 }
 
                 var positionTakingXML = string.IsNullOrEmpty(xmlStringData.XMLSetting)
-                    ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
-                    : string.Empty;
+                    ? string.Empty
+                    : string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting);
 
                 if (settingContext.TargetRoleId != (int)Role.Member)
                 {
@@ -300,10 +300,10 @@ namespace Apollo.CustSetting.Service
                     return _customerSettingRepository.UpdateSetting(
                         criteria,
                         new LogCriteria
-                    {
-                        IP = settingContext.IP,
-                        Language = settingContext.Language
-                    });
+                        {
+                            IP = settingContext.IP,
+                            Language = settingContext.Language
+                        });
                 }
                 catch (Exception ex)
                 {
@@ -357,7 +357,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         AgentId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Empty : string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
                     };
                 }
                 else
@@ -367,17 +367,17 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         CustId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        BetLimit = string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Empty : string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting)
                     };
                 }
 
                 return _customerSettingRepository.UpdateSetting(
                     criteria,
                     new LogCriteria
-                {
-                    IP = settingContext.IP,
-                    Language = settingContext.Language
-                });
+                    {
+                        IP = settingContext.IP,
+                        Language = settingContext.Language
+                    });
             }
             catch (Exception ex)
             {
@@ -434,10 +434,10 @@ namespace Apollo.CustSetting.Service
                 return _customerSettingRepository.UpdateSetting(
                     criteria,
                     new LogCriteria
-                {
-                    IP = settingContext.IP,
-                    Language = settingContext.Language
-                });
+                    {
+                        IP = settingContext.IP,
+                        Language = settingContext.Language
+                    });
             }
             catch (Exception ex)
             {
@@ -537,10 +537,10 @@ namespace Apollo.CustSetting.Service
                     return _customerSettingRepository.UpdateSetting(
                         criteria,
                         new LogCriteria
-                    {
-                        IP = settingContext.IP,
-                        Language = settingContext.Language
-                    });
+                        {
+                            IP = settingContext.IP,
+                            Language = settingContext.Language
+                        });
                 }
                 catch (Exception ex)
                 {

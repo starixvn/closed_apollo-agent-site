@@ -30,7 +30,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
         {
             this.Template = new Status_Template();
         }
-        
+
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
@@ -96,33 +96,13 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
         /// <returns>
         /// Rich text string.
         /// </returns>
-        public virtual IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
+        public virtual IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, RTFHelper rtfHelper)
         {
             Render(ticket, ticketData);
 
-            string status = Template.result;
-            rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Template.result, rtfHelper.PosFont);
 
-            status += string.Join(null, new string[] { "\n", ticket.IP });
-            rtfHelper.RTFRenderer.AddText(status);
-
-            IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
-
-            return rtfStatus;
-        }
-
-
-        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper)
-        {
-            Render(ticket, ticketData);
-
-            string status = Template.result;
-            rtfHelper.RTFRenderer.AddText(status, rtfHelper.PosFont);
-            status = string.Empty;
-
-            status = string.Join(null, new string[] { "\n", ticket.IP });
-            rtfHelper.RTFRenderer.AddText(status, rtfHelper.NormalFont);
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", ticket.IP }));
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

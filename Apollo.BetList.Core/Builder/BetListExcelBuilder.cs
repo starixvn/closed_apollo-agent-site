@@ -14,10 +14,15 @@ namespace Apollo.BetList.Core.Builder
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using Apollo.BetList.Core.Builder.AgentCommBuilder;
+    using Apollo.BetList.Core.Builder.AgentShareBuilder;
     using Apollo.BetList.Core.Builder.ChoiceBuilder;
+    using Apollo.BetList.Core.Builder.DiscountBuilder;
     using Apollo.BetList.Core.Builder.OddsBuilder;
+    using Apollo.BetList.Core.Builder.ResultBuilder;
     using Apollo.BetList.Core.Builder.StakeBuilder;
     using Apollo.BetList.Core.Builder.StatusBuilder;
+    using Apollo.BetList.Core.Builder.TimeBuilder;
     using Apollo.BetList.Core.Builder.TransBuilder;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
@@ -26,11 +31,7 @@ namespace Apollo.BetList.Core.Builder
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
-    using Apollo.BetList.Core.Builder.AgentShareBuilder;
-    using Apollo.BetList.Core.Builder.AgentCommBuilder;
-    using Apollo.BetList.Core.Builder.TimeBuilder;
-    using Apollo.BetList.Core.Builder.DiscountBuilder;
-    using Apollo.BetList.Core.Builder.ResultBuilder;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Apollo.Age.Resources.BetList Excel Builder
@@ -121,9 +122,14 @@ namespace Apollo.BetList.Core.Builder
         /// <returns></returns>
         public BetListExcelBuilder SetColumnWidth(int columnIndex, short columnWith)
         {
-            _worksheet.SetColumnWidth(columnIndex, columnWith);
+            _worksheet.AutoSizeColumn(columnIndex);
+
+            var currentWidth = _worksheet.GetColumnWidth(columnIndex);
+            
+            _worksheet.SetColumnWidth(columnIndex, currentWidth + columnWith);
             return this;
         }
+           
 
         /// <summary>
         /// Builds the worksheet.
@@ -132,7 +138,7 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="numberOfColumns">The number of columns.</param>
         /// <param name="singleRowHeight">Height of the single row.</param>
         /// <returns>BetListExcelBuilder</returns>
-        public BetListExcelBuilder BuildWorksheet(string sheetName, short numberOfColumns, short singleRowHeight = 13)
+        public BetListExcelBuilder BuildWorksheet(string sheetName, short numberOfColumns, short singleRowHeight = 20)
         {
             _worksheet = _workbook.CreateSheet(sheetName);
             _worksheet.DisplayGridlines = false;
@@ -149,6 +155,31 @@ namespace Apollo.BetList.Core.Builder
         {
             AdaptRowHeight();
             return _workbook;
+        }
+
+        public BetListExcelBuilder AddHeader(string columnTitle)
+        {
+            _nextCellIndex++;
+
+            var newRow = GetLastRow();
+            
+            var cellStyle = _workbook.CreateCellStyle();
+                        
+            cellStyle.Alignment = HorizontalAlignment.CENTER;
+
+            cellStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
+            cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            
+
+            var newCell = newRow.CreateCell(_nextCellIndex, cellStyle);
+
+            RTFHelper.RTFRenderer.AddText(columnTitle);
+
+            newCell.SetCellValue(RTFHelper.RTFRenderer.Render());
+
+            RTFHelper.RTFRenderer.Clear();
+
+            return this;
         }
 
         /// <summary>
@@ -319,11 +350,11 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <returns></returns>
-        public BetListExcelBuilder AddStatus(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowVNIP)
+        public BetListExcelBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData)
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
-            IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketHelper, ticketData, isShowVNIP, RTFHelper);
-            this.AddCell(rtfStatus, ticketHelper.Index % 2 == 0 ? OddCellStyleCenterAligned : EvenCellStyleCenterAligned);
+            IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketData, RTFHelper);
+            this.AddCell(rtfStatus, OddCellStyleCenterAligned);
             return this;
         }
 
@@ -341,7 +372,7 @@ namespace Apollo.BetList.Core.Builder
 
             IRichTextString rtfTime = timeBuilder.RenderRTF(ticket, page, RTFHelper);
 
-            this.AddCell(rtfTime);
+            this.AddCell(rtfTime, OddCellStyleCenterAligned);
 
             return this;
         }
@@ -357,7 +388,7 @@ namespace Apollo.BetList.Core.Builder
             var discountBuilder = new Discount();
             IRichTextString rtfDiscount = discountBuilder.RenderRTF(ticket, page, RTFHelper);
 
-            this.AddCell(rtfDiscount);
+            this.AddCell(rtfDiscount, OddCellStyleCenterAligned);
 
             return this;
         }
@@ -372,14 +403,49 @@ namespace Apollo.BetList.Core.Builder
         {
             var resultBuilder = new Result();
             IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
-            this.AddCell(rtfResult);
+            this.AddCell(rtfResult, OddCellStyleCenterAligned);
 
             return this;
         }
 
-        public BetListExcelBuilder AddShare(ITicket ticket, BetListPage page)
+        /// <summary>
+        /// Adds the share.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="page">The page.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder AddShare(ITicket ticket, List<ITicketData> ticketData, BetListPage page)
         {
-            //var shareBuilder = new IAgentShare();
+            IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);
+
+            IRichTextString rtfAgentShare = agentShareBuilder.RenderRTF(ticket, ticketData, page, RTFHelper);
+            this.AddCell(rtfAgentShare);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the comm.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder AddComm(ITicket ticket)
+        {
+            IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
+
+            IRichTextString rtfAgentComm = agentCommBuilder.RenderRTF(ticket, RTFHelper);
+            this.AddCell(rtfAgentComm);
+
+            return this;
+        }
+
+        public BetListExcelBuilder AddGameType(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, GetCachePropertyById funcGetOddsTypeName)
+        {
+            ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
+            IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper, page, RTFHelper, funcGetOddsTypeName);
+            this.AddCell(rtfTrans, OddCellStyleCenterAligned);
+
             return this;
         }
 
@@ -684,16 +750,13 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.TOP;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
-            //todo: convert to NPOI 1.2.5 API
-            //OddCellStyle.BorderTop = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = OddCellStyle.BorderLeft = EvenCellStyle.BorderTop = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = EvenCellStyle.BorderLeft = CellBorderType.THIN;
-
             OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = 54;
 
-            OddCellStyle.FillForegroundColor = 26;
-            OddCellStyle.FillBackgroundColor = 43;
+            OddCellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            OddCellStyle.FillBackgroundColor = HSSFColor.WHITE.index;
 
-            EvenCellStyle.FillForegroundColor = 9;
-            EvenCellStyle.FillBackgroundColor = 27;
+            EvenCellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            EvenCellStyle.FillBackgroundColor = HSSFColor.WHITE.index;
 
             OddCellStyle.SetFont(RTFHelper.NormalFont);
             EvenCellStyle.SetFont(RTFHelper.NormalFont);

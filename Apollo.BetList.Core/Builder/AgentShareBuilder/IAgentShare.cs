@@ -14,6 +14,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
     using System.Web;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using NPOI.SS.UserModel;
 
     public interface IAgentShare
     {
@@ -32,5 +33,14 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <returns>Agent share template.</returns>
         AgentShare_Template Render(ITicket ticket, List<ITicketData> ticketData);
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich Text String.</returns>
+        IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, BetListPage page, RTFHelper rtfHelper);
     }
 }

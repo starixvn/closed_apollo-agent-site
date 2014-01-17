@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Agent share.
@@ -54,6 +55,33 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
             }
 
             return Template;
+        }
+
+        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, BetListPage page, RTFHelper rtfHelper)
+        {
+            Render(ticket, ticketData);
+
+            string agentPT = string.Join("", new string[] { Template.AgentPT.agentPT_setting, "\n" });
+            rtfHelper.RTFRenderer.AddText(agentPT);
+
+            string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
+            {
+                if (ticket.AWinlost < 0)
+                {
+                    rtfHelper.RTFRenderer.AddText(ticket.AWinlost.ToString(), rtfHelper.NegFont);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(ticket.AWinlost.ToString());
+                }
+            }
+            
+            IRichTextString rtfAgentShare = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+            return rtfAgentShare;
         }
     }
 }

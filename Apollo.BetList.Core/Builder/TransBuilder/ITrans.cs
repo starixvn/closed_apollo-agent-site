@@ -33,5 +33,18 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
         /// <param name="betlistPage">The bet list page.</param>
         /// <returns>Transaction Template.</returns>
         Trans_Template Render(ITicket ticket, ITicketHelper ticketHelper, GetCachePropertyById funcGetOddsTypeName, BetListPage betlistPage);
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>
+        /// Rich Text String.
+        /// </returns>
+        IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, RTFHelper rtfHelper, GetCachePropertyById funcGetOddsTypeName);
     }
 }
