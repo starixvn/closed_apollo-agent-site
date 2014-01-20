@@ -238,7 +238,7 @@ namespace Apollo.Age.Web
         {
             if (!string.IsNullOrWhiteSpace(sso))
             {
-                string ssoParams = Cryptography.CfsDeCrypt(sso.Replace(" ", "+"));
+                string ssoParams = Cryptography.CfsDeCrypt(Server.UrlDecode(sso).Replace(" ", "+"));
                 var loginTime = DateTime.Now;
                 int agentId = 0;
                 int adminId = 0;
@@ -599,14 +599,14 @@ namespace Apollo.Age.Web
                     }
 
                 case 1:
-                        {
+                    {
                         // Account is locked.
                         ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
                         break;
-                        }
+                    }
 
                 case 2:
-                        {
+                    {
                         // Account is stopped.
                         ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
                         break;
@@ -627,7 +627,7 @@ namespace Apollo.Age.Web
             }
 
             return View();
-            }
+        }
 
         /// <summary>
         /// Creates the login session.
