@@ -1,5 +1,8 @@
 @model Dictionary<string, string>
 <span>Safe Code: @Fanex.Common.Cryptography.CfsEnCrypt("@9ent@dm!n")</span>
+<br />
+<span>SSO: @Fanex.Common.Cryptography.CfsDeCrypt(Server.UrlDecode("A6lAw+HioH8J4%2f0mu7z4fxREzW61xRTjUkfD62k3lZWDE%2fEU6tSXfrbIuxmG2GiMrQnIiJRbni4pDzRUNO482oG%2f%2f4YhuLjhgR5ykFt1g636A7ip7Wz+aQ%3d%3d").Replace(" ","+"))</span>
+
 <table class="tblRpt">
 	<thead>
 		<tr>
