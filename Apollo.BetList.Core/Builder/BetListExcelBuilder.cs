@@ -125,11 +125,11 @@ namespace Apollo.BetList.Core.Builder
             _worksheet.AutoSizeColumn(columnIndex);
 
             var currentWidth = _worksheet.GetColumnWidth(columnIndex);
-            
+
             _worksheet.SetColumnWidth(columnIndex, currentWidth + columnWith);
             return this;
         }
-           
+
 
         /// <summary>
         /// Builds the worksheet.
@@ -162,14 +162,14 @@ namespace Apollo.BetList.Core.Builder
             _nextCellIndex++;
 
             var newRow = GetLastRow();
-            
+
             var cellStyle = _workbook.CreateCellStyle();
-                        
+
             cellStyle.Alignment = HorizontalAlignment.CENTER;
 
             cellStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            
+
 
             var newCell = newRow.CreateCell(_nextCellIndex, cellStyle);
 
@@ -180,6 +180,25 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.RTFRenderer.Clear();
 
             return this;
+        }
+
+        public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null)
+        {
+            if (mergeRange != null)
+            {
+                _worksheet.AddMergedRegion(mergeRange);
+                _nextCellIndex = (mergeRange.LastColumn - mergeRange.FirstColumn);
+            }
+            else
+            {
+                RTFHelper.RTFRenderer.AddText(value);
+                var rftTotalValue = RTFHelper.RTFRenderer.Render();
+                AddCell(rftTotalValue);
+                RTFHelper.RTFRenderer.Clear();
+            }
+
+            return this;
+
         }
 
         /// <summary>

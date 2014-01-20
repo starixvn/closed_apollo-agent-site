@@ -38,6 +38,7 @@ namespace Apollo.Age.BetList.Controllers
     using NPOI.HSSF.UserModel;
     using Apollo.BetList.Core.Factories;
     using NPOI.SS.UserModel;
+    using NPOI.SS.Util;
 
     /// <summary>
     /// BetList Controller.
@@ -946,7 +947,10 @@ namespace Apollo.Age.BetList.Controllers
             var tickets = ticketResult.TicketList;
             short columnNumber = 9;
             builder.BuildWorksheet("Betlist", columnNumber, 20);
-
+            decimal totalAmount = 0;
+            decimal totalResult = 0;
+            decimal totalShare = 0;
+            decimal totalComm = 0;
             builder
                 .SetColumnWidth(0, 1000)
                 .SetColumnWidth(1, 1000)
@@ -985,7 +989,23 @@ namespace Apollo.Age.BetList.Controllers
                        .AddStatus(ticket, ticketResult.TicketDataList)
                        .AddShare(ticket, ticketResult.TicketDataList, betListPage)
                        .AddComm(ticket);
+
+                totalAmount += ticket.Stake;
+                totalResult += ticket.Winlost + ticket.PlayerComm;
+                totalShare += ticket.AWinlost;
+                totalComm += ticket.ADiscount;
             }
+
+            var mergeRange = new CellRangeAddress(builder.LastContentRow + 1, builder.LastContentRow + 1, 0, 2);
+            builder
+                .AddTotal(string.Empty, mergeRange)
+                .AddTotal(tickets.Count.ToString())
+                .AddTotal(totalAmount.ToString())
+                .AddTotal(totalResult.ToString())
+                .AddTotal()
+                .AddTotal(totalShare.ToString())
+                .AddTotal(totalComm.ToString()); ;
+
 
             return (HSSFWorkbook)builder.GetBetList();
         }
