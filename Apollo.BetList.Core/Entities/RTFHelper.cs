@@ -31,6 +31,27 @@ namespace Apollo.BetList.Core.Entities
 
         public IFont ScoreFont { get; set; }
 
+        public IFont NormalFontCrossed { get; set; }
+        public IFont PosFontCrossed { get; set; }
+        public IFont NegFontCrossed { get; set; }
+
         public RtfTextRender RTFRenderer { get; set; }
+
+        public RTFHelper Clone()
+        {
+            RTFHelper tmp = new RTFHelper();
+
+            tmp.PosFont = this.PosFont;
+            tmp.NegFont = this.NegFont;
+            tmp.NormalFont = this.NormalFont;
+
+            tmp.NormalFontCrossed = this.NormalFontCrossed;
+            tmp.PosFontCrossed = this.PosFontCrossed;
+            tmp.NegFontCrossed = this.NegFontCrossed;
+
+            tmp.RTFRenderer = new RtfTextRender();
+
+            return tmp;
+        }
     }
 }

@@ -205,7 +205,7 @@ namespace Apollo.BetList.Core.Builder
             BetListPage betlistPage)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
-            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap, betlistPage);
+            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
 
             return choice;
         }
@@ -229,7 +229,7 @@ namespace Apollo.BetList.Core.Builder
             BetListPage betlistPage)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
-            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap, betlistPage);
+            string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap);
 
             return choice;
         }

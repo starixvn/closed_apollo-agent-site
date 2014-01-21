@@ -34,6 +34,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.TicketHelper;
+    using Apollo.BetList.Core.Utils;
     using Fanex.NAP.Framework.Mvc;
     using NPOI.HSSF.UserModel;
     using Apollo.BetList.Core.Factories;
@@ -983,7 +984,7 @@ namespace Apollo.Age.BetList.Controllers
                 builder.AddTime(ticket, betListPage)
                        .AddDiscount(ticket, betListPage)
                        .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName)
-                       .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList)
+                       .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay)
                        .AddStake(ticket)
                        .AddResult(ticket, betListPage)
                        .AddStatus(ticket, ticketResult.TicketDataList)
@@ -1000,11 +1001,11 @@ namespace Apollo.Age.BetList.Controllers
             builder
                 .AddTotal(string.Empty, mergeRange)
                 .AddTotal(tickets.Count.ToString())
-                .AddTotal(totalAmount.ToString())
-                .AddTotal(totalResult.ToString())
+                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG))
+                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG))
                 .AddTotal()
-                .AddTotal(totalShare.ToString())
-                .AddTotal(totalComm.ToString()); ;
+                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG))
+                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG));
 
 
             return (HSSFWorkbook)builder.GetBetList();

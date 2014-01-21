@@ -17,12 +17,14 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.BetList.Core.Templates;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Mix Parlay.
     /// </summary>
     public class Choice9 : Choice1
     {
+        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
@@ -36,7 +38,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Choice Template.
         /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage)
+        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap)
         {
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
@@ -73,10 +75,78 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
         {
-            List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblMixParlay);
-            lstRTFChoices.Add(rtfChoice);
-            return lstRTFChoices;
+            List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
+            RTFHelper tmpRtfHelper = rtfHelper.Clone();
+
+            tmpRtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.lblMixParlay, tmpRtfHelper.PosFont);
+
+            if (ticketMixParlay != null)
+            {
+                IList<ITicket> parlayData = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo).ToList();
+
+                bool showOdds = ticketHelper.IsShowOddsWithChoice;
+                ticketHelper.IsShowOddsWithChoice = true;
+
+                IFont pos, normal;
+
+                foreach (ITicket tkt in parlayData)
+                {
+                    IChoice choiceBuilder = this.CreateChoiceBuilder(tkt.BetTypeId);
+                    this.Template = choiceBuilder.Render(tkt, ticketHelper, null, isShowScoreMap);
+
+                    var choiceData = this.BuildRTFChoice(tkt, rtfHelper, ticketHelper);
+
+                    List<IRichTextString> tmpRtfChoice;
+
+                    if (choiceData is List<IRichTextString>)
+                    {
+                        tmpRtfChoice = (List<IRichTextString>)choiceData;
+                    }
+                    else
+                    {
+                        tmpRtfChoice = new List<IRichTextString>() { (IRichTextString)choiceData };
+                    }
+
+                    if ((tkt.StatusId != null && tkt.StatusId.ToString().Trim() == BetStatusId.Void) || (tkt.Status != null && tkt.Status.Trim().ToLower() == BetStatus.Void))
+                    {
+                        pos = tmpRtfHelper.PosFontCrossed;
+                        normal = tmpRtfHelper.NormalFontCrossed;
+                    }
+                    else
+                    {
+                        pos = tmpRtfHelper.PosFont;
+                        normal = tmpRtfHelper.NormalFont;
+                    }
+
+                    foreach (HSSFRichTextString rtfString in tmpRtfChoice)
+                    {
+                        // Remove extra line-breaks
+                        while (rtfString.String.StartsWith("\n"))
+                        {
+                            rtfString.String.Remove(0, 1);
+                        }
+
+                        try
+                        {
+                            int lineBreakIndex = rtfString.String.IndexOf("\n");
+                            string eventName = rtfString.String.Substring(0, lineBreakIndex);
+                            string theRest = rtfString.String.Remove(0, eventName.Length);
+
+                            tmpRtfHelper.RTFRenderer.AddText("\n" + eventName, pos);
+                            tmpRtfHelper.RTFRenderer.AddText(theRest, normal);
+                        }
+                        catch (Exception ex) { }
+                    }
+                }
+
+                ticketHelper.IsShowOddsWithChoice = showOdds;
+            }
+
+            var choice = tmpRtfHelper.RTFRenderer.Render();
+
+            tmpRtfHelper.RTFRenderer.Clear();
+
+            return new List<IRichTextString>() { choice };                       
         }
 
         /// <summary>
@@ -114,6 +184,30 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             }
 
             return result;
+        }
+
+        private IChoice CreateChoiceBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                            null,
+                                            new string[] 
+                                            { 
+                                                CHOICE_BUILDER_NAMESPACE, 
+                                                ".Choice", 
+                                                bettype.ToString() 
+                                            }
+                                         );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new Choice1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IChoice;
+            }
         }
     }
 }

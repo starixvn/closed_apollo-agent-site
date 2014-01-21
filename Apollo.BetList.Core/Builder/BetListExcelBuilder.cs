@@ -94,6 +94,9 @@ namespace Apollo.BetList.Core.Builder
                             BlueNoBold = _workbook.CreateFont(),
                             RedAndBold = _workbook.CreateFont(),
                             RedNoBold = _workbook.CreateFont(),
+                            NegFontCrossed = _workbook.CreateFont(),
+                            NormalFontCrossed = _workbook.CreateFont(),
+                            PosFontCrossed = _workbook.CreateFont(),
                             RTFRenderer = new RtfTextRender()
                         };
 
@@ -331,10 +334,10 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <returns>BetListExcelBuilder</returns>
-        public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
+        public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
         {
             IChoice choiceBuilder = CreateChoiceBuilder(ticket.BetTypeId);
-            List<IRichTextString> rtfChoiceList = choiceBuilder.RenderRTF(ticket, ticketHelper, ticketData, false, RTFHelper);
+            List<IRichTextString> rtfChoiceList = choiceBuilder.RenderRTF(ticket, ticketHelper, ticketData, ticketMixParlay, false, RTFHelper);
             foreach (IRichTextString rtfString in rtfChoiceList)
             {
                 AddCell(rtfString);
@@ -760,9 +763,10 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         private void InitDefaultRTFHelper()
         {
-            RTFHelper.PosFont.Boldweight = (short)FontBoldWeight.BOLD;
-            RTFHelper.NegFont.Boldweight = (short)FontBoldWeight.BOLD;
-            RTFHelper.NormalFont.Boldweight = (short)FontBoldWeight.NORMAL;
+            RTFHelper.PosFont.Boldweight = RTFHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.NegFont.Boldweight = RTFHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.NormalFont.Boldweight = RTFHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.NORMAL;
+
 
             RTFHelper.NegFont.FontName =
             RTFHelper.NormalFont.FontName =
@@ -771,18 +775,26 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.BlueAndBold.FontName =
             RTFHelper.BlueNoBold.FontName =
             RTFHelper.RedAndBold.FontName =
+            RTFHelper.NegFontCrossed.FontName =
+            RTFHelper.NormalFontCrossed.FontName =
+            RTFHelper.PosFontCrossed.FontName =
             RTFHelper.RedNoBold.FontName = "Tahoma";
 
             RTFHelper.NegFont.FontHeightInPoints =
-                RTFHelper.NormalFont.FontHeightInPoints =
-                RTFHelper.PosFont.FontHeightInPoints =
-                RTFHelper.ScoreFont.FontHeightInPoints =
-                RTFHelper.BlueAndBold.FontHeightInPoints =
-                RTFHelper.BlueNoBold.FontHeightInPoints =
-                RTFHelper.RedAndBold.FontHeightInPoints =
-                RTFHelper.RedNoBold.FontHeightInPoints = 9;
+            RTFHelper.NormalFont.FontHeightInPoints =
+            RTFHelper.PosFont.FontHeightInPoints =
+            RTFHelper.ScoreFont.FontHeightInPoints =
+            RTFHelper.BlueAndBold.FontHeightInPoints =
+            RTFHelper.BlueNoBold.FontHeightInPoints =
+            RTFHelper.RedAndBold.FontHeightInPoints =
+            RTFHelper.NormalFontCrossed.FontHeightInPoints =
+            RTFHelper.PosFontCrossed.FontHeightInPoints =
+            RTFHelper.NegFontCrossed.FontHeightInPoints =
+            RTFHelper.RedNoBold.FontHeightInPoints = 9;
 
-            RTFHelper.NegFont.Color = IndexedColors.RED.Index;
+            RTFHelper.NormalFontCrossed.IsStrikeout = RTFHelper.PosFontCrossed.IsStrikeout = RTFHelper.NegFontCrossed.IsStrikeout = true;
+
+            RTFHelper.NegFont.Color = RTFHelper.NegFontCrossed.Color = IndexedColors.RED.Index;
 
             RTFHelper.ScoreFont.Color = IndexedColors.GREEN.Index;
             RTFHelper.ScoreFont.Boldweight = (short)FontBoldWeight.BOLD;

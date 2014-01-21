@@ -39,7 +39,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
-        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, BetListPage betListPage);
+        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap);
 
         /// <summary>
         /// Renders the specified ticket.
@@ -53,7 +53,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
-        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, BetListPage betListPage);
+        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap);
 
         /// <summary>
         /// Renders the RTF.
@@ -64,6 +64,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>List of rich text.</returns>
-        List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, bool isShowScoreMap, RTFHelper rtfHelper);
+        List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper);
     }
 }

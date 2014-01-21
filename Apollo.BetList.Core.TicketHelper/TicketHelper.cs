@@ -67,5 +67,12 @@ namespace Apollo.BetList.Core.TicketHelper
         {
             throw new NotImplementedException();
         }
+
+
+        public GetParlayTicketsById GetParlayDetailById
+        {
+            get;
+            set;
+        }
     }
 }

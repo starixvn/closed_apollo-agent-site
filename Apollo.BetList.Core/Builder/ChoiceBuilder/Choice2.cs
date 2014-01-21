@@ -28,9 +28,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="betListPage">The bet list page.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            base.BuildChoice(ticket, ticketHelper, ticketData);
 
             this.Template.handicap = Apollo.Age.Resources.BetList.vs;
             this.Template.betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.odd : Apollo.Age.Resources.BetList.even;

@@ -28,9 +28,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="betListPage">The bet list page.</param>
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
-            base.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            base.BuildChoice(ticket, ticketHelper, ticketData);
 
             bool team1 = ticket.BetTeam == "1";
             bool team2 = ticket.BetTeam == "2";

@@ -24,4 +24,16 @@ namespace Apollo.BetList.Core.Entities
         public const string Draw = "draw";
         public const string Reject = "reject";
     }
+
+    public struct BetStatusId
+    {
+        public const string Won = "112";
+        public const string Lost = "113";
+        public const string Void = "102";
+        public const string Reject = "101";
+        public const string Refund = "103";
+        public const string Draw = "111";
+        public const string Running = "0";
+        public const string Waiting = "1";
+    }
 }
