@@ -102,7 +102,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
 
             rtfHelper.RTFRenderer.AddText(Template.result, rtfHelper.PosFont);
 
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", ticket.IP }));
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", ticket.IP }), rtfHelper.BlueNoBold);
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

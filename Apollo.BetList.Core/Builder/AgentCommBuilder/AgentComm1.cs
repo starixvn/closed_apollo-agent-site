@@ -82,8 +82,14 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
 
             rtfHelper.RTFRenderer.AddText(string.Join("", new string[] { Template.AgentComm.agentComm_setting, " \n " }));
 
-            rtfHelper.RTFRenderer.AddText(Template.AgentCommValue.agentComm_value);
-
+            if (ticket.AComm < 0)
+            {
+                rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm), rtfHelper.RedNoBold);
+            }
+            else
+            {
+                rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm));
+            }
             IRichTextString rtfAgentComm = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
 

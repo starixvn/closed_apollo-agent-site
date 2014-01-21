@@ -118,7 +118,7 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
 
             rtfHelper.RTFRenderer.AddText(Template.username + " ");
 
-            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.NegFont);
+            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.RedNoBold);
 
             IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
 

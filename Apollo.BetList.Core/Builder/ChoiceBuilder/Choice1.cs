@@ -227,6 +227,90 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         }
 
         /// <summary>
+        /// Builds the RTF choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <returns>Rich text interface.</returns>
+        protected virtual IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
+        {
+            // the 1st line
+            this.AdjustBetTeamToRTF();
+            string choice = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(Template.LeagueName))
+            {
+                choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+                rtfHelper.RTFRenderer.AddText(choice);
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.HomeAwayId.homeid) && !string.IsNullOrWhiteSpace(Template.HomeAwayId.awayid))
+            {
+                choice = string.Join(null, new string[] { "\n", "[", Template.HomeAwayId.homeid, "]", " vs ", "[", Template.HomeAwayId.awayid, "]" });
+                rtfHelper.RTFRenderer.AddText(choice);
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
+            {
+                choice = string.Join(null, new string[] { "\n", Template.homeTeam });
+                rtfHelper.RTFRenderer.AddText(choice);
+                choice = string.Empty;
+
+                choice = string.Join(null, new string[] { " ", Template.handicap , " " });
+                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
+                choice = string.Empty;
+
+                choice = string.Join(null, new string[] { Template.awayTeam });
+                rtfHelper.RTFRenderer.AddText(choice);
+                choice = string.Empty;
+
+                if (ticket.IsLive)
+                {
+                    choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                    choice = string.Empty;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.betTeam))
+            {
+                if (!string.IsNullOrWhiteSpace(Template.Score.finalHomeScore) && !string.IsNullOrWhiteSpace(Template.Score.finalAwayScore))
+                {
+                    choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    choice = string.Empty;
+                }
+
+                choice = string.Join(null, new string[] { Template.betTeam });
+                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                choice = string.Empty;
+            }
+
+            rtfHelper.RTFRenderer.AddText(" @ ");
+
+            if (!string.IsNullOrWhiteSpace(Template.odds))
+            {
+                choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", "").Replace("</span>", "") });
+                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(choice))
+            {
+                choice = choice.Replace("&nbsp;", " ");
+                rtfHelper.RTFRenderer.AddText("\n" + choice);
+            }
+
+            var choiceRtf = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return choiceRtf;
+        }
+
+        /// <summary>
         /// Builds the choice.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
@@ -288,54 +372,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 awayFGLG = string.Join(null, new string[] { "&nbsp;", awayFGLG });
             }
-        }
-
-        /// <summary>
-        /// Builds the RTF choice.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns>Rich text interface.</returns>
-        protected virtual IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
-        {
-            // the 1st line
-            this.AdjustBetTeamToRTF();
-            string choice = string.Empty;
-
-            if (!string.IsNullOrWhiteSpace(Template.LeagueName))
-            {
-                choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
-                rtfHelper.RTFRenderer.AddText(choice);
-                choice = string.Empty;
-            }
-
-            if (!string.IsNullOrWhiteSpace(Template.betTeam))
-            {
-                choice = string.Join(null, new string[] { " \n ", Template.betTeam });
-                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
-                choice = string.Empty;
-            }
-
-            rtfHelper.RTFRenderer.AddText(" @ ");
-
-            if (!string.IsNullOrWhiteSpace(Template.odds))
-            {
-                choice = string.Join(null, new string[] { Template.odds });
-                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
-                choice = string.Empty;
-            }
-
-            if (!string.IsNullOrEmpty(choice))
-            {
-                choice = choice.Replace("&nbsp;", " ");
-                rtfHelper.RTFRenderer.AddText("\n" + choice);
-            }
-
-            var choiceRtf = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
-
-            return choiceRtf;
         }
 
         /// <summary>

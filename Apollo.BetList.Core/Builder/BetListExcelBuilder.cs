@@ -89,6 +89,11 @@ namespace Apollo.BetList.Core.Builder
                             NegFont = _workbook.CreateFont(),
                             NormalFont = _workbook.CreateFont(),
                             PosFont = _workbook.CreateFont(),
+                            ScoreFont = _workbook.CreateFont(),
+                            BlueAndBold = _workbook.CreateFont(),
+                            BlueNoBold = _workbook.CreateFont(),
+                            RedAndBold = _workbook.CreateFont(),
+                            RedNoBold = _workbook.CreateFont(),
                             RTFRenderer = new RtfTextRender()
                         };
 
@@ -184,16 +189,21 @@ namespace Apollo.BetList.Core.Builder
 
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null)
         {
+            var cellStyle = _workbook.CreateCellStyle();
+            cellStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
+            cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            cellStyle.Alignment = HorizontalAlignment.RIGHT;
+
             if (mergeRange != null)
             {
-                _worksheet.AddMergedRegion(mergeRange);
-                _nextCellIndex = (mergeRange.LastColumn - mergeRange.FirstColumn);
+                _nextCellIndex = 0;
+                MergeCell(mergeRange, cellStyle);
             }
             else
             {
                 RTFHelper.RTFRenderer.AddText(value);
                 var rftTotalValue = RTFHelper.RTFRenderer.Render();
-                AddCell(rftTotalValue);
+                AddCell(rftTotalValue, cellStyle);
                 RTFHelper.RTFRenderer.Clear();
             }
 
@@ -754,10 +764,41 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.NegFont.Boldweight = (short)FontBoldWeight.BOLD;
             RTFHelper.NormalFont.Boldweight = (short)FontBoldWeight.NORMAL;
 
-            RTFHelper.NegFont.FontName = RTFHelper.NormalFont.FontName = RTFHelper.PosFont.FontName = "Tahoma";
-            RTFHelper.NegFont.FontHeightInPoints = RTFHelper.NormalFont.FontHeightInPoints = RTFHelper.PosFont.FontHeightInPoints = 9;
+            RTFHelper.NegFont.FontName =
+            RTFHelper.NormalFont.FontName =
+            RTFHelper.PosFont.FontName =
+            RTFHelper.ScoreFont.FontName =
+            RTFHelper.BlueAndBold.FontName =
+            RTFHelper.BlueNoBold.FontName =
+            RTFHelper.RedAndBold.FontName =
+            RTFHelper.RedNoBold.FontName = "Tahoma";
+
+            RTFHelper.NegFont.FontHeightInPoints =
+                RTFHelper.NormalFont.FontHeightInPoints =
+                RTFHelper.PosFont.FontHeightInPoints =
+                RTFHelper.ScoreFont.FontHeightInPoints =
+                RTFHelper.BlueAndBold.FontHeightInPoints =
+                RTFHelper.BlueNoBold.FontHeightInPoints =
+                RTFHelper.RedAndBold.FontHeightInPoints =
+                RTFHelper.RedNoBold.FontHeightInPoints = 9;
 
             RTFHelper.NegFont.Color = IndexedColors.RED.Index;
+
+            RTFHelper.ScoreFont.Color = IndexedColors.GREEN.Index;
+            RTFHelper.ScoreFont.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.BlueAndBold.Color = IndexedColors.BLUE.Index;
+            RTFHelper.BlueAndBold.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.BlueNoBold.Color = IndexedColors.BLUE.Index;
+            RTFHelper.BlueNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
+
+            RTFHelper.RedAndBold.Color = IndexedColors.RED.Index;
+            RTFHelper.RedAndBold.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.RedNoBold.Color = IndexedColors.RED.Index;
+            RTFHelper.RedNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
+
         }
 
         /// <summary>

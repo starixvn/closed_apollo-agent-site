@@ -10,6 +10,7 @@ namespace Apollo.BetList.Core.Builder.ResultBuilder
 {
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
+    using Apollo.BetList.Core.Utils;
 
     /// <summary>
     /// Result builder class.
@@ -32,7 +33,7 @@ namespace Apollo.BetList.Core.Builder.ResultBuilder
                 || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
             {
                 decimal result = ticket.Winlost + ticket.PlayerComm;
-                rtfHelper.RTFRenderer.AddText(result.ToString());
+                rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, result));
             }
             else
             {

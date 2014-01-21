@@ -71,11 +71,11 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
             {
                 if (ticket.AWinlost < 0)
                 {
-                    rtfHelper.RTFRenderer.AddText(ticket.AWinlost.ToString(), rtfHelper.NegFont);
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost), rtfHelper.RedNoBold);
                 }
                 else
                 {
-                    rtfHelper.RTFRenderer.AddText(ticket.AWinlost.ToString());
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost));
                 }
             }
             
