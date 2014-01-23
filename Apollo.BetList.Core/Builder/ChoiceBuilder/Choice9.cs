@@ -76,77 +76,31 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
-            RTFHelper tmpRtfHelper = rtfHelper.Clone();
 
-            tmpRtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.lblMixParlay, tmpRtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
 
             if (ticketMixParlay != null)
             {
                 IList<ITicket> parlayData = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo).ToList();
-
-                bool showOdds = ticketHelper.IsShowOddsWithChoice;
-                ticketHelper.IsShowOddsWithChoice = true;
-
-                IFont pos, normal;
 
                 foreach (ITicket tkt in parlayData)
                 {
                     IChoice choiceBuilder = this.CreateChoiceBuilder(tkt.BetTypeId);
                     this.Template = choiceBuilder.Render(tkt, ticketHelper, null, isShowScoreMap);
 
-                    var choiceData = this.BuildRTFChoice(tkt, rtfHelper, ticketHelper);
+                    rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
 
-                    List<IRichTextString> tmpRtfChoice;
+                    rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
 
-                    if (choiceData is List<IRichTextString>)
-                    {
-                        tmpRtfChoice = (List<IRichTextString>)choiceData;
-                    }
-                    else
-                    {
-                        tmpRtfChoice = new List<IRichTextString>() { (IRichTextString)choiceData };
-                    }
-
-                    if ((tkt.StatusId != null && tkt.StatusId.ToString().Trim() == BetStatusId.Void) || (tkt.Status != null && tkt.Status.Trim().ToLower() == BetStatus.Void))
-                    {
-                        pos = tmpRtfHelper.PosFontCrossed;
-                        normal = tmpRtfHelper.NormalFontCrossed;
-                    }
-                    else
-                    {
-                        pos = tmpRtfHelper.PosFont;
-                        normal = tmpRtfHelper.NormalFont;
-                    }
-
-                    foreach (HSSFRichTextString rtfString in tmpRtfChoice)
-                    {
-                        // Remove extra line-breaks
-                        while (rtfString.String.StartsWith("\n"))
-                        {
-                            rtfString.String.Remove(0, 1);
-                        }
-
-                        try
-                        {
-                            int lineBreakIndex = rtfString.String.IndexOf("\n");
-                            string eventName = rtfString.String.Substring(0, lineBreakIndex);
-                            string theRest = rtfString.String.Remove(0, eventName.Length);
-
-                            tmpRtfHelper.RTFRenderer.AddText("\n" + eventName, pos);
-                            tmpRtfHelper.RTFRenderer.AddText(theRest, normal);
-                        }
-                        catch (Exception ex) { }
-                    }
+                    rtfHelper.RTFRenderer.Render();
                 }
-
-                ticketHelper.IsShowOddsWithChoice = showOdds;
             }
 
-            var choice = tmpRtfHelper.RTFRenderer.Render();
+            var choice = rtfHelper.RTFRenderer.Render();
 
-            tmpRtfHelper.RTFRenderer.Clear();
+            rtfHelper.RTFRenderer.Clear();
 
-            return new List<IRichTextString>() { choice };                       
+            return new List<IRichTextString>() { choice };
         }
 
         /// <summary>

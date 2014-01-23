@@ -17,12 +17,15 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.BetList.Core.Entities;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
+    using System;
 
     /// <summary>
     /// Combination Mix Parlay.
     /// </summary>
     public class Choice29 : Choice1
     {
+        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+
         /// <summary>
         /// The combination offer name.
         /// </summary>
@@ -36,28 +39,59 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             { "11111110", "Goliath" }
         };
 
-        /// <summary>
-        /// Renders the RTF.
-        /// </summary>
-        /// <param name="ticket">The ticket need to build.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowScoreMap">Is show score map or not.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>
-        /// Choice Template.
-        /// </returns>
-        public override List<IRichTextString> RenderRTF(
-            ITicket ticket,
-            ITicketHelper ticketHelper,
-            List<ITicketData> ticketData,
-            bool isShowScoreMap,
-            Entities.RTFHelper rtfHelper)
+        ///// <summary>
+        ///// Renders the RTF.
+        ///// </summary>
+        ///// <param name="ticket">The ticket need to build.</param>
+        ///// <param name="ticketHelper">The ticket helper.</param>
+        ///// <param name="ticketData">The ticket data.</param>
+        ///// <param name="isShowScoreMap">Is show score map or not.</param>
+        ///// <param name="rtfHelper">The RTF helper.</param>
+        ///// <returns>
+        ///// Choice Template.
+        ///// </returns>
+        //public override List<IRichTextString> RenderRTF(
+        //    ITicket ticket,
+        //    ITicketHelper ticketHelper,
+        //    List<ITicketData> ticketData,
+        //    bool isShowScoreMap,
+        //    Entities.RTFHelper rtfHelper)
+        //{
+        //    List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
+        //    IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
+        //    lstRTFChoices.Add(rtfChoice);
+        //    return lstRTFChoices;
+        //}
+
+        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
         {
-            List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-            IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
-            lstRTFChoices.Add(rtfChoice);
-            return lstRTFChoices;
+            List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
+            string sportName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
+
+            rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.BlueNoBold);
+
+            if (ticketMixParlay != null)
+            {
+                IList<ITicket> parlayData = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo).ToList();
+
+                foreach (ITicket tkt in parlayData)
+                {
+                    IChoice choiceBuilder = this.CreateChoiceBuilder(tkt.BetTypeId);
+                    this.Template = choiceBuilder.Render(tkt, ticketHelper, null, isShowScoreMap);
+
+                    rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
+
+                    rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
+
+                    rtfHelper.RTFRenderer.Render();
+                }
+            }
+
+            var choice = rtfHelper.RTFRenderer.Render();
+
+            rtfHelper.RTFRenderer.Clear();
+
+            return new List<IRichTextString>() { choice };
         }
 
         /// <summary>
@@ -167,6 +201,30 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             }
 
             return result;
+        }
+
+        private IChoice CreateChoiceBuilder(int bettype)
+        {
+            string typeName = string.Join(
+                                            null,
+                                            new string[] 
+                                            { 
+                                                CHOICE_BUILDER_NAMESPACE, 
+                                                ".Choice", 
+                                                bettype.ToString() 
+                                            }
+                                         );
+
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                return new Choice1();
+            }
+            else
+            {
+                return Activator.CreateInstance(type) as IChoice;
+            }
         }
     }
 }

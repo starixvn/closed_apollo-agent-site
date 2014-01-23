@@ -65,5 +65,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>List of rich text.</returns>
         List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper);
+
     }
 }

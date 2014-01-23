@@ -97,6 +97,9 @@ namespace Apollo.BetList.Core.Builder
                             NegFontCrossed = _workbook.CreateFont(),
                             NormalFontCrossed = _workbook.CreateFont(),
                             PosFontCrossed = _workbook.CreateFont(),
+                            GreenAndBold = _workbook.CreateFont(),
+                            GreenNoBold = _workbook.CreateFont(),
+                            WhiteColor = _workbook.CreateFont(),
                             RTFRenderer = new RtfTextRender()
                         };
 
@@ -175,13 +178,12 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.Alignment = HorizontalAlignment.CENTER;
 
-            cellStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
+            cellStyle.FillForegroundColor = HSSFColor.OLIVE_GREEN.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-
-
+            
             var newCell = newRow.CreateCell(_nextCellIndex, cellStyle);
 
-            RTFHelper.RTFRenderer.AddText(columnTitle);
+            RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.WhiteColor);
 
             newCell.SetCellValue(RTFHelper.RTFRenderer.Render());
 
@@ -193,7 +195,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
-            cellStyle.FillForegroundColor = HSSFColor.GREY_50_PERCENT.index;
+            cellStyle.FillForegroundColor = HSSFColor.DARK_BLUE.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
 
@@ -778,6 +780,8 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.NegFontCrossed.FontName =
             RTFHelper.NormalFontCrossed.FontName =
             RTFHelper.PosFontCrossed.FontName =
+            RTFHelper.GreenAndBold.FontName =
+            RTFHelper.GreenNoBold.FontName =
             RTFHelper.RedNoBold.FontName = "Tahoma";
 
             RTFHelper.NegFont.FontHeightInPoints =
@@ -790,6 +794,8 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.NormalFontCrossed.FontHeightInPoints =
             RTFHelper.PosFontCrossed.FontHeightInPoints =
             RTFHelper.NegFontCrossed.FontHeightInPoints =
+            RTFHelper.GreenAndBold.FontHeightInPoints =
+            RTFHelper.GreenNoBold.FontHeightInPoints =
             RTFHelper.RedNoBold.FontHeightInPoints = 9;
 
             RTFHelper.NormalFontCrossed.IsStrikeout = RTFHelper.PosFontCrossed.IsStrikeout = RTFHelper.NegFontCrossed.IsStrikeout = true;
@@ -811,8 +817,15 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.RedNoBold.Color = IndexedColors.RED.Index;
             RTFHelper.RedNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
 
-        }
+            RTFHelper.GreenAndBold.Color = IndexedColors.GREEN.Index;
+            RTFHelper.GreenAndBold.Boldweight = (short)FontBoldWeight.BOLD;
 
+            RTFHelper.GreenNoBold.Color = IndexedColors.GREEN.Index;
+            RTFHelper.GreenNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
+
+            RTFHelper.WhiteColor.Color = IndexedColors.WHITE.Index;
+            RTFHelper.WhiteColor.Boldweight = (short)FontBoldWeight.BOLD;
+        }
         /// <summary>
         /// Inits the default cell styles.
         /// </summary>

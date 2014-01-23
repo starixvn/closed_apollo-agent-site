@@ -236,7 +236,25 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             // the 1st line
             this.AdjustBetTeamToRTF();
+
+            rtfHelper = CreateRTFHelper(ticket, rtfHelper, ticketHelper);
+
+            var choiceRtf = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return choiceRtf;
+        }
+
+        protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false)
+        {
             string choice = string.Empty;
+
+            if (isShowSportName)
+            {
+                string sportName = ticketHelper.GetSportNameById(ticket.SportTypeId);
+                sportName = string.Join(null, new string[] { sportName, " " });
+                rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBold);
+            }
 
             if (!string.IsNullOrWhiteSpace(Template.LeagueName))
             {
@@ -258,7 +276,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 rtfHelper.RTFRenderer.AddText(choice);
                 choice = string.Empty;
 
-                choice = string.Join(null, new string[] { " ", Template.handicap , " " });
+                choice = string.Join(null, new string[] { " ", Template.handicap, " " });
                 rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
                 choice = string.Empty;
 
@@ -303,10 +321,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 rtfHelper.RTFRenderer.AddText("\n" + choice);
             }
 
-            var choiceRtf = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
-
-            return choiceRtf;
+            return rtfHelper;
         }
 
         /// <summary>
@@ -466,5 +481,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.odds = odds;
         }
+
+
+       
     }
 }

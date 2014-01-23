@@ -972,7 +972,7 @@ namespace Apollo.Age.BetList.Controllers
                 .AddHeader(Resources.BetList.result)
                 .AddHeader(Resources.BetList.status)
                 .AddHeader(Resources.Lang.lblAgentShare)
-                .AddHeader(Resources.Lang.AgentCommission);
+                .AddHeader(Resources.BetList.agentComm);
 
             foreach (var ticket in tickets)
             {
@@ -999,7 +999,9 @@ namespace Apollo.Age.BetList.Controllers
 
             var mergeRange = new CellRangeAddress(builder.LastContentRow + 1, builder.LastContentRow + 1, 0, 2);
             builder
-                .AddTotal(string.Empty, mergeRange)
+                .AddTotal()
+                .AddTotal()
+                .AddTotal()
                 .AddTotal(tickets.Count.ToString())
                 .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG))
                 .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG))
