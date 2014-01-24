@@ -997,7 +997,6 @@ namespace Apollo.Age.BetList.Controllers
                 totalComm += ticket.ADiscount;
             }
 
-            var mergeRange = new CellRangeAddress(builder.LastContentRow + 1, builder.LastContentRow + 1, 0, 2);
             builder
                 .AddTotal()
                 .AddTotal()
@@ -1009,8 +1008,9 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG))
                 .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG));
 
-
-            return (HSSFWorkbook)builder.GetBetList();
+            HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
+            
+            return workBook;
         }
 
 

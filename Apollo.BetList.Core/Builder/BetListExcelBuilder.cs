@@ -138,6 +138,7 @@ namespace Apollo.BetList.Core.Builder
             var currentWidth = _worksheet.GetColumnWidth(columnIndex);
 
             _worksheet.SetColumnWidth(columnIndex, currentWidth + columnWith);
+            
             return this;
         }
 
@@ -153,7 +154,7 @@ namespace Apollo.BetList.Core.Builder
         {
             _worksheet = _workbook.CreateSheet(sheetName);
             _worksheet.DisplayGridlines = false;
-            _worksheet.DefaultRowHeight = singleRowHeight;
+            _worksheet.DefaultRowHeight = singleRowHeight;            
             _reportColumnsNum = numberOfColumns;
             return this;
         }
@@ -835,7 +836,11 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.TOP;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
-            OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = 54;
+            OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = HSSFColor.BLACK.index;
+            
+             
+            OddCellStyle.BorderTop = OddCellStyle.BorderLeft = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = BorderStyle.THIN;
+            EvenCellStyle.BorderTop = EvenCellStyle.BorderLeft = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = BorderStyle.THIN;
 
             OddCellStyle.FillForegroundColor = HSSFColor.WHITE.index;
             OddCellStyle.FillBackgroundColor = HSSFColor.WHITE.index;
