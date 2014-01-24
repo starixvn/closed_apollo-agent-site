@@ -1,33 +1,6 @@
 @model Dictionary<string, string>
 <span>Safe Code: @Fanex.Common.Cryptography.CfsEnCrypt("@9ent@dm!n")</span>
-<table class="tblRpt">
-	<thead>
-		<tr>
-			<th>Key</th>
-			<th>English (US)</th>
-			<th>Chinese (Traditional)</th>
-		</tr>
-	</thead>
-	<tbody>
-	@if (Model != null && Model.Any())
-	{
-		foreach (var entry in Model)
-		{
-		<tr>
-			<td>@entry.Key</td>
-			<td>@entry.Value</td>
-			<td></td>
-		</tr>
-		}
-	}
-	</tbody>
-</table>
-
-@if (Model != null && Model.Any())
-{
-	<script type="text/javascript">
-
-		alert(@Model.Count());
-
-	</script>
-}
+<br />
+<span>Url Code: @Server.UrlDecode("A6lAw+HioH+ZhTH3S1XP8vUJnB+tCqtrri5dffdxs%2f6CUqsk7a7vc5A7uwPbVNyZ92XocxM2liVn53pnodXTL1NhSDjt701iyeKTxWa6Rm48rhQ+CLD3%2fQ%3d%3d")</span>
+<br />
+<span>Url decrypt: @Fanex.Common.Cryptography.CfsDeCrypt(Server.UrlDecode("A6lAw+HioH+ZhTH3S1XP8vUJnB+tCqtrri5dffdxs%2f6CUqsk7a7vc5A7uwPbVNyZ92XocxM2liVn53pnodXTL1NhSDjt701iyeKTxWa6Rm48rhQ+CLD3%2fQ%3d%3d").Replace(" ","+"))</span>

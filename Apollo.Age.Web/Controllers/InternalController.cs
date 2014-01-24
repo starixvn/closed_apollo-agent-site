@@ -234,19 +234,21 @@ namespace Apollo.Age.Web
         /// <returns>Action result.</returns>
         [AllowAnonymous]
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [HttpGet]
         public ActionResult SSOLogin(string sso)
         {
             if (!string.IsNullOrWhiteSpace(sso))
             {
-                string ssoParams = Cryptography.CfsDeCrypt(Server.UrlDecode(sso).Replace(" ", "+"));
+                string urlDecode = Server.UrlDecode(sso).Replace(" ", "+");
+                string ssoParams = Cryptography.CfsDeCrypt(urlDecode);
                 var loginTime = DateTime.Now;
                 int agentId = 0;
                 int adminId = 0;
                 string adminName = string.Empty;
                 int onlineAdminId = 0;
                 int siteId = AppSettings.SSOSiteId;
-
                 string[] listOfParam = ssoParams.Split('&');
+
                 if (listOfParam.Length > 0)
                 {
                     onlineAdminId = Convert.ToInt32(listOfParam[0].Substring(listOfParam[0].IndexOf('=') + 1));
