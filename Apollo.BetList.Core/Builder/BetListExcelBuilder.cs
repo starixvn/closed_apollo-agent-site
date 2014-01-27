@@ -135,10 +135,10 @@ namespace Apollo.BetList.Core.Builder
         {
             _worksheet.AutoSizeColumn(columnIndex);
 
-            var currentWidth = _worksheet.GetColumnWidth(columnIndex);
+            //var currentWidth = _worksheet.GetColumnWidth(columnIndex);
 
-            _worksheet.SetColumnWidth(columnIndex, currentWidth + columnWith);
-            
+            _worksheet.SetColumnWidth(columnIndex, columnWith * 256);
+
             return this;
         }
 
@@ -154,7 +154,7 @@ namespace Apollo.BetList.Core.Builder
         {
             _worksheet = _workbook.CreateSheet(sheetName);
             _worksheet.DisplayGridlines = false;
-            _worksheet.DefaultRowHeight = singleRowHeight;            
+            _worksheet.DefaultRowHeight = singleRowHeight;
             _reportColumnsNum = numberOfColumns;
             return this;
         }
@@ -169,6 +169,18 @@ namespace Apollo.BetList.Core.Builder
             return _workbook;
         }
 
+        public BetListExcelBuilder AddTitle(string title)
+        {
+
+            return this;
+        }
+
+
+        /// <summary>
+        /// Adds the header.
+        /// </summary>
+        /// <param name="columnTitle">The column title.</param>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
             _nextCellIndex++;
@@ -181,7 +193,7 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.FillForegroundColor = HSSFColor.OLIVE_GREEN.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            
+
             var newCell = newRow.CreateCell(_nextCellIndex, cellStyle);
 
             RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.WhiteColor);
@@ -837,8 +849,8 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
             OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = HSSFColor.BLACK.index;
-            
-             
+
+
             OddCellStyle.BorderTop = OddCellStyle.BorderLeft = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = BorderStyle.THIN;
             EvenCellStyle.BorderTop = EvenCellStyle.BorderLeft = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = BorderStyle.THIN;
 

@@ -668,7 +668,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var listTicketText = this.Ticket(mainTickets, BetListPage.Report);
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report);
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report,"Betlist-Winloss");
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -939,7 +939,7 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Common Action
 
-        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage)
+        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -947,21 +947,21 @@ namespace Apollo.Age.BetList.Controllers
             BetListExcelBuilder builder = factory.CreateBuilder();
             var tickets = ticketResult.TicketList;
             short columnNumber = 9;
-            builder.BuildWorksheet("Betlist", columnNumber, 20);
+            builder.BuildWorksheet(sheetName, columnNumber, 15);
             decimal totalAmount = 0;
             decimal totalResult = 0;
             decimal totalShare = 0;
             decimal totalComm = 0;
             builder
-                .SetColumnWidth(0, 1000)
-                .SetColumnWidth(1, 1000)
-                .SetColumnWidth(2, 3000)
-                .SetColumnWidth(3, 10000)
-                .SetColumnWidth(4, 500)
-                .SetColumnWidth(5, 1500)
-                .SetColumnWidth(6, 1500)
-                .SetColumnWidth(7, 1500)
-                .SetColumnWidth(8, 3000);
+                .SetColumnWidth(0, 15)
+                .SetColumnWidth(1, 10)
+                .SetColumnWidth(2, 20)
+                .SetColumnWidth(3, 50)
+                .SetColumnWidth(4, 10)
+                .SetColumnWidth(5, 10)
+                .SetColumnWidth(6, 20)
+                .SetColumnWidth(7, 15)
+                .SetColumnWidth(8, 15);
 
             builder
                 .AddHeader(Resources.BetList.time)
