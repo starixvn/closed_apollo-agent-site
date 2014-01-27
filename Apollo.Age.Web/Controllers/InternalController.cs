@@ -235,46 +235,43 @@ namespace Apollo.Age.Web
         [AllowAnonymous]
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpGet]
-        public ActionResult SSOLogin(string sso)
+        public ActionResult SSOLogin(string onUserId, string adminId, string adminName, string agentId, string loginTime)
         {
-            if (!string.IsNullOrWhiteSpace(sso))
-            {
-                string urlDecode = Server.UrlDecode(sso).Replace(" ", "+");
-                string ssoParams = Cryptography.CfsDeCrypt(urlDecode);
-                var loginTime = DateTime.Now;
-                int agentId = 0;
-                int adminId = 0;
-                string adminName = string.Empty;
-                int onlineAdminId = 0;
-                int siteId = AppSettings.SSOSiteId;
-                string[] listOfParam = ssoParams.Split('&');
 
-                if (listOfParam.Length > 0)
-                {
-                    onlineAdminId = Convert.ToInt32(listOfParam[0].Substring(listOfParam[0].IndexOf('=') + 1));
-                    adminId = Convert.ToInt32(listOfParam[1].Substring(listOfParam[1].IndexOf('=') + 1));
-                    adminName = listOfParam[2].Substring(listOfParam[2].IndexOf('=') + 1);
-                    agentId = Convert.ToInt32(listOfParam[3].Substring(listOfParam[3].IndexOf('=') + 1));
-                    loginTime = Convert.ToDateTime(listOfParam[4].Substring(listOfParam[4].IndexOf('=') + 1));
-                }
+            if (!string.IsNullOrWhiteSpace(onUserId) && !string.IsNullOrWhiteSpace(adminId) && !string.IsNullOrWhiteSpace(adminName) && !string.IsNullOrWhiteSpace(agentId) && !string.IsNullOrWhiteSpace(loginTime))
+            {
+                //"OnUserId={0}&AdminId={1}&AdminName={2}&AgentId={3}&LoginTime={4}";
+                onUserId = Server.HtmlDecode(onUserId).Replace(" ", "+");
+                adminId = Server.HtmlDecode(adminId).Replace(" ", "+");
+                adminName = Server.HtmlDecode(adminName).Replace(" ", "+");
+                agentId = Server.HtmlDecode(agentId).Replace(" ", "+");
+                loginTime = Server.HtmlDecode(loginTime).Replace(" ", "+");
+
+                DateTime currentLoginTime = Convert.ToDateTime(Cryptography.CfsDeCrypt(loginTime));
+                int currentAgentId = Convert.ToInt32(Cryptography.CfsDeCrypt(agentId));
+                int currentOnUserId = Convert.ToInt32(Cryptography.CfsDeCrypt(onUserId));
+                int currentAdminId = Convert.ToInt32(Cryptography.CfsDeCrypt(adminId));
+                string currentAdminName = Cryptography.CfsDeCrypt(adminName);
+                int siteId = AppSettings.SSOSiteId;
+                int onlineAdminId = 0;
 
                 DateTime currentTime = _userService.SSOGetTime(new SSOGetTimeCriteria
                 {
                     Time = DateTime.Now
                 });
 
-                var expirationTime = currentTime - loginTime;
+                var expirationTime = currentTime - currentLoginTime;
                 if (expirationTime.TotalSeconds <= _expirationTime)
                 {
                     // SSO Check-in again.
                     var criteria = new SSOCheckInCriteria
                     {
-                        CheckOnUserId = onlineAdminId,
+                        CheckOnUserId = currentOnUserId,
                         OnUserId = 0,
                         SiteId = siteId,
                         LoginDate = DateTime.Now,
                         NetSessionId = Session.SessionID,
-                        UserId = adminId,
+                        UserId = currentAdminId,
                         IP = _deviceService.ClientIp
                     };
 
@@ -282,15 +279,15 @@ namespace Apollo.Age.Web
 
                     if (onlineAdminId > 0)
                     {
-                        var user = _userService.GetUserById(agentId);
+                        var user = _userService.GetUserById(currentAgentId);
                         if (user != null)
                         {
                             User agentUser = null;
                             int onlineUserId = 0;
-                            var userChecking = this.UserInfoChecking(user.Username, adminId, ref agentUser, ref onlineUserId);
+                            var userChecking = this.UserInfoChecking(user.Username, currentAdminId, ref agentUser, ref onlineUserId);
                             if (userChecking == 0)
                             {
-                                CreateLoginSession(adminId, adminName, "en-US", false, agentUser, onlineUserId);
+                                CreateLoginSession(currentAdminId, currentAdminName, "en-US", false, agentUser, onlineUserId);
 
                                 return Redirect(FormsAuthentication.DefaultUrl);
                             }
