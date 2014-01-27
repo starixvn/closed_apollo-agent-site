@@ -230,18 +230,26 @@ namespace Apollo.Age.Web
         /// <summary>
         /// Internals the login.
         /// </summary>
-        /// <param name="sso">The SSO parameters.</param>
-        /// <returns>Action result.</returns>
+        /// <param name="onlineUserId">The on user identifier.</param>
+        /// <param name="adminId">The admin identifier.</param>
+        /// <param name="adminName">Name of the admin.</param>
+        /// <param name="agentId">The agent identifier.</param>
+        /// <param name="loginTime">The login time.</param>
+        /// <returns>
+        /// Action result.
+        /// </returns>
         [AllowAnonymous]
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [HttpGet]
-        public ActionResult SSOLogin(string onUserId, string adminId, string adminName, string agentId, string loginTime)
+        public ActionResult SSOLogin(string onlineUserId, string adminId, string adminName, string agentId, string loginTime)
         {
-
-            if (!string.IsNullOrWhiteSpace(onUserId) && !string.IsNullOrWhiteSpace(adminId) && !string.IsNullOrWhiteSpace(adminName) && !string.IsNullOrWhiteSpace(agentId) && !string.IsNullOrWhiteSpace(loginTime))
+            if (!string.IsNullOrWhiteSpace(onlineUserId) && 
+                !string.IsNullOrWhiteSpace(adminId) && 
+                !string.IsNullOrWhiteSpace(adminName) && 
+                !string.IsNullOrWhiteSpace(agentId) && 
+                !string.IsNullOrWhiteSpace(loginTime))
             {
-                //"OnUserId={0}&AdminId={1}&AdminName={2}&AgentId={3}&LoginTime={4}";
-                onUserId = Server.HtmlDecode(onUserId).Replace(" ", "+");
+                onlineUserId = Server.HtmlDecode(onlineUserId).Replace(" ", "+");
                 adminId = Server.HtmlDecode(adminId).Replace(" ", "+");
                 adminName = Server.HtmlDecode(adminName).Replace(" ", "+");
                 agentId = Server.HtmlDecode(agentId).Replace(" ", "+");
@@ -249,7 +257,7 @@ namespace Apollo.Age.Web
 
                 DateTime currentLoginTime = Convert.ToDateTime(Cryptography.CfsDeCrypt(loginTime));
                 int currentAgentId = Convert.ToInt32(Cryptography.CfsDeCrypt(agentId));
-                int currentOnUserId = Convert.ToInt32(Cryptography.CfsDeCrypt(onUserId));
+                int currentOnUserId = Convert.ToInt32(Cryptography.CfsDeCrypt(onlineUserId));
                 int currentAdminId = Convert.ToInt32(Cryptography.CfsDeCrypt(adminId));
                 string currentAdminName = Cryptography.CfsDeCrypt(adminName);
                 int siteId = AppSettings.SSOSiteId;
