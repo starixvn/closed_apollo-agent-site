@@ -30,6 +30,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Web.ViewModels;
     using Fanex.Common;
     using Fanex.Logging;
+    using System.Globalization;
 
     /// <summary>
     /// Internal Login Controller.
@@ -47,7 +48,7 @@ namespace Apollo.Age.Web
         private const int ServerId = 2;
         private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private readonly int _randomStringLength = _RandomString.Length;
-        private readonly int _expirationTime = 60; // 30s for expirating.
+        private readonly int _expirationTime = 100; // 30s for expirating.
 
         #endregion Const
 
@@ -255,7 +256,8 @@ namespace Apollo.Age.Web
                 agentId = Server.HtmlDecode(agentId).Replace(" ", "+");
                 loginTime = Server.HtmlDecode(loginTime).Replace(" ", "+");
 
-                DateTime currentLoginTime = Convert.ToDateTime(Cryptography.CfsDeCrypt(loginTime));
+                var beforeTime = Cryptography.CfsDeCrypt(loginTime).Trim();
+                DateTime currentLoginTime = DateTime.ParseExact(beforeTime, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                 int currentAgentId = Convert.ToInt32(Cryptography.CfsDeCrypt(agentId));
                 int currentOnUserId = Convert.ToInt32(Cryptography.CfsDeCrypt(onlineUserId));
                 int currentAdminId = Convert.ToInt32(Cryptography.CfsDeCrypt(adminId));
