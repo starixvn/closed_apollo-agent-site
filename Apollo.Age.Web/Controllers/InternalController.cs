@@ -47,7 +47,7 @@ namespace Apollo.Age.Web
         private const int ServerId = 2;
         private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private readonly int _randomStringLength = _RandomString.Length;
-        private readonly int _expirationTime = 30; // 30s for expirating.
+        private readonly int _expirationTime = 60; // 30s for expirating.
 
         #endregion Const
 
@@ -301,6 +301,10 @@ namespace Apollo.Age.Web
                             }
                         }
                     }
+                }
+                else
+                {
+                    Fanex.Logging.LogService.Info("Current time server:" + currentTime + " - Current login time:" + currentLoginTime + "- Total Second:" + expirationTime.TotalSeconds);
                 }
             }
 
