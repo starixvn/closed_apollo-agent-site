@@ -291,11 +291,11 @@ namespace Apollo.Age.Web
                         if (user != null)
                         {
                             User agentUser = null;
-                            int onlineUserId = 0;
-                            var userChecking = this.UserInfoChecking(user.Username, currentAdminId, ref agentUser, ref onlineUserId);
+                            int userId = 0;
+                            var userChecking = this.UserInfoChecking(user.Username, currentAdminId, ref agentUser, ref userId);
                             if (userChecking == 0)
                             {
-                                CreateLoginSession(currentAdminId, currentAdminName, "en-US", false, agentUser, onlineUserId);
+                                CreateLoginSession(currentAdminId, currentAdminName, "en-US", false, agentUser, userId);
 
                                 return Redirect(FormsAuthentication.DefaultUrl);
                             }
