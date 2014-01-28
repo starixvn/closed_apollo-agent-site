@@ -16,6 +16,7 @@ namespace Apollo.Age.Web
     using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Drawing.Text;
+    using System.Globalization;
     using System.IO;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -30,7 +31,6 @@ namespace Apollo.Age.Web
     using Apollo.Age.Web.ViewModels;
     using Fanex.Common;
     using Fanex.Logging;
-    using System.Globalization;
 
     /// <summary>
     /// Internal Login Controller.
@@ -244,10 +244,10 @@ namespace Apollo.Age.Web
         [HttpGet]
         public ActionResult SSOLogin(string onlineUserId, string adminId, string adminName, string agentId, string loginTime)
         {
-            if (!string.IsNullOrWhiteSpace(onlineUserId) && 
-                !string.IsNullOrWhiteSpace(adminId) && 
-                !string.IsNullOrWhiteSpace(adminName) && 
-                !string.IsNullOrWhiteSpace(agentId) && 
+            if (!string.IsNullOrWhiteSpace(onlineUserId) &&
+                !string.IsNullOrWhiteSpace(adminId) &&
+                !string.IsNullOrWhiteSpace(adminName) &&
+                !string.IsNullOrWhiteSpace(agentId) &&
                 !string.IsNullOrWhiteSpace(loginTime))
             {
                 onlineUserId = Server.HtmlDecode(onlineUserId).Replace(" ", "+");
@@ -303,10 +303,6 @@ namespace Apollo.Age.Web
                             }
                         }
                     }
-                }
-                else
-                {
-                    Fanex.Logging.LogService.Info("Current time server:" + currentTime + " - Current login time:" + currentLoginTime + "- Total Second:" + expirationTime.TotalSeconds);
                 }
             }
 
