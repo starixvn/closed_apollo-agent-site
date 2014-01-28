@@ -1,36 +1,6 @@
 @model Dictionary<string, string>
 <span>Safe Code: @Fanex.Common.Cryptography.CfsEnCrypt("@9ent@dm!n")</span>
 <br />
-<span>SSO: @Fanex.Common.Cryptography.CfsDeCrypt(Server.UrlDecode("A6lAw+HioH8J4%2f0mu7z4fxREzW61xRTjUkfD62k3lZWDE%2fEU6tSXfrbIuxmG2GiMrQnIiJRbni4pDzRUNO482oG%2f%2f4YhuLjhgR5ykFt1g636A7ip7Wz+aQ%3d%3d").Replace(" ","+"))</span>
-
-<table class="tblRpt">
-	<thead>
-		<tr>
-			<th>Key</th>
-			<th>English (US)</th>
-			<th>Chinese (Traditional)</th>
-		</tr>
-	</thead>
-	<tbody>
-	@if (Model != null && Model.Any())
-	{
-		foreach (var entry in Model)
-		{
-		<tr>
-			<td>@entry.Key</td>
-			<td>@entry.Value</td>
-			<td></td>
-		</tr>
-		}
-	}
-	</tbody>
-</table>
-
-@if (Model != null && Model.Any())
-{
-	<script type="text/javascript">
-
-		alert(@Model.Count());
-
-	</script>
-}
+<span>Url Code: @Server.UrlDecode("9ovhfksOtpKt%2fVwTzQMGELLJEp+EiEY6")</span>
+<br />
+<span>Url decrypt: @Fanex.Common.Cryptography.CfsDeCrypt(Server.UrlDecode("9ovhfksOtpKt%2fVwTzQMGELLJEp+EiEY6").Replace(" ","+"))</span>
