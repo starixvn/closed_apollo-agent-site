@@ -1,33 +1,6 @@
 @model Dictionary<string, string>
 <span>Safe Code: @Fanex.Common.Cryptography.CfsEnCrypt("@9ent@dm!n")</span>
-<table class="tblRpt">
-	<thead>
-		<tr>
-			<th>Key</th>
-			<th>English (US)</th>
-			<th>Chinese (Traditional)</th>
-		</tr>
-	</thead>
-	<tbody>
-	@if (Model != null && Model.Any())
-	{
-		foreach (var entry in Model)
-		{
-		<tr>
-			<td>@entry.Key</td>
-			<td>@entry.Value</td>
-			<td></td>
-		</tr>
-		}
-	}
-	</tbody>
-</table>
-
-@if (Model != null && Model.Any())
-{
-	<script type="text/javascript">
-
-		alert(@Model.Count());
-
-	</script>
-}
+<br />
+<span>Url Code: @Server.UrlDecode("9ovhfksOtpKt%2fVwTzQMGELLJEp+EiEY6")</span>
+<br />
+<span>Url decrypt: @Fanex.Common.Cryptography.CfsDeCrypt(Server.UrlDecode("9ovhfksOtpKt%2fVwTzQMGELLJEp+EiEY6").Replace(" ","+"))</span>
