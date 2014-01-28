@@ -33,12 +33,11 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Web.Web.Attribute;
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
+    using Apollo.BetList.Core.Factories;
     using Apollo.BetList.Core.TicketHelper;
     using Apollo.BetList.Core.Utils;
     using Fanex.NAP.Framework.Mvc;
     using NPOI.HSSF.UserModel;
-    using Apollo.BetList.Core.Factories;
-    using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
     /// <summary>
@@ -341,6 +340,90 @@ namespace Apollo.Age.BetList.Controllers
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
+        public ActionResult TransactionExportExcel(BetListReportViewModel model)
+        {
+            var statusIds = string.Format(
+                     "{0},{1},{2},{3},{4},{5},{6},{7}",
+                     (int)Apollo.Age.Enumerations.BetStatus.Void,
+                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                     (int)Apollo.Age.Enumerations.BetStatus.Running,
+                     (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                     (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                     (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                     (int)Apollo.Age.Enumerations.BetStatus.Won,
+                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            int agentId, custId;
+            int errorCode;
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : CurrentSession.AgentName;
+            _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList =
+                model.SportTypes == "-99"
+                ? _reportService.GetParlayBettype()
+                : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BalanceUpDay = balanceUpDay;
+
+            if (errorCode == 0)
+            {
+                var betListService = new BetListService();
+                var criteria = new BetListCriteria
+                {
+                    AgentId = agentId,
+                    LoggedId = CurrentSession.AgentId,
+                    CustId = custId,
+                    FromDate = this.ResetStartDate(model.FromDate),
+                    ToDate = this.ResetEndDate(model.ToDate),
+                    StatusIds = statusIds,
+
+                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
+                    BetTypes = model.BetTypes,
+
+                    BetListPage = BetListPage.Transaction,
+                    MoveBetsDay = _reportService.MoveBetsDay()
+                };
+
+                //// Cache Key
+                var sessionKey = string.Format(
+                    "TransactionsReport{0}-{1}-{2}",
+                    criteria.LoggedId,
+                    criteria.AgentId,
+                    criteria.CustId);
+
+                TicketResult mainTickets = null;
+                var getFromDB = true;
+                if (model.FromPaging == true)
+                {
+                    var resultFromSession = HttpContext.Session[sessionKey] as TicketResult;
+                    if (resultFromSession != null)
+                    {
+                        mainTickets = resultFromSession.Clone();
+                        getFromDB = false;
+                    }
+                }
+
+                if (getFromDB)
+                {
+                    mainTickets = betListService.GetTicketResult(criteria);
+                    HttpContext.Session[sessionKey] = mainTickets.Clone();
+                }
+
+                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Transaction", "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd"));
+
+                var fileName = string.Format(
+                    "BetList_{0}_{1}_{2}",
+                    "Transaction",
+                    this._excelService.ShortDateFormat(model.FromDate),
+                    this._excelService.ShortDateFormat(model.ToDate));
+
+                return new ExcelResult(excelResult, fileName);
+            }
+
+            return null;
+        }
+
+
         /// <summary>
         /// Cancel ticket bet list.
         /// </summary>
@@ -446,6 +529,62 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(model);
         }
 
+        public ActionResult TicketCancelExportExcel(BetListReportViewModel model)
+        {
+            var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
+            var balanceUpDay = _reportService.GetBalanceUpDay();
+            var moveBetsDay = _reportService.MoveBetsDay();
+            int agentId, custId;
+            int errorCode;
+
+            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : CurrentSession.AgentName;
+            _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
+
+            model.SportList = SingbetSportService.GetSport(isOther: false);
+            model.BettypeList =
+                model.SportTypes == "-99"
+                ? _reportService.GetParlayBettype()
+                : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
+            model.BalanceUpDay = balanceUpDay;
+            model.MoveBetDay = moveBetsDay;
+
+            if (errorCode == 0)
+            {
+                var betListService = new BetListService();
+                var criteria = new BetListCriteria
+                {
+                    AgentId = agentId,
+                    LoggedId = CurrentSession.AgentId,
+                    CustId = custId,
+                    FromDate = this.ResetStartDate(model.FromDate),
+                    ToDate = this.ResetEndDate(model.ToDate),
+                    StatusIds = statusIds,
+
+                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
+                    BetTypes = model.BetTypes,
+                    BetListPage = BetListPage.Cancel,
+
+                    BalanceUpDay = model.BalanceUpDay,
+                    MoveBetsDay = model.MoveBetDay
+                };
+
+                TicketResult mainTickets;
+                mainTickets = betListService.GetTicketResult(criteria, true);
+
+                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Ticket Cancel", "BET LIST TICKET CANCEL - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd"));
+
+                var fileName = string.Format(
+                    "BetList_{0}_{1}_{2}",
+                    "Ticket Cancel",
+                    this._excelService.ShortDateFormat(model.FromDate),
+                    this._excelService.ShortDateFormat(model.ToDate));
+
+                return new ExcelResult(excelResult, fileName);
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Bet list Outstanding listOutstanding.
         /// </summary>
@@ -503,6 +642,54 @@ namespace Apollo.Age.BetList.Controllers
             };
 
             return this.View(viewModel);
+        }
+
+        public ActionResult ExportExcelOutstanding(
+            int custId,
+            string username = "",
+            int mainShareHolderId = 0,
+            string mainShareHolderUsername = "",
+            string betType = "",
+            string sportType = "",
+            string sportName = "",
+            string betTypeName = "")
+        {
+            var statusIds = string.Format(
+                    "{0},{1}",
+                   (int)Apollo.Age.Enumerations.BetStatus.Running,
+                   (int)Apollo.Age.Enumerations.BetStatus.Waiting);
+
+            var moveBetsDay = _reportService.MoveBetsDay();
+
+            // List ticket
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                AgentId = -1,
+                BetTypes = betType,
+                SportTypes = sportType == "-99" ? "0" : sportType,
+                LoggedId = CurrentSession.AgentId,
+                CustId = custId,
+                FromDate = ResetStartDate(moveBetsDay),
+                ToDate = ResetEndDate(DateTime.Now),
+                StatusIds = statusIds,
+                BalanceUpDay = _reportService.GetBalanceUpDay(),
+                BetListPage = BetListPage.Outstanding,
+                MoveBetsDay = _reportService.MoveBetsDay()
+            };
+
+            var mainTickets = _betListService.GetTicketResult(criteria, true);
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Outstanding", "BET LIST OUTSTANDING - FROM: " + moveBetsDay.ToString("yyyy-MM-dd") + " TO: " + DateTime.Now.ToString("yyyy-MM-dd"));
+
+            var fileName = string.Format(
+                "BetList_{0}_{1}_{2}",
+                "Outstanding",
+                this._excelService.ShortDateFormat(moveBetsDay),
+                this._excelService.ShortDateFormat(DateTime.Now));
+
+            return new ExcelResult(excelResult, fileName);
+
         }
 
         /// <summary>
@@ -666,13 +853,11 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets = betListService.GetTicketResult(criteria);
             }
 
-            var listTicketText = this.Ticket(mainTickets, BetListPage.Report);
-
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report,"Betlist-Winloss");
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Winloss", "BET LIST WIN LOSS - FROM: " + fromDate.ToString("yyyy-MM-dd") + " TO: " + toDate.ToString("yyyy-MM-dd"));
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
-                "aaaa",
+                "WinLoss",
                 this._excelService.ShortDateFormat(fromDate),
                 this._excelService.ShortDateFormat(toDate));
 
@@ -939,7 +1124,14 @@ namespace Apollo.Age.BetList.Controllers
 
         #endregion Common Action
 
-        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName)
+        /// <summary>
+        /// Tickets the excel.
+        /// </summary>
+        /// <param name="ticketResult">The ticket result.</param>
+        /// <param name="betListPage">The bet list page.</param>
+        /// <param name="sheetName">Name of the sheet.</param>
+        /// <returns>HSSF Work book.</returns>
+        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName, string betlistName)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -947,11 +1139,17 @@ namespace Apollo.Age.BetList.Controllers
             BetListExcelBuilder builder = factory.CreateBuilder();
             var tickets = ticketResult.TicketList;
             short columnNumber = 9;
-            builder.BuildWorksheet(sheetName, columnNumber, 15);
+            builder.BuildWorksheet(sheetName, columnNumber, 20);
             decimal totalAmount = 0;
             decimal totalResult = 0;
             decimal totalShare = 0;
             decimal totalComm = 0;
+
+            CellRangeAddress rangeAddress = new CellRangeAddress(0, 0, 0, 8);
+
+
+
+
             builder
                 .SetColumnWidth(0, 15)
                 .SetColumnWidth(1, 10)
@@ -962,6 +1160,8 @@ namespace Apollo.Age.BetList.Controllers
                 .SetColumnWidth(6, 20)
                 .SetColumnWidth(7, 15)
                 .SetColumnWidth(8, 15);
+
+            builder.AddTitle(betlistName, rangeAddress);
 
             builder
                 .AddHeader(Resources.BetList.time)
@@ -992,9 +1192,24 @@ namespace Apollo.Age.BetList.Controllers
                        .AddComm(ticket);
 
                 totalAmount += ticket.Stake;
-                totalResult += ticket.Winlost + ticket.PlayerComm;
-                totalShare += ticket.AWinlost;
-                totalComm += ticket.ADiscount;
+
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
+                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
+                {
+                    totalResult += (ticket.Winlost + ticket.PlayerComm);
+                    totalShare += ticket.AWinlost;
+                }
+                else
+                {
+                    totalResult = 0;
+                    totalShare = 0;
+                }
+
+
+                totalComm += ticket.AComm;
             }
 
             builder
@@ -1009,17 +1224,18 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG));
 
             HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
-            
+
             return workBook;
         }
-
 
         /// <summary>
         /// Get ticket for bet List.
         /// </summary>
         /// <param name="ticketResult">The ticket result.</param>
         /// <param name="betlistPage">The bet list page.</param>
-        /// <returns>Return view result.</returns>
+        /// <returns>
+        /// Return view result.
+        /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private List<TicketText> Ticket(TicketResult ticketResult, BetListPage betlistPage)
         {

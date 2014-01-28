@@ -250,6 +250,9 @@ if (typeof jQuery != "undefined") {
 
                 BETLIST.initEditLink();
                 BETLIST.ExportWinLoss();
+                BETLIST.ExportOutstanding();
+                BETLIST.ExportTransaction();
+                BETLIST.ExportTicketCancel();
             },
 
             getBetListData: function () {
@@ -298,6 +301,9 @@ if (typeof jQuery != "undefined") {
             },
 
             ticketCancel: function () {
+                $("form:first").submit();
+                return;
+
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -311,7 +317,15 @@ if (typeof jQuery != "undefined") {
                 }
             },
 
+            ExportTicketCancel: function () {
+                $("#btnExcelTicketCancel").on("click", function () {
+                    $("form:first").attr("action", "/betlist/TicketCancelExportExcel");
+                    $("form:first").submit();
+                });
+            },
+
             Transaction: function () {
+
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -325,6 +339,13 @@ if (typeof jQuery != "undefined") {
                 }
             },
 
+            ExportTransaction: function () {
+                $("#btnExcelTransaction").on("click", function () {
+                    $("form:first").attr("action", "/betlist/TransactionExportExcel");
+                    $("form:first").submit();
+                });
+            },
+
             ExportWinLoss: function () {
                 $("#btnExcelWinLoss").on("click", function () {
                     var url = APOLLO.resolveUrl('Betlist/ExportWinloss?custId=' + $("#custid").val()
@@ -336,6 +357,16 @@ if (typeof jQuery != "undefined") {
                     location.href = url;
                 });
             },
+
+            ExportOutstanding: function () {
+                $("#btnExcelOutstanding").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/ExportExcelOutstanding?custId=' + $("#custid").val()
+                    + "&sportType=" + $("#sportTypes").val()
+                    + "&betType=" + $("#betTypes").val());
+                    location.href = url;
+                });
+            },
+
 
             initEditLink: function () {
                 $(".view-detail").click(function () {

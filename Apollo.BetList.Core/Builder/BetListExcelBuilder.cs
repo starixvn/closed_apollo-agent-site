@@ -169,8 +169,22 @@ namespace Apollo.BetList.Core.Builder
             return _workbook;
         }
 
-        public BetListExcelBuilder AddTitle(string title)
+        public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
+            var cellStyle = _workbook.CreateCellStyle();
+            cellStyle.FillForegroundColor = HSSFColor.DARK_GREEN.index;
+            cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            cellStyle.Alignment = HorizontalAlignment.LEFT;
+            cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
+
+            RTFHelper.RTFRenderer.AddText(title, RTFHelper.WhiteColor);
+            var rtfString = RTFHelper.RTFRenderer.Render();
+
+            AddMergedCell(rtfString, mergeRange, cellStyle);
+
+            RTFHelper.RTFRenderer.Clear();
+
+
 
             return this;
         }
@@ -183,9 +197,6 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
-            _nextCellIndex++;
-
-            var newRow = GetLastRow();
 
             var cellStyle = _workbook.CreateCellStyle();
 
@@ -193,12 +204,11 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.FillForegroundColor = HSSFColor.OLIVE_GREEN.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-
-            var newCell = newRow.CreateCell(_nextCellIndex, cellStyle);
-
+            cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
             RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.WhiteColor);
+            var rtfString = RTFHelper.RTFRenderer.Render();
 
-            newCell.SetCellValue(RTFHelper.RTFRenderer.Render());
+            AddCell(rtfString, cellStyle);
 
             RTFHelper.RTFRenderer.Clear();
 
@@ -291,22 +301,18 @@ namespace Apollo.BetList.Core.Builder
         public CellAddress AddMergedCell(IRichTextString rtfString, CellRangeAddress mergedRange, ICellStyle cellStyle)
         {
             _nextCellIndex++;
-            IRow lastRow = GetLastRow();
-
+           
             if (_nextCellIndex >= _reportColumnsNum)
             {
                 _nextCellIndex = 0;
             }
 
             MergeCell(mergedRange);
+            IRow lastRow = GetLastRow();
 
-            IRow firstRow = _worksheet.GetRow(mergedRange.FirstRow);
-            ICell lastCell = firstRow.GetCell(mergedRange.FirstColumn);
+            ICell lastCell = lastRow.CreateCell(mergedRange.FirstColumn);
             lastCell.CellStyle = cellStyle;
             lastCell.SetCellValue(rtfString);
-
-            //ICell lastCell = lastRow.CreateCell(_nextCellIndex, cellStyle);
-            //lastRow.GetCell(1).CellStyle.
 
             return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }

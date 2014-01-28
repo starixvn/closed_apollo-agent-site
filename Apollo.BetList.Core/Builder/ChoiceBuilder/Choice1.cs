@@ -294,10 +294,18 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             if (!string.IsNullOrWhiteSpace(Template.betTeam))
             {
-                if (!string.IsNullOrWhiteSpace(Template.Score.finalHomeScore) && !string.IsNullOrWhiteSpace(Template.Score.finalAwayScore))
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+               || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
                     choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    choice = string.Empty;
+                }
+                else
+                {
+                    choice = string.Join(null, new string[] { " \n ", " " });
+                    rtfHelper.RTFRenderer.AddText(choice);
                     choice = string.Empty;
                 }
 
