@@ -9,13 +9,8 @@
 // ---------------------------------------------------------------------------------
 namespace Apollo.BetList.Core.Builder.DiscountBuilder
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
     /// <summary>
@@ -30,7 +25,7 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
         {
             this.Template = new Discount_Template();
         }
-        
+
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
@@ -55,11 +50,13 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
                 case BetListPage.Outstanding:
                     Template.ugroup = RevertCommGroupName(ticket.UGroup);
                     break;
+
                 case BetListPage.Cancel:
                 case BetListPage.Transaction:
                 case BetListPage.Report:
                     Template.ugroup = string.Empty;
                     break;
+
                 default:
                     Template.ugroup = Template.discount = string.Empty;
                     break;
@@ -77,6 +74,30 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
             Template.username = ticket.UserName;
 
             return Template;
+        }
+
+        /// <summary>
+        /// Adds the discount.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
+        {
+            Render(ticket, page);
+
+            rtfHelper.RTFRenderer.AddText(Template.username + " ");
+
+            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.RedNoBold);
+
+            IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
+
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfDiscount;
         }
 
         /// <summary>
@@ -102,29 +123,6 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
             }
 
             return string.Empty;
-        }
-        
-        /// <summary>
-        /// Renders the RFT.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="?">The ?.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>Rich Text String.</returns>
-        public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
-        {
-            Render(ticket, page);
-
-            rtfHelper.RTFRenderer.AddText(Template.username + " ");
-
-            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.RedNoBold);
-
-            IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
-
-            rtfHelper.RTFRenderer.Clear();
-            
-            return rtfDiscount;
         }
     }
 }

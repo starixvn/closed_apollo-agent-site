@@ -9,8 +9,8 @@
 namespace Apollo.BetList.Core.Builder.ResultBuilder
 {
     using Apollo.BetList.Core.Entities;
-    using NPOI.SS.UserModel;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Result builder class.

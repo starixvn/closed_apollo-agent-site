@@ -12,7 +12,6 @@
 namespace Apollo.Age.BetList.Services
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Repositories.Impl;
     using Apollo.Age.BetList.Repositories.Interface;
@@ -20,10 +19,6 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web.Services;
     using Apollo.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.UserModel;
-    using Apollo.BetList.Core.Builder;
 
     /// <summary>
     /// Bet List Service Class.

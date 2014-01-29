@@ -10,21 +10,21 @@
 
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
-    using System;
 
     /// <summary>
     /// Mix Parlay.
     /// </summary>
     public class Choice9 : Choice1
     {
-        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+        private const string ChoiceBuilderNameSpace = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+
         /// <summary>
         /// Renders the specified ticket.
         /// </summary>
@@ -33,7 +33,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -140,17 +139,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             return result;
         }
 
+        /// <summary>
+        /// Creates the choice builder.
+        /// </summary>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[] 
-                                            { 
-                                                CHOICE_BUILDER_NAMESPACE, 
-                                                ".Choice", 
-                                                bettype.ToString() 
-                                            }
-                                         );
+            string[] buildChoice = new string[]
+                                            {
+                                                ChoiceBuilderNameSpace,
+                                                ".Choice",
+                                                bettype.ToString()
+                                            };
+            string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);
 

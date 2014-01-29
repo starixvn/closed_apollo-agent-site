@@ -10,21 +10,20 @@
 
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using Apollo.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
-    using System;
 
     /// <summary>
     /// Combination Mix Parlay.
     /// </summary>
     public class Choice29 : Choice1
     {
-        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+        private const string ChoiceBuilderNameSpace = "Apollo.BetList.Core.Builder.ChoiceBuilder";
 
         /// <summary>
         /// The combination offer name.
@@ -39,31 +38,25 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             { "11111110", "Goliath" }
         };
 
-        ///// <summary>
-        ///// Renders the RTF.
-        ///// </summary>
-        ///// <param name="ticket">The ticket need to build.</param>
-        ///// <param name="ticketHelper">The ticket helper.</param>
-        ///// <param name="ticketData">The ticket data.</param>
-        ///// <param name="isShowScoreMap">Is show score map or not.</param>
-        ///// <param name="rtfHelper">The RTF helper.</param>
-        ///// <returns>
-        ///// Choice Template.
-        ///// </returns>
-        //public override List<IRichTextString> RenderRTF(
-        //    ITicket ticket,
-        //    ITicketHelper ticketHelper,
-        //    List<ITicketData> ticketData,
-        //    bool isShowScoreMap,
-        //    Entities.RTFHelper rtfHelper)
-        //{
-        //    List<IRichTextString> lstRTFChoices = new List<IRichTextString>(1);
-        //    IRichTextString rtfChoice = new HSSFRichTextString(Apollo.Age.Resources.BetList.lblSystemParlay);
-        //    lstRTFChoices.Add(rtfChoice);
-        //    return lstRTFChoices;
-        //}
-
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
             string sportName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
@@ -101,7 +94,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
-        /// <param name="betListPage">The bet list page.</param>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
         {
@@ -203,17 +195,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             return result;
         }
 
+        /// <summary>
+        /// Creates the choice builder.
+        /// </summary>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[] 
-                                            { 
-                                                CHOICE_BUILDER_NAMESPACE, 
-                                                ".Choice", 
-                                                bettype.ToString() 
-                                            }
-                                         );
+            string[] buildChoice = new string[]
+                                            {
+                                                ChoiceBuilderNameSpace,
+                                                ".Choice",
+                                                bettype.ToString()
+                                            };
+            string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);
 

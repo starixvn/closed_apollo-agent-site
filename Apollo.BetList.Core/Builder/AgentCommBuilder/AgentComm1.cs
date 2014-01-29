@@ -80,7 +80,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
         {
             Render(ticket);
 
-            rtfHelper.RTFRenderer.AddText(string.Join("", new string[] { Template.AgentComm.agentComm_setting, " \n " }));
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.AgentComm.agentComm_setting, " \n " }));
 
             if (ticket.AComm < 0)
             {
@@ -90,6 +90,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
             {
                 rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm));
             }
+
             IRichTextString rtfAgentComm = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
 

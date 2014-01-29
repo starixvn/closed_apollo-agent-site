@@ -57,11 +57,21 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
             return Template;
         }
 
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich Text String.
+        /// </returns>
         public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, BetListPage page, RTFHelper rtfHelper)
         {
             Render(ticket, ticketData);
 
-            string agentPT = string.Join("", new string[] { Template.AgentPT.agentPT_setting, "\n" });
+            string agentPT = string.Join(string.Empty, new string[] { Template.AgentPT.agentPT_setting, "\n" });
             rtfHelper.RTFRenderer.AddText(agentPT);
 
             string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
@@ -78,7 +88,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
                     rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost));
                 }
             }
-            
+
             IRichTextString rtfAgentShare = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
             return rtfAgentShare;

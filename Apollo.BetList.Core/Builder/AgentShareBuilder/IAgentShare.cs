@@ -38,9 +38,12 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
         /// Renders the RTF.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="page">The page.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="page">The bet list page.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>Rich Text String.</returns>
+        /// <returns>
+        /// Rich Text String.
+        /// </returns>
         IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, BetListPage page, RTFHelper rtfHelper);
     }
 }

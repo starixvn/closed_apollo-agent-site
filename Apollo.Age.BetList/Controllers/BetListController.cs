@@ -340,6 +340,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.View("~/Views/BetList/Transactions.cshtml", model);
         }
 
+        /// <summary>
+        /// Transactions the export excel.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Action Result.</returns>
         public ActionResult TransactionExportExcel(BetListReportViewModel model)
         {
             var statusIds = string.Format(
@@ -409,7 +414,10 @@ namespace Apollo.Age.BetList.Controllers
                     HttpContext.Session[sessionKey] = mainTickets.Clone();
                 }
 
-                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Transaction", "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd"));
+                string sheetName = "Betlist-Transaction";
+                string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+
+                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
                 var fileName = string.Format(
                     "BetList_{0}_{1}_{2}",
@@ -422,7 +430,6 @@ namespace Apollo.Age.BetList.Controllers
 
             return null;
         }
-
 
         /// <summary>
         /// Cancel ticket bet list.
@@ -529,6 +536,11 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// Tickets the cancel export excel.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Action result.</returns>
         public ActionResult TicketCancelExportExcel(BetListReportViewModel model)
         {
             var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
@@ -571,7 +583,10 @@ namespace Apollo.Age.BetList.Controllers
                 TicketResult mainTickets;
                 mainTickets = betListService.GetTicketResult(criteria, true);
 
-                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Ticket Cancel", "BET LIST TICKET CANCEL - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd"));
+                var sheetName = "Betlist-Ticket Cancel";
+                var betlistName = "BET LIST TICKET CANCEL - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+
+                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
                 var fileName = string.Format(
                     "BetList_{0}_{1}_{2}",
@@ -644,6 +659,18 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Exports the excel outstanding.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="mainShareHolderId">The main share holder identifier.</param>
+        /// <param name="mainShareHolderUsername">The main share holder username.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="sportName">Name of the sport.</param>
+        /// <param name="betTypeName">Name of the bet type.</param>
+        /// <returns>Action Result.</returns>
         public ActionResult ExportExcelOutstanding(
             int custId,
             string username = "",
@@ -680,7 +707,10 @@ namespace Apollo.Age.BetList.Controllers
 
             var mainTickets = _betListService.GetTicketResult(criteria, true);
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Outstanding", "BET LIST OUTSTANDING - FROM: " + moveBetsDay.ToString("yyyy-MM-dd") + " TO: " + DateTime.Now.ToString("yyyy-MM-dd"));
+            var sheetName = "Betlist-Outstanding";
+            var betlistName = "BET LIST OUTSTANDING - FROM: " + moveBetsDay.ToString("yyyy-MM-dd") + " TO: " + DateTime.Now.ToString("yyyy-MM-dd");
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -689,7 +719,6 @@ namespace Apollo.Age.BetList.Controllers
                 this._excelService.ShortDateFormat(DateTime.Now));
 
             return new ExcelResult(excelResult, fileName);
-
         }
 
         /// <summary>
@@ -853,7 +882,10 @@ namespace Apollo.Age.BetList.Controllers
                 mainTickets = betListService.GetTicketResult(criteria);
             }
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, "Betlist-Winloss", "BET LIST WIN LOSS - FROM: " + fromDate.ToString("yyyy-MM-dd") + " TO: " + toDate.ToString("yyyy-MM-dd"));
+            var sheetName = "Betlist-Winloss";
+            var betlistName = "BET LIST WIN LOSS - FROM: " + fromDate.ToString("yyyy-MM-dd") + " TO: " + toDate.ToString("yyyy-MM-dd");
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -1130,7 +1162,10 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="ticketResult">The ticket result.</param>
         /// <param name="betListPage">The bet list page.</param>
         /// <param name="sheetName">Name of the sheet.</param>
-        /// <returns>HSSF Work book.</returns>
+        /// <param name="betlistName">Name of the bet list.</param>
+        /// <returns>
+        /// HSSF Work book.
+        /// </returns>
         private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName, string betlistName)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
@@ -1146,9 +1181,6 @@ namespace Apollo.Age.BetList.Controllers
             decimal totalComm = 0;
 
             CellRangeAddress rangeAddress = new CellRangeAddress(0, 0, 0, 8);
-
-
-
 
             builder
                 .SetColumnWidth(0, 15)
@@ -1199,7 +1231,8 @@ namespace Apollo.Age.BetList.Controllers
                     || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
                 {
-                    totalResult += (ticket.Winlost + ticket.PlayerComm);
+                    var result = ticket.Winlost + ticket.PlayerComm;
+                    totalResult += result;
                     totalShare += ticket.AWinlost;
                 }
                 else
@@ -1207,7 +1240,6 @@ namespace Apollo.Age.BetList.Controllers
                     totalResult = 0;
                     totalShare = 0;
                 }
-
 
                 totalComm += ticket.AComm;
             }

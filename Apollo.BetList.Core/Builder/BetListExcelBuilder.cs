@@ -14,6 +14,7 @@ namespace Apollo.BetList.Core.Builder
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Builder.AgentCommBuilder;
     using Apollo.BetList.Core.Builder.AgentShareBuilder;
     using Apollo.BetList.Core.Builder.ChoiceBuilder;
@@ -29,22 +30,22 @@ namespace Apollo.BetList.Core.Builder
     using Apollo.BetList.Core.Utils.NPOIExt;
     using Apollo.BetList.Core.Utils.StringExt;
     using NPOI.HSSF.UserModel;
+    using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
     using NPOI.SS.Util;
-    using NPOI.HSSF.Util;
 
     /// <summary>
-    /// Apollo.Age.Resources.BetList Excel Builder
+    /// Bet List Excel Builder.
     /// </summary>
     public class BetListExcelBuilder : IBetListBuilder
     {
         #region Attributes
 
-        private const string CHOICE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.ChoiceBuilder";
-        private const string ODDS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.OddsBuilder";
-        private const string STAKE_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.StakeBuilder";
-        private const string TRANS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.TransBuilder";
-        private const string STATUS_BUILDER_NAMESPACE = "Apollo.BetList.Core.Builder.StatusBuilder";
+        private const string ChoiceBuilderNameSpace = "Apollo.BetList.Core.Builder.ChoiceBuilder";
+        private const string OddsBuilderNameSpace = "Apollo.BetList.Core.Builder.OddsBuilder";
+        private const string StakeBuilderNameSpace = "Apollo.BetList.Core.Builder.StakeBuilder";
+        private const string TransBuilderNameSpace = "Apollo.BetList.Core.Builder.TransBuilder";
+        private const string StatusBuilderNameSpace = "Apollo.BetList.Core.Builder.StatusBuilder";
         private const string AgentCommBuilderNamespace = "Apollo.BetList.Core.Builder.AgentCommBuilder";
         private const string AgentShareBuilderNamespace = "Apollo.BetList.Core.Builder.AgentShareBuilder";
         private IWorkbook _workbook;
@@ -53,22 +54,6 @@ namespace Apollo.BetList.Core.Builder
         private int _nextCellIndex;
 
         #endregion Attributes
-
-        #region Properties
-
-        public ICellStyle OddCellStyle { get; set; }
-
-        public ICellStyle EvenCellStyle { get; set; }
-
-        public ICellStyle OddCellStyleCenterAligned { get; set; }
-
-        public ICellStyle EvenCellStyleCenterAligned { get; set; }
-
-        public RTFHelper RTFHelper { get; set; }
-
-        public int LastContentRow { get { return _worksheet.LastRowNum; } }
-
-        #endregion Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListExcelBuilder" /> class.
@@ -85,32 +70,56 @@ namespace Apollo.BetList.Core.Builder
             _nextCellIndex = -1;
 
             RTFHelper = new RTFHelper()
-                        {
-                            NegFont = _workbook.CreateFont(),
-                            NormalFont = _workbook.CreateFont(),
-                            PosFont = _workbook.CreateFont(),
-                            ScoreFont = _workbook.CreateFont(),
-                            BlueAndBold = _workbook.CreateFont(),
-                            BlueNoBold = _workbook.CreateFont(),
-                            RedAndBold = _workbook.CreateFont(),
-                            RedNoBold = _workbook.CreateFont(),
-                            NegFontCrossed = _workbook.CreateFont(),
-                            NormalFontCrossed = _workbook.CreateFont(),
-                            PosFontCrossed = _workbook.CreateFont(),
-                            GreenAndBold = _workbook.CreateFont(),
-                            GreenNoBold = _workbook.CreateFont(),
-                            WhiteColor = _workbook.CreateFont(),
-                            RTFRenderer = new RtfTextRender()
-                        };
+            {
+                NegFont = _workbook.CreateFont(),
+                NormalFont = _workbook.CreateFont(),
+                PosFont = _workbook.CreateFont(),
+                ScoreFont = _workbook.CreateFont(),
+                BlueAndBold = _workbook.CreateFont(),
+                BlueNoBold = _workbook.CreateFont(),
+                RedAndBold = _workbook.CreateFont(),
+                RedNoBold = _workbook.CreateFont(),
+                NegFontCrossed = _workbook.CreateFont(),
+                NormalFontCrossed = _workbook.CreateFont(),
+                PosFontCrossed = _workbook.CreateFont(),
+                GreenAndBold = _workbook.CreateFont(),
+                GreenNoBold = _workbook.CreateFont(),
+                WhiteColor = _workbook.CreateFont(),
+                RTFRenderer = new RtfTextRender()
+            };
 
             InitDefaultRTFHelper();
             InitDefaultCellStyles();
         }
 
+        #region Properties
+
+        public ICellStyle OddCellStyle { get; set; }
+
+        public ICellStyle EvenCellStyle { get; set; }
+
+        public ICellStyle OddCellStyleCenterAligned { get; set; }
+
+        public ICellStyle EvenCellStyleCenterAligned { get; set; }
+
+        public RTFHelper RTFHelper { get; set; }
+
+        #endregion Properties
+
+        public int LastContentRow
+        {
+            get
+            {
+                return _worksheet.LastRowNum;
+            }
+        }
+
         /// <summary>
         /// Creates the cell style.
         /// </summary>
-        /// <returns>ICellStyle</returns>
+        /// <returns>
+        /// Cell Style.
+        /// </returns>
         public ICellStyle CreateCellStyle()
         {
             return _workbook.CreateCellStyle();
@@ -119,7 +128,7 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Creates the font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return font.</returns>
         public IFont CreateFont()
         {
             return _workbook.CreateFont();
@@ -130,18 +139,15 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="columnIndex">Index of the column.</param>
         /// <param name="columnWith">The column with.</param>
-        /// <returns></returns>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder SetColumnWidth(int columnIndex, short columnWith)
         {
             _worksheet.AutoSizeColumn(columnIndex);
-
-            //var currentWidth = _worksheet.GetColumnWidth(columnIndex);
 
             _worksheet.SetColumnWidth(columnIndex, columnWith * 256);
 
             return this;
         }
-
 
         /// <summary>
         /// Builds the worksheet.
@@ -149,7 +155,7 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="sheetName">Name of the sheet.</param>
         /// <param name="numberOfColumns">The number of columns.</param>
         /// <param name="singleRowHeight">Height of the single row.</param>
-        /// <returns>BetListExcelBuilder</returns>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder BuildWorksheet(string sheetName, short numberOfColumns, short singleRowHeight = 20)
         {
             _worksheet = _workbook.CreateSheet(sheetName);
@@ -162,13 +168,19 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Gets the bet list.
         /// </summary>
-        /// <returns>IWorkbook</returns>
+        /// <returns>Return Work book.</returns>
         public IWorkbook GetBetList()
         {
             AdaptRowHeight();
             return _workbook;
         }
 
+        /// <summary>
+        /// Adds the title.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="mergeRange">The merge range.</param>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
@@ -184,11 +196,8 @@ namespace Apollo.BetList.Core.Builder
 
             RTFHelper.RTFRenderer.Clear();
 
-
-
             return this;
         }
-
 
         /// <summary>
         /// Adds the header.
@@ -197,7 +206,6 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
-
             var cellStyle = _workbook.CreateCellStyle();
 
             cellStyle.Alignment = HorizontalAlignment.CENTER;
@@ -215,6 +223,12 @@ namespace Apollo.BetList.Core.Builder
             return this;
         }
 
+        /// <summary>
+        /// Adds the total.
+        /// </summary>
+        /// <param name="value">The total value.</param>
+        /// <param name="mergeRange">The merge range.</param>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
@@ -236,13 +250,13 @@ namespace Apollo.BetList.Core.Builder
             }
 
             return this;
-
         }
 
         /// <summary>
         /// Adds the cell.
         /// </summary>
         /// <param name="rtfString">The RTF string.</param>
+        /// <returns>Cell Address.</returns>
         public CellAddress AddCell(IRichTextString rtfString)
         {
             _nextCellIndex++;
@@ -274,6 +288,7 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="rtfString">The RTF string.</param>
         /// <param name="cellStyle">The cell style.</param>
+        /// <returns>Cell Address.</returns>
         public CellAddress AddCell(IRichTextString rtfString, ICellStyle cellStyle)
         {
             _nextCellIndex++;
@@ -297,11 +312,11 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="rtfString">The RTF string.</param>
         /// <param name="mergedRange">The merged range.</param>
         /// <param name="cellStyle">The cell style.</param>
-        /// <returns></returns>
+        /// <returns>Cell Address.</returns>
         public CellAddress AddMergedCell(IRichTextString rtfString, CellRangeAddress mergedRange, ICellStyle cellStyle)
         {
             _nextCellIndex++;
-           
+
             if (_nextCellIndex >= _reportColumnsNum)
             {
                 _nextCellIndex = 0;
@@ -324,7 +339,7 @@ namespace Apollo.BetList.Core.Builder
         public void MergeCell(CellRangeAddress mergeRange)
         {
             _worksheet.AddMergedRegion(mergeRange);
-            _nextCellIndex += (mergeRange.LastColumn - mergeRange.FirstColumn);
+            _nextCellIndex += mergeRange.LastColumn - mergeRange.FirstColumn;
         }
 
         /// <summary>
@@ -345,7 +360,7 @@ namespace Apollo.BetList.Core.Builder
                 }
             }
 
-            _nextCellIndex += (mergeRange.LastColumn - mergeRange.FirstColumn);
+            _nextCellIndex += mergeRange.LastColumn - mergeRange.FirstColumn;
         }
 
         /// <summary>
@@ -354,7 +369,10 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <returns>BetListExcelBuilder</returns>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
         public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
         {
             IChoice choiceBuilder = CreateChoiceBuilder(ticket.BetTypeId);
@@ -372,12 +390,12 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="FuncGetOddsTypeName">Name of the func get odds type.</param>
-        /// <returns>BetListExcelBuilder</returns>
-        public BetListExcelBuilder AddOdds(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById FuncGetOddsTypeName)
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder AddOdds(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
         {
             IOdds oddsBuilder = CreateOddsBuilder(ticket.BetTypeId);
-            IRichTextString rtfOdds = oddsBuilder.RenderRTF(ticket, ticketData, FuncGetOddsTypeName, RTFHelper);
+            IRichTextString rtfOdds = oddsBuilder.RenderRTF(ticket, ticketData, funcGetOddsTypeName, RTFHelper);
             AddCell(rtfOdds);
             return this;
         }
@@ -386,7 +404,7 @@ namespace Apollo.BetList.Core.Builder
         /// Adds the stake.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns>BetListExcelBuilder</returns>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddStake(ITicket ticket)
         {
             IStake stakeBuilder = CreateStakeBuilder(ticket.BetTypeId);
@@ -399,10 +417,11 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Adds the status.
         /// </summary>
-        /// <param name="factory">The factory.</param>
         /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns></returns>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
         public BetListExcelBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData)
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
@@ -417,7 +436,7 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticket">The ticket need to build.</param>
         /// <param name="page">The page bet list.</param>
         /// <returns>
-        /// Time string.
+        /// Bet List Excel Builder.
         /// </returns>
         public BetListExcelBuilder AddTime(ITicket ticket, BetListPage page)
         {
@@ -433,8 +452,8 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Adds the discount.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="page">The page.</param>
+        /// <param name="ticket">The ticket item.</param>
+        /// <param name="page">The bet list page.</param>
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddDiscount(ITicket ticket, BetListPage page)
         {
@@ -449,8 +468,8 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Adds the result.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="page">The page.</param>
+        /// <param name="ticket">The ticket item.</param>
+        /// <param name="page">The bet list page.</param>
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
         {
@@ -464,9 +483,9 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Adds the share.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket item.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="page">The page.</param>
+        /// <param name="page">The bet list page.</param>
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddShare(ITicket ticket, List<ITicketData> ticketData, BetListPage page)
         {
@@ -479,7 +498,7 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Adds the comm.
+        /// Adds the commission.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <returns>Bet List Excel Builder.</returns>
@@ -493,6 +512,14 @@ namespace Apollo.BetList.Core.Builder
             return this;
         }
 
+        /// <summary>
+        /// Adds the type of the game.
+        /// </summary>
+        /// <param name="ticket">The ticket item.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddGameType(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, GetCachePropertyById funcGetOddsTypeName)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
@@ -505,7 +532,7 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Gets the last row.
         /// </summary>
-        /// <returns>IRow</returns>
+        /// <returns>Return row.</returns>
         private IRow GetLastRow()
         {
             IRow lastRow = _worksheet.GetRow(_worksheet.LastRowNum);
@@ -513,18 +540,19 @@ namespace Apollo.BetList.Core.Builder
             {
                 lastRow = AddNewRow();
             }
+
             return lastRow;
         }
 
         /// <summary>
         /// Adds the new row.
         /// </summary>
-        /// <returns>IRow</returns>
+        /// <returns>Return row.</returns>
         private IRow AddNewRow()
         {
             int newRowIndex = _worksheet.LastRowNum;
 
-            if (sheetHasRows())
+            if (SheetHasRows())
             {
                 newRowIndex += 1;
             }
@@ -536,8 +564,10 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Sheets the has rows.
         /// </summary>
-        /// <returns>bool</returns>
-        private bool sheetHasRows()
+        /// <returns>
+        /// Return true if has rows.
+        /// </returns>
+        private bool SheetHasRows()
         {
             return _worksheet.GetRow(_worksheet.LastRowNum) != null;
         }
@@ -545,19 +575,17 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Creates the choice builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
-        /// <returns>IChoice</returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] buildChoice = new string[]
                                             {
-                                                CHOICE_BUILDER_NAMESPACE,
+                                                ChoiceBuilderNameSpace,
                                                 ".Choice",
                                                 bettype.ToString()
-                                            }
-                                         );
+                                            };
+            string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);
 
@@ -574,24 +602,23 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Creates the odds builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
-        /// <returns>IOdds</returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return odd.</returns>
         private IOdds CreateOddsBuilder(int bettype)
         {
             if (bettype <= 1199 && bettype >= 1101)
             {
-                //Odds of Live Casino bettypes
+                // Odds of Live Casino bet types.
                 bettype = 1101;
             }
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+
+            string[] choiceBuilder = new string[]
                                             {
-                                                ODDS_BUILDER_NAMESPACE,
+                                                OddsBuilderNameSpace,
                                                 ".Odds",
                                                 bettype.ToString()
-                                            }
-                                         );
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -608,19 +635,17 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Creates the stake builder.
         /// </summary>
-        /// <param name="bettype">The bettype.</param>
-        /// <returns>IStake</returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return stake.</returns>
         private IStake CreateStakeBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
-                                                STAKE_BUILDER_NAMESPACE,
+                                                StakeBuilderNameSpace,
                                                 ".Stake",
                                                 bettype.ToString()
-                                            }
-                                         );
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -637,18 +662,17 @@ namespace Apollo.BetList.Core.Builder
         /// <summary>
         /// Creates the status builder.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>Return status.</returns>
         private IStatus CreateStatusBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
-                                                STATUS_BUILDER_NAMESPACE,
+                                                StatusBuilderNameSpace,
                                                 ".Status",
                                                 bettype.ToString()
-                                            }
-                                         );
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -663,20 +687,21 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Creates the trans builder.
+        /// Creates the transaction builder.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="bettype">The bet type.</param>
+        /// <returns>
+        /// Return transaction.
+        /// </returns>
         private ITrans CreateTransBuilder(int bettype)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
+            string[] choiceBuilder = new string[]
                                             {
-                                                TRANS_BUILDER_NAMESPACE,
+                                                TransBuilderNameSpace,
                                                 ".Trans",
                                                 bettype.ToString()
-                                            }
-                                         );
+                                            };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -780,14 +805,14 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Inits the default RTF helper.
+        /// Initializes the default RTF helper.
         /// </summary>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         private void InitDefaultRTFHelper()
         {
             RTFHelper.PosFont.Boldweight = RTFHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.BOLD;
             RTFHelper.NegFont.Boldweight = RTFHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.BOLD;
             RTFHelper.NormalFont.Boldweight = RTFHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.NORMAL;
-
 
             RTFHelper.NegFont.FontName =
             RTFHelper.NormalFont.FontName =
@@ -845,8 +870,9 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.WhiteColor.Color = IndexedColors.WHITE.Index;
             RTFHelper.WhiteColor.Boldweight = (short)FontBoldWeight.BOLD;
         }
+
         /// <summary>
-        /// Inits the default cell styles.
+        /// Initializes the default cell styles.
         /// </summary>
         private void InitDefaultCellStyles()
         {
@@ -854,8 +880,14 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.TOP;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
-            OddCellStyle.TopBorderColor = OddCellStyle.RightBorderColor = OddCellStyle.BottomBorderColor = OddCellStyle.LeftBorderColor = EvenCellStyle.TopBorderColor = EvenCellStyle.RightBorderColor = EvenCellStyle.BottomBorderColor = EvenCellStyle.LeftBorderColor = HSSFColor.BLACK.index;
-
+            OddCellStyle.TopBorderColor =
+            OddCellStyle.RightBorderColor =
+            OddCellStyle.BottomBorderColor =
+            OddCellStyle.LeftBorderColor =
+            EvenCellStyle.TopBorderColor =
+            EvenCellStyle.RightBorderColor =
+            EvenCellStyle.BottomBorderColor =
+            EvenCellStyle.LeftBorderColor = HSSFColor.BLACK.index;
 
             OddCellStyle.BorderTop = OddCellStyle.BorderLeft = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = BorderStyle.THIN;
             EvenCellStyle.BorderTop = EvenCellStyle.BorderLeft = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = BorderStyle.THIN;

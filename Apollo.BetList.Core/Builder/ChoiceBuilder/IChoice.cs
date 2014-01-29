@@ -35,7 +35,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -49,7 +48,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -61,10 +59,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
-        /// <returns>List of rich text.</returns>
+        /// <returns>
+        /// List of rich text.
+        /// </returns>
         List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper);
-
     }
 }

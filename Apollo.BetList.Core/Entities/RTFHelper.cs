@@ -45,6 +45,10 @@ namespace Apollo.BetList.Core.Entities
 
         public RtfTextRender RTFRenderer { get; set; }
 
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>RTF Helper.</returns>
         public RTFHelper Clone()
         {
             RTFHelper tmp = new RTFHelper();

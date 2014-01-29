@@ -13,14 +13,14 @@ namespace Apollo.BetList.Core.Factories
     using Apollo.BetList.Core.Builder;
 
     /// <summary>
-    /// Class BetListExcelFactory
+    /// Class Bet List Excel Factory.
     /// </summary>
     public class BetListExcelFactory : IBetListFactory
     {
         /// <summary>
         /// Creates the builder.
         /// </summary>
-        /// <returns>BetListExcelBuilder.</returns>
+        /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder CreateBuilder()
         {
             BetListExcelBuilder builder = new BetListExcelBuilder();

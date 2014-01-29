@@ -72,7 +72,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">Is show score map or not.</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -157,7 +156,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -177,7 +175,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticket">The ticket need to build.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="betListPage">The bet list page.</param>
         protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
@@ -245,6 +242,15 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             return choiceRtf;
         }
 
+        /// <summary>
+        /// Creates the RTF helper.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="isShowSportName">If set to <c>true</c> [is show sport name].</param>
+        /// <returns>RTF Helper.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false)
         {
             string choice = string.Empty;
@@ -318,7 +324,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             if (!string.IsNullOrWhiteSpace(Template.odds))
             {
-                choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", "").Replace("</span>", "") });
+                choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
                 rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
                 choice = string.Empty;
             }
@@ -339,7 +345,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
-        /// <param name="betListPage">The bet list page.</param>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
         {
@@ -489,8 +494,5 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.odds = odds;
         }
-
-
-       
     }
 }

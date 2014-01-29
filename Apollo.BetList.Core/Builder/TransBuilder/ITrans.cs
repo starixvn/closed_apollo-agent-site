@@ -39,7 +39,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="page">The page.</param>
+        /// <param name="page">The bet list page.</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <returns>

@@ -12,16 +12,21 @@
 // </history>
 // ---------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 namespace Apollo.BetList.Core.Entities
 {
+    using System.Collections.Generic;
+
     public delegate string GetCachePropertyById(object id);
 
+    public delegate IList<ITicket> GetParlayTicketsById(object id);
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Ticket helper interface.
     /// </summary>
     public interface ITicketHelper
     {
+        GetParlayTicketsById GetParlayDetailById { get; set; }
+
         /// <summary>
         /// Gets or sets the index.
         /// </summary>
@@ -71,11 +76,6 @@ namespace Apollo.BetList.Core.Entities
 
         string GetRouletteBetItemNameById(object itemId);
 
-        GetParlayTicketsById GetParlayDetailById { get; set; }
-
         #endregion METHODS TO RESOLVE NAMES FROM IDS
     }
-        
-
-    public delegate IList<ITicket> GetParlayTicketsById(object id);
 }
