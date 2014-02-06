@@ -89,6 +89,8 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
         {
             Render(ticket, page);
 
+            rtfHelper.RTFRenderer.AddText(Template.ugroup + " ");
+
             rtfHelper.RTFRenderer.AddText(Template.username + " ");
 
             rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.RedNoBold);

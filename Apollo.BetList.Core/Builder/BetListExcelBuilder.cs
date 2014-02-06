@@ -235,6 +235,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.FillForegroundColor = HSSFColor.DARK_BLUE.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
+            cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
 
             if (mergeRange != null)
             {
@@ -877,7 +878,7 @@ namespace Apollo.BetList.Core.Builder
         private void InitDefaultCellStyles()
         {
             OddCellStyle.Alignment = EvenCellStyle.Alignment = HorizontalAlignment.RIGHT;
-            OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.TOP;
+            OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.CENTER;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
 
             OddCellStyle.TopBorderColor =
@@ -904,10 +905,12 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyleCenterAligned.CloneStyleFrom(OddCellStyle);
             OddCellStyleCenterAligned.Alignment = HorizontalAlignment.CENTER;
             OddCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
+            OddCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.CENTER;
 
             EvenCellStyleCenterAligned.CloneStyleFrom(EvenCellStyle);
             EvenCellStyleCenterAligned.Alignment = HorizontalAlignment.CENTER;
             EvenCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
+            EvenCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.CENTER;
 
             // For line-breaks in MS Office
             OddCellStyle.WrapText = true;

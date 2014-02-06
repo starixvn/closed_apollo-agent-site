@@ -253,6 +253,7 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ExportOutstanding();
                 BETLIST.ExportTransaction();
                 BETLIST.ExportTicketCancel();
+                BETLIST.ExportForcast();
             },
 
             getBetListData: function () {
@@ -348,7 +349,7 @@ if (typeof jQuery != "undefined") {
 
             ExportWinLoss: function () {
                 $("#btnExcelWinLoss").on("click", function () {
-                    var url = APOLLO.resolveUrl('Betlist/ExportWinloss?custId=' + $("#custid").val()
+                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId=' + $("#custid").val()
                     + "&type=" + $("#type").val()
                     + "&FromDate=" + $("#fromDate").val()
                     + "&ToDate=" + $("#toDate").val()
@@ -360,13 +361,24 @@ if (typeof jQuery != "undefined") {
 
             ExportOutstanding: function () {
                 $("#btnExcelOutstanding").on("click", function () {
-                    var url = APOLLO.resolveUrl('Betlist/ExportExcelOutstanding?custId=' + $("#custid").val()
+                    var url = APOLLO.resolveUrl('Betlist/OutstandingExportExcel?custId=' + $("#custid").val()
                     + "&sportType=" + $("#sportTypes").val()
                     + "&betType=" + $("#betTypes").val());
                     location.href = url;
                 });
             },
 
+            ExportForcast: function () {
+                $("#btnExcelForeCast").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/ForcastExportExcel?matchId=' + $("#matchId").val()
+                    + "&betType=" + $("#betType").val()
+                    + "&type=" + $("#type").val()
+                    + "&leagueName=" + $("#leagueName").val()
+                    + "&mainShareHolderId=" + $("#mainShareHolderId").val()
+                    + "&isForecast=" + $("#isForecast").val());
+                    location.href = url;
+                });
+            },
 
             initEditLink: function () {
                 $(".view-detail").click(function () {

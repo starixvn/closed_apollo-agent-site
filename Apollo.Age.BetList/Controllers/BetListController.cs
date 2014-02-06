@@ -671,7 +671,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportName">Name of the sport.</param>
         /// <param name="betTypeName">Name of the bet type.</param>
         /// <returns>Action Result.</returns>
-        public ActionResult ExportExcelOutstanding(
+        public ActionResult OutstandingExportExcel(
             int custId,
             string username = "",
             int mainShareHolderId = 0,
@@ -822,7 +822,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportName">Name of the sport.</param>
         /// <param name="betTypeName">Name of the bet type.</param>
         /// <returns>Return action result.</returns>
-        public ActionResult ExportWinloss(
+        public ActionResult WinlossExportExcel(
             int custId,
             DateTime fromDate,
             DateTime toDate,
@@ -979,6 +979,73 @@ namespace Apollo.Age.BetList.Controllers
 
             return this.View(viewModel);
         }
+
+        public ActionResult ForcastExportExcel(string type = "",
+            string betType = "",
+            string betTeam = "",
+            int matchId = 0,
+            int mainShareHolderId = 0,
+            string mainShareHolderUsername = "",
+            bool isForecast = false)
+        {
+            var strBetType = string.Empty;
+            var title = string.Empty;
+            if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
+            {
+                title = CacheRef.GetBettype((int)BetTypes.Correct_Score);
+                strBetType = string.Format("{0},{1}", (int)BetTypes.Correct_Score, (int)BetTypes.FirstCorrectScore);
+            }
+            else if (type.Equals("mixparlay", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.MixParlay);
+                title = CacheRef.GetBettype((int)BetTypes.MixParlay);
+            }
+            else if (type.Equals("combmixparlaybetlist", StringComparison.OrdinalIgnoreCase))
+            {
+                strBetType = Convert.ToString((int)BetTypes.Combine_Mix_Parlay);
+                title = Lang.lblSystemParlay;
+            }
+            else
+            {
+                strBetType = betType;
+                title = CacheRef.GetBettype(betType);
+            }
+
+            var betListService = new BetListService();
+            var criteria = new BetListCriteria
+            {
+                LoggedId = CurrentSession.AgentId,
+                AgentId = mainShareHolderId,
+                BetTypes = strBetType,
+                MatchId = matchId,
+                BetTeam = betTeam
+            };
+
+            TicketResult mainTickets;
+
+            if (matchId > 0)
+            {
+                mainTickets = betListService.GetRunningByBettypeAndMatch(criteria);
+            }
+            else
+            {
+                mainTickets = betListService.GetRunningByBettype(criteria);
+            }
+
+            var sheetName = "Betlist-" + title;
+            var betlistName = "BET LIST " + title.ToUpper() ;
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
+
+            var fileName = string.Format(
+                "BetList_{0}",
+                title);
+
+            return new ExcelResult(excelResult, fileName);
+
+
+        }
+
 
         /// <summary>
         /// Action view bet List from Wagers page.
