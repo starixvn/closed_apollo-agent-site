@@ -521,7 +521,7 @@
     <file relUrl="bin/Apollo.BetList.Core.dll" publishTime="02/10/2014 10:51:21" />
     <file relUrl="Views/PermissionUserControl/Shared/_Layout.cshtml" publishTime="11/22/2013 10:21:15" />
     <file relUrl="bin/Apollo.CustSetting.dll" publishTime="02/10/2014 10:51:22" />
-    <file relUrl="_GlobalResources/Css/Agent.less" publishTime="02/06/2014 17:10:29" />
+    <file relUrl="_GlobalResources/Css/Agent.less" publishTime="02/10/2014 10:56:10" />
     <file relUrl="Views/Instruction/zh-TW/AgentShareSettingAdv.cshtml" publishTime="05/29/2013 10:20:18" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="08/19/2013 10:25:05" />
     <file relUrl="Views/Instruction/en-US/ViewAgentShareSetting.cshtml" publishTime="10/01/2013 16:55:01" />

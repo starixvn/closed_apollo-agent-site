@@ -282,88 +282,34 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Action Result.</returns>
         public ActionResult TransactionExportExcel(BetListReportViewModel model)
         {
-            var statusIds = string.Format(
-                     "{0},{1},{2},{3},{4},{5},{6},{7}",
-                     (int)Apollo.Age.Enumerations.BetStatus.Void,
-                     (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                     (int)Apollo.Age.Enumerations.BetStatus.Running,
-                     (int)Apollo.Age.Enumerations.BetStatus.Waiting,
-                     (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                     (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                     (int)Apollo.Age.Enumerations.BetStatus.Won,
-                     (int)Apollo.Age.Enumerations.BetStatus.Lose);
-            var balanceUpDay = _reportService.GetBalanceUpDay();
-            int agentId, custId;
-            int errorCode;
-            model.Username = !string.IsNullOrEmpty(model.Username) ? model.Username.Trim() : CurrentSession.AgentName;
-            _betListService.GetUserIdByUserName(CurrentSession.AgentId, model.UserType == 1, model.Username, out agentId, out custId, out errorCode);
+            TicketResult mainTickets = TransactionBetlist(model);
 
-            model.SportList = SingbetSportService.GetSport(isOther: false);
-            model.BettypeList =
-                model.SportTypes == "-99"
-                ? _reportService.GetParlayBettype()
-                : _reportService.GetBettype(model.SportTypes == "-99" || model.SportTypes == "0");
-            model.BalanceUpDay = balanceUpDay;
-
-            if (errorCode == 0)
+            if (mainTickets.TicketList != null && mainTickets.TicketList.Any())
             {
-                var betListService = new BetListService();
-                var criteria = new BetListCriteria
-                {
-                    AgentId = agentId,
-                    LoggedId = CurrentSession.AgentId,
-                    CustId = custId,
-                    FromDate = this.ResetStartDate(model.FromDate),
-                    ToDate = this.ResetEndDate(model.ToDate),
-                    StatusIds = statusIds,
+                ViewBag.TotalItems = mainTickets.TicketList.Count();
 
-                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
-                    BetTypes = model.BetTypes,
+                mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
 
-                    BetListPage = BetListPage.Transaction,
-                    MoveBetsDay = _reportService.MoveBetsDay()
-                };
-
-                //// Cache Key
-                var sessionKey = string.Format(
-                    "TransactionsReport{0}-{1}-{2}",
-                    criteria.LoggedId,
-                    criteria.AgentId,
-                    criteria.CustId);
-
-                TicketResult mainTickets = null;
-                var getFromDB = true;
-                if (model.FromPaging == true)
-                {
-                    var resultFromSession = HttpContext.Session[sessionKey] as TicketResult;
-                    if (resultFromSession != null)
-                    {
-                        mainTickets = resultFromSession.Clone();
-                        getFromDB = false;
-                    }
-                }
-
-                if (getFromDB)
-                {
-                    mainTickets = betListService.GetTicketResult(criteria);
-                    HttpContext.Session[sessionKey] = mainTickets.Clone();
-                }
-
-                string sheetName = "Betlist-Transaction";
-                string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
-
-                var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
-
-                var fileName = string.Format(
-                    "BetList_{0}_{1}_{2}",
-                    "Transaction",
-                    this._excelService.ShortDateFormat(model.FromDate),
-                    this._excelService.ShortDateFormat(model.ToDate));
-
-                return new ExcelResult(excelResult, fileName);
+                // Set data to view model
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Transaction);
+            }
+            else
+            {
+                ViewBag.TotalItems = 0;
             }
 
-            return null;
+            string sheetName = "Betlist-Transaction";
+            string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+
+            var fileName = string.Format(
+                "BetList_{0}_{1}_{2}",
+                "Transaction",
+                this._excelService.ShortDateFormat(model.FromDate),
+                this._excelService.ShortDateFormat(model.ToDate));
+
+            return new ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -561,16 +507,16 @@ namespace Apollo.Age.BetList.Controllers
             string betTypeName = "")
         {
             TicketResult mainTickets = WinlossBetlist(
-                custId, 
-                fromDate, 
-                toDate, 
-                type, 
-                username, 
-                mainShareHolderId, 
-                mainShareHolderUsername, 
-                betType, 
-                sportType, 
-                sportName, 
+                custId,
+                fromDate,
+                toDate,
+                type,
+                username,
+                mainShareHolderId,
+                mainShareHolderUsername,
+                betType,
+                sportType,
+                sportName,
                 betTypeName);
 
             var viewModel = new BetListViewModel
@@ -610,16 +556,16 @@ namespace Apollo.Age.BetList.Controllers
             string betTypeName = "")
         {
             TicketResult mainTickets = WinlossBetlist(
-                custId, 
-                fromDate, 
-                toDate, 
-                type, 
-                username, 
-                mainShareHolderId, 
-                mainShareHolderUsername, 
-                betType, 
-                sportType, 
-                sportName, 
+                custId,
+                fromDate,
+                toDate,
+                type,
+                username,
+                mainShareHolderId,
+                mainShareHolderUsername,
+                betType,
+                sportType,
+                sportName,
                 betTypeName);
 
             var sheetName = "Betlist-Winloss";
