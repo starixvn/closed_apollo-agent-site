@@ -370,7 +370,7 @@ if (typeof jQuery != "undefined") {
 
             ExportForcast: function () {
                 $("#btnExcelForeCast").on("click", function () {
-                    var url = APOLLO.resolveUrl('Betlist/ForcastExportExcel?matchId=' + $("#matchId").val()
+                    var url = APOLLO.resolveUrl('Betlist/ForecastExportExcel?matchId=' + $("#matchId").val()
                     + "&betType=" + $("#betType").val()
                     + "&type=" + $("#type").val()
                     + "&leagueName=" + $("#leagueName").val()

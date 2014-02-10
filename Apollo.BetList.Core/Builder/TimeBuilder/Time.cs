@@ -85,12 +85,12 @@ namespace Apollo.BetList.Core.Builder.TimeBuilder
                 case BetListPage.Forecast:
                     rtfHelper.RTFRenderer.AddText(Formatter.FormatDateTime22(ticket.TransDate).Replace("<br/>", "\n"));
                     break;
+
                 default:
-                    rtfHelper.RTFRenderer.AddText(Formatter.FullDateFormat(ticket.TransDate));                    
+                    rtfHelper.RTFRenderer.AddText(Formatter.FullDateFormat(ticket.TransDate));
                     break;
             }
 
-            
             IRichTextString rtfTime = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
 

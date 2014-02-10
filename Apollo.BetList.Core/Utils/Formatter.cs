@@ -499,7 +499,7 @@ namespace Apollo.BetList.Core.Utils
                 return string.Empty;
             }
 
-            return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
+            return string.Format(cult, "{0:yyyy-MM-dd HH:mm:ss}", dt);
         }
 
         /// <summary>
@@ -545,7 +545,7 @@ namespace Apollo.BetList.Core.Utils
 
             try
             {
-                return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
+                return Convert.ToDateTime(dt).ToString("MM-dd<br/>HH:mm").ToLower();
             }
             catch
             {
