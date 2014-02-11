@@ -255,7 +255,7 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TransactionBetlist(model);
 
-            if (mainTickets.TicketList != null && mainTickets.TicketList.Any())
+            if (mainTickets != null && mainTickets.TicketList != null && mainTickets.TicketList.Any())
             {
                 ViewBag.TotalItems = mainTickets.TicketList.Count();
 
