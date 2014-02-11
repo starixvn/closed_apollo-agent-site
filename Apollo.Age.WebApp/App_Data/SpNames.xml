@@ -215,7 +215,7 @@
 
   <Function Name="Agent-Apollo-TotalBets-BetList">
 
-    <Setting Key="Age_BetList_SelWagers" SpName="Age_BetList_SelWagers" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelWagers" SpName="Age_BetList_SelWagers_xtest" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_Betlist_SelSystemParlay_Details" SpName="Age_Betlist_SelSystemParlay_Details" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype_xtest" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
