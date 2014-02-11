@@ -379,6 +379,61 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
+        /// Wagers the bet list.
+        /// </summary>
+        /// <param name="loggedId">The logged identifier.</param>
+        /// <param name="fromDate">The from date.</param>
+        /// <param name="toDate">The to date.</param>
+        /// <param name="userGroup">The user group.</param>
+        /// <param name="isDirectMem">If set to <c>true</c> [is direct memory].</param>
+        /// <param name="liveIndicator">If set to <c>true</c> [live indicator].</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="betTeam">The bet team.</param>
+        /// <param name="matchId">The match identifier.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult WagerBetlist(
+            int loggedId,
+            DateTime fromDate,
+            DateTime? toDate,
+            string userGroup = "",
+            bool isDirectMem = false,
+            bool liveIndicator = false,
+            int leagueId = 0,
+            string betType = "",
+            string sportType = "",
+            string betTeam = "",
+            int matchId = 0)
+        {
+            var betListService = new BetListService();
+            if (toDate == null)
+            {
+                toDate = fromDate;
+            }
+
+            var criteria = new WagersCriteria
+            {
+                LoggedId = loggedId > 0 ? loggedId : CurrentSession.AgentId,
+                FromDate = fromDate,
+                ToDate = toDate,
+                UGroup = userGroup,
+                IsDirectMem = isDirectMem,
+                LiveIndicator = liveIndicator,
+                LeagueId = leagueId,
+                SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
+                BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
+                BetTeam = betTeam,
+                MatchId = matchId,
+                IsSuperView = CurrentSession.IsSuper
+            };
+
+            TicketResult mainTickets = betListService.WagersTicket(criteria);
+
+            return mainTickets;
+        }
+
+        /// <summary>
         /// Time start date.
         /// </summary>
         /// <param name="dt">Input a date.</param>

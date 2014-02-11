@@ -7,7 +7,9 @@
     ViewBag.Title = Lang.lblBetLists;
 }
 <div id="header_main">@Model.Title</div>
+
 <div id="spData">
+<div class="export-excel" id="btnExcelWager"></div>
     <table class="tblRpt">
         <thead class="persist-header">
             <tr>
@@ -110,3 +112,15 @@
         }
     </table>
 </div>
+
+@Html.Hidden("fromDate", Request["fromDate"])
+@Html.Hidden("toDate", Request["toDate"])
+@Html.Hidden("uGroup", Request["uGroup"])
+@Html.Hidden("isDirectMem", Request["isDirectMem"])
+@Html.Hidden("liveIndicator", Request["liveIndicator"])
+@Html.Hidden("leagueId", Request["leagueId"])
+@Html.Hidden("betType", Request["betType"])
+@Html.Hidden("sportType", Request["sportType"])
+@Html.Hidden("betTeam", Request["betTeam"])
+@Html.Hidden("matchId", Request["matchId"])
+@Html.Hidden("loggedId", Request["loggedId"])

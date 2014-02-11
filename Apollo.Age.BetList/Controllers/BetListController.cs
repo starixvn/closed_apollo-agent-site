@@ -650,6 +650,13 @@ namespace Apollo.Age.BetList.Controllers
             var strBetType = string.Empty;
             var title = string.Empty;
 
+            IEnumerable<Agent> mainShareHolders = new List<Agent>();
+
+            if (!isForecast)
+            {
+                mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
+            }
+
             TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId, mainShareHolderUsername, isForecast);
 
             title = title.Replace("/", " ");
@@ -695,30 +702,18 @@ namespace Apollo.Age.BetList.Controllers
             string betTeam = "",
             int matchId = 0)
         {
-            // List ticket
-            var betListService = new BetListService();
-            if (toDate == null)
-            {
-                toDate = fromDate;
-            }
-
-            var criteria = new WagersCriteria
-            {
-                LoggedId = loggedId > 0 ? loggedId : CurrentSession.AgentId,
-                FromDate = fromDate,
-                ToDate = toDate,
-                UGroup = userGroup,
-                IsDirectMem = isDirectMem,
-                LiveIndicator = liveIndicator,
-                LeagueId = leagueId,
-                SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
-                BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
-                BetTeam = betTeam,
-                MatchId = matchId,
-                IsSuperView = CurrentSession.IsSuper
-            };
-
-            TicketResult mainTickets = betListService.WagersTicket(criteria);
+            TicketResult mainTickets = WagerBetlist(
+                loggedId,
+                fromDate,
+                toDate,
+                userGroup,
+                isDirectMem,
+                liveIndicator,
+                leagueId,
+                betType,
+                sportType,
+                betTeam,
+                matchId);
 
             var viewModel = new BetListViewModel
             {
@@ -726,6 +721,58 @@ namespace Apollo.Age.BetList.Controllers
             };
 
             return this.View(viewModel);
+        }
+
+        /// <summary>
+        /// Wagers the export excel.
+        /// </summary>
+        /// <param name="loggedId">The logged identifier.</param>
+        /// <param name="fromDate">The from date.</param>
+        /// <param name="toDate">The to date.</param>
+        /// <param name="userGroup">The user group.</param>
+        /// <param name="isDirectMem">If set to <c>true</c> [is direct memory].</param>
+        /// <param name="liveIndicator">If set to <c>true</c> [live indicator].</param>
+        /// <param name="leagueId">The league identifier.</param>
+        /// <param name="betType">Type of the bet.</param>
+        /// <param name="sportType">Type of the sport.</param>
+        /// <param name="betTeam">The bet team.</param>
+        /// <param name="matchId">The match identifier.</param>
+        /// <returns>Action result.</returns>
+        public ActionResult WagerExportExcel(
+             int loggedId,
+            DateTime fromDate,
+            DateTime? toDate,
+            string userGroup = "",
+            bool isDirectMem = false,
+            bool liveIndicator = false,
+            int leagueId = 0,
+            string betType = "",
+            string sportType = "",
+            string betTeam = "",
+            int matchId = 0)
+        {
+            TicketResult mainTickets = WagerBetlist(
+               loggedId,
+               fromDate,
+               toDate,
+               userGroup,
+               isDirectMem,
+               liveIndicator,
+               leagueId,
+               betType,
+               sportType,
+               betTeam,
+               matchId);
+
+            var sheetName = "Betlist-Wager";
+            var betlistName = "BET LIST WAGER FROM:" + fromDate.ToString("yyyy-MM-dd") + " TO:" + toDate.Value.ToString("yyyy-MM-dd");
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
+
+            var fileName = string.Format(
+                "BetList_{0}_{1}_{2}", "Wager", fromDate.ToString("yyyy-MM-dd").Replace("-", "_"), toDate.Value.ToString("yyyy-MM-dd").Replace("-", "_"));
+
+            return new ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -975,8 +1022,8 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ? 
-                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) : 
+                    Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ?
+                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) :
                     builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),

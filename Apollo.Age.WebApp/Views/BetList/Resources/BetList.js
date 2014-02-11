@@ -254,6 +254,7 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ExportTransaction();
                 BETLIST.ExportTicketCancel();
                 BETLIST.ExportForcast();
+                BETLIST.ExportWager();
             },
 
             getBetListData: function () {
@@ -375,6 +376,22 @@ if (typeof jQuery != "undefined") {
                     + "&leagueName=" + $("#leagueName").val()
                     + "&mainShareHolderId=" + $("#mainShareHolderId").val()
                     + "&isForecast=" + $("#isForecast").val());
+                    location.href = url;
+                });
+            },
+
+            ExportWager: function () {
+                $("#btnExcelWager").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/WagerExportExcel?fromDate=' + $("#fromDate").val()
+                    + "&toDate=" + $("#toDate").val()
+                    + "&uGroup=" + $("#uGroup").val()
+                    + "&liveIndicator=" + $("#liveIndicator").val()
+                    + "&leagueId=" + $("#leagueId").val()
+                    + "&betType=" + $("#betType").val()
+                    + "&sportType=" + $("#sportType").val()
+                    + "&betTeam=" + $("#betTeam").val()
+                    + "&matchId=" + $("#matchId").val()
+                    + "&loggedId=" + $("#loggedId").val());
                     location.href = url;
                 });
             },

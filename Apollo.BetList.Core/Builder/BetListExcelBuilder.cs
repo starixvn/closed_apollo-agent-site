@@ -801,7 +801,7 @@ namespace Apollo.BetList.Core.Builder
                     totalLineBreaks = Math.Max(totalLineBreaks, cell.StringCellValue.GetLineBreakTotal());
                 }
 
-                currentRow.HeightInPoints = totalLineBreaks * _worksheet.DefaultRowHeight;
+                currentRow.HeightInPoints = totalLineBreaks * 15;
             }
         }
 
