@@ -393,7 +393,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
-                "Ticket Cancel",
+                "TicketCancel",
                 this._excelService.ShortDateFormat(model.FromDate),
                 this._excelService.ShortDateFormat(model.ToDate));
 
@@ -975,7 +975,9 @@ namespace Apollo.Age.BetList.Controllers
                     TransTime = builder.BuildTime(ticket, betlistPage),
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
-                    Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ? builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) : builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
+                    Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ? 
+                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) : 
+                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
                     Stake = ticket.Stake,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
                     AgentCommValue = ticket.AComm,
