@@ -473,7 +473,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
                         ticketResult.TicketList = this.ReadTicket(mainTable);
                         var referenceTable = dataSet.Tables.Count > 1 ? dataSet.Tables[1] : new DataTable();
                         ticketResult.TicketListMixParlay = this.ReadTicket(referenceTable);
-
                     }
                 }
 
