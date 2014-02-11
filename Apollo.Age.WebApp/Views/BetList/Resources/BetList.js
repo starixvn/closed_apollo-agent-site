@@ -302,8 +302,6 @@ if (typeof jQuery != "undefined") {
             },
 
             ticketCancel: function () {
-                $("form:first").submit();
-                return;
 
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
@@ -314,6 +312,7 @@ if (typeof jQuery != "undefined") {
                     alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.DateLimited.val());
                 }
                 else {
+                    $("form:first").attr("action", "/betlist/TicketCancel");
                     $("form:first").submit();
                 }
             },

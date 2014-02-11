@@ -43,15 +43,7 @@ namespace Apollo.BetList.Core.Builder.StakeBuilder
         /// <returns>Stake Template.</returns>
         public Stake_Template Render(ITicket ticket)
         {
-            this.Template.stake = (Cast.AsDecimal(ticket.Stake) == 0)
-                          ? ConvertByBetType.Stake(ticket.ActualStake)
-                          : string.Join(
-                                            null,
-                                            ConvertByBetType.Stake(ticket.ActualStake),
-                                                "<br/>",
-                                                "&nbsp;(",
-                                                ConvertByBetType.Stake(ticket.Stake),
-                                                ")");
+            this.Template.stake = ConvertByBetType.Stake(ticket.Stake);
 
             return Template;
         }
@@ -69,7 +61,7 @@ namespace Apollo.BetList.Core.Builder.StakeBuilder
             Render(ticket);
             Template.stake = Template.stake.Replace("<br/>&nbsp;", "\n");
 
-            rtfHelper.RTFRenderer.AddText(Template.stake, rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Template.stake);
             IRichTextString rtfStake = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
             return rtfStake;

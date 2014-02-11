@@ -315,7 +315,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     choice = string.Empty;
                 }
 
-                choice = string.Join(null, new string[] { Template.betTeam });
+                choice = string.Join(null, new string[] { Template.betTeam.Replace("&nbsp;"," ") });
                 rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
                 choice = string.Empty;
             }
