@@ -44,7 +44,8 @@ namespace Apollo.Age.BetList.Criterias
             return new TicketResult
             {
                 TicketList = this.TicketList.ToList(),
-                TicketDataList = this.TicketDataList.ToList()
+                TicketDataList = this.TicketDataList.ToList(),
+                TicketListMixParlay = this.TicketListMixParlay.ToList()
             };
         }
     }
