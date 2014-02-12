@@ -43,6 +43,8 @@ namespace Apollo.BetList.Core.Entities
 
         public IFont NegFontCrossed { get; set; }
 
+        public IFont TrikeFont { get; set; }
+
         public RtfTextRender RTFRenderer { get; set; }
 
         /// <summary>

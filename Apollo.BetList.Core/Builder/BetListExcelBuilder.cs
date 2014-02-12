@@ -85,6 +85,7 @@ namespace Apollo.BetList.Core.Builder
                 GreenAndBold = _workbook.CreateFont(),
                 GreenNoBold = _workbook.CreateFont(),
                 WhiteColor = _workbook.CreateFont(),
+                TrikeFont = _workbook.CreateFont(),
                 RTFRenderer = new RtfTextRender()
             };
 
@@ -870,6 +871,8 @@ namespace Apollo.BetList.Core.Builder
 
             RTFHelper.WhiteColor.Color = IndexedColors.WHITE.Index;
             RTFHelper.WhiteColor.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.TrikeFont.IsStrikeout = true;
         }
 
         /// <summary>

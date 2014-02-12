@@ -251,7 +251,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="isShowSportName">If set to <c>true</c> [is show sport name].</param>
         /// <returns>RTF Helper.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false)
+        protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false, bool isTrikeOut = false)
         {
             string choice = string.Empty;
 
@@ -259,41 +259,92 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 string sportName = ticketHelper.GetSportNameById(ticket.SportTypeId);
                 sportName = string.Join(null, new string[] { sportName, " " });
-                rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBold);
+
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBold);
+                }
+                
             }
 
             if (!string.IsNullOrWhiteSpace(Template.LeagueName))
             {
                 choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
-                rtfHelper.RTFRenderer.AddText(choice);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
                 choice = string.Empty;
             }
 
             if (!string.IsNullOrWhiteSpace(Template.HomeAwayId.homeid) && !string.IsNullOrWhiteSpace(Template.HomeAwayId.awayid))
             {
                 choice = string.Join(null, new string[] { "\n", "[", Template.HomeAwayId.homeid, "]", " vs ", "[", Template.HomeAwayId.awayid, "]" });
-                rtfHelper.RTFRenderer.AddText(choice);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
                 choice = string.Empty;
             }
 
             if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
             {
                 choice = string.Join(null, new string[] { "\n", Template.homeTeam });
-                rtfHelper.RTFRenderer.AddText(choice);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
                 choice = string.Empty;
 
                 choice = string.Join(null, new string[] { " ", Template.handicap, " " });
-                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
+                }
                 choice = string.Empty;
 
                 choice = string.Join(null, new string[] { Template.awayTeam });
-                rtfHelper.RTFRenderer.AddText(choice);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
                 choice = string.Empty;
 
                 if (ticket.IsLive)
                 {
                     choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
-                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                    }
                     choice = string.Empty;
                 }
             }
@@ -305,27 +356,62 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
                     choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
-                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    }
                     choice = string.Empty;
                 }
                 else
                 {
                     choice = string.Join(null, new string[] { " \n ", " " });
-                    rtfHelper.RTFRenderer.AddText(choice);
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice);
+                    }
                     choice = string.Empty;
                 }
 
                 choice = string.Join(null, new string[] { Template.betTeam.Replace("&nbsp;", " ") });
-                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                }
                 choice = string.Empty;
             }
 
-            rtfHelper.RTFRenderer.AddText(" @ ");
+            if (isTrikeOut)
+            {
+                rtfHelper.RTFRenderer.AddText(" @ ", rtfHelper.NormalFontCrossed);
+            }
+            else
+            {
+                rtfHelper.RTFRenderer.AddText(" @ ");
+            }
 
             if (!string.IsNullOrWhiteSpace(Template.odds))
             {
                 choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
-                rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                }
                 choice = string.Empty;
             }
 
