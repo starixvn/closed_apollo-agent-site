@@ -765,12 +765,12 @@ namespace Apollo.Age.BetList.Controllers
                matchId);
 
             var sheetName = "Betlist-Wager";
-            var betlistName = "BET LIST WAGER FROM:" + fromDate.ToString("yyyy-MM-dd") + " TO:" + toDate.Value.ToString("yyyy-MM-dd");
+            var betlistName = "BET LIST WAGER";
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}", "Wager", fromDate.ToString("yyyy-MM-dd").Replace("-", "_"), toDate.Value.ToString("yyyy-MM-dd").Replace("-", "_"));
+                "BetList_Wager");
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -966,11 +966,6 @@ namespace Apollo.Age.BetList.Controllers
                     var result = ticket.Winlost + ticket.PlayerComm;
                     totalResult += result;
                     totalShare += ticket.AWinlost;
-                }
-                else
-                {
-                    totalResult = 0;
-                    totalShare = 0;
                 }
 
                 totalComm += ticket.AComm;
