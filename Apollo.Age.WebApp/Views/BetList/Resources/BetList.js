@@ -272,8 +272,12 @@ if (typeof jQuery != "undefined") {
                     success: function (data) {
                         $('#container').html(data);
                         BETLIST.initEditLink();
+                        BETLIST.ExportTransaction();
                     }
                 });
+
+                $("form:first").attr("action", "/betlist/transactions");
+
             },
 
             initPager: function (pageIndex) {
@@ -336,6 +340,7 @@ if (typeof jQuery != "undefined") {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
+                    $("form:first").attr("action", "/betlist/transactions");
                     $("form:first").submit();
                 }
             },

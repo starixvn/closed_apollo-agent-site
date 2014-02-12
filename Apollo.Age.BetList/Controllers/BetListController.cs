@@ -288,7 +288,7 @@ namespace Apollo.Age.BetList.Controllers
             {
                 ViewBag.TotalItems = mainTickets.TicketList.Count();
 
-                mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
+               // mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
 
                 // Set data to view model
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Transaction);

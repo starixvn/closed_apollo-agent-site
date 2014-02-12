@@ -180,7 +180,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     line = string.Empty;
                 }
 
-                if (item.StatusId.ToString() == BetStatus.Void)
+                if (item.StatusId.ToString() == BetStatusId.Void)
                 {
                     builder.AddChoice(item, ticketHelper, null, "<div class='strike_through'>", "</div>" + line, false);
                 }
