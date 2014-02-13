@@ -262,7 +262,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.NormalFontCrossed);
+                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBoldTrike);
                 }
                 else
                 {
@@ -315,7 +315,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 choice = string.Join(null, new string[] { " ", Template.handicap, " " });
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);
                 }
                 else
                 {
@@ -339,7 +339,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
                     if (isTrikeOut)
                     {
-                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
                     }
                     else
                     {
@@ -358,7 +358,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
                     if (isTrikeOut)
                     {
-                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFontTrike);
                     }
                     else
                     {
@@ -383,7 +383,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 choice = string.Join(null, new string[] { Template.betTeam.Replace("&nbsp;", " ") });
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
                 }
                 else
                 {
@@ -406,7 +406,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFontTrike);
                 }
                 else
                 {

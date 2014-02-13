@@ -72,18 +72,31 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper = new RTFHelper()
             {
                 NegFont = _workbook.CreateFont(),
+                NegFontTrike = _workbook.CreateFont(),
                 NormalFont = _workbook.CreateFont(),
                 PosFont = _workbook.CreateFont(),
+                PosFontTrike = _workbook.CreateFont(),
                 ScoreFont = _workbook.CreateFont(),
+                ScoreFontTrike = _workbook.CreateFont(),
                 BlueAndBold = _workbook.CreateFont(),
                 BlueNoBold = _workbook.CreateFont(),
                 RedAndBold = _workbook.CreateFont(),
                 RedNoBold = _workbook.CreateFont(),
                 NegFontCrossed = _workbook.CreateFont(),
+
+                BlueAndBoldTrike = _workbook.CreateFont(),
+                BlueNoBoldTrike = _workbook.CreateFont(),
+                RedAndBoldTrike = _workbook.CreateFont(),
+                RedNoBoldTrike = _workbook.CreateFont(),
+
                 NormalFontCrossed = _workbook.CreateFont(),
                 PosFontCrossed = _workbook.CreateFont(),
                 GreenAndBold = _workbook.CreateFont(),
                 GreenNoBold = _workbook.CreateFont(),
+
+                GreenAndBoldTrike = _workbook.CreateFont(),
+                GreenNoBoldTrike = _workbook.CreateFont(),
+
                 WhiteColor = _workbook.CreateFont(),
                 TrikeFont = _workbook.CreateFont(),
                 RTFRenderer = new RtfTextRender()
@@ -828,6 +841,12 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.PosFontCrossed.FontName =
             RTFHelper.GreenAndBold.FontName =
             RTFHelper.GreenNoBold.FontName =
+            RTFHelper.GreenNoBoldTrike.FontName =
+            RTFHelper.BlueAndBoldTrike.FontName =
+            RTFHelper.BlueNoBoldTrike.FontName =
+            RTFHelper.RedAndBoldTrike.FontName =
+            RTFHelper.ScoreFontTrike.FontName =
+            RTFHelper.NegFontTrike.FontName =
             RTFHelper.RedNoBold.FontName = "Tahoma";
 
             RTFHelper.NegFont.FontHeightInPoints =
@@ -842,32 +861,67 @@ namespace Apollo.BetList.Core.Builder
             RTFHelper.NegFontCrossed.FontHeightInPoints =
             RTFHelper.GreenAndBold.FontHeightInPoints =
             RTFHelper.GreenNoBold.FontHeightInPoints =
+             RTFHelper.ScoreFontTrike.FontHeightInPoints =
+            RTFHelper.BlueAndBoldTrike.FontHeightInPoints =
+            RTFHelper.BlueNoBoldTrike.FontHeightInPoints =
+            RTFHelper.RedAndBoldTrike.FontHeightInPoints =
+            RTFHelper.RedNoBoldTrike.FontHeightInPoints =
+            RTFHelper.NegFontTrike.FontHeightInPoints =
             RTFHelper.RedNoBold.FontHeightInPoints = 9;
 
             RTFHelper.NormalFontCrossed.IsStrikeout = RTFHelper.PosFontCrossed.IsStrikeout = RTFHelper.NegFontCrossed.IsStrikeout = true;
 
-            RTFHelper.NegFont.Color = RTFHelper.NegFontCrossed.Color = IndexedColors.RED.Index;
+            RTFHelper.NegFontTrike.Color = RTFHelper.NegFont.Color = RTFHelper.NegFontCrossed.Color = IndexedColors.RED.Index;
+            RTFHelper.NegFontTrike.IsStrikeout = true;
 
             RTFHelper.ScoreFont.Color = IndexedColors.GREEN.Index;
             RTFHelper.ScoreFont.Boldweight = (short)FontBoldWeight.BOLD;
 
+            RTFHelper.ScoreFontTrike.Color = IndexedColors.GREEN.Index;
+            RTFHelper.ScoreFontTrike.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.ScoreFontTrike.IsStrikeout = true;
+
             RTFHelper.BlueAndBold.Color = IndexedColors.BLUE.Index;
             RTFHelper.BlueAndBold.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.BlueAndBoldTrike.Color = IndexedColors.BLUE.Index;
+            RTFHelper.BlueAndBoldTrike.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.BlueAndBoldTrike.IsStrikeout = true;
 
             RTFHelper.BlueNoBold.Color = IndexedColors.BLUE.Index;
             RTFHelper.BlueNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
 
+            RTFHelper.BlueNoBoldTrike.Color = IndexedColors.BLUE.Index;
+            RTFHelper.BlueNoBoldTrike.Boldweight = (short)FontBoldWeight.NORMAL;
+            RTFHelper.BlueNoBoldTrike.IsStrikeout = true;
+
             RTFHelper.RedAndBold.Color = IndexedColors.RED.Index;
             RTFHelper.RedAndBold.Boldweight = (short)FontBoldWeight.BOLD;
+
+            RTFHelper.RedAndBoldTrike.Color = IndexedColors.RED.Index;
+            RTFHelper.RedAndBoldTrike.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.RedAndBoldTrike.IsStrikeout = true;
 
             RTFHelper.RedNoBold.Color = IndexedColors.RED.Index;
             RTFHelper.RedNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
 
+            RTFHelper.RedNoBoldTrike.Color = IndexedColors.RED.Index;
+            RTFHelper.RedNoBoldTrike.Boldweight = (short)FontBoldWeight.NORMAL;
+            RTFHelper.RedNoBoldTrike.IsStrikeout = true;
+
             RTFHelper.GreenAndBold.Color = IndexedColors.GREEN.Index;
             RTFHelper.GreenAndBold.Boldweight = (short)FontBoldWeight.BOLD;
 
+            RTFHelper.GreenAndBoldTrike.Color = IndexedColors.GREEN.Index;
+            RTFHelper.GreenAndBoldTrike.Boldweight = (short)FontBoldWeight.BOLD;
+            RTFHelper.GreenAndBoldTrike.IsStrikeout = true;
+
             RTFHelper.GreenNoBold.Color = IndexedColors.GREEN.Index;
             RTFHelper.GreenNoBold.Boldweight = (short)FontBoldWeight.NORMAL;
+
+            RTFHelper.GreenNoBoldTrike.Color = IndexedColors.GREEN.Index;
+            RTFHelper.GreenNoBoldTrike.Boldweight = (short)FontBoldWeight.NORMAL;
+            RTFHelper.GreenNoBoldTrike.IsStrikeout = true;
 
             RTFHelper.WhiteColor.Color = IndexedColors.WHITE.Index;
             RTFHelper.WhiteColor.Boldweight = (short)FontBoldWeight.BOLD;

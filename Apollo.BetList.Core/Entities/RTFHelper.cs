@@ -19,23 +19,41 @@ namespace Apollo.BetList.Core.Entities
 
         public IFont PosFont { get; set; }
 
+        public IFont PosFontTrike { get; set; }
+
         public IFont NegFont { get; set; }
+
+        public IFont NegFontTrike { get; set; }
 
         public IFont RedAndBold { get; set; }
 
         public IFont RedNoBold { get; set; }
 
+        public IFont RedAndBoldTrike { get; set; }
+
+        public IFont RedNoBoldTrike { get; set; }
+
         public IFont BlueAndBold { get; set; }
 
         public IFont BlueNoBold { get; set; }
+
+        public IFont BlueAndBoldTrike { get; set; }
+
+        public IFont BlueNoBoldTrike { get; set; }
 
         public IFont GreenAndBold { get; set; }
 
         public IFont GreenNoBold { get; set; }
 
+        public IFont GreenAndBoldTrike { get; set; }
+
+        public IFont GreenNoBoldTrike { get; set; }
+
         public IFont WhiteColor { get; set; }
 
         public IFont ScoreFont { get; set; }
+
+        public IFont ScoreFontTrike { get; set; }
 
         public IFont NormalFontCrossed { get; set; }
 
