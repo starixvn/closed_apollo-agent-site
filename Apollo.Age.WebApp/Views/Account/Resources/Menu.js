@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
+/*global APOLLO*/
 
 var MENU = function ($) {
     return {
@@ -31,10 +32,10 @@ var MENU = function ($) {
                 if ((custId != undefined || username != undefined) && isMember != undefined) {
                     if ($.cookie('searching-id') != "-1" || username.length > 0) {
                         if (isMember.toBoolean()) {
-                            url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+                            url = 'Account/MemberInfo?custid=' + custId + '&username=' + username;
                         }
                         else {
-                            url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+                            url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username;
                         }
                     }
                 }
@@ -90,15 +91,19 @@ $(document).ready(function () {
             subMenu.slideDown('fast');
             $.cookie('age-active-menuitem', parent.index(), { path: '/' });
         }
-    })
+    });
 
     // activate selected menu item
     var activeMenuItemIdx = $.cookie('age-active-menuitem');
 
     if (activeMenuItemIdx) {
         MENU.menu.children('.menu-item').each(function (idx) {
-            if (idx == activeMenuItemIdx) $(this).addClass('active');
-            else $(this).removeClass('active');
+            if (idx == activeMenuItemIdx) {
+                $(this).addClass('active');
+            }
+            else {
+                $(this).removeClass('active');
+            }
         });
     }
 

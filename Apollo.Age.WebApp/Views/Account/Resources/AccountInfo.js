@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
+/*global APOLLO*/
 
 var ACCOUNT = function ($) {
     return {
@@ -11,11 +12,11 @@ var ACCOUNT = function ($) {
         agentListSettingTime: null,
 
         init: function () {
-            ACCOUNT.txtUsername = $("#txtUsername");
-            ACCOUNT.dllIsMember = $("#ddlIsMember");
-            ACCOUNT.ageDownLink = $("#agentDownlineLink");
-            ACCOUNT.ddlAgents = $("#ddl-agents");
-            ACCOUNT.enterUsernameValue = $("#enterUsernameValue");
+            this.txtUsername = $("#txtUsername");
+            this.dllIsMember = $("#ddlIsMember");
+            this.ageDownLink = $("#agentDownlineLink");
+            this.ddlAgents = $("#ddl-agents");
+            this.enterUsernameValue = $("#enterUsernameValue");
 
             // Set posituon for agent tab
             var heightSearchBox = $('.search-box').height(),
@@ -40,10 +41,10 @@ var ACCOUNT = function ($) {
             $.cookie('searching-ismember', ACCOUNT.dllIsMember.val().toBoolean(), { path: '/' });
             var url = "";
             if (ACCOUNT.dllIsMember.val().toBoolean()) {
-                url = 'Account/MemberInfo?custid=' + custId + '&username=' + username
+                url = 'Account/MemberInfo?custid=' + custId + '&username=' + username;
             }
             else {
-                url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username
+                url = 'Account/AgentInfo?agentid=' + custId + '&username=' + username;
             }
 
             location.href = APOLLO.resolveUrl(url);
@@ -75,7 +76,7 @@ var ACCOUNT = function ($) {
                                     label: item.Username,
                                     value: item.Username,
                                     id: item.Id
-                                }
+                                };
                             });
 
                             return response(found);
@@ -150,9 +151,9 @@ var ACCOUNT = function ($) {
                 }
                 else {
                     var $this = $(this);
-                    agentID = $this.attr('data-agentid');
+                    var agentID = $this.attr('data-agentid');
                     $this.addClass("is-active");
-                    agentList = ACCOUNT.ddlAgents.find('.agent-list');
+                    var agentList = ACCOUNT.ddlAgents.find('.agent-list');
 
                     $.ajax({
                         url: APOLLO.resolveUrl('Account/GetAgentDownlinePath?agentId=' + agentID),
@@ -170,10 +171,10 @@ var ACCOUNT = function ($) {
                                     agentList.append("<li class='root-agent'><i class='icon-stop'></i>" + data[0].Username + "</li>");
                                 }
                                 else {
-                                    for (var i = data.length - 1; i >= 0; i--) {
+                                    for (var j = data.length - 1; j >= 0; j--) {
                                         agentList.append(
-                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
-                                                + "'data-agentname='" + data[i].Username + "'>\\ " + data[i].Username + "</a></li>"
+                                            "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[j].Id
+                                                + "'data-agentname='" + data[j].Username + "'>\\ " + data[j].Username + "</a></li>"
                                         );
                                     }
                                 }
@@ -201,8 +202,8 @@ var ACCOUNT = function ($) {
                     parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
                 }
                 catch (exception) {
-                    
-                }                
+
+                }
             });
         },
 
@@ -273,19 +274,19 @@ var ACCOUNT = function ($) {
                 event.stopPropagation();
             });
 
-            $('.edit-link').on('mouseover', function (event) {
+            $('.edit-link').on('mouseover', function () {
                 clearTimeout(ACCOUNT.agentListSettingTime);
             });
 
-            $('.edit-link').on('mouseout', function (event) {
+            $('.edit-link').on('mouseout', function () {
                 ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
             });
 
-            $('.menu-list').on('mouseover', function (event) {
+            $('.menu-list').on('mouseover', function () {
                 clearTimeout(ACCOUNT.agentListSettingTime);
             });
 
-            $('.menu-list').on('mouseout', function (event) {
+            $('.menu-list').on('mouseout', function () {
                 ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
             });
 
@@ -299,7 +300,7 @@ var ACCOUNT = function ($) {
             $('.edit-link').removeClass('bg');
             $('.list').fadeOut('fast');
         }
-    }
+    };
 } (jQuery);
 
 $(document).ready(function () {
