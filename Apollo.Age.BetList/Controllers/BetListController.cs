@@ -284,20 +284,6 @@ namespace Apollo.Age.BetList.Controllers
         {
             TicketResult mainTickets = TransactionBetlist(model);
 
-            if (mainTickets.TicketList != null && mainTickets.TicketList.Any())
-            {
-                ViewBag.TotalItems = mainTickets.TicketList.Count();
-
-               // mainTickets.TicketList = mainTickets.TicketList.Skip(model.PageSize * model.PageIndex).Take(model.PageSize).ToList() as IList<ITicket>;
-
-                // Set data to view model
-                model.TicketList = this.Ticket(mainTickets, BetListPage.Transaction);
-            }
-            else
-            {
-                ViewBag.TotalItems = 0;
-            }
-
             string sheetName = "Betlist-Transaction";
             string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
 

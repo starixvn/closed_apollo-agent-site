@@ -95,8 +95,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                         rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
                     }
                     rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
-
-                    rtfHelper.RTFRenderer.Render();
                 }
             }
 

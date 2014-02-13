@@ -249,8 +249,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="isShowSportName">If set to <c>true</c> [is show sport name].</param>
-        /// <returns>RTF Helper.</returns>
+        /// <param name="isTrikeOut">If set to <c>true</c> [is trike out].</param>
+        /// <returns>
+        /// RTF Helper.
+        /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false, bool isTrikeOut = false)
         {
             string choice = string.Empty;
@@ -268,7 +272,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBold);
                 }
-                
             }
 
             if (!string.IsNullOrWhiteSpace(Template.LeagueName))
@@ -282,6 +285,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
+
                 choice = string.Empty;
             }
 
@@ -296,6 +300,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
+
                 choice = string.Empty;
             }
 
@@ -310,6 +315,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
+
                 choice = string.Empty;
 
                 choice = string.Join(null, new string[] { " ", Template.handicap, " " });
@@ -321,9 +327,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
                 }
+
                 choice = string.Empty;
 
                 choice = string.Join(null, new string[] { Template.awayTeam });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -332,6 +340,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
+
                 choice = string.Empty;
 
                 if (ticket.IsLive)
@@ -345,6 +354,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     {
                         rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
                     }
+
                     choice = string.Empty;
                 }
             }
@@ -364,6 +374,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     {
                         rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
                     }
+
                     choice = string.Empty;
                 }
                 else
@@ -377,6 +388,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     {
                         rtfHelper.RTFRenderer.AddText(choice);
                     }
+
                     choice = string.Empty;
                 }
 
@@ -389,6 +401,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
                 }
+
                 choice = string.Empty;
             }
 
@@ -412,6 +425,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
                 }
+
                 choice = string.Empty;
             }
 
@@ -427,7 +441,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <summary>
         /// Builds the choice.
         /// </summary>
-        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticket">The ticket item.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>

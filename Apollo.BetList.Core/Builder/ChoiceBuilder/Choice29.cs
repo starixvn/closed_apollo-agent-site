@@ -51,11 +51,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Choice Template.
         /// </returns>
         public override List<IRichTextString> RenderRTF(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
-            IList<ITicket> ticketMixParlay, 
-            bool isShowScoreMap, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
+            bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
             List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
@@ -72,11 +72,16 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     IChoice choiceBuilder = this.CreateChoiceBuilder(tkt.BetTypeId);
                     this.Template = choiceBuilder.Render(tkt, ticketHelper, null, isShowScoreMap);
 
-                    rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
+                    if (tkt.StatusId.ToString() == BetStatusId.Void)
+                    {
+                        rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true, true);
+                    }
+                    else
+                    {
+                        rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
+                    }
 
                     rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
-
-                    rtfHelper.RTFRenderer.Render();
                 }
             }
 
