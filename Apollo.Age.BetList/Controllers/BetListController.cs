@@ -282,6 +282,20 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Action Result.</returns>
         public ActionResult TransactionExportExcel(BetListReportViewModel model)
         {
+            // Get permission of user
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             TicketResult mainTickets = TransactionBetlist(model);
 
             string sheetName = "Betlist-Transaction";
@@ -370,6 +384,20 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Action result.</returns>
         public ActionResult TicketCancelExportExcel(BetListReportViewModel model)
         {
+            // Get permission of user.
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.allFunctionPermission = userPermission;
+
+            var hasPermission = userPermission[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+
+            if (!hasPermission
+                || !hasDownlineDetailsPermission)
+            {
+                return View("~/Views/Reports/ReportAccessDenied.cshtml");
+            }
+
             TicketResult mainTickets = TicketCancelBetList(model);
 
             var sheetName = "Betlist-Ticket Cancel";
@@ -433,6 +461,9 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportName">Name of the sport.</param>
         /// <param name="betTypeName">Name of the bet type.</param>
         /// <returns>Action Result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult OutstandingExportExcel(
             int custId,
             string username = "",
@@ -528,6 +559,9 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="sportName">Name of the sport.</param>
         /// <param name="betTypeName">Name of the bet type.</param>
         /// <returns>Return action result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [ValidateInput(false)]
         public ActionResult WinlossExportExcel(
             int custId,
             DateTime fromDate,
@@ -624,6 +658,8 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="isForecast">If set to <c>true</c> [is forecast].</param>
         /// <returns>Return action result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult ForecastExportExcel(
             string type = "",
             string betType = "",
@@ -724,6 +760,8 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTeam">The bet team.</param>
         /// <param name="matchId">The match identifier.</param>
         /// <returns>Action result.</returns>
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]  
         public ActionResult WagerExportExcel(
              int loggedId,
             DateTime fromDate,
