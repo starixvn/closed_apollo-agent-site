@@ -18,6 +18,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
@@ -71,7 +72,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">Is show score map or not.</param>
-        /// <param name="betListPage">The bet list page.</param>
         /// <returns>
         /// Choice Template.
         /// </returns>
@@ -79,10 +79,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             ITicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
-            bool isShowScoreMap,
-            BetListPage betListPage)
+            bool isShowScoreMap)
         {
-            this.BuildChoice(ticket, ticketHelper, ticketData, betListPage);
+            this.BuildChoice(ticket, ticketHelper, ticketData);
             this.BuildHandicapOdds(ticket, ticketHelper);
             this.BuildScoreMap(ticket, isShowScoreMap);
 
@@ -107,7 +106,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
-            this.Render(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
+            this.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
             var choiceData = BuildRTFChoice(ticket, rtfHelper, ticketHelper);
             List<IRichTextString> rtfChoice;
 
@@ -124,13 +123,59 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         }
 
         /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Choice Template.</returns>
+        public virtual List<IRichTextString> RenderRTF(
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
+            bool isShowScoreMap,
+            RTFHelper rtfHelper)
+        {
+            return RenderRTF(
+             ticket,
+             ticketHelper,
+             ticketData,
+             isShowScoreMap,
+             rtfHelper);
+        }
+
+        /// <summary>
+        /// Renders the specified ticket.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
+        /// <returns>
+        /// Choice Template.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap)
+        {
+            this.BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay);
+            this.BuildHandicapOdds(ticket, ticketHelper);
+            this.BuildScoreMap(ticket, isShowScoreMap);
+
+            return this.Template;
+        }
+
+        /// <summary>
         /// Builds the choice.
         /// </summary>
         /// <param name="ticket">The ticket need to build.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="betListPage">The bet list page.</param>
-        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, BetListPage betListPage)
+        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
             this.Template.HomeAwayId.homeid = ticket.HomeId.ToString();
@@ -175,6 +220,235 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : -ticket.Handicap1;
             this.Template.handicap = Formatter.FormatHandicap(ticket.BetTypeId, handicap);
+        }
+
+        /// <summary>
+        /// Builds the RTF choice.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <returns>Rich text interface.</returns>
+        protected virtual IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
+        {
+            // the 1st line
+            this.AdjustBetTeamToRTF();
+
+            rtfHelper = CreateRTFHelper(ticket, rtfHelper, ticketHelper);
+
+            var choiceRtf = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return choiceRtf;
+        }
+
+        /// <summary>
+        /// Creates the RTF helper.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="isShowSportName">If set to <c>true</c> [is show sport name].</param>
+        /// <param name="isTrikeOut">If set to <c>true</c> [is trike out].</param>
+        /// <returns>
+        /// RTF Helper.
+        /// </returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        protected virtual RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false, bool isTrikeOut = false)
+        {
+            string choice = string.Empty;
+
+            if (isShowSportName)
+            {
+                string sportName = ticketHelper.GetSportNameById(ticket.SportTypeId);
+                sportName = string.Join(null, new string[] { sportName, " " });
+
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBoldTrike);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.RedNoBold);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.LeagueName))
+            {
+                choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
+
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.HomeAwayId.homeid) && !string.IsNullOrWhiteSpace(Template.HomeAwayId.awayid))
+            {
+                choice = string.Join(null, new string[] { "\n", "[", Template.HomeAwayId.homeid, "]", " vs ", "[", Template.HomeAwayId.awayid, "]" });
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
+
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
+            {
+                choice = string.Join(null, new string[] { "\n", Template.homeTeam });
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
+
+                choice = string.Empty;
+
+                choice = string.Join(null, new string[] { " ", Template.handicap, " " });
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
+                }
+
+                choice = string.Empty;
+
+                choice = string.Join(null, new string[] { Template.awayTeam });
+
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice);
+                }
+
+                choice = string.Empty;
+
+                if (ticket.IsLive)
+                {
+                    choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                    }
+
+                    choice = string.Empty;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.betTeam))
+            {
+                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
+               || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                {
+                    choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFontTrike);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    }
+
+                    choice = string.Empty;
+                }
+                else
+                {
+                    choice = string.Join(null, new string[] { " \n ", " " });
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice);
+                    }
+
+                    choice = string.Empty;
+                }
+
+                choice = string.Join(null, new string[] { Template.betTeam.Replace("&nbsp;", " ") });
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBold);
+                }
+
+                choice = string.Empty;
+            }
+
+            if (isTrikeOut)
+            {
+                rtfHelper.RTFRenderer.AddText(" @ ", rtfHelper.NormalFontCrossed);
+            }
+            else
+            {
+                rtfHelper.RTFRenderer.AddText(" @ ");
+            }
+
+            if (!string.IsNullOrWhiteSpace(Template.odds))
+            {
+                choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
+                if (isTrikeOut)
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFontTrike);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFont);
+                }
+
+                choice = string.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(choice))
+            {
+                choice = choice.Replace("&nbsp;", " ");
+                rtfHelper.RTFRenderer.AddText("\n" + choice);
+            }
+
+            return rtfHelper;
+        }
+
+        /// <summary>
+        /// Builds the choice.
+        /// </summary>
+        /// <param name="ticket">The ticket item.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        protected virtual void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
+        {
+            BuildChoice(ticket, ticketHelper, ticketData);
         }
 
         /// <summary>
@@ -225,24 +499,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 awayFGLG = string.Join(null, new string[] { "&nbsp;", awayFGLG });
             }
-        }
-
-        /// <summary>
-        /// Builds the RTF choice.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <returns>Rich text interface.</returns>
-        protected virtual IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
-        {
-            // the 1st line
-            this.AdjustBetTeamToRTF();
-            string choice = Template.betTeam;
-            var choiceRtf = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
-
-            return choiceRtf;
         }
 
         /// <summary>

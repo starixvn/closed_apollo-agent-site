@@ -337,7 +337,7 @@ namespace Apollo.BetList.Core.Utils
         /// <returns>String stake.</returns>
         public static string Stake(object value)
         {
-            return string.Format(Formatter.DECIMAL_FORMAT2, value);
+            return string.Format(Formatter.DECIMAL_FORMAT20, value);
         }
 
         /// <summary>

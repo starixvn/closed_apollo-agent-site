@@ -1,4 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
+/*global BASELANGUAGES*/
+
 var ACCOUNTLIST = function ($) {
     return {
         agentListSettingTime: null,

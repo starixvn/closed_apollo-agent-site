@@ -17,6 +17,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
+    using Apollo.Age.Web.Services;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -25,6 +26,7 @@ namespace Apollo.Age.BetList.Services
     public class BetListService : QueryService, IBetListService
     {
         private IBetListRepository _betListRepository;
+        private ExcelService _excelService;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BetListService" /> class.
@@ -41,6 +43,7 @@ namespace Apollo.Age.BetList.Services
         public BetListService(IBetListRepository betListRepository)
         {
             this._betListRepository = this._betListRepository ?? new BetListRepository();
+            this._excelService = new ExcelService();
         }
 
         /// <summary>

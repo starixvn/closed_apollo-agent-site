@@ -16,6 +16,8 @@
         <div>
         </div>
         <div id="spData">
+        <div class="export-excel" id="btnExcelForeCast">
+    </div>
             <table class="tblRpt">
                 <thead class="persist-header">
                     <tr>
@@ -120,3 +122,9 @@
         </div>
     </div>
 </div>
+@Html.Hidden("matchId", Request["matchId"])
+@Html.Hidden("betType", Request["betType"])
+@Html.Hidden("type", Request["type"])
+@Html.Hidden("leagueName", Request["leagueName"])
+@Html.Hidden("mainShareHolderId", Request["mainShareHolderId"])
+@Html.Hidden("isForecast", Request["isForecast"])

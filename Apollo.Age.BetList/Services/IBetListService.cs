@@ -13,6 +13,7 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
     using Apollo.BetList.Core.Entities;
+    using NPOI.HSSF.UserModel;
 
     /// <summary>
     /// Service Interface.

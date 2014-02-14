@@ -30,5 +30,16 @@ namespace Apollo.BetList.Core.Builder.TimeBuilder
         /// <param name="page">Link from page.</param>
         /// <returns>Time Template.</returns>
         Time_Template Render(ITicket ticket, BetListPage page);
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Time Template.
+        /// </returns>
+        IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper);
     }
 }

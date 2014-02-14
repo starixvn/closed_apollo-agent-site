@@ -40,11 +40,10 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
-        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <param name="rtfHelper">The RTF helper.</param>
         /// <returns>
         /// Rich text string.
         /// </returns>
-        IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, bool isShowVNIP, RTFHelper rtfHelper);
+        IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, RTFHelper rtfHelper);
     }
 }

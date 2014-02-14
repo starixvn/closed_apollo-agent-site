@@ -25,9 +25,13 @@ if (typeof jQuery != 'undefined') {
             currentOpenDialog: null,
             openDialog: function (target, title, options) {
                 options = options || {};
-                if (title) options.title = title;
+                if (title) {
+                    options.title = title; 
+                }
 
-                if (target instanceof jQuery == false) target = $(target);
+                if (target instanceof jQuery == false) {
+                    target = $(target); 
+                 }
 
                 APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
@@ -484,7 +488,7 @@ if (typeof jQuery != 'undefined') {
                         if ((lyear == true) && (dd > 29)) {
                             return false;
                         }
-                    }                  
+                    }
                 }
                 else {
                     return false;

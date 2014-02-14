@@ -20,37 +20,15 @@
 {
     if (!Request.IsAjaxRequest())
     {
-@*<table class="tbl-function-bar clearfix">
-        <tr>
-            <td>
-                <label for="ddlSport">@Lang.lblReport:</label>
-                @RazorHelper.RenderSportDropDownList(Model.SportList, currentSportId: Model.SportTypes, id: "SportTypes")
-            </td>
-            <td>@RazorHelper.RenderReportLinks(Apollo.Age.Resources.Lang.transaction)
-            </td>
-            <td class="end no-border-bottom">
-                
-            </td>
-            <td class="no-border-bottom">
-                <div class="pages-size">
-                    <div class="pull-left">@Lang.Page:</div>
-                    <div id="pager" class="sbpager">
-                    </div>
-                    @Html.Hidden("TotalItems", (int)ViewBag.TotalItems)
-                </div>
-            </td>
-        </tr>
-    </table>*@
-
     @Html.Partial("~/Views/Reports/Menu.cshtml",
-new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
-{
-    SportList = Model.SportList,
-    FunctionPolicyList = FunctionPermissions,
-    ReportName = Lang.transaction,
-    SportType = Model.SportTypes,
-    SportDropDownControl = "SportTypes"
-})
+    new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
+    {
+        SportList = Model.SportList,
+        FunctionPolicyList = FunctionPermissions,
+        ReportName = Lang.transaction,
+        SportType = Model.SportTypes,
+        SportDropDownControl = "SportTypes"
+    })
 
     <div class="pages-size">
         <div class="pull-left">@Lang.Page:</div>
@@ -144,7 +122,10 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
     </div>    
     }
 }
+
 <div id="container">
+<div class="export-excel transaction" id="btnExcelTransaction">
+    </div>
     <table class="tblRpt betlist">
         <thead class="persist-header">
             <tr>

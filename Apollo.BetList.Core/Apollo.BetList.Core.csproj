@@ -77,6 +77,9 @@
     <Compile Include="Builder\AgentShareBuilder\AgentShare1233.cs" />
     <Compile Include="Builder\AgentShareBuilder\AgentShare33.cs" />
     <Compile Include="Builder\AgentShareBuilder\IAgentShare.cs" />
+    <Compile Include="Builder\BetListExcelBuilder.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Builder\BetListHTMLBuilder.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice1.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice10.cs" />
@@ -191,6 +194,8 @@
     <Compile Include="Builder\OddsBuilder\Odds71.cs" />
     <Compile Include="Builder\OddsBuilder\Odds72.cs" />
     <Compile Include="Builder\OddsBuilder\Odds73.cs" />
+    <Compile Include="Builder\ResultBuilder\IResult.cs" />
+    <Compile Include="Builder\ResultBuilder\Result.cs" />
     <Compile Include="Builder\StakeBuilder\IStake.cs" />
     <Compile Include="Builder\StakeBuilder\Stake1.cs" />
     <Compile Include="Builder\StakeBuilder\Stake29.cs" />
@@ -228,6 +233,7 @@
     <Compile Include="Entities\TextBlock.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Entities\TicketData.cs" />
+    <Compile Include="Factories\BetListExcelFactory.cs" />
     <Compile Include="Factories\BetListHTMLFactory.cs" />
     <Compile Include="Factories\IBetListFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

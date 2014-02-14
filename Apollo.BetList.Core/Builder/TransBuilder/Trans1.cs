@@ -14,6 +14,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Transaction 1.
@@ -73,6 +74,40 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             }
 
             return Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketHelper">The ticket helper.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
+        /// <returns>
+        /// Rich Text String.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, RTFHelper rtfHelper, GetCachePropertyById funcGetOddsTypeName)
+        {
+            Render(ticket, ticketHelper, funcGetOddsTypeName, page);
+
+            object oddsType = new object();
+
+            oddsType = string.IsNullOrEmpty(ticket.OddsType) ? "0" : funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
+
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }), rtfHelper.GreenNoBold);
+
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.transId, " \n " }));
+
+            string sportName = Template.sportName.Replace("<br/>", string.Empty).Replace("&nbsp;", string.Empty);
+
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { sportName, " ", Template.bettypeName }));
+
+            IRichTextString rtfTrans = rtfHelper.RTFRenderer.Render();
+
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfTrans;
         }
     }
 }

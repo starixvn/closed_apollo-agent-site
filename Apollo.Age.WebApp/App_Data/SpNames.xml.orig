@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Apollo-Login">
+    <Setting Key="Age_AgentUser_GetByUserName" SpName="Age_AgentUser_GetByUserName" DbName="SVRCUST.CustDB.aplweb" Plain="0" >
+      <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="AgentId" ObjectProperty="Id"/>
+      <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
+      <Mapping DataField="AgentName" ObjectProperty="Username"/>
+      <Mapping DataField="Currency" ObjectProperty="Currency"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
+      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+    </Setting>
+    <Setting Key="Age_Agent_GetByUserName" SpName="Age_Agent_GetByUserName" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="AgentUserId" ObjectProperty="Id"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="AgentId" ObjectProperty="Id"/>
+      <Mapping DataField="AgentLevel" ObjectProperty="Level"/>
+      <Mapping DataField="AgentName" ObjectProperty="Username"/>
+      <Mapping DataField="Currency" ObjectProperty="Currency"/>
+      <Mapping DataField="IsMaster" ObjectProperty="IsMaster"/>
+      <Mapping DataField="PageAccess" ObjectProperty="PageAccess"/>
+    </Setting>
+    <Setting Key="Age_Agent_CheckBelongToUplines" SpName="Age_Agent_CheckBelongToUplinesForAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" ></Setting>
+
+    <Setting Key="NAP_User_Authenticate" SpName="NAP_User_Authenticate" DbName="SVRNAP.bodb_NAP.bodbAdminNet" />
+    <Setting Key="Age_Admin_CheckIn" SpName="Age_Admin_CheckIn" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
+    <Setting Key="Age_Admin_ReCheckIn" SpName="Age_Admin_ReCheckIn" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
+    <Setting Key="Age_Admin_Logout" SpName="Age_Admin_Logout" DbName="SVRONUSER.OnlineDB.aplweb" Plain="0" />
+  </Function>
+
+  <Function Name="Apollo Agent Message">
+    <Setting Key="Age_Msg_GetListAnnouncement" SpName="Age_Msg_GetListAnnouncement" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Dot_Msg_GetPublicMessage" SpName="Dot_Msg_GetPublicMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Dot_Msg_GetNotSpecialMessage" SpName="Dot_Msg_GetNotSpecialMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Dot_Msg_GetSpecialMessage" SpName="Dot_Msg_GetSpecialMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Dot_Msg_GetMessage" SpName="Dot_Msg_GetMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Age_Msg_HasPriMessage24" SpName="Age_Msg_HasPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+    <Setting Key="Age_Msg_SearchAnnouncement" SpName="Age_Msg_SearchAnnouncement" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentIP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+    </Setting>
+    <Setting Key="Dot_Msg_SetPriMsgRead" SpName="Dot_Msg_SetPriMsgRead" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+    <Setting Key="Dot_Msg_GetPriMsgCount" SpName="Dot_Msg_GetPriMsgCount" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+    <Setting Key="Age_Msg_GetTopPriMessage24" SpName="Age_Msg_GetTopPriMessage24" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+    <Setting Key="Age_Msg_GetTopPubMessage" SpName="Age_Msg_GetTopPubMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" >
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN"/>
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS"/>
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH"/>
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP"/>
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH"/>
+      <Mapping DataField="Content_it" ObjectProperty="ContentIT"/>
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO"/>
+      <Mapping DataField="Content_es" ObjectProperty="ContentES"/>
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVN"/>
+      <Mapping DataField="Content_id" ObjectProperty="ContentID"/>
+      <Mapping DataField="Content_el" ObjectProperty="ContentEL"/>
+      <Mapping DataField="Content_mx" ObjectProperty="ContentMX"/>
+    </Setting>
+
+    <Setting Key="Age_Msg_UpdateRead" SpName="Age_Msg_UpdateRead" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+
+    <Setting Key="Age_Msg_GetTopPubLevelMessage" SpName="Age_Msg_GetTopPubLevelMessage" DbName="SVRMSG.MsgDB.aplweb" Plain="0" />
+
+  </Function>
+
+  <Function Name="Agent - BetList - Result">
+
+    <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="isNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+    </Setting>
+    <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+      <Mapping DataField="LeagueID" ObjectProperty="LeagueId"/>
+      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="IsNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+    </Setting>
+  </Function>
+
+<<<<<<< HEAD
+    <Function Name="Agent-Apollo-Report-BetList">
+        <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old_xtest" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss_xtest" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus_xtest" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelByDateMemStatus_Old" SpName="Age_BetList_SelByDateMemStatus_Old_xtest" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction_xtest" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_Agent_GetCustomerDownlinePath" SpName="Age_Agent_GetCustomerDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+            <Mapping DataField="AgentId" ObjectProperty="Id" />
+            <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+        </Setting>
+    </Function>
+=======
+  <Function Name="Agent-Apollo-Report-BetList">
+    <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelByDateMemStatus_Old" SpName="Age_BetList_SelByDateMemStatus_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Agent_GetCustomerDownlinePath" SpName="Age_Agent_GetCustomerDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+    </Setting>
+  </Function>
+>>>>>>> Release_#9966_AddNumberOfMemberInfoWinlossReport
+
+  <Function Name="Agent-Apollo-TotalBets-BetList">
+
+    <Setting Key="Age_BetList_SelWagers" SpName="Age_BetList_SelWagers" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Betlist_SelSystemParlay_Details" SpName="Age_Betlist_SelSystemParlay_Details" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_TotalBets_SelRunningByBettype" SpName="Age_BetList_TotalBets_SelRunningByBettype" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_TotalBets_SelRunningByBettypeMatch" SpName="Age_BetList_TotalBets_SelRunningByBettypeMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_AgentDetail" SpName="Age_BetList_AgentDetail" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_BetList_AgentDetail_Old" SpName="Age_BetList_AgentDetail_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+  </Function>
+
+  <Function Name="Agent-Apollo-Customer Setting">
+    <Setting Key="Age_Agent_GetAllInfo" SpName="Age_Agent_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="CustId" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+    </Setting>
+    <Setting Key="Age_Customer_GetAllInfo" SpName="Age_Customer_GetAllInfo" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="ParentId" />
+      <Mapping DataField="UGroup" ObjectProperty="Group" />
+    </Setting>
+    <Setting Key="Age_Agent_GetAgentDownline" SpName="Age_Agent_GetAgentDownline" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+    </Setting>
+    <Setting Key="Age_Agent_GetAgentDownlinePath" SpName="Age_Agent_GetAgentDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentLevel" ObjectProperty="Level" />
+    </Setting>
+    <Setting Key="Age_Agent_GetMemberDownline" SpName="Age_Agent_GetMemberDownline" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Agent_SuggestByUsername" SpName="Age_Agent_SuggestByUsername" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Customer_GetByUsername" SpName="Age_Customer_GetByUsername" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Agent_GetAllMainShareHolder" SpName="Age_Agent_GetAllMainShareHolder" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+  </Function>
+
+  <Function Name="Agent-Apollo-Report">
+    <Setting Key="Age_Rpt_Outstanding_Agent" SpName="Age_Rpt_Outstanding_Agent" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="UserId" />
+    </Setting>
+
+    <Setting Key="Age_Rpt_Outstanding_Member" SpName="Age_Rpt_Outstanding_Member" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="UserId" />
+      <Mapping DataField="Username" ObjectProperty="Username" />
+      <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
+      <Mapping DataField="Outstanding" ObjectProperty="Outstanding" />
+      <Mapping DataField="PositionTaking" ObjectProperty="ShareAmount" />
+      <Mapping DataField="Outstanding_NG" ObjectProperty="GameOutstanding" />
+      <Mapping DataField="PositionTaking_NG" ObjectProperty="GameShareAmount" />
+    </Setting>
+    <Setting Key="Age_Rpt_Outstanding" SpName="Age_Rpt_Outstanding" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="AgentId" ObjectProperty="UserId" />
+      <Mapping DataField="Username" ObjectProperty="Username" />
+      <Mapping DataField="IsAgent" ObjectProperty="IsAgent" />
+      <Mapping DataField="Outstanding" ObjectProperty="Outstanding" />
+      <Mapping DataField="PositionTaking" ObjectProperty="ShareAmount" />
+      <Mapping DataField="Outstanding_NG" ObjectProperty="GameOutstanding" />
+      <Mapping DataField="PositionTaking_NG" ObjectProperty="GameShareAmount" />
+    </Setting>
+    <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="sporttype" ObjectProperty="Id"/>
+      <Mapping DataField="sportname" ObjectProperty="Name"/>
+    </Setting>
+    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+      <Mapping DataField="eventdate" ObjectProperty="EventDate"/>
+      <Mapping DataField="teamid" ObjectProperty="TeamId"/>
+      <Mapping DataField="status" ObjectProperty="Status"/>
+    </Setting>
+    <Setting Key="Age_Result_MatchSelBySport" SpName="Age_Result_MatchSelBySport" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="sporttype" ObjectProperty="SportId"/>
+      <Mapping DataField="betstatus" ObjectProperty="BetStatus"/>
+      <Mapping DataField="leagueid" ObjectProperty="LeagueId"/>
+      <Mapping DataField="matchid" ObjectProperty="MatchId"/>
+      <Mapping DataField="lcolor" ObjectProperty="LColor"/>
+      <Mapping DataField="matchcode" ObjectProperty="MatchCode"/>
+      <Mapping DataField="eventdate" ObjectProperty="EvenDate"/>
+      <Mapping DataField="kickofftime" ObjectProperty="KickoffTime"/>
+      <Mapping DataField="homeID" ObjectProperty="HomeId"/>
+      <Mapping DataField="awayID" ObjectProperty="AwayId"/>
+      <Mapping DataField="hthomescore" ObjectProperty="HalfTimeHomeScore"/>
+      <Mapping DataField="htawayscore" ObjectProperty="HalfTimeAwayScore"/>
+      <Mapping DataField="finalhomescore" ObjectProperty="FinalHomeScore"/>
+      <Mapping DataField="finalawayscore" ObjectProperty="FinalAwayScore"/>
+      <Mapping DataField="eventstatus" ObjectProperty="EventStatus"/>
+      <Mapping DataField="showtime" ObjectProperty="ShowTime"/>
+      <Mapping DataField="IsNeutral" ObjectProperty="IsNeutral"/>
+      <Mapping DataField="goalrecord" ObjectProperty="GoalRecord"/>
+      <Mapping DataField="homeid2" ObjectProperty="HomeId2"/>
+      <Mapping DataField="IsHTCal" ObjectProperty="IsHalfTimeCalculate"/>
+      <Mapping DataField="calculate" ObjectProperty="Calculate"/>
+      <Mapping DataField="IsPending" ObjectProperty="IsPending"/>
+    </Setting>
+    <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+
+    <Setting Key="Age_Rpt_WinLoss" SpName="Age_Rpt_WinLoss" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="Username" ObjectProperty="AgentName"/>
+      <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
+      <Mapping DataField="PlayerComm" ObjectProperty="MemberComm"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="DownlineEffStake" ObjectProperty="DownLineEffectiveStake"/>
+      <Mapping DataField="GrossTotal" ObjectProperty="DownLineTotal"/>
+      <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
+    </Setting>
+    <Setting Key="Age_Rpt_WinLoss_Member" SpName="Age_Rpt_WinLoss_Member" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="MemberId"/>
+      <Mapping DataField="Username" ObjectProperty="MemberName"/>
+      <Mapping DataField="Share" ObjectProperty="SoccerShare"/>
+      <Mapping DataField="WinLost" ObjectProperty="MemberWinLoss"/>
+      <Mapping DataField="PlayerComm" ObjectProperty="MemberComm"/>
+      <Mapping DataField="AWinLost" ObjectProperty="AWinLoss"/>
+      <Mapping DataField="UplineEffStake" ObjectProperty="UpLineEffectiveStake"/>
+    </Setting>
+    <Setting Key="Age_Rpt_LineSportCredits" SpName="Age_Rpt_LineSportCredits" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="Outstanding" ObjectProperty="OutstandingCredit" />
+      <Mapping DataField="Remaining" ObjectProperty="RemainingCredit" />
+    </Setting>
+
+    <Setting Key="Age_Rpt_CustCount" SpName="Age_Rpt_CustCount" DbName="SVRAGE.RepDB.aplweb" Plain="0"/>
+
+  </Function>
+
+  <Function Name="Agent-Apollo-TotalBets">
+    <Setting Key="Age_TotalBets_20_21" SpName="Age_TotalBets_20_21" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="HomeWinLostHT" ObjectProperty="HomeHalfTimeWinLost" />
+      <Mapping DataField="AwayWinLostHT" ObjectProperty="AwayHalfTimeWinLost" />
+      <Mapping DataField="HomeBetCount" ObjectProperty="BetCountHome" />
+      <Mapping DataField="AwayBetCount" ObjectProperty="BetCountAway" />
+      <Mapping DataField="HomeBetCountHT" ObjectProperty="BetCountHomeHalfTime" />
+      <Mapping DataField="AwayBetCountHT" ObjectProperty="BetCountAwayHalfTime" />
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+
+    </Setting>
+    <Setting Key="Age_TotalBets_1_3_7_8" SpName="Age_TotalBets_1_3_7_8" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="HomeOddsHDP" ObjectProperty="HomeOddsHandicap" />
+      <Mapping DataField="AwayOddsHDP" ObjectProperty="AwayOddsHandicap" />
+      <Mapping DataField="HomeOddsHTHDP" ObjectProperty="HomeOddsHalfTimeHandicap" />
+      <Mapping DataField="AwayOddsHTHDP" ObjectProperty="AwayOddsHalfTimeHandicap" />
+      <Mapping DataField="HomeOddsOU" ObjectProperty="HomeOddsOverUnder" />
+      <Mapping DataField="AwayOddsOU" ObjectProperty="AwayOddsOverUnder" />
+      <Mapping DataField="HomeOddsHTOU" ObjectProperty="HomeOddHalfTimeOverUnder" />
+      <Mapping DataField="AwayOddsHTOU" ObjectProperty="AwayOddHalfTimeOverUnder" />
+      <Mapping DataField="BetCountHDP" ObjectProperty="BetCountHandicap" />
+      <Mapping DataField="BetCountHTHDP" ObjectProperty="BetCountHalfTimeHandicap" />
+      <Mapping DataField="BetCountOU" ObjectProperty="BetCountOverUnder" />
+      <Mapping DataField="BetCountHTOU" ObjectProperty="BetCountHalfTimeOverUnder" />
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_10" SpName="Age_TotalBets_10" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_14" SpName="Age_TotalBets_14" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_16" SpName="Age_TotalBets_16" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_161" SpName="Age_TotalBets_161" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_TotalBets_2_5_12_15_123" SpName="Age_TotalBets_2_5_12_15_123" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="HomeOddsOE" ObjectProperty="HomeOddsOddEven" />
+      <Mapping DataField="AwayOddsOE" ObjectProperty="AwayOddsOddEven" />
+      <Mapping DataField="HomeOddsOE1st" ObjectProperty="HomeOddsHalfTimeOddEven" />
+      <Mapping DataField="AwayOddsOE1st" ObjectProperty="AwayOddsHalfTimeOddEven" />
+      <Mapping DataField="Odds11st" ObjectProperty="Odds1HalfTime" />
+      <Mapping DataField="OddsX1st" ObjectProperty="OddsXHalfTime" />
+      <Mapping DataField="Odds21st" ObjectProperty="Odds2HalfTime" />
+      <Mapping DataField="HomeOddsDND" ObjectProperty="HomeOddsDrawNoDraw" />
+      <Mapping DataField="AwayOddsDND" ObjectProperty="AwayOddsDrawNoDraw" />
+      <Mapping DataField="BetCountOE" ObjectProperty="BetCountOddEven" />
+      <Mapping DataField="BetCountOE1st" ObjectProperty="BetCountHalfTimeOddEven" />
+      <Mapping DataField="BetCount1x2" ObjectProperty="BetCount1X2" />
+      <Mapping DataField="BetCount1x21st" ObjectProperty="BetCount1X2HalfTime" />
+      <Mapping DataField="BetCountDND" ObjectProperty="BetCountDrawNoDraw" />
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_25_121_122" SpName="Age_TotalBets_25_121_122" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+    <Setting Key="Age_TotalBets_6" SpName="Age_TotalBets_6" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="KickOffTime" ObjectProperty="kickofftime" />
+    </Setting>
+  </Function>
+
+  <Function Name="Agent-Apollo-DownlinesInfo">
+    <Setting Key="Age_Agent_GetByAgent" SpName="Age_Agent_GetByAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+    </Setting>
+    <Setting Key="Age_Customer_GetByAgent" SpName="Age_Customer_GetByAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="CustId" ObjectProperty="MemberId"/>
+      <Mapping DataField="Username" ObjectProperty="Username"/>
+      <Mapping DataField="Active" ObjectProperty="Status"/>
+    </Setting>
+    <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="SVRCUST.CustDB.aplweb" Plain="0" />
+  </Function>
+
+  <Function Name="Agent-Apollo-ForeCast">
+    <Setting Key="Age_Forecast_OddsGetTopByMatch" SpName="Age_Forecast_OddsGetTopByMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Forecast_1_3_7_8_GetByLeague" SpName="Age_Forecast_1_3_7_8_GetByLeague" DbName="SVRAGE.RepDB.aplweb" Plain="0">
+      <Mapping DataField="WinLost_M1_HDP" ObjectProperty="HandicapWinLostMinus1" />
+      <Mapping DataField="WinLost_0_HDP" ObjectProperty="HandicapWinLostBase" />
+      <Mapping DataField="WinLost_1_HDP" ObjectProperty="HandicapWinLostPlus1" />
+      <Mapping DataField="WinLost_0_OU" ObjectProperty="OverUnderWinLostBase" />
+      <Mapping DataField="WinLost_1_OU" ObjectProperty="OverUnderWinLost1" />
+      <Mapping DataField="WinLost_2_OU" ObjectProperty="OverUnderWinLost2" />
+      <Mapping DataField="WinLost_M1_HTHDP" ObjectProperty="HalfTimeHandicapWinLostMinus1" />
+      <Mapping DataField="WinLost_0_HTHDP" ObjectProperty="HalfTimeHandicapWinLostBase" />
+      <Mapping DataField="WinLost_1_HTHDP" ObjectProperty="HalfTimeHandicapWinLostPlus1" />
+      <Mapping DataField="WinLost_0_HTOU" ObjectProperty="HalfTimeOverUnderWinLostBase" />
+      <Mapping DataField="WinLost_1_HTOU" ObjectProperty="HalfTimeOverUnderWinLost1" />
+      <Mapping DataField="WinLost_2_HTOU" ObjectProperty="HalfTimeOverUnderWinLost2" />
+    </Setting>
+    <Setting Key="Age_Forecast_5_15_GetByLeague" SpName="Age_Forecast_5_15_GetByLeague" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+      <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+      <Mapping DataField="dl" ObjectProperty="DrawWinLost" />
+      <Mapping DataField="ht_al" ObjectProperty="HalfTimeAwayWinLost" />
+      <Mapping DataField="ht_hl" ObjectProperty="HalfTimeHomeWinLost" />
+      <Mapping DataField="ht_dl" ObjectProperty="HalfTimeDrawWinLost" />
+    </Setting>
+    <Setting Key="Age_Forecast_1_7_GetByMatch" SpName="Age_Forecast_1_7_GetByMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="ht" ObjectProperty="HomeTotal" />
+      <Mapping DataField="at" ObjectProperty="AwayTotal" />
+      <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+      <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+    </Setting>
+    <Setting Key="Age_Forecast_3_8_GetByMatch" SpName="Age_Forecast_3_8_GetByMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="ht" ObjectProperty="HomeTotal" />
+      <Mapping DataField="at" ObjectProperty="AwayTotal" />
+      <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+      <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+    </Setting>
+    <Setting Key="Age_Forecast_5_15_GetByMatch" SpName="Age_Forecast_5_15_GetByMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="al" ObjectProperty="AwayWinLost" />
+      <Mapping DataField="hl" ObjectProperty="HomeWinLost" />
+      <Mapping DataField="dl" ObjectProperty="DrawWinLost" />
+      <Mapping DataField="ht_al" ObjectProperty="HalfTimeAwayWinLost" />
+      <Mapping DataField="ht_hl" ObjectProperty="HalfTimeHomeWinLost" />
+      <Mapping DataField="ht_dl" ObjectProperty="HalfTimeDrawWinLost" />
+    </Setting>
+    <Setting Key="Age_League_GetRunning" SpName="Age_League_GetRunning" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Agent_GetMainShareHolderByMember" SpName="Age_Agent_GetMainShareHolderByMember" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+  </Function>
+
+<<<<<<< HEAD
+    <Function Name="Agent-Apollo-Setting">
+        <Setting Key="AgentSetting_Age_Agent_GetDiscountForUpdate" SpName="Age_Agent_GetDiscountForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_GetBetLimitForUpdate" SpName="Age_Agent_GetBetLimitForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
+        <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
+            <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+            <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+            <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
+        </Setting>
+        <Setting Key="Age_Agent_GetDiscountToAgent" SpName="Age_Agent_GetDiscountToAgent" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600">
+            <Mapping DataField="AgentId" ObjectProperty="Id" />
+        </Setting>
+        <Setting Key="Age_Agent_GetDiscountToCustomer" SpName="Age_Agent_GetDiscountToCustomer" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="Age_Agent_GetUpdatePositionTakingEstimatedTime" SpName="Age_Agent_GetUpdatePositionTakingEstimatedTime" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="Age_Agent_CheckDirectMember" SpName="Age_Agent_CheckDirectMember" DbName="SVRAGE.RepDB.aplweb"   TimeOut="600"/>
+=======
+  <Function Name="Agent-Apollo-ScoreMap">
+    <Setting Key="Age_ScoreMap_Result" SpName="Age_ScoreMap_Result" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="SVRAGE.RepDB.aplweb" Plain="0" >
+      <Mapping DataField="1stId" ObjectProperty="Id1st" />
+    </Setting>
+    <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+  </Function>
+>>>>>>> Release_#9966_AddNumberOfMemberInfoWinlossReport
+
+  <Function Name="Agent-Apollo-Admin">
+    <Setting Key="AgentAdmin_Age_Agent_GetStatus" SpName="Age_Agent_GetStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Agent_CheckDownlineBelongToAgent" SpName="Age_Agent_CheckDownlineBelongToAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="AgentAdmin_Age_Agent_CheckUpdatePermission" SpName="Age_Agent_CheckUpdatePermission" DbName="SVRCUST.CustDB.aplweb" Plain="0" />
+  </Function>
+
+  <Function Name="Agent-Apollo-Setting">
+    <Setting Key="AgentSetting_Age_Agent_GetDiscountForUpdate" SpName="Age_Agent_GetDiscountForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_GetBetLimitForUpdate" SpName="Age_Agent_GetBetLimitForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
+    <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
+      <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+      <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+      <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
+    </Setting>
+    <Setting Key="Age_Agent_GetDiscountToAgent" SpName="Age_Agent_GetDiscountToAgent" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Agent_GetDiscountToCustomer" SpName="Age_Agent_GetDiscountToCustomer" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="Age_Agent_GetUpdatePositionTakingEstimatedTime" SpName="Age_Agent_GetUpdatePositionTakingEstimatedTime" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="Age_Agent_CheckDirectMember" SpName="Age_Agent_CheckDirectMember" DbName="SVRAGE.RepDB.aplweb"   TimeOut="600"/>
+
+  </Function>
+
+  <Function Name="Player-Apollo-Setting">
+    <Setting Key="PlayerSetting_Age_Customer_GetDiscountForUpdate" SpName="Age_Customer_GetDiscountForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_GetBetLimitForUpdate" SpName="Age_Customer_GetBetLimitForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_GetPositionTakingForUpdate" SpName="Age_Customer_GetPositionTakingForUpdateDirectMember" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateBetLimit" SpName="Age_Customer_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateDiscount" SpName="Age_Customer_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdatePositionTaking" SpName="Age_Agent_UpdateDirectMemberPositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+    <Setting Key="PlayerSetting_Age_Customer_UpdateSetting" SpName="Age_Customer_UpdateSetting" DbName="SVRCUST.CustDB.aplweb" TimeOut="600"/>
+    <Setting Key="Age_Agent_GetPositionTakingToCustomer" SpName="Age_Agent_GetPositionTakingToCustomer" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
+      <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />
+      <Mapping DataField="MaxGivenPositionTaking" ObjectProperty="MaxGiven" />
+      <Mapping DataField="MinGivenPositionTaking" ObjectProperty="MinGiven" />
+      <Mapping DataField="PositionTaking" ObjectProperty="TakenShareMember" />
+    </Setting>
+    <Setting Key="PlayerSetting_Age_Customer_GetInfo" SpName="Age_Customer_GetInfo" DbName="SVRAGE.RepDB.aplweb"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdatePositionTakingMultiple" SpName="Age_Customer_UpdatePositionTakingMultiple" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
+    <Setting Key="Age_Customer_UpdateSettingMultiple" SpName="Age_Customer_UpdateSettingMultiple" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
+  </Function>
+
+  <Function Name="Agent-Apollo-BalanceUpDay">
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="SVRAGE.RepDB.aplweb" TimeOut="600"/>
+  </Function>
+  <Function Name="Write log internal login">
+    <Setting Key="WriteLog_AgentLog_Login" SpName="WriteLog_AgentLog_Login" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+    <Setting Key="ReadLog_Login" SpName="ReadLog_Login" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+  </Function>
+  <Function Name="Read Log Cust Setting">
+    <Setting Key="ReadLog_RunSpAgent" SpName="ReadLog_RunSpAgent" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+    <Setting Key="ReadLog_RunSpCust" SpName="ReadLog_RunSpCust" DbName="SVRLOG.LogDB.aplweb" TimeOut="600"/>
+  </Function>
+  <Function Name="Wagers">
+    <Setting Key="Age_Wagers_SelLeague" SpName="Age_Wagers_SelLeague" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="LeagueId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Wagers_SelDateBySports" SpName="Age_Wagers_SelDateBySports" DbName="SVRAGE.RepDB.aplweb">
+    </Setting>
+    <Setting Key="Age_Wagers_RunningBall" SpName="Age_Wagers_RunningBall" DbName="SVRAGE.RepDB.aplweb">
+    </Setting>
+  </Function>
+  <Function Name="Wagers-Soccer">
+    <Setting Key="Age_Wagers_SC_1_3_5" SpName="Age_Wagers_SC_1_3_5" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_1_3_7_8_RunBall" SpName="Age_Wagers_SC_1_3_7_8_RunBall" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_4_30_16" SpName="Age_Wagers_SC_4_30_16" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_7_8_15" SpName="Age_Wagers_SC_7_8_15" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_2_12_6" SpName="Age_Wagers_SC_2_12_6" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_Special" SpName="Age_Wagers_SC_Special" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_SC_9_29" SpName="Age_Wagers_SC_9_29" DbName="SVRAGE.RepDB.aplweb"/>
+
+  </Function>
+  <Function Name="Wagers-Basketball">
+    <Setting Key="Age_Wagers_BK_1_2_3" SpName="Age_Wagers_BK_1_2_3" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_BK_1_3_RunBall" SpName="Age_Wagers_BK_1_3_RunBall" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_BK_7_8_12" SpName="Age_Wagers_BK_7_8_12" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_BK_9_29" SpName="Age_Wagers_BK_9_29" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_Wagers_BK_Special" SpName="Age_Wagers_BK_Special" DbName="SVRAGE.RepDB.aplweb"/>
+  </Function>
+  <Function Name="Wagers-Outright">
+    <Setting Key="Age_Wagers_Outright" SpName="Age_Wagers_Outright" DbName="SVRAGE.RepDB.aplweb"/>
+  </Function>
+  <Function>
+    <Setting Key="Age_Function_GetAll" SpName="Age_Function_GetAll" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="FunctionId" ObjectProperty="Id" />
+      <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_AgentUser_AssignFunction" SpName="Age_AgentUser_AssignFunction" DbName="SVRCUST.CustDB.aplweb"/>
+    <Setting Key="Age_AgentUser_GetFunctionPolicy" SpName="Age_AgentUser_GetFunctionPolicy" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="FunctionId" ObjectProperty="Id" />
+      <Mapping DataField="FunctionGroupId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Agent_GetParentInfoWithAgentUser" SpName="Age_Agent_GetParentInfoWithAgentUser" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="AgentUserId" ObjectProperty="Id" />
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_AgentUser_GetInfo" SpName="Age_AgentUser_GetInfo" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="AgentUserId" ObjectProperty="Id" />
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+      <Mapping DataField="AgentUsername" ObjectProperty="Username" />
+    </Setting>
+    <Setting Key="Age_AgentUser_GetUserFunctionPolicy" SpName="Age_AgentUser_GetUserFunctionPolicy" DbName="SVRAGE.RepDB.aplweb"/>
+    <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb">
+      <Mapping DataField="AgentId" ObjectProperty="Id" />
+    </Setting>
+  </Function>
+</Functions>
