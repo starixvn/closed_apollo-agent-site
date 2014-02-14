@@ -81,7 +81,10 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                         rtfHelper = this.CreateRTFHelper(tkt, rtfHelper, ticketHelper, true);
                     }
 
-                    rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
+                    if (tkt.TransId != parlayData.Last().TransId)
+                    {
+                        rtfHelper.RTFRenderer.AddText("\n--------------------------------------------\n");
+                    }
                 }
             }
 
