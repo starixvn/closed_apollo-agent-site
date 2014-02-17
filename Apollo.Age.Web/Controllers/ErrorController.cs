@@ -49,7 +49,9 @@ namespace Apollo.Age.Web
                 case "404":
                     ViewBag.ErrorMessage = Lang.HttpError_404;
                     break;
-
+                case "408":
+                    ViewBag.ErrorMessage = Lang.HttpError_408;
+                    break;
                 default:
                     ViewBag.ErrorMessage = Lang.HttpError_Default;
                     break;

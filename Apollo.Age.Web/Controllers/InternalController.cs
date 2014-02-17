@@ -304,6 +304,10 @@ namespace Apollo.Age.Web
                         }
                     }
                 }
+                else
+                {
+                    return RedirectToAction(ApoURLs.URLs.Error + "?err=408");
+                }
             }
 
             return RedirectToAction(ApoURLs.URLs.Error + "?err=404");

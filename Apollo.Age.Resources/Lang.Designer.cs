@@ -1348,6 +1348,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request timeout.
+        /// </summary>
+        public static string HttpError_408 {
+            get {
+                return ResourceManager.GetString("HttpError_408", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops... you are here because of a system error, please notify the administrators.
         /// </summary>
         public static string HttpError_Default {
