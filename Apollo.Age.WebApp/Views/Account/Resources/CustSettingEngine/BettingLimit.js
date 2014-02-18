@@ -1,6 +1,6 @@
 ﻿/// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
-
+'use strict';
 if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
 	Fanex = {};
 }
@@ -15,7 +15,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
     var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*)$/;
     this.Validate = function () {
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) { return true; }
 
         var c = this.items.length;
         var isSimpleMode = Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode;
@@ -260,7 +260,8 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
             if (this.items[i].SportId == 161) {
                 return true;
             }
-        };
+        }
+
         return false;
     };
     this.Render = function (owner) {

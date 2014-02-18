@@ -5,6 +5,7 @@
 */
 
 // Prototype
+/*jshint strict:false*/
 AGEMsg = function () {
     this.spmsgerr = 'spmsgerr';
     this.diverrmsg = 'diverrmsg';
@@ -61,15 +62,16 @@ AGEMsg.prototype.InsertRow = function (tableId, classname, message) {
 
 AGEMsg.prototype.CheckMessageIsSucc = function (ArrCodes) {
     for (var i = 0; i < ArrCodes.length; i++) {
-        if (ArrCodes[i] > 0)
+        if (ArrCodes[i] > 0) {
             return false;
+        }
     }
     return true;
 };
 
 AGEMsg.prototype.GenerateMessage = function (ArrCodes, ArrMsgs, ArrUserName, isAdd) {
     var isSucc = true;
-    isSucc = isSucc & this.CheckMessageIsSucc(ArrCodes);
+    isSucc = isSucc && this.CheckMessageIsSucc(ArrCodes);
 
     if (isAdd) // Added
     {
@@ -115,8 +117,9 @@ AGEMsg.prototype.GenerateMessage = function (ArrCodes, ArrMsgs, ArrUserName, isA
 
 AGEMsg.prototype.CheckMessageIsSucc2 = function (ArrCodes) {
     for (var i = 0; i < ArrCodes.length; i++) {
-        if (ArrCodes[i] > 0 || ArrCodes[i] == -1)
+        if (ArrCodes[i] > 0 || ArrCodes[i] == -1) {
             return false;
+        }
     }
     return true;
 };

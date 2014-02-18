@@ -1,4 +1,5 @@
-;(function($) {
+'use strict';
+(function ($) {
 
 	$.noty.layouts.bottomLeft = {
 		name: 'bottomLeft',

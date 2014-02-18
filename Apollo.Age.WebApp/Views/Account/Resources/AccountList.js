@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global BASELANGUAGES*/
-
+/*global APOLLO*/
+'use strict';
 var ACCOUNTLIST = function ($) {
     return {
         agentListSettingTime: null,
@@ -11,12 +12,14 @@ var ACCOUNTLIST = function ($) {
                 if (APOLLO.htmlDecode(txtUsername.val()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername)) {
                     txtUsername.val('');
                 }
-            }),
+            });
+
             txtUsername.blur(function () {
                 if (txtUsername.val() == '') {
                     txtUsername.val(APOLLO.htmlDecode(BASELANGUAGES.EnterUsername));
                 }
-            }),
+            });
+
             $("#fundout").on('click', function () {
                 APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Account/FundOut?memberId=" + $(this).attr('data-memberid') + "&sportCredit=" + $(this).attr('data-sportcredit')), BASELANGUAGES.fundout + " - " + $(this).attr('data-membername'), {
                     width: 300,

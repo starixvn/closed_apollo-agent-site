@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global APOLLO*/
-
+'use strict';
 var ACCOUNT = function ($) {
     return {
         txtUsername: null,
@@ -24,10 +24,10 @@ var ACCOUNT = function ($) {
                 topAgentList = heightSearchBox + heightButton + 30;
             // Check IE
             var version = 999; // we assume a sane browser
-            if (navigator.appVersion.indexOf("MSIE") != -1) {
+            if (navigator.appVersion.indexOf("MSIE") !== -1) {
                 // bah, IE again, lets downgrade version number
                 version = parseFloat(navigator.appVersion.split("MSIE")[1]);
-                if (version == 7) {
+                if (version === 7) {
                     topAgentList = topAgentList + 40;
                 }
             }
@@ -120,17 +120,17 @@ var ACCOUNT = function ($) {
             });
 
             ACCOUNT.txtUsername.bind('click', function () {
-                if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
+                if (ACCOUNT.txtUsername.val() === ACCOUNT.enterUsernameValue.val()) {
                     ACCOUNT.txtUsername.val('');
                 }
             });
             ACCOUNT.txtUsername.bind('keydown', function () {
-                if (ACCOUNT.txtUsername.val() == ACCOUNT.enterUsernameValue.val()) {
+                if (ACCOUNT.txtUsername.val() === ACCOUNT.enterUsernameValue.val()) {
                     ACCOUNT.txtUsername.val('');
                 }
             });
             ACCOUNT.txtUsername.bind('blur', function () {
-                if (ACCOUNT.txtUsername.val().length == 0) {
+                if (ACCOUNT.txtUsername.val().length === 0) {
                     ACCOUNT.txtUsername.val(ACCOUNT.enterUsernameValue.val());
                 }
             });
