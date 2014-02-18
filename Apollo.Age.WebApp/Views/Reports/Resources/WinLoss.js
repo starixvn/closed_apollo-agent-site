@@ -125,6 +125,7 @@
                 var url = APOLLO.resolveUrl("Betlist/Winloss?fromDate="
                     + WINLOSS.hdFromDate.val() + "&toDate=" + WINLOSS.hdToDate.val()
                     + "&custId=" + $(this).attr("data-memberid")
+                    + "&username=" + $(this).attr("data-membername")
                     + "&sportType=" + WINLOSS.hdSportType.val()
                     + "&betType=" + WINLOSS.hdBettype.val()
                     + "&type=report");

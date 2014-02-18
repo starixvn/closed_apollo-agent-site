@@ -299,15 +299,16 @@ namespace Apollo.Age.BetList.Controllers
             TicketResult mainTickets = TransactionBetlist(model);
 
             string sheetName = "Betlist-Transaction";
-            string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+            string betlistName = "BetList - From: " + model.FromDate.ToString("MM/dd/yyyy") + " - To: " + model.ToDate.ToString("MM/dd/yyyy") + " - Transaction - " + model.Username ;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
+                "BetList-{0}-{1}-From-{2}-To-{3}",
                 "Transaction",
-                this._excelService.ShortDateFormat(model.FromDate),
-                this._excelService.ShortDateFormat(model.ToDate));
+                model.Username,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -369,7 +370,10 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TicketCancelBetList(model);
 
-            model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
+            if (mainTickets != null && mainTickets.TicketList != null && mainTickets.TicketList.Any())
+            {
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);             
+            }
 
             model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
             model.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
@@ -400,16 +404,17 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TicketCancelBetList(model);
 
-            var sheetName = "Betlist-Ticket Cancel";
-            var betlistName = "BET LIST TICKET CANCEL - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+            string sheetName = "Betlist-Cancelled Ticket";
+            string betlistName = "BetList - From: " + model.FromDate.ToString("MM/dd/yyyy") + " - To: " + model.ToDate.ToString("MM/dd/yyyy") + " - Cancelled Ticket - " + model.Username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
-                "TicketCancel",
-                this._excelService.ShortDateFormat(model.FromDate),
-                this._excelService.ShortDateFormat(model.ToDate));
+                "BetList-{0}-{1}-From-{2}-To-{3}",
+                "CancelledTicket",
+                model.Username,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -479,15 +484,15 @@ namespace Apollo.Age.BetList.Controllers
             var mainTickets = OutstandingBetList(custId, username, mainShareHolderId, mainShareHolderUsername, betType, sportType, sportName, betTypeName);
 
             var sheetName = "Betlist-Outstanding";
-            var betlistName = "BET LIST OUTSTANDING - FROM: " + moveBetsDay.ToString("yyyy-MM-dd") + " TO: " + DateTime.Now.ToString("yyyy-MM-dd");
+            var betlistName = "BetList - "+ DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
                 "Outstanding",
-                this._excelService.ShortDateFormat(moveBetsDay),
-                this._excelService.ShortDateFormat(DateTime.Now));
+                username,
+                DateTime.Now.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -589,15 +594,16 @@ namespace Apollo.Age.BetList.Controllers
                 betTypeName);
 
             var sheetName = "Betlist-Winloss";
-            var betlistName = "BET LIST WIN LOSS - FROM: " + fromDate.ToString("yyyy-MM-dd") + " TO: " + toDate.ToString("yyyy-MM-dd");
+            var betlistName = "BetList WinLoss - " + username + " - From: " + fromDate.ToString("yyyy-MM-dd") + " - To: " + toDate.ToString("yyyy-MM-dd");
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
+                "BetList-{0}-{1}-From-{2}-To-{3}",
                 "WinLoss",
-                this._excelService.ShortDateFormat(fromDate),
-                this._excelService.ShortDateFormat(toDate));
+                username,
+                fromDate.ToString("yyyyMMdd"),
+                toDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -681,15 +687,14 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId, mainShareHolderUsername, isForecast);
 
-            title = title.Replace("/", " ");
-            var sheetName = "Betlist-" + title;
-            var betlistName = "BET LIST " + title.ToUpper();
+            title = title.Replace("/", "_");
+            var sheetName = "BetList-Forecast";
+            var betlistName = string.Format("BetList {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}",
-                title.Replace(" ", "_"));
+                "BetList-{0}-{1}-{2}", "Forecast", title, DateTime.Now.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -761,7 +766,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="matchId">The match identifier.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]  
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult WagerExportExcel(
              int loggedId,
             DateTime fromDate,
@@ -788,13 +793,17 @@ namespace Apollo.Age.BetList.Controllers
                betTeam,
                matchId);
 
+            string sportTypeName = CacheRef.GetSportName(sportType);
+            string betTypeName = CacheRef.GetSportName(betType);
+
             var sheetName = "Betlist-Wager";
-            var betlistName = "BET LIST WAGER";
+            var betlistName = string.Format("Bet List {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_Wager");
+                "BetList-Wager-{0}-{1}-{2}",
+                sportTypeName, betTypeName, fromDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -950,6 +959,7 @@ namespace Apollo.Age.BetList.Controllers
                 .SetColumnWidth(8, 15);
 
             builder.AddTitle(betlistName, rangeAddress);
+            builder.AddRow(9);
 
             builder
                 .AddHeader(Resources.BetList.time)

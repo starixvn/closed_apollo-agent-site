@@ -354,11 +354,13 @@ if (typeof jQuery != "undefined") {
 
             ExportWinLoss: function () {
                 $("#btnExcelWinLoss").on("click", function () {
-                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId=' + $("#custid").val()
+                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId=' 
+                    + $("#custid").val()
                     + "&type=" + $("#type").val()
                     + "&FromDate=" + $("#fromDate").val()
                     + "&ToDate=" + $("#toDate").val()
                     + "&sportType=" + $("#sportTypes").val()
+                    + "&username=" + $("#username").val()
                     + "&betType=" + $("#betTypes").val());
                     location.href = url;
                 });
@@ -368,6 +370,7 @@ if (typeof jQuery != "undefined") {
                 $("#btnExcelOutstanding").on("click", function () {
                     var url = APOLLO.resolveUrl('Betlist/OutstandingExportExcel?custId=' + $("#custid").val()
                     + "&sportType=" + $("#sportTypes").val()
+                    + "&username=" + $("#username").val()
                     + "&betType=" + $("#betTypes").val());
                     location.href = url;
                 });
