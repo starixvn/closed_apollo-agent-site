@@ -201,11 +201,11 @@
   </Function>
 
   <Function Name="Agent-Apollo-Report-BetList">
-    <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
-    <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
-    <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
-    <Setting Key="Age_BetList_SelByDateMemStatus_Old" SpName="Age_BetList_SelByDateMemStatus_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
-    <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelWinloss_Old" SpName="Age_BetList_SelWinloss_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelByDateMemStatus_Old" SpName="Age_BetList_SelByDateMemStatus_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Age_Agent_GetCustomerDownlinePath" SpName="Age_Agent_GetCustomerDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0">
       <Mapping DataField="AgentId" ObjectProperty="Id" />
@@ -485,7 +485,7 @@
     <Setting Key="AgentSetting_Age_Agent_GetPositionTakingForUpdate" SpName="Age_Agent_GetPositionTakingForUpdate" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_UpdateBetLimit" SpName="Age_Agent_UpdateBetLimit" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_UpdateDiscount" SpName="Age_Agent_UpdateDiscount" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
-    <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking_xtest" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
+        <Setting Key="AgentSetting_Age_Agent_UpdatePositionTaking" SpName="Age_Agent_UpdatePositionTaking" DbName="SVRCUST.CustDB.aplweb"   TimeOut="600"/>
     <Setting Key="AgentSetting_Age_Agent_UpdateSetting" SpName="Age_Agent_UpdateSetting" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600"/>
     <Setting Key="Age_Agent_GetPositionTakingToAgent" SpName="Age_Agent_GetPositionTakingToAgent" DbName="SVRCUST.CustDB.aplweb"  TimeOut="600">
       <Mapping DataField="MaxUpperPositionTaking" ObjectProperty="TakenShare" />

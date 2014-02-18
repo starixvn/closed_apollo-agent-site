@@ -14,13 +14,19 @@
 
 namespace Apollo.BetList.Core.Entities
 {
+    using System.Collections.Generic;
+
     public delegate string GetCachePropertyById(object id);
 
+    public delegate IList<ITicket> GetParlayTicketsById(object id);
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Ticket helper interface.
     /// </summary>
     public interface ITicketHelper
     {
+        GetParlayTicketsById GetParlayDetailById { get; set; }
+
         /// <summary>
         /// Gets or sets the index.
         /// </summary>

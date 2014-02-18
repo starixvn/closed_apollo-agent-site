@@ -5,15 +5,16 @@
 */
 
 // Prototype
+/*jshint strict:false*/
 AGEMsg = function () {
     this.spmsgerr = 'spmsgerr';
     this.diverrmsg = 'diverrmsg';
-}
+};
 
 AGEMsg.prototype.Show = function (msg, success) {
     document.getElementById(this.spmsgerr).innerHTML = msg;
     document.getElementById(this.diverrmsg).style.display = IE ? 'block' : 'table';
-}
+};
 
 AGEMsg.prototype.ShowMsgs = function (msg, success) {
     if (success) {
@@ -41,11 +42,11 @@ AGEMsg.prototype.ShowMsgs = function (msg, success) {
 
     document.getElementById(this.spmsgerr).innerHTML = msg;
     document.getElementById(this.diverrmsg).style.display = IE ? 'block' : 'table';
-}
+};
 
 AGEMsg.prototype.Hide = function () {
     document.getElementById(this.diverrmsg).style.display = 'none';
-}
+};
 
 AGEMsg.prototype.InsertRow = function (tableId, classname, message) {
     var tr = document.createElement('tr');
@@ -57,19 +58,20 @@ AGEMsg.prototype.InsertRow = function (tableId, classname, message) {
     td.className = classname;
     tr.appendChild(td);
     document.getElementById(tableId).appendChild(tr);
-}
+};
 
 AGEMsg.prototype.CheckMessageIsSucc = function (ArrCodes) {
     for (var i = 0; i < ArrCodes.length; i++) {
-        if (ArrCodes[i] > 0)
+        if (ArrCodes[i] > 0) {
             return false;
+        }
     }
     return true;
-}
+};
 
 AGEMsg.prototype.GenerateMessage = function (ArrCodes, ArrMsgs, ArrUserName, isAdd) {
     var isSucc = true;
-    isSucc = isSucc & this.CheckMessageIsSucc(ArrCodes);
+    isSucc = isSucc && this.CheckMessageIsSucc(ArrCodes);
 
     if (isAdd) // Added
     {
@@ -111,14 +113,15 @@ AGEMsg.prototype.GenerateMessage = function (ArrCodes, ArrMsgs, ArrUserName, isA
 
         ageMsg.ShowMsgs(myTable, isSucc);
     }
-}
+};
 
 AGEMsg.prototype.CheckMessageIsSucc2 = function (ArrCodes) {
     for (var i = 0; i < ArrCodes.length; i++) {
-        if (ArrCodes[i] > 0 || ArrCodes[i] == -1)
+        if (ArrCodes[i] > 0 || ArrCodes[i] == -1) {
             return false;
+        }
     }
     return true;
-}
+};
 
 ageMsg = new AGEMsg();

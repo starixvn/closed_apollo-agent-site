@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
     using System.Collections.Generic;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using NPOI.SS.UserModel;
 
     public interface IAgentComm
     {
@@ -29,5 +30,13 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
         /// <param name="ticket">The ticket.</param>
         /// <returns>Agent commission template.</returns>
         AgentComm_Template Render(ITicket ticket);
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>Rich TextString.</returns>
+        IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper);
     }
 }

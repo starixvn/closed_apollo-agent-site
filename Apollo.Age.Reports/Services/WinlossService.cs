@@ -564,7 +564,7 @@ namespace Apollo.Age.Reports.Services
                     var numberOfMember = customerCounterList.Where(x => x.AgentId == agentWinLoss.AgentId).FirstOrDefault();
                     totalNumberOfMember += numberOfMember.CustCount.Value;
                 }
-                
+
                 row = sheet.CreateRow(rowIndex);
 
                 if (agentWinLoss.IsAgent)

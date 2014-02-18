@@ -26,11 +26,14 @@ namespace Apollo.Age.BetList.Criterias
         {
             this.TicketList = new List<ITicket>();
             this.TicketDataList = new List<ITicketData>();
+            this.TicketListMixParlay = new List<ITicket>();
         }
 
         public IList<ITicket> TicketList { get; set; }
 
         public List<ITicketData> TicketDataList { get; set; }
+
+        public IList<ITicket> TicketListMixParlay { get; set; }
 
         /// <summary>
         /// Clones this instance.
@@ -41,7 +44,8 @@ namespace Apollo.Age.BetList.Criterias
             return new TicketResult
             {
                 TicketList = this.TicketList.ToList(),
-                TicketDataList = this.TicketDataList.ToList()
+                TicketDataList = this.TicketDataList.ToList(),
+                TicketListMixParlay = this.TicketListMixParlay.ToList()
             };
         }
     }

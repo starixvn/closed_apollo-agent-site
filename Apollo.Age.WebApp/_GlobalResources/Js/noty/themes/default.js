@@ -1,4 +1,5 @@
-;(function($) {
+'use strict';
+ (function ($) {
 
 	$.noty.themes.defaultTheme = {
 		name: 'defaultTheme',
@@ -40,8 +41,7 @@
 		style: function() {
 
 			this.$bar.css({
-				overflow: 'hidden'
-				//,background: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAoCAYAAAAPOoFWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAPZJREFUeNq81tsOgjAMANB2ov7/7ypaN7IlIwi9rGuT8QSc9EIDAsAznxvY4pXPKr05RUE5MEVB+TyWfCEl9LZApYopCmo9C4FKSMtYoI8Bwv79aQJU4l6hXXCZrQbokJEksxHo9KMOgc6w1atHXM8K9DVC7FQnJ0i8iK3QooGgbnyKgMDygBWyYFZoqx4qS27KqLZJjA1D0jK6QJcYEQEiWv9PGkTsbqxQ8oT+ZtZB6AkdsJnQDnMoHXHLGKOgDYuCWmYhEERCI5gaamW0bnHdA3k2ltlIN+2qKRyCND0bhqSYCyTB3CAOc4WusBEIpkeBuPgJMAAX8Hs1NfqHRgAAAABJRU5ErkJggg==') repeat-x scroll left top #fff"
+				overflow: 'hidden'				
 			});
 
 			this.$message.css({
@@ -88,13 +88,8 @@
 				case 'top':
 					this.$bar.css({
 						borderRadius: '3px',
-						border: '1px solid #eee'
-//                        borderTop: '1px solid #eee',
-//						borderBottom: '1px solid #eee',
-//						borderLeft: '1px solid #eee',
-//						borderRight: '1px solid #eee',
-						//boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-                        ,boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.6) inset'
+						border: '1px solid #eee',
+                        boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.6) inset'
 					});
 				break;
 				case 'topCenter': case 'center': case 'bottomCenter': case 'inline':
@@ -141,7 +136,7 @@
 				case 'error':
 					this.$bar.css({backgroundColor: 'red', borderColor: 'darkred', color: '#FFF'});
 					this.$message.css({fontWeight: 'bold'});
-                    if(this.options.errorType && this.options.errorType == 'multiple')
+                    if(this.options.errorType && this.options.errorType === 'multiple')
                     {
                         this.$message.css({textAlign: 'left'});
                     }
@@ -161,5 +156,4 @@
 			onClose: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); }
 		}
 	};
-
-})(jQuery);
+}(jQuery)) ;

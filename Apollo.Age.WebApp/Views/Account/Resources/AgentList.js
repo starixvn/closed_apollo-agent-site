@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
+'use strict';
 var AGENTLIST = function ($) {
     return {
         AgentId: null,
@@ -47,10 +47,10 @@ var AGENTLIST = function ($) {
                     var template = '';
 
                     for (var i = 0; i < rowLength; i++) {
-                        if (i == rowLength - 1) {
-                            AGENTLIST.IsSuper = (result[i].Level == 0);
-                            AGENTLIST.IsMainShareHolder = (result[i].Level == 1);
-                            AGENTLIST.IsShareHolder = (result[i].Level == 2);
+                        if (i === rowLength - 1) {
+                            AGENTLIST.IsSuper = (result[i].Level === 0);
+                            AGENTLIST.IsMainShareHolder = (result[i].Level === 1);
+                            AGENTLIST.IsShareHolder = (result[i].Level === 2);
 
                             AGENTLIST.Username = result[i].Username;
                             AGENTLIST.AgentLevel = result[i].Level;
@@ -58,7 +58,7 @@ var AGENTLIST = function ($) {
 
                             template += "<li class='currentUser'><span>" + AGENTLIST.Username + "</span></li>";
                             $("#currUsername").html(AGENTLIST.Username);
-                            AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId == result[0].Id);
+                            AGENTLIST.initQuickLinkEditSetting(result[i], AGENTLIST.AgentId === result[0].Id);
 
                         }
                         else {
@@ -141,7 +141,10 @@ var AGENTLIST = function ($) {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
-                data: JSON.stringify({ agentId: AGENTLIST.AgentId, Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim()) }),
+                data: JSON.stringify({
+                    agentId: AGENTLIST.AgentId,
+                    Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim())
+                }),
                 timeout: 120000
             })
                 .done(function (result) {
@@ -170,7 +173,7 @@ var AGENTLIST = function ($) {
             var rowLength = agentList.ListData.length;
             var counter = (agentList.CurrentPage * agentList.ItemsPerPage);
             for (var i = 0; i < rowLength; i++) {
-                var current = agentList.ListData[i];               
+                var current = agentList.ListData[i];
                 counter++;
                 var currentRow = {
                     Columns:
@@ -231,13 +234,13 @@ var AGENTLIST = function ($) {
                          },
                          { HeaderText: LANGUAGES.Username, Width: 150, Name: "Username", HeaderAlign: "center", CellAlign: "left" },
                          { HeaderText: LANGUAGES.Status, Width: 80, Name: "Status", HeaderAlign: "center", CellAlign: "center",
-                             CustomCellRender: function (cell) {                                 
+                             CustomCellRender: function (cell) {
                                  return ACCOUNTLIST.initStatus(cell.Value.Status, cell.Value.UplineStatus);
                              }
                          },
                           { HeaderText: LANGUAGES.BetStatus, Width: 80, Name: "BetStatus", HeaderAlign: "center", CellAlign: "center",
                               CustomCellRender: function (cell) {
-                                  return ACCOUNTLIST.initStatus(cell.Value.BetStatus, cell.Value.UplineBetStatus);                                  
+                                  return ACCOUNTLIST.initStatus(cell.Value.BetStatus, cell.Value.UplineBetStatus);
                               }
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
@@ -295,6 +298,7 @@ var AGENTLIST = function ($) {
                     cssClass: 'agent-list'
                 }
             };
+
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
                     type: "POST",

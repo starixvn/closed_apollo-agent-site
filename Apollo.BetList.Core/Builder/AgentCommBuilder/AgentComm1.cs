@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Agent commission.
@@ -61,10 +62,46 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
                 else
                 {
                     Template.AgentComm.agentComm_setting = string.Join(null, new string[] { ConvertByBetType.Comm_Percentage(ticket.ADiscount) }) + "%";
-                }                
+                }
             }
 
             return Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich TextString.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper)
+        {
+            Render(ticket);
+
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.AgentComm.agentComm_setting, " \n " }));
+
+            string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
+            {
+                if (ticket.AComm < 0)
+                {
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm), rtfHelper.RedNoBold);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm));
+                }
+            }
+
+            IRichTextString rtfAgentComm = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfAgentComm;
         }
     }
 }

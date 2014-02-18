@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Agent share.
@@ -54,6 +55,43 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
             }
 
             return Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="ticketData">The ticket data.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Rich Text String.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, List<ITicketData> ticketData, BetListPage page, RTFHelper rtfHelper)
+        {
+            Render(ticket, ticketData);
+
+            string agentPT = string.Join(string.Empty, new string[] { Template.AgentPT.agentPT_setting, "\n" });
+            rtfHelper.RTFRenderer.AddText(agentPT);
+
+            string status = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+            if (status.ToLower().Equals(BetStatus.Won)
+                || status.ToLower().Equals(BetStatus.Draw)
+                || status.ToLower().Equals(BetStatus.Lose))
+            {
+                if (ticket.AWinlost < 0)
+                {
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost), rtfHelper.RedNoBold);
+                }
+                else
+                {
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost));
+                }
+            }
+
+            IRichTextString rtfAgentShare = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+            return rtfAgentShare;
         }
     }
 }

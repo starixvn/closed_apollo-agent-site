@@ -12,6 +12,7 @@ namespace Apollo.BetList.Core.Builder.TimeBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Time class.
@@ -63,6 +64,37 @@ namespace Apollo.BetList.Core.Builder.TimeBuilder
             }
 
             return Template;
+        }
+
+        /// <summary>
+        /// Renders the RTF.
+        /// </summary>
+        /// <param name="ticket">The ticket.</param>
+        /// <param name="page">The bet list page.</param>
+        /// <param name="rtfHelper">The RTF helper.</param>
+        /// <returns>
+        /// Time Template.
+        /// </returns>
+        public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
+        {
+            Render(ticket, page);
+
+            switch (page)
+            {
+                case BetListPage.Wager:
+                case BetListPage.Forecast:
+                    rtfHelper.RTFRenderer.AddText(Formatter.FormatDateTime22(ticket.TransDate).Replace("<br/>", "\n"));
+                    break;
+
+                default:
+                    rtfHelper.RTFRenderer.AddText(Formatter.FullDateFormat(ticket.TransDate));
+                    break;
+            }
+
+            IRichTextString rtfTime = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfTime;
         }
     }
 }

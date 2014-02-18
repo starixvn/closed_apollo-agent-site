@@ -1,6 +1,7 @@
-﻿var APOLLO = {}; // Global namespace for common functions
+﻿/*jshint strict:false*/
+var APOLLO = {}; // Global namespace for common functions
 
-if (typeof jQuery != 'undefined') {
+if (typeof jQuery !== 'undefined') {
     // Functions in this namespace require jquery and jquery-ui
     APOLLO = function ($) {
         return {
@@ -25,9 +26,13 @@ if (typeof jQuery != 'undefined') {
             currentOpenDialog: null,
             openDialog: function (target, title, options) {
                 options = options || {};
-                if (title) options.title = title;
+                if (title) {
+                    options.title = title;
+                }
 
-                if (target instanceof jQuery == false) target = $(target);
+                if (target instanceof jQuery === false) {
+                    target = $(target);
+                }
 
                 APOLLO.currentOpenDialog = target.dialog($.extend({}, APOLLO.dialogOpt, options));
 
@@ -53,7 +58,7 @@ if (typeof jQuery != 'undefined') {
 
 
 
-                if (typeof singleFrame === 'undefined') singleFrame = true; // not allow multiple instances of dialog by default
+                if (typeof singleFrame == 'undefined') singleFrame = true;  // not allow multiple instances of dialog by default
 
                 if (singleFrame) { // only one instance of dialog can be opened
                     var frame = $("#apo-dialog-frame");
@@ -127,7 +132,7 @@ if (typeof jQuery != 'undefined') {
             handleAjaxError: function (jqXHR, textStatus, errorThrown) {
                 APOLLO.alertGeneralError();
             },
-
+            /*jshint ignore:start */
             showMessage: function (message, type, timeOut, isMultple) {
                 switch (type) {
                     case 'success':
@@ -155,7 +160,7 @@ if (typeof jQuery != 'undefined') {
 
                 }
             },
-
+            /*jshint ignore:end */
             console: {
                 write: function (msg, consoleFunc) {
                     if (typeof console != 'undefined' && !APOLLO.detectBrowser().msie) {
@@ -484,7 +489,7 @@ if (typeof jQuery != 'undefined') {
                         if ((lyear == true) && (dd > 29)) {
                             return false;
                         }
-                    }                  
+                    }
                 }
                 else {
                     return false;

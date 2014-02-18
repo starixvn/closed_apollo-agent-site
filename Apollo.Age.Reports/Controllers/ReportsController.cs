@@ -567,11 +567,16 @@ namespace Apollo.Age.Reports.Controllers
         {
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+            bool hasPermission = false;
+            bool hasDownlineDetailsPermission = false;
 
-            var hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
-            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            if (userPermission != null && userPermission.Any())
+            {
+                hasPermission = userPermission[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query;
+                hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
-            ViewBag.allFunctionPermission = userPermission;
+                ViewBag.allFunctionPermission = userPermission;
+            }
 
             List<CustomerCounterViewModel> customerCounterList = null;
 

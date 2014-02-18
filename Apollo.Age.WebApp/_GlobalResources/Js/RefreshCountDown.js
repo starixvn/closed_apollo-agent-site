@@ -1,4 +1,5 @@
-﻿var RefreshCountDown = function ($) {
+﻿'use strict';
+var RefreshCountDown = function ($) {
     return {
         interval: 0,
         timeoutCountDown: null,
@@ -38,7 +39,7 @@
 
         showHideMenu: function () {
             var position = $("#ddlCountDown").position();
-            if (RefreshCountDown.countDownMenu.css('display') == 'none') {
+            if (RefreshCountDown.countDownMenu.css('display') === 'none') {
                 RefreshCountDown.countDownMenu.css('top', position.top + 20);
                 RefreshCountDown.countDownMenu.show();
             }
@@ -62,6 +63,7 @@
 
             if (intervalTime <= 0) {
                 intervalTime = RefreshCountDown.interval;
+                /*jshint evil:true */
                 eval(RefreshCountDown.onRefresh);
             }
 
@@ -104,7 +106,7 @@
                 });
                 $this.addClass(itemCheckedClass);
 
-                if (RefreshCountDown.countDownMenu.css('display') != 'none') {
+                if (RefreshCountDown.countDownMenu.css('display') !== 'none') {
                     RefreshCountDown.countDownMenu.hide();
                     if (RefreshCountDown.timoutMenu != null) {
                         clearTimeout(RefreshCountDown.timoutMenu);
@@ -144,9 +146,9 @@
 
         bindRefreshNow: function () {
             RefreshCountDown.refreshNow.on('click', function () {
-                $this = $(this);
+                var $this = $(this);
                 var actived = $this.attr('actived');
-                if (actived == 'true') {
+                if (actived === 'true') {
                     RefreshCountDown.disabledRefreshCountDown(true);
 
                     eval(RefreshCountDown.onRefresh);
@@ -183,7 +185,7 @@ $(document).ready(function () {
 
     RefreshCountDown.countDownMenu.find("li").each(function () {
         var $this = $(this);
-        if ($this.attr('data-intervaltime') == RefreshCountDown.interval) {
+        if ($this.attr('data-intervaltime') === RefreshCountDown.interval) {
             $this.addClass('selected');
             return false;
         }

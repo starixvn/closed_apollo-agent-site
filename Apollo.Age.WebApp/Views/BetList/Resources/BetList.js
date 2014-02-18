@@ -66,7 +66,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		});
 }
 
-function InitBetList() {   
+function InitBetList() {
     if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
         var heightPopup = 630;
         if (APOLLO.browser.msie) {
@@ -95,7 +95,7 @@ function InitBetList() {
         document.getElementById("exporttoexcel").style.display = "none";
     }
 
-    APOLLO.hidePopupBlockLoading(); 
+    APOLLO.hidePopupBlockLoading();
 }
 
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
@@ -249,6 +249,12 @@ if (typeof jQuery != "undefined") {
                 });
 
                 BETLIST.initEditLink();
+                BETLIST.ExportWinLoss();
+                BETLIST.ExportOutstanding();
+                BETLIST.ExportTransaction();
+                BETLIST.ExportTicketCancel();
+                BETLIST.ExportForcast();
+                BETLIST.ExportWager();
             },
 
             getBetListData: function () {
@@ -266,8 +272,12 @@ if (typeof jQuery != "undefined") {
                     success: function (data) {
                         $('#container').html(data);
                         BETLIST.initEditLink();
+                        BETLIST.ExportTransaction();
                     }
                 });
+
+                $("form:first").attr("action", "/betlist/transactions");
+
             },
 
             initPager: function (pageIndex) {
@@ -297,6 +307,7 @@ if (typeof jQuery != "undefined") {
             },
 
             ticketCancel: function () {
+
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -306,11 +317,20 @@ if (typeof jQuery != "undefined") {
                     alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.DateLimited.val());
                 }
                 else {
+                    $("form:first").attr("action", "/betlist/TicketCancel");
                     $("form:first").submit();
                 }
             },
 
+            ExportTicketCancel: function () {
+                $("#btnExcelTicketCancel").on("click", function () {
+                    $("form:first").attr("action", "/betlist/TicketCancelExportExcel");
+                    $("form:first").submit();
+                });
+            },
+
             Transaction: function () {
+
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -320,12 +340,69 @@ if (typeof jQuery != "undefined") {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
+                    $("form:first").attr("action", "/betlist/transactions");
                     $("form:first").submit();
                 }
             },
 
+            ExportTransaction: function () {
+                $("#btnExcelTransaction").on("click", function () {
+                    $("form:first").attr("action", "/betlist/TransactionExportExcel");
+                    $("form:first").submit();
+                });
+            },
+
+            ExportWinLoss: function () {
+                $("#btnExcelWinLoss").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId=' + $("#custid").val()
+                    + "&type=" + $("#type").val()
+                    + "&FromDate=" + $("#fromDate").val()
+                    + "&ToDate=" + $("#toDate").val()
+                    + "&sportType=" + $("#sportTypes").val()
+                    + "&betType=" + $("#betTypes").val());
+                    location.href = url;
+                });
+            },
+
+            ExportOutstanding: function () {
+                $("#btnExcelOutstanding").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/OutstandingExportExcel?custId=' + $("#custid").val()
+                    + "&sportType=" + $("#sportTypes").val()
+                    + "&betType=" + $("#betTypes").val());
+                    location.href = url;
+                });
+            },
+
+            ExportForcast: function () {
+                $("#btnExcelForeCast").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/ForecastExportExcel?matchId=' + $("#matchId").val()
+                    + "&betType=" + $("#betType").val()
+                    + "&type=" + $("#type").val()
+                    + "&leagueName=" + $("#leagueName").val()
+                    + "&mainShareHolderId=" + $("#mainShareHolderId").val()
+                    + "&isForecast=" + $("#isForecast").val());
+                    location.href = url;
+                });
+            },
+
+            ExportWager: function () {
+                $("#btnExcelWager").on("click", function () {
+                    var url = APOLLO.resolveUrl('Betlist/WagerExportExcel?fromDate=' + $("#fromDate").val()
+                    + "&toDate=" + $("#toDate").val()
+                    + "&uGroup=" + $("#uGroup").val()
+                    + "&liveIndicator=" + $("#liveIndicator").val()
+                    + "&leagueId=" + $("#leagueId").val()
+                    + "&betType=" + $("#betType").val()
+                    + "&sportType=" + $("#sportType").val()
+                    + "&betTeam=" + $("#betTeam").val()
+                    + "&matchId=" + $("#matchId").val()
+                    + "&loggedId=" + $("#loggedId").val());
+                    location.href = url;
+                });
+            },
+
             initEditLink: function () {
-                $(".view-detail").click(function () {                   
+                $(".view-detail").click(function () {
 
                     var fromDate = toDate = type = "";
 
@@ -360,7 +437,7 @@ if (typeof jQuery != "undefined") {
         };
     } (jQuery);
 
-    $(document).ready(function () {            
+    $(document).ready(function () {
 
         BETLIST.init();
 
@@ -467,6 +544,6 @@ if (typeof jQuery != "undefined") {
                     location.href = url;
                 }
             }
-        });                
+        });
     }); //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }

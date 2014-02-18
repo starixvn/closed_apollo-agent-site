@@ -17,6 +17,12 @@ namespace Apollo.BetList.Core.TicketHelper
     /// </summary>
     public class TicketHelper : ITicketHelper
     {
+        public GetParlayTicketsById GetParlayDetailById
+        {
+            get;
+            set;
+        }
+
         public int Index { get; set; }
 
         public string CurrentLanguage { get; set; }
