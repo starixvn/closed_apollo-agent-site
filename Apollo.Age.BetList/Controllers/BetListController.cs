@@ -959,7 +959,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>
         /// Return view result.
         /// </returns>
-        public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
+        public ViewResult ViewDetail(long transId, DateTime? fromDate, DateTime? toDate, string type)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
@@ -971,8 +971,8 @@ namespace Apollo.Age.BetList.Controllers
             {
                 LoggedId = this.CurrentSession.AgentId,
                 TransId = transId,
-                FromDate = ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
-                ToDate = ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
+                FromDate = ResetStartDate(!fromDate.HasValue ? moveBetsDay : Convert.ToDateTime(fromDate)),
+                ToDate = ResetEndDate(!toDate.HasValue ? DateTime.Now : Convert.ToDateTime(toDate)),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
