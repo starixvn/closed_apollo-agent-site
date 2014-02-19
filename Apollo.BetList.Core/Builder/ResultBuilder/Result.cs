@@ -37,7 +37,7 @@ namespace Apollo.BetList.Core.Builder.ResultBuilder
             }
             else
             {
-                rtfHelper.RTFRenderer.AddText("0");
+                rtfHelper.RTFRenderer.AddText("0.00");
             }
 
             IRichTextString rtfResult = rtfHelper.RTFRenderer.Render();
