@@ -202,8 +202,8 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.LEFT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
-            cellStyle.BorderBottom =  BorderStyle.THIN;
-            cellStyle.BottomBorderColor =  HSSFColor.OLIVE_GREEN.index;
+            cellStyle.BorderBottom = BorderStyle.THIN;
+            cellStyle.BottomBorderColor = HSSFColor.OLIVE_GREEN.index;
 
 
             RTFHelper.RTFRenderer.AddText(title, RTFHelper.RedAndBold);
@@ -211,7 +211,7 @@ namespace Apollo.BetList.Core.Builder
 
             AddMergedCell(rtfString, mergeRange, cellStyle);
 
-           
+
 
             RTFHelper.RTFRenderer.Clear();
 
@@ -353,6 +353,38 @@ namespace Apollo.BetList.Core.Builder
             return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }
 
+        /// <summary>
+        /// Adds the cell number.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>Cell Address.</returns>
+        public CellAddress AddCellNumber(double value)
+        {
+            _nextCellIndex++;
+            IRow lastRow = GetLastRow();
+
+            if (_nextCellIndex >= _reportColumnsNum)
+            {
+                _nextCellIndex = 0;
+            }
+
+            ICell lastCell = lastRow.CreateCell(_nextCellIndex);
+
+            lastCell.CellStyle.DataFormat = HSSFDataFormat.GetBuiltinFormat("#,##0.00");
+
+            lastCell.SetCellType(CellType.NUMERIC);
+            lastCell.SetCellValue(value);
+
+            return new CellAddress(lastCell.RowIndex, _nextCellIndex);
+        }
+
+        /// <summary>
+        /// Adds the cell number.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="cellStyle">The cell style.</param>
+        /// <param name="isFormatNumber">If set to <c>true</c> [is format number].</param>
+        /// <returns>Cell Address.</returns>
         public CellAddress AddCellNumber(double value, ICellStyle cellStyle, bool isFormatNumber = false)
         {
             _nextCellIndex++;
@@ -478,9 +510,17 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddStake(ITicket ticket)
         {
+            var cellStyle = _workbook.CreateCellStyle();
+            cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            cellStyle.Alignment = HorizontalAlignment.RIGHT;
+            cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
+            cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
+            cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
+
             IStake stakeBuilder = CreateStakeBuilder(ticket.BetTypeId);
             IRichTextString rtfStake = stakeBuilder.RenderRTF(ticket, RTFHelper);
-            AddCell(rtfStake);
+            this.AddCellNumber(Convert.ToDouble(rtfStake.String), cellStyle, true);
 
             return this;
         }
@@ -544,9 +584,17 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
         {
+            var cellStyle = _workbook.CreateCellStyle();
+            cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            cellStyle.Alignment = HorizontalAlignment.RIGHT;
+            cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
+            cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
+            cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
+
             var resultBuilder = new Result();
             IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
-            this.AddCell(rtfResult);
+            this.AddCellNumber(Convert.ToDouble(rtfResult.String), cellStyle, true);
 
             return this;
         }

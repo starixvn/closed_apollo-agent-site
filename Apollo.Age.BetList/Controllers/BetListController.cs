@@ -645,8 +645,8 @@ namespace Apollo.Age.BetList.Controllers
                 sportName,
                 betTypeName);
 
-            var sheetName = "Betlist-Winloss";
-            var betlistName = "BetList From: " + fromDate.ToString("MM/dd/yyyy") + " - To: " + toDate.ToString("MM/dd/yyyy") + " - Winloss - " + username;
+            var sheetName = "Betlist-WinLoss";
+            var betlistName = "BetList From " + fromDate.ToString("MM/dd/yyyy") + " To " + toDate.ToString("MM/dd/yyyy") + " - WinLoss - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
@@ -741,7 +741,7 @@ namespace Apollo.Age.BetList.Controllers
 
             title = title.Replace("/", "_");
             var sheetName = "BetList-Forecast";
-            var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
+            var betlistName = string.Format("BetList on current date {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
@@ -889,7 +889,7 @@ namespace Apollo.Age.BetList.Controllers
 
             string betTypeName = CacheRef.GetBettype(betType);
             var sheetName = "Betlist-Wager";
-            var betlistName = string.Format("Bet List on {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
+            var betlistName = string.Format("Bet List on current date in {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
             var fileName = string.Format(
               "BetList-Wager-{0}-{1}-{2}",
               sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"),
@@ -899,7 +899,7 @@ namespace Apollo.Age.BetList.Controllers
             if (betType == "10")
             {
                 sheetName = "BetList-Outright";
-                betlistName = string.Format("Bet List From {0} - To {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), toDate.Value.ToString("MM/dd/yyyy"), betTypeName, sportTypeName);
+                betlistName = string.Format("Bet List From {0} To {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), toDate.Value.ToString("MM/dd/yyyy"), betTypeName, sportTypeName);
                 fileName = string.Format(
                 "BetList-Outright-{0}-{1}-{2}-{3}",
                 fromDate.ToString("yyyyMMdd"),
@@ -1057,8 +1057,8 @@ namespace Apollo.Age.BetList.Controllers
                 .SetColumnWidth(1, 10)
                 .SetColumnWidth(2, 20)
                 .SetColumnWidth(3, 50)
-                .SetColumnWidth(4, 10)
-                .SetColumnWidth(5, 10)
+                .SetColumnWidth(4, 20)
+                .SetColumnWidth(5, 20)
                 .SetColumnWidth(6, 20)
                 .SetColumnWidth(7, 15)
                 .SetColumnWidth(8, 15);
