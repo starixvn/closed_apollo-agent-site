@@ -589,7 +589,7 @@ namespace Apollo.Age.BetList.Controllers
                 betTypeName);
 
             var sheetName = "Betlist-Winloss";
-            var betlistName = "BET LIST WIN LOSS - FROM: " + fromDate.ToString("yyyy-MM-dd") + " TO: " + toDate.ToString("yyyy-MM-dd");
+            var betlistName = "BetList From: " + fromDate.ToString("yyyy-MM-dd") + " To: " + toDate.ToString("yyyy-MM-dd") + " - Winloss - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
@@ -761,7 +761,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="matchId">The match identifier.</param>
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
-        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]  
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult WagerExportExcel(
              int loggedId,
             DateTime fromDate,
