@@ -11,7 +11,6 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -35,22 +34,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             this.Template.betTeam = ticketHelper.GetTeamNameById(ticket.HomeId == 0 ? ticket.AwayId : ticket.HomeId);
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
             this.Template.HomeAwayId.Hide();
-            this.Template.Score.Hide();
+            this.Template.Score.Hide();            
         }
 
-        /// <summary>
-        /// Creates the RTF helper.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="rtfHelper">The RTF helper.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        /// <param name="isShowSportName">If set to <c>true</c> [is show sport name].</param>
-        /// <param name="isTrikeOut">If set to <c>true</c> [is trike out].</param>
-        /// <returns>
-        /// RTF Helper.
-        /// </returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected override RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false, bool isTrikeOut = false)
         {
             string choice = string.Empty;
@@ -146,6 +132,16 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
                || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
+                    choice = string.Join(null, new string[] { " \n "});
+                    if (isTrikeOut)
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFontTrike);
+                    }
+                    else
+                    {
+                        rtfHelper.RTFRenderer.AddText(choice, rtfHelper.ScoreFont);
+                    }
+
                     choice = string.Empty;
                 }
                 else

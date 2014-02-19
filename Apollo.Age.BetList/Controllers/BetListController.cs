@@ -741,7 +741,7 @@ namespace Apollo.Age.BetList.Controllers
 
             title = title.Replace("/", "_");
             var sheetName = "BetList-Forecast";
-            var betlistName = string.Format("BetList on current date {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
+            var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
