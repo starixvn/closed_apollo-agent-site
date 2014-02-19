@@ -161,8 +161,14 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Accounts the information export excel.
+        /// </summary>
+        /// <param name="model">The model bet list.</param>
+        /// <returns>Action result.</returns>
         [HttpPost]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult AccountInfoExportExcel(BetListCriteria model)
         {
             var statusIds = string.Format(
@@ -324,6 +330,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Action Result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult TransactionExportExcel(BetListReportViewModel model)
         {
             // Get permission of user
@@ -430,6 +437,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Action result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult TicketCancelExportExcel(BetListReportViewModel model)
         {
             // Get permission of user.
@@ -811,6 +819,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult WagerExportExcel(
              int loggedId,
             DateTime fromDate,
@@ -846,32 +855,36 @@ namespace Apollo.Age.BetList.Controllers
                         sportTypeName = Resources.Lang.soccer;
                         break;
                     }
+
                 case SportGroup.BasketballFootballRugy:
                     {
                         sportTypeName = Resources.Lang.lblBkNflRugby;
                         break;
                     }
+
                 case SportGroup.Tennis:
                     {
                         sportTypeName = Resources.Lang.Tennis;
                         break;
                     }
+
                 case SportGroup.VolleyballBadmintonTableTennis:
                     {
                         sportTypeName = Resources.Lang.lblVbBdmTt;
                         break;
                     }
+
                 case SportGroup.BaseBall:
                     {
                         sportTypeName = Resources.Lang.Baseball;
                         break;
                     }
+
                 default:
                     {
                         sportTypeName = Resources.Lang.other;
                         break;
                     }
-
             }
 
             string betTypeName = CacheRef.GetBettype(betType);
@@ -879,7 +892,9 @@ namespace Apollo.Age.BetList.Controllers
             var betlistName = string.Format("Bet List on {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
             var fileName = string.Format(
               "BetList-Wager-{0}-{1}-{2}",
-              sportTypeName.Replace(".", "").Replace(" / ", "-"), betTypeName, fromDate.ToString("yyyyMMdd"));
+              sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"),
+              betTypeName,
+              fromDate.ToString("yyyyMMdd"));
 
             if (betType == "10")
             {
@@ -890,12 +905,10 @@ namespace Apollo.Age.BetList.Controllers
                 fromDate.ToString("yyyyMMdd"),
                 toDate.Value.ToString("yyyyMMdd"),
                 betTypeName,
-                sportTypeName.Replace(".", "").Replace(" / ", "-"));
+                sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"));
             }
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
-
-
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -1102,7 +1115,7 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal()
                 .AddTotal()
                 .AddTotal(tickets.Count.ToString())
-                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG),null,true)
+                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG), null, true)
                 .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG), null, true)
                 .AddTotal()
                 .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
