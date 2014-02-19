@@ -646,7 +646,7 @@ namespace Apollo.Age.BetList.Controllers
                 betTypeName);
 
             var sheetName = "Betlist-Winloss";
-            var betlistName = "BetList WinLoss - " + username + " - From: " + fromDate.ToString("MM/dd/yyyy") + " - To: " + toDate.ToString("MM/dd/yyyy");
+            var betlistName = "BetList From: " + fromDate.ToString("MM/dd/yyyy") + " - To: " + toDate.ToString("MM/dd/yyyy") + " - Winloss - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
