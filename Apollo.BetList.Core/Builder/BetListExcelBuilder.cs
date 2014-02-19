@@ -268,7 +268,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
             cellStyle.BorderTop = BorderStyle.DOUBLE;
             cellStyle.TopBorderColor = HSSFColor.ORANGE.index;
-            cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            cellStyle.FillForegroundColor = HSSFColor.GREY_25_PERCENT.index;
             cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
             cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
             cellStyle.SetFont(RTFHelper.PosFont);

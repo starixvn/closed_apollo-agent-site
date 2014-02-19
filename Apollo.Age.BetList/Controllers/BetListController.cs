@@ -299,7 +299,7 @@ namespace Apollo.Age.BetList.Controllers
             TicketResult mainTickets = TransactionBetlist(model);
 
             string sheetName = "Betlist-Transaction";
-            string betlistName = "BetList - From: " + model.FromDate.ToString("MM/dd/yyyy") + " - To: " + model.ToDate.ToString("MM/dd/yyyy") + " - Transaction - " + model.Username ;
+            string betlistName = "BetList - From: " + model.FromDate.ToString("MM/dd/yyyy") + " - To: " + model.ToDate.ToString("MM/dd/yyyy") + " - Transaction - " + model.Username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
@@ -372,7 +372,7 @@ namespace Apollo.Age.BetList.Controllers
 
             if (mainTickets != null && mainTickets.TicketList != null && mainTickets.TicketList.Any())
             {
-                model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);             
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
 
             model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
@@ -484,7 +484,7 @@ namespace Apollo.Age.BetList.Controllers
             var mainTickets = OutstandingBetList(custId, username, mainShareHolderId, mainShareHolderUsername, betType, sportType, sportName, betTypeName);
 
             var sheetName = "Betlist-Outstanding";
-            var betlistName = "BetList - "+ DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
+            var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
@@ -594,7 +594,7 @@ namespace Apollo.Age.BetList.Controllers
                 betTypeName);
 
             var sheetName = "Betlist-Winloss";
-            var betlistName = "BetList WinLoss - " + username + " - From: " + fromDate.ToString("yyyy-MM-dd") + " - To: " + toDate.ToString("yyyy-MM-dd");
+            var betlistName = "BetList WinLoss - " + username + " - From: " + fromDate.ToString("MM/dd/yyyy") + " - To: " + toDate.ToString("MM/dd/yyyy");
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
@@ -689,7 +689,7 @@ namespace Apollo.Age.BetList.Controllers
 
             title = title.Replace("/", "_");
             var sheetName = "BetList-Forecast";
-            var betlistName = string.Format("BetList {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
+            var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
@@ -793,17 +793,65 @@ namespace Apollo.Age.BetList.Controllers
                betTeam,
                matchId);
 
-            string sportTypeName = CacheRef.GetSportName(sportType);
-            string betTypeName = CacheRef.GetSportName(betType);
+            string sportTypeName = string.Empty;
 
+            switch (sportType)
+            {
+                case SportGroup.Soccer:
+                    {
+                        sportTypeName = Resources.Lang.soccer;
+                        break;
+                    }
+                case SportGroup.BasketballFootballRugy:
+                    {
+                        sportTypeName = Resources.Lang.lblBkNflRugby;
+                        break;
+                    }
+                case SportGroup.Tennis:
+                    {
+                        sportTypeName = Resources.Lang.Tennis;
+                        break;
+                    }
+                case SportGroup.VolleyballBadmintonTableTennis:
+                    {
+                        sportTypeName = Resources.Lang.lblVbBdmTt;
+                        break;
+                    }
+                case SportGroup.BaseBall:
+                    {
+                        sportTypeName = Resources.Lang.Baseball;
+                        break;
+                    }
+                default:
+                    {
+                        sportTypeName = Resources.Lang.other;
+                        break;
+                    }
+
+            }
+
+            string betTypeName = CacheRef.GetBettype(betType);
             var sheetName = "Betlist-Wager";
-            var betlistName = string.Format("Bet List {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
+            var betlistName = string.Format("Bet List on {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
+            var fileName = string.Format(
+              "BetList-Wager-{0}-{1}-{2}",
+              sportTypeName.Replace(".", "").Replace(" / ", "-"), betTypeName, fromDate.ToString("yyyyMMdd"));
+
+            if (betType == "10")
+            {
+                sheetName = "BetList-Outright";
+                betlistName = string.Format("Bet List From {0} - To {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), toDate.Value.ToString("MM/dd/yyyy"), betTypeName, sportTypeName);
+                fileName = string.Format(
+                "BetList-Outright-{0}-{1}-{2}-{3}",
+                fromDate.ToString("yyyyMMdd"),
+                toDate.Value.ToString("yyyyMMdd"),
+                betTypeName,
+                sportTypeName.Replace(".", "").Replace(" / ", "-"));
+            }
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
-            var fileName = string.Format(
-                "BetList-Wager-{0}-{1}-{2}",
-                sportTypeName, betTypeName, fromDate.ToString("yyyyMMdd"));
+
 
             return new ExcelResult(excelResult, fileName);
         }
