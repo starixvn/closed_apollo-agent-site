@@ -255,6 +255,7 @@ if (typeof jQuery != "undefined") {
                 BETLIST.ExportTicketCancel();
                 BETLIST.ExportForcast();
                 BETLIST.ExportWager();
+                BETLIST.ExportAccountInfo();
             },
 
             getBetListData: function () {
@@ -302,8 +303,16 @@ if (typeof jQuery != "undefined") {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
+                    $("form:first").attr("action", "/BetList/AccountInfo?custId=" + $("#custid").val() + "&username=" + $("#username").val());
                     $("form:first").submit();
                 }
+            },
+
+            ExportAccountInfo: function () {
+                $("#btnExcelAcountInfo").on("click", function () {
+                    $("form:first").attr("action", "/betlist/AccountInfoExportExcel?custId=" + $("#custid").val() + "&username=" + $("#username").val());
+                    $("form:first").submit();
+                });
             },
 
             ticketCancel: function () {
@@ -354,7 +363,7 @@ if (typeof jQuery != "undefined") {
 
             ExportWinLoss: function () {
                 $("#btnExcelWinLoss").on("click", function () {
-                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId=' 
+                    var url = APOLLO.resolveUrl('Betlist/WinlossExportExcel?custId='
                     + $("#custid").val()
                     + "&type=" + $("#type").val()
                     + "&FromDate=" + $("#fromDate").val()

@@ -161,6 +161,50 @@ namespace Apollo.Age.BetList.Controllers
             return this.View(viewModel);
         }
 
+        [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        public ActionResult AccountInfoExportExcel(BetListCriteria model)
+        {
+            var statusIds = string.Format(
+                   "{0},{1},{2},{3},{4},{5},{6},{7}",
+                  (int)Apollo.Age.Enumerations.BetStatus.Void,
+                  (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                  (int)Apollo.Age.Enumerations.BetStatus.Running,
+                  (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                  (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                  (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                  (int)Apollo.Age.Enumerations.BetStatus.Won,
+                  (int)Apollo.Age.Enumerations.BetStatus.Lose);
+
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+
+            // List ticket
+            var betListService = new BetListService();
+            model.AgentId = -1;
+            model.LoggedId = CurrentSession.AgentId;
+            model.StatusIds = statusIds;
+            model.BetListPage = BetListPage.AccountInfo;
+            model.ToDate = ResetEndDate(model.ToDate);
+            model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.MoveBetsDay = _reportService.MoveBetsDay();
+
+            var mainTickets = _betListService.GetTicketResult(model, true);
+
+            string sheetName = "Betlist-AccountInfo";
+            string betlistName = "BetList - From: " + model.FromDate.ToString("MM/dd/yyyy") + " - To: " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName);
+
+            var fileName = string.Format(
+                "BetList-{0}-{1}-From-{2}-To-{3}",
+                "AccountInfo",
+                model.UserName,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
+
+            return new ExcelResult(excelResult, fileName);
+        }
+
         /// <summary>
         /// Bet list Transaction.
         /// </summary>
@@ -486,7 +530,7 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "Betlist-Outstanding";
             var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Outstanding, sheetName, betlistName);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -1058,11 +1102,11 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal()
                 .AddTotal()
                 .AddTotal(tickets.Count.ToString())
-                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG))
-                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG))
+                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG),null,true)
+                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG), null, true)
                 .AddTotal()
-                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG))
-                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG));
+                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
+                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
 
             HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
 

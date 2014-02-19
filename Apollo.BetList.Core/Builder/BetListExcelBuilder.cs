@@ -260,7 +260,7 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="value">The total value.</param>
         /// <param name="mergeRange">The merge range.</param>
         /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null)
+        public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
             var cellStyle = _workbook.CreateCellStyle();
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
@@ -285,7 +285,7 @@ namespace Apollo.BetList.Core.Builder
                 var rftTotalValue = RTFHelper.RTFRenderer.Render();
                 if (!string.IsNullOrWhiteSpace(value))
                 {
-                    AddCellNumber(Convert.ToDouble(value), cellStyle);
+                    AddCellNumber(Convert.ToDouble(value), cellStyle, isformatNumber);
                 }
                 else
                 {
@@ -353,7 +353,7 @@ namespace Apollo.BetList.Core.Builder
             return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }
 
-        public CellAddress AddCellNumber(double value, ICellStyle cellStyle)
+        public CellAddress AddCellNumber(double value, ICellStyle cellStyle, bool isFormatNumber = false)
         {
             _nextCellIndex++;
             IRow lastRow = GetLastRow();
@@ -366,8 +366,11 @@ namespace Apollo.BetList.Core.Builder
 
             ICell lastCell = lastRow.CreateCell(_nextCellIndex, cellStyle);
 
+            if (isFormatNumber)
+            {
+                lastCell.CellStyle.DataFormat = HSSFDataFormat.GetBuiltinFormat("#,##0.00");
+            }
 
-            lastCell.CellStyle.DataFormat = HSSFDataFormat.GetBuiltinFormat("#,#0.00");
             lastCell.SetCellType(CellType.NUMERIC);
             lastCell.SetCellValue(value);
 
