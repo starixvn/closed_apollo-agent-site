@@ -28,7 +28,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-70).StartOfWeek() ? DateTime.Now.AddDays(-70).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -38,7 +38,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-70).StartOfWeek() ? DateTime.Now.AddDays(-70).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -104,7 +104,8 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
         </div>
     </div>
 }
-<div class="export-excel transaction" id="btnExcelTicketCancel">
+<div class="export-betlist-excel transaction" id="btnExcelTicketCancel">
+@Lang.exporttoexcel
     </div>
 <table class="tblRpt betlist">
     <thead class="persist-header">

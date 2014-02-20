@@ -318,7 +318,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
                 choice = string.Empty;
 
-                choice = string.Join(null, new string[] { " ", Template.handicap, " " });
+                choice = string.Join(null, new string[] { " ", Template.handicap.Trim(), " " });
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);

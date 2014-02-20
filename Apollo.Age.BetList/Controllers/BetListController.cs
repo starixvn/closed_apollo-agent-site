@@ -162,6 +162,56 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
+        /// Accounts the information export excel.
+        /// </summary>
+        /// <param name="model">The model bet list.</param>
+        /// <returns>Action result.</returns>
+        [HttpPost]
+        [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
+        public ActionResult AccountInfoExportExcel(BetListCriteria model)
+        {
+            var statusIds = string.Format(
+                   "{0},{1},{2},{3},{4},{5},{6},{7}",
+                  (int)Apollo.Age.Enumerations.BetStatus.Void,
+                  (int)Apollo.Age.Enumerations.BetStatus.Reject,
+                  (int)Apollo.Age.Enumerations.BetStatus.Running,
+                  (int)Apollo.Age.Enumerations.BetStatus.Waiting,
+                  (int)Apollo.Age.Enumerations.BetStatus.Refund,
+                  (int)Apollo.Age.Enumerations.BetStatus.Draw,
+                  (int)Apollo.Age.Enumerations.BetStatus.Won,
+                  (int)Apollo.Age.Enumerations.BetStatus.Lose);
+
+            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
+
+            // List ticket
+            var betListService = new BetListService();
+            model.AgentId = -1;
+            model.LoggedId = CurrentSession.AgentId;
+            model.StatusIds = statusIds;
+            model.BetListPage = BetListPage.AccountInfo;
+            model.ToDate = ResetEndDate(model.ToDate);
+            model.BalanceUpDay = _reportService.GetBalanceUpDay();
+            model.MoveBetsDay = _reportService.MoveBetsDay();
+
+            var mainTickets = _betListService.GetTicketResult(model, true);
+
+            string sheetName = "Betlist-AccountInfo";
+            string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName);
+
+            var fileName = string.Format(
+                "BetList-{0}-{1}-From-{2}-To-{3}",
+                "AccountInfo",
+                model.UserName,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
+
+            return new ExcelResult(excelResult, fileName);
+        }
+
+        /// <summary>
         /// Bet list Transaction.
         /// </summary>
         /// <returns>Return view result.</returns>
@@ -280,6 +330,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Action Result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult TransactionExportExcel(BetListReportViewModel model)
         {
             // Get permission of user
@@ -298,16 +349,17 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TransactionBetlist(model);
 
-            string sheetName = "Betlist-Transaction";
-            string betlistName = "BET LIST TRANSACTION - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+            string sheetName = "Betlist-Transactions";
+            string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Transactions - " + model.Username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
-                "Transaction",
-                this._excelService.ShortDateFormat(model.FromDate),
-                this._excelService.ShortDateFormat(model.ToDate));
+                "BetList-{0}-{1}-From-{2}-To-{3}",
+                "Transactions",
+                model.Username,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -369,7 +421,10 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TicketCancelBetList(model);
 
-            model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
+            if (mainTickets != null && mainTickets.TicketList != null && mainTickets.TicketList.Any())
+            {
+                model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
+            }
 
             model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
             model.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
@@ -382,6 +437,7 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Action result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult TicketCancelExportExcel(BetListReportViewModel model)
         {
             // Get permission of user.
@@ -400,16 +456,17 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = TicketCancelBetList(model);
 
-            var sheetName = "Betlist-Ticket Cancel";
-            var betlistName = "BET LIST TICKET CANCEL - FROM: " + model.FromDate.ToString("yyyy-MM-dd") + " TO: " + model.ToDate.ToString("yyyy-MM-dd");
+            string sheetName = "Betlist-Cancelled Tickets";
+            string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Cancelled Tickets - " + model.Username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
-                "TicketCancel",
-                this._excelService.ShortDateFormat(model.FromDate),
-                this._excelService.ShortDateFormat(model.ToDate));
+                "BetList-{0}-{1}-From-{2}-To-{3}",
+                "CancelledTickets",
+                model.Username,
+                model.FromDate.ToString("yyyyMMdd"),
+                model.ToDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -479,15 +536,15 @@ namespace Apollo.Age.BetList.Controllers
             var mainTickets = OutstandingBetList(custId, username, mainShareHolderId, mainShareHolderUsername, betType, sportType, sportName, betTypeName);
 
             var sheetName = "Betlist-Outstanding";
-            var betlistName = "BET LIST OUTSTANDING - FROM: " + moveBetsDay.ToString("yyyy-MM-dd") + " TO: " + DateTime.Now.ToString("yyyy-MM-dd");
+            var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Outstanding, sheetName, betlistName);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
                 "Outstanding",
-                this._excelService.ShortDateFormat(moveBetsDay),
-                this._excelService.ShortDateFormat(DateTime.Now));
+                username,
+                DateTime.Now.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -588,16 +645,17 @@ namespace Apollo.Age.BetList.Controllers
                 sportName,
                 betTypeName);
 
-            var sheetName = "Betlist-Winloss";
-            var betlistName = "BetList From: " + fromDate.ToString("yyyy-MM-dd") + " To: " + toDate.ToString("yyyy-MM-dd") + " - Winloss - " + username;
+            var sheetName = "Betlist-WinLoss";
+            var betlistName = "BetList From " + fromDate.ToString("MM/dd/yyyy") + " To " + toDate.ToString("MM/dd/yyyy") + " - WinLoss - " + username;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}_{1}_{2}",
+                "BetList-{0}-{1}-From-{2}-To-{3}",
                 "WinLoss",
-                this._excelService.ShortDateFormat(fromDate),
-                this._excelService.ShortDateFormat(toDate));
+                username,
+                fromDate.ToString("yyyyMMdd"),
+                toDate.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -681,15 +739,14 @@ namespace Apollo.Age.BetList.Controllers
 
             TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId, mainShareHolderUsername, isForecast);
 
-            title = title.Replace("/", " ");
-            var sheetName = "Betlist-" + title;
-            var betlistName = "BET LIST " + title.ToUpper();
+            title = title.Replace("/", "_");
+            var sheetName = "BetList-Forecast";
+            var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
 
             var fileName = string.Format(
-                "BetList_{0}",
-                title.Replace(" ", "_"));
+                "BetList-{0}-{1}-{2}", "Forecast", title, DateTime.Now.ToString("yyyyMMdd"));
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -762,6 +819,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>Action result.</returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult WagerExportExcel(
              int loggedId,
             DateTime fromDate,
@@ -788,13 +846,69 @@ namespace Apollo.Age.BetList.Controllers
                betTeam,
                matchId);
 
+            string sportTypeName = string.Empty;
+
+            switch (sportType)
+            {
+                case SportGroup.Soccer:
+                    {
+                        sportTypeName = Resources.Lang.soccer;
+                        break;
+                    }
+
+                case SportGroup.BasketballFootballRugy:
+                    {
+                        sportTypeName = Resources.Lang.lblBkNflRugby;
+                        break;
+                    }
+
+                case SportGroup.Tennis:
+                    {
+                        sportTypeName = Resources.Lang.Tennis;
+                        break;
+                    }
+
+                case SportGroup.VolleyballBadmintonTableTennis:
+                    {
+                        sportTypeName = Resources.Lang.lblVbBdmTt;
+                        break;
+                    }
+
+                case SportGroup.BaseBall:
+                    {
+                        sportTypeName = Resources.Lang.Baseball;
+                        break;
+                    }
+
+                default:
+                    {
+                        sportTypeName = Resources.Lang.other;
+                        break;
+                    }
+            }
+
+            string betTypeName = CacheRef.GetBettype(betType);
             var sheetName = "Betlist-Wager";
-            var betlistName = "BET LIST WAGER";
-
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
-
+            var betlistName = string.Format("Bet List on {0} - {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), "Wagers", sportTypeName, betTypeName);
             var fileName = string.Format(
-                "BetList_Wager");
+              "BetList-Wager-{0}-{1}-{2}",
+              sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"),
+              betTypeName,
+              fromDate.ToString("yyyyMMdd"));
+
+            if (betType == "10")
+            {
+                sheetName = "BetList-Outright";
+                betlistName = string.Format("Bet List From {0} To {1} - {2} - {3}", fromDate.ToString("MM/dd/yyyy"), toDate.Value.ToString("MM/dd/yyyy"), betTypeName, sportTypeName);
+                fileName = string.Format(
+                "BetList-Outright-{0}-{1}-{2}-{3}",
+                fromDate.ToString("yyyyMMdd"),
+                toDate.Value.ToString("yyyyMMdd"),
+                betTypeName,
+                sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"));
+            }
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Wager, sheetName, betlistName);
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -858,7 +972,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>
         /// Return view result.
         /// </returns>
-        public ViewResult ViewDetail(long transId, string fromDate, string toDate, string type)
+        public ViewResult ViewDetail(long transId, DateTime? fromDate, DateTime? toDate, string type)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
@@ -870,8 +984,8 @@ namespace Apollo.Age.BetList.Controllers
             {
                 LoggedId = this.CurrentSession.AgentId,
                 TransId = transId,
-                FromDate = ResetStartDate(string.IsNullOrEmpty(fromDate) ? moveBetsDay : Convert.ToDateTime(fromDate)),
-                ToDate = ResetEndDate(string.IsNullOrEmpty(toDate) ? DateTime.Now : Convert.ToDateTime(toDate)),
+                FromDate = ResetStartDate(!fromDate.HasValue ? moveBetsDay : Convert.ToDateTime(fromDate)),
+                ToDate = ResetEndDate(!toDate.HasValue ? DateTime.Now : Convert.ToDateTime(toDate)),
                 BalanceUpDay = balanceUpDay,
                 MoveBetsDay = moveBetsDay
             };
@@ -943,13 +1057,14 @@ namespace Apollo.Age.BetList.Controllers
                 .SetColumnWidth(1, 10)
                 .SetColumnWidth(2, 20)
                 .SetColumnWidth(3, 50)
-                .SetColumnWidth(4, 10)
-                .SetColumnWidth(5, 10)
+                .SetColumnWidth(4, 20)
+                .SetColumnWidth(5, 20)
                 .SetColumnWidth(6, 20)
                 .SetColumnWidth(7, 15)
                 .SetColumnWidth(8, 15);
 
             builder.AddTitle(betlistName, rangeAddress);
+            builder.AddRow(9);
 
             builder
                 .AddHeader(Resources.BetList.time)
@@ -1000,11 +1115,11 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal()
                 .AddTotal()
                 .AddTotal(tickets.Count.ToString())
-                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG))
-                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG))
+                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG), null, true)
+                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG), null, true)
                 .AddTotal()
-                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG))
-                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG));
+                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
+                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
 
             HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
 

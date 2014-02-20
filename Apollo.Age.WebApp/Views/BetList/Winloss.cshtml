@@ -6,7 +6,8 @@
     Layout = "~/Views/BetList/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.lblBetLists;
 }
- <div class="export-excel" id="btnExcelWinLoss">
+ <div class="export-betlist-excel" id="btnExcelWinLoss">
+ @Lang.exporttoexcel
     </div>
 <table class="tblRpt betlist">
     <thead class="persist-header">
@@ -122,3 +123,4 @@
 @Html.Hidden("betTypes", Request["betType"])
 @Html.Hidden("type", Request["type"])
 @Html.Hidden("custid", Request["custId"])
+@Html.Hidden("username", Request["username"])

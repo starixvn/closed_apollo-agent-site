@@ -54,9 +54,8 @@ namespace Apollo.BetList.Core.Builder.StakeBuilder
         public IRichTextString RenderRTF(ITicket ticket, RTFHelper rtfHelper)
         {
             Render(ticket);
-            Template.stake = Template.stake.Replace("<br/>&nbsp;", "\n");
 
-            rtfHelper.RTFRenderer.AddText(Template.stake);
+            rtfHelper.RTFRenderer.AddText(ConvertByBetType.Stake(ticket.Stake));
             IRichTextString rtfStake = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
 

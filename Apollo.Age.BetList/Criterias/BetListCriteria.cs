@@ -60,6 +60,9 @@ namespace Apollo.Age.BetList.Criterias
 
         public long CustId { get; set; }
 
+        [SpParam(Ignored = true)]
+        public string UserName { get; set; }
+
         public long AgentId { get; set; }
 
         public long LoggedId { get; set; }

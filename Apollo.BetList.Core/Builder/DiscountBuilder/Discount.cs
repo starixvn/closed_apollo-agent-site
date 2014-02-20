@@ -89,11 +89,26 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
         {
             Render(ticket, page);
 
-            rtfHelper.RTFRenderer.AddText(Template.ugroup + " ");
+            switch (page)
+            {
+                case BetListPage.AccountInfo:
+                case BetListPage.Wager:
+                case BetListPage.Forecast:
+                case BetListPage.Outstanding:
+                    rtfHelper.RTFRenderer.AddText(RevertCommGroupName(ticket.UGroup) + " ");
+                    break;
+            }
 
             rtfHelper.RTFRenderer.AddText(Template.username + " ");
 
-            rtfHelper.RTFRenderer.AddText(Template.discount, rtfHelper.RedNoBold);
+            if (ticket.PlayerDiscount == 0)
+            {
+                rtfHelper.RTFRenderer.AddText("0", rtfHelper.RedNoBold);
+            }
+            else
+            {
+                rtfHelper.RTFRenderer.AddText((ticket.PlayerDiscount * 100).ToString("N2"), rtfHelper.RedNoBold);
+            }
 
             IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();
 

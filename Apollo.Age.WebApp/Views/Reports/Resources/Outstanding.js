@@ -129,6 +129,7 @@
             var username = $(this).closest('tr').children('td:first').text();
             var url = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&sporttype=" + OUTSTANDING.hdSportType.val()
+            + "&username=" + $(this).attr("data-username")
             + "&bettype=" + OUTSTANDING.hdBettype.val());
             // resolution for screens
             var resolution = APOLLO.resolutionForScreens(1030, 630);
@@ -169,7 +170,7 @@
                 columns: [
                          { HeaderText: "", Width: 200, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.Outstanding != 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' >" + cell.Value.UserName + "</a>" : cell.Value.UserName);
+                                 return (cell.Value.Outstanding != 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' data-username='" + cell.Value.UserName + "'>" + cell.Value.UserName + "</a>" : cell.Value.UserName);
                              }
                          },
                         { HeaderText: LANGUAGES.Outstanding, Width: 289, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },

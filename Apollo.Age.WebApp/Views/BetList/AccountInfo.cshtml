@@ -42,6 +42,8 @@
                             @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
                             @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+                            @Html.Hidden("username", Request["username"])
+                            @Html.Hidden("custid", Request["custid"])
                         </div>
                     </div>
                 </td>
@@ -59,6 +61,9 @@
         </div>
     </div>
 }
+ <div class="export-betlist-excel" id="btnExcelAcountInfo">
+        @Lang.exporttoexcel
+        </div>
 <table class="tblRpt betlist">
     <thead class="persist-header">
         <tr>
