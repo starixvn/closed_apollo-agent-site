@@ -249,15 +249,12 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
-            cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            cellStyle.FillForegroundColor = HSSFColor.LIGHT_BLUE.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.LEFT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
-            cellStyle.BorderBottom = BorderStyle.THIN;
-            cellStyle.BottomBorderColor = HSSFColor.OLIVE_GREEN.index;
 
-
-            RTFHelper.RTFRenderer.AddText(title, RTFHelper.RedAndBold);
+            RTFHelper.RTFRenderer.AddText(title, RTFHelper.WhiteColor);
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddMergedCell(rtfString, mergeRange, cellStyle);

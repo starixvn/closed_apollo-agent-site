@@ -1166,7 +1166,7 @@ namespace Apollo.Age.BetList.Controllers
                        .AddShare(ticket, ticketResult.TicketDataList, betListPage)
                        .AddComm(ticket);
 
-                builder.SetRowHeight(rowNumber, 5, 3);
+                builder.SetRowHeight(rowNumber, 6, 3);
 
                 totalAmount += ticket.Stake;
 
