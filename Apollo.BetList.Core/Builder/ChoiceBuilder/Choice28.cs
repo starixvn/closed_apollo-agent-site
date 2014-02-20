@@ -113,7 +113,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
             {
-                choice = string.Join(null, new string[] { "\n", Template.homeTeam });
+                choice = string.Join(null, new string[] { "\n", Template.homeTeam.TrimEnd() });
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
