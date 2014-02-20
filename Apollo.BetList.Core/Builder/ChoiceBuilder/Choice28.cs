@@ -230,16 +230,18 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
                 string teamName = string.Empty;
                 string handicap = BuildHandicap(ticket, ticketHelper, out teamName);
+                handicap = handicap.Replace("&nbsp;", string.Empty);
 
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(handicap, rtfHelper.RedNoBoldTrike);
-                    rtfHelper.RTFRenderer.AddText("(" + teamName + ")", rtfHelper.NormalFontCrossed);
+                    rtfHelper.RTFRenderer.AddText(teamName, rtfHelper.RedNoBoldTrike);
+
+                    rtfHelper.RTFRenderer.AddText("(" + handicap + ")", rtfHelper.NormalFontCrossed);
                 }
                 else
                 {
-                    rtfHelper.RTFRenderer.AddText(handicap, rtfHelper.RedNoBold);
-                    rtfHelper.RTFRenderer.AddText("(" + teamName + ")");
+                    rtfHelper.RTFRenderer.AddText(teamName, rtfHelper.RedNoBold);
+                    rtfHelper.RTFRenderer.AddText("(" + handicap + ")");
                 }
                 
                 choice = string.Empty;
