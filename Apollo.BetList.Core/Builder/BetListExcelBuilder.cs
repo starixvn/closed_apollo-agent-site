@@ -913,6 +913,7 @@ namespace Apollo.BetList.Core.Builder
             while (rowEnum.MoveNext())
             {
                 IRow currentRow = rowEnum.Current as HSSFRow;
+                
                 int totalLineBreaks = 1;
                 foreach (ICell cell in currentRow.Cells)
                 {
