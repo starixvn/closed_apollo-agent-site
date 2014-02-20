@@ -199,16 +199,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-AccountInfo";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[]
+            {
                 Resources.BetList.time,
                 Resources.BetList.discount,
                 Resources.BetList.gameType,
                 Resources.BetList.explain,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName, titleBetlist);
 
@@ -363,16 +365,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-Transactions";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Transactions - " + model.Username;
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[]
+            {
                 Resources.BetList.time,
                 Resources.BetList.discount,
                 Resources.BetList.gameType,
                 Resources.BetList.explain,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
@@ -481,16 +485,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-Cancelled Tickets";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Cancelled Tickets - " + model.Username;
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[]
+            {
                 Resources.BetList.time,
                 Resources.BetList.discount,
                 Resources.BetList.gameType,
                 Resources.BetList.explain,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
@@ -571,16 +577,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "Betlist-Outstanding";
             var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[]
+            {
                 Resources.BetList.time,
                 Resources.BetList.rebate,
                 Resources.BetList.ticket,
                 Resources.BetList.content,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Outstanding, sheetName, betlistName, titleBetlist);
 
@@ -692,16 +700,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "Betlist-WinLoss";
             var betlistName = "BetList From " + fromDate.ToString("MM/dd/yyyy") + " To " + toDate.ToString("MM/dd/yyyy") + " - WinLoss - " + username;
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[]
+            {
                 Resources.BetList.time,
                 Resources.BetList.discount,
                 Resources.BetList.gameType,
                 Resources.BetList.explain,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
@@ -798,16 +808,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "BetList-Forecast";
             var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[] 
+            {
                 Resources.BetList.time,
                 Resources.BetList.rebate,
                 Resources.BetList.ticket,
                 Resources.BetList.content,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName, titleBetlist);
 
@@ -974,16 +986,18 @@ namespace Apollo.Age.BetList.Controllers
                 sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"));
             }
 
-            string[] titleBetlist = new string[] {
+            string[] titleBetlist = new string[] 
+            {
                 Resources.BetList.time,
                 Resources.BetList.rebate,
                 Resources.BetList.ticket,
                 Resources.BetList.content,
-                Resources.BetList.amount ,
+                Resources.BetList.amount,
                 Resources.BetList.result,
                 Resources.BetList.status,
                 Resources.Lang.lblAgentShare,
-                Resources.BetList.agentComm};
+                Resources.BetList.agentComm
+            };
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Wager, sheetName, betlistName, titleBetlist);
 
@@ -1110,6 +1124,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betListPage">The bet list page.</param>
         /// <param name="sheetName">Name of the sheet.</param>
         /// <param name="betlistName">Name of the bet list.</param>
+        /// <param name="titleBetlists">The title bet lists.</param>
         /// <returns>
         /// HSSF Work book.
         /// </returns>
