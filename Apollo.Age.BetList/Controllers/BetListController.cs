@@ -199,7 +199,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-AccountInfo";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.discount,
+                Resources.BetList.gameType,
+                Resources.BetList.explain,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList-{0}-{1}-From-{2}-To-{3}",
@@ -352,7 +363,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-Transactions";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Transactions - " + model.Username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.discount,
+                Resources.BetList.gameType,
+                Resources.BetList.explain,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList-{0}-{1}-From-{2}-To-{3}",
@@ -459,7 +481,18 @@ namespace Apollo.Age.BetList.Controllers
             string sheetName = "Betlist-Cancelled Tickets";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - Cancelled Tickets - " + model.Username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.discount,
+                Resources.BetList.gameType,
+                Resources.BetList.explain,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList-{0}-{1}-From-{2}-To-{3}",
@@ -538,7 +571,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "Betlist-Outstanding";
             var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Outstanding, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.rebate,
+                Resources.BetList.ticket,
+                Resources.BetList.content,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Outstanding, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList_{0}_{1}_{2}",
@@ -648,7 +692,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "Betlist-WinLoss";
             var betlistName = "BetList From " + fromDate.ToString("MM/dd/yyyy") + " To " + toDate.ToString("MM/dd/yyyy") + " - WinLoss - " + username;
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.discount,
+                Resources.BetList.gameType,
+                Resources.BetList.explain,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList-{0}-{1}-From-{2}-To-{3}",
@@ -743,7 +798,18 @@ namespace Apollo.Age.BetList.Controllers
             var sheetName = "BetList-Forecast";
             var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.rebate,
+                Resources.BetList.ticket,
+                Resources.BetList.content,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Forecast, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
                 "BetList-{0}-{1}-{2}", "Forecast", title, DateTime.Now.ToString("yyyyMMdd"));
@@ -908,7 +974,18 @@ namespace Apollo.Age.BetList.Controllers
                 sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"));
             }
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Wager, sheetName, betlistName);
+            string[] titleBetlist = new string[] {
+                Resources.BetList.time,
+                Resources.BetList.rebate,
+                Resources.BetList.ticket,
+                Resources.BetList.content,
+                Resources.BetList.amount ,
+                Resources.BetList.result,
+                Resources.BetList.status,
+                Resources.Lang.lblAgentShare,
+                Resources.BetList.agentComm};
+
+            var excelResult = this.TicketExcel(mainTickets, BetListPage.Wager, sheetName, betlistName, titleBetlist);
 
             return new ExcelResult(excelResult, fileName);
         }
@@ -1036,7 +1113,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>
         /// HSSF Work book.
         /// </returns>
-        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName, string betlistName)
+        private HSSFWorkbook TicketExcel(TicketResult ticketResult, BetListPage betListPage, string sheetName, string betlistName, string[] titleBetlists)
         {
             GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             var ticketHelper = new TicketHelper();
@@ -1054,7 +1131,7 @@ namespace Apollo.Age.BetList.Controllers
 
             builder
                 .SetColumnWidth(0, 15)
-                .SetColumnWidth(1, 10)
+                .SetColumnWidth(1, 20)
                 .SetColumnWidth(2, 20)
                 .SetColumnWidth(3, 50)
                 .SetColumnWidth(4, 20)
@@ -1066,17 +1143,12 @@ namespace Apollo.Age.BetList.Controllers
             builder.AddTitle(betlistName, rangeAddress);
             builder.AddRow(9);
 
-            builder
-                .AddHeader(Resources.BetList.time)
-                .AddHeader(Resources.BetList.discount)
-                .AddHeader(Resources.BetList.gameType)
-                .AddHeader(Resources.BetList.explain)
-                .AddHeader(Resources.BetList.amount)
-                .AddHeader(Resources.BetList.result)
-                .AddHeader(Resources.BetList.status)
-                .AddHeader(Resources.Lang.lblAgentShare)
-                .AddHeader(Resources.BetList.agentComm);
+            foreach (string title in titleBetlists)
+            {
+                builder.AddHeader(title);
+            }
 
+            int rowNumber = 3;
             foreach (var ticket in tickets)
             {
                 if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
@@ -1094,6 +1166,8 @@ namespace Apollo.Age.BetList.Controllers
                        .AddShare(ticket, ticketResult.TicketDataList, betListPage)
                        .AddComm(ticket);
 
+                builder.SetRowHeight(rowNumber, 5, 3);
+
                 totalAmount += ticket.Stake;
 
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
@@ -1108,6 +1182,8 @@ namespace Apollo.Age.BetList.Controllers
                 }
 
                 totalComm += ticket.AComm;
+
+                rowNumber++;
             }
 
             builder
@@ -1120,6 +1196,11 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal()
                 .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
                 .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
+
+            builder
+                .SetRowHeight(0, 2)
+                .SetRowHeight(2, 2)
+                .SetLastRowHeight(2);
 
             HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
 
