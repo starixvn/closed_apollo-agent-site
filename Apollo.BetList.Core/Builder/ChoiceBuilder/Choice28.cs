@@ -61,13 +61,13 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if ("1" == ticket.BetTeam)
             {
                 teamName = this.Template.homeTeam;
-                handicap = Formatter.FormatSignNumber(hdp2 - hdp1, 2);
+                handicap = Formatter.FormatSignNumber(hdp2 - hdp1, 0);
             }
             else if ("2" == ticket.BetTeam)
             {
                 string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
                 teamName = awayName;
-                handicap = Formatter.FormatSignNumber(hdp1 - hdp2, 2);
+                handicap = Formatter.FormatSignNumber(hdp1 - hdp2, 0);
             }
             else
             {
@@ -85,7 +85,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     handicap = string.Empty;
                 }
 
-                handicap += Formatter.FormatSignNumber(Math.Abs(hdp2 - hdp1), 2);
+                handicap += Formatter.FormatSignNumber(Math.Abs(hdp2 - hdp1), 0);
             }
 
             return handicap;
@@ -234,13 +234,13 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
                 if (isTrikeOut)
                 {
-                    rtfHelper.RTFRenderer.AddText(teamName, rtfHelper.RedNoBoldTrike);
+                    rtfHelper.RTFRenderer.AddText(teamName + " ", rtfHelper.RedNoBoldTrike);
 
                     rtfHelper.RTFRenderer.AddText("(" + handicap + ")", rtfHelper.NormalFontCrossed);
                 }
                 else
                 {
-                    rtfHelper.RTFRenderer.AddText(teamName, rtfHelper.RedNoBold);
+                    rtfHelper.RTFRenderer.AddText(teamName + " ", rtfHelper.RedNoBold);
                     rtfHelper.RTFRenderer.AddText("(" + handicap + ")");
                 }
                 
