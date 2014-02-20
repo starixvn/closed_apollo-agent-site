@@ -164,6 +164,57 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
+        /// Sets the height of the row.
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        /// <param name="rowHight">The row hight.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder SetRowHeight(int rowIndex, short rowHight, int cellIndex = -1)
+        {
+            IRow currentRow = _worksheet.GetRow(rowIndex);
+            if (currentRow != null)
+            {
+                if (cellIndex != -1)
+                {
+                    int totalLineBreaks = 1;
+                    ICell cell = currentRow.GetCell(cellIndex);
+                    if (cell.CellType == CellType.STRING)
+                    {
+                        string[] stringSeparators = new string[] { "--------------------------------------------" };
+
+                        totalLineBreaks = Math.Max(totalLineBreaks, cell.StringCellValue.Split(stringSeparators,StringSplitOptions.None).Length);
+                    }
+
+                    currentRow.HeightInPoints = currentRow.HeightInPoints * totalLineBreaks * rowHight;
+                }
+                else
+                {
+                    currentRow.HeightInPoints = currentRow.HeightInPoints * rowHight;
+                }
+
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the last height of the row.
+        /// </summary>
+        /// <param name="rowHight">The row hight.</param>
+        /// <returns>Bet List Excel Builder.</returns>
+        public BetListExcelBuilder SetLastRowHeight(short rowHight)
+        {
+            IRow currentRow = _worksheet.GetRow(_worksheet.LastRowNum);
+
+            if (currentRow != null)
+            {
+                currentRow.HeightInPoints = currentRow.HeightInPoints * rowHight;
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Builds the worksheet.
         /// </summary>
         /// <param name="sheetName">Name of the sheet.</param>
@@ -198,15 +249,12 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
-            cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
+            cellStyle.FillForegroundColor = HSSFColor.LIGHT_BLUE.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.LEFT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
-            cellStyle.BorderBottom = BorderStyle.THIN;
-            cellStyle.BottomBorderColor = HSSFColor.OLIVE_GREEN.index;
 
-
-            RTFHelper.RTFRenderer.AddText(title, RTFHelper.RedAndBold);
+            RTFHelper.RTFRenderer.AddText(title, RTFHelper.WhiteColor);
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddMergedCell(rtfString, mergeRange, cellStyle);
@@ -515,8 +563,8 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
             cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
-            cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
-            cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
+            cellStyle.BorderTop = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
+            cellStyle.TopBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
 
             IStake stakeBuilder = CreateStakeBuilder(ticket.BetTypeId);
             IRichTextString rtfStake = stakeBuilder.RenderRTF(ticket, RTFHelper);
@@ -589,8 +637,8 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
             cellStyle.FillForegroundColor = HSSFColor.WHITE.index;
-            cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
-            cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
+            cellStyle.BorderTop = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
+            cellStyle.TopBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
 
             var resultBuilder = new Result();
             IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
@@ -913,7 +961,7 @@ namespace Apollo.BetList.Core.Builder
             while (rowEnum.MoveNext())
             {
                 IRow currentRow = rowEnum.Current as HSSFRow;
-                
+
                 int totalLineBreaks = 1;
                 foreach (ICell cell in currentRow.Cells)
                 {
