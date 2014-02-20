@@ -197,7 +197,7 @@ namespace Apollo.Age.BetList.Controllers
             var mainTickets = _betListService.GetTicketResult(model, true);
 
             string sheetName = "Betlist-AccountInfo";
-            string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To: " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
+            string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.AccountInfo, sheetName, betlistName);
 

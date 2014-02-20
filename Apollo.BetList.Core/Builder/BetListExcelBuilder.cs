@@ -185,7 +185,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return Work book.</returns>
         public IWorkbook GetBetList()
         {
-            AdaptRowHeight();
+            //AdaptRowHeight();
             return _workbook;
         }
 
@@ -922,7 +922,7 @@ namespace Apollo.BetList.Core.Builder
                     }
                 }
 
-                currentRow.HeightInPoints = totalLineBreaks * 20;
+                currentRow.HeightInPoints = totalLineBreaks;
             }
         }
 
