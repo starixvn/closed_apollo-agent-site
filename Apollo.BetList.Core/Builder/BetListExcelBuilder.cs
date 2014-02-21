@@ -164,12 +164,15 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Sets the height of the row.
+        /// Sets the high of the row.
         /// </summary>
         /// <param name="rowIndex">Index of the row.</param>
-        /// <param name="rowHight">The row hight.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder SetRowHeight(int rowIndex, short rowHight, int cellIndex = -1)
+        /// <param name="rowHigh">The row high.</param>
+        /// <param name="cellIndex">Index of the cell.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder SetRowHigh(int rowIndex, short rowHigh, int cellIndex = -1)
         {
             IRow currentRow = _worksheet.GetRow(rowIndex);
             if (currentRow != null)
@@ -182,33 +185,32 @@ namespace Apollo.BetList.Core.Builder
                     {
                         string[] stringSeparators = new string[] { "--------------------------------------------" };
 
-                        totalLineBreaks = Math.Max(totalLineBreaks, cell.StringCellValue.Split(stringSeparators,StringSplitOptions.None).Length);
+                        totalLineBreaks = Math.Max(totalLineBreaks, cell.StringCellValue.Split(stringSeparators, StringSplitOptions.None).Length);
                     }
 
-                    currentRow.HeightInPoints = currentRow.HeightInPoints * totalLineBreaks * rowHight;
+                    currentRow.HeightInPoints = currentRow.HeightInPoints * totalLineBreaks * rowHigh;
                 }
                 else
                 {
-                    currentRow.HeightInPoints = currentRow.HeightInPoints * rowHight;
+                    currentRow.HeightInPoints = currentRow.HeightInPoints * rowHigh;
                 }
-
             }
 
             return this;
         }
 
         /// <summary>
-        /// Sets the last height of the row.
+        /// Sets the last high of the row.
         /// </summary>
-        /// <param name="rowHight">The row hight.</param>
+        /// <param name="rowHigh">The row high.</param>
         /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder SetLastRowHeight(short rowHight)
+        public BetListExcelBuilder SetLastRowHigh(short rowHigh)
         {
             IRow currentRow = _worksheet.GetRow(_worksheet.LastRowNum);
 
             if (currentRow != null)
             {
-                currentRow.HeightInPoints = currentRow.HeightInPoints * rowHight;
+                currentRow.HeightInPoints = currentRow.HeightInPoints * rowHigh;
             }
 
             return this;
@@ -236,7 +238,6 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return Work book.</returns>
         public IWorkbook GetBetList()
         {
-            //AdaptRowHeight();
             return _workbook;
         }
 
@@ -258,8 +259,6 @@ namespace Apollo.BetList.Core.Builder
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddMergedCell(rtfString, mergeRange, cellStyle);
-
-
 
             RTFHelper.RTFRenderer.Clear();
 
@@ -307,7 +306,10 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="value">The total value.</param>
         /// <param name="mergeRange">The merge range.</param>
-        /// <returns>Bet List Excel Builder.</returns>
+        /// <param name="isformatNumber">If set to <c>true</c> [is format number].</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
             var cellStyle = _workbook.CreateCellStyle();
@@ -320,7 +322,6 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.THIN;
             cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.BLACK.index;
             cellStyle.SetFont(RTFHelper.PosFont);
-
 
             if (mergeRange != null)
             {
@@ -341,7 +342,6 @@ namespace Apollo.BetList.Core.Builder
                 }
 
                 RTFHelper.RTFRenderer.Clear();
-
             }
 
             return this;
@@ -442,7 +442,6 @@ namespace Apollo.BetList.Core.Builder
             {
                 _nextCellIndex = 0;
             }
-
 
             ICell lastCell = lastRow.CreateCell(_nextCellIndex, cellStyle);
 
