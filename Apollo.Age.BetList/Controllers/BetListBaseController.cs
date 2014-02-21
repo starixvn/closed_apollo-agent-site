@@ -434,6 +434,26 @@ namespace Apollo.Age.BetList.Controllers
         }
 
         /// <summary>
+        /// Accounts the information bet list.
+        /// </summary>
+        /// <param name="model">The model bet list.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult AccountInfoBetlist(BetListCriteria model)
+        {
+            var criteria = new AccountInfoBetlistCriteria()
+            {
+                CustId = (int)model.CustId,
+                FromDate = ResetStartDate(model.FromDate),
+                Todate = ResetEndDate(model.ToDate),
+                LoggedId = (int)model.LoggedId
+            };
+
+            TicketResult mainTickets = _betListService.GetAccountInfo(criteria);
+
+            return mainTickets;
+        }
+
+        /// <summary>
         /// Time start date.
         /// </summary>
         /// <param name="dt">Input a date.</param>

@@ -172,5 +172,15 @@ namespace Apollo.Age.BetList.Services
         {
             return this._betListRepository.GetTicketResult(criteria, isIncludeOldData);
         }
+
+        /// <summary>
+        /// Gets the account information.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult GetAccountInfo(AccountInfoBetlistCriteria criteria)
+        {
+            return this._betListRepository.GetAccountInfoTicket(criteria);
+        }
     }
 }

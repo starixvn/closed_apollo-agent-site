@@ -74,35 +74,19 @@ namespace Apollo.Age.BetList.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(int custId)
         {
-            var statusIds = string.Format(
-                    "{0},{1},{2},{3},{4},{5},{6},{7}",
-                    (int)Apollo.Age.Enumerations.BetStatus.Void,
-                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                    (int)Apollo.Age.Enumerations.BetStatus.Running,
-                    (int)Apollo.Age.Enumerations.BetStatus.Waiting,
-                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                    (int)Apollo.Age.Enumerations.BetStatus.Won,
-                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
-
             var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
             // List ticket
             var betListService = new BetListService();
             var model = new BetListCriteria
             {
-                AgentId = -1,
                 LoggedId = CurrentSession.AgentId,
                 CustId = custId,
                 FromDate = ResetStartDate(moveBetsDay),
-                ToDate = ResetEndDate(DateTime.Now),
-                StatusIds = statusIds,
-                BetListPage = BetListPage.AccountInfo,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                MoveBetsDay = moveBetsDay
+                ToDate = ResetEndDate(DateTime.Now)
             };
 
-            var mainTickets = _betListService.GetTicketResult(model, true);
+            var mainTickets = this.AccountInfoBetlist(model);
 
             var viewModel = new BetListReportViewModel
             {
@@ -124,30 +108,14 @@ namespace Apollo.Age.BetList.Controllers
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult AccountInfo(BetListCriteria model)
         {
-            var statusIds = string.Format(
-                    "{0},{1},{2},{3},{4},{5},{6},{7}",
-                   (int)Apollo.Age.Enumerations.BetStatus.Void,
-                   (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                   (int)Apollo.Age.Enumerations.BetStatus.Running,
-                   (int)Apollo.Age.Enumerations.BetStatus.Waiting,
-                   (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                   (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                   (int)Apollo.Age.Enumerations.BetStatus.Won,
-                   (int)Apollo.Age.Enumerations.BetStatus.Lose);
-
             var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
-            // List ticket
             var betListService = new BetListService();
-            model.AgentId = -1;
             model.LoggedId = CurrentSession.AgentId;
-            model.StatusIds = statusIds;
-            model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
-            model.BalanceUpDay = _reportService.GetBalanceUpDay();
-            model.MoveBetsDay = _reportService.MoveBetsDay();
+            model.FromDate = ResetStartDate(model.FromDate);
 
-            var mainTickets = _betListService.GetTicketResult(model, true);
+            var mainTickets = this.AccountInfoBetlist(model);
 
             var viewModel = new BetListReportViewModel
             {
@@ -186,15 +154,11 @@ namespace Apollo.Age.BetList.Controllers
 
             // List ticket
             var betListService = new BetListService();
-            model.AgentId = -1;
             model.LoggedId = CurrentSession.AgentId;
-            model.StatusIds = statusIds;
-            model.BetListPage = BetListPage.AccountInfo;
             model.ToDate = ResetEndDate(model.ToDate);
-            model.BalanceUpDay = _reportService.GetBalanceUpDay();
-            model.MoveBetsDay = _reportService.MoveBetsDay();
+            model.FromDate = ResetStartDate(model.FromDate);
 
-            var mainTickets = _betListService.GetTicketResult(model, true);
+            var mainTickets = this.AccountInfoBetlist(model);
 
             string sheetName = "Betlist-AccountInfo";
             string betlistName = "BetList From " + model.FromDate.ToString("MM/dd/yyyy") + " To " + model.ToDate.ToString("MM/dd/yyyy") + " - AccountInfo - " + model.UserName;

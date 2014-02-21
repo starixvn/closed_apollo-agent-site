@@ -106,5 +106,12 @@ namespace Apollo.Age.BetList.Repositories.Interface
         /// <param name="custId">The customer identifier.</param>
         /// <returns>List of agents.</returns>
         IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId);
+
+        /// <summary>
+        /// Gets the account information ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        TicketResult GetAccountInfoTicket(AccountInfoBetlistCriteria criteria);
     }
 }
