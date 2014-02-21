@@ -78,7 +78,7 @@
     <Compile Include="Builder\AgentShareBuilder\AgentShare33.cs" />
     <Compile Include="Builder\AgentShareBuilder\IAgentShare.cs" />
     <Compile Include="Builder\BetListExcelBuilder.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Builder\BetListHTMLBuilder.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice1.cs" />
