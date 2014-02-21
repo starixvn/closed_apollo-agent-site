@@ -1181,7 +1181,7 @@ namespace Apollo.Age.BetList.Controllers
                        .AddShare(ticket, ticketResult.TicketDataList, betListPage)
                        .AddComm(ticket);
 
-                builder.SetRowHeight(rowNumber, 6, 3);
+                builder.SetRowHigh(rowNumber, 6, 3);
 
                 totalAmount += ticket.Stake;
 
@@ -1213,9 +1213,9 @@ namespace Apollo.Age.BetList.Controllers
                 .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
 
             builder
-                .SetRowHeight(0, 2)
-                .SetRowHeight(2, 2)
-                .SetLastRowHeight(2);
+                .SetRowHigh(0, 2)
+                .SetRowHigh(2, 2)
+                .SetLastRowHigh(2);
 
             HSSFWorkbook workBook = (HSSFWorkbook)builder.GetBetList();
 
