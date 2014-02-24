@@ -45,5 +45,13 @@ namespace Apollo.Age.BetList.Services
         IEnumerable<Agent> GetAgentUpLineOfMember(int parentId, int custId);
 
         TicketResult GetAccountInfo(AccountInfoBetlistCriteria criteria);
+
+        TicketResult GetOutStanding(OutstandingCriteria criteria);
+
+        TicketResult GetCancelledTicket(CancelledTicketCriteria criteria);
+
+        TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria);
+
+        TicketResult GetTransactionTicket(TransactionCriteria criteria);
     }
 }

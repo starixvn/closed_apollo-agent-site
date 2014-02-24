@@ -182,5 +182,45 @@ namespace Apollo.Age.BetList.Services
         {
             return this._betListRepository.GetAccountInfoTicket(criteria);
         }
+
+        /// <summary>
+        /// Gets the out standing.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult GetOutStanding(OutstandingCriteria criteria)
+        {
+            return this._betListRepository.GetOutStandingTicket(criteria);
+        }
+
+        /// <summary>
+        /// Gets the cancelled ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult GetCancelledTicket(CancelledTicketCriteria criteria)
+        {
+            return this._betListRepository.GetCancelledTicket(criteria);
+        }
+
+        /// <summary>
+        /// Gets the cancelled old ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria)
+        {
+            return this._betListRepository.GetCancelledOldTicket(criteria);
+        }
+
+        /// <summary>
+        /// Gets the transaction ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Ticket result.</returns>
+        public TicketResult GetTransactionTicket(TransactionCriteria criteria)
+        {
+            return this._betListRepository.GetTransactionTicket(criteria);
+        }
     }
 }

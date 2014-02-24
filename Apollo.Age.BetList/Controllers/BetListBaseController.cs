@@ -11,6 +11,7 @@ namespace Apollo.Age.BetList.Controllers
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;
@@ -204,16 +205,6 @@ namespace Apollo.Age.BetList.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public TicketResult TransactionBetlist(BetListReportViewModel model)
         {
-            var statusIds = string.Format(
-                    "{0},{1},{2},{3},{4},{5},{6},{7}",
-                    (int)Apollo.Age.Enumerations.BetStatus.Void,
-                    (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                    (int)Apollo.Age.Enumerations.BetStatus.Running,
-                    (int)Apollo.Age.Enumerations.BetStatus.Waiting,
-                    (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                    (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                    (int)Apollo.Age.Enumerations.BetStatus.Won,
-                    (int)Apollo.Age.Enumerations.BetStatus.Lose);
             var balanceUpDay = _reportService.GetBalanceUpDay();
             int agentId, custId;
             int errorCode;
@@ -231,20 +222,15 @@ namespace Apollo.Age.BetList.Controllers
             if (errorCode == 0)
             {
                 var betListService = new BetListService();
-                var criteria = new BetListCriteria
+                var criteria = new TransactionCriteria
                 {
                     AgentId = agentId,
                     LoggedId = CurrentSession.AgentId,
                     CustId = custId,
                     FromDate = this.ResetStartDate(model.FromDate),
-                    ToDate = this.ResetEndDate(model.ToDate),
-                    StatusIds = statusIds,
-
-                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
-                    BetTypes = model.BetTypes,
-
-                    BetListPage = BetListPage.Transaction,
-                    MoveBetsDay = _reportService.MoveBetsDay()
+                    Todate = this.ResetEndDate(model.ToDate),
+                    Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
+                    Bettypes = model.BetTypes
                 };
 
                 //// Cache Key
@@ -267,7 +253,7 @@ namespace Apollo.Age.BetList.Controllers
 
                 if (getFromDB)
                 {
-                    mainTickets = betListService.GetTicketResult(criteria);
+                    mainTickets = betListService.GetTransactionTicket(criteria);
                     HttpContext.Session[sessionKey] = mainTickets.Clone();
                 }
             }
@@ -280,11 +266,12 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Ticket result.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public TicketResult TicketCancelBetList(BetListReportViewModel model)
         {
-            var statusIds = string.Format("{0},{1}", (int)Apollo.Age.Enumerations.BetStatus.Void, (int)Apollo.Age.Enumerations.BetStatus.Reject);
             var balanceUpDay = _reportService.GetBalanceUpDay();
             var moveBetsDay = _reportService.MoveBetsDay();
+            var preBalanceUpDay = balanceUpDay.AddDays(-1);
             int agentId, custId;
             int errorCode;
 
@@ -304,24 +291,68 @@ namespace Apollo.Age.BetList.Controllers
             if (errorCode == 0)
             {
                 var betListService = new BetListService();
-                var criteria = new BetListCriteria
+
+                if (model.FromDate < this.ResetStartDate(model.BalanceUpDay))
                 {
-                    AgentId = agentId,
-                    LoggedId = CurrentSession.AgentId,
-                    CustId = custId,
-                    FromDate = this.ResetStartDate(model.FromDate),
-                    ToDate = this.ResetEndDate(model.ToDate),
-                    StatusIds = statusIds,
+                    var oldDataCriteria = new CancelledTicketOldDataCriteria
+                    {
+                        AgentId = agentId,
+                        Bettypes = model.BetTypes,
+                        CustId = custId,
+                        FromDate = this.ResetStartDate(model.FromDate),
+                        Todate = model.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : model.ToDate,
+                        LoggedId = CurrentSession.AgentId,
+                        Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
+                    };
 
-                    SportTypes = model.SportTypes == "-99" ? "0" : model.SportTypes,
-                    BetTypes = model.BetTypes,
-                    BetListPage = BetListPage.Cancel,
+                    if (model.ToDate <= this.ResetEndDate(preBalanceUpDay))
+                    {
+                        // Old data.
+                        mainTickets = betListService.GetCancelledOldTicket(oldDataCriteria);
+                    }
+                    else
+                    {
+                        // Old data.
+                        TicketResult oldTickets = betListService.GetCancelledOldTicket(oldDataCriteria);
 
-                    BalanceUpDay = model.BalanceUpDay,
-                    MoveBetsDay = model.MoveBetDay
-                };
+                        var newDataCriteria = new CancelledTicketCriteria
+                        {
+                            AgentId = agentId,
+                            Bettypes = model.BetTypes,
+                            CustId = custId,
+                            FromDate = model.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : model.FromDate,
+                            Todate = this.ResetEndDate(model.ToDate),
+                            LoggedId = CurrentSession.AgentId,
+                            MoveBetsDay = model.MoveBetDay,
+                            Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
+                        };
 
-                mainTickets = betListService.GetTicketResult(criteria, true);
+                        // New data.
+                        TicketResult newTicktes = betListService.GetCancelledTicket(newDataCriteria);
+
+                        mainTickets = new TicketResult
+                        {
+                            TicketList = newTicktes.TicketList.Union(oldTickets.TicketList).ToList(),
+                            TicketListMixParlay = newTicktes.TicketListMixParlay.Union(oldTickets.TicketListMixParlay).ToList()
+                        };
+                    }
+                }
+                else
+                {
+                    var newDataCriteria = new CancelledTicketCriteria
+                    {
+                        AgentId = agentId,
+                        Bettypes = model.BetTypes,
+                        CustId = custId,
+                        FromDate = model.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : model.FromDate,
+                        Todate = this.ResetEndDate(model.ToDate),
+                        LoggedId = CurrentSession.AgentId,
+                        MoveBetsDay = model.MoveBetDay,
+                        Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
+                    };
+
+                    mainTickets = betListService.GetCancelledTicket(newDataCriteria);
+                }
             }
 
             return mainTickets;
@@ -349,31 +380,17 @@ namespace Apollo.Age.BetList.Controllers
             string sportName = "",
             string betTypeName = "")
         {
-            var statusIds = string.Format(
-                    "{0},{1}",
-                   (int)Apollo.Age.Enumerations.BetStatus.Running,
-                   (int)Apollo.Age.Enumerations.BetStatus.Waiting);
-
-            var moveBetsDay = _reportService.MoveBetsDay();
-
-            // List ticket
             var betListService = new BetListService();
-            var criteria = new BetListCriteria
+
+            var criteria = new OutstandingCriteria
             {
-                AgentId = -1,
-                BetTypes = betType,
-                SportTypes = sportType == "-99" ? "0" : sportType,
+                Bettypes = betType,
+                Sporttypes = sportType == "-99" ? "0" : sportType,
                 LoggedId = CurrentSession.AgentId,
-                CustId = custId,
-                FromDate = ResetStartDate(moveBetsDay),
-                ToDate = ResetEndDate(DateTime.Now),
-                StatusIds = statusIds,
-                BalanceUpDay = _reportService.GetBalanceUpDay(),
-                BetListPage = BetListPage.Outstanding,
-                MoveBetsDay = moveBetsDay
+                CustId = custId
             };
 
-            var mainTickets = _betListService.GetTicketResult(criteria, true);
+            var mainTickets = _betListService.GetOutStanding(criteria);
 
             return mainTickets;
         }

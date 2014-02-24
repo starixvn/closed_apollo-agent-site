@@ -60,10 +60,14 @@
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Criterias\AccountInfoBetlistCriteria.cs" />
     <Compile Include="Criterias\BetListCriteria.cs" />
+    <Compile Include="Criterias\CancelledTicketCriteria.cs" />
+    <Compile Include="Criterias\CancelledTicketOldDataCriteria.cs" />
+    <Compile Include="Criterias\OutstandingCriteria.cs" />
     <Compile Include="Criterias\SystemParlayData.cs" />
     <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />
     <Compile Include="Criterias\TicketResult.cs" />
     <Compile Include="Criterias\TicketText.cs" />
+    <Compile Include="Criterias\TransactionCriteria.cs" />
     <Compile Include="Criterias\WagersCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BetListRepository.cs" />

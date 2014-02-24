@@ -12,6 +12,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using Apollo.Age.BetList.Criterias;
     using Apollo.BetList.Core.Entities;
     using Fanex.Common;
@@ -100,6 +101,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
         /// </summary>
         /// <param name="data">Data Table.</param>
         /// <returns>List Ticket.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public IList<ITicket> ReadTicket(DataTable data)
         {
             var columnCollection = data.Columns;

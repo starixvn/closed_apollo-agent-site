@@ -646,12 +646,73 @@ namespace Apollo.Age.BetList.Repositories.Impl
         }
 
         /// <summary>
+        /// Gets the out standing ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        public TicketResult GetOutStandingTicket(OutstandingCriteria criteria)
+        {
+            var ticketResult = new TicketResult();
+
+            ticketResult = this.GetTickets(criteria);
+
+            return ticketResult;
+        }
+
+        /// <summary>
+        /// Gets the cancelled ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// The ticket result.
+        /// </returns>
+        public TicketResult GetCancelledTicket(CancelledTicketCriteria criteria)
+        {
+            var ticketResult = new TicketResult();
+
+            ticketResult = this.GetTickets(criteria);
+
+            return ticketResult;
+        }
+
+        /// <summary>
+        /// Gets the cancelled old ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// The ticket result.
+        /// </returns>
+        public TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria)
+        {
+            var ticketResult = new TicketResult();
+
+            ticketResult = this.GetTickets(criteria);
+
+            return ticketResult;
+        }
+
+        /// <summary>
+        /// Gets the transaction ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// The ticket result.
+        /// </returns>
+        public TicketResult GetTransactionTicket(TransactionCriteria criteria)
+        {
+            var ticketResult = new TicketResult();
+
+            ticketResult = this.GetTickets(criteria);
+
+            return ticketResult;
+        }
+
+        /// <summary>
         /// Parse data table to list TicketData Object.
         /// </summary>
         /// <param name="data">Data table.</param>
         /// <returns>List Ticket Data.</returns>
-        private List<ITicketData>
-            ReadReferneceTicket(DataTable data)
+        private List<ITicketData> ReadReferneceTicket(DataTable data)
         {
             var result = new List<ITicketData>();
 

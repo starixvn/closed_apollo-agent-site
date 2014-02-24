@@ -205,7 +205,7 @@
         <Setting Key="Age_BetList_SelWinloss" SpName="Age_BetList_SelWinloss" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_BetList_SelByDateMemStatus" SpName="Age_BetList_SelByDateMemStatus" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_BetList_SelByDateMemStatus_Old" SpName="Age_BetList_SelByDateMemStatus_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
-        <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelTransaction" SpName="Age_BetList_SelTransaction_xtest1" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_BetList_GetId" SpName="Age_BetList_GetId" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_Agent_GetCustomerDownlinePath" SpName="Age_Agent_GetCustomerDownlinePath" DbName="SVRAGE.RepDB.aplweb" Plain="0">
           <Mapping DataField="AgentId" ObjectProperty="Id" />
@@ -213,6 +213,10 @@
         </Setting>
 
         <Setting Key="Age_BetList_SelByMem" SpName="Age_BetList_SelByMem" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelRunning" SpName="Age_BetList_SelRunning" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelCancelled" SpName="Age_BetList_SelCancelled" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+        <Setting Key="Age_BetList_SelCancelled_Old" SpName="Age_BetList_SelCancelled_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
+    
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets-BetList">

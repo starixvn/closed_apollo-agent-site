@@ -113,5 +113,33 @@ namespace Apollo.Age.BetList.Repositories.Interface
         /// <param name="criteria">The criteria.</param>
         /// <returns>The ticket result.</returns>
         TicketResult GetAccountInfoTicket(AccountInfoBetlistCriteria criteria);
+
+        /// <summary>
+        /// Gets the out standing ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        TicketResult GetOutStandingTicket(OutstandingCriteria criteria);
+
+        /// <summary>
+        /// Gets the cancelled ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        TicketResult GetCancelledTicket(CancelledTicketCriteria criteria);
+
+        /// <summary>
+        /// Gets the cancelled old ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria);
+
+        /// <summary>
+        /// Gets the transaction ticket.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The ticket result.</returns>
+        TicketResult GetTransactionTicket(TransactionCriteria criteria);
     }
 }
