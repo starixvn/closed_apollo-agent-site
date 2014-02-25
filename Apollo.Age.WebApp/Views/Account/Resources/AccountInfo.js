@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global APOLLO*/
 'use strict';
-var ACCOUNT = function ($) {
+var ACCOUNT = (function ($) {
     return {
         txtUsername: null,
         dllIsMember: null,
@@ -140,7 +140,7 @@ var ACCOUNT = function ($) {
             });
 
             ACCOUNT.ageDownLink.on('mouseout', function () {
-                ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 10000);
+                ACCOUNT.agentListTime = setTimeout(function () { ACCOUNT.ddlAgents.fadeOut("fast"); }, 10000);
             });
 
             ACCOUNT.ageDownLink.click(function (event) {
@@ -161,7 +161,7 @@ var ACCOUNT = function ($) {
                         success: function (data) {
                             if (data.length > 0) {
                                 agentList.html("");
-                                if (data[0].Level == 0) {
+                                if (data[0].Level === 0) {
                                     for (var i = data.length - 1; i > 0; i--) {
                                         agentList.append(
                                             "<li><a class='view-agentinfo' href='javascript:;'" + "data-agentid='" + data[i].Id
@@ -263,7 +263,7 @@ var ACCOUNT = function ($) {
                 clearTimeout(ACCOUNT.agentListSettingTime);
                 var $this = $(this),
                     $listMenu = $('.list');
-                if ($listMenu.css('display') == 'block') {
+                if ($listMenu.css('display') === 'block') {
                     $listMenu.fadeOut('fast');
                     $this.removeClass('bg');
                 } else {
@@ -279,7 +279,7 @@ var ACCOUNT = function ($) {
             });
 
             $('.edit-link').on('mouseout', function () {
-                ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
+                ACCOUNT.agentListSettingTime = setTimeout(function () { ACCOUNT.hideAgentListSetting(); }, 10000);
             });
 
             $('.menu-list').on('mouseover', function () {
@@ -287,7 +287,7 @@ var ACCOUNT = function ($) {
             });
 
             $('.menu-list').on('mouseout', function () {
-                ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 10000);
+                ACCOUNT.agentListSettingTime = setTimeout(function () { ACCOUNT.hideAgentListSetting(); }, 10000);
             });
 
             $('html, body').click(function () {
@@ -301,7 +301,7 @@ var ACCOUNT = function ($) {
             $('.list').fadeOut('fast');
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     $.blockUI();

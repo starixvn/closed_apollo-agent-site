@@ -1,35 +1,25 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global BASELANGUAGES*/
 /*global APOLLO*/
+/*global LANGUAGES*/
+
 'use strict';
-var ACCOUNTLIST = function ($) {
+var ACCOUNTLIST = (function ($) {
     return {
         agentListSettingTime: null,
 
         init: function () {
             var txtUsername = $('#txtUserName');
             txtUsername.unbind('click').bind('click', function () {
-                if (APOLLO.htmlDecode(txtUsername.val()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername)) {
+                if (APOLLO.htmlDecode(txtUsername.val()) === APOLLO.htmlDecode(BASELANGUAGES.EnterUsername)) {
                     txtUsername.val('');
                 }
             });
 
             txtUsername.blur(function () {
-                if (txtUsername.val() == '') {
+                if (txtUsername.val() === '') {
                     txtUsername.val(APOLLO.htmlDecode(BASELANGUAGES.EnterUsername));
                 }
-            });
-
-            $("#fundout").on('click', function () {
-                APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Account/FundOut?memberId=" + $(this).attr('data-memberid') + "&sportCredit=" + $(this).attr('data-sportcredit')), BASELANGUAGES.fundout + " - " + $(this).attr('data-membername'), {
-                    width: 300,
-                    height: 80,
-                    position: { my: "top+50", at: "center top", of: window },
-                    close: function (event, ui) {
-                        //                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-
-                    }
-                });
             });
 
             $('#editShareMultiple,#viewDetailMultiple,#divEditMultiple .edit-multiple-member').click(function () {
@@ -52,7 +42,7 @@ var ACCOUNTLIST = function ($) {
                     $('#cbAllMember').prop('checked', false);
                 }
 
-                if ($('#tblMemberList .cb-edit-multiple').length == $('#tblMemberList .cb-edit-multiple:checked').length) {
+                if ($('#tblMemberList .cb-edit-multiple').length === $('#tblMemberList .cb-edit-multiple:checked').length) {
                     $('#cbAllMember').prop('checked', true);
                 }
             });
@@ -66,7 +56,7 @@ var ACCOUNTLIST = function ($) {
 
             $('#tblMemberList .cb-edit-multiple:checked').each(function () {
                 var memberCheckbox = $(this);
-                if (memberId == '') {
+                if (memberId === '') {
                     memberId = memberCheckbox.val();
                 }
                 memberIds.push(memberCheckbox.val());
@@ -74,10 +64,10 @@ var ACCOUNTLIST = function ($) {
             });
 
             //// No Choosing, then alert message
-            if (memberIds.length == 0) {
+            if (memberIds.length === 0) {
                 alert(BASELANGUAGES.lblSelectAtLeast);
                 return;
-            } else if (memberIds.length == 1) { //// If edit just only one member, go to edit single page
+            } else if (memberIds.length === 1) { //// If edit just only one member, go to edit single page
                 memberIds = [];
             }
 
@@ -88,15 +78,15 @@ var ACCOUNTLIST = function ($) {
             + '&username=' + usernames.join(',%20');
         },
         initStatus: function (status, uplineStatus) {
-            if (status == 1) {
-                if (uplineStatus == 1) {
+            if (status === 1) {
+                if (uplineStatus === 1) {
                     return "<span class='active'>" + LANGUAGES.Active + "</span>";
                 }
                 else {
                     return "<span class='lock'>" + LANGUAGES.CLock + "</span>";
                 }
             }
-            else if (status == 2) // Stop
+            else if (status === 2) // Stop
             {
                 return "<span class='stop'>" + LANGUAGES.Stopped + "</span>";
             }
@@ -124,20 +114,20 @@ var ACCOUNTLIST = function ($) {
                 event.stopPropagation();
             });
 
-            $('.edit-link').on('mouseover', function (event) {
+            $('.edit-link').on('mouseover', function () {
                 clearTimeout(ACCOUNTLIST.agentListSettingTime);
             });
 
-            $('.edit-link').on('mouseout', function (event) {
-                ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 10000);
+            $('.edit-link').on('mouseout', function () {
+                ACCOUNTLIST.agentListSettingTime = setTimeout(function () { ACCOUNTLIST.hideMenuLayout(); }, 10000);
             });
 
-            $('.menu-list').on('mouseover', function (event) {
+            $('.menu-list').on('mouseover', function () {
                 clearTimeout(ACCOUNTLIST.agentListSettingTime);
             });
 
-            $('.menu-list').on('mouseout', function (event) {
-                ACCOUNTLIST.agentListSettingTime = setTimeout('ACCOUNTLIST.hideMenuLayout()', 10000);
+            $('.menu-list').on('mouseout', function () {
+                ACCOUNTLIST.agentListSettingTime = setTimeout(function () { ACCOUNTLIST.hideMenuLayout(); }, 10000);
             });
 
             $('html, body').click(function () {
@@ -153,7 +143,7 @@ var ACCOUNTLIST = function ($) {
             action.children('.list').fadeOut('fast');
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     ACCOUNTLIST.init();

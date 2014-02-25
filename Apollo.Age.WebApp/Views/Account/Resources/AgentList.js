@@ -1,6 +1,12 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
+/*global DEFAULTS*/
+/*global APOLLO*/
+/*global BASELANGUAGES*/
+/*global LANGUAGES*/
+/*global ACCOUNTLIST*/
+
 'use strict';
-var AGENTLIST = function ($) {
+var AGENTLIST = (function ($) {
     return {
         AgentId: null,
         Username: null,
@@ -143,7 +149,7 @@ var AGENTLIST = function ($) {
                 async: false,
                 data: JSON.stringify({
                     agentId: AGENTLIST.AgentId,
-                    Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim())
+                    Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) === APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim())
                 }),
                 timeout: 120000
             })
@@ -245,12 +251,12 @@ var AGENTLIST = function ($) {
                           },
                          { HeaderText: LANGUAGES.NumberOfAgent, Width: 60, Name: "NumberOfAgent", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfAgent != 0 ? "<a name='viewAgent' href='#' title='" + LANGUAGES.ViewAgentDownline + "' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
+                                 return (cell.Value.NumberOfAgent !== 0 ? "<a name='viewAgent' href='#' title='" + LANGUAGES.ViewAgentDownline + "' agentlevel=" + cell.Value.AgentLevel + " agentId=" + cell.Value.AgentId + " username=" + cell.Value.Username + ">" + cell.Value.NumberOfAgent + "</a>" : cell.Value.NumberOfAgent);
                              }
                          },
                          { HeaderText: LANGUAGES.NumberOfMember, Width: 70, Name: "NumberOfMember", HeaderAlign: "center", CellAlign: "center",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.NumberOfMember != 0 ? "<a href='#' title='" + LANGUAGES.ViewMember + "' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
+                                 return (cell.Value.NumberOfMember !== 0 ? "<a href='#' title='" + LANGUAGES.ViewMember + "' name='viewMember' agentId=" + cell.Value.AgentId + ">" + cell.Value.NumberOfMember + "</a>" : cell.Value.NumberOfMember);
                              }
                          },
                          { HeaderText: LANGUAGES.GroupA, Width: 80, Name: "GroupA", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -299,19 +305,19 @@ var AGENTLIST = function ($) {
                 }
             };
 
-            function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
+            function ReRenderAfterPaged(pageIndex, itemsPerPage, jq) {
                 $.ajax({
                     type: "POST",
                     url: APOLLO.resolveUrl("Account/GetAgentList"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ agentId: AGENTLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage }),
+                    data: JSON.stringify({ agentId: AGENTLIST.AgentId, pageIndex: pageIndex, pageSize: itemsPerPage }),
                     timeout: 120000
                 })
                     .done(function (result) {
                         gridOption.pagerOption.itemsPerPage = itemsPerPage;
-                        gridOption.pagerOption.currentPage = page_index;
+                        gridOption.pagerOption.currentPage = pageIndex;
                         gridOption.pagerOption.totalItem = result.TotalItem;
                         AGENTLIST.AgentId = result.CurrentAgentId;
                         AGENTLIST.initAgentList(result);
@@ -321,6 +327,7 @@ var AGENTLIST = function ($) {
                     });
                 return false;
             }
+
             $("#gridId").fanexGrid(gridOption);
 
             //// Show hide quicklink
@@ -336,7 +343,7 @@ var AGENTLIST = function ($) {
             AGENTLIST.bindingEdit();
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     AGENTLIST.init();
