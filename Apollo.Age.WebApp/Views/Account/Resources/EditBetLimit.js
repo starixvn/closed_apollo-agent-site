@@ -1,6 +1,6 @@
 ﻿/* File Created: March 13, 2013 */
 
-if (typeof jQuery != 'undefined') {
+if (typeof jQuery !== 'undefined') {
     var BETLIMIT = function ($) {
         return {
             settingContext: null,

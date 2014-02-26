@@ -1,6 +1,11 @@
 ﻿/* File Created: March 14, 2013 */
+/*global DEFAULT_OBJECT*/
+/*global Language*/
+/*global DEFAULT_LAYOUT*/
+/*global APOLLO*/
+'use strict';
 if (typeof jQuery != 'undefined') {
-    var EDITSETTING = function ($) {
+    var EDITSETTING = (function ($) {
         return {
             currentIsSimpleMode: true,
             settingContext: null,
@@ -176,7 +181,7 @@ if (typeof jQuery != 'undefined') {
 
             }
         }
-    } (jQuery);
+    } (jQuery));
 
     $(function () {
         EDITSETTING.init();

@@ -1,4 +1,8 @@
-﻿function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
+﻿/*global APOLLO*/
+/*global LANGUAGES*/
+
+'use strict';
+function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
     if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
         ViewMixParlayResult(refno_mixparlay, refno);
     } else {
@@ -41,7 +45,7 @@ function showMP(transid) {
                         divEvent.style.display = '';
                     }
                 }
-            })
+            });
         }
         else {
             divEvent.style.display = '';
@@ -53,7 +57,7 @@ function showMP(transid) {
 }
 
 function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
-    if (parent.RefreshCountDown) parent.RefreshCountDown.stopTimeout();
+    if (parent.RefreshCountDown) { parent.RefreshCountDown.stopTimeout(); }
     var width = 750,
 		height = 350,
 		params = '?refno=' + refno + '&winlossDate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
@@ -61,7 +65,7 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
     APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
 		detailTitle, { width: width, height: height,
 		    close: function (event, ui) {
-		        if (parent.RefreshCountDown) parent.RefreshCountDown.startTimeout();
+		        if (parent.RefreshCountDown) { parent.RefreshCountDown.startTimeout(); }
 		    }
 		});
 }
@@ -108,7 +112,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
         if (mainShareHolderId > 0) {
             url += "&mainShareHolderId=" + mainShareHolderId;
         }
-    };
+    }
 
     var mainShareHolderUsername = $("#MainShareHolderUsername").val();
     if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername != "") {
@@ -133,12 +137,12 @@ RegisterStartUp(InitBetList);
 var BETLIST = {};
 
 if (typeof jQuery != "undefined") {
-    BETLIST = function ($) {
+    BETLIST = (function ($) {
         return {
             dialogDetails: null,
             pageIndex: 0,
             init: function () {
-                BETLIST.BalanceUpDay = $("#balanceUpDay")
+                BETLIST.BalanceUpDay = $("#balanceUpDay");
                 BETLIST.FromDate = $("#FromDate");
                 BETLIST.ToDate = $("#ToDate");
                 BETLIST.Today = $("#today");
@@ -447,7 +451,7 @@ if (typeof jQuery != "undefined") {
                 });
             }
         };
-    } (jQuery);
+    } (jQuery));
 
     $(document).ready(function () {
 
@@ -482,7 +486,7 @@ if (typeof jQuery != "undefined") {
                             var found = $.map(data, function (item) {
                                 return {
                                     value: item.Username
-                                }
+                                };
                             });
                             return response(found);
                         }
@@ -518,7 +522,7 @@ if (typeof jQuery != "undefined") {
 
             if (type != null) {
                 var fromDate = null,
-				 toDate = null,
+				    toDate = null,
 					sportType = betType = 0,
 					obFromDate = $('#fromDate'),
 					obToDate = $('#toDate');
@@ -557,5 +561,5 @@ if (typeof jQuery != "undefined") {
                 }
             }
         });
-    }); //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    });  //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }

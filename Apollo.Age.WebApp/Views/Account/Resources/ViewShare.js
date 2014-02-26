@@ -1,11 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var VIEWSHARE = function ($) {
-    var sportType = null;
-    var betType = null;
-    var userName = null;
-    var isMember = null;
-
+/*global APOLLO*/
+'use strict';
+var VIEWSHARE = (function ($) {
     return {
         init: function () {
             VIEWSHARE.sportType = $("#ddlSportType");
@@ -43,7 +39,7 @@ var VIEWSHARE = function ($) {
                         });
 
                         VIEWSHARE.betType.removeAttr('disabled');
-                });
+                    });
             }
         },
         bindAutocomplete: function () {
@@ -65,7 +61,7 @@ var VIEWSHARE = function ($) {
                                     label: item.Username,
                                     value: item.Username,
                                     id: item.Id
-                                }
+                                };
                             });
 
                             return response(found);
@@ -102,8 +98,8 @@ var VIEWSHARE = function ($) {
                 }
             }
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(document).ready(function () {
     $.blockUI();

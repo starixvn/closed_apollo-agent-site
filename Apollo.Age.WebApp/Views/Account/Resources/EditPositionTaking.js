@@ -1,7 +1,10 @@
 ﻿/* File Created: March 13, 2013 */
-
+/*global APOLLO*/
+/*global DEFAULT_LAYOUT*/
+/*global Language*/
+'use strict';
 if (typeof jQuery != 'undefined') {
-    var EDITPOSITIONTAKING = function ($) {
+    var EDITPOSITIONTAKING = (function ($) {
         return {
             settingContext: null,
             positionTakingElement: null,
@@ -48,8 +51,7 @@ if (typeof jQuery != 'undefined') {
                     // remove the messages when open the other message
                     $('#noty_top_layout_container').remove();
                     ////DEFAULT_LAYOUT
-                    if (!DEFAULT_LAYOUT.allowEdit)
-                    {
+                    if (!DEFAULT_LAYOUT.allowEdit) {
                         APOLLO.showMessage(Language.NOT_ALLOW_EDIT_MESSAGE, 'error');
                         return;
                     }
@@ -225,8 +227,8 @@ if (typeof jQuery != 'undefined') {
                 //}, 4000);
 
             }
-        }
-    } (jQuery);
+        };
+    } (jQuery));
 
     $(function () {
         if (positionTakingSetting.SportTypes && positionTakingSetting.SportTypes.length > 0) {

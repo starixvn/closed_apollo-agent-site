@@ -1,7 +1,8 @@
 ﻿/* File Created: March 13, 2013 */
-
-if (typeof jQuery != 'undefined') {
-    var EDITCOMMISSION = function ($) {
+/*global APOLLO*/
+'use strict';
+if (typeof jQuery !== 'undefined') {
+    var EDITCOMMISSION = (function ($) {
         return {
             currentIsSimpleMode: true,
             initOthers: function (isSimpleMode) {
@@ -20,7 +21,7 @@ if (typeof jQuery != 'undefined') {
                 commissionSettingContainer.innerHTML = "";
                 EDITCOMMISSION.commissionSettingElement.Render(commissionSettingContainer);
 
-                if (isUpdateAllSetting) return;
+                if (isUpdateAllSetting) { return; }
 
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
@@ -28,7 +29,7 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $(".setting-mode #simple-mode").unbind("click").click(function () {
-                    if (EDITCOMMISSION.currentIsSimpleMode) return;
+                    if (EDITCOMMISSION.currentIsSimpleMode) { return; }
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
                     EDITCOMMISSION.currentIsSimpleMode = true;
@@ -36,7 +37,7 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $(".setting-mode #advanced-mode").unbind("click").click(function () {
-                    if (EDITCOMMISSION.currentIsSimpleMode == false) return;
+                    if (EDITCOMMISSION.currentIsSimpleMode === false) { return; }
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
                     EDITCOMMISSION.currentIsSimpleMode = false;
@@ -54,7 +55,7 @@ if (typeof jQuery != 'undefined') {
                         commissionSetting: EDITCOMMISSION.commissionSettingElement.Save()
                     })
                 }).done(function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         noty({ text: data.ErrMsg, type: 'success' });
                         EDITCOMMISSION.completeUpdate();
                     } else {
@@ -65,18 +66,18 @@ if (typeof jQuery != 'undefined') {
                     APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                 });
             },
-            completeUpdate: function (result) {
+            completeUpdate: function () {
                 setTimeout(function () {
-                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                    if (typeof (parent.MEMBERLIST) !== 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
                     }
-                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                    else if (typeof (parent.AGENTLIST) !== 'undefined') {
                         parent.AGENTLIST.loadAgentList();
                     }
                 }, 3000);
             }
-        }
-    } (jQuery);
+        };
+    } (jQuery));
 
     $(function () {
         settingContext.IsSimpleMode = isSimpleMode;

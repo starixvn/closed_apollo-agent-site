@@ -1,8 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
 /*global APOLLO*/
-
-var MENU = function ($) {
+'use strict';
+var MENU = (function ($) {
     return {
         menu: null,
         tabmenu: null,
@@ -29,8 +29,8 @@ var MENU = function ($) {
                 var isMember = $.cookie('searching-ismember');
 
                 var url = "Account/AccountInfo";
-                if ((custId != undefined || username != undefined) && isMember != undefined) {
-                    if ($.cookie('searching-id') != "-1" || username.length > 0) {
+                if ((custId !== undefined || username !== undefined) && isMember !== undefined) {
+                    if ($.cookie('searching-id') !== "-1" || username.length > 0) {
                         if (isMember.toBoolean()) {
                             url = 'Account/MemberInfo?custid=' + custId + '&username=' + username;
                         }
@@ -57,7 +57,7 @@ var MENU = function ($) {
 
         loadAgentList: function () {
 
-            var html = MENU.downlineDetailsPolicy == "1" ? "a" : "span";
+            var html = MENU.downlineDetailsPolicy === "1" ? "a" : "span";
 
             var agentList = $("#agent-list");
             if (agentList.length > 0) {
@@ -73,7 +73,7 @@ var MENU = function ($) {
             }
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     MENU.init();
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     if (activeMenuItemIdx) {
         MENU.menu.children('.menu-item').each(function (idx) {
-            if (idx == activeMenuItemIdx) {
+            if (idx === activeMenuItemIdx) {
                 $(this).addClass('active');
             }
             else {

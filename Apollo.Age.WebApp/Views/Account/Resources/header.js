@@ -4,8 +4,12 @@
 * Don@20100616 - Refactor user message function: use JSON format for processing ajax response
 */
 // Scroller message _page.section ------------------
+/*global LANGUAGES*/
+/*global DEFAULTS*/
+/*global APOLLO*/
+'use strict';
 AGE.prototype.ApplyScroller = function () {
-    if (typeof this.scroller_left != 'undefined') return; // Apply first time only
+    if (typeof this.scroller_left != 'undefined') { return; } // Apply first time only
     this.scroller_left = -100;
     this.scroller_width = 0;
 
@@ -25,7 +29,7 @@ AGE.prototype.ApplyScroller = function () {
     this.maskWidth = parseInt(text_news.offsetWidth);
 
     this.Scrolling();
-}
+};
 
 var isTimeout = false;
 
@@ -45,7 +49,7 @@ AGE.prototype.Scrolling = function () {
     //        return;
     //    }
 
-    if (age.scrollerPaused) return;
+    if (age.scrollerPaused) { return; }
 
     if (age.scroller_left + age.scroller_width < -5) {
         age.scroller_left = age.maskWidth - 90;
@@ -55,8 +59,8 @@ AGE.prototype.Scrolling = function () {
     age.scroller.style.left = (age.scroller_left--) + 'px';
     setTimeout(age.Scrolling, 20);
 
-    if (isTimeout) return;
-}
+    if (isTimeout) { return; }
+};
 
 // Balloon tip and message functions
 var timeOutId;
@@ -180,7 +184,7 @@ function SetContentPopupTop(content) {
 
 // Hide Tooltip after 5s
 function HideTooltipIntroNickname() {
-    if (document.getElementById('tooltip_box') != null) setTimeout("document.getElementById('tooltip_box').style.display ='none'", 10000);
+    if (document.getElementById('tooltip_box') != null) { setTimeout(function () { document.getElementById('tooltip_box').style.display = 'none'; }, 10000); }
 }
 
 // Start up
@@ -201,7 +205,7 @@ function Change2Menu(url) {
 
 // Clear active tab
 function ClearActiveTab() {
-    if (currentTab) currentTab.className = "";
+    if (currentTab) { currentTab.className = ""; }
 }
 
 function SelectTopMenu(url) {
@@ -214,7 +218,7 @@ function SelectTopMenu(url) {
 
     var start = mainUrl.lastIndexOf('/');
     var end = mainUrl.lastIndexOf('?');
-    if (end == -1) end = mainUrl.length;
+    if (end == -1) { end = mainUrl.length; }
     var name = mainUrl.substring(start + 1, end);
 
     //if (currentTab) currentTab.className = "";
@@ -243,13 +247,13 @@ function SelectTopMenu(url) {
             break;
     }
 
-    if (currentTab) currentTab.className = "active";
-    else ClearActiveTab();
+    if (currentTab) { currentTab.className = "active"; }
+    else { ClearActiveTab(); }
 }
 
 RegisterStartUp(InitHeader);
 
-var HEADER = function ($) {
+var HEADER = (function ($) {
     return {
         IsLoadTreeView: false,
 
@@ -463,4 +467,4 @@ var HEADER = function ($) {
             });
         }
     };
-} (jQuery);
+} (jQuery));

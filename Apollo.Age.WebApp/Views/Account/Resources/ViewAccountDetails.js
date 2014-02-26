@@ -1,10 +1,10 @@
 ﻿/* File Created: June 27, 2013 */
-
+'use strict';
 var VIEWACCOUNTDETAILS = (function ($) {
     return {
         init: function () {
             $('#back-link').unbind('click').bind('click', function () {
-                if ($('#BackLink').val() != '') {
+                if ($('#BackLink').val() !== '') {
                     window.location.href = $('#BackLink').val();
                     
                 }

@@ -1,9 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var VIEWCOMM = function ($) {
-    var userName = null;
-    var isMember = null;
-
+/*global APOLLO*/
+'use strict';
+var VIEWCOMM = (function ($) {
     return {
         init: function () {
             VIEWCOMM.userName = $("#Username");
@@ -37,7 +35,7 @@ var VIEWCOMM = function ($) {
                                     label: item.Username,
                                     value: item.Username,
                                     id: item.Id
-                                }
+                                };
                             });
 
                             return response(found);
@@ -53,8 +51,8 @@ var VIEWCOMM = function ($) {
                 position: { my: "right top", at: "right bottom" }
             });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(document).ready(function () {
     $.blockUI();

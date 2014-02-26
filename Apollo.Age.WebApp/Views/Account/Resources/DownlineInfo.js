@@ -1,7 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
-
-var DOWNLINE = function ($) {
+/*global APOLLO*/
+'use strict';
+var DOWNLINE = (function ($) {
     return {
         initAgentdownline: function () { 
             $('#treeview_list').on('click', '.view-agentinfo', function () {
@@ -28,4 +29,4 @@ var DOWNLINE = function ($) {
             });
         }
     };
-} (jQuery);
+} (jQuery));

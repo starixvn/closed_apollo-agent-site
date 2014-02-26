@@ -1,6 +1,11 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var MEMBERLIST = function ($) {
+/*global LANGUAGES*/
+/*global APOLLO*/
+/*global DEFAULTS*/
+/*global BASELANGUAGES*/
+/*global ACCOUNTLIST*/
+'use strict';
+var MEMBERLIST = (function ($) {
     return {
         AgentId: null,
         currentPopUp: null,
@@ -213,6 +218,7 @@ var MEMBERLIST = function ($) {
                     cssClass: 'member-list'
                 }
             };
+
             function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
                 $.ajax({
                     type: "POST",
@@ -240,7 +246,7 @@ var MEMBERLIST = function ($) {
             MEMBERLIST.bindingEdit();
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     MEMBERLIST.init();

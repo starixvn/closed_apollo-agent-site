@@ -125,9 +125,7 @@ var AGENTLIST = (function ($) {
             AGENTLIST.currentPopUp = APOLLO.openDialogFrame(url, LANGUAGES.PopUpTitle + $this.attr('username'), {
                 width: 980,
                 height: 470,
-                position: { my: "top+25%", at: "center top", of: window },
-                close: function (event, ui) {
-                }
+                position: { my: "top+25%", at: "center top", of: window }
             });
         },
         bindingEdit: function () {
@@ -305,7 +303,7 @@ var AGENTLIST = (function ($) {
                 }
             };
 
-            function ReRenderAfterPaged(pageIndex, itemsPerPage, jq) {
+            function ReRenderAfterPaged(pageIndex, itemsPerPage) {
                 $.ajax({
                     type: "POST",
                     url: APOLLO.resolveUrl("Account/GetAgentList"),
