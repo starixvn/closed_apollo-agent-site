@@ -449,8 +449,8 @@ var HEADER = (function ($) {
         activeMenu: function () {
             var toolbarMenu = $('.toolbar ul li a');
             toolbarMenu.on('click', function () {
-                $this = $(this);
-                $iframe = parent.$('.mainpage iframe');
+                var $this = $(this);
+                var $iframe = parent.$('.mainpage iframe');
 
                 var currentSubUrl = $this.attr('url');
 

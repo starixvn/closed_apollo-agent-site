@@ -1,6 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var TOTALBETS = function ($) {
+/*global DEFAULT_LAYOUT*/
+/*global APOLLO*/
+'use strict';
+var TOTALBETS = (function ($) {
     return {
         initViewForeCastHandicap: function () {
             $(".tblRpt").on("click", "input.view-forecast", function () {
@@ -126,7 +128,7 @@ var TOTALBETS = function ($) {
             window.location.href = window.location.href;
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(function () {
     $.blockUI();

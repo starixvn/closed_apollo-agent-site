@@ -1,13 +1,18 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-if (typeof jQuery != 'undefined') {
-    var SCOREMAP = function ($) {
+/*global DEFAULT_OBJECT*/
+/*global DEFAULT_LAYOUT*/
+/*global APOLLO*/
+/*global ageMsg*/
+'use strict';
+if (typeof jQuery !== 'undefined') {
+    var SCOREMAP = (function ($) {
         return {
             baseLink: APOLLO.resolveUrl('Forecast/'),
             viewPartial: false,
             init: function () {
                 //// Cached jQuery Objects
                 var matchIds = $('#match-ids').val();
-                if (matchIds != "") {
+                if (matchIds !== "") {
                     $("#header_main").hide();
                     SCOREMAP.viewPartial = true;
                     SCOREMAP.loadBetTypesList(matchIds);
@@ -36,7 +41,7 @@ if (typeof jQuery != 'undefined') {
                     $.get(url, function (contentView) {
                         $("#BoxMatchWL").replaceWith(contentView);
                         if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-                            $("#BoxMatchWL").css("top", "124px");                            
+                            $("#BoxMatchWL").css("top", "124px");
                         }
                         SCOREMAP.registerCheckAll("#chLCheckAll", ".match-item");
                         $("#closeBoxMatch").click(function () {
@@ -59,7 +64,7 @@ if (typeof jQuery != 'undefined') {
                     $("#match-ids").val(matchIds);
 
                 }
-                if (matchIds == "") {
+                if (matchIds === "") {
                     $('#msgMatchErr').text(DEFAULT_OBJECT.plsChooseMatch);
                     $('#tblMsgMatch').show();
                     return;
@@ -85,13 +90,12 @@ if (typeof jQuery != 'undefined') {
                 });
             },
             loadResults: function (betTypesLive, betTypesDead) {
-                if (betTypesLive || betTypesDead) {
-                }
-                else {
+                if (!betTypesLive && !betTypesDead) {
                     betTypesLive = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-live:checked'));
                     betTypesDead = SCOREMAP.getIdFromSelectedCheckBox($('.bet-type-deadball:checked'));
                 }
-                if (betTypesLive == "" && betTypesDead == "") {
+
+                if (betTypesLive === "" && betTypesDead === "") {
                     ageMsg.Show(DEFAULT_OBJECT.plsChooseBetType, 0);
                     $("#mainContent").html('');
                     return;
@@ -163,7 +167,7 @@ if (typeof jQuery != 'undefined') {
                 var $checkAll = $(checkAllId);
                 $checkAll.click(function () {
                     var $this = $(this);
-                    if ($this.prop("checked") == true) {
+                    if ($this.prop("checked") === true) {
                         $matchItems.prop("checked", true);
                     }
                     else {
@@ -173,22 +177,22 @@ if (typeof jQuery != 'undefined') {
 
                 $matchItems.click(function () {
                     var $matchItem = $(this);
-                    if ($matchItem.prop("checked") == false) {
+                    if ($matchItem.prop("checked") === false) {
                         $checkAll.prop("checked", false);
                     }
                     else {
-                        if ($matchItems.not(":checked").length == 0) {
+                        if ($matchItems.not(":checked").length === 0) {
                             $checkAll.prop("checked", true);
                         }
                     }
                 });
 
-                if (checkAll && SCOREMAP.viewPartial == false) {
+                if (checkAll && SCOREMAP.viewPartial === false) {
                     $checkAll.trigger("click");
                 }
             }
-        }
-    } (jQuery);
+        };
+    } (jQuery));
 
     $(function () {
         if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {

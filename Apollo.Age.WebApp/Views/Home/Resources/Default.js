@@ -1,7 +1,7 @@
 ﻿/*global APOLLO*/
 /*global LANGUAGES*/
-
-var MiniMenu = function ($) {
+'use strict';
+var MiniMenu = (function ($) {
     return {
         btnToggle: null,
         menu: null,
@@ -61,8 +61,8 @@ var MiniMenu = function ($) {
                 var isMember = $.cookie('searching-ismember');
                 var url = "Account/AccountInfo";
 
-                if ((custId != undefined || username != undefined) && isMember != undefined) {
-                    if ($.cookie('searching-id') != "-1" || username.length > 0) {
+                if ((custId !== undefined || username !== undefined) && isMember !== undefined) {
+                    if ($.cookie('searching-id') !== "-1" || username.length > 0) {
                         if (isMember.toBoolean()) {
                             url = 'Account/MemberInfo?custid=' + custId + '&username=' + username;
                         }
@@ -135,14 +135,14 @@ var MiniMenu = function ($) {
 
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
    
     window.IsApoRoot = true;   
 
     // Check IE7
-    if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) == 7) {
+    if (APOLLO.browser.msie && parseInt(APOLLO.browser.version, 10) === 7) {
         var windowHeight = $(window).height(),
         headerHeight = $('.header').height(),
         contentHeight = windowHeight - headerHeight + 1;

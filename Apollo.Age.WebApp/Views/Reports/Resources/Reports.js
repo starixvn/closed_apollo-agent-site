@@ -1,4 +1,5 @@
-﻿var REPORTS = function ($) {
+﻿'use strict';
+var REPORTS = (function ($) {
 	return {
 		init: function () {
 			$("#btnCancel").on('click', function () {
@@ -20,7 +21,7 @@
 			});
 		}
 	};
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
 	REPORTS.init();

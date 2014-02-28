@@ -1,7 +1,9 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var AssignFunction = function ($) {
-
+/*global APOLLO*/
+/*global Language*/
+'use strict';
+var AssignFunction = (function ($) {
+    
     return {
         grid: null,
         message: null,
@@ -29,7 +31,7 @@ var AssignFunction = function ($) {
             AssignFunction.grandParentAgentId = $('#GrandParentAgentId').val();
             AssignFunction.messageApplyDownline = Language.APPLYDOWNLINE;
 
-            if (AssignFunction.isMaster == "1") {
+            if (AssignFunction.isMaster === "1") {
                 AssignFunction.message = Language.CONFIRM_AGENT;
             }
             else {
@@ -52,7 +54,7 @@ var AssignFunction = function ($) {
                         funcHost += itemHost.val() + ",";
                     }
                     else {
-                        if (itemHost.val() != undefined) {
+                        if (itemHost.val() !== undefined) {
                             AssignFunction.unCheckHostValue += itemHost.val() + ",";
                         }
                     }
@@ -84,14 +86,14 @@ var AssignFunction = function ($) {
                 }
             });
 
-            if (AssignFunction.oldValue == (funcRead + funcHost)) {
+            if (AssignFunction.oldValue === (funcRead + funcHost)) {
                 APOLLO.showMessage(Language.NOCHANGE, 'success');
                 return;
             }
 
             AssignFunction.isApplyDownLine = AssignFunction.checkHasNewPermission(AssignFunction.unCheckReadValue, AssignFunction.unCheckHostValue, funcRead, funcHost);
 
-            if (AssignFunction.isApplyDownLine && AssignFunction.isMaster == "1") {
+            if (AssignFunction.isApplyDownLine && AssignFunction.isMaster === "1") {
                 var confirmMess = $("#confirm-mess");
                 confirmMess.dialog({
                     resizable: false,
@@ -109,7 +111,7 @@ var AssignFunction = function ($) {
                             $(this).dialog("close");
                         }
                     }
-                });               
+                });
             }
             else {
                 if (confirm(AssignFunction.message)) {
@@ -127,9 +129,9 @@ var AssignFunction = function ($) {
                 dataType: 'JSON',
                 data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId, IsApplyDownLine: isApplyDownLine },
                 success: function (res) {
-                    if (res.ErrCode == "-1") {
+                    if (res.ErrCode === "-1") {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                    } else if (res.ErrCode != "0") {
+                    } else if (res.ErrCode !== "0") {
                         APOLLO.showMessage(res.ErrMsg, 'error');
                     }
                     else {
@@ -141,8 +143,8 @@ var AssignFunction = function ($) {
                     $('#noty_top_layout_container').css({ width: "500px", left: "5px" });
 
                     setTimeout(function () {
-                        if (AssignFunction.isMaster == "1") {
-                            var url = AssignFunction.isDirectAgent == "1" ? "Account/AgentList" : "Account/IndirectAgentList?parentAgentId=" + (AssignFunction.grandParentAgentId != 0 ? AssignFunction.grandParentAgentId : AssignFunction.parentAgentId) + "&agentid=" + (AssignFunction.grandParentAgentId != 0 ? AssignFunction.parentAgentId : AssignFunction.agentId) + "";
+                        if (AssignFunction.isMaster === "1") {
+                            var url = AssignFunction.isDirectAgent === "1" ? "Account/AgentList" : "Account/IndirectAgentList?parentAgentId=" + (AssignFunction.grandParentAgentId !== 0 ? AssignFunction.grandParentAgentId : AssignFunction.parentAgentId) + "&agentid=" + (AssignFunction.grandParentAgentId !== 0 ? AssignFunction.parentAgentId : AssignFunction.agentId) + "";
 
                             location.href = APOLLO.resolveUrl(url);
                         }
@@ -172,8 +174,8 @@ var AssignFunction = function ($) {
                 }
             }
 
-            for (var i = 0; i < arrFuncHost.length; i++) {
-                var functionId = arrFuncHost[i];
+            for (var j = 0; j < arrFuncHost.length; j++) {
+                var functionId = arrFuncHost[j];
 
                 if (AssignFunction.findInArray(arrUnCheckHost, functionId)) {
                     return true;
@@ -185,29 +187,29 @@ var AssignFunction = function ($) {
         },
 
         findInArray: function (arr, value) {
-            if (value != null && value != "") {
+            if (value != null && value !== "") {
                 for (var i = 0; i < arr.length; i++) {
                     var item = arr[i];
-                    if (item != "" && item == value) {
+                    if (item !== "" && item === value) {
                         return true;
                     }
                 }
             }
             return false;
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(document).ready(function () {
 
     AssignFunction.init();
 
     AssignFunction.grid.find('[type=checkbox]').change(function () {
-        var $this = $(this),
-			thisIsChecked = $this.is(':checked'),
-			row = $this.parents('tr');
+        var $this = $(this);
+        var thisIsChecked = $this.is(':checked');
+        var row = $this.parents('tr');
 
-        if ($this.attr('name') == 'funcHost') {
+        if ($this.attr('name') === 'funcHost') {
             var funcRead = row.find('[type=checkbox][name=funcRead]');
             funcRead.prop('checked', true);
         } else { // funcRead

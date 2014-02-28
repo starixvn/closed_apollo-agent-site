@@ -1,6 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var Log = function ($) {
+/*global APOLLO*/
+/*global LogOpts*/
+'use strict';
+var Log = (function ($) {
 
     return {
 
@@ -106,7 +108,7 @@ var Log = function ($) {
                                     label: item.Username,
                                     value: item.Username,
                                     id: item.Id
-                                }
+                                };
                             });
 
                             return response(found);
@@ -118,23 +120,23 @@ var Log = function ($) {
             });
 
             Log.txtUsername.bind('click', function () {
-                if (Log.txtUsername.val() == Log.enterUsernameValue.val()) {
+                if (Log.txtUsername.val() === Log.enterUsernameValue.val()) {
                     Log.txtUsername.val('');
                 }
             });
             Log.txtUsername.bind('keydown', function () {
-                if (Log.txtUsername.val() == Log.enterUsernameValue.val()) {
+                if (Log.txtUsername.val() === Log.enterUsernameValue.val()) {
                     Log.txtUsername.val('');
                 }
             });
             Log.txtUsername.bind('blur', function () {
-                if (Log.txtUsername.val().length == 0) {
+                if (Log.txtUsername.val().length === 0) {
                     Log.txtUsername.val(Log.enterUsernameValue.val());
                 }
             });
         }
-    }
-} (jQuery);
+    };
+} (jQuery));
 
 $(document).ready(function () {
     Log.init();

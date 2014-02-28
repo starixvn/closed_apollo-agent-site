@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
-var MessagePortalPage = function ($) {
+/*global APOLLO*/
+'use strict';
+var MessagePortalPage = (function ($) {
 
     return {
 
@@ -248,7 +249,7 @@ var MessagePortalPage = function ($) {
         }
 
     }
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     MessagePortalPage.init();

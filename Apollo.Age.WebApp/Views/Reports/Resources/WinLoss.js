@@ -1,4 +1,7 @@
-﻿var WINLOSS = function ($) {
+﻿/*global APOLLO*/
+/*global LANGUAGES*/
+'use strict';
+var WINLOSS = (function ($) {
     return {
         FromDate: null,
         ToDate: null,
@@ -7,7 +10,7 @@
         ddlBettype: null,
 
         init: function () {
-            WINLOSS.BalanceUpDay = $("#balanceUpDay")
+            WINLOSS.BalanceUpDay = $("#balanceUpDay");
             WINLOSS.FromDate = $("#FromDate");
             WINLOSS.ToDate = $("#ToDate");
             WINLOSS.Today = $("#today");
@@ -39,10 +42,10 @@
                 var valueChange = $this.val();
                 var url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
 
-                if (valueChange == "-99") {
+                if (valueChange === "-99") {
                     url = APOLLO.resolveUrl('Reports/CreateParlayBettype');
                 }
-                else if (valueChange == "0") {
+                else if (valueChange === "0") {
                     url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=true');
                 }
                 else {
@@ -220,7 +223,7 @@
         }
 
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     // $.blockUI();

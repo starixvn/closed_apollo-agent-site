@@ -196,7 +196,7 @@ namespace Apollo.Age.Web
         /// </summary>
         private void CheckAuthentication()
         {
-            if (!Request.IsAuthenticated || CurrentSession == null)
+            if (!Request.IsAuthenticated || SessionManager.CurrentSession == null)
             {
                 Response.Redirect(ApoURLs.URLs.Unauthorized, false);
             }

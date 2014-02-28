@@ -156,29 +156,40 @@
                 for (var v = min; v <= max; v++) {
                     if (version > v) {
                         if (conf.browserCss["gt"])
+                        {
                             pushClass("gt-" + key + v);
+                        }
 
                         if (conf.browserCss["gte"])
+                        {
                             pushClass("gte-" + key + v);
-        }
+                        }
+                    }
                     
                     else if (version < v) {
                         if (conf.browserCss["lt"])
+                        {
                             pushClass("lt-" + key + v);
-                        
+                        }
                         if (conf.browserCss["lte"])
+                        {
                             pushClass("lte-" + key + v);
-        }
+                        }
+                    }
 
                     else if (version === v) {
                         if (conf.browserCss["lte"])
+                        {
                             pushClass("lte-" + key + v);
-                        
+                        }
                         if (conf.browserCss["eq"])
+                        {
                             pushClass("eq-" + key + v);
-
+                        }
                         if (conf.browserCss["gte"])
+                        {
                             pushClass("gte-" + key + v);
+                        }
                     }
                 }
             }
@@ -246,29 +257,39 @@
         each(conf.screens, function (width) {
             if (iw > width) {
                 if (conf.screensCss["gt"])
+                {
                     pushClass("gt-" + width);
-                
+                }
                 if (conf.screensCss["gte"])
+                {
                     pushClass("gte-" + width);
+                }
             }
 
             else if (iw < width) {
                 if (conf.screensCss["lt"])
+                {
                     pushClass("lt-" + width);
-                
+                }
                 if (conf.screensCss["lte"])
+                {
                     pushClass("lte-" + width);
+                }
             }
 
             else if (iw === width) {
                 if (conf.screensCss["lte"])
+                {
                     pushClass("lte-" + width);
-
+                }
                 if (conf.screensCss["eq"])
+                {
                     pushClass("e-q" + width);
-
+                }
                 if (conf.screensCss["gte"])
+                {
                     pushClass("gte-" + width);
+                }
             }
         });
         
@@ -1007,7 +1028,7 @@
             doc.detachEvent("onreadystatechange", domContentLoaded);
             domReady();
         }
-    };
+    }
 
     // Catch cases where ready() is called after the browser event has already occurred.
     // we once tried to use readyState "interactive" here, but it caused issues like the one

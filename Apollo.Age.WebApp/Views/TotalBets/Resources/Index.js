@@ -1,4 +1,4 @@
-﻿
+﻿'use strict';
 var TotalBetsIndex = (function ($) {
     return {
         menu: null,
@@ -34,7 +34,7 @@ $(function () {
         $(this).parents('.sub-menu').toggle();
     })
     .on('mouseleave', function () {
-        TotalBetsIndex.moreMenuTimer = setTimeout("TotalBetsIndex.moreMenu.hide()", 500);
+        TotalBetsIndex.moreMenuTimer = setTimeout(function () { TotalBetsIndex.moreMenu.hide(); }, 500);
     })
     .on('mouseenter', '.sub-menu', function () {
         if (TotalBetsIndex.moreMenuTimer) {

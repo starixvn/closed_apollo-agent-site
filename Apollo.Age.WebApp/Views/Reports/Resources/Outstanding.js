@@ -1,4 +1,7 @@
-﻿var OUTSTANDING = function ($) {
+﻿/*global APOLLO*/
+/*global LANGUAGES*/
+'use strict';
+var OUTSTANDING = (function ($) {
     return {
         ddlSport: null,
         ddlBettype: null,
@@ -21,10 +24,10 @@
                 var valueChange = $this.val();
                 var url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=false');
 
-                if (valueChange == "-99") {
+                if (valueChange === "-99") {
                     url = APOLLO.resolveUrl('Reports/CreateParlayBettype');
                 }
-                else if (valueChange == "0") {
+                else if (valueChange === "0") {
                     url = APOLLO.resolveUrl('Reports/CreateBetType?isIncludeParlay=true');
                 }
                 else {
@@ -126,7 +129,6 @@
         viewBetList: function () {
             OUTSTANDING.sportTypeName = OUTSTANDING.SportName.val();
             OUTSTANDING.betTypeName = OUTSTANDING.BettypeName.val();
-            var username = $(this).closest('tr').children('td:first').text();
             var url = APOLLO.resolveUrl("BetList/Outstanding?custId=" + $(this).attr("data-custid")
             + "&sporttype=" + OUTSTANDING.hdSportType.val()
             + "&username=" + $(this).attr("data-username")
@@ -170,7 +172,7 @@
                 columns: [
                          { HeaderText: "", Width: 200, Name: "Member", HeaderAlign: "center", CellAlign: "left",
                              CustomCellRender: function (cell) {
-                                 return (cell.Value.Outstanding != 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' data-username='" + cell.Value.UserName + "'>" + cell.Value.UserName + "</a>" : cell.Value.UserName);
+                                 return (cell.Value.Outstanding !== 0 ? "<a href='javascript:;' class='act-view-betlist' mainShareHolderId='" + outstandingData.MainShareHolderId + "'  mainShareHolderUsername='" + outstandingData.MainShareHolderUsername + "' data-custid='" + cell.Value.UserId + "' title='" + LANGUAGES.ViewBetlist + "' data-username='" + cell.Value.UserName + "'>" + cell.Value.UserName + "</a>" : cell.Value.UserName);
                              }
                          },
                         { HeaderText: LANGUAGES.Outstanding, Width: 289, Name: "Outstanding", HeaderAlign: "center", CellAlign: "right", FormatNumber: "0,0.00" },
@@ -196,7 +198,7 @@
             $("#navigationMember").show();
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     //$.blockUI();

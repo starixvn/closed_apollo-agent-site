@@ -1,4 +1,5 @@
-﻿
+﻿/*global APOLLO*/
+'use strict';
 if (typeof jQuery !== 'undefined') {
     $(document).ready(function () {
         if (typeof APOLLO !== 'undefined') {

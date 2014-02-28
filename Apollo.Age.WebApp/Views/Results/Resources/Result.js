@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
-
+/*global APOLLO*/
+'use strict';
 var Result = (function () {
     var ddlSport;
     var ddlLeague;
@@ -21,19 +22,19 @@ var Result = (function () {
         bindMatchLeague: function () {
             // if sport id is undefined select first sportid of Sport selection
             var _sportId = ddlSport.val();
-            if (sportId != _sportId) {
+            if (sportId !== _sportId) {
                 sportId = _sportId;
             }
             if (ddlLeague.length > 0) {
-                if (sportId != undefined) {
+                if (sportId !== undefined) {
                     ddlLeague.attr('disabled', true);
                     $.getJSON(APOLLO.resolveUrl("~/Results/GetLeagueBySport"), { "date": date, "sportTypes": sportTypes, "sportId": sportId })
                         .done(function (data) {
                             // clean and rebind with data get by new selected sportid
-                            if (data[0].Id != -1) {
+                            if (data[0].Id !== -1) {
                                 ddlLeague.empty();
                                 $.each(data, function (i, item) {
-                                    if (i == 0) {
+                                    if (i === 0) {
                                         leagueId = item.Id;
                                     }
                                     ddlLeague.append($('<option>', {
@@ -57,10 +58,10 @@ var Result = (function () {
         bindMatchSport: function () {
             $.getJSON(APOLLO.resolveUrl("~/Results/GetSportByMatch"), { "date": date, "sportTypes": sportTypes })
                         .done(function (data) {
-                            if (data[0].Id != -1) {
+                            if (data[0].Id !== -1) {
                                 ddlSport.empty();
                                 $.each(data, function (i, item) {
-                                    if (i == 0) {
+                                    if (i === 0) {
                                         sportId = item.Id;
                                     }
                                     ddlSport.append($('<option>', {
@@ -82,10 +83,10 @@ var Result = (function () {
         bindOutrightSport: function () {
             $.getJSON(APOLLO.resolveUrl("~/Results/GetSportOutright"), { "date": date })
             .done(function (data) {
-                if (data[0].Id != -1) {
+                if (data[0].Id !== -1) {
                     ddlSport.empty();
                     $.each(data, function (i, item) {
-                        if (i == 0) {
+                        if (i === 0) {
                             sportId = item.Id;
                         }
                         ddlSport.append($('<option>', {
@@ -140,8 +141,8 @@ var Result = (function () {
         },
         filterByDateChanging: function () {
             $("#filterbydate").on("click", function () {
-                $this = $(this);
-                if ($this.attr("value") == $("#todayValue").val()) // compare with yesterdate
+                var $this = $(this);
+                if ($this.attr("value") === $("#todayValue").val()) // compare with yesterdate
                 {
                     $this.html($("#lbltoday").val());
                     $this.attr("value", $("#yesterdayValue").val());
@@ -151,7 +152,7 @@ var Result = (function () {
                     $this.attr("value", $("#todayValue").val());
                 }
                 date = $this.attr("value");
-                $action = $this.attr("action");
+                var $action = $this.attr("action");
                 switch ($action) {
                     case "0":
                         {
@@ -237,7 +238,7 @@ var Result = (function () {
             $("#filterResultLeague").hide();
             Result.bindOutrightSport();
         }
-    }
+    };
 })();
 
 $(function () {

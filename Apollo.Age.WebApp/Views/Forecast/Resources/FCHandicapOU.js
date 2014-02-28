@@ -1,6 +1,10 @@
 ﻿/* File Created: April 3, 2013 */
-if (typeof jQuery != 'undefined') {
-    var FCHANDICAPOU = function ($) {
+/*global DEFAULT_OBJECT*/
+/*global DEFAULT_LAYOUT*/
+/*global APOLLO*/
+'use strict';
+if (typeof jQuery !== 'undefined') {
+    var FCHANDICAPOU = (function ($) {
         return {
             currentLeague: 0,
             currentLeagueName: DEFAULT_OBJECT.leagueName,
@@ -24,7 +28,7 @@ if (typeof jQuery != 'undefined') {
             .off("click")
             .on("click", ".view-forecast-detail", function () {
                 var $this = $(this);
-                if (countDownTimer != null) clearTimeout(countDownTimer);
+                if (countDownTimer != null) { clearTimeout(countDownTimer); }
                 var url = APOLLO.resolveUrl('Forecast/ForecastByMatch?matchId=' + $this.attr("match-id")
                     + '&betType=' + $this.attr("bet-type")
                     + '&leagueName=' + FCHANDICAPOU.currentLeagueName);
@@ -40,15 +44,6 @@ if (typeof jQuery != 'undefined') {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
                 });
-
-//                ageWnd.openDialog(url, DEFAULT_LAYOUT.forecastString, {
-//                    width: 680,
-//                    height: 350,
-//                    position: { my: "top+50", at: "center top", of: window },
-//                    close: function (event, ui) {
-//                        countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
-//                    }
-//                });
             });
             },
             changeLeague: function () {
@@ -57,8 +52,8 @@ if (typeof jQuery != 'undefined') {
                 $("#forecast-body").load(url);
                 FCHANDICAPOU.registerEvents();
             }
-        }
-    } (jQuery);
+        };
+    } (jQuery));
 
     $(function () {
         if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
@@ -72,7 +67,7 @@ if (typeof jQuery != 'undefined') {
 
         FCHANDICAPOU.init();
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-};
+}
 
 
 function UpdateForecastHDValue() {
