@@ -1,7 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
+/*global BASELANGUAGES*/
+/*global APOLLO*/
+'use strict';
 var FUNDOUT = function ($) {
-
-
     return {
         memberId: 0,
         oldSportCredit: 0,
@@ -16,7 +17,7 @@ var FUNDOUT = function ($) {
             $('#btnSubmit').on('click', function () {
 
                 FUNDOUT.newSportCredit = $('#txtSportCredit').val();
-                if (FUNDOUT.newSportCredit == '' || FUNDOUT.newSportCredit == null ||
+                if (FUNDOUT.newSportCredit === '' || FUNDOUT.newSportCredit == null ||
                     FUNDOUT.newSportCredit > FUNDOUT.oldSportCredit || 
                     FUNDOUT.newSportCredit <= 0) {
                     alert(BASELANGUAGES.fundoutamountmessage.replace('{0}', FUNDOUT.oldSportCredit));
@@ -34,7 +35,7 @@ var FUNDOUT = function ($) {
                         memberId: FUNDOUT.memberId
                     })
                 }).done(function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         parent.location.reload();                    
                     } else {                      
                         alert(data.ErrMsg);

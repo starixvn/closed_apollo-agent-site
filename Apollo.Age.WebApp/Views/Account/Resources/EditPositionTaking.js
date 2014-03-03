@@ -3,7 +3,7 @@
 /*global DEFAULT_LAYOUT*/
 /*global Language*/
 'use strict';
-if (typeof jQuery != 'undefined') {
+if (typeof jQuery !== 'undefined') {
     var EDITPOSITIONTAKING = (function ($) {
         return {
             settingContext: null,
@@ -23,7 +23,7 @@ if (typeof jQuery != 'undefined') {
 
 
                 if (isSimpleMode) {
-                    var simpleModeWidthClass = settingContext.TargetRoleId == 2 ? "simple-mode-share-setting-preset-width" : "simple-mode-share-setting-width";
+                    var simpleModeWidthClass = settingContext.TargetRoleId === 2 ? "simple-mode-share-setting-preset-width" : "simple-mode-share-setting-width";
                     $("#page_main").removeClass("advanced-mode-share-setting-width").addClass(simpleModeWidthClass);
                     $("#simple-mode").hide();
                     $("#advanced-mode").show();
@@ -69,15 +69,15 @@ if (typeof jQuery != 'undefined') {
                             return;
                         }
 
-                        if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        if (settingContext.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
                             var confirmMember = confirm(Language.CONFIRM_WRITE_MEMBER);
-                            if (confirmMember == true) {
+                            if (confirmMember === true) {
                                 EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
                             }
                         }
                         else {
                             var confirmAgent = confirm(Language.CONFIRM_WRITE_AGENT);
-                            if (confirmAgent == true) {
+                            if (confirmAgent === true) {
                                 EDITPOSITIONTAKING.updatePositionTakingSetting(postionTakingValue);
                             }
                             //                            $.ajax({
@@ -111,7 +111,7 @@ if (typeof jQuery != 'undefined') {
                 });
 
                 $("#btnCancelFooter").unbind('click').click(function () {
-                    if (DEFAULT_LAYOUT.fromLeftMenu == true) {
+                    if (DEFAULT_LAYOUT.fromLeftMenu === true) {
                         window.location.href = $('#backUrl').val();
                     }
                     else {
@@ -155,21 +155,21 @@ if (typeof jQuery != 'undefined') {
                     cache: false,
                     headers: APOLLO.addAntiForgeryToken({})
                 }).done(function (data) {
-                    if (data.ErrCode == 0) {
+                    if (data.ErrCode === 0) {
                         //noty({ text: data.ErrMsg, type: 'success' });
                         EDITPOSITIONTAKING.completeUpdate();
                     } else {
-                        try { $.unblockUI(); } catch (e) { };
+                        try { $.unblockUI(); } catch (e) { }
                         var mainMessage = data.ErrMsg;
-                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
                             var arrayMessage = data.ErrMsg.split('##'),
                                     errorMessage = '',
                                     successMessage = '';
                             for (var i = 0; i < arrayMessage.length; i++) {
                                 var innerMessage = arrayMessage[i];
-                                if (i == 0) {
+                                if (i === 0) {
                                     $.each(innerMessage.split(';'), function (i, val) {
-                                        if (val != '') {
+                                        if (val !== '') {
                                             errorMessage += ' + ' + val + '<br/>';
                                         }
                                     });
@@ -177,14 +177,14 @@ if (typeof jQuery != 'undefined') {
                                 }
                                 else {
                                     $.each(innerMessage.split(';'), function (i, val) {
-                                        if (val != '') {
+                                        if (val !== '') {
                                             successMessage += ' + ' + val + '<br/>';
                                         }
                                     });
                                 }
                             }
                             mainMessage = Language.UPDATE_ERROR + '<br/>' + errorMessage;
-                            if (successMessage != '') {
+                            if (successMessage !== '') {
                                 mainMessage += '<br/><div class="successMessage">' + Language.UPDATE_MULTIPLE_SUCCESS + '<br/>' + successMessage + '</div>';
                             }
 
@@ -195,7 +195,7 @@ if (typeof jQuery != 'undefined') {
                         }
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    if (jqXHR.status == 403) {
+                    if (jqXHR.status === 403) {
                         location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                     }
                     else {
@@ -206,14 +206,14 @@ if (typeof jQuery != 'undefined') {
                             APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                         }
                     }
-                    try { $.unblockUI(); } catch (e) { };
+                    try { $.unblockUI(); } catch (e) { }
                 });
             },
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
 
                 //setTimeout(function () {
-                try { $.unblockUI(); } catch (e) { };
+                try { $.unblockUI(); } catch (e) { }
                 if (DEFAULT_LAYOUT.reload) {
                     var url = window.location.href;
                     if (url.indexOf("&isSimpleMode=") > 0) {

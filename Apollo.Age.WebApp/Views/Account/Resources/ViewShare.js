@@ -27,7 +27,7 @@ var VIEWSHARE = (function ($) {
                 var arrSport = sportId.split("-");
 
                 VIEWSHARE.betType.prop('disabled', 'disabled');
-                $.getJSON(APOLLO.resolveUrl("CustomerSetting/GetBetType"), { "sportId": arrSport[1], "isMixSportParlay": (arrSport[0] == "1") })
+                $.getJSON(APOLLO.resolveUrl("CustomerSetting/GetBetType"), { "sportId": arrSport[1], "isMixSportParlay": (arrSport[0] === "1") })
                     .done(function (data) {
                         // clean and rebind with data get by new selected sportid
                         VIEWSHARE.betType.empty();
@@ -85,12 +85,12 @@ var VIEWSHARE = (function ($) {
                 if (VIEWSHARE.isMember.val().toBoolean()) {
                     url = APOLLO.resolveUrl('CustomerSetting/MemberShare?memberId=' + custId + '&userName='
                             + username + "&sportType=" + arrSport[1] + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] == "1") + "&isMixSportParlay=" + (arrSport[0] == "1"));
+                            + "&isLive=" + (arrBetType[0] === "1") + "&isMixSportParlay=" + (arrSport[0] === "1"));
                 }
                 else {
                     url = APOLLO.resolveUrl('CustomerSetting/AgentShare?agentId=' + custId + '&userName='
                             + username + "&sportType=" + arrSport[1] + "&betType=" + arrBetType[1]
-                            + "&isLive=" + (arrBetType[0] == "1") + "&isMixSportParlay=" + (arrSport[0] == "1"));
+                            + "&isLive=" + (arrBetType[0] === "1") + "&isMixSportParlay=" + (arrSport[0] === "1"));
                 }
 
                 if (url.length > 0) {

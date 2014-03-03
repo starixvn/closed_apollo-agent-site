@@ -489,64 +489,64 @@ var grid = {
             }]
         }]
     }
-//    , {
-//        Id: 161,
-//        Name: 'Number Game',
-//        IsLive: false,
-//        BetTypeGroups: [{
-//            BetTypes: [{
-//                Id: 81,
-//                Name: '1st/Last O/U',
-//                Pt: pt
-//            }, {
-//                Id: 83,
-//                Name: '1st/Last O/E',
-//                MinWidth: 140,
-//                Pt: pt
-//            }, {
-//                Id: 88,
-//                Name: 'Warrior',
-//                MinWidth: 140,
-//                Pt: pt
-//            }, {
-//                Id: 86,
-//                Name: 'Odd/Even',
-//                MinWidth: 140,
-//                Pt: pt
-//            }]
-//        }]
-//    },
-//     {
-//         Id: 161,
-//         Name: 'Number Game',
-//         IsLive: true,
-//         BetTypeGroups: [{
-//             BetTypes: [{
-//                 Id: 85,
-//                 Name: 'Over/Under',
-//                 Pt: pt
-//             }, {
-//                 Id: 86,
-//                 Name: 'Odd/Even',
-//                 MinWidth: 140,
-//                 Pt: pt
-//             }, {
-//                 Id: 87,
-//                 Name: 'High/Low',
-//                 MinWidth: 140,
-//                 Pt: pt
-//             }, {
-//                 Id: 89,
-//                 Name: 'Next Combo',
-//                 MinWidth: 140,
-//                 Pt: pt
-//             }, {
-//                 Id: 90,
-//                 Name: 'Number Group',
-//                 MinWidth: 140,
-//                 Pt: pt
-//             }]
-//         }]
-//     }
+    //    , {
+    //        Id: 161,
+    //        Name: 'Number Game',
+    //        IsLive: false,
+    //        BetTypeGroups: [{
+    //            BetTypes: [{
+    //                Id: 81,
+    //                Name: '1st/Last O/U',
+    //                Pt: pt
+    //            }, {
+    //                Id: 83,
+    //                Name: '1st/Last O/E',
+    //                MinWidth: 140,
+    //                Pt: pt
+    //            }, {
+    //                Id: 88,
+    //                Name: 'Warrior',
+    //                MinWidth: 140,
+    //                Pt: pt
+    //            }, {
+    //                Id: 86,
+    //                Name: 'Odd/Even',
+    //                MinWidth: 140,
+    //                Pt: pt
+    //            }]
+    //        }]
+    //    },
+    //     {
+    //         Id: 161,
+    //         Name: 'Number Game',
+    //         IsLive: true,
+    //         BetTypeGroups: [{
+    //             BetTypes: [{
+    //                 Id: 85,
+    //                 Name: 'Over/Under',
+    //                 Pt: pt
+    //             }, {
+    //                 Id: 86,
+    //                 Name: 'Odd/Even',
+    //                 MinWidth: 140,
+    //                 Pt: pt
+    //             }, {
+    //                 Id: 87,
+    //                 Name: 'High/Low',
+    //                 MinWidth: 140,
+    //                 Pt: pt
+    //             }, {
+    //                 Id: 89,
+    //                 Name: 'Next Combo',
+    //                 MinWidth: 140,
+    //                 Pt: pt
+    //             }, {
+    //                 Id: 90,
+    //                 Name: 'Number Group',
+    //                 MinWidth: 140,
+    //                 Pt: pt
+    //             }]
+    //         }]
+    //     }
 ]
-}
+};

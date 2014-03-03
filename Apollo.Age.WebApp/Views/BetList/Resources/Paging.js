@@ -88,7 +88,7 @@ Paging.prototype.SetPageSize = function (size) {
     if (size <= 0 || this.rowcount <= 0) { return; }
     this.pagesize = size;
     this.currentindex = 1;
-    this.pagecount = Math.floor(this.rowcount / this.pagesize) + (this.rowcount % this.pagesize == 0 ? 0 : 1);
+    this.pagecount = Math.floor(this.rowcount / this.pagesize) + (this.rowcount % this.pagesize === 0 ? 0 : 1);
 
     var el = document.getElementById(this.id);
 
@@ -111,21 +111,21 @@ Paging.prototype.UpdateUrl = function(url)
 } ;
 
 Paging.prototype.RemoveBookmarksInUrl = function (url) {
-    if (typeof url != 'string') { return null; }
+    if (typeof url !== 'string') { return null; }
     var i = url.indexOf('#');
-    if (i == -1) { return url; }
+    if (i === -1) { return url; }
     return url.substr(0, i);
 };
 
 Paging.prototype.DoEnter = function(evt, action) {
     if (isIE()) {
-        if (window.event.keyCode == 13) {
+        if (window.event.keyCode === 13) {
             eval(action);
             Paging_stopEvent(evt);
         }
     }
     else {
-        if (evt.keyCode == 13) {
+        if (evt.keyCode === 13) {
             eval(action);
             Paging_stopEvent(evt);
         }
@@ -172,15 +172,15 @@ function Paging_SetDisableStyle(id)
 // Library functions
 
 function HasClassName(element, className) {
-    if (typeof element == 'string') { element = document.getElementById(element); }
+    if (typeof element === 'string') { element = document.getElementById(element); }
     var elementClassName = element.className;
-    if (typeof elementClassName == 'undefined') { return false; }
-    return (elementClassName.length > 0 && (elementClassName == className ||
+    if (typeof elementClassName === 'undefined') { return false; }
+    return (elementClassName.length > 0 && (elementClassName === className ||
   new RegExp("(^|\\s)" + className + "(\\s|$)").test(elementClassName)));
 }
 
 function AddClassName(element, className) {
-    if (typeof element == 'string') { element = document.getElementById(element); }
+    if (typeof element === 'string') { element = document.getElementById(element); }
     if (!HasClassName(element, className)) {
         element.className += (element.className ? ' ' : '') + className;
     }
@@ -188,16 +188,16 @@ function AddClassName(element, className) {
 }
 
 function RemoveClassName(element, className) {
-    if (typeof element == 'string') { element = document.getElementById(element); }
+    if (typeof element === 'string') { element = document.getElementById(element); }
     var elementClassName = element.className;
-    if (typeof elementClassName == 'undefined') { return false; }
+    if (typeof elementClassName === 'undefined') { return false; }
     element.className = element.className.replace(
   new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ');
     return element;
 }
 
 function Paging_addEvent(el, evname, func) {
-    if (typeof (el) == 'string') { el = document.getElementById(el); }
+    if (typeof (el) === 'string') { el = document.getElementById(el); }
 	if (el.attachEvent) { // IE
 		el.attachEvent("on" + evname, func);
 	} else if (el.addEventListener) { // Gecko / W3C
@@ -221,7 +221,7 @@ function Paging_stopEvent(ev) {
 
 String.prototype.contains = function(sub)
 {
-    return this.indexOf(sub, 0) != -1;
+    return this.indexOf(sub, 0) !== -1;
 } ;
 
 function SetParameterValue(name, value,  url)
@@ -262,7 +262,7 @@ function GetParameterValue(name, url)
     var parameter = separator + name + "=";
 
     var i1 = url.indexOf(parameter);
-    if (i1 == -1) { return null; }
+    if (i1 === -1) { return null; }
 
     var tmp = url.substr(i1);
     var i2 = tmp.indexOf("&", 1);

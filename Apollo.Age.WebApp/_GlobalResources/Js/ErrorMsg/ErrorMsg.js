@@ -117,7 +117,7 @@ AGEMsg.prototype.GenerateMessage = function (ArrCodes, ArrMsgs, ArrUserName, isA
 
 AGEMsg.prototype.CheckMessageIsSucc2 = function (ArrCodes) {
     for (var i = 0; i < ArrCodes.length; i++) {
-        if (ArrCodes[i] > 0 || ArrCodes[i] == -1) {
+        if (ArrCodes[i] > 0 || ArrCodes[i] === -1) {
             return false;
         }
     }

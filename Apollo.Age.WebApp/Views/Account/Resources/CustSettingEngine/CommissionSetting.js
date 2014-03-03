@@ -1,14 +1,15 @@
 ﻿/* File Created: February 26, 2013 */
 /// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
-
-if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
+/*global Language*/
+'use strict';
+if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
-if (typeof (Fanex.CustSetting) == 'undefined') { // Require Fanex.CustSetting namespace
+if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');
 }
-if (typeof (Validators) == 'undefined') { // Require Validators library
+if (typeof (Validators) === 'undefined') { // Require Validators library
     alert('Require validators library');
 }
 Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
@@ -22,21 +23,21 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.groupSelect = null;
     this.Save = function () {
         var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-        if (currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return {};
+        if (currentContext.FormId === Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) { return {}; }
 
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
         var editItems = [];
 
 
-        if (currentContext.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        if (currentContext.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             var currentGroupAValue = spinBoxItems[0].getValue();
             var currentGroupBValue = spinBoxItems[3].getValue();
             var currentGroupCValue = spinBoxItems[1].getValue();
             var currentGroupDValue = spinBoxItems[4].getValue();
-            if (items[0].DiscountA != currentGroupAValue
-            || items[0].DiscountB != currentGroupBValue
-            || items[0].DiscountC != currentGroupCValue) {
+            if (items[0].DiscountA !== currentGroupAValue
+            || items[0].DiscountB !== currentGroupBValue
+            || items[0].DiscountC !== currentGroupCValue) {
                 editItems.push({
                     SportId: items[0].SportId,
                     BetTypeId: items[0].BetTypeId,
@@ -47,7 +48,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var currentOthersValue = spinBoxItems[5].getValue();
-            if (items[1].DiscountA != currentOthersValue) {
+            if (items[1].DiscountA !== currentOthersValue) {
                 editItems.push({
                     SportId: items[1].SportId,
                     BetTypeId: items[1].BetTypeId,
@@ -55,7 +56,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var current1x2Value = spinBoxItems[2].getValue();
-            if (items[2].DiscountA != current1x2Value) {
+            if (items[2].DiscountA !== current1x2Value) {
                 editItems.push({
                     SportId: items[2].SportId,
                     BetTypeId: items[2].BetTypeId,
@@ -64,13 +65,13 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
             if (this.hasNumberGameSection) {
                 var currentGameValue = spinBoxItems[6].getValue();
-                if (items[3].DiscountA != currentGameValue) {
+                if (items[3].DiscountA !== currentGameValue) {
                     editItems.push({
                         SportId: items[3].SportId,
                         BetTypeId: items[3].BetTypeId,
                         DiscountA: currentGameValue
                     });
-                };
+                }
             }
         } else {
             if (!currentContext.CanEditComGroup) {
@@ -79,9 +80,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             else {
                 this.currentGroup = this.groupSelect.value;
             }
-            var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
+            var isEditMultiple = currentContext.FormId === Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
             var currentGroupValue = spinBoxItems[0].getValue();
-            if (items[0].Discount != currentGroupValue || isEditMultiple) {
+            if (items[0].Discount !== currentGroupValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[0].SportId,
                     BetTypeId: items[0].BetTypeId,
@@ -89,7 +90,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var currentOthersValue = spinBoxItems[2].getValue();
-            if (items[1].Discount != currentOthersValue || isEditMultiple) {
+            if (items[1].Discount !== currentOthersValue || isEditMultiple) {
                 editItems.push({
                     SportId: items[1].SportId,
                     BetTypeId: items[1].BetTypeId,
@@ -97,7 +98,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 });
             }
             var current1x2Value = spinBoxItems[1].getValue();
-            if (items[2].Discount != current1x2Value || isEditMultiple) {
+            if (items[2].Discount !== current1x2Value || isEditMultiple) {
                 editItems.push({
                     SportId: items[2].SportId,
                     BetTypeId: items[2].BetTypeId,
@@ -106,19 +107,19 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
             if (this.hasNumberGameSection) {
                 var currentGameValue = spinBoxItems[3].getValue();
-                if (items[3].Discount != currentGameValue || isEditMultiple) {
+                if (items[3].Discount !== currentGameValue || isEditMultiple) {
                     editItems.push({
                         SportId: items[3].SportId,
                         BetTypeId: items[3].BetTypeId,
                         Discount: currentGameValue
                     });
-                };
+                }
             }
 
         }
 
-        if (editItems.length == 0) {
-            if (typeof (this.currentGroup) != 'undefined' && this.currentGroup == this.oldGroup.toUpperCase()) {
+        if (editItems.length === 0) {
+            if (typeof (this.currentGroup) !== 'undefined' && this.currentGroup === this.oldGroup.toUpperCase()) {
                 this.currentGroup = undefined;
             }
         }
@@ -129,12 +130,12 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         };
     };
     this.Validate = function () {
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) return true;
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) { return true; }
 
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
 
-        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             if (!spinBoxItems[0].isValid()) {
                 return false;
             }
@@ -154,7 +155,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 return false;
             }
             if (this.hasNumberGameSection) {
-                if (!spinBoxItems[6].isValid()) return false;
+                if (!spinBoxItems[6].isValid()) { return false; }
             }
         } else {
             //            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
@@ -219,7 +220,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         }
         else if (group.indexOf("d") > -1 || group.indexOf("D") > -1) {
             uplineDiscount = groupCom.Upline.DiscountD;
-        };
+        }
 
         return {
             Discount: groupCom.Discount,
@@ -257,7 +258,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.RenderAgentCom = function (trBox, textName, discount, uplineDiscount, disable) {
         var tdTextBox = document.createElement("TD");
         var divText = document.createElement("DIV");
-        if (textName == Language.OTHERS_COM) {
+        if (textName === Language.OTHERS_COM) {
             divText.title = textName + ' :';
         }
         divText.className = "div-commission-text";
@@ -274,8 +275,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         comContainer.className = 'commission-spin-box';
         comContainer2.appendChild(comContainer);
         tdValue.appendChild(comContainer);
-        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING
-        || Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
+        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING
+        || Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
             comContainer.innerHTML = " " + discount;
         }
         else {
@@ -347,9 +348,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var saveButton = document.createElement("SPAN");
         saveButton.className = "section-info";
 
-        if (context.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+        if (context.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
             saveButton.id = "member-commission-info-button";
-        } else if (context.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+        } else if (context.TargetRoleId === Fanex.CustSetting.RoleType.MainShareHolder) {
 
             saveButton.id = "mainshareholder-commission-info-button";
         }
@@ -357,7 +358,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             saveButton.id = "agent-commission-info-button";
         }
 
-        if (context.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+        if (context.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING) {
             saveButton.id = "view-" + saveButton.id;
         }
         saveButton.id += (context.IsSimpleMode ? "" : "-adv");
@@ -373,8 +374,8 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
 
 
-        var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId != Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
-        if (context.TargetRoleId != Fanex.CustSetting.RoleType.Member) {
+        var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId !== Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
+        if (context.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
             box.appendChild(boxTBody);
             var trBox = document.createElement("TR");
@@ -487,7 +488,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     var currentValue = this.value;
                     var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
                     //groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;
-                    if (currentValue == 'D') {
+                    if (currentValue === 'D') {
                         maxSpan.innerHTML = self.currentDisableMaxSpanText;
                     }
                     else {
@@ -510,5 +511,5 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             container.appendChild(bodyContainer);
         }
         owner.appendChild(container);
-    }
+    };
 };

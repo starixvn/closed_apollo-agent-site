@@ -4,7 +4,7 @@
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
 'use strict';
-if (typeof jQuery != 'undefined') {
+if (typeof jQuery !== 'undefined') {
     var EDITSETTING = (function ($) {
         return {
             currentIsSimpleMode: true,
@@ -53,12 +53,12 @@ if (typeof jQuery != 'undefined') {
                 $('#btnCancelFooter').show();
 
                 EDITSETTING.maxBetLimit = maxBetLimit;
-                if (EDITSETTING.maxBetLimit == 0) {
+                if (EDITSETTING.maxBetLimit === 0) {
                     $("#betSettingInformationMessage").hide();
                 }
                 else {
                     $("#betSettingInformationMessage").show();
-                   // $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
+                    // $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
                 }
 
             },
@@ -73,31 +73,31 @@ if (typeof jQuery != 'undefined') {
                         betLimits: EDITSETTING.betLimitElement.Save()
                     };
 
-                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
-                    && dataObject.betLimits.length == 0
-                    && commissionSettingValue.CommissionItems.length == 0 && typeof (commissionSettingValue.UserGroup) == 'undefined') {
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId !== Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT
+                    && dataObject.betLimits.length === 0
+                    && commissionSettingValue.CommissionItems.length === 0 && typeof (commissionSettingValue.UserGroup) === 'undefined') {
                         APOLLO.showMessage(DEFAULT_LAYOUT.noChangeMessage, 'success');
                         return;
                     }
 
                     var stringConfirm = "";
-                    if (settingContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                    if (settingContext.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
                         stringConfirm = Language.CONFIRM_WRITE_MEMBER;
                     }
                     else {
                         stringConfirm = Language.CONFIRM_WRITE_AGENT;
                     }
                     var c = confirm(stringConfirm);
-                    if (c == false) {
+                    if (c === false) {
                         return;
                     }
 
                     var url = APOLLO.resolveUrl('CustomerSetting/');
-                    if (typeof (DEFAULT_OBJECT.memberId) != 'undefined') {
+                    if (typeof (DEFAULT_OBJECT.memberId) !== 'undefined') {
                         dataObject.memberId = DEFAULT_OBJECT.memberId;
                         url += "UpdateMemberSetting";
                     }
-                    else if (typeof (DEFAULT_OBJECT.agentId) != 'undefined') {
+                    else if (typeof (DEFAULT_OBJECT.agentId) !== 'undefined') {
                         dataObject.agentId = DEFAULT_OBJECT.agentId;
                         url += "UpdateAgentSetting";
                     }
@@ -112,12 +112,12 @@ if (typeof jQuery != 'undefined') {
                         cache: false,
                         headers: APOLLO.addAntiForgeryToken({})
                     }).done(function (data) {
-                        if (data.ErrCode == 0) {
+                        if (data.ErrCode === 0) {
                             EDITSETTING.completeUpdate();
                         } else {
-                            try { $.unblockUI(); } catch (e) { };
+                            try { $.unblockUI(); } catch (e) { }
                             var mainMessage = data.ErrMsg;
-                            if (Fanex.CustSetting.CURRENT_CONTEXT.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
+                            if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.EDIT_MULTIPLE) {
                                 //
                                 var arrayMessage = data.ErrMsg.split('^^'),
                                     errorMessage = '',
@@ -127,9 +127,9 @@ if (typeof jQuery != 'undefined') {
                                     //                                    errorMessage += '<br/> + ';
                                     //                                    successMessage += '<br/> + ';
                                     for (var j = 0; j < innerMessage.length; j++) {
-                                        if (j == 0) {
+                                        if (j === 0) {
                                             $.each(innerMessage[j].split(';'), function (i, val) {
-                                                if (val != '') {
+                                                if (val !== '') {
                                                     errorMessage += ' + ' + val + '<br/>';
                                                 }
                                             });
@@ -137,7 +137,7 @@ if (typeof jQuery != 'undefined') {
                                         }
                                         else {
                                             $.each(innerMessage[j].split(';'), function (i, val) {
-                                                if (val != '') {
+                                                if (val !== '') {
                                                     successMessage += ' + ' + val + '<br/>';
                                                 }
                                             });
@@ -145,7 +145,7 @@ if (typeof jQuery != 'undefined') {
                                     }
                                 }
                                 mainMessage = Language.UPDATE_ERROR + '<br/>' + errorMessage;
-                                if (successMessage != '') {
+                                if (successMessage !== '') {
                                     mainMessage += '<br/><div class="successMessage">' + Language.UPDATE_MULTIPLE_SUCCESS + '<br/>' + successMessage + '</div>';
                                 }
 
@@ -156,7 +156,7 @@ if (typeof jQuery != 'undefined') {
                             }
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        if (jqXHR.status == 403) {
+                        if (jqXHR.status === 403) {
                             location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                         }
                         else {
@@ -167,7 +167,7 @@ if (typeof jQuery != 'undefined') {
                                 APOLLO.handleAjaxError(jqXHR, textStatus, errorThrown);
                             }
                         }
-                        try { $.unblockUI(); } catch (e) { };
+                        try { $.unblockUI(); } catch (e) { }
                     }).always(function () {
                     });
                 }
@@ -175,12 +175,12 @@ if (typeof jQuery != 'undefined') {
             completeUpdate: function (result) {
                 var backLink = $('#backUrl').val();
                 //setTimeout(function () {
-                try { $.unblockUI(); } catch (e) { };
+                try { $.unblockUI(); } catch (e) { }
                 window.location.href = backLink;
                 //}, 4000);
 
             }
-        }
+        };
     } (jQuery));
 
     $(function () {

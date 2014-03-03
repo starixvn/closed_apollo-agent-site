@@ -1,12 +1,13 @@
 ﻿/* File Created: March 13, 2013 */
-
+/*global APOLLO*/
+'use strict';
 if (typeof jQuery !== 'undefined') {
     var BETLIMIT = function ($) {
         return {
             settingContext: null,
             betLimitElement: null,
             betLimitItems: null,
-            currentIsSimpleMode: true,            
+            currentIsSimpleMode: true,
             initOthers: function (isSimpleMode) {
                 settingContext.IsSimpleMode = isSimpleMode;
                 BETLIMIT.init(settingContext, betLimits);
@@ -20,7 +21,7 @@ if (typeof jQuery !== 'undefined') {
                 bettingLimitContainer.innerHTML = "";
                 BETLIMIT.betLimitElement.Render(bettingLimitContainer);
 
-                if (isUpdateAllSetting) return;
+                if (isUpdateAllSetting) { return; }
 
                 //// Register Event
                 $("#btnSubmitFooter").click(function () {
@@ -28,7 +29,7 @@ if (typeof jQuery !== 'undefined') {
                 });
 
                 $(".setting-mode #simple-mode").unbind("click").click(function () {
-                    if (BETLIMIT.currentIsSimpleMode) return;
+                    if (BETLIMIT.currentIsSimpleMode) { return; }
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #advanced-mode").removeClass("deactive-mode").addClass("active-mode");
                     BETLIMIT.currentIsSimpleMode = true;
@@ -36,7 +37,7 @@ if (typeof jQuery !== 'undefined') {
                 });
 
                 $(".setting-mode #advanced-mode").unbind("click").click(function () {
-                    if (BETLIMIT.currentIsSimpleMode == false) return;
+                    if (BETLIMIT.currentIsSimpleMode === false) { return; }
                     $(this).removeClass("active-mode").addClass("deactive-mode");
                     $(".setting-mode #simple-mode").removeClass("deactive-mode").addClass("active-mode");
                     BETLIMIT.currentIsSimpleMode = false;
@@ -44,7 +45,7 @@ if (typeof jQuery !== 'undefined') {
                 });
 
                 BETLIMIT.maxBetLimit = maxBetLimit;
-                if (BETLIMIT.maxBetLimit == 0) {
+                if (BETLIMIT.maxBetLimit === 0) {
                     $("#betSettingInformationMessage").hide();
                 }
                 else {
@@ -66,7 +67,7 @@ if (typeof jQuery !== 'undefined') {
                             betLimits: BETLIMIT.betLimitElement.Save()
                         })
                     }).done(function (data) {
-                        if (data.ErrCode == 0) {
+                        if (data.ErrCode === 0) {
                             noty({ text: data.ErrMsg, type: 'success' });
                             BETLIMIT.completeUpdate();
                         } else {
@@ -80,10 +81,10 @@ if (typeof jQuery !== 'undefined') {
             },
             completeUpdate: function (result) {
                 setTimeout(function () {
-                    if (typeof (parent.MEMBERLIST) != 'undefined') {
+                    if (typeof (parent.MEMBERLIST) !== 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
                     }
-                    else if (typeof (parent.AGENTLIST) != 'undefined') {
+                    else if (typeof (parent.AGENTLIST) !== 'undefined') {
                         parent.AGENTLIST.loadAgentList();
                     }
                 }, 3000);
@@ -95,6 +96,6 @@ if (typeof jQuery !== 'undefined') {
         settingContext.IsSimpleMode = isSimpleMode;
         BETLIMIT.init(settingContext, betLimits);
     }).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-};
+}
 
 

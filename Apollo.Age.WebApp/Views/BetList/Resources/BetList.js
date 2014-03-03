@@ -3,7 +3,7 @@
 
 'use strict';
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
-    if (bettype == 9 || bettype == 29) {//view mix parlay & combination mix parlay
+    if (bettype === 9 || bettype === 29) {//view mix parlay & combination mix parlay
         ViewMixParlayResult(refno_mixparlay, refno);
     } else {
         ViewSportBookResult(matchid, sporttype, refno);
@@ -32,11 +32,11 @@ function ViewSportBookResult(matchId, sportId, refno) {
 
 function showMP(transid) {
     var divEvent = document.getElementById('divEvent_' + transid);
-    if (divEvent.style.display == 'none') {
-        if (divEvent.innerHTML == "") {
+    if (divEvent.style.display === 'none') {
+        if (divEvent.innerHTML === "") {
             ajax.Request(APOLLO.resolveUrl("~/BetList/MixParlay"), { method: 'get', parameters: 'transid=' + transid,
                 onSuccess: function (data) {
-                    if (data.errCode == 500) {
+                    if (data.errCode === 500) {
                         divEvent.innerHTML = data.errMsg;
                         divEvent.style.display = '';
                     }
@@ -64,9 +64,9 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + ApoRes.RefNo + ": " + transid;
     APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
 		detailTitle, { width: width, height: height,
-		    close: function (event, ui) {
-		        if (parent.RefreshCountDown) { parent.RefreshCountDown.startTimeout(); }
-		    }
+		close: function (event, ui) {
+		if (parent.RefreshCountDown) { parent.RefreshCountDown.startTimeout(); }
+		}
 		});
 }
 
@@ -75,7 +75,7 @@ function InitBetList() {
         var heightPopup = 630;
         if (APOLLO.browser.msie) {
             heightPopup = 615;
-            if (parseInt(APOLLO.browser.version, 10) == 7) {
+            if (parseInt(APOLLO.browser.version, 10) === 7) {
                 $('#content_main').css({ 'padding-bottom': '130px' });
             }
         }
@@ -105,9 +105,9 @@ function InitBetList() {
 function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
     var mainShareHolderId = 0;
     var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
-			(liveindicator == 1 ? "&liveBetTypes=" + bettype : "&deadBallBetTypes=" + bettype));
+			(liveindicator === 1 ? "&liveBetTypes=" + bettype : "&deadBallBetTypes=" + bettype));
 
-    if (typeof ($("#MainShareHolderId").val()) !== 'undefined' && $("#MainShareHolderId").val() != "") {
+    if (typeof ($("#MainShareHolderId").val()) !== 'undefined' && $("#MainShareHolderId").val() !== "") {
         mainShareHolderId = $("#MainShareHolderId").val();
         if (mainShareHolderId > 0) {
             url += "&mainShareHolderId=" + mainShareHolderId;
@@ -115,7 +115,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
     }
 
     var mainShareHolderUsername = $("#MainShareHolderUsername").val();
-    if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername != "") {
+    if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername !== "") {
         mainShareHolderUsername = " - " + mainShareHolderUsername;
     }
     url += "&custId=" + custId;
@@ -124,8 +124,8 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
     var wnd = parent.IsApoRoot ? window : parent;
     var singleFrame = false; // allow multiple instances of dialog to keep BetList opened
     // Check IE7
-    if (APOLLO.browser.msie && (parseInt(APOLLO.browser.version, 10) == 7
-		|| parseInt(APOLLO.browser.version, 10) == 8)) {
+    if (APOLLO.browser.msie && (parseInt(APOLLO.browser.version, 10) === 7
+		|| parseInt(APOLLO.browser.version, 10) === 8)) {
         wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 610, position: { my: "center", at: "center", of: window} }, singleFrame);
     } else {
         wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 625 }, singleFrame);
@@ -136,7 +136,7 @@ RegisterStartUp(InitBetList);
 
 var BETLIST = {};
 
-if (typeof jQuery != "undefined") {
+if (typeof jQuery !== "undefined") {
     BETLIST = (function ($) {
         return {
             dialogDetails: null,
@@ -229,10 +229,10 @@ if (typeof jQuery != "undefined") {
                     var valueChange = $this.val();
                     var url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=false');
 
-                    if (valueChange == "-99") {
+                    if (valueChange === "-99") {
                         url = APOLLO.resolveUrl('Betlist/CreateParlayBettype');
                     }
-                    else if (valueChange == "0") {
+                    else if (valueChange === "0") {
                         url = APOLLO.resolveUrl('Betlist/CreateBetType?isIncludeParlay=true');
                     }
                     else {
@@ -433,19 +433,19 @@ if (typeof jQuery != "undefined") {
                     }
 
                     var $this = $(this),
-				    transId = $this.attr("tid"),
-				    fromDate = fromDate,
-				    toDate = toDate,
-				    type = type,
-				    params = "?transid=" + transId +
-					    "&fromdate=" + fromDate +
-					    "&toDate=" + toDate +
-					    "&type=" + type;
+				transId = $this.attr("tid"),
+				fromDate = fromDate,
+				toDate = toDate,
+				type = type,
+				params = "?transid=" + transId +
+					"&fromdate=" + fromDate +
+					"&toDate=" + toDate +
+					"&type=" + type;
 
                     var title = ApoRes.BetListViewDetail + " - " + ApoRes.RefNo + ": " + transId;
                     APOLLO.isResizeDialog = false;
                     APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/ViewDetail" + params),
-							    title, { width: 400, height: 500, modal: false });
+							title, { width: 400, height: 500, modal: false });
 
                     return false;
                 });
@@ -473,7 +473,7 @@ if (typeof jQuery != "undefined") {
             $("#username").autocomplete({
                 source: function (request, response) {
                     var url = "";
-                    if ($("#userType").val() == "0") {
+                    if ($("#userType").val() === "0") {
                         url = "Account/GetMemberByUsername?username=" + request.term;
                     }
                     else {
@@ -522,7 +522,7 @@ if (typeof jQuery != "undefined") {
 
             if (type != null) {
                 var fromDate = null,
-				    toDate = null,
+				toDate = null,
 					sportType = betType = 0,
 					obFromDate = $('#fromDate'),
 					obToDate = $('#toDate');
@@ -545,7 +545,7 @@ if (typeof jQuery != "undefined") {
                     betType = obBetType.val();
                 }
 
-                if (type == "report") {
+                if (type === "report") {
                     var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("data-agentid")
 													+ "&AgentName=" + $(this).html()
 													+ '&FromDate=' + fromDate
@@ -553,7 +553,7 @@ if (typeof jQuery != "undefined") {
 													+ '&Sporttypes=' + sportType
 													+ '&Bettypes=' + betType);
                     location.href = url;
-                } else if (type == "outstanding") {
+                } else if (type === "outstanding") {
                     var url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("data-agentid")
 													+ '&Sporttypes=' + sportType
 													+ '&Bettypes=' + betType);

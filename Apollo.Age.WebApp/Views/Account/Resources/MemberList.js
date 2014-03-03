@@ -23,7 +23,7 @@ var MEMBERLIST = (function ($) {
         },
         bindingQuickLinkEditSetting: function (agentId, agentLevel, username) {
             var $quickLinkEditSetting = $("#quickLinkEditSetting");
-            if ($("#gridId").attr("agentId") == $("#gridId").attr("firstAgentId")) {
+            if ($("#gridId").attr("agentId") === $("#gridId").attr("firstAgentId")) {
                 $quickLinkEditSetting.css('display', 'none');
             }
             else {
@@ -92,7 +92,7 @@ var MEMBERLIST = (function ($) {
                 url: APOLLO.resolveUrl("Account/GetMemberList"),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) == APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim()) }),
+                data: JSON.stringify({ AgentId: MEMBERLIST.AgentId, Username: APOLLO.htmlDecode($("#txtUserName").val().trim()) === APOLLO.htmlDecode(BASELANGUAGES.EnterUsername) ? "" : APOLLO.htmlDecode($("#txtUserName").val().trim()) }),
                 timeout: 120000
             })
                 .done(function (result) {

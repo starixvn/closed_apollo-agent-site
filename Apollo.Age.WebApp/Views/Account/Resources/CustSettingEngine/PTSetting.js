@@ -1,7 +1,9 @@
-﻿if (typeof (Fanex) == 'undefined') { // Require Fanex namespace
+﻿/*global Language*/
+'use strict';
+if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
-if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting namespace
+if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting namespace
     Fanex.CustSetting = {
         RoleType: {
             Super: 4,
@@ -31,47 +33,47 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
         MIN_CONSTRAIN_VALUE: 50,
         Min_WIDTH_BET_TYPE_GROUP: 185,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
-            if (typeof (element) != 'object') return false;
+            if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
-            if (typeof (count) == 'undefined') return false;
+            if (typeof (count) === 'undefined') { return false; }
             for (var i = 0; i < count; i++) {
-                if (element.childNodes[i].tagName == "INPUT" || element.childNodes[i].tagName == "SELECT") {
+                if (element.childNodes[i].tagName === "INPUT" || element.childNodes[i].tagName === "SELECT") {
                     var previousValue = element.childNodes[i].disabled;
-                    if (previousValue != true) {
+                    if (previousValue !== true) {
                         element.childNodes[i].disabled = true;
                         element.childNodes[i].setAttribute("previousValue", previousValue);
-                    };
+                    }
                 } else {
-                    if (typeof (cssApplied) == 'string' && element.childNodes[i].tagName == "DIV") {
+                    if (typeof (cssApplied) === 'string' && element.childNodes[i].tagName === "DIV") {
                         var addedCss = " " + cssApplied;
-                        if (element.childNodes[i].className.indexOf(addedCss) == -1) { // Avoid dublicated adding
+                        if (element.childNodes[i].className.indexOf(addedCss) === -1) { // Avoid dublicated adding
                             element.childNodes[i].setAttribute("previousValue", element.childNodes[i].className);
                             element.childNodes[i].className += " " + cssApplied;
-                        };
-                    };
+                        }
+                    }
                     Fanex.CustSetting.DisableChildren(element.childNodes[i]);
                 }
             }
             return true;
         },
         ReEnableChildren: function (element) { // Check dublicated enable
-            if (typeof (element) != 'object') return false;
+            if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
-            if (typeof (count) == 'undefined') return false;
+            if (typeof (count) === 'undefined') { return false; }
             for (var i = 0; i < count; i++) {
-                if (element.childNodes[i].tagName == "INPUT" || element.childNodes[i].tagName == "SELECT") {
+                if (element.childNodes[i].tagName === "INPUT" || element.childNodes[i].tagName === "SELECT") {
                     var previousValue = element.childNodes[i].getAttribute("previousValue");
-                    if (previousValue != null && typeof (previousValue) != 'undefined') {
+                    if (previousValue != null && typeof (previousValue) !== 'undefined') {
                         element.childNodes[i].setAttribute("previousValue", element.childNodes[i].disabled); // Store previous value
-                        element.childNodes[i].disabled = (previousValue == "true");
+                        element.childNodes[i].disabled = (previousValue === "true");
                     }
                 } else {
-                    if (element.childNodes[i].tagName == "DIV") {
+                    if (element.childNodes[i].tagName === "DIV") {
                         var previousValue = element.childNodes[i].getAttribute("previousValue");
-                        if (previousValue != null && typeof (previousValue) != 'undefined') {
+                        if (previousValue != null && typeof (previousValue) !== 'undefined') {
                             element.childNodes[i].setAttribute("previousValue", element.childNodes[i].className);
                             element.childNodes[i].className = previousValue;
-                        };
+                        }
                     }
                     Fanex.CustSetting.ReEnableChildren(element.childNodes[i]);
                 }
@@ -104,22 +106,22 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             return spinBox;
         },
         CalculateMinWidth: function (text) {
-            if (typeof (text) != 'string') return Fanex.CustSetting.MIN_PT_BOX_WIDTH;
+            if (typeof (text) !== 'string') { return Fanex.CustSetting.MIN_PT_BOX_WIDTH; }
             var measure = 6.7; // Default for en-US
-            if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'th-TH') {
+            if (Fanex.CustSetting.CURRENT_CONTEXT.Language === 'th-TH') {
                 measure = 4.5;
             }
-            else if (Fanex.CustSetting.CURRENT_CONTEXT.Language == 'zh-TW'
-			|| Fanex.CustSetting.CURRENT_CONTEXT.Language == 'zh-CN'
-			|| Fanex.CustSetting.CURRENT_CONTEXT.Language == 'ko-KR') {
+            else if (Fanex.CustSetting.CURRENT_CONTEXT.Language === 'zh-TW'
+			|| Fanex.CustSetting.CURRENT_CONTEXT.Language === 'zh-CN'
+			|| Fanex.CustSetting.CURRENT_CONTEXT.Language === 'ko-KR') {
                 measure = 12;
             }
             return Math.round(text.length * measure);
         },
         SizingChildren: function (element) { // For element has each child as no-child no-float div
-            if (typeof (element) != 'object') return false;
+            if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
-            if (typeof (count) == 'undefined') return false;
+            if (typeof (count) === 'undefined') { return false; }
             // Calculate max min-width
             var maxLength = 0;
             var text = String.Empty;
@@ -145,7 +147,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.IsSimpleMode = currentContext.IsSimpleMode;
             this.HasMinConstrain = currentContext.HasMinConstrain;
             this.CanEditComGroup = currentContext.CanEditComGroup;
-            if (this.Language == 'cn-CN') {
+            if (this.Language === 'cn-CN') {
                 Language = "new language";
             }
         },
@@ -167,23 +169,23 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.showButtons = false; // Show 4 buttons (increase, decrease) after selection
             this.minWidth = Fanex.CustSetting.CalculateMinWidth(this.name);
             this.minWidth = Math.max(this.minWidth, Fanex.CustSetting.MIN_PT_BOX_WIDTH);
-            if (typeof (item.MinWidth) == 'number') {
+            if (typeof (item.MinWidth) === 'number') {
                 this.minWidth = Math.max(item.MinWidth, this.minWidth);
             }
             this.pt = {
                 Upline:
 				{
-				    Max: 0,
-				    Min: 0,
-				    Preset: 0,
-				    PositionTaking: 0
+				Max: 0,
+				Min: 0,
+				Preset: 0,
+				PositionTaking: 0
 				},
                 Min: 0,
                 Max: 0,
                 Preset: 0,
                 PositionTaking: 0
             };
-            if (typeof (item.Pt) == 'object') {
+            if (typeof (item.Pt) === 'object') {
                 this.pt = item.Pt;
                 this.oldPt = Fanex.CloneObject(item.Pt);
             }
@@ -191,18 +193,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.suffixId = this.sportId + "$" + this.id + "$" + (this.isLive ? "1" : "0");
             this.context = Fanex.CloneObject(Fanex.CustSetting.CURRENT_CONTEXT);
             // Will be removed
-            if (this.context.FormId == Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
+            if (this.context.FormId === Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
                 this.context.FormId = Fanex.CustSetting.FormTypes.EDIT_PT;
             }
             this.element = document.createElement("DIV");
             this.actived = true;
             this.Active = function () {
-                if (this.actived) return;
+                if (this.actived) { return; }
                 Fanex.CustSetting.ReEnableChildren(this.element);
                 this.actived = true;
             };
             this.Inactive = function (copiedItem) {
-                if (!this.actived) return;
+                if (!this.actived) { return; }
                 Fanex.CustSetting.DisableChildren(this.element, "bet-type-inactive");
                 this.actived = false;
             };
@@ -213,7 +215,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var targetRoleId = this.context.TargetRoleId;
                 var box = null;
                 var method = this['Render_'.concat(roleId, '_', targetRoleId, '_', formId)];
-                if (typeof (method) == "function") {
+                if (typeof (method) === "function") {
                     box = method.call(this, owner);
                 } else {
                     console.log("Could not find the implementation of " + methodName);
@@ -221,10 +223,10 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 if (box != null) {
                     this.element = box;
                     // Append or return the object
-                    if (typeof (owner) == 'object') {
+                    if (typeof (owner) === 'object') {
                         owner.appendChild(box);
-                    };
-                };
+                    }
+                }
                 return box;
             };
         },
@@ -238,22 +240,22 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.isLive = betTypeGroup.IsLive;
             this.sportId = betTypeGroup.SportId;
             this.context = Fanex.CloneObject(Fanex.CustSetting.CURRENT_CONTEXT);
-            if (this.context.FormId == Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
+            if (this.context.FormId === Fanex.CustSetting.FormTypes.ADD) { // Use the same implementation for Edit PT / Add New
                 this.context.FormId = Fanex.CustSetting.FormTypes.EDIT_PT;
             }
             this.copiedItem = null; // Store bet type item copied to other bet types
             this.copiedFromFirst = false;
             // Find an item {sportId, id, isLive}
             this.Find = function (object) {
-                if (typeof (object.id) != 'number') return null; // Bet type id is not a number, return null
+                if (typeof (object.id) !== 'number') { return null; } // Bet type id is not a number, return null
                 var items = this.items;
                 var count = this.items.length;
                 for (var i = 0; i < count; i++) {
                     var item = items[i];
-                    if (item.isLive == object.isLive && item.id == object.id && items[i].sportId == object.sportId) {
+                    if (item.isLive === object.isLive && item.id === object.id && items[i].sportId === object.sportId) {
                         return item; // Return found bet type
-                    };
-                };
+                    }
+                }
                 return null;
             };
             this.Active = function () {
@@ -269,26 +271,26 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         };
                         break;
                     }
-                };
+                }
             };
             this.Inactive = function (copiedItem) {
-                if (typeof (copiedItem) != 'object') {
+                if (typeof (copiedItem) !== 'object') {
                     return;
-                };
+                }
                 this.copiedItem = copiedItem;
                 var count = this.elements.length;
                 for (var i = 0; i < count; i++) {
-                    if (this.items[i].id == copiedItem.id && this.isLive == copiedItem.isLive && this.sportId == copiedItem.sportId) {
+                    if (this.items[i].id === copiedItem.id && this.isLive === copiedItem.isLive && this.sportId === copiedItem.sportId) {
                         this.items[i].Active(); // Activate if first item matching copied item
                         continue;
-                    };
+                    }
                     this.items[i].Inactive(copiedItem);
                 }
             };
             this.Save = function () { // Get data for each bet types
                 var count = this.items.length;
                 var result = [];
-                var copiedItem = (this.copiedItem == null) ? null : Fanex.CloneObject(this.copiedItem); // Avoid changing copiedItem by reference
+                var copiedItem = (this.copiedItem === null) ? null : Fanex.CloneObject(this.copiedItem); // Avoid changing copiedItem by reference
                 // Find PT of copied item
                 var grid = this.parent.parent; // Parent grid object
                 var item = grid.Find(copiedItem);
@@ -298,21 +300,21 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     copiedItem.sportId = this.sportId; // Do not copy sport type id
                 }
                 for (var i = 0; i < count; i++) {
-                    if (copiedItem != null) {
+                    if (copiedItem !== null) {
                         result.push(
 						{
-						    Id: this.items[i].id, // Do not copy bet type id
-						    SportId: copiedItem.sportId || null,
-						    Pt: copiedItem.pt || null,
-						    IsLive: copiedItem.isLive
+						Id: this.items[i].id, // Do not copy bet type id
+						SportId: copiedItem.sportId || null,
+						Pt: copiedItem.pt || null,
+						IsLive: copiedItem.isLive
 						});
                     } else {
                         var ptResult = this.items[i].Save();
                         if (ptResult) {
                             result.push(Fanex.CloneObject(ptResult));
                         }
-                    };
-                };
+                    }
+                }
                 return {
                     Id: this.id,
                     BetTypes: result
@@ -326,17 +328,17 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     if (!items[i].Validate()) {
                         return false;
                     }
-                };
+                }
                 return true;
             };
 
             this.Render = function (owner) {
                 var box = null;
                 var elements = []; // Child bet type element
-                if (typeof (this.betTypes) != 'object' || typeof (this.betTypes.length) == 'undefined' || this.betTypes.length <= 0) {
+                if (typeof (this.betTypes) !== 'object' || typeof (this.betTypes.length) === 'undefined' || this.betTypes.length <= 0) {
                     console.log("Input data source betTypes is empty.");
                 } else {
-                    box = document.createElement("DIV")
+                    box = document.createElement("DIV");
                     var totalGroupWidth = 0;
                     // Header label
                     if (this.showGroupLabel) {
@@ -345,7 +347,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         var targetRoleId = this.context.TargetRoleId;
                         var formId = this.context.FormId;
                         var method = this['Render_'.concat(roleId, '_', targetRoleId, '_', formId)];
-                        if (typeof (method) == "function") {
+                        if (typeof (method) === "function") {
                             header = method.call(this, owner);
                         } else {
                             console.log("Could not find the implementation of " + methodName);
@@ -363,7 +365,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         item.IsLive = this.isLive;
                         var betItem = new Fanex.CustSetting.BetType(item);
                         betItem.parent = this; // Keep reference to current bet type group
-                        betItem.showButtons = (i == 0);
+                        betItem.showButtons = (i === 0);
                         //betItem.minWidth = (betItem.showButtons) ? (140) : betItem.minWidth;
                         //betItem.minWidth = (count == 1) ? (250) : betItem.minWidth;
                         totalGroupWidth += betItem.minWidth + 5; // Padding left 2, padding right 2 and border 1
@@ -375,15 +377,15 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     }
                     this.elements = elements;
                     box.betTypeElements = elements;
-                };
-                if (this.elements.length == 0) {
+                }
+                if (this.elements.length === 0) {
                     box = null;
-                };
+                }
                 if (box != null) {
                     if (this.elements.length > 1) {
                         var elements = this.elements;
-                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
-						&& Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
+                        if (Fanex.CustSetting.CURRENT_CONTEXT.FormId !== Fanex.CustSetting.FormTypes.VIEW_SETTING
+						&& Fanex.CustSetting.CURRENT_CONTEXT.FormId !== Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                             // Copy all check box
                             var copyCheck = document.createElement("INPUT");
                             copyCheck.type = "checkbox";
@@ -415,7 +417,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 var betTypesLength = betTypes.length;
                                 for (var betTypeIndex = 0; betTypeIndex < betTypesLength; betTypeIndex++) {
                                     var betType = betTypes[betTypeIndex];
-                                    if (betType.id != currentCopyBetType.id) {
+                                    if (betType.id !== currentCopyBetType.id) {
                                         if (betType.presetSpinBox) {
                                             betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                                             betType.presetSpinBox.input.onchange();
@@ -439,21 +441,21 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 Validators.hide();
                                 //};
                             };
-                        };
-                    };
+                        }
+                    }
                     this.minWidth = totalGroupWidth;
                     box.className = "pt-group";
                     this.DOM = box;
                     // Append or return the object
-                    if (typeof (owner) == 'object') {
+                    if (typeof (owner) === 'object') {
                         owner.appendChild(box);
-                    };
-                };
+                    }
+                }
                 return box;
             };
         },
         SportType: function (sportType) {
-            if (typeof (sportType) != 'object') {
+            if (typeof (sportType) !== 'object') {
                 console.log("Input sport type is an invalid object.");
                 return null;
             }
@@ -467,18 +469,18 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.items = []; // Bet Type group set objects
             this.cloneObjectButton = null; // Copy all button for Soccer and Basketball
             this.copiedItem = null;
-            this.collapsed = typeof (sportType.Collapsed) == 'undefined' ? true : sportType.Collapsed; // Default collapse or not
+            this.collapsed = typeof (sportType.Collapsed) === 'undefined' ? true : sportType.Collapsed; // Default collapse or not
             // Find an item {sportId, id, isLive}
             this.Find = function (object) {
-                if (typeof (object.id) != 'number') return this; // Bet type id is not a number, return sport type
+                if (typeof (object.id) !== 'number') { return this; } // Bet type id is not a number, return sport type
                 var items = this.items;
                 var count = this.items.length;
                 for (var i = 0; i < count; i++) {
-                    if (object.sportId == this.id) {
+                    if (object.sportId === this.id) {
                         var item = items[i].Find(object);
-                        if (item != null) return item;
+                        if (item != null) { return item; }
                     }
-                };
+                }
                 return null;
             };
             this.Active = function () {
@@ -489,9 +491,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 }
             };
             this.Inactive = function (copiedItem) {
-                if (typeof (copiedItem) != 'object') {
+                if (typeof (copiedItem) !== 'object') {
                     return;
-                };
+                }
                 this.copiedItem = copiedItem;
                 var count = this.items.length;
                 for (var i = 0; i < count; i++) {
@@ -503,7 +505,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 var result = [];
                 for (var i = 0; i < count; i++) {
                     result[i] = this.items[i].Save();
-                };
+                }
                 return {
                     Id: this.id,
                     Key: this.key,
@@ -519,14 +521,14 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     if (!items[i].Validate()) {
                         return false;
                     }
-                };
+                }
                 return true;
             };
 
             this.Render = function (owner) {
                 var box = null;
                 var elements = []; // Child bet type group sets element
-                if (typeof (this.betTypeGroups) != 'object' || typeof (this.betTypeGroups.length) == 'undefined' || this.betTypeGroups.length <= 0) {
+                if (typeof (this.betTypeGroups) !== 'object' || typeof (this.betTypeGroups.length) === 'undefined' || this.betTypeGroups.length <= 0) {
                     console.log("Input data source betTypeGroups is empty.");
                 } else {
                     box = document.createElement("DIV");
@@ -551,16 +553,16 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     box.betTypeGroupElements = elements;
                     // Add sport type name label
                     var headerLabel = this.name;
-                    if (this.id == 1 || this.id == 161) {
+                    if (this.id === 1 || this.id === 161) {
                         headerLabel += ' - ' + (this.isLive ? Language.LIVE : Language.DEAD_BALL);
                     }
                     var header = document.createElement("DIV");
                     header.innerHTML = headerLabel;
-                    header.className = (this.id == 2) ? "pt-sport-label2" : "pt-sport-label"; // Basketball sport id == 2 has 2 buttons
+                    header.className = (this.id === 2) ? "pt-sport-label2" : "pt-sport-label"; // Basketball sport id == 2 has 2 buttons
                     header.parent = this;
                     box.appendChild(header);
-                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
-					&& Fanex.CustSetting.CURRENT_CONTEXT.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
+                    if (Fanex.CustSetting.CURRENT_CONTEXT.FormId !== Fanex.CustSetting.FormTypes.VIEW_SETTING
+					&& Fanex.CustSetting.CURRENT_CONTEXT.FormId !== Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                         // Copy from sport
                         var copyCheck = document.createElement("INPUT");
                         copyCheck.type = "checkbox";
@@ -569,11 +571,11 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         var copyDiv = document.createElement("DIV");
                         copyDiv.appendChild(copyCheck);
                         copyDiv.parent = this;
-                        var minWidth = (this.id == 2) ? (this.minWidth - 72) : this.minWidth - 40; // Basketball sport id == 2 has 2 buttons
-                        if ((this.id == 1 && this.isLive == false) || this.id == 2) { // For Soccer and Basketball
+                        var minWidth = (this.id === 2) ? (this.minWidth - 72) : this.minWidth - 40; // Basketball sport id == 2 has 2 buttons
+                        if ((this.id === 1 && this.isLive === false) || this.id === 2) { // For Soccer and Basketball
                             copyDiv.className = "pt-sport-copied";
                             copyDiv.title = Language.COPY_ALL_OTHER_POSITION_TAKING_FROM.Format(this.name, this.betTypeGroups[0].BetTypes[0].Name);
-                            if (this.id == 2) {
+                            if (this.id === 2) {
                                 // Add more Edit button for Basketball, because Basketball also have Copy button
                                 var copyCheck2 = document.createElement("INPUT");
                                 copyCheck2.type = "checkbox";
@@ -584,7 +586,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 editDiv.parent = this;
                                 editDiv.className = "pt-sport-copied-inactive";
                                 editDiv.onclick = function () {
-                                }
+                                };
                                 this.editButton = editDiv; // Keep reference for implementation in parent level
                                 box.appendChild(editDiv);
                             }
@@ -592,7 +594,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             copyDiv.className = "pt-sport-copied-inactive";
                             copyDiv.onclick = function () {
                             };
-                        };
+                        }
                         // Handle default collapse / expand
                         if (this.collapsed) {
                             box2.style.display = "none"; // box2 contains PT setting
@@ -606,11 +608,11 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     // Event click to collapse sportType
                     this.Toggle = function (expanded) {
                         var collapsed = false;
-                        if (typeof (expanded) != "undefined") {
+                        if (typeof (expanded) !== "undefined") {
                             collapsed = !expanded;
                         } else {
-                            collapsed = (box2.style.display != "none");
-                        };
+                            collapsed = (box2.style.display !== "none");
+                        }
                         if (!collapsed) {
                             box2.style.display = String.Empty;
                             header.style.minWidth = minWidth + "px";
@@ -626,50 +628,50 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     };
                     box.appendChild(box2);
                 }
-                if (this.elements.length == 0) {
+                if (this.elements.length === 0) {
                     box = null;
                 }
                 if (box != null) {
                     box.className = "pt-sport";
                     this.DOM = box;
                     // Append or return the object
-                    if (typeof (owner) == 'object') {
+                    if (typeof (owner) === 'object') {
                         owner.appendChild(box);
                     }
                 }
                 return box;
-            }
+            };
         },
         PTGrid: function (source) {
             this.elements = []; // Sport type HTML elements
             this.items = []; // Sport type objects
             this.sportTypes = [];
-            if (typeof (source) == 'object') {
+            if (typeof (source) === 'object') {
                 this.name = source.Name;
                 this.sportTypes = source.SportTypes;
             }
             // Find an item {sportId, id, isLive}
             this.Find = function (object) {
-                if (typeof (object) != 'object' || object == null) return null;
-                if (typeof (object.sportId) != 'number') return null;
+                if (typeof (object) !== 'object' || object == null) { return null; }
+                if (typeof (object.sportId) !== 'number') { return null; }
                 var items = this.items;
                 var count = this.items.length;
                 for (var i = 0; i < count; i++) {
-                    if (items[i].id == object.sportId) {
+                    if (items[i].id === object.sportId) {
                         var item = items[i].Find(object);
-                        if (item != null) return item;
-                    };
-                };
+                        if (item != null) { return item; }
+                    }
+                }
                 return null;
             };
             this.Save = function () {
                 var result = [];
                 var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-                var isEditMultiple = currentContext.FormId == Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
-                if (currentContext.IsSimpleMode == true) {
+                var isEditMultiple = currentContext.FormId === Fanex.CustSetting.FormTypes.EDIT_MULTIPLE;
+                if (currentContext.IsSimpleMode === true) {
                     var currentPtValue = this.SaveSimpleMode();
                     var dataChanged = false;
-                    if (currentPtValue == null) return null;
+                    if (currentPtValue == null) { return null; }
                     var sportTypes = Fanex.CloneObject(this.sportTypes);
                     var sportTypeLength = sportTypes.length;
                     for (var sportTypeIndex = 0; sportTypeIndex < sportTypeLength; sportTypeIndex++) {
@@ -682,26 +684,26 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                                 var currentBetType = sportTypes[sportTypeIndex].BetTypeGroups[btGroupIndex].BetTypes[btIndex];
                                 dataChanged = false;
 
-                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder
-                                    && currentBetType.Pt.Max != currentPtValue.Max) {
+                                if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.MainShareHolder
+                                    && currentBetType.Pt.Max !== currentPtValue.Max) {
                                     dataChanged = true;
                                     currentPtValue.Min = currentBetType.Pt.Min;
                                 }
 
-                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Agent
-								&& (currentBetType.Pt.Max != currentPtValue.Max
-								|| currentBetType.Pt.Preset != currentPtValue.Preset
-                                || currentBetType.Pt.Min != currentPtValue.Min)) {
+                                if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.Agent
+								&& (currentBetType.Pt.Max !== currentPtValue.Max
+								|| currentBetType.Pt.Preset !== currentPtValue.Preset
+                                || currentBetType.Pt.Min !== currentPtValue.Min)) {
                                     dataChanged = true;
                                     //currentPtValue.Min = currentBetType.Pt.Min;
                                 }
 
-                                if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member
-								&& currentBetType.Pt.Value != currentPtValue.Value) {
+                                if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.Member
+								&& currentBetType.Pt.Value !== currentPtValue.Value) {
                                     dataChanged = true;
                                 }
 
-                                if (dataChanged == true || isEditMultiple) {
+                                if (dataChanged === true || isEditMultiple) {
                                     currentBetType.Pt = Fanex.CloneObject(currentPtValue);
                                     currentBetType.Pt.IsChangePt = dataChanged || isEditMultiple;
                                 }
@@ -718,7 +720,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     var count = this.items.length;
                     for (var i = 0; i < count; i++) {
                         result[i] = this.items[i].Save();
-                    };
+                    }
                 }
                 return {
                     SportTypes: result
@@ -745,7 +747,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             };
 
             this.Validate = function () {
-                if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode == true) {
+                if (Fanex.CustSetting.CURRENT_CONTEXT.IsSimpleMode === true) {
                     return true;
                 }
                 else {
@@ -757,7 +759,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                             items[i].Validate();
                             return false;
                         }
-                    };
+                    }
                 }
                 return true;
             };
@@ -765,7 +767,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.GetSportName = function (sportId) {
                 var count = this.items.length;
                 for (var index = 0; index < count; index++) {
-                    if (this.items[index].id == sportId) {
+                    if (this.items[index].id === sportId) {
                         return this.items[index].name;
                     }
                 }
@@ -794,7 +796,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                 // Show tooltip
                 //Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 10, -top - 54, top + 20, top, 30000);
                 //show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout) {
-                if (this.copiedItem.sportId == 2) {
+                if (this.copiedItem.sportId === 2) {
                     top += 15;
                 }
                 Validators.show(copiedElements[this.copiedItem.sportId], hint, 0, 60, top - 182, -10, height, 10000, true);
@@ -802,7 +804,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.UpdateCopyValue = function (currentCopyBetType, betType) {
                 //                var reload = (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId == Fanex.CustSetting.RoleType.Member ? 1 : 0);
                 //                while (reload <= 1) {
-                if (betType.id != currentCopyBetType.id) {
+                if (betType.id !== currentCopyBetType.id) {
                     if (betType.presetSpinBox) {
                         betType.presetSpinBox.setValue(currentCopyBetType.presetSpinBox.getValue(), true);
                         betType.presetSpinBox.input.onchange();
@@ -825,9 +827,9 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
             this.Render = function (owner) {
                 var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
                 var box = null;
-                if (currentContext.IsSimpleMode == false) {
+                if (currentContext.IsSimpleMode === false) {
                     var elements = []; // Child sport type elements
-                    if (typeof (this.sportTypes) != 'object' || typeof (this.sportTypes.length) == 'undefined') {
+                    if (typeof (this.sportTypes) !== 'object' || typeof (this.sportTypes.length) === 'undefined') {
                         console.log("Input data source sportTypes is empty.");
                     } else {
                         box = document.createElement("DIV");
@@ -837,16 +839,16 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         header.className = "pt-grid-header";
                         var informationButton = document.createElement("SPAN");
                         informationButton.className = "section-info";
-                        if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                        if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
                             informationButton.id = "member-";
                         }
-                        else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                        else if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.MainShareHolder) {
                             informationButton.id = "mainshareholder-";
                         }
                         else {
                             informationButton.id = "agent-";
                         }
-                        if (currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                        if (currentContext.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING) {
                             informationButton.id = "view-" + informationButton.id;
                         }
                         informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
@@ -869,15 +871,15 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         }
                         this.elements = elements;
                     }
-                    if (this.elements.length == 0) {
+                    if (this.elements.length === 0) {
                         box = null;
                     }
                     if (box != null) {
                         box.className = "pt-grid";
                         var items = this.items;
                         var elements = this.elements;
-                        if (currentContext.FormId != Fanex.CustSetting.FormTypes.VIEW_SETTING
-						&& currentContext.FormId != Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
+                        if (currentContext.FormId !== Fanex.CustSetting.FormTypes.VIEW_SETTING
+						&& currentContext.FormId !== Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
                             // Implementation for clone button of Soccer 1 and Basketball 2
                             var cloneFromSoccer = this.items[0].cloneObjectButton;
                             var cloneFromBasketball = this.items[2].cloneObjectButton;
@@ -974,7 +976,7 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                         }
                         this.DOM = box;
                         // Append or return the object
-                        if (typeof (owner) == 'object') {
+                        if (typeof (owner) === 'object') {
                             //// Render 
                             owner.appendChild(box);
                         }
@@ -991,16 +993,16 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     header.className = "pt-grid-header";
                     var informationButton = document.createElement("SPAN");
                     informationButton.className = "section-info";
-                    if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.Member) {
+                    if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
                         informationButton.id = "member-";
                     }
-                    else if (currentContext.TargetRoleId == Fanex.CustSetting.RoleType.MainShareHolder) {
+                    else if (currentContext.TargetRoleId === Fanex.CustSetting.RoleType.MainShareHolder) {
                         informationButton.id = "mainshareholder-";
                     }
                     else {
                         informationButton.id = "agent-";
                     }
-                    if (currentContext.FormId == Fanex.CustSetting.FormTypes.VIEW_SETTING) {
+                    if (currentContext.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING) {
                         informationButton.id = "view-" + informationButton.id;
                     }
                     informationButton.id += "share-setting-info-button" + (currentContext.IsSimpleMode ? "" : "-adv");
@@ -1011,19 +1013,19 @@ if (typeof (Fanex.CustSetting) == 'undefined') { // Define Fanex.CustSetting nam
                     var roleId = currentContext.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
                     var targetRoleId = currentContext.TargetRoleId;
                     var method = this['RenderSimpleMode_'.concat(roleId, '_', targetRoleId, '_', formId)];
-                    if (typeof (method) == "function") {
+                    if (typeof (method) === "function") {
                         box.appendChild(method.call(this, owner));
                     }
 
                     this.DOM = box;
                     // Append or return the object
-                    if (typeof (owner) == 'object') {
+                    if (typeof (owner) === 'object') {
                         //// Render 
                         owner.appendChild(box);
                     }
                 }
                 return box;
-            }
+            };
         }
-    }
-};
+    };
+}

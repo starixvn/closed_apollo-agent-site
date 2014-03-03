@@ -1,5 +1,5 @@
 ﻿'use strict';
-var RefreshCountDown = function ($) {
+var RefreshCountDown = (function ($) {
     return {
         interval: 0,
         timeoutCountDown: null,
@@ -162,7 +162,7 @@ var RefreshCountDown = function ($) {
         }
 
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     RefreshCountDown.onRefresh = $('#apo-on-refresh').val();

@@ -9,7 +9,7 @@
 /*global APOLLO*/
 'use strict';
 AGE.prototype.ApplyScroller = function () {
-    if (typeof this.scroller_left != 'undefined') { return; } // Apply first time only
+    if (typeof this.scroller_left !== 'undefined') { return; } // Apply first time only
     this.scroller_left = -100;
     this.scroller_width = 0;
 
@@ -77,7 +77,7 @@ function PrivateMsgLink(url) {
 
 function UpdateCountPrivateMsg() {
     function completeCountPrivateMsg(data) {
-        if (data.errCode == 0) {
+        if (data.errCode === 0) {
             var open = "(",
                 noMsg = "0";
             var countText = document.getElementById('privateMsgLnk').innerHTML;
@@ -101,7 +101,7 @@ function ReplaceAll(source, stringToFind, stringToReplace) {
 
     var index = temp.indexOf(stringToFind);
 
-    while (index != -1) {
+    while (index !== -1) {
         temp = temp.replace(stringToFind, stringToReplace);
         index = temp.indexOf(stringToFind);
     }
@@ -111,7 +111,7 @@ function ReplaceAll(source, stringToFind, stringToReplace) {
 
 var msgIndex = 0;
 function ShowHotMsg(msgs) {
-    if (msgs.length == 0) {
+    if (msgs.length === 0) {
         document.getElementById("Popup_top").style.display = 'none';
 
         return;
@@ -218,7 +218,7 @@ function SelectTopMenu(url) {
 
     var start = mainUrl.lastIndexOf('/');
     var end = mainUrl.lastIndexOf('?');
-    if (end == -1) { end = mainUrl.length; }
+    if (end === -1) { end = mainUrl.length; }
     var name = mainUrl.substring(start + 1, end);
 
     //if (currentTab) currentTab.className = "";
@@ -279,7 +279,7 @@ var HEADER = (function ($) {
 
             // show or hide left navigation
             $('.toolbar').on('click', 'li', function (event) {
-                if ($(this).attr('id') == 'account-link') {
+                if ($(this).attr('id') === 'account-link') {
                     if (!DEFAULTS.IsMaster) {
                         var url = "/CustomerSetting/MySetting";
                         parent.document.getElementById('main').setAttribute('src', url);
@@ -455,9 +455,9 @@ var HEADER = (function ($) {
                 var currentSubUrl = $this.attr('url');
 
                 // Ignore link to check for click on menu many times
-                if (HEADER.oldUrl == currentSubUrl &&
-                currentSubUrl != "/Reports/matchentered" &&
-                currentSubUrl != "/Account/AgentList") {
+                if (HEADER.oldUrl === currentSubUrl &&
+                currentSubUrl !== "/Reports/matchentered" &&
+                currentSubUrl !== "/Account/AgentList") {
                     return;
                 }
 

@@ -2,7 +2,7 @@
 * author Remy Sharp
 * url http://remysharp.com/tag/marquee
 */
-
+'use strict';
 (function ($) {
     $.fn.marquee = function (klass) {
         var newMarquee = [],
@@ -13,16 +13,16 @@
         function getReset(newDir, marqueeRedux, marqueeState) {
             var behavior = marqueeState.behavior, width = marqueeState.width, dir = marqueeState.dir;
             var r = 0;
-            if (behavior == 'alternate') {
-                r = newDir == 1 ? marqueeRedux[marqueeState.widthAxis] - (width*2) : width;
-            } else if (behavior == 'slide') {
-                if (newDir == -1) {
-                    r = dir == -1 ? marqueeRedux[marqueeState.widthAxis] : width;
+            if (behavior === 'alternate') {
+                r = newDir === 1 ? marqueeRedux[marqueeState.widthAxis] - (width*2) : width;
+            } else if (behavior === 'slide') {
+                if (newDir === -1) {
+                    r = dir === -1 ? marqueeRedux[marqueeState.widthAxis] : width;
                 } else {
-                    r = dir == -1 ? marqueeRedux[marqueeState.widthAxis] - (width*2) : 0;
+                    r = dir === -1 ? marqueeRedux[marqueeState.widthAxis] - (width*2) : 0;
                 }
             } else {
-                r = newDir == -1 ? marqueeRedux[marqueeState.widthAxis] : 0;
+                r = newDir === -1 ? marqueeRedux[marqueeState.widthAxis] : 0;
             }
             return r;
         }
@@ -46,10 +46,10 @@
                     marqueeRedux[marqueeState.axis] += (marqueeState.scrollamount * marqueeState.dir);
 
                     // only true if it's hit the end
-                    hitedge = marqueeState.dir == -1 ? marqueeRedux[marqueeState.axis] <= getReset(marqueeState.dir * -1, marqueeRedux, marqueeState) : marqueeRedux[marqueeState.axis] >= getReset(marqueeState.dir * -1, marqueeRedux, marqueeState);
+                    hitedge = marqueeState.dir === -1 ? marqueeRedux[marqueeState.axis] <= getReset(marqueeState.dir * -1, marqueeRedux, marqueeState) : marqueeRedux[marqueeState.axis] >= getReset(marqueeState.dir * -1, marqueeRedux, marqueeState);
                     
-                    if ((marqueeState.behavior == 'scroll' && marqueeState.last == marqueeRedux[marqueeState.axis]) || (marqueeState.behavior == 'alternate' && hitedge && marqueeState.last != -1) || (marqueeState.behavior == 'slide' && hitedge && marqueeState.last != -1)) {                        
-                        if (marqueeState.behavior == 'alternate') {
+                    if ((marqueeState.behavior === 'scroll' && marqueeState.last === marqueeRedux[marqueeState.axis]) || (marqueeState.behavior === 'alternate' && hitedge && marqueeState.last !== -1) || (marqueeState.behavior === 'slide' && hitedge && marqueeState.last !== -1)) {                        
+                        if (marqueeState.behavior === 'alternate') {
                             marqueeState.dir *= -1; // flip
                         }
                         marqueeState.last = -1;
@@ -58,7 +58,7 @@
 
                         marqueeState.loops--;
                         if (marqueeState.loops === 0) {
-                            if (marqueeState.behavior != 'slide') {
+                            if (marqueeState.behavior !== 'slide') {
                                 marqueeRedux[marqueeState.axis] = getReset(marqueeState.dir, marqueeRedux, marqueeState);
                             } else {
                                 // corrects the position
@@ -113,7 +113,7 @@
                 };
             
             // corrects a bug in Firefox - the default loops for slide is -1
-            if ($marquee.attr('loop') == -1 && marqueeState.behavior == 'slide') {
+            if ($marquee.attr('loop') === -1 && marqueeState.behavior === 'slide') {
                 marqueeState.loops = 1;
             }
 
@@ -145,7 +145,7 @@
             $marqueeRedux.trigger('start');
             
             // on the very last marquee, trigger the animation
-            if (i+1 == last) {
+            if (i+1 === last) {
                 animateMarquee();
             }
         });            
