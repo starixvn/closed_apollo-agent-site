@@ -122,12 +122,8 @@
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
     <Compile Include="Services\CacheRef.cs" />
-    <Compile Include="Services\Impl\AgentService.cs" />
     <Compile Include="Services\Impl\CachingService.cs" />
-    <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Impl\FunctionService.cs" />
-    <Compile Include="Services\Impl\MemberService.cs" />
-    <Compile Include="Services\Impl\PermissionService.cs" />
     <Compile Include="Services\Impl\QueryService.cs" />
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\SingbetSportService.cs" />

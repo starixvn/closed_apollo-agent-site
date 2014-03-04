@@ -33,19 +33,11 @@ namespace Apollo.Age.BetList.Controllers
     {
         private readonly BetListService _betListService;
         private readonly ReportService _reportService;
-        private readonly TotalBetsService _totalBetsService;
-        private readonly IUserService _userService;
-        private readonly PeriodDateRangeService _periodDateRangeSerivce;
-        private readonly ExcelService _excelService;
 
         public BetListBaseController()
         {
             this._betListService = new BetListService();
             this._reportService = new ReportService();
-            this._totalBetsService = new TotalBetsService();
-            _userService = new UserService();
-            _periodDateRangeSerivce = new PeriodDateRangeService();
-            this._excelService = new ExcelService();
         }
 
         /// <summary>
@@ -58,9 +50,9 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTeam">The bet team.</param>
         /// <param name="matchId">The match identifier.</param>
         /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
-        /// <param name="isForecast">If set to <c>true</c> [is forecast].</param>
-        /// <returns>Return ticket result.</returns>
+        /// <returns>
+        /// Return ticket result.
+        /// </returns>
         public TicketResult ForecastBetlist(
             ref string title,
             ref string strBetType,
@@ -68,9 +60,7 @@ namespace Apollo.Age.BetList.Controllers
             string betType = "",
             string betTeam = "",
             int matchId = 0,
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
-            bool isForecast = false)
+            int mainShareHolderId = 0)
         {
             if (type.Equals("correctscore", StringComparison.OrdinalIgnoreCase))
             {
@@ -124,27 +114,19 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="fromDate">The from date.</param>
         /// <param name="toDate">The to date.</param>
         /// <param name="type">The type bet list.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Ticket result.</returns>
+        /// <returns>
+        /// Ticket result.
+        /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public TicketResult WinlossBetlist(
             int custId,
             DateTime fromDate,
             DateTime toDate,
             string type = "",
-            string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
             var statusIds = string.Empty;
             if (type.Equals("report", StringComparison.OrdinalIgnoreCase))
@@ -362,26 +344,16 @@ namespace Apollo.Age.BetList.Controllers
         /// Outstanding the bet list.
         /// </summary>
         /// <param name="custId">The customer identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Ticket result.</returns>
+        /// <returns>
+        /// Ticket result.
+        /// </returns>
         public TicketResult OutstandingBetList(
-             int custId,
-            string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
+            int custId,
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
-            var betListService = new BetListService();
-
             var criteria = new OutstandingCriteria
             {
                 Bettypes = betType,

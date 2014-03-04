@@ -225,7 +225,7 @@ namespace Apollo.Age.Services.Impl
             string platform,
             string countryCode)
         {
-            var result = _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
+            _userRepository.WritelogInternalLogin(new InternalLogLoginCriteria
             {
                 AgentId = agentId,
                 AgentUserId = agentUserId,

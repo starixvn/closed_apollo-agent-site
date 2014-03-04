@@ -27,7 +27,6 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Services.Interface;
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Web.Services;
     using Apollo.Age.Web.Web.Attribute;
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
@@ -50,7 +49,6 @@ namespace Apollo.Age.BetList.Controllers
         private readonly TotalBetsService _totalBetsService;
         private readonly IUserService _userService;
         private readonly PeriodDateRangeService _periodDateRangeSerivce;
-        private readonly ExcelService _excelService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BetListController" /> class.
@@ -62,7 +60,6 @@ namespace Apollo.Age.BetList.Controllers
             this._totalBetsService = new TotalBetsService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
-            this._excelService = new ExcelService();
         }
 
         /// <summary>
@@ -76,8 +73,6 @@ namespace Apollo.Age.BetList.Controllers
         {
             var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
-            // List ticket
-            var betListService = new BetListService();
             var model = new BetListCriteria
             {
                 LoggedId = CurrentSession.AgentId,
@@ -110,7 +105,6 @@ namespace Apollo.Age.BetList.Controllers
         {
             var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
 
-            var betListService = new BetListService();
             model.LoggedId = CurrentSession.AgentId;
             model.ToDate = ResetEndDate(model.ToDate);
             model.FromDate = ResetStartDate(model.FromDate);
@@ -139,21 +133,6 @@ namespace Apollo.Age.BetList.Controllers
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult AccountInfoExportExcel(BetListCriteria model)
         {
-            var statusIds = string.Format(
-                   "{0},{1},{2},{3},{4},{5},{6},{7}",
-                  (int)Apollo.Age.Enumerations.BetStatus.Void,
-                  (int)Apollo.Age.Enumerations.BetStatus.Reject,
-                  (int)Apollo.Age.Enumerations.BetStatus.Running,
-                  (int)Apollo.Age.Enumerations.BetStatus.Waiting,
-                  (int)Apollo.Age.Enumerations.BetStatus.Refund,
-                  (int)Apollo.Age.Enumerations.BetStatus.Draw,
-                  (int)Apollo.Age.Enumerations.BetStatus.Won,
-                  (int)Apollo.Age.Enumerations.BetStatus.Lose);
-
-            var moveBetsDay = _reportService.MoveBetsDay().AddDays(1);
-
-            // List ticket
-            var betListService = new BetListService();
             model.LoggedId = CurrentSession.AgentId;
             model.ToDate = ResetEndDate(model.ToDate);
             model.FromDate = ResetStartDate(model.FromDate);
@@ -478,28 +457,20 @@ namespace Apollo.Age.BetList.Controllers
         /// Bet list Outstanding listOutstanding.
         /// </summary>
         /// <param name="custId">The customer identifier.</param>
-        /// <param name="username">Name of user.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Return view result.</returns>
+        /// <returns>
+        /// Return view result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         [ValidateInput(false)]
         public ViewResult Outstanding(
             int custId,
-            string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
-            var mainTickets = OutstandingBetList(custId, username, mainShareHolderId, mainShareHolderUsername, betType, sportType, sportName, betTypeName);
+            var mainTickets = OutstandingBetList(custId, betType, sportType);
 
             var viewModel = new BetListViewModel
             {
@@ -514,29 +485,21 @@ namespace Apollo.Age.BetList.Controllers
         /// </summary>
         /// <param name="custId">The customer identifier.</param>
         /// <param name="username">The username.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Action Result.</returns>
+        /// <returns>
+        /// Action Result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Outstanding, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         [ValidateInput(false)]
         public ActionResult OutstandingExportExcel(
             int custId,
             string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
-            var moveBetsDay = _reportService.MoveBetsDay();
-
-            var mainTickets = OutstandingBetList(custId, username, mainShareHolderId, mainShareHolderUsername, betType, sportType, sportName, betTypeName);
+            var mainTickets = OutstandingBetList(custId, betType, sportType);
 
             var sheetName = "Betlist-Outstanding";
             var betlistName = "BetList on " + DateTime.Now.ToString("MM/dd/yyyy") + " - Outstanding - " + username;
@@ -572,14 +535,11 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="fromDate">Input from date.</param>
         /// <param name="toDate">Input to date.</param>
         /// <param name="type">Bet list type.</param>
-        /// <param name="username">Name of user.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Return view result.</returns>
+        /// <returns>
+        /// Return view result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         [ValidateInput(false)]
@@ -588,26 +548,16 @@ namespace Apollo.Age.BetList.Controllers
             DateTime fromDate,
             DateTime toDate,
             string type = "",
-            string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
             TicketResult mainTickets = WinlossBetlist(
                 custId,
                 fromDate,
                 toDate,
                 type,
-                username,
-                mainShareHolderId,
-                mainShareHolderUsername,
                 betType,
-                sportType,
-                sportName,
-                betTypeName);
+                sportType);
 
             var viewModel = new BetListViewModel
             {
@@ -625,13 +575,11 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="toDate">The To date.</param>
         /// <param name="type">The type bet list.</param>
         /// <param name="username">The username.</param>
-        /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="betType">Type of the bet.</param>
         /// <param name="sportType">Type of the sport.</param>
-        /// <param name="sportName">Name of the sport.</param>
-        /// <param name="betTypeName">Name of the bet type.</param>
-        /// <returns>Return action result.</returns>
+        /// <returns>
+        /// Return action result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.WinLoss, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         [ValidateInput(false)]
@@ -641,25 +589,16 @@ namespace Apollo.Age.BetList.Controllers
             DateTime toDate,
             string type = "",
             string username = "",
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             string betType = "",
-            string sportType = "",
-            string sportName = "",
-            string betTypeName = "")
+            string sportType = "")
         {
             TicketResult mainTickets = WinlossBetlist(
                 custId,
                 fromDate,
                 toDate,
                 type,
-                username,
-                mainShareHolderId,
-                mainShareHolderUsername,
                 betType,
-                sportType,
-                sportName,
-                betTypeName);
+                sportType);
 
             var sheetName = "Betlist-WinLoss";
             var betlistName = "BetList From " + fromDate.ToString("MM/dd/yyyy") + " To " + toDate.ToString("MM/dd/yyyy") + " - WinLoss - " + username;
@@ -697,9 +636,10 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTeam">The bet team.</param>
         /// <param name="matchId">The match identifier.</param>
         /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
         /// <param name="isForecast">Is view from forecast or not.</param>
-        /// <returns>Return view result.</returns>
+        /// <returns>
+        /// Return view result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ViewResult Forecast(
@@ -708,7 +648,6 @@ namespace Apollo.Age.BetList.Controllers
             string betTeam = "",
             int matchId = 0,
             int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
             bool isForecast = false)
         {
             var strBetType = string.Empty;
@@ -721,7 +660,7 @@ namespace Apollo.Age.BetList.Controllers
                 mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
             }
 
-            TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId, mainShareHolderUsername, isForecast);
+            TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId);
 
             var viewModel = new BetListViewModel
             {
@@ -742,9 +681,9 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="betTeam">The bet team.</param>
         /// <param name="matchId">The match identifier.</param>
         /// <param name="mainShareHolderId">The main share holder identifier.</param>
-        /// <param name="mainShareHolderUsername">The main share holder username.</param>
-        /// <param name="isForecast">If set to <c>true</c> [is forecast].</param>
-        /// <returns>Return action result.</returns>
+        /// <returns>
+        /// Return action result.
+        /// </returns>
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Forecast, Policy = Policy.Query)]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.DownlineDetails, Policy = Policy.Query)]
         public ActionResult ForecastExportExcel(
@@ -752,27 +691,18 @@ namespace Apollo.Age.BetList.Controllers
             string betType = "",
             string betTeam = "",
             int matchId = 0,
-            int mainShareHolderId = 0,
-            string mainShareHolderUsername = "",
-            bool isForecast = false)
+            int mainShareHolderId = 0)
         {
             var strBetType = string.Empty;
             var title = string.Empty;
 
-            IEnumerable<Agent> mainShareHolders = new List<Agent>();
-
-            if (!isForecast)
-            {
-                mainShareHolders = this.ListMainShareHolder(strBetType, ref mainShareHolderId);
-            }
-
-            TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId, mainShareHolderUsername, isForecast);
+            TicketResult mainTickets = ForecastBetlist(ref title, ref strBetType, type, betType, betTeam, matchId, mainShareHolderId);
 
             title = title.Replace("/", "_");
             var sheetName = "BetList-Forecast";
             var betlistName = string.Format("BetList on {0} - {1} - {2}", DateTime.Now.ToString("MM/dd/yyyy"), "Forecast", title);
 
-            string[] titleBetlist = new string[] 
+            string[] titleBetlist = new string[]
             {
                 Resources.BetList.time,
                 Resources.BetList.rebate,
@@ -950,7 +880,7 @@ namespace Apollo.Age.BetList.Controllers
                 sportTypeName.Replace(".", string.Empty).Replace(" / ", "-"));
             }
 
-            string[] titleBetlist = new string[] 
+            string[] titleBetlist = new string[]
             {
                 Resources.BetList.time,
                 Resources.BetList.rebate,
@@ -993,12 +923,11 @@ namespace Apollo.Age.BetList.Controllers
         /// Combination Mix Parlay.
         /// </summary>
         /// <param name="refNo">The reference number.</param>
-        /// <param name="winlossDate">The win lost date.</param>
-        /// <param name="transId">The trans identifier.</param>
-        /// <param name="betId">The bet identifier.</param>
         /// <param name="custId">The customer identifier.</param>
-        /// <returns>Return view result.</returns>
-        public ViewResult CombinationMixParlay(long refNo, DateTime winlossDate, int transId, int betId, int custId)
+        /// <returns>
+        /// Return view result.
+        /// </returns>
+        public ViewResult CombinationMixParlay(long refNo, int custId)
         {
             var balanceUpDay = _reportService.GetBalanceUpDay();
             var moveBetsDay = _reportService.MoveBetsDay();
@@ -1023,11 +952,10 @@ namespace Apollo.Age.BetList.Controllers
         /// <param name="transId">Transaction Id.</param>
         /// <param name="fromDate">Input from date.</param>
         /// <param name="toDate">Input to date.</param>
-        /// <param name="type">Page type.</param>
         /// <returns>
         /// Return view result.
         /// </returns>
-        public ViewResult ViewDetail(long transId, DateTime? fromDate, DateTime? toDate, string type)
+        public ViewResult ViewDetail(long transId, DateTime? fromDate, DateTime? toDate)
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
@@ -1217,8 +1145,8 @@ namespace Apollo.Age.BetList.Controllers
                     Discount = builder.BuildDiscount(ticket, betlistPage),
                     GameType = builder.BuildTrans(ticket, ticketHelper, funcGetOddsTypeName, betlistPage),
                     Choice = ticket.BetTypeId == 9 || ticket.BetTypeId == 29 ?
-                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false, betlistPage) :
-                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false, betlistPage),
+                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, false) :
+                    builder.BuildChoice(ticket, ticketHelper, ticketResult.TicketDataList, false),
                     Stake = ticket.Stake,
                     Status = builder.BuildStatus(ticket, ticketResult.TicketDataList),
                     AgentCommValue = ticket.AComm,

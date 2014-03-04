@@ -70,7 +70,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             string betId = ticket.BetId.ToString();
             string liveScore = (!ticket.IsLive || betId == string.Empty) ? string.Empty : " [" + betId + "]";
-            decimal hdp1 = ticket.Handicap1;
             int betteam;
 
             int.TryParse(ticket.BetTeam, out betteam);

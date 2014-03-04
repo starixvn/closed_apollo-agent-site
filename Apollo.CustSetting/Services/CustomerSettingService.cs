@@ -247,7 +247,6 @@ namespace Apollo.CustSetting.Service
             try
             {
                 ICriteria criteria = null;
-                string tempString = string.Empty;
                 XMLStringData xmlStringData = BuildPositionTakingSettingXML(settingContext, positionTakingSetting);
 
                 if (string.IsNullOrEmpty(xmlStringData.XMLSetting) && string.IsNullOrEmpty(xmlStringData.XMLSetting3rd))

@@ -26,24 +26,13 @@ namespace Apollo.Age.BetList.Services
     public class BetListService : QueryService, IBetListService
     {
         private IBetListRepository _betListRepository;
-        private ExcelService _excelService;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="BetListService" /> class.
+        /// Initializes a new instance of the <see cref="BetListService" /> class.
         /// </summary>
         public BetListService()
-            : this(null)
-        {
-        }
-
-        /// <summary>
-        ///  Initializes a new instance of the <see cref="BetListService" /> class.
-        /// </summary>
-        /// <param name="betListRepository">Bet List Repository.</param>
-        public BetListService(IBetListRepository betListRepository)
         {
             this._betListRepository = this._betListRepository ?? new BetListRepository();
-            this._excelService = new ExcelService();
         }
 
         /// <summary>

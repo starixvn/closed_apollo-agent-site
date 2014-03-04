@@ -58,7 +58,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
-            List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
             string sportName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
 
             rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.BlueNoBold);

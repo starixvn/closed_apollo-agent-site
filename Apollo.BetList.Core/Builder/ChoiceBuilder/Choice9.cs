@@ -74,8 +74,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
         {
-            List<IRichTextString> lstRTFChoices = new List<IRichTextString>();
-
             rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
 
             if (ticketMixParlay != null)

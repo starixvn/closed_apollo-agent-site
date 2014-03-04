@@ -460,7 +460,7 @@ namespace Apollo.Age.Web
         private Bitmap GenerateNoise(int width, int height)
         {
             var finalBmp = new Bitmap(width, height);
-            Random r = new Random();
+
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)

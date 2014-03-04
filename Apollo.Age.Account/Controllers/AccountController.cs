@@ -1051,40 +1051,6 @@ namespace Apollo.Age.Account.Controllers
             return Json(listValue, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Fund out action.
-        /// </summary>
-        /// <param name="memberId">Input member id.</param>
-        /// <param name="sportCredit">Input sport credit.</param>
-        /// <returns>View model.</returns>
-        public ActionResult FundOut(decimal memberId, decimal sportCredit)
-        {
-            var model = new FundOutViewModel()
-            {
-                MemberId = memberId,
-                SportCredit = sportCredit
-            };
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Insert fund out to database.
-        /// </summary>
-        /// <param name="memberId">Input member Id.</param>
-        /// <param name="sportCredit">Input sport credit.</param>
-        /// <returns>Error code and error message.</returns>
-        public JsonResult PostFundOut(decimal memberId, decimal sportCredit)
-        {
-            return Json(
-                new
-                {
-                    ErrCode = 0,
-                    ErrMsg = string.Empty
-                },
-                JsonRequestBehavior.AllowGet);
-        }
-
         #region Ultil
 
         /// <summary>

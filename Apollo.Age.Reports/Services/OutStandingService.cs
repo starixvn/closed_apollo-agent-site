@@ -191,8 +191,7 @@ namespace Apollo.Age.Reports.Services
 
                     currentOutStanding = (double)currentOutstanding.Outstanding;
                     currentShareAmount = (double)currentOutstanding.ShareAmount;
-                    RenderExcelBodyRows(
-                        hssfworkbook,
+                    RenderExcelBodyRows(                        
                         sheet,
                         rowIndex + i,
                         userName,
@@ -213,7 +212,6 @@ namespace Apollo.Age.Reports.Services
                     var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
 
                     RenderExcelBodyRows(
-                        hssfworkbook,
                         sheet,
                         rowIndex + length,
                         Lang.total,
@@ -231,7 +229,6 @@ namespace Apollo.Age.Reports.Services
         /// <summary>
         /// Render Excel Outstanding Report body rows.
         /// </summary>
-        /// <param name="workBook">HSSF Workbook.</param>
         /// <param name="sheet">Excel worksheet.</param>
         /// <param name="rowIndex">Row index.</param>
         /// <param name="userName">User name.</param>
@@ -241,7 +238,6 @@ namespace Apollo.Age.Reports.Services
         /// <param name="bodyStyleLeft">The body style left.</param>
         /// <param name="bodyStyleRight">The body style right.</param>
         private void RenderExcelBodyRows(
-            HSSFWorkbook workBook,
             ISheet sheet,
             int rowIndex,
             string userName,

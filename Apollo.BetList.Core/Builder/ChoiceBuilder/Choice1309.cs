@@ -38,7 +38,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             bool betHome = ticket.BetTeam == "1";
             bool betAway = ticket.BetTeam == "2";
-            decimal handicap = ticket.Handicap2 > ticket.Handicap1 ? ticket.Handicap2 : ticket.Handicap1;
 
             if (betHome)
             {

@@ -2005,4 +2005,7 @@
   <data name="historyreportpeakhour" xml:space="preserve">
     <value>在繁忙時段不支援輸贏歷史記錄查詢</value>
   </data>
+  <data name="peakhourmessage" xml:space="preserve">
+    <value>開放查看時段: {0} - {1}(GMT +8)</value>
+  </data>
 </root>

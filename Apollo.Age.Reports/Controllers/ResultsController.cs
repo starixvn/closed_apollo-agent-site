@@ -75,10 +75,11 @@ namespace Apollo.Age.Reports.Controllers
         /// <summary>
         /// By Default is Match Action.
         /// </summary>
-        /// <param name="sportId">Input Sport Id.</param>
-        /// <returns>Return a View Model.</returns>
+        /// <returns>
+        /// Return a View Model.
+        /// </returns>
         [HttpGet]
-        public ActionResult Match(byte sportId = 1)
+        public ActionResult Match()
         {
             var viewModel = new MatchResultViewModel
             {

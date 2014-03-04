@@ -245,18 +245,5 @@ namespace Apollo.Age.Account.Models
 
             return null;
         }
-
-        /// <summary>
-        /// Check if has property information.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="propertyName">The property name.</param>
-        /// <returns>True : has, false : not have.</returns>
-        private bool HasPropertyInfo(object obj, string propertyName)
-        {
-            var propertyInfo = GetPropertyInfo(obj, propertyName);
-
-            return propertyInfo != null;
-        }
     }
 }

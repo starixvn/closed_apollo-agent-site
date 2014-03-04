@@ -82,7 +82,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap)
         {
             this.BuildChoice(ticket, ticketHelper, ticketData);
-            this.BuildHandicapOdds(ticket, ticketHelper);
+            this.BuildHandicapOdds(ticket);
             this.BuildScoreMap(ticket, isShowScoreMap);
 
             return this.Template;
@@ -163,7 +163,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         public virtual Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap)
         {
             this.BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay);
-            this.BuildHandicapOdds(ticket, ticketHelper);
+            this.BuildHandicapOdds(ticket);
             this.BuildScoreMap(ticket, isShowScoreMap);
 
             return this.Template;
@@ -576,8 +576,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Builds the handicap odds.
         /// </summary>
         /// <param name="ticket">The ticket need to build.</param>
-        /// <param name="ticketHelper">The ticket helper.</param>
-        private void BuildHandicapOdds(ITicket ticket, ITicketHelper ticketHelper)
+        private void BuildHandicapOdds(ITicket ticket)
         {
             object oddsType = new object();
 

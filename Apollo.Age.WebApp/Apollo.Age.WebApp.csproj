@@ -226,7 +226,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Wagers\Area_Start\BundleConfig.cs" />
     <Compile Include="Areas\Wagers\Area_Start\RouteConfig.cs" />
     <Content Include="App_Data\PeriodsRange.xml">
       <SubType>Designer</SubType>

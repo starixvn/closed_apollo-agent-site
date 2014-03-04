@@ -52,7 +52,6 @@ namespace Apollo.Age.Web
                 foreach (DictionaryEntry entry in resourceSetEnUs)
                 {
                     string key = entry.Key.ToString();
-                    string value = entry.Value.ToString();
 
                     var otherValue = anotherResourceSet.GetString(key);
 

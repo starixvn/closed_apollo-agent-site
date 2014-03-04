@@ -940,41 +940,6 @@ namespace Apollo.BetList.Core.Builder
         }
 
         /// <summary>
-        /// Adapts the width of the row.
-        /// </summary>
-        private void AdaptRowWidth()
-        {
-            for (short i = 0; i < _reportColumnsNum; i++)
-            {
-                _worksheet.AutoSizeColumn(i);
-            }
-        }
-
-        /// <summary>
-        /// Adapts the height of the row.
-        /// </summary>
-        private void AdaptRowHeight()
-        {
-            IEnumerator rowEnum = _worksheet.GetRowEnumerator();
-
-            while (rowEnum.MoveNext())
-            {
-                IRow currentRow = rowEnum.Current as HSSFRow;
-
-                int totalLineBreaks = 1;
-                foreach (ICell cell in currentRow.Cells)
-                {
-                    if (cell.CellType == CellType.STRING)
-                    {
-                        totalLineBreaks = Math.Max(totalLineBreaks, cell.StringCellValue.GetLineBreakTotal());
-                    }
-                }
-
-                currentRow.HeightInPoints = totalLineBreaks;
-            }
-        }
-
-        /// <summary>
         /// Initializes the default RTF helper.
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]

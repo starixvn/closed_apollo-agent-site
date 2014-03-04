@@ -2144,7 +2144,7 @@
     <value>History Report is not supported during system peak hours.</value>
   </data>
   <data name="peakhourmessage" xml:space="preserve">
-    <value>System peak hours (GMT+8): {0} - {1}</value>
+    <value>Opening hours (GMT+8): {0} - {1}</value>
   </data>
   <data name="HttpError_408" xml:space="preserve">
     <value>Request timeout</value>

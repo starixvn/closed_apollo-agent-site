@@ -154,7 +154,7 @@ namespace Apollo.BetList.Core.Builder
             string closeTag,
             bool isShowScoreMap)
         {
-            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap, BetListPage.Default);
+            string choice = BuildChoice(ticket, ticketHelper, ticketData, isShowScoreMap);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
 
             return this;
@@ -180,7 +180,7 @@ namespace Apollo.BetList.Core.Builder
            string closeTag,
            bool isShowScoreMap)
         {
-            string choice = BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap, BetListPage.Default);
+            string choice = BuildChoice(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap);
             this._content.Append(string.Join(null, new string[] { openTag, choice, closeTag }));
 
             return this;
@@ -193,7 +193,6 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betlistPage">The bet list page.</param>
         /// <returns>
         /// Choice string.
         /// </returns>
@@ -201,8 +200,7 @@ namespace Apollo.BetList.Core.Builder
             ITicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
-            bool isShowScoreMap,
-            BetListPage betlistPage)
+            bool isShowScoreMap)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
             string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, isShowScoreMap);
@@ -218,15 +216,15 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="isShowScoreMap">If set to <c>true</c> [is show score map].</param>
-        /// <param name="betlistPage">The bet list page.</param>
-        /// <returns>Choice string.</returns>
+        /// <returns>
+        /// Choice string.
+        /// </returns>
         public string BuildChoice(
             ITicket ticket,
             ITicketHelper ticketHelper,
             List<ITicketData> ticketData,
             IList<ITicket> ticketMixParlay,
-            bool isShowScoreMap,
-            BetListPage betlistPage)
+            bool isShowScoreMap)
         {
             IChoice choiceBuilder = this.CreateChoiceBuilder(ticket.BetTypeId);
             string choice = choiceBuilder.Render(ticket, ticketHelper, ticketData, ticketMixParlay, isShowScoreMap);
@@ -353,7 +351,6 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketData">The ticket data (Status33 Win/Place).</param>
         /// <param name="openTag">The open tag.</param>
         /// <param name="closeTag">The close tag.</param>
-        /// <param name="isShowVNIP">If set to <c>true</c> [is show VNIP].</param>
         /// <returns>
         /// Bet List HTML Builder.
         /// </returns>
@@ -361,8 +358,7 @@ namespace Apollo.BetList.Core.Builder
             ITicket ticket,
             List<ITicketData> ticketData,
             string openTag,
-            string closeTag,
-            bool isShowVNIP)
+            string closeTag)
         {
             string status = BuildStatus(ticket, ticketData);
             this._content.Append(string.Join(null, new string[] { openTag, status, closeTag }));

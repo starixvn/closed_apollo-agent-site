@@ -61,10 +61,6 @@ namespace Apollo.Age.Account.Criterias
 
         public override bool IsValid()
         {
-            var checkDate = false;
-
-            checkDate = From <= To;
-
             return !string.IsNullOrEmpty(this.Username);
         }
     }

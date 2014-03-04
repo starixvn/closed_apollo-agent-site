@@ -32,11 +32,6 @@ namespace Apollo.Age.Account.Services
         #region ctor
 
         public MessageService()
-            : this(null)
-        {
-        }
-
-        public MessageService(DynamicRepository dynamicRepository)
         {
             _dynamicRepository = _dynamicRepository ?? new DynamicRepository();
         }
@@ -314,56 +309,6 @@ namespace Apollo.Age.Account.Services
             };
 
             return this.GetData<MessageLevelModel>(criteria).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Get property value.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="propertyName">The property name.</param>
-        /// <returns>Property value.</returns>
-        private static object GetValue(object obj, string propertyName)
-        {
-            var propertyInfo = GetPropertyInfo(obj, propertyName);
-
-            if (propertyInfo != null)
-            {
-                return propertyInfo.GetValue(obj, null);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Get property information.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="propertyName">The property name.</param>
-        /// <returns>Property information.</returns>
-        private static PropertyInfo GetPropertyInfo(object obj, string propertyName)
-        {
-            foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
-            {
-                if (string.Compare(propertyInfo.Name, propertyName, true) == 0)
-                {
-                    return propertyInfo;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Check if has property information.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <param name="propertyName">The property name.</param>
-        /// <returns>Property information.</returns>
-        private static bool HasPropertyInfo(object obj, string propertyName)
-        {
-            var propertyInfo = GetPropertyInfo(obj, propertyName);
-
-            return !ReferenceEquals(propertyInfo, null);
         }
     }
 }
