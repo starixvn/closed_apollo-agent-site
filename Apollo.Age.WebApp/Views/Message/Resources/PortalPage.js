@@ -66,12 +66,12 @@ var MessagePortalPage = (function ($) {
                     }
 
                     var divAnnouncement = document.getElementById("divAnnouncement");
-                    if (divAnnouncement != undefined) {
+                    if (divAnnouncement !== undefined) {
                         divAnnouncement.scrollTop = divAnnouncement.scrollHeight;
                     }
 
                     var moreIsVisible = getCookie('moreIsVisible');
-                    if (moreIsVisible == 'False') {
+                    if (moreIsVisible === 'False') {
                         // var divMore = $('#divMore');
                         if (divMore.length > 0) {
                             divMore.hide();
@@ -99,7 +99,7 @@ var MessagePortalPage = (function ($) {
                 if (fullContent.hasClass('text_exposed_show')) {
                     if (e.hasClass('expanding')) {
                         e.removeClass('expanding');
-                    };
+                    }
                     smallContent.attr('class', 'text_exposed_show small');
                     fullContent.attr('class', 'text_exposed_hide full');
 
@@ -111,7 +111,7 @@ var MessagePortalPage = (function ($) {
                     fullContent.attr('class', 'text_exposed_show full');
                     icon.attr('style', 'background-position: 0px -9px;');
                     var isRead = e.attr('isRead');
-                    if (isRead == '0') {
+                    if (isRead === '0') {
                         MessagePortalPage.setReadPriMsg(elementId);
                     }
                 }
@@ -157,7 +157,7 @@ var MessagePortalPage = (function ($) {
                 dataType: 'JSON',
                 success: function (result) {
                     if (result != null) {
-                        if (MessagePortalPage.publicLevelMessageId == 0 || MessagePortalPage.publicLevelMessageId != result.public_message_id) {
+                        if (MessagePortalPage.publicLevelMessageId === 0 || MessagePortalPage.publicLevelMessageId !== result.public_message_id) {
                             MessagePortalPage.publicLevelMessageId = result.public_message_id;
                             MessagePortalPage.publicLevelMessageContent = result.public_message_content;
 
@@ -166,7 +166,7 @@ var MessagePortalPage = (function ($) {
 
                         setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
                     }
-                    
+
                 },
                 error: function (xhr, status, err) {
                 }
@@ -179,9 +179,9 @@ var MessagePortalPage = (function ($) {
             function completedGetMessages(results) {
 
                 try {
-                    var publicMessage = (results.public_message != null && results.public_message != 'undefined') ? results.public_message : 0;
-                    var privateMessage = (results.private_message != null && results.private_message != 'undefined') ? results.private_message : 0;
-                    var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages != 'undefined') ? results.unread_private_messages : 0;
+                    var publicMessage = (results.public_message != null && results.public_message !== 'undefined') ? results.public_message : 0;
+                    var privateMessage = (results.private_message != null && results.private_message !== 'undefined') ? results.private_message : 0;
+                    var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages !== 'undefined') ? results.unread_private_messages : 0;
                     var finalMessage = null;
                     var MSGID = 0,
                         MSGCONTENT = 1,
@@ -192,7 +192,7 @@ var MessagePortalPage = (function ($) {
 
                     url += publicMessage[MSGTYPE];
 
-                    if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) {
+                    if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) {
 
                         MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
 
@@ -201,7 +201,7 @@ var MessagePortalPage = (function ($) {
                     }
 
                     // Process Private Message: show new private message
-                    if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID]) {
+                    if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId !== privateMessage[MSGID]) {
 
                         MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
 
@@ -209,11 +209,11 @@ var MessagePortalPage = (function ($) {
 
                     }
 
-                    if (MessagePortalPage.publicMsgContent != "" && MessagePortalPage.privateMsgContent != "") {
+                    if (MessagePortalPage.publicMsgContent !== "" && MessagePortalPage.privateMsgContent !== "") {
                         finalMessage = MessagePortalPage.publicMsgContent + "; " + MessagePortalPage.privateMsgContent;
                     }
                     else {
-                        if (MessagePortalPage.publicMsgContent == "") {
+                        if (MessagePortalPage.publicMsgContent === "") {
                             finalMessage = MessagePortalPage.privateMsgContent;
                         }
                         else {
@@ -226,7 +226,7 @@ var MessagePortalPage = (function ($) {
                         MessagePortalPage.isFirstTime = true;
                     }
                     else {
-                        if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId != publicMessage[MSGID]) || (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId != privateMessage[MSGID])) {
+                        if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) || (privateMessage[MSGID] !== null && MessagePortalPage.privateMessageId !== privateMessage[MSGID])) {
                             document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         }
                     }
@@ -248,7 +248,7 @@ var MessagePortalPage = (function ($) {
             });
         }
 
-    }
+    };
 } (jQuery));
 
 $(document).ready(function () {
