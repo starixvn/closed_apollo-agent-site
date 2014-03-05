@@ -236,11 +236,12 @@ namespace Apollo.Age.Web.Mvc
         /// <summary>
         /// Returns the value of the specified System.String resource.
         /// </summary>
+        /// <param name="htmlhelper">The html helper.</param>
         /// <param name="key">The name of the resource to get.</param>
         /// <returns>
         /// The resource value.
         /// </returns>
-        public static string Resource(string key)
+        public static string Resource(this HtmlHelper htmlhelper, string key)
         {
             return LanguageManager.GetResourceData(key);
         }
@@ -291,12 +292,13 @@ namespace Apollo.Age.Web.Mvc
         /// <summary>
         /// Formats the show time.
         /// </summary>
+        /// <param name="htmlhelper">The html helper.</param>
         /// <param name="showTime">The show time.</param>
         /// <param name="ignoreTd">If set to <c>true</c> [ignore td].</param>
         /// <returns>
         /// MVC HTML String.
         /// </returns>
-        public static HtmlString FormatShowTime(string showTime, bool ignoreTd = false)
+        public static HtmlString FormatShowTime(this HtmlHelper htmlhelper, string showTime, bool ignoreTd = false)
         {
             string showTimeFormat = 
                 string.IsNullOrEmpty(showTime) 
