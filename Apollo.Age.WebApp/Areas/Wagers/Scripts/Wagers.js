@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../../_GlobalResources/Js/jquery.js" />
 /*global APOLLO*/
 'use strict';
-var Wagers = function ($) {
+var Wagers = (function ($) {
     return {
         sportName: null,
         groupBetName: null,
@@ -213,7 +213,7 @@ var Wagers = function ($) {
                     Wagers.initWagerBetList();
                     $('.est-zone').html($('#TimeZone').val());
                 },
-                error: function (jqXHR, exception) {
+                error: function (jqXHR) {
                     if (jqXHR.status === 403) {
                         location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                     }
@@ -262,7 +262,7 @@ var Wagers = function ($) {
         }
 
     };
-} (jQuery);
+} (jQuery));
 
 $(function () {
     Wagers.init();

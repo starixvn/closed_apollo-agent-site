@@ -1,4 +1,5 @@
-﻿@using Apollo.BetList.Core.TicketHelper;
+﻿@using Apollo.Age.Reports.ViewModels;
+@using Apollo.BetList.Core.TicketHelper;
 @using Apollo.BetList.Core.Factories;
 @using Apollo.BetList.Core.Utils;
 @model Apollo.Age.BetList.ViewModels.BetListReportViewModel
@@ -21,7 +22,7 @@
     if (!Request.IsAjaxRequest())
     {
     @Html.Partial("~/Views/Reports/Menu.cshtml",
-    new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
+    new ReportMenuViewModel
     {
         SportList = Model.SportList,
         FunctionPolicyList = FunctionPermissions,

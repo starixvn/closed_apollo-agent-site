@@ -36,13 +36,15 @@ if (typeof jQuery !== 'undefined') {
                 }
             },
             registerEvents: function (isLoadNewPopup) {
+                var url = '';
+                var countDownTimer = null;
                 $('#forecast-body')
                 .off("click")
                 .on("click", ".view-bet-list", function () {
                     var $this = $(this);
                     if (isLoadNewPopup) {
                         if (countDownTimer != null) { clearTimeout(countDownTimer); }
-                        var url = APOLLO.resolveUrl('Betlist/Forecast?matchId=' + $this.attr("match-id")
+                        url = APOLLO.resolveUrl('Betlist/Forecast?matchId=' + $this.attr("match-id")
                             + '&betType=' + $this.attr("bet-type")
                             + '&type=BettypeMatch'
                             + '&leagueName=' + FC1X2.cuurentLeagueName);
@@ -55,13 +57,13 @@ if (typeof jQuery !== 'undefined') {
                             width: 930,
                             height: 700,
                             position: { my: "top+30", at: "center top", of: window },
-                            close: function (event, ui) {
+                            close: function (event) {
                                 countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                             }
                         });
 
                     } else {
-                        var url = APOLLO.resolveUrl('Betlist/Forecast?matchId=' + FC1X2.matchId
+                        url = APOLLO.resolveUrl('Betlist/Forecast?matchId=' + FC1X2.matchId
                             + '&betType=' + FC1X2.betType
                             + '&type=BettypeMatch'
                             + '&leagueName=' + FC1X2.cuurentLeagueName);
