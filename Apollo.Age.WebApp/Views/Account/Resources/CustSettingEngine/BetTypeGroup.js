@@ -1,6 +1,6 @@
 ﻿/// <reference path="PTSetting.js" />
 /*global Language*/
-'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 	Fanex = {};
 }
@@ -12,8 +12,9 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting n
 // Call method by Method.call(this, arg1, arg2...)
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_5 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 = 
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
+    'use strict';
     // There is no decorating for this implementation
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");
@@ -28,8 +29,8 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
     box.appendChild(ptLabel);
 
     box.className = "pt-box";
-	this.rowSpan = 3; // Total cells in height
-	return box;
+    this.rowSpan = 3; // Total cells in height
+    return box;
 };
 
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_4 =
@@ -38,6 +39,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
+    'use strict';
     var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
     var isViewMode = currentContext.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId === Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
@@ -57,7 +59,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     var presetLabel = document.createElement("DIV");
     presetLabel.innerHTML = Language.PRESET_POSITION;
     presetLabel.title = Language.PRESET_POSITION;
-    presetLabel.className ="group-label";
+    presetLabel.className = "group-label";
     box.appendChild(presetLabel);
 
     var maxLabel = document.createElement("DIV");
@@ -81,6 +83,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_3_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
+    'use strict';
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");
     emptyLabel.innerHTML = "&nbsp;";

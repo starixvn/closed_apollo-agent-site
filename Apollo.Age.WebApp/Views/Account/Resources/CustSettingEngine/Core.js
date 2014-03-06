@@ -1,5 +1,5 @@
 ﻿/*global Language*/
-'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
     Fanex.CloneObject = function (obj) {

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
 /*global APOLLO*/
-'use strict';
+
 var MENU = (function ($) {
     return {
         menu: null,

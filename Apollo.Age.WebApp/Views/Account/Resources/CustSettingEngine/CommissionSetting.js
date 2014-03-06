@@ -2,7 +2,7 @@
 /// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
 /*global Language*/
-'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }

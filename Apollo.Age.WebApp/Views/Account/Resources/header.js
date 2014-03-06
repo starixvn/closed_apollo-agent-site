@@ -1,257 +1,12 @@
-﻿/*
-* Created 20100203@Lee - Header page functions
-* Revision:
-* Don@20100616 - Refactor user message function: use JSON format for processing ajax response
-*/
-// Scroller message _page.section ------------------
-/*global LANGUAGES*/
+﻿/*global LANGUAGES*/
 /*global DEFAULTS*/
 /*global APOLLO*/
 'use strict';
-AGE.prototype.ApplyScroller = function () {
-    if (typeof this.scroller_left !== 'undefined') { return; } // Apply first time only
-    this.scroller_left = -100;
-    this.scroller_width = 0;
-
-    var text_news = document.getElementById('text_news');
-
-    this.scroller = document.getElementById('scroller');
-    this.topnews = document.getElementById('topnews');
-
-    this.topnews.onmouseover = function () {
-        this.scrollerPaused = true;
-    };
-
-    this.topnews.onmouseout = function () {
-        this.scrollerPaused = false;
-    };
-
-    this.maskWidth = parseInt(text_news.offsetWidth);
-
-    this.Scrolling();
-};
-
-var isTimeout = false;
-
-// age=this is the object of AGE instance
-AGE.prototype.Scrolling = function () {
-    //    try {
-    //        if (parent.main.location.href.indexOf(_page.getBaseURL) == -1) {
-    //            setCookie(_page.CookieCurrentURLKey, '', -1);
-    //            parent.location = _page.getBaseURL;
-    //            isTimeout = true;
-    //            return;
-    //        }
-    //    } catch (e) { // Permission is denied because of cross domain issue
-    //        setCookie(_page.CookieCurrentURLKey, '', -1);
-    //        parent.location = _page.getBaseURL;
-    //        isTimeout = true;
-    //        return;
-    //    }
-
-    if (age.scrollerPaused) { return; }
-
-    if (age.scroller_left + age.scroller_width < -5) {
-        age.scroller_left = age.maskWidth - 90;
-        age.scroller_width = parseInt(age.topnews.offsetWidth);
-    }
-
-    age.scroller.style.left = (age.scroller_left--) + 'px';
-    setTimeout(age.Scrolling, 20);
-
-    if (isTimeout) { return; }
-};
-
-// Balloon tip and message functions
-var timeOutId;
-
-function PrivateMsgLink(url) {
-    var open = "(",
-        close = ")";
-    var countText = document.getElementById('privateMsgLnk').innerHTML;
-    var countPrivateMsg = countText.substring(countText.indexOf(open) + 1, countText.indexOf(close));
-    if (parseInt(countPrivateMsg) > 0) {
-        UpdateCountPrivateMsg();
-    }
-}
-
-function UpdateCountPrivateMsg() {
-    function completeCountPrivateMsg(data) {
-        if (data.errCode === 0) {
-            var open = "(",
-                noMsg = "0";
-            var countText = document.getElementById('privateMsgLnk').innerHTML;
-            document.getElementById('privateMsgLnk').innerHTML = countText.substring(0, countText.indexOf(open) + 1) + noMsg + ")";
-        }
-    }
-
-    var url = APOLLO.resolveUrl("~/Message/UpdatePriMsg");
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'JSON',
-        success: completeCountPrivateMsg,
-        error: function (xhr, status, err) {
-        }
-    });
-}
-
-function ReplaceAll(source, stringToFind, stringToReplace) {
-    var temp = source;
-
-    var index = temp.indexOf(stringToFind);
-
-    while (index !== -1) {
-        temp = temp.replace(stringToFind, stringToReplace);
-        index = temp.indexOf(stringToFind);
-    }
-
-    return temp;
-}
-
-var msgIndex = 0;
-function ShowHotMsg(msgs) {
-    if (msgs.length === 0) {
-        document.getElementById("Popup_top").style.display = 'none';
-
-        return;
-    }
-
-    var Popup_contents1 = document.getElementById('Popup_contents');
-    var Popup_contents2 = document.getElementById('Popup_contents2');
-
-    Popup_contents1.innerHTML = msgs[msgIndex];
-    if (msgs.length > 1) {
-        Popup_contents2.innerHTML = msgs[msgIndex + 1];
-    }
-
-    ShowPopupTop(true);
-
-    document.getElementById("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
-
-    var height = 0;
-    var marginTop = 0;
-    var timeOutSwap = 0;
-    function swapMessage() {
-        marginTop -= 5;
-        if (Math.abs(marginTop) >= height) {
-            marginTop = 0;
-            var parentNode = Popup_contents1.parentNode;
-            parentNode.removeChild(Popup_contents1);
-            parentNode.appendChild(Popup_contents1);
-            var node2 = Popup_contents2;
-            Popup_contents2 = Popup_contents1;
-            Popup_contents1 = node2;
-
-            Popup_contents1.style.marginTop = marginTop + "px";
-            Popup_contents2.style.marginTop = marginTop + "px";
-
-            document.getElementById("Popup_top").style.height = Popup_contents1.clientHeight + 'px';
-
-            return;
-        }
-
-        Popup_contents1.style.marginTop = marginTop + "px";
-        setTimeout(swapMessage, 50);
-    }
-
-    function startSwap() {
-        if (msgIndex >= msgs.length - 1) {
-            msgIndex = -1;
-        }
-        height = Popup_contents1.clientHeight + 20;
-        Popup_contents2.innerHTML = msgs[++msgIndex];
-        timeOutSwap = setTimeout(swapMessage, 50);
-    }
-
-    if (msgs.length > 1) {
-        setInterval(startSwap, 10000);
-    }
-}
-
-function ShowPopupTop(show) {
-    if (!show) {
-        document.getElementById("Popup_top").style.display = "none";
-    } else {
-        document.getElementById("Popup_top").style.display = "block";
-    }
-    return false;
-}
-
-function SetContentPopupTop(content) {
-    document.getElementById("Popup_contents").innerHTML = content;
-}
-
-// Hide Tooltip after 5s
-function HideTooltipIntroNickname() {
-    if (document.getElementById('tooltip_box') != null) { setTimeout(function () { document.getElementById('tooltip_box').style.display = 'none'; }, 10000); }
-}
-
 // Start up
-function InitHeader() {
+
+$(document).ready(function () {
     setTimeout(function () { HEADER.init(); }, 100);
-}
-
-// Change to message page
-function Change2Menu(url) {
-    if (parent.menu && parent.menu.ClearCurrentLeftMenu) {
-        parent.menu.ClearCurrentLeftMenu();
-    }
-
-    //parent.main.location = _page.getBaseURL + url;
-    parent.main.location = APOLLO.resolveUrl(url);
-    SelectTopMenu(url);
-}
-
-// Clear active tab
-function ClearActiveTab() {
-    if (currentTab) { currentTab.className = ""; }
-}
-
-function SelectTopMenu(url) {
-    var mainUrl = '';
-    if (url) {
-        mainUrl = url;
-    } else if (parent.main) {
-        mainUrl = parent.main.location.href;
-    }
-
-    var start = mainUrl.lastIndexOf('/');
-    var end = mainUrl.lastIndexOf('?');
-    if (end === -1) { end = mainUrl.length; }
-    var name = mainUrl.substring(start + 1, end);
-
-    //if (currentTab) currentTab.className = "";
-
-    switch (name) {
-        case 'PortalPage.aspx':
-            currentTab = document.getElementById("balance");
-            break;
-        case 'MemberList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'AgentList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'MasterList.aspx':
-            currentTab = document.getElementById("transfer");
-            break;
-        case 'ChangePassword.aspx':
-            currentTab = document.getElementById("changepass");
-            break;
-        case 'LogCustomerSetting.aspx':
-            currentTab = document.getElementById("viewlog");
-            break;
-        default:
-            currentTab = null;
-            break;
-    }
-
-    if (currentTab) { currentTab.className = "active"; }
-    else { ClearActiveTab(); }
-}
-
-RegisterStartUp(InitHeader);
+});
 
 var HEADER = (function ($) {
     return {
@@ -261,9 +16,7 @@ var HEADER = (function ($) {
             if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
                 setTimeout(function () { HEADER.reCheckIn(); }, 1000);
             }
-//            else {
-//                setTimeout(function () { HEADER.reCheckUM(); }, 1000);
-//            }
+
             HEADER.signOut();
 
             // show sub-menu
@@ -324,12 +77,6 @@ var HEADER = (function ($) {
             })
                 .done(function (result) {
                     if (DEFAULTS.IsInternalLogin && !DEFAULTS.IsAllowMultipleSignIn) {
-//                        if (result.isDowntime) {
-//                            parent.location.href = APOLLO.resolveUrl(result.urlReturn);
-//                        }
-//                        else {
-//                            
-//                        }
                         if (result.isKickout) {
                             alert(LANGUAGES.AlerSignonMessage);
                             APOLLO.signOut();
@@ -343,28 +90,6 @@ var HEADER = (function ($) {
                     APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
                 });
         },
-
-//        reCheckUM: function () {
-//            $.ajax({
-//                type: "POST",
-//                url: APOLLO.resolveUrl("~/Internal/ReCheckUMService"),
-//                contentType: "application/json; charset=utf-8",
-//                dataType: "json",
-//                async: false,
-//                timeout: 120000
-//            })
-//                .done(function (result) {
-//                    if (result.isDownTime) {
-//                        parent.location.href = APOLLO.resolveUrl(result.urlReturn);
-//                    }
-//                    else {
-//                        setTimeout(function () { HEADER.reCheckUM(); }, 30000);
-//                    }
-//                })
-//                .fail(function (event, jqXHR, ajaxSettings) {
-//                    APOLLO.handleAjaxError(event, jqXHR, ajaxSettings);
-//                });
-//        },
 
         showAccountTab: function () {
             var leftMenu = parent.$('.menu');
@@ -438,10 +163,6 @@ var HEADER = (function ($) {
                 parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("Account/TreeViewList");
                 HEADER.IsLoadTreeView = true;
             }
-//            else {
-//                parent.document.getElementById('menu').contentWindow.ACCOUNT.reloadButtonRefresh();
-//            }
-            //parent.document.getElementById('menu').contentWindow.MENU.loadAgentList();
         },
 
         oldUrl: null,

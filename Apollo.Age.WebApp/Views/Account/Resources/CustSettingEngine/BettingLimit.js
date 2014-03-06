@@ -1,7 +1,7 @@
 ﻿/// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
 /*global Language*/
-'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 	Fanex = {};
 }
@@ -12,6 +12,7 @@ if (typeof (Validators) === 'undefined') { // Require Validators library
 	alert('Require validators library');
 }
 Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
+    'use strict';
     this.items = bettingLimitItems;
     var validateExpr = /^(\$|)([0-9]\d{0,2}(\,\d{3})*)$/;
     this.Validate = function () {

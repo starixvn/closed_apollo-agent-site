@@ -1,9 +1,10 @@
 ﻿/*global Language*/
-'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting namespace
+    'use strict';
     Fanex.CustSetting = {
         RoleType: {
             Super: 4,
@@ -33,6 +34,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
         MIN_CONSTRAIN_VALUE: 50,
         Min_WIDTH_BET_TYPE_GROUP: 185,
         DisableChildren: function (element, cssApplied) { // Check dublicated disable
+            'use strict';
             if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
             if (typeof (count) === 'undefined') { return false; }
@@ -57,6 +59,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return true;
         },
         ReEnableChildren: function (element) { // Check dublicated enable
+            'use strict';
             if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
             if (typeof (count) === 'undefined') { return false; }
@@ -81,6 +84,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return true;
         },
         BuildMinMaxShareString: function (minShare, maxShare, digits) {
+            'use strict';
             if (maxShare < minShare) {
                 maxShare = minShare;
             }
@@ -88,6 +92,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return ' [' + Fanex.RoundNumber(minShare, digits) + ' - ' + Fanex.RoundNumber(maxShare, digits) + ']';
         },
         BuildUplineShareString: function (minShare, maxShare, digits) {
+            'use strict';
             if (maxShare < minShare) {
                 maxShare = minShare;
             }
@@ -95,6 +100,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return ' ' + Language.MIN + ' = ' + Fanex.RoundNumber(minShare, digits) + ' || ' + Language.MAX + ' = ' + Fanex.RoundNumber(maxShare, digits);
         },
         PT_RenderSpinner: function (spinBoxElement, spinOptions, maxLength) {
+            'use strict';
             spinBoxElement.style.width = spinOptions.minWidth + 'px';
             var minInput = document.createElement("INPUT");
             minInput.type = "text";
@@ -106,6 +112,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return spinBox;
         },
         CalculateMinWidth: function (text) {
+            'use strict';
             if (typeof (text) !== 'string') { return Fanex.CustSetting.MIN_PT_BOX_WIDTH; }
             var measure = 6.7; // Default for en-US
             if (Fanex.CustSetting.CURRENT_CONTEXT.Language === 'th-TH') {
@@ -119,6 +126,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return Math.round(text.length * measure);
         },
         SizingChildren: function (element) { // For element has each child as no-child no-float div
+            'use strict';
             if (typeof (element) !== 'object') { return false; }
             var count = element.childNodes.length;
             if (typeof (count) === 'undefined') { return false; }
@@ -140,6 +148,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             return minWidth;
         },
         Context: function (currentContext) {
+            'use strict';
             this.RoleId = currentContext.RoleId;
             this.TargetRoleId = currentContext.TargetRoleId;
             this.FormId = currentContext.FormId;
@@ -162,6 +171,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
         },
         // BetType class, need to create each bet type class for each PT form
         BetType: function (item) {
+            'use strict';
             this.name = item.Name; // Handicap, Over / Under
             this.title = item.Name; // Title  Handicap, Over / Under
             this.id = item.Id; // Bet type id
@@ -232,6 +242,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
         },
         // BetTypeGroup, could have "Copy From " check box
         BetTypeGroup: function (betTypeGroup) { // Each group normaly contains 4 or 5 bet types
+            'use strict';
             this.id = betTypeGroup.Id || null; // Bet type group could omit id property
             this.betTypes = betTypeGroup.BetTypes;
             this.elements = []; // Child bet type HTML elements
@@ -455,6 +466,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             };
         },
         SportType: function (sportType) {
+            'use strict';
             if (typeof (sportType) !== 'object') {
                 console.log("Input sport type is an invalid object.");
                 return null;
@@ -643,6 +655,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
             };
         },
         PTGrid: function (source) {
+            'use strict';
             this.elements = []; // Sport type HTML elements
             this.items = []; // Sport type objects
             this.sportTypes = [];
