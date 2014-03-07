@@ -1,5 +1,5 @@
 ﻿'use strict';
-var TotalBetsIndex = (function ($) {
+var TotalBetsIndex = (function () {
     return {
         menu: null,
         moreLink: null,
@@ -11,7 +11,7 @@ var TotalBetsIndex = (function ($) {
             document.getElementById('submain').contentWindow.location.href;
         }
     };
-})(jQuery);
+})();
 
 $(function () {
     TotalBetsIndex.menu = $('.menu');

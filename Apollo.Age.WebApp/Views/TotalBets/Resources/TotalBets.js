@@ -21,7 +21,7 @@ var TOTALBETS = (function ($) {
                     width: 665,
                     height: 250,
                     position: { my: "top+20", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         parent.RefreshCountDown.startTimeout();
                     }
                 });
@@ -45,7 +45,7 @@ var TOTALBETS = (function ($) {
                     width: resolution.width,
                     height: resolution.height,
                     position: { my: "top+20", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         parent.RefreshCountDown.startTimeout();
                     }
                 });
@@ -69,7 +69,7 @@ var TOTALBETS = (function ($) {
                     width: 1000,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         parent.RefreshCountDown.startTimeout();
                     }
                 });
@@ -93,7 +93,7 @@ var TOTALBETS = (function ($) {
                     width: 1000,
                     height: 770,
                     position: { my: "top+40", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         parent.RefreshCountDown.startTimeout();
                     }
                 });
@@ -118,7 +118,7 @@ var TOTALBETS = (function ($) {
                     width: resolution.width,
                     height: resolution.height,
                     position: { my: "top+20", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         parent.RefreshCountDown.startTimeout();
                     }
                 });
@@ -132,12 +132,12 @@ var TOTALBETS = (function ($) {
 
 $(function () {
     $.blockUI();
-    setTimeout('$.unblockUI()', 300);
+    setTimeout(function () { $.unblockUI(); }, 300);
 
-	if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
-		$("#ddlMainShareHolder").change(function () {
-			var $this = $(this);
-			window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
-		});
-	}
+    if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
+        $("#ddlMainShareHolder").change(function () {
+            var $this = $(this);
+            window.location.href = DEFAULT_LAYOUT.currentActionLink + "?mainShareHolderId=" + $this.val();
+        });
+    }
 });

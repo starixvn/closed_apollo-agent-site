@@ -132,7 +132,7 @@ function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
     }
 }
 
-RegisterStartUp(InitBetList);
+InitBetList();
 
 var BETLIST = {};
 
