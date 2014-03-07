@@ -24,7 +24,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -238,7 +238,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Wagers\Scripts\Wagers.js" />
-    <Content Include="Areas\Wagers\Views\Basketball\Resources\BkNFLRugby.js" />
     <Compile Include="Areas\Wagers\WagersAreaRegistration.cs" />
     <Content Include="App_Code\Formater.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

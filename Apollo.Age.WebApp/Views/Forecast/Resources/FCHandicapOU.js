@@ -40,7 +40,7 @@ if (typeof jQuery !== 'undefined') {
                     width: 680,
                     height: 350,
                     position: { my: "top+50", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                         countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                     }
                 });
