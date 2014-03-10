@@ -21,10 +21,10 @@ function ViewMixParlayResult(refno_mixparlay, refno) {
 }
 
 function ViewSportBookResult(matchId, sportId, refno) {
-    var width = 730,
-		height = 250,
-		params = '?matchId= ' + matchId + '&sportId=' + sportId,
-		detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
+    var width = 730;
+    var height = 250;
+    var params = '?matchId= ' + matchId + '&sportId=' + sportId;
+    var detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
 
     APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
 		detailTitle, { width: width, height: height });
@@ -63,11 +63,16 @@ function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
 		params = '?refno=' + refno + '&winlossDate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
 		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + ApoRes.RefNo + ": " + transid;
     APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
-		detailTitle, { width: width, height: height,
-		close: function (event, ui) {
-		if (parent.RefreshCountDown) { parent.RefreshCountDown.startTimeout(); }
-		}
-		});
+		detailTitle,
+        {
+            width: width,
+            height: height,
+            close: function (event, ui) {
+                if (parent.RefreshCountDown) {
+                    parent.RefreshCountDown.startTimeout();
+                }
+            }
+        });
 }
 
 function InitBetList() {
@@ -219,7 +224,6 @@ if (typeof jQuery !== "undefined") {
                     }
                 });
 
-
                 if ($('#IsTransactionsBetList').val() === '1') {
                     BETLIST.initPager(BETLIST.pageIndex);
                 }
@@ -249,7 +253,6 @@ if (typeof jQuery !== "undefined") {
                                 }));
                             });
                         });
-
                 });
 
                 BETLIST.initEditLink();
@@ -282,7 +285,6 @@ if (typeof jQuery !== "undefined") {
                 });
 
                 $("form:first").attr("action", "/betlist/transactions");
-
             },
 
             initPager: function (pageIndex) {
@@ -320,7 +322,6 @@ if (typeof jQuery !== "undefined") {
             },
 
             ticketCancel: function () {
-
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -343,7 +344,6 @@ if (typeof jQuery !== "undefined") {
             },
 
             Transaction: function () {
-
                 if (!APOLLO.IsValidDate(BETLIST.FromDate.val()) || !APOLLO.IsValidDate(BETLIST.ToDate.val())) {
                     alert("Invalid date");
                     return;
@@ -419,8 +419,9 @@ if (typeof jQuery !== "undefined") {
 
             initEditLink: function () {
                 $(".view-detail").click(function () {
-
-                    var fromDate = toDate = type = "";
+                    var fromDate = "";
+                    var toDate = "";
+                    var type = "";
 
                     if (typeof ($("#fromDate").val()) !== 'undefined') {
                         fromDate = $("#fromDate").val();
@@ -432,12 +433,10 @@ if (typeof jQuery !== "undefined") {
                         type = $("#type").val();
                     }
 
-                    var $this = $(this),
-				transId = $this.attr("tid"),
-				fromDate = fromDate,
-				toDate = toDate,
-				type = type,
-				params = "?transid=" + transId +
+                    var $this = $(this);
+                    var transId = $this.attr("tid");
+
+                    var params = "?transid=" + transId +
 					"&fromdate=" + fromDate +
 					"&toDate=" + toDate +
 					"&type=" + type;
@@ -454,7 +453,6 @@ if (typeof jQuery !== "undefined") {
     } (jQuery));
 
     $(document).ready(function () {
-
         BETLIST.init();
 
         $("#btnCancel").on('click', function () {
@@ -514,20 +512,21 @@ if (typeof jQuery !== "undefined") {
 
         // change page with navigation
         $(".navigation").bind('click', function () {
-            var obType = $("#type"),
-				type = null;
+            var obType = $("#type");
+            var type = null;
             if (obType.length) {
                 type = obType.val();
             }
 
             if (type != null) {
-                var fromDate = null,
-				toDate = null,
-					sportType = betType = 0,
-					obFromDate = $('#fromDate'),
-					obToDate = $('#toDate');
-                obSportType = $('#sportTypes'),
-					obBetType = $('#betTypes');
+                var fromDate = null;
+                var toDate = null;
+                var sportType = 0;
+                var betType = 0;
+                var obFromDate = $('#fromDate');
+                var obToDate = $('#toDate');
+                var obSportType = $('#sportTypes');
+                var obBetType = $('#betTypes');
 
                 if (obFromDate.length) {
                     fromDate = $("#fromDate").val();
@@ -561,5 +560,5 @@ if (typeof jQuery !== "undefined") {
                 }
             }
         });
-    });  //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    });        //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
