@@ -2,7 +2,7 @@
 /*global APOLLO*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
-    var BETLIMIT = function ($) {
+    var BETLIMIT = (function ($) {
         return {
             settingContext: null,
             betLimitElement: null,
@@ -90,7 +90,7 @@ if (typeof jQuery !== 'undefined') {
                 }, 3000);
             }
         };
-    } (jQuery);
+    } (jQuery));
 
     $(function () {
         settingContext.IsSimpleMode = isSimpleMode;

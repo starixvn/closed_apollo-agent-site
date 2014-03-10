@@ -3,6 +3,7 @@
 /*global APOLLO*/
 
 var MENU = (function ($) {
+    'use strict';
     return {
         menu: null,
         tabmenu: null,
@@ -76,6 +77,7 @@ var MENU = (function ($) {
 } (jQuery));
 
 $(document).ready(function () {
+    'use strict';
     MENU.init();
     MENU.menu.on('click', '.menu-item-title', function () {
         var $this = $(this),

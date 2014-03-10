@@ -60,7 +60,6 @@ if (typeof jQuery !== 'undefined') {
                     $("#betSettingInformationMessage").show();
                     // $("#maxbetlimit").html(EDITSETTING.maxBetLimit);
                 }
-
             },
             saveSetting: function () {
                 if (EDITSETTING.commissionSettingElement.Validate()
@@ -102,7 +101,6 @@ if (typeof jQuery !== 'undefined') {
                         url += "UpdateAgentSetting";
                     }
 
-
                     $.ajax({
                         url: url,
                         type: 'POST',
@@ -124,8 +122,6 @@ if (typeof jQuery !== 'undefined') {
                                     successMessage = '';
                                 for (var i = 0; i < arrayMessage.length; i++) {
                                     var innerMessage = arrayMessage[i].split('##');
-                                    //                                    errorMessage += '<br/> + ';
-                                    //                                    successMessage += '<br/> + ';
                                     for (var j = 0; j < innerMessage.length; j++) {
                                         if (j === 0) {
                                             $.each(innerMessage[j].split(';'), function (i, val) {
@@ -133,7 +129,6 @@ if (typeof jQuery !== 'undefined') {
                                                     errorMessage += ' + ' + val + '<br/>';
                                                 }
                                             });
-
                                         }
                                         else {
                                             $.each(innerMessage[j].split(';'), function (i, val) {
@@ -178,7 +173,6 @@ if (typeof jQuery !== 'undefined') {
                 try { $.unblockUI(); } catch (e) { }
                 window.location.href = backLink;
                 //}, 4000);
-
             }
         };
     } (jQuery));

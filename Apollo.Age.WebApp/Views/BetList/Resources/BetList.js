@@ -10,7 +10,6 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
     }
 }
 
-
 function ViewMixParlayResult(refno_mixparlay, refno) {
     var width = 760,
 		height = 450,

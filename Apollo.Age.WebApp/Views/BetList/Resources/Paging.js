@@ -1,8 +1,8 @@
 ﻿/*
 * Created 20100602@Lee - Paging javascript prototype
 * Url: ?pageSize=x&pageIndex=y
-* Revision ?@? - ... 
-* 
+* Revision ?@? - ...
+*
 */
 'use strict';
 function isIE() { return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent); }
@@ -10,7 +10,7 @@ function isIE() { return /msie/i.test(navigator.userAgent) && !/opera/i.test(nav
 var PAGE_SIZE_P = "pageSize";
 var PAGE_INDEX_P = "pageIndex";
 
-Paging = function (id) {
+var Paging = function (id) {
     this.id = id;
 
     var el = document.getElementById(this.id);
@@ -19,7 +19,6 @@ Paging = function (id) {
     this.currentindex = parseInt(el.getAttribute('currentindex'));
     this.rowcount = parseInt(el.getAttribute('rowcount'));
     this.pagecount = parseInt(el.getAttribute('pagecount'));
-
 
     Paging_addEvent('btnFirst' + id, 'mouseover', Paging_ElementOver);
     Paging_addEvent('btnFirst' + id, 'mouseout', Paging_ElementOut);
@@ -74,15 +73,13 @@ Paging.prototype.Go = function (index) {
     }
 };
 
-Paging.prototype.First = function()
-{
+Paging.prototype.First = function () {
     this.Go(1);
-} ;
+};
 
-Paging.prototype.Last = function()
-{
+Paging.prototype.Last = function () {
     this.Go(this.pagecount);
-} ;
+};
 
 Paging.prototype.SetPageSize = function (size) {
     if (size <= 0 || this.rowcount <= 0) { return; }
@@ -99,16 +96,15 @@ Paging.prototype.SetPageSize = function (size) {
     this.Go(this.currentindex);
 };
 
-Paging.prototype.UpdateUrl = function(url)
-{
-    if(url) {
+Paging.prototype.UpdateUrl = function (url) {
+    if (url) {
         url = SetParameterValue(PAGE_INDEX_P, this.currentindex, url);
         url = SetParameterValue(PAGE_SIZE_P, this.pagesize, url);
-        
+
         url = this.RemoveBookmarksInUrl(url);
         return url;
     }
-} ;
+};
 
 Paging.prototype.RemoveBookmarksInUrl = function (url) {
     if (typeof url !== 'string') { return null; }
@@ -117,7 +113,7 @@ Paging.prototype.RemoveBookmarksInUrl = function (url) {
     return url.substr(0, i);
 };
 
-Paging.prototype.DoEnter = function(evt, action) {
+Paging.prototype.DoEnter = function (evt, action) {
     if (isIE()) {
         if (window.event.keyCode === 13) {
             eval(action);
@@ -130,9 +126,7 @@ Paging.prototype.DoEnter = function(evt, action) {
             Paging_stopEvent(evt);
         }
     }
-
-
-} ;
+};
 // Allow only numbers in TextBox
 Paging.prototype.DoEnterNumber = function (event) {
     var charCode = (event.which) ? event.which : event.keyCode;
@@ -142,29 +136,22 @@ Paging.prototype.DoEnterNumber = function (event) {
     return true;
 };
 
-
-
-function Paging_ElementOver(evt)
-{
+function Paging_ElementOver(evt) {
     var obj = evt.target || evt.srcElement;
-    AddClassName(obj, 'pagingElementOver');// Require Core.js
+    AddClassName(obj, 'pagingElementOver'); // Require Core.js
 }
 
-function Paging_ElementOut(evt)
-{
-     var obj = evt.target || evt.srcElement;
-    RemoveClassName(obj, 'pagingElementOver');// Require Core.js
+function Paging_ElementOut(evt) {
+    var obj = evt.target || evt.srcElement;
+    RemoveClassName(obj, 'pagingElementOver'); // Require Core.js
 }
 
-function Paging_SetDisableStyle(id)
-{
+function Paging_SetDisableStyle(id) {
     var el = document.getElementById(id);
-    if(el.disabled)
-    {
+    if (el.disabled) {
         AddClassName(el, 'pagingDisable');
     }
-    else
-    {
+    else {
         RemoveClassName(el, 'pagingDisable');
     }
 }
@@ -198,13 +185,13 @@ function RemoveClassName(element, className) {
 
 function Paging_addEvent(el, evname, func) {
     if (typeof (el) === 'string') { el = document.getElementById(el); }
-	if (el.attachEvent) { // IE
-		el.attachEvent("on" + evname, func);
-	} else if (el.addEventListener) { // Gecko / W3C
-		el.addEventListener(evname, func, true);
-	} else { // Opera (or old browsers)
-		el["on" + evname] = func;
-	}
+    if (el.attachEvent) { // IE
+        el.attachEvent("on" + evname, func);
+    } else if (el.addEventListener) { // Gecko / W3C
+        el.addEventListener(evname, func, true);
+    } else { // Opera (or old browsers)
+        el["on" + evname] = func;
+    }
 }
 
 function Paging_stopEvent(ev) {
@@ -218,14 +205,11 @@ function Paging_stopEvent(ev) {
     return false;
 }
 
-
-String.prototype.contains = function(sub)
-{
+String.prototype.contains = function (sub) {
     return this.indexOf(sub, 0) !== -1;
-} ;
+};
 
-function SetParameterValue(name, value,  url)
-{
+function SetParameterValue(name, value, url) {
     var newParameter = (value != null) ? (name + "=" + value) : null;
 
     if (!url.contains("?")) {
@@ -253,8 +237,7 @@ function SetParameterValue(name, value,  url)
     }
 }
 
-function GetParameterValue(name, url)
-{
+function GetParameterValue(name, url) {
     if (url == null) { return null; }
 
     var separator = url.contains("?" + name + "=") ? "?" : "&";

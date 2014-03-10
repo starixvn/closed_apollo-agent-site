@@ -50,17 +50,8 @@ var ACCOUNT = (function ($) {
             location.href = APOLLO.resolveUrl(url);
         },
 
-        ////        reloadButtonRefresh: function () {
-        ////            $("#lklRefresh").fadeIn('fast', function () {
-        ////                $("#lklRefresh").css({ left: ($("#wrapper").scrollLeft() + 185), top: ($("#wrapper").scrollTop() + 1) });
-        ////            });
-        ////        },
-
         initSearchClick: function () {
-            ACCOUNT.showSectionTab("custsettings", 1); // 1: default is show setting tab
-            ////            $("#wrapper").scroll(function () {
-            ////                ACCOUNT.reloadButtonRefresh();
-            ////            });
+            ACCOUNT.showSectionTab("custsettings", 1);
 
             ACCOUNT.txtUsername.autocomplete({
                 source: function (request, response) {
@@ -112,7 +103,7 @@ var ACCOUNT = (function ($) {
             });
 
             $(".search-button").bind('click', function () {
-                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username                
+                ACCOUNT.getAccountInfo(-1, ACCOUNT.txtUsername.val().trim()); // -1: only search username
             });
 
             $(".show-section").bind('click', function () {
@@ -184,7 +175,6 @@ var ACCOUNT = (function ($) {
 
                     ACCOUNT.ddlAgents.fadeIn('fast');
                     event.stopPropagation();
-                    //ACCOUNT.agentListTime = setTimeout('ACCOUNT.ddlAgents.fadeOut("fast")', 10000);
                 }
             });
 
@@ -202,7 +192,6 @@ var ACCOUNT = (function ($) {
                     parent.document.getElementById('main').contentWindow.APOLLO.showBlockLoading();
                 }
                 catch (exception) {
-
                 }
             });
         },
@@ -269,7 +258,6 @@ var ACCOUNT = (function ($) {
                 } else {
                     $this.addClass('bg');
                     $listMenu.fadeIn('fast');
-                    //ACCOUNT.agentListSettingTime = setTimeout('ACCOUNT.hideAgentListSetting()', 6000);
                 }
                 event.stopPropagation();
             });

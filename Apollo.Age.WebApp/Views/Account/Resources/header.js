@@ -33,15 +33,16 @@ var HEADER = (function ($) {
             // show or hide left navigation
             $('.toolbar').on('click', 'li', function (event) {
                 if ($(this).attr('id') === 'account-link') {
+                    var url = '';
                     if (!DEFAULTS.IsMaster) {
-                        var url = "/CustomerSetting/MySetting";
-                        parent.document.getElementById('main').setAttribute('src', url);
-                        HEADER.oldUrl = url;
-                    } else {
-                        var url = "/Account/AgentList";
-                        HEADER.oldUrl = url;
-                        parent.document.getElementById('main').setAttribute('src', url);
+                        url = "/CustomerSetting/MySetting";
                     }
+                    else {
+                        url = "/Account/AgentList";
+                    }
+
+                    HEADER.oldUrl = url;
+                    parent.document.getElementById('main').setAttribute('src', url);
                     HEADER.showAccountTab();
                 }
                 else {

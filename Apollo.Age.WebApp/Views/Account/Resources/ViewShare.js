@@ -21,7 +21,6 @@ var VIEWSHARE = (function ($) {
         },
         bindBetType: function () {
             var sportId = VIEWSHARE.sportType.val();
-            var sportName = VIEWSHARE.sportType.find(":selected").text().trim();
 
             if (sportId.indexOf("-") > -1) {
                 var arrSport = sportId.split("-");
