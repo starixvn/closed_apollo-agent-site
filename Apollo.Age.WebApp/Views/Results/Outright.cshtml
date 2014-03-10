@@ -9,27 +9,24 @@
 	<thead>
 		<tr>
 			<td style="width: 100px" columnname="kickofftime">
-				@Apollo.Age.Resources.Lang.time
+				@Lang.time
 			</td>
 			<td style="width: 300px">
-				@Apollo.Age.Resources.Lang.league
+				@Lang.league
 			</td>
-		   
 			<td class="nowrap" style="width: 200px;">
-				@Apollo.Age.Resources.Lang.lblTeam 
+				@Lang.lblTeam 
 			</td>
 			<td class="nowrap" style="width: 100px;">
-				@Apollo.Age.Resources.Lang.lblWinLoss 
+				@Lang.lblWinLoss 
 			</td>
 		</tr>
 	</thead>
 	<tbody>
 		@if (Model != null && Model.Any())
-		{           
-
+		{
 			foreach (var item in Model)
 			{
-
 			<tr class="c">
 				<td>
 					@RazorHelper.RenderDatetimeFormated2line(item.EventDate)
@@ -37,7 +34,6 @@
 				<td class="l">
 				 @item.LeagueName
 				</td>
-			  
 				<td class="l">
 					@item.TeamName
 				</td>
@@ -45,9 +41,7 @@
 					@item.Status
 				</td>
 			</tr>
-
 			}
 		}
-		
 	</tbody>
 </table>

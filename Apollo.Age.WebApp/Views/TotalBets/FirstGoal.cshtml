@@ -16,7 +16,7 @@
             @item.LeagueName
         </td>
     </tr>
-        }            
+        }
 }
 @helper ShowMatch(int index, FirstGoalModel item, bool hasDownlineDetailsPermission = true)
     {    
@@ -29,7 +29,7 @@
             @if (hasDownlineDetailsPermission)
             { 
                 <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
-                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Lang.fglg" title="@Lang.ViewBetList">
                     @item.HomeTeam
                 </a>
             }
@@ -41,7 +41,7 @@
             @if (hasDownlineDetailsPermission)
             { 
                 <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
-                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.fglg" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Lang.fglg" title="@Lang.ViewBetList">
                     @item.AwayTeam
                 </a>
             }
@@ -69,22 +69,22 @@
     <thead class="persist-header">
         <tr>
             <td style="width: 5%;">
-                @Apollo.Age.Resources.Lang.time
+                @Lang.time
             </td>
             <td style="width: 25%;">
-                @Apollo.Age.Resources.Lang.league
+                @Lang.league
             </td>
             <td style="width: 15%;">
-                @Apollo.Age.Resources.Lang.homeaway
+                @Lang.homeaway
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.firstgoal
+                @Lang.firstgoal
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.lastgoal
+                @Lang.lastgoal
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.nogoal
+                @Lang.nogoal
             </td>
         </tr>
     </thead>

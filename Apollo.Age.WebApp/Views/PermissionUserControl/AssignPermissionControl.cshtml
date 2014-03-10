@@ -14,11 +14,11 @@
             @if (Model.IsMaster)
             {
                 @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.agent: <strong>@Model.AgentUsername</strong>
-                    }
+			}
             else
-            {                
+            {
                 @:&nbsp;&nbsp;&nbsp;&nbsp;-- @Lang.Shadow: <strong>@Model.ShadowUsername</strong>
-                                                                                                            }
+			}
         </span>
     </div>
     <div class="end">
@@ -48,7 +48,6 @@
             <tr class="group-function">
                 <td>
                     @Html.Resource(groupKey)
-                    @* @groupName*@
                 </td>
                 @if (Model.IsMaster)
                 { 
@@ -72,17 +71,15 @@
             <tr>
                 <td>
                     @Html.Resource(itemFunction.FunctionKey)
-                    @*@itemFunction.FunctionName*@
                 </td>
                 @if (Model.IsMaster)
                 { 
                     <td class="policy">
                         @if (itemFunction.HasEdit)
-                        {                       
-
+                        {
                             <input type="checkbox" name="funcHost" id="funcHost_@itemFunction.Id" value="@itemFunction.Id" @checkHost @disableHost />
                         }
-                    </td>                    
+                    </td>
                 }
                 <td class="policy">
                     <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.Id" value="@itemFunction.Id" @checkRead @disableRead/>

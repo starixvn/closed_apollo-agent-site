@@ -87,7 +87,6 @@
 
 				if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
 				{
-
 					string[] listOfBetStatus = betStatus.Split(',');
 					if (listOfBetStatus.Count() > 1)
 					{
@@ -97,7 +96,7 @@
 						{
 							splitBetStatus = betstatus.Split('-');
 							if (splitBetStatus != null)
-							{                               
+							{
 								homeSet[i] = splitBetStatus[0];
 								awaySet[i] = splitBetStatus[1];
 								i++;
@@ -110,10 +109,7 @@
 						}
 						
 					}
-
 				}
-				
-			   
 
 			<tr class="c">
 				<td>
@@ -219,10 +215,7 @@
 					@item.EventStatusTranslation
 				</td>
 			</tr>
-		   
-
 			}
 		}
-	
 	</tbody>
 </table>

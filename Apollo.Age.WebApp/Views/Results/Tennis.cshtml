@@ -9,34 +9,34 @@
 	<thead>
 		<tr>
 			<td style="width: 250px;color:White">
-				@Apollo.Age.Resources.Lang.league
+				@Lang.league
 			</td>
 			<td style="width: 250px;color:White">
-				@Apollo.Age.Resources.Lang.HomeGuest
+				@Lang.HomeGuest
 			</td>
 			<td style="width: 50px;color:White">
-				@Apollo.Age.Resources.Lang.S1
+				@Lang.S1
 			</td>
 			<td style="width: 50px;color:White">
-				@Apollo.Age.Resources.Lang.S2
+				@Lang.S2
 			</td>
 			<td style="width: 50px;color:White">
-				@Apollo.Age.Resources.Lang.S3
+				@Lang.S3
 			</td>
 			<td style="width: 50px;color:White">
-				@Apollo.Age.Resources.Lang.S4
+				@Lang.S4
 			</td>
 			<td style="width: 50px;color:White">
-				@Apollo.Age.Resources.Lang.S5
+				@Lang.S5
 			</td>
 			<th style="width: 100px;color:White">
-				@Apollo.Age.Resources.Lang.totalgame 
+				@Lang.totalgame 
 			</th>
 			<th style="width: 100px;color:White">
-				@Apollo.Age.Resources.Lang.totalset
+				@Lang.totalset
 			</th>
 			<th style="width: 100px;color:White">
-				@Apollo.Age.Resources.Lang.status
+				@Lang.status
 			</th>
 		</tr>
 	</thead>
@@ -46,8 +46,6 @@
 			var currentLeagueId = 0;
 			foreach (var item in Model)
 			{
-				
-
 			<tr class="c">
 				<td class="l">
 				   @item.LeagueName
@@ -68,7 +66,7 @@
 					}
 					else
 					{
-						  @item.AwayTeam 
+						@item.AwayTeam 
 					 }
 				</td>
 				@{
@@ -122,9 +120,8 @@
 				<td class="border-right">
 					@item.EventStatusTranslation
 				</td>
-			</tr>            
-
+			</tr>
 			}
-		}		
+		}
 	</tbody>
 </table>

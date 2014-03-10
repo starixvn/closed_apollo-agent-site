@@ -20,7 +20,7 @@ new ReportMenuViewModel
     <table class="outstanding">
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.WagerType:
+                @Lang.WagerType:
             </td>
             <td class="secondcolumn">
                 @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, Model.BetTypeIds, className: "bettype")
@@ -56,10 +56,10 @@ new ReportMenuViewModel
                     <th style="width: 150px;">
                     </th>
                     <th style="width: 200px;">
-                        @Apollo.Age.Resources.Lang.outstanding
+                        @Lang.outstanding
                     </th>
                     <th style="width: 200px;">
-                        @Apollo.Age.Resources.Lang.ShareAmount
+                        @Lang.ShareAmount
                     </th>
                 </tr>
             </thead>
@@ -129,7 +129,7 @@ new ReportMenuViewModel
                 <tfoot>
                     <tr class="total">
                         <td>
-                            @Apollo.Age.Resources.Lang.total
+                            @Lang.total
                         </td>
                         <td class="r">
                             @Formater.FormatNumber20(outStandingTotal, "en-US")
@@ -163,13 +163,13 @@ new ReportMenuViewModel
     <script type="text/javascript">
         var LANGUAGES = function () {
             return {
-                SportBook: "@Apollo.Age.Resources.Lang.sportBook",
-                NumberGame: "@Apollo.Age.Resources.Lang.numbergame",
-                Outstanding: "@Apollo.Age.Resources.Lang.outstanding",
-                ShareAmount: "@Apollo.Age.Resources.Lang.ShareAmount",
-                Member: "@Apollo.Age.Resources.Lang.member",
-                ViewBetlist: "@Apollo.Age.Resources.Lang.lblViewBetlist",
-                DonwlinePermission: "@Apollo.Age.Resources.Lang.strNotAccessPage",
+                SportBook: "@Lang.sportBook",
+                NumberGame: "@Lang.numbergame",
+                Outstanding: "@Lang.outstanding",
+                ShareAmount: "@Lang.ShareAmount",
+                Member: "@Lang.member",
+                ViewBetlist: "@Lang.lblViewBetlist",
+                DonwlinePermission: "@Lang.strNotAccessPage",
                 BetListString: "@Lang.lblBetLists.ToUpper()"
             };
         } ();

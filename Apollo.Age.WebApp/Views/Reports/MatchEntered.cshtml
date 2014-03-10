@@ -4,7 +4,7 @@
 @using Apollo.Age.Reports.Core
 @using Apollo.Age.Configurations
 @{
-    ViewBag.Title = Apollo.Age.Resources.Lang.agentwinloss;
+    ViewBag.Title = Lang.agentwinloss;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
     Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
     int counter = 0;
@@ -32,7 +32,7 @@ new ReportMenuViewModel
     <table class="winloss">
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.dateRange:
+                @Lang.dateRange:
             </td>
             <td colspan="4">
                 <div class="row">
@@ -51,19 +51,19 @@ new ReportMenuViewModel
                         </div>
                     </div>
                     <div class="cell">
-                        <input class="btn dateRange" data-range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                            <input  class="btn dateRange" data-range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                            <input  class="btn dateRange" data-range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-                            <input class="btn dateRange" data-range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
-                            <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                        <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
+                            <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
+                            <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
+                            <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
+                            <input  class="btn dateRange" data-range="6" type="button" value="@Lang.thisperiod" />
+                            <input class="btn dateRange" data-range="7" type="button" value="@Lang.lastperiod" />
                     </div>
                 </div>
             </td>
         </tr>
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.WagerType:
+                @Lang.WagerType:
             </td>
             <td colspan="4">
                 @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: "0", className: "bettype")
@@ -71,20 +71,20 @@ new ReportMenuViewModel
         </tr>
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.date:
+                @Lang.date:
             </td>
             <td colspan="2" class="winloss_date">
                 @Formater.ShortDateFormat(DateTime.Now.AddDays(-1))
                 @if (Model.CheckIsCompleted(isToday: false))
                 {
                     <span class="winloss_complete">
-                        @Apollo.Age.Resources.Lang.Complete
+                        @Lang.Complete
                     </span>
                 }
                 else
                 {
                     <span class="winloss_incomplete">
-                        @Apollo.Age.Resources.Lang.InComplete
+                        @Lang.InComplete
                     </span>
                 }
             </td>
@@ -93,32 +93,32 @@ new ReportMenuViewModel
                 @if (Model.CheckIsCompleted(isToday: true))
                 {
                     <span class="winloss_complete">
-                        @Apollo.Age.Resources.Lang.Complete
+                        @Lang.Complete
                     </span>
                 }
                 else
                 {
                     <span class="winloss_incomplete">
-                        @Apollo.Age.Resources.Lang.InComplete
+                        @Lang.InComplete
                     </span>
                 }
             </td>
         </tr>
         <tr>
             <td class="firstcolumn">
-                @Apollo.Age.Resources.Lang.results:
+                @Lang.results:
             </td>
             <td class="winloss_yesterday">
-                @Apollo.Age.Resources.Lang.entered
+                @Lang.entered
             </td>
             <td class="winloss_yesterday">
-                @Apollo.Age.Resources.Lang.nonentered
+                @Lang.nonentered
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.entered
+                @Lang.entered
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.nonentered
+                @Lang.nonentered
             </td>
         </tr>
         @RenderMatchEnteredSportRow(Model.MatchEnteredModelList)

@@ -17,9 +17,6 @@
     { 
         <thead>
             <tr>
-                @*<th>
-                    @Lang.ShadowId
-                </th>*@
                 <th>
                     @Lang.Shadow
                 </th>
@@ -29,9 +26,6 @@
                 <th>
                     @Lang.status
                 </th>
-                @*<th>
-                    @Lang.Creator
-                </th>*@
                 <th>
                     @Lang.Feature
                 </th>
@@ -41,9 +35,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<td class="">
-                        @item.Id
-                    </td>*@
                     <td>
                         @item.Username
                     </td>
@@ -53,11 +44,8 @@
                     <td>
                         @item.Status.ToStringStatus(item.Status)
                     </td>
-                    @*<td>
-                        @item.Agent.Username
-                    </td>*@
                     <td>
-                        <a  href="~/PermissionUserControl/AssignShadowPermission?agentuserid=@item.Id">
+                        <a href="~/PermissionUserControl/AssignShadowPermission?agentuserid=@item.Id">
                             @Lang.Permission
                         </a>
                     </td>

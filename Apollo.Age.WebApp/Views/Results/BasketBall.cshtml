@@ -35,7 +35,7 @@
 			</td>
 			<td style="width: 100px">
 				@Lang.lblScore
-			</td>           
+			</td>
 			<td class="nowrap" style="width: 100px">
 				@Lang.status
 			</td>
@@ -79,7 +79,7 @@
 
 				if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
 				{
-					finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
+					finalHomeScore = finalAwayScore = firstHalfHomeScore = firstHalfAwayScore = Lang.lblNA;
 				}
 				else if (eventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
 				{
@@ -88,7 +88,7 @@
 						betStatus = item.BetStatus.Split(';')[1];
 					}
 					
-					finalHomeScore = finalAwayScore = @Apollo.Age.Resources.Lang.lblNA;
+					finalHomeScore = finalAwayScore = Lang.lblNA;
 					firstHalfHomeScore = item.HalfTimeHomeScore == null ? "-" : item.HalfTimeHomeScore.ToString();
 					firstHalfAwayScore = item.HalfTimeAwayScore == null ? "-" : item.HalfTimeAwayScore.ToString();
 				}
@@ -101,7 +101,7 @@
 					
 					finalHomeScore = item.FinalHomeScore == null ? "-" : item.FinalHomeScore.ToString();
 					finalAwayScore = item.FinalAwayScore == null ? "-" : item.FinalAwayScore.ToString();
-					firstHalfHomeScore = firstHalfAwayScore = @Apollo.Age.Resources.Lang.lblNA;
+					firstHalfHomeScore = firstHalfAwayScore = Lang.lblNA;
 				}
 				else
 				{
@@ -235,7 +235,7 @@
 					{
 						@OTAway
 					}
-				</td>                
+				</td>
 				<td>
 					@finalHomeScore
 					<br />
@@ -244,7 +244,7 @@
 				<td class="border-right">
 					@item.EventStatusTranslation
 				</td>
-			</tr>            
+			</tr>
 			}
 		}
 		

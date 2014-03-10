@@ -7,25 +7,25 @@
 @model IEnumerable<MatchResultModel>
 
 <table class="tblRpt others">
-	<thead>      
+	<thead>
 		<tr>
 			<th  style="width: 100px">
-				@Apollo.Age.Resources.Lang.time
+				@Lang.time
 			</th>
 			  <th style="width: 300px">
-				@Apollo.Age.Resources.Lang.league
+				@Lang.league
 			</th>
 			<th style="width: 200px">
-				@Apollo.Age.Resources.Lang.HomeGuest
+				@Lang.HomeGuest
 			</th>
 			<th style="width: 100px">
-				@Apollo.Age.Resources.Lang.lblhalf
+				@Lang.lblhalf
 			</th>
 			<th style="width: 100px">
-				@Apollo.Age.Resources.Lang.lblfinal
+				@Lang.lblfinal
 			</th>
 			<th style="width: 100px">
-				@Apollo.Age.Resources.Lang.status
+				@Lang.status
 			</th>
 		</tr>
 	</thead>
@@ -90,7 +90,7 @@
 				<td class="border-right">
 					@item.EventStatusTranslation
 				</td>
-			</tr>            
+			</tr>
 			}
 		}
 		

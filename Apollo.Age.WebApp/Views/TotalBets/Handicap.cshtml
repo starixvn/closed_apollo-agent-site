@@ -81,7 +81,7 @@
         @ShowBlock(3, item.MatchId, item.HomeOddsOverUnder, item.AwayOddsOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lblOU, hasDownlineDetailsPermission)
         @ShowBlock(7, item.MatchId, item.HomeOddsHalfTimeHandicap, item.AwayOddsHalfTimeHandicap, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stHdp, hasDownlineDetailsPermission)
         @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU, hasDownlineDetailsPermission)
-    </tr>          
+    </tr>
 }
 @helper ShowLeague(int currentLeagueId, HandicapModel item)
     {
@@ -93,45 +93,44 @@
             @item.LeagueName
         </td>
     </tr>
-        }            
+        }
 }
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 9%;">
-                @*@Apollo.Age.Resources.Lang.TimeGMT8*@
-                @Apollo.Age.Resources.Lang.time
+                @Lang.time
                 <br />
-                (@Apollo.Age.Resources.Lang.GMT+8)
+                (@Lang.GMT+8)
             </td>
             <td rowspan="2" style="width: 7%;">
-                @Apollo.Age.Resources.Lang.lblScore
+                @Lang.lblScore
             </td>
             <td rowspan="2" style="width: 25%;">
-                @Apollo.Age.Resources.Lang.league
+                @Lang.league
             </td>
             <td rowspan="2" style="width: 15%;">
-                @Apollo.Age.Resources.Lang.homeaway
+                @Lang.homeaway
             </td>
             <td colspan="4">
-                @Apollo.Age.Resources.Lang.fulltime
+                @Lang.fulltime
             </td>
             <td colspan="4">
-                @Apollo.Age.Resources.Lang.lbl1sthalf
+                @Lang.lbl1sthalf
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                @Apollo.Age.Resources.Lang.lblHandicapFC
+                @Lang.lblHandicapFC
             </td>
             <td colspan="2">
-                @Apollo.Age.Resources.Lang.lblOverUnder
+                @Lang.lblOverUnder
             </td>
             <td colspan="2">
-                @Apollo.Age.Resources.Lang.lblHandicapFC
+                @Lang.lblHandicapFC
             </td>
             <td colspan="2">
-                @Apollo.Age.Resources.Lang.lblOverUnder
+                @Lang.lblOverUnder
             </td>
         </tr>
     </thead>
