@@ -1,26 +1,34 @@
 @model ICurrentSession
 @{
     ViewBag.Title = "Index";
+    string headerClass = string.Empty;
+    string menuClass = string.Empty;
+    string mainPageClass = string.Empty;
 
-    string headerClass = Model.IsInternalSignIn ? "header int" : "header";
-    string menuClass = Model.IsInternalSignIn ? "menu int" : "menu";
-    string mainPageClass = Model.IsInternalSignIn ? "mainpage int" : "mainpage";
+    if (Model != null)
+    {
+        headerClass = Model.IsInternalSignIn ? "header int" : "header";
+        menuClass = Model.IsInternalSignIn ? "menu int" : "menu";
+        mainPageClass = Model.IsInternalSignIn ? "mainpage int" : "mainpage";
+    }
 }
+
 @section css
 {
     @Styles.Render("~/css/index")
 }
 <div class="@headerClass">
-    <iframe src="~/Account/TopBar" id="frHeader" name="frHeader" frameborder="0" scrolling="no"></iframe>
+    <iframe src="~/Account/TopBar" id="frHeader" name="frHeader" frameborder="0" scrolling="no">
+    </iframe>
 </div>
 <div class="@menuClass">
     @Html.Action("MiniMenu", "Account")
     <iframe id="menu" name="menu"></iframe>
 </div>
 <div class="@mainPageClass">
-    <div id="btn-mini-menu" class="collapse" title="@Apollo.Age.Resources.Lang.Collapse"></div>
-    <iframe id="main" name="main" frameborder="0">
-    </iframe>
+    <div id="btn-mini-menu" class="collapse" title="@Apollo.Age.Resources.Lang.Collapse">
+    </div>
+    <iframe id="main" name="main" frameborder="0"></iframe>
 </div>
 @section scripts
 {

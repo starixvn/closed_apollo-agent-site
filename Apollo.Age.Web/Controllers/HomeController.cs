@@ -28,7 +28,12 @@ namespace Apollo.Age.Web
         /// <returns>Action result.</returns>
         public ActionResult Index()
         {
-            return View(SessionManager.CurrentSession);
+            if (SessionManager.CurrentSession != null)
+            {
+                return View(SessionManager.CurrentSession);
+            }
+
+            return View();
         }
 
         /// <summary>

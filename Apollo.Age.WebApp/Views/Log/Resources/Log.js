@@ -3,9 +3,7 @@
 /*global LogOpts*/
 'use strict';
 var Log = (function ($) {
-
     return {
-
         timerID: null,
 
         moreIsLoading: false,
@@ -93,7 +91,6 @@ var Log = (function ($) {
         },
 
         initSearchClick: function () {
-
             Log.txtUsername.autocomplete({
                 source: function (request, response) {
                     var url = Log.ddlIsAgent.val().toBoolean()
