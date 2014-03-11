@@ -12,7 +12,7 @@
         <table>
             <tr>
                 <td class="winloss_firstcolumn">
-                    @Apollo.Age.Resources.Lang.dateRange:
+                    @Lang.dateRange:
                 </td>
                 <td>
                     <div class="row">
@@ -32,8 +32,8 @@
                             </div>
                         </div>
                         <div class="cell">
-                            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />                                                        
+                            <input class="btn dateRange" range="1" type="button" value="@Lang.today" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Lang.yesterday" />                                                        
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
@@ -52,10 +52,10 @@
         <div>
             <div class="row bg-action">
                 <div class="item">
-                    @*@Apollo.Age.Resources.Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")*@
+                    @*@Lang.ArchivedDate: @(Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : "")*@
                 </div>
                 <div class="item btn-action action-center">
-                    <input id="btnSubmitBetlist" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
+                    <input id="btnSubmitBetlist" class="btn act-ticket-cancel" type="button" value="@Lang.search" />
                 </div>
             </div>
         </div>

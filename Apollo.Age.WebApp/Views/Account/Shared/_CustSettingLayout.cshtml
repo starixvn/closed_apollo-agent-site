@@ -39,12 +39,12 @@
                 }
             }
             ">
-                <span id="simple-mode" class="deactive-mode">@Apollo.Age.Resources.Lang.simplemode</span>
-                | <span class="active-mode" id="advanced-mode">@Apollo.Age.Resources.Lang.lblAdvancedMode</span>
+                <span id="simple-mode" class="deactive-mode">@Lang.simplemode</span>
+                | <span class="active-mode" id="advanced-mode">@Lang.lblAdvancedMode</span>
                 @if (isMaster)
                 {
                     <button id="btnSubmitHeader" class="btn" style="display: none;">
-                        @Apollo.Age.Resources.Lang.update</button>
+                        @Lang.update</button>
                 }
             </div>
             @if (!isMaster)
@@ -67,14 +67,14 @@
                 }
                 ">
                     <div class="edit-setting-warning">
-                        @Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
+                        @Lang.lblWarningEditSetting</div>
                     @RenderBody()
                 </div>
                 if (ViewBag.IsMaster)
                 {
                 <div class="btnLeft">
                     <button id="btnSubmitFooter" class="btn">
-                        @Apollo.Age.Resources.Lang.update</button>
+                        @Lang.update</button>
                 </div>
                 }
             }

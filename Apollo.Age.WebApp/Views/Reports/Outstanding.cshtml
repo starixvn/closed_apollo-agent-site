@@ -29,8 +29,8 @@ new ReportMenuViewModel
     </table>
     <div>
         <div class="row bg-action">
-            <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-            <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+            <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
+            <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
         </div>
     </div>
 </div>
@@ -86,7 +86,7 @@ new ReportMenuViewModel
                             <td>
                                 @if (hasDownlineDetailsPermission)
                                 { 
-                                    <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Apollo.Age.Resources.Lang.lblViewAgentDownline">@item.UserName</a>
+                                    <a href="javascript:void(0);" class="viewoutstading" data-agentid="@item.UserId" title="@Lang.lblViewAgentDownline">@item.UserName</a>
                                 }
                                 else
                                 { 

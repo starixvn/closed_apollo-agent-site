@@ -51,7 +51,7 @@
                 if (hasDownlineDetailsPermission)
                 { 
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblHomeNoBet" title="@Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)    
                 </a>
                 }
@@ -67,7 +67,7 @@
                 if (hasDownlineDetailsPermission)
                 { 
                     <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="25" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblDrawNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblDrawNoBet" title="@Lang.ViewBetList">
                         @RazorHelper.FormatNumber(item.HomeOddsDNB - item.AwayOddsDNB, 2)
                     </a>
                 }
@@ -80,7 +80,7 @@
             @if (item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
-                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblAwayNoBet" title="@Lang.ViewBetList">
                     @RazorHelper.FormatNumber(item.HomeOddsANB - item.AwayOddsANB, 2)
                 </a>
             }
@@ -107,33 +107,33 @@
     <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 9%;">
-                @*@Apollo.Age.Resources.Lang.TimeGMT8*@
-                @Apollo.Age.Resources.Lang.time
+                @*@Lang.TimeGMT8*@
+                @Lang.time
                 <br />
-                (@Apollo.Age.Resources.Lang.GMT+8)
+                (@Lang.GMT+8)
             </td>
             <td rowspan="2" style="width: 7%;">
-                @Apollo.Age.Resources.Lang.lblScore
+                @Lang.lblScore
             </td>
             <td rowspan="2" style="width: 25%;"">
-                 @Apollo.Age.Resources.Lang.league
+                 @Lang.league
             </td>
             <td rowspan="2" style="width: 15%;">
-                @Apollo.Age.Resources.Lang.homeaway
+                @Lang.homeaway
             </td>
             <td colspan="3">
-                @Apollo.Age.Resources.Lang.fulltime
+                @Lang.fulltime
             </td>
         </tr>
         <tr class="RptHeader02">
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblHomeNoBet
+                @Lang.lblHomeNoBet
             </td>
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblDrawNoBet
+                @Lang.lblDrawNoBet
             </td>
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblAwayNoBet
+                @Lang.lblAwayNoBet
             </td>
         </tr>
     </thead>

@@ -19,7 +19,7 @@
     <!--NotFoundContent-->
     <tr class="@cssClass">
         <td colspan="@colspan">
-            @Apollo.Age.Resources.Lang.noInfo
+            @Lang.noInfo
         </td>
     </tr>
     <!--/NotFoundContent-->
@@ -32,48 +32,48 @@
     {
 
     <div id="refreshCountDownId" refresh-id="@(refreshCountDownId)" class="btnCountDown refresh">
-        <span>@Apollo.Age.Resources.Lang.Flesh:</span>
+        <span>@Lang.Flesh:</span>
         <div id="ddlCountDown" class="btnCountDown clearfix">
-            <div id="countdownrefresh" class="btnRefresh" title="@Apollo.Age.Resources.Lang.Flesh">
+            <div id="countdownrefresh" class="btnRefresh" title="@Lang.Flesh">
             </div>
             <div class="btnDown" id="btndown">
             </div>
         </div>
         <ul id="countdownmenu" class="panelDown">
-            <li data-intervaltime="0" class="menuitem">@Apollo.Age.Resources.Lang.Inactive</li>
+            <li data-intervaltime="0" class="menuitem">@Lang.Inactive</li>
             @for (var i = 15; i <= 75; i += 15)
             {
                 <li data-intervaltime="@i.ToString()" class="menuitem">
                     @(i.ToString())
-                    @Apollo.Age.Resources.Lang.sec
+                    @Lang.sec
                 </li>
             }
-            <li data-intervaltime="180" class="menuitem">180 @Apollo.Age.Resources.Lang.sec</li>
+            <li data-intervaltime="180" class="menuitem">180 @Lang.sec</li>
         </ul>
         @if (isShowRefreshNow)
         {
             <span class="refresh" id="btnrefresh"></span>
         }
 @*<select>
-            <option value="0">@Apollo.Age.Resources.Lang.Inactive</option>
+            <option value="0">@Lang.Inactive</option>
             @if (timerArray == null || timerArray.Any() == false)
             {
 
                 for (var i = 15; i <= 180; i += 15)
                 {
-                    <option value="@i.ToString()">@i.ToString() @Apollo.Age.Resources.Lang.sec</option>
+                    <option value="@i.ToString()">@i.ToString() @Lang.sec</option>
                 }
             }
             else
             {
                 foreach (var item in timerArray)
                 {
-                    <option value="@item.ToString()">@item.ToString() @Apollo.Age.Resources.Lang.sec</option>
+                    <option value="@item.ToString()">@item.ToString() @Lang.sec</option>
                 }
             }
         </select>*@
         <input type="hidden" id="apo-on-refresh" value="@onRefresh" />
-        <input type="hidden" id="inactive" value="@Apollo.Age.Resources.Lang.Inactive" />
+        <input type="hidden" id="inactive" value="@Lang.Inactive" />
     </div>
 }
 @*@helper RefreshCountDown(string refreshCountDownId,
@@ -82,7 +82,7 @@
 	string onRefresh = "location.reload();")
 {
 	<div class="btnCountDown clearfix">
-		<div id="CountDownRefresh" class="btnRefresh" title="@Apollo.Age.Resources.Lang.refresh"
+		<div id="CountDownRefresh" class="btnRefresh" title="@Lang.refresh"
 			onclick="CountDownRefresh_Refresh()">
 		</div>
 		<div class="btnDown" id="btnDown" onclick="CountDownRefresh_DoOpenOption(this)">
@@ -93,7 +93,7 @@
 		@for (int i = 0; i < 5; i++)
 		{
 			<div id="option@(i)" class="menuitem {OptionClass}" onclick="CountDownRefresh_SaveOption(this.id)">
-				@(fromSecond + i * 15)@Apollo.Age.Resources.Lang.sec
+				@(fromSecond + i * 15)@Lang.sec
 			</div>
 		}
 		<!--/Seconds-->
@@ -102,7 +102,7 @@
 	<script type="text/javascript">
 		var refreshCountDownId = "@refreshCountDownId";
 		var initCountDown = @initCountDown;
-		var loadingTxt = "<span class='miniloading'>@Apollo.Age.Resources.Lang.lblLoading</span>";
+		var loadingTxt = "<span class='miniloading'>@Lang.lblLoading</span>";
 		var countDownRefreshFunc= "@onRefresh";
 	</script>
 }*@
@@ -216,7 +216,7 @@
                     if (mainShareHolders != null && mainShareHolders.Any())
                     {
                     <div class="label">
-                        <label for="ddlLeague">@Apollo.Age.Resources.Lang.lblMainShareHolder&nbsp:</label>
+                        <label for="ddlLeague">@Lang.lblMainShareHolder&nbsp:</label>
                     </div>
                     <div class="editor">
                         <select id='ddlMainShareHolder' name='ddlMainShareHolder'>

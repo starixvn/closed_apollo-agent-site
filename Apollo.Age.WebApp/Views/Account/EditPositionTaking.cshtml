@@ -1,7 +1,5 @@
-﻿@using Apollo.Age.Resources;
-@using Apollo.Age.Configurations;
+﻿@using Apollo.Age.Configurations;
 @{
-    
     Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
     var userName = (string)ViewBag.UserName ?? string.Empty;
     var custId = (int)ViewBag.CustId;
@@ -53,53 +51,51 @@
 @if (isEditAgent)
 {
     @Html.Action("Index", "Instruction", new
-{
-    key = "AgentShareSetting",
-    trigger = "agent-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+	{
+		key = "AgentShareSetting",
+		trigger = "agent-share-setting-info-button",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
     @Html.Action("Index", "Instruction", new
-{
-    key = "AgentShareSettingAdv",
-    trigger = "agent-share-setting-info-button-adv",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+	{
+		key = "AgentShareSettingAdv",
+		trigger = "agent-share-setting-info-button-adv",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
     @Html.Action("Index", "Instruction", new
-{
-    key = "MainShareHolderShareSettingAdv",
-    trigger = "mainshareholder-share-setting-info-button-adv",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+	{
+		key = "MainShareHolderShareSettingAdv",
+		trigger = "mainshareholder-share-setting-info-button-adv",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
     @Html.Action("Index", "Instruction", new
-{
-    key = "MainShareHolderShareSetting",
-    trigger = "mainshareholder-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+	{
+		key = "MainShareHolderShareSetting",
+		trigger = "mainshareholder-share-setting-info-button",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
 }
 else
 {
     @Html.Action("Index", "Instruction", new
-{
-    key = "MemberShareSetting",
-    trigger = "member-share-setting-info-button",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
+	{
+		key = "MemberShareSetting",
+		trigger = "member-share-setting-info-button",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
     @Html.Action("Index", "Instruction", new
-{
-    key = "MemberShareSettingAdv",
-    trigger = "member-share-setting-info-button-adv",
-    title = Apollo.Age.Resources.Lang.shareSettingInstruction,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})
-
+	{
+		key = "MemberShareSettingAdv",
+		trigger = "member-share-setting-info-button-adv",
+		title = Lang.shareSettingInstruction,
+		tipTitle = Lang.ClickToViewInstructions
+	})
 }
-
 
 @section scripts
 {
@@ -113,7 +109,6 @@ else
     }
     else
     {
-        
         <script src="~/customersetting/getpositiontaking?targetCustId=@(ViewBag.CustId)&agentId=@((int)ViewBag.AgentId)&agentLevel=@(ViewBag.AgentLevel)&targetCustIds=@(memberIds)" type="text/javascript"></script>
     }
     @Scripts.Render("~/scripts/editpositiontakingjs")

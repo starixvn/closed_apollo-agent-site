@@ -18,7 +18,7 @@
         @if (hasDownlineDetailsPermission)
         { 
             <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
-            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
+            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
         }
         else
         {
@@ -29,7 +29,7 @@
     <td class="fcbtn c">
         <!--HandicapTotalButton-->
         <input type="button" match-id="@matchId" bet-type="@betType" 
-            class="fc-button view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+            class="fc-button view-forecast" league-name="@leagueName" title="@Lang.ViewForeCast" value="+" />
         <!--/HandicapTotalButton-->
     </td>
         }

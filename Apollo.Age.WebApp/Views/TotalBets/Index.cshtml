@@ -46,7 +46,7 @@
                 <li class="@(i == 0 ? "active" : string.Empty)"><a href="@Url.Content(item[0])" target="submain">@item[1]</a></li>
                 }
             }
-            <li id="more-link"><a href="javascript:;">@Apollo.Age.Resources.Lang.more ▼</a>
+            <li id="more-link"><a href="javascript:;">@Lang.more ▼</a>
                 <ul class="sub-menu" style="display: none">
                     @for (int i = 5; i < menuItemCount; i++)
                     {

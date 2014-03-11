@@ -2,14 +2,14 @@
 @{
 	var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
 	var userName = ViewBag.UserName ?? string.Empty;
-    ViewBag.Title = string.Format(titleFormat, userName);
-    Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
-    var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
+	ViewBag.Title = string.Format(titleFormat, userName);
+	Layout = "~/Views/Account/Shared/_EditSettingLayout.cshtml";
+	var fromLeftMenu = ViewBag.FromLeftMenu ?? false;
 	var memberId = ViewBag.MemberId ?? 0;
-    var isMaster = ViewBag.IsMaster ?? false;
-    string memberIds = ViewBag.MemberIds ?? string.Empty;
-    string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
-    var MaxBetLimit = Convert.ToInt32(ViewBag.MaxBetLimit);
+	var isMaster = ViewBag.IsMaster ?? false;
+	string memberIds = ViewBag.MemberIds ?? string.Empty;
+	string backLink = Url.Content(string.Format("~/CustomerSetting/ViewMemberDetails/?memberId={0}&agentId={1}&userName={2}&fromLeftMenu={3}&memberIds={4}", memberId, ViewBag.CurentParentAgentId, userName, fromLeftMenu, memberIds));
+	var MaxBetLimit = Convert.ToInt32(ViewBag.MaxBetLimit);
 }
 
 @section header
@@ -38,43 +38,40 @@
 {
     key = "MemberCommissionSetting",
     trigger = "member-commission-info-button",
-    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    title = Lang.CommissionSettingInstructions,
+    tipTitle = Lang.ClickToViewInstructions
 })
 
 @Html.Action("Index", "Instruction", new
 {
     key = "MemberBetSetting",
     trigger = "member-bet-limit-info-button",
-    title = Apollo.Age.Resources.Lang.BetSettingInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    title = Lang.BetSettingInstructions,
+    tipTitle = Lang.ClickToViewInstructions
 })
-
-
 
 @Html.Action("Index", "Instruction", new
 {
     key = "MemberCommissionSettingAdv",
     trigger = "member-commission-info-button-adv",
-    title = Apollo.Age.Resources.Lang.CommissionSettingInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    title = Lang.CommissionSettingInstructions,
+    tipTitle = Lang.ClickToViewInstructions
 })
 
 @Html.Action("Index", "Instruction", new
 {
     key = "MemberBetSettingAdv",
     trigger = "member-bet-limit-info-button-adv",
-    title = Apollo.Age.Resources.Lang.BetSettingInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
+    title = Lang.BetSettingInstructions,
+    tipTitle = Lang.ClickToViewInstructions
 })
-
 
 @section scripts
 {
 	<script type="text/javascript">
         var DEFAULT_OBJECT = function(){
             return {
-                memberId : @(memberId)                
+                memberId : @(memberId)
             };
         }();
 	</script>

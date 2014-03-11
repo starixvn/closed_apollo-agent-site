@@ -22,7 +22,7 @@
             @if (leagues != null && leagues.Any())
             {
                 <div class="label">
-                    <label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
+                    <label for="ddlLeague">@Lang.league</label>
                 </div>
                 <div class="editor" id="selLeague">
                     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
@@ -47,7 +47,7 @@
             else
             {
                 <label>
-                    @Apollo.Age.Resources.Lang.noInfo</label>
+                    @Lang.noInfo</label>
             }
         </div>
     </div>
@@ -58,13 +58,13 @@
         <thead>
             <tr class="RptHeader">
                 <td colspan="2">
-                    @Apollo.Age.Resources.Lang.homeaway
+                    @Lang.homeaway
                 </td>
                 <td colspan="3">
-                    @Apollo.Age.Resources.Lang.lblHandicapFC
+                    @Lang.lblHandicapFC
                 </td>
                 <td colspan="3">
-                    @Apollo.Age.Resources.Lang.lblOverUnder
+                    @Lang.lblOverUnder
                 </td>
             </tr>
         </thead>

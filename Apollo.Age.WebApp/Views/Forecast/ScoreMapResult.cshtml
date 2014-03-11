@@ -12,7 +12,7 @@
 			<span class="collapse-expand lnkGroup span-expand">
 				@result.HomeName -vs- @result.AwayName
 			</span>
-			<span title="@Apollo.Age.Resources.Lang.refresh" class="refresh-scoremap lnkRefresh refresh-button"
+			<span title="@Lang.refresh" class="refresh-scoremap lnkRefresh refresh-button"
 				id="lnkRefresh@(result.MatchId)" match-id="@(result.MatchId)"></span>
 		</div>
 		<div class="scoreMap" id="scoreMap@(result.MatchId)">
@@ -20,10 +20,10 @@
 				<thead>
 					<tr class="vsmHomeWay" style="text-align: center">
 						<th rowspan="2" class="smTitle">
-							@Apollo.Age.Resources.Lang.away
+							@Lang.away
 						</th>
 						<th colspan="7" class="smTitle">
-							@Apollo.Age.Resources.Lang.home
+							@Lang.home
 						</th>
 					</tr>
 					<tr class="vsm">
@@ -84,6 +84,6 @@
 else
 {
 	<div id="tblMsgMatch" style="display: block">
-		<span id="msgMatchErr" class="msgerr">@Apollo.Age.Resources.Lang.noInfo</span>
+		<span id="msgMatchErr" class="msgerr">@Lang.noInfo</span>
 	</div>
 }

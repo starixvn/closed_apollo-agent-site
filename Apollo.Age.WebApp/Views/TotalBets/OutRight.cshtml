@@ -21,18 +21,18 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             @* <td style="width: 5%;">
-                @Apollo.Age.Resources.Lang.time
+                @Lang.time
                 <br />
-                (@Apollo.Age.Resources.Lang.GMT)
+                (@Lang.GMT)
             </td>*@
             <td style="width: 45%;">
-                @Apollo.Age.Resources.Lang.lblTeam
+                @Lang.lblTeam
             </td>
             <td style="width: 25%">
-                @Apollo.Age.Resources.Lang.lblBalance
+                @Lang.lblBalance
             </td>
             <td style="width: 25%">
-                @Apollo.Age.Resources.Lang.lblForecast
+                @Lang.lblForecast
             </td>
         </tr>
     </thead>
@@ -61,7 +61,7 @@
                     @if (hasDownlineDetailsPermission)
                     { 
                         <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOutRight"  title="@Apollo.Age.Resources.Lang.ViewBetList">@item.TeamName
+                        href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Lang.lblOutRight"  title="@Lang.ViewBetList">@item.TeamName
                         </a>
                     }
                     else

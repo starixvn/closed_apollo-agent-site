@@ -40,7 +40,7 @@
         @if (hasDownlineDetailsPermission)
         { 
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="5" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lbl1x2" title="@Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoTotal, 2, showZero: item.BetCount1X2 != 0)
             </a>
         }
@@ -55,7 +55,7 @@
         @if (item.OneXTwoTotal != 0)
         {
              <!--OneXTwoButton-->
-                <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+                <input match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="5" class="fc-button view-forecast" title="@Lang.ViewForeCast" value="+" />
                 <!--/OneXTwoButton-->  
         }
     </td>
@@ -68,7 +68,7 @@
         @if (hasDownlineDetailsPermission)
         { 
             <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="15" betlist-type="BettypeMatch" 
-                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lbl1x2_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lbl1x2_1st" title="@Lang.ViewBetList">
                 @RazorHelper.FormatNumber(item.OneXTwoFirstHalf, 2, showZero: item.BetCount1X2HalfTime != 0)
             </a>
         }
@@ -83,7 +83,7 @@
         @if (item.OneXTwoFirstHalf != 0)
         {
             <!--OneXTwoFirstHalfButton-->
-            <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+            <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Lang.ViewForeCast" value="+" />
             <!--/OneXTwoFirstHalfButton-->
         }
         
@@ -108,42 +108,42 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2" style="width: 9%;">
-                @*@Apollo.Age.Resources.Lang.TimeGMT8*@
-                @Apollo.Age.Resources.Lang.time
+                @*@Lang.TimeGMT8*@
+                @Lang.time
                 <br />
-                (@Apollo.Age.Resources.Lang.GMT+8)
+                (@Lang.GMT+8)
             </td>
             <td rowspan="2" style="width: 7%;">
-                @Apollo.Age.Resources.Lang.lblScore
+                @Lang.lblScore
             </td>
             <td rowspan="2" style="width: 25%;">
-                @Apollo.Age.Resources.Lang.league
+                @Lang.league
             </td>
             <td rowspan="2" style="width: 15%;">
-                @Apollo.Age.Resources.Lang.homeaway
+                @Lang.homeaway
             </td>
             <td colspan="4">
-                @Apollo.Age.Resources.Lang.fulltime
+                @Lang.fulltime
             </td>
             <td colspan="3">
-                @Apollo.Age.Resources.Lang.lbl1sthalf
+                @Lang.lbl1sthalf
             </td>
         </tr>
         <tr class="RptHeader02">
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblOddEven
+                @Lang.lblOddEven
             </td>
             <td colspan="2" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lbl1x2
+                @Lang.lbl1x2
             </td>
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblDraw/@Apollo.Age.Resources.Lang.lblNoDraw
+                @Lang.lblDraw/@Lang.lblNoDraw
             </td>
             <td style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lblOddEven
+                @Lang.lblOddEven
             </td>
             <td colspan="2" style="width: 100px;">
-                @Apollo.Age.Resources.Lang.lbl1x2
+                @Lang.lbl1x2
             </td>
         </tr>
     </thead>
@@ -189,7 +189,7 @@
                     @if (hasDownlineDetailsPermission)
                     { 
                         <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="2" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblOddEven" title="@Lang.ViewBetList">
                             @RazorHelper.FormatNegativeNumber(item.OddEvenTotal, 2, showZero: item.BetCountOddEven != 0)
                         </a>
                     }
@@ -203,7 +203,7 @@
                 <td style="width: 86px">
                     <!--DNDValue-->
                     <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="123" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblHomeDrawAwayNoBet" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblHomeDrawAwayNoBet" title="@Lang.ViewBetList">
                         @RazorHelper.FormatNumber(item.DrawNoDrawTotal, 2, showZero: item.BetCountDrawNoDraw != 0)
                     </a>
                     <!--/DNDValue-->
@@ -213,7 +213,7 @@
                     @if (hasDownlineDetailsPermission)
                     { 
                         <a class="fcnum  view-bet-list" match-id="@item.MatchId" bet-type="12" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Apollo.Age.Resources.Lang.lblOddEven_1st" title="@Apollo.Age.Resources.Lang.ViewBetList">
+                        href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblOddEven_1st" title="@Lang.ViewBetList">
                             @RazorHelper.FormatNegativeNumber(item.OddEvenFirstHalf, 2, showZero: item.BetCountHalfTimeOddEven != 0)
                         </a>
                     }
