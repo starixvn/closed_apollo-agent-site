@@ -2,9 +2,7 @@
 /*global APOLLO*/
 'use strict';
 var MessagePortalPage = (function ($) {
-
     return {
-
         timerID: null,
 
         moreIsLoading: false,
@@ -46,7 +44,6 @@ var MessagePortalPage = (function ($) {
         },
 
         loadAnnouncement: function () {
-
             var lastPostTime = getCookie("lastPostTime");
 
             var url = APOLLO.resolveUrl("~/Message/Announcement?lastPostTime=" + lastPostTime);
@@ -119,7 +116,6 @@ var MessagePortalPage = (function ($) {
         },
 
         setReadPriMsg: function (messageId) {
-
             var url = APOLLO.resolveUrl("~/Message/SetReadPriMsg?messageId=") + messageId;
 
             $.ajax({
@@ -166,7 +162,6 @@ var MessagePortalPage = (function ($) {
 
                         setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
                     }
-
                 },
                 error: function (xhr, status, err) {
                 }
@@ -174,10 +169,7 @@ var MessagePortalPage = (function ($) {
         },
 
         getMessages: function () {
-
-
             function completedGetMessages(results) {
-
                 try {
                     var publicMessage = (results.public_message != null && results.public_message !== 'undefined') ? results.public_message : 0;
                     var privateMessage = (results.private_message != null && results.private_message !== 'undefined') ? results.private_message : 0;
@@ -193,20 +185,16 @@ var MessagePortalPage = (function ($) {
                     url += publicMessage[MSGTYPE];
 
                     if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) {
-
                         MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
 
                         MessagePortalPage.publicMessageId = publicMessage[MSGID];
-
                     }
 
                     // Process Private Message: show new private message
                     if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId !== privateMessage[MSGID]) {
-
                         MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
 
                         MessagePortalPage.privateMessageId = privateMessage[MSGID];
-
                     }
 
                     if (MessagePortalPage.publicMsgContent !== "" && MessagePortalPage.privateMsgContent !== "") {
@@ -230,7 +218,6 @@ var MessagePortalPage = (function ($) {
                             document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
                         }
                     }
-
                 } catch (e) {
                     console.log(e);
                 }
@@ -247,7 +234,6 @@ var MessagePortalPage = (function ($) {
                 }
             });
         }
-
     };
 } (jQuery));
 
@@ -278,5 +264,4 @@ $(document).ready(function () {
         var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement?isLevelAnnouncement=true'), '_blank', 'scrollbars=1,width=520,height=800');
         myWindow.focus();
     });
-
 });

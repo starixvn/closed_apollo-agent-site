@@ -36,7 +36,6 @@ var WINLOSS = (function ($) {
             WINLOSS.AgentName = $("#agentName");
             WINLOSS.IsHistoryReport = $("#isHistoryReport");
 
-
             WINLOSS.ddlSport.bind('change', function () {
                 var $this = $(this);
                 var valueChange = $this.val();
@@ -62,7 +61,6 @@ var WINLOSS = (function ($) {
                                 }));
                             });
                         });
-
             });
 
             // Agent WinLoss Report
@@ -87,7 +85,6 @@ var WINLOSS = (function ($) {
             });
 
             $(".view-agentwinloss").on("click", function () {
-
                 $.blockUI();
                 var url = APOLLO.resolveUrl("Reports/AgentWinLoss?FromDate="
                     + WINLOSS.hdFromDate.val() + "&ToDate=" + WINLOSS.hdToDate.val()
@@ -218,10 +215,8 @@ var WINLOSS = (function ($) {
                         WINLOSS.ToDate.val(WINLOSS.Today.val());
                         return;
                 }
-
             });
         }
-
     };
 } (jQuery));
 

@@ -44,7 +44,6 @@ var OUTSTANDING = (function ($) {
                                 }));
                             });
                         });
-
             });
 
             $("#MemberOutstanding").on('click', function () {
@@ -105,7 +104,6 @@ var OUTSTANDING = (function ($) {
                 location.href = url;
             });
 
-
             $("#gridId").on("click", ".act-view-betlist", OUTSTANDING.viewBetList);
 
             $('#export-excel').bind('click', function () {
@@ -122,7 +120,6 @@ var OUTSTANDING = (function ($) {
                 });
                 var url = APOLLO.resolveUrl('Reports/ExportOutstandingReport?' + parameters);
                 $('#exportExcelFrame').attr('src', url);
-
             });
         },
 
