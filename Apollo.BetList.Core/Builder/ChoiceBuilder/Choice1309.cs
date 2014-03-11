@@ -14,14 +14,13 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
 
     /// <summary>
-    ///    Match Handicap Games 3-way.
+    /// Match Handicap Games 3-way.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1309 : Choice1
     {
         /// <summary>
@@ -36,24 +35,22 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
-            bool betHome = ticket.BetTeam == "1";
-            bool betAway = ticket.BetTeam == "2";
-
-            if (betHome)
+            if (ticket.BetTeam == "1")
             {
                 this.Template.betTeam = this.Template.homeTeam;
             }
-            else if (betAway)
+            else if (ticket.BetTeam == "2")
             {
                 this.Template.betTeam = awayName;
             }
             else
             {
-                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 ? string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) :
-                                                    string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblDraw, "&nbsp;(", Apollo.Age.Resources.BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
+                this.Template.betTeam = ticket.Handicap2 > ticket.Handicap1 
+                    ? string.Join(null, new string[] { BetList.lblDraw, "&nbsp;(", BetList.h, "+", ConvertByBetType.Hdp(ticket.Handicap2) + ")" }) 
+                    : string.Join(null, new string[] { BetList.lblDraw, "&nbsp;(", BetList.a, "+", ConvertByBetType.Hdp(ticket.Handicap1), ")" });
             }
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
         }
     }
 }

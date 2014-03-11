@@ -6,12 +6,10 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.05.14">Interface Agent Share</change>
 // </history>
+
 namespace Apollo.BetList.Core.Builder.AgentShareBuilder
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;

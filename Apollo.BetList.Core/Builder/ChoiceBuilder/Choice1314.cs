@@ -11,6 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -28,10 +29,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            bool yes = ticket.BetTeam == "h";
-
-            this.Template.betTeam = yes ? Apollo.Age.Resources.BetList.lblYes : Apollo.Age.Resources.BetList.lblNo;
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.betTeam = ticket.BetTeam == "h" ? BetList.lblYes : BetList.lblNo;
+            this.Template.handicap = BetList.vs;
         }
     }
 }

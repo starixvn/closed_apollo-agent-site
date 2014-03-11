@@ -14,6 +14,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Text;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
 
@@ -33,7 +34,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.LeagueName.leagueName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.Roulette, "&nbsp;", ticket.ShowTime });
+            this.Template.LeagueName.leagueName = string.Join(null, new string[] { BetList.Roulette, "&nbsp;", ticket.ShowTime });
 
             if (ticketData != null && ticketData.Count > 0)
             {
@@ -41,14 +42,13 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
                 if (foundTicketData != null && foundTicketData.Count > 0)
                 {
-                    string betTeamName;
-                    string odds;
-                    StringBuilder betTeam = new StringBuilder();
+                    var betTeam = new StringBuilder();
 
                     foreach (ITicketData refDataItem in foundTicketData)
                     {
-                        betTeamName = ticketHelper.GetRouletteBetItemNameById(refDataItem.BetTeam);
-                        odds = ConvertByBetType.Odds(refDataItem.Odds, ticket.BetTypeId, ticket.OddsType);
+                        string betTeamName = ticketHelper.GetRouletteBetItemNameById(refDataItem.BetTeam);
+                        string odds = ConvertByBetType.Odds(refDataItem.Odds, ticket.BetTypeId, ticket.OddsType);
+
                         betTeam.AppendFormat("<div><span class='favorite'>{0}</span>&nbsp;<span class='stake'>{1}</span>&nbsp;@&nbsp;<span class='handicap custom'>{2}</span></div>", betTeamName, ConvertByBetType.Stake(refDataItem.Stake), odds);
                     }
 
@@ -67,11 +67,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         protected override void AdjustBetTeamToRTF()
         {
             Template.betTeam = Template.betTeam
-                                    .Replace("<div><span class='favorite'>", string.Empty)
-                                    .Replace("</span>", string.Empty)
-                                    .Replace("<span class='handicap custom'>", string.Empty)
-                                    .Replace("</div>", "\n")
-                                    .Replace("<span class='stake'>", string.Empty);
+                .Replace("<div><span class='favorite'>", string.Empty)
+                .Replace("</span>", string.Empty)
+                .Replace("<span class='handicap custom'>", string.Empty)
+                .Replace("</div>", "\n")
+                .Replace("<span class='stake'>", string.Empty);
 
             // Remove the last line-break
             int lastBreak = Template.betTeam.LastIndexOf("\n");

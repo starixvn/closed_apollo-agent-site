@@ -14,6 +14,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -31,17 +32,14 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
             bool betHomeTeam = ticket.BetTeam != null && ticket.BetTeam.Contains("h");
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string homeName = ticketHelper.GetTeamNameById(ticket.HomeId);
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             this.Template.homeTeam = string.Join(null, new string[] { homeName, (ticket.IsNeutral ? " (N) " : string.Empty) });
-
-            this.Template.betTeam = betHomeTeam ? this.Template.homeTeam : Apollo.Age.Resources.BetList.lblDraw;
-
+            this.Template.betTeam = betHomeTeam ? this.Template.homeTeam : BetList.lblDraw;
             this.Template.awayTeam = awayName;
-
             this.Template.LeagueName.leagueName = ticketHelper.GetLeagueNameById(ticket.LeagueId);
         }
     }

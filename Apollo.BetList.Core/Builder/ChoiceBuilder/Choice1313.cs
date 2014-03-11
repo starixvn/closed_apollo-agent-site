@@ -14,14 +14,13 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
 
     /// <summary>
-    ///    Set x Total Games 3-way.
+    /// Set x Total Games 3-way.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1313 : Choice1
     {
         /// <summary>
@@ -34,19 +33,27 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            bool betOver = ticket.BetTeam == "1";
-            bool betUnder = ticket.BetTeam == "2";
-
-            string formatXY = Apollo.Age.Resources.BetList.betweenXandY;
+            string formatXY = BetList.betweenXandY;
 
             if (formatXY == null)
             {
                 formatXY = "{0} - {1}";
             }
 
-            this.Template.betTeam = betOver ? Apollo.Age.Resources.BetList.over : betUnder ? Apollo.Age.Resources.BetList.under : string.Format(formatXY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
+            if (ticket.BetTeam == "1")
+            {
+                this.Template.betTeam = BetList.over;
+            }
+            else if (ticket.BetTeam == "2")
+            {
+                this.Template.betTeam = BetList.under;
+            }
+            else
+            {
+                this.Template.betTeam = string.Format(formatXY, ConvertByBetType.Hdp(ticket.Handicap2), ConvertByBetType.Hdp(ticket.Handicap1));
+            }
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
         }
     }
 }

@@ -14,6 +14,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     ///  Player Match Total Games 2-way.
     /// </summary>
     public class Choice1310 : Choice1304
-    {       
+    {
     }
 }

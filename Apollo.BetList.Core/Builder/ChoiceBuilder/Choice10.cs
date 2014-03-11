@@ -73,6 +73,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.LeagueName))
             {
                 choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -88,6 +89,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
             {
                 choice = string.Join(null, new string[] { "\n", Template.homeTeam.TrimEnd() });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -97,9 +99,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
 
-                choice = string.Empty;
-
                 choice = string.Join(null, new string[] { " ", Template.handicap.Trim(), " " });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);
@@ -108,8 +109,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
                 }
-
-                choice = string.Empty;
 
                 choice = string.Join(null, new string[] { Template.awayTeam });
 
@@ -127,6 +126,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 if (ticket.IsLive)
                 {
                     choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
+
                     if (isTrikeOut)
                     {
                         rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
@@ -143,8 +143,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.betTeam))
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
-               || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
                     choice = string.Join(null, new string[] { " \n " });
 
@@ -162,6 +163,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 else
                 {
                     choice = string.Join(null, new string[] { " \n ", " " });
+
                     if (isTrikeOut)
                     {
                         rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -175,6 +177,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 }
 
                 choice = string.Join(null, new string[] { Template.betTeam.Replace("&nbsp;", string.Empty).Trim() });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
@@ -199,6 +202,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.odds))
             {
                 choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFontTrike);

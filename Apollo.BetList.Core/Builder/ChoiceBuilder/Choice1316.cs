@@ -11,9 +11,9 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     /// <summary>
-    ///     Set x Game Handicap.
+    /// Set x Game Handicap.
     /// </summary>
     public class Choice1316 : Choice1308
-    {        
+    {
     }
 }

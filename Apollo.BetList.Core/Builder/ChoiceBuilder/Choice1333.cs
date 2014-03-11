@@ -12,11 +12,11 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    ///      Set x Games y and y+1 Winner.
+    /// Set x Games y and y+1 Winner.
     /// </summary>
     public class Choice1333 : Choice1
     {
@@ -30,14 +30,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            bool team1 = ticket.BetTeam == "1";
-            bool team2 = ticket.BetTeam == "2";
+            if (ticket.BetTeam == "1")
+            {
+                this.Template.betTeam = this.Template.homeTeam;
+            }
+            else if (ticket.BetTeam == "2")
+            {
+                this.Template.betTeam = ticketHelper.GetTeamNameById(ticket.AwayId);
+            }
+            else
+            {
+                this.Template.betTeam = BetList.lblNeither;
+            }
 
-            string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
-
-            this.Template.betTeam = team1 ? this.Template.homeTeam : team2 ? awayName : Apollo.Age.Resources.BetList.lblNeither;
-
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
         }
     }
 }

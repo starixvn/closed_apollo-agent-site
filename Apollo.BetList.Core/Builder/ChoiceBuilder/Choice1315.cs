@@ -12,7 +12,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -30,13 +30,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            bool home = ticket.BetTeam == "1";
-            bool away = ticket.BetTeam == "2";
+            this.Template.handicap = BetList.vs;
 
-            string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
-
-            this.Template.betTeam = home ? this.Template.homeTeam : away ? awayName : Apollo.Age.Resources.BetList.noTiebreak;
+            if (ticket.BetTeam == "1")
+            {
+                this.Template.betTeam = this.Template.homeTeam;
+            }
+            else if (ticket.BetTeam == "2")
+            {
+                this.Template.betTeam = ticketHelper.GetTeamNameById(ticket.AwayId);
+            }
+            else
+            {
+                this.Template.betTeam = BetList.noTiebreak;
+            }
         }
     }
 }

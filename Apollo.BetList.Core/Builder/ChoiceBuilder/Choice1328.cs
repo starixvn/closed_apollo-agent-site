@@ -11,11 +11,11 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    ///      Set x Game y Total Points Exact.
+    /// Set x Game y Total Points Exact.
     /// </summary>
     public class Choice1328 : Choice1
     {
@@ -29,25 +29,26 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-            string choice = ticket.BetTeam;
+            this.Template.handicap = BetList.vs;
+
             var betTeam = string.Empty;
-            switch (choice)
+
+            switch (ticket.BetTeam)
             {
                 case "01":
-                    betTeam = "4 " + Apollo.Age.Resources.BetList.points;
+                    betTeam = "4 " + BetList.points;
                     break;
 
                 case "02":
-                    betTeam = "5 " + Apollo.Age.Resources.BetList.points;
+                    betTeam = "5 " + BetList.points;
                     break;
 
                 case "03":
-                    betTeam = "6 " + Apollo.Age.Resources.BetList.points;
+                    betTeam = "6 " + BetList.points;
                     break;
 
                 case "04":
-                    betTeam = "7 " + Apollo.Age.Resources.BetList.upPoints;
+                    betTeam = "7 " + BetList.upPoints;
                     break;
 
                 default:

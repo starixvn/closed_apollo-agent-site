@@ -140,12 +140,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
-            return RenderRTF(
-             ticket,
-             ticketHelper,
-             ticketData,
-             isShowScoreMap,
-             rtfHelper);
+            return RenderRTF(ticket, ticketHelper, ticketData, isShowScoreMap, rtfHelper);
         }
 
         /// <summary>
@@ -316,9 +311,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
 
-                choice = string.Empty;
-
                 choice = string.Join(null, new string[] { " ", Template.handicap.Trim(), " " });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);
@@ -327,8 +321,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
                 }
-
-                choice = string.Empty;
 
                 choice = string.Join(null, new string[] { Template.awayTeam });
 
@@ -363,7 +355,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
-               || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
                     choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
                     if (isTrikeOut)

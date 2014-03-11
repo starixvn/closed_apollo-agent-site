@@ -13,6 +13,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using System.Collections.Generic;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using Apollo.Age.Resources;
 
     /// <summary>
     /// P2P Games.
@@ -38,10 +39,10 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             string content = string.Join(
                 null,
                 "<div><span class='",
-                                                BetListFavorite,
-                                                "'>",
-                                                Apollo.Age.Resources.BetList.p2pGame,
-                                                "</span></div>");
+                BetListFavorite,
+                "'>",
+                BetList.p2pGame,
+                "</span></div>");
 
             this.Template.SetValue(content);
 
@@ -63,6 +64,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return choiceRtf;
         }
 

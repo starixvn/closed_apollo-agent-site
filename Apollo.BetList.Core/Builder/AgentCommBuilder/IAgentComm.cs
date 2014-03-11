@@ -9,7 +9,6 @@
 
 namespace Apollo.BetList.Core.Builder.AgentCommBuilder
 {
-    using System.Collections.Generic;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;

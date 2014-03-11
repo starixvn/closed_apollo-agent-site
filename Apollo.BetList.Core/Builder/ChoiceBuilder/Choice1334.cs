@@ -12,13 +12,12 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    ///      Set x Games y and y + 1 Points.
+    /// Set x Games y and y + 1 Points.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public class Choice1334 : Choice1
     {
         /// <summary>
@@ -31,14 +30,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            bool team1 = ticket.BetTeam == "1";
-            bool team2 = ticket.BetTeam == "2";
+            if (ticket.BetTeam == "1")
+            {
+                this.Template.betTeam = string.Join(null, new string[] { "<span class=\"underdog\">", BetList.under, "</span>" });
+            }
+            else if (ticket.BetTeam == "2")
+            {
+                this.Template.betTeam = string.Join(null, new string[] { "<span class=\"favorite\">", BetList.over, "</span>" });
+            }
+            else
+            {
+                this.Template.betTeam = string.Join(null, new string[] { "<span class=\"underdog\">", BetList.exactly, "</span>" });
+            }
 
-            this.Template.betTeam = team1 ? string.Join(
-                null,
-                new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.under, "</span>" }) : team2 ? string.Join(null, new string[] { "<span class=\"favorite\">", Apollo.Age.Resources.BetList.over, "</span>" }) : string.Join(null, new string[] { "<span class=\"underdog\">", Apollo.Age.Resources.BetList.exactly, "</span>" });
-
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
         }
     }
 }

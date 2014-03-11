@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.05.14">Agent PT</change>
 // </history>
+
 namespace Apollo.BetList.Core.Builder.AgentShareBuilder
 {
     using System.Collections.Generic;
