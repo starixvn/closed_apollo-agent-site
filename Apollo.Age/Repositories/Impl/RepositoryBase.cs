@@ -16,6 +16,6 @@ namespace Apollo.Age.Repositories.Impl
     /// </summary>
     /// <typeparam name="T">Input a parameter optional.</typeparam>
     public class RepositoryBase<T> : ReadonlyRepository<T>
-    {       
+    {
     }
 }

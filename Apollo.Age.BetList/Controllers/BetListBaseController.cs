@@ -19,11 +19,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Reports.Services;
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Services.Interface;
-    using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
-    using Apollo.Age.Web.Services;
-    using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.TicketHelper;
 
     /// <summary>
@@ -349,10 +345,7 @@ namespace Apollo.Age.BetList.Controllers
         /// <returns>
         /// Ticket result.
         /// </returns>
-        public TicketResult OutstandingBetList(
-            int custId,
-            string betType = "",
-            string sportType = "")
+        public TicketResult OutstandingBetList(int custId, string betType = "", string sportType = "")
         {
             var criteria = new OutstandingCriteria
             {

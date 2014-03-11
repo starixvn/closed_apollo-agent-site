@@ -46,7 +46,7 @@ namespace Apollo.Age.Criterias
 
                     if (!ReferenceEquals(funcRead, null))
                     {
-                        foreach (var itemRead in funcRead)
+                        foreach (string itemRead in funcRead)
                         {
                             if (!string.IsNullOrWhiteSpace(itemRead)
                                 && !newPermissionDictionary.ContainsKey(itemRead))
@@ -58,7 +58,7 @@ namespace Apollo.Age.Criterias
 
                     if (!ReferenceEquals(funcHost, null))
                     {
-                        foreach (var itemHost in funcHost)
+                        foreach (string itemHost in funcHost)
                         {
                             if (!string.IsNullOrWhiteSpace(itemHost)
                                 && newPermissionDictionary.ContainsKey(itemHost))
@@ -72,7 +72,7 @@ namespace Apollo.Age.Criterias
                 // Get old permission of user in DB
                 if (!ReferenceEquals(ListFunctionPolicy, null))
                 {
-                    foreach (var itemFunctionPolicy in ListFunctionPolicy)
+                    foreach (FunctionPolicy itemFunctionPolicy in ListFunctionPolicy)
                     {
                         if (!oldPermissionDictionary.ContainsKey(itemFunctionPolicy.Function.Id.ToString()))
                         {

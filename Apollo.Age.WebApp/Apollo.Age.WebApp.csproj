@@ -410,15 +410,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config">
@@ -648,7 +639,6 @@
     <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
     <Content Include="Areas\Wagers\Views\LangTemp.cshtml" />
-    <Content Include="Views\Account\LangTemp.cshtml" />
     <Content Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Views\BetList\Forecast.cshtml" />
     <Content Include="Views\BetList\MixParlay.cshtml" />
@@ -894,7 +884,6 @@
     <Content Include="Views\TotalBets\HomeNoBet.cshtml" />
     <Content Include="Views\TotalBets\HTFT.cshtml" />
     <Content Include="Views\TotalBets\MoneyLine.cshtml" />
-    <Content Include="Views\TotalBets\NumberGame.cshtml" />
     <Content Include="Views\TotalBets\OddEven.cshtml" />
     <Content Include="Views\TotalBets\OutRight.cshtml" />
     <Content Include="Views\TotalBets\Resources\TotalBets.less" />

@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.Repositories.Impl
 {
-    using System;
     using System.Collections.Generic;
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
@@ -33,7 +32,7 @@ namespace Apollo.Age.Repositories.Impl
 
             if (criteria.IsValid())
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     return objectDb.Query<Function, FunctionGroup, Function>(
                         (f, fg) => { f.FunctionGroup = fg; return f; },

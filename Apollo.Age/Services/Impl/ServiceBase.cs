@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.7.7">Created</change>
 // </history>
+
 namespace Apollo.Age.Services.Impl
 {
     using System;
@@ -29,29 +30,19 @@ namespace Apollo.Age.Services.Impl
             switch (commGroupName.ToLower())
             {
                 case "a":
-                    {
-                        return "D";
-                    }
+                    return "D";
 
                 case "b":
-                    {
-                        return "C";
-                    }
+                    return "C";
 
                 case "c":
-                    {
-                        return "B";
-                    }
+                    return "B";
 
                 case "d":
-                    {
-                        return "A";
-                    }
+                    return "A";
 
                 default:
-                    {
-                        return "All";
-                    }
+                    return "All";
             }
         }
 
@@ -66,7 +57,7 @@ namespace Apollo.Age.Services.Impl
             if (!string.IsNullOrEmpty(peakHoursString))
             {
                 var peakHourArray = peakHoursString.Split(';');
-                foreach (var peakHourSetting in peakHourArray)
+                foreach (string peakHourSetting in peakHourArray)
                 {
                     if (!string.IsNullOrEmpty(peakHourSetting))
                     {
