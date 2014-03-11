@@ -145,13 +145,6 @@ new ReportMenuViewModel
 @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @Html.Hidden("isHistoryReport", false)
-@*@Html.Action("Index", "Instruction", new
-{
-    key = "AgentWinLossPageInfo",
-    trigger = string.Empty,
-    title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})*@
 @section scripts
 {
     @Scripts.Render("~/scripts/winlossjs")

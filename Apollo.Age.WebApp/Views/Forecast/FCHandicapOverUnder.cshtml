@@ -1,12 +1,13 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
+    ViewBag.Title = Lang.lblHOUL;
 
     IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     string leagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
     var fcHDPList = (IEnumerable<ForecastHandicapOUModel>)ViewBag.FCHDPList;
+	var selectedString = string.Empty;
 }
 @section css
 {
@@ -26,9 +27,7 @@
                 </div>
                 <div class="editor" id="selLeague">
                     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                        @{
-                var selectedString = string.Empty;
-                foreach (var league in leagues)
+                @foreach (var league in leagues)
                 {
                     if (league.LeagueId == leagueId)
                     {
@@ -40,14 +39,12 @@
                     }
                             <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
                 }
-                        }
                     </select>
                 </div>
             }
             else
             {
-                <label>
-                    @Lang.noInfo</label>
+                <label> @Lang.noInfo </label>
             }
         </div>
     </div>

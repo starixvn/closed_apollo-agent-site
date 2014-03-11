@@ -7,20 +7,6 @@
 }
 
 @model IEnumerable<HomeNoBetModel>
-
-@helper ShowLeague(int currentLeagueId, HomeNoBetModel item)
-{
-    if (currentLeagueId != item.LeagueId)
-    { 
-        <!--LeagueContents-->
-        <tr class="league">
-            <td colspan="6">
-                @item.LeagueName
-            </td>
-        </tr>
-    }
-}
-
 @helper ShowMatch(int index, HomeNoBetModel item,bool hasDownlineDetailsPermission = true)
 {
     var classRow = string.Empty;
@@ -30,7 +16,7 @@
     }
     else
     {       
-        classRow = string.Empty;        
+        classRow = string.Empty;
     }
     
     <tr @classRow>
@@ -39,7 +25,7 @@
         <td class="c">
             @item.LeagueName
         </td>
-        <td  class="no-border-bottom  valign-top home-away-team">
+        <td class="no-border-bottom valign-top home-away-team">
             @item.HomeTeam
             <br />
             @item.AwayTeam
@@ -52,7 +38,7 @@
                 { 
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="121" betlist-type="BettypeMatch" 
                     href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblHomeNoBet" title="@Lang.ViewBetList">
-                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)    
+                    @RazorHelper.FormatNumber(item.HomeOddsHNB - item.AwayOddsHNB, 2)
                 </a>
                 }
                 else { 
@@ -61,7 +47,7 @@
             }
             
         </td>
-        <td class="r" >
+        <td class="r">
             @if (item.BetCountDNB != 0)
             {
                 if (hasDownlineDetailsPermission)
@@ -76,7 +62,7 @@
                 }
             }
         </td>
-        <td class="r" >
+        <td class="r">
             @if (item.BetCountANB != 0)
             {
                 <a class="fcnum view-bet-list" match-id="@item.MatchId" bet-type="122" betlist-type="BettypeMatch" 
@@ -85,8 +71,7 @@
                 </a>
             }
         </td>
-    </tr>   
-   
+    </tr>
 }
 
 @helper ShowTime(HomeNoBetModel item)
@@ -96,10 +81,6 @@
         {
             @Html.Raw(item.LiveHomeScore + " - " + item.LiveAwayScore)
         }
-        @*else
-        {
-            @Html.Raw(item.ShowTime)
-        }*@
     </td>
 }
 
@@ -107,7 +88,6 @@
     <thead class="persist-header">
         <tr>
             <td rowspan="2" style="width: 9%;">
-                @*@Lang.TimeGMT8*@
                 @Lang.time
                 <br />
                 (@Lang.GMT+8)
@@ -141,16 +121,12 @@
         @if (Model != null && Model.Any())
         {
             int rowIndex = 0;
-            int currentLeagueId = 0;
 
             foreach (var item in Model)
             {
                 rowIndex++;
 
-                //@ShowLeague(currentLeagueId, item)
-                @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
-
-                currentLeagueId = item.LeagueId;
+				@ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
             }
         }
         else
@@ -166,12 +142,12 @@
         var DEFAULT_OBJECT = function () {
             return {
                 initData: function () {
-                    TOTALBETS.initViewBetList();                    
+                    TOTALBETS.initViewBetList();
                 }
             };
         } ();
         $(function () {
             DEFAULT_OBJECT.initData();
         });
-    </script>    
+    </script>
 }

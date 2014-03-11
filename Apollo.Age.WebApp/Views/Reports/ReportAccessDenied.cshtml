@@ -1,32 +1,30 @@
 @using Apollo.Age.Reports.ViewModels
 @{
-    Layout = null;
-    string title = Lang.strNotAccessPage;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;    
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
 }
 @try
 { 
     @Html.Partial("~/Views/Reports/Menu.cshtml",
-new ReportMenuViewModel
-{
-    SportList = Model.SportList,
-    FunctionPolicyList = FunctionPermissions,
-    ReportName = string.Empty,
-    SportType = Model.SportTypeIds
-})
+		new ReportMenuViewModel
+		{
+			SportList = Model.SportList,
+			FunctionPolicyList = FunctionPermissions,
+			ReportName = string.Empty,
+			SportType = Model.SportTypeIds
+		})
 }
 catch
 {
     @Html.Partial("~/Views/Reports/Menu.cshtml",
-new ReportMenuViewModel
-{
-    SportList = null,
-    FunctionPolicyList = FunctionPermissions,
-    ReportName = string.Empty,
-    SportDropDownClassName = string.Empty
-})
+		new ReportMenuViewModel
+		{
+			SportList = null,
+			FunctionPolicyList = FunctionPermissions,
+			ReportName = string.Empty,
+			SportDropDownClassName = string.Empty
+		})
 }
 <br />
 <br />
-<h1>@title</h1>
+<h1>@Lang.strNotAccessPage</h1>

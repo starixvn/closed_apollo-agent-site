@@ -1,6 +1,5 @@
-﻿@using Apollo.Age.Resources
-@model GetLogCustSettingCriteria
-@{    
+﻿@model GetLogCustSettingCriteria
+@{
     Layout = "~/Views/Log/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.viewlog + " " + Lang.customer + " " + Lang.setting;
     var logData = (List<LogRunSpModel>)ViewBag.LogData;
@@ -17,9 +16,9 @@
             <div class="cell">
                 <div class="label">
                     @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
-            new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
-            new SelectListItem { Value = "false", Text = Lang.member }
-        })
+						new SelectListItem { Value = "true", Text = Lang.agent,Selected=true },
+						new SelectListItem { Value = "false", Text = Lang.member }
+					})
                     <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
                 </div>
             </div>

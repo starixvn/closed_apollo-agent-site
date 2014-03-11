@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblOutRight;
+    ViewBag.Title = Lang.lblOutRight;
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<OutRightModel>
@@ -15,16 +15,11 @@
             @item.LeagueName
         </td>
     </tr>
-        }            
+        }
 }
 <table class="tblRpt  persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
-            @* <td style="width: 5%;">
-                @Lang.time
-                <br />
-                (@Lang.GMT)
-            </td>*@
             <td style="width: 45%;">
                 @Lang.lblTeam
             </td>
@@ -38,51 +33,43 @@
     </thead>
     <tbody>
         <!--LeagueContents-->
-        @{
-        
-            if (Model != null && Model.Any())
+        @if (Model != null && Model.Any())
+        {
+            int rowIndex = 0;
+            int currentLeagueId = 0;
+
+            foreach (var item in Model)
             {
-                int rowIndex = 0;
-                int currentLeagueId = 0;
+                rowIndex++;
 
-                foreach (var item in Model)
-                {
-                    rowIndex++;
-
-            @ShowLeague(currentLeagueId, item)  
-            <!--MatchContents-->
-            <tr class="r">
-                @*<td class="c" rowspan="2">
-                        @if(item.KickOffTime != null){
-                            @Html.Raw(Formater.FormatDateTime22(item.KickOffTime.Value))
-                        }
-                    </td>*@
-                <td class="l  valign-top  home-away">
-                    @if (hasDownlineDetailsPermission)
-                    { 
-                        <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
-                        href="javascript:void(0);"   league-name="@item.LeagueName" bet-type-name="@Lang.lblOutRight"  title="@Lang.ViewBetList">@item.TeamName
-                        </a>
-                    }
-                    else
-                    {
-                        @item.TeamName
-                    }
-                </td>
-                <td class="fcnum">
-                    @RazorHelper.FormatNumber(item.Balance, 2)
-                </td>
-                <td class="fcnum">
-                    @RazorHelper.FormatPositiveNumber(item.TotalWinLost, 2)
-                </td>
-            </tr>
-                    currentLeagueId = item.LeagueId;
+        @ShowLeague(currentLeagueId, item)  
+        <!--MatchContents-->
+        <tr class="r">
+            <td class="l  valign-top  home-away">
+                @if (hasDownlineDetailsPermission)
+                { 
+                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="10" betlist-type="BettypeMatch" 
+                    href="javascript:void(0);" league-name="@item.LeagueName" bet-type-name="@Lang.lblOutRight" title="@Lang.ViewBetList">@item.TeamName
+                    </a>
                 }
+                else
+                {
+                    @item.TeamName
+                }
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatNumber(item.Balance, 2)
+            </td>
+            <td class="fcnum">
+                @RazorHelper.FormatPositiveNumber(item.TotalWinLost, 2)
+            </td>
+        </tr>
+                currentLeagueId = item.LeagueId;
             }
-            else
-            {
-                //@RazorHelper.ShowNoInfo(colspan: 4)
-            }     
+        }
+        else
+        {
+            //@RazorHelper.ShowNoInfo(colspan: 4)
         }
     </tbody>
 </table>

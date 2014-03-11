@@ -5,24 +5,12 @@
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<OddEvenModel>
-@helper ShowLeague(int currentLeagueId, OddEvenModel item)
-    {
-        if (currentLeagueId != item.LeagueId)
-        { 
-    <!--LeagueContents-->
-    <tr class="league">
-        <td colspan="10" class="league">
-            @item.LeagueName
-        </td>
-    </tr>
-        }            
-}
 @helper ShowTotal(int betCount, decimal odds)
     {
         if (betCount != 0)
         {
-    @Formater.FormatNumber2(odds, "en-US")                
-        }   
+    @Formater.FormatNumber2(odds, "en-US")
+        }
 }
 @helper ShowForecas(int betCount, decimal winlost)
     {
@@ -86,9 +74,7 @@
             <input  match-id="@item.MatchId" type="button" league-name="@item.LeagueName" bet-type="15" class="fc-button view-forecast" title="@Lang.ViewForeCast" value="+" />
             <!--/OneXTwoFirstHalfButton-->
         }
-        
     </td>
-       
         }
 }
 @helper ShowTime(OddEvenModel item)
@@ -108,7 +94,6 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             <td rowspan="2" style="width: 9%;">
-                @*@Lang.TimeGMT8*@
                 @Lang.time
                 <br />
                 (@Lang.GMT+8)
@@ -154,7 +139,6 @@
             if (Model != null && Model.Any())
             {
                 int rowIndex = 0;
-                int currentLeagueId = 0;
                 var classRow = string.Empty;
 
                 foreach (var item in Model)
@@ -169,9 +153,6 @@
                     {
                         classRow = string.Empty;
                     }
-
-                    //@ShowLeague(currentLeagueId, item)  
-            
             <!--MatchContents-->
             <tr class='r @classRow'>
                 @Html.FormatShowTime(item.ShowTime)
@@ -225,14 +206,12 @@
                 </td>
                 @Show1x2Button(item, false, hasDownlineDetailsPermission)
             </tr>
-
-                    currentLeagueId = item.LeagueId;
                 }
             }
             else
             {
                 //@RazorHelper.ShowNoInfo(colspan: 11)
-            }            
+            }
         }
     </tbody>
 </table>

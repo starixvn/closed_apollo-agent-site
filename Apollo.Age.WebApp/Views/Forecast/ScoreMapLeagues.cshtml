@@ -5,20 +5,16 @@
 }
 @model IEnumerable<LeagueModel>
 <select id="ddlLeague" name="ddlLeague" style="position: relative;">
-    @{
-        if (Model != null && Model.Any())
+@if (Model != null && Model.Any())
+{
+    foreach (var league in Model)
+    {
+        <option value="@(league.LeagueId)" 
+        @if(currentLeagueSelected != null && currentLeagueSelected.Value == league.LeagueId)
         {
-            foreach (var league in Model)
-            {
-                <option value="@(league.LeagueId)" 
-                @{
-                    if(currentLeagueSelected != null && currentLeagueSelected.Value == league.LeagueId)
-                    {
-                        @:selected="selected"
-                    }
-                    }
-                 >@(league.LeagueName)</option>
-            }
+            @:selected="selected"
         }
+            >@(league.LeagueName)</option>
     }
+}
 </select>

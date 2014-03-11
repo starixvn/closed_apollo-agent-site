@@ -62,26 +62,15 @@
 	<tbody>
 		@if (Model != null && Model.Any())
 		{
-			var currentLeagueId = 0;
-			var eventStatus = string.Empty;
-			var betStatus = string.Empty;
-
-			var ieHome = "-";
-			var ieAway = "-";
-
-			List<string> homeSet = null;
-			List<string> awaySet = null;
-			
 			foreach (var item in Model)
 			{
-				eventStatus = string.Empty;
-				betStatus = string.Empty;
+				var betStatus = string.Empty;
 
-				ieHome = "-";
-				ieAway = "-";
+				string ieHome = "-";
+				string ieAway = "-";
 
-				homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" };
-				awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" }; 
+				List<string> homeSet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" };
+				List<string> awaySet = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-1" }; 
 
 				betStatus = item.BetStatus;
 
@@ -107,7 +96,6 @@
 							ieHome = Convert.ToInt32(homeSet[9]) >= 0 ? homeSet[9] : ieHome;
 							ieAway = Convert.ToInt32(awaySet[9]) >= 0 ? awaySet[9] : ieAway;
 						}
-						
 					}
 				}
 

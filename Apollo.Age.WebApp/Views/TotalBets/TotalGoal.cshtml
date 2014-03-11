@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<Apollo.Age.TotalBets.Models.TotalGoalModel>
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
+    ViewBag.Title = Lang.totalgoal;
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 9%;">
-                @*@Lang.TimeGMT8*@
                 @Lang.time
                 <br />
                 (@Lang.GMT+8)
@@ -16,9 +15,6 @@
             <td style="width: 25%;">
                 @Lang.homeaway
             </td>
-            @*            <td style="width: 150px;">
-                @Lang.away
-            </td>*@
             <td>
                 @Lang.total01
             </td>

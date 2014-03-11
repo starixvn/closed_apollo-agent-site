@@ -2,7 +2,7 @@
 @using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
+    ViewBag.Title = Lang.lblHOUL;
 
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
@@ -83,18 +83,6 @@
         @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU, hasDownlineDetailsPermission)
     </tr>
 }
-@helper ShowLeague(int currentLeagueId, HandicapModel item)
-    {
-        if (currentLeagueId != item.LeagueId)
-        { 
-    <!--LeagueContents-->
-    <tr class="league">
-        <td colspan="11">
-            @item.LeagueName
-        </td>
-    </tr>
-        }
-}
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
@@ -138,16 +126,12 @@
         @if (Model != null && Model.Any())
         {
             int rowIndex = 0;
-            int currentLeagueId = 0;
 
             foreach (var item in Model)
             {
                 rowIndex++;
 
-                //@ShowLeague(currentLeagueId, item)
             @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
-
-                currentLeagueId = item.LeagueId;
             }
         }
         else

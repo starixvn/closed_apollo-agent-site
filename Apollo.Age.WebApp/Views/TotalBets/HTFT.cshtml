@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.htft;
+    ViewBag.Title = Lang.htft;
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<HTFTModel>
@@ -9,7 +9,6 @@
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 9%;">
-                @*@Lang.TimeGMT8*@
                 @Lang.time
                 <br />
                 (@Lang.GMT+8)
@@ -49,74 +48,64 @@
             </td>
         </tr>
     </thead>
-    @{
-        
-        if (Model != null && Model.Any())
-        {
-            int rowIndex = 0;
-            var classRow = string.Empty;
+    @if (Model != null && Model.Any())
+    {
+        int rowIndex = 0;
+        var classRow = string.Empty;
 
-            foreach (var item in Model)
-            {
-                rowIndex++;
-                if (rowIndex % 2 != 0)
-                {
-                    classRow = "r alt";
-                }
-                else
-                {
-                    classRow = "r";
-                }
-        <tr class="@classRow">
-            @Html.FormatShowTime(item.ShowTime)
-            <td class="l no-border-bottom  valign-top home-away-team">
-                @if (hasDownlineDetailsPermission)
-                { 
-                    <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
-                            href="javascript:void(0);"   league-name="@item.AwayTeam" bet-type-name="@Lang.htft"  title="@Lang.ViewBetList">@item.HomeTeam
-                    </a>
-                }
-                else
-                {
-                    @item.HomeTeam
-                }
-                <br />
-                @item.AwayTeam
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
-            </td>
-            <td class="fcnum">
-                @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
-            </td>
-        </tr>
-            }
-        }
-        else
+        foreach (var item in Model)
         {
-            //@RazorHelper.ShowNoInfo(colspan: 12)
+            rowIndex++;
+			classRow = rowIndex % 2 != 0 ? "r alt" : "r";
+    <tr class="@classRow">
+        @Html.FormatShowTime(item.ShowTime)
+        <td class="l no-border-bottom  valign-top home-away-team">
+            @if (hasDownlineDetailsPermission)
+            { 
+                <a class="view-bet-list" match-id="@item.MatchId" bet-type="16" betlist-type="BettypeMatch" 
+                    href="javascript:void(0);" league-name="@item.AwayTeam" bet-type-name="@Lang.htft" title="@Lang.ViewBetList">@item.HomeTeam
+                </a>
+            }
+            else
+            {
+                @item.HomeTeam
+            }
+            <br />
+            @item.AwayTeam
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalHH, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalHD, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalHA, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalDH, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalDD, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalDA, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalAH, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalAD, 2)
+        </td>
+        <td class="fcnum">
+            @RazorHelper.FormatPositiveNumber(item.TotalAA, 2)
+        </td>
+    </tr>
         }
+    }
+    else
+    {
+        //@RazorHelper.ShowNoInfo(colspan: 12)
     }
 </table>
 @section scripts
@@ -126,7 +115,6 @@
             return {
                 initData: function () {
                     TOTALBETS.initViewBetList();
-
                 }
             };
         } ();

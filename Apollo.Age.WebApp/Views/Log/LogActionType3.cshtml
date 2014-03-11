@@ -1,5 +1,4 @@
 ﻿@using Apollo.CustSetting.Core
-@using Apollo.Age.Resources
 @{   
     var xmlBetSetting = _Configuration.BettingLimitSportNameConfig;
     var list = Model != null ? (Dictionary<string, BetSettingModel>)Model : new Dictionary<string, BetSettingModel>();  
@@ -62,9 +61,9 @@
         { 
     <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span>
     <span class="valueold">| @strOld</span>
-            
         }
         else
-        { <span class="valueold">@strOld</span>
-        }            
+        { 
+	<span class="valueold">@strOld</span>
+        }
 }

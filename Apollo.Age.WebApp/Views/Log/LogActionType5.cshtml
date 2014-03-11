@@ -20,7 +20,7 @@
             <td class="no-border-right colW1">
             </td>
         </tr>
-        foreach (var item in Model)
+		foreach (LogSettingViewModel item in Model)
         {
         <tr class="@(count == Model.Count ? "have-border-bottom" : string.Empty)">
             <td class="colW">
@@ -30,11 +30,11 @@
                 <span class="valuechanged">@item.Value</span>
                 @if (!string.IsNullOrWhiteSpace(item.OldValue))
                 {
-                    <span class="valueold">| @item.OldValue</span>      
+                    <span class="valueold">| @item.OldValue</span>
                 }
                 else
                 { 
-                    <span class="valueold">| @Lang.lblNA</span>      
+                    <span class="valueold">| @Lang.lblNA</span>
                 }
             </td>
             <td class="colW2">

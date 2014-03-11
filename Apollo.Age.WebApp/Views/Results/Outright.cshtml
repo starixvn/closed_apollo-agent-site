@@ -23,25 +23,25 @@
 		</tr>
 	</thead>
 	<tbody>
-		@if (Model != null && Model.Any())
-		{
-			foreach (var item in Model)
-			{
-			<tr class="c">
-				<td>
-					@RazorHelper.RenderDatetimeFormated2line(item.EventDate)
-				</td>
-				<td class="l">
-				 @item.LeagueName
-				</td>
-				<td class="l">
-					@item.TeamName
-				</td>
-				<td>
-					@item.Status
-				</td>
-			</tr>
-			}
-		}
+@if (Model != null && Model.Any())
+{
+	foreach (OutrightResultModel item in Model)
+	{
+		<tr class="c">
+			<td>
+				@RazorHelper.RenderDatetimeFormated2line(item.EventDate)
+			</td>
+			<td class="l">
+				@item.LeagueName
+			</td>
+			<td class="l">
+				@item.TeamName
+			</td>
+			<td>
+				@item.Status
+			</td>
+		</tr>
+	}
+}
 	</tbody>
 </table>

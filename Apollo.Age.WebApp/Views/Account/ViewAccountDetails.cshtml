@@ -1,6 +1,5 @@
 ﻿@using Apollo.CustSetting.ViewData;
 @using Apollo.Age.Account.Core;
-@using Apollo.Age.Resources;
 @{
     ViewBag.Title = Lang.ViewDetails;
     var comSetting = (CommissionSetting)ViewBag.CommissionSetting;
@@ -24,20 +23,19 @@
     string backLink = ViewBag.BackLink ?? string.Empty;
     Layout = "~/Views/Account/Shared/_ViewDetailsLayout.cshtml";
     var betTypesHeader = new List<string>
-        {
-                            Lang.HandicapOverUnderOddEven, 
-                            Lang.RBHandicapRBOverUnder, 
-                            Lang._1x2RB1x2, 
-                            Lang.OtherBetType, 
-                            Lang.RBOtherBetType,
-                            Lang.MixSportParlay,
-                            Lang.lblOutRight
-                    };
+    {
+        Lang.HandicapOverUnderOddEven, 
+        Lang.RBHandicapRBOverUnder, 
+        Lang._1x2RB1x2, 
+        Lang.OtherBetType, 
+        Lang.RBOtherBetType,
+        Lang.MixSportParlay,
+        Lang.lblOutRight
+    };
 }
 @Html.Hidden("BackLink", backLink)
 @helper RenderSportBlock(bool isViewOnMember, CommissionSetting commissionSetting, BettingLimit betLimit, IList<string> betTypes)
     {
-    
     <table class="tb-cust-setting">
         <thead>
             <tr>
@@ -79,7 +77,6 @@
                 </th>
                 <th style="width: 125px;">@Lang.MinSingleBet
                 </th>
-                
             </tr>
         </thead>
         <tbody>
@@ -97,74 +94,52 @@
                         if (isViewOnMember)
                         {
                         @:<td>
-                                }
-
+                        }
                         else
                         {
                         @:<td colspan="4">
-                                }
-                                    
+                        }
                         @: 0</td>
-                            
                     }
                     else
                     {
                         if (isViewOnMember)
                         {
-                        <td>
-                        @Formater.DecFormat(commissionSetting.CommissionItems[0].Discount, 2)
-                        </td>
+                        <td> @Formater.DecFormat(commissionSetting.CommissionItems[0].Discount, 2) </td>
                         }
                         else
                         {
-                        <td>
-                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountA, 2)
-                        </td>
-                        <td>
-                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountB, 2)
-                        </td>
-                        <td>
-                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountC, 2)
-                        </td>
-                        <td>
-                        @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountD, 2)
-                    </td>
+                        <td> @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountA, 2) </td>
+                        <td> @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountB, 2) </td>
+                        <td> @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountC, 2) </td>
+                        <td> @Formater.DecFormat(commissionSetting.CommissionItems[0].DiscountD, 2) </td>
                         }
                     }
                     <td> @Math.Round(betLimit.MaxPerMatch) </td> 
                     <td> @Math.Round(betLimit.MaxBet) </td>
                     <td> @Math.Round(betLimit.MinBet) </td>
                 </tr>
-                        
                 }
-                    
             }
         </tbody>
     </table>
-    
 }
 <div id="function-bar">
     <div class="item detail-information">
         @(isViewOnMember ? Lang.MemberDetailEdit : Lang.AgencyDetailEdit)
         @*@(canEdit ? Lang.edit.ToLower() : string.Empty)*@
         &nbsp;&nbsp;&nbsp;&nbsp;-- <strong>@userName</strong>
-        @{
-            
-            if (!isViewMySetting)
+        @if (!isViewMySetting)
+        {
+            if (canEdit)
             {
-                if (canEdit)
-                {
-                    @:&nbsp;&nbsp;-- <a href="@editLink">@Lang.edit </a>
-                }
-        
-                if (!fromLeftMenu)
-                {
-                    @:&nbsp;&nbsp;-- <a href="javascript:void(0);" id="back-link">@Lang.back</a>
-                }
+                @:&nbsp;&nbsp;-- <a href="@editLink">@Lang.edit </a>
             }
-        
+            if (!fromLeftMenu)
+            {
+                @:&nbsp;&nbsp;-- <a href="javascript:void(0);" id="back-link">@Lang.back</a>
+            }
         }
-        
     </div>
     <div class="end"></div>
     @*<img src="/_GlobalResources/Images/top_04.png" class="end-function-bar" title="" />*@
@@ -185,7 +160,7 @@
 <div class="view-detail-container">
     @if (betSetting != null && betSetting.Any())
     {
-        BettingLimit outrightBetLimit = new BettingLimit();
+        var outrightBetLimit = new BettingLimit();
         IList<string> currentBetTypes = null;
         foreach (BettingLimit betLimit in betSetting)
         {

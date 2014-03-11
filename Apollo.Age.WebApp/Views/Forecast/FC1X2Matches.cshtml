@@ -48,7 +48,7 @@
         </td>
         <td style="width: 1%">
             <a class="btnInfo @(hasDownlineDetailsPermission ? "view-bet-list" :  string.Empty)" match-id="@fcItem.MatchID" bet-type="5" href="javascript:void(0)">
-             <a>           
+             <a>
         </td>
         <td class="bold" style="width: 20%">
             @RazorHelper.FormatPositiveNumber(fcItem.HomeWinLost, 2, showZero: true)
@@ -84,6 +84,3 @@
     { 
         @RazorHelper.ShowNoInfo(colspan: 8)
     }
-
-        
-

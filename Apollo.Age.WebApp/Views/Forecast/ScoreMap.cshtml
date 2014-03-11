@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblScoreMap;
+    ViewBag.Title = Lang.lblScoreMap;
     var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     var showLeaguesStyle = leagues == null ? "display:none;" : string.Empty;
     var matchIds = ViewBag.MatchIds;
@@ -40,8 +40,7 @@
             }
             else
             {
-            <label>
-                @Lang.noInfo</label>
+            <label> @Lang.noInfo </label>
             }
         }
     </div>
@@ -67,8 +66,8 @@
     <script type="text/javascript">
         var DEFAULT_OBJECT = function () {
             return {
-                plsChooseBetType: "@(Apollo.Age.Resources.Lang.plsChooseBetType)",
-                plsChooseMatch: "@(Apollo.Age.Resources.Lang.plsChooseMatch)"
+                plsChooseBetType: "@(Lang.plsChooseBetType)",
+                plsChooseMatch: "@(Lang.plsChooseMatch)"
             };
         }();
     </script>
