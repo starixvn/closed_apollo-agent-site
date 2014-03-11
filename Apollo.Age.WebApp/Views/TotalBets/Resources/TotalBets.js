@@ -40,7 +40,7 @@ var TOTALBETS = (function ($) {
                 }
                 // resolution for screens
                 var resolution = APOLLO.resolutionForScreens(1030, 639);
-                
+
                 APOLLO.openDialogFrame(url, DEFAULT_LAYOUT.betListString, {
                     width: resolution.width,
                     height: resolution.height,

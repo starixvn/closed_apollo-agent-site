@@ -3,7 +3,6 @@
 /*global Language*/
 'use strict';
 var AssignFunction = (function ($) {
-    
     return {
         grid: null,
         message: null,
@@ -153,7 +152,7 @@ var AssignFunction = (function ($) {
                         }
                     }, 3000);
                 },
-                error: function (xhr, status, err) {
+                error: function () {
                     location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
                 }
             });
@@ -165,9 +164,10 @@ var AssignFunction = (function ($) {
             var arrUnCheckHost = unCheckHostValue.split(',');
             var arrFuncRead = funcRead.split(',');
             var arrFuncHost = funcHost.split(',');
+            var functionId = '';
 
             for (var i = 0; i < arrFuncRead.length; i++) {
-                var functionId = arrFuncRead[i];
+                functionId = arrFuncRead[i];
 
                 if (AssignFunction.findInArray(arrUnCheckRead, functionId)) {
                     return true;
@@ -175,7 +175,7 @@ var AssignFunction = (function ($) {
             }
 
             for (var j = 0; j < arrFuncHost.length; j++) {
-                var functionId = arrFuncHost[j];
+                functionId = arrFuncHost[j];
 
                 if (AssignFunction.findInArray(arrUnCheckHost, functionId)) {
                     return true;
@@ -183,7 +183,6 @@ var AssignFunction = (function ($) {
             }
 
             return hasNew;
-
         },
 
         findInArray: function (arr, value) {
@@ -201,12 +200,10 @@ var AssignFunction = (function ($) {
 } (jQuery));
 
 $(document).ready(function () {
-
     AssignFunction.init();
 
     AssignFunction.grid.find('[type=checkbox]').change(function () {
         var $this = $(this);
-        var thisIsChecked = $this.is(':checked');
         var row = $this.parents('tr');
 
         if ($this.attr('name') === 'funcHost') {
