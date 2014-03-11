@@ -1,12 +1,13 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
+    ViewBag.Title = Lang.lblHOUL;
 
     IEnumerable<LeagueModel> leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     string leagueName = ViewBag.LeagueName;
     var leagueId = ViewBag.LeagueId ?? 0;
     var fcHDPList = (IEnumerable<ForecastHandicapOUModel>)ViewBag.FCHDPList;
+	var selectedString = string.Empty;
 }
 @section css
 {
@@ -14,7 +15,7 @@
 }
 @section refreshcountdown
 {
-    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", new int[1] { 180 }, "UpdateForecastHDValue();")
+    @RazorHelper.RefreshCountDown("ForeCastHandicapOU", null, "UpdateForecastHDValue();")
 }
 <div class="box-header selectLeague">
     <div class="row">
@@ -22,13 +23,11 @@
             @if (leagues != null && leagues.Any())
             {
                 <div class="label">
-                    <label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
+                    <label for="ddlLeague">@Lang.league</label>
                 </div>
                 <div class="editor" id="selLeague">
                     <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                        @{
-                var selectedString = string.Empty;
-                foreach (var league in leagues)
+                @foreach (var league in leagues)
                 {
                     if (league.LeagueId == leagueId)
                     {
@@ -40,14 +39,12 @@
                     }
                             <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
                 }
-                        }
                     </select>
                 </div>
             }
             else
             {
-                <label>
-                    @Apollo.Age.Resources.Lang.noInfo</label>
+                <label> @Lang.noInfo </label>
             }
         </div>
     </div>
@@ -58,13 +55,13 @@
         <thead>
             <tr class="RptHeader">
                 <td colspan="2">
-                    @Apollo.Age.Resources.Lang.homeaway
+                    @Lang.homeaway
                 </td>
                 <td colspan="3">
-                    @Apollo.Age.Resources.Lang.lblHandicapFC
+                    @Lang.lblHandicapFC
                 </td>
                 <td colspan="3">
-                    @Apollo.Age.Resources.Lang.lblOverUnder
+                    @Lang.lblOverUnder
                 </td>
             </tr>
         </thead>

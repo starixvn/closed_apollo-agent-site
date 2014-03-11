@@ -47,39 +47,25 @@
 	<tbody>
 		@if (Model != null && Model.Any())
 		{
-			var currentLeagueId = 0;
-
-			var betStatus = string.Empty;
-			var eventStatus = string.Empty;
-
-			List<string> homeSets = null;
-			List<string> awaySets = null;
-
-			var totalPointAway = string.Empty;
-			var totalPointHome = string.Empty;
-			
 			foreach (var item in Model)
 			{
-				 betStatus = string.Empty;
-				 eventStatus = string.Empty;
+				string betStatus = item.BetStatus;
 
-				 homeSets = new List<string> { "-", "-", "-", "-", "-" };
-				 awaySets = new List<string> { "-", "-", "-", "-", "-" };
+				List<string> homeSets = new List<string> { "-", "-", "-", "-", "-" };
+				List<string> awaySets = new List<string> { "-", "-", "-", "-", "-" };
 
-				 totalPointAway = string.Empty;
-				 totalPointHome = string.Empty;
+				var totalPointAway = string.Empty;
+				var totalPointHome = string.Empty;
 
-				betStatus = item.BetStatus;
-				
 				if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.IndexOf(',') >= 0)
 				{
-
 					string[] listOfBetStatus = betStatus.Split(',');
 					var i = 0;
 					string[] itemsBetStatus = null;
 					var totalGameHome = 0;
 					var totalGameAway = 0;
-					foreach (var x in listOfBetStatus)
+					
+					foreach (string x in listOfBetStatus)
 					{
 						itemsBetStatus = x.Split('-');
 						homeSets[i] = itemsBetStatus[0];
@@ -88,8 +74,8 @@
 						totalGameHome += Convert.ToInt32(homeSets[i]);
 						totalGameAway += Convert.ToInt32(awaySets[i]);
 						i++;
-
 					}
+					
 					totalPointHome = totalGameHome > 0 ? totalGameHome.ToString() : string.Empty;
 					totalPointAway = totalGameAway > 0 ? totalGameAway.ToString() : string.Empty;
 				}
@@ -175,6 +161,5 @@
 			</tr>
 			}
 		}
-		
 	</tbody>
 </table>

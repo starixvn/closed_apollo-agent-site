@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Anders.Le" date="2013.3.18">Created</change>
 // </history>
+
 namespace Apollo.Age.Repositories.Interface
 {
     using Apollo.Age.Entities;

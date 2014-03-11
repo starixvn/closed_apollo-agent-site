@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Forecast.Models
 @{
     Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblScoreMap;
+    ViewBag.Title = Lang.lblScoreMap;
     var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
     var showLeaguesStyle = leagues == null ? "display:none;" : string.Empty;
     var matchIds = ViewBag.MatchIds;
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="cell">
                     <div class="label">
-                        <label for="ddlLeague">@Apollo.Age.Resources.Lang.league</label>
+                        <label for="ddlLeague">@Lang.league</label>
                     </div>
                     <div class="editor">
                         <select id="ddlLeague" name="ddlLeague" style="position: relative;">
@@ -31,17 +31,16 @@
                         </select>
                     </div>
                     <div class="editor">
-                        <input type="button" class="btn" id="dSelMatch" value="@Apollo.Age.Resources.Lang.SelectMatch">
+                        <input type="button" class="btn" id="dSelMatch" value="@Lang.SelectMatch">
                     </div>
-                    <div title="@Apollo.Age.Resources.Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
+                    <div title="@Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
                     </div>
                 </div>
             </div>
             }
             else
             {
-            <label>
-                @Apollo.Age.Resources.Lang.noInfo</label>
+            <label> @Lang.noInfo </label>
             }
         }
     </div>
@@ -49,7 +48,7 @@
         <div id="bet-type-container" class="clearfix">
         </div>
         <div class="btn-submit clearfix">
-            <input type="button" value="@Apollo.Age.Resources.Lang.submit" id="dSubmit" class="btn" />
+            <input type="button" value="@Lang.submit" id="dSubmit" class="btn" />
             <span id="loadingSubmit"></span>
         </div>
     </div>
@@ -67,8 +66,8 @@
     <script type="text/javascript">
         var DEFAULT_OBJECT = function () {
             return {
-                plsChooseBetType: "@(Apollo.Age.Resources.Lang.plsChooseBetType)",
-                plsChooseMatch: "@(Apollo.Age.Resources.Lang.plsChooseMatch)"
+                plsChooseBetType: "@(Lang.plsChooseBetType)",
+                plsChooseMatch: "@(Lang.plsChooseMatch)"
             };
         }();
     </script>

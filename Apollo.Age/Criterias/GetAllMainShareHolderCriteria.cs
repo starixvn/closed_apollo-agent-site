@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.4.25">Created</change>
 // </history>
+
 namespace Apollo.Age.Criterias
 {
     using Apollo.Age.Enumerations;

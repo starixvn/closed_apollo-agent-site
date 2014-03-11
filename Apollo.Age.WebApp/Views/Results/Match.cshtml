@@ -41,8 +41,9 @@
                     <label for="ddlSport">@Lang.Game:</label>
                 </div>
                 <div class="editor">
-                    @Html.DropDownList("ddlSport", new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
-                new { @class = "selSport" })
+                    @Html.DropDownList("ddlSport", 
+						new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+						new { @class = "selSport" })
                 </div>
             </div>
             <div class="cell" id="filterResultLeague">
@@ -51,8 +52,8 @@
                 </div>
                 <div class="editor">
                     @Html.DropDownList("ddlLeague",
-                new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
-                new { @class = "selLeague" })
+						new List<SelectListItem> { new SelectListItem { Text = string.Empty, Value = "0" } },
+						new { @class = "selLeague" })
                 </div>
             </div>
         </div>

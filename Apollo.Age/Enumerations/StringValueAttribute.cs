@@ -10,9 +10,6 @@
 namespace Apollo.Age.Enumerations
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// String value attribute.

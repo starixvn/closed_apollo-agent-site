@@ -7,6 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.6.12">Created</change>
 //   <change who="Anders.Le" date="2013.6.12">Change IsMultipleSignOn to IsAllowMultipleSignIn</change>
 // </history>
+
 namespace Apollo.Age.Configurations
 {
     using System;

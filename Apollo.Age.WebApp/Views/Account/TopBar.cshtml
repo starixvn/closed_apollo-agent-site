@@ -1,6 +1,7 @@
 ﻿@model ICurrentSession
 @using Apollo.Age.Resources
 @using Apollo.Age.Wagers.Core
+@using Apollo.Age.Configurations
 @{
     Layout = null;
     var topMember = ViewBag.TopMember;
@@ -73,7 +74,7 @@
                                 {
                                 <li id="forecast-link"><span class="menu-list border-link"><a url="~/totalBets" target="main">
                                     [@Lang.lblForecast]</a> </span></li>
-                                }                                                                 
+                                }
                                 <li id="account-link"><span class="menu-list border-link">[@Lang.lblAccounts]</span>
                                     <ul class="sub-menu">
                                         <li><a url="~/Account/AgentList" target="main">@Lang.Agents</a></li>
@@ -81,24 +82,24 @@
                                         {
                                             if (Model.AgentLevel > AgentLevel.Shareholder)
                                             {
-                                            <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>   
+                                            <li><a url="~/Account/MemberList" target="main">@Lang.Members</a></li>
                                                 if (FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query)
-                                                {                                               
+                                                {
                                             <li><a url="~/CustomerSetting/EditAllMemberShare?agentId=@Model.AgentId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username"
-                                                target="main">@Lang.lblMemberShare</a></li>                                          
-                                                }      
+                                                target="main">@Lang.lblMemberShare</a></li>
+                                                }
                                             }
                                             <li><a url="~/CustomerSetting/AgentShare" target="main">@Lang.Share</a></li>
-                                            <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>                                        
+                                            <li><a url="~/CustomerSetting/ViewCommission" target="main">@Lang.lblComm</a></li>
                                         }
                                         @if (FunctionPermissions[ApolloFunctionKeys.ShadowPermission] >= (byte)Policy.Query)
                                         {
-                                            <li><a url="~/PermissionUserControl/AgentUserList?agentid=@Model.AgentId&username=@Model.Username" target="main">@Lang.ShadowPermission</a></li>                                        
+                                            <li><a url="~/PermissionUserControl/AgentUserList?agentid=@Model.AgentId&username=@Model.Username" target="main">@Lang.ShadowPermission</a></li>
                                         }
                                     </ul>
-                                </li>                                                                
+                                </li>
                                         if (FunctionPermissions[ApolloFunctionKeys.SystemLog] >= (byte)Policy.Query)
-                                        { 
+                                        {
                                 <li id="viewlog-link"><span class="menu-list border-link">[@Lang.viewlog]</span>
                                     <ul class="sub-menu">
                                         @if (Model.IsInternalSignIn)
@@ -141,7 +142,6 @@
                                                     defaultReportURL = "/Reports/sportcredit";
                                                 }
                                             }
-                                    
                                 <li id="report-link"><a url="@defaultReportURL" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
                                         }
@@ -150,7 +150,7 @@
                                 <li id="result-link"><a url="~/results/match" target="main" class="menu-list txtRed">
                                     [@Lang.lblResult]</a> </li>
                                         }
-                            }                           
+                            }
                             <li id="message-link"><a url="~/message/newmessage" target="main" class="menu-list txtRed">
                                 [@Lang.announcement]</a> </li>
                         </ul>
@@ -158,30 +158,19 @@
                 </div>
             </div>
             @Html.Hidden("IsAllowMultipleSignIn", @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower())
-            @*<div id="text_news_out">
-                <div id="text_news" onclick="Change2Menu('Message/NewMessage?PageQuery=normal', this)">
-                    <div id="scroller" class="news-scroller">
-                        <a id="topnews" href="javascript:;"></a>
-                    </div>
-                </div>
-                <span id="button_top" class="icon-envelope" onclick="Change2Menu('Message/NewMessage?PageQuery=private', this)">
-                    <a id="privateMsgLnk">&nbsp;&nbsp;(0)</a> </span><a class="home-page" href="~/Message/Portal"
-                        target="main"><span class="icon-home icon-white"></span></a>
-            </div>*@
         </div>
         <input type="hidden" id="ApoRoot" value="@Url.Content("~/")" />
         <input type="hidden" id="ctime" value="@DateTime.Now.AddHours(12).ToString("H-m-s-tt")" />
-        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />       
-        
+        <input type="hidden" id="cdate" value="@DateTime.Now.AddHours(12).ToString("MMM dd,yyyy 'GMT'+8")" />
         @Scripts.Render("~/scripts/topbarjs")
         <script type="text/javascript">
              var DEFAULTS = {
                  IsInternalLogin: @Model.IsInternalSignIn.ToString().ToLower(),
-                 IsAllowMultipleSignIn: @Apollo.Age.Configurations.AppSettings.AllowMultipleSignIn.ToString().ToLower(),
-                 IsMaster: @Model.IsSuper.ToString().ToLower()	 
+                 IsAllowMultipleSignIn: @AppSettings.AllowMultipleSignIn.ToString().ToLower(),
+                 IsMaster: @Model.IsSuper.ToString().ToLower()
              };
              var LANGUAGES = {
-                AlerSignonMessage : "@Apollo.Age.Resources.Lang.stringSessionLogged"
+                AlerSignonMessage : "@Lang.stringSessionLogged"
              };
         </script>
     }

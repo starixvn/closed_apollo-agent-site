@@ -17,15 +17,15 @@
 <body>
     @RenderSection("header", required: false)
     <div style="clear:both;"></div>
-    <div id="edit-warning" class="edit-setting-warning clear" style="display: none;">@Apollo.Age.Resources.Lang.lblWarningEditSetting</div>
+    <div id="edit-warning" class="edit-setting-warning clear" style="display: none;">@Lang.lblWarningEditSetting</div>
     <div id="page_main" class="settingContainer">
         @RenderBody()
         <table id="tbl-edit" class="tbl-contain-button" style="display:none;">
             <tbody>
                 <tr>
                     <td>
-                        <input id="btnSubmitFooter" type="button" class="btn" value="@Apollo.Age.Resources.Lang.lblconfirm" />
-                        <input id="btnCancelFooter" type="button" class="btn" value="@Apollo.Age.Resources.Lang.Cancel" style="@(fromLeftMenu ? "display:none;" : string.Empty)" />
+                        <input id="btnSubmitFooter" type="button" class="btn" value="@Lang.lblconfirm" />
+                        <input id="btnCancelFooter" type="button" class="btn" value="@Lang.Cancel" style="@(fromLeftMenu ? "display:none;" : string.Empty)" />
                     </td>
                 </tr>
             </tbody>

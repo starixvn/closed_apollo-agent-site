@@ -118,7 +118,6 @@
     <Compile Include="Repositories\Interface\IAgentRepository.cs" />
     <Compile Include="Repositories\Interface\ICustomerRepository.cs" />
     <Compile Include="Repositories\Interface\IFunctionRepository.cs" />
-    <Compile Include="Repositories\Interface\IReportRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
     <Compile Include="Services\CacheRef.cs" />
@@ -134,7 +133,6 @@
     <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
-    <Compile Include="Services\ServiceLayerException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">

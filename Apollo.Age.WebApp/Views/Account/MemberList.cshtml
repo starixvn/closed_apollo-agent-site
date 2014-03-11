@@ -1,27 +1,16 @@
 ﻿@using Apollo.Age.Entities
-@using Apollo.Age.Resources
 @using Apollo.Age.Configurations
 @model CustomerListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblPlayerList;
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblMemberListOf;
-    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditMemberSetting : Apollo.Age.Resources.Lang.lblViewMemberSetting;
-    titleFormat = string.Format(titleFormat, string.Empty);
-    var agenttitleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
-    agenttitleFormat = string.Format(agenttitleFormat, string.Empty);
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
 
     var isMaster = (bool)ViewBag.IsMaster;
-
     var memberList = ViewBag.MemberList != null ? (List<MemberListModel>)ViewBag.MemberList : new List<MemberListModel>();
-
-    var firstMember = memberList.FirstOrDefault() ?? new MemberListModel();
-
     var hasAgentDownline = ViewBag.HasAgentDownline != null ? (bool)ViewBag.HasAgentDownline : false;
-
     var allowFundOut = (bool)ViewBag.AllowFundOut;
-
-    var agentUsername = ViewBag.AgentUserName ?? string.Empty;    
+    var agentUsername = ViewBag.AgentUserName ?? string.Empty;
 }
 @using (Html.BeginForm())
 {
@@ -29,20 +18,20 @@
         <div class="item">
             <label>@Lang.member</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-                                    new SelectListItem { Value = "0", Text = Lang.all },
-					                new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
-					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
-                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
-                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
-				                }, new { @class = "za_select" })
+					new SelectListItem { Value = "0", Text = Lang.all },
+					new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+					new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+					new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
+				}, new { @class = "za_select" })
         </div>
         <div class="item">
             --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },
 				                }, new { @class = "za_select" })
             @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+					                new SelectListItem { Value = "1", Text = Lang.ASC },
                                     new SelectListItem { Value = "2", Text = Lang.DES }
 				                }, new { @class = "za_select" })
         </div>
@@ -88,7 +77,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                                                                                                                                    }
+		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
     </div>
 }
@@ -116,7 +105,7 @@
                     <th class="width-140">@Lang.Feature
                         <div class="edit-member-share">
                             <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@memberList[0].MemberId&amp;agentId=@Model.AgentId&amp;userName=@memberList[0].Username&amp;agentUsername=@agentUsername&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-                                @Apollo.Age.Resources.Lang.lblMemberShare
+                                @Lang.lblMemberShare
                             </a>
                         </div>
                     </th>
@@ -175,7 +164,7 @@
                                         @Lang.lblview
                                     }</a>
                                 @:&nbsp;/&nbsp;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+							}
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                         </td>
                     }

@@ -1,6 +1,5 @@
 ﻿@using Apollo.Age.Reports.Models
 @using Apollo.Age.Reports.Core
-@using Apollo.Age.Resources
 @{
 	Layout = null;
 }
@@ -44,36 +43,21 @@
 	<tbody>
 		@if (Model != null && Model.Any())
 		{
-			var currentLeagueId = 0;
-			var eventStatus = string.Empty;
-			var betStatus = string.Empty;
-
-			var finalHomeScore = string.Empty;
-			var finalAwayScore = string.Empty;
-			var firstHalfHomeScore = string.Empty;
-			var firstHalfAwayScore = string.Empty;
-
-			List<string> homeSet = null;
-			List<string> awaySet = null;
-
-			var OTAway = string.Empty;
-			var OTHome = string.Empty;
-
 			foreach (var item in Model)
 			{
-				eventStatus = string.Empty;
-				betStatus = string.Empty;
+				var eventStatus = string.Empty;
+				var betStatus = string.Empty;
 
-				finalHomeScore = string.Empty;
-				finalAwayScore = string.Empty;
-				firstHalfHomeScore = string.Empty;
-				firstHalfAwayScore = string.Empty;
+				var finalHomeScore = string.Empty;
+				var finalAwayScore = string.Empty;
+				var firstHalfHomeScore = string.Empty;
+				var firstHalfAwayScore = string.Empty;
 
-				homeSet = new List<string>() { "-", "-", "-", "-", "-" };
-				awaySet = new List<string>() { "-", "-", "-", "-", "-" };
+				List<string> homeSet = new List<string>() { "-", "-", "-", "-", "-" };
+				List<string> awaySet = new List<string>() { "-", "-", "-", "-", "-" };
 
-				OTAway = string.Empty;
-				OTHome = string.Empty;
+				var OTAway = string.Empty;
+				var OTHome = string.Empty;
 
 				eventStatus = item.EventStatus;
 
@@ -247,6 +231,5 @@
 			</tr>
 			}
 		}
-		
 	</tbody>
 </table>

@@ -1,35 +1,31 @@
 ﻿@model IEnumerable<Apollo.Age.TotalBets.Models.TotalGoalModel>
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.totalgoal;
+    ViewBag.Title = Lang.totalgoal;
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr class="RptHeader">
             <td style="width: 9%;">
-                @*@Apollo.Age.Resources.Lang.TimeGMT8*@
-                @Apollo.Age.Resources.Lang.time
+                @Lang.time
                 <br />
-                (@Apollo.Age.Resources.Lang.GMT+8)
+                (@Lang.GMT+8)
             </td>
             <td style="width: 25%;">
-                @Apollo.Age.Resources.Lang.homeaway
-            </td>
-            @*            <td style="width: 150px;">
-                @Apollo.Age.Resources.Lang.away
-            </td>*@
-            <td>
-                @Apollo.Age.Resources.Lang.total01
+                @Lang.homeaway
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.total23
+                @Lang.total01
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.total46
+                @Lang.total23
             </td>
             <td>
-                @Apollo.Age.Resources.Lang.total7over
+                @Lang.total46
+            </td>
+            <td>
+                @Lang.total7over
             </td>
         </tr>
     </thead>
@@ -56,7 +52,7 @@
                     @if (hasDownlineDetailsPermission)
                     { 
                         <a  class="view-bet-list" match-id="@item.MatchId" bet-type="6" betlist-type="BettypeMatch"  
-                            href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Apollo.Age.Resources.Lang.totalgoal"  title="@Apollo.Age.Resources.Lang.ViewBetList">
+                            href="javascript:void(0);"  league-name="@item.AwayTeam" bet-type-name="@Lang.totalgoal"  title="@Lang.ViewBetList">
                             @item.HomeTeam
                         </a>
                     }

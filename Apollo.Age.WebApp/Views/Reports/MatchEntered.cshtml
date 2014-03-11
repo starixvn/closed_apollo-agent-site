@@ -126,8 +126,8 @@ new ReportMenuViewModel
     <div>
         <div class="row bg-action">
             <div class="item btn-action">
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
             </div>
         </div>
     </div>
@@ -145,13 +145,6 @@ new ReportMenuViewModel
 @Html.Hidden("lastPeriodFrom", Formater.ShortDateFormat(Model.LastPeriod.FromDate))
 @Html.Hidden("lastPeriodTo", Formater.ShortDateFormat(Model.LastPeriod.ToDate))
 @Html.Hidden("isHistoryReport", false)
-@*@Html.Action("Index", "Instruction", new
-{
-    key = "AgentWinLossPageInfo",
-    trigger = string.Empty,
-    title = Apollo.Age.Resources.Lang.AgentWinLossInstructions,
-    tipTitle = Apollo.Age.Resources.Lang.ClickToViewInstructions
-})*@
 @section scripts
 {
     @Scripts.Render("~/scripts/winlossjs")

@@ -1,25 +1,13 @@
 ﻿@using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.fglg;
+    ViewBag.Title = Lang.fglg;
 
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 @model IEnumerable<FirstGoalModel>
-@helper ShowLeague(int currentLeagueId, FirstGoalModel item)
-    {
-        if (currentLeagueId != item.LeagueId)
-        { 
-    <!--LeagueContents-->
-    <tr class="league">
-        <td colspan="6">
-            @item.LeagueName
-        </td>
-    </tr>
-        }
-}
 @helper ShowMatch(int index, FirstGoalModel item, bool hasDownlineDetailsPermission = true)
-    {    
+    {
     <tr>
         @Html.FormatShowTime(item.ShowTime)
         <td class="c">
@@ -63,7 +51,7 @@
         <td class="fcnum r">
             @RazorHelper.FormatPositiveNumber(item.WinLostNoGoal, numDecimals: 2)
         </td>
-    </tr>         
+    </tr>
 }
 <table class="tblRpt persist-area">
     <thead class="persist-header">
@@ -92,16 +80,10 @@
         @if (Model != null && Model.Any())
         {
             int rowIndex = 0;
-            int currentLeagueId = 0;
-            string rowClass = string.Empty;
             foreach (var item in Model)
             {
                 rowIndex++;
-
-                //@ShowLeague(currentLeagueId, item)
-            @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
-
-                currentLeagueId = item.LeagueId;
+				@ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
             }
         }
         else

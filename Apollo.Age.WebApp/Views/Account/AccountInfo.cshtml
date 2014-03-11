@@ -5,7 +5,7 @@
 @model CustomerInfoModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    ViewBag.Title = @Apollo.Age.Resources.Lang.AccountSearch;
+    ViewBag.Title = Lang.AccountSearch;
     var topMember = (MemberListModel)ViewBag.TopMember;
     var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
     var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
@@ -13,18 +13,16 @@
     var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
     var hasDownlineDetailsPermission = ViewBag.DownlineDetailsPolicy != null ? (byte)ViewBag.DownlineDetailsPolicy >= (byte)Policy.Query : false;
     var agentLevelId = new int[4];
-    
-    
 }
 
 <table id="tab-menu">
     <tr>
         <td>
             <a id="lk-tree-tab" href="javascript:;" target="menu"><i class="icon-user"></i>
-                @Apollo.Age.Resources.Lang.userinfo</a>
+                @Lang.userinfo</a>
         </td>
         <td class="active">
-            <a><i class="icon-search"></i>@Apollo.Age.Resources.Lang.AccountSearch</a>
+            <a><i class="icon-search"></i>@Lang.AccountSearch</a>
         </td>
     </tr>
 </table>
@@ -43,7 +41,7 @@
                         @if (Model.IsMember)
                         {
                             <td class="agent-lbl">
-                                @Apollo.Age.Resources.Lang.member:
+                                @Lang.member:
                             </td>
                         }
                         else
@@ -72,7 +70,6 @@
                                 }
                                 else
                                 {
-                                    
                                     <a class="view-agentinfo" href="#" target="menu"
 									        data-agentid="@item.Id" data-agentname="@item.Username">@item.Username
                                     </a>
@@ -87,7 +84,7 @@
                             @if (Model.IsMember)
                             {
                                 <td class="parent-lbl">
-                                    @Apollo.Age.Resources.Lang.agent:
+                                    @Lang.agent:
                                 </td>
                             }
                             else
@@ -103,14 +100,13 @@
                                 {
                                     if (Model.ActorAgentId != Model.ParentId)
                                     {
-                                    <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Apollo.Age.Resources.Lang.txtShowUpline">
+                                    <a href="javascript:;" id="agentDownlineLink" data-agentid="@Model.ParentId" title="@Lang.txtShowUpline">
                                         <div id="ddl-agents">
                                             <ul class="agent-list">
                                             </ul>
                                         </div>
                                     </a>
                                     }
-
                                     <a class="view-agentinfo" href="javascript:;" target="menu"
 										data-agentid="@Model.ParentId" data-agentname="@Model.ParentName">@Model.ParentName
                                     </a>
@@ -140,7 +136,7 @@
             }
             else
             {
-            <div class="errMsg">@Apollo.Age.Resources.Lang.usernamenotexisted</div>
+            <div class="errMsg">@Lang.usernamenotexisted</div>
             }
         }
     </div>
@@ -156,14 +152,14 @@
                     if (Model.ActorAgentId == Model.CustId)
                     {
                 <a class="lnk-agent-list" target="main" href="~/Account/AgentList">
-                    @Apollo.Age.Resources.Lang.lblAgents
+                    @Lang.lblAgents
                 </a>
                     }
                     else
                     {
                 <a class="lnk-agent-list" target="main"
 							href="~/Account/IndirectAgentList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.lblAgents
+                    @Lang.lblAgents
                 </a>
                     }
                 }
@@ -172,37 +168,36 @@
                     if (Model.ActorAgentId == Model.CustId)
                     {
                 <a class="lnk-member-list" target="main" href="~/Account/MemberList">
-                    @Apollo.Age.Resources.Lang.memberList
+                    @Lang.memberList
                 </a>
                     }
                     else
                     {
                 <a class="lnk-member-list" target="main" href="~/Account/IndirectMemberList?parentAgentId=@Model.ParentId&amp;agentid=@Model.CustId">
-                    @Apollo.Age.Resources.Lang.memberList
+                    @Lang.memberList
                 </a>
                     }
                 }
             }
             else
             {
-                <a class="lnk-betlist" target="main"
-					href="~/BetList/AccountInfo?custId=@Model.CustId&username=@Model.Username">
-                    @Apollo.Age.Resources.Lang.lblBetLists
+                <a class="lnk-betlist" target="main" href="~/BetList/AccountInfo?custId=@Model.CustId&username=@Model.Username">
+                    @Lang.lblBetLists
                 </a>
             }
         </div>
         <div id="agent-setting">
             <ul class="tabs">
                 <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
-                    <span>@Apollo.Age.Resources.Lang.setting</span> </a></li>
+                    <span>@Lang.setting</span></a></li>
                 @if (!Model.IsMember)
                 {
                     <li id="agentsTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
-                        <span>@Apollo.Age.Resources.Lang.lblAgents</span> </a></li>
+                        <span>@Lang.lblAgents</span></a></li>
                     if (Model.Level > AgentLevel.Shareholder)
                     {
                     <li id="membersTab"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
-                        <span>@Apollo.Age.Resources.Lang.memberList</span> </a></li>
+                        <span>@Lang.memberList</span></a></li>
                     }
                 }
             </ul>
@@ -216,11 +211,11 @@
                         <a class="edit-link" href="javascript:;">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.edit
+                                @Lang.edit
                             }
                             else
                             {
-                                @Apollo.Age.Resources.Lang.lblview
+                                @Lang.lblview
                             }
                         </a>
                         <div class="list">
@@ -235,7 +230,6 @@
                                     <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
                                         }
                                     }
-
                                 }
                             </ul>
                         </div>
@@ -245,28 +239,28 @@
 @*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
                             @if (Model.IsMaster)
                             {
-                                @Apollo.Age.Resources.Lang.lblEditMemberShare
+                                @Lang.lblEditMemberShare
                             }
                             else
                             {
-                                @Apollo.Age.Resources.Lang.lblViewMemberShare
+                                @Lang.lblViewMemberShare
                             }
                             </a>*@
                         }
                         
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
-                            @Apollo.Age.Resources.Lang.ViewDetails
+                            @Lang.ViewDetails
                         </a>
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/MemberShare?memberId=@Model.CustId&amp;userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.Share
+                            @Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
 							href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.lblComm
+                            @Lang.lblComm
                         </a>
 
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=false&Username=@Model.Username">
-                            @Apollo.Age.Resources.Lang.viewlog
+                            @Lang.viewlog
                         </a>
                     }
                     else
@@ -279,48 +273,47 @@
 							    href="~/CustomerSetting/EditAgentPositionTaking?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true">
                             @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
                             {
-                                @Apollo.Age.Resources.Lang.edit
+                                @Lang.edit
                             }
                             else
                             {
-                                @Apollo.Age.Resources.Lang.lblview
+                                @Lang.lblview
                             }
                         </a>
-                            }                        
+                            }
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewAgentDetails?agentId=@Model.CustId&amp;agentLevel=@Model.Level&amp;userName=@Model.Username&amp;fromLeftMenu=true">
-                            @Apollo.Age.Resources.Lang.ViewDetails
+                            @Lang.ViewDetails
                         </a>
                             if (Model.Level > AgentLevel.Shareholder && hasDownlineDetailsPermission)
                             {
                         <a class="lnk-setting" target="main" 
                             href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
-                            @Apollo.Age.Resources.Lang.lblMemberShare
+                            @Lang.lblMemberShare
                         </a>
                             }
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/AgentShare?agentId=@Model.CustId&amp;userName=@Model.Username">
-                            @Apollo.Age.Resources.Lang.Share
+                            @Lang.Share
                         </a>
                         <a class="lnk-setting" target="main"
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
-                            @Apollo.Age.Resources.Lang.lblComm
+                            @Lang.lblComm
                         </a>}
                         if (viewLogPermission >= (byte)Policy.Query)
                         { 
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
-                            @Apollo.Age.Resources.Lang.viewlog
-                        </a>                     
+                            @Lang.viewlog
+                        </a>
                         }
-
                         if (permissionControl >= (byte)Policy.Query)
                         {
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AssignPermissionControl?grandParentAgentId=@(agentLevelId[1] != 0 ? agentLevelId[1] : agentLevelId[0])&parentAgentId=@Model.ParentId&agentuserid=@Model.CustId">
-                            @Apollo.Age.Resources.Lang.Permission
-                        </a>                       
+                            @Lang.Permission
+                        </a>
                         }
                         if (shadowPermissionControl >= (byte)Policy.Query)
                         { 
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
-                            @Apollo.Age.Resources.Lang.ShadowPermission
+                            @Lang.ShadowPermission
                         </a>}
                     }
                 </div>
@@ -332,11 +325,10 @@
                     }
                     else
                     {
-                        <div class="no-data">@Apollo.Age.Resources.Lang.NoneAgent</div>
+                        <div class="no-data">@Lang.NoneAgent</div>
                     }
                 </div>
-                <div id="membersTab-content">
-                </div>
+                <div id="membersTab-content"></div>
             </div>
         </div>
         }
@@ -347,27 +339,23 @@
         if (Model == null)
         {
     @Html.DropDownList("IsMember", new List<SelectListItem> {
-			new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-			new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
+			new SelectListItem { Value = "false", Text = Lang.agent },
+			new SelectListItem { Value = "true", Text = Lang.member }
 		}, new { id = "ddlIsMember" })
-
-    <input maxlength="50" id="txtUsername" type="text"
-			value="@Apollo.Age.Resources.Lang.enterusername" name="userName" />
+    <input maxlength="50" id="txtUsername" type="text" value="@Lang.enterusername" name="userName" />
         }
         else
         {
     @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-			new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-			new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
+			new SelectListItem { Value = "false", Text = Lang.agent },
+			new SelectListItem { Value = "true", Text = Lang.member }
 		}, new { id = "ddlIsMember" })
-
-    <input maxlength="50" id="txtUsername" type="text"
-			value="@Model.Username" name="userName" />
+    <input maxlength="50" id="txtUsername" type="text" value="@Model.Username" name="userName" />
         }
     <button type="button" class="btn search-button">
         <i class="icon-search"></i>
     </button>
-    <input id="enterUsernameValue" type="hidden" value="@Apollo.Age.Resources.Lang.enterusername"/>
+    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
 }
 @helper RenderAgentLevelName(int agentLevel, string classObject = "")
     {

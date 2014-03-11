@@ -44,7 +44,7 @@
     <tbody>
         @foreach (var itemGroupFunction in listGroupFunction)
         {
-            var groupKey = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupKey;            
+            var groupKey = itemGroupFunction.FirstOrDefault().FunctionGroup.GroupKey;
             <tr class="group-function">
                 <td>
                     @Html.Resource(groupKey)

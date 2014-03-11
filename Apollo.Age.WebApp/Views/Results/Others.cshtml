@@ -9,10 +9,10 @@
 <table class="tblRpt others">
 	<thead>
 		<tr>
-			<th  style="width: 100px">
+			<th style="width: 100px">
 				@Lang.time
 			</th>
-			  <th style="width: 300px">
+			<th style="width: 300px">
 				@Lang.league
 			</th>
 			<th style="width: 200px">
@@ -32,20 +32,17 @@
 	<tbody>
 		@if (Model != null && Model.Any())
 		{
-			var currentLeagueId = 0;
-
 			foreach (var item in Model)
 			{
-
 			<tr class="c">
 				<td class="width-80">
-				   @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+					@Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
 				</td>
 				<td class="l">
 					@item.LeagueName
 				</td>
 				<td class="l">
-				   @Html.Raw(item.HomeTeam)
+					@Html.Raw(item.HomeTeam)
 					<br />
 					@Html.Raw(item.AwayTeam)
 				</td>
@@ -78,7 +75,7 @@
 						@item.FinalHomeScore
 					}
 					<br />
-					 @if (item.FinalAwayScore == null)
+					@if (item.FinalAwayScore == null)
 					{
 						<span>-</span> 
 					}
@@ -93,6 +90,5 @@
 			</tr>
 			}
 		}
-		
 	</tbody>
 </table>

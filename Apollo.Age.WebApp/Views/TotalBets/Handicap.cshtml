@@ -2,7 +2,7 @@
 @using Apollo.Age.TotalBets.Models
 @{
     Layout = "~/Views/TotalBets/Shared/_Layout.cshtml";
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblHOUL;
+    ViewBag.Title = Lang.lblHOUL;
 
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
@@ -18,7 +18,7 @@
         @if (hasDownlineDetailsPermission)
         { 
             <a class="fcnum view-bet-list" match-id="@matchId" bet-type="@betType" 
-            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Apollo.Age.Resources.Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
+            betlist-type="BettypeMatch" href="javascript:void(0);" league-name="@leagueName" bet-type-name="@betTypeName"  title="@Lang.ViewBetList">@RazorHelper.FormatNegativeNumber(totalOdds, 2)</a>
         }
         else
         {
@@ -29,7 +29,7 @@
     <td class="fcbtn c">
         <!--HandicapTotalButton-->
         <input type="button" match-id="@matchId" bet-type="@betType" 
-            class="fc-button view-forecast" league-name="@leagueName" title="@Apollo.Age.Resources.Lang.ViewForeCast" value="+" />
+            class="fc-button view-forecast" league-name="@leagueName" title="@Lang.ViewForeCast" value="+" />
         <!--/HandicapTotalButton-->
     </td>
         }
@@ -83,18 +83,6 @@
         @ShowBlock(8, item.MatchId, item.HomeOddHalfTimeOverUnder, item.AwayOddHalfTimeOverUnder, item.LeagueName, Apollo.Age.Resources.Lang.lbl1stOU, hasDownlineDetailsPermission)
     </tr>
 }
-@helper ShowLeague(int currentLeagueId, HandicapModel item)
-    {
-        if (currentLeagueId != item.LeagueId)
-        { 
-    <!--LeagueContents-->
-    <tr class="league">
-        <td colspan="11">
-            @item.LeagueName
-        </td>
-    </tr>
-        }
-}
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
@@ -138,16 +126,12 @@
         @if (Model != null && Model.Any())
         {
             int rowIndex = 0;
-            int currentLeagueId = 0;
 
             foreach (var item in Model)
             {
                 rowIndex++;
 
-                //@ShowLeague(currentLeagueId, item)
             @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
-
-                currentLeagueId = item.LeagueId;
             }
         }
         else

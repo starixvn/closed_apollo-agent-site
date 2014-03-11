@@ -50,7 +50,6 @@
     <Compile Include="Models\HomeNoBetModel.cs" />
     <Compile Include="Models\HTFTModel.cs" />
     <Compile Include="Models\MoneyLineModel.cs" />
-    <Compile Include="Models\NumberGameModel.cs" />
     <Compile Include="Models\OddEvenModel.cs" />
     <Compile Include="Models\OutRightModel.cs" />
     <Compile Include="Models\TotalGoalModel.cs" />

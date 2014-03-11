@@ -1,13 +1,10 @@
 ﻿@using Apollo.Age.Entities;
 @using Apollo.Age.Web;
 @using Apollo.Age
-@using Apollo.Age.Resources
 @model AgentListCriteria
 @{
-    ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
-    ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
-    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
-    titleFormat = string.Format(titleFormat, string.Empty);
+    ViewBag.Title = Lang.lblAgentList;
+    ViewBag.HeaderTitle = Lang.lblAgentListOf;
     var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
     var isMaster = (bool)ViewBag.IsMaster;
     var driectAgentList = ViewBag.DirectAgentList != null ? (List<Agent>)ViewBag.DirectAgentList : new List<Agent>();
@@ -18,7 +15,7 @@
 
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
     var currentLevel = (int)(agentList != null && agentList.Any() ? agentList.Select(x => x.AgentLevel).FirstOrDefault() : -1);
-    var uplineLevel = (int)(currentLevel - 1);    
+    var uplineLevel = (int)(currentLevel - 1);
 }
 @using (Html.BeginForm())
 {       
@@ -26,7 +23,7 @@
         <div class="item">
             <label>@Lang.agent</label>:
             <select class="za_select" id="UplineAgentId" name="UplineAgentId">
-                @foreach (var item in driectAgentList)
+                @foreach (Agent item in driectAgentList)
                 {
                     if (item.Id == Model.AgentId)
                     { 
@@ -39,20 +36,20 @@
                 }
             </select>
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-                                    new SelectListItem { Value = "0", Text = Lang.all },
-                                    new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
-					                new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
-                                    new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
-                                    new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
-                                }, new { @class = "za_select" })
+					new SelectListItem { Value = "0", Text = Lang.all },
+					new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+					new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+					new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+					new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
+				}, new { @class = "za_select" })
         </div>
         <div class="item">
             --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
-                                    new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+                                    new SelectListItem { Value = "1", Text = Lang.enterusername },
                                 }, new { @class = "za_select" })
             @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
-                                    new SelectListItem { Value = "1", Text = Lang.ASC },					                
+                                    new SelectListItem { Value = "1", Text = Lang.ASC },
                                     new SelectListItem { Value = "2", Text = Lang.DES }
                                 }, new { @class = "za_select" })
         </div>
@@ -124,7 +121,7 @@
                         @if (item.NumberOfAgent != 0)
                         { 
                             @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+								new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                         }
                         else
                         {
@@ -135,7 +132,7 @@
                         @if (item.NumberOfMember != 0)
                         { 
                             @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
-                        new { parentAgentId = Model.AgentId, agentId = item.AgentId })
+								new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                         }
                         else
                         {
@@ -158,66 +155,58 @@
                                 }
                                 else
                                 {
-                                    @(Lang.lblview + " / ")                                    
+                                    @(Lang.lblview + " / ")
                                 }
-                            </a>                            
-                            <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">
-                                        @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
-                                        {
-                                            if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                                            { 
-                                                @(Lang.Detail + " / ")
-                                            }
-                                            else
-                                            {
-                                                @(Lang.Detail)
-                                            }
-                                        }
-                                        else
-                                        {
-                                            
-
-                                            @(Lang.Detail + " / ")
-                                        }
                             </a>
-                                        if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                                        {
-                            
-                                <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&backLink=@backLink">
-                                    
-
-                                    @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
-                                    {
-                                            @(Lang.lblMemberShare)
+                            <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">
+                                @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                {
+                                    if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                    { 
+                                        @(Lang.Detail + " / ")
                                     }
                                     else
                                     {
-                                            @(Lang.lblMemberShare + " / ")
+                                        @(Lang.Detail)
                                     }
-
-
-                                </a>
-                                        }
+                                }
+                                else
+                                {
+                                    @(Lang.Detail + " / ")
+                                }
+                            </a>
+                                if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                {
+                            <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&backLink=@backLink">
+                                    @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                    {
+                                        @(Lang.lblMemberShare)
+                                    }
+                                    else
+                                    {
+                                        @(Lang.lblMemberShare + " / ")
+                                    }
+                            </a>
+                                }
                         }
                         @if (Model.PermissionControlPolicy >= (byte)Policy.Query)
-                        {                            
-                                <a href="~/PermissionUserControl/AssignPermissionControl?grandParentAgentId=@parentId&parentAgentId=@Model.AgentId&agentuserid=@item.AgentId">
-                                     @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
-                                     { 
-                                        @(Lang.Permission)
-                                     }
-                                     else
-                                     {
-                                        @(Lang.Permission + " / ")                                    
-                                     }
-                                </a>
+                        {
+                            <a href="~/PermissionUserControl/AssignPermissionControl?grandParentAgentId=@parentId&parentAgentId=@Model.AgentId&agentuserid=@item.AgentId">
+                                    @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                    { 
+                                    @(Lang.Permission)
+                                    }
+                                    else
+                                    {
+                                    @(Lang.Permission + " / ")
+                                    }
+                            </a>
                         }
-                        
                         @if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
-                        {                             
-                                 <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
-                                     @Lang.ShadowPermission
-                                 </a>
+                        {
+                            <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
+                                @Lang.ShadowPermission
+                            </a>
                         }
                     </td>
                 </tr>

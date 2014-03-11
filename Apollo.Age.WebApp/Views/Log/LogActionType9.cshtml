@@ -1,5 +1,5 @@
 ﻿@model List<LogPermissionModel>
-@{      
+@{
     var listGroupFunction = Model != null ? Model.GroupBy(m => m.Function.FunctionGroup.Name).ToList() : null;
     var username = ViewBag.Username;
     var isApply = Convert.ToInt16(ViewBag.IsApply);
@@ -48,8 +48,8 @@
     }
     @foreach (var itemGroup in listGroupFunction)
     {
-        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;        
-        
+        var groupName = itemGroup.FirstOrDefault().Function.FunctionGroup.Name;
+
         <tr>
             <td class="colW" colspan="2">
                 <b>@groupName</b>
@@ -62,7 +62,7 @@
             </td>
             <td class="colW2 no-border-right">
             </td>
-        </tr>        
+        </tr>
         foreach (var itemFunction in itemGroup)
         {
         <tr>
@@ -90,11 +90,10 @@
         { 
     <span class="valuechanged" title="@Lang.OldValue : @ToStringPolicy(oldValue)">@ToStringPolicy(newValue)</span>
     <span class="valueold">| @ToStringPolicy(oldValue)</span>
-            
         }
         else
         { <span class="valueold">@ToStringPolicy(oldValue)</span>
-        }            
+        }
 }
 @helper ToStringPolicy(byte policy)
     {        

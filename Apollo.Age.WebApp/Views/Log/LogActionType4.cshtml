@@ -32,13 +32,13 @@
                 <td colspan="6">
                     @if (sportId == ((int)SportTypes.Soccer).ToString())
                     {
-                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball;            
+                        var strLive = isLive == "true" ? Lang.lblLive : Lang.lblDeadball;
                   
-                        @GetResource(resoureKey, " " + strLive)                    
+                        @GetResource(resoureKey, " " + strLive)
                     }
                     else
                     {
-                        @GetResource(resoureKey)                
+                        @GetResource(resoureKey)
                     }
                 </td>
             </tr>   
@@ -54,10 +54,10 @@
                 {
                     var noborder = count == 4 ? "no-border-right" : string.Empty;
                     var betId = itemBet.Attribute("id").Value;
-                    var betResourceKey = itemBet.Attribute("resourcekey").Value;                   
+                    var betResourceKey = itemBet.Attribute("resourcekey").Value;
                     <td class="colW1 @noborder">
                         @GetResource(betResourceKey)
-                    </td>                            
+                    </td>
                     count++;
                 }
                 @GenerateEmptyColumn(count, "colW1")
@@ -90,7 +90,7 @@
                         {
                             @ToString(model.OldMaxUpper, model.MaxUpper)
                         }
-                    </td>                            
+                    </td>
                         count++;
                 }
                 @GenerateEmptyColumn(count)
@@ -122,7 +122,7 @@
                             <span>@Lang.lblNo</span>
                             }
                         }
-                    </td>                            
+                    </td>
                         count++;
                 }
                 @GenerateEmptyColumn(count)
@@ -151,7 +151,7 @@
                         { 
                             @ToString(model.OldMaxGiven, model.MaxGiven)
                         }
-                    </td>                            
+                    </td>
                         count++;
                 }
                 @GenerateEmptyColumn(count)
@@ -178,7 +178,7 @@
                         {
                             @ToString(model.OldMinGiven, model.MinGiven)
                         }
-                    </td>                            
+                    </td>
                         count++;
                 }
                 @GenerateEmptyColumn(count)
@@ -197,19 +197,19 @@
         string strNew = Formater.DecFormat(newValue / 100, 2).ToString();
 
         if (oldValue != newValue)
-        { <span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
-                     
-    <span>| </span><span class="valueold">@strOld</span>
-           
+        { 
+			<span class="valuechanged" title="@Lang.OldValue : @strOld">@strNew</span> 
+			<span>| </span><span class="valueold">@strOld</span>
         }
         else
-        { <span class="valueold">@strOld</span>
-        }            
+        { 
+			<span class="valueold">@strOld</span>
+        }
 }
 @helper GetResource(string key, string isLive = "")
     {
-        string str = Html.Resource(key);    
-    @str @isLive    
+        string str = Html.Resource(key);
+    @str @isLive
 }
 @helper GenerateEmptyColumn(int count, string className = "colW2")
     {

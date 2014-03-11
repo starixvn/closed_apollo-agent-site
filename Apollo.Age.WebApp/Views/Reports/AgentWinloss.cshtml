@@ -59,7 +59,8 @@ new ReportMenuViewModel
                             var periodText = "{0}-P{1}";
                             foreach (var period in Model.FivePeriods)
                             {
-                            <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
+                            <input class="btn dateRange" data-range="8" data-fromdate="@Formater.ShortDateFormat(period.FromDate)" data-todate="@Formater.ShortDateFormat(period.ToDate)" type="button" 
+								value="@string.Format(periodText, period.FromDate.Year, (period.PeriodNumber >= 1 && period.PeriodNumber <= 9 ? "0" + period.PeriodNumber.ToString() : period.PeriodNumber.ToString()))" />
                             }
                         }
                         else
@@ -68,8 +69,8 @@ new ReportMenuViewModel
                             <input class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
                             <input class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
                             <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
-                            <input  class="btn dateRange" data-range="6" type="button" value="@Apollo.Age.Resources.Lang.thisperiod" />
-                            <input class="btn dateRange" data-range="7" type="button" value="@Apollo.Age.Resources.Lang.lastperiod" />
+                            <input  class="btn dateRange" data-range="6" type="button" value="@Lang.thisperiod" />
+                            <input class="btn dateRange" data-range="7" type="button" value="@Lang.lastperiod" />
                         }
                     </div>
                 </div>
@@ -237,8 +238,6 @@ new ReportMenuViewModel
             <tbody>
                 @foreach (var item in Model.AgentWinLossList)
                 {
-                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
-
                     <tr>
                         <td>
                             @if (hasDownlineDetailsPermission)
@@ -359,19 +358,19 @@ new ReportMenuViewModel
             </thead>
             <tbody>
                 @{
-                        var list = Model.AgentWinLossList;
-                        decimal totalBetAmount = 0;
-                        decimal totalBetCount = 0;
-                        decimal totalCommBase = 0;
-                        decimal totalMemTotal = 0;
-                        decimal totalDownLineEffectiveStake = 0;
-                        decimal totalDownLineTotal = 0;
-                        decimal totalAWinLoss = 0;
-                        decimal totalAComm = 0;
-                        decimal totalATotal = 0;
-                        decimal totalUpLineEffectiveStake = 0;
-                        decimal totalUpLineTotal = 0;
-                        decimal totalNumberOfMember = 0;
+                    var list = Model.AgentWinLossList;
+                    decimal totalBetAmount = 0;
+                    decimal totalBetCount = 0;
+                    decimal totalCommBase = 0;
+                    decimal totalMemTotal = 0;
+                    decimal totalDownLineEffectiveStake = 0;
+                    decimal totalDownLineTotal = 0;
+                    decimal totalAWinLoss = 0;
+                    decimal totalAComm = 0;
+                    decimal totalATotal = 0;
+                    decimal totalUpLineEffectiveStake = 0;
+                    decimal totalUpLineTotal = 0;
+                    decimal totalNumberOfMember = 0;
 
                 }
                 @foreach (var item in list)
@@ -392,7 +391,6 @@ new ReportMenuViewModel
                         var numberOfMembers = Model.CustomerCounterList.Where(x => x.AgentId == item.AgentId).FirstOrDefault();
                         totalNumberOfMember += numberOfMembers.CustCount.Value;
                     }
-                    //rowClass = i++ % 2 == 0 ? string.Empty : "class='alt'";
 
                     <tr>
                         @if (item.IsAgent)

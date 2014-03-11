@@ -5,7 +5,6 @@
 	int haftBetType = 6;
 	int liveBetType = ViewBag.LiveBetType;
 	int deadBallBetType = ViewBag.DeadBallBetType;
-
 }
 @helper RenderBetTypeList(List<ScoreMapBetTypeModel> betTypes, int haftBetType, bool isLive,
 	int liveBetType, int deadBallBetType)
@@ -53,7 +52,7 @@
 	<tr>
 		<td>
 			<input type="checkbox" id="chkAllL" />
-			<label class="bold" for="chkAllL">@Apollo.Age.Resources.Lang.lblLiveBall</label>
+			<label class="bold" for="chkAllL">@Lang.lblLiveBall</label>
 		</td>
 		<td id="Td1">
 			<table class="reference">
@@ -67,7 +66,7 @@
 	<tr>
 		<td>
 			<input type="checkbox" id="chkAllD" />
-			<label class="bold" for="chkAllD">@Apollo.Age.Resources.Lang.lblDeadball</label>
+			<label class="bold" for="chkAllD">@Lang.lblDeadball</label>
 		</td>
 		<td id="Td2">
 			<table class="reference">

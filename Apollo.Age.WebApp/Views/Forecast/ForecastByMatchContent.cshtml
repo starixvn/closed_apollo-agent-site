@@ -6,7 +6,7 @@
     var currentScore = (int)ViewBag.CurrentScore;
     var matchId = (int)ViewBag.MatchId;
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
-    Layout = null;    
+    Layout = null;
 }
 @model ForecastMatchWinLostModel
 @helper RenderTitle(int betType)
@@ -14,16 +14,16 @@
         switch (betType)
         {
             case (int)BetTypes.Handicap:
-    @(Apollo.Age.Resources.Lang.lblHandicapFC)
+    @(Lang.lblHandicapFC)
 break;
             case (int)BetTypes.Over_Under:
-    @(Apollo.Age.Resources.Lang.lblOverUnder)
+    @(Lang.lblOverUnder)
 break;
             case (int)BetTypes._1st_Handicap:
-    @(Apollo.Age.Resources.Lang.lbl1stHdp)
+    @(Lang.lbl1stHdp)
 break;
             case (int)BetTypes._1st_Over_Under:
-    @(Apollo.Age.Resources.Lang.lbl1stOU)
+    @(Lang.lbl1stOU)
 break;
         }
 }
@@ -60,19 +60,19 @@ break;
         {
             case (int)BetTypes.Handicap:
                 toggleBettype = (int)BetTypes.Over_Under;
-                toggleText = Apollo.Age.Resources.Lang.lblViewOverUnderForecast;
+                toggleText = Lang.lblViewOverUnderForecast;
                 break;
             case (int)BetTypes.Over_Under:
                 toggleBettype = (int)BetTypes.Handicap;
-                toggleText = Apollo.Age.Resources.Lang.lblViewHandicapForecast;
+                toggleText = Lang.lblViewHandicapForecast;
                 break;
             case (int)BetTypes._1st_Handicap:
                 toggleBettype = (int)BetTypes._1st_Over_Under;
-                toggleText = Apollo.Age.Resources.Lang.lblView1stOverUnderForecast;
+                toggleText = Lang.lblView1stOverUnderForecast;
                 break;
             case (int)BetTypes._1st_Over_Under:
                 toggleBettype = (int)BetTypes._1st_Handicap;
-                toggleText = Apollo.Age.Resources.Lang.lblView1stHandicapForecast;
+                toggleText = Lang.lblView1stHandicapForecast;
                 break;
         }
 
@@ -85,7 +85,7 @@ break;
             && hasDownlineDetailsPermission)
         {
     <a match-id="@matchId" bet-type="@betType" class="forecast_betlist_link view-bet-list" href="javascript:void(0);">
-        @Apollo.Age.Resources.Lang.lblBetLists</a>
+        @Lang.lblBetLists</a>
         }        
 }
 @helper RenderForecastInfo(int betType, int currentScore)
@@ -132,7 +132,7 @@ break;
         {
     <tr class="no_info">
         <td colspan="5">
-            @Apollo.Age.Resources.Lang.noInfo
+            @Lang.noInfo
         </td>
     </tr>
         }
@@ -141,10 +141,10 @@ break;
     <thead>
         <tr class="RptHeader">
             <th align="center">
-                @Apollo.Age.Resources.Lang.homeaway
+                @Lang.homeaway
             </th>
             <th align="center">
-                @Apollo.Age.Resources.Lang.lblScore
+                @Lang.lblScore
             </th>
         </tr>
     </thead>
@@ -184,5 +184,4 @@ break;
             </td>
         </tr>
     </table>
-
 }

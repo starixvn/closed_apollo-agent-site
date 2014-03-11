@@ -10,7 +10,7 @@
     var leagueId = ViewBag.LeagueId ?? 0;
     var fc1X2List = (IEnumerable<Forecast1X2Model>)ViewBag.FC1X2List;
     var isShowRefreshNow = (bool)ViewBag.IsShowRefreshNow;
-    
+	var selectedString = string.Empty;
 }
 @section css
 {
@@ -22,7 +22,6 @@
 }
 @if (matchId == 0)
 {
-
     <div class="box-header selectLeague">
         <div class="row">
             <div class="cell">
@@ -33,33 +32,21 @@
                     </div>
                     <div class="editor">
                         <select id='ddlLeague' name='ddlLeague' style="width: 280px">
-                            @{
-                    var selectedString = string.Empty;
-                    foreach (var league in leagues)
+                    @foreach (var league in leagues)
                     {
-                        if (league.LeagueId == leagueId)
-                        {
-                            selectedString = "selected='selected'";
-                        }
-                        else
-                        {
-                            selectedString = string.Empty;
-                        }
-                                <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
+						selectedString = league.LeagueId == leagueId ? "selected='selected'" : string.Empty;
+                        <option value="@league.LeagueId" @(selectedString) >@league.LeagueName</option>
                     }
-                            }
                         </select>
                     </div>
                 }
                 else
                 {
-                    <label>
-                       @Lang.noInfo</label>
+                    <label> @Lang.noInfo </label>
                 }
             </div>
         </div>
     </div>
-
 }
 @if (matchId != 0 || (leagues != null && leagues.Any()))
 {
@@ -75,12 +62,10 @@
             </tr>
         </thead>
         <tbody id="forecast-body">
-            @{
-    if (matchId == 0)
+    @if (matchId == 0)
     {
         @Html.Partial("FC1X2Matches", fc1X2List)
     }
-                }
         </tbody>
     </table>
 }

@@ -41,7 +41,7 @@
         <table>
             <tr>
                 <td class="winloss_firstcolumn">
-                    @Apollo.Age.Resources.Lang.dateRange:
+                    @Lang.dateRange:
                 </td>
                 <td>
                     <div class="row">
@@ -61,10 +61,10 @@
                             </div>
                         </div>
                         <div class="cell">
-                            <input class="btn dateRange" range="1" type="button" value="@Apollo.Age.Resources.Lang.today" />
-                            <input  class="btn dateRange" range="2" type="button" value="@Apollo.Age.Resources.Lang.yesterday" />
-                            <input  class="btn dateRange" range="4" type="button" value="@Apollo.Age.Resources.Lang.thisWeek" />
-                            <input class="btn dateRange" range="5" type="button" value="@Apollo.Age.Resources.Lang.lastWeek" />
+                            <input class="btn dateRange" range="1" type="button" value="@Lang.today" />
+                            <input  class="btn dateRange" range="2" type="button" value="@Lang.yesterday" />
+                            <input  class="btn dateRange" range="4" type="button" value="@Lang.thisWeek" />
+                            <input class="btn dateRange" range="5" type="button" value="@Lang.lastWeek" />
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td class="winloss_firstcolumn">
-                    @Apollo.Age.Resources.Lang.WagerType:
+                    @Lang.WagerType:
                 </td>
                 <td>
                     @RazorHelper.RenderBettypeDropDownList(Model.BettypeList, currentBettypeId: Model.BetTypes, id: "BetTypes", className: "wagerType")
@@ -115,8 +115,8 @@
         <div>
             <div class="row bg-action">
                 <div class="item btn-action">
-                    <input id="btnSubmitTransaction" class="btn act-ticket-cancel" type="button" value="@Apollo.Age.Resources.Lang.search" />
-                    <input id="btnCancel" class="btn" type="button" value="@Apollo.Age.Resources.Lang.Cancel" />
+                    <input id="btnSubmitTransaction" class="btn act-ticket-cancel" type="button" value="@Lang.search" />
+                    <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
                 </div>
             </div>
         </div>

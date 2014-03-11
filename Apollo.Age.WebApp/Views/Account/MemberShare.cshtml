@@ -1,7 +1,7 @@
 ﻿@using Apollo.Age.Account.ViewModels
 @using Apollo.Age
 @{
-    ViewBag.Title = Apollo.Age.Resources.Lang.ViewShare;
+    ViewBag.Title = Lang.ViewShare;
     Layout = "~/Views/Account/Shared/_ViewSettingLayout.cshtml";
     int index = 0;
 }
@@ -12,7 +12,7 @@
         {
             <div class="cell">
                 <div class="label">
-                    <label for="ddlSportType">@Apollo.Age.Resources.Lang.sport:</label>
+                    <label for="ddlSportType">@Lang.sport:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownListFor(m => m.SportTypeSelected, Model.SportSelectListItem, new { id = "ddlSportType", style = "width: 120px" })
@@ -23,7 +23,7 @@
         {
             <div class="cell">
                 <div class="label">
-                    <label for="ddlBetType">@Apollo.Age.Resources.Lang.bettype:</label>
+                    <label for="ddlBetType">@Lang.bettype:</label>
                 </div>
                 <div class="editor">
                     @Html.DropDownListFor(m => m.BetTypeSelected, Model.BetTypeSelectListItem,
@@ -34,11 +34,11 @@
         <div class="cell">
             <div class="editor">
                 @Html.DropDownListFor(m => m.IsMember, new List<SelectListItem> {
-					new SelectListItem { Value = "false", Text = Apollo.Age.Resources.Lang.agent },
-					new SelectListItem { Value = "true", Text = Apollo.Age.Resources.Lang.member }
+					new SelectListItem { Value = "false", Text = Lang.agent },
+					new SelectListItem { Value = "true", Text = Lang.member }
 				}, new { id = "ddlIsMember" })
                 @Html.TextBoxFor(m => m.Username, new { id = "txtUsername", maxlength = "50", style = "width: 150px" })
-                <input id="btnSubmit" class="btn" type="button" value="@Apollo.Age.Resources.Lang.submit" />
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.submit" />
             </div>
         </div>
     </div>
@@ -51,16 +51,16 @@
                     <th style="width: 24%;">
                     </th>
                     <th style="width: 19%;">
-                        @Apollo.Age.Resources.Lang.lblPercentUpper
+                        @Lang.lblPercentUpper
                     </th>
                     <th style="width: 19%;">
-                        @Apollo.Age.Resources.Lang.lblViewMaxDownline
+                        @Lang.lblViewMaxDownline
                     </th>
                     <th style="width: 19%;">
-                        @Apollo.Age.Resources.Lang.lblViewMinDownline
+                        @Lang.lblViewMinDownline
                     </th>
                     <th style="width: 19%;">
-                        @Apollo.Age.Resources.Lang.lblViewOnMember
+                        @Lang.lblViewOnMember
                     </th>
                 </tr>
             </thead>

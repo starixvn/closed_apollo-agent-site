@@ -1,47 +1,37 @@
 ﻿@using Apollo.Age.Entities;
 @using Apollo.Age.Web;
 @using Apollo.Age
-@using Apollo.Age.Resources
 @model AgentListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
     ViewBag.HeaderTitle = Apollo.Age.Resources.Lang.lblAgentListOf;
-    var titleFormat = ViewBag.IsMaster == true ? Apollo.Age.Resources.Lang.lblEditAgentSetting : Apollo.Age.Resources.Lang.lblViewAgentSetting;
-    titleFormat = string.Format(titleFormat, string.Empty);
     var isMaster = (bool)ViewBag.IsMaster;
     var agentList = ViewBag.AgentList != null ? (List<AgentListModel>)ViewBag.AgentList : new List<AgentListModel>();
     Layout = "~/Views/Account/Shared/_LayoutAccountList.cshtml";
     var AgentLevel = (int)ViewBag.AgentLevel;
-
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
-
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
-
-    //var permissionControlPolicy = (byte)ViewBag.PermissionControl;
-    //var shadowPermissionPolicy = (byte)ViewBag.ShadowPermission;
-    //var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
-    //var downlineDetailsPermission = (byte)ViewBag.DownlineDetailsPermission;
 }
 @using (Html.BeginForm())
-{       
+{
     <div id="function-bar">
         <div class="item">
             <label>@Lang.agent</label>:
             @Html.DropDownListFor(m => m.Status, new List<SelectListItem> {
-                                new SelectListItem { Value = "0", Text = Lang.all },
-					            new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
-					            new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
-                                new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
-                                new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
-				                }, new { @class = "za_select" })
+				new SelectListItem { Value = "0", Text = Lang.all },
+				new SelectListItem { Value = ((int)CustomerStatus.Active).ToString(), Text = Lang.lblActive },
+				new SelectListItem { Value = ((int)CustomerStatus.Stopped).ToString(), Text = Lang.stopped },
+				new SelectListItem { Value = ((int)CustomerStatus.Locked).ToString(), Text = Lang.locked },
+				new SelectListItem { Value = ((int)CustomerStatus.CLock).ToString(), Text = Lang.lblCLock }
+				}, new { @class = "za_select" })
         </div>
         <div class="item">
             --<label>@Lang.OrderBy</label>:
             @Html.DropDownListFor(m => m.OrderBy, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.enterusername },					                
+					                new SelectListItem { Value = "1", Text = Lang.enterusername },
 				                }, new { @class = "za_select" })
             @Html.DropDownListFor(m => m.OrderType, new List<SelectListItem> {
-					                new SelectListItem { Value = "1", Text = Lang.ASC },					                
+					                new SelectListItem { Value = "1", Text = Lang.ASC },
                                     new SelectListItem { Value = "2", Text = Lang.DES }
 				                }, new { @class = "za_select" })
         </div>
@@ -52,7 +42,7 @@
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
                 <input type="hidden" value="@Model.OldPageIndex" name="OldPageIndex" id="OldPageIndex" />
                 &nbsp;/<label>@Model.NumPages&nbsp;@Lang.Pages</label>
-            </div>            
+            </div>
         }
         <div class="item">
             @Html.TextBoxFor(m => m.UserName, new { @class = "za_text" })
@@ -67,8 +57,8 @@
 @*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
         <div class="end">
         </div>
-    </div>   
-    @Html.HiddenFor(m => m.AgentId)    
+    </div>
+    @Html.HiddenFor(m => m.AgentId)
 }
 <table class="tblRpt agentList">
     @if (!ReferenceEquals(agentList, null) && agentList.Any())
@@ -160,8 +150,8 @@
                                 else
                                 {
                                     @(Lang.lblview + " / ")
-                                }                               
-                                </a>                                 
+                                }
+                                </a>
                                 <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">                                                                
                                         @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
                                         {
@@ -178,18 +168,18 @@
                                         {
                                             @(Lang.Detail + " / ")
                                         }
-                                </a>                                
+                                </a>
                                         if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
                                         {                            
                                     <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                                        @(Lang.lblMemberShare + " / ")                                       
+                                        @(Lang.lblMemberShare + " / ")
 
-                                    </a>                           
+                                    </a>
                                         }
                             }
 
                             if (Model.PermissionControlPolicy >= (byte)Policy.Query)
-                            {                            
+                            {
                                 <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
                                     @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
                                     { 
@@ -197,14 +187,12 @@
                                     }
                                     else
                                     {
-                                        @(Lang.Permission + " / ")                                    
+                                        @(Lang.Permission + " / ")
                                     }
-                                </a>                           
-                                
+                                </a>
                             }
-
                             if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
-                            {                            
+                            {
                                 <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
                                     @Lang.ShadowPermission
                                 </a>
