@@ -1,5 +1,6 @@
 ﻿/* File Created: March 13, 2013 */
 /*global APOLLO*/
+/*global noty*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var BETLIMIT = (function ($) {
