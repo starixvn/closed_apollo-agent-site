@@ -1,15 +1,14 @@
 ﻿@using System.Web.Mvc
+@using System.Xml.Linq
+@using System.Resources
+@using Fanex.Logging
 @using Apollo.Age.Wagers.Entities
 @using Apollo.Age.Wagers.Services
-@using Apollo.Age.Entities
-@using Fanex.Logging
 @using Apollo.Age.Resources
 @using Apollo.Age.Core
 @using Apollo.Age.Services
 @using Apollo.Age.Wagers.Configuration
-@using System.Xml.Linq
 @using Apollo.Age.Web
-@using System.Resources
 @using Apollo.Age.Wagers.ViewModels
 @using Apollo.Age.Web.Mvc
 @using Apollo.Age.Entities
@@ -398,7 +397,7 @@
     </td>
 }
 @helper RenderReportLinks(string currentLink, Dictionary<string, byte> functionPermissions, string reportclass = "menu report-winloss")
-    {         
+    {
         var classWinloss = string.Empty;
         var classOutstanding = string.Empty;
         var classTransaction = string.Empty;

@@ -14,7 +14,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -31,28 +31,28 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string awayName = ticketHelper.GetTeamNameById(ticket.AwayId);
 
             string team = ticket.BetTeam.Contains("1") ? this.Template.homeTeam : awayName;
-            string draw_away = ticket.BetTeam.EndsWith("x") ? Apollo.Age.Resources.BetList.lblDraw : this.Template.awayTeam;
+            string draw_away = ticket.BetTeam.EndsWith("x") ? BetList.lblDraw : this.Template.awayTeam;
 
             this.Template.betTeam = string.Join(
                                             null,
                                             " <span class=\"",
-                                                BetListFavorite,
-                                                "\">",
-                                                team,
-                                                "</span>",
-                                                "&nbsp;",
-                                                Apollo.Age.Resources.BetList.lblOr.ToLower(),
-                                                " <span class=\"",
-                                                BetListFavorite,
-                                                "\">",
-                                                "&nbsp;",
-                                                draw_away,
-                                                "</span>");
+                                            BetListFavorite,
+                                            "\">",
+                                            team,
+                                            "</span>",
+                                            "&nbsp;",
+                                            BetList.lblOr.ToLower(),
+                                            " <span class=\"",
+                                            BetListFavorite,
+                                            "\">",
+                                            "&nbsp;",
+                                            draw_away,
+                                            "</span>");
         }
     }
 }

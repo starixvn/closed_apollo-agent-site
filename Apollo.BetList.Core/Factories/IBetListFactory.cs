@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Factories
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Bet list factory interface.
     /// </summary>
     public interface IBetListFactory
     {

@@ -12,9 +12,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
 
@@ -58,7 +58,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
-            string sportName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
+            string sportName = string.Join(null, new string[] { BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
 
             rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.BlueNoBold);
 
@@ -101,55 +101,50 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
+        protected override void BuildChoice(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay)
         {
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
-            string mixParlay = string.Empty, custid = string.Empty;
-
-            if (HttpContext.Current.Request["custid"] != null)
-            {
-                custid = HttpContext.Current.Request["custid"];
-            }
-            else
-            {
-                custid = ticket.CustId.ToString();
-            }
+            string mixParlay = string.Empty;
+            string custid = HttpContext.Current.Request["custid"] ?? ticket.CustId.ToString();
 
             mixParlay = string.Join(
-                                        null,
-                                            "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
-                                            ticket.TransId.ToString(),
-                                            "&quot;);\">",
-                                            betTypeName,
-                                            "</a>",
-                                            " - ",
-                                            "<span>",
-                                            GetCombinationOfferName(ticket.BetTeam),
-                                            "</span>",
-                                            "</div>",
-                                            "<div id=\"divEvent_",
-                                            ticket.TransId.ToString(),
-                                            "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>",
-                                            "<div class=\"detail\" onclick=\"showCombMPDetail(&quot;",
-                                            ticket.RefNo,
-                                            "&quot;",
-                                            ",&quot;",
-                                            ticket.WinlostDate.ToString(),
-                                            "&quot;",
-                                            ",&quot;",
-                                            ticket.TransId.ToString(),
-                                            "&quot;",
-                                            ",&quot;",
-                                            ticket.BetId.ToString(),
-                                            "&quot;",
-                                            ",&quot;",
-                                            custid,
-                                            "&quot;, this);\">",
-                                            Apollo.Age.Resources.BetList.details,
-                                            "</div>");
+                null,
+                    "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
+                    ticket.TransId.ToString(),
+                    "&quot;);\">",
+                    betTypeName,
+                    "</a>",
+                    " - ",
+                    "<span>",
+                    GetCombinationOfferName(ticket.BetTeam),
+                    "</span>",
+                    "</div>",
+                    "<div id=\"divEvent_",
+                    ticket.TransId.ToString(),
+                    "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>",
+                    "<div class=\"detail\" onclick=\"showCombMPDetail(&quot;",
+                    ticket.RefNo,
+                    "&quot;",
+                    ",&quot;",
+                    ticket.WinlostDate.ToString(),
+                    "&quot;",
+                    ",&quot;",
+                    ticket.TransId.ToString(),
+                    "&quot;",
+                    ",&quot;",
+                    ticket.BetId.ToString(),
+                    "&quot;",
+                    ",&quot;",
+                    custid,
+                    "&quot;, this);\">",
+                    BetList.details,
+                    "</div>");
 
             this.Template.SetValue(mixParlay);
         }
@@ -172,12 +167,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <returns>Return system string.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private string RenderMixParlayDetail(ITicket ticket, IList<ITicket> ticketMixParlay, ITicketHelper ticketHelper)
         {
             var line = "<div class='line'></div>";
             var result = string.Empty;
             var tickets = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo);
+
             foreach (var item in tickets)
             {
                 var builder = new BetListHTMLBuilder();
@@ -196,7 +191,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
                 }
 
-                result += builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
+                result += builder.GetBetList().Replace(
+                    "<div class=\"league\">", 
+                    string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
             }
 
             return result;
@@ -209,12 +206,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string[] buildChoice = new string[]
-                                            {
-                                                ChoiceBuilderNameSpace,
-                                                ".Choice",
-                                                bettype.ToString()
-                                            };
+            string[] buildChoice = new string[] { ChoiceBuilderNameSpace, ".Choice", bettype.ToString() };
             string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);

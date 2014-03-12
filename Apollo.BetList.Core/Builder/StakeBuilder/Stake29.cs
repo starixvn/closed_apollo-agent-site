@@ -63,6 +63,7 @@ namespace Apollo.BetList.Core.Builder.StakeBuilder
             rtfHelper.RTFRenderer.AddText(ConvertByBetType.Stake(ticket.Stake));
             IRichTextString rtfStake = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return rtfStake;
         }
     }

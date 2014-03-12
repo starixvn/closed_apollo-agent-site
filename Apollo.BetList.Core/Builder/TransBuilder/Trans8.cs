@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.7.5">Created</change>
 // </history>
+// --------------------------------------------------------------------------
 
 namespace Apollo.BetList.Core.Builder.TransBuilder
 {

@@ -43,6 +43,7 @@ namespace Apollo.BetList.Core.Utils
         public void Render(string text)
         {
             string removeText = text.Replace(ConvertByBetType.FontOpenTag, string.Empty).Replace(ConvertByBetType.FontCloseTag, string.Empty);
+
             if (text.Length == removeText.Length)
             {
                 this.RenderContent.AddText(removeText, this.PosFontText);

@@ -7,6 +7,7 @@
 //     <change who="Kaden.Trinh" date="2013.06.27">Create</change>
 // </history>
 // ---------------------------------------------------------------------------------
+
 namespace Apollo.BetList.Core.Entities
 {
     public enum BetListPage : int

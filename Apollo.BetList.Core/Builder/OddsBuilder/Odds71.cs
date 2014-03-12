@@ -38,10 +38,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
         /// <returns>Odds Template.</returns>
-        public Odds_Template Render(
-            ITicket ticket, 
-            List<ITicketData> ticketData, 
-            GetCachePropertyById funcGetOddsTypeName)
+        public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
         {
             // This bettype never has an odds
             this.Template.odds = "-";
@@ -87,6 +84,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
 
             var rtfOdds = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return rtfOdds;
         }
     }

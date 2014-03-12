@@ -17,6 +17,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
 
@@ -35,18 +36,15 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            string teamName = Apollo.Age.Resources.BetList.lblDraw;
-
-            string handicap = string.Empty;
-
-            handicap = BuildHandicap(ticket, ticketHelper, out teamName);
+            string teamName = BetList.lblDraw;
+            string handicap = BuildHandicap(ticket, ticketHelper, out teamName);
 
             this.Template.betTeam = string.Join(
-                                                    null,
-                                                    teamName,
-                                                        "&nbsp;<span class=\"underdog\">(",
-                                                        handicap.ToString(),
-                                                        ")</span>");
+                null,
+                teamName,
+                "&nbsp;<span class=\"underdog\">(",
+                handicap.ToString(),
+                ")</span>");
         }
 
         /// <summary>
@@ -61,8 +59,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// RTF Helper.
         /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        protected override RTFHelper CreateRTFHelper(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper, bool isShowSportName = false, bool isTrikeOut = false)
+        protected override RTFHelper CreateRTFHelper(
+            ITicket ticket,
+            RTFHelper rtfHelper,
+            ITicketHelper ticketHelper,
+            bool isShowSportName = false,
+            bool isTrikeOut = false)
         {
             string choice = string.Empty;
 
@@ -84,6 +86,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.LeagueName))
             {
                 choice = ticketHelper.GetLeagueNameById(ticket.LeagueId);
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -99,6 +102,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.HomeAwayId.homeid) && !string.IsNullOrWhiteSpace(Template.HomeAwayId.awayid))
             {
                 choice = string.Join(null, new string[] { "\n", "[", Template.HomeAwayId.homeid, "]", " vs ", "[", Template.HomeAwayId.awayid, "]" });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -114,6 +118,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.homeTeam) && !string.IsNullOrWhiteSpace(Template.awayTeam))
             {
                 choice = string.Join(null, new string[] { "\n", Template.homeTeam.TrimEnd() });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NormalFontCrossed);
@@ -123,9 +128,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     rtfHelper.RTFRenderer.AddText(choice);
                 }
 
-                choice = string.Empty;
-
                 choice = string.Join(null, new string[] { " ", Template.handicap.Trim(), " " });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBoldTrike);
@@ -134,8 +138,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.BlueAndBold);
                 }
-
-                choice = string.Empty;
 
                 choice = string.Join(null, new string[] { Template.awayTeam });
 
@@ -153,6 +155,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 if (ticket.IsLive)
                 {
                     choice = string.Join(null, new string[] { " ", Template.LiveScore.liveHomeScore, ":", Template.LiveScore.liveAwayScore });
+
                     if (isTrikeOut)
                     {
                         rtfHelper.RTFRenderer.AddText(choice, rtfHelper.RedNoBoldTrike);
@@ -169,8 +172,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.betTeam))
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
-               || (ticket.StatusId != null && ticket.StatusId.Value > 1))
+                    || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
                     choice = string.Join(null, new string[] { " \n ", Template.Score.finalHomeScore, ":", Template.Score.finalAwayScore, " " });
                     if (isTrikeOut)
@@ -230,6 +234,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (!string.IsNullOrWhiteSpace(Template.odds))
             {
                 choice = string.Join(null, new string[] { Template.odds.Replace("<span class='red-color'>", string.Empty).Replace("</span>", string.Empty) });
+
                 if (isTrikeOut)
                 {
                     rtfHelper.RTFRenderer.AddText(choice, rtfHelper.NegFontTrike);
@@ -260,7 +265,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>Return handicap string.</returns>
         private string BuildHandicap(ITicket ticket, ITicketHelper ticketHelper, out string teamName)
         {
-            teamName = Apollo.Age.Resources.BetList.lblDraw;
+            teamName = BetList.lblDraw;
             decimal hdp1 = ticket.Handicap1;
             decimal hdp2 = ticket.Handicap2;
 
@@ -279,14 +284,14 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             }
             else
             {
-                teamName = Apollo.Age.Resources.BetList.lblDraw;
+                teamName = BetList.lblDraw;
                 if (hdp1 - hdp2 > 0)
                 {
-                    handicap = Apollo.Age.Resources.BetList.a + "&nbsp;";
+                    handicap = BetList.a + "&nbsp;";
                 }
                 else if (hdp1 - hdp2 < 0)
                 {
-                    handicap = Apollo.Age.Resources.BetList.h + "&nbsp;";
+                    handicap = BetList.h + "&nbsp;";
                 }
                 else
                 {

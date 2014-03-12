@@ -16,7 +16,7 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt.AgentPTBuilder
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Agent position taking interface.
     /// </summary>
     public interface IAgentPT
     {

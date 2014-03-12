@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.11.1">Created</change>
 // </history>
+
 namespace Apollo.BetList.Age.DTO
 {
     using System;
@@ -15,7 +16,7 @@ namespace Apollo.BetList.Age.DTO
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Ticket data transformer.
     /// </summary>
     public static class TicketDataTransformer
     {

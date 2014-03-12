@@ -13,7 +13,7 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt.WinLostBuilder
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Win loss interface.
     /// </summary>
     public interface IWinLoss
     {

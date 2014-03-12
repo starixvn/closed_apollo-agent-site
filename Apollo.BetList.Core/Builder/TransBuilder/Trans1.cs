@@ -96,7 +96,6 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             oddsType = string.IsNullOrEmpty(ticket.OddsType) ? "0" : funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
 
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }), rtfHelper.GreenNoBold);
-
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.transId, " \n " }));
 
             string sportName = Template.sportName.Replace("<br/>", string.Empty).Replace("&nbsp;", string.Empty);

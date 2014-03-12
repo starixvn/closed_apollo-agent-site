@@ -7,8 +7,7 @@
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt @ViewBag.SportName parlay @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblMixParlay
-                , Lang.lblSystemParlay)
+    @WagerHelper.RederHeaderColumn(Lang.lblMixParlay, Lang.lblSystemParlay)
     @*/RenderHeader*@
     <tbody>
         @Model.List(

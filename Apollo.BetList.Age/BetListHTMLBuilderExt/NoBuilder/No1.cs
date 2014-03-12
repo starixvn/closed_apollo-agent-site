@@ -13,7 +13,7 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt.NoBuilder
     using Apollo.BetList.Age.ExtTemplate;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Number builder.
     /// </summary>
     public class No1 : INo
     {

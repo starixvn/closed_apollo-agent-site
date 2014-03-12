@@ -250,6 +250,7 @@ namespace Apollo.BetList.Core.Builder
         {
             string odds = BuildOdds(ticket, ticketData, funcGetOddsTypeName);
             this._content.Append(string.Join(null, new string[] { openTag, odds, closeTag }));
+
             return this;
         }
 
@@ -278,8 +279,8 @@ namespace Apollo.BetList.Core.Builder
         public BetListHTMLBuilder AddStake(ITicket ticket, string openTag, string closeTag)
         {
             string stake = BuildStake(ticket);
-
             this._content.Append(string.Join(null, new string[] { openTag, stake, closeTag }));
+
             return this;
         }
 
@@ -447,15 +448,8 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Choice interface.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-            {
-                                                ChoiceBuilderNamespace,
-                                                ".Choice",
-                                                bettype.ToString()
-            };
-            string typeName = string.Join(
-                                            null,
-                                            choiceBuilder);
+            string[] choiceBuilder = new string[] { ChoiceBuilderNamespace, ".Choice", bettype.ToString() };
+            string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
 
@@ -482,12 +476,7 @@ namespace Apollo.BetList.Core.Builder
                 bettype = 1101;
             }
 
-            string[] choiceBuilder = new string[]
-                                            {
-                                                OddsBuilderNamespace,
-                                                ".Odds",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { OddsBuilderNamespace, ".Odds", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -509,12 +498,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Stake interface.</returns>
         private IStake CreateStakeBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                StakeBuilderNamespace,
-                                                ".Stake",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { StakeBuilderNamespace, ".Stake", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -536,12 +520,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Status interface.</returns>
         private IStatus CreateStatusBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                StatusBuilderNamespace,
-                                                ".Status",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { StatusBuilderNamespace, ".Status", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -565,12 +544,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private ITrans CreateTransBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                TransBuilderNamespace,
-                                                ".Trans",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { TransBuilderNamespace, ".Trans", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -594,12 +568,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private IAgentShare CreateAgentShareBuilder(int bettype)
         {
-            string[] agentShareBuilder = new string[]
-                                            {
-                                                AgentShareBuilderNamespace,
-                                                ".AgentShare",
-                                                bettype.ToString()
-                                            };
+            string[] agentShareBuilder = new string[] { AgentShareBuilderNamespace, ".AgentShare", bettype.ToString() };
             string typeName = string.Join(null, agentShareBuilder);
 
             Type type = Type.GetType(typeName);
@@ -623,12 +592,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private IAgentComm CreateAgentCommBuilder(int bettype)
         {
-            string[] agentCommBuilder = new string[]
-                                            {
-                                                AgentCommBuilderNamespace,
-                                                ".AgentComm",
-                                                bettype.ToString()
-                                            };
+            string[] agentCommBuilder = new string[] { AgentCommBuilderNamespace, ".AgentComm", bettype.ToString() };
             string typeName = string.Join(null, agentCommBuilder);
 
             Type type = Type.GetType(typeName);

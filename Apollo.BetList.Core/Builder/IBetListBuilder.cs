@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Builder
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Bet list builder interface.
     /// </summary>
     public interface IBetListBuilder
     {

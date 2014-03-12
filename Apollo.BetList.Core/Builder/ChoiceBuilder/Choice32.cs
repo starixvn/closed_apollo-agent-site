@@ -14,6 +14,6 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     /// Place bet type.
     /// </summary>
     public class Choice32 : Choice31
-    {        
+    {
     }
 }

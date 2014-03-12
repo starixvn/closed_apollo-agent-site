@@ -7,6 +7,7 @@
 //     <change who="Kaden.Trinh" date="2013.06.26">Create</change>
 // </history>
 // ---------------------------------------------------------------------------------
+
 namespace Apollo.BetList.Core.Builder.DiscountBuilder
 {
     using Apollo.BetList.Core.Entities;

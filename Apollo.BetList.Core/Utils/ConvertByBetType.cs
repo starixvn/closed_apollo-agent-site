@@ -16,6 +16,7 @@ namespace Apollo.BetList.Core.Utils
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
 
     /// <summary>
     /// Convert by bet type.
@@ -103,28 +104,28 @@ namespace Apollo.BetList.Core.Utils
             {
                 if (chars[0] == '1')
                 {
-                    returnValue = Apollo.Age.Resources.BetList.home;
+                    returnValue = BetList.home;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = Apollo.Age.Resources.BetList.away;
+                    returnValue = BetList.away;
                 }
                 else
                 {
-                    returnValue = Apollo.Age.Resources.BetList.no0;
+                    returnValue = BetList.no0;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.FG;
+                    returnValue += "&nbsp;" + BetList.FG;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.LG;
+                    returnValue += "&nbsp;" + BetList.LG;
                 }
                 else
                 {
-                    returnValue += "&nbsp;" + Apollo.Age.Resources.BetList.goal;
+                    returnValue += "&nbsp;" + BetList.goal;
                 }
             }
             else if (betType == 16)
@@ -132,28 +133,28 @@ namespace Apollo.BetList.Core.Utils
                 // HTFT
                 if (chars[0] == '1')
                 {
-                    returnValue = Apollo.Age.Resources.BetList.h;
+                    returnValue = BetList.h;
                 }
                 else if (chars[0] == '2')
                 {
-                    returnValue = Apollo.Age.Resources.BetList.a;
+                    returnValue = BetList.a;
                 }
                 else
                 {
-                    returnValue = Apollo.Age.Resources.BetList.d;
+                    returnValue = BetList.d;
                 }
 
                 if (chars[c - 1] == '1')
                 {
-                    returnValue += Apollo.Age.Resources.BetList.h;
+                    returnValue += BetList.h;
                 }
                 else if (chars[c - 1] == '2')
                 {
-                    returnValue += Apollo.Age.Resources.BetList.a;
+                    returnValue += BetList.a;
                 }
                 else
                 {
-                    returnValue += Apollo.Age.Resources.BetList.d;
+                    returnValue += BetList.d;
                 }
             }
             else

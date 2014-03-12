@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2014.1.16">Created</change>
 // </history>
+
 namespace Apollo.BetList.Core.Builder.ResultBuilder
 {
     using Apollo.BetList.Core.Entities;

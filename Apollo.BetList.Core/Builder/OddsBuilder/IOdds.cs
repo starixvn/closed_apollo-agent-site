@@ -16,7 +16,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Odds interface.
     /// </summary>
     public interface IOdds
     {

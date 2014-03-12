@@ -89,8 +89,8 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
                 agentPT_Place = refTicketData.FindLast(item => item.BetTypeId == PlaceBetId).AgentPT;
             }
 
-            string[] agentPTSetting = new string[] 
-                    { 
+            string[] agentPTSetting = new string[]
+                    {
                         "<span class='blue' style='font-weight:normal;'>",
                         Apollo.Age.Resources.BetList.win + ": ",
                         "<b>",
@@ -102,7 +102,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
                         "<b>",
                         Formatter.FormatNumber2(agentPT_Place * 100, null),
                         "%</b>",
-                        "</span>" 
+                        "</span>"
                     };
 
             this.Template.AgentPT.agentPT_setting = string.Join(null, agentPTSetting);
