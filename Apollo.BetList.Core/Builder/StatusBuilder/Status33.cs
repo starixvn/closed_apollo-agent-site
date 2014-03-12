@@ -18,7 +18,6 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
-    using Apollo.Age.Resources;
 
     /// <summary>
     /// Win Place bet type.
