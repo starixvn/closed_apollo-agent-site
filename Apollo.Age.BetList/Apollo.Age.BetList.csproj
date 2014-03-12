@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -98,6 +100,10 @@
     <ProjectReference Include="..\Apollo.Age\Apollo.Age.csproj">
       <Project>{784D23CD-1AF9-4265-9C68-62C31DD84AAC}</Project>
       <Name>Apollo.Age</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.BetList.Age\Apollo.BetList.Age.csproj">
+      <Project>{E6E7532E-AC83-4EC2-BA9A-94327AD54B1A}</Project>
+      <Name>Apollo.BetList.Age</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj">
       <Project>{5384E9C5-8CF1-42F8-8D12-8089EA725351}</Project>
