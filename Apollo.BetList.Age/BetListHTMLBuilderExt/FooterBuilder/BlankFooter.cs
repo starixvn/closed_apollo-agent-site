@@ -15,7 +15,7 @@ namespace Apollo.BetList.Age.BetListHTMLBuilderExt.FooterBuilder
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Blank footer.
     /// </summary>
     public class BlankFooter : IFooter
     {

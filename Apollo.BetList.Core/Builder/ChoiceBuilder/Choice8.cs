@@ -31,6 +31,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             if (ticket.SportTypeId == 1)
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {

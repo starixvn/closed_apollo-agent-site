@@ -11,15 +11,13 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Choice interface.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
     public interface IChoice
     {
         /// <summary>
@@ -51,7 +49,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
-        Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap);
+        Choice_Template Render(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            bool isShowScoreMap);
 
         /// <summary>
         /// Renders the RTF.
@@ -65,6 +68,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// List of rich text.
         /// </returns>
-        List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper);
+        List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper);
     }
 }

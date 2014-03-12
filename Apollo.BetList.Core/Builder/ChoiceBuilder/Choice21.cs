@@ -27,9 +27,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         protected override void BuildChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData)
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
+
             if (ticket.SportTypeId == 1)
             {
                 string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {

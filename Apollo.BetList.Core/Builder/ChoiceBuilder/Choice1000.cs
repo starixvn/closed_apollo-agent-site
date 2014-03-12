@@ -11,9 +11,9 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using Apollo.Age.Resources;
 
     /// <summary>
     /// P2P Games.

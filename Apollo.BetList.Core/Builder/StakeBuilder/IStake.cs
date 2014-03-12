@@ -15,7 +15,7 @@ namespace Apollo.BetList.Core.Builder.StakeBuilder
     using NPOI.SS.UserModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Stake interface.
     /// </summary>
     public interface IStake
     {

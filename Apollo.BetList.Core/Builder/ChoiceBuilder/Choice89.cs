@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -31,9 +31,10 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string betId = ticket.BetId.ToString();
+
             if (betId == "0")
             {
                 betId = string.Empty;
@@ -42,15 +43,23 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             string liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
 
             string betTeam = string.Empty;
+
             switch (ticket.BetTeam)
             {
-                case "1:1": betTeam = Apollo.Age.Resources.BetList.lblOverOdd;
+                case "1:1": 
+                    betTeam = BetList.lblOverOdd;
                     break;
-                case "1:2": betTeam = Apollo.Age.Resources.BetList.lblOverEven;
+
+                case "1:2": 
+                    betTeam = BetList.lblOverEven;
                     break;
-                case "2:1": betTeam = Apollo.Age.Resources.BetList.lblUnderOdd;
+
+                case "2:1": 
+                    betTeam = BetList.lblUnderOdd;
                     break;
-                case "2:2": betTeam = Apollo.Age.Resources.BetList.lblUnderEven;
+
+                case "2:2": 
+                    betTeam = BetList.lblUnderEven;
                     break;
             }
 
@@ -58,7 +67,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 
             this.Template.betTeam = betTeam + liveScore;
 
-            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.homeTeam = string.Join(null, new string[] { BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Apollo.BetList.Age.ExtTemplate
     using System.Web.UI;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Bet list template.
     /// </summary>
     public class BetListTemplate : BetList_Template
     {

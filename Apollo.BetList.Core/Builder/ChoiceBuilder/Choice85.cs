@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -30,9 +30,10 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string betId = ticket.BetId.ToString();
+
             if (betId == "0")
             {
                 betId = string.Empty;
@@ -44,36 +45,20 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             betTeam += " <span style='color:#555555'>37.5</span> ";
 
             string bettypeName = string.Empty;
+
             if (!ticket.IsLive)
             {
-                bettypeName = string.Join(
-                                                null,
-                                                Apollo.Age.Resources.BetList.ft,
-                                                    ". ",
-                                                    bettypeName);
+                bettypeName = string.Join(null, BetList.ft, ". ", bettypeName);
             }
             else
             {
-                bettypeName = string.Join(
-                                                null,
-                                                Apollo.Age.Resources.BetList.next,
-                                                    "&nbsp;",
-                                                    bettypeName);
-
-                liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(
-                                                                                                null,
-                                                                                               " [",
-                                                                                                    betId,
-                                                                                                    "]");
+                bettypeName = string.Join(null, BetList.next, "&nbsp;", bettypeName);
+                liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, " [", betId, "]");
             }
 
             this.Template.betTeam = betTeam + liveScore;
 
-            this.Template.homeTeam = string.Join(
-                                                null,
-                                               Apollo.Age.Resources.BetList.numbergameno,
-                                                    "&nbsp;",
-                                                    ticket.MatchCode);
+            this.Template.homeTeam = string.Join(null, BetList.numbergameno, "&nbsp;", ticket.MatchCode);
         }
     }
 }

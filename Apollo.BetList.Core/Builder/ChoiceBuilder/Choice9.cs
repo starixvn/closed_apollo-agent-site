@@ -12,8 +12,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;
@@ -36,23 +36,27 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        public override Choice_Template Render(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap)
+        public override Choice_Template Render(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            bool isShowScoreMap)
         {
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
             string mixParlay = string.Join(
-                                                null,
-                                                "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
-                                                    ticket.TransId.ToString(),
-                                                    "&quot;);\">",
-                                                    betTypeName,
-                                                    "</a>",
-                                                    "<br/>",
-                                                    "<div id=\"divEvent_",
-                                                    ticket.TransId.ToString(),
-                                                    "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>");
+                null,
+                "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
+                ticket.TransId.ToString(),
+                "&quot;);\">",
+                betTypeName,
+                "</a>",
+                "<br/>",
+                "<div id=\"divEvent_",
+                ticket.TransId.ToString(),
+                "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>");
 
             this.Template.SetValue(mixParlay);
 
@@ -71,10 +75,15 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>
         /// Choice Template.
         /// </returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
-        public override List<IRichTextString> RenderRTF(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, bool isShowScoreMap, RTFHelper rtfHelper)
+        public override List<IRichTextString> RenderRTF(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            bool isShowScoreMap, 
+            RTFHelper rtfHelper)
         {
-            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
+            rtfHelper.RTFRenderer.AddText(BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
 
             if (ticketMixParlay != null)
             {
@@ -114,13 +123,13 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <returns>Return mix parlay string.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         private string RenderMixParlayDetail(ITicket ticket, IList<ITicket> ticketMixParlay, ITicketHelper ticketHelper)
         {
             var line = "<div class='line'></div>";
             var result = string.Empty;
             var tickets = ticketMixParlay.Where(x => x.RefNo == ticket.RefNo);
-            foreach (var item in tickets)
+
+            foreach (ITicket item in tickets)
             {
                 var builder = new BetListHTMLBuilder();
 
@@ -138,7 +147,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     builder.AddChoice(item, ticketHelper, null, string.Empty, line, false);
                 }
 
-                result += builder.GetBetList().Replace("<div class=\"league\">", string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
+                string sportName = ticketHelper.GetSportNameById(item.SportTypeId);
+
+                result += builder.GetBetList().Replace(
+                    "<div class=\"league\">", 
+                    string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", sportName));
             }
 
             return result;
@@ -151,12 +164,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string[] buildChoice = new string[]
-                                            {
-                                                ChoiceBuilderNameSpace,
-                                                ".Choice",
-                                                bettype.ToString()
-                                            };
+            string[] buildChoice = new string[] { ChoiceBuilderNameSpace, ".Choice", bettype.ToString() };
             string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);

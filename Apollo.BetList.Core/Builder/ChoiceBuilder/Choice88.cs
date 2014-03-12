@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -29,13 +29,9 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
-
-            string betTeam = ticket.BetTeam == "h" ? Apollo.Age.Resources.BetList.warrior2ndBall : Apollo.Age.Resources.BetList.warrior3rdBall;
-
-            this.Template.betTeam = betTeam;
-
-            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.handicap = BetList.vs;
+            this.Template.betTeam = ticket.BetTeam == "h" ? BetList.warrior2ndBall : BetList.warrior3rdBall;
+            this.Template.homeTeam = string.Join(null, new string[] { BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }

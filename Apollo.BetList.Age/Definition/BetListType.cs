@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Age.Definition
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Bet list type.
     /// </summary>
     public enum BetListType : int
     {

@@ -11,7 +11,7 @@
 namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System.Collections.Generic;
-
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>
@@ -29,32 +29,31 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
-            this.Template.handicap = Apollo.Age.Resources.BetList.vs;
+            this.Template.handicap = BetList.vs;
 
             string betId = ticket.BetId.ToString();
+
             if (betId == "0")
             {
                 betId = string.Empty;
             }
 
             string liveScore = string.Empty;
-
             string betTeam = this.Template.betTeam;
-
             string bettypeName = string.Empty;
+
             if (!ticket.IsLive)
             {
-                bettypeName = string.Join(null, new string[] { Apollo.Age.Resources.BetList.ft, ". ", bettypeName });
+                bettypeName = string.Join(null, new string[] { BetList.ft, ". ", bettypeName });
             }
             else
             {
-                bettypeName = Apollo.Age.Resources.BetList.next + "&nbsp;" + bettypeName;
+                bettypeName = BetList.next + "&nbsp;" + bettypeName;
                 liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
             }
 
             this.Template.betTeam = betTeam + liveScore;
-
-            this.Template.homeTeam = string.Join(null, new string[] { Apollo.Age.Resources.BetList.numbergameno, "&nbsp;", ticket.MatchCode });
+            this.Template.homeTeam = string.Join(null, new string[] { BetList.numbergameno, "&nbsp;", ticket.MatchCode });
         }
     }
 }
