@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2014.1.16">Created</change>
 // </history>
+
 namespace Apollo.BetList.Core.Builder.ResultBuilder
 {
     using Apollo.BetList.Core.Entities;
@@ -27,6 +28,7 @@ namespace Apollo.BetList.Core.Builder.ResultBuilder
         public IRichTextString RenderRTF(ITicket ticket, BetListPage page, RTFHelper rtfHelper)
         {
             string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+
             if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
                 || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
                 || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose

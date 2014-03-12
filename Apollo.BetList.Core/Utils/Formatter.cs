@@ -51,30 +51,10 @@ namespace Apollo.BetList.Core.Utils
         public const string DECIMAL_FORMAT4_VI = "{0:#.##0,####}";
         public const string DECIMAL_FORMAT40_VI = "{0:#.##0,0000}";
 
-        public const string TIME_FORMAT_MILISEC = "HH:mm:ss fff";
-
-        private static System.Globalization.CultureInfo _engCult = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-        private static System.Globalization.CultureInfo _viCult = System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN");
-        private static CultureInfo cult = new System.Globalization.CultureInfo("en-US");
+        private static CultureInfo cult = new CultureInfo("en-US");
 
         public Formatter()
         {
-        }
-
-        public static CultureInfo EngCult
-        {
-            get
-            {
-                return _engCult;
-            }
-        }
-
-        public static CultureInfo ViCult
-        {
-            get
-            {
-                return _viCult;
-            }
         }
 
         #region Decimal
@@ -554,50 +534,6 @@ namespace Apollo.BetList.Core.Utils
         }
 
         /// <summary>
-        /// Formats the date time22 DDMM.
-        /// </summary>
-        /// <param name="dt">The a date.</param>
-        /// <returns>System String.</returns>
-        public static string FormatDateTime22DDMM(object dt)
-        {
-            if (Convert.IsDBNull(dt) || dt == null)
-            {
-                return string.Empty;
-            }
-
-            try
-            {
-                return Convert.ToDateTime(dt).ToString("dd/MM hh:mm");
-            }
-            catch
-            {
-                return "Error";
-            }
-        }
-
-        /// <summary>
-        /// Formats the time millisecond.
-        /// </summary>
-        /// <param name="dt">The object.</param>
-        /// <returns>System String.</returns>
-        public static string FormatTimeMiliSec(object dt)
-        {
-            if (Convert.IsDBNull(dt) || dt == null)
-            {
-                return string.Empty;
-            }
-
-            try
-            {
-                return Convert.ToDateTime(dt).ToString(TIME_FORMAT_MILISEC);
-            }
-            catch
-            {
-                return "Error";
-            }
-        }
-
-        /// <summary>
         /// Formats the date en.
         /// </summary>
         /// <param name="dt">The object.</param>
@@ -815,13 +751,11 @@ namespace Apollo.BetList.Core.Utils
         /// <param name="betTypeId">The bet type identifier.</param>
         /// <param name="handicapValue">The handicap value.</param>
         /// <returns>Handicap formatted.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public static string FormatHandicap(int betTypeId, decimal handicapValue)
         {
             var handicapBetType = 1;
             var _1stHandicapBetType = 7;
             var isHandicap = betTypeId == handicapBetType || betTypeId == _1stHandicapBetType;
-
             var handicapSign = string.Empty;
 
             if (isHandicap && handicapValue != 0)
@@ -837,7 +771,11 @@ namespace Apollo.BetList.Core.Utils
             }
             else
             {
-                return string.Format(" {0}{1}/{2}", handicapSign, Formatter.DecFormat(handicapValue - (decimal)0.25, 1, true), Formatter.DecFormat(handicapValue + (decimal)0.25, 1, true));
+                return string.Format(
+                    " {0}{1}/{2}", 
+                    handicapSign, 
+                    Formatter.DecFormat(handicapValue - (decimal)0.25, 1, true), 
+                    Formatter.DecFormat(handicapValue + (decimal)0.25, 1, true));
             }
         }
     }

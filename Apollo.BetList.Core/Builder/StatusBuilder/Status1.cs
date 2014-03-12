@@ -15,7 +15,6 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
 
     /// <summary>
@@ -100,7 +99,6 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
             Render(ticket, ticketData);
 
             rtfHelper.RTFRenderer.AddText(Template.result, rtfHelper.PosFont);
-
             rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", ticket.IP }), rtfHelper.BlueNoBold);
 
             IRichTextString rtfStatus = rtfHelper.RTFRenderer.Render();

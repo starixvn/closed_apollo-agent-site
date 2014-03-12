@@ -7,6 +7,7 @@
 //   <change who="Anybody" date="2013.6.30">Created</change>
 //   <change who="Anders.Le" date="2013.6.30">Valid stylecop changing</change>
 // </history>
+
 using System;
 using System.Globalization;
 using System.Web;
@@ -209,39 +210,6 @@ public class Formater
     #endregion
 
     #region Number
-        
-    public const string TIME_FORMAT_MILISEC = "HH:mm:ss fff";
-
-    private static System.Globalization.CultureInfo _engCult = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-    private static System.Globalization.CultureInfo _viCult = System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN");
-
-    /// <summary>
-    /// Gets the English culture information.
-    /// </summary>
-    /// <value>
-    /// The English culture key.
-    /// </value>
-    public static CultureInfo EngCult
-    {
-        get
-        {
-            return _engCult;
-        }
-    }
-
-    /// <summary>
-    /// Gets the vi cult.
-    /// </summary>
-    /// <value>
-    /// The vi cult.
-    /// </value>
-    public static CultureInfo ViCult
-    {
-        get
-        {
-            return _viCult;
-        }
-    }
 
     /// <summary>
     /// Format number with 1 decimal, automatically remove redundant '0'.
@@ -537,7 +505,7 @@ public class Formater
     }
 
     /// <summary>
-    /// Format short date with no zero leading.    
+    /// Format short date with no zero leading.
     /// </summary>
     /// <param name="dt">The object date.</param>
     /// <returns>Return a date with time that formatted.</returns>
@@ -552,7 +520,7 @@ public class Formater
     }
 
     /// <summary>
-    /// Format long date with no zero leading.    
+    /// Format long date with no zero leading.
     /// </summary>
     /// <param name="dt">The object date.</param>
     /// <returns>Return a date with time that formatted.</returns>
@@ -564,22 +532,6 @@ public class Formater
         }
 
         return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss}", dt);
-    }
-
-    /// <summary>
-    /// Format long date time with no zero leading.
-    /// 5/23/2013 11:10:20 AM.
-    /// </summary>
-    /// <param name="dt">The object date.</param>
-    /// <returns>Return a date with time that formatted.</returns>
-    public static string FormatLongDateTimeNoZeroLeading(object dt)
-    {
-        if (Convert.IsDBNull(dt) || dt == null)
-        {
-            return string.Empty;
-        }
-
-        return string.Format(cult, "{0:yyyy-MM-dd hh:mm:ss tt}", dt);
     }
 
     /// <summary>
@@ -629,50 +581,6 @@ public class Formater
         try
         {
             return Convert.ToDateTime(dt).ToString("MM-dd<br/>hh:mmt").ToLower();
-        }
-        catch
-        {
-            return "Error";
-        }
-    }
-
-    /// <summary>
-    /// Formats the date time22 DDMM.
-    /// </summary>
-    /// <param name="dt">The object date.</param>
-    /// <returns>Return a day, month and time that formatted.</returns>
-    public static string FormatDateTime22DDMM(object dt)
-    {
-        if (Convert.IsDBNull(dt) || dt == null)
-        {
-            return string.Empty;
-        }
-
-        try
-        {
-            return Convert.ToDateTime(dt).ToString("dd/MM hh:mm");
-        }
-        catch
-        {
-            return "Error";
-        }
-    }
-
-    /// <summary>
-    /// Formats the time millisecond.
-    /// </summary>
-    /// <param name="dt">The object date.</param>
-    /// <returns>Return a time that formatted.</returns>
-    public static string FormatTimeMiliSec(object dt)
-    {
-        if (Convert.IsDBNull(dt) || dt == null)
-        {
-            return string.Empty;
-        }
-
-        try
-        {
-            return Convert.ToDateTime(dt).ToString(TIME_FORMAT_MILISEC);
         }
         catch
         {

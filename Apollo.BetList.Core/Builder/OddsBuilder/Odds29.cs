@@ -43,15 +43,8 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         public Odds_Template Render(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
         {
             string _status = ticket.Status.ToLower();
-            if (_status.Equals(BetStatus.Running))
-            {
-                this.Template.odds = "-";
-            }
-            else
-            {
-                this.Template.odds = ConvertByBetType.Odds(ticket.MOdds);
-            }
 
+            this.Template.odds = _status.Equals(BetStatus.Running) ? "-" : ConvertByBetType.Odds(ticket.MOdds);
             this.Template.oddsType = funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
 
             return this.Template;
@@ -95,6 +88,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
 
             var rtfOdds = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return rtfOdds;
         }
     }

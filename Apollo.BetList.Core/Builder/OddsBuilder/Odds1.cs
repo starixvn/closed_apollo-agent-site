@@ -102,6 +102,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
 
             var rtfOdds = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return rtfOdds;
         }
     }

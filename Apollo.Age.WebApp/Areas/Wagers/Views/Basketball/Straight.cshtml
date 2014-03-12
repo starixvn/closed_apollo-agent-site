@@ -7,9 +7,7 @@
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt @ViewBag.SportName straight @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblHandicapFC
-        , Lang.lblOverUnder
-        , Lang.lblOddEven)
+    @WagerHelper.RederHeaderColumn(Lang.lblHandicapFC, Lang.lblOverUnder, Lang.lblOddEven)
     @*/RenderHeader*@
     <tbody>
         @Model.List(

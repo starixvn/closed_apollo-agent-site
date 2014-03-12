@@ -17,6 +17,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
     using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
+    using Apollo.Age.Resources;
 
     /// <summary>
     /// Win Place bet type.
@@ -172,6 +173,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
 
             int startIndex = source.IndexOf(startTag) + startTag.Length;
             int endIndex = source.IndexOf(endTag, startIndex);
+
             return source.Substring(startIndex, endIndex - startIndex);
         }
 
@@ -185,21 +187,21 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
             switch (betStatus)
             {
                 case BetStatus.Draw:
-                    return Apollo.Age.Resources.BetList.draw;
+                    return BetList.draw;
                 case BetStatus.Lose:
-                    return Apollo.Age.Resources.BetList.lose;
+                    return BetList.lose;
                 case BetStatus.Refund:
-                    return Apollo.Age.Resources.BetList.refund;
+                    return BetList.refund;
                 case BetStatus.Reject:
-                    return Apollo.Age.Resources.BetList.reject;
+                    return BetList.reject;
                 case BetStatus.Running:
-                    return Apollo.Age.Resources.BetList.running;
+                    return BetList.running;
                 case BetStatus.Void:
-                    return Apollo.Age.Resources.BetList.voided;
+                    return BetList.voided;
                 case BetStatus.Waiting:
-                    return Apollo.Age.Resources.BetList.waiting;
+                    return BetList.waiting;
                 case BetStatus.Won:
-                    return Apollo.Age.Resources.BetList.won;
+                    return BetList.won;
                 default:
                     return string.Empty;
             }

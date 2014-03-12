@@ -19,8 +19,6 @@ namespace Apollo.BetList.Core.Entities
     [Serializable]
     public class TicketData : ITicketData
     {
-        #region ITicketData Members
-
         /// <summary>
         /// Gets or sets the reference no.
         /// </summary>
@@ -92,7 +90,5 @@ namespace Apollo.BetList.Core.Entities
         /// The agent PT.
         /// </value>
         public decimal AgentPT { get; set; }
-
-        #endregion ITicketData Members
     }
 }

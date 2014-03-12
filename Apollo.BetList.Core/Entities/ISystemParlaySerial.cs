@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.11.5">Created</change>
 // </history>
+
 namespace Apollo.BetList.Core.Entities
 {
     public interface ISystemParlaySerial

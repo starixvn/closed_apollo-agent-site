@@ -12,7 +12,6 @@
 namespace Apollo.BetList.Core.Builder
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Builder.AgentCommBuilder;
@@ -28,7 +27,6 @@ namespace Apollo.BetList.Core.Builder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Utils;
     using Apollo.BetList.Core.Utils.NPOIExt;
-    using Apollo.BetList.Core.Utils.StringExt;
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
@@ -229,6 +227,7 @@ namespace Apollo.BetList.Core.Builder
             _worksheet.DisplayGridlines = false;
             _worksheet.DefaultRowHeight = singleRowHeight;
             _reportColumnsNum = numberOfColumns;
+
             return this;
         }
 
@@ -250,6 +249,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
             var cellStyle = _workbook.CreateCellStyle();
+
             cellStyle.FillForegroundColor = HSSFColor.LIGHT_BLUE.index;
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.LEFT;
@@ -313,6 +313,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
             var cellStyle = _workbook.CreateCellStyle();
+
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
@@ -558,6 +559,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddStake(ITicket ticket)
         {
             var cellStyle = _workbook.CreateCellStyle();
+
             cellStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
             cellStyle.Alignment = HorizontalAlignment.RIGHT;
             cellStyle.VerticalAlignment = VerticalAlignment.CENTER;
@@ -745,12 +747,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return choice.</returns>
         private IChoice CreateChoiceBuilder(int bettype)
         {
-            string[] buildChoice = new string[]
-                                            {
-                                                ChoiceBuilderNameSpace,
-                                                ".Choice",
-                                                bettype.ToString()
-                                            };
+            string[] buildChoice = new string[] { ChoiceBuilderNameSpace, ".Choice", bettype.ToString() };
             string typeName = string.Join(null, buildChoice);
 
             Type type = Type.GetType(typeName);
@@ -778,12 +775,7 @@ namespace Apollo.BetList.Core.Builder
                 bettype = 1101;
             }
 
-            string[] choiceBuilder = new string[]
-                                            {
-                                                OddsBuilderNameSpace,
-                                                ".Odds",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { OddsBuilderNameSpace, ".Odds", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -805,12 +797,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return stake.</returns>
         private IStake CreateStakeBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                StakeBuilderNameSpace,
-                                                ".Stake",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { StakeBuilderNameSpace, ".Stake", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -832,12 +819,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return status.</returns>
         private IStatus CreateStatusBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                StatusBuilderNameSpace,
-                                                ".Status",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { StatusBuilderNameSpace, ".Status", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -861,12 +843,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private ITrans CreateTransBuilder(int bettype)
         {
-            string[] choiceBuilder = new string[]
-                                            {
-                                                TransBuilderNameSpace,
-                                                ".Trans",
-                                                bettype.ToString()
-                                            };
+            string[] choiceBuilder = new string[] { TransBuilderNameSpace, ".Trans", bettype.ToString() };
             string typeName = string.Join(null, choiceBuilder);
 
             Type type = Type.GetType(typeName);
@@ -890,12 +867,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private IAgentShare CreateAgentShareBuilder(int bettype)
         {
-            string[] agentShareBuilder = new string[]
-                                            {
-                                                AgentShareBuilderNamespace,
-                                                ".AgentShare",
-                                                bettype.ToString()
-                                            };
+            string[] agentShareBuilder = new string[] { AgentShareBuilderNamespace, ".AgentShare", bettype.ToString() };
             string typeName = string.Join(null, agentShareBuilder);
 
             Type type = Type.GetType(typeName);
@@ -919,12 +891,7 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         private IAgentComm CreateAgentCommBuilder(int bettype)
         {
-            string[] agentCommBuilder = new string[]
-                                            {
-                                                AgentCommBuilderNamespace,
-                                                ".AgentComm",
-                                                bettype.ToString()
-                                            };
+            string[] agentCommBuilder = new string[] { AgentCommBuilderNamespace, ".AgentComm", bettype.ToString() };
             string typeName = string.Join(null, agentCommBuilder);
 
             Type type = Type.GetType(typeName);

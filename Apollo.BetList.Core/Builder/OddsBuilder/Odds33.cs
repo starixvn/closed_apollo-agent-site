@@ -15,6 +15,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
@@ -122,30 +123,17 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
                         oddsPlace = Formatter.FormatNumber3(placeTicket.Odds);
                     }
 
-                    oddsWinMarkup = string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", "<b>", oddsWin, "</b>" });
-                    oddsPlaceMarkup = string.Join(null, new string[] { Apollo.Age.Resources.BetList.place, ": ", "<b>", oddsPlace, "</b>" });
+                    oddsWinMarkup = string.Join(null, new string[] { BetList.win, ": ", "<b>", oddsWin, "</b>" });
+                    oddsPlaceMarkup = string.Join(null, new string[] { BetList.place, ": ", "<b>", oddsPlace, "</b>" });
 
                     string status = ticket.Status.ToLower();
 
                     if (status.Equals(BetStatus.Won) || status.Equals(BetStatus.Lose))
                     {
-                        odds_win = string.Join(
-                                                    null,
-                                                    "<span class='blue' style='font-weight:normal;'>",
-                                                        oddsWinMarkup,
-                                                        "</span>");
+                        odds_win = string.Join(null, "<span class='blue' style='font-weight:normal;'>", oddsWinMarkup, "</span>");
+                        odds_place = string.Join(null, "<span class='' style='font-weight:normal;'>", oddsPlaceMarkup, "</span>");
 
-                        odds_place = string.Join(
-                                                    null,
-                                                   "<span class='' style='font-weight:normal;'>",
-                                                        oddsPlaceMarkup,
-                                                        "</span>");
-
-                        this.Template.odds = string.Join(
-                                                        null,
-                                                        odds_win,
-                                                            "<br>",
-                                                            odds_place);
+                        this.Template.odds = string.Join(null, odds_win, "<br>", odds_place);
                     }
                     else
                     {
@@ -219,15 +207,16 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
             var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
 
             // Add Win
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": " }), rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { BetList.win, ": " }), rtfHelper.PosFont);
             rtfNumberRenderer.Render(odds_WinVal);
 
             // Add Place
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", Apollo.Age.Resources.BetList.place, ": " }), rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", BetList.place, ": " }), rtfHelper.PosFont);
             rtfNumberRenderer.Render(odds_PlaceVal);
 
             var rtfOdds = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
+
             return rtfOdds;
         }
 
@@ -244,6 +233,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
 
             int startIndex = source.IndexOf(startTag) + startTag.Length;
             int endIndex = source.IndexOf(endTag, startIndex);
+
             return source.Substring(startIndex, endIndex - startIndex);
         }
     }

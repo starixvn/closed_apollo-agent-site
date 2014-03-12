@@ -18,8 +18,6 @@ namespace Apollo.BetList.Core.Entities
     [Serializable]
     public class Ticket : ITicket
     {
-        #region ITicket Members
-
         public string UGroup { get; set; }
 
         public int SportTypeId { get; set; }
@@ -135,7 +133,5 @@ namespace Apollo.BetList.Core.Entities
         public int HaftTimeHomeScore { get; set; }
 
         public int HaftTimeAwayScore { get; set; }
-
-        #endregion ITicket Members
     }
 }
