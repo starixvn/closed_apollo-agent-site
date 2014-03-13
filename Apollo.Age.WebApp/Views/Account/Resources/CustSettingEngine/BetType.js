@@ -15,9 +15,9 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting n
 Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1   
-    'use strict'; 
+    'use strict';
     var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-    box = document.createElement("DIV");
+    var box = document.createElement("DIV");
     var currentPt = this.pt;
     // Bet type header
     var header = document.createElement("DIV");
@@ -114,7 +114,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     //// Preset K Change Affect to Max K
     presetSpinBox.input.onchange = function (event) {
         var maxValue = maxSpinBox.getValue();
-        var minValue = minSpinBox.getValue();
         var presetValue = presetSpinBox.getValue();
         var presetCorrectValue = presetValue;
         if (presetValue > currentPt.MaxPresetSpan) {
@@ -160,7 +159,6 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
             return;
         }
         var maxValue = maxSpinBox.getValue();
-        var minValue = minSpinBox.getValue();
 
         currentPt.MaxMinSpan = maxValue;
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
@@ -226,8 +224,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_2 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     'use strict';
-    var currentPt = this.pt;
-    box = document.createElement("DIV");
+    var box = document.createElement("DIV");
 
     // Bet type header
     var header = document.createElement("DIV");
@@ -742,7 +739,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
     tableShareSetting.appendChild(boxTBody);
 
     // On member
-    trSetting = document.createElement("TR");
+    var trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting);
     var maxLabel = document.createElement("TD");
     maxLabel.innerHTML = Language.PERCENT_IN_MEMBER;
@@ -797,8 +794,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
 Fanex.CustSetting.BetType.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
     'use strict';
-    box = document.createElement("DIV");
-    var currentPt = this.pt;
+    var box = document.createElement("DIV");
     // Bet type header
     var header = document.createElement("DIV");
     header.innerHTML = this.name;
@@ -843,7 +839,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
     tableShareSetting.className = "share-setting-table";
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
-    trSetting = document.createElement("TR");
+    var trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting);
 
     var maxLabel = document.createElement("TD");
@@ -874,8 +870,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_2_4 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_4 =
 Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
     'use strict';
-    box = document.createElement("DIV");
-    var currentPt = this.pt;
+    var box = document.createElement("DIV");
     // Bet type header
     var header = document.createElement("DIV");
     header.innerHTML = this.name;
@@ -916,8 +911,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
 
 Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
     'use strict';
-    var currentPt = this.pt;
-    box = document.createElement("DIV");
+    var box = document.createElement("DIV");
 
     // Bet type header
     var header = document.createElement("DIV");
@@ -941,8 +935,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
 
 Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
     'use strict';
-    box = document.createElement("DIV");
-    var currentPt = this.pt;
+    var box = document.createElement("DIV");
     // Bet type header
     var header = document.createElement("DIV");
     header.innerHTML = this.name;
@@ -1061,7 +1054,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
 
-    trSetting = document.createElement("TR");
+    var trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting);
     var uplineSettingLabel = document.createElement("TD");
     uplineSettingLabel.innerHTML = Language.UPLINE_SETTING;
@@ -1099,7 +1092,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
     var boxTBody = document.createElement("TBODY");
     tableShareSetting.appendChild(boxTBody);
 
-    trSetting = document.createElement("TR");
+    var trSetting = document.createElement("TR");
     boxTBody.appendChild(trSetting);
 
     // on member
@@ -1111,7 +1104,6 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
     maxLabel.className = "share-setting-label";
     trSetting.appendChild(maxLabel);
 
-    var maxSelected = currentPt.Value;
     var maxContainer = document.createElement("TD");
     maxContainer.className = "share-setting-value";
     maxContainer.innerHTML = currentPt.Value;

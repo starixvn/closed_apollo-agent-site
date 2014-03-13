@@ -5,6 +5,7 @@
 /*global BASELANGUAGES*/
 /*global ACCOUNTLIST*/
 'use strict';
+/* jshint maxlen:false */
 var MEMBERLIST = (function ($) {
     return {
         AgentId: null,

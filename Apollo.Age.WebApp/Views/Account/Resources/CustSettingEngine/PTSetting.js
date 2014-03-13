@@ -1,5 +1,5 @@
 ﻿/*global Language*/
-
+/* jshint maxlen:false */
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }

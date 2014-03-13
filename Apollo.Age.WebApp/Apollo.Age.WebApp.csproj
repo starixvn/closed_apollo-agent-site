@@ -266,7 +266,6 @@
     <Content Include="Views\Account\Resources\ViewAccountDetails.js" />
     <Content Include="Views\Account\Resources\AccountInfo.js" />
     <Content Include="Views\Account\Resources\AccountList.js" />
-    <Content Include="Views\Account\Resources\AgentList.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BettingLimit.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BetType.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BetTypeGroup.js" />

@@ -2,7 +2,7 @@
 /// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
 /*global Language*/
-
+/* jshint maxlen:false */
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
@@ -13,6 +13,7 @@ if (typeof (Validators) === 'undefined') { // Require Validators library
     alert('Require validators library');
 }
 Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
+    'use strict';
     this.hasNumberGameSection = hasNumberGameSection || false;
     this.spinBoxItems = [];
     this.items = source.CommissionItems;
@@ -28,7 +29,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
         var editItems = [];
-
 
         if (currentContext.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             var currentGroupAValue = spinBoxItems[0].getValue();
@@ -115,7 +115,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     });
                 }
             }
-
         }
 
         if (editItems.length === 0) {
@@ -165,7 +164,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             //                this.currentGroup = this.groupSelect.value;
             //                var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
             //            }
-
 
             if (!spinBoxItems[0].isValid()) {
                 return false;
@@ -296,9 +294,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
         }
 
-
         trBox.appendChild(tdValue);
-
     };
     this.RenderPlayerCom = function (isEditNonDirectMember, textName, discount, uplineDiscount, disable) {
         var trBox = document.createElement("TR");
@@ -306,7 +302,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         tdTextBox.innerHTML = textName;
         tdTextBox.className = "group-name";
         trBox.appendChild(tdTextBox);
-
 
         var tdValue = document.createElement("TD");
         tdValue.className = "commission-select member-com";
@@ -333,7 +328,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         }
         trBox.appendChild(tdValue);
 
-
         return trBox;
     };
     this.Render = function (owner) {
@@ -351,7 +345,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         if (context.TargetRoleId === Fanex.CustSetting.RoleType.Member) {
             saveButton.id = "member-commission-info-button";
         } else if (context.TargetRoleId === Fanex.CustSetting.RoleType.MainShareHolder) {
-
             saveButton.id = "mainshareholder-commission-info-button";
         }
         else {
@@ -371,8 +364,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         bodyContainer.appendChild(box);
 
         var boxTBody = document.createElement("TBODY");
-
-
 
         var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId !== Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
         if (context.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
@@ -401,7 +392,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         else {
             box.className = "commission-setting-table-player";
 
-
             //// Header Text
             var headerTHead = document.createElement("THEAD");
             var headerTr = document.createElement("TR");
@@ -419,8 +409,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             headerTr.appendChild(tdComName);
             headerTHead.appendChild(headerTr);
             box.appendChild(headerTHead);
-
-
 
             //// User Group
             var trGroup = document.createElement("TR");
@@ -497,7 +485,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
                 };
             }
-
 
             boxTBody.appendChild(trGroup);
             box.appendChild(boxTBody);

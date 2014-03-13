@@ -3,6 +3,7 @@
 * url http://remysharp.com/tag/marquee
 */
 'use strict';
+/* jshint maxlen:false */
 (function ($) {
     $.fn.marquee = function (klass) {
         var newMarquee = [],

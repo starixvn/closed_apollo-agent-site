@@ -1,5 +1,5 @@
 ﻿/*global Language*/
-
+/* jshint maxlen:false */
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
     Fanex.CloneObject = function (obj) {
@@ -64,7 +64,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         if (isNaN(number)) {
             number = String.Empty;
         }
-        sign = (number === (number = Math.abs(number)));
+        sign = (parseFloat(number) === (number = Math.abs(number)));
         number = Math.floor(number * 100 + 0.50000000001);
         number = Math.floor(number / 100).toString();
         for (var i = 0; i < Math.floor((number.length - (1 + i)) / 3); i++) {

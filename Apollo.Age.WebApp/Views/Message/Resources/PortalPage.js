@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global APOLLO*/
 'use strict';
+/* jshint maxlen:false */
 var MessagePortalPage = (function ($) {
     return {
         timerID: null,

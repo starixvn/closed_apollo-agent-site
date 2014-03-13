@@ -1,6 +1,7 @@
 ﻿/*global APOLLO*/
 /*global LANGUAGES*/
 'use strict';
+/* jshint maxlen:false */
 var OUTSTANDING = (function ($) {
     return {
         ddlSport: null,

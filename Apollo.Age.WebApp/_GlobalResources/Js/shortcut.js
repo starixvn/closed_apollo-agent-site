@@ -1,10 +1,14 @@
 /**
- * http://www.openjs.com/scripts/events/keyboard_shortcuts/
- * Version : 2.01.B
- * By Binny V A
- * License : BSD
- */
+* http://www.openjs.com/scripts/events/keyboard_shortcuts/
+* Version : 2.01.B
+* By Binny V A
+* License : BSD
+*/
 'use strict';
+/* jshint camelcase:false */
+/* jshint maxstatements:false */
+/* global code */
+
 shortcut = {
     'all_shortcuts': {}, //All the shortcuts are stored in this array
     'add': function (shortcut_combination, callback, opt) {
@@ -147,11 +151,9 @@ shortcut = {
                 if (k === 'ctrl' || k === 'control') {
                     kp++;
                     modifiers.ctrl.wanted = true;
-
                 } else if (k === 'shift') {
                     kp++;
                     modifiers.shift.wanted = true;
-
                 } else if (k === 'alt') {
                     kp++;
                     modifiers.alt.wanted = true;
@@ -160,10 +162,8 @@ shortcut = {
                     modifiers.meta.wanted = true;
                 } else if (k.length > 1) { //If it is a special key
                     if (special_keys[k] === code) { kp++; }
-
                 } else if (opt['keycode']) {
                     if (opt['keycode'] === code) { kp++; }
-
                 } else { //The special keys did not match
                     if (character === k) { kp++; }
                     else {

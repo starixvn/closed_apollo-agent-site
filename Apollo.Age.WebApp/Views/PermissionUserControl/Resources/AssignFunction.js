@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global APOLLO*/
 /*global Language*/
+/* jshint maxlen:false */
 'use strict';
 var AssignFunction = (function ($) {
     return {
@@ -90,7 +91,10 @@ var AssignFunction = (function ($) {
                 return;
             }
 
-            AssignFunction.isApplyDownLine = AssignFunction.checkHasNewPermission(AssignFunction.unCheckReadValue, AssignFunction.unCheckHostValue, funcRead, funcHost);
+            AssignFunction.isApplyDownLine = AssignFunction.checkHasNewPermission(
+            AssignFunction.unCheckReadValue,
+            AssignFunction.unCheckHostValue,
+            funcRead, funcHost);
 
             if (AssignFunction.isApplyDownLine && AssignFunction.isMaster === "1") {
                 var confirmMess = $("#confirm-mess");
@@ -128,9 +132,9 @@ var AssignFunction = (function ($) {
                 dataType: 'JSON',
                 data: { FuncRead: funcRead, FuncHost: funcHost, AgentUserId: AssignFunction.agentUserId, IsApplyDownLine: isApplyDownLine },
                 success: function (res) {
-                    if (res.ErrCode === "-1") {
+                    if (res.ErrCode === -1) {
                         window.location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
-                    } else if (res.ErrCode !== "0") {
+                    } else if (res.ErrCode !== 0) {
                         APOLLO.showMessage(res.ErrMsg, 'error');
                     }
                     else {

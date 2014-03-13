@@ -2,10 +2,10 @@
 /*global Language*/
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
-	Fanex = {};
+    Fanex = {};
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
-	alert('Require Fanex.CustSetting namespace');
+    alert('Require Fanex.CustSetting namespace');
 }
 // Function name format Render_[RoleId_]TargetRoleId_Form
 // [RoleId_] is optional
@@ -40,8 +40,6 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     'use strict';
-    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-    var isViewMode = currentContext.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId === Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
 
     var emptyLabel = document.createElement("DIV");

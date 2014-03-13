@@ -1,5 +1,7 @@
 ﻿/*global APOLLO*/
 /*global LANGUAGES*/
+/*global ApoRes*/
+/*global _page*/
 
 'use strict';
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright) {
@@ -527,7 +529,7 @@ if (typeof jQuery !== "undefined") {
                 var obToDate = $('#toDate');
                 var obSportType = $('#sportTypes');
                 var obBetType = $('#betTypes');
-
+                var url = '';
                 if (obFromDate.length) {
                     fromDate = $("#fromDate").val();
                 }
@@ -545,7 +547,7 @@ if (typeof jQuery !== "undefined") {
                 }
 
                 if (type === "report") {
-                    var url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("data-agentid")
+                    url = APOLLO.resolveUrl('Reports/AgentWinLoss?AgentId=' + $(this).attr("data-agentid")
 													+ "&AgentName=" + $(this).html()
 													+ '&FromDate=' + fromDate
 													+ '&ToDate=' + toDate
@@ -553,12 +555,12 @@ if (typeof jQuery !== "undefined") {
 													+ '&Bettypes=' + betType);
                     location.href = url;
                 } else if (type === "outstanding") {
-                    var url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("data-agentid")
+                    url = APOLLO.resolveUrl('Reports/Outstanding?agentId=' + $(this).attr("data-agentid")
 													+ '&Sporttypes=' + sportType
 													+ '&Bettypes=' + betType);
                     location.href = url;
                 }
             }
         });
-    });        //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    });         //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
