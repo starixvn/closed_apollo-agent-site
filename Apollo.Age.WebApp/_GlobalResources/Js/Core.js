@@ -324,9 +324,9 @@ if (typeof jQuery !== 'undefined') {
 						hide: null
 						})
 						.click(function () {
-						APOLLO.openDialog($this, title, { modal: false });
-						$('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
-						$('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
+							APOLLO.openDialog($this, title, { modal: false });
+							$('.ui-widget-header').css({ 'background': '#4A7AA9', 'color': '#fff', 'border-color': '#fff' });
+							$('.ui-widget-header .ui-state-default').css({ 'border-color': '#395E82', 'background-color': '#fff' });
 						});
                     }
                 });
@@ -552,14 +552,8 @@ String.prototype.replaceAll = function (token, newToken, ignoreCase) {
         if (ignoreCase) {
             _token = token.toLowerCase();
 
-            while ((
-				i = str.toLowerCase().indexOf(
-					token, i >= 0 ? i + newToken.length : 0
-				)) !== -1
-			) {
-                str = str.substring(0, i) +
-					newToken +
-					str.substring(i + token.length);
+            while ((i = str.toLowerCase().indexOf(token, i >= 0 ? i + newToken.length : 0)) !== -1) {
+                str = str.substring(0, i) + newToken + str.substring(i + token.length);
             }
         } else {
             return this.split(token).join(newToken);
@@ -598,9 +592,9 @@ String.prototype.Format = function (args) {
 
 String.prototype.FormatNumber = function (number) { // Format a number to 1,234,567.89
     number += String.Empty;
-    x = number.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : String.Empty;
+    var x = number.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : String.Empty;
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
         x1 = x1.replace(rgx, '$1' + ',' + '$2');

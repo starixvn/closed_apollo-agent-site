@@ -47,7 +47,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
 
-    // Upline setting lable
+    // Upline setting label
     var uplineSettingLabel = document.createElement("DIV");
     uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
     uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;

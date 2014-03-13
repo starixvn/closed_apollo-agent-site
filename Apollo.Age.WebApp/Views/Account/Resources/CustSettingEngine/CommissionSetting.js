@@ -3,6 +3,8 @@
 /// <reference path="PTSetting.js" />
 /*global Language*/
 /* jshint maxlen:false */
+'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
@@ -131,7 +133,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.Validate = function () {
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) { return true; }
 
-        var items = this.items;
         var spinBoxItems = this.spinBoxItems;
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
@@ -154,7 +155,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 return false;
             }
             if (this.hasNumberGameSection) {
-                if (!spinBoxItems[6].isValid()) { return false; }
+            	if (!spinBoxItems[6].isValid()) {
+            		return false; 
+				}
             }
         } else {
             //            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
@@ -470,7 +473,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
             //// Onchange Group
             var self = this;
-            var saveItems = this.items;
+
             if (!isEditNonDirectMember && context.CanEditComGroup) {
                 groupSelect.onchange = function (event) {
                     var currentValue = this.value;
