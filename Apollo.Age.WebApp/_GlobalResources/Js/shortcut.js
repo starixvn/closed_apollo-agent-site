@@ -25,7 +25,6 @@ shortcut = {
 
         var ele = opt.target;
         if (typeof opt.target === 'string') { ele = document.getElementById(opt.target); }
-        var ths = this;
         shortcut_combination = shortcut_combination.toLowerCase();
 
         //The function to be called at keypress

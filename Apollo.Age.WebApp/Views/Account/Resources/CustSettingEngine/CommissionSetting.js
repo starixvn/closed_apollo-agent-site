@@ -3,6 +3,8 @@
 /// <reference path="PTSetting.js" />
 /*global Language*/
 
+'use strict';
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }
@@ -28,7 +30,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         var items = this.items;
         var spinBoxItems = this.spinBoxItems;
         var editItems = [];
-
 
         if (currentContext.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             var currentGroupAValue = spinBoxItems[0].getValue();
@@ -115,7 +116,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     });
                 }
             }
-
         }
 
         if (editItems.length === 0) {
@@ -132,7 +132,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
     this.Validate = function () {
         if (Fanex.CustSetting.CURRENT_CONTEXT.FormId === Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT) { return true; }
 
-        var items = this.items;
         var spinBoxItems = this.spinBoxItems;
 
         if (Fanex.CustSetting.CURRENT_CONTEXT.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
@@ -155,7 +154,9 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                 return false;
             }
             if (this.hasNumberGameSection) {
-                if (!spinBoxItems[6].isValid()) { return false; }
+            	if (!spinBoxItems[6].isValid()) {
+            		return false; 
+				}
             }
         } else {
             //            if (!Fanex.CustSetting.CURRENT_CONTEXT.CanEditComGroup) {
@@ -165,7 +166,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             //                this.currentGroup = this.groupSelect.value;
             //                var currentSelectedGroup = this.GetUplineGroupDiscountForMember(this.currentGroup);
             //            }
-
 
             if (!spinBoxItems[0].isValid()) {
                 return false;
@@ -296,7 +296,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
         }
 
-
         trBox.appendChild(tdValue);
 
     };
@@ -332,7 +331,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             }
         }
         trBox.appendChild(tdValue);
-
 
         return trBox;
     };
@@ -372,8 +370,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
         var boxTBody = document.createElement("TBODY");
 
-
-
         var isEditNonDirectMember = (context.FormId >= Fanex.CustSetting.FormTypes.EDIT_NON_DIRECT && context.FormId !== Fanex.CustSetting.FormTypes.EDIT_MULTIPLE);
         if (context.TargetRoleId !== Fanex.CustSetting.RoleType.Member) {
             box.className = "commission-setting-table";
@@ -401,7 +397,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
         else {
             box.className = "commission-setting-table-player";
 
-
             //// Header Text
             var headerTHead = document.createElement("THEAD");
             var headerTr = document.createElement("TR");
@@ -419,8 +414,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
             headerTr.appendChild(tdComName);
             headerTHead.appendChild(headerTr);
             box.appendChild(headerTHead);
-
-
 
             //// User Group
             var trGroup = document.createElement("TR");
@@ -482,7 +475,7 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
 
             //// Onchange Group
             var self = this;
-            var saveItems = this.items;
+
             if (!isEditNonDirectMember && context.CanEditComGroup) {
                 groupSelect.onchange = function (event) {
                     var currentValue = this.value;
@@ -497,7 +490,6 @@ Fanex.CustSetting.CommissionSetting = function (source, hasNumberGameSection) {
                     self.addEventConstrain(comSpinBox, selectedCom.Upline.Discount);
                 };
             }
-
 
             boxTBody.appendChild(trGroup);
             box.appendChild(boxTBody);

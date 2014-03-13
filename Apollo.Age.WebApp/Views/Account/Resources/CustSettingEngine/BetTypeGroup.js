@@ -40,8 +40,6 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     'use strict';
-    var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
-    var isViewMode = currentContext.FormId === Fanex.CustSetting.FormTypes.VIEW_SETTING || currentContext.FormId === Fanex.CustSetting.FormTypes.SHADOW_VIEW;
     var box = document.createElement("DIV");
 
     var emptyLabel = document.createElement("DIV");
@@ -49,7 +47,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
     emptyLabel.className = "group-label";
     box.appendChild(emptyLabel);
 
-    // Upline setting lable
+    // Upline setting label
     var uplineSettingLabel = document.createElement("DIV");
     uplineSettingLabel.innerHTML = Language.UPLINE_SETTINGTEXT;
     uplineSettingLabel.title = Language.UPLINE_SETTINGTEXT;
