@@ -14,7 +14,7 @@ html, body {
 	margin-top: 1px;	
 	width: 100%;
 
-	td {		
+	td {
 		border: 1px solid #000;
 		border-width: 1px 0px 1px 1px;
 		text-align: center;
@@ -24,11 +24,11 @@ html, body {
 			a { color: #FFFF00; }
 		}
 
-		&.active {		
+		&.active {
 			border-top: 2px solid @secondColor;
 			border-bottom: 1px solid @white;
 			background-color: @white;
-						
+
 			a {
 				color: @secondColor;
 				padding: 8px 0 7px;
@@ -43,7 +43,6 @@ html, body {
 				a { text-decoration: none }
 			}
 		}
-		
 
 		&:first-child { border-left: 0 }
 		&:last-child { border-right: 0 }
@@ -61,7 +60,7 @@ html, body {
 				margin: -2px 3px 0 0;
 				background-image: url(../../../_globalResources/css/img/glyphicons-halflings-white.png);
 			}
-		}		
+		}
 	}
 }
 
@@ -77,7 +76,7 @@ html, body {
 			display: block;
 			padding: 5px 8px;
 			color: #000;
-			text-transform: uppercase;			
+			text-transform: uppercase;
 			cursor: pointer;
 			font-size: 0.9em;
 
@@ -137,7 +136,7 @@ html, body {
 			margin: 0;
 			padding: 2px;
 			width: 96px;
-			height: 16px;			
+			height: 16px;
 			line-height: 1.2em;
 			font-size: 1em;
 			color: @gray;
@@ -175,8 +174,7 @@ html, body {
 		margin-top: 5px;
 		width: 202px;
 
-        tr {            
-
+		tr {
 			td {
 				padding: 3px 0;
 				border-top : 1px dotted @borderLightColor;
@@ -185,10 +183,9 @@ html, body {
 			&:first-child td{
 				border-top: none;
 			}
-        }
+		}
 
 		.agent-lbl, .parent-lbl {
-			
 		}
 		.agent-name, .parent-name {
 			text-align: right;
@@ -197,7 +194,6 @@ html, body {
 		.parent-name {
 			a {
 				color: @linkColor;
-
 				&:hover { color: @orange }
 			}
 		}
@@ -319,7 +315,7 @@ html, body {
 			li {
 				float: left;
 
-				a {		
+				a {
 					#gradient.vertical(lighten(@grayLighter, 20%), @grayLighter);
 					border: 1px solid @borderLightColor;
 					.border-radius(2px 2px 0 0);
@@ -402,7 +398,7 @@ html, body {
 				.menu-list {
 					position: absolute;
 					background-color: #F4F4F4;
-					border: 1px solid @borderColor;					
+					border: 1px solid @borderColor;
 					top: 7px;
 					left: 5px;
 					z-index: 100;
@@ -430,18 +426,18 @@ html, body {
 				height: 100%;
 				overflow: hidden;
 
-                #agent-treeview{
-                    height: 100%;
-                    iframe {
+				#agent-treeview{
+					height: 100%;
+					iframe {
 						width: 203px;
 						height: 98%;
 						margin: 5px 0 0 5px;
-				    }
-                }
+					}
+				}
 				iframe {
 					width: 203px;
 					height: 98%;
-					margin: 5px 0 0 5px;					
+					margin: 5px 0 0 5px;
 				}
 			}
 
@@ -546,7 +542,7 @@ html, body {
 		color: @red;
 	}
 
-	.disabled, .disabled:hover {		
+	.disabled, .disabled:hover {
 		cursor: default;
 		color: @black;
 	}

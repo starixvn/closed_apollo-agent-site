@@ -558,54 +558,6 @@ table.tblRpt td
 	text-align: center;
 }
 
-.EnrichScc
-{
-	background: url(../images/infoMsg.gif) no-repeat left top;
-	color: #2d9d3b;
-	height: 30px;
-	padding-left: 40px;
-	position: relative;
-	text-align: left;
-	vertical-align: middle;
-}
-
-.Enrich
-{
-	background: url(../images/infoMsg.gif) no-repeat left top;
-	color: #df2267;
-	height: 30px;
-	padding-left: 40px;
-	position: relative;
-	text-align: left;
-	vertical-align: middle;
-}
-
-.EnrichErrmsg
-{
-	background: url(../images/cross.png) no-repeat left top;
-	color: #df2267;
-	height: 16px;
-	padding-left: 20px;
-	text-align: left;
-}
-
-.EnrichSuccmsg
-{
-	background: url(../images/tick.png) no-repeat left top;
-	color: #2d9d3b;
-	height: 16px;
-	padding-left: 20px;
-	text-align: left;
-}
-
-.EnrichUserName
-{
-	color: Blue;
-	font-weight: 700;
-	height: 16px;
-	text-align: left;
-}
-
 .btnInfo
 {
 	background: url(../../_globalResources/images/icon_add.jpg) no-repeat scroll center top transparent;
