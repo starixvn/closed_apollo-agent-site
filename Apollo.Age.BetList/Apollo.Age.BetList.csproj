@@ -61,7 +61,6 @@
     <Compile Include="Criterias\AccountInfoBetlistCriteria.cs" />
     <Compile Include="Criterias\BetListCriteria.cs" />
     <Compile Include="Criterias\CancelledTicketCriteria.cs" />
-    <Compile Include="Criterias\CancelledTicketOldDataCriteria.cs" />
     <Compile Include="Criterias\OutstandingCriteria.cs" />
     <Compile Include="Criterias\SystemParlayData.cs" />
     <Compile Include="Criterias\SystemParlayDetailCriteria.cs" />

@@ -28,7 +28,7 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                     <div class="row">
                         <div class="cell">
                             <div class="editor">
-                                @Html.DatePicker("FromDate", Model.FromDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("FromDate", Model.FromDate, minDate: DateTime.Now.AddDays(-7).StartOfWeek(), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
@@ -38,15 +38,14 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                                 </label>
                             </div>
                             <div class="editor">
-                                @Html.DatePicker("ToDate", Model.ToDate, minDate: (Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate), maxDate: DateTime.Now.AddYears(20))
+                                @Html.DatePicker("ToDate", Model.ToDate, minDate: DateTime.Now.AddDays(-7).StartOfWeek(), maxDate: DateTime.Now.AddYears(20))
                             </div>
                         </div>
                         <div class="cell">
                             <input class="btn dateRange" range="1" type="button" value="@Lang.today" />
                             <input  class="btn dateRange" range="2" type="button" value="@Lang.yesterday" />
                             <input  class="btn dateRange" range="4" type="button" value="@Lang.thisWeek" />
-                            <input class="btn dateRange" range="5" type="button" value="@Lang.lastWeek" />
-                            <input  class="btn dateRange" range="6" type="button" value="@Lang.thisperiod" />
+                            <input class="btn dateRange" range="5" type="button" value="@Lang.lastWeek" />                            
                             @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
                             @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
@@ -55,10 +54,8 @@ new Apollo.Age.Reports.ViewModels.ReportMenuViewModel
                             @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
                             @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                             @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
-                            @Html.Hidden("thisPeriodFrom", Formater.ShortDateFormat(Model.ThisPeriod.FromDate))
-                            @Html.Hidden("thisPeriodTo", Formater.ShortDateFormat(Model.ThisPeriod.ToDate))
 
-                            @Html.Hidden("dateLimited", Formater.ShortDateFormat((Model.ThisPeriod.FromDate > DateTime.Now.AddDays(-7).StartOfWeek() ? DateTime.Now.AddDays(-7).StartOfWeek() : Model.ThisPeriod.FromDate)))
+                            @Html.Hidden("dateLimited", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
                         </div>
                     </div>
                 </td>

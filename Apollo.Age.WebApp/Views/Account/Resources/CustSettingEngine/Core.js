@@ -3,8 +3,9 @@
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
     Fanex.CloneObject = function (obj) {
+        'use strict';
         var newObj = (obj instanceof Array) ? [] : {};
-        for (i in obj) {
+        for (var i in obj) {
             if (i === 'clone') { continue; }
             if (obj[i] && typeof obj[i] === "object") {
                 newObj[i] = Fanex.CloneObject(obj[i]);
@@ -16,6 +17,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     };
     String.Empty = ""; // Extend static string
     String.prototype.Format = function (args) {
+        'use strict';
         var formatted = this;
         for (var i = 0; i < arguments.length; i++) {
             var regexp = new RegExp('\\{' + i + '\\}', 'gi');
@@ -24,10 +26,11 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         return formatted;
     };
     String.prototype.FormatNumber = function (number) { // Format a number to 1,234,567.89
+        'use strict';
         number += String.Empty;
-        x = number.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : String.Empty;
+        var x = number.split('.');
+        var x1 = x[0];
+        var x2 = x.length > 1 ? '.' + x[1] : String.Empty;
         var rgx = /(\d+)(\d{3})/;
         while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + ',' + '$2');
@@ -35,7 +38,9 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         return this + x1 + x2;
     };
     String.prototype.escapeHtml = function () { // Replace all ampersands with &amp; and all <’s and >’s with &lt; and &gt;, respectively:
+        'use strict';
         var result = String.Empty;
+        'use strict';
         for (var i = 0; i < this.length; i++) {
             if (this.charAt(i) === "&" && this.length - i - 1 >= 4 && this.substr(i, 4) !== "&amp;") {
                 result = result + "&amp;";
@@ -50,6 +55,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         return result;
     };
     (function () { // Parse float with string has commas inside parseFloat(string, true)
+        'use strict';
         var proxied = window.parseFloat;
         window.parseFloat = function () {
             if (arguments[1] === true && typeof (arguments[0]) === 'string') {
@@ -59,6 +65,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         };
     })();
     Fanex.FormatNumberFloat = function (number) { // Format a number to 12,345
+        'use strict';
         if (number === String.Empty) { return 0; }
         var sign;
         if (isNaN(number)) {
@@ -74,6 +81,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     };
     // Format input number on event e, using: onkeyup=Fanex.FormatNumber(event)
     Fanex.FormatNumber = function (event, isFloat) {
+        'use strict';
         var evt = event ? event : window.event; // Fix for IE7
 
         if (evt.keyCode === 9) { return true; } // Ignore TAB key
@@ -107,11 +115,13 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 
     // Arguments: number to round, number of decimal places
     Fanex.RoundNumber = function (number, decimals) {
+        'use strict';
         var newnumber = new Number(number + '').toFixed(parseInt(decimals));
         return parseFloat(newnumber); // Output the result to the form field (change for your purposes)
     };
 
     Fanex.HandleKeyDownInputNumber = function (e) {
+        'use strict';
         var charCode = ('charCode' in e ? e.charCode : e.keyCode);
 
         // allow special key presses
@@ -128,12 +138,14 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
         }
     };
 
-    Fanex.Round = function (value) { //Format a number from 0.0199999 to 0.02
+    Fanex.Round = function (value) { //Format a number from 0.0199999 to 0.02.
+        'use strict';
         return Math.round(value * 10000) / 10000;
     };
 
     // Returns the caret (cursor) position of the specified text field.
     Fanex.GetCaretPosition = function (oField) {
+        'use strict';
         var iCaretPos = 0;
 
         // IE Support
@@ -155,6 +167,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 
     // Sets the caret (cursor) position of the specified text field.
     Fanex.SetCaretPosition = function (oField, iCaretPos) {
+        'use strict';
         // IE Support
         if (document.selection) {
             oField.focus();
@@ -176,6 +189,7 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     };
 
     Fanex.ValidateMessage = function (elementInput, errorMessage, xpos, pointerx) {
+        'use strict';
         var isXPos = (typeof (xpos) !== "undefined" && xpos != null);
         var isPointerXPos = (typeof (pointerx) !== "undefined" && pointerx != null);
         if (isXPos && pointerx) {
@@ -196,6 +210,7 @@ var Validators = {
         // Show message and animate background color
     },
     show: function (elementInput, message, xPos, pointerXPos, yPos, pointerYPos, height, timeout, isDown) {
+        'use strict';
         // <span class="hint"><span>This is the message.<span><span class="hint-pointer">&nbsp;</span></span>
         var hint = document.getElementById('fHint');
         var hintPointer = null;
@@ -268,6 +283,7 @@ var Validators = {
         hint.style.display = 'block';
     },
     hide: function () {
+        'use strict';
         var hint = document.getElementById('fHint');
         if (hint == null) {
             return;
@@ -275,6 +291,7 @@ var Validators = {
         hint.style.display = 'none';
     },
     animate: function (input) {
+        'use strict';
         var previousColor = input.style.color;
         var previousBackground = input.style.backgroundColor;
         var c = 6;
@@ -302,6 +319,7 @@ var Validators = {
         // findPos() by quirksmode.org
         // Finds the absolute position of an element on a page
         findPos: function (obj) {
+            'use strict';
             var curleft = curtop = 0;
             if (obj.offsetParent) {
                 do {
@@ -314,6 +332,7 @@ var Validators = {
         // getPageScroll() by quirksmode.org
         // Finds the scroll position of a page
         getPageScroll: function () {
+            'use strict';
             var xScroll, yScroll;
             if (self.pageYOffset) {
                 yScroll = self.pageYOffset;
@@ -329,6 +348,7 @@ var Validators = {
         },
         // Finds the position of an element relative to the viewport.
         findPosRelativeToViewport: function (obj) {
+            'use strict';
             var objPos = this.findPos(obj);
             var scroll = this.getPageScroll();
             return [objPos[0] - scroll[0], objPos[1] - scroll[1]];
@@ -355,6 +375,7 @@ var Popups = {
     },
 
     Close: function () {
+        'use strict';
         ModalPopups.Close("idConfirm");
     }
 };
@@ -367,7 +388,7 @@ var JSON; if (!JSON) {JSON = {};} (function () { function f(n) { return n < 10 ?
 
 //------------------------ Spinner
 Spinner = function (container, options) {
-
+    'use strict';
     // fetch the DOM node if a string was supplied
     if (typeof container === 'string') {
         container = document.getElementById(container);
@@ -438,6 +459,7 @@ Spinner = function (container, options) {
 
 Spinner.prototype = {
     getValue: function () {
+        'use strict';
         var currentTextValue = this.input.value;
         var currentValue = 0;
         if (this.lastLetter && currentTextValue.indexOf(this.lastLetter) > -1) {
@@ -451,7 +473,7 @@ Spinner.prototype = {
         return currentParseValue;
     },
     setValue: function (value, noCheckConstrain) {
-
+        'use strict';
         noCheckConstrain = noCheckConstrain || false;
         // ensure the value is within the permitted range
         if ('minimum' in this.options && !noCheckConstrain) { value = Math.max(this.options.minimum, value); }
@@ -486,7 +508,7 @@ Spinner.prototype = {
         this.input.value = sign + integer + ((this.options.decimals > 0 && fractional.length > 0) ? '.' + fractional : '') + (this.lastLetter != null ? this.lastLetter : '');
     },
     addEventListener: function (node, event, listener, parameters, allowDefault) {
-
+        'use strict';
         // store a reference to the 'this' object
         var thisObject = this;
 
@@ -517,7 +539,7 @@ Spinner.prototype = {
         }
     },
     bind: function (f, parameters) {
-
+        'use strict';
         // store a reference to the 'this' object
         var thisObject = this;
 
@@ -527,7 +549,7 @@ Spinner.prototype = {
         };
     },
     handleMouseWheel: function (e) {
-
+        'use strict';
         // check whether the field is active
         if (document.activeElement === this.input) {
 
@@ -548,13 +570,13 @@ Spinner.prototype = {
         }
     },
     handleKeyDown: function (e) {
-
+        'use strict';
         // if the up or down keys were pressed, start updating
         if (e.keyCode === 38) { this.start(e, true); }
         if (e.keyCode === 40) { this.start(e, false); }
     },
     handleKeyPress: function (e) {
-
+        'use strict';
         // determine the character code
         var charCode = ('charCode' in e ? e.charCode : e.keyCode);
 
@@ -580,6 +602,7 @@ Spinner.prototype = {
         }
     },
     start: function (e, up) {
+        'use strict';
         // Return if input is disable
         if (this.input.disabled === true) { return; }
 
@@ -596,6 +619,7 @@ Spinner.prototype = {
         this.update();
     },
     stop: function () {
+        'use strict';
         //// Check valid input
         var value = this.getValue();
         if (isNaN(value)) { this.setValue(0); }
@@ -606,7 +630,7 @@ Spinner.prototype = {
         this.timeout = null;
     },
     update: function () {
-
+        'use strict';
         // determine the current value
         var value = this.getValue();
         if (isNaN(value)) { value = 0; }
@@ -622,12 +646,14 @@ Spinner.prototype = {
         if (this.input.onchange) { this.input.onchange(); }
     },
     updateAndSetMaxValue: function (maxValue) {
+        'use strict';
         if (this.options.minimum > maxValue) { maxValue = this.options.minimum; }
         if (maxValue < 0) { maxValue = 0; }
         this.options.maximum = maxValue;
         this.setValue(maxValue);
     },
     updateMaxValue: function (maxValue) {
+        'use strict';
         if (this.options.minimum > maxValue) { maxValue = this.options.minimum; }
         if (maxValue < 0) { maxValue = 0; }
         this.options.maximum = maxValue;
@@ -637,6 +663,7 @@ Spinner.prototype = {
         }
     },
     updateMinValue: function (mixValue) {
+        'use strict';
         if (mixValue < 0) { mixValue = 0; }
         this.options.minimum = mixValue;
 
@@ -645,21 +672,26 @@ Spinner.prototype = {
         }
     },
     updateMinValueWithNoReset: function (mixValue) {
+        'use strict';
         if (mixValue < 0) { mixValue = 0; }
         this.options.minimum = mixValue;
     },
     updateMaxValueWithNoReset: function (maxValue) {
+        'use strict';
         if (this.options.minimum > maxValue) { maxValue = this.options.minimum; }
         if (maxValue < 0) { maxValue = 0; }
         this.options.maximum = maxValue;
     },
     getMaxValue: function () {
+        'use strict';
         return this.options.maximum;
     },
     getMinValue: function () {
+        'use strict';
         return this.options.minimum;
     },
     isValid: function (hideMessage) {
+        'use strict';
         var value = parseFloat(this.input.value);
         if (isNaN(value)) {
             if (!hideMessage) {
@@ -683,6 +715,7 @@ Spinner.prototype = {
         return true;
     },
     digitsValid: function (value) {
+        'use strict';
         // determine the multiplier for rounding
         var valueString = value.toString();
 
@@ -694,11 +727,10 @@ Spinner.prototype = {
         return true;
     },
     digistIsValid: function (hideMessage) {
+        'use strict';
         var value = this.getValue();
         if (!this.digitsValid(value)) {
-            if (hideMessage === true) {
-            }
-            else {
+            if (hideMessage === false) {
                 Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
             }
             return false;
@@ -706,9 +738,11 @@ Spinner.prototype = {
         return true;
     },
     alertRangeMessage: function () {
+        'use strict';
         Fanex.ValidateMessage(this.input, Language.INVALID_RANGE.replace('{0}', this.options.minimum).replace('{1}', this.options.maximum), -50, 65);
     },
     alertDigitsInvalid: function () {
+        'use strict';
         Fanex.ValidateMessage(this.input, Language.INVALID_INPUT_DECIMAIL_POINT, -50, 65);
     }
 };

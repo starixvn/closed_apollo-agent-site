@@ -215,8 +215,6 @@
         <Setting Key="Age_BetList_SelByMem" SpName="Age_BetList_SelByMem" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_BetList_SelRunning" SpName="Age_BetList_SelRunning" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
         <Setting Key="Age_BetList_SelCancelled" SpName="Age_BetList_SelCancelled" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
-        <Setting Key="Age_BetList_SelCancelled_Old" SpName="Age_BetList_SelCancelled_Old" DbName="SVRARC.ArchiveDB.aplweb" Plain="0" />
-    
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets-BetList">

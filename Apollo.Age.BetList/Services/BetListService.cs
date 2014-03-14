@@ -193,16 +193,6 @@ namespace Apollo.Age.BetList.Services
         }
 
         /// <summary>
-        /// Gets the cancelled old ticket.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>Ticket result.</returns>
-        public TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria)
-        {
-            return this._betListRepository.GetCancelledOldTicket(criteria);
-        }
-
-        /// <summary>
         /// Gets the transaction ticket.
         /// </summary>
         /// <param name="criteria">The criteria.</param>

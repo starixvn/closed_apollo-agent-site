@@ -359,9 +359,6 @@ namespace Apollo.Age.BetList.Controllers
                 return View("~/Views/Reports/ReportAccessDenied.cshtml");
             }
 
-            viewModel.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
-            viewModel.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
-
             return this.TicketCancel(viewModel);
         }
 
@@ -394,9 +391,6 @@ namespace Apollo.Age.BetList.Controllers
             {
                 model.TicketList = this.Ticket(mainTickets, BetListPage.Cancel);
             }
-
-            model.ThisPeriod = _periodDateRangeSerivce.PeriodDates();
-            model.LastPeriod = _periodDateRangeSerivce.PeriodDates(true);
 
             return this.View(model);
         }

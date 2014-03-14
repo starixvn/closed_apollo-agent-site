@@ -270,67 +270,19 @@ namespace Apollo.Age.BetList.Controllers
             {
                 var betListService = new BetListService();
 
-                if (model.FromDate < this.ResetStartDate(model.BalanceUpDay))
+                var cancelledTicketCriteria = new CancelledTicketCriteria
                 {
-                    var oldDataCriteria = new CancelledTicketOldDataCriteria
-                    {
-                        AgentId = agentId,
-                        Bettypes = model.BetTypes,
-                        CustId = custId,
-                        FromDate = this.ResetStartDate(model.FromDate),
-                        Todate = model.ToDate > this.ResetEndDate(preBalanceUpDay) ? this.ResetEndDate(preBalanceUpDay) : model.ToDate,
-                        LoggedId = CurrentSession.AgentId,
-                        Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
-                    };
+                    AgentId = agentId,
+                    Bettypes = model.BetTypes,
+                    CustId = custId,
+                    FromDate = this.ResetStartDate(model.FromDate),
+                    Todate = this.ResetEndDate(model.ToDate),
+                    LoggedId = CurrentSession.AgentId,
+                    MoveBetsDay = model.MoveBetDay,
+                    Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
+                };
 
-                    if (model.ToDate <= this.ResetEndDate(preBalanceUpDay))
-                    {
-                        // Old data.
-                        mainTickets = betListService.GetCancelledOldTicket(oldDataCriteria);
-                    }
-                    else
-                    {
-                        // Old data.
-                        TicketResult oldTickets = betListService.GetCancelledOldTicket(oldDataCriteria);
-
-                        var newDataCriteria = new CancelledTicketCriteria
-                        {
-                            AgentId = agentId,
-                            Bettypes = model.BetTypes,
-                            CustId = custId,
-                            FromDate = model.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : model.FromDate,
-                            Todate = this.ResetEndDate(model.ToDate),
-                            LoggedId = CurrentSession.AgentId,
-                            MoveBetsDay = model.MoveBetDay,
-                            Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
-                        };
-
-                        // New data.
-                        TicketResult newTicktes = betListService.GetCancelledTicket(newDataCriteria);
-
-                        mainTickets = new TicketResult
-                        {
-                            TicketList = newTicktes.TicketList.Union(oldTickets.TicketList).ToList(),
-                            TicketListMixParlay = newTicktes.TicketListMixParlay.Union(oldTickets.TicketListMixParlay).ToList()
-                        };
-                    }
-                }
-                else
-                {
-                    var newDataCriteria = new CancelledTicketCriteria
-                    {
-                        AgentId = agentId,
-                        Bettypes = model.BetTypes,
-                        CustId = custId,
-                        FromDate = model.FromDate < this.ResetStartDate(balanceUpDay) ? this.ResetStartDate(balanceUpDay) : model.FromDate,
-                        Todate = this.ResetEndDate(model.ToDate),
-                        LoggedId = CurrentSession.AgentId,
-                        MoveBetsDay = model.MoveBetDay,
-                        Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
-                    };
-
-                    mainTickets = betListService.GetCancelledTicket(newDataCriteria);
-                }
+                mainTickets = betListService.GetCancelledTicket(cancelledTicketCriteria);
             }
 
             return mainTickets;

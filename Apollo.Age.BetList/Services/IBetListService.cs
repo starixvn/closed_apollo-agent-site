@@ -50,8 +50,6 @@ namespace Apollo.Age.BetList.Services
 
         TicketResult GetCancelledTicket(CancelledTicketCriteria criteria);
 
-        TicketResult GetCancelledOldTicket(CancelledTicketOldDataCriteria criteria);
-
         TicketResult GetTransactionTicket(TransactionCriteria criteria);
     }
 }
