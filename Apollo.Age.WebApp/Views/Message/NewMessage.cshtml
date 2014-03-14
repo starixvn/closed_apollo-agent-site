@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Web.Mvc
 @model GetMessageCriteria
-@{    
+@{
     Layout = "~/Views/Message/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.MessageHistory;
 
@@ -19,18 +19,22 @@
         case Constants.Normal:
             normal = "id=current";
             break;
+			
         case Constants.Special:
             special = "id=current";
             color = "Red";
             break;
+			
         case Constants.AllSpecial:
             special = "id=current";
             color = "Red";
             break;
+			
         case Constants.Private:
             color = "Green";
             pri = "id=current";
             break;
+			
         default:
             normal = "id=current";
             break;
@@ -69,7 +73,6 @@
                     </a>
                 </td>
             </tr>
-        
             <tr>
                 <td colspan="3" class="bg-green">
                     &nbsp;
@@ -134,32 +137,28 @@
             </tr>
         </thead>
         <tbody>
-            @{
-    int count = 0;
-    if (listMessage != null && listMessage.Any())
+    @if (listMessage != null && listMessage.Any())
     {
-        string rowClass = string.Empty;
-
+		int count = 0;
         foreach (MessageModel itemMessage in listMessage)
         {
             count++;
-            rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
-                <tr @Html.Raw(rowClass)>
-                    <td class="c">
-                        @count
-                    </td>
-                    <td class="c">
-                        @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
-                    </td>
-                    <td class="message_content">
-                        @itemMessage.GetContent(lang)
-                    </td>
-                </tr>
+            string rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
+            <tr @Html.Raw(rowClass)>
+                <td class="c">
+                    @count
+                </td>
+                <td class="c">
+                    @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
+                </td>
+                <td class="message_content">
+                    @itemMessage.GetContent(lang)
+                </td>
+            </tr>
         }
-    }    
-            }
+    }
         </tbody>
     </table>
-    @Html.Hidden("messagePrivate", Apollo.Age.Resources.Lang.privatemessage)
+    @Html.Hidden("messagePrivate", Lang.privatemessage)
     @Html.Hidden("isShowMessageLevel", isShowMessageLevel ? "true" : "false")
 }

@@ -212,7 +212,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/jquery-ui.js",
                 "~/_globalresources/js/blockui/jquery.blockui.js",                
                 "~/_globalresources/js/core.js",
-                "~/views/message/resources/portalpage.js"));
+                "~/views/message/resources/message.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/logjs").Include(
                 "~/_globalresources/js/head.js",

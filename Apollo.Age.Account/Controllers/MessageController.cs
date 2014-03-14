@@ -110,15 +110,6 @@ namespace Apollo.Age.Account.Controllers
         }
 
         /// <summary>
-        /// Portal action.
-        /// </summary>
-        /// <returns>View portal action.</returns>
-        public ViewResult Portal()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// Get new message.
         /// </summary>
         /// <param name="criteria">View model get new message.</param>
