@@ -116,7 +116,6 @@
     <Compile Include="Repositories\Impl\RepositoryBase.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Interface\IAgentRepository.cs" />
-    <Compile Include="Repositories\Interface\ICustomerRepository.cs" />
     <Compile Include="Repositories\Interface\IFunctionRepository.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberRepository.cs" />
@@ -127,10 +126,7 @@
     <Compile Include="Services\Impl\ServiceBase.cs" />
     <Compile Include="Services\Impl\SingbetSportService.cs" />
     <Compile Include="Services\Impl\UserService.cs" />
-    <Compile Include="Services\Interface\IAgentService.cs" />
-    <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IFunctionService.cs" />
-    <Compile Include="Services\Interface\IMemberService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
     <Compile Include="Entities\Language.cs" />
   </ItemGroup>

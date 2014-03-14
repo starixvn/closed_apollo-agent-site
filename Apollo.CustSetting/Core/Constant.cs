@@ -39,16 +39,10 @@ namespace Apollo.CustSetting.Core
         public const string FORMAT_BETTING_LIMIT_XML_3RD = "<BetLimit SportType=\"{0}\" BetType=\"{1}\" Min=\"{2}\" Max=\"{3}\" MaxPerMatch=\"{4}\"  MaxPerBall=\"{5}\"></BetLimit>";
         public const int NUMBER_GAME_SPORT_ID = 161;
         public const decimal MAX_POSITION_TAKING_AGENT_LEVEL_1 = 100;
-        public const int AGENT_LEVEL_EXCEPTION_SETTING = 2;
         public const int STEP_MUL_DIV = 100;
         public const decimal ROUNDING_NUMBER = 0.0049m;
         public const int NUMBER_DIGIST = 2;
         public const string DEFAULT_LANGUAGE = "en-US";
-
-        //// Language
-        public const string LANGUAGE_ENGLISH = "EN-en";
-
-        public const string LANGUAGE_CHINESE_SIMPLIFIED = "CHSP-chsp";
 
         static Constant()
         {
