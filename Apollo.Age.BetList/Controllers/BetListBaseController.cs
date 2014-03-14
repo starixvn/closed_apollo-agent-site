@@ -278,7 +278,6 @@ namespace Apollo.Age.BetList.Controllers
                     FromDate = this.ResetStartDate(model.FromDate),
                     Todate = this.ResetEndDate(model.ToDate),
                     LoggedId = CurrentSession.AgentId,
-                    MoveBetsDay = model.MoveBetDay,
                     Sporttypes = model.SportTypes == "-99" ? "0" : model.SportTypes
                 };
 

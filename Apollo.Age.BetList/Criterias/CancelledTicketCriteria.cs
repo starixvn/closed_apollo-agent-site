@@ -31,8 +31,6 @@ namespace Apollo.Age.BetList.Criterias
 
         public string Bettypes { get; set; }
 
-        public DateTime MoveBetsDay { get; set; }
-
         public override string GetSettingKey()
         {
             return "Age_BetList_SelCancelled";
