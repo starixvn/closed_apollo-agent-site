@@ -146,8 +146,6 @@ var Wagers = (function ($) {
                     }
                 });
             }
-
-
         },
 
         autoRefresh: function () {
